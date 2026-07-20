@@ -1,0 +1,123 @@
+import {readFile} from 'node:fs/promises';
+import path from 'node:path';
+
+import type {EditorialOperationsQueue, LegalChangeBrief, LegalIssueCard, PublicContentBundle, PublicTopic, PublishedBundle, SourceAssertion} from '@/types/publication';
+
+export async function loadPublishedBundle(): Promise<PublicContentBundle | null> {
+  const bundlePath = publicationBundlePath();
+  try {
+    const payload = JSON.parse(await readFile(bundlePath, 'utf8')) as unknown;
+    if (isPublishedBundle(payload)) return payload;
+    return editorialPreviewEnabled() && isEditorialPreviewBundle(payload) ? payload : null;
+  } catch {
+    return null;
+  }
+}
+
+export async function listPublishedCards(): Promise<LegalIssueCard[]> {
+  return (await loadPublishedBundle())?.cards ?? [];
+}
+
+export async function findPublishedCard(slug: string): Promise<LegalIssueCard | null> {
+  return (await listPublishedCards()).find(card => card.slug === slug) ?? null;
+}
+
+export async function assertionsForCard(card: LegalIssueCard): Promise<SourceAssertion[]> {
+  const bundle = await loadPublishedBundle();
+  if (!bundle) return [];
+  const allowed = new Set(card.assertion_ids);
+  return bundle.assertions.filter(assertion => allowed.has(assertion.assertion_id));
+}
+
+export async function listPublishedTopics(): Promise<PublicTopic[]> {
+  const topics = (await loadPublishedBundle())?.catalog?.topics ?? [];
+  return [...topics].sort((left, right) => left.order - right.order || left.title_ko.localeCompare(right.title_ko, 'ko'));
+}
+
+export async function findPublishedTopic(slug: string): Promise<PublicTopic | null> {
+  return (await listPublishedTopics()).find(topic => topic.slug === slug) ?? null;
+}
+
+export async function cardsForTopic(topic: PublicTopic): Promise<LegalIssueCard[]> {
+  const cards = await listPublishedCards();
+  const byId = new Map(cards.map(card => [card.issue_card_id, card]));
+  return topic.issue_card_ids.map(cardId => byId.get(cardId)).filter((card): card is LegalIssueCard => Boolean(card));
+}
+
+export async function topicsForCard(card: LegalIssueCard): Promise<PublicTopic[]> {
+  return (await listPublishedTopics()).filter(topic => topic.issue_card_ids.includes(card.issue_card_id));
+}
+
+export async function relatedCardsForCard(card: LegalIssueCard, limit = 3): Promise<LegalIssueCard[]> {
+  const [cards, topics] = await Promise.all([listPublishedCards(), topicsForCard(card)]);
+  const relatedIds = new Set(topics.flatMap(topic => topic.issue_card_ids));
+  return cards.filter(candidate => candidate.issue_card_id !== card.issue_card_id && relatedIds.has(candidate.issue_card_id)).slice(0, limit);
+}
+
+export async function listChangeBriefs(): Promise<LegalChangeBrief[]> {
+  const briefs = (await loadPublishedBundle())?.change_briefs ?? [];
+  return [...briefs].sort((left, right) => {
+    if (left.lifecycle !== right.lifecycle) return left.lifecycle === 'future_effective' ? -1 : 1;
+    const direction = left.lifecycle === 'future_effective' ? 1 : -1;
+    return direction * left.effective_date.localeCompare(right.effective_date);
+  });
+}
+
+export async function findChangeBrief(slug: string): Promise<LegalChangeBrief | null> {
+  return (await listChangeBriefs()).find(brief => brief.slug === slug) ?? null;
+}
+
+export async function assertionsForChangeBrief(brief: LegalChangeBrief): Promise<SourceAssertion[]> {
+  const bundle = await loadPublishedBundle();
+  if (!bundle) return [];
+  const allowed = new Set(brief.assertion_ids);
+  return bundle.assertions.filter(assertion => allowed.has(assertion.assertion_id));
+}
+
+export function publicationBundlePath(): string {
+  const filename = editorialPreviewEnabled() ? 'editorial-preview-bundle.json' : 'bundle.json';
+  return path.join(process.cwd(), 'content', filename);
+}
+
+function isPublishedBundle(value: unknown): value is PublishedBundle {
+  if (!value || typeof value !== 'object') return false;
+  const bundle = value as Partial<PublishedBundle>;
+  return bundle.schema === 'rulelink_published_bundle_v1'
+    && typeof bundle.snapshot_id === 'string'
+    && Array.isArray(bundle.cards)
+    && Array.isArray(bundle.assertions)
+    && bundle.cards.every(card => card.editorial_status === 'approved')
+    && (!bundle.change_briefs || bundle.change_briefs.every(brief => brief.editorial_status === 'approved'));
+}
+
+function isEditorialPreviewBundle(value: unknown): value is PublicContentBundle {
+  if (!value || typeof value !== 'object') return false;
+  const bundle = value as Partial<PublicContentBundle> & {preview_only?: boolean};
+  return bundle.schema === 'rulelink_editorial_preview_bundle_v1'
+    && bundle.preview_only === true
+    && Array.isArray(bundle.cards)
+    && Array.isArray(bundle.assertions)
+    && bundle.cards.every(card => card.editorial_status === 'source_verified' || card.editorial_status === 'legal_reviewed')
+    && (!bundle.change_briefs || bundle.change_briefs.every(brief => brief.editorial_status === 'source_verified' || brief.editorial_status === 'legal_reviewed'));
+}
+
+export function editorialPreviewEnabled(): boolean {
+  return process.env.RULELINK_EDITORIAL_PREVIEW_MODE === 'true';
+}
+
+export async function loadEditorialOperationsQueue(): Promise<EditorialOperationsQueue | null> {
+  if (!editorialPreviewEnabled()) return null;
+  const queuePath = process.env.RULELINK_EDITORIAL_OPERATIONS_QUEUE;
+  if (!queuePath || !path.isAbsolute(queuePath)) return null;
+  try {
+    const payload = JSON.parse(await readFile(queuePath, 'utf8')) as Partial<EditorialOperationsQueue>;
+    return payload.schema === 'rulelink_editorial_operations_queue_v1'
+      && payload.automatic_publication === false
+      && Array.isArray(payload.clusters)
+      && Array.isArray(payload.items)
+      ? payload as EditorialOperationsQueue
+      : null;
+  } catch {
+    return null;
+  }
+}
