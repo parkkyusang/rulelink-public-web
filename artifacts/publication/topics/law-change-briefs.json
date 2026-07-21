@@ -252,6 +252,64 @@
           "validation_status": "verified"
         }
       ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.private-loan-interest-cap-2021.old",
+      "user_facing_text_ko": "2021년 7월 6일까지 체결·갱신된 금전대차 계약에는 당시 최고이자율 연 24퍼센트 기준이 적용됐습니다.",
+      "proposition_type": "temporal_rule",
+      "applies_when": [
+        "2021-07-07 전 체결하거나 갱신한 계약의 상한을 설명하는 경우"
+      ],
+      "does_not_apply_when": [
+        "2021-07-07 이후 체결하거나 갱신한 계약을 설명하는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "src-interest-rate-20",
+          "source_snapshot_id": "snapshot:0bda91fb0a7a72f90a5814354657f781",
+          "version_scope": "historical",
+          "effective_from": "2018-02-08",
+          "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20210707&lsiSeq=230727&urlMode=lsInfoP",
+          "source_hash": "sha256:0bda91fb0a7a72f90a5814354657f781939e037dc56e677a36dd19a6f9f61372",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.private-loan-interest-cap-2021.current",
+      "user_facing_text_ko": "2021년 7월 7일 이후 체결하거나 갱신한 금전대차 계약의 최고이자율은 연 20퍼센트입니다.",
+      "proposition_type": "legal_effect",
+      "applies_when": [
+        "2021-07-07 이후 체결하거나 갱신한 금전대차 계약"
+      ],
+      "does_not_apply_when": [
+        "시행 전 계약이 갱신되지 않은 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "src-interest-rate-20",
+          "source_snapshot_id": "snapshot:0bda91fb0a7a72f90a5814354657f781",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2021-07-07",
+          "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20210707&lsiSeq=230727&urlMode=lsInfoP",
+          "source_hash": "sha256:0bda91fb0a7a72f90a5814354657f781939e037dc56e677a36dd19a6f9f61372",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        },
+        {
+          "source_id": "interest_limit_ko_0002",
+          "law_key": "interest_limit",
+          "article_no": "제2조",
+          "source_snapshot_id": "snapshot:d0100e8dc52367aa4a59040729a635cd",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2021-07-07",
+          "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%B4%EC%9E%90%EC%A0%9C%ED%95%9C%EB%B2%95/%EC%A0%9C2%EC%A1%B0",
+          "source_hash": "sha256:d0100e8dc52367aa4a59040729a635cdaa19fcc877f9ccac31972299131451bf",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
     }
   ],
   "change_briefs": [
@@ -825,6 +883,103 @@
       "new_snapshot_ids": [
         "snapshot:ff58c1d8755856865de21fba650211cd",
         "snapshot:7775f68b6cbbbb45116ca18713f47330"
+      ]
+    },
+    {
+      "change_brief_id": "kr.change.private-loan-interest-cap-2021",
+      "jurisdiction": "KR",
+      "locale": "ko-KR",
+      "slug": "private-loan-interest-cap-2021",
+      "title_ko": "2021년 7월 7일부터 개인 간 금전대차 최고이자율은 연 20퍼센트입니다",
+      "summary_ko": "최고이자율이 연 24퍼센트에서 연 20퍼센트로 낮아졌고 시행일 이후 새로 체결하거나 갱신한 계약부터 적용됩니다.",
+      "editorial_status": "approved",
+      "version": "0.1.0",
+      "lifecycle": "currently_effective",
+      "law_key": "interest_limit",
+      "law_name_ko": "이자제한법 및 이자제한법 제2조제1항의 최고이자율에 관한 규정",
+      "article_no": "제2조",
+      "promulgation_date": "2021-04-06",
+      "effective_date": "2021-07-07",
+      "reviewed_at": "2026-07-21T13:50:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "affected_audiences": [
+        "지인·가족 등 개인 간 금전대차의 채권자와 채무자",
+        "2021년 전후로 계약을 갱신한 당사자"
+      ],
+      "changed_points": [
+        "계약상 최고이자율이 연 24퍼센트에서 연 20퍼센트로 낮아졌습니다.",
+        "2021년 7월 7일 이후 새로 체결하거나 갱신한 계약부터 적용됩니다.",
+        "수수료·할인금·선이자 등 명칭과 무관하게 실질상 이자를 합산해야 합니다."
+      ],
+      "action_checklist": [
+        "계약일과 갱신일을 확정합니다.",
+        "실제로 받은 원금과 명목상 이자 외 비용을 모두 적습니다.",
+        "적용 시점의 최고이자율과 실제 부담률을 대조합니다.",
+        "초과 지급액의 원본 충당 또는 반환 문제를 별도로 계산합니다."
+      ],
+      "transition_status": "verified",
+      "transition_note_ko": "2021년 7월 7일 이후 최초 체결 또는 갱신된 계약인지가 적용 기준입니다.",
+      "norm_delta": {
+        "change_type": "legal_effect_change",
+        "changed_slots": [
+          "conditions",
+          "legal_effect",
+          "temporal_rule",
+          "transition_rule"
+        ],
+        "old_frame": {
+          "source_snapshot_ids": [
+            "snapshot:0bda91fb0a7a72f90a5814354657f781"
+          ],
+          "actor": ["금전대차의 채권자와 채무자"],
+          "object": ["계약상 최고이자율"],
+          "trigger": ["2021-07-07 전 계약 체결 또는 갱신"],
+          "conditions": ["당시 시행 중인 연 24퍼센트 상한 적용"],
+          "exception": [],
+          "operation": ["계약·갱신일 기준 상한 대조"],
+          "legal_effect": ["연 24퍼센트 초과 부분은 당시 상한 규율에 따라 판단"],
+          "temporal_rule": ["2021-07-06까지"],
+          "transition_rule": ["종전 계약이 갱신됐는지 확인"]
+        },
+        "new_frame": {
+          "source_snapshot_ids": [
+            "snapshot:0bda91fb0a7a72f90a5814354657f781",
+            "snapshot:d0100e8dc52367aa4a59040729a635cd"
+          ],
+          "actor": ["금전대차의 채권자와 채무자"],
+          "object": ["계약상 최고이자율"],
+          "trigger": ["2021-07-07 이후 계약 체결 또는 갱신"],
+          "conditions": ["명목과 무관하게 실질상 이자를 합산"],
+          "exception": ["대차원금 10만원 미만 등 법정 예외"],
+          "operation": ["실제 원금과 이자성 비용을 기준으로 부담률 계산"],
+          "legal_effect": ["계약상 최고이자율 연 20퍼센트 적용"],
+          "temporal_rule": ["2021-07-07부터"],
+          "transition_rule": ["시행 후 최초 체결·갱신분부터 적용"]
+        },
+        "legal_effect_delta_ko": "최고이자율이 연 24퍼센트에서 연 20퍼센트로 낮아졌습니다.",
+        "life_situation_impacts": [
+          "계약일과 갱신일에 따라 적용 상한이 달라집니다.",
+          "수수료와 선이자도 실질상 이자에 포함될 수 있습니다."
+        ],
+        "unresolved_questions": []
+      },
+      "related_issue_card_ids": [],
+      "related_content_ids": [
+        "content.private-loan-interest-limit"
+      ],
+      "assertion_ids": [
+        "assertion.kr.change.private-loan-interest-cap-2021.old",
+        "assertion.kr.change.private-loan-interest-cap-2021.current"
+      ],
+      "source_event_ids": [
+        "event:private-loan-interest-cap-2021"
+      ],
+      "old_snapshot_ids": [
+        "snapshot:0bda91fb0a7a72f90a5814354657f781"
+      ],
+      "new_snapshot_ids": [
+        "snapshot:0bda91fb0a7a72f90a5814354657f781",
+        "snapshot:d0100e8dc52367aa4a59040729a635cd"
       ]
     }
   ],
