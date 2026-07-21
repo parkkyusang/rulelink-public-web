@@ -1,6 +1,7 @@
 import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
+import {KnowledgeActionWorkspace} from '@/components/knowledge-action-workspace';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {findKnowledgeEntry, knowledgeDetail, listKnowledgeEntries} from '@/lib/publication';
@@ -175,16 +176,12 @@ export default async function KnowledgePage({params}: Props) {
           <section className="knowledgeSection" id="actions">
             <p className="eyebrow">지금 할 일과 자료</p>
             <h2>다음 순서로 준비합니다.</h2>
-            <div className="ruleStack">
-              <article className="ruleCard">
-                <h3>행동 순서</h3>
-                <ol>{entry.action_steps_ko.map(step => <li key={step}>{step}</li>)}</ol>
-              </article>
-              <article className="ruleCard">
-                <h3>확인하고 보관할 사실</h3>
-                <ul>{entry.facts_to_check_ko.map(fact => <li key={fact}>{fact}</li>)}</ul>
-              </article>
-            </div>
+            <KnowledgeActionWorkspace
+              actionSteps={entry.action_steps_ko}
+              contentId={entry.content_id}
+              factsToCheck={entry.facts_to_check_ko}
+              revisionKey={entry.reviewed_at}
+            />
             <p><b>주의할 점</b> · {entry.caution_ko}</p>
           </section>
         </div>

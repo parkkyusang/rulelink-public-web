@@ -1,0 +1,256 @@
+.workspace {
+  background: linear-gradient(145deg, #ffffff 0%, #f4f8f5 100%);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 20px 48px rgba(20, 55, 40, .08);
+  overflow: hidden;
+}
+
+.header {
+  align-items: end;
+  display: grid;
+  gap: 28px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding: 28px 30px 22px;
+}
+
+.kicker {
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: .08em;
+  margin: 0 0 9px;
+  text-transform: uppercase;
+}
+
+.header h3 {
+  font-size: 22px;
+  letter-spacing: -.03em;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.header > div > p:last-child {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 9px 0 0;
+}
+
+.progressSummary {
+  min-width: 78px;
+  text-align: right;
+}
+
+.progressSummary strong {
+  color: var(--green-dark);
+  display: block;
+  font-family: Georgia, serif;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.progressSummary strong span {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.progressSummary small {
+  color: var(--muted);
+  display: block;
+  font-size: 10px;
+  margin-top: 7px;
+}
+
+.progressTrack {
+  background: #dce9e1;
+  height: 5px;
+  margin: 0 30px;
+  overflow: hidden;
+}
+
+.progressTrack > span {
+  background: linear-gradient(90deg, var(--green), #4b9b70);
+  display: block;
+  height: 100%;
+  transition: width .2s ease;
+}
+
+.progressText {
+  color: var(--muted);
+  font-size: 11px;
+  margin: 8px 30px 0;
+  text-align: right;
+}
+
+.columns {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 20px;
+}
+
+.group {
+  background: rgba(255, 255, 255, .76);
+  padding: 25px 30px 28px;
+}
+
+.group + .group {
+  border-left: 1px solid var(--line);
+}
+
+.group h4 {
+  font-size: 15px;
+  margin: 0 0 16px;
+}
+
+.items {
+  display: grid;
+  gap: 8px;
+}
+
+.item {
+  align-items: start;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  cursor: pointer;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  padding: 13px;
+  transition: background-color .16s ease, border-color .16s ease;
+}
+
+.item:hover {
+  border-color: #9bb8a8;
+}
+
+.item input {
+  accent-color: var(--green);
+  height: 17px;
+  margin: 2px 0 0;
+  width: 17px;
+}
+
+.marker {
+  color: #6b7e74;
+  font-family: Georgia, serif;
+  font-size: 10px;
+  padding-top: 3px;
+}
+
+.text {
+  font-size: 13px;
+  line-height: 1.58;
+}
+
+.checked {
+  background: var(--mint);
+  border-color: #b9d6c5;
+}
+
+.checked .text {
+  color: #466057;
+}
+
+.footer {
+  align-items: center;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 17px 30px;
+}
+
+.privacy {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+}
+
+.actions button {
+  background: var(--white);
+  border: 1px solid #b9c8c0;
+  border-radius: 9px;
+  color: var(--green);
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 750;
+  padding: 8px 10px;
+}
+
+.actions button:hover:not(:disabled) {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--white);
+}
+
+.actions button:disabled {
+  cursor: not-allowed;
+  opacity: .45;
+}
+
+@media (max-width: 720px) {
+  .header {
+    align-items: start;
+    grid-template-columns: 1fr;
+    padding: 24px 20px 18px;
+  }
+
+  .progressSummary {
+    text-align: left;
+  }
+
+  .progressTrack {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .progressText {
+    margin-right: 20px;
+  }
+
+  .columns {
+    grid-template-columns: 1fr;
+  }
+
+  .group {
+    padding: 22px 20px;
+  }
+
+  .group + .group {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .footer {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 17px 20px 22px;
+  }
+
+  .actions button {
+    flex: 1;
+  }
+}
+
+@media print {
+  .workspace {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .actions,
+  .privacy {
+    display: none;
+  }
+}
