@@ -1,8 +1,8 @@
 {
   "schema": "rulelink_published_bundle_v1",
-  "snapshot_id": "kr-knowledge-core-20260721-012",
-  "built_at": "2026-07-21T10:42:25.593Z",
-  "source_snapshot_id": "multi-source:d150e207c9d958194454f1308cf89c56",
+  "snapshot_id": "kr-knowledge-core-20260721-013",
+  "built_at": "2026-07-21T11:10:00.000Z",
+  "source_snapshot_id": "multi-source:f598143080493bf6e41caeaf53c228b8",
   "jurisdiction": "KR",
   "locale": "ko-KR",
   "cards": [],
@@ -223,6 +223,7 @@
     "change-brief:draft.kr.change.administrative-appeals-16-2.001": "bfd67ae12f0463dcf4c1c883ce1e3f7adf5915e991400baabe6b3cf9b40cc98d",
     "change-brief-approval:change-brief-approval:draft.kr.change.administrative-appeals-16-2.001:bfd67ae12f04": "aeee98d37f7169116f8fec43e6d86bf3b62e6fb323ee6f36d8210dfbe0a32b32",
     "knowledge-approval:derived-administrative-appeals-depth-20260721-001": "af7f7124f5083d155e1537d098a218f488484d94fa60fd0166c898e7eef1d5c9",
+    "approval:db-grounded-20260721": "d150e207c9d958194454f1308cf89c568d39c81e153ad0be3dd0d88eb5860b3b",
     "knowledge:content.admin-appeal.documents-law-change": "61f39a2f1762efbdf879192ca7865c857490a06570ed41cf5e342a06d5eb0d4d",
     "knowledge:content.admin-appeal.eligibility-document-branch": "7f073724d04efc51c62efdd63819e8921ba1530105c509f85a1938490ae093f5",
     "knowledge:content.admin-appeal.data-sharing-consent": "4ed17781f78cf6522ef329743dbafeea1fe486351f0f9eccc3b7fe7ab8b26dcc",
@@ -237,7 +238,10 @@
     "knowledge:content.refund-within-three-business-days": "ff248504f1bb5e0c2bbaab3a537f5166d98d6b637672910304e192a145f712bb",
     "knowledge:content.paid-but-goods-not-supplied": "0af761aa53f8195bc4b1419edb27be21bb3f01266f300a96a6cc2ae915120f44",
     "knowledge:content.free-trial-to-paid-subscription": "58f585ecd9fe274caf4d028533b872c71316ec05f91ccf10a45e48655ba46bd0",
+    "knowledge:content.platform-seller-information-2026-change": "04c6142e1b59db10621c4c7e07a5e9929f47b57a4d996f99b128bc4146cad61b",
+    "knowledge:content.online-contract-evidence-checklist": "2fd8de2c55fc95afd2609eae20db88a055cfe18faba756cd8af7a79a385c194b",
     "knowledge:content.legal-heir-order-and-spouse": "614b0334231397716df5c44cfb2f6bb688defda39b7e403f8dfe277747ba1aad",
+    "knowledge:content.spouse-when-all-children-renounce": "79f9198cf06353dc27f6e470da41db666b5d70b78388fa6769073f771b07a1b0",
     "knowledge:content.three-month-inheritance-decision-period": "ceb9cfed0251712240e71a73c63d3435c2d4ebc8c161cc68fbd1a64f832d527d",
     "knowledge:content.inheritance-renunciation-procedure": "7a85e79eab5369640975c4a326f3666e58f908bc7226577d6e1c140c17f06c33",
     "knowledge:content.limited-acceptance-effect": "abc790d78e37ffb6935f86724b931a2d81e3e63617056121cbf73bff3a8afb66",
@@ -245,6 +249,7 @@
     "knowledge:content.estate-disposal-before-renunciation": "eec9cd6a41d1ab3bf7f91d3b9fa04a1bb6ccfad7a87c8a3914f328456695aea3",
     "knowledge:content.limited-acceptance-creditor-notice": "ef283a771044d4cc9ec1e691a6996699cd3b5fc178efc694a738c3a7db618f54",
     "knowledge:content.inheritance-assets-and-debts-checklist": "58ee094c3fa0f8060c358eed5483903e005cc895a3381dd2ba862c92a2b4dd43",
+    "knowledge:content.2026-loss-of-inheritance-right-and-representation": "202513c510d489fec005b0949e396c1c9ff5e45ebbd8ee15619cbaf083c773a1",
     "knowledge:content.move-before-deposit-refund": "a195c563d5615ab5a11200edd5bbd6e061924d7e429de9aac0b48eb8e05f311f",
     "knowledge:content.lease-registration-application-is-not-completion": "39c9857fe46953df7cb515996fdc2aebabcfe6b7292f2765646a54d7400d2e42",
     "knowledge:content.lease-registration-order-requirements": "a785367367181ad2fbb1fc9993116251e90226829f47bdc52aa62133ab531e3e",
@@ -267,6 +272,7 @@
     "knowledge:content.bank-transfer-loan-or-gift": "cc96a40387330b415bd12edc827b439746c7246822280ad579995814eaea2b10",
     "knowledge:content.loan-without-written-note": "b807d80c4a7d18932a7989cff3f9037f30474e54e609a5a096c16da1b8ffaac3",
     "knowledge:content.loan-without-repayment-date": "87d6b4ae7a0ac0bfa94fb93cbc6d3204669a3ad2d248545a84774e7669dc86b7",
+    "knowledge:content.private-loan-interest-limit": "364d3389f923d1ca6faf7955f86eadd536f388443f7125fac24c548542e861bc",
     "knowledge:content.partial-repayment-allocation": "5068b7fb12bd88bca0f9ba5e04348ae64552bc67f895f7e43e3379aac3e65873",
     "knowledge:content.guarantee-by-message-validity": "c0b7f346cb7997bb0bb2ee0dde5ce2bc065e7db097d413fc301b2ecaf63c48ad",
     "knowledge:content.continuing-guarantee-maximum-amount": "9d5edef11d426a5fc1de431d8e66808efa62b02f4a956a51ad3c0f720a61c812",
@@ -283,8 +289,7 @@
     "knowledge:content.shared-mobility-operator-liability-not-automatic": "2b03a5fdef9c06d05cd0d722a806a25e27cb2a9b52c30f0addff49c81668b0a1",
     "knowledge:content.shared-mobility-accident-evidence-checklist": "0bf90eae35eaf08f7f63e571929eac0f78ec92ff0c1ed89bea2a7e31431fff72",
     "knowledge:content.shared-mobility-visible-defect-before-ride": "43c32735d85da725d173c641d768ac3e2a2b72345371b661c0bf01f72ca6acac",
-    "knowledge-index:rulelink_public_knowledge_index_v1": "4924267deed30bca1b06bbaf8f63f6f512bbe1a59547c0e182a1088a62295461",
-    "approval:db-grounded-20260721": "d150e207c9d958194454f1308cf89c568d39c81e153ad0be3dd0d88eb5860b3b"
+    "knowledge-index:rulelink_public_knowledge_index_v1": "150dbd1f1e62dbe74e1dabac6adca8be61247cb26e034f2a94c3a047f7c5ea29"
   },
   "knowledge": {
     "schema": "rulelink_public_knowledge_index_v1",
@@ -353,6 +358,27 @@
         "last_verified_at": "2026-07-21T07:55:00+00:00"
       },
       {
+        "coordinate_id": "coord.consumer-online-contracts.ecommerce-consumer-ko-0020-04",
+        "source_id": "ecommerce_consumer_ko_0020_04",
+        "law_name_ko": "전자상거래 등에서의 소비자보호에 관한 법률",
+        "article_no": "제20조의4",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98%20%EB%93%B1%EC%97%90%EC%84%9C%EC%9D%98%20%EC%86%8C%EB%B9%84%EC%9E%90%EB%B3%B4%ED%98%B8%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C20%EC%A1%B0%EC%9D%984",
+        "source_snapshot_id": "snapshot:8a1aec26352f849b6e4223da51818c58",
+        "last_verified_at": "2026-07-21T07:55:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.consumer-online-contracts.src-ecommerce-revision-20260721",
+        "source_id": "src-ecommerce-revision-20260721",
+        "source_kind": "official_document",
+        "document_kind": "revision_text",
+        "title_ko": "전자상거래 등에서의 소비자보호에 관한 법률",
+        "effective_date": "2026-07-21",
+        "promulgation_number": "법률 제21312호",
+        "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=282793&viewCls=lsRvsDocInfoR",
+        "source_snapshot_id": "snapshot:02db1cc69a101bf763210f3a1377f866",
+        "last_verified_at": "2026-07-21T07:55:00+00:00"
+      },
+      {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1000",
         "source_id": "civil_act_ko_1000",
         "law_name_ko": "민법",
@@ -368,6 +394,17 @@
         "article_no": "제1003조",
         "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1003%EC%A1%B0",
         "source_snapshot_id": "snapshot:c0d629f570ce1480d72712c4fb2f6d4b",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.src-supreme-2020geu42",
+        "source_id": "src-supreme-2020geu42",
+        "source_kind": "precedent",
+        "title_ko": "대법원 2023. 3. 23. 자 2020그42 전원합의체 결정",
+        "case_number": "2020그42",
+        "decision_date": "2023-03-23",
+        "official_url": "https://www.law.go.kr/precInfoP.do?mode=0&precSeq=234385",
+        "source_snapshot_id": "snapshot:f91bd7aa6d0094d32d17b0b9347d233a",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
@@ -526,6 +563,45 @@
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1001",
+        "source_id": "civil_act_ko_1001",
+        "law_name_ko": "민법",
+        "article_no": "제1001조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1001%EC%A1%B0",
+        "source_snapshot_id": "snapshot:0ddea81999ec616d43249627e09c6c67",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1004-02",
+        "source_id": "civil_act_ko_1004_02",
+        "law_name_ko": "민법",
+        "article_no": "제1004조의2",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1004%EC%A1%B0%EC%9D%982",
+        "source_snapshot_id": "snapshot:249347b5699e0b74b2c7cdfc22df547c",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1010",
+        "source_id": "civil_act_ko_1010",
+        "law_name_ko": "민법",
+        "article_no": "제1010조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1010%EC%A1%B0",
+        "source_snapshot_id": "snapshot:b6cb761969185ba1d4b0c4843a7409f0",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.src-civil-revision-20260317",
+        "source_id": "src-civil-revision-20260317",
+        "source_kind": "official_document",
+        "document_kind": "revision_text",
+        "title_ko": "민법",
+        "effective_date": "2026-03-17",
+        "promulgation_number": "법률 제21454호",
+        "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=284415&viewCls=lsRvsDocInfoR",
+        "source_snapshot_id": "snapshot:ce3547629209d32d593ff08acf7a8686",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
         "coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
         "source_id": "housing_lease_ko_0003_03",
         "law_name_ko": "주택임대차보호법",
@@ -666,6 +742,45 @@
         "article_no": "제603조",
         "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C603%EC%A1%B0",
         "source_snapshot_id": "snapshot:620a0f688ebec421544fd799c874c735",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.money-guarantee.interest-limit-ko-0002",
+        "source_id": "interest_limit_ko_0002",
+        "law_name_ko": "이자제한법",
+        "article_no": "제2조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%B4%EC%9E%90%EC%A0%9C%ED%95%9C%EB%B2%95/%EC%A0%9C2%EC%A1%B0",
+        "source_snapshot_id": "snapshot:d0100e8dc52367aa4a59040729a635cd",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.money-guarantee.interest-limit-ko-0003",
+        "source_id": "interest_limit_ko_0003",
+        "law_name_ko": "이자제한법",
+        "article_no": "제3조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%B4%EC%9E%90%EC%A0%9C%ED%95%9C%EB%B2%95/%EC%A0%9C3%EC%A1%B0",
+        "source_snapshot_id": "snapshot:8865c051d58cbc890ad6e72575c7f75d",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.money-guarantee.interest-limit-ko-0004",
+        "source_id": "interest_limit_ko_0004",
+        "law_name_ko": "이자제한법",
+        "article_no": "제4조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%B4%EC%9E%90%EC%A0%9C%ED%95%9C%EB%B2%95/%EC%A0%9C4%EC%A1%B0",
+        "source_snapshot_id": "snapshot:be9e09237ebd49ab3f14808b95eedf2f",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.money-guarantee.src-interest-rate-20",
+        "source_id": "src-interest-rate-20",
+        "source_kind": "official_document",
+        "document_kind": "unnumbered_regulation",
+        "title_ko": "이자제한법 제2조제1항의 최고이자율에 관한 규정",
+        "effective_date": "2021-07-07",
+        "promulgation_number": "대통령령 제31593호",
+        "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20210707&lsiSeq=230727&urlMode=lsInfoP",
+        "source_snapshot_id": "snapshot:0bda91fb0a7a72f90a5814354657f781",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
@@ -877,7 +992,9 @@
           "content.who-pays-return-shipping",
           "content.refund-within-three-business-days",
           "content.paid-but-goods-not-supplied",
-          "content.free-trial-to-paid-subscription"
+          "content.free-trial-to-paid-subscription",
+          "content.platform-seller-information-2026-change",
+          "content.online-contract-evidence-checklist"
         ]
       },
       {
@@ -887,13 +1004,15 @@
         "description_ko": "사망 후 누가 상속인인지, 채무가 있을 때 3개월 안에 무엇을 조사하고 포기·한정승인 중 무엇을 선택할지 안내한다.",
         "content_ids": [
           "content.legal-heir-order-and-spouse",
+          "content.spouse-when-all-children-renounce",
           "content.three-month-inheritance-decision-period",
           "content.inheritance-renunciation-procedure",
           "content.limited-acceptance-effect",
           "content.special-limited-acceptance-late-debt",
           "content.estate-disposal-before-renunciation",
           "content.limited-acceptance-creditor-notice",
-          "content.inheritance-assets-and-debts-checklist"
+          "content.inheritance-assets-and-debts-checklist",
+          "content.2026-loss-of-inheritance-right-and-representation"
         ]
       },
       {
@@ -940,6 +1059,7 @@
           "content.bank-transfer-loan-or-gift",
           "content.loan-without-written-note",
           "content.loan-without-repayment-date",
+          "content.private-loan-interest-limit",
           "content.partial-repayment-allocation",
           "content.guarantee-by-message-validity",
           "content.continuing-guarantee-maximum-amount",
@@ -1129,6 +1249,20 @@
         ]
       },
       {
+        "rule_id": "rule.consumer-online-contracts.rule-platform-information",
+        "title_ko": "통신판매중개자는 자신이 거래 당사자가 아니라는 점을 고지하고 사업자 판매자의…",
+        "proposition_ko": "통신판매중개자는 자신이 거래 당사자가 아니라는 점을 고지하고 사업자 판매자의 신원정보를 확인·제공해야 한다. 2026년 7월 21일부터 개인 간 거래에서는 개인 판매자 신원정보를 확인하고, 분쟁 시 법이 정한 요청 주체에게 신원정보와 거래내역을 제공해 해결에 협조해야 한다.",
+        "norm": {
+          "actor_ko": "개인 간 거래를 중개하는 통신판매중개업자와 개인 판매자·거래 당사자",
+          "conditions_ko": "2026년 7월 21일 이후 개인 판매자가 참여한 플랫폼 거래에서 신원정보 확인과 분쟁협조 의무가 문제되는 경우",
+          "legal_effect_ko": "통신판매중개자는 자신이 거래 당사자가 아니라는 점을 고지하고 사업자 판매자의 신원정보를 확인·제공해야 한다. 2026년 7월 21일부터 개인 간 거래에서는 개인 판매자 신원정보를 확인하고, 분쟁 시 법이 정한 요청 주체에게 신원정보와 거래내역을 제공해 해결에 협조해야 한다."
+        },
+        "source_coordinate_ids": [
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0020-04",
+          "coord.consumer-online-contracts.src-ecommerce-revision-20260721"
+        ]
+      },
+      {
         "rule_id": "rule.family-inheritance.rule-inheritance-order",
         "title_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순…",
         "proposition_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순위에서는 최근친이 선순위다.",
@@ -1152,6 +1286,19 @@
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1003"
+        ]
+      },
+      {
+        "rule_id": "rule.family-inheritance.rule-all-children-renounce",
+        "title_ko": "배우자와 자녀가 공동상속인인 상황에서 자녀 전부가 상속을 포기하면 배우자가 …",
+        "proposition_ko": "배우자와 자녀가 공동상속인인 상황에서 자녀 전부가 상속을 포기하면 배우자가 단독상속인이 되고 손자녀가 배우자와 공동상속인이 되지 않는다는 전원합의체 결정이 있다.",
+        "norm": {
+          "actor_ko": "피상속인의 배우자와 공동상속인이던 자녀 전원",
+          "conditions_ko": "법률상 배우자가 존재하고 공동상속인인 자녀가 모두 적법하게 상속을 포기한 경우",
+          "legal_effect_ko": "배우자와 자녀가 공동상속인인 상황에서 자녀 전부가 상속을 포기하면 배우자가 단독상속인이 되고 손자녀가 배우자와 공동상속인이 되지 않는다는 전원합의체 결정이 있다."
+        },
+        "source_coordinate_ids": [
+          "coord.family-inheritance.src-supreme-2020geu42"
         ]
       },
       {
@@ -1242,6 +1389,22 @@
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1026",
           "coord.family-inheritance.src-supreme-disposal-187951"
+        ]
+      },
+      {
+        "rule_id": "rule.family-inheritance.rule-2026-representation-change",
+        "title_ko": "2026년 3월 17일 개정 민법은 상속권 상실선고 제도와 연결해 제1001…",
+        "proposition_ko": "2026년 3월 17일 개정 민법은 상속권 상실선고 제도와 연결해 제1001조 대습상속 사유에 제1004조의2를 반영했다.",
+        "norm": {
+          "actor_ko": "상속권 상실선고를 받은 사람이 있는 상속관계의 직계비속·배우자",
+          "conditions_ko": "2026년 3월 17일 시행 개정 민법에 따라 상속권 상실과 대습상속의 연결을 판단하는 경우",
+          "legal_effect_ko": "2026년 3월 17일 개정 민법은 상속권 상실선고 제도와 연결해 제1001조 대습상속 사유에 제1004조의2를 반영했다."
+        },
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1001",
+          "coord.family-inheritance.civil-act-ko-1004-02",
+          "coord.family-inheritance.civil-act-ko-1010",
+          "coord.family-inheritance.src-civil-revision-20260317"
         ]
       },
       {
@@ -1454,6 +1617,22 @@
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0603"
+        ]
+      },
+      {
+        "rule_id": "rule.money-guarantee.rule-interest-cap",
+        "title_ko": "금전대차의 계약상 최고이자율은 현재 연 20퍼센트이며 계약 체결·갱신 시점에…",
+        "proposition_ko": "금전대차의 계약상 최고이자율은 현재 연 20퍼센트이며 계약 체결·갱신 시점에 따른 적용례를 확인해야 한다.",
+        "norm": {
+          "actor_ko": "금전대차의 채권자와 채무자",
+          "conditions_ko": "약정이자와 수수료 등 실질 이자의 합계가 계약 체결·갱신 당시 최고이자율을 넘는지 판단하는 경우",
+          "legal_effect_ko": "금전대차의 계약상 최고이자율은 현재 연 20퍼센트이며 계약 체결·갱신 시점에 따른 적용례를 확인해야 한다."
+        },
+        "source_coordinate_ids": [
+          "coord.money-guarantee.interest-limit-ko-0002",
+          "coord.money-guarantee.interest-limit-ko-0003",
+          "coord.money-guarantee.interest-limit-ko-0004",
+          "coord.money-guarantee.src-interest-rate-20"
         ]
       },
       {
@@ -1768,6 +1947,20 @@
         ]
       },
       {
+        "scenario_id": "scenario.consumer-online-contracts.sc-platform-seller-unknown",
+        "question_ko": "플랫폼에서 거래한 판매자의 연락처와 신원을 확인하기 어려운 경우",
+        "decision_fact_ko": "거래일이 2026년 7월 21일 이후인지, 판매자가 개인인지, 법정 요청 주체와 절차를 갖췄는지",
+        "when_true_ko": "플랫폼에 신원정보와 거래내역 제공을 적법한 절차로 요청하고 요청·회신 기록을 보존합니다.",
+        "when_false_ko": "시행 전 거래이거나 요청 요건이 불명확하면 플랫폼 약관·분쟁조정 절차와 다른 증거확보 수단을 확인합니다.",
+        "rule_ids": [
+          "rule.consumer-online-contracts.rule-platform-information"
+        ],
+        "source_coordinate_ids": [
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0020-04",
+          "coord.consumer-online-contracts.src-ecommerce-revision-20260721"
+        ]
+      },
+      {
         "scenario_id": "scenario.family-inheritance.sc-spouse-children",
         "question_ko": "배우자와 자녀가 있는 일반적인 상속",
         "decision_fact_ko": "사망 당시 법률상 배우자와 직계비속의 존재",
@@ -1780,6 +1973,19 @@
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1000",
           "coord.family-inheritance.civil-act-ko-1003"
+        ]
+      },
+      {
+        "scenario_id": "scenario.family-inheritance.sc-all-children-renounce",
+        "question_ko": "배우자는 한정승인하고 자녀 전부가 포기한 경우",
+        "decision_fact_ko": "법률상 배우자가 존재하고 공동상속인인 자녀 전원의 상속포기가 수리됐는지",
+        "when_true_ko": "2020그42 전원합의체 결정에 따라 배우자가 단독상속인이 되고 손자녀가 새 공동상속인이 되지 않는 법리를 검토합니다.",
+        "when_false_ko": "배우자가 없거나 자녀 일부만 포기했다면 같은 결론을 적용하지 않고 남은 공동상속인과 후순위 상속인을 다시 확인합니다.",
+        "rule_ids": [
+          "rule.family-inheritance.rule-all-children-renounce"
+        ],
+        "source_coordinate_ids": [
+          "coord.family-inheritance.src-supreme-2020geu42"
         ]
       },
       {
@@ -1844,6 +2050,22 @@
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1026",
           "coord.family-inheritance.src-supreme-disposal-187951"
+        ]
+      },
+      {
+        "scenario_id": "scenario.family-inheritance.sc-loss-of-inheritance-right",
+        "question_ko": "부양의무 중대 위반 등을 이유로 상속권 상실선고가 문제되는 경우",
+        "decision_fact_ko": "상속권 상실선고 사유·청구·확정 여부와 상속개시일",
+        "when_true_ko": "개정 민법의 상속권 상실 효과와 대습상속 조문을 함께 적용해 후순위 상속관계를 계산합니다.",
+        "when_false_ko": "선고가 확정되지 않았거나 경과규정상 적용범위가 다르면 종전 상속관계와 별도 구제절차를 확인합니다.",
+        "rule_ids": [
+          "rule.family-inheritance.rule-2026-representation-change"
+        ],
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1001",
+          "coord.family-inheritance.civil-act-ko-1004-02",
+          "coord.family-inheritance.civil-act-ko-1010",
+          "coord.family-inheritance.src-civil-revision-20260317"
         ]
       },
       {
@@ -3185,6 +3407,168 @@
         "related_content_ids": []
       },
       {
+        "content_id": "content.platform-seller-information-2026-change",
+        "content_type": "law_change",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "platform-seller-information-2026-change",
+        "title_ko": "2026년 7월 21일부터 플랫폼 판매자 정보 확인이 어떻게 달라졌나",
+        "one_line_answer_ko": "2026년 7월 21일부터 개인 간 거래 플랫폼은 개인 판매자의 신원정보를 확인하고, 분쟁 시 법이 정한 요청 주체에게 신원정보와 거래내역을 제공해 해결에 협조해야 한다.",
+        "audience_situation_ko": "중고·개인판매 플랫폼에서 상대방 정보를 플랫폼에 요청할 수 있나?",
+        "key_points_ko": [
+          "사업자 판매자와 개인 판매자를 구분한다.",
+          "개정 시행일인 2026년 7월 21일 전후를 구분한다.",
+          "정보 제공의 요청 주체와 플랫폼 절차를 확인한다."
+        ],
+        "action_steps_ko": [
+          "거래일과 분쟁발생일을 확인한다.",
+          "판매자 프로필과 사업자 표시를 저장한다.",
+          "플랫폼의 당사자 고지 화면을 확보한다.",
+          "정해진 절차로 판매자 정보 제공을 요청하고 답변을 보관한다."
+        ],
+        "facts_to_check_ko": [
+          "거래일",
+          "플랫폼 유형",
+          "판매자의 사업자 여부",
+          "개인판매자 여부",
+          "플랫폼 고지 내용",
+          "제공된 신원정보",
+          "정보요청 일시와 답변",
+          "손해 발생과 인과관계"
+        ],
+        "caution_ko": "소비자가 언제나 아무 조건 없이 개인 판매자의 모든 정보를 직접 받을 수 있다는 뜻은 아니므로 제20조의4의 요청 주체와 절차를 확인해야 한다.",
+        "search_intents_ko": [
+          "플랫폼 개인판매자 정보",
+          "전자상거래법 2026 개정",
+          "중고거래 판매자 신원"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "2026년 7월 21일부터 개인 간 거래 규율이 분리됐다",
+            "paragraphs_ko": [
+              "개정법은 사업자 판매자에 대한 기존 신원정보 확인·제공 구조와 별도로, 개인 판매자가 참여하는 개인 간 거래에 관한 통신판매중개업자의 의무를 제20조의4에 신설했습니다.",
+              "플랫폼은 개인 판매자의 법정 신원정보를 확인해야 하고, 분쟁이 생기면 법이 정한 요청 주체의 요청에 따라 신원정보와 거래내역을 제공해 해결에 협조해야 합니다."
+            ]
+          },
+          {
+            "heading_ko": "소비자가 언제나 바로 정보를 받는다는 뜻은 아니다",
+            "paragraphs_ko": [
+              "정보 제공의 요청 주체와 절차는 법령과 플랫폼의 분쟁처리 절차를 확인해야 합니다. 거래 상대방이라는 이유만으로 아무 조건 없이 모든 개인정보를 직접 받을 수 있다고 단정하면 안 됩니다.",
+              "거래일, 판매자의 사업자·개인 구분, 플랫폼의 당사자 고지, 정보요청 경로와 답변을 보존하고 2026년 7월 21일 전후 어느 법이 적용되는지 나눠 봅니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.consumer-online-contracts.rule-platform-information"
+        ],
+        "scenario_ids": [
+          "scenario.consumer-online-contracts.sc-platform-seller-unknown"
+        ],
+        "source_coordinate_ids": [
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0020-04",
+          "coord.consumer-online-contracts.src-ecommerce-revision-20260721"
+        ],
+        "hub_ids": [
+          "hub.consumer-online-contracts"
+        ],
+        "related_content_ids": []
+      },
+      {
+        "content_id": "content.online-contract-evidence-checklist",
+        "content_type": "procedure_evidence",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "online-contract-evidence-checklist",
+        "title_ko": "온라인 구매 분쟁 증거 체크리스트",
+        "one_line_answer_ko": "결제내역만이 아니라 광고·옵션·약관·주문확인·배송·철회 통지·반송·환급 과정을 시간순으로 보존해야 한다.",
+        "audience_situation_ko": "반품·환불 분쟁이 생기면 무엇을 저장해야 하나?",
+        "key_points_ko": [
+          "판매페이지는 수정될 수 있으므로 전체 화면을 즉시 저장한다.",
+          "날짜가 드러나는 원본 자료를 우선한다.",
+          "전화 내용은 통화일시와 요지를 기록하고 가능하면 서면 답변으로 확인한다."
+        ],
+        "action_steps_ko": [
+          "상세페이지와 판매자 정보를 저장한다.",
+          "주문·결제·배송 타임라인을 만든다.",
+          "하자나 불일치를 사진·영상으로 남긴다.",
+          "철회 통지와 반송 송장을 보관한다.",
+          "환급·카드취소 내역을 대조한다."
+        ],
+        "facts_to_check_ko": [
+          "상품 상세페이지",
+          "선택 옵션",
+          "판매자 신원정보",
+          "주문서와 결제내역",
+          "배송조회",
+          "개봉·하자 사진",
+          "철회 통지",
+          "반송 송장",
+          "고객센터 답변",
+          "환급 내역"
+        ],
+        "caution_ko": "계정 화면만 믿지 말고 플랫폼 밖에서도 열 수 있는 파일 형태로 원본과 날짜를 보존한다.",
+        "search_intents_ko": [
+          "온라인 쇼핑 분쟁 증거",
+          "반품 증거 자료",
+          "전자상거래 계약 화면 저장"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "결제내역만으로는 부족하다",
+            "paragraphs_ko": [
+              "온라인 구매 분쟁의 결론은 계약내용, 공급시점, 상품 상태, 철회 사유와 통지시점에 따라 갈립니다. 따라서 결제 영수증뿐 아니라 상세페이지·옵션·약관·배송·대화 기록을 함께 보존해야 합니다.",
+              "판매페이지와 계정 화면은 수정되거나 접근이 막힐 수 있습니다. 날짜와 전체 주소가 보이는 화면, 원본 사진·영상, 내려받은 주문서를 플랫폼 밖에서도 열 수 있는 파일로 저장합니다."
+            ]
+          },
+          {
+            "heading_ko": "시간순 사건표를 만든다",
+            "paragraphs_ko": [
+              "주문, 계약서면 수신, 결제, 배송, 개봉, 불일치 발견, 철회 통지, 반송, 환급을 날짜순으로 놓으면 적용 기간과 책임 주체를 빠르게 확인할 수 있습니다.",
+              "전화상담은 통화일시와 담당자·핵심 답변을 적고 가능하면 같은 내용을 이메일이나 채팅으로 다시 확인합니다. 각 주장 옆에 이를 뒷받침하는 자료 파일을 연결합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.consumer-online-contracts.rule-withdrawal-7days",
+          "rule.consumer-online-contracts.rule-nonconforming-3m30d",
+          "rule.consumer-online-contracts.rule-refund-3businessdays",
+          "rule.consumer-online-contracts.rule-platform-information"
+        ],
+        "scenario_ids": [
+          "scenario.consumer-online-contracts.sc-change-mind",
+          "scenario.consumer-online-contracts.sc-not-as-advertised",
+          "scenario.consumer-online-contracts.sc-platform-seller-unknown"
+        ],
+        "source_coordinate_ids": [
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0017",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0018",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0020-04",
+          "coord.consumer-online-contracts.src-ecommerce-revision-20260721"
+        ],
+        "hub_ids": [
+          "hub.consumer-online-contracts"
+        ],
+        "related_content_ids": [],
+        "concierge_entry": {
+          "question_ko": "온라인 구매 분쟁 증거 체크리스트",
+          "decision_facts_ko": [
+            "상품 상세페이지",
+            "선택 옵션",
+            "판매자 신원정보",
+            "주문서와 결제내역",
+            "배송조회",
+            "개봉·하자 사진",
+            "철회 통지",
+            "반송 송장",
+            "고객센터 답변",
+            "환급 내역"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
         "content_id": "content.legal-heir-order-and-spouse",
         "content_type": "doctrine_explainer",
         "editorial_status": "approved",
@@ -3248,6 +3632,72 @@
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1000",
           "coord.family-inheritance.civil-act-ko-1003"
+        ],
+        "hub_ids": [
+          "hub.family-inheritance"
+        ],
+        "related_content_ids": []
+      },
+      {
+        "content_id": "content.spouse-when-all-children-renounce",
+        "content_type": "precedent_doctrine",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "spouse-when-all-children-renounce",
+        "title_ko": "자녀 전원이 상속을 포기하면 손자녀에게 내려가나",
+        "one_line_answer_ko": "대법원 전원합의체는 배우자와 자녀 중 자녀 전부가 포기한 경우 배우자가 단독상속인이 되고 손자녀가 공동상속인이 되지 않는다고 판례를 변경했다.",
+        "audience_situation_ko": "배우자가 있고 자녀 모두 포기하면 손자녀가 상속인이 되나?",
+        "key_points_ko": [
+          "배우자가 있는 경우와 없는 경우를 구분한다.",
+          "일부 자녀만 포기한 경우와 전원 포기는 다르다.",
+          "2023년 전원합의체 결정이 종래 판례를 변경했다."
+        ],
+        "action_steps_ko": [
+          "배우자 존재를 확인한다.",
+          "자녀 전원의 포기 수리 여부를 확인한다.",
+          "손자녀에게 온 채권통지나 승계집행문을 보존한다.",
+          "상속개시일과 판례 적용관계를 검토한다."
+        ],
+        "facts_to_check_ko": [
+          "법률상 배우자",
+          "자녀 수",
+          "전원 포기 여부",
+          "포기 수리일",
+          "손자녀 존재",
+          "배우자의 한정승인 여부",
+          "채권자의 집행 절차"
+        ],
+        "caution_ko": "배우자가 없거나 자녀 일부만 포기한 경우에는 같은 결론을 그대로 적용하지 않는다.",
+        "search_intents_ko": [
+          "자녀 전원 상속포기 손자녀",
+          "배우자 단독상속 2020그42",
+          "상속포기 다음 순위"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "배우자가 있고 자녀 전부가 포기한 경우의 현재 판례",
+            "paragraphs_ko": [
+              "대법원 전원합의체는 배우자와 자녀가 공동상속인인데 자녀 전부가 상속을 포기하면 포기한 자녀의 상속분이 남은 배우자에게 귀속되어 배우자가 단독상속인이 된다고 판단했습니다.",
+              "이 경우 손자녀나 직계존속이 배우자와 새로 공동상속인이 된다는 종래 판례는 2023년 결정에 배치되는 범위에서 변경되었습니다."
+            ]
+          },
+          {
+            "heading_ko": "비슷해 보여도 다른 경우를 나눈다",
+            "paragraphs_ko": [
+              "배우자와 자녀 모두가 포기한 경우에는 공동상속인 일부만 포기한 경우와 달라 후순위 상속인을 다시 확인해야 합니다. 자녀 일부만 포기한 경우에도 배우자와 포기하지 않은 자녀 사이에서 상속분이 정리됩니다.",
+              "따라서 배우자 존재, 자녀 전원의 포기 여부, 각 수리심판과 채권자의 승계집행 절차를 정확히 확인한 뒤 전원합의체 법리를 적용합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.family-inheritance.rule-all-children-renounce"
+        ],
+        "scenario_ids": [
+          "scenario.family-inheritance.sc-all-children-renounce"
+        ],
+        "source_coordinate_ids": [
+          "coord.family-inheritance.src-supreme-2020geu42"
         ],
         "hub_ids": [
           "hub.family-inheritance"
@@ -3847,6 +4297,80 @@
           ],
           "href": "https://liale-review.lolphysical.xyz"
         }
+      },
+      {
+        "content_id": "content.2026-loss-of-inheritance-right-and-representation",
+        "content_type": "law_change",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "2026-loss-of-inheritance-right-and-representation",
+        "title_ko": "2026년 민법 개정: 상속권 상실과 대습상속 연결",
+        "one_line_answer_ko": "2026년 3월 17일 개정 민법은 상속권 상실선고 제도와 연결하여 제1001조 대습상속 사유에 제1004조의2에 따라 상속인이 되지 못한 경우를 반영했다.",
+        "audience_situation_ko": "부양의무를 중대하게 위반한 상속인의 상속권이 상실되면 그 자녀가 대습상속할 수 있나?",
+        "key_points_ko": [
+          "상속결격과 상속권 상실선고를 구분한다.",
+          "상속권 상실선고의 원인·청구권자·기간을 별도 확인한다.",
+          "개정 시행일과 상속개시일에 따른 적용례를 확인해야 한다."
+        ],
+        "action_steps_ko": [
+          "상속개시일을 확정한다.",
+          "상실선고 사유와 관련 자료를 정리한다.",
+          "청구권자와 제척기간을 확인한다.",
+          "상실 대상자의 직계비속·배우자를 가족관계도로 표시한다.",
+          "개정법 적용례를 대조한다."
+        ],
+        "facts_to_check_ko": [
+          "상속개시일",
+          "개정 시행일",
+          "상실 사유",
+          "부양·학대 관련 자료",
+          "청구권자",
+          "청구기간",
+          "대상자의 직계비속",
+          "배우자",
+          "선고 확정 여부"
+        ],
+        "caution_ko": "상속권 상실선고의 구체적 요건과 적용례는 제1004조의2 및 부칙을 함께 검토해야 한다.",
+        "search_intents_ko": [
+          "상속권 상실 2026 민법",
+          "제1004조의2 대습상속",
+          "2026 상속법 개정"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "구법과 현행법의 대습상속 사유가 달라졌다",
+            "paragraphs_ko": [
+              "개정 전 민법 제1001조는 상속인이 될 직계비속 또는 형제자매가 상속개시 전에 사망하거나 제1004조의 상속결격자가 된 경우를 대습상속의 중심 사유로 두었습니다.",
+              "2026년 3월 17일 시행된 현행법은 새 제1004조의2에 따라 상속인이 되지 못한 경우도 제1001조의 대습상속 사유에 포함했습니다. 따라서 상속권 상실선고 대상자의 직계비속 지위를 개정 전 문언만으로 판단해서는 안 됩니다."
+            ]
+          },
+          {
+            "heading_ko": "상속개시일과 경과규정을 먼저 적용한다",
+            "paragraphs_ko": [
+              "상속권 상실선고는 부양의무의 중대한 위반, 중대한 범죄행위나 심히 부당한 대우 등 법정 사유와 청구권자·청구기간을 갖춘 별도 재판절차입니다. 도덕적 비난만으로 자동 상실되는 것은 아닙니다.",
+              "개정법은 2024년 4월 25일 이후 시행 전 상속이 개시된 일부 경우에 시행일부터 6개월 안의 특례 청구를 두는 등 경과규정을 포함합니다. 상속개시일, 상실사유를 안 날, 청구권자와 선고 확정일을 부칙과 함께 대조해야 합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.family-inheritance.rule-2026-representation-change",
+          "rule.family-inheritance.rule-inheritance-order"
+        ],
+        "scenario_ids": [
+          "scenario.family-inheritance.sc-loss-of-inheritance-right"
+        ],
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1001",
+          "coord.family-inheritance.civil-act-ko-1004-02",
+          "coord.family-inheritance.civil-act-ko-1010",
+          "coord.family-inheritance.src-civil-revision-20260317",
+          "coord.family-inheritance.civil-act-ko-1000"
+        ],
+        "hub_ids": [
+          "hub.family-inheritance"
+        ],
+        "related_content_ids": []
       },
       {
         "content_id": "content.move-before-deposit-refund",
@@ -5458,6 +5982,74 @@
         ],
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0603"
+        ],
+        "hub_ids": [
+          "hub.money-guarantee"
+        ],
+        "related_content_ids": []
+      },
+      {
+        "content_id": "content.private-loan-interest-limit",
+        "content_type": "law_change",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "private-loan-interest-limit",
+        "title_ko": "지인 간 돈거래 이자는 얼마까지 약정할 수 있나",
+        "one_line_answer_ko": "현재 이자제한법상 계약 최고이자율은 연 20퍼센트이며 과거 계약은 체결·갱신 시점별 적용 상한을 따로 확인해야 한다.",
+        "audience_situation_ko": "개인끼리 연 30퍼센트 이자를 약정해도 유효한가?",
+        "key_points_ko": [
+          "현재 상한과 계약 당시 상한을 구분한다.",
+          "수수료·할인금 등 명칭과 무관하게 실질상 이자인지 살핀다.",
+          "초과 부분의 효력과 이미 지급한 초과이자의 처리는 별도 계산한다."
+        ],
+        "action_steps_ko": [
+          "계약일과 갱신일을 확정한다.",
+          "명목상 이자 외 비용을 모두 합산한다.",
+          "실제 수령 원금과 지급액을 표로 만든다.",
+          "당시 시행 최고이자율을 대조한다."
+        ],
+        "facts_to_check_ko": [
+          "계약일",
+          "갱신일",
+          "실제 교부 원금",
+          "약정 이율",
+          "수수료·선이자",
+          "실제 지급 이자",
+          "대부업자 해당 여부",
+          "적용 법률"
+        ],
+        "caution_ko": "등록대부업자·금융기관 등은 적용 법률이 달라질 수 있고 과거 계약에는 당시 상한이 적용될 수 있다.",
+        "search_intents_ko": [
+          "개인간 이자 한도",
+          "이자제한법 20퍼센트",
+          "지인 대여 고금리"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "현재 20퍼센트와 계약 당시 상한을 분리한다",
+            "paragraphs_ko": [
+              "현재 이자제한법에 따른 금전대차 계약상의 최고이자율은 연 20퍼센트입니다. 이 기준은 2021년 7월 7일 이후 체결하거나 갱신한 계약부터 적용되므로 오래된 계약은 당시 시행 상한과 갱신 여부를 확인합니다.",
+              "계약상 이율이 상한을 넘으면 초과 부분의 효력과 이미 지급한 초과이자의 원본 충당·반환을 별도로 계산해야 합니다."
+            ]
+          },
+          {
+            "heading_ko": "이름이 아니라 실제 비용을 이자로 계산한다",
+            "paragraphs_ko": [
+              "수수료, 사례금, 할인금, 선이자처럼 다른 이름을 붙였더라도 금전대차와 관련해 실질적으로 채권자가 취득하는 금액인지 살펴야 합니다. 선이자를 공제했다면 실제 받은 원금을 기준으로 다시 계산합니다.",
+              "이자제한법은 대차원금 10만원 미만의 이자에 제2조 제1항을 적용하지 않는 예외를 두고 있습니다. 등록대부업자·금융기관 등은 적용 법률이 달라질 수 있으므로 거래 주체도 확인합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.money-guarantee.rule-interest-cap"
+        ],
+        "scenario_ids": [],
+        "source_coordinate_ids": [
+          "coord.money-guarantee.interest-limit-ko-0002",
+          "coord.money-guarantee.interest-limit-ko-0003",
+          "coord.money-guarantee.interest-limit-ko-0004",
+          "coord.money-guarantee.src-interest-rate-20"
         ],
         "hub_ids": [
           "hub.money-guarantee"
