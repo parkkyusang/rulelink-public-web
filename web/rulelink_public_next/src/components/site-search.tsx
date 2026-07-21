@@ -2,6 +2,8 @@
 
 import {useEffect, useMemo, useState} from 'react';
 
+import {knowledgeContentTypeLabel} from '@/lib/content-labels';
+
 import type {LegalChangeBrief, LegalIssueCard, PublicKnowledgeEntry, PublicTopic} from '@/types/publication';
 
 import styles from './site-search.module.css';
@@ -155,10 +157,10 @@ function buildResults(
       kind: 'knowledge',
       title: entry.title_ko,
       summary: entry.one_line_answer_ko,
-      context: `${contentTypeLabel(entry.content_type)} · ${entry.audience_situation_ko}`,
+      context: `${knowledgeContentTypeLabel(entry.content_type)} · ${entry.audience_situation_ko}`,
       href: `/ko/knowledge/${entry.slug}`,
       reviewedAt: entry.reviewed_at,
-      terms: [entry.audience_situation_ko, contentTypeLabel(entry.content_type)],
+      terms: [entry.audience_situation_ko, knowledgeContentTypeLabel(entry.content_type)],
     })),
     ...cards.map(card => {
       const cardTopics = topicByCardId.get(card.issue_card_id) ?? [];
@@ -223,16 +225,3 @@ function kindLabel(kind: ResultKind): string {
   return {issue: '상황별 안내', knowledge: '연결 지식', change: '법령 변화'}[kind];
 }
 
-function contentTypeLabel(type: PublicKnowledgeEntry['content_type']): string {
-  const labels: Record<PublicKnowledgeEntry['content_type'], string> = {
-    law_change: '법령 변경',
-    doctrine_explainer: '법리 해설',
-    fact_branch: '사실 분기',
-    precedent_doctrine: '판례 법리',
-    similar_case_comparison: '유사사례 비교',
-    misconception_correction: '오해 바로잡기',
-    procedure_evidence: '절차와 증거',
-    recurring_issue_generalization: '반복 쟁점',
-  };
-  return labels[type];
-}
