@@ -30,7 +30,7 @@ export async function loadPublishedBundle(): Promise<PublicContentBundle | null>
 }
 
 export async function listPublishedCards(): Promise<LegalIssueCard[]> {
-  return ((await loadPublishedBundle())?.cards ?? []).filter(isPublicationFresh);
+  return ((await loadPublishedBundle())?.cards ?? []).filter(item => isPublicationFresh(item));
 }
 
 export async function findPublishedCard(slug: string): Promise<LegalIssueCard | null> {
@@ -47,7 +47,7 @@ export async function assertionsForCard(card: LegalIssueCard): Promise<SourceAss
 export async function listPublishedTopics(): Promise<PublicTopic[]> {
   const bundle = await loadPublishedBundle();
   const topics = bundle?.catalog?.topics ?? [];
-  const visibleCardIds = new Set((bundle?.cards ?? []).filter(isPublicationFresh).map(card => card.issue_card_id));
+  const visibleCardIds = new Set((bundle?.cards ?? []).filter(item => isPublicationFresh(item)).map(card => card.issue_card_id));
   return topics
     .filter(topic => topic.issue_card_ids.some(cardId => visibleCardIds.has(cardId)))
     .sort((left, right) => left.order - right.order || left.title_ko.localeCompare(right.title_ko, 'ko'));
@@ -74,7 +74,7 @@ export async function relatedCardsForCard(card: LegalIssueCard, limit = 3): Prom
 }
 
 export async function listChangeBriefs(): Promise<LegalChangeBrief[]> {
-  const briefs = ((await loadPublishedBundle())?.change_briefs ?? []).filter(isPublicationFresh);
+  const briefs = ((await loadPublishedBundle())?.change_briefs ?? []).filter(item => isPublicationFresh(item));
   return [...briefs].sort((left, right) => {
     if (left.lifecycle !== right.lifecycle) return left.lifecycle === 'future_effective' ? -1 : 1;
     const direction = left.lifecycle === 'future_effective' ? 1 : -1;
@@ -109,7 +109,7 @@ export async function relatedChangeBriefsForCard(card: LegalIssueCard, limit = 6
 }
 
 export async function listKnowledgeEntries(): Promise<PublicKnowledgeEntry[]> {
-  return ((await loadPublishedBundle())?.knowledge?.content_entries ?? []).filter(isPublicationFresh);
+  return ((await loadPublishedBundle())?.knowledge?.content_entries ?? []).filter(item => isPublicationFresh(item));
 }
 
 export async function findKnowledgeEntry(slug: string): Promise<PublicKnowledgeEntry | null> {
@@ -120,7 +120,7 @@ export async function listKnowledgeHubs(): Promise<PublicKnowledgeHub[]> {
   const knowledge = (await loadPublishedBundle())?.knowledge;
   if (!knowledge) return [];
   const visibleEntryIds = new Set(
-    knowledge.content_entries.filter(isPublicationFresh).map(entry => entry.content_id),
+    knowledge.content_entries.filter(item => isPublicationFresh(item)).map(entry => entry.content_id),
   );
   return knowledge.topic_hubs.filter(hub => hub.content_ids.some(contentId => visibleEntryIds.has(contentId)));
 }
