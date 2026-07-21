@@ -3,6 +3,8 @@ import path from 'node:path';
 import {spawn} from 'node:child_process';
 import {once} from 'node:events';
 
+import {selectHomepageKnowledge} from '../src/lib/homepage-knowledge-selection.ts';
+
 const appRoot = process.cwd();
 const port = Number(process.env.RULELINK_SMOKE_PORT || 18800);
 const baseUrl = `http://127.0.0.1:${port}`;
@@ -45,7 +47,7 @@ try {
   const homeHtml = await homeResponse.text();
   assert(homeHtml.includes('href="/ko/knowledge">상황별 지식</a>'), '상단 메뉴가 공개 지식으로 연결되지 않습니다.');
   assert(homeHtml.includes('href="/ko/sources">공식 근거</a>'), '상단 메뉴가 공식 근거 보관함으로 연결되지 않습니다.');
-  for (const entry of (bundle.knowledge?.content_entries ?? []).slice(0, 6)) {
+  for (const entry of selectHomepageKnowledge(bundle.knowledge?.content_entries ?? [], 6)) {
     assert(homeHtml.includes(`href="/ko/knowledge/${entry.slug}"`), `홈에서 공개 지식이 노출되지 않습니다: ${entry.slug}`);
   }
   for (const hub of bundle.knowledge?.topic_hubs ?? []) {
