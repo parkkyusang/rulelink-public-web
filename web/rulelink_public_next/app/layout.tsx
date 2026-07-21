@@ -42,6 +42,14 @@ export default function RootLayout({children}: {children: ReactNode}) {
             url: site.url,
             description: site.description,
             inLanguage: 'ko-KR',
+            potentialAction: {
+              '@type': 'SearchAction',
+              target: {
+                '@type': 'EntryPoint',
+                urlTemplate: `${site.url}/ko/search?q={search_term_string}`,
+              },
+              'query-input': 'required name=search_term_string',
+            },
           })}}
           type="application/ld+json"
         />

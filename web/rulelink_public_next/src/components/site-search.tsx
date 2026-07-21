@@ -1,6 +1,6 @@
 'use client';
 
-import {useMemo, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 
 import type {LegalChangeBrief, LegalIssueCard, PublicKnowledgeEntry, PublicTopic} from '@/types/publication';
 
@@ -30,6 +30,26 @@ type SearchResult = {
 export function SiteSearch({cards, changeBriefs, knowledgeEntries, topics}: Props) {
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<ResultFilter>('all');
+
+  useEffect(() => {
+    const parameters = new URLSearchParams(window.location.search);
+    const initialQuery = (parameters.get('q') ?? '').slice(0, 200);
+    const initialFilter = parameters.get('type');
+    if (initialQuery) setQuery(initialQuery);
+    if (isResultFilter(initialFilter)) setFilter(initialFilter);
+  }, []);
+
+  function updateQuery(value: string) {
+    const nextQuery = value.slice(0, 200);
+    setQuery(nextQuery);
+    replaceSearchUrl(nextQuery, filter);
+  }
+
+  function updateFilter(nextFilter: ResultFilter) {
+    setFilter(nextFilter);
+    replaceSearchUrl(query, nextFilter);
+  }
+
   const results = useMemo(
     () => buildResults(cards, changeBriefs, knowledgeEntries, topics),
     [cards, changeBriefs, knowledgeEntries, topics],
@@ -58,7 +78,7 @@ export function SiteSearch({cards, changeBriefs, knowledgeEntries, topics}: Prop
           <input
             autoComplete="off"
             id="site-search"
-            onChange={event => setQuery(event.target.value)}
+            onChange={event => updateQuery(event.target.value)}
             placeholder="예: 처분 통지를 받음, 시행일, 보증금 반환"
             type="search"
             value={query}
@@ -68,10 +88,10 @@ export function SiteSearch({cards, changeBriefs, knowledgeEntries, topics}: Prop
       </div>
 
       <div aria-label="법률정보 종류" className={styles.filters} role="group">
-        <FilterButton active={filter === 'all'} count={counts.all} label="전체" onClick={() => setFilter('all')} />
-        <FilterButton active={filter === 'issue'} count={counts.issue} label="상황별 안내" onClick={() => setFilter('issue')} />
-        <FilterButton active={filter === 'knowledge'} count={counts.knowledge} label="연결 지식" onClick={() => setFilter('knowledge')} />
-        <FilterButton active={filter === 'change'} count={counts.change} label="법령 변화" onClick={() => setFilter('change')} />
+        <FilterButton active={filter === 'all'} count={counts.all} label="전체" onClick={() => updateFilter('all')} />
+        <FilterButton active={filter === 'issue'} count={counts.issue} label="상황별 안내" onClick={() => updateFilter('issue')} />
+        <FilterButton active={filter === 'knowledge'} count={counts.knowledge} label="연결 지식" onClick={() => updateFilter('knowledge')} />
+        <FilterButton active={filter === 'change'} count={counts.change} label="법령 변화" onClick={() => updateFilter('change')} />
       </div>
 
       <p aria-live="polite" className={styles.resultCount}>찾은 법률정보 {visibleResults.length}개</p>
@@ -175,6 +195,20 @@ function FilterButton({active, count, label, onClick}: {active: boolean; count: 
       {label}<span>{count}</span>
     </button>
   );
+}
+
+
+function replaceSearchUrl(query: string, filter: ResultFilter) {
+  const url = new URL(window.location.href);
+  if (query.trim()) url.searchParams.set('q', query.trim());
+  else url.searchParams.delete('q');
+  if (filter === 'all') url.searchParams.delete('type');
+  else url.searchParams.set('type', filter);
+  window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+}
+
+function isResultFilter(value: string | null): value is ResultFilter {
+  return value === 'all' || value === 'issue' || value === 'knowledge' || value === 'change';
 }
 
 function normalize(value: string): string {
