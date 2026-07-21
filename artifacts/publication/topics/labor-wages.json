@@ -3,6 +3,26 @@
   "topic_id": "hub.labor-wages",
   "sources": [
     {
+      "coordinate_id": "coord.labor-wages.labor-standards-ko-0002",
+      "source_id": "labor_standards_ko_0002",
+      "law_name_ko": "근로기준법",
+      "article_no": "제2조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C2%EC%A1%B0",
+      "source_snapshot_id": "snapshot:a71a83bf13303c525bd1e3b4a929817a",
+      "last_verified_at": "2026-07-21T08:15:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.labor-wages.src-supreme-2006da60793",
+      "source_id": "src-supreme-2006da60793",
+      "source_kind": "precedent",
+      "title_ko": "대법원 2007. 1. 25. 선고 2006다60793 판결",
+      "case_number": "2006다60793",
+      "decision_date": "2007-01-25",
+      "official_url": "https://www.law.go.kr/LSW/precInfoP.do?evtNo=2006%EB%8B%A460793",
+      "source_snapshot_id": "snapshot:a86d3079a89fe7fa163f70a54abd9b23",
+      "last_verified_at": "2026-07-21T08:15:00+00:00"
+    },
+    {
       "coordinate_id": "coord.labor-wages.labor-standards-ko-0036",
       "source_id": "labor_standards_ko_0036",
       "law_name_ko": "근로기준법",
@@ -66,6 +86,9 @@
       "title_ko": "노동·임금",
       "description_ko": "계약 명칭보다 실제 일한 방식, 퇴직 정산기한, 해고 통지와 구제기한을 사실관계별로 판단하도록 돕는다.",
       "content_ids": [
+        "content.freelancer-contract-worker-status",
+        "content.worker-status-evidence-checklist",
+        "content.business-registration-does-not-decide-worker-status",
         "content.final-wages-after-retirement-14-days",
         "content.verbal-delay-agreement-after-retirement",
         "content.retirement-pay-basic-formula",
@@ -77,6 +100,20 @@
     }
   ],
   "rule_cards": [
+    {
+      "rule_id": "rule.labor-wages.rule-worker-status",
+      "title_ko": "근로자성은 계약 명칭 하나가 아니라 사용종속관계를 보여주는 여러 사정을 종합…",
+      "proposition_ko": "근로자성은 계약 명칭 하나가 아니라 사용종속관계를 보여주는 여러 사정을 종합해 판단한다.",
+      "norm": {
+        "actor_ko": "계약 형식과 무관하게 임금을 목적으로 사업 또는 사업장에 근로를 제공하는 사람",
+        "conditions_ko": "업무 내용·지휘감독·시간과 장소 구속·대체 가능성·장비와 비용 부담·보수 성격·전속성과 계속성 등 실제 사용종속관계를 종합해 근로자 여부를 판단하는 경우",
+        "legal_effect_ko": "근로자성은 계약 명칭 하나가 아니라 사용종속관계를 보여주는 여러 사정을 종합해 판단한다."
+      },
+      "source_coordinate_ids": [
+        "coord.labor-wages.labor-standards-ko-0002",
+        "coord.labor-wages.src-supreme-2006da60793"
+      ]
+    },
     {
       "rule_id": "rule.labor-wages.rule-money-14days",
       "title_ko": "근로자가 퇴직하면 사용자는 특별한 사정에 관한 당사자 합의가 없는 한 임금·…",
@@ -161,6 +198,20 @@
   ],
   "scenario_branches": [
     {
+      "scenario_id": "scenario.labor-wages.sc-contractor-label",
+      "question_ko": "프리랜서 계약서와 사업자등록이 있지만 출퇴근·업무방식·보수가 회사에 의해 통제된 경우",
+      "decision_fact_ko": "프리랜서·위탁계약 명칭과 별개로 실제 업무 지시·감독과 시간·장소 구속이 존재하는지",
+      "when_true_ko": "계약 명칭을 배제하고 판례의 사용종속관계 요소를 실제 자료로 종합해 근로자성을 판단합니다.",
+      "when_false_ko": "업무 수락·거절, 가격 결정, 대체인력 사용과 손익 부담이 실질적으로 독립적이었다면 독립사업자 가능성을 함께 검토합니다.",
+      "rule_ids": [
+        "rule.labor-wages.rule-worker-status"
+      ],
+      "source_coordinate_ids": [
+        "coord.labor-wages.labor-standards-ko-0002",
+        "coord.labor-wages.src-supreme-2006da60793"
+      ]
+    },
+    {
       "scenario_id": "scenario.labor-wages.sc-unpaid-after-exit",
       "question_ko": "퇴직 후 14일이 지났는데 임금과 수당 일부가 지급되지 않은 경우",
       "decision_fact_ko": "정확한 퇴직일과 14일 이내 지급되지 않은 임금·수당·그 밖의 금품",
@@ -233,6 +284,237 @@
     }
   ],
   "content_entries": [
+    {
+      "content_id": "content.freelancer-contract-worker-status",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "freelancer-contract-worker-status",
+      "title_ko": "프리랜서 계약서를 썼어도 근로자일 수 있나",
+      "one_line_answer_ko": "계약 명칭만으로 결정되지 않으며 실제 업무 지시·감독, 시간과 장소의 구속, 보수의 성격, 전속성과 계속성 등을 함께 본다.",
+      "audience_situation_ko": "계약서에 프리랜서라고 쓰여 있으면 근로기준법 보호를 받을 수 없나?",
+      "key_points_ko": [
+        "계약서 제목보다 실제 근무관계가 중요하다.",
+        "판단요소 하나만으로 단정하지 않고 전체 관계를 종합한다.",
+        "근로자성이 인정되는지에 따라 임금·퇴직금·해고 규율의 적용 여부가 달라질 수 있다."
+      ],
+      "action_steps_ko": [
+        "계약서의 명칭과 실제 업무방식을 따로 정리한다.",
+        "업무지시·근태·보수·장비 부담 자료를 시간순으로 모은다.",
+        "근로자성 판단요소별로 유리한 사실과 불리한 사실을 모두 표시한다.",
+        "근로자성 인정 시 연결되는 임금·퇴직금·해고 쟁점을 함께 점검한다."
+      ],
+      "facts_to_check_ko": [
+        "업무 내용을 누가 정했는지",
+        "구체적인 지휘·감독이 있었는지",
+        "근무시간과 장소가 정해졌는지",
+        "다른 사람에게 일을 대신 맡길 수 있었는지",
+        "장비와 비용을 누가 부담했는지",
+        "보수가 시간·노무 제공의 대가인지",
+        "계속적·전속적으로 일했는지",
+        "4대보험 처리와 세금 원천징수 방식"
+      ],
+      "caution_ko": "개별 요소의 존재나 부재 하나로 결론내리지 말고 실제 운영자료를 함께 확인해야 한다.",
+      "search_intents_ko": [
+        "프리랜서 근로자 인정 기준",
+        "프리랜서 계약 근로기준법",
+        "위탁계약 근로자성"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "계약 이름보다 실제 일한 방식이 먼저다",
+          "paragraphs_ko": [
+            "계약서에 프리랜서·위탁·도급이라고 적혀 있거나 사업자로 대금을 받았다는 이유만으로 근로자성이 곧바로 부정되지는 않습니다. 실제로 누구의 지시를 받아 어떤 방식으로 일했는지가 판단의 중심입니다.",
+            "회사가 업무 내용과 방법을 정했는지, 시간과 장소를 구속했는지, 업무를 다른 사람에게 대신 맡길 수 있었는지, 장비와 비용을 누가 부담했는지 등을 한 요소가 아니라 전체 관계 속에서 봅니다."
+          ]
+        },
+        {
+          "heading_ko": "판단 결과가 뒤의 권리들을 바꾼다",
+          "paragraphs_ko": [
+            "근로자성이 인정되면 미지급 임금, 퇴직급여, 해고 서면통지와 부당해고 구제 같은 규율이 연결될 수 있습니다. 따라서 결론만 주장하기보다 판단요소별 사실과 증거를 먼저 구조화해야 합니다.",
+            "세금 처리나 4대보험 가입 여부도 자료가 되지만, 사용자가 우월한 지위를 이용해 정한 형식일 가능성까지 고려하므로 그 사정 하나만으로 결론내리지 않습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.labor-wages.rule-worker-status"
+      ],
+      "scenario_ids": [
+        "scenario.labor-wages.sc-contractor-label"
+      ],
+      "source_coordinate_ids": [
+        "coord.labor-wages.labor-standards-ko-0002",
+        "coord.labor-wages.src-supreme-2006da60793"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "related_content_ids": [],
+      "concierge_entry": {
+        "question_ko": "프리랜서 계약서를 썼어도 근로자일 수 있나",
+        "decision_facts_ko": [
+          "업무 내용을 누가 정했는지",
+          "구체적인 지휘·감독이 있었는지",
+          "근무시간과 장소가 정해졌는지",
+          "다른 사람에게 일을 대신 맡길 수 있었는지",
+          "장비와 비용을 누가 부담했는지",
+          "보수가 시간·노무 제공의 대가인지",
+          "계속적·전속적으로 일했는지",
+          "4대보험 처리와 세금 원천징수 방식"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.worker-status-evidence-checklist",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "worker-status-evidence-checklist",
+      "title_ko": "근로자성 판단에 필요한 자료 체크리스트",
+      "one_line_answer_ko": "계약서뿐 아니라 업무지시, 출퇴근 통제, 보수 산정, 장비 부담, 대체 가능성, 전속성을 보여주는 실제 자료를 모아야 한다.",
+      "audience_situation_ko": "프리랜서인지 근로자인지 다툴 때 무엇을 모아야 하나?",
+      "key_points_ko": [
+        "메신저·전자우편의 구체적 업무지시는 핵심 자료가 될 수 있다.",
+        "근태기록과 일정표는 시간·장소 구속을 보여준다.",
+        "급여명세·세금자료만이 아니라 보수 산정의 실제 구조를 확인한다."
+      ],
+      "action_steps_ko": [
+        "계약서와 갱신·변경 문서를 원본 형태로 보존한다.",
+        "업무지시·근태·휴가승인 자료를 날짜별로 분류한다.",
+        "보수 산정과 장비·비용 부담 자료를 표로 정리한다.",
+        "각 자료가 어떤 근로자성 판단요소를 보여주는지 한 줄씩 적는다."
+      ],
+      "facts_to_check_ko": [
+        "근로계약서·위탁계약서 원본",
+        "업무지시 메신저와 전자우편",
+        "출퇴근·로그인 기록",
+        "근무표와 휴가 승인 기록",
+        "급여명세와 지급내역",
+        "장비·재료 비용 부담자료",
+        "대체근무 허용 여부",
+        "다른 업체 업무 수행 가능 여부"
+      ],
+      "caution_ko": "자료는 맥락과 작성시점을 보존하고 개인정보나 영업비밀은 제출 목적에 맞게 최소화해야 한다.",
+      "search_intents_ko": [
+        "근로자성 증거",
+        "프리랜서 근로자 인정 자료",
+        "업무지시 출퇴근 기록 근로자성"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "자료를 판단요소별로 모은다",
+          "paragraphs_ko": [
+            "계약서만 제출하는 것보다 실제 업무지시 메신저, 전자우편, 출퇴근 기록, 근무표, 휴가 승인 내역을 함께 모아야 시간·장소의 구속과 지휘·감독을 보여줄 수 있습니다.",
+            "급여명세와 입금내역은 보수 지급 사실뿐 아니라 고정급인지, 실적과 위험을 스스로 부담했는지, 비용을 누가 냈는지를 읽을 수 있도록 정리합니다."
+          ]
+        },
+        {
+          "heading_ko": "원본과 맥락을 함께 보존한다",
+          "paragraphs_ko": [
+            "대화 한 줄만 잘라 두면 앞뒤 맥락이나 작성시점을 다투기 쉽습니다. 가능한 범위에서 대화방 정보, 날짜, 첨부파일과 연결되는 원본을 보존하고 중요한 사건을 시간표로 만듭니다.",
+            "고객·동료의 개인정보와 회사 영업비밀이 포함된 자료는 목적과 필요 범위에 맞게 다뤄야 합니다. 증거 보존과 무관한 대량 반출은 별도 문제를 만들 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.labor-wages.rule-worker-status"
+      ],
+      "scenario_ids": [
+        "scenario.labor-wages.sc-contractor-label"
+      ],
+      "source_coordinate_ids": [
+        "coord.labor-wages.src-supreme-2006da60793",
+        "coord.labor-wages.labor-standards-ko-0002"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "related_content_ids": [],
+      "concierge_entry": {
+        "question_ko": "근로자성 판단에 필요한 자료 체크리스트",
+        "decision_facts_ko": [
+          "근로계약서·위탁계약서 원본",
+          "업무지시 메신저와 전자우편",
+          "출퇴근·로그인 기록",
+          "근무표와 휴가 승인 기록",
+          "급여명세와 지급내역",
+          "장비·재료 비용 부담자료",
+          "대체근무 허용 여부",
+          "다른 업체 업무 수행 가능 여부"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.business-registration-does-not-decide-worker-status",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "business-registration-does-not-decide-worker-status",
+      "title_ko": "사업자등록이나 3.3% 원천징수면 근로자가 아닌가",
+      "one_line_answer_ko": "사업자등록이나 세금 처리 방식은 판단자료 중 하나일 뿐, 실제 사용종속관계를 대신해 결론을 정하지 않는다.",
+      "audience_situation_ko": "사업자등록을 했고 3.3%를 떼었으니 무조건 프리랜서인가?",
+      "key_points_ko": [
+        "세무상 형식과 노동법상 근로자성은 같은 판단이 아니다.",
+        "회사가 정한 형식이 실제 근무실태와 다를 수 있다.",
+        "다른 종속성 요소들과 함께 종합해야 한다."
+      ],
+      "action_steps_ko": [
+        "사업자등록과 3.3% 원천징수가 시작된 경위를 기록한다.",
+        "실제 업무 수락·거절 및 가격 협상 가능성을 확인한다.",
+        "시간·장소 통제와 지시 위반 시 제재 자료를 모은다.",
+        "세무 형식과 실제 근무실태를 구분한 판단표를 만든다."
+      ],
+      "facts_to_check_ko": [
+        "사업자등록을 하게 된 경위",
+        "원천징수 방식",
+        "업무 수락·거절의 자유",
+        "가격·보수 협상 가능성",
+        "근무시간 통제",
+        "지시 위반 시 제재",
+        "독립 고객 보유 여부"
+      ],
+      "caution_ko": "반대로 사업자등록이 없다는 사실만으로 곧바로 근로자가 되는 것도 아니다.",
+      "search_intents_ko": [
+        "3.3% 근로자 퇴직금",
+        "사업자등록 근로자성",
+        "프리랜서 원천징수 근로기준법"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "세금 형식은 판단자료이지 결론이 아니다",
+          "paragraphs_ko": [
+            "사업자등록을 했거나 사업소득으로 3.3%가 원천징수되었다는 사정은 고려 요소가 될 수 있지만 노동법상 근로자 여부를 자동으로 정하지 않습니다. 실제 사용종속관계를 별도로 판단합니다.",
+            "특히 계약과 세무처리 방식을 회사가 정했고 당사자가 사실상 선택하기 어려웠다면, 그 형식이 실제 업무관계를 얼마나 반영하는지 다시 살펴야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "독립사업자처럼 일했는지를 구체적으로 본다",
+          "paragraphs_ko": [
+            "업무를 자유롭게 거절하거나 가격을 협상할 수 있었는지, 독립 고객을 보유했는지, 손익 위험과 장비 비용을 스스로 부담했는지 등을 실제 자료로 확인합니다.",
+            "반대로 사업자등록이 없거나 근로소득세를 납부했다는 사실만으로 근로자성이 자동 인정되는 것도 아닙니다. 양쪽 방향 모두 전체 사정의 종합 판단이 필요합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.labor-wages.rule-worker-status"
+      ],
+      "scenario_ids": [
+        "scenario.labor-wages.sc-contractor-label"
+      ],
+      "source_coordinate_ids": [
+        "coord.labor-wages.src-supreme-2006da60793",
+        "coord.labor-wages.labor-standards-ko-0002"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "related_content_ids": []
+    },
     {
       "content_id": "content.final-wages-after-retirement-14-days",
       "content_type": "doctrine_explainer",
