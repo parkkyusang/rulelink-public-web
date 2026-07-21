@@ -155,5 +155,5 @@ function isCheckState(value: unknown): value is CheckState {
   return Boolean(value)
     && typeof value === 'object'
     && !Array.isArray(value)
-    && Object.values(value).every(item => item === true);
+    && Object.values(value as Record<string, unknown>).every(item => item === true);
 }
