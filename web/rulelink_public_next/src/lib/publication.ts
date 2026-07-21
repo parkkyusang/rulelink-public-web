@@ -1,7 +1,7 @@
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 
-import {buildKnowledgeSearchDocuments, resolveKnowledgeEntryGraph} from '@/lib/knowledge-search';
+import {buildKnowledgeSearchDocuments, buildKnowledgeSourceDocuments, resolveKnowledgeEntryGraph} from '@/lib/knowledge-search';
 import {filterFreshPublications} from '@/lib/publication-freshness';
 
 import type {
@@ -120,6 +120,15 @@ export async function listKnowledgeSearchDocuments() {
     filterFreshPublications(knowledge.content_entries).map(entry => entry.content_id),
   );
   return buildKnowledgeSearchDocuments(knowledge, visibleContentIds);
+}
+
+export async function listKnowledgeSourceDocuments() {
+  const knowledge = (await loadPublishedBundle())?.knowledge;
+  if (!knowledge) return [];
+  const visibleContentIds = new Set(
+    filterFreshPublications(knowledge.content_entries).map(entry => entry.content_id),
+  );
+  return buildKnowledgeSourceDocuments(knowledge, visibleContentIds);
 }
 
 export async function findKnowledgeEntry(slug: string): Promise<PublicKnowledgeEntry | null> {
