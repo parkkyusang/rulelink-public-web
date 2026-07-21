@@ -1,0 +1,368 @@
+{
+  "schema": "rulelink_public_concept_group_v1",
+  "concept_group_id": "concept-group.inheritance",
+  "generated_at": "2026-07-21T14:30:00+00:00",
+  "sources": [
+    {
+      "coordinate_id": "coord.concepts.inheritance.civil-act-ko-1005",
+      "source_id": "civil_act_ko_1005",
+      "law_name_ko": "민법",
+      "article_no": "제1005조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1005%EC%A1%B0",
+      "source_snapshot_id": "snapshot:65acc1ebd49682acb96d642441b89a95",
+      "last_verified_at": "2026-07-21T14:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.concepts.inheritance.precedent-2003da30517",
+      "source_id": "precedent_case:194447",
+      "source_kind": "precedent",
+      "title_ko": "대법원 2003. 9. 26. 선고 2003다30517 판결",
+      "case_number": "2003다30517",
+      "decision_date": "2003-09-26",
+      "official_url": "https://www.law.go.kr/LSW/precInfoP.do?precSeq=194447",
+      "source_snapshot_id": "snapshot:49bf117b990b0a9e2576f7d2209c6d52",
+      "last_verified_at": "2026-07-21T14:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.concepts.inheritance.precedent-2004seu74",
+      "source_id": "precedent_case:84315",
+      "source_kind": "precedent",
+      "title_ko": "대법원 2006. 2. 13.자 2004스74 결정",
+      "case_number": "2004스74",
+      "decision_date": "2006-02-13",
+      "official_url": "https://www.law.go.kr/LSW/precInfoP.do?precSeq=84315",
+      "source_snapshot_id": "snapshot:fe8a73beddf423ba7ea538718a2e76b3",
+      "last_verified_at": "2026-07-21T14:00:00+00:00"
+    }
+  ],
+  "concept_cards": [
+    {
+      "concept_id": "concept.kr.inheritance.legal_heir",
+      "version": "1.0.0",
+      "slug": "legal-heir",
+      "preferred_term_ko": "상속인",
+      "aliases_ko": [
+        "법정상속인",
+        "공동상속인"
+      ],
+      "plain_definition_ko": "사람이 사망했을 때 법이 정한 순위와 지위에 따라 그 사람의 재산상 권리와 의무를 이어받는 사람입니다.",
+      "legal_definition_ko": "민법 제1000조 또는 제1003조에 따라 상속순위에 들고, 제1005조에 따라 상속개시 때 피상속인의 재산에 관한 포괄적 권리와 의무를 승계하는 사람입니다.",
+      "elements_ko": [
+        "피상속인의 사망으로 상속이 개시되어야 합니다.",
+        "민법이 정한 친족 순위 또는 배우자 지위에 해당해야 합니다.",
+        "선순위 상속인의 존재와 같은 순위 공동상속인의 범위를 함께 확인해야 합니다."
+      ],
+      "legal_effects_ko": [
+        "피상속인의 재산에 관한 포괄적 권리와 의무를 승계합니다.",
+        "여러 명이면 공동상속 관계가 생길 수 있습니다."
+      ],
+      "judgment_factors_ko": [
+        "피상속인과의 친족관계",
+        "배우자 여부",
+        "선순위·동순위 상속인의 존재"
+      ],
+      "limits_and_counterexamples_ko": [
+        "피상속인의 일신에 전속한 권리는 승계하지 않습니다.",
+        "가족이라고 해서 모두 같은 순위의 상속인이 되는 것은 아닙니다."
+      ],
+      "confused_with_ko": [
+        "상속을 포기한 사람",
+        "유언으로 재산을 받는 수증자"
+      ],
+      "examples_ko": [
+        "자녀와 배우자가 함께 있으면 두 사람 모두 상속인이 될 수 있고, 구체적인 순위와 지분은 별도로 확인합니다."
+      ],
+      "assertions": [
+        {
+          "assertion_id": "concept.kr.inheritance.legal_heir.plain-definition",
+          "role": "plain_definition",
+          "text_ko": "상속인은 사람이 사망했을 때 법이 정한 순위와 지위에 따라 재산상 권리와 의무를 이어받는 사람입니다.",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1000",
+            "coord.family-inheritance.civil-act-ko-1003",
+            "coord.concepts.inheritance.civil-act-ko-1005"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.legal_heir.legal-definition",
+          "role": "legal_definition",
+          "text_ko": "민법 제1000조 또는 제1003조에 따라 상속순위에 들고 제1005조에 따라 포괄승계하는 사람입니다.",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1000",
+            "coord.family-inheritance.civil-act-ko-1003",
+            "coord.concepts.inheritance.civil-act-ko-1005"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.legal_heir.elements",
+          "role": "elements",
+          "text_ko": "친족 순위, 배우자 지위, 선순위 상속인의 존재를 대조해 상속인 여부를 판단합니다.",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1000",
+            "coord.family-inheritance.civil-act-ko-1003"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.legal_heir.effects",
+          "role": "legal_effects",
+          "text_ko": "상속인은 상속개시 때 피상속인의 재산에 관한 포괄적 권리와 의무를 승계합니다.",
+          "source_coordinate_ids": [
+            "coord.concepts.inheritance.civil-act-ko-1005"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.legal_heir.limits",
+          "role": "limits",
+          "text_ko": "피상속인의 일신에 전속한 권리는 상속인이 승계하지 않습니다.",
+          "source_coordinate_ids": [
+            "coord.concepts.inheritance.civil-act-ko-1005"
+          ]
+        }
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1000",
+        "coord.family-inheritance.civil-act-ko-1003",
+        "coord.concepts.inheritance.civil-act-ko-1005"
+      ],
+      "related_rule_ids": [
+        "rule.family-inheritance.rule-inheritance-order",
+        "rule.family-inheritance.rule-spouse-order"
+      ],
+      "related_concept_ids": [
+        "concept.kr.inheritance.debt_exceeds_assets",
+        "concept.kr.inheritance.special_limited_acceptance"
+      ],
+      "related_content_ids": [
+        "content.legal-heir-order-and-spouse",
+        "content.three-month-inheritance-decision-period",
+        "content.inheritance-assets-and-debts-checklist"
+      ],
+      "reviewed_at": "2026-07-21T14:00:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "editorial_status": "approved"
+    },
+    {
+      "concept_id": "concept.kr.inheritance.debt_exceeds_assets",
+      "version": "1.0.0",
+      "slug": "estate-debt-exceeds-assets",
+      "preferred_term_ko": "채무초과",
+      "aliases_ko": [
+        "상속채무 초과",
+        "빚이 재산보다 많은 상속"
+      ],
+      "plain_definition_ko": "상속받을 재산의 가치보다 피상속인이 남긴 빚이 더 많은 상태입니다.",
+      "legal_definition_ko": "민법 제1019조가 특별한정승인의 전제로 규정한 ‘상속채무가 상속재산을 초과하는 사실’을 가리킵니다.",
+      "elements_ko": [
+        "상속재산의 범위와 가액을 확인해야 합니다.",
+        "상속채무의 범위와 금액을 확인해야 합니다.",
+        "상속채무 총액이 상속재산 가액을 초과해야 합니다."
+      ],
+      "legal_effects_ko": [
+        "다른 요건까지 충족하면 특별한정승인을 검토할 수 있습니다.",
+        "채무초과 사실은 상속 승인·포기 선택에 중요한 판단자료가 됩니다."
+      ],
+      "judgment_factors_ko": [
+        "누락된 채무가 있는지",
+        "재산과 채무의 기준시점·가액",
+        "채무초과 사실을 언제 실제로 알았는지"
+      ],
+      "limits_and_counterexamples_ko": [
+        "채무초과라는 사정만으로 상속채무가 없어지거나 책임이 자동으로 제한되지는 않습니다.",
+        "재산이 거의 없다는 사정과 법률상 채무초과는 같지 않을 수 있습니다."
+      ],
+      "confused_with_ko": [
+        "지급불능",
+        "개인파산",
+        "단순히 현금이 부족한 상태"
+      ],
+      "examples_ko": [
+        "상속재산이 5천만 원이고 확인된 상속채무가 8천만 원이라면 채무초과 여부와 특별한정승인 요건을 함께 검토합니다."
+      ],
+      "assertions": [
+        {
+          "assertion_id": "concept.kr.inheritance.debt_exceeds_assets.plain-definition",
+          "role": "plain_definition",
+          "text_ko": "채무초과는 상속받을 재산의 가치보다 피상속인이 남긴 빚이 더 많은 상태입니다.",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1019"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.debt_exceeds_assets.legal-definition",
+          "role": "legal_definition",
+          "text_ko": "민법 제1019조의 ‘상속채무가 상속재산을 초과하는 사실’을 사용자에게 채무초과라고 설명합니다.",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1019"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.debt_exceeds_assets.elements",
+          "role": "elements",
+          "text_ko": "상속재산과 상속채무를 확인해 채무 총액이 재산 가액을 초과하는지 대조해야 합니다.",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1019"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.debt_exceeds_assets.effects",
+          "role": "legal_effects",
+          "text_ko": "채무초과 사실을 뒤늦게 안 경우에는 중대한 과실 없음과 기간 등 다른 요건을 갖춰 특별한정승인을 검토할 수 있습니다.",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1019",
+            "coord.family-inheritance.civil-act-ko-1028"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.debt_exceeds_assets.limits",
+          "role": "limits",
+          "text_ko": "채무초과만으로 상속채무가 없어지거나 상속인의 책임이 자동 제한되는 것은 아닙니다.",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1019",
+            "coord.family-inheritance.civil-act-ko-1028"
+          ]
+        }
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1019",
+        "coord.family-inheritance.civil-act-ko-1028"
+      ],
+      "related_rule_ids": [
+        "rule.family-inheritance.rule-special-limited",
+        "rule.family-inheritance.rule-limited-effect"
+      ],
+      "related_concept_ids": [
+        "concept.kr.inheritance.legal_heir",
+        "concept.kr.inheritance.special_limited_acceptance"
+      ],
+      "related_content_ids": [
+        "content.inheritance-assets-and-debts-checklist",
+        "content.special-limited-acceptance-late-debt",
+        "content.limited-acceptance-effect"
+      ],
+      "reviewed_at": "2026-07-21T14:00:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "editorial_status": "approved"
+    },
+    {
+      "concept_id": "concept.kr.inheritance.special_limited_acceptance",
+      "version": "1.0.0",
+      "slug": "special-limited-acceptance",
+      "preferred_term_ko": "특별한정승인",
+      "aliases_ko": [
+        "뒤늦은 한정승인"
+      ],
+      "plain_definition_ko": "상속재산보다 빚이 많다는 사실을 중대한 과실 없이 뒤늦게 안 상속인이 법이 정한 요건과 기간에 따라 하는 한정승인입니다.",
+      "legal_definition_ko": "민법 제1019조제3항 또는 제4항의 요건에 따라 뒤늦게 한정승인을 하고, 제1028조에 따라 상속재산 범위에서 채무와 유증을 변제하도록 하는 제도입니다.",
+      "elements_ko": [
+        "상속채무가 상속재산을 초과해야 합니다.",
+        "법정 고려기간 안에 그 사실을 알지 못했고 그 무지에 중대한 과실이 없어야 합니다.",
+        "단순승인으로 평가되는 상태가 있어야 합니다.",
+        "채무초과 사실을 안 날부터 3개월 안에 신고해야 합니다."
+      ],
+      "legal_effects_ko": [
+        "상속으로 취득할 재산의 한도에서 피상속인의 채무와 유증을 변제하게 됩니다.",
+        "상속인 지위 자체를 처음부터 없애는 상속포기와는 다릅니다."
+      ],
+      "judgment_factors_ko": [
+        "상속재산과 채무를 조사한 경위",
+        "채무초과 사실을 실제로 안 시점",
+        "알지 못한 데 중대한 과실이 있었는지",
+        "이미 한 재산 처분과 단순승인 사유"
+      ],
+      "limits_and_counterexamples_ko": [
+        "중대한 과실이 없었다는 점은 상속인이 입증해야 합니다.",
+        "가정법원의 신고 수리만으로 실체적 효력이 최종 확정되는 것은 아닙니다.",
+        "채무초과 사실을 안 날의 구체적 판단은 사건 자료에 따라 달라질 수 있습니다."
+      ],
+      "confused_with_ko": [
+        "일반 한정승인",
+        "상속포기",
+        "파산신청"
+      ],
+      "examples_ko": [
+        "고인의 재산과 빚을 확인한 뒤 예상하지 못한 큰 채무를 뒤늦게 발견했다면 안 날, 조사 경위, 중대한 과실, 3개월 기간을 함께 검토합니다."
+      ],
+      "assertions": [
+        {
+          "assertion_id": "concept.kr.inheritance.special_limited_acceptance.plain-definition",
+          "role": "plain_definition",
+          "text_ko": "특별한정승인은 채무초과 사실을 중대한 과실 없이 뒤늦게 안 상속인이 법정 요건과 기간에 따라 하는 한정승인입니다.",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1019",
+            "coord.family-inheritance.civil-act-ko-1028"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.special_limited_acceptance.legal-definition",
+          "role": "legal_definition",
+          "text_ko": "민법 제1019조제3항 또는 제4항에 따른 한정승인으로서 제1028조의 책임 제한 효과와 연결됩니다.",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1019",
+            "coord.family-inheritance.civil-act-ko-1028"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.special_limited_acceptance.elements",
+          "role": "elements",
+          "text_ko": "채무초과, 기간 내 무인지, 중대한 과실 없음, 단순승인, 안 날부터 3개월이라는 요건을 확인해야 합니다.",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1019",
+            "coord.concepts.inheritance.precedent-2003da30517"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.special_limited_acceptance.effects",
+          "role": "legal_effects",
+          "text_ko": "요건을 갖춘 한정승인은 상속으로 취득할 재산의 한도에서 채무와 유증을 변제하는 효과와 연결됩니다.",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1028"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.special_limited_acceptance.procedure",
+          "role": "procedure",
+          "text_ko": "재산목록을 첨부해 가정법원에 신고하고, 수리 뒤에는 공고·최고와 변제 절차를 따라야 합니다.",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1030",
+            "coord.concepts.inheritance.precedent-2004seu74"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.special_limited_acceptance.limits",
+          "role": "limits",
+          "text_ko": "중대한 과실 없음은 상속인이 입증하며, 신고 수리만으로 특별한정승인의 실체적 효력이 최종 확정되는 것은 아닙니다.",
+          "source_coordinate_ids": [
+            "coord.concepts.inheritance.precedent-2003da30517",
+            "coord.concepts.inheritance.precedent-2004seu74"
+          ]
+        }
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1019",
+        "coord.family-inheritance.civil-act-ko-1028",
+        "coord.family-inheritance.civil-act-ko-1030",
+        "coord.concepts.inheritance.precedent-2003da30517",
+        "coord.concepts.inheritance.precedent-2004seu74"
+      ],
+      "related_rule_ids": [
+        "rule.family-inheritance.rule-three-months",
+        "rule.family-inheritance.rule-limited-effect",
+        "rule.family-inheritance.rule-limited-procedure",
+        "rule.family-inheritance.rule-special-limited"
+      ],
+      "related_concept_ids": [
+        "concept.kr.inheritance.legal_heir",
+        "concept.kr.inheritance.debt_exceeds_assets"
+      ],
+      "related_content_ids": [
+        "content.three-month-inheritance-decision-period",
+        "content.limited-acceptance-effect",
+        "content.special-limited-acceptance-late-debt",
+        "content.limited-acceptance-creditor-notice"
+      ],
+      "reviewed_at": "2026-07-21T14:00:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "editorial_status": "approved"
+    }
+  ]
+}
