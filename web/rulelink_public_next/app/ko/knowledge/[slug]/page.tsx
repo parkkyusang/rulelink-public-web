@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
 import {KnowledgeActionWorkspace} from '@/components/knowledge-action-workspace';
+import {buildConciergeNewMatterUrl} from '@/lib/concierge-handoff';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {findKnowledgeEntry, knowledgeDetail, listKnowledgeEntries} from '@/lib/publication';
@@ -178,7 +179,9 @@ export default async function KnowledgePage({params}: Props) {
             <h2>다음 순서로 준비합니다.</h2>
             <KnowledgeActionWorkspace
               actionSteps={entry.action_steps_ko}
+              conciergeEntry={entry.concierge_entry}
               contentId={entry.content_id}
+              contentTitle={entry.title_ko}
               factsToCheck={entry.facts_to_check_ko}
               revisionKey={entry.reviewed_at}
             />
@@ -192,7 +195,7 @@ export default async function KnowledgePage({params}: Props) {
               <p className="eyebrow">개별 사실 검토</p>
               <h2>{entry.concierge_entry.question_ko}</h2>
               <ul>{entry.concierge_entry.decision_facts_ko.map(fact => <li key={fact}>{fact}</li>)}</ul>
-              <a href={entry.concierge_entry.href}>룰링크 컨시어지에서 이어서 검토 <span aria-hidden="true">→</span></a>
+              <a href={buildConciergeNewMatterUrl(entry.concierge_entry.href)} rel="noreferrer" target="_blank">새 사건으로 이어서 검토 <span aria-hidden="true">↗</span></a>
             </section>
           ) : null}
           <section className="knowledgeSources" id="sources">
