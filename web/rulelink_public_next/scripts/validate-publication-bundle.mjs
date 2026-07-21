@@ -153,6 +153,23 @@ function validateKnowledge(value, now, errors) {
     checkReferences(entry.source_coordinate_ids, sourceIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 source_coordinate_ids`, errors);
     checkReferences(entry.hub_ids, hubIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 hub_ids`, errors);
     checkReferences(entry.related_content_ids, entryIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 related_content_ids`, errors);
+    const entryName = `지식 콘텐츠 ${label(entry, 'content_id')}`;
+    requireNonEmptyStringArray(entry, 'key_points_ko', 2, entryName, errors);
+    requireNonEmptyStringArray(entry, 'action_steps_ko', 2, entryName, errors);
+    requireNonEmptyStringArray(entry, 'facts_to_check_ko', 2, entryName, errors);
+    requireNonEmptyStringArray(entry, 'search_intents_ko', 1, entryName, errors);
+    if (typeof entry.caution_ko !== 'string' || !entry.caution_ko.trim()) {
+      errors.push(`${entryName}의 caution_ko는 비어 있지 않은 문자열이어야 합니다.`);
+    }
+    const bodySections = requireArray(entry, 'body_sections', errors, entryName);
+    if (bodySections.length < 1) errors.push(`${entryName}의 body_sections는 하나 이상이어야 합니다.`);
+    for (const [sectionIndex, section] of bodySections.entries()) {
+      if (!isRecord(section) || typeof section.heading_ko !== 'string' || !section.heading_ko.trim()) {
+        errors.push(`${entryName}의 body_sections[${sectionIndex}] 제목이 없습니다.`);
+        continue;
+      }
+      requireNonEmptyStringArray(section, 'paragraphs_ko', 1, `${entryName}의 body_sections[${sectionIndex}]`, errors);
+    }
     if (entry.concierge_entry !== undefined) {
       const href = isRecord(entry.concierge_entry) ? entry.concierge_entry.href : undefined;
       if (!isConciergeUrl(href)) {
@@ -354,6 +371,19 @@ function requireArray(value, key, errors, prefix = '') {
 function optionalArray(value, key, errors) {
   if (value[key] === undefined) return [];
   return requireArray(value, key, errors);
+}
+
+function requireNonEmptyStringArray(value, key, minimum, prefix, errors) {
+  const items = requireArray(value, key, errors, prefix);
+  if (items.length < minimum) {
+    errors.push(`${prefix}.${key}는 ${minimum}개 이상이어야 합니다.`);
+  }
+  for (const [index, item] of items.entries()) {
+    if (typeof item !== 'string' || !item.trim()) {
+      errors.push(`${prefix}.${key}[${index}]는 비어 있지 않은 문자열이어야 합니다.`);
+    }
+  }
+  return items;
 }
 
 function uniqueIds(items, key, labelName, errors) {
