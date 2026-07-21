@@ -163,6 +163,37 @@ test('승인 문제카드와 법령변화의 정상 연결을 허용한다', asy
   assert.equal(result.status, 0, result.stderr);
 });
 
+
+test('중복된 문제카드 공개 URL 식별자를 거부한다', async () => {
+  const bundle = baseBundle();
+  bundle.cards = [
+    issueCard(),
+    issueCard({issue_card_id: 'issue.two'}),
+  ];
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /공개 URL 식별자가 중복됩니다/);
+});
+
+test('공개 URL에 부적합한 법령변화 식별자를 거부한다', async () => {
+  const bundle = baseBundle();
+  bundle.change_briefs = [changeBrief({slug: '한글 주소'})];
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /영문 소문자·숫자·하이픈/);
+});
+
+test('중복된 지식 콘텐츠 공개 URL 식별자를 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  bundle.knowledge.content_entries.push({
+    ...bundle.knowledge.content_entries[0],
+    content_id: 'content.two',
+  });
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /지식 콘텐츠의 공개 URL 식별자가 중복됩니다/);
+});
+
 async function validate(payload) {
   const taskTemp = await mkdtemp(path.join(tmpdir(), 'rulelink-publication-guard-'));
   const bundlePath = path.join(taskTemp, 'bundle.json');
@@ -202,6 +233,7 @@ function baseBundle() {
 function issueCard(overrides = {}) {
   return {
     issue_card_id: 'issue.one',
+    slug: 'issue-one',
     editorial_status: 'approved',
     reviewed_at: '2026-07-21T09:00:00+09:00',
     expires_at: '2026-10-21T00:00:00+09:00',
@@ -213,6 +245,7 @@ function issueCard(overrides = {}) {
 function changeBrief(overrides = {}) {
   return {
     change_brief_id: 'brief.lifecycle',
+    slug: 'brief-lifecycle',
     editorial_status: 'approved',
     lifecycle: 'future_effective',
     effective_date: '2026-08-01',
