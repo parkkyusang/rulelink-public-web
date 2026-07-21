@@ -1,0 +1,223 @@
+.page {
+  margin: 0 auto;
+  max-width: 1080px;
+  padding: 34px 24px 110px;
+}
+
+.hero {
+  border-bottom: 1px solid var(--line);
+  padding: 68px 0 44px;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 6vw, 61px);
+  letter-spacing: -.055em;
+  line-height: 1.16;
+  margin: 10px 0 20px;
+}
+
+.hero > p {
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.75;
+  max-width: 800px;
+}
+
+.grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 36px;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  display: flex;
+  flex-direction: column;
+  min-height: 230px;
+  padding: 25px;
+}
+
+.card:hover {
+  border-color: #9bb8a8;
+  box-shadow: var(--shadow-card);
+}
+
+.card h2 {
+  font-size: 23px;
+  margin: 7px 0 13px;
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.aliases {
+  color: var(--green);
+  font-size: 12px;
+  margin-top: auto;
+  padding-top: 22px;
+}
+
+.layout {
+  display: grid;
+  gap: 52px;
+  grid-template-columns: minmax(0, 1.7fr) minmax(270px, .75fr);
+  padding-top: 38px;
+}
+
+.section {
+  border-bottom: 1px solid var(--line);
+  padding: 0 0 38px;
+  margin-bottom: 38px;
+}
+
+.section h2 {
+  font-size: 28px;
+  letter-spacing: -.04em;
+  margin: 0 0 22px;
+}
+
+.definition {
+  background: var(--mint);
+  border-radius: 17px;
+  font-size: 18px;
+  line-height: 1.8;
+  padding: 26px 28px;
+}
+
+.legalDefinition {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.slotGrid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.slot {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 21px;
+}
+
+.slot h3 {
+  color: var(--green);
+  font-size: 14px;
+  margin: 0 0 12px;
+}
+
+.slot ul {
+  margin: 0;
+  padding-left: 19px;
+}
+
+.slot li {
+  line-height: 1.65;
+  margin: 7px 0;
+}
+
+.assertion {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  margin-top: 11px;
+  padding: 20px;
+}
+
+.assertion small {
+  color: var(--green);
+  display: block;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.assertion p {
+  line-height: 1.7;
+  margin: 0;
+}
+
+.assertion a {
+  color: var(--green);
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 750;
+  margin: 12px 12px 0 0;
+}
+
+.aside {
+  align-self: start;
+  position: sticky;
+  top: 72px;
+}
+
+.aside section {
+  border-top: 1px solid var(--line);
+  padding: 22px 8px;
+}
+
+.aside h2 {
+  font-size: 18px;
+  margin: 0 0 13px;
+}
+
+.aside a {
+  color: var(--green);
+  display: block;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.55;
+  padding: 8px 0;
+}
+
+.meta {
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 12px;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.empty {
+  background: var(--white);
+  border: 1px dashed #a9b8b0;
+  border-radius: 17px;
+  color: var(--muted);
+  margin-top: 34px;
+  padding: 45px;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .page {
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: clip;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .grid,
+  .layout,
+  .slotGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .aside {
+    position: static;
+  }
+
+  .hero h1 {
+    font-size: clamp(32px, 10.5vw, 44px);
+    overflow-wrap: anywhere;
+    word-break: keep-all;
+  }
+}
