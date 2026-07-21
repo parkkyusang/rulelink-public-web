@@ -17,10 +17,11 @@ export function KnowledgeExplorer({entries, hubs}: Props) {
   const normalizedQuery = normalize(query);
   const visibleEntries = useMemo(() => {
     const hubById = new Map(hubs.map(hub => [hub.hub_id, hub]));
+    const queryTokens = normalizedQuery.split(' ').filter(Boolean);
     return entries
       .filter(entry => {
         if (hubId !== 'all' && !entry.hub_ids.includes(hubId)) return false;
-        if (!normalizedQuery) return true;
+        if (!queryTokens.length) return true;
         const hubTerms = entry.hub_ids
           .map(entryHubId => hubById.get(entryHubId))
           .filter((hub): hub is PublicKnowledgeHub => Boolean(hub))
@@ -32,7 +33,7 @@ export function KnowledgeExplorer({entries, hubs}: Props) {
           contentTypeLabel(entry.content_type),
           ...hubTerms,
         ].join(' '));
-        return searchText.includes(normalizedQuery);
+        return queryTokens.every(token => searchText.includes(token));
       })
       .sort((left, right) => right.reviewed_at.localeCompare(left.reviewed_at) || left.title_ko.localeCompare(right.title_ko, 'ko'));
   }, [entries, hubId, hubs, normalizedQuery]);
