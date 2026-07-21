@@ -80,6 +80,13 @@ export type PublicKnowledgeSource = PublicKnowledgeSourceBase & (
       case_number: string;
       decision_date: string;
     }
+  | {
+      source_kind: 'official_document';
+      document_kind: 'revision_reason' | 'revision_text' | 'unnumbered_regulation';
+      title_ko: string;
+      effective_date: string;
+      promulgation_number: string;
+    }
 );
 
 export type PublicRuleCard = {
