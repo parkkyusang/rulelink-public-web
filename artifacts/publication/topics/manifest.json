@@ -33,6 +33,10 @@
     {
       "topic_id": "hub.everyday-damages",
       "file": "everyday-damages.json"
+    },
+    {
+      "topic_id": "hub.divorce-parenting",
+      "file": "divorce-parenting.json"
     }
   ],
   "content_entry_topic_order": [
@@ -43,6 +47,7 @@
     "hub.labor-wages",
     "hub.money-guarantee",
     "hub.shared-mobility-accident",
-    "hub.everyday-damages"
+    "hub.everyday-damages",
+    "hub.divorce-parenting"
   ]
 }
