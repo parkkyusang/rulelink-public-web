@@ -35,6 +35,8 @@ jobs:
     steps:
       - name: 저장소 받기
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Node.js 준비
         uses: actions/setup-node@v4
@@ -48,6 +50,19 @@ jobs:
 
       - name: 공개 번들 차단 규칙 테스트
         run: npm run test:publication
+
+      - name: 과거 출판 스냅샷 변경 차단
+        env:
+          RULELINK_SNAPSHOT_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: npm run validate:snapshot-diff -- "$RULELINK_SNAPSHOT_BASE"
+
+      - name: 후보 출판본 변경 보고
+        if: github.event_name == 'pull_request'
+        env:
+          RULELINK_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          git show "${RULELINK_BASE_SHA}:artifacts/publication/current/bundle.json" > "${RUNNER_TEMP}/rulelink-base-bundle.json"
+          npm run report:publication -- ../../artifacts/publication/current/bundle.json --current "${RUNNER_TEMP}/rulelink-base-bundle.json" >> "${GITHUB_STEP_SUMMARY}"
 
       - name: 타입 검사
         run: npm run typecheck
