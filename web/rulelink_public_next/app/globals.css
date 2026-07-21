@@ -71,6 +71,21 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .hubRail span {color: #8fd2af; font-size: 11px; font-weight: 750;}
 .hubRail strong {font-size: 19px;}
 .hubRail small {color: #d9ebe1; line-height: 1.5;}
+.hubDecisionSection {border-bottom: 1px solid var(--line); margin-bottom: 46px; padding-bottom: 52px;}
+.hubDecisionIntro {align-items: end; display: grid; gap: 42px; grid-template-columns: 1fr 1fr; margin-bottom: 24px;}
+.hubDecisionIntro h2 {font-size: 31px; letter-spacing: -.04em; line-height: 1.35; margin: 0;}
+.hubDecisionIntro > p {color: var(--muted); line-height: 1.7; margin: 0;}
+.hubDecisionGrid {display: grid; gap: 14px; grid-template-columns: repeat(2,minmax(0,1fr));}
+.hubDecisionCard {background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-card); padding: 25px;}
+.hubDecisionNumber {color: var(--green); font-size: 11px; font-weight: 800; letter-spacing: .04em;}
+.hubDecisionCard h3 {font-size: 21px; letter-spacing: -.025em; line-height: 1.45; margin: 20px 0 12px;}
+.hubDecisionCard > p {color: var(--muted); font-size: 13px; line-height: 1.65; margin: 0;}
+.hubDecisionCard > p b {color: var(--ink); display: block; font-size: 11px; margin-bottom: 6px;}
+.hubDecisionLinks {border-top: 1px solid var(--line); display: grid; gap: 1px; margin-top: 20px; padding-top: 8px;}
+.hubDecisionLinks a {align-items: center; border-radius: 9px; color: var(--green); display: flex; font-size: 13px; font-weight: 750; gap: 14px; justify-content: space-between; padding: 10px;}
+.hubDecisionLinks a:hover {background: var(--mint);}
+.hubDecisionLinks a span {line-height: 1.45;}
+.hubAllEntries {margin-bottom: 20px;}
 .knowledgeGrid {display: grid; gap: 16px; grid-template-columns: repeat(3,1fr);}
 .knowledgeCard {background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-card); display: flex; flex-direction: column; min-height: 260px; padding: 25px; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;}
 .knowledgeCard:hover {border-color: #9bb8a8; box-shadow: var(--shadow-card); transform: translateY(-2px);}
@@ -277,7 +292,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   .trustRail {align-items: flex-start; flex-direction: column; gap: 12px;}
   .cardGrid, .issueLayout, .relatedGrid, .entryGrid, .knowledgeGrid, .knowledgeLayout {grid-template-columns: 1fr;}
   .methodGrid, .methodSection {grid-template-columns: 1fr;}
-  .changeIntro, .changeGrid, .changeBody, .changeAssertionGrid, .lifeImpact {grid-template-columns: 1fr;}
+  .changeIntro, .changeGrid, .changeBody, .changeAssertionGrid, .lifeImpact, .hubDecisionIntro, .hubDecisionGrid {grid-template-columns: 1fr;}
   .effectivePanel {grid-template-columns: 1fr;}
   .normDeltaRow {grid-template-columns: 1fr;}
   .normVersion {border-left: 0; border-top: 1px solid var(--line);}
