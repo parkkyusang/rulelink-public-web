@@ -1,0 +1,1434 @@
+{
+  "schema": "rulelink_public_knowledge_topic_v1",
+  "topic_id": "hub.debt-enforcement",
+  "sources": [
+    {
+      "coordinate_id": "coord.debt-enforcement.civil-act-ko-0387",
+      "source_id": "civil_act_ko_0387",
+      "law_name_ko": "민법",
+      "article_no": "제387조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C387%EC%A1%B0",
+      "source_snapshot_id": "snapshot:d80709ed6e97b64a85f8b7f1a15974a6",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.debt-enforcement.civil-act-ko-0397",
+      "source_id": "civil_act_ko_0397",
+      "law_name_ko": "민법",
+      "article_no": "제397조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C397%EC%A1%B0",
+      "source_snapshot_id": "snapshot:6ae7c2501461599954704f957ccc21a3",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.debt-enforcement.civil-act-ko-0162",
+      "source_id": "civil_act_ko_0162",
+      "law_name_ko": "민법",
+      "article_no": "제162조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C162%EC%A1%B0",
+      "source_snapshot_id": "snapshot:418c2e598c597f4704c99c80c066d223",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.debt-enforcement.civil-act-ko-0174",
+      "source_id": "civil_act_ko_0174",
+      "law_name_ko": "민법",
+      "article_no": "제174조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C174%EC%A1%B0",
+      "source_snapshot_id": "snapshot:b584e1a9b10c4fc4c355fcb7122a5dec",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.debt-enforcement.civil-act-ko-0165",
+      "source_id": "civil_act_ko_0165",
+      "law_name_ko": "민법",
+      "article_no": "제165조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C165%EC%A1%B0",
+      "source_snapshot_id": "snapshot:62f1592128f81bb886e102e6a95e41ba",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.debt-enforcement.civil-procedure-ko-0462",
+      "source_id": "civil_procedure_ko_0462",
+      "law_name_ko": "민사소송법",
+      "article_no": "제462조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C462%EC%A1%B0",
+      "source_snapshot_id": "snapshot:f6f2e92ffcfb8efeafa44cb414ad7b47",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.debt-enforcement.civil-procedure-ko-0470",
+      "source_id": "civil_procedure_ko_0470",
+      "law_name_ko": "민사소송법",
+      "article_no": "제470조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C470%EC%A1%B0",
+      "source_snapshot_id": "snapshot:5eb1874d3a13d2373c84f05a11428539",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.debt-enforcement.civil-procedure-ko-0474",
+      "source_id": "civil_procedure_ko_0474",
+      "law_name_ko": "민사소송법",
+      "article_no": "제474조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C474%EC%A1%B0",
+      "source_snapshot_id": "snapshot:e16ef04db903a2d2efd339de72260b6e",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.debt-enforcement.civil-execution-ko-0056",
+      "source_id": "civil_execution_ko_0056",
+      "law_name_ko": "민사집행법",
+      "article_no": "제56조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C56%EC%A1%B0",
+      "source_snapshot_id": "snapshot:64bd12233d06b8c3fae9a500cdbec525",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.debt-enforcement.civil-execution-ko-0276",
+      "source_id": "civil_execution_ko_0276",
+      "law_name_ko": "민사집행법",
+      "article_no": "제276조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C276%EC%A1%B0",
+      "source_snapshot_id": "snapshot:911473f6c813b2789d625d5a55c70524",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.debt-enforcement.civil-execution-ko-0223",
+      "source_id": "civil_execution_ko_0223",
+      "law_name_ko": "민사집행법",
+      "article_no": "제223조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C223%EC%A1%B0",
+      "source_snapshot_id": "snapshot:14a7526a5c66caa6429fb9658bc32e55",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.debt-enforcement.civil-execution-ko-0229",
+      "source_id": "civil_execution_ko_0229",
+      "law_name_ko": "민사집행법",
+      "article_no": "제229조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C229%EC%A1%B0",
+      "source_snapshot_id": "snapshot:b9a41a1899c6fe01d7962b306b18db49",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.debt-enforcement.civil-execution-ko-0246",
+      "source_id": "civil_execution_ko_0246",
+      "law_name_ko": "민사집행법",
+      "article_no": "제246조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C246%EC%A1%B0",
+      "source_snapshot_id": "snapshot:7775f68b6cbbbb45116ca18713f47330",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.debt-enforcement.civil-execution-ko-0246-02",
+      "source_id": "civil_execution_ko_0246_02",
+      "law_name_ko": "민사집행법",
+      "article_no": "제246조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C246%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:ff58c1d8755856865de21fba650211cd",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.debt-enforcement.civil-execution-ko-0061",
+      "source_id": "civil_execution_ko_0061",
+      "law_name_ko": "민사집행법",
+      "article_no": "제61조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C61%EC%A1%B0",
+      "source_snapshot_id": "snapshot:8aaf603259be48bf27627f70a1bf947a",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.debt-enforcement.civil-act-ko-0406",
+      "source_id": "civil_act_ko_0406",
+      "law_name_ko": "민법",
+      "article_no": "제406조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C406%EC%A1%B0",
+      "source_snapshot_id": "snapshot:7331d63f7a9dc3877d1c0ffaf42c0461",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.debt-enforcement",
+      "slug": "debt-enforcement",
+      "title_ko": "채권추심·강제집행",
+      "description_ko": "변제기·소멸시효부터 지급명령, 가압류, 집행권원, 예금·급여 압류, 재산명시와 사해행위 대응까지 회수 절차를 단계별로 안내합니다.",
+      "content_ids": [
+        "content.when-default-interest-starts",
+        "content.debt-limitation-is-not-always-ten-years",
+        "content.content-certified-demand-needs-followup",
+        "content.judgment-debt-limitation-ten-years",
+        "content.when-payment-order-fits",
+        "content.payment-order-objection-two-weeks",
+        "content.documents-that-allow-compulsory-enforcement",
+        "content.provisional-attachment-before-judgment",
+        "content.bank-account-seizure-and-collection-order",
+        "content.wage-and-protected-claim-seizure",
+        "content.2026-livelihood-account-protection",
+        "content.property-disclosure-when-assets-unknown",
+        "content.fraudulent-transfer-before-enforcement"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.debt-enforcement.delay-and-default-interest",
+      "title_ko": "변제기와 지연책임",
+      "proposition_ko": "확정기한이 있으면 기한 도래 때, 기한이 없으면 이행청구를 받은 때부터 원칙적으로 지체책임이 생기며 금전채무 불이행 손해배상은 법정이율 또는 적법한 약정이율에 따릅니다.",
+      "norm": {
+        "actor_ko": "금전채무의 이행을 청구하는 채권자와 이를 이행할 채무자",
+        "conditions_ko": "확정·불확정·무기한 채무의 이행기와 금전채무 불이행에 따른 지연책임을 판단하는 경우",
+        "legal_effect_ko": "확정기한이 있으면 기한 도래 때, 기한이 없으면 이행청구를 받은 때부터 원칙적으로 지체책임이 생기며 금전채무 불이행 손해배상은 법정이율 또는 적법한 약정이율에 따릅니다."
+      },
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-act-ko-0387",
+        "coord.debt-enforcement.civil-act-ko-0397"
+      ]
+    },
+    {
+      "rule_id": "rule.debt-enforcement.general-claim-limitation",
+      "title_ko": "일반 채권의 소멸시효",
+      "proposition_ko": "민법상 채권은 원칙적으로 10년간 행사하지 않으면 소멸시효가 완성하지만 단기시효나 특별법이 적용되는 채권은 별도로 확인해야 합니다.",
+      "norm": {
+        "actor_ko": "채권을 행사하려는 권리자와 시효 완성을 주장할 수 있는 채무자",
+        "conditions_ko": "채권의 종류·권리행사 가능 시점·특별한 단기시효 여부를 확인하는 경우",
+        "legal_effect_ko": "민법상 채권은 원칙적으로 10년간 행사하지 않으면 소멸시효가 완성하지만 단기시효나 특별법이 적용되는 채권은 별도로 확인해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-act-ko-0162"
+      ]
+    },
+    {
+      "rule_id": "rule.debt-enforcement.demand-six-month-followup",
+      "title_ko": "최고 뒤 6개월 내 후속조치",
+      "proposition_ko": "변제를 최고한 것만으로 시효중단 효과가 계속되는 것은 아니며 6개월 안에 재판상 청구·압류·가압류 등 법정 조치를 해야 합니다.",
+      "norm": {
+        "actor_ko": "채무자에게 이행을 최고한 채권자",
+        "conditions_ko": "최고 도달 뒤 6개월 안에 재판상 청구·압류·가압류 등 법정 후속조치를 하는 경우",
+        "legal_effect_ko": "변제를 최고한 것만으로 시효중단 효과가 계속되는 것은 아니며 6개월 안에 재판상 청구·압류·가압류 등 법정 조치를 해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-act-ko-0174"
+      ]
+    },
+    {
+      "rule_id": "rule.debt-enforcement.judgment-claim-ten-years",
+      "title_ko": "판결 등으로 확정된 채권의 시효",
+      "proposition_ko": "판결로 확정된 채권과 재판상 화해·조정 등 판결과 같은 효력이 있는 절차로 확정된 채권은 원칙적으로 10년의 소멸시효가 적용됩니다.",
+      "norm": {
+        "actor_ko": "판결·재판상 화해·조정 등으로 확정된 채권의 권리자",
+        "conditions_ko": "확정된 채권의 소멸시효와 판결확정 당시 변제기 도래 여부를 판단하는 경우",
+        "legal_effect_ko": "판결로 확정된 채권과 재판상 화해·조정 등 판결과 같은 효력이 있는 절차로 확정된 채권은 원칙적으로 10년의 소멸시효가 적용됩니다."
+      },
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-act-ko-0165"
+      ]
+    },
+    {
+      "rule_id": "rule.debt-enforcement.payment-order-scope",
+      "title_ko": "지급명령을 신청할 수 있는 청구",
+      "proposition_ko": "금전·대체물·유가증권의 일정 수량 지급청구이고 국내에서 공시송달 아닌 방법으로 송달할 수 있는 경우 지급명령을 신청할 수 있습니다.",
+      "norm": {
+        "actor_ko": "금전·대체물·유가증권의 일정 수량 지급을 청구하는 채권자",
+        "conditions_ko": "채무자에게 대한민국에서 공시송달 아닌 방법으로 지급명령을 송달할 수 있는 경우",
+        "legal_effect_ko": "금전·대체물·유가증권의 일정 수량 지급청구이고 국내에서 공시송달 아닌 방법으로 송달할 수 있는 경우 지급명령을 신청할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-procedure-ko-0462"
+      ]
+    },
+    {
+      "rule_id": "rule.debt-enforcement.payment-order-objection-finality",
+      "title_ko": "지급명령의 이의와 확정",
+      "proposition_ko": "채무자가 송달받은 날부터 2주 안에 적법하게 이의하면 그 범위에서 지급명령은 효력을 잃고, 이의가 없거나 취하·각하가 확정되면 확정판결과 같은 효력이 생깁니다.",
+      "norm": {
+        "actor_ko": "지급명령을 송달받은 채무자와 지급명령을 신청한 채권자",
+        "conditions_ko": "송달일부터 2주 안의 적법한 이의 또는 이의 부재·취하·각하 확정을 판단하는 경우",
+        "legal_effect_ko": "채무자가 송달받은 날부터 2주 안에 적법하게 이의하면 그 범위에서 지급명령은 효력을 잃고, 이의가 없거나 취하·각하가 확정되면 확정판결과 같은 효력이 생깁니다."
+      },
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-procedure-ko-0470",
+        "coord.debt-enforcement.civil-procedure-ko-0474"
+      ]
+    },
+    {
+      "rule_id": "rule.debt-enforcement.enforceable-title-required",
+      "title_ko": "강제집행의 기초가 되는 집행권원",
+      "proposition_ko": "확정된 지급명령, 가집행선고부 재판, 집행승낙 공정증서 등 법이 정한 집행권원이 있어야 그에 기초한 강제집행을 할 수 있습니다.",
+      "norm": {
+        "actor_ko": "채무자의 재산에 강제집행하려는 채권자",
+        "conditions_ko": "확정 지급명령·재판·집행승낙 공정증서 등 법이 정한 집행권원을 보유한 경우",
+        "legal_effect_ko": "확정된 지급명령, 가집행선고부 재판, 집행승낙 공정증서 등 법이 정한 집행권원이 있어야 그에 기초한 강제집행을 할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0056"
+      ]
+    },
+    {
+      "rule_id": "rule.debt-enforcement.provisional-attachment-preservation",
+      "title_ko": "가압류에 의한 집행 보전",
+      "proposition_ko": "금전채권이나 금전으로 환산할 수 있는 채권은 장래 강제집행을 보전하기 위해 동산·부동산 등에 가압류할 수 있습니다.",
+      "norm": {
+        "actor_ko": "금전채권의 장래 집행을 보전하려는 채권자",
+        "conditions_ko": "본안 확정 전 채무자의 재산 처분 등으로 강제집행이 곤란해질 위험이 있는 경우",
+        "legal_effect_ko": "금전채권이나 금전으로 환산할 수 있는 채권은 장래 강제집행을 보전하기 위해 동산·부동산 등에 가압류할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0276"
+      ]
+    },
+    {
+      "rule_id": "rule.debt-enforcement.claim-seizure-and-collection",
+      "title_ko": "예금 등 채권압류와 현금화",
+      "proposition_ko": "채무자의 제3자에 대한 금전채권 집행은 집행법원의 압류명령으로 시작하고, 압류채권자는 추심명령이나 전부명령을 신청해 현금화를 진행할 수 있습니다.",
+      "norm": {
+        "actor_ko": "채무자의 제3자에 대한 금전채권을 집행하려는 채권자",
+        "conditions_ko": "집행법원의 압류명령과 추심명령 또는 전부명령으로 예금·급여 등 채권을 현금화하는 경우",
+        "legal_effect_ko": "채무자의 제3자에 대한 금전채권 집행은 집행법원의 압류명령으로 시작하고, 압류채권자는 추심명령이나 전부명령을 신청해 현금화를 진행할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0223",
+        "coord.debt-enforcement.civil-execution-ko-0229"
+      ]
+    },
+    {
+      "rule_id": "rule.debt-enforcement.protected-claims",
+      "title_ko": "압류금지채권",
+      "proposition_ko": "급여채권의 일정 부분과 법이 정한 생계·보장성 급여 등은 전부 또는 일부 압류가 금지되고 법원은 구체적 사정을 고려해 범위를 조정할 수 있습니다.",
+      "norm": {
+        "actor_ko": "급여·연금·생계성 채권의 채권자와 채무자",
+        "conditions_ko": "민사집행법상 압류금지채권 해당 여부와 법원의 범위 조정 필요성을 판단하는 경우",
+        "legal_effect_ko": "급여채권의 일정 부분과 법이 정한 생계·보장성 급여 등은 전부 또는 일부 압류가 금지되고 법원은 구체적 사정을 고려해 범위를 조정할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0246"
+      ]
+    },
+    {
+      "rule_id": "rule.debt-enforcement.livelihood-account",
+      "title_ko": "2026년 생계비계좌",
+      "proposition_ko": "2026년 2월 1일부터 자연인은 금융기관에 하나의 생계비계좌를 개설할 수 있고 대통령령상 한도 안의 예치금은 압류금지 대상으로 관리됩니다.",
+      "norm": {
+        "actor_ko": "법정 생계비계좌를 개설·사용하는 자연인과 금융기관",
+        "conditions_ko": "2026년 2월 1일 이후 한 사람당 하나의 생계비계좌를 법정 예치한도 안에서 관리하는 경우",
+        "legal_effect_ko": "2026년 2월 1일부터 자연인은 금융기관에 하나의 생계비계좌를 개설할 수 있고 대통령령상 한도 안의 예치금은 압류금지 대상으로 관리됩니다."
+      },
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0246",
+        "coord.debt-enforcement.civil-execution-ko-0246-02"
+      ]
+    },
+    {
+      "rule_id": "rule.debt-enforcement.property-disclosure",
+      "title_ko": "재산명시신청",
+      "proposition_ko": "금전 지급을 목적으로 하는 집행권원에 기초해 강제집행을 개시할 수 있는 채권자는 원칙적으로 법원에 채무자의 재산명시를 신청할 수 있습니다.",
+      "norm": {
+        "actor_ko": "금전 집행권원으로 강제집행을 개시할 수 있는 채권자",
+        "conditions_ko": "채무자의 집행재산을 알기 어려워 관할 법원에 재산명시를 신청하는 경우",
+        "legal_effect_ko": "금전 지급을 목적으로 하는 집행권원에 기초해 강제집행을 개시할 수 있는 채권자는 원칙적으로 법원에 채무자의 재산명시를 신청할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0061"
+      ]
+    },
+    {
+      "rule_id": "rule.debt-enforcement.fraudulent-transfer-revocation",
+      "title_ko": "채권자취소권",
+      "proposition_ko": "채무자가 채권자를 해함을 알면서 재산권을 목적으로 한 법률행위를 한 경우 법정 요건 아래 취소와 원상회복을 법원에 청구할 수 있습니다.",
+      "norm": {
+        "actor_ko": "채무자의 재산행위로 공동담보가 훼손된 채권자",
+        "conditions_ko": "채무자의 사해의사·수익자 또는 전득자의 상태와 제척기간을 확인해 취소·원상회복을 청구하는 경우",
+        "legal_effect_ko": "채무자가 채권자를 해함을 알면서 재산권을 목적으로 한 법률행위를 한 경우 법정 요건 아래 취소와 원상회복을 법원에 청구할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-act-ko-0406"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.debt-enforcement.due-date-fixed",
+      "question_ko": "변제기나 이행청구 도달일을 확인할 수 있나요?",
+      "decision_fact_ko": "확정 변제기 또는 기한 없는 채무에 대한 이행청구 도달일",
+      "when_true_ko": "그 날짜를 기준으로 지체 기간과 적용 이율을 계산합니다.",
+      "when_false_ko": "도달 증거와 변제기 합의를 먼저 확보한 뒤 청구 기산점을 정합니다.",
+      "rule_ids": [
+        "rule.debt-enforcement.delay-and-default-interest"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-act-ko-0387",
+        "coord.debt-enforcement.civil-act-ko-0397"
+      ]
+    },
+    {
+      "scenario_id": "scenario.debt-enforcement.limitation-near",
+      "question_ko": "해당 채권의 시효기간과 기산점을 확인했고 만료가 임박했나요?",
+      "decision_fact_ko": "채권 종류별 시효기간·기산점·만료 예정일",
+      "when_true_ko": "즉시 재판상 청구나 보전처분 등 시효중단 조치를 검토합니다.",
+      "when_false_ko": "남은 기간을 기록하고 채권 종류에 따른 단기시효·특별법 적용을 계속 점검합니다.",
+      "rule_ids": [
+        "rule.debt-enforcement.general-claim-limitation"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-act-ko-0162"
+      ]
+    },
+    {
+      "scenario_id": "scenario.debt-enforcement.demand-followup-within-six-months",
+      "question_ko": "최고가 도달한 뒤 6개월 안에 법정 후속조치를 했나요?",
+      "decision_fact_ko": "최고 도달일과 재판상 청구·압류·가압류 등 후속조치일",
+      "when_true_ko": "최고와 후속조치의 시간 관계를 입증해 시효중단 효과를 검토합니다.",
+      "when_false_ko": "최고만으로 효과가 계속된다고 보지 않고 현재 시효 완성 여부를 다시 계산합니다.",
+      "rule_ids": [
+        "rule.debt-enforcement.demand-six-month-followup"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-act-ko-0174"
+      ]
+    },
+    {
+      "scenario_id": "scenario.debt-enforcement.payment-order-service-possible",
+      "question_ko": "채무자에게 국내에서 공시송달 아닌 방법으로 지급명령을 송달할 수 있나요?",
+      "decision_fact_ko": "채무자의 정확한 송달주소와 국내 통상송달 가능성",
+      "when_true_ko": "금전 등 일정 지급청구라면 지급명령 신청을 검토합니다.",
+      "when_false_ko": "주소 보정이나 통상송달이 어렵다면 소송절차로의 이행 가능성을 준비합니다.",
+      "rule_ids": [
+        "rule.debt-enforcement.payment-order-scope"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-procedure-ko-0462"
+      ]
+    },
+    {
+      "scenario_id": "scenario.debt-enforcement.payment-order-objected",
+      "question_ko": "채무자가 지급명령 송달일부터 2주 안에 적법하게 이의했나요?",
+      "decision_fact_ko": "지급명령 송달일·이의신청일·이의 범위",
+      "when_true_ko": "이의 범위에서 지급명령 효력이 없어지고 소송 대응 자료를 준비합니다.",
+      "when_false_ko": "이의 부재·취하·각하 확정 여부를 확인해 확정판결과 같은 효력 발생을 점검합니다.",
+      "rule_ids": [
+        "rule.debt-enforcement.payment-order-objection-finality"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-procedure-ko-0470",
+        "coord.debt-enforcement.civil-procedure-ko-0474"
+      ]
+    },
+    {
+      "scenario_id": "scenario.debt-enforcement.enforceable-title-held",
+      "question_ko": "확정 지급명령·판결·집행승낙 공정증서 등 집행권원이 있나요?",
+      "decision_fact_ko": "법이 정한 집행권원 보유 여부와 집행 가능 상태",
+      "when_true_ko": "대상 재산과 집행방법을 특정해 강제집행 단계로 넘어갑니다.",
+      "when_false_ko": "차용증·내용증명만 있다면 지급명령·소송 등 집행권원 확보 절차를 먼저 진행합니다.",
+      "rule_ids": [
+        "rule.debt-enforcement.enforceable-title-required"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0056"
+      ]
+    },
+    {
+      "scenario_id": "scenario.debt-enforcement.dissipation-risk",
+      "question_ko": "본안 판단 전에 채무자가 재산을 처분해 집행이 어려워질 구체적 위험이 있나요?",
+      "decision_fact_ko": "재산 처분 징후와 장래 강제집행 곤란 위험",
+      "when_true_ko": "채권·보전 필요성을 소명해 가압류 신청을 검토합니다.",
+      "when_false_ko": "가압류 필요성을 과장하지 않고 본안과 집행권원 확보를 우선 진행합니다.",
+      "rule_ids": [
+        "rule.debt-enforcement.provisional-attachment-preservation"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0276"
+      ]
+    },
+    {
+      "scenario_id": "scenario.debt-enforcement.third-party-claim-known",
+      "question_ko": "채무자의 은행 예금·급여 등 제3채무자에 대한 채권을 특정할 수 있나요?",
+      "decision_fact_ko": "제3채무자와 압류할 금전채권의 특정 가능성",
+      "when_true_ko": "집행법원에 채권압류와 추심·전부명령을 신청할 자료를 준비합니다.",
+      "when_false_ko": "재산명시 등으로 집행대상을 찾고 막연한 금융기관 추정만으로 진행하지 않습니다.",
+      "rule_ids": [
+        "rule.debt-enforcement.claim-seizure-and-collection"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0223",
+        "coord.debt-enforcement.civil-execution-ko-0229"
+      ]
+    },
+    {
+      "scenario_id": "scenario.debt-enforcement.protected-income",
+      "question_ko": "압류 대상이 급여·연금·생계비 등 법정 보호 채권에 해당하나요?",
+      "decision_fact_ko": "압류 대상 채권의 성격과 보호 범위",
+      "when_true_ko": "압류금지 부분과 법원 조정 가능성을 계산해 신청 범위를 정하거나 취소를 구합니다.",
+      "when_false_ko": "일반 채권이라면 다른 압류 제한이 있는지 확인한 뒤 집행을 진행합니다.",
+      "rule_ids": [
+        "rule.debt-enforcement.protected-claims"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0246"
+      ]
+    },
+    {
+      "scenario_id": "scenario.debt-enforcement.livelihood-account-opened",
+      "question_ko": "법정 생계비계좌가 개설되어 있고 예치한도를 지켰나요?",
+      "decision_fact_ko": "본인 명의 단일 생계비계좌와 대통령령상 예치한도",
+      "when_true_ko": "법정 압류금지 대상임을 계좌 자료로 소명합니다.",
+      "when_false_ko": "일반 계좌 예금 보호와 혼동하지 않고 별도 압류금지·취소 절차를 확인합니다.",
+      "rule_ids": [
+        "rule.debt-enforcement.livelihood-account"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0246",
+        "coord.debt-enforcement.civil-execution-ko-0246-02"
+      ]
+    },
+    {
+      "scenario_id": "scenario.debt-enforcement.property-unknown",
+      "question_ko": "금전 집행권원은 있지만 채무자의 집행재산을 찾기 어렵나요?",
+      "decision_fact_ko": "집행 가능한 금전 집행권원과 재산 파악 곤란",
+      "when_true_ko": "관할 법원에 재산명시신청과 필요한 집행서류를 준비합니다.",
+      "when_false_ko": "집행권원이 없다면 먼저 채권을 확정하고 자발적 변제 자료를 정리합니다.",
+      "rule_ids": [
+        "rule.debt-enforcement.property-disclosure"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0061"
+      ]
+    },
+    {
+      "scenario_id": "scenario.debt-enforcement.harmful-transfer-known",
+      "question_ko": "채무자가 채권자를 해함을 알면서 재산을 처분했고 그 사실을 안 시점을 특정할 수 있나요?",
+      "decision_fact_ko": "채권자 해함·채무자 인식·수익자 또는 전득자 상태·인지일·처분일",
+      "when_true_ko": "민법 제406조의 요건과 안 날부터 1년·행위일부터 5년 기간을 함께 검토합니다.",
+      "when_false_ko": "단순 재산감소만으로 취소를 단정하지 않고 처분 대가와 채무초과 여부를 추가 확인합니다.",
+      "rule_ids": [
+        "rule.debt-enforcement.fraudulent-transfer-revocation"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-act-ko-0406"
+      ]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.when-default-interest-starts",
+      "content_type": "explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "when-default-interest-starts",
+      "title_ko": "돈을 늦게 갚았을 때 지연책임은 언제부터 시작될까요?",
+      "one_line_answer_ko": "확정 변제기가 있으면 그 도래 때부터, 기한이 없으면 이행청구가 도달한 때부터 원칙적으로 지체책임을 계산합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "변제기 유형을 먼저 구분합니다.",
+        "청구 도달 증거가 기산점을 좌우합니다.",
+        "법정이율과 적법한 약정이율을 나눕니다."
+      ],
+      "action_steps_ko": [
+        "계약서에서 변제기를 확인한다.",
+        "기한이 없으면 상당한 지급기한을 정해 청구한다.",
+        "문자·내용증명 등 도달 자료를 보존한다.",
+        "원금·이율·기산일별 금액표를 만든다."
+      ],
+      "facts_to_check_ko": [
+        "계약일",
+        "변제기",
+        "청구 도달일",
+        "약정이율",
+        "일부 변제일"
+      ],
+      "caution_ko": "소송촉진 등에 관한 특례법이나 이자제한법 등 다른 법률이 적용되면 이율과 기산점이 달라질 수 있습니다.",
+      "search_intents_ko": [
+        "돈을 늦게 갚았을 때 지연책임은 언제부터 시작될까요?",
+        "변제일을 정하지 않은 돈도 바로 지연이자가 붙나요?",
+        "when default interest starts"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "변제기가 있는지부터 본다",
+          "paragraphs_ko": [
+            "날짜를 확정해 둔 채무는 그 날이 지나면 지체책임이 문제됩니다. 날짜가 불확정하면 채무자가 도래 사실을 안 때를 확인합니다.",
+            "기한을 정하지 않았다면 채권자의 이행청구가 채무자에게 도달한 때가 중요하므로 발송일과 도달일을 구분합니다."
+          ]
+        },
+        {
+          "heading_ko": "이율보다 먼저 원금과 기간을 확정한다",
+          "paragraphs_ko": [
+            "금전채무 불이행 손해배상은 법정이율이 기본이지만 적법한 약정이율이 있으면 그 범위에서 적용될 수 있습니다.",
+            "원금 변동과 일부 변제를 날짜별로 나누어 계산해야 과다청구를 피할 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.debt-enforcement.delay-and-default-interest"
+      ],
+      "scenario_ids": [
+        "scenario.debt-enforcement.due-date-fixed"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-act-ko-0387",
+        "coord.debt-enforcement.civil-act-ko-0397"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "related_content_ids": [
+        "content.debt-limitation-is-not-always-ten-years",
+        "content.when-payment-order-fits",
+        "content.documents-that-allow-compulsory-enforcement"
+      ]
+    },
+    {
+      "content_id": "content.debt-limitation-is-not-always-ten-years",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "debt-limitation-is-not-always-ten-years",
+      "title_ko": "채권 소멸시효가 모두 10년인 것은 아닙니다",
+      "one_line_answer_ko": "민법상 일반 채권은 원칙적으로 10년이지만 채권 종류별 단기시효와 특별법을 먼저 확인해야 합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "기간뿐 아니라 기산점을 확인합니다.",
+        "임금·상사채권 등은 별도 기간이 적용될 수 있습니다.",
+        "시효 완성 전에 법정 중단조치를 검토합니다."
+      ],
+      "action_steps_ko": [
+        "채권의 발생원인과 종류를 분류한다.",
+        "권리를 행사할 수 있게 된 날을 확인한다.",
+        "승인·재판상 청구·압류 등 이력을 모은다.",
+        "만료 예정일을 보수적으로 계산해 즉시 조치한다."
+      ],
+      "facts_to_check_ko": [
+        "채권 종류",
+        "변제기",
+        "기산점",
+        "마지막 승인·변제일",
+        "소송·압류 이력"
+      ],
+      "caution_ko": "민법 제162조만으로 개별 채권의 정확한 시효를 단정하면 안 됩니다.",
+      "search_intents_ko": [
+        "채권 소멸시효가 모두 10년인 것은 아닙니다",
+        "돈 받을 권리는 무조건 10년 안에만 청구하면 되나요?",
+        "debt limitation is not always ten years"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "10년은 일반 원칙이다",
+          "paragraphs_ko": [
+            "민법은 채권을 10년간 행사하지 않으면 시효가 완성한다고 정하지만 이는 모든 채권의 단일 답이 아닙니다.",
+            "청구권의 성질과 특별법, 단기시효 규정을 함께 확인해야 실제 마감일을 정할 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "기산점과 중단 이력을 시간순으로 적는다",
+          "paragraphs_ko": [
+            "같은 기간이라도 언제부터 진행하는지가 다르면 결과가 달라집니다. 변제기와 권리행사 가능일을 먼저 특정합니다.",
+            "채무 승인·일부 변제·재판상 청구가 있었다면 그 날짜와 법적 효과를 별도로 검토합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.debt-enforcement.general-claim-limitation"
+      ],
+      "scenario_ids": [
+        "scenario.debt-enforcement.limitation-near"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-act-ko-0162"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "related_content_ids": [
+        "content.content-certified-demand-needs-followup",
+        "content.judgment-debt-limitation-ten-years",
+        "content.when-payment-order-fits"
+      ]
+    },
+    {
+      "content_id": "content.content-certified-demand-needs-followup",
+      "content_type": "deadline",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "content-certified-demand-needs-followup",
+      "title_ko": "내용증명만 보내면 소멸시효가 계속 중단되는 것은 아닙니다",
+      "one_line_answer_ko": "최고가 도달했더라도 6개월 안에 재판상 청구나 압류·가압류 등 법정 후속조치를 해야 합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "발송일보다 도달일을 확인합니다.",
+        "6개월은 후속조치 마감 관리 기간입니다.",
+        "최고 내용과 대상 채권을 특정합니다."
+      ],
+      "action_steps_ko": [
+        "배달증명과 내용증명 사본을 확보한다.",
+        "도달일부터 6개월 마감일을 계산한다.",
+        "지급명령·소송·가압류 중 맞는 절차를 정한다.",
+        "후속 신청 접수증과 사건번호를 보관한다."
+      ],
+      "facts_to_check_ko": [
+        "최고 내용",
+        "발송일",
+        "도달일",
+        "시효 만료 예정일",
+        "후속조치 접수일"
+      ],
+      "caution_ko": "내용증명은 의사표시와 도달을 입증하는 수단일 뿐 채권 존재나 금액을 자동 확정하지 않습니다.",
+      "search_intents_ko": [
+        "내용증명만 보내면 소멸시효가 계속 중단되는 것은 아닙니다",
+        "내용증명을 보냈으니 시효 걱정은 이제 안 해도 되나요?",
+        "content certified demand needs followup"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "최고는 영구 정지가 아니다",
+          "paragraphs_ko": [
+            "민법 제174조는 최고 뒤 6개월 안에 정해진 법적 조치가 없으면 시효중단 효력이 유지되지 않는 구조입니다.",
+            "따라서 내용증명을 보낸 날에 안심할 것이 아니라 도달일과 후속 절차 마감일을 한 세트로 관리해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "어떤 절차를 할지 미리 정한다",
+          "paragraphs_ko": [
+            "채무자의 주소와 다툼 가능성이 낮으면 지급명령을 검토할 수 있고, 재산 처분 위험이 크면 가압류 필요성을 함께 봅니다.",
+            "최고한 채권과 후속 절차의 청구가 서로 맞는지도 확인해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.debt-enforcement.demand-six-month-followup"
+      ],
+      "scenario_ids": [
+        "scenario.debt-enforcement.demand-followup-within-six-months"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-act-ko-0174"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "related_content_ids": [
+        "content.debt-limitation-is-not-always-ten-years",
+        "content.when-payment-order-fits",
+        "content.provisional-attachment-before-judgment"
+      ]
+    },
+    {
+      "content_id": "content.judgment-debt-limitation-ten-years",
+      "content_type": "deadline",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "judgment-debt-limitation-ten-years",
+      "title_ko": "판결을 받았어도 집행을 무기한 미룰 수는 없습니다",
+      "one_line_answer_ko": "판결 등으로 확정된 채권은 원칙적으로 10년의 소멸시효가 적용되므로 확정일과 집행·변제 이력을 관리해야 합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "확정일을 기록합니다.",
+        "조정·재판상 화해도 함께 확인합니다.",
+        "집행 대상 재산을 계속 갱신합니다."
+      ],
+      "action_steps_ko": [
+        "판결 확정증명과 정본을 확보한다.",
+        "확정일부터 시효 만료 예정일을 계산한다.",
+        "변제·집행·승인 이력을 날짜별로 적는다.",
+        "재산조사와 집행 신청을 마감 전에 진행한다."
+      ],
+      "facts_to_check_ko": [
+        "판결 확정일",
+        "변제기",
+        "조정·화해 여부",
+        "집행 신청일",
+        "마지막 변제·승인일"
+      ],
+      "caution_ko": "판결확정 당시 아직 변제기가 오지 않은 채권에는 민법 제165조제3항의 예외가 있으므로 따로 확인합니다.",
+      "search_intents_ko": [
+        "판결을 받았어도 집행을 무기한 미룰 수는 없습니다",
+        "확정판결을 받으면 언제든 강제집행할 수 있나요?",
+        "judgment debt limitation ten years"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "판결 후에도 시계는 간다",
+          "paragraphs_ko": [
+            "단기시효 채권이라도 판결로 확정되면 원칙적으로 10년이 적용되지만 권리가 영구히 존속하는 것은 아닙니다.",
+            "확정일과 집행을 중단하거나 새로 진행시킨 사정을 문서로 남겨야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "집행 가능성과 회수 가능성은 다르다",
+          "paragraphs_ko": [
+            "집행권원이 있어도 채무자의 재산이 없거나 특정되지 않으면 바로 회수되지 않습니다.",
+            "재산명시, 채권압류, 부동산집행 등 다음 수단을 재산 유형에 맞춰 선택합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.debt-enforcement.judgment-claim-ten-years"
+      ],
+      "scenario_ids": [
+        "scenario.debt-enforcement.limitation-near"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-act-ko-0165",
+        "coord.debt-enforcement.civil-act-ko-0162"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "related_content_ids": [
+        "content.documents-that-allow-compulsory-enforcement",
+        "content.bank-account-seizure-and-collection-order",
+        "content.property-disclosure-when-assets-unknown"
+      ]
+    },
+    {
+      "content_id": "content.when-payment-order-fits",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "when-payment-order-fits",
+      "title_ko": "지급명령은 금전청구와 송달 가능성을 먼저 봅니다",
+      "one_line_answer_ko": "일정한 금전 등의 지급청구이고 채무자에게 국내 통상송달이 가능할 때 지급명령을 검토할 수 있습니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "청구금액과 원인을 특정합니다.",
+        "채무자 주소와 송달 가능성을 확인합니다.",
+        "이의 시 소송으로 이어질 자료를 준비합니다."
+      ],
+      "action_steps_ko": [
+        "원금·이자 계산표를 만든다.",
+        "계약서·송금·대화 자료를 시간순으로 정리한다.",
+        "채무자의 정확한 주소를 확인한다.",
+        "이의가 제기될 경우 낼 증거를 미리 준비한다."
+      ],
+      "facts_to_check_ko": [
+        "청구금액",
+        "채무자 주소",
+        "변제기",
+        "송금내역",
+        "채무 인정 자료"
+      ],
+      "caution_ko": "채무자의 주소를 모르거나 공시송달이 필요하면 지급명령만으로 끝나지 않을 수 있습니다.",
+      "search_intents_ko": [
+        "지급명령은 금전청구와 송달 가능성을 먼저 봅니다",
+        "빌려준 돈을 받으려면 바로 지급명령을 신청하면 되나요?",
+        "when payment order fits"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "간이절차도 요건이 있다",
+          "paragraphs_ko": [
+            "지급명령은 금전·대체물·유가증권의 일정 수량 지급을 목적으로 하는 청구에 쓰는 절차입니다.",
+            "채무자를 통상적인 방법으로 송달할 수 있는지까지 확인해야 신청 뒤 주소보정과 소송 이행에 대비할 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "다툼이 생길 자료를 미리 만든다",
+          "paragraphs_ko": [
+            "법원이 처음부터 채무자를 심문하지 않더라도 채무자가 이의하면 본안 소송에 대응해야 합니다.",
+            "청구원인과 금액을 처음부터 소장 수준으로 정리하면 절차 전환 때 손실을 줄일 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.debt-enforcement.payment-order-scope"
+      ],
+      "scenario_ids": [
+        "scenario.debt-enforcement.payment-order-service-possible"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-procedure-ko-0462"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "related_content_ids": [
+        "content.content-certified-demand-needs-followup",
+        "content.payment-order-objection-two-weeks",
+        "content.documents-that-allow-compulsory-enforcement"
+      ],
+      "concierge_entry": {
+        "question_ko": "지급명령은 금전청구와 송달 가능성을 먼저 봅니다",
+        "decision_facts_ko": [
+          "청구금액",
+          "채무자 주소",
+          "변제기",
+          "송금내역",
+          "채무 인정 자료"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.payment-order-objection-two-weeks",
+      "content_type": "deadline",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "payment-order-objection-two-weeks",
+      "title_ko": "지급명령을 받았다면 송달일부터 2주를 놓치면 안 됩니다",
+      "one_line_answer_ko": "채무자는 송달일부터 2주 안에 적법하게 이의해야 하며, 이의가 없으면 지급명령은 확정판결과 같은 효력이 생길 수 있습니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "송달일을 봉투·전자송달 기록으로 확인합니다.",
+        "이의 범위를 분명히 합니다.",
+        "이후 소송 대응자료를 준비합니다."
+      ],
+      "action_steps_ko": [
+        "지급명령 정본과 송달일을 확인한다.",
+        "청구금액 중 인정·다툼 부분을 나눈다.",
+        "2주 안에 이의신청을 제출한다.",
+        "계약·변제·상계 자료를 정리한다."
+      ],
+      "facts_to_check_ko": [
+        "송달일",
+        "이의신청일",
+        "청구원인",
+        "이미 갚은 금액",
+        "상계·소멸 사유"
+      ],
+      "caution_ko": "지급명령을 무시하면 실제 채권이 없다는 주장이 자동 반영되지 않으므로 즉시 법원 문서를 확인해야 합니다.",
+      "search_intents_ko": [
+        "지급명령을 받았다면 송달일부터 2주를 놓치면 안 됩니다",
+        "법원 지급명령이 왔는데 사실과 다르면 언제까지 이의해야 하나요?",
+        "payment order objection two weeks"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "2주는 송달일부터 계산한다",
+          "paragraphs_ko": [
+            "민사소송법은 지급명령을 송달받은 날부터 2주 안에 이의할 수 있도록 하고 이 기간을 불변기간으로 둡니다.",
+            "전자송달 열람일이나 우편 송달일을 추정하지 말고 사건기록에서 확인합니다."
+          ]
+        },
+        {
+          "heading_ko": "이의 뒤에는 소송이 이어질 수 있다",
+          "paragraphs_ko": [
+            "적법한 이의가 있으면 그 범위에서 지급명령은 효력을 잃지만 채권 분쟁 자체가 끝나는 것은 아닙니다.",
+            "채권자와 채무자 모두 계약 성립, 변제, 이자 계산을 입증할 자료를 준비해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.debt-enforcement.payment-order-objection-finality"
+      ],
+      "scenario_ids": [
+        "scenario.debt-enforcement.payment-order-objected"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-procedure-ko-0470",
+        "coord.debt-enforcement.civil-procedure-ko-0474"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "related_content_ids": [
+        "content.when-payment-order-fits",
+        "content.documents-that-allow-compulsory-enforcement",
+        "content.wage-and-protected-claim-seizure"
+      ]
+    },
+    {
+      "content_id": "content.documents-that-allow-compulsory-enforcement",
+      "content_type": "comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "documents-that-allow-compulsory-enforcement",
+      "title_ko": "차용증과 집행권원은 다릅니다",
+      "one_line_answer_ko": "강제집행은 확정 지급명령·판결·집행승낙 공정증서 등 법이 정한 집행권원에 기초해야 합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "채권 증거와 집행권원을 구분합니다.",
+        "집행 가능 상태와 필요한 정본을 확인합니다.",
+        "대상 재산을 별도로 특정합니다."
+      ],
+      "action_steps_ko": [
+        "보유 문서가 집행권원인지 분류한다.",
+        "확정·집행문 등 필요한 상태를 확인한다.",
+        "없으면 지급명령·소송·공정증서 경로를 검토한다.",
+        "재산 유형별 집행 신청서를 준비한다."
+      ],
+      "facts_to_check_ko": [
+        "문서 종류",
+        "확정 여부",
+        "집행승낙 문구",
+        "채무자 인적사항",
+        "집행 대상 재산"
+      ],
+      "caution_ko": "공정증서도 법정 요건과 집행승낙 취지가 있어야 하며 단순 인증서와 구분해야 합니다.",
+      "search_intents_ko": [
+        "차용증과 집행권원은 다릅니다",
+        "차용증이나 내용증명만 있으면 통장을 바로 압류할 수 있나요?",
+        "documents that allow compulsory enforcement"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "증거 문서와 집행 문서는 역할이 다르다",
+          "paragraphs_ko": [
+            "차용증과 송금내역은 채권을 입증하는 데 중요하지만 그 자체로 은행이나 고용주에게 강제 지급을 명하는 문서는 아닙니다.",
+            "민사집행법이 정한 집행권원을 확보한 뒤 대상 재산에 맞는 집행절차를 시작합니다."
+          ]
+        },
+        {
+          "heading_ko": "집행권원만으로 자동 회수되지 않는다",
+          "paragraphs_ko": [
+            "판결이나 확정 지급명령을 받았더라도 어느 재산을 어떤 방식으로 압류할지 정해야 합니다.",
+            "예금·급여는 제3채무자를 특정하고 부동산은 등기와 권리관계를 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.debt-enforcement.enforceable-title-required"
+      ],
+      "scenario_ids": [
+        "scenario.debt-enforcement.enforceable-title-held"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0056"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "related_content_ids": [
+        "content.when-payment-order-fits",
+        "content.provisional-attachment-before-judgment",
+        "content.bank-account-seizure-and-collection-order"
+      ]
+    },
+    {
+      "content_id": "content.provisional-attachment-before-judgment",
+      "content_type": "emergency_response",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "provisional-attachment-before-judgment",
+      "title_ko": "재산을 빼돌릴 위험이 크면 본안 전 가압류를 검토합니다",
+      "one_line_answer_ko": "금전채권의 장래 강제집행을 보전할 필요가 있으면 본안 확정 전 가압류를 신청할 수 있습니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "채권과 보전 필요성을 함께 소명합니다.",
+        "대상 재산을 정확히 특정합니다.",
+        "담보제공 명령 가능성을 준비합니다."
+      ],
+      "action_steps_ko": [
+        "처분 징후와 재산자료를 확보한다.",
+        "채권 발생자료와 미변제액을 정리한다.",
+        "대상 재산의 등기·계좌 정보를 확인한다.",
+        "본안 제기 일정과 담보 여력을 함께 계획한다."
+      ],
+      "facts_to_check_ko": [
+        "재산 처분 징후",
+        "채권 금액",
+        "대상 재산",
+        "본안 제기 여부",
+        "담보제공 가능성"
+      ],
+      "caution_ko": "가압류는 임시 보전처분이며 채권의 존재와 최종 승소를 확정하지 않습니다.",
+      "search_intents_ko": [
+        "재산을 빼돌릴 위험이 크면 본안 전 가압류를 검토합니다",
+        "소송 중에 채무자가 집을 팔 것 같으면 어떻게 하나요?",
+        "provisional attachment before judgment"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "보전 필요성이 핵심이다",
+          "paragraphs_ko": [
+            "가압류는 돈을 받을 가능성이 있다는 주장만으로 자동 허용되는 절차가 아니라 장래 집행이 어려워질 위험을 소명해야 합니다.",
+            "급매 광고, 명의이전 시도, 반복적인 재산 처분 등 구체적 자료를 모읍니다."
+          ]
+        },
+        {
+          "heading_ko": "본안과 집행까지 한 흐름으로 본다",
+          "paragraphs_ko": [
+            "가압류 결정 뒤에도 채권을 확정하는 본안 절차와 실제 집행이 남습니다.",
+            "가압류만 장기간 유지하는 계획이 아니라 소송·지급명령과 회수 순서를 함께 설계합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.debt-enforcement.provisional-attachment-preservation"
+      ],
+      "scenario_ids": [
+        "scenario.debt-enforcement.dissipation-risk"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0276"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "related_content_ids": [
+        "content.content-certified-demand-needs-followup",
+        "content.documents-that-allow-compulsory-enforcement",
+        "content.fraudulent-transfer-before-enforcement"
+      ]
+    },
+    {
+      "content_id": "content.bank-account-seizure-and-collection-order",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "bank-account-seizure-and-collection-order",
+      "title_ko": "통장압류는 은행에 대한 예금채권을 특정해 진행합니다",
+      "one_line_answer_ko": "집행권원을 갖춘 뒤 채무자의 은행에 대한 예금채권을 특정해 채권압류와 추심명령 등을 신청합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "은행은 제3채무자입니다.",
+        "압류명령과 실제 추심은 구분됩니다.",
+        "압류금지 범위를 함께 확인합니다."
+      ],
+      "action_steps_ko": [
+        "집행권원과 필요한 정본을 준비한다.",
+        "채무자와 은행 정보를 정확히 적는다.",
+        "압류할 채권 범위와 청구액을 계산한다.",
+        "명령 송달·은행 답변·추심 결과를 추적한다."
+      ],
+      "facts_to_check_ko": [
+        "집행권원",
+        "은행명",
+        "채무자 식별정보",
+        "청구액",
+        "선행 압류·잔액"
+      ],
+      "caution_ko": "계좌가 없거나 잔액이 없고 선행 압류가 있으면 압류명령을 받아도 실제 회수액이 없을 수 있습니다.",
+      "search_intents_ko": [
+        "통장압류는 은행에 대한 예금채권을 특정해 진행합니다",
+        "판결을 받았는데 채무자 통장을 어떻게 압류하나요?",
+        "bank account seizure and collection order"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "압류 대상은 예금채권이다",
+          "paragraphs_ko": [
+            "통장이라는 물건을 가져오는 것이 아니라 채무자가 은행에 대해 가진 예금반환청구권을 압류하는 구조입니다.",
+            "채무자와 제3채무자를 정확히 특정해야 송달과 효력이 연결됩니다."
+          ]
+        },
+        {
+          "heading_ko": "압류와 현금화는 단계가 다르다",
+          "paragraphs_ko": [
+            "압류명령은 채권집행의 시작이고 실제로 돈을 받으려면 추심명령이나 전부명령 등 후속 절차가 필요합니다.",
+            "은행의 진술, 잔액, 다른 압류와 배당관계를 확인해 회수 가능액을 계산합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.debt-enforcement.claim-seizure-and-collection"
+      ],
+      "scenario_ids": [
+        "scenario.debt-enforcement.third-party-claim-known"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0223",
+        "coord.debt-enforcement.civil-execution-ko-0229"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "related_content_ids": [
+        "content.documents-that-allow-compulsory-enforcement",
+        "content.wage-and-protected-claim-seizure",
+        "content.property-disclosure-when-assets-unknown"
+      ],
+      "concierge_entry": {
+        "question_ko": "통장압류는 은행에 대한 예금채권을 특정해 진행합니다",
+        "decision_facts_ko": [
+          "집행권원",
+          "은행명",
+          "채무자 식별정보",
+          "청구액",
+          "선행 압류·잔액"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.wage-and-protected-claim-seizure",
+      "content_type": "explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "wage-and-protected-claim-seizure",
+      "title_ko": "급여와 생계성 채권은 전부 압류할 수 없습니다",
+      "one_line_answer_ko": "급여채권의 일정 부분과 법이 정한 생계·보장성 채권은 압류가 제한되므로 보호 범위와 법원 조정 가능성을 확인해야 합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "급여의 성격과 월 금액을 확인합니다.",
+        "법정 보호 항목을 구분합니다.",
+        "채권자·채무자의 조정 신청 가능성을 봅니다."
+      ],
+      "action_steps_ko": [
+        "급여명세와 지급주기를 확보한다.",
+        "압류금지 항목과 계산기준을 확인한다.",
+        "법원 명령의 압류 범위를 대조한다.",
+        "과다 압류라면 취소·범위변경 신청을 검토한다."
+      ],
+      "facts_to_check_ko": [
+        "월 급여액",
+        "급여 종류",
+        "부양 상황",
+        "다른 압류",
+        "법원 명령 범위"
+      ],
+      "caution_ko": "정확한 보호금액은 민사집행법 시행령과 사건별 법원 결정까지 확인해야 합니다.",
+      "search_intents_ko": [
+        "급여와 생계성 채권은 전부 압류할 수 없습니다",
+        "채무자의 월급을 전액 압류할 수 있나요?",
+        "wage and protected claim seizure"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "생계 보호와 채권 회수를 조정한다",
+          "paragraphs_ko": [
+            "민사집행법은 급여와 연금 등 일정 채권의 전부 또는 일부를 압류하지 못하도록 정합니다.",
+            "채권자는 신청 범위를 계산해야 하고 채무자는 보호 대상임을 입증할 급여명세와 계좌 흐름을 준비합니다."
+          ]
+        },
+        {
+          "heading_ko": "계좌에 들어온 뒤도 따로 본다",
+          "paragraphs_ko": [
+            "보호 채권이 일반 계좌로 입금되면 출처와 금액을 소명해야 하는 문제가 생길 수 있습니다.",
+            "법원에 압류명령 취소나 범위 변경을 구할 수 있는지 신속히 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.debt-enforcement.protected-claims"
+      ],
+      "scenario_ids": [
+        "scenario.debt-enforcement.protected-income"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0246"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "related_content_ids": [
+        "content.payment-order-objection-two-weeks",
+        "content.bank-account-seizure-and-collection-order",
+        "content.2026-livelihood-account-protection"
+      ]
+    },
+    {
+      "content_id": "content.2026-livelihood-account-protection",
+      "content_type": "law_change",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "2026-livelihood-account-protection",
+      "title_ko": "2026년부터 한 사람당 하나의 생계비계좌를 만들 수 있습니다",
+      "one_line_answer_ko": "2026년 2월 1일부터 법정 한도 안의 생계비만 예치하는 전용 계좌를 한 사람당 하나 개설해 압류금지 보호를 받을 수 있습니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "시행일은 2026년 2월 1일입니다.",
+        "여러 금융기관 중 하나만 개설할 수 있습니다.",
+        "예치한도와 관리방식은 시행령을 확인합니다."
+      ],
+      "action_steps_ko": [
+        "거래 금융기관의 개설 가능 여부를 확인한다.",
+        "다른 금융기관 개설 여부 조회에 동의한다.",
+        "법정 한도와 입출금 제한을 확인한다.",
+        "생계비계좌 확인서와 거래내역을 보관한다."
+      ],
+      "facts_to_check_ko": [
+        "개설일",
+        "금융기관",
+        "다른 계좌 개설 여부",
+        "현재 잔액",
+        "압류명령일"
+      ],
+      "caution_ko": "일반 입출금계좌가 자동으로 생계비계좌가 되는 것은 아니며 대통령령상 세부 한도를 확인해야 합니다.",
+      "search_intents_ko": [
+        "2026년부터 한 사람당 하나의 생계비계좌를 만들 수 있습니다",
+        "생계비계좌를 만들면 어떤 압류 보호를 받나요?",
+        "2026 livelihood account protection"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "새 제도는 전용 계좌 방식이다",
+          "paragraphs_ko": [
+            "민사집행법 제246조의2는 자연인의 요청에 따라 한도를 넘겨 예치할 수 없는 생계비계좌를 금융기관이 개설할 수 있도록 합니다.",
+            "중복 개설을 막기 위해 다른 금융기관의 생계비계좌 보유 여부를 조회합니다."
+          ]
+        },
+        {
+          "heading_ko": "압류 시점을 기준으로 자료를 남긴다",
+          "paragraphs_ko": [
+            "계좌의 법적 성격과 잔액이 한도 안에 있었는지 보여주는 자료가 중요합니다.",
+            "이미 일반 계좌가 압류된 사건은 새 계좌 제도와 별개로 기존 압류금지채권·취소 절차를 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.debt-enforcement.livelihood-account"
+      ],
+      "scenario_ids": [
+        "scenario.debt-enforcement.livelihood-account-opened"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0246",
+        "coord.debt-enforcement.civil-execution-ko-0246-02"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "related_content_ids": [
+        "content.bank-account-seizure-and-collection-order",
+        "content.wage-and-protected-claim-seizure",
+        "content.property-disclosure-when-assets-unknown"
+      ]
+    },
+    {
+      "content_id": "content.property-disclosure-when-assets-unknown",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "property-disclosure-when-assets-unknown",
+      "title_ko": "집행권원은 있는데 재산을 모르면 재산명시를 검토합니다",
+      "one_line_answer_ko": "금전 집행권원으로 강제집행을 개시할 수 있다면 원칙적으로 법원에 채무자의 재산명시를 신청할 수 있습니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "집행권원과 집행 가능 상태를 확인합니다.",
+        "관할은 채무자의 보통재판적을 봅니다.",
+        "신청만으로 변제되는 것은 아닙니다."
+      ],
+      "action_steps_ko": [
+        "집행권원과 집행서류를 준비한다.",
+        "채무자 주소와 관할법원을 확인한다.",
+        "기존 재산조사 결과를 정리한다.",
+        "재산목록 뒤 실제 압류·경매 절차를 계획한다."
+      ],
+      "facts_to_check_ko": [
+        "집행권원 종류",
+        "집행 가능 상태",
+        "채무자 주소",
+        "알고 있는 재산",
+        "기존 집행 결과"
+      ],
+      "caution_ko": "가집행선고부 판결 등 민사집행법 제61조의 예외와 필요한 첨부문서를 확인해야 합니다.",
+      "search_intents_ko": [
+        "집행권원은 있는데 재산을 모르면 재산명시를 검토합니다",
+        "판결은 받았지만 채무자 재산을 전혀 모르는데 어떻게 하나요?",
+        "property disclosure when assets unknown"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "재산명시는 탐색 절차다",
+          "paragraphs_ko": [
+            "채무자의 재산을 모른다고 집행권원이 무용한 것은 아닙니다. 법정 요건을 갖춘 채권자는 재산목록 제출을 명해 달라고 신청할 수 있습니다.",
+            "다만 신청 자체가 돈을 받아주는 것은 아니므로 목록에 나타난 재산별 후속 집행을 준비합니다."
+          ]
+        },
+        {
+          "heading_ko": "집행권원 없는 단계와 구분한다",
+          "paragraphs_ko": [
+            "단순 차용증만 있는 상태라면 재산명시보다 먼저 채권을 확정하는 절차가 필요합니다.",
+            "지급명령·소송과 재산보전·조사를 한 일정표에서 관리하면 시효와 집행 지연을 줄일 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.debt-enforcement.property-disclosure"
+      ],
+      "scenario_ids": [
+        "scenario.debt-enforcement.property-unknown"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-execution-ko-0061"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "related_content_ids": [
+        "content.judgment-debt-limitation-ten-years",
+        "content.documents-that-allow-compulsory-enforcement",
+        "content.bank-account-seizure-and-collection-order"
+      ],
+      "concierge_entry": {
+        "question_ko": "집행권원은 있는데 재산을 모르면 재산명시를 검토합니다",
+        "decision_facts_ko": [
+          "집행권원 종류",
+          "집행 가능 상태",
+          "채무자 주소",
+          "알고 있는 재산",
+          "기존 집행 결과"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.fraudulent-transfer-before-enforcement",
+      "content_type": "emergency_response",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "fraudulent-transfer-before-enforcement",
+      "title_ko": "채무자가 재산을 빼돌렸다면 채권자취소권 요건과 기간을 봅니다",
+      "one_line_answer_ko": "채권자를 해함을 알고 한 재산행위라면 법정 요건 아래 취소와 원상회복을 청구할 수 있지만 단순 명의이전만으로 자동 취소되지는 않습니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "채권 존재와 처분 전후 재산상태를 봅니다.",
+        "채무자와 수익자·전득자의 인식을 구분합니다.",
+        "안 날 1년·행위일 5년을 함께 관리합니다."
+      ],
+      "action_steps_ko": [
+        "처분일과 등기·거래내역을 확보한다.",
+        "처분 전후 채무자의 전체 재산과 채무를 비교한다.",
+        "대가 지급과 수익자 관계를 확인한다.",
+        "인지일과 제척기간을 기록해 소 제기를 검토한다."
+      ],
+      "facts_to_check_ko": [
+        "채권 발생일",
+        "재산 처분일",
+        "처분 대가",
+        "채무초과 여부",
+        "취소원인을 안 날"
+      ],
+      "caution_ko": "가족 간 거래라는 이유만으로 악의나 사해성을 단정할 수 없고 구체적인 재산상태와 거래조건을 입증해야 합니다.",
+      "search_intents_ko": [
+        "채무자가 재산을 빼돌렸다면 채권자취소권 요건과 기간을 봅니다",
+        "채무자가 가족에게 재산을 넘겼는데 되돌릴 수 있나요?",
+        "fraudulent transfer before enforcement"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "재산감소만으로는 부족하다",
+          "paragraphs_ko": [
+            "민법 제406조는 채무자가 채권자를 해함을 알면서 한 재산권 행위와 수익자·전득자의 상태를 함께 봅니다.",
+            "처분 전후의 적극재산·소극재산, 매매대금의 실제 지급과 사용처를 객관 자료로 정리합니다."
+          ]
+        },
+        {
+          "heading_ko": "제척기간을 먼저 계산한다",
+          "paragraphs_ko": [
+            "취소소송은 취소원인을 안 날부터 1년, 법률행위가 있은 날부터 5년 안에 제기해야 합니다.",
+            "가압류 등 보전조치와 취소·원상회복 청구의 대상 및 상대방을 함께 설계합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.debt-enforcement.fraudulent-transfer-revocation"
+      ],
+      "scenario_ids": [
+        "scenario.debt-enforcement.harmful-transfer-known"
+      ],
+      "source_coordinate_ids": [
+        "coord.debt-enforcement.civil-act-ko-0406"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "related_content_ids": [
+        "content.provisional-attachment-before-judgment",
+        "content.bank-account-seizure-and-collection-order",
+        "content.property-disclosure-when-assets-unknown"
+      ]
+    }
+  ]
+}
