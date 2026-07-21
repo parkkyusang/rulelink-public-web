@@ -1,0 +1,1148 @@
+{
+  "schema": "rulelink_public_knowledge_topic_v1",
+  "topic_id": "hub.personal-insolvency-recovery",
+  "sources": [
+    {
+      "coordinate_id": "coord.personal-insolvency.debtor-rehabilitation-ko-0564",
+      "source_id": "law_009930_ko_0564",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제564조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%ED%9A%8C%EC%83%9D%EB%B0%8F%ED%8C%8C%EC%82%B0%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0/%EC%A0%9C564%EC%A1%B0",
+      "source_snapshot_id": "snapshot:6b278e67917cdd49f61fdc11e4f319ec",
+      "last_verified_at": "2026-07-21T16:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-insolvency.debtor-rehabilitation-ko-0566",
+      "source_id": "law_009930_ko_0566",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제566조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%ED%9A%8C%EC%83%9D%EB%B0%8F%ED%8C%8C%EC%82%B0%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0/%EC%A0%9C566%EC%A1%B0",
+      "source_snapshot_id": "snapshot:37003f8043ff6e9a27648bea52a172a1",
+      "last_verified_at": "2026-07-21T16:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-insolvency.debtor-rehabilitation-ko-0567",
+      "source_id": "law_009930_ko_0567",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제567조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%ED%9A%8C%EC%83%9D%EB%B0%8F%ED%8C%8C%EC%82%B0%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0/%EC%A0%9C567%EC%A1%B0",
+      "source_snapshot_id": "snapshot:0167de420ad9b321386fb8a1154852d8",
+      "last_verified_at": "2026-07-21T16:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-insolvency.debtor-rehabilitation-ko-0579",
+      "source_id": "law_009930_ko_0579",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제579조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%ED%9A%8C%EC%83%9D%EB%B0%8F%ED%8C%8C%EC%82%B0%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0/%EC%A0%9C579%EC%A1%B0",
+      "source_snapshot_id": "snapshot:64d963b2c6c267c4c1c3f15e27f338a5",
+      "last_verified_at": "2026-07-21T16:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-insolvency.debtor-rehabilitation-ko-0580",
+      "source_id": "law_009930_ko_0580",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제580조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%ED%9A%8C%EC%83%9D%EB%B0%8F%ED%8C%8C%EC%82%B0%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0/%EC%A0%9C580%EC%A1%B0",
+      "source_snapshot_id": "snapshot:77fb76a4f1973e5c32d61a9dbd88d109",
+      "last_verified_at": "2026-07-21T16:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-insolvency.debtor-rehabilitation-ko-0581",
+      "source_id": "law_009930_ko_0581",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제581조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%ED%9A%8C%EC%83%9D%EB%B0%8F%ED%8C%8C%EC%82%B0%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0/%EC%A0%9C581%EC%A1%B0",
+      "source_snapshot_id": "snapshot:79a24a38b38171db14602a5913376729",
+      "last_verified_at": "2026-07-21T16:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-insolvency.debtor-rehabilitation-ko-0588",
+      "source_id": "law_009930_ko_0588",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제588조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%ED%9A%8C%EC%83%9D%EB%B0%8F%ED%8C%8C%EC%82%B0%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0/%EC%A0%9C588%EC%A1%B0",
+      "source_snapshot_id": "snapshot:98091dff1624488f7097650659b0dab8",
+      "last_verified_at": "2026-07-21T16:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-insolvency.debtor-rehabilitation-ko-0589",
+      "source_id": "law_009930_ko_0589",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제589조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%ED%9A%8C%EC%83%9D%EB%B0%8F%ED%8C%8C%EC%82%B0%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0/%EC%A0%9C589%EC%A1%B0",
+      "source_snapshot_id": "snapshot:5776b9d39be5f65603375fce5ad4b8fa",
+      "last_verified_at": "2026-07-21T16:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-insolvency.debtor-rehabilitation-ko-0592",
+      "source_id": "law_009930_ko_0592",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제592조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%ED%9A%8C%EC%83%9D%EB%B0%8F%ED%8C%8C%EC%82%B0%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0/%EC%A0%9C592%EC%A1%B0",
+      "source_snapshot_id": "snapshot:c0c3baf9e105b49f9aee18fba44fb61c",
+      "last_verified_at": "2026-07-21T16:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-insolvency.debtor-rehabilitation-ko-0593",
+      "source_id": "law_009930_ko_0593",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제593조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%ED%9A%8C%EC%83%9D%EB%B0%8F%ED%8C%8C%EC%82%B0%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0/%EC%A0%9C593%EC%A1%B0",
+      "source_snapshot_id": "snapshot:2318932b9b844a44723d7ca4d4c4a115",
+      "last_verified_at": "2026-07-21T16:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-insolvency.debtor-rehabilitation-ko-0595",
+      "source_id": "law_009930_ko_0595",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제595조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%ED%9A%8C%EC%83%9D%EB%B0%8F%ED%8C%8C%EC%82%B0%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0/%EC%A0%9C595%EC%A1%B0",
+      "source_snapshot_id": "snapshot:9136dd1ad2b8aab97e991915c5dfde65",
+      "last_verified_at": "2026-07-21T16:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-insolvency.debtor-rehabilitation-ko-0600",
+      "source_id": "law_009930_ko_0600",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제600조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%ED%9A%8C%EC%83%9D%EB%B0%8F%ED%8C%8C%EC%82%B0%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0/%EC%A0%9C600%EC%A1%B0",
+      "source_snapshot_id": "snapshot:09b18d4e7e5ea0dc33c796e3bec7ca1f",
+      "last_verified_at": "2026-07-21T16:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-insolvency.debtor-rehabilitation-ko-0611",
+      "source_id": "law_009930_ko_0611",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제611조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%ED%9A%8C%EC%83%9D%EB%B0%8F%ED%8C%8C%EC%82%B0%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0/%EC%A0%9C611%EC%A1%B0",
+      "source_snapshot_id": "snapshot:e38007c1f054e71f55a45b180d8b6eb9",
+      "last_verified_at": "2026-07-21T16:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-insolvency.debtor-rehabilitation-ko-0614",
+      "source_id": "law_009930_ko_0614",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제614조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%ED%9A%8C%EC%83%9D%EB%B0%8F%ED%8C%8C%EC%82%B0%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0/%EC%A0%9C614%EC%A1%B0",
+      "source_snapshot_id": "snapshot:16522ca61e99493d521b81d283dab4a6",
+      "last_verified_at": "2026-07-21T16:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-insolvency.debtor-rehabilitation-ko-0615",
+      "source_id": "law_009930_ko_0615",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제615조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%ED%9A%8C%EC%83%9D%EB%B0%8F%ED%8C%8C%EC%82%B0%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0/%EC%A0%9C615%EC%A1%B0",
+      "source_snapshot_id": "snapshot:920560d52b44eb296a6a854760368a83",
+      "last_verified_at": "2026-07-21T16:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-insolvency.debtor-rehabilitation-ko-0625",
+      "source_id": "law_009930_ko_0625",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제625조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%ED%9A%8C%EC%83%9D%EB%B0%8F%ED%8C%8C%EC%82%B0%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0/%EC%A0%9C625%EC%A1%B0",
+      "source_snapshot_id": "snapshot:a0efce1eaccc9a3bc60309eab7216c7f",
+      "last_verified_at": "2026-07-21T16:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-insolvency.debtor-rehabilitation-ko-0626",
+      "source_id": "law_009930_ko_0626",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제626조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%ED%9A%8C%EC%83%9D%EB%B0%8F%ED%8C%8C%EC%82%B0%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0/%EC%A0%9C626%EC%A1%B0",
+      "source_snapshot_id": "snapshot:49d8e04ab2b88a9635bec7cf5ede9ae2",
+      "last_verified_at": "2026-07-21T16:00:00+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.personal-insolvency-recovery",
+      "slug": "personal-insolvency-recovery",
+      "title_ko": "개인회생·개인파산·면책",
+      "description_ko": "채무자의 회복 관점에서 개인회생과 개인파산의 선택, 신청자격, 서류, 추심 중지, 변제계획, 면책 범위와 보증·담보의 잔존 문제를 단계별로 안내합니다.",
+      "content_ids": [
+        "content.personal-insolvency-rehabilitation-vs-bankruptcy",
+        "content.personal-insolvency-personal-rehabilitation-eligibility",
+        "content.personal-insolvency-application-documents-creditor-list",
+        "content.personal-insolvency-filing-does-not-automatically-stop-collection",
+        "content.personal-insolvency-repayment-period-and-plan-approval",
+        "content.personal-insolvency-approval-is-not-discharge",
+        "content.personal-insolvency-non-dischargeable-claims",
+        "content.personal-insolvency-omitted-creditor-bankruptcy-vs-rehabilitation",
+        "content.personal-insolvency-guarantor-collateral-after-discharge",
+        "content.personal-insolvency-discharge-denial-and-cancellation"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.personal-insolvency.rehabilitation-vs-bankruptcy",
+      "title_ko": "개인회생과 개인파산, 무엇이 다를까요?",
+      "proposition_ko": "개인회생은 정기적 수입과 법정 채무한도 안에서 변제계획을 수행하는 절차이고, 개인파산 면책은 파산절차 뒤 남은 채무책임의 면제를 구하는 별도 판단입니다.",
+      "norm": {
+        "actor_ko": "지급불능 또는 그 우려가 있는 개인채무자",
+        "conditions_ko": "장래 수입의 계속성·채무 규모·보유재산·면책 제한 사유를 비교하는 경우",
+        "legal_effect_ko": "정기적 수입으로 변제할 수 있으면 개인회생을, 그 구조가 성립하기 어렵다면 개인파산·면책 가능성을 구분해 검토합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0579",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0580",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0564",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0566"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-insolvency.personal-rehabilitation-eligibility",
+      "title_ko": "개인회생 신청 자격은 소득과 빚을 어떻게 보나요?",
+      "proposition_ko": "개인회생채무자는 파산원인이 있거나 생길 염려가 있고 정기적 수입 가능성이 있으며 담보부 15억원, 그 밖의 채무 10억원 이하인 개인채무자입니다.",
+      "norm": {
+        "actor_ko": "개인회생을 신청하려는 개인채무자",
+        "conditions_ko": "파산원인 또는 그 우려, 급여·영업소득의 계속성, 담보부·무담보 채무한도를 모두 확인하는 경우",
+        "legal_effect_ko": "법정 자격과 채무한도 안에 있어야 개인회생절차 신청을 검토할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0579",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0588"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-insolvency.application-documents-creditor-list",
+      "title_ko": "개인회생 신청 때 어떤 서류와 채권자목록이 필요한가요?",
+      "proposition_ko": "개인회생 신청인은 법원이 판단할 수 있도록 채권자·재산·수입과 지출·소득 형태·진술·최근 도산절차 이력을 갖춘 서류를 제출해야 합니다.",
+      "norm": {
+        "actor_ko": "개인회생을 신청하는 채무자",
+        "conditions_ko": "신청서와 법정 첨부서류를 작성하고 모든 개인회생채권을 채권자목록과 대조하는 경우",
+        "legal_effect_ko": "누락·허위·기한 미준수로 인한 신청 기각과 면책 제외 위험을 줄일 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0581",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0589",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0595",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0625"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-insolvency.filing-does-not-automatically-stop-collection",
+      "title_ko": "개인회생을 신청하면 추심과 압류가 바로 자동 중단될까요?",
+      "proposition_ko": "개인회생 신청 전후의 집행 통제는 신청 자체, 개시 전 법원 명령, 개시결정의 법정 효과를 구분해야 합니다.",
+      "norm": {
+        "actor_ko": "개인회생을 신청한 채무자와 추심·집행 중인 채권자",
+        "conditions_ko": "신청 뒤 개시결정 전인지, 법원 명령이 있는지, 개시결정이 났는지, 대상 채권이 목록에 있는지 확인하는 경우",
+        "legal_effect_ko": "단계와 대상에 따라 추심·강제집행·담보권 실행의 중지 또는 금지 범위를 판단합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0592",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0593",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0600"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-insolvency.repayment-period-and-plan-approval",
+      "title_ko": "개인회생 변제기간은 3년인가요, 5년인가요?",
+      "proposition_ko": "변제계획은 정기적 변제를 내용으로 원칙적으로 3년 이내이며 특별한 사정이 있어야 5년 이내로 늘릴 수 있고, 인가에는 수행 가능성과 청산가치 보장 등이 필요합니다.",
+      "norm": {
+        "actor_ko": "변제계획안을 제출하는 개인회생채무자",
+        "conditions_ko": "가용소득·청산가치·변제기간·월 변제액으로 계획의 공정성과 수행 가능성을 심사하는 경우",
+        "legal_effect_ko": "법정 기간과 인가요건을 충족하는 실행 가능한 계획이어야 법원이 인가할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0579",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0611",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0614"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-insolvency.approval-is-not-discharge",
+      "title_ko": "변제계획 인가를 받으면 남은 빚이 바로 없어지나요?",
+      "proposition_ko": "변제계획 인가와 면책은 서로 다른 법적 단계이며, 개인회생채권의 권리변경은 면책결정이 확정되어야 발생합니다.",
+      "norm": {
+        "actor_ko": "변제계획 인가를 받은 개인회생채무자와 개인회생채권자",
+        "conditions_ko": "인가결정 뒤 변제계획 수행 중인지, 면책결정이 내려져 확정됐는지 구분하는 경우",
+        "legal_effect_ko": "인가만으로 잔존채무가 소멸했다고 보지 않고 면책 확정 전까지 계획을 수행해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0615",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0625"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-insolvency.non-dischargeable-claims",
+      "title_ko": "파산·개인회생에서도 없어지지 않는 빚은 무엇인가요?",
+      "proposition_ko": "면책의 원칙에도 불구하고 법이 열거한 조세·제재금·특정 불법행위 손해배상·근로자채권·부양의무 등은 책임이 면제되지 않습니다.",
+      "norm": {
+        "actor_ko": "면책을 구하는 채무자와 면책 제외채권의 채권자",
+        "conditions_ko": "각 채권의 발생원인과 법정 비면책채권 해당 여부를 파산면책과 개인회생면책별로 분류하는 경우",
+        "legal_effect_ko": "면책결정 확정 뒤에도 비면책채권에 대한 책임은 남을 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0566",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0625"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-insolvency.omitted-creditor-bankruptcy-vs-rehabilitation",
+      "title_ko": "채권자목록에서 빠진 빚은 파산과 개인회생에서 똑같이 면책될까요?",
+      "proposition_ko": "채권자목록 누락의 면책 효과는 파산면책과 개인회생면책의 문언이 다르므로 누락 경위와 채권자의 인식까지 절차별로 판단해야 합니다.",
+      "norm": {
+        "actor_ko": "목록에서 채권을 누락한 채무자와 누락된 채권자",
+        "conditions_ko": "파산면책인지 개인회생면책인지, 누락이 악의인지, 채권자가 파산선고를 알았는지, 개인회생목록 기재 여부를 확인하는 경우",
+        "legal_effect_ko": "절차별 비면책 규정에 따라 누락채권의 책임 존속 여부가 달라집니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0566",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0589",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0625"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-insolvency.guarantor-collateral-after-discharge",
+      "title_ko": "주채무자가 면책되면 보증인과 담보도 함께 없어질까요?",
+      "proposition_ko": "채무자 본인의 면책 효력은 보증인·공동채무자와 제3자 제공 담보에 대한 채권자의 권리까지 자동으로 소멸시키지 않습니다.",
+      "norm": {
+        "actor_ko": "면책받은 주채무자, 보증인·공동채무자, 제3자 담보제공자와 채권자",
+        "conditions_ko": "채권자가 주채무자 외의 사람 또는 그 담보에 권리를 행사하는 경우",
+        "legal_effect_ko": "주채무자의 면책과 별개로 보증·공동채무·제3자 담보의 책임 범위를 판단합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0567",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0625"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-insolvency.discharge-denial-and-cancellation",
+      "title_ko": "낭비·도박·허위서류가 있으면 면책은 무조건 불가능한가요?",
+      "proposition_ko": "파산면책에는 법정 불허가 사유와 사정을 고려한 재량면책이 있고, 개인회생 면책은 사기 등 부정한 방법이면 확정 뒤 1년 안에 취소될 수 있습니다.",
+      "norm": {
+        "actor_ko": "면책을 구하거나 이미 받은 채무자와 면책취소를 신청할 이해관계인",
+        "conditions_ko": "불허가 사유, 채무 증가 경위, 협조·시정, 과거 면책시점, 부정한 면책취득 여부를 확인하는 경우",
+        "legal_effect_ko": "불허가 사유만으로 결론을 자동화하지 않되 은폐·허위·부정한 방법의 위험과 취소기간을 엄격히 관리합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0564",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0626"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.personal-insolvency.rehabilitation-vs-bankruptcy",
+      "question_ko": "앞으로 매달 변제에 쓸 수 있는 계속적·반복적 수입이 있나요?",
+      "decision_fact_ko": "급여·영업수입의 계속성, 생계비, 채무총액, 재산가치",
+      "when_true_ko": "개인회생의 채무한도와 가용소득을 계산해 변제계획 가능성을 검토합니다.",
+      "when_false_ko": "개인회생을 억지로 전제하지 말고 지급불능과 파산·면책 요건을 별도로 검토합니다.",
+      "rule_ids": [
+        "rule.personal-insolvency.rehabilitation-vs-bankruptcy"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0579",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0580",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0564",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0566"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-insolvency.personal-rehabilitation-eligibility",
+      "question_ko": "담보부 채무가 15억원 이하이고 그 밖의 채무가 10억원 이하이며 정기적 수입 가능성이 있나요?",
+      "decision_fact_ko": "담보 유무별 채무잔액과 계속적·반복적 수입 가능성",
+      "when_true_ko": "가용소득과 청산가치를 계산해 실제 변제계획 수행 가능성을 점검합니다.",
+      "when_false_ko": "개인회생 자격을 단정하지 말고 채무 분류 오류와 다른 도산절차 가능성을 확인합니다.",
+      "rule_ids": [
+        "rule.personal-insolvency.personal-rehabilitation-eligibility"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0579",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0588"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-insolvency.application-documents-creditor-list",
+      "question_ko": "신용정보·우편·계좌·보증관계까지 대조해 모든 채권자를 목록에 반영했나요?",
+      "decision_fact_ko": "채권자명, 채무원인, 원금·이자, 담보·보증, 소송·집행 현황",
+      "when_true_ko": "재산·수입지출·소득증명과 금액이 서로 맞는지 최종 대조합니다.",
+      "when_false_ko": "기억에만 의존하지 말고 신용정보와 거래자료를 다시 조회해 누락을 보완합니다.",
+      "rule_ids": [
+        "rule.personal-insolvency.application-documents-creditor-list"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0581",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0589",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0595",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0625"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-insolvency.filing-does-not-automatically-stop-collection",
+      "question_ko": "법원의 중지·금지명령 또는 개인회생절차 개시결정이 실제로 내려졌나요?",
+      "decision_fact_ko": "신청일, 명령·개시결정일, 송달 여부, 집행 종류, 채권자목록 기재 여부",
+      "when_true_ko": "결정 주문과 대상 절차를 확인해 집행기관·채권자에게 필요한 자료를 제출합니다.",
+      "when_false_ko": "신청 접수만으로 중단됐다고 전제하지 말고 진행 중인 집행에 맞는 법원 명령을 검토합니다.",
+      "rule_ids": [
+        "rule.personal-insolvency.filing-does-not-automatically-stop-collection"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0592",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0593",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0600"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-insolvency.repayment-period-and-plan-approval",
+      "question_ko": "3년 이내 정기변제로 가용소득과 청산가치 보장 요건을 충족할 수 있나요?",
+      "decision_fact_ko": "월 가용소득, 청산가치, 변제총액, 부양가족, 수입 안정성",
+      "when_true_ko": "3년 이내 계획의 월별 현금흐름과 납부일을 구체화합니다.",
+      "when_false_ko": "단순히 5년으로 늘리지 말고 특별한 사정과 수행 가능성을 자료로 설명합니다.",
+      "rule_ids": [
+        "rule.personal-insolvency.repayment-period-and-plan-approval"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0579",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0611",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0614"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-insolvency.approval-is-not-discharge",
+      "question_ko": "변제계획 인가 뒤 계획을 수행했고 면책결정까지 확정됐나요?",
+      "decision_fact_ko": "인가결정일, 납부내역, 계획 완료 여부, 면책결정일과 확정 여부",
+      "when_true_ko": "면책 대상과 제외채권을 구분해 잔존채무를 정리합니다.",
+      "when_false_ko": "인가만으로 채무가 소멸했다고 전제하지 말고 미납·변경·폐지 위험을 점검합니다.",
+      "rule_ids": [
+        "rule.personal-insolvency.approval-is-not-discharge"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0615",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0625"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-insolvency.non-dischargeable-claims",
+      "question_ko": "채무가 조세·형사제재·고의 불법행위·중과실 생명신체 침해·임금·부양의무 등에 해당하나요?",
+      "decision_fact_ko": "채권 발생원인, 판결 주문·이유, 세목, 근로관계, 가족관계와 부양의무",
+      "when_true_ko": "면책 이후에도 남는 채무로 분리해 변제·분쟁 계획을 세웁니다.",
+      "when_false_ko": "일반 면책 대상인지와 목록 기재 여부 등 다른 제외사유를 계속 확인합니다.",
+      "rule_ids": [
+        "rule.personal-insolvency.non-dischargeable-claims"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0566",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0625"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-insolvency.omitted-creditor-bankruptcy-vs-rehabilitation",
+      "question_ko": "어느 절차에서 누락됐고, 파산이라면 악의 누락 및 채권자의 파산선고 인식이 있었나요?",
+      "decision_fact_ko": "절차 종류, 목록 제출본, 누락 발견일, 누락 경위, 채권자의 파산선고 인식 자료",
+      "when_true_ko": "해당 절차 조문의 예외요건을 채권별로 적용해 면책 여부를 판단합니다.",
+      "when_false_ko": "누락 사실만으로 두 절차의 결론을 같게 단정하지 말고 경위와 인식 자료를 보완합니다.",
+      "rule_ids": [
+        "rule.personal-insolvency.omitted-creditor-bankruptcy-vs-rehabilitation"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0566",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0589",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0625"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-insolvency.guarantor-collateral-after-discharge",
+      "question_ko": "청구 대상이 면책받은 채무자 본인이 아니라 보증인·공동채무자 또는 제3자 담보인가요?",
+      "decision_fact_ko": "계약 당사자, 보증 범위, 공동채무 관계, 담보 소유자와 설정계약",
+      "when_true_ko": "면책만으로 책임 소멸을 단정하지 말고 각 계약과 법정 제한을 검토합니다.",
+      "when_false_ko": "면책받은 채무자 본인에 대한 청구인지와 비면책채권 여부를 확인합니다.",
+      "rule_ids": [
+        "rule.personal-insolvency.guarantor-collateral-after-discharge"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0567",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0625"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-insolvency.discharge-denial-and-cancellation",
+      "question_ko": "낭비·도박·허위목록·설명의무 위반·최근 면책 또는 부정한 면책취득 정황이 있나요?",
+      "decision_fact_ko": "채무 사용처, 재산처분, 제출서류 진실성, 법원 출석·설명, 과거 면책 확정일, 부정행위 발견일",
+      "when_true_ko": "사실을 숨기지 말고 불허가 사유와 재량면책 사정 또는 취소 위험을 자료별로 정리합니다.",
+      "when_false_ko": "일반 면책요건과 비면책채권을 계속 확인합니다.",
+      "rule_ids": [
+        "rule.personal-insolvency.discharge-denial-and-cancellation"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0564",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0626"
+      ]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.personal-insolvency-rehabilitation-vs-bankruptcy",
+      "content_type": "comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:00:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "personal-insolvency-rehabilitation-vs-bankruptcy",
+      "title_ko": "개인회생과 개인파산, 무엇이 다를까요?",
+      "one_line_answer_ko": "장래의 계속적·반복적 수입으로 변제계획을 수행할 수 있으면 개인회생을, 지급불능 상태에서 재산 청산 뒤 면책을 구하는 구조라면 개인파산·면책을 검토합니다.",
+      "audience_situation_ko": "빚을 감당하기 어려워 개인회생과 개인파산 중 어느 절차가 맞는지 처음 비교하는 사람",
+      "key_points_ko": [
+        "정기적 수입 여부가 첫 분기입니다.",
+        "채무총액과 재산가치를 함께 봅니다.",
+        "파산선고와 면책은 같은 결정이 아닙니다."
+      ],
+      "action_steps_ko": [
+        "채권자별 원금·이자·담보를 표로 만든다.",
+        "최근 1년 수입과 필수생계비를 월별로 정리한다.",
+        "부동산·차량·보험환급금 등 재산을 평가한다.",
+        "최근 회생·파산·면책 이력을 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "월평균 순수입",
+        "필수생계비",
+        "담보부·무담보 채무총액",
+        "청산가치",
+        "과거 면책 확정일"
+      ],
+      "caution_ko": "절차 명칭만 보고 선택하면 안 됩니다. 법원이 보는 지급불능, 계속적 수입, 채무한도, 청산가치와 면책 제한 사유를 실제 자료로 대조해야 합니다.",
+      "search_intents_ko": [
+        "개인회생과 개인파산, 무엇이 다를까요?",
+        "앞으로 매달 변제에 쓸 수 있는 계속적·반복적 수입이 있나요?",
+        "개인회생 개인파산 rehabilitation vs bankruptcy"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "두 절차의 출발점",
+          "paragraphs_ko": [
+            "개인회생은 앞으로의 가용소득으로 변제계획을 수행하는 구조입니다. 개인파산·면책은 현재 재산과 지급불능 상태를 전제로 파산절차와 면책 판단을 거칩니다."
+          ]
+        },
+        {
+          "heading_ko": "수입만 보지 않는다",
+          "paragraphs_ko": [
+            "소득이 있어도 채무한도를 넘거나 변제계획이 수행 불가능하면 개인회생이 맞지 않을 수 있습니다. 반대로 재산과 면책 제한 사유를 숨긴 채 파산을 선택할 수도 없습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-insolvency.rehabilitation-vs-bankruptcy"
+      ],
+      "scenario_ids": [
+        "scenario.personal-insolvency.rehabilitation-vs-bankruptcy"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0579",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0580",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0564",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0566"
+      ],
+      "hub_ids": [
+        "hub.personal-insolvency-recovery"
+      ],
+      "related_content_ids": [
+        "content.loan-and-guarantee-evidence-checklist",
+        "content.property-disclosure-when-assets-unknown"
+      ]
+    },
+    {
+      "content_id": "content.personal-insolvency-personal-rehabilitation-eligibility",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:00:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "personal-insolvency-personal-rehabilitation-eligibility",
+      "title_ko": "개인회생 신청 자격은 소득과 빚을 어떻게 보나요?",
+      "one_line_answer_ko": "급여소득자 또는 영업소득자로서 계속적·반복적 수입 가능성이 있고, 담보부 채무 15억원·그 밖의 채무 10억원 이하인 개인채무자여야 합니다.",
+      "audience_situation_ko": "수입은 있지만 채무 규모 때문에 개인회생 신청 자격이 되는지 확인하려는 사람",
+      "key_points_ko": [
+        "신청권자는 개인채무자입니다.",
+        "담보부와 그 밖의 채무 한도가 다릅니다.",
+        "현재 소득액뿐 아니라 계속 가능성을 봅니다."
+      ],
+      "action_steps_ko": [
+        "채무를 담보부와 무담보로 나눈다.",
+        "신청일 기준 원금과 이자를 확인한다.",
+        "근로계약서·급여명세·사업매출 자료를 모은다.",
+        "수입 변동 사유와 계속 가능성을 설명한다."
+      ],
+      "facts_to_check_ko": [
+        "담보부 채무 15억원 이하 여부",
+        "그 밖의 채무 10억원 이하 여부",
+        "고용형태",
+        "사업 지속성",
+        "지급불능 또는 그 우려"
+      ],
+      "caution_ko": "채무한도 안에 있다는 사실만으로 인가가 보장되지 않습니다. 신청 자격과 별도로 변제계획의 공정성·수행 가능성·청산가치 보장 여부가 심사됩니다.",
+      "search_intents_ko": [
+        "개인회생 신청 자격은 소득과 빚을 어떻게 보나요?",
+        "담보부 채무가 15억원 이하이고 그 밖의 채무가 10억원 이하이며 정기적 수입 가능성이 있나요?",
+        "개인회생 개인파산 personal rehabilitation eligibility"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "채무를 두 묶음으로 계산한다",
+          "paragraphs_ko": [
+            "담보권이 설정된 채무와 그 밖의 채무는 한도가 서로 다르므로 총액 하나로만 판단하면 안 됩니다."
+          ]
+        },
+        {
+          "heading_ko": "수입의 계속성을 자료로 보인다",
+          "paragraphs_ko": [
+            "일시적 입금보다 급여·사업수입이 앞으로도 반복될 가능성이 중요합니다. 변동성이 크다면 평균과 원인을 함께 설명해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-insolvency.personal-rehabilitation-eligibility"
+      ],
+      "scenario_ids": [
+        "scenario.personal-insolvency.personal-rehabilitation-eligibility"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0579",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0588"
+      ],
+      "hub_ids": [
+        "hub.personal-insolvency-recovery"
+      ],
+      "related_content_ids": [
+        "content.loan-without-written-note",
+        "content.scope-of-guarantee-debt"
+      ]
+    },
+    {
+      "content_id": "content.personal-insolvency-application-documents-creditor-list",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:00:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "personal-insolvency-application-documents-creditor-list",
+      "title_ko": "개인회생 신청 때 어떤 서류와 채권자목록이 필요한가요?",
+      "one_line_answer_ko": "신청서에는 채권자목록·재산목록·수입과 지출 목록·소득증명·진술서·최근 10년 도산절차 이력 등 법정 자료를 붙이고, 빠진 채권이 없도록 대조해야 합니다.",
+      "audience_situation_ko": "개인회생 신청을 준비하며 채권자와 재산·소득 서류의 누락을 막으려는 사람",
+      "key_points_ko": [
+        "채권자목록은 면책 범위와 연결됩니다.",
+        "재산·소득·지출 자료가 서로 맞아야 합니다.",
+        "누락과 허위는 다른 문제지만 모두 위험합니다."
+      ],
+      "action_steps_ko": [
+        "신용정보와 등기우편·문자·소송서류를 모은다.",
+        "계좌 거래에서 대출·보증·카드 채무를 역추적한다.",
+        "재산목록과 보험·차량·임대차보증금을 대조한다.",
+        "최근 10년 회생·파산·면책 이력을 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "채권자 전체 명칭·주소",
+        "채무별 잔액과 발생원인",
+        "담보·보증 유무",
+        "재산 누락 여부",
+        "최근 10년 도산절차 이력"
+      ],
+      "caution_ko": "채권자를 고의로 숨기지 않았더라도 개인회생채권자목록에 기재되지 않은 청구권은 면책되지 않을 수 있으므로 목록 완결성을 별도 검증해야 합니다.",
+      "search_intents_ko": [
+        "개인회생 신청 때 어떤 서류와 채권자목록이 필요한가요?",
+        "신용정보·우편·계좌·보증관계까지 대조해 모든 채권자를 목록에 반영했나요?",
+        "개인회생 개인파산 application documents creditor list"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "채권자목록을 사건의 기준표로 만든다",
+          "paragraphs_ko": [
+            "목록은 단순 연락처가 아니라 채무원인·금액·담보·보증·집행상태를 묶는 기준표입니다. 다른 첨부서류의 숫자와 일치해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "누락 탐지 절차를 둔다",
+          "paragraphs_ko": [
+            "본인 기억만으로 작성하지 말고 신용정보, 통장, 우편, 소송·압류 문서를 서로 대조합니다. 공동채무와 보증채무도 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-insolvency.application-documents-creditor-list"
+      ],
+      "scenario_ids": [
+        "scenario.personal-insolvency.application-documents-creditor-list"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0581",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0589",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0595",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0625"
+      ],
+      "hub_ids": [
+        "hub.personal-insolvency-recovery"
+      ],
+      "related_content_ids": [
+        "content.loan-and-guarantee-evidence-checklist",
+        "content.bank-account-seizure-and-collection-order"
+      ]
+    },
+    {
+      "content_id": "content.personal-insolvency-filing-does-not-automatically-stop-collection",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:00:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "personal-insolvency-filing-does-not-automatically-stop-collection",
+      "title_ko": "개인회생을 신청하면 추심과 압류가 바로 자동 중단될까요?",
+      "one_line_answer_ko": "신청만으로 모든 절차가 자동 중단되는 것은 아닙니다. 개시 전에는 법원의 보전처분·중지·금지명령이 필요할 수 있고, 개시결정 뒤에는 법이 정한 절차가 중지·금지됩니다.",
+      "audience_situation_ko": "개인회생 신청서를 냈으니 급여압류나 담보권 실행도 모두 멈췄다고 생각하는 사람",
+      "key_points_ko": [
+        "신청과 개시결정은 다릅니다.",
+        "개시 전에는 법원 명령의 주문을 봅니다.",
+        "개시 후에도 대상과 범위가 제한될 수 있습니다."
+      ],
+      "action_steps_ko": [
+        "사건번호와 신청 접수일을 확인한다.",
+        "중지·금지명령 신청 여부와 주문을 확인한다.",
+        "압류·경매·추심 기관과 사건번호를 정리한다.",
+        "개시결정 송달과 채권자목록 기재를 대조한다."
+      ],
+      "facts_to_check_ko": [
+        "보전처분·중지·금지명령 유무",
+        "개시결정일",
+        "채권자목록 기재 여부",
+        "집행·경매 사건번호",
+        "세금 체납처분 여부"
+      ],
+      "caution_ko": "담보권 실행, 조세 체납처분, 목록에 없는 채권 등은 효과가 같지 않을 수 있습니다. 결정문 주문과 법정 범위를 실제 집행절차별로 확인해야 합니다.",
+      "search_intents_ko": [
+        "개인회생을 신청하면 추심과 압류가 바로 자동 중단될까요?",
+        "법원의 중지·금지명령 또는 개인회생절차 개시결정이 실제로 내려졌나요?",
+        "개인회생 개인파산 filing does not automatically stop collection"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "접수증이 집행정지 결정문은 아니다",
+          "paragraphs_ko": [
+            "신청 단계에서는 법원이 필요성을 판단해 중지·금지명령을 할 수 있습니다. 따라서 접수 사실만으로 모든 추심이 정지됐다고 통보하면 위험합니다."
+          ]
+        },
+        {
+          "heading_ko": "개시결정 뒤에도 대상을 본다",
+          "paragraphs_ko": [
+            "개시결정의 중지·금지 효과는 법이 정한 개인회생채권과 절차에 적용됩니다. 담보권 실행 등은 기간과 법원 결정에 따라 별도 검토가 필요합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-insolvency.filing-does-not-automatically-stop-collection"
+      ],
+      "scenario_ids": [
+        "scenario.personal-insolvency.filing-does-not-automatically-stop-collection"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0592",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0593",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0600"
+      ],
+      "hub_ids": [
+        "hub.personal-insolvency-recovery"
+      ],
+      "related_content_ids": [
+        "content.provisional-attachment-before-judgment",
+        "content.wage-and-protected-claim-seizure"
+      ]
+    },
+    {
+      "content_id": "content.personal-insolvency-repayment-period-and-plan-approval",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:00:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "personal-insolvency-repayment-period-and-plan-approval",
+      "title_ko": "개인회생 변제기간은 3년인가요, 5년인가요?",
+      "one_line_answer_ko": "변제계획은 원칙적으로 인가일부터 1개월 안에 변제를 시작하고 3년 이내로 정하며, 특별한 사정이 있는 때에만 5년을 넘지 않는 범위에서 정할 수 있습니다.",
+      "audience_situation_ko": "개인회생 변제기간과 월 변제액이 어떤 기준으로 정해지는지 알고 싶은 사람",
+      "key_points_ko": [
+        "3년이 원칙이고 5년은 예외입니다.",
+        "월 가용소득과 청산가치를 함께 봅니다.",
+        "기간을 늘린다고 인가가 자동으로 되는 것은 아닙니다."
+      ],
+      "action_steps_ko": [
+        "최근 수입에서 법정 생계비와 비용을 구분한다.",
+        "재산 청산가치를 계산한다.",
+        "3년 월별 변제표를 먼저 만든다.",
+        "5년이 필요하면 특별한 사정과 지속 가능성을 입증한다."
+      ],
+      "facts_to_check_ko": [
+        "월 가용소득",
+        "재산 청산가치",
+        "총 변제예정액",
+        "변제 개시 예정일",
+        "3년 초과의 특별한 사정"
+      ],
+      "caution_ko": "변제기간만 맞춰서는 부족합니다. 계획이 법에 맞고 공정하며 실제 수행 가능하고, 일반의 우선권 있는 채권과 청산가치 등 인가요건을 충족해야 합니다.",
+      "search_intents_ko": [
+        "개인회생 변제기간은 3년인가요, 5년인가요?",
+        "3년 이내 정기변제로 가용소득과 청산가치 보장 요건을 충족할 수 있나요?",
+        "개인회생 개인파산 repayment period and plan approval"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "기간은 월 변제액과 함께 설계한다",
+          "paragraphs_ko": [
+            "같은 채무라도 가용소득과 청산가치에 따라 필요한 변제총액이 달라집니다. 3년 동안 지속 가능한 월 변제액을 먼저 계산합니다."
+          ]
+        },
+        {
+          "heading_ko": "5년은 자동 선택지가 아니다",
+          "paragraphs_ko": [
+            "3년 계획이 어렵다는 사정만으로 곧바로 5년이 되는 것은 아닙니다. 법원이 인정할 특별한 사정과 장기 수행 가능성을 함께 보여야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-insolvency.repayment-period-and-plan-approval"
+      ],
+      "scenario_ids": [
+        "scenario.personal-insolvency.repayment-period-and-plan-approval"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0579",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0611",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0614"
+      ],
+      "hub_ids": [
+        "hub.personal-insolvency-recovery"
+      ],
+      "related_content_ids": [
+        "content.partial-repayment-allocation",
+        "content.when-default-interest-starts"
+      ]
+    },
+    {
+      "content_id": "content.personal-insolvency-approval-is-not-discharge",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:00:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "personal-insolvency-approval-is-not-discharge",
+      "title_ko": "변제계획 인가를 받으면 남은 빚이 바로 없어지나요?",
+      "one_line_answer_ko": "아닙니다. 인가결정은 계획을 효력 있게 하지만 권리변경은 면책결정 확정 때 생기므로, 계획 수행과 별도의 면책결정이 필요합니다.",
+      "audience_situation_ko": "개인회생 변제계획 인가결정을 받아 남은 채무가 즉시 사라졌다고 생각하는 사람",
+      "key_points_ko": [
+        "인가와 면책은 별도 단계입니다.",
+        "권리변경은 면책결정 확정 때 발생합니다.",
+        "면책 제외채권은 따로 남습니다."
+      ],
+      "action_steps_ko": [
+        "인가결정문과 변제계획표를 보관한다.",
+        "월별 납부내역과 미납 여부를 확인한다.",
+        "수입 급변 시 절차상 대응을 조기에 검토한다.",
+        "면책결정과 확정증명을 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "인가결정 확정 여부",
+        "변제계획 수행률",
+        "미납 횟수·금액",
+        "면책결정 확정일",
+        "면책 제외채권"
+      ],
+      "caution_ko": "인가 뒤 납부를 중단하거나 절차가 폐지되면 기대한 면책에 이르지 못할 수 있습니다. 면책결정 확정과 제외채권을 끝까지 확인해야 합니다.",
+      "search_intents_ko": [
+        "변제계획 인가를 받으면 남은 빚이 바로 없어지나요?",
+        "변제계획 인가 뒤 계획을 수행했고 면책결정까지 확정됐나요?",
+        "개인회생 개인파산 approval is not discharge"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "인가는 계획의 출발점이다",
+          "paragraphs_ko": [
+            "인가결정으로 변제계획이 효력을 갖고 중지된 집행의 효력이 달라질 수 있지만, 그 자체가 모든 채무를 없애는 최종 면책은 아닙니다."
+          ]
+        },
+        {
+          "heading_ko": "면책 확정을 마지막 상태로 관리한다",
+          "paragraphs_ko": [
+            "변제 수행 뒤 면책결정이 확정되어야 권리변경이 발생합니다. 따라서 사건 상태를 인가, 수행, 면책, 확정으로 나누어 기록해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-insolvency.approval-is-not-discharge"
+      ],
+      "scenario_ids": [
+        "scenario.personal-insolvency.approval-is-not-discharge"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0615",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0625"
+      ],
+      "hub_ids": [
+        "hub.personal-insolvency-recovery"
+      ],
+      "related_content_ids": [
+        "content.content-certified-demand-needs-followup",
+        "content.documents-that-allow-compulsory-enforcement"
+      ]
+    },
+    {
+      "content_id": "content.personal-insolvency-non-dischargeable-claims",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:00:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "personal-insolvency-non-dischargeable-claims",
+      "title_ko": "파산·개인회생에서도 없어지지 않는 빚은 무엇인가요?",
+      "one_line_answer_ko": "세금, 벌금·과료, 고의 불법행위 손해배상, 중대한 과실로 생명·신체를 침해한 손해배상, 임금·퇴직금, 양육비·부양의무 등은 면책되지 않을 수 있습니다.",
+      "audience_situation_ko": "면책되면 세금·벌금·임금·양육비를 포함한 모든 빚이 없어진다고 생각하는 사람",
+      "key_points_ko": [
+        "채권 이름보다 발생원인을 봅니다.",
+        "파산과 개인회생의 열거 문언을 각각 확인합니다.",
+        "면책 제외는 결정 뒤에도 책임이 남는 문제입니다."
+      ],
+      "action_steps_ko": [
+        "채권별 발생원인을 적는다.",
+        "세금·벌금·임금·양육비를 별도 표시한다.",
+        "손해배상 판결에서 고의·중과실과 피해 유형을 확인한다.",
+        "파산면책과 개인회생면책 조문을 각각 대조한다."
+      ],
+      "facts_to_check_ko": [
+        "채권의 법적 발생원인",
+        "조세·벌금 여부",
+        "고의 또는 중대한 과실",
+        "생명·신체 침해 여부",
+        "임금·퇴직금·부양료 여부"
+      ],
+      "caution_ko": "‘손해배상’이라는 명칭만으로 모두 비면책채권이 되는 것은 아닙니다. 고의 여부, 중대한 과실, 피해 법익과 해당 면책 조문의 문언을 구체적으로 확인해야 합니다.",
+      "search_intents_ko": [
+        "파산·개인회생에서도 없어지지 않는 빚은 무엇인가요?",
+        "채무가 조세·형사제재·고의 불법행위·중과실 생명신체 침해·임금·부양의무 등에 해당하나요?",
+        "개인회생 개인파산 non dischargeable claims"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "모든 채무를 한 묶음으로 보지 않는다",
+          "paragraphs_ko": [
+            "면책 대상 여부는 채권자 이름이나 회계 분류가 아니라 채권이 왜 생겼는지에 따라 달라집니다. 같은 손해배상도 원인과 피해 유형을 봅니다."
+          ]
+        },
+        {
+          "heading_ko": "두 절차의 목록을 따로 대조한다",
+          "paragraphs_ko": [
+            "파산면책 제566조와 개인회생면책 제625조는 비슷하지만 완전히 같은 문언이 아닙니다. 선택한 절차의 조문을 기준으로 분류해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-insolvency.non-dischargeable-claims"
+      ],
+      "scenario_ids": [
+        "scenario.personal-insolvency.non-dischargeable-claims"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0566",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0625"
+      ],
+      "hub_ids": [
+        "hub.personal-insolvency-recovery"
+      ],
+      "related_content_ids": [
+        "content.private-loan-interest-limit",
+        "content.wage-and-protected-claim-seizure"
+      ]
+    },
+    {
+      "content_id": "content.personal-insolvency-omitted-creditor-bankruptcy-vs-rehabilitation",
+      "content_type": "similar_case_comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:00:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "personal-insolvency-omitted-creditor-bankruptcy-vs-rehabilitation",
+      "title_ko": "채권자목록에서 빠진 빚은 파산과 개인회생에서 똑같이 면책될까요?",
+      "one_line_answer_ko": "같지 않습니다. 파산면책은 채무자가 악의로 기재하지 않은 청구권을 원칙적으로 제외하되 채권자가 파산선고를 알았다면 예외가 있고, 개인회생은 목록에 기재되지 않은 개인회생채권을 제외합니다.",
+      "audience_situation_ko": "오래된 채무나 지인 채무를 채권자목록에서 빠뜨린 뒤 면책 범위를 확인하려는 사람",
+      "key_points_ko": [
+        "파산은 악의 누락 문언이 있습니다.",
+        "파산에서는 채권자의 파산선고 인식 예외도 봅니다.",
+        "개인회생은 목록 미기재 청구권을 별도로 제외합니다."
+      ],
+      "action_steps_ko": [
+        "법원에 제출한 최종 채권자목록을 확보한다.",
+        "누락 경위를 날짜순으로 기록한다.",
+        "채권자의 파산선고 인식 자료를 확인한다.",
+        "개인회생이면 목록 미기재 여부 자체를 우선 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "파산면책·개인회생면책 구분",
+        "최종 채권자목록",
+        "악의 누락 여부",
+        "채권자의 파산선고 인식",
+        "채권 발생시점"
+      ],
+      "caution_ko": "‘실수로 빠뜨렸으니 괜찮다’거나 ‘빠졌으니 무조건 남는다’고 공통 결론을 내리면 안 됩니다. 파산과 개인회생의 서로 다른 문언을 적용해야 합니다.",
+      "search_intents_ko": [
+        "채권자목록에서 빠진 빚은 파산과 개인회생에서 똑같이 면책될까요?",
+        "어느 절차에서 누락됐고, 파산이라면 악의 누락 및 채권자의 파산선고 인식이 있었나요?",
+        "개인회생 개인파산 omitted creditor bankruptcy vs rehabilitation"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "같은 누락이라도 적용 조문이 다르다",
+          "paragraphs_ko": [
+            "파산면책은 악의로 기재하지 않은 청구권과 채권자의 파산선고 인식 여부를 함께 규정합니다. 개인회생면책은 목록에 기재되지 않은 개인회생채권을 열거합니다."
+          ]
+        },
+        {
+          "heading_ko": "최종 제출본과 인식 자료를 확보한다",
+          "paragraphs_ko": [
+            "초안이 아니라 법원에 제출된 최종 목록을 확인해야 합니다. 파산사건에서는 채권자가 선고 사실을 언제 어떻게 알았는지도 별도 증거가 됩니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-insolvency.omitted-creditor-bankruptcy-vs-rehabilitation"
+      ],
+      "scenario_ids": [
+        "scenario.personal-insolvency.omitted-creditor-bankruptcy-vs-rehabilitation"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0566",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0589",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0625"
+      ],
+      "hub_ids": [
+        "hub.personal-insolvency-recovery"
+      ],
+      "related_content_ids": [
+        "content.loan-without-written-note",
+        "content.loan-and-guarantee-evidence-checklist"
+      ]
+    },
+    {
+      "content_id": "content.personal-insolvency-guarantor-collateral-after-discharge",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:00:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "personal-insolvency-guarantor-collateral-after-discharge",
+      "title_ko": "주채무자가 면책되면 보증인과 담보도 함께 없어질까요?",
+      "one_line_answer_ko": "아닙니다. 채무자의 면책은 원칙적으로 보증인·공동채무자에 대한 채권자의 권리와 채무자 아닌 사람이 제공한 담보에 영향을 미치지 않습니다.",
+      "audience_situation_ko": "주채무자의 파산·개인회생 면책으로 보증채무나 제3자 담보도 자동 소멸한다고 생각하는 사람",
+      "key_points_ko": [
+        "면책은 채무자 본인의 책임을 중심으로 작동합니다.",
+        "보증인·공동채무자 책임은 별도입니다.",
+        "제3자 제공 담보도 자동 소멸하지 않습니다."
+      ],
+      "action_steps_ko": [
+        "대출·보증·담보계약서를 모두 확보한다.",
+        "채무자·보증인·담보소유자를 구분한다.",
+        "보증 한도와 기간을 확인한다.",
+        "면책결정과 별도로 채권자의 청구 대상을 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "면책받은 사람",
+        "보증인·공동채무자",
+        "담보 소유자",
+        "보증 최고액·기간",
+        "채권자의 실제 청구 대상"
+      ],
+      "caution_ko": "보증계약 자체의 무효·제한이나 보증인의 별도 도산절차는 다른 문제입니다. 주채무자 면책만을 이유로 보증책임 존부를 끝내지 마십시오.",
+      "search_intents_ko": [
+        "주채무자가 면책되면 보증인과 담보도 함께 없어질까요?",
+        "청구 대상이 면책받은 채무자 본인이 아니라 보증인·공동채무자 또는 제3자 담보인가요?",
+        "개인회생 개인파산 guarantor collateral after discharge"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "사람과 재산을 분리해 그린다",
+          "paragraphs_ko": [
+            "주채무자, 보증인, 공동채무자, 담보제공자와 담보재산을 각각 표시하면 면책이 누구에게 미치는지 혼동을 줄일 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "보증책임의 독자 쟁점도 남는다",
+          "paragraphs_ko": [
+            "주채무자 면책이 보증책임을 자동 소멸시키지는 않지만, 보증의 방식·한도·기간과 다른 제한은 별도로 검토해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-insolvency.guarantor-collateral-after-discharge"
+      ],
+      "scenario_ids": [
+        "scenario.personal-insolvency.guarantor-collateral-after-discharge"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0567",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0625"
+      ],
+      "hub_ids": [
+        "hub.personal-insolvency-recovery"
+      ],
+      "related_content_ids": [
+        "content.guarantee-by-message-validity",
+        "content.continuing-guarantee-maximum-amount",
+        "content.scope-of-guarantee-debt"
+      ]
+    },
+    {
+      "content_id": "content.personal-insolvency-discharge-denial-and-cancellation",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:00:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "personal-insolvency-discharge-denial-and-cancellation",
+      "title_ko": "낭비·도박·허위서류가 있으면 면책은 무조건 불가능한가요?",
+      "one_line_answer_ko": "면책불허가 사유가 될 수 있지만 파산법원은 경위 등을 고려해 재량면책할 수 있습니다. 다만 개인회생 면책을 사기 등 부정한 방법으로 받으면 확정 뒤 1년 안에 취소를 구할 수 있습니다.",
+      "audience_situation_ko": "과거 낭비·도박·허위기재 또는 최근 면책 이력 때문에 면책 가능성을 확인하려는 사람",
+      "key_points_ko": [
+        "파산면책의 반복 제한은 파산 7년·개인회생 5년입니다.",
+        "낭비·도박 사유가 있어도 재량면책 가능성은 별도 판단입니다.",
+        "개인회생 면책취소 신청기간은 확정일부터 1년입니다."
+      ],
+      "action_steps_ko": [
+        "채무 발생·사용 내역을 계좌자료로 복원한다.",
+        "재산처분과 채권자목록 작성 경위를 설명한다.",
+        "과거 면책 확정일을 결정문으로 확인한다.",
+        "부정한 면책취득 주장과 발견일·확정일을 구분한다."
+      ],
+      "facts_to_check_ko": [
+        "낭비·도박 지출",
+        "허위서류·목록 여부",
+        "법원 의무 위반",
+        "파산면책 확정 후 7년 여부",
+        "개인회생면책 확정 후 5년 여부",
+        "취소신청 1년 여부"
+      ],
+      "caution_ko": "불리한 사실을 숨기는 대응은 재량면책에 필요한 신뢰까지 훼손할 수 있습니다. 사실의 규모·시기·시정·절차 협조를 객관 자료로 설명해야 합니다.",
+      "search_intents_ko": [
+        "낭비·도박·허위서류가 있으면 면책은 무조건 불가능한가요?",
+        "낭비·도박·허위목록·설명의무 위반·최근 면책 또는 부정한 면책취득 정황이 있나요?",
+        "개인회생 개인파산 discharge denial and cancellation"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "불허가 사유와 최종 결론을 구분한다",
+          "paragraphs_ko": [
+            "법정 사유가 발견되면 위험은 크지만, 법은 파산에 이른 경위와 그 밖의 사정을 고려한 재량면책 가능성도 둡니다. 자동 불허가로 단정하지 않습니다."
+          ]
+        },
+        {
+          "heading_ko": "이미 받은 면책도 부정취득이면 끝이 아니다",
+          "paragraphs_ko": [
+            "개인회생 면책을 사기나 부정한 방법으로 얻었다면 이해관계인은 면책결정 확정일부터 1년 안에 취소를 신청할 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-insolvency.discharge-denial-and-cancellation"
+      ],
+      "scenario_ids": [
+        "scenario.personal-insolvency.discharge-denial-and-cancellation"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0564",
+        "coord.personal-insolvency.debtor-rehabilitation-ko-0626"
+      ],
+      "hub_ids": [
+        "hub.personal-insolvency-recovery"
+      ],
+      "related_content_ids": [
+        "content.debt-limitation-is-not-always-ten-years",
+        "content.fraudulent-transfer-before-enforcement"
+      ]
+    }
+  ]
+}
