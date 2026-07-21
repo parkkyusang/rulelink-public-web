@@ -1,6 +1,7 @@
 import {loadPublishedBundle} from '@/lib/publication';
 
 export const dynamic = 'force-static';
+export const revalidate = 3600;
 
 export async function GET() {
   const bundle = await loadPublishedBundle();
