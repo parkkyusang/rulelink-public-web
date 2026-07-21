@@ -54,3 +54,6 @@ jobs:
         env:
           RULELINK_PUBLIC_BUILD_CHECK: "true"
         run: npm run build
+
+      - name: 승인 출판본 런타임 스모크
+        run: npm run smoke:public-build
