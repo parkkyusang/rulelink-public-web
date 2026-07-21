@@ -2,19 +2,11 @@
 
 import {useEffect, useMemo, useState} from 'react';
 
-import {buildConciergeNewMatterUrl, buildConciergeReviewDraft} from '@/lib/concierge-handoff';
-
 import styles from './knowledge-action-workspace.module.css';
 
 type Props = {
   actionSteps: string[];
-  conciergeEntry?: {
-    question_ko: string;
-    decision_facts_ko: string[];
-    href: string;
-  };
   contentId: string;
-  contentTitle: string;
   factsToCheck: string[];
   revisionKey: string;
 };
@@ -23,9 +15,7 @@ type CheckState = Record<string, true>;
 
 export function KnowledgeActionWorkspace({
   actionSteps,
-  conciergeEntry,
   contentId,
-  contentTitle,
   factsToCheck,
   revisionKey,
 }: Props) {
@@ -34,7 +24,6 @@ export function KnowledgeActionWorkspace({
     [contentId, revisionKey],
   );
   const [checked, setChecked] = useState<CheckState>({});
-  const [copyStatus, setCopyStatus] = useState('');
   const [loadedKey, setLoadedKey] = useState('');
   const validKeys = useMemo(() => new Set([
     ...factsToCheck.map((_, index) => 'fact:' + index),
@@ -77,29 +66,6 @@ export function KnowledgeActionWorkspace({
       return next;
     });
   }
-
-  async function copyConciergeDraft() {
-    if (!conciergeEntry) return;
-    const draft = buildConciergeReviewDraft({
-      actionSteps,
-      checkedActionIndexes: checkedIndexes(checked, 'action', actionSteps.length),
-      checkedFactIndexes: checkedIndexes(checked, 'fact', factsToCheck.length),
-      decisionFacts: conciergeEntry.decision_facts_ko,
-      factsToCheck,
-      question: conciergeEntry.question_ko,
-      reviewedAt: revisionKey,
-      sourceUrl: window.location.origin + window.location.pathname,
-      title: contentTitle,
-    });
-    try {
-      await writeClipboard(draft);
-      setCopyStatus('검토요청 초안을 복사했습니다. 새 창의 입력란에 붙여넣으세요.');
-    } catch {
-      setCopyStatus('자동 복사하지 못했습니다. 브라우저의 클립보드 권한을 확인해 주세요.');
-    }
-  }
-
-  const conciergeUrl = conciergeEntry ? buildConciergeNewMatterUrl(conciergeEntry.href) : '';
 
   return (
     <div className={styles.workspace}>
@@ -146,22 +112,11 @@ export function KnowledgeActionWorkspace({
 
       <footer className={styles.footer}>
         <div className={styles.privacy}>
-          <p>표시 상태는 서버로 전송되지 않고 현재 기기에만 저장됩니다.</p>
-          {copyStatus ? <p aria-live="polite" className={styles.copyStatus}>{copyStatus}</p> : null}
+          <p>표시 상태는 서버나 다른 사이트로 전송되지 않고 현재 기기에만 저장됩니다.</p>
         </div>
         <div className={styles.actions}>
           <button disabled={completed === 0} onClick={() => setChecked({})} type="button">표시 초기화</button>
           <button onClick={() => window.print()} type="button">인쇄·PDF 저장</button>
-          {conciergeEntry ? (
-            <a
-              href={conciergeUrl}
-              onClick={() => { void copyConciergeDraft(); }}
-              rel="noreferrer"
-              target="_blank"
-            >
-              초안 복사 후 새 사건 열기 <span aria-hidden="true">↗</span>
-            </a>
-          ) : null}
         </div>
       </footer>
     </div>
@@ -205,27 +160,6 @@ function ChecklistGroup({
       </div>
     </section>
   );
-}
-
-function checkedIndexes(checked: CheckState, group: 'fact' | 'action', length: number): number[] {
-  return Array.from({length}, (_, index) => index).filter(index => checked[group + ':' + index]);
-}
-
-async function writeClipboard(value: string): Promise<void> {
-  if (navigator.clipboard?.writeText) {
-    await navigator.clipboard.writeText(value);
-    return;
-  }
-  const textarea = document.createElement('textarea');
-  textarea.value = value;
-  textarea.setAttribute('readonly', '');
-  textarea.style.position = 'fixed';
-  textarea.style.opacity = '0';
-  document.body.appendChild(textarea);
-  textarea.select();
-  const copied = document.execCommand('copy');
-  textarea.remove();
-  if (!copied) throw new Error('clipboard_copy_failed');
 }
 
 function isCheckState(value: unknown): value is CheckState {

@@ -135,10 +135,11 @@ export type PublicKnowledgeEntry = {
   source_coordinate_ids: string[];
   hub_ids: string[];
   related_content_ids: string[];
-  concierge_entry?: {
+  lawyer_workspace_entry?: {
     question_ko: string;
     decision_facts_ko: string[];
-    href: string;
+    href: '/ko/lawyer-workspace';
+    audience: 'verified_attorney';
   };
 };
 

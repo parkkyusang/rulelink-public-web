@@ -67,12 +67,37 @@ test('공개 지식의 완성 본문이 비어 있으면 거부한다', async ()
   assert.match(result.stderr, /paragraphs_ko는 1개 이상/);
 });
 
-test('허용되지 않은 컨시어지 주소를 거부한다', async () => {
+test('공개 지식에 예전 일반인 컨시어지 연결이 있으면 거부한다', async () => {
   const bundle = knowledgeBundle();
-  bundle.knowledge.content_entries[0].concierge_entry.href = 'https://example.com/review';
+  bundle.knowledge.content_entries[0].concierge_entry = {
+    question_ko: '개별 검토가 필요합니까?',
+    decision_facts_ko: ['구체적 사실'],
+    href: 'https://liale-review.lolphysical.xyz',
+  };
   const result = await validate(bundle);
   assert.notEqual(result.status, 0);
-  assert.match(result.stderr, /컨시어지 주소/);
+  assert.match(result.stderr, /금지된 concierge_entry/);
+});
+
+test('변호사 작업공간 직링크와 자기선언 대상은 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  bundle.knowledge.content_entries[0].lawyer_workspace_entry = {
+    question_ko: '변호사용 검토가 필요합니까?',
+    decision_facts_ko: ['구체적 사실'],
+    href: 'https://liale-review.lolphysical.xyz',
+    audience: 'self_declared_attorney',
+  };
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /변호사 전용 게이트 계약/);
+});
+
+test('말줄임표로 잘린 법리 제목과 법리 문장 중복을 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  bundle.knowledge.rule_cards[0].title_ko = bundle.knowledge.rule_cards[0].proposition_ko + '…';
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /말줄임표로 잘려|제목은 45자 이하/);
 });
 
 test('내부 사건 경로와 내부 필드를 거부한다', async () => {
@@ -394,11 +419,6 @@ function knowledgeBundle() {
         source_coordinate_ids: ['source.one'],
         hub_ids: ['hub.one'],
         related_content_ids: [],
-        concierge_entry: {
-          question_ko: '개별 검토가 필요합니까?',
-          decision_facts_ko: ['구체적 사실'],
-          href: 'https://liale-review.lolphysical.xyz',
-        },
       }],
       topic_hubs: [{
         hub_id: 'hub.one',

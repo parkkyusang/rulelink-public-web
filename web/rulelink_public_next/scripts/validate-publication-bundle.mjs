@@ -139,6 +139,13 @@ function validateKnowledge(value, now, fileHashes, errors) {
     if (!isRecord(rule)) continue;
     checkReferences(rule.source_coordinate_ids, sourceIds, `법리카드 ${label(rule, 'rule_id')}의 source_coordinate_ids`, errors);
     const ruleName = `법리카드 ${label(rule, 'rule_id')}`;
+    const ruleTitle = typeof rule.title_ko === 'string' ? rule.title_ko.trim() : '';
+    const proposition = typeof rule.proposition_ko === 'string' ? rule.proposition_ko.trim() : '';
+    if (!ruleTitle) errors.push(`${ruleName}의 title_ko가 비어 있습니다.`);
+    if (!proposition) errors.push(`${ruleName}의 proposition_ko가 비어 있습니다.`);
+    if (/…$|\.\.\.$/u.test(ruleTitle)) errors.push(`${ruleName}의 제목이 말줄임표로 잘려 있습니다.`);
+    if (ruleTitle.length > 45) errors.push(`${ruleName}의 제목은 45자 이하의 쟁점명이어야 합니다.`);
+    if (sameDisplayText(ruleTitle, proposition)) errors.push(`${ruleName}의 제목과 법리 문장이 중복됩니다.`);
     if (!isRecord(rule.norm)) {
       errors.push(`${ruleName}의 norm이 객체가 아닙니다.`);
     } else {
@@ -203,10 +210,10 @@ function validateKnowledge(value, now, fileHashes, errors) {
       requireNonEmptyStringArray(section, 'paragraphs_ko', 1, `${entryName}의 body_sections[${sectionIndex}]`, errors);
     }
     if (entry.concierge_entry !== undefined) {
-      const href = isRecord(entry.concierge_entry) ? entry.concierge_entry.href : undefined;
-      if (!isConciergeUrl(href)) {
-        errors.push(`지식 콘텐츠 ${label(entry, 'content_id')}의 컨시어지 주소가 허용된 별도 사이트가 아닙니다.`);
-      }
+      errors.push(`지식 콘텐츠 ${label(entry, 'content_id')}에 금지된 concierge_entry가 있습니다.`);
+    }
+    if (entry.lawyer_workspace_entry !== undefined && !isLawyerWorkspaceEntry(entry.lawyer_workspace_entry)) {
+      errors.push(`지식 콘텐츠 ${label(entry, 'content_id')}의 lawyer_workspace_entry가 변호사 전용 게이트 계약과 다릅니다.`);
     }
   }
 
@@ -459,14 +466,22 @@ function isOfficialHttpsUrl(value) {
   }
 }
 
-function isConciergeUrl(value) {
-  if (typeof value !== 'string') return false;
-  try {
-    const url = new URL(value);
-    return url.protocol === 'https:' && url.hostname === 'liale-review.lolphysical.xyz';
-  } catch {
-    return false;
-  }
+function isLawyerWorkspaceEntry(value) {
+  return isRecord(value)
+    && value.href === '/ko/lawyer-workspace'
+    && value.audience === 'verified_attorney'
+    && typeof value.question_ko === 'string'
+    && value.question_ko.trim().length > 0
+    && Array.isArray(value.decision_facts_ko)
+    && value.decision_facts_ko.length > 0
+    && value.decision_facts_ko.every(item => typeof item === 'string' && item.trim().length > 0);
+}
+
+function sameDisplayText(left, right) {
+  const normalize = value => String(value || '')
+    .replace(/[\s.…"'“”‘’(),·-]/gu, '')
+    .replace(/(?:이다|입니다|한다|합니다|된다|됩니다)$/u, '');
+  return normalize(left) === normalize(right);
 }
 
 function requireArray(value, key, errors, prefix = '') {

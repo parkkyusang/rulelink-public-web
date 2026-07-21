@@ -2,7 +2,7 @@ import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
 import {KnowledgeActionWorkspace} from '@/components/knowledge-action-workspace';
-import {buildConciergeNewMatterUrl} from '@/lib/concierge-handoff';
+import {OfficialSourceJump} from '@/components/official-source-jump';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {findKnowledgeEntry, knowledgeDetail, listKnowledgeEntries} from '@/lib/publication';
@@ -108,7 +108,7 @@ export default async function KnowledgePage({params}: Props) {
         <a href="#rules">적용 법리</a>
         {scenarios.length ? <a href="#scenarios">결론 사실</a> : null}
         <a href="#actions">할 일과 자료</a>
-        <a href="#sources">공식 근거</a>
+        <OfficialSourceJump targetId="sources" />
       </nav>
 
       <section className="knowledgeLayout">
@@ -133,17 +133,20 @@ export default async function KnowledgePage({params}: Props) {
             <p className="eyebrow">적용 법리</p>
             <h2>먼저 기준을 확인합니다.</h2>
             <div className="ruleStack">
-              {rules.map(rule => (
-                <article className="ruleCard" id={rule.rule_id} key={rule.rule_id}>
-                  <h3>{rule.title_ko}</h3>
-                  <p>{rule.proposition_ko}</p>
-                  <dl className="normSlots">
-                    <div><dt>누가</dt><dd>{rule.norm.actor_ko}</dd></div>
-                    <div><dt>어떤 때</dt><dd>{rule.norm.conditions_ko}</dd></div>
-                    <div><dt>결과</dt><dd>{rule.norm.legal_effect_ko}</dd></div>
-                  </dl>
-                </article>
-              ))}
+              {rules.map(rule => {
+                const propositionRepeatsEffect = sameDisplayText(rule.proposition_ko, rule.norm.legal_effect_ko);
+                return (
+                  <article className="ruleCard" id={rule.rule_id} key={rule.rule_id}>
+                    <h3>{rule.title_ko}</h3>
+                    {!propositionRepeatsEffect ? <p>{rule.proposition_ko}</p> : null}
+                    <dl className="normSlots">
+                      <div><dt>누가</dt><dd>{rule.norm.actor_ko}</dd></div>
+                      <div><dt>어떤 때</dt><dd>{rule.norm.conditions_ko}</dd></div>
+                      <div><dt>결과</dt><dd>{rule.norm.legal_effect_ko}</dd></div>
+                    </dl>
+                  </article>
+                );
+              })}
             </div>
           </section>
 
@@ -184,9 +187,7 @@ export default async function KnowledgePage({params}: Props) {
             <h2>다음 순서로 준비합니다.</h2>
             <KnowledgeActionWorkspace
               actionSteps={entry.action_steps_ko}
-              conciergeEntry={entry.concierge_entry}
               contentId={entry.content_id}
-              contentTitle={entry.title_ko}
               factsToCheck={entry.facts_to_check_ko}
               revisionKey={entry.reviewed_at}
             />
@@ -195,12 +196,13 @@ export default async function KnowledgePage({params}: Props) {
         </div>
 
         <aside className="knowledgeAside">
-          {entry.concierge_entry ? (
-            <section className="conciergePanel">
-              <p className="eyebrow">개별 사실 검토</p>
-              <h2>{entry.concierge_entry.question_ko}</h2>
-              <ul>{entry.concierge_entry.decision_facts_ko.map(fact => <li key={fact}>{fact}</li>)}</ul>
-              <a href={buildConciergeNewMatterUrl(entry.concierge_entry.href)} rel="noreferrer" target="_blank">새 사건으로 이어서 검토 <span aria-hidden="true">↗</span></a>
+          {entry.lawyer_workspace_entry ? (
+            <section className="lawyerWorkspacePanel">
+              <p className="eyebrow">변호사 전용 사건 검토</p>
+              <h2>{entry.lawyer_workspace_entry.question_ko}</h2>
+              <p>아래 사실을 사건에 적용한 결론·전략·서면 방향은 자격이 확인된 변호사 작업공간에서만 다룹니다.</p>
+              <ul>{entry.lawyer_workspace_entry.decision_facts_ko.map(fact => <li key={fact}>{fact}</li>)}</ul>
+              <a href={entry.lawyer_workspace_entry.href}>왜 변호사만 사용할 수 있나요? <span aria-hidden="true">→</span></a>
             </section>
           ) : null}
           <section className="knowledgeSources" id="sources">
@@ -226,6 +228,11 @@ export default async function KnowledgePage({params}: Props) {
       ) : null}
     </main>
   );
+}
+
+function sameDisplayText(left: string, right: string): boolean {
+  const normalize = (value: string) => value.replace(/[\s.…"'“”‘’(),·-]/g, '').replace(/(?:이다|입니다|한다|합니다|된다|됩니다)$/u, '');
+  return normalize(left) === normalize(right);
 }
 
 function sourceLabel(source: import('@/types/publication').PublicKnowledgeSource): string {

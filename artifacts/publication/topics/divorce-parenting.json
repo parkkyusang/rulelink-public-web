@@ -503,7 +503,7 @@
         "content.divorce-cooling-period-shortening-for-violence",
         "content.divorce-child-custody-support-parental-authority-agreement"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "협의이혼 숙려기간은 자녀 유무에 따라 3개월 또는 1개월입니다",
         "decision_facts_ko": [
           "이혼 안내일",
@@ -513,7 +513,8 @@
           "급박한 사정",
           "협의서 준비상태"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -585,7 +586,7 @@
         "content.divorce-child-custody-support-parental-authority-agreement",
         "content.six-grounds-for-judicial-divorce"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "폭력 등 급박한 사정이 있으면 숙려기간 단축·면제를 요청할 수 있습니다",
         "decision_facts_ko": [
           "폭력 유형",
@@ -596,7 +597,8 @@
           "자녀 위험",
           "안전한 연락수단"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -673,7 +675,7 @@
         "content.child-support-record-is-not-private-memo",
         "content.noncustodial-parent-child-visitation"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "미성년 자녀가 있으면 양육과 친권 사항을 구체적으로 정해야 합니다",
         "decision_facts_ko": [
           "자녀 연령",
@@ -685,7 +687,8 @@
           "면접 일정",
           "자녀 의사"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -829,7 +832,7 @@
         "content.divorce-child-custody-support-parental-authority-agreement",
         "content.child-support-record-is-not-private-memo"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "면접교섭은 비양육 부모만이 아니라 자녀와의 상호 권리입니다",
         "decision_facts_ko": [
           "자녀 연령·의사",
@@ -840,7 +843,8 @@
           "인도방법",
           "연락수단"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -986,7 +990,7 @@
         "content.divorce-property-division-two-year-period",
         "content.divorce-consolation-money-vs-property-division"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "재산분할을 피하려는 재산처분은 사해행위 취소가 문제될 수 있습니다",
         "decision_facts_ko": [
           "처분일",
@@ -997,7 +1001,8 @@
           "이혼 협의·소송 시점",
           "해할 의도 자료"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {

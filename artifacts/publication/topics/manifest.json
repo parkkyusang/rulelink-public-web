@@ -49,6 +49,10 @@
     {
       "topic_id": "hub.crime-victim-response",
       "file": "crime-victim-response.json"
+    },
+    {
+      "topic_id": "hub.legal-service-boundaries",
+      "file": "legal-service-boundaries.json"
     }
   ],
   "content_entry_topic_order": [
@@ -63,6 +67,7 @@
     "hub.divorce-parenting",
     "hub.debt-enforcement",
     "hub.real-estate-sale",
-    "hub.crime-victim-response"
+    "hub.crime-victim-response",
+    "hub.legal-service-boundaries"
   ]
 }

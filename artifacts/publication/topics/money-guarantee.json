@@ -182,7 +182,7 @@
   "rule_cards": [
     {
       "rule_id": "rule.money-guarantee.rule-loan-agreement",
-      "title_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어…",
+      "title_ko": "금전소비대차의 성립",
       "proposition_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어야 성립한다.",
       "norm": {
         "actor_ko": "금전을 빌려준 사람과 빌린 사람",
@@ -195,7 +195,7 @@
     },
     {
       "rule_id": "rule.money-guarantee.rule-no-due-date",
-      "title_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다.",
+      "title_ko": "변제기 약정 없는 대여금",
       "proposition_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다.",
       "norm": {
         "actor_ko": "반환시기를 정하지 않은 금전소비대차의 대주와 차주",
@@ -208,7 +208,7 @@
     },
     {
       "rule_id": "rule.money-guarantee.rule-interest-cap",
-      "title_ko": "금전대차의 계약상 최고이자율은 현재 연 20퍼센트이며 계약 체결·갱신 시점에…",
+      "title_ko": "계약상 최고이자율",
       "proposition_ko": "금전대차의 계약상 최고이자율은 현재 연 20퍼센트이며 계약 체결·갱신 시점에 따른 적용례를 확인해야 한다.",
       "norm": {
         "actor_ko": "금전대차의 채권자와 채무자",
@@ -224,7 +224,7 @@
     },
     {
       "rule_id": "rule.money-guarantee.rule-payment-allocation",
-      "title_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에…",
+      "title_ko": "일부 변제의 충당 순서",
       "proposition_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에 따라 어느 채무가 소멸하는지가 달라진다.",
       "norm": {
         "actor_ko": "일부 변제를 하는 채무자와 이를 받는 채권자",
@@ -240,7 +240,7 @@
     },
     {
       "rule_id": "rule.money-guarantee.rule-guarantee-writing",
-      "title_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발…",
+      "title_ko": "보증계약의 서면요건",
       "proposition_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발생하고 전자적 형태 표시는 원칙적으로 효력이 없다.",
       "norm": {
         "actor_ko": "보증의사를 표시하는 보증인과 채권자",
@@ -253,7 +253,7 @@
     },
     {
       "rule_id": "rule.money-guarantee.rule-continuing-guarantee-cap",
-      "title_ko": "불확정한 다수 채무를 보증하는 근보증은 최고액을 서면으로 특정하지 않으면 효…",
+      "title_ko": "근보증 최고액의 특정",
       "proposition_ko": "불확정한 다수 채무를 보증하는 근보증은 최고액을 서면으로 특정하지 않으면 효력이 없다.",
       "norm": {
         "actor_ko": "불확정한 다수 채무를 보증하는 근보증인과 채권자",
@@ -266,7 +266,7 @@
     },
     {
       "rule_id": "rule.money-guarantee.rule-guarantee-scope",
-      "title_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지…",
+      "title_ko": "보증채무의 범위",
       "proposition_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지만 주채무보다 무거운 부담은 주채무 한도로 감축된다.",
       "norm": {
         "actor_ko": "주채무를 보증한 보증인과 채권자",
@@ -281,7 +281,7 @@
     },
     {
       "rule_id": "rule.money-guarantee.rule-general-prescription",
-      "title_ko": "민법상 채권의 일반 소멸시효는 10년이지만 채권 성질에 따른 단기시효·상사시…",
+      "title_ko": "채권의 일반 소멸시효",
       "proposition_ko": "민법상 채권의 일반 소멸시효는 10년이지만 채권 성질에 따른 단기시효·상사시효와 기산점을 별도로 확인해야 한다.",
       "norm": {
         "actor_ko": "민법상 채권을 행사하려는 채권자와 그 채무자",
@@ -294,7 +294,7 @@
     },
     {
       "rule_id": "rule.money-guarantee.rule-demand-six-months",
-      "title_ko": "채무 이행을 요구하는 최고만으로 시효중단 효과가 영구히 유지되는 것은 아니고…",
+      "title_ko": "최고 후 6개월 내 후속조치",
       "proposition_ko": "채무 이행을 요구하는 최고만으로 시효중단 효과가 영구히 유지되는 것은 아니고 6개월 안에 재판상 청구 등 후속 조치가 필요하다.",
       "norm": {
         "actor_ko": "시효 완성 전에 채무 이행을 최고한 채권자",
@@ -475,7 +475,7 @@
         "hub.money-guarantee"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "돈을 송금하면 자동으로 대여금이 되나",
         "decision_facts_ko": [
           "송금일과 금액",
@@ -487,7 +487,8 @@
           "돈의 사용 목적",
           "일부변제 여부"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -760,7 +761,7 @@
         "hub.money-guarantee"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "일부만 갚았을 때 원금이 얼마나 남았나",
         "decision_facts_ko": [
           "대여 건수",
@@ -772,7 +773,8 @@
           "충당 지정",
           "즉시 이의 여부"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -981,7 +983,7 @@
         "hub.money-guarantee"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "보증인은 원금만 갚으면 되는가",
         "decision_facts_ko": [
           "보증서 문언",
@@ -993,7 +995,8 @@
           "주채무 변경",
           "일부변제"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -1155,7 +1158,7 @@
         "hub.money-guarantee"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "대여금·보증 분쟁 증거 체크리스트",
         "decision_facts_ko": [
           "채권자·채무자 정보",
@@ -1170,7 +1173,8 @@
           "독촉·도달",
           "시효 기산점"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     }
   ]

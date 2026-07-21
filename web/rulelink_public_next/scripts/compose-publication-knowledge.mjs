@@ -24,6 +24,18 @@ export function canonicalJson(value) {
   return JSON.stringify(value);
 }
 
+function isLawyerWorkspaceEntry(value) {
+  return value
+    && typeof value === 'object'
+    && value.href === '/ko/lawyer-workspace'
+    && value.audience === 'verified_attorney'
+    && typeof value.question_ko === 'string'
+    && value.question_ko.trim().length > 0
+    && Array.isArray(value.decision_facts_ko)
+    && value.decision_facts_ko.length > 0
+    && value.decision_facts_ko.every(item => typeof item === 'string' && item.trim().length > 0);
+}
+
 export function contentReceipt(value) {
   return createHash('sha256').update(canonicalJson(value)).digest('hex');
 }
@@ -58,6 +70,14 @@ export function assembleKnowledge(manifest, loadedTopics) {
     if (topic.topic_id !== descriptor.topic_id) throw new Error(`${descriptor.file}의 topic_id가 manifest와 다릅니다.`);
     for (const [collection] of collections) {
       if (!Array.isArray(topic[collection])) throw new Error(`${descriptor.file}의 ${collection}가 배열이 아닙니다.`);
+    }
+    for (const [entryIndex, entry] of topic.content_entries.entries()) {
+      if (entry?.concierge_entry !== undefined) {
+        throw new Error(`${descriptor.file}의 content_entries[${entryIndex}]에 금지된 concierge_entry가 있습니다.`);
+      }
+      if (entry?.lawyer_workspace_entry !== undefined && !isLawyerWorkspaceEntry(entry.lawyer_workspace_entry)) {
+        throw new Error(`${descriptor.file}의 content_entries[${entryIndex}].lawyer_workspace_entry가 변호사 전용 게이트 계약과 다릅니다.`);
+      }
     }
     if (topic.topic_hubs.length !== 1 || topic.topic_hubs[0].hub_id !== descriptor.topic_id) throw new Error(`${descriptor.file}는 자신이 소유하는 주제 허브 하나만 포함해야 합니다.`);
     const declaredContent = topic.topic_hubs[0].content_ids;

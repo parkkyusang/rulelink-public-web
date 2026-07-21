@@ -249,7 +249,7 @@
   "rule_cards": [
     {
       "rule_id": "rule.family-inheritance.rule-inheritance-order",
-      "title_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순…",
+      "title_ko": "법정상속인의 순위",
       "proposition_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순위에서는 최근친이 선순위다.",
       "norm": {
         "actor_ko": "피상속인의 법정상속인이 될 수 있는 친족",
@@ -262,7 +262,7 @@
     },
     {
       "rule_id": "rule.family-inheritance.rule-spouse-order",
-      "title_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단…",
+      "title_ko": "배우자의 상속순위",
       "proposition_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단독상속인이 된다.",
       "norm": {
         "actor_ko": "피상속인의 법률상 배우자",
@@ -275,7 +275,7 @@
     },
     {
       "rule_id": "rule.family-inheritance.rule-all-children-renounce",
-      "title_ko": "배우자와 자녀가 공동상속인인 상황에서 자녀 전부가 상속을 포기하면 배우자가 …",
+      "title_ko": "자녀 전원 포기 시 배우자 단독상속",
       "proposition_ko": "배우자와 자녀가 공동상속인인 상황에서 자녀 전부가 상속을 포기하면 배우자가 단독상속인이 되고 손자녀가 배우자와 공동상속인이 되지 않는다는 전원합의체 결정이 있다.",
       "norm": {
         "actor_ko": "피상속인의 배우자와 공동상속인이던 자녀 전원",
@@ -288,7 +288,7 @@
     },
     {
       "rule_id": "rule.family-inheritance.rule-three-months",
-      "title_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선…",
+      "title_ko": "상속 승인·포기의 3개월 기간",
       "proposition_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선택할 수 있고 가정법원이 기간을 연장할 수 있다.",
       "norm": {
         "actor_ko": "상속개시 사실을 안 상속인",
@@ -301,7 +301,7 @@
     },
     {
       "rule_id": "rule.family-inheritance.rule-renunciation",
-      "title_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효…",
+      "title_ko": "상속포기의 신고와 소급효",
       "proposition_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효력이 생긴다.",
       "norm": {
         "actor_ko": "상속을 포기하려는 상속인",
@@ -316,7 +316,7 @@
     },
     {
       "rule_id": "rule.family-inheritance.rule-limited-effect",
-      "title_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 …",
+      "title_ko": "한정승인의 책임 범위",
       "proposition_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 조건의 승인이다.",
       "norm": {
         "actor_ko": "상속채무를 상속재산 한도에서 변제하려는 상속인",
@@ -329,7 +329,7 @@
     },
     {
       "rule_id": "rule.family-inheritance.rule-limited-procedure",
-      "title_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변…",
+      "title_ko": "한정승인의 신고와 청산절차",
       "proposition_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변제 절차를 따라야 한다.",
       "norm": {
         "actor_ko": "한정승인을 수리받은 상속인과 상속채권자·수증자",
@@ -351,7 +351,7 @@
     },
     {
       "rule_id": "rule.family-inheritance.rule-special-limited",
-      "title_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그…",
+      "title_ko": "특별한정승인의 요건과 기간",
       "proposition_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그 사실을 안 날부터 3개월 내 특별한정승인이 가능할 수 있다.",
       "norm": {
         "actor_ko": "상속채무 초과 사실을 뒤늦게 안 상속인",
@@ -364,7 +364,7 @@
     },
     {
       "rule_id": "rule.family-inheritance.rule-deemed-acceptance",
-      "title_ko": "상속재산 처분, 기간 내 포기·한정승인 미실시, 포기·한정승인 후 은닉·부정…",
+      "title_ko": "법정단순승인 사유",
       "proposition_ko": "상속재산 처분, 기간 내 포기·한정승인 미실시, 포기·한정승인 후 은닉·부정소비 등은 법정단순승인 사유가 될 수 있다.",
       "norm": {
         "actor_ko": "상속재산을 처분하려는 상속인",
@@ -378,7 +378,7 @@
     },
     {
       "rule_id": "rule.family-inheritance.rule-2026-representation-change",
-      "title_ko": "2026년 3월 17일 개정 민법은 상속권 상실선고 제도와 연결해 제1001…",
+      "title_ko": "2026년 대습상속 규정 변경",
       "proposition_ko": "2026년 3월 17일 개정 민법은 상속권 상실선고 제도와 연결해 제1001조 대습상속 사유에 제1004조의2를 반영했다.",
       "norm": {
         "actor_ko": "상속권 상실선고를 받은 사람이 있는 상속관계의 직계비속·배우자",
@@ -707,7 +707,7 @@
         "hub.family-inheritance"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "상속포기·한정승인 3개월은 언제부터 계산하나",
         "decision_facts_ko": [
           "사망일",
@@ -718,7 +718,8 @@
           "채권통지일",
           "연장청구 여부"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -792,7 +793,7 @@
         "hub.family-inheritance"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "상속포기는 가족끼리 말하면 끝나는가",
         "decision_facts_ko": [
           "상속개시를 안 날",
@@ -803,7 +804,8 @@
           "배우자 존재",
           "후순위 상속인"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -964,7 +966,7 @@
         "hub.family-inheritance"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "3개월 뒤 숨은 빚을 알게 되면 방법이 없나",
         "decision_facts_ko": [
           "새 채무 종류·금액",
@@ -976,7 +978,8 @@
           "기존 변제",
           "신고일"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -1129,7 +1132,7 @@
         "hub.family-inheritance"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "한정승인 수리 뒤 바로 끝나는가",
         "decision_facts_ko": [
           "수리일",
@@ -1141,7 +1144,8 @@
           "상속재산 환가액",
           "변제 내역"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -1217,7 +1221,7 @@
         "hub.family-inheritance"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "상속재산·채무 조사 체크리스트",
         "decision_facts_ko": [
           "예금·증권",
@@ -1231,7 +1235,8 @@
           "진행 중 소송·집행",
           "디지털자산"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {

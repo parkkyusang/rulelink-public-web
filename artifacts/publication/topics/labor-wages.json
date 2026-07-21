@@ -102,7 +102,7 @@
   "rule_cards": [
     {
       "rule_id": "rule.labor-wages.rule-worker-status",
-      "title_ko": "근로자성은 계약 명칭 하나가 아니라 사용종속관계를 보여주는 여러 사정을 종합…",
+      "title_ko": "근로자성의 실질 판단",
       "proposition_ko": "근로자성은 계약 명칭 하나가 아니라 사용종속관계를 보여주는 여러 사정을 종합해 판단한다.",
       "norm": {
         "actor_ko": "계약 형식과 무관하게 임금을 목적으로 사업 또는 사업장에 근로를 제공하는 사람",
@@ -116,7 +116,7 @@
     },
     {
       "rule_id": "rule.labor-wages.rule-money-14days",
-      "title_ko": "근로자가 퇴직하면 사용자는 특별한 사정에 관한 당사자 합의가 없는 한 임금·…",
+      "title_ko": "퇴직 후 금품청산 기한",
       "proposition_ko": "근로자가 퇴직하면 사용자는 특별한 사정에 관한 당사자 합의가 없는 한 임금·보상금 등 금품을 14일 이내 지급해야 한다.",
       "norm": {
         "actor_ko": "퇴직한 근로자와 임금·보상금 등 금품을 지급할 사용자",
@@ -129,7 +129,7 @@
     },
     {
       "rule_id": "rule.labor-wages.rule-retirement-14days",
-      "title_ko": "퇴직급여도 원칙적으로 퇴직일부터 14일 이내 지급하며 특별한 사정이 있으면 …",
+      "title_ko": "퇴직급여 지급기한",
       "proposition_ko": "퇴직급여도 원칙적으로 퇴직일부터 14일 이내 지급하며 특별한 사정이 있으면 당사자 합의로 기일을 연장할 수 있다.",
       "norm": {
         "actor_ko": "퇴직급여를 지급할 사용자와 퇴직 근로자",
@@ -143,7 +143,7 @@
     },
     {
       "rule_id": "rule.labor-wages.rule-retirement-base",
-      "title_ko": "퇴직금 제도의 기본 출발점은 계속근로 1년에 대하여 30일분 이상의 평균임금…",
+      "title_ko": "퇴직금의 기본 산식",
       "proposition_ko": "퇴직금 제도의 기본 출발점은 계속근로 1년에 대하여 30일분 이상의 평균임금이다.",
       "norm": {
         "actor_ko": "퇴직금제도를 설정한 사용자와 계속근로한 퇴직 근로자",
@@ -157,7 +157,7 @@
     },
     {
       "rule_id": "rule.labor-wages.rule-written-dismissal",
-      "title_ko": "해고는 해고사유와 해고시기를 서면으로 통지해야 효력이 있다.",
+      "title_ko": "해고의 서면통지 요건",
       "proposition_ko": "해고는 해고사유와 해고시기를 서면으로 통지해야 효력이 있다.",
       "norm": {
         "actor_ko": "근로자를 해고하려는 사용자와 해고 통지를 받는 근로자",
@@ -170,7 +170,7 @@
     },
     {
       "rule_id": "rule.labor-wages.rule-concrete-dismissal-reason",
-      "title_ko": "해고 서면은 근로자가 어떤 사유로 해고되는지 구체적으로 알 수 있을 정도여야…",
+      "title_ko": "해고사유의 구체적 서면통지",
       "proposition_ko": "해고 서면은 근로자가 어떤 사유로 해고되는지 구체적으로 알 수 있을 정도여야 한다.",
       "norm": {
         "actor_ko": "근로자를 해고하는 사용자와 해고 통지를 받는 근로자",
@@ -184,7 +184,7 @@
     },
     {
       "rule_id": "rule.labor-wages.rule-remedy-3months",
-      "title_ko": "부당해고 등의 구제신청은 부당해고가 있었던 날부터 3개월 이내에 해야 한다.",
+      "title_ko": "부당해고 구제신청의 3개월 기간",
       "proposition_ko": "부당해고 등의 구제신청은 부당해고가 있었던 날부터 3개월 이내에 해야 한다.",
       "norm": {
         "actor_ko": "부당해고 등의 구제를 신청하려는 근로자",
@@ -351,7 +351,7 @@
         "hub.labor-wages"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "프리랜서 계약서를 썼어도 근로자일 수 있나",
         "decision_facts_ko": [
           "업무 내용을 누가 정했는지",
@@ -363,7 +363,8 @@
           "계속적·전속적으로 일했는지",
           "4대보험 처리와 세금 원천징수 방식"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -433,7 +434,7 @@
         "hub.labor-wages"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "근로자성 판단에 필요한 자료 체크리스트",
         "decision_facts_ko": [
           "근로계약서·위탁계약서 원본",
@@ -445,7 +446,8 @@
           "대체근무 허용 여부",
           "다른 업체 업무 수행 가능 여부"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -652,7 +654,7 @@
         "hub.labor-wages"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "회사가 14일 뒤에 주겠다고 말하면 지급기일이 자동 연장되나",
         "decision_facts_ko": [
           "회사가 제시한 연장 사유",
@@ -663,7 +665,8 @@
           "일부 지급 여부",
           "압박이나 오인이 있었는지"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -798,7 +801,7 @@
         "hub.labor-wages"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "퇴직금도 퇴직 후 14일 안에 지급해야 하나",
         "decision_facts_ko": [
           "퇴직일",
@@ -809,7 +812,8 @@
           "합의된 새 지급일",
           "중간정산 이력"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -1014,7 +1018,7 @@
         "hub.labor-wages"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "부당해고 구제신청은 언제까지 해야 하나",
         "decision_facts_ko": [
           "통보받은 날",
@@ -1026,7 +1030,8 @@
           "구제신청 접수일",
           "기간 말일의 휴일 여부"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     }
   ]

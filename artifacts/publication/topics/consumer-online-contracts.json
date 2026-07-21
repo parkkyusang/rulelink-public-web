@@ -92,7 +92,7 @@
   "rule_cards": [
     {
       "rule_id": "rule.consumer-online-contracts.rule-withdrawal-7days",
-      "title_ko": "통신판매의 일반 청약철회 기간은 계약내용 서면을 받은 날부터 7일이고, 재화…",
+      "title_ko": "통신판매 청약철회의 7일 기준",
       "proposition_ko": "통신판매의 일반 청약철회 기간은 계약내용 서면을 받은 날부터 7일이고, 재화 공급이 더 늦으면 공급받거나 공급이 시작된 날부터 7일이다.",
       "norm": {
         "actor_ko": "통신판매업자와 온라인으로 재화·용역을 구매한 소비자",
@@ -105,7 +105,7 @@
     },
     {
       "rule_id": "rule.consumer-online-contracts.rule-nonconforming-3m30d",
-      "title_ko": "표시·광고나 계약과 다르게 이행된 경우 공급받은 날부터 3개월 이내이면서 그…",
+      "title_ko": "계약과 다른 이행의 철회기한",
       "proposition_ko": "표시·광고나 계약과 다르게 이행된 경우 공급받은 날부터 3개월 이내이면서 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내에 철회해야 한다.",
       "norm": {
         "actor_ko": "표시·광고 또는 계약내용과 다른 재화·용역을 공급받은 소비자",
@@ -118,7 +118,7 @@
     },
     {
       "rule_id": "rule.consumer-online-contracts.rule-return-cost",
-      "title_ko": "단순변심 철회의 반환비용과 표시·광고 또는 계약 불일치 철회의 반환비용은 부…",
+      "title_ko": "반품비용의 부담 주체",
       "proposition_ko": "단순변심 철회의 반환비용과 표시·광고 또는 계약 불일치 철회의 반환비용은 부담 주체가 다르다.",
       "norm": {
         "actor_ko": "청약철회로 재화를 반환하는 소비자와 통신판매업자",
@@ -131,7 +131,7 @@
     },
     {
       "rule_id": "rule.consumer-online-contracts.rule-withdrawal-exceptions",
-      "title_ko": "소비자 책임의 훼손, 사용으로 인한 현저한 가치 감소, 시간 경과로 재판매 …",
+      "title_ko": "청약철회 제한 사유",
       "proposition_ko": "소비자 책임의 훼손, 사용으로 인한 현저한 가치 감소, 시간 경과로 재판매 곤란, 복제가능 재화의 포장 훼손, 디지털콘텐츠 제공 개시 등에는 철회 제한이 문제될 수 있다.",
       "norm": {
         "actor_ko": "통신판매로 재화·용역 또는 디지털콘텐츠를 구매한 소비자와 통신판매업자",
@@ -144,7 +144,7 @@
     },
     {
       "rule_id": "rule.consumer-online-contracts.rule-exception-disclosure",
-      "title_ko": "일부 철회 제한 사유는 판매자가 제한 사실을 명확히 표시하거나 시험 사용 상…",
+      "title_ko": "철회 제한의 고지의무",
       "proposition_ko": "일부 철회 제한 사유는 판매자가 제한 사실을 명확히 표시하거나 시험 사용 상품 제공 등 필요한 조치를 하지 않으면 주장할 수 없다.",
       "norm": {
         "actor_ko": "청약철회 제한을 주장하려는 통신판매업자와 구매 소비자",
@@ -157,7 +157,7 @@
     },
     {
       "rule_id": "rule.consumer-online-contracts.rule-refund-3businessdays",
-      "title_ko": "철회 후 환급 기준일은 거래유형에 따라 다르지만 통신판매업자는 해당 기준일부…",
+      "title_ko": "철회 후 환급기한",
       "proposition_ko": "철회 후 환급 기준일은 거래유형에 따라 다르지만 통신판매업자는 해당 기준일부터 3영업일 이내 환급해야 한다.",
       "norm": {
         "actor_ko": "청약철회 통지를 받고 반환 재화 또는 철회의사를 확인한 통신판매업자",
@@ -170,7 +170,7 @@
     },
     {
       "rule_id": "rule.consumer-online-contracts.rule-supply-timeline",
-      "title_ko": "별도 공급시기 약정이 없다면 통신판매업자는 청약일부터 7일 이내, 선지급식 …",
+      "title_ko": "재화 공급기한",
       "proposition_ko": "별도 공급시기 약정이 없다면 통신판매업자는 청약일부터 7일 이내, 선지급식 거래는 대금 지급일부터 3영업일 이내 공급에 필요한 조치를 해야 한다.",
       "norm": {
         "actor_ko": "온라인 주문을 받은 통신판매업자와 대금을 지급한 소비자",
@@ -185,7 +185,7 @@
     },
     {
       "rule_id": "rule.consumer-online-contracts.rule-recurring-payment-change",
-      "title_ko": "정기결제 금액 증액이나 무료 제공 후 유료 전환 전에는 정해진 기간 내 가격…",
+      "title_ko": "정기결제 증액·유료전환 고지",
       "proposition_ko": "정기결제 금액 증액이나 무료 제공 후 유료 전환 전에는 정해진 기간 내 가격·결제방법 등에 대한 동의와 해지 조건 고지가 필요하다.",
       "norm": {
         "actor_ko": "무료체험 또는 정기결제를 제공하는 사업자와 결제 전환 대상 소비자",
@@ -200,7 +200,7 @@
     },
     {
       "rule_id": "rule.consumer-online-contracts.rule-platform-information",
-      "title_ko": "통신판매중개자는 자신이 거래 당사자가 아니라는 점을 고지하고 사업자 판매자의…",
+      "title_ko": "통신판매중개자의 정보확인 의무",
       "proposition_ko": "통신판매중개자는 자신이 거래 당사자가 아니라는 점을 고지하고 사업자 판매자의 신원정보를 확인·제공해야 한다. 2026년 7월 21일부터 개인 간 거래에서는 개인 판매자 신원정보를 확인하고, 분쟁 시 법이 정한 요청 주체에게 신원정보와 거래내역을 제공해 해결에 협조해야 한다.",
       "norm": {
         "actor_ko": "개인 간 거래를 중개하는 통신판매중개업자와 개인 판매자·거래 당사자",
@@ -454,7 +454,7 @@
         "hub.consumer-online-contracts"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "광고와 다른 상품을 받았을 때 반품 기간",
         "decision_facts_ko": [
           "상품 공급일",
@@ -465,7 +465,8 @@
           "사용 여부",
           "판매자와 대화 기록"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -601,7 +602,7 @@
         "hub.consumer-online-contracts"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "전자책·영상·게임 콘텐츠는 결제 후 바로 환불할 수 있나",
         "decision_facts_ko": [
           "콘텐츠 종류",
@@ -612,7 +613,8 @@
           "철회 제한 표시",
           "시험 사용 제공 여부"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -754,7 +756,7 @@
         "hub.consumer-online-contracts"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "반품한 뒤 환불은 언제까지 받아야 하나",
         "decision_facts_ko": [
           "거래가 재화·용역·디지털콘텐츠 중 무엇인지",
@@ -766,7 +768,8 @@
           "실제 환급일",
           "공제 내역"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -838,7 +841,7 @@
         "hub.consumer-online-contracts"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "결제했는데 배송되지 않을 때 확인할 순서",
         "decision_facts_ko": [
           "청약일",
@@ -849,7 +852,8 @@
           "공급곤란 인지·통지일",
           "환급조치일"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -1065,7 +1069,7 @@
         "hub.consumer-online-contracts"
       ],
       "related_content_ids": [],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "온라인 구매 분쟁 증거 체크리스트",
         "decision_facts_ko": [
           "상품 상세페이지",
@@ -1079,7 +1083,8 @@
           "고객센터 답변",
           "환급 내역"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     }
   ]
