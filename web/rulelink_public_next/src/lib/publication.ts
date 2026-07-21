@@ -137,14 +137,25 @@ export async function entriesForKnowledgeHub(hub: PublicKnowledgeHub): Promise<P
 export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
   rules: PublicRuleCard[];
   scenarios: PublicScenarioBranch[];
+  scenarioRules: Record<string, PublicRuleCard[]>;
   sources: PublicKnowledgeSource[];
   hubs: PublicKnowledgeHub[];
   related: PublicKnowledgeEntry[];
 }> {
   const knowledge = (await loadPublishedBundle())?.knowledge;
-  if (!knowledge) return {rules: [], scenarios: [], sources: [], hubs: [], related: []};
+  if (!knowledge) return {rules: [], scenarios: [], scenarioRules: {}, sources: [], hubs: [], related: []};
   const ruleIds = new Set(entry.rule_ids);
   const scenarioIds = new Set(entry.scenario_ids);
+  const scenarios = knowledge.scenario_branches.filter(scenario => scenarioIds.has(scenario.scenario_id));
+  const ruleById = new Map(knowledge.rule_cards.map(rule => [rule.rule_id, rule]));
+  const scenarioRules = Object.fromEntries(
+    scenarios.map(scenario => [
+      scenario.scenario_id,
+      scenario.rule_ids
+        .map(ruleId => ruleById.get(ruleId))
+        .filter((rule): rule is PublicRuleCard => Boolean(rule)),
+    ]),
+  );
   const sourceIds = new Set(entry.source_coordinate_ids);
   const hubIds = new Set(entry.hub_ids);
   const hubs = knowledge.topic_hubs.filter(hub => hubIds.has(hub.hub_id));
@@ -165,7 +176,8 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
     .slice(0, 6);
   return {
     rules: knowledge.rule_cards.filter(rule => ruleIds.has(rule.rule_id)),
-    scenarios: knowledge.scenario_branches.filter(scenario => scenarioIds.has(scenario.scenario_id)),
+    scenarios,
+    scenarioRules,
     sources: knowledge.sources.filter(source => sourceIds.has(source.coordinate_id)),
     hubs,
     related,
