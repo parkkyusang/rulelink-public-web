@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - web/rulelink_public_next/deploy/release.json
   workflow_dispatch:
 
 permissions:

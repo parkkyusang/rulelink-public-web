@@ -73,7 +73,7 @@ http://127.0.0.1:8801/editorial
 https://rulelink.lolphysical.xyz
 ```
 
-운영 배포의 기준 저장소는 `parkkyusang/rulelink-public-web`이다. 기능과 운영 번들은 별도 브랜치와 PR로 올리고, 공개 번들 차단 규칙 테스트·타입 검사·정적 빌드·공개 경로 스모크 검사가 모두 통과한 경우에만 `main`에 병합한다. 일반 `codex/*` 브랜치는 GitHub Actions만 실행하고 Vercel 미리보기를 만들지 않는다. 실제 브라우저 시각 검수가 필요한 변경만 `preview-*` 브랜치를 사용한다. `main` 병합 뒤에는 Vercel 운영 배포 성공과 실제 공개 스냅샷을 확인한다.
+운영 배포의 기준 저장소는 `parkkyusang/rulelink-public-web`이다. 기능과 운영 번들은 별도 브랜치와 PR로 올리고, 공개 번들 차단 규칙 테스트·타입 검사·정적 빌드·공개 경로 스모크 검사가 모두 통과한 경우에만 `main`에 병합한다. 일반 `codex/*` 브랜치는 GitHub Actions만 실행하고 Vercel 미리보기를 만들지 않는다. `main`은 검증된 변경을 계속 축적하되 매 커밋을 운영 빌드하지 않는다. 실제 운영 공개는 `web/rulelink_public_next/deploy/release.json`을 갱신한 명시적 공개 PR에서만 실행하고, 이때 누적된 최신 `main` 전체와 실제 공개 스냅샷을 확인한다. 브라우저 시각 검수가 필요한 변경만 `preview-*` 브랜치를 사용한다.
 
 운영본의 승인 출판 스냅샷과 공개 콘텐츠 수는 다음 기계 판독 주소에서 확인한다.
 

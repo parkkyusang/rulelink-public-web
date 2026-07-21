@@ -1,0 +1,7 @@
+{
+  "schema": "rulelink_public_release_v1",
+  "release_id": "production-20260721-001",
+  "snapshot_id": "kr-knowledge-core-20260721-012",
+  "requested_at": "2026-07-21T11:20:00Z",
+  "summary_ko": "생활법률 60개, 근거 인식 검색, 통합 근거 해석, 공식 근거 보관함을 운영 공개한다."
+}

@@ -52,6 +52,15 @@ export async function main() {
     ? path.resolve(process.env.RULELINK_EXPECTED_BUNDLE)
     : path.resolve(process.cwd(), '..', '..', 'artifacts', 'publication', 'current', 'bundle.json');
   const bundle = JSON.parse(await readFile(bundlePath, 'utf8'));
+  const releasePath = process.env.RULELINK_RELEASE_MARKER
+    ? path.resolve(process.env.RULELINK_RELEASE_MARKER)
+    : path.resolve(process.cwd(), 'deploy', 'release.json');
+  const release = JSON.parse(await readFile(releasePath, 'utf8'));
+  assert(release.schema === 'rulelink_public_release_v1', '운영 공개 표식 스키마가 다릅니다.');
+  assert(
+    release.snapshot_id === bundle.snapshot_id,
+    `운영 공개 표식과 현재 번들의 스냅샷이 다릅니다: marker=${release.snapshot_id}, bundle=${bundle.snapshot_id}`,
+  );
   const attempts = positiveInteger(process.env.RULELINK_LIVE_SMOKE_ATTEMPTS, 42);
   const delayMs = positiveInteger(process.env.RULELINK_LIVE_SMOKE_DELAY_MS, 10000);
   let lastError;
@@ -72,7 +81,7 @@ export async function main() {
       }
 
       process.stdout.write(
-        `## 운영 실주소 점검 통과\n\n- 스냅샷: \`${bundle.snapshot_id}\`\n- 공개 경로: ${routes.length}개\n- 주소: ${baseUrl.origin}\n`,
+        `## 운영 실주소 점검 통과\n\n- 공개 식별자: \`${release.release_id}\`\n- 스냅샷: \`${bundle.snapshot_id}\`\n- 공개 경로: ${routes.length}개\n- 주소: ${baseUrl.origin}\n`,
       );
       return;
     } catch (error) {
