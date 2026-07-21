@@ -150,8 +150,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .knowledgeHero h1 {font-size: clamp(38px,6vw,61px); letter-spacing: -.055em; line-height: 1.16; margin: 0 0 24px;}
 .knowledgeHero > p:not(.eyebrow) {color: var(--muted); font-size: 20px; line-height: 1.7; max-width: 820px;}
 .audienceBadge {background: var(--mint); border-radius: 999px; color: var(--green); display: inline-flex; font-size: 12px; font-weight: 750; margin-top: 18px; padding: 8px 12px;}
+.knowledgeSectionNav {align-items: center; backdrop-filter: blur(14px); background: rgba(255,255,255,.9); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 10px 30px rgba(20,55,40,.07); display: flex; gap: 5px; margin-top: 18px; overflow-x: auto; padding: 7px; position: sticky; scrollbar-width: thin; top: 10px; z-index: 5;}
+.knowledgeSectionNav > span {color: var(--muted); flex: 0 0 auto; font-size: 11px; font-weight: 800; letter-spacing: .04em; padding: 9px 10px;}
+.knowledgeSectionNav a {border-radius: 9px; color: var(--muted); flex: 0 0 auto; font-size: 12px; font-weight: 750; padding: 9px 11px;}
+.knowledgeSectionNav a:hover {background: var(--mint); color: var(--green);}
 .knowledgeLayout {display: grid; gap: 52px; grid-template-columns: minmax(0,1.7fr) minmax(270px,.75fr); padding-top: 20px;}
-.knowledgeSection {border-bottom: 1px solid var(--line); padding: 38px 0;}
+.knowledgeSection {border-bottom: 1px solid var(--line); padding: 38px 0; scroll-margin-top: 82px;}
 .knowledgeSection h2 {font-size: 29px; letter-spacing: -.04em; margin: 0 0 24px;}
 .ruleStack, .branchStack {display: grid; gap: 14px;}
 .ruleCard, .branchCard {background: var(--white); border: 1px solid var(--line); border-radius: 17px; padding: 25px;}
@@ -165,12 +169,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .branchOutcomes {display: grid; gap: 10px; grid-template-columns: 1fr 1fr; margin-top: 20px;}
 .branchOutcomes p {background: #f5f8f6; border-radius: 11px; line-height: 1.6; margin: 0; padding: 15px;}
 .branchOutcomes b {color: var(--green); display: block; font-size: 11px; margin-bottom: 7px;}
-.knowledgeAside {padding-top: 38px;}
+.knowledgeAside {align-self: start; padding-top: 38px; position: sticky; top: 76px;}
+
 .conciergePanel {background: var(--green-dark); border-radius: 18px; color: white; padding: 24px;}
 .conciergePanel h2 {font-size: 21px; line-height: 1.45; margin: 0 0 18px;}
 .conciergePanel ul {color: #d9ebe1; font-size: 13px; line-height: 1.6; padding-left: 18px;}
 .conciergePanel a {border-top: 1px solid rgba(255,255,255,.18); color: #8fd2af; display: block; font-size: 13px; font-weight: 750; margin-top: 20px; padding-top: 18px;}
-.knowledgeSources {border-top: 1px solid var(--line); margin-top: 24px; padding-top: 22px;}
+.knowledgeSources {border-top: 1px solid var(--line); margin-top: 24px; padding-top: 22px; scroll-margin-top: 82px;}
 .knowledgeSources h2 {font-size: 17px;}
 .knowledgeSources a {color: var(--green); display: block; font-size: 13px; font-weight: 750; padding: 8px 0;}
 .methodPage {margin: 0 auto; max-width: 1080px; padding: 34px 24px 100px;}
@@ -276,6 +281,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   .normDeltaRow {grid-template-columns: 1fr;}
   .normVersion {border-left: 0; border-top: 1px solid var(--line);}
   .normSlots, .branchOutcomes {grid-template-columns: 1fr;}
+  .knowledgeSectionNav {border-left: 0; border-radius: 0; border-right: 0; margin-left: -18px; margin-right: -18px; padding-left: 12px; padding-right: 12px; top: 0;}
+  .knowledgeAside {position: static;}
   .sectionHeading {align-items: start; flex-direction: column; gap: 12px;}
   .sectionNav {overflow-x: auto; position: static;}
   .sectionNav a {flex: 0 0 auto;}
