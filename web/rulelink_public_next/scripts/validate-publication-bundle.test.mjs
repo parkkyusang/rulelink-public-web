@@ -50,6 +50,22 @@ test('공개 지식의 끊어진 참조를 거부한다', async () => {
   assert.match(result.stderr, /존재하지 않는 참조/);
 });
 
+test('공개 지식의 실천 안내가 부족하면 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  bundle.knowledge.content_entries[0].action_steps_ko = [];
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /action_steps_ko는 2개 이상/);
+});
+
+test('공개 지식의 완성 본문이 비어 있으면 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  bundle.knowledge.content_entries[0].body_sections[0].paragraphs_ko = [];
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /paragraphs_ko는 1개 이상/);
+});
+
 test('허용되지 않은 컨시어지 주소를 거부한다', async () => {
   const bundle = knowledgeBundle();
   bundle.knowledge.content_entries[0].concierge_entry.href = 'https://example.com/review';
@@ -321,6 +337,15 @@ function knowledgeBundle() {
         title_ko: '검증 콘텐츠',
         one_line_answer_ko: '검증 콘텐츠입니다.',
         audience_situation_ko: '법률정보를 찾는 경우',
+        key_points_ko: ['적용 기준을 확인합니다.', '사실관계를 구분합니다.'],
+        action_steps_ko: ['기준일을 확인합니다.', '관련 자료를 보관합니다.'],
+        facts_to_check_ko: ['기준일', '당사자 지위'],
+        caution_ko: '구체적인 사실에 따라 결론이 달라질 수 있습니다.',
+        search_intents_ko: ['검증 콘텐츠'],
+        body_sections: [{
+          heading_ko: '판단 순서',
+          paragraphs_ko: ['기준과 사실을 순서대로 대조합니다.'],
+        }],
         rule_ids: ['rule.one'],
         scenario_ids: ['scenario.one'],
         source_coordinate_ids: ['source.one'],
