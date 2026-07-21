@@ -144,10 +144,10 @@ $env:NEXT_PUBLIC_RULELINK_SITE_URL='https://rulelink.lolphysical.xyz'
 ## 현재 공개본
 
 <!-- RULELINK_PUBLICATION_STATUS:START -->
-저장소의 승인 출판본 `kr-knowledge-core-20260721-020`에는 다음 공개 데이터가 연결되어 있다.
+저장소의 승인 출판본 `kr-knowledge-core-20260721-021`에는 다음 공개 데이터가 연결되어 있다.
 
-- 최근 시행·시행 예정 법령변화: 1건
-- 연결 주장: 3개
+- 최근 시행·시행 예정 법령변화: 5건
+- 연결 주장: 11개
 - 생활법률 지식: 143개
 - 주제 허브: 14개
 - 법리카드: 130개
