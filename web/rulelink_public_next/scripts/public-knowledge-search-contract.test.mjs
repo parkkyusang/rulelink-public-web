@@ -13,6 +13,8 @@ const [bundle, projectionSource, siteSearchSource, knowledgeExplorerSource] = aw
 ]);
 
 test('공개 지식 검색 투영은 콘텐츠에서 사실분기·법리·공식 근거까지 연결한다', () => {
+  assert.match(projectionSource, /resolveKnowledgeEntryGraph/);
+  assert.match(projectionSource, /createKnowledgeEntryResolver/);
   assert.match(projectionSource, /entry\.scenario_ids/);
   assert.match(projectionSource, /scenario\.rule_ids/);
   assert.match(projectionSource, /rule\.source_coordinate_ids/);
