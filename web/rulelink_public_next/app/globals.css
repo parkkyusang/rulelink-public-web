@@ -9,6 +9,13 @@
   --surface-soft: #f5f8f6;
   --line: #dce5df;
   --white: #fff;
+  --muted-soft: #6f7f77;
+  --muted-strong: #466057;
+  --line-strong: #b9c8c0;
+  --line-hover: #9bb8a8;
+  --surface-count: #e9f0ec;
+  --surface-evidence: #eef4f1;
+  --evidence-ink: #315548;
   --blue: #173f7a;
   --blue-surface: #eef3ff;
   --amber-surface: #fff4e1;
@@ -16,10 +23,16 @@
   --focus-ring: 0 0 0 3px rgba(20, 92, 63, .22);
   --shadow-card: 0 18px 45px rgba(20, 55, 40, .09);
   --radius-card: 18px;
+  --radius-control: 13px;
+  --radius-pill: 999px;
+  --shadow-card-soft: 0 16px 38px rgba(20, 55, 40, .07);
+  --focus-field: 0 0 0 3px rgba(20, 92, 63, .1);
+  --font-body: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
 }
 
 * {box-sizing: border-box;}
-html {background: var(--cream); color: var(--ink); font-family: "Pretendard", "Noto Sans KR", system-ui, sans-serif; text-rendering: optimizeLegibility;}
+html {background: var(--cream); color: var(--ink); font-family: var(--font-body); text-rendering: optimizeLegibility;}
 body {background: linear-gradient(180deg, #fbfaf5 0, var(--cream) 620px); line-height: 1.5; margin: 0; min-height: 100vh; -webkit-font-smoothing: antialiased;}
 a {color: inherit; text-decoration: none;}
 button, input {font: inherit;}
@@ -28,7 +41,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 ::selection {background: #bfe5d0; color: var(--green-dark);}
 .previewBanner {background: #8a3b12; color: white; font-size: 12px; font-weight: 750; letter-spacing: .02em; padding: 9px 18px; text-align: center;}
 .siteHeader {align-items: baseline; display: flex; gap: 12px; margin: 0 auto; max-width: 1180px; padding: 28px 24px;}
-.brand {font-family: Georgia, serif; font-size: 29px; font-weight: 700; letter-spacing: -.04em;}
+.brand {font-family: var(--font-display); font-size: 29px; font-weight: 700; letter-spacing: -.04em;}
 .siteNav {display: flex; gap: 24px; margin-left: auto;}
 .siteNav a {border-radius: 7px; color: var(--muted); font-size: 13px; font-weight: 700; padding: 5px 3px; transition: color .18s ease;}
 .siteNav a:hover {color: var(--green);}
@@ -39,14 +52,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .heroCopy {color: #d9ebe1; font-size: 18px; line-height: 1.7; margin: 28px 0 0; max-width: 620px;}
 .trustRail {border-top: 1px solid rgba(255,255,255,.18); display: flex; gap: 34px; margin-top: 42px; padding-top: 22px; position: relative; z-index: 1;}
 .trustRail span {align-items: center; color: #d9ebe1; display: flex; font-size: 13px; gap: 8px;}
-.trustRail b {color: #8fd2af; font-family: Georgia, serif; font-size: 12px;}
+.trustRail b {color: #8fd2af; font-family: var(--font-display); font-size: 12px;}
 .entrySection {margin: 0 auto 76px; max-width: 1180px; padding: 0 24px;}
 .entryIntro {max-width: 760px;}
 .entryIntro h2 {font-size: 31px; letter-spacing: -.04em; line-height: 1.35; margin: 0 0 26px;}
 .entryGrid {display: grid; gap: 14px; grid-template-columns: repeat(3,1fr);}
 .entryGrid a {background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-card); display: flex; flex-direction: column; min-height: 250px; padding: 25px; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;}
 .entryGrid a:hover {border-color: #9bb8a8; box-shadow: var(--shadow-card); transform: translateY(-2px);}
-.entryGrid span {color: var(--green); font-family: Georgia,serif; font-size: 12px; font-weight: 750;}
+.entryGrid span {color: var(--green); font-family: var(--font-display); font-size: 12px; font-weight: 750;}
 .entryGrid h3 {font-size: 23px; letter-spacing: -.035em; margin: 34px 0 12px;}
 .entryGrid p {color: var(--muted); line-height: 1.65; margin: 0;}
 .entryGrid strong {color: var(--green); font-size: 13px; margin-top: auto; padding-top: 25px;}
@@ -200,14 +213,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .methodHero > p:not(.eyebrow) {color: var(--muted); font-size: 19px; line-height: 1.7; max-width: 720px;}
 .methodGrid {display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr);}
 .methodGrid article {background: var(--white); border: 1px solid var(--line); border-radius: 18px; min-height: 220px; padding: 28px;}
-.methodGrid article > span {color: var(--green); font-family: Georgia, serif; font-size: 13px; font-weight: 700;}
+.methodGrid article > span {color: var(--green); font-family: var(--font-display); font-size: 13px; font-weight: 700;}
 .methodGrid h2 {font-size: 23px; margin: 42px 0 12px;}
 .methodGrid p {color: var(--muted); line-height: 1.7; margin: 0;}
 .methodSection {border-top: 1px solid var(--line); display: grid; gap: 50px; grid-template-columns: .9fr 1.1fr; margin-top: 72px; padding-top: 56px;}
 .methodSection h2 {font-size: 31px; letter-spacing: -.04em; line-height: 1.35; margin: 0;}
 .methodFlow {display: grid; gap: 10px;}
 .methodFlow p {align-items: center; background: var(--white); border: 1px solid var(--line); border-radius: 13px; display: flex; gap: 16px; margin: 0; padding: 17px 19px;}
-.methodFlow b {color: var(--green); font-family: Georgia, serif; font-size: 12px;}
+.methodFlow b {color: var(--green); font-family: var(--font-display); font-size: 12px;}
 .methodFlow span {font-size: 14px; line-height: 1.55;}
 .methodNotice {background: var(--mint); border-radius: 18px; margin-top: 64px; padding: 28px 32px;}
 .methodNotice p {color: var(--muted); line-height: 1.7; margin: 8px 0 0;}
@@ -267,7 +280,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .clusterArticles {color: var(--green) !important; font-weight: 750;}
 .itemHeading {border-top: 1px solid var(--line); padding: 48px 0 24px;}
 .editorialRow {align-items: center; background: var(--white); border: 1px solid var(--line); border-radius: 15px; display: grid; gap: 20px; grid-template-columns: 45px minmax(0,1fr) auto; padding: 20px;}
-.editorialRank {color: var(--muted); font-family: Georgia,serif; font-size: 13px;}
+.editorialRank {color: var(--muted); font-family: var(--font-display); font-size: 13px;}
 .editorialMain h2 {font-size: 20px; margin: 9px 0;}
 .editorialMain p {color: var(--muted); font-size: 13px; line-height: 1.6; margin: 5px 0;}
 .editorialMain p b {color: var(--ink); margin-right: 7px;}
