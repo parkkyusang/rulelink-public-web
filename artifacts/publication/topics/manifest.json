@@ -41,6 +41,10 @@
     {
       "topic_id": "hub.debt-enforcement",
       "file": "debt-enforcement.json"
+    },
+    {
+      "topic_id": "hub.real-estate-sale",
+      "file": "real-estate-sale.json"
     }
   ],
   "content_entry_topic_order": [
@@ -53,6 +57,7 @@
     "hub.shared-mobility-accident",
     "hub.everyday-damages",
     "hub.divorce-parenting",
-    "hub.debt-enforcement"
+    "hub.debt-enforcement",
+    "hub.real-estate-sale"
   ]
 }
