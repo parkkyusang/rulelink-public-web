@@ -54,17 +54,42 @@ try {
     assert(!homeHtml.includes('검토된 법률정보를 준비하고 있습니다.'), '공개 지식이 있는데 준비 중 빈 화면을 표시합니다.');
   }
 
-  const routes = new Set(['/', '/ko/method', '/ko/search', '/publication.json', '/robots.txt']);
-  for (const card of bundle.cards ?? []) routes.add(`/ko/issues/${card.slug}`);
-  for (const brief of bundle.change_briefs ?? []) routes.add(`/ko/changes/${brief.slug}`);
-  for (const entry of bundle.knowledge?.content_entries ?? []) routes.add(`/ko/knowledge/${entry.slug}`);
-  for (const hub of bundle.knowledge?.topic_hubs ?? []) routes.add(`/ko/hubs/${hub.slug}`);
-  for (const topic of bundle.catalog?.topics ?? []) routes.add(`/ko/topics/${topic.slug}`);
-  if ((bundle.change_briefs?.length ?? 0) > 0) {
-    routes.add('/ko/changes');
-    routes.add('/feed.xml');
+  const indexableRoutes = new Set(['/', '/ko/method', '/ko/search']);
+  for (const card of bundle.cards ?? []) indexableRoutes.add(`/ko/issues/${card.slug}`);
+  for (const brief of bundle.change_briefs ?? []) indexableRoutes.add(`/ko/changes/${brief.slug}`);
+  for (const entry of bundle.knowledge?.content_entries ?? []) indexableRoutes.add(`/ko/knowledge/${entry.slug}`);
+  for (const hub of bundle.knowledge?.topic_hubs ?? []) indexableRoutes.add(`/ko/hubs/${hub.slug}`);
+  for (const topic of bundle.catalog?.topics ?? []) indexableRoutes.add(`/ko/topics/${topic.slug}`);
+  if ((bundle.change_briefs?.length ?? 0) > 0) indexableRoutes.add('/ko/changes');
+  if ((bundle.knowledge?.content_entries?.length ?? 0) > 0) indexableRoutes.add('/ko/knowledge');
+
+  const routes = new Set([...indexableRoutes, '/publication.json', '/robots.txt', '/sitemap.xml']);
+  const feedItems = [
+    ...(bundle.change_briefs ?? []).map(item => `/ko/changes/${item.slug}`),
+    ...(bundle.knowledge?.content_entries ?? []).map(item => `/ko/knowledge/${item.slug}`),
+  ];
+  if (feedItems.length) routes.add('/feed.xml');
+
+  if (feedItems.length) {
+    const feedResponse = await fetch(`${baseUrl}/feed.xml`, {cache: 'no-store'});
+    assert(feedResponse.ok, `RSS 응답 실패: ${feedResponse.status}`);
+    const feedXml = await feedResponse.text();
+    for (const route of feedItems) {
+      assert(feedXml.includes(route), `RSS에서 공개 콘텐츠가 누락됐습니다: ${route}`);
+    }
   }
-  if ((bundle.knowledge?.content_entries?.length ?? 0) > 0) routes.add('/ko/knowledge');
+
+  const sitemapResponse = await fetch(`${baseUrl}/sitemap.xml`, {cache: 'no-store'});
+  assert(sitemapResponse.ok, `사이트맵 응답 실패: ${sitemapResponse.status}`);
+  const sitemapXml = await sitemapResponse.text();
+  if (sitemapXml.includes('<loc>')) {
+    for (const route of indexableRoutes) {
+      assert(sitemapXml.includes(route), `사이트맵에서 공개 경로가 누락됐습니다: ${route}`);
+    }
+    const robotsResponse = await fetch(`${baseUrl}/robots.txt`, {cache: 'no-store'});
+    assert(robotsResponse.ok, `robots.txt 응답 실패: ${robotsResponse.status}`);
+    assert((await robotsResponse.text()).includes('sitemap.xml'), 'robots.txt가 사이트맵을 알리지 않습니다.');
+  }
 
   for (const route of routes) {
     const response = await fetch(`${baseUrl}${route}`, {redirect: 'follow'});
