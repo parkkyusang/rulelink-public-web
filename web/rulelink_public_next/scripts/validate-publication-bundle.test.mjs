@@ -135,6 +135,34 @@ test('미래 근거 점검시각을 거부한다', async () => {
   assert.match(result.stderr, /검증 기준시각보다 미래/);
 });
 
+
+test('법령변화의 끊어진 문제카드 참조를 거부한다', async () => {
+  const bundle = baseBundle();
+  bundle.change_briefs = [changeBrief({related_issue_card_ids: ['issue.missing']})];
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /related_issue_card_ids.*존재하지 않는 참조/);
+});
+
+test('공개 주제의 끊어진 문제카드 참조를 거부한다', async () => {
+  const bundle = baseBundle();
+  bundle.catalog = {
+    schema: 'rulelink_public_catalog_v1',
+    topics: [{topic_id: 'topic.one', issue_card_ids: ['issue.missing']}],
+  };
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /공개 주제.*존재하지 않는 참조/);
+});
+
+test('승인 문제카드와 법령변화의 정상 연결을 허용한다', async () => {
+  const bundle = baseBundle();
+  bundle.cards = [issueCard()];
+  bundle.change_briefs = [changeBrief({related_issue_card_ids: ['issue.one']})];
+  const result = await validate(bundle);
+  assert.equal(result.status, 0, result.stderr);
+});
+
 async function validate(payload) {
   const taskTemp = await mkdtemp(path.join(tmpdir(), 'rulelink-publication-guard-'));
   const bundlePath = path.join(taskTemp, 'bundle.json');
@@ -170,6 +198,18 @@ function baseBundle() {
 }
 
 
+
+function issueCard(overrides = {}) {
+  return {
+    issue_card_id: 'issue.one',
+    editorial_status: 'approved',
+    reviewed_at: '2026-07-21T09:00:00+09:00',
+    expires_at: '2026-10-21T00:00:00+09:00',
+    assertion_ids: [],
+    ...overrides,
+  };
+}
+
 function changeBrief(overrides = {}) {
   return {
     change_brief_id: 'brief.lifecycle',
@@ -178,6 +218,7 @@ function changeBrief(overrides = {}) {
     effective_date: '2026-08-01',
     reviewed_at: '2026-07-21T09:00:00+09:00',
     expires_at: '2026-10-21T00:00:00+09:00',
+    related_issue_card_ids: [],
     assertion_ids: [],
     ...overrides,
   };

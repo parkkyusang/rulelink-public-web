@@ -39,6 +39,7 @@ export function validatePublishedBundle(value, options = {}) {
   const cards = requireArray(value, 'cards', errors);
   const assertions = requireArray(value, 'assertions', errors);
   const briefs = optionalArray(value, 'change_briefs', errors);
+  const cardIds = uniqueIds(cards, 'issue_card_id', '문제카드', errors);
   const assertionIds = uniqueIds(assertions, 'assertion_id', '주장', errors);
   validateAssertions(assertions, now, errors);
 
@@ -64,12 +65,31 @@ export function validatePublishedBundle(value, options = {}) {
     }
     checkReviewWindow(brief, `법령변화 브리핑 ${label(brief, 'change_brief_id')}`, now, errors);
     checkChangeLifecycle(brief, now, errors);
+    checkReferences(brief.related_issue_card_ids, cardIds, `법령변화 브리핑 ${label(brief, 'change_brief_id')}의 related_issue_card_ids`, errors);
     checkReferences(brief.assertion_ids, assertionIds, `법령변화 브리핑 ${label(brief, 'change_brief_id')}의 assertion_ids`, errors);
   }
 
+  if (value.catalog !== undefined) validateCatalog(value.catalog, cardIds, errors);
   if (value.knowledge !== undefined) validateKnowledge(value.knowledge, now, errors);
   scanForInternalData(value, '$', errors);
   return [...new Set(errors)];
+}
+
+
+function validateCatalog(value, cardIds, errors) {
+  if (!isRecord(value)) {
+    errors.push('catalog는 객체여야 합니다.');
+    return;
+  }
+  if (value.schema !== 'rulelink_public_catalog_v1') {
+    errors.push('catalog.schema은 rulelink_public_catalog_v1이어야 합니다.');
+  }
+  const topics = requireArray(value, 'topics', errors, 'catalog');
+  uniqueIds(topics, 'topic_id', '공개 주제', errors);
+  for (const topic of topics) {
+    if (!isRecord(topic)) continue;
+    checkReferences(topic.issue_card_ids, cardIds, `공개 주제 ${label(topic, 'topic_id')}의 issue_card_ids`, errors);
+  }
 }
 
 function validateKnowledge(value, now, errors) {

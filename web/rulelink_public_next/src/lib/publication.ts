@@ -87,6 +87,21 @@ export async function assertionsForChangeBrief(brief: LegalChangeBrief): Promise
   return bundle.assertions.filter(assertion => allowed.has(assertion.assertion_id));
 }
 
+
+export async function relatedCardsForChangeBrief(brief: LegalChangeBrief, limit = 6): Promise<LegalIssueCard[]> {
+  const cardsById = new Map((await listPublishedCards()).map(card => [card.issue_card_id, card]));
+  return brief.related_issue_card_ids
+    .map(cardId => cardsById.get(cardId))
+    .filter((card): card is LegalIssueCard => Boolean(card))
+    .slice(0, limit);
+}
+
+export async function relatedChangeBriefsForCard(card: LegalIssueCard, limit = 6): Promise<LegalChangeBrief[]> {
+  return (await listChangeBriefs())
+    .filter(brief => brief.related_issue_card_ids.includes(card.issue_card_id))
+    .slice(0, limit);
+}
+
 export async function listKnowledgeEntries(): Promise<PublicKnowledgeEntry[]> {
   return (await loadPublishedBundle())?.knowledge?.content_entries ?? [];
 }
@@ -129,7 +144,11 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
   ];
   const seenRelatedIds = new Set<string>();
   const related = relatedIds
-    .filter(contentId => contentId !== entry.content_id && !seenRelatedIds.has(contentId) && seenRelatedIds.add(contentId))
+    .filter(contentId => {
+      if (contentId === entry.content_id || seenRelatedIds.has(contentId)) return false;
+      seenRelatedIds.add(contentId);
+      return true;
+    })
     .map(contentId => entryById.get(contentId))
     .filter((candidate): candidate is PublicKnowledgeEntry => Boolean(candidate))
     .slice(0, 6);

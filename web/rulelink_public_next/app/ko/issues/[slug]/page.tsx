@@ -1,7 +1,7 @@
 import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
-import {assertionsForCard, findPublishedCard, listPublishedCards, relatedCardsForCard, topicsForCard} from '@/lib/publication';
+import {assertionsForCard, findPublishedCard, listPublishedCards, relatedCardsForCard, relatedChangeBriefsForCard, topicsForCard} from '@/lib/publication';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
@@ -33,10 +33,11 @@ export async function generateMetadata({params}: PageProps): Promise<Metadata> {
 export default async function IssuePage({params}: PageProps) {
   const card = await findPublishedCard((await params).slug);
   if (!card) notFound();
-  const [assertions, topics, relatedCards] = await Promise.all([
+  const [assertions, topics, relatedCards, relatedChangeBriefs] = await Promise.all([
     assertionsForCard(card),
     topicsForCard(card),
     relatedCardsForCard(card),
+    relatedChangeBriefsForCard(card),
   ]);
   const primaryTopic = topics[0];
   const canonicalUrl = `${site.url}/ko/issues/${card.slug}`;
@@ -114,6 +115,21 @@ export default async function IssuePage({params}: PageProps) {
           ))}
         </aside>
       </div>
+
+      {relatedChangeBriefs.length ? (
+        <section className="relatedSection">
+          <p className="eyebrow">이 문제에 영향을 주는 법령 변화</p>
+          <h2>시행 전후 달라지는 내용을 함께 확인하세요.</h2>
+          <div className="relatedGrid">
+            {relatedChangeBriefs.map(brief => (
+              <a href={`/ko/changes/${brief.slug}`} key={brief.change_brief_id}>
+                <strong>{brief.title_ko}</strong>
+                <span>{brief.lifecycle === 'future_effective' ? '시행 예정' : '최근 시행'} · {formatDate(brief.effective_date)}</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {relatedCards.length ? (
         <section className="relatedSection">

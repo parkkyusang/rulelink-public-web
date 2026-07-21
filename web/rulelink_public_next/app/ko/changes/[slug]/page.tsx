@@ -1,7 +1,7 @@
 import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
-import {assertionsForChangeBrief, findChangeBrief, listChangeBriefs} from '@/lib/publication';
+import {assertionsForChangeBrief, findChangeBrief, listChangeBriefs, relatedCardsForChangeBrief} from '@/lib/publication';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
@@ -34,7 +34,10 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
 export default async function ChangeBriefPage({params}: Props) {
   const brief = await findChangeBrief((await params).slug);
   if (!brief) notFound();
-  const assertions = await assertionsForChangeBrief(brief);
+  const [assertions, relatedCards] = await Promise.all([
+    assertionsForChangeBrief(brief),
+    relatedCardsForChangeBrief(brief),
+  ]);
   const oldFrameLabel = brief.lifecycle === 'future_effective' ? '현재 시행 문언' : '종전 시행 문언';
   const newFrameLabel = brief.lifecycle === 'future_effective' ? '시행 예정 문언' : '현재 시행 문언';
   const canonicalUrl = `${site.url}/ko/changes/${brief.slug}`;
@@ -57,7 +60,7 @@ export default async function ChangeBriefPage({params}: Props) {
         })}}
         type="application/ld+json"
       />
-      <div className="breadcrumb"><a href="/">홈</a><span aria-hidden="true">/</span><span>새로 바뀌는 법</span></div>
+      <nav aria-label="현재 위치" className="breadcrumb"><a href="/">홈</a><span aria-hidden="true">/</span><a href="/ko/changes">법령 변화</a><span aria-hidden="true">/</span><span aria-current="page">현재 변화</span></nav>
       <header className="changeHero">
         <div className="changeHeroMeta">
           <span className={`lifecycle ${brief.lifecycle}`}>{brief.lifecycle === 'future_effective' ? '시행 예정' : '최근 시행'}</span>
@@ -154,6 +157,21 @@ export default async function ChangeBriefPage({params}: Props) {
           ))}
         </div>
       </section>
+
+      {relatedCards.length ? (
+        <section className="relatedSection">
+          <p className="eyebrow">이 변화가 영향을 주는 상황</p>
+          <h2>내 문제에서 무엇을 확인해야 하는지 이어서 보세요.</h2>
+          <div className="relatedGrid">
+            {relatedCards.map(card => (
+              <a href={`/ko/issues/${card.slug}`} key={card.issue_card_id}>
+                <strong>{card.title_ko}</strong>
+                <span>상황별 안내 보기 →</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      ) : null}
     </main>
   );
 }
