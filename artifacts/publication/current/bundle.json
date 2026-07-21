@@ -224,9 +224,9 @@
     "change-brief-approval:change-brief-approval:draft.kr.change.administrative-appeals-16-2.001:bfd67ae12f04": "aeee98d37f7169116f8fec43e6d86bf3b62e6fb323ee6f36d8210dfbe0a32b32",
     "knowledge:administrative-appeals-depth-v1": "bad025b776e4036be720a1aef1548c1166e6156ae5574a6a8acf6ece6d573009",
     "knowledge-approval:derived-administrative-appeals-depth-20260721-001": "af7f7124f5083d155e1537d098a218f488484d94fa60fd0166c898e7eef1d5c9",
-    "knowledge:content.legal-heir-order-and-spouse": "614b0334231397716df5c44cfb2f6bb688defda39b7e403f8dfe277747ba1aad",
+    "knowledge:content.legal-heir-order-and-spouse": "d4a4b57df408a2a83c3d9e19610cf6ed789e089cf64a8ceda4075eaa9867e65d",
     "knowledge:content.three-month-inheritance-decision-period": "d6145e43b53645c8947f804ec16c209c0c4670dcd7300c4c79fbdc19f20f1440",
-    "knowledge:content.inheritance-renunciation-procedure": "7a85e79eab5369640975c4a326f3666e58f908bc7226577d6e1c140c17f06c33",
+    "knowledge:content.inheritance-renunciation-procedure": "595361bec888c62b50f31f24b45082dfae8ed7423c2ab6840b86aa2ec74d1743",
     "knowledge:content.limited-acceptance-effect": "efca8ccbe169ca8abee929297ab478f73d5af51784427557af54996d5fbed239",
     "knowledge:content.special-limited-acceptance-late-debt": "9d2679de20a06c2fb5d3c64d50cae03236261477a66c91a1b80dedd2602c5267",
     "knowledge:content.limited-acceptance-creditor-notice": "ef283a771044d4cc9ec1e691a6996699cd3b5fc178efc694a738c3a7db618f54",
@@ -234,12 +234,19 @@
     "knowledge:content.loan-without-written-note": "b807d80c4a7d18932a7989cff3f9037f30474e54e609a5a096c16da1b8ffaac3",
     "knowledge:content.loan-without-repayment-date": "87d6b4ae7a0ac0bfa94fb93cbc6d3204669a3ad2d248545a84774e7669dc86b7",
     "knowledge:content.partial-repayment-allocation": "5068b7fb12bd88bca0f9ba5e04348ae64552bc67f895f7e43e3379aac3e65873",
-    "knowledge:content.guarantee-by-message-validity": "c0b7f346cb7997bb0bb2ee0dde5ce2bc065e7db097d413fc301b2ecaf63c48ad",
+    "knowledge:content.guarantee-by-message-validity": "f77eb0690868c97c85081658c13da8e1a9e0afd88a048cc636e121afc7e1b7e0",
     "knowledge:content.continuing-guarantee-maximum-amount": "48bd25799c8ce69b52f12d7e9663f3b277ed985f61cddbe8f11119b0abbe8425",
     "knowledge:content.scope-of-guarantee-debt": "e041283d06072aabc8124c4db4be1243cf695b7c067c5823be8ca74cfdf0f248",
     "knowledge:content.shared-mobility-private-facility-defect": "906b0c972cab1eeadc7bf6c45bdebb80315dbd9a259ea8bc3b08c1f3b43952ff",
     "knowledge:content.shared-mobility-other-road-user-fault": "e6f43717a7faf7bd539bde72527bb929ebafef5fda930e39e992abdd60114450",
-    "approval:db-grounded-20260721": "0dc0a26b2e63c94489fd2525737cb80cbb8f8de3636b975fe9d3b15d307b889b"
+    "approval:db-grounded-20260721": "0dc0a26b2e63c94489fd2525737cb80cbb8f8de3636b975fe9d3b15d307b889b",
+    "knowledge:content.admin-appeal.documents-law-change": "61f39a2f1762efbdf879192ca7865c857490a06570ed41cf5e342a06d5eb0d4d",
+    "knowledge:content.admin-appeal.eligibility-document-branch": "7f073724d04efc51c62efdd63819e8921ba1530105c509f85a1938490ae093f5",
+    "knowledge:content.admin-appeal.data-sharing-consent": "4ed17781f78cf6522ef329743dbafeea1fe486351f0f9eccc3b7fe7ab8b26dcc",
+    "knowledge:content.admin-appeal.not-all-documents-waived": "994469260f835ef1f4a5ba6d22dea7b81a90e99b34605ef3a7c073d7fff8469b",
+    "knowledge:content.admin-appeal.application-preparation": "0503932e14916ce0e338a24db48f79b6957821f5a5452c37f384edbbffae8933",
+    "knowledge:content.admin-appeal.qualification-vs-proof": "5df6bf6c5df9f3542b1f7d77de10a2a2233f553f429ca17f030b644da025be58",
+    "knowledge-index:rulelink_public_knowledge_index_v1": "925ce23f210dd9a6b2d89edb7a26109c77b7cd2002b2ed4dcc364c245b5821a7"
   },
   "knowledge": {
     "schema": "rulelink_public_knowledge_index_v1",
@@ -591,9 +598,9 @@
         "title_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순…",
         "proposition_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순위에서는 최근친이 선순위다.",
         "norm": {
-          "actor_ko": "해당 법률관계의 당사자",
-          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
-          "legal_effect_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순위에서는 최근친이 선순위다."
+          "actor_ko": "피상속인의 혈족",
+          "conditions_ko": "상속개시 당시 선순위 혈족의 존재 여부와 동순위 혈족 사이의 촌수",
+          "legal_effect_ko": "직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순으로 상속인이 정해지고 동순위에서는 최근친이 우선합니다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1000"
@@ -604,9 +611,9 @@
         "title_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단…",
         "proposition_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단독상속인이 된다.",
         "norm": {
-          "actor_ko": "해당 법률관계의 당사자",
-          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
-          "legal_effect_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단독상속인이 된다."
+          "actor_ko": "피상속인의 법률상 배우자",
+          "conditions_ko": "상속개시 당시 직계비속 또는 직계존속의 존재 여부",
+          "legal_effect_ko": "직계비속 또는 직계존속이 있으면 그들과 공동상속하고, 둘 다 없으면 단독상속합니다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1003"
@@ -617,9 +624,9 @@
         "title_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선…",
         "proposition_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선택할 수 있고 가정법원이 기간을 연장할 수 있다.",
         "norm": {
-          "actor_ko": "해당 법률관계의 당사자",
-          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
-          "legal_effect_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선택할 수 있고 가정법원이 기간을 연장할 수 있다."
+          "actor_ko": "상속개시 있음을 안 상속인",
+          "conditions_ko": "상속개시 있음을 안 날부터 3개월 이내이며, 기간 연장은 가정법원의 결정이 있는 경우",
+          "legal_effect_ko": "기간 안에 단순승인·한정승인·포기를 선택하고 필요한 경우 기간 연장을 청구할 수 있습니다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1019"
@@ -630,9 +637,9 @@
         "title_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효…",
         "proposition_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효력이 생긴다.",
         "norm": {
-          "actor_ko": "해당 법률관계의 당사자",
-          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
-          "legal_effect_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효력이 생긴다."
+          "actor_ko": "상속을 포기하려는 상속인",
+          "conditions_ko": "법정기간 안에 가정법원에 상속포기를 신고하여 수리된 경우",
+          "legal_effect_ko": "상속개시 때부터 상속인이 아니었던 것으로 봅니다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1041",
@@ -645,9 +652,9 @@
         "title_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 …",
         "proposition_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 조건의 승인이다.",
         "norm": {
-          "actor_ko": "해당 법률관계의 당사자",
-          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
-          "legal_effect_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 조건의 승인이다."
+          "actor_ko": "한정승인을 하는 상속인",
+          "conditions_ko": "상속재산 목록을 붙여 법정기간 안에 가정법원에 한정승인을 신고한 경우",
+          "legal_effect_ko": "상속으로 취득한 재산의 한도에서 피상속인의 채무와 유증을 변제합니다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1028"
@@ -658,9 +665,9 @@
         "title_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변…",
         "proposition_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변제 절차를 따라야 한다.",
         "norm": {
-          "actor_ko": "해당 법률관계의 당사자",
-          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
-          "legal_effect_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변제 절차를 따라야 한다."
+          "actor_ko": "한정승인자",
+          "conditions_ko": "한정승인 후 상속채권자와 유증받은 사람에 대한 공고·최고 및 신고기간을 거친 경우",
+          "legal_effect_ko": "우선권과 법정 순서에 따라 상속재산으로 채권자와 유증받은 사람에게 변제합니다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1030",
@@ -680,9 +687,9 @@
         "title_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그…",
         "proposition_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그 사실을 안 날부터 3개월 내 특별한정승인이 가능할 수 있다.",
         "norm": {
-          "actor_ko": "해당 법률관계의 당사자",
-          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
-          "legal_effect_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그 사실을 안 날부터 3개월 내 특별한정승인이 가능할 수 있다."
+          "actor_ko": "상속채무가 상속재산을 초과하는 사실을 뒤늦게 안 상속인",
+          "conditions_ko": "법정기간 안에 채무초과를 알지 못한 데 중대한 과실이 없고 그 사실을 안 날부터 3개월 이내인 경우",
+          "legal_effect_ko": "특별한정승인을 신고하여 상속재산 한도의 책임을 주장할 수 있습니다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1019"
@@ -693,9 +700,9 @@
         "title_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어…",
         "proposition_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어야 성립한다.",
         "norm": {
-          "actor_ko": "해당 법률관계의 당사자",
-          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
-          "legal_effect_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어야 성립한다."
+          "actor_ko": "돈을 빌려주는 사람과 빌리는 사람",
+          "conditions_ko": "금전을 이전하고 같은 종류·품질·수량의 금전을 반환하기로 합의한 경우",
+          "legal_effect_ko": "금전소비대차가 성립하여 차주는 약정에 따라 금전을 반환할 의무를 부담합니다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0598"
@@ -706,9 +713,9 @@
         "title_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다.",
         "proposition_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다.",
         "norm": {
-          "actor_ko": "해당 법률관계의 당사자",
-          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
-          "legal_effect_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다."
+          "actor_ko": "반환시기를 정하지 않은 금전소비대차의 대주",
+          "conditions_ko": "상당한 기간을 정하여 차주에게 반환을 최고한 경우",
+          "legal_effect_ko": "정한 기간이 지나면 반환의무의 이행 여부를 청구·판단할 수 있습니다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0603"
@@ -719,9 +726,9 @@
         "title_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에…",
         "proposition_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에 따라 어느 채무가 소멸하는지가 달라진다.",
         "norm": {
-          "actor_ko": "해당 법률관계의 당사자",
-          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
-          "legal_effect_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에 따라 어느 채무가 소멸하는지가 달라진다."
+          "actor_ko": "복수 채무 또는 비용·이자·원본 중 일부를 변제하는 당사자",
+          "conditions_ko": "변제액이 모든 채무를 소멸시키기에 부족하고 당사자의 충당 지정 유무를 확인한 경우",
+          "legal_effect_ko": "당사자의 유효한 지정 또는 민법상 변제충당 순서에 따라 소멸하는 채무와 잔액이 정해집니다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0476",
@@ -735,9 +742,9 @@
         "title_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발…",
         "proposition_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발생하고 전자적 형태 표시는 원칙적으로 효력이 없다.",
         "norm": {
-          "actor_ko": "해당 법률관계의 당사자",
-          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
-          "legal_effect_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발생하고 전자적 형태 표시는 원칙적으로 효력이 없다."
+          "actor_ko": "주채무를 보증하려는 보증인",
+          "conditions_ko": "기명날인 또는 서명이 있는 서면으로 보증의사를 표시한 경우",
+          "legal_effect_ko": "서면 요건을 충족한 범위에서 보증의 효력이 생기며 전자적 형태의 표시는 원칙적으로 효력이 없습니다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0428-02"
@@ -748,9 +755,9 @@
         "title_ko": "불확정한 다수 채무를 보증하는 근보증은 최고액을 서면으로 특정하지 않으면 효…",
         "proposition_ko": "불확정한 다수 채무를 보증하는 근보증은 최고액을 서면으로 특정하지 않으면 효력이 없다.",
         "norm": {
-          "actor_ko": "해당 법률관계의 당사자",
-          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
-          "legal_effect_ko": "불확정한 다수 채무를 보증하는 근보증은 최고액을 서면으로 특정하지 않으면 효력이 없다."
+          "actor_ko": "불확정한 다수 채무를 보증하는 근보증인과 채권자",
+          "conditions_ko": "보증채무의 최고액을 서면으로 특정한 경우",
+          "legal_effect_ko": "최고액 범위에서 근보증 효력이 생기며 최고액이 없으면 근보증계약은 효력이 없습니다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0428-03"
@@ -761,9 +768,9 @@
         "title_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지…",
         "proposition_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지만 주채무보다 무거운 부담은 주채무 한도로 감축된다.",
         "norm": {
-          "actor_ko": "해당 법률관계의 당사자",
-          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
-          "legal_effect_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지만 주채무보다 무거운 부담은 주채무 한도로 감축된다."
+          "actor_ko": "유효한 보증계약을 체결한 보증인",
+          "conditions_ko": "주채무의 이자·위약금·손해배상 등 종속채무가 존재하고 보증계약에서 범위를 달리 정하지 않은 경우",
+          "legal_effect_ko": "보증채무는 종속채무를 포함하되 보증인의 부담이 주채무보다 무거우면 주채무의 한도로 감축됩니다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0428",
@@ -776,9 +783,9 @@
         "title_ko": "민간 공작물의 설치ㆍ보존 하자",
         "proposition_ko": "공작물의 설치 또는 보존 하자로 타인에게 손해가 발생하면 점유자가 원칙적으로 배상책임을 지고, 점유자가 필요한 주의를 다한 경우에는 소유자가 책임을 질 수 있습니다.",
         "norm": {
-          "actor_ko": "해당 법률관계의 당사자",
-          "conditions_ko": "사고 원인이 민간 공작물의 설치ㆍ보존 상태에 있음 · 하자와 손해 사이의 인과관계가 있음",
-          "legal_effect_ko": "공작물의 설치 또는 보존 하자로 타인에게 손해가 발생하면 점유자가 원칙적으로 배상책임을 지고, 점유자가 필요한 주의를 다한 경우에는 소유자가 책임을 질 수 있습니다."
+          "actor_ko": "민간 공작물을 사실상 지배·관리하는 점유자와 그 소유자",
+          "conditions_ko": "공작물의 설치·보존 하자와 손해 사이에 인과관계가 있고 점유자의 필요한 주의 여부를 확인한 경우",
+          "legal_effect_ko": "점유자가 원칙적으로 배상책임을 지고, 점유자가 필요한 주의를 다한 경우 소유자가 책임을 질 수 있습니다."
         },
         "source_coordinate_ids": [
           "coord.shared-mobility-accident.civil-act-ko-0758"
@@ -789,9 +796,9 @@
         "title_ko": "고의ㆍ과실의 위법행위와 손해 사이의 책임",
         "proposition_ko": "고의 또는 과실로 인한 위법행위로 타인에게 손해를 가한 사람은 그 손해를 배상할 책임이 있습니다.",
         "norm": {
-          "actor_ko": "해당 법률관계의 당사자",
-          "conditions_ko": "주의의무 위반이나 고의가 있음 · 위법행위와 손해 사이의 인과관계가 인정됨",
-          "legal_effect_ko": "고의 또는 과실로 인한 위법행위로 타인에게 손해를 가한 사람은 그 손해를 배상할 책임이 있습니다."
+          "actor_ko": "고의 또는 과실로 타인에게 손해를 가한 사람",
+          "conditions_ko": "주의의무 위반 또는 고의, 위법성, 손해와 인과관계가 인정되는 경우",
+          "legal_effect_ko": "그 위법행위로 발생한 손해를 배상할 책임을 부담합니다."
         },
         "source_coordinate_ids": [
           "coord.shared-mobility-accident.civil-act-ko-0750"
@@ -845,116 +852,148 @@
       },
       {
         "scenario_id": "scenario.family-inheritance.sc-spouse-children",
-        "question_ko": "배우자와 자녀가 있는 일반적인 상속",
-        "decision_fact_ko": "질문에 해당하는 구체적 사실",
-        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
-        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "question_ko": "사망 당시 법률상 배우자와 자녀가 모두 있나요?",
+        "decision_fact_ko": "법률상 배우자 여부와 직계비속의 존재",
+        "when_true_ko": "배우자와 자녀가 공동상속인이 됩니다. 사망 선후·대습상속·상속결격·상속포기는 별도로 확인합니다.",
+        "when_false_ko": "자녀가 없으면 직계존속의 존재를 확인하고, 직계비속과 직계존속이 모두 없으면 배우자의 단독상속 여부를 검토합니다.",
         "rule_ids": [
           "rule.family-inheritance.rule-inheritance-order",
           "rule.family-inheritance.rule-spouse-order"
         ],
-        "source_coordinate_ids": []
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1000",
+          "coord.family-inheritance.civil-act-ko-1003"
+        ]
       },
       {
         "scenario_id": "scenario.family-inheritance.sc-debt-uncertain",
-        "question_ko": "재산과 채무 규모를 아직 모르는 상태에서 3개월이 흐르는 경우",
-        "decision_fact_ko": "질문에 해당하는 구체적 사실",
-        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
-        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "question_ko": "상속개시 있음을 안 날부터 아직 3개월이 지나지 않았나요?",
+        "decision_fact_ko": "상속인임을 안 날과 현재 날짜, 재산·채무 조사 진행상황",
+        "when_true_ko": "재산과 채무를 조사하면서 한정승인·상속포기 여부를 결정하고, 시간이 부족하면 기간 만료 전에 연장청구를 검토합니다.",
+        "when_false_ko": "원칙적인 선택기간 경과 여부를 확인하고, 채무초과를 뒤늦게 안 경우 특별한정승인 요건을 별도로 검토합니다.",
         "rule_ids": [
           "rule.family-inheritance.rule-three-months",
           "rule.family-inheritance.rule-limited-effect"
         ],
-        "source_coordinate_ids": []
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1019",
+          "coord.family-inheritance.civil-act-ko-1028"
+        ]
       },
       {
         "scenario_id": "scenario.family-inheritance.sc-limited-approved",
-        "question_ko": "한정승인 수리 후 여러 채권자가 변제를 요구하는 경우",
-        "decision_fact_ko": "질문에 해당하는 구체적 사실",
-        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
-        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "question_ko": "한정승인 후 공고·최고와 채권자별 변제를 아직 마치지 않았나요?",
+        "decision_fact_ko": "한정승인일, 공고일, 신고기간, 알고 있는 채권자에 대한 최고와 우선권",
+        "when_true_ko": "법정 신고기간과 개별 최고를 관리하고 우선권 및 채권액에 따라 상속재산을 변제해야 합니다.",
+        "when_false_ko": "변제 장부, 잔여 상속재산과 누락 채권자를 확인하여 청산 종결 및 손해배상 위험을 점검합니다.",
         "rule_ids": [
           "rule.family-inheritance.rule-limited-procedure"
         ],
-        "source_coordinate_ids": []
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1032",
+          "coord.family-inheritance.civil-act-ko-1033",
+          "coord.family-inheritance.civil-act-ko-1034",
+          "coord.family-inheritance.civil-act-ko-1035",
+          "coord.family-inheritance.civil-act-ko-1036",
+          "coord.family-inheritance.civil-act-ko-1037",
+          "coord.family-inheritance.civil-act-ko-1038",
+          "coord.family-inheritance.civil-act-ko-1039"
+        ]
       },
       {
         "scenario_id": "scenario.family-inheritance.sc-late-debt",
-        "question_ko": "3개월 후 처음 큰 보증채무나 대출채무를 알게 된 경우",
-        "decision_fact_ko": "질문에 해당하는 구체적 사실",
-        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
-        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "question_ko": "3개월 안에 채무초과를 알지 못했고 그 데 중대한 과실이 없었나요?",
+        "decision_fact_ko": "새 채무를 안 날, 전체 채무초과를 안 날과 종전 재산·채무 조사 정도",
+        "when_true_ko": "채무초과 사실을 안 날부터 3개월 안에 특별한정승인을 신고할 수 있는지 즉시 검토합니다.",
+        "when_false_ko": "특별한정승인 요건 충족이 어려울 수 있으므로 일반 선택기간과 단순승인 사유를 함께 확인합니다.",
         "rule_ids": [
           "rule.family-inheritance.rule-special-limited"
         ],
-        "source_coordinate_ids": []
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1019"
+        ]
       },
       {
         "scenario_id": "scenario.money-guarantee.sc-transfer-gift-dispute",
-        "question_ko": "가족·연인에게 송금했는데 상대방이 증여였다고 주장하는 경우",
-        "decision_fact_ko": "질문에 해당하는 구체적 사실",
-        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
-        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "question_ko": "송금 당시 같은 금액을 반환하기로 한 합의 자료가 있나요?",
+        "decision_fact_ko": "반환 약정, 변제기·이자 대화, 일부변제와 송금의 사용 목적",
+        "when_true_ko": "소비대차 성립을 뒷받침하므로 약정 내용과 남은 원금을 계산합니다.",
+        "when_false_ko": "송금 사실만으로 대여를 단정하기 어려우므로 증여·투자·생활비 등 다른 법적 성격을 함께 검토합니다.",
         "rule_ids": [
           "rule.money-guarantee.rule-loan-agreement"
         ],
-        "source_coordinate_ids": []
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0598"
+        ]
       },
       {
         "scenario_id": "scenario.money-guarantee.sc-no-note",
-        "question_ko": "차용증 없이 메신저와 송금내역만 남은 경우",
-        "decision_fact_ko": "질문에 해당하는 구체적 사실",
-        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
-        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "question_ko": "차용증 없이도 반환 약정을 보여주는 대화·일부변제·채무승인 자료가 있나요?",
+        "decision_fact_ko": "송금 전후 대화, 상환 약속, 일부변제와 상대방의 채무 인정",
+        "when_true_ko": "서면 차용증이 없어도 소비대차 합의와 범위를 자료 전체로 입증할 수 있는지 검토합니다.",
+        "when_false_ko": "금전 이동만으로 반환 합의를 증명하기 어려우므로 거래 목적과 상대방의 반대 정황을 추가 확인합니다.",
         "rule_ids": [
           "rule.money-guarantee.rule-loan-agreement"
         ],
-        "source_coordinate_ids": []
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0598"
+        ]
       },
       {
         "scenario_id": "scenario.money-guarantee.sc-no-due-date",
-        "question_ko": "갚는 날짜를 정하지 않고 돈을 빌려준 경우",
-        "decision_fact_ko": "질문에 해당하는 구체적 사실",
-        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
-        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "question_ko": "반환시기를 정하지 않았고 아직 상당한 기간을 정한 최고를 하지 않았나요?",
+        "decision_fact_ko": "변제기 약정 유무, 최고한 금액·기한과 상대방에게 도달한 날짜",
+        "when_true_ko": "상당한 기간을 정하여 원금과 반환기한을 명확히 최고하고 도달자료를 보존합니다.",
+        "when_false_ko": "약정 변제기 또는 최고한 기간의 경과를 기준으로 반환의무 이행과 지체 여부를 검토합니다.",
         "rule_ids": [
           "rule.money-guarantee.rule-no-due-date"
         ],
-        "source_coordinate_ids": []
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0603"
+        ]
       },
       {
         "scenario_id": "scenario.money-guarantee.sc-partial-payment",
-        "question_ko": "여러 차례 돈을 빌려주고 일부만 돌려받은 경우",
-        "decision_fact_ko": "질문에 해당하는 구체적 사실",
-        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
-        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "question_ko": "변제할 때 어느 채무에 충당할지 당사자가 지정했나요?",
+        "decision_fact_ko": "채무자·채권자의 충당 지정과 이의, 각 채무의 이행기·이자·비용",
+        "when_true_ko": "지정의 순서와 상대방의 즉시 이의 여부를 확인하여 유효한 충당 합의에 따라 잔액을 계산합니다.",
+        "when_false_ko": "이행기와 변제이익 등 법정변제충당 순서 및 비용·이자·원본 순서를 적용해 잔액을 계산합니다.",
         "rule_ids": [
           "rule.money-guarantee.rule-payment-allocation"
         ],
-        "source_coordinate_ids": []
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0476",
+          "coord.money-guarantee.civil-act-ko-0477",
+          "coord.money-guarantee.civil-act-ko-0478",
+          "coord.money-guarantee.civil-act-ko-0479"
+        ]
       },
       {
         "scenario_id": "scenario.money-guarantee.sc-message-guarantee",
-        "question_ko": "메신저로 대신 갚겠다는 답변만 받은 경우",
-        "decision_fact_ko": "질문에 해당하는 구체적 사실",
-        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
-        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "question_ko": "보증인의 기명날인 또는 서명이 있는 서면이 있나요?",
+        "decision_fact_ko": "보증서 원본, 보증인의 서명·날인과 메시지의 법적 문맥",
+        "when_true_ko": "서면 보증의 범위와 주채무를 대조하여 유효한 보증채무의 범위를 검토합니다.",
+        "when_false_ko": "전자 메시지만으로 표시된 보증의사는 원칙적으로 효력이 없으므로 독립채무 약정이나 별도 법령 적용 여부를 구분합니다.",
         "rule_ids": [
           "rule.money-guarantee.rule-guarantee-writing"
         ],
-        "source_coordinate_ids": []
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0428-02"
+        ]
       },
       {
         "scenario_id": "scenario.money-guarantee.sc-continuing-guarantee",
-        "question_ko": "현재와 장래의 모든 거래채무를 포괄 보증한 경우",
-        "decision_fact_ko": "질문에 해당하는 구체적 사실",
-        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
-        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "question_ko": "불확정한 다수 채무를 보증하는 서면에 최고액이 적혀 있나요?",
+        "decision_fact_ko": "보증 대상 거래의 불확정성, 서면 최고액과 보증기간",
+        "when_true_ko": "최고액과 대상 거래의 범위 안에서 보증채무를 계산합니다.",
+        "when_false_ko": "최고액 없는 근보증계약은 효력이 없으므로 특정 채무 보증인지도 다시 구분합니다.",
         "rule_ids": [
           "rule.money-guarantee.rule-continuing-guarantee-cap",
           "rule.money-guarantee.rule-guarantee-scope"
         ],
-        "source_coordinate_ids": []
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0428-03"
+        ]
       },
       {
         "scenario_id": "scenario.shared-mobility-accident.shared-mobility-cause-private-facility",
@@ -1465,7 +1504,7 @@
             "heading_ko": "가족관계도에 예외 사유를 표시한다",
             "paragraphs_ko": [
               "가족관계증명서와 제적등본을 바탕으로 사망 당시의 배우자·자녀·부모·형제자매를 적고, 피상속인보다 먼저 사망한 사람과 입양관계를 표시합니다.",
-              "대습상속, 상속결격, 상속포기와 2026년 도입된 상속권 상실선고가 있으면 일반 순위만으로 결론낼 수 없습니다. 사실혼 배우자의 법적 지위도 법률상 배우자와 동일하다고 단정하지 말아야 합니다."
+              "대습상속, 상속결격, 상속포기 같은 예외가 있으면 일반 순위만으로 결론낼 수 없습니다. 사실혼 배우자의 법적 지위도 법률상 배우자와 동일하다고 단정하지 말아야 합니다."
             ]
           }
         ],
@@ -1612,7 +1651,7 @@
           {
             "heading_ko": "수리심판과 다음 상속인을 확인한다",
             "paragraphs_ko": [
-              "상속포기 효력은 가정법원의 수리심판이 고지되어야 발생하고, 발생하면 상속개시 때로 소급합니다. 신고 접수만 했다고 재산을 자유롭게 처분해서는 안 됩니다.",
+              "상속포기는 가정법원의 신고·수리 절차를 거치며, 수리되면 상속개시 때로 소급합니다. 수리 여부를 확인하기 전에 상속재산을 임의로 처분해서는 안 됩니다.",
               "포기자가 생기면 남은 공동상속인 또는 후순위 상속인의 지위가 달라질 수 있습니다. 배우자와 자녀의 전원·일부 포기 여부를 구분해 가족관계도를 다시 계산합니다."
             ]
           }
@@ -2258,9 +2297,9 @@
             ]
           },
           {
-            "heading_ko": "영업·사업 전자문서 예외와 이미 한 이행을 확인한다",
+            "heading_ko": "전자 형식의 별도 근거와 이미 한 이행을 확인한다",
             "paragraphs_ko": [
-              "전자문서법은 보증인이 자기의 영업 또는 사업으로 작성한 보증의사가 표시된 전자문서를 일정한 경우 민법상 서면으로 보는 예외를 둡니다. 일반 개인의 메신저 약속에 곧바로 적용되는 예외는 아닙니다.",
+              "현재 연결 근거는 민법 제428조의2가 정한 일반 원칙입니다. 사업상 전자문서 등 다른 법령이 적용될 가능성이 있다면 그 근거를 별도로 확인하기 전에는 효력을 단정하지 않습니다.",
               "보증인이 이미 보증채무를 이행한 경우에는 이행한 한도에서 방식 하자를 이유로 무효를 주장하기 어려울 수 있으므로 지급액과 경위를 확인합니다."
             ]
           }
