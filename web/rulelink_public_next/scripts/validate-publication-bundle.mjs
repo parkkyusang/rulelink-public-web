@@ -39,6 +39,11 @@ export function validatePublishedBundle(value, options = {}) {
   const cards = requireArray(value, 'cards', errors);
   const assertions = requireArray(value, 'assertions', errors);
   const briefs = optionalArray(value, 'change_briefs', errors);
+  const fileHashCount = validateFileHashes(value.file_hashes, errors);
+  const publishedItemCount = cards.length + briefs.length + knowledgeEntryCount(value.knowledge);
+  if (publishedItemCount > 0 && fileHashCount === 0) {
+    errors.push('공개 콘텐츠가 있는 출판본에는 승인·출판 파일 해시 영수증이 필요합니다.');
+  }
   const cardIds = uniqueIds(cards, 'issue_card_id', '문제카드', errors);
   validateSlugs(cards, 'issue_card_id', '문제카드', errors);
   validateSlugs(briefs, 'change_brief_id', '법령변화 브리핑', errors);
@@ -258,6 +263,28 @@ function isIsoDate(value) {
   const [year, month, day] = value.split('-').map(Number);
   const date = new Date(Date.UTC(year, month - 1, day));
   return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day;
+}
+
+
+function validateFileHashes(value, errors) {
+  if (!isRecord(value)) {
+    errors.push('file_hashes는 승인·출판 파일 해시 객체여야 합니다.');
+    return 0;
+  }
+  const entries = Object.entries(value);
+  for (const [key, hash] of entries) {
+    if (!key || key.includes('..') || looksLikeInternalPath(key)) {
+      errors.push(`file_hashes에 공개할 수 없는 키가 있습니다: ${key || '(빈 키)'}`);
+    }
+    if (typeof hash !== 'string' || !/^[a-f0-9]{64}$/.test(hash)) {
+      errors.push(`file_hashes의 값은 소문자 64자리 SHA-256이어야 합니다: ${key}`);
+    }
+  }
+  return entries.length;
+}
+
+function knowledgeEntryCount(value) {
+  return isRecord(value) && Array.isArray(value.content_entries) ? value.content_entries.length : 0;
 }
 
 function scanForInternalData(value, location, errors) {
