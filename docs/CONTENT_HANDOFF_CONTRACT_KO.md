@@ -83,6 +83,7 @@ npm ci
 npm run test:publication
 npm run typecheck
 npm run build
+npm run smoke:public-build
 ```
 
-GitHub PR에서 같은 검사를 통과하고 Vercel 미리보기가 성공한 경우에만 병합한다. `main` 병합 뒤 운영 Vercel 배포 성공까지 확인해야 인계가 끝난다.
+런타임 스모크는 빌드 서버를 실제로 기동해 승인 번들의 모든 공개 경로와 `publication.json` 스냅샷·건수·비공개 필드 부재를 확인한다. GitHub PR에서 같은 검사를 통과하고 Vercel 미리보기가 성공한 경우에만 병합한다. `main` 병합 뒤 운영 Vercel 배포 성공까지 확인해야 인계가 끝난다.
