@@ -112,19 +112,33 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
   rules: PublicRuleCard[];
   scenarios: PublicScenarioBranch[];
   sources: PublicKnowledgeSource[];
+  hubs: PublicKnowledgeHub[];
   related: PublicKnowledgeEntry[];
 }> {
   const knowledge = (await loadPublishedBundle())?.knowledge;
-  if (!knowledge) return {rules: [], scenarios: [], sources: [], related: []};
+  if (!knowledge) return {rules: [], scenarios: [], sources: [], hubs: [], related: []};
   const ruleIds = new Set(entry.rule_ids);
   const scenarioIds = new Set(entry.scenario_ids);
   const sourceIds = new Set(entry.source_coordinate_ids);
-  const relatedIds = new Set(entry.related_content_ids);
+  const hubIds = new Set(entry.hub_ids);
+  const hubs = knowledge.topic_hubs.filter(hub => hubIds.has(hub.hub_id));
+  const entryById = new Map(knowledge.content_entries.map(candidate => [candidate.content_id, candidate]));
+  const relatedIds = [
+    ...entry.related_content_ids,
+    ...hubs.flatMap(hub => hub.content_ids),
+  ];
+  const seenRelatedIds = new Set<string>();
+  const related = relatedIds
+    .filter(contentId => contentId !== entry.content_id && !seenRelatedIds.has(contentId) && seenRelatedIds.add(contentId))
+    .map(contentId => entryById.get(contentId))
+    .filter((candidate): candidate is PublicKnowledgeEntry => Boolean(candidate))
+    .slice(0, 6);
   return {
     rules: knowledge.rule_cards.filter(rule => ruleIds.has(rule.rule_id)),
     scenarios: knowledge.scenario_branches.filter(scenario => scenarioIds.has(scenario.scenario_id)),
     sources: knowledge.sources.filter(source => sourceIds.has(source.coordinate_id)),
-    related: knowledge.content_entries.filter(candidate => relatedIds.has(candidate.content_id)),
+    hubs,
+    related,
   };
 }
 
