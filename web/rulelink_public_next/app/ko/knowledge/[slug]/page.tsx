@@ -2,6 +2,8 @@ import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
 import {findKnowledgeEntry, knowledgeDetail, listKnowledgeEntries} from '@/lib/publication';
+import {site} from '@/lib/site';
+import {serializeStructuredData} from '@/lib/structured-data';
 
 export const dynamic = 'force-static';
 
@@ -13,7 +15,20 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({params}: Props): Promise<Metadata> {
   const entry = await findKnowledgeEntry((await params).slug);
-  return entry ? {title: entry.title_ko, description: entry.one_line_answer_ko} : {};
+  if (!entry) return {};
+  const canonical = `/ko/knowledge/${entry.slug}`;
+  return {
+    title: entry.title_ko,
+    description: entry.one_line_answer_ko,
+    alternates: {canonical},
+    openGraph: {
+      type: 'article',
+      title: entry.title_ko,
+      description: entry.one_line_answer_ko,
+      url: canonical,
+      modifiedTime: entry.reviewed_at,
+    },
+  };
 }
 
 export default async function KnowledgePage({params}: Props) {
@@ -21,14 +36,43 @@ export default async function KnowledgePage({params}: Props) {
   const entry = await findKnowledgeEntry(slug);
   if (!entry) notFound();
   const {rules, scenarios, sources, related} = await knowledgeDetail(entry);
+  const canonicalUrl = `${site.url}/ko/knowledge/${entry.slug}`;
   return (
     <main className="knowledgePage">
+      <script
+        dangerouslySetInnerHTML={{__html: serializeStructuredData({
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          '@id': canonicalUrl,
+          url: canonicalUrl,
+          name: entry.title_ko,
+          description: entry.one_line_answer_ko,
+          inLanguage: 'ko-KR',
+          dateModified: entry.reviewed_at,
+          isPartOf: {
+            '@type': 'WebSite',
+            name: site.name,
+            url: site.url,
+          },
+          about: rules.map(rule => ({
+            '@type': 'DefinedTerm',
+            name: rule.title_ko,
+            description: rule.proposition_ko,
+          })),
+        })}}
+        type="application/ld+json"
+      />
       <nav className="breadcrumb"><a href="/">홈</a><span>/</span><span>생활법률 지식</span></nav>
       <header className="knowledgeHero">
         <p className="eyebrow">{contentTypeLabel(entry.content_type)}</p>
         <h1>{entry.title_ko}</h1>
         <p>{entry.one_line_answer_ko}</p>
         <span className="audienceBadge">{entry.audience_situation_ko}</span>
+        <div aria-label="콘텐츠 기준일" className="knowledgeTrust">
+          <span><b>기준 확인</b>{formatDate(entry.reviewed_at)}</span>
+          <span><b>다음 점검</b>{formatDate(entry.expires_at)}</span>
+          <span><b>공식 근거</b>{sources.length}건 연결</span>
+        </div>
       </header>
 
       <section className="knowledgeLayout">
@@ -82,9 +126,11 @@ export default async function KnowledgePage({params}: Props) {
           ) : null}
           <section className="knowledgeSources">
             <h2>공식 근거</h2>
+            <p>원문 주소와 마지막 확인일을 함께 표시합니다.</p>
             {sources.map(source => (
               <a href={source.official_url} key={source.coordinate_id} rel="noreferrer" target="_blank">
-                공식 원문 보기 <span aria-hidden="true">↗</span>
+                <span>공식 원문 보기 <span aria-hidden="true">↗</span></span>
+                <small>원문 확인 {formatDate(source.last_verified_at)}</small>
               </a>
             ))}
           </section>
@@ -115,4 +161,8 @@ function contentTypeLabel(type: string): string {
     recurring_issue_generalization: '반복 쟁점',
   };
   return labels[type] ?? '생활법률 지식';
+}
+
+function formatDate(value: string): string {
+  return new Intl.DateTimeFormat('ko-KR', {dateStyle: 'medium'}).format(new Date(value));
 }
