@@ -93,7 +93,7 @@ export type PublicScenarioBranch = {
 export type PublicKnowledgeEntry = {
   content_id: string;
   content_type: 'law_change' | 'doctrine_explainer' | 'fact_branch' | 'precedent_doctrine' | 'similar_case_comparison' | 'misconception_correction' | 'procedure_evidence' | 'recurring_issue_generalization';
-  editorial_status: 'approved';
+  editorial_status: 'source_verified' | 'legal_reviewed' | 'approved';
   reviewed_at: string;
   expires_at: string;
   slug: string;

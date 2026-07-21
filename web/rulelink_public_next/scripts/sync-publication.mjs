@@ -5,10 +5,14 @@ const appRoot = process.cwd();
 const repoRoot = process.env.RULELINK_REPO_ROOT
   ? path.resolve(process.env.RULELINK_REPO_ROOT)
   : path.resolve(appRoot, '..', '..');
+const previewMode = process.env.RULELINK_EDITORIAL_PREVIEW_MODE === 'true';
+const defaultSource = previewMode
+  ? path.join(repoRoot, 'artifacts', 'content', 'current', 'editorial-preview-bundle.json')
+  : path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
 const source = process.env.RULELINK_PUBLICATION_BUNDLE
   ? path.resolve(process.env.RULELINK_PUBLICATION_BUNDLE)
-  : path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
-const targetName = process.env.RULELINK_EDITORIAL_PREVIEW_MODE === 'true'
+  : defaultSource;
+const targetName = previewMode
   ? 'editorial-preview-bundle.json'
   : 'bundle.json';
 const target = path.join(appRoot, 'content', targetName);

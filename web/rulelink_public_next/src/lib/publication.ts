@@ -156,8 +156,13 @@ function isEditorialPreviewBundle(value: unknown): value is PublicContentBundle 
     && bundle.preview_only === true
     && Array.isArray(bundle.cards)
     && Array.isArray(bundle.assertions)
-    && bundle.cards.every(card => card.editorial_status === 'source_verified' || card.editorial_status === 'legal_reviewed')
-    && (!bundle.change_briefs || bundle.change_briefs.every(brief => brief.editorial_status === 'source_verified' || brief.editorial_status === 'legal_reviewed'));
+    && bundle.cards.every(card => ['source_verified', 'legal_reviewed', 'approved'].includes(card.editorial_status))
+    && (!bundle.change_briefs || bundle.change_briefs.every(brief => ['source_verified', 'legal_reviewed', 'approved'].includes(brief.editorial_status)))
+    && (!bundle.knowledge || (
+      bundle.knowledge.schema === 'rulelink_public_knowledge_index_v1'
+      && Array.isArray(bundle.knowledge.content_entries)
+      && bundle.knowledge.content_entries.every(entry => entry.editorial_status === 'source_verified' || entry.editorial_status === 'legal_reviewed')
+    ));
 }
 
 export function editorialPreviewEnabled(): boolean {
