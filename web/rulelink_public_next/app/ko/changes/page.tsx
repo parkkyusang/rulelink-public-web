@@ -25,7 +25,8 @@ export default async function ChangeLibraryPage() {
   if (!briefs.length) notFound();
   const canonicalUrl = `${site.url}/ko/changes`;
   const futureCount = briefs.filter(brief => brief.lifecycle === 'future_effective').length;
-  const recentCount = briefs.length - futureCount;
+  const recentCount = briefs.filter(brief => brief.lifecycle === 'recently_effective').length;
+  const currentCount = briefs.filter(brief => brief.lifecycle === 'currently_effective').length;
   return (
     <main className="topicPage">
       <script
@@ -63,6 +64,7 @@ export default async function ChangeLibraryPage() {
         <span><b>{String(briefs.length).padStart(2, '0')}</b> 전체 변화</span>
         <span><b>{String(futureCount).padStart(2, '0')}</b> 시행 예정</span>
         <span><b>{String(recentCount).padStart(2, '0')}</b> 최근 시행</span>
+        <span><b>{String(currentCount).padStart(2, '0')}</b> 현행 제도</span>
       </div>
       <ChangeExplorer briefs={briefs} />
     </main>

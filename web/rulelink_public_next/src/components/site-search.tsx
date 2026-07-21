@@ -3,6 +3,7 @@
 import {useEffect, useMemo, useState} from 'react';
 
 import {buildCollectionSearchHref, parseCollectionSearchState, sanitizeCollectionQuery} from '@/lib/collection-search-state';
+import {changeLifecycleLabel} from '@/lib/change-lifecycle';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 
 import type {PublicKnowledgeSearchDocument} from '@/lib/knowledge-search';
@@ -156,7 +157,7 @@ function buildResults(
       kind: 'change',
       title: brief.title_ko,
       summary: brief.summary_ko,
-      context: `${brief.lifecycle === 'future_effective' ? '시행 예정' : '최근 시행'} · ${brief.law_name_ko} ${brief.article_no}`,
+      context: `${changeLifecycleLabel(brief.lifecycle)} · ${brief.law_name_ko} ${brief.article_no}`,
       href: `/ko/changes/${brief.slug}`,
       reviewedAt: brief.reviewed_at,
       terms: [

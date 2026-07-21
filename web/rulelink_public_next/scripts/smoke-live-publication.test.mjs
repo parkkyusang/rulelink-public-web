@@ -7,6 +7,7 @@ import {fileURLToPath} from 'node:url';
 import {
   expectedLiveRoutes,
   expectedPublicationCounts,
+  representativeOfficialUrls,
   validateLivePublication,
 } from './smoke-live-publication.mjs';
 
@@ -41,4 +42,8 @@ test('운영 실주소 점검은 승인된 상세 경로와 허브를 빠짐없�
   for (const hub of bundle.knowledge?.topic_hubs ?? []) {
     assert(routes.has(`/ko/hubs/${hub.slug}`), `허브 경로 누락: ${hub.slug}`);
   }
+  for (const concept of bundle.knowledge?.concept_cards ?? []) {
+    assert(routes.has(`/ko/concepts/${concept.slug}`), `개념 경로 누락: ${concept.slug}`);
+  }
+  assert(representativeOfficialUrls(bundle).length > 0, '공식 원문 점검 대상이 필요합니다.');
 });

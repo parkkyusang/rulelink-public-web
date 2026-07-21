@@ -62,7 +62,9 @@ export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeS
           const order = {precedent: 0, official_document: 1, statute: 2};
           return order[leftKind] - order[rightKind];
         }
-        return right.entries.length - left.entries.length || left.label_ko.localeCompare(right.label_ko, 'ko');
+        const leftLinks = left.entries.length + left.concepts.length;
+        const rightLinks = right.entries.length + right.concepts.length;
+        return rightLinks - leftLinks || left.label_ko.localeCompare(right.label_ko, 'ko');
       });
   }, [documents, filter, normalizedQuery]);
 
@@ -96,6 +98,10 @@ export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeS
           {visibleDocuments.map(document => {
             const source = document.source;
             const officialUrl = browserOfficialSourceUrl(source) ?? source.official_url;
+            const visibleConcepts = document.concepts.slice(0, 2);
+            const visibleEntries = document.entries.slice(0, Math.max(0, 4 - visibleConcepts.length));
+            const totalLinks = document.concepts.length + document.entries.length;
+            const remainingLinks = totalLinks - visibleConcepts.length - visibleEntries.length;
             return (
               <article className={styles.card} key={source.coordinate_id}>
                 <div className={styles.meta}>
@@ -120,14 +126,20 @@ export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeS
                   국가법령정보센터 원문 <span aria-hidden="true">↗</span>
                 </a>
                 <div className={styles.related}>
-                  <b>이 근거를 사용하는 안내 {document.entries.length}개</b>
-                  {document.entries.slice(0, 4).map(entry => (
+                  <b>이 근거를 사용하는 연결 지식 {totalLinks}개</b>
+                  {visibleConcepts.map(concept => (
+                    <a href={`/ko/concepts/${concept.slug}`} key={concept.concept_id}>
+                      <span>{concept.preferred_term_ko}</span>
+                      <small>법률개념</small>
+                    </a>
+                  ))}
+                  {visibleEntries.map(entry => (
                     <a href={`/ko/knowledge/${entry.slug}`} key={entry.content_id}>
                       <span>{entry.title_ko}</span>
                       <small>{knowledgeContentTypeLabel(entry.content_type)}</small>
                     </a>
                   ))}
-                  {document.entries.length > 4 ? <em>그 밖의 연결 안내 {document.entries.length - 4}개</em> : null}
+                  {remainingLinks > 0 ? <em>그 밖의 연결 지식 {remainingLinks}개</em> : null}
                 </div>
               </article>
             );

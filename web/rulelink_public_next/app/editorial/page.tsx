@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
 import {editorialPreviewEnabled, loadEditorialOperationsQueue} from '@/lib/publication';
+import {changeLifecycleLabel} from '@/lib/change-lifecycle';
 
 export const dynamic = 'force-dynamic';
 
@@ -71,7 +72,7 @@ export default async function EditorialOperationsPage() {
             <div className="editorialMain">
               <div className="editorialMeta">
                 <span className={`stage stage-${item.editorial_stage}`}>{stageLabels[item.editorial_stage] ?? item.editorial_stage}</span>
-                <span>{item.lifecycle === 'future_effective' ? '시행 예정' : '최근 시행'}</span>
+                <span>{changeLifecycleLabel(item.lifecycle)}</span>
                 <span>{item.effective_date}</span>
                 <span>우선순위 {item.priority_score}</span>
               </div>

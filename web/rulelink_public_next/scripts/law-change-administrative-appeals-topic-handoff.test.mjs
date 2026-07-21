@@ -9,7 +9,14 @@ const repositoryRoot = path.resolve(scriptDirectory, '..', '..', '..');
 const topicDirectory = path.join(repositoryRoot, 'artifacts', 'publication', 'topics');
 const handoffFile = 'law-change-briefs-administrative-appeals.json';
 const handoffPath = path.join(topicDirectory, handoffFile);
-const currentPath = path.join(repositoryRoot, 'artifacts', 'publication', 'current', 'bundle.json');
+const sourceSnapshotPath = path.join(
+  repositoryRoot,
+  'artifacts',
+  'publication',
+  'snapshots',
+  'kr-knowledge-core-20260721-020',
+  'bundle.json',
+);
 const briefId = 'kr.change.administrative-appeals-state-representative-documents';
 const assertionIds = [
   'assertion.kr.change.administrative-appeals-16-2.old-documents',
@@ -22,12 +29,12 @@ async function readJson(filePath) {
 }
 
 test('행정심판 법령변화 인계본은 snapshot 020 공개값을 내용 변경 없이 보존한다', async () => {
-  const [handoff, current] = await Promise.all([readJson(handoffPath), readJson(currentPath)]);
-  const expectedBrief = current.change_briefs.find((item) => item.change_brief_id === briefId);
-  const expectedAssertions = assertionIds.map((id) => current.assertions.find((item) => item.assertion_id === id));
+  const [handoff, sourceSnapshot] = await Promise.all([readJson(handoffPath), readJson(sourceSnapshotPath)]);
+  const expectedBrief = sourceSnapshot.change_briefs.find((item) => item.change_brief_id === briefId);
+  const expectedAssertions = assertionIds.map((id) => sourceSnapshot.assertions.find((item) => item.assertion_id === id));
 
   assert.equal(handoff.schema, 'rulelink_public_change_brief_set_v1');
-  assert.equal(handoff.checks.source_bundle_snapshot_id, current.snapshot_id);
+  assert.equal(handoff.checks.source_bundle_snapshot_id, sourceSnapshot.snapshot_id);
   assert.equal(handoff.checks.extracted_without_content_change, true);
   assert.deepEqual(handoff.change_briefs, [expectedBrief]);
   assert.deepEqual(handoff.assertions, expectedAssertions);

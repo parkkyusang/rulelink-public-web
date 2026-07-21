@@ -5,6 +5,7 @@ import test from 'node:test';
 import {fileURLToPath} from 'node:url';
 
 import {productionReleaseDecision} from './should-build-vercel-release.mjs';
+import {resolveSiteIndexing} from '../src/lib/site.ts';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const [config, release, workflow] = await Promise.all([
@@ -42,4 +43,12 @@ test('운영 공개 표식과 실주소 점검은 같은 공개 커밋에서만 
   assert.equal(typeof release.summary_ko, 'string');
   assert(release.summary_ko.trim().length > 0);
   assert.match(workflow, /paths:\s*\n\s*- web\/rulelink_public_next\/deploy\/release\.json/);
+});
+
+test('검색 공개는 운영 배포에서만 자동 허용하고 명시값을 우선한다', () => {
+  assert.equal(resolveSiteIndexing({VERCEL_ENV: 'production'}), true);
+  assert.equal(resolveSiteIndexing({VERCEL_ENV: 'preview'}), false);
+  assert.equal(resolveSiteIndexing({VERCEL_ENV: 'development'}), false);
+  assert.equal(resolveSiteIndexing({VERCEL_ENV: 'production', NEXT_PUBLIC_RULELINK_INDEXING: 'false'}), false);
+  assert.equal(resolveSiteIndexing({VERCEL_ENV: 'preview', NEXT_PUBLIC_RULELINK_INDEXING: 'true'}), true);
 });
