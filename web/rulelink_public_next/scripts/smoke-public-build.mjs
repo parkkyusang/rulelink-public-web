@@ -31,6 +31,7 @@ try {
   const expectedCounts = {
     issue_cards: bundle.cards?.length ?? 0,
     change_briefs: bundle.change_briefs?.length ?? 0,
+    concept_cards: bundle.knowledge?.concept_cards?.length ?? 0,
     knowledge_entries: bundle.knowledge?.content_entries?.length ?? 0,
     knowledge_hubs: bundle.knowledge?.topic_hubs?.length ?? 0,
     public_topics: bundle.catalog?.topics?.length ?? 0,
@@ -46,6 +47,9 @@ try {
   assert(homeResponse.ok, `홈 응답 실패: ${homeResponse.status}`);
   const homeHtml = await homeResponse.text();
   assert(homeHtml.includes('href="/ko/knowledge">상황별 지식</a>'), '상단 메뉴가 공개 지식으로 연결되지 않습니다.');
+  if ((bundle.knowledge?.concept_cards?.length ?? 0) > 0) {
+    assert(homeHtml.includes('href="/ko/concepts">법률용어</a>'), '상단 메뉴가 공개 법률개념으로 연결되지 않습니다.');
+  }
   assert(homeHtml.includes('href="/ko/sources">공식 근거</a>'), '상단 메뉴가 공식 근거 보관함으로 연결되지 않습니다.');
   for (const entry of selectHomepageKnowledge(bundle.knowledge?.content_entries ?? [], 6)) {
     assert(homeHtml.includes(`href="/ko/knowledge/${entry.slug}"`), `홈에서 공개 지식이 노출되지 않습니다: ${entry.slug}`);
@@ -61,15 +65,18 @@ try {
   if ((bundle.knowledge?.sources?.length ?? 0) > 0) indexableRoutes.add('/ko/sources');
   for (const card of bundle.cards ?? []) indexableRoutes.add(`/ko/issues/${card.slug}`);
   for (const brief of bundle.change_briefs ?? []) indexableRoutes.add(`/ko/changes/${brief.slug}`);
+  for (const concept of bundle.knowledge?.concept_cards ?? []) indexableRoutes.add(`/ko/concepts/${concept.slug}`);
   for (const entry of bundle.knowledge?.content_entries ?? []) indexableRoutes.add(`/ko/knowledge/${entry.slug}`);
   for (const hub of bundle.knowledge?.topic_hubs ?? []) indexableRoutes.add(`/ko/hubs/${hub.slug}`);
   for (const topic of bundle.catalog?.topics ?? []) indexableRoutes.add(`/ko/topics/${topic.slug}`);
   if ((bundle.change_briefs?.length ?? 0) > 0) indexableRoutes.add('/ko/changes');
+  if ((bundle.knowledge?.concept_cards?.length ?? 0) > 0) indexableRoutes.add('/ko/concepts');
   if ((bundle.knowledge?.content_entries?.length ?? 0) > 0) indexableRoutes.add('/ko/knowledge');
 
   const routes = new Set([...indexableRoutes, '/publication.json', '/robots.txt', '/sitemap.xml']);
   const feedItems = [
     ...(bundle.change_briefs ?? []).map(item => `/ko/changes/${item.slug}`),
+    ...(bundle.knowledge?.concept_cards ?? []).map(item => `/ko/concepts/${item.slug}`),
     ...(bundle.knowledge?.content_entries ?? []).map(item => `/ko/knowledge/${item.slug}`),
   ];
   if (feedItems.length) routes.add('/feed.xml');
