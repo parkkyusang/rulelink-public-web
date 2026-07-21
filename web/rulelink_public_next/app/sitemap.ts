@@ -21,6 +21,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     {url: site.url, changeFrequency: 'weekly', priority: 1},
     {url: `${site.url}/ko/method`, changeFrequency: 'monthly', priority: 0.5},
+    {url: `${site.url}/ko/search`, changeFrequency: 'weekly', priority: 0.95},
     ...(changeBriefs.length ? [{
       url: `${site.url}/ko/changes`,
       changeFrequency: 'weekly' as const,

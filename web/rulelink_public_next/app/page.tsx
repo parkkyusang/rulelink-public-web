@@ -45,11 +45,11 @@ export default async function HomePage() {
             <p>구법과 현행법을 나란히 놓고 시행일과 적용 경계를 확인합니다.</p>
             <strong>변경 전후에서 찾기 →</strong>
           </a>
-          <a href={knowledgeEntries.length ? '#knowledge' : '#issues'}>
+          <a href="/ko/search">
             <span>02 · 사실</span>
             <h3>어떤 사실이 결론을 가르나요?</h3>
             <p>같은 법이라도 결과를 바꾸는 질문과 사실분기를 먼저 보여줍니다.</p>
-            <strong>내 상황에서 찾기 →</strong>
+            <strong>전체 승인 정보에서 찾기 →</strong>
           </a>
           <a href={cards.length ? '#issues' : '/ko/method'}>
             <span>03 · 행동</span>
