@@ -2,7 +2,7 @@ import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 
 import {site} from '@/lib/site';
-import {editorialPreviewEnabled} from '@/lib/publication';
+import {editorialPreviewEnabled, listConceptCards} from '@/lib/publication';
 import {serializeStructuredData} from '@/lib/structured-data';
 
 import './globals.css';
@@ -28,8 +28,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({children}: {children: ReactNode}) {
+export default async function RootLayout({children}: {children: ReactNode}) {
   const preview = editorialPreviewEnabled();
+  const hasConcepts = (await listConceptCards()).length > 0;
   return (
     <html lang="ko">
       <head>
@@ -62,6 +63,7 @@ export default function RootLayout({children}: {children: ReactNode}) {
           <nav aria-label="주요 메뉴" className="siteNav">
             {preview ? <a href="/editorial">편집 운영</a> : null}
             <a href="/ko/search">전체에서 찾기</a>
+            {hasConcepts ? <a href="/ko/concepts">법률용어</a> : null}
             <a href="/ko/knowledge">상황별 지식</a>
             <a href="/ko/sources">공식 근거</a>
             <a href="/ko/method">콘텐츠 원칙</a>
