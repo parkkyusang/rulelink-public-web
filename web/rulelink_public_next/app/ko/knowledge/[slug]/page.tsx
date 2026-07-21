@@ -203,7 +203,7 @@ export default async function KnowledgePage({params}: Props) {
             <p className={styles.sourcesIntro}>원문 주소와 마지막 확인일을 함께 표시합니다.</p>
             {sources.map(source => (
               <a className={styles.sourceLink} href={browserOfficialSourceUrl(source) ?? source.official_url} key={source.coordinate_id} rel="noreferrer" target="_blank">
-                <span>{source.source_kind === 'precedent' ? source.title_ko : `${source.law_name_ko} ${source.article_no}`} 원문 <span aria-hidden="true">↗</span></span>
+                <span>{sourceLabel(source)} 원문 <span aria-hidden="true">↗</span></span>
                 <small>원문 확인 {formatDate(source.last_verified_at)}</small>
               </a>
             ))}
@@ -221,6 +221,11 @@ export default async function KnowledgePage({params}: Props) {
       ) : null}
     </main>
   );
+}
+
+function sourceLabel(source: import('@/types/publication').PublicKnowledgeSource): string {
+  if (source.source_kind === 'precedent' || source.source_kind === 'official_document') return source.title_ko;
+  return `${source.law_name_ko} ${source.article_no}`;
 }
 
 function formatDate(value: string): string {
