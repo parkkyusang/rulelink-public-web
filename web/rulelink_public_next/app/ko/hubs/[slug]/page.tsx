@@ -75,7 +75,7 @@ export default async function KnowledgeHubPage({params}: Props) {
       <div className="knowledgeGrid">
         {entries.map(entry => (
           <a className="knowledgeCard" href={`/ko/knowledge/${entry.slug}`} key={entry.content_id}>
-            <span>{knowledgeContentTypeLabel(entry.content_type)} · 기준 확인 {formatDate(entry.reviewed_at)}</span>
+            <span className="knowledgeMeta">{knowledgeContentTypeLabel(entry.content_type)} · 기준 확인 {formatDate(entry.reviewed_at)}</span>
             <h2>{entry.title_ko}</h2>
             <p>{entry.one_line_answer_ko}</p>
             <strong>법리와 사실분기 보기 →</strong>
