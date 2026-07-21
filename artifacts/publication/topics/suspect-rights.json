@@ -1,0 +1,1110 @@
+{
+  "schema": "rulelink_public_knowledge_topic_v1",
+  "topic_id": "hub.suspect-rights",
+  "sources": [
+    {
+      "coordinate_id": "coord.suspect-rights.criminal-procedure-ko-0034",
+      "source_id": "criminal_procedure_ko_0034",
+      "law_name_ko": "형사소송법",
+      "article_no": "제34조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C34%EC%A1%B0",
+      "source_snapshot_id": "snapshot:7bd3f21029ab85cf67dce87c74efa1c7",
+      "last_verified_at": "2026-07-21T16:20:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.suspect-rights.criminal-procedure-ko-0070",
+      "source_id": "criminal_procedure_ko_0070",
+      "law_name_ko": "형사소송법",
+      "article_no": "제70조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C70%EC%A1%B0",
+      "source_snapshot_id": "snapshot:97e85c346c9388f97467d6c5147352c2",
+      "last_verified_at": "2026-07-21T16:20:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.suspect-rights.criminal-procedure-ko-0199",
+      "source_id": "criminal_procedure_ko_0199",
+      "law_name_ko": "형사소송법",
+      "article_no": "제199조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C199%EC%A1%B0",
+      "source_snapshot_id": "snapshot:3b467c2cf5b37d13b665de0e9e8d2157",
+      "last_verified_at": "2026-07-21T16:20:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.suspect-rights.criminal-procedure-ko-0200",
+      "source_id": "criminal_procedure_ko_0200",
+      "law_name_ko": "형사소송법",
+      "article_no": "제200조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C200%EC%A1%B0",
+      "source_snapshot_id": "snapshot:91113c71ffd1ce3cc6ef1efea3cf658f",
+      "last_verified_at": "2026-07-21T16:20:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.suspect-rights.criminal-procedure-ko-0200-02",
+      "source_id": "criminal_procedure_ko_0200_02",
+      "law_name_ko": "형사소송법",
+      "article_no": "제200조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C200%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:e3f53a21e377c54baa4d30224eabd938",
+      "last_verified_at": "2026-07-21T16:20:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.suspect-rights.criminal-procedure-ko-0200-03",
+      "source_id": "criminal_procedure_ko_0200_03",
+      "law_name_ko": "형사소송법",
+      "article_no": "제200조의3",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C200%EC%A1%B0%EC%9D%983",
+      "source_snapshot_id": "snapshot:d9c7d0c467a9e181566ad8225d3e4c40",
+      "last_verified_at": "2026-07-21T16:20:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.suspect-rights.criminal-procedure-ko-0200-04",
+      "source_id": "criminal_procedure_ko_0200_04",
+      "law_name_ko": "형사소송법",
+      "article_no": "제200조의4",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C200%EC%A1%B0%EC%9D%984",
+      "source_snapshot_id": "snapshot:875969a38f79c165b0b546a41bd218f9",
+      "last_verified_at": "2026-07-21T16:20:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.suspect-rights.criminal-procedure-ko-0200-05",
+      "source_id": "criminal_procedure_ko_0200_05",
+      "law_name_ko": "형사소송법",
+      "article_no": "제200조의5",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C200%EC%A1%B0%EC%9D%985",
+      "source_snapshot_id": "snapshot:923fdb2be7e70bd8c81231ab3e24fd4b",
+      "last_verified_at": "2026-07-21T16:20:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.suspect-rights.criminal-procedure-ko-0201",
+      "source_id": "criminal_procedure_ko_0201",
+      "law_name_ko": "형사소송법",
+      "article_no": "제201조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C201%EC%A1%B0",
+      "source_snapshot_id": "snapshot:119f79971d1f558ec7a72d739572301d",
+      "last_verified_at": "2026-07-21T16:20:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.suspect-rights.criminal-procedure-ko-0214-02",
+      "source_id": "criminal_procedure_ko_0214_02",
+      "law_name_ko": "형사소송법",
+      "article_no": "제214조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C214%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:a67544b430b30980257589323ae1b45b",
+      "last_verified_at": "2026-07-21T16:20:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.suspect-rights.criminal-procedure-ko-0215",
+      "source_id": "criminal_procedure_ko_0215",
+      "law_name_ko": "형사소송법",
+      "article_no": "제215조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C215%EC%A1%B0",
+      "source_snapshot_id": "snapshot:df0eafb4102129c696b65ca35b0a9362",
+      "last_verified_at": "2026-07-21T16:20:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.suspect-rights.criminal-procedure-ko-0216",
+      "source_id": "criminal_procedure_ko_0216",
+      "law_name_ko": "형사소송법",
+      "article_no": "제216조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C216%EC%A1%B0",
+      "source_snapshot_id": "snapshot:a3245b064a4dc7a3961ee032050625ca",
+      "last_verified_at": "2026-07-21T16:20:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.suspect-rights.criminal-procedure-ko-0243-02",
+      "source_id": "criminal_procedure_ko_0243_02",
+      "law_name_ko": "형사소송법",
+      "article_no": "제243조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C243%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:48ade96b39dd5171e4e25a332e55a3b7",
+      "last_verified_at": "2026-07-21T16:20:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.suspect-rights.criminal-procedure-ko-0244",
+      "source_id": "criminal_procedure_ko_0244",
+      "law_name_ko": "형사소송법",
+      "article_no": "제244조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C244%EC%A1%B0",
+      "source_snapshot_id": "snapshot:16c59f840bca8fd12b2545d13ee421ed",
+      "last_verified_at": "2026-07-21T16:20:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.suspect-rights.criminal-procedure-ko-0244-03",
+      "source_id": "criminal_procedure_ko_0244_03",
+      "law_name_ko": "형사소송법",
+      "article_no": "제244조의3",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C244%EC%A1%B0%EC%9D%983",
+      "source_snapshot_id": "snapshot:8f0ea5a956de3551fe11339bfa2c0c87",
+      "last_verified_at": "2026-07-21T16:20:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.suspect-rights.criminal-procedure-ko-0244-04",
+      "source_id": "criminal_procedure_ko_0244_04",
+      "law_name_ko": "형사소송법",
+      "article_no": "제244조의4",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C244%EC%A1%B0%EC%9D%984",
+      "source_snapshot_id": "snapshot:4fd1d27cec4e8c462a97b6b01d66d38b",
+      "last_verified_at": "2026-07-21T16:20:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.suspect-rights.criminal-procedure-ko-0308-02",
+      "source_id": "criminal_procedure_ko_0308_02",
+      "law_name_ko": "형사소송법",
+      "article_no": "제308조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C308%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:579b984dde7b2e45d86bf37bb30e6d36",
+      "last_verified_at": "2026-07-21T16:20:00+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.suspect-rights",
+      "slug": "suspect-rights",
+      "title_ko": "피의자 조사·체포·구속·압수수색",
+      "description_ko": "출석요구와 진술거부권부터 변호인 참여, 체포·긴급체포·구속, 적부심사, 압수수색과 조서 확인까지 수사 단계별 권리와 판단사실을 안내합니다.",
+      "content_ids": [
+        "content.suspect-rights-attendance-request-vs-arrest",
+        "content.suspect-rights-right-to-silence",
+        "content.suspect-rights-counsel-during-questioning",
+        "content.suspect-rights-arrest-notice",
+        "content.suspect-rights-warrant-arrest-and-48-hours",
+        "content.suspect-rights-emergency-arrest",
+        "content.suspect-rights-detention-warrant-grounds",
+        "content.suspect-rights-arrest-detention-review",
+        "content.suspect-rights-search-warrant-vs-emergency",
+        "content.suspect-rights-statement-record-and-illegal-evidence"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.suspect-rights.attendance-request-vs-arrest",
+      "title_ko": "경찰 출석요구를 받으면 이미 체포된 것인가요?",
+      "proposition_ko": "출석요구 자체는 체포영장이 아니며 강제처분은 법률의 특별한 근거와 필요한 최소한의 범위에서만 할 수 있습니다.",
+      "norm": {
+        "actor_ko": "수사기관의 출석요구를 받은 피의자",
+        "conditions_ko": "출석요구의 형식·피의자 지위·체포영장 집행 또는 다른 강제처분 근거를 구분하는 경우",
+        "legal_effect_ko": "단순 출석요구와 신체구속을 구분하고 강제처분이면 별도의 적법요건을 확인합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0199",
+        "coord.suspect-rights.criminal-procedure-ko-0200",
+        "coord.suspect-rights.criminal-procedure-ko-0200-02"
+      ]
+    },
+    {
+      "rule_id": "rule.suspect-rights.right-to-silence",
+      "title_ko": "피의자는 모든 질문에 답해야 하나요?",
+      "proposition_ko": "수사기관은 신문 전에 전부·일부 진술거부권, 불이익 금지, 진술의 증거사용 가능성과 변호인 조력권을 고지하고 행사 여부를 조서에 남겨야 합니다.",
+      "norm": {
+        "actor_ko": "피의자를 신문하는 검사·사법경찰관과 신문받는 피의자",
+        "conditions_ko": "피의자신문을 시작하기 전 권리고지와 행사 의사를 확인하는 경우",
+        "legal_effect_ko": "피의자는 전체 또는 개별 질문에 진술을 거부할 수 있고 그 자체로 불이익을 받지 않습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0244-03"
+      ]
+    },
+    {
+      "rule_id": "rule.suspect-rights.counsel-during-questioning",
+      "title_ko": "경찰·검찰 조사에 변호인이 참여할 수 있나요?",
+      "proposition_ko": "피의자 측의 신청이 있으면 정당한 사유가 없는 한 변호인 접견과 신문 참여가 보장되고, 참여 제한과 변호인 의견은 조서에 기록되어야 합니다.",
+      "norm": {
+        "actor_ko": "신문받는 피의자, 참여 변호인과 수사기관",
+        "conditions_ko": "피의자 또는 법정 관계인이 변호인 참여를 신청하거나 신체구속 피의자의 접견을 구하는 경우",
+        "legal_effect_ko": "변호인은 신문 참여, 부당한 신문방법 이의와 일정 범위의 의견진술을 할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0034",
+        "coord.suspect-rights.criminal-procedure-ko-0243-02"
+      ]
+    },
+    {
+      "rule_id": "rule.suspect-rights.arrest-notice",
+      "title_ko": "체포될 때 어떤 내용을 고지받아야 하나요?",
+      "proposition_ko": "수사기관은 피의자를 체포할 때 피의사실 요지·체포 이유·변호인 선임 가능성을 말하고 변명 기회를 주어야 합니다.",
+      "norm": {
+        "actor_ko": "체포를 집행하는 검사·사법경찰관과 체포되는 피의자",
+        "conditions_ko": "영장체포 또는 긴급체포 등으로 피의자의 신체를 구속하는 경우",
+        "legal_effect_ko": "체포의 근거와 방어권을 즉시 알리고 변명할 기회를 보장해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0200-05"
+      ]
+    },
+    {
+      "rule_id": "rule.suspect-rights.warrant-arrest-and-48-hours",
+      "title_ko": "체포영장으로 체포되면 얼마나 계속 잡아둘 수 있나요?",
+      "proposition_ko": "영장체포 뒤 계속 구속하려면 체포 시점부터 48시간 이내 구속영장을 청구해야 합니다.",
+      "norm": {
+        "actor_ko": "영장으로 체포된 피의자와 구속영장을 청구하는 수사기관",
+        "conditions_ko": "체포한 피의자를 48시간을 넘어 계속 신체구속하려는 경우",
+        "legal_effect_ko": "48시간 안에 구속영장을 청구하지 않으면 즉시 석방해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0200-02"
+      ]
+    },
+    {
+      "rule_id": "rule.suspect-rights.emergency-arrest",
+      "title_ko": "영장 없이 긴급체포할 수 있는 경우는 언제인가요?",
+      "proposition_ko": "긴급체포는 법정 중대범죄, 상당한 혐의, 증거인멸·도주 우려와 영장을 받을 수 없는 긴급성이 함께 있을 때만 가능하고 48시간 내 구속영장 청구가 필요합니다.",
+      "norm": {
+        "actor_ko": "긴급체포를 집행하는 수사기관과 체포된 피의자",
+        "conditions_ko": "사형·무기 또는 장기 3년 이상 범죄 혐의와 증거인멸·도주 우려, 시간적 긴급성이 모두 문제되는 경우",
+        "legal_effect_ko": "요건을 충족하면 영장 없이 체포할 수 있으나 즉시 서류작성·승인과 48시간 내 영장청구 통제를 받습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0200-03",
+        "coord.suspect-rights.criminal-procedure-ko-0200-04"
+      ]
+    },
+    {
+      "rule_id": "rule.suspect-rights.detention-warrant-grounds",
+      "title_ko": "혐의가 있으면 곧바로 구속되는 건가요?",
+      "proposition_ko": "피의자 구속은 상당한 혐의와 법정 구속사유가 함께 있어야 하며 법원이 구속 필요성을 심사합니다.",
+      "norm": {
+        "actor_ko": "구속영장이 청구된 피의자와 영장 여부를 판단하는 법원",
+        "conditions_ko": "상당한 혐의에 더해 주거부정·증거인멸·도주 우려와 기타 고려요소를 심사하는 경우",
+        "legal_effect_ko": "혐의만으로 자동 구속하지 않고 구체적 구속사유와 필요성을 판단합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0070",
+        "coord.suspect-rights.criminal-procedure-ko-0201"
+      ]
+    },
+    {
+      "rule_id": "rule.suspect-rights.arrest-detention-review",
+      "title_ko": "체포·구속이 부당하면 법원 심사를 청구할 수 있나요?",
+      "proposition_ko": "법정 청구권자는 체포·구속 적부심사를 청구할 수 있고 법원은 원칙적으로 48시간 내 피의자를 심문해 기각 또는 석방을 결정합니다.",
+      "norm": {
+        "actor_ko": "체포·구속된 피의자와 법정 청구권자",
+        "conditions_ko": "관할법원에 적부심사 청구서를 제출하고 구속의 적법성·필요성을 다투는 경우",
+        "legal_effect_ko": "법원은 신속히 심문해 이유 있으면 석방을 명하고 일정한 경우 보증금 조건 석방도 할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0214-02"
+      ]
+    },
+    {
+      "rule_id": "rule.suspect-rights.search-warrant-vs-emergency",
+      "title_ko": "압수수색은 언제 영장 없이 할 수 있나요?",
+      "proposition_ko": "수사상 압수·수색·검증은 원칙적으로 영장과 사건 관련성이 필요하고, 영장 없는 강제처분은 체포현장·범죄현장 긴급상황 등 법정 범위로 제한됩니다.",
+      "norm": {
+        "actor_ko": "압수수색을 집행하는 수사기관과 처분 대상자",
+        "conditions_ko": "영장에 의한 처분인지 체포현장·범행현장의 긴급한 예외인지 판단하는 경우",
+        "legal_effect_ko": "영장에 적힌 대상·장소·범위 또는 법정 예외의 필요최소 범위 안에서만 처분할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0215",
+        "coord.suspect-rights.criminal-procedure-ko-0216"
+      ]
+    },
+    {
+      "rule_id": "rule.suspect-rights.statement-record-and-illegal-evidence",
+      "title_ko": "피의자신문조서는 서명 전에 무엇을 확인해야 하나요?",
+      "proposition_ko": "피의자신문조서는 열람·낭독과 정정·이의 기회를 거쳐야 하고 조사 시작·종료 등 과정도 기록되어야 하며 위법수집증거는 배제됩니다.",
+      "norm": {
+        "actor_ko": "신문조서를 작성하는 수사기관과 열람·서명하는 피의자",
+        "conditions_ko": "진술내용과 조사과정을 조서로 확정하고 증거사용 가능성이 생기는 경우",
+        "legal_effect_ko": "사실과 다른 부분을 정정·추가기재하고 이의 흔적을 보존한 뒤 서명 여부를 판단합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0244",
+        "coord.suspect-rights.criminal-procedure-ko-0244-04",
+        "coord.suspect-rights.criminal-procedure-ko-0308-02"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.suspect-rights.attendance-request-vs-arrest",
+      "question_ko": "수사기관이 체포영장을 제시했거나 실제로 이동·퇴거를 강제로 제한했나요?",
+      "decision_fact_ko": "연락 내용, 출석 일시·장소, 체포영장 제시, 이동 제한 시작시각",
+      "when_true_ko": "체포 사유·피의사실·변호인 선임권 고지와 시간기록을 확인합니다.",
+      "when_false_ko": "출석요구의 사건번호와 조사 목적을 확인하고 변호인 참여·일정 조정을 준비합니다.",
+      "rule_ids": [
+        "rule.suspect-rights.attendance-request-vs-arrest"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0199",
+        "coord.suspect-rights.criminal-procedure-ko-0200",
+        "coord.suspect-rights.criminal-procedure-ko-0200-02"
+      ]
+    },
+    {
+      "scenario_id": "scenario.suspect-rights.right-to-silence",
+      "question_ko": "신문 전에 진술거부권·불이익 금지·증거사용 가능성·변호인 조력권을 고지받고 답변이 기록됐나요?",
+      "decision_fact_ko": "고지 시각과 내용, 피의자 답변, 자필·서명 여부, 실제 질문 순서",
+      "when_true_ko": "답할 질문과 유보할 질문을 구분하고 정확한 사실만 진술합니다.",
+      "when_false_ko": "고지 전후 조사경과와 조서 기재를 확인해 이의를 명확히 남깁니다.",
+      "rule_ids": [
+        "rule.suspect-rights.right-to-silence"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0244-03"
+      ]
+    },
+    {
+      "scenario_id": "scenario.suspect-rights.counsel-during-questioning",
+      "question_ko": "변호인 참여 또는 접견을 명확히 신청했고 제한 사유와 처리 결과가 조서에 기록됐나요?",
+      "decision_fact_ko": "신청자·신청시각, 변호인 성명, 제한 사유, 참여 시작·종료시각, 의견 기재",
+      "when_true_ko": "조사 전 사실관계와 자료를 정리하고 변호인의 의견기재를 확인합니다.",
+      "when_false_ko": "구두 요청에 그치지 말고 신청과 거부·제한의 사유를 기록으로 남깁니다.",
+      "rule_ids": [
+        "rule.suspect-rights.counsel-during-questioning"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0034",
+        "coord.suspect-rights.criminal-procedure-ko-0243-02"
+      ]
+    },
+    {
+      "scenario_id": "scenario.suspect-rights.arrest-notice",
+      "question_ko": "체포 당시 피의사실·체포 이유·변호인 선임권을 구체적으로 들었고 변명 기회가 있었나요?",
+      "decision_fact_ko": "체포시각·장소, 고지자, 고지 문구, 영장 제시, 변명 내용",
+      "when_true_ko": "고지 내용과 체포시각을 기록하고 변호인·가족에게 전달합니다.",
+      "when_false_ko": "누락된 고지와 실제 체포 경위를 시간순으로 정리합니다.",
+      "rule_ids": [
+        "rule.suspect-rights.arrest-notice"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0200-05"
+      ]
+    },
+    {
+      "scenario_id": "scenario.suspect-rights.warrant-arrest-and-48-hours",
+      "question_ko": "실제 체포시각부터 48시간 안에 구속영장이 청구됐나요?",
+      "decision_fact_ko": "실제 체포시각, 구속영장 청구시각, 석방시각, 시간기록 문서",
+      "when_true_ko": "구속영장 심문 준비와 구속 필요성 반박자료를 정리합니다.",
+      "when_false_ko": "즉시 석방 원칙과 시간기록을 확인해 대응합니다.",
+      "rule_ids": [
+        "rule.suspect-rights.warrant-arrest-and-48-hours"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0200-02"
+      ]
+    },
+    {
+      "scenario_id": "scenario.suspect-rights.emergency-arrest",
+      "question_ko": "중대범죄 혐의·증거인멸 또는 도주 우려·영장발부를 기다릴 수 없는 긴급성이 모두 있었나요?",
+      "decision_fact_ko": "적용 혐의 법정형, 긴급체포 사유, 발견 경위, 체포·승인·영장청구 시각",
+      "when_true_ko": "긴급체포서와 48시간 내 구속영장 청구 여부를 확인합니다.",
+      "when_false_ko": "요건별 부족 사실과 당시 영장을 받을 시간적 여유를 자료로 정리합니다.",
+      "rule_ids": [
+        "rule.suspect-rights.emergency-arrest"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0200-03",
+        "coord.suspect-rights.criminal-procedure-ko-0200-04"
+      ]
+    },
+    {
+      "scenario_id": "scenario.suspect-rights.detention-warrant-grounds",
+      "question_ko": "일정한 주거, 증거 보전, 출석 가능성을 객관 자료로 설명할 수 있나요?",
+      "decision_fact_ko": "주소·가족·직업, 출석이력, 증거 접근 가능성, 피해자 접촉 여부, 전과·재범위험",
+      "when_true_ko": "구속사유가 낮다는 자료와 준수 가능한 조건을 구조화합니다.",
+      "when_false_ko": "추상적 약속이 아니라 주거·직업·연락·증거보전 계획을 보완합니다.",
+      "rule_ids": [
+        "rule.suspect-rights.detention-warrant-grounds"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0070",
+        "coord.suspect-rights.criminal-procedure-ko-0201"
+      ]
+    },
+    {
+      "scenario_id": "scenario.suspect-rights.arrest-detention-review",
+      "question_ko": "법정 청구권자가 관할법원에 구체적 사유와 자료를 갖춰 적부심사를 청구했나요?",
+      "decision_fact_ko": "체포·구속일, 영장·고지 문서, 청구인 관계, 관할법원, 석방 필요자료",
+      "when_true_ko": "48시간 심문에 대비해 적법성·필요성 쟁점을 압축합니다.",
+      "when_false_ko": "청구권자와 관할을 확인해 시간기록과 반박자료를 신속히 정리합니다.",
+      "rule_ids": [
+        "rule.suspect-rights.arrest-detention-review"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0214-02"
+      ]
+    },
+    {
+      "scenario_id": "scenario.suspect-rights.search-warrant-vs-emergency",
+      "question_ko": "영장이 제시됐고 압수 대상·장소·혐의와 실제 집행이 일치하나요, 아니면 구체적 긴급 예외가 있나요?",
+      "decision_fact_ko": "영장 원본·사본, 혐의, 장소·대상, 집행시각, 체포·범행현장 관계, 사후영장 여부",
+      "when_true_ko": "영장 범위와 압수목록을 대조하고 사본을 보관합니다.",
+      "when_false_ko": "영장 없는 처분의 예외사유와 긴급성·사후영장 절차를 기록합니다.",
+      "rule_ids": [
+        "rule.suspect-rights.search-warrant-vs-emergency"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0215",
+        "coord.suspect-rights.criminal-procedure-ko-0216"
+      ]
+    },
+    {
+      "scenario_id": "scenario.suspect-rights.statement-record-and-illegal-evidence",
+      "question_ko": "조서 전체와 조사과정 기록을 확인했고, 진술과 다른 문구·누락·이의가 모두 수정 또는 추가됐나요?",
+      "decision_fact_ko": "도착·시작·종료시각, 휴식, 질문·답변, 정정 전후 문구, 자필·서명, 변호인 의견",
+      "when_true_ko": "최종 문구와 정정 흔적을 다시 읽고 일치할 때만 서명합니다.",
+      "when_false_ko": "급히 서명하지 말고 증감·변경과 이의의 추가기재를 요구합니다.",
+      "rule_ids": [
+        "rule.suspect-rights.statement-record-and-illegal-evidence"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0244",
+        "coord.suspect-rights.criminal-procedure-ko-0244-04",
+        "coord.suspect-rights.criminal-procedure-ko-0308-02"
+      ]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.suspect-rights-attendance-request-vs-arrest",
+      "content_type": "comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:20:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "suspect-rights-attendance-request-vs-arrest",
+      "title_ko": "경찰 출석요구를 받으면 이미 체포된 것인가요?",
+      "one_line_answer_ko": "출석요구와 체포는 다릅니다. 출석요구는 진술을 듣기 위한 수사이고, 신체를 강제로 제한하려면 법률상 근거와 영장 등 별도 요건이 필요합니다.",
+      "audience_situation_ko": "경찰이나 검찰의 전화·문자로 출석요구를 받고 임의출석인지 강제수사인지 확인하려는 사람",
+      "key_points_ko": [
+        "출석요구와 체포를 구분합니다.",
+        "강제처분에는 법률상 근거가 필요합니다.",
+        "연락·도착·퇴거제한 시각을 기록합니다."
+      ],
+      "action_steps_ko": [
+        "담당기관·수사관·사건번호를 확인한다.",
+        "출석요구 내용을 문자나 서면으로 남긴다.",
+        "체포영장 제시와 이동 제한 여부를 기록한다.",
+        "조사 전 변호인 참여 필요성을 검토한다."
+      ],
+      "facts_to_check_ko": [
+        "피의자 지위",
+        "출석요구 방식",
+        "체포영장 유무",
+        "이동 제한 여부",
+        "각 단계 시각"
+      ],
+      "caution_ko": "출석요구가 임의수사라고 해서 사건 대응이 가벼운 것은 아닙니다. 반대로 심리적 압박만으로 법적 체포가 있었다고 단정하지 말고 객관적 제한과 근거를 확인해야 합니다.",
+      "search_intents_ko": [
+        "경찰 출석요구를 받으면 이미 체포된 것인가요?",
+        "수사기관이 체포영장을 제시했거나 실제로 이동·퇴거를 강제로 제한했나요?",
+        "피의자 권리 attendance request vs arrest"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "출석요구 자체는 체포영장이 아니며 강제처분은 법률의 특별한 근거와 필요한 최소한의 범위에서만 할 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "연락 내용, 출석 일시·장소, 체포영장 제시, 이동 제한 시작시각을(를) 시간순 자료와 문서로 확인합니다. 출석요구가 임의수사라고 해서 사건 대응이 가벼운 것은 아닙니다. 반대로 심리적 압박만으로 법적 체포가 있었다고 단정하지 말고 객관적 제한과 근거를 확인해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.suspect-rights.attendance-request-vs-arrest"
+      ],
+      "scenario_ids": [
+        "scenario.suspect-rights.attendance-request-vs-arrest"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0199",
+        "coord.suspect-rights.criminal-procedure-ko-0200",
+        "coord.suspect-rights.criminal-procedure-ko-0200-02"
+      ],
+      "hub_ids": [
+        "hub.suspect-rights"
+      ],
+      "related_content_ids": [
+        "content.report-complaint-accusation-difference"
+      ]
+    },
+    {
+      "content_id": "content.suspect-rights-right-to-silence",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:20:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "suspect-rights-right-to-silence",
+      "title_ko": "피의자는 모든 질문에 답해야 하나요?",
+      "one_line_answer_ko": "아닙니다. 피의자는 전체 또는 개별 질문에 진술하지 않을 수 있고, 진술하지 않았다는 이유만으로 불이익을 받지 않으며, 한 진술은 유죄의 증거로 사용될 수 있음을 조사 전에 고지받아야 합니다.",
+      "audience_situation_ko": "경찰·검찰 조사에서 침묵하면 불리해질까 걱정되어 모든 질문에 즉시 답하려는 사람",
+      "key_points_ko": [
+        "전부 또는 질문별로 진술을 거부할 수 있습니다.",
+        "침묵 자체로 불이익을 받아서는 안 됩니다.",
+        "진술은 법정에서 증거로 사용될 수 있습니다."
+      ],
+      "action_steps_ko": [
+        "권리고지 내용을 끝까지 듣는다.",
+        "불명확한 질문은 뜻을 확인한다.",
+        "추측하지 말고 모르면 모른다고 말한다.",
+        "진술거부와 변호인 상담 요청을 명확히 표현한다."
+      ],
+      "facts_to_check_ko": [
+        "권리고지 여부",
+        "고지 전 질문 여부",
+        "개별 질문 내용",
+        "행사 의사 기록",
+        "서명·날인"
+      ],
+      "caution_ko": "진술거부권은 거짓말할 권리가 아닙니다. 답하기로 한 내용은 추측과 사실을 구분하고, 불확실하면 확인이 필요하다는 점을 분명히 해야 합니다.",
+      "search_intents_ko": [
+        "피의자는 모든 질문에 답해야 하나요?",
+        "신문 전에 진술거부권·불이익 금지·증거사용 가능성·변호인 조력권을 고지받고 답변이 기록됐나요?",
+        "피의자 권리 right to silence"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "수사기관은 신문 전에 전부·일부 진술거부권, 불이익 금지, 진술의 증거사용 가능성과 변호인 조력권을 고지하고 행사 여부를 조서에 남겨야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "고지 시각과 내용, 피의자 답변, 자필·서명 여부, 실제 질문 순서을(를) 시간순 자료와 문서로 확인합니다. 진술거부권은 거짓말할 권리가 아닙니다. 답하기로 한 내용은 추측과 사실을 구분하고, 불확실하면 확인이 필요하다는 점을 분명히 해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.suspect-rights.right-to-silence"
+      ],
+      "scenario_ids": [
+        "scenario.suspect-rights.right-to-silence"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0244-03"
+      ],
+      "hub_ids": [
+        "hub.suspect-rights"
+      ],
+      "related_content_ids": [
+        "content.crime-evidence-preservation-first-steps"
+      ]
+    },
+    {
+      "content_id": "content.suspect-rights-counsel-during-questioning",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:20:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "suspect-rights-counsel-during-questioning",
+      "title_ko": "경찰·검찰 조사에 변호인이 참여할 수 있나요?",
+      "one_line_answer_ko": "피의자나 일정한 관계인의 신청이 있으면 정당한 사유가 없는 한 변호인을 접견시키거나 신문에 참여하게 해야 하며, 구속된 피의자도 변호인과 접견·서류수수를 할 수 있습니다.",
+      "audience_situation_ko": "혼자 조사받기 불안하거나 이미 체포·구속되어 변호인 상담과 조사 참여가 필요한 사람",
+      "key_points_ko": [
+        "정당한 사유 없는 참여 배제는 허용되지 않습니다.",
+        "변호인은 부당한 질문 방식에 이의할 수 있습니다.",
+        "참여 제한은 조서에 기록되어야 합니다."
+      ],
+      "action_steps_ko": [
+        "변호인 참여 의사를 조사 전에 통지한다.",
+        "접견과 조사시간을 조율한다.",
+        "제한되면 구체적 사유를 확인한다.",
+        "조서의 참여·의견 기재를 열람한다."
+      ],
+      "facts_to_check_ko": [
+        "참여 신청시각",
+        "정당한 제한사유",
+        "접견 가능 여부",
+        "변호인 의견",
+        "조서 기재"
+      ],
+      "caution_ko": "변호인이 신문 중 모든 질문에 대신 답하는 구조는 아닙니다. 피의자 본인의 진술 여부와 변호인의 이의·의견 역할을 구분해야 합니다.",
+      "search_intents_ko": [
+        "경찰·검찰 조사에 변호인이 참여할 수 있나요?",
+        "변호인 참여 또는 접견을 명확히 신청했고 제한 사유와 처리 결과가 조서에 기록됐나요?",
+        "피의자 권리 counsel during questioning"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "피의자 측의 신청이 있으면 정당한 사유가 없는 한 변호인 접견과 신문 참여가 보장되고, 참여 제한과 변호인 의견은 조서에 기록되어야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "신청자·신청시각, 변호인 성명, 제한 사유, 참여 시작·종료시각, 의견 기재을(를) 시간순 자료와 문서로 확인합니다. 변호인이 신문 중 모든 질문에 대신 답하는 구조는 아닙니다. 피의자 본인의 진술 여부와 변호인의 이의·의견 역할을 구분해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.suspect-rights.counsel-during-questioning"
+      ],
+      "scenario_ids": [
+        "scenario.suspect-rights.counsel-during-questioning"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0034",
+        "coord.suspect-rights.criminal-procedure-ko-0243-02"
+      ],
+      "hub_ids": [
+        "hub.suspect-rights"
+      ],
+      "related_content_ids": [
+        "content.how-to-file-criminal-complaint"
+      ]
+    },
+    {
+      "content_id": "content.suspect-rights-arrest-notice",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:20:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "suspect-rights-arrest-notice",
+      "title_ko": "체포될 때 어떤 내용을 고지받아야 하나요?",
+      "one_line_answer_ko": "체포 시 피의사실의 요지, 체포 이유와 변호인을 선임할 수 있음을 듣고 변명할 기회를 받아야 합니다.",
+      "audience_situation_ko": "본인이나 가족이 체포되어 체포 이유와 권리 고지가 제대로 이루어졌는지 확인하려는 사람",
+      "key_points_ko": [
+        "피의사실과 체포 이유를 고지해야 합니다.",
+        "변호인 선임 가능성을 알려야 합니다.",
+        "변명할 기회를 주어야 합니다."
+      ],
+      "action_steps_ko": [
+        "체포시각과 장소를 기억·기록한다.",
+        "영장과 고지 내용을 확인한다.",
+        "변호인 연락을 요청한다.",
+        "건강상태와 복용약을 알린다."
+      ],
+      "facts_to_check_ko": [
+        "체포시각",
+        "피의사실 요지",
+        "체포 이유",
+        "변호인 선임권 고지",
+        "변명 기회"
+      ],
+      "caution_ko": "고지가 미흡하다고 현장에서 물리적으로 저항해서는 안 됩니다. 안전을 확보하면서 고지 내용과 시간, 참여자를 객관적으로 남겨 사후 절차에서 다투어야 합니다.",
+      "search_intents_ko": [
+        "체포될 때 어떤 내용을 고지받아야 하나요?",
+        "체포 당시 피의사실·체포 이유·변호인 선임권을 구체적으로 들었고 변명 기회가 있었나요?",
+        "피의자 권리 arrest notice"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "수사기관은 피의자를 체포할 때 피의사실 요지·체포 이유·변호인 선임 가능성을 말하고 변명 기회를 주어야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "체포시각·장소, 고지자, 고지 문구, 영장 제시, 변명 내용을(를) 시간순 자료와 문서로 확인합니다. 고지가 미흡하다고 현장에서 물리적으로 저항해서는 안 됩니다. 안전을 확보하면서 고지 내용과 시간, 참여자를 객관적으로 남겨 사후 절차에서 다투어야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.suspect-rights.arrest-notice"
+      ],
+      "scenario_ids": [
+        "scenario.suspect-rights.arrest-notice"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0200-05"
+      ],
+      "hub_ids": [
+        "hub.suspect-rights"
+      ],
+      "related_content_ids": [
+        "content.notice-of-prosecution-or-nonprosecution"
+      ]
+    },
+    {
+      "content_id": "content.suspect-rights-warrant-arrest-and-48-hours",
+      "content_type": "deadline",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:20:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "suspect-rights-warrant-arrest-and-48-hours",
+      "title_ko": "체포영장으로 체포되면 얼마나 계속 잡아둘 수 있나요?",
+      "one_line_answer_ko": "체포영장으로 체포한 피의자를 계속 구속하려면 체포한 때부터 48시간 안에 구속영장을 청구해야 하고, 그 기간 안에 청구하지 않으면 즉시 석방해야 합니다.",
+      "audience_situation_ko": "체포영장으로 체포된 뒤 구속영장 청구 마감과 석방 시점을 확인하려는 피의자·가족",
+      "key_points_ko": [
+        "기산점은 실제 체포한 때입니다.",
+        "48시간 안에 구속영장을 청구해야 합니다.",
+        "미청구 시 즉시 석방해야 합니다."
+      ],
+      "action_steps_ko": [
+        "실제 자유제한 시작시각을 확인한다.",
+        "체포서류와 영장 사본을 확인한다.",
+        "구속영장 청구 여부를 문의한다.",
+        "주거·직업·증거보전 자료를 준비한다."
+      ],
+      "facts_to_check_ko": [
+        "체포시각",
+        "영장 집행시각",
+        "구속영장 청구시각",
+        "석방시각",
+        "구속 필요성 자료"
+      ],
+      "caution_ko": "48시간은 사건 종결기한이 아니라 구속영장 청구기한입니다. 영장이 청구되면 법원의 구속 필요성 심사가 별도로 이어집니다.",
+      "search_intents_ko": [
+        "체포영장으로 체포되면 얼마나 계속 잡아둘 수 있나요?",
+        "실제 체포시각부터 48시간 안에 구속영장이 청구됐나요?",
+        "피의자 권리 warrant arrest and 48 hours"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "영장체포 뒤 계속 구속하려면 체포 시점부터 48시간 이내 구속영장을 청구해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "실제 체포시각, 구속영장 청구시각, 석방시각, 시간기록 문서을(를) 시간순 자료와 문서로 확인합니다. 48시간은 사건 종결기한이 아니라 구속영장 청구기한입니다. 영장이 청구되면 법원의 구속 필요성 심사가 별도로 이어집니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.suspect-rights.warrant-arrest-and-48-hours"
+      ],
+      "scenario_ids": [
+        "scenario.suspect-rights.warrant-arrest-and-48-hours"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0200-02"
+      ],
+      "hub_ids": [
+        "hub.suspect-rights"
+      ],
+      "related_content_ids": [
+        "content.payment-order-objection-two-weeks"
+      ]
+    },
+    {
+      "content_id": "content.suspect-rights-emergency-arrest",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:20:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "suspect-rights-emergency-arrest",
+      "title_ko": "영장 없이 긴급체포할 수 있는 경우는 언제인가요?",
+      "one_line_answer_ko": "중한 범죄 혐의의 상당한 이유, 증거인멸 또는 도주 우려, 영장을 받을 시간적 여유가 없는 긴급성이 함께 있어야 하며, 계속 구속하려면 체포부터 48시간 안에 구속영장을 청구해야 합니다.",
+      "audience_situation_ko": "영장 제시 없이 긴급체포된 본인이나 가족의 체포 요건과 후속 시간을 확인하려는 사람",
+      "key_points_ko": [
+        "중대범죄 요건만으로는 부족합니다.",
+        "증거인멸·도주 우려 중 하나가 필요합니다.",
+        "영장을 받을 시간적 여유가 없어야 합니다."
+      ],
+      "action_steps_ko": [
+        "긴급체포 이유와 체포시각을 확인한다.",
+        "긴급체포서의 기재사항을 확인한다.",
+        "도주·증거인멸 우려 반박자료를 모은다.",
+        "48시간 내 영장청구·석방 여부를 기록한다."
+      ],
+      "facts_to_check_ko": [
+        "혐의 법정형",
+        "상당한 혐의 근거",
+        "증거인멸·도주 우려",
+        "시간적 긴급성",
+        "48시간 내 영장청구"
+      ],
+      "caution_ko": "범죄가 중하다는 이유 하나만으로 긴급체포가 정당화되는 것은 아닙니다. 당시의 구체적 도주·증거인멸 우려와 영장발부를 기다릴 수 없었던 사정을 함께 봐야 합니다.",
+      "search_intents_ko": [
+        "영장 없이 긴급체포할 수 있는 경우는 언제인가요?",
+        "중대범죄 혐의·증거인멸 또는 도주 우려·영장발부를 기다릴 수 없는 긴급성이 모두 있었나요?",
+        "피의자 권리 emergency arrest"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "긴급체포는 법정 중대범죄, 상당한 혐의, 증거인멸·도주 우려와 영장을 받을 수 없는 긴급성이 함께 있을 때만 가능하고 48시간 내 구속영장 청구가 필요합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "적용 혐의 법정형, 긴급체포 사유, 발견 경위, 체포·승인·영장청구 시각을(를) 시간순 자료와 문서로 확인합니다. 범죄가 중하다는 이유 하나만으로 긴급체포가 정당화되는 것은 아닙니다. 당시의 구체적 도주·증거인멸 우려와 영장발부를 기다릴 수 없었던 사정을 함께 봐야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.suspect-rights.emergency-arrest"
+      ],
+      "scenario_ids": [
+        "scenario.suspect-rights.emergency-arrest"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0200-03",
+        "coord.suspect-rights.criminal-procedure-ko-0200-04"
+      ],
+      "hub_ids": [
+        "hub.suspect-rights"
+      ],
+      "related_content_ids": [
+        "content.crime-evidence-preservation-first-steps"
+      ]
+    },
+    {
+      "content_id": "content.suspect-rights-detention-warrant-grounds",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:20:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "suspect-rights-detention-warrant-grounds",
+      "title_ko": "혐의가 있으면 곧바로 구속되는 건가요?",
+      "one_line_answer_ko": "아닙니다. 상당한 범죄혐의 외에도 일정한 주거가 없거나 증거인멸 또는 도주 우려 등 구속사유가 있어야 하고, 법원은 범죄 중대성·재범위험·피해자 위해 우려 등도 고려합니다.",
+      "audience_situation_ko": "구속영장이 청구되어 구속 필요성을 반박할 자료를 준비하려는 피의자·가족",
+      "key_points_ko": [
+        "혐의와 구속 필요성은 별도입니다.",
+        "주거·증거인멸·도주 우려를 구체적으로 봅니다.",
+        "피해자 위해 우려 등도 고려됩니다."
+      ],
+      "action_steps_ko": [
+        "주민등록·임대차·가족관계 자료를 모은다.",
+        "재직·영업·학교 자료를 준비한다.",
+        "출석 약속과 연락 가능성을 설명한다.",
+        "증거·피해자 접촉 방지방안을 제시한다."
+      ],
+      "facts_to_check_ko": [
+        "일정한 주거",
+        "증거인멸 가능성",
+        "도주 우려",
+        "범죄 중대성·재범위험",
+        "피해자 위해 우려"
+      ],
+      "caution_ko": "주거와 직업이 있다는 사실만으로 구속 가능성이 사라지는 것은 아닙니다. 사건별 증거상태·출석이력·접촉 위험과 함께 판단됩니다.",
+      "search_intents_ko": [
+        "혐의가 있으면 곧바로 구속되는 건가요?",
+        "일정한 주거, 증거 보전, 출석 가능성을 객관 자료로 설명할 수 있나요?",
+        "피의자 권리 detention warrant grounds"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "피의자 구속은 상당한 혐의와 법정 구속사유가 함께 있어야 하며 법원이 구속 필요성을 심사합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "주소·가족·직업, 출석이력, 증거 접근 가능성, 피해자 접촉 여부, 전과·재범위험을(를) 시간순 자료와 문서로 확인합니다. 주거와 직업이 있다는 사실만으로 구속 가능성이 사라지는 것은 아닙니다. 사건별 증거상태·출석이력·접촉 위험과 함께 판단됩니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.suspect-rights.detention-warrant-grounds"
+      ],
+      "scenario_ids": [
+        "scenario.suspect-rights.detention-warrant-grounds"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0070",
+        "coord.suspect-rights.criminal-procedure-ko-0201"
+      ],
+      "hub_ids": [
+        "hub.suspect-rights"
+      ],
+      "related_content_ids": [
+        "content.settlement-and-punishment-intent"
+      ]
+    },
+    {
+      "content_id": "content.suspect-rights-arrest-detention-review",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:20:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "suspect-rights-arrest-detention-review",
+      "title_ko": "체포·구속이 부당하면 법원 심사를 청구할 수 있나요?",
+      "one_line_answer_ko": "체포·구속된 피의자뿐 아니라 변호인·배우자·직계친족·형제자매·가족·동거인·고용주 등도 관할법원에 적부심사를 청구할 수 있고, 법원은 원칙적으로 접수 후 48시간 안에 심문합니다.",
+      "audience_situation_ko": "체포·구속의 적법성과 필요성을 신속히 법원에서 다시 심사받으려는 피의자·가족",
+      "key_points_ko": [
+        "피의자 외 가족·동거인·고용주 등도 청구할 수 있습니다.",
+        "법원은 원칙적으로 48시간 안에 심문합니다.",
+        "이유 있으면 석방을 명해야 합니다."
+      ],
+      "action_steps_ko": [
+        "체포·구속 서류와 시간을 확보한다.",
+        "청구인과 피의자의 관계를 증명한다.",
+        "구속사유 반박자료를 모은다.",
+        "관할법원과 심문 준비를 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "청구권자 자격",
+        "관할법원",
+        "접수시각",
+        "체포·구속 적법성",
+        "석방 필요성"
+      ],
+      "caution_ko": "적부심사는 사건의 유무죄를 최종 판단하는 절차가 아닙니다. 현재 체포·구속의 적법성과 계속 필요성을 중심으로 자료를 구성해야 합니다.",
+      "search_intents_ko": [
+        "체포·구속이 부당하면 법원 심사를 청구할 수 있나요?",
+        "법정 청구권자가 관할법원에 구체적 사유와 자료를 갖춰 적부심사를 청구했나요?",
+        "피의자 권리 arrest detention review"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "법정 청구권자는 체포·구속 적부심사를 청구할 수 있고 법원은 원칙적으로 48시간 내 피의자를 심문해 기각 또는 석방을 결정합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "체포·구속일, 영장·고지 문서, 청구인 관계, 관할법원, 석방 필요자료을(를) 시간순 자료와 문서로 확인합니다. 적부심사는 사건의 유무죄를 최종 판단하는 절차가 아닙니다. 현재 체포·구속의 적법성과 계속 필요성을 중심으로 자료를 구성해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.suspect-rights.arrest-detention-review"
+      ],
+      "scenario_ids": [
+        "scenario.suspect-rights.arrest-detention-review"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0214-02"
+      ],
+      "hub_ids": [
+        "hub.suspect-rights"
+      ],
+      "related_content_ids": [
+        "content.victim-access-to-trial-records"
+      ]
+    },
+    {
+      "content_id": "content.suspect-rights-search-warrant-vs-emergency",
+      "content_type": "comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:20:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "suspect-rights-search-warrant-vs-emergency",
+      "title_ko": "압수수색은 언제 영장 없이 할 수 있나요?",
+      "one_line_answer_ko": "원칙적으로 혐의 정황과 사건 관련성이 있는 대상에 대해 법관이 발부한 영장이 필요합니다. 체포현장이나 범행 중·직후 장소의 긴급한 경우 등 법정 예외에서만 영장 없는 처분이 허용됩니다.",
+      "audience_situation_ko": "주거·차량·휴대전화 등을 압수수색당하면서 영장 범위와 긴급 예외를 확인하려는 사람",
+      "key_points_ko": [
+        "영장이 원칙입니다.",
+        "혐의와 압수 대상의 관련성이 필요합니다.",
+        "예외는 체포·범죄현장 긴급상황 등으로 제한됩니다."
+      ],
+      "action_steps_ko": [
+        "영장 제시와 사본 교부를 확인한다.",
+        "기재된 장소·대상·혐의를 읽는다.",
+        "실제 압수품 목록과 수량을 확인한다.",
+        "영장 밖 처분과 이의 내용을 기록한다."
+      ],
+      "facts_to_check_ko": [
+        "영장 유무",
+        "영장 기재 범위",
+        "사건 관련성",
+        "긴급 예외사유",
+        "압수목록·사후영장"
+      ],
+      "caution_ko": "현장에서 법 집행을 물리적으로 방해해서는 안 됩니다. 영장 범위와 실제 집행 차이, 참여자, 시간, 압수목록을 객관적으로 남겨 사후 다툼에 대비합니다.",
+      "search_intents_ko": [
+        "압수수색은 언제 영장 없이 할 수 있나요?",
+        "영장이 제시됐고 압수 대상·장소·혐의와 실제 집행이 일치하나요, 아니면 구체적 긴급 예외가 있나요?",
+        "피의자 권리 search warrant vs emergency"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "수사상 압수·수색·검증은 원칙적으로 영장과 사건 관련성이 필요하고, 영장 없는 강제처분은 체포현장·범죄현장 긴급상황 등 법정 범위로 제한됩니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "영장 원본·사본, 혐의, 장소·대상, 집행시각, 체포·범행현장 관계, 사후영장 여부을(를) 시간순 자료와 문서로 확인합니다. 현장에서 법 집행을 물리적으로 방해해서는 안 됩니다. 영장 범위와 실제 집행 차이, 참여자, 시간, 압수목록을 객관적으로 남겨 사후 다툼에 대비합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.suspect-rights.search-warrant-vs-emergency"
+      ],
+      "scenario_ids": [
+        "scenario.suspect-rights.search-warrant-vs-emergency"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0215",
+        "coord.suspect-rights.criminal-procedure-ko-0216"
+      ],
+      "hub_ids": [
+        "hub.suspect-rights"
+      ],
+      "related_content_ids": [
+        "content.crime-evidence-preservation-first-steps"
+      ]
+    },
+    {
+      "content_id": "content.suspect-rights-statement-record-and-illegal-evidence",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T16:20:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "suspect-rights-statement-record-and-illegal-evidence",
+      "title_ko": "피의자신문조서는 서명 전에 무엇을 확인해야 하나요?",
+      "one_line_answer_ko": "조서를 열람하거나 읽어 들은 뒤 진술과 다르거나 빠진 부분에 증감·변경을 요구하고 이의가 기록됐는지 확인해야 합니다. 적법한 절차를 따르지 않고 수집한 증거는 증거로 할 수 없습니다.",
+      "audience_situation_ko": "장시간 조사를 마치고 피의자신문조서의 열람·수정·서명을 앞둔 사람",
+      "key_points_ko": [
+        "조서는 열람하거나 읽어 들을 권리가 있습니다.",
+        "정정·이의는 조서에 추가되어야 합니다.",
+        "조사 시작·종료 등 과정도 기록됩니다."
+      ],
+      "action_steps_ko": [
+        "조서를 처음부터 끝까지 읽는다.",
+        "질문과 답변의 취지가 같은지 대조한다.",
+        "틀린 부분은 삭제 흔적을 남겨 정정한다.",
+        "도착·조사·휴식·종료시각을 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "조서 열람·낭독",
+        "정정 전후 문구",
+        "이의 추가기재",
+        "조사과정 시각",
+        "변호인 참여·의견"
+      ],
+      "caution_ko": "‘대략 같은 뜻’이라는 이유로 사실과 다른 법률용어·단정 표현을 남기면 안 됩니다. 다만 위법수집 여부와 최종 증거능력 판단은 구체적 절차 위반과 사건경과를 종합해야 합니다.",
+      "search_intents_ko": [
+        "피의자신문조서는 서명 전에 무엇을 확인해야 하나요?",
+        "조서 전체와 조사과정 기록을 확인했고, 진술과 다른 문구·누락·이의가 모두 수정 또는 추가됐나요?",
+        "피의자 권리 statement record and illegal evidence"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "피의자신문조서는 열람·낭독과 정정·이의 기회를 거쳐야 하고 조사 시작·종료 등 과정도 기록되어야 하며 위법수집증거는 배제됩니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "도착·시작·종료시각, 휴식, 질문·답변, 정정 전후 문구, 자필·서명, 변호인 의견을(를) 시간순 자료와 문서로 확인합니다. ‘대략 같은 뜻’이라는 이유로 사실과 다른 법률용어·단정 표현을 남기면 안 됩니다. 다만 위법수집 여부와 최종 증거능력 판단은 구체적 절차 위반과 사건경과를 종합해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.suspect-rights.statement-record-and-illegal-evidence"
+      ],
+      "scenario_ids": [
+        "scenario.suspect-rights.statement-record-and-illegal-evidence"
+      ],
+      "source_coordinate_ids": [
+        "coord.suspect-rights.criminal-procedure-ko-0244",
+        "coord.suspect-rights.criminal-procedure-ko-0244-04",
+        "coord.suspect-rights.criminal-procedure-ko-0308-02"
+      ],
+      "hub_ids": [
+        "hub.suspect-rights"
+      ],
+      "related_content_ids": [
+        "content.crime-evidence-preservation-first-steps",
+        "content.victim-access-to-trial-records"
+      ]
+    }
+  ]
+}
