@@ -227,7 +227,7 @@ export type LegalChangeBrief = {
   summary_ko: string;
   editorial_status: 'source_verified' | 'legal_reviewed' | 'approved';
   version: string;
-  lifecycle: 'future_effective' | 'recently_effective';
+  lifecycle: 'future_effective' | 'recently_effective' | 'currently_effective';
   law_key: string;
   law_name_ko: string;
   article_no: string;
@@ -286,7 +286,7 @@ export type EditorialOperationsItem = {
   law_key: string;
   law_name_ko: string;
   article_no: string;
-  lifecycle: 'future_effective' | 'recently_effective';
+  lifecycle: 'future_effective' | 'recently_effective' | 'currently_effective';
   effective_date: string;
   priority_score: number;
   editorial_stage: 'candidate' | 'source_delta_ready' | 'draft_ready' | 'source_verified' | 'legal_reviewed' | 'approved' | 'published';
@@ -316,7 +316,7 @@ export type EditorialOperationsQueue = {
     requires_timeline_snapshot_rebuild: boolean;
     law_key: string;
     law_name_ko: string;
-    lifecycle: 'future_effective' | 'recently_effective';
+    lifecycle: 'future_effective' | 'recently_effective' | 'currently_effective';
     effective_date: string;
     promulgation_no: string;
     promulgation_date: string;

@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
 import {assertionsForChangeBrief, findChangeBrief, listChangeBriefs, relatedCardsForChangeBrief} from '@/lib/publication';
+import {changeLifecycleLabel} from '@/lib/change-lifecycle';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
@@ -63,7 +64,7 @@ export default async function ChangeBriefPage({params}: Props) {
       <nav aria-label="현재 위치" className="breadcrumb"><a href="/">홈</a><span aria-hidden="true">/</span><a href="/ko/changes">법령 변화</a><span aria-hidden="true">/</span><span aria-current="page">현재 변화</span></nav>
       <header className="changeHero">
         <div className="changeHeroMeta">
-          <span className={`lifecycle ${brief.lifecycle}`}>{brief.lifecycle === 'future_effective' ? '시행 예정' : '최근 시행'}</span>
+          <span className={`lifecycle ${brief.lifecycle}`}>{changeLifecycleLabel(brief.lifecycle)}</span>
           <span>{brief.law_name_ko} {brief.article_no}</span>
         </div>
         <h1>{brief.title_ko}</h1>

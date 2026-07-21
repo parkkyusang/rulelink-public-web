@@ -19,6 +19,7 @@ export type PublicKnowledgeSourceDocument = {
   label_ko: string;
   search_terms_ko: string[];
   entries: PublicKnowledgeEntry[];
+  concepts: PublicConceptCard[];
 };
 
 export type ResolvedKnowledgeEntryGraph = {
@@ -49,6 +50,7 @@ export function buildKnowledgeSearchDocuments(
 export function buildKnowledgeSourceDocuments(
   knowledge: PublicKnowledgeIndex,
   visibleContentIds?: ReadonlySet<string>,
+  visibleConceptIds?: ReadonlySet<string>,
 ): PublicKnowledgeSourceDocument[] {
   const resolveEntry = createKnowledgeEntryResolver(knowledge);
   const resolvedEntries = knowledge.content_entries
@@ -57,23 +59,33 @@ export function buildKnowledgeSourceDocuments(
       const graph = resolveEntry(entry);
       return {document: makeKnowledgeSearchDocument(entry, graph), graph};
     });
+  const visibleConcepts = (knowledge.concept_cards ?? [])
+    .filter(concept => !visibleConceptIds || visibleConceptIds.has(concept.concept_id));
 
   return knowledge.sources
     .map(source => {
       const relatedDocuments = resolvedEntries
         .filter(({graph}) => graph.sources.some(candidate => candidate.coordinate_id === source.coordinate_id))
         .map(({document}) => document);
+      const relatedConcepts = visibleConcepts.filter(concept => conceptReferencesSource(concept, source.coordinate_id));
       return {
         source,
         label_ko: sourceLabel(source),
         search_terms_ko: uniqueTerms([
           ...sourceTerms(source),
           ...relatedDocuments.flatMap(document => document.search_terms_ko),
+          ...relatedConcepts.flatMap(conceptTerms),
         ]),
         entries: relatedDocuments.map(document => document.entry),
+        concepts: relatedConcepts,
       };
     })
-    .filter(document => document.entries.length > 0);
+    .filter(document => document.entries.length > 0 || document.concepts.length > 0);
+}
+
+function conceptReferencesSource(concept: PublicConceptCard, sourceId: string): boolean {
+  return concept.source_coordinate_ids.includes(sourceId)
+    || concept.assertions.some(assertion => assertion.source_coordinate_ids.includes(sourceId));
 }
 
 function makeKnowledgeSearchDocument(

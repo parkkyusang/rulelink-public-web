@@ -39,11 +39,23 @@ export function expectedLiveRoutes(bundle) {
   for (const brief of bundle.change_briefs ?? []) routes.add(`/ko/changes/${brief.slug}`);
   for (const entry of bundle.knowledge?.content_entries ?? []) routes.add(`/ko/knowledge/${entry.slug}`);
   for (const hub of bundle.knowledge?.topic_hubs ?? []) routes.add(`/ko/hubs/${hub.slug}`);
+  for (const concept of bundle.knowledge?.concept_cards ?? []) routes.add(`/ko/concepts/${concept.slug}`);
   for (const topic of bundle.catalog?.topics ?? []) routes.add(`/ko/topics/${topic.slug}`);
   if ((bundle.change_briefs?.length ?? 0) > 0) routes.add('/ko/changes');
   if ((bundle.knowledge?.content_entries?.length ?? 0) > 0) routes.add('/ko/knowledge');
   if ((bundle.knowledge?.sources?.length ?? 0) > 0) routes.add('/ko/sources');
+  if ((bundle.knowledge?.concept_cards?.length ?? 0) > 0) routes.add('/ko/concepts');
   return [...routes];
+}
+
+export function representativeOfficialUrls(bundle) {
+  const sources = bundle.knowledge?.sources ?? [];
+  const selected = [
+    sources.find(source => source.source_kind === 'precedent'),
+    sources.find(source => source.source_kind === 'official_document'),
+    sources.find(source => !source.source_kind || source.source_kind === 'statute'),
+  ].filter(Boolean);
+  return [...new Set(selected.map(source => source.official_url).filter(Boolean))];
 }
 
 export async function main() {
@@ -78,6 +90,29 @@ export async function main() {
       for (const route of routes) {
         const response = await fetchWithTimeout(new URL(route, baseUrl));
         assert(response.ok, `운영 공개 경로 응답 실패: ${route} -> ${response.status}`);
+      }
+
+      const homeHtml = await (await fetchWithTimeout(new URL('/', baseUrl))).text();
+      assert(!/noindex|nofollow/i.test(homeHtml), '운영 홈이 검색엔진 차단 메타를 포함합니다.');
+
+      const robotsResponse = await fetchWithTimeout(new URL('/robots.txt', baseUrl));
+      assert(robotsResponse.ok, `robots.txt 응답 실패: ${robotsResponse.status}`);
+      const robotsText = await robotsResponse.text();
+      assert(/Allow:\s*\//i.test(robotsText), 'robots.txt가 전체 공개 경로를 허용하지 않습니다.');
+      assert(!/Disallow:\s*\/\s*$/im.test(robotsText), 'robots.txt가 전체 공개 경로를 차단합니다.');
+      assert(/sitemap\.xml/i.test(robotsText), 'robots.txt가 사이트맵을 알리지 않습니다.');
+
+      const sitemapResponse = await fetchWithTimeout(new URL('/sitemap.xml', baseUrl));
+      assert(sitemapResponse.ok, `sitemap.xml 응답 실패: ${sitemapResponse.status}`);
+      const sitemapText = await sitemapResponse.text();
+      assert(/<loc>/i.test(sitemapText), 'sitemap.xml이 비어 있습니다.');
+      for (const route of routes) {
+        assert(sitemapText.includes(new URL(route, baseUrl).href), `sitemap.xml 공개 경로 누락: ${route}`);
+      }
+
+      for (const officialUrl of representativeOfficialUrls(bundle)) {
+        const officialResponse = await fetchWithTimeout(new URL(officialUrl));
+        assert(officialResponse.ok, `공식 원문 응답 실패: ${officialUrl} -> ${officialResponse.status}`);
       }
 
       process.stdout.write(

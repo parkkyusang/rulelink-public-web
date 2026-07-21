@@ -1,4 +1,5 @@
 import {IssueExplorer} from '@/components/issue-explorer';
+import {changeLifecycleLabel} from '@/lib/change-lifecycle';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {selectHomepageKnowledge} from '@/lib/homepage-knowledge-selection';
 import {
@@ -75,7 +76,7 @@ export default async function HomePage() {
           <div className="changeGrid">
             {changeBriefs.slice(0, 3).map(brief => (
               <a className="changeCard" href={`/ko/changes/${brief.slug}`} key={brief.change_brief_id}>
-                <span className={`lifecycle ${brief.lifecycle}`}>{brief.lifecycle === 'future_effective' ? '시행 예정' : '최근 시행'}</span>
+                <span className={`lifecycle ${brief.lifecycle}`}>{changeLifecycleLabel(brief.lifecycle)}</span>
                 <span className="changeDate">{formatLegalDate(brief.effective_date)}</span>
                 <h3>{brief.title_ko}</h3>
                 <p>{brief.summary_ko}</p>

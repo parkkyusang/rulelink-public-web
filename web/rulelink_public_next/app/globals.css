@@ -73,6 +73,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .lifecycle {border-radius: 999px; display: inline-flex; font-size: 11px; font-weight: 800; padding: 6px 9px; width: fit-content;}
 .lifecycle.future_effective {background: #183f79; color: white;}
 .lifecycle.recently_effective {background: var(--green); color: white;}
+.lifecycle.currently_effective {background: #5c4a20; color: white;}
 .changeDate {color: #48628d; font-size: 12px; margin-top: 15px;}
 .changeCard h3 {font-size: 25px; letter-spacing: -.035em; line-height: 1.38; margin: 24px 0 12px;}
 .changeCard p {color: #52627b; line-height: 1.65; margin: 0;}

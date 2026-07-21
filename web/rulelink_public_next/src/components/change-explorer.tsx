@@ -2,6 +2,7 @@
 
 import {useMemo, useState} from 'react';
 
+import {changeLifecycleLabel} from '@/lib/change-lifecycle';
 import type {LegalChangeBrief} from '@/types/publication';
 
 import styles from './change-explorer.module.css';
@@ -20,6 +21,7 @@ export function ChangeExplorer({briefs}: Props) {
     all: briefs.length,
     future_effective: briefs.filter(brief => brief.lifecycle === 'future_effective').length,
     recently_effective: briefs.filter(brief => brief.lifecycle === 'recently_effective').length,
+    currently_effective: briefs.filter(brief => brief.lifecycle === 'currently_effective').length,
   }), [briefs]);
   const visibleBriefs = useMemo(() => {
     const queryTokens = normalizedQuery.split(' ').filter(Boolean);
@@ -59,6 +61,7 @@ export function ChangeExplorer({briefs}: Props) {
         <FilterButton active={lifecycle === 'all'} count={counts.all} label="전체" onClick={() => setLifecycle('all')} />
         <FilterButton active={lifecycle === 'future_effective'} count={counts.future_effective} label="시행 예정" onClick={() => setLifecycle('future_effective')} />
         <FilterButton active={lifecycle === 'recently_effective'} count={counts.recently_effective} label="최근 시행" onClick={() => setLifecycle('recently_effective')} />
+        <FilterButton active={lifecycle === 'currently_effective'} count={counts.currently_effective} label="현행 제도" onClick={() => setLifecycle('currently_effective')} />
       </div>
 
       <p aria-live="polite" className={styles.resultCount}>확인할 수 있는 법령 변화 {visibleBriefs.length}개</p>
@@ -69,7 +72,7 @@ export function ChangeExplorer({briefs}: Props) {
             <article className={styles.item} key={brief.change_brief_id}>
               <div className={styles.dateRail}>
                 <time dateTime={brief.effective_date}>{formatDate(brief.effective_date)}</time>
-                <span>{brief.lifecycle === 'future_effective' ? '시행 예정' : '최근 시행'}</span>
+                <span>{changeLifecycleLabel(brief.lifecycle)}</span>
               </div>
               <a className={styles.card} href={`/ko/changes/${brief.slug}`}>
                 <div className={styles.meta}>

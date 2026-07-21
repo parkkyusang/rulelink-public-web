@@ -2,6 +2,7 @@ import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 
 import {buildKnowledgeSearchDocuments, buildKnowledgeSourceDocuments, resolveKnowledgeEntryGraph} from '@/lib/knowledge-search';
+import {changeLifecycleOrder} from '@/lib/change-lifecycle';
 import {filterFreshPublications} from '@/lib/publication-freshness';
 
 import type {
@@ -78,7 +79,7 @@ export async function relatedCardsForCard(card: LegalIssueCard, limit = 3): Prom
 export async function listChangeBriefs(): Promise<LegalChangeBrief[]> {
   const briefs = filterFreshPublications((await loadPublishedBundle())?.change_briefs ?? []);
   return [...briefs].sort((left, right) => {
-    if (left.lifecycle !== right.lifecycle) return left.lifecycle === 'future_effective' ? -1 : 1;
+    if (left.lifecycle !== right.lifecycle) return changeLifecycleOrder(left.lifecycle) - changeLifecycleOrder(right.lifecycle);
     const direction = left.lifecycle === 'future_effective' ? 1 : -1;
     return direction * left.effective_date.localeCompare(right.effective_date);
   });
@@ -137,7 +138,10 @@ export async function listKnowledgeSourceDocuments() {
   const visibleContentIds = new Set(
     filterFreshPublications(knowledge.content_entries).map(entry => entry.content_id),
   );
-  return buildKnowledgeSourceDocuments(knowledge, visibleContentIds);
+  const visibleConceptIds = new Set(
+    filterFreshPublications(knowledge.concept_cards ?? []).map(concept => concept.concept_id),
+  );
+  return buildKnowledgeSourceDocuments(knowledge, visibleContentIds, visibleConceptIds);
 }
 
 export async function findKnowledgeEntry(slug: string): Promise<PublicKnowledgeEntry | null> {

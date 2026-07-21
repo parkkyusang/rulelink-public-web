@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
 import {assertionsForCard, findPublishedCard, listPublishedCards, relatedCardsForCard, relatedChangeBriefsForCard, topicsForCard} from '@/lib/publication';
+import {changeLifecycleLabel} from '@/lib/change-lifecycle';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
@@ -124,7 +125,7 @@ export default async function IssuePage({params}: PageProps) {
             {relatedChangeBriefs.map(brief => (
               <a href={`/ko/changes/${brief.slug}`} key={brief.change_brief_id}>
                 <strong>{brief.title_ko}</strong>
-                <span>{brief.lifecycle === 'future_effective' ? '시행 예정' : '최근 시행'} · {formatDate(brief.effective_date)}</span>
+                <span>{changeLifecycleLabel(brief.lifecycle)} · {formatDate(brief.effective_date)}</span>
               </a>
             ))}
           </div>

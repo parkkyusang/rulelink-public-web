@@ -339,9 +339,9 @@ function checkChangeLifecycle(brief, now, errors) {
   const today = seoulDate(now);
   if (brief.lifecycle === 'future_effective' && brief.effective_date <= today) {
     errors.push(`${name}은 시행일이 도래했으므로 시행 예정 상태일 수 없습니다.`);
-  } else if (brief.lifecycle === 'recently_effective' && brief.effective_date > today) {
-    errors.push(`${name}은 시행일 전이므로 최근 시행 상태일 수 없습니다.`);
-  } else if (!['future_effective', 'recently_effective'].includes(brief.lifecycle)) {
+  } else if (['recently_effective', 'currently_effective'].includes(brief.lifecycle) && brief.effective_date > today) {
+    errors.push(`${name}은 시행일 전이므로 최근 시행 또는 현행 제도 상태일 수 없습니다.`);
+  } else if (!['future_effective', 'recently_effective', 'currently_effective'].includes(brief.lifecycle)) {
     errors.push(`${name}의 lifecycle 값이 허용되지 않습니다.`);
   }
 }

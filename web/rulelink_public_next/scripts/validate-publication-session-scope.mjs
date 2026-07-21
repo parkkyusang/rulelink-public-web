@@ -9,6 +9,7 @@ const repoRoot = path.resolve(appRoot, '..', '..');
 export function inferPublicationRole(headRef = '') {
   if (/^codex\/content-[a-z0-9._/-]+$/u.test(headRef)) return 'topic';
   if (/^codex\/integrate-publication-[a-z0-9._/-]+$/u.test(headRef)) return 'integrator';
+  if (/^codex\/migrate-publication-[a-z0-9._/-]+$/u.test(headRef)) return 'migration';
   if (/^codex\/release-[a-z0-9._/-]+$/u.test(headRef)) return 'release';
   return null;
 }
@@ -43,6 +44,9 @@ export function allowedForRole(role, filePath) {
       || value === 'artifacts/publication/topics/manifest.json'
       || value === 'artifacts/publication/concepts/manifest.json'
       || /^artifacts\/publication\/snapshots\/[a-z0-9._-]+\/bundle\.json$/u.test(value);
+  }
+  if (role === 'migration') {
+    return allowedForRole('topic', value) || allowedForRole('integrator', value);
   }
   if (role === 'release') return value === 'web/rulelink_public_next/deploy/release.json';
   return false;
