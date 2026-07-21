@@ -194,6 +194,32 @@ test('중복된 지식 콘텐츠 공개 URL 식별자를 거부한다', async ()
   assert.match(result.stderr, /지식 콘텐츠의 공개 URL 식별자가 중복됩니다/);
 });
 
+
+test('공개 콘텐츠가 있는데 해시 영수증이 없는 출판본을 거부한다', async () => {
+  const bundle = baseBundle();
+  bundle.cards = [issueCard()];
+  bundle.file_hashes = {};
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /파일 해시 영수증이 필요합니다/);
+});
+
+test('형식이 잘못된 출판 파일 해시를 거부한다', async () => {
+  const bundle = baseBundle();
+  bundle.file_hashes = {'issue:one': 'not-a-sha256'};
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /소문자 64자리 SHA-256/);
+});
+
+test('내부 경로 형태의 출판 파일 해시 키를 거부한다', async () => {
+  const bundle = baseBundle();
+  bundle.file_hashes = {'C:\\internal\\approval.json': 'a'.repeat(64)};
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /공개할 수 없는 키/);
+});
+
 async function validate(payload) {
   const taskTemp = await mkdtemp(path.join(tmpdir(), 'rulelink-publication-guard-'));
   const bundlePath = path.join(taskTemp, 'bundle.json');
@@ -224,7 +250,7 @@ function baseBundle() {
     cards: [],
     assertions: [],
     change_briefs: [],
-    file_hashes: {},
+    file_hashes: {'fixture:approval': 'a'.repeat(64)},
   };
 }
 
