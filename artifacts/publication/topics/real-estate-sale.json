@@ -652,7 +652,7 @@
         "content.earnest-money-rescission-cutoff",
         "content.rescission-restitution-and-damages"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "가계약금을 보냈다면 무조건 계약금으로 포기해야 하나요?",
         "decision_facts_ko": [
           "송금액과 전체 계약금",
@@ -660,7 +660,8 @@
           "반환·몰취 합의",
           "핵심 조건 합의 여부"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -798,7 +799,7 @@
         "content.seller-misses-title-transfer-date",
         "content.ownership-changes-only-after-registration"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "중도금을 지급한 뒤 잔금과 소유권이전은 어떻게 맞바꾸나요?",
         "decision_facts_ko": [
           "잔금일과 장소",
@@ -806,7 +807,8 @@
           "등기 필요서류",
           "지급 준비와 이행제공"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -877,7 +879,7 @@
         "content.rescission-restitution-and-damages",
         "content.ownership-changes-only-after-registration"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "매도인이 잔금일에 소유권이전을 해주지 않으면 바로 해제할 수 있나요?",
         "decision_facts_ko": [
           "매도인의 미이행 내용",
@@ -885,7 +887,8 @@
           "최고 내용과 도달일",
           "명백한 이행거절 여부"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -1091,7 +1094,7 @@
         "content.seller-does-not-own-property",
         "content.broker-confirmation-explanation-checklist"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "집을 산 뒤 숨은 하자를 발견하면 언제까지 책임을 물을 수 있나요?",
         "decision_facts_ko": [
           "하자 존재와 원인",
@@ -1099,7 +1102,8 @@
           "발견일",
           "매수인의 사전 인식과 과실"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -1237,7 +1241,7 @@
         "content.hidden-defect-after-purchase",
         "content.broker-confirmation-explanation-checklist"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "중요 사실을 잘못 알거나 속아 계약했다면 취소할 수 있나요?",
         "decision_facts_ko": [
           "잘못 안 사실의 중요성",
@@ -1245,7 +1249,8 @@
           "기망 주체와 내용",
           "선의의 제3자 존재"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -1315,7 +1320,7 @@
         "content.rescission-restitution-and-damages",
         "content.ownership-changes-only-after-registration"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "부동산 매매계약과 해제는 언제까지 신고해야 하나요?",
         "decision_facts_ko": [
           "신고대상 계약 여부",
@@ -1323,7 +1328,8 @@
           "해제·무효·취소 확정일",
           "중개 여부와 신고 주체"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -1393,7 +1399,7 @@
         "content.hidden-defect-after-purchase",
         "content.mistake-fraud-in-real-estate-contract"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "공인중개사에게 계약 전에 어떤 자료와 설명을 요구해야 하나요?",
         "decision_facts_ko": [
           "중개 완성 전 설명 여부",
@@ -1401,7 +1407,8 @@
           "권리·이용제한",
           "설명서와 실제 상태의 차이"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     }
   ]

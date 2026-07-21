@@ -699,7 +699,7 @@
         "content.negligence-and-causation-in-accidents",
         "content.multiple-people-caused-one-damage"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "직원이 업무 중 낸 사고라면 회사도 책임질 수 있습니다",
         "decision_facts_ko": [
           "행위자와 회사의 관계",
@@ -709,7 +709,8 @@
           "회사 장비 사용",
           "개인적 이탈 여부"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -786,7 +787,7 @@
         "content.victim-fault-does-not-erase-all-compensation",
         "content.accident-evidence-and-tort-limitation"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "계단·바닥·간판 등 시설 하자 사고는 점유자와 소유자를 구분합니다",
         "decision_facts_ko": [
           "미끄럼·단차·파손",
@@ -798,7 +799,8 @@
           "날씨·오염",
           "피해자 동선"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -874,7 +876,7 @@
         "content.victim-fault-does-not-erase-all-compensation",
         "content.accident-evidence-and-tort-limitation"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "반려동물이 사람을 다치게 했다면 실제 관리자를 확인해야 합니다",
         "decision_facts_ko": [
           "사고 당시 관리자",
@@ -885,7 +887,8 @@
           "경고 여부",
           "치료기록"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -1111,7 +1114,7 @@
         "content.multiple-people-caused-one-damage",
         "content.victim-fault-does-not-erase-all-compensation"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "사고 손해배상은 증거와 기간을 함께 관리해야 합니다",
         "decision_facts_ko": [
           "사고일",
@@ -1123,7 +1126,8 @@
           "보험 접수",
           "청구·협의 기록"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     }
   ]

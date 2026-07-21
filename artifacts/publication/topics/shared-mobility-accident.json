@@ -419,7 +419,7 @@
         "content.shared-mobility-operator-liability-not-automatic",
         "content.shared-mobility-accident-evidence-checklist"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "브레이크나 바퀴 이상으로 넘어진 경우 무엇을 입증해야 하나",
         "decision_facts_ko": [
           "기기 번호",
@@ -431,7 +431,8 @@
           "회수ㆍ정비 기록",
           "부상"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -574,7 +575,7 @@
         "content.shared-mobility-accident-evidence-checklist",
         "content.shared-mobility-user-fault-and-compensation"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "포트홀이나 도로 단차 때문에 사고가 났다면",
         "decision_facts_ko": [
           "좌표ㆍ주소",
@@ -586,7 +587,8 @@
           "주행경로",
           "속도"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -658,7 +660,7 @@
         "content.shared-mobility-public-road-defect",
         "content.shared-mobility-accident-evidence-checklist"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "상가ㆍ주차장ㆍ거치시설의 하자로 사고가 났다면",
         "decision_facts_ko": [
           "시설 종류",
@@ -670,7 +672,8 @@
           "사고 이전 민원",
           "CCTV"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -970,7 +973,7 @@
         "content.shared-mobility-device-defect",
         "content.shared-mobility-public-road-defect"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "공유자전거 사고 직후 반드시 남길 자료",
         "decision_facts_ko": [
           "기기 번호",
@@ -984,7 +987,8 @@
           "영수증",
           "휴업자료"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -1064,7 +1068,7 @@
         "content.shared-mobility-user-fault-and-compensation",
         "content.shared-mobility-accident-evidence-checklist"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "타기 전 눈에 보이는 이상을 발견했다면",
         "decision_facts_ko": [
           "기기 번호",
@@ -1075,7 +1079,8 @@
           "실제 운행 여부",
           "대체 기기 이용 가능성"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     }
   ]

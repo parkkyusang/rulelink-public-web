@@ -66,3 +66,35 @@ test('합성 결과에서 공개 지식 해시 영수증을 다시 만든다', (
   assert.equal(bundle.file_hashes['knowledge:content.first'], contentReceipt(knowledge.content_entries[0]));
   assert.equal(bundle.file_hashes['knowledge-index:rulelink_public_knowledge_index_v1'], contentReceipt(knowledge));
 });
+
+
+test('공개 주제는 일반인 사건 컨시어지 연결을 거부한다', () => {
+  const invalid = topic('hub.first', 'first');
+  invalid.content_entries[0].concierge_entry = {
+    question_ko: '사건을 검토할까요?',
+    decision_facts_ko: ['구체 사실'],
+    href: 'https://liale-review.lolphysical.xyz',
+  };
+  assert.throws(
+    () => assembleKnowledge(manifest([descriptor('hub.first', 'first.json')]), [invalid]),
+    /금지된 concierge_entry/,
+  );
+});
+
+test('변호사 작업공간 연결은 내부 설명 게이트와 확인 대상이 고정되어야 한다', () => {
+  const valid = topic('hub.first', 'first');
+  valid.content_entries[0].lawyer_workspace_entry = {
+    question_ko: '변호사 전용 도구에서 이어서 검토할까요?',
+    decision_facts_ko: ['구체 사실'],
+    href: '/ko/lawyer-workspace',
+    audience: 'verified_attorney',
+  };
+  assert.doesNotThrow(
+    () => assembleKnowledge(manifest([descriptor('hub.first', 'first.json')]), [valid]),
+  );
+  valid.content_entries[0].lawyer_workspace_entry.href = 'https://liale-review.lolphysical.xyz';
+  assert.throws(
+    () => assembleKnowledge(manifest([descriptor('hub.first', 'first.json')]), [valid]),
+    /변호사 전용 게이트 계약/,
+  );
+});

@@ -180,8 +180,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .audienceBadge {background: var(--mint); border-radius: 999px; color: var(--green); display: inline-flex; font-size: 12px; font-weight: 750; margin-top: 18px; padding: 8px 12px;}
 .knowledgeSectionNav {align-items: center; backdrop-filter: blur(14px); background: rgba(255,255,255,.9); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 10px 30px rgba(20,55,40,.07); display: flex; gap: 5px; margin-top: 18px; overflow-x: auto; padding: 7px; position: sticky; scrollbar-width: thin; top: 10px; z-index: 5;}
 .knowledgeSectionNav > span {color: var(--muted); flex: 0 0 auto; font-size: 11px; font-weight: 800; letter-spacing: .04em; padding: 9px 10px;}
-.knowledgeSectionNav a {border-radius: 9px; color: var(--muted); flex: 0 0 auto; font-size: 12px; font-weight: 750; padding: 9px 11px;}
-.knowledgeSectionNav a:hover {background: var(--mint); color: var(--green);}
+.knowledgeSectionNav a, .knowledgeSectionNav button {background: transparent; border: 0; border-radius: 9px; color: var(--muted); cursor: pointer; flex: 0 0 auto; font: inherit; font-size: 12px; font-weight: 750; padding: 9px 11px;}
+.knowledgeSectionNav a:hover, .knowledgeSectionNav button:hover {background: var(--mint); color: var(--green);}
+.knowledgeSectionNav button:focus-visible {outline: 2px solid var(--green); outline-offset: 1px;}
 .knowledgeLayout {display: grid; gap: 52px; grid-template-columns: minmax(0,1.7fr) minmax(270px,.75fr); padding-top: 20px;}
 .knowledgeSection {border-bottom: 1px solid var(--line); padding: 38px 0; scroll-margin-top: 82px;}
 .ruleCard[id] {scroll-margin-top: 82px;}
@@ -200,11 +201,21 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .branchOutcomes b {color: var(--green); display: block; font-size: 11px; margin-bottom: 7px;}
 .knowledgeAside {align-self: start; padding-top: 38px; position: sticky; top: 76px;}
 
-.conciergePanel {background: var(--green-dark); border-radius: 18px; color: white; padding: 24px;}
-.conciergePanel h2 {font-size: 21px; line-height: 1.45; margin: 0 0 18px;}
-.conciergePanel ul {color: #d9ebe1; font-size: 13px; line-height: 1.6; padding-left: 18px;}
-.conciergePanel a {border-top: 1px solid rgba(255,255,255,.18); color: #8fd2af; display: block; font-size: 13px; font-weight: 750; margin-top: 20px; padding-top: 18px;}
-.knowledgeSources {border-top: 1px solid var(--line); margin-top: 24px; padding-top: 22px; scroll-margin-top: 82px;}
+.lawyerWorkspacePanel {background: var(--green-dark); border-radius: 18px; color: white; padding: 24px;}
+.lawyerWorkspacePanel h2 {font-size: 21px; line-height: 1.45; margin: 0 0 12px;}
+.lawyerWorkspacePanel > p:not(.eyebrow) {color: #d9ebe1; font-size: 12px; line-height: 1.65; margin: 0;}
+.lawyerWorkspacePanel ul {color: #d9ebe1; font-size: 13px; line-height: 1.6; padding-left: 18px;}
+.lawyerWorkspacePanel a {border-top: 1px solid rgba(255,255,255,.18); color: #8fd2af; display: block; font-size: 13px; font-weight: 750; margin-top: 20px; padding-top: 18px;}
+.methodCta {align-items: center; background: var(--green); border-radius: 11px; color: white; display: inline-flex; font-size: 14px; font-weight: 800; margin-top: 18px; padding: 13px 17px;}
+.methodCta:hover {background: var(--green-dark);}
+.gateChecklist {display: grid; gap: 10px; margin: 22px 0 0; padding: 0;}
+.gateChecklist li {background: var(--white); border: 1px solid var(--line); border-radius: 13px; line-height: 1.65; list-style: none; padding: 15px 17px;}
+.gateBoundary {background: #f1f7f3; border-left: 4px solid var(--green); margin-top: 34px; padding: 23px 25px;}
+.gateBoundary h2 {font-size: 21px; margin: 0 0 10px;}
+.gateBoundary p {color: var(--muted); line-height: 1.75; margin: 0;}
+.knowledgeSources {border-top: 1px solid var(--line); margin-top: 24px; padding: 22px 10px 10px; scroll-margin-top: 82px; transition: background-color .2s ease, box-shadow .2s ease;}
+.knowledgeSources.sourceAttention {animation: sourceAttention 1.8s ease-out; border-radius: 14px;}
+@keyframes sourceAttention {0%, 100% {background: transparent; box-shadow: none;} 18%, 68% {background: var(--mint); box-shadow: 0 0 0 3px rgba(33,112,78,.2);}}
 .knowledgeSources h2 {font-size: 17px;}
 .knowledgeSources a {color: var(--green); display: block; font-size: 13px; font-weight: 750; padding: 8px 0;}
 .methodPage {margin: 0 auto; max-width: 1080px; padding: 34px 24px 100px;}

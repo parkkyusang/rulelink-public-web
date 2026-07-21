@@ -34,7 +34,7 @@ ${START_MARKER}
 - 사실분기: ${counts.scenarioBranches}개
 - 공식 근거 좌표: ${counts.sources}개
 
-현재 주제는 ${hubTitles || '아직 없음'}이다. 각 글은 공식 근거, 핵심 법리, 결론을 가르는 사실, 행동 순서, 보관할 자료와 컨시어지 진입점을 함께 제공한다.
+현재 주제는 ${hubTitles || '아직 없음'}이다. 각 글은 공식 근거, 핵심 법리, 결론을 가르는 사실, 행동 순서와 보관할 자료를 제공한다. 사건별 분석이 필요한 글은 공개 사건전송 기능 대신 변호사 전용 작업공간의 이용 이유와 자격 확인 절차를 연결한다.
 
 실제 운영 도메인의 반영 상태는 [\`publication.json\`](https://rulelink.lolphysical.xyz/publication.json)에서 확인한다.
 ${END_MARKER}

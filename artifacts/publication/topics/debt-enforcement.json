@@ -849,7 +849,7 @@
         "content.payment-order-objection-two-weeks",
         "content.documents-that-allow-compulsory-enforcement"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "지급명령은 금전청구와 송달 가능성을 먼저 봅니다",
         "decision_facts_ko": [
           "청구금액",
@@ -858,7 +858,8 @@
           "송금내역",
           "채무 인정 자료"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -1134,7 +1135,7 @@
         "content.wage-and-protected-claim-seizure",
         "content.property-disclosure-when-assets-unknown"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "통장압류는 은행에 대한 예금채권을 특정해 진행합니다",
         "decision_facts_ko": [
           "집행권원",
@@ -1143,7 +1144,8 @@
           "청구액",
           "선행 압류·잔액"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -1350,7 +1352,7 @@
         "content.documents-that-allow-compulsory-enforcement",
         "content.bank-account-seizure-and-collection-order"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "집행권원은 있는데 재산을 모르면 재산명시를 검토합니다",
         "decision_facts_ko": [
           "집행권원 종류",
@@ -1359,7 +1361,8 @@
           "알고 있는 재산",
           "기존 집행 결과"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {

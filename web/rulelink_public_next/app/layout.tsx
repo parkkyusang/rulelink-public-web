@@ -70,7 +70,7 @@ export default function RootLayout({children}: {children: ReactNode}) {
         {children}
         <footer className="siteFooter">
           <strong>{site.name}</strong>
-          <span>일반적인 법률정보를 제공하며, 개별 사건에 대한 법률의견을 대신하지 않습니다.</span>
+          <span>일반 법률정보만 제공합니다. 구체 사건의 결론·승소 가능성·대응전략·서면 방향은 변호사와 직접 상담해야 합니다.</span>
         </footer>
       </body>
     </html>

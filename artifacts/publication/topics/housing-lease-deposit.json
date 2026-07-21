@@ -295,7 +295,7 @@
         "content.lease-registration-order-requirements",
         "content.rights-after-lease-registration"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "보증금을 못 받은 채 이사해야 한다면 무엇부터 확인해야 하나",
         "decision_facts_ko": [
           "계약 종료일",
@@ -306,7 +306,8 @@
           "주택 인도일",
           "확정일자"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -445,7 +446,7 @@
         "content.move-before-deposit-refund",
         "content.lease-registration-application-is-not-completion"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "임차권등기명령은 언제 신청할 수 있나",
         "decision_facts_ko": [
           "계약서",
@@ -456,7 +457,8 @@
           "점유",
           "확정일자"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     },
     {
@@ -867,7 +869,7 @@
         "content.housing-lease-opposability-basics",
         "content.housing-lease-priority-repayment-basics"
       ],
-      "concierge_entry": {
+      "lawyer_workspace_entry": {
         "question_ko": "임차권등기가 있는 집을 새로 임차할 때 확인할 점",
         "decision_facts_ko": [
           "등기사항증명서",
@@ -877,7 +879,8 @@
           "보증금",
           "선순위 권리"
         ],
-        "href": "https://liale-review.lolphysical.xyz"
+        "href": "/ko/lawyer-workspace",
+        "audience": "verified_attorney"
       }
     }
   ]

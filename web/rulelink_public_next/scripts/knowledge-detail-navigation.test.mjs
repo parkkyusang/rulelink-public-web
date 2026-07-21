@@ -7,18 +7,25 @@ import {fileURLToPath} from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const pagePath = path.join(root, 'app', 'ko', 'knowledge', '[slug]', 'page.tsx');
 const cssPath = path.join(root, 'app', 'globals.css');
+const sourceJumpPath = path.join(root, 'src', 'components', 'official-source-jump.tsx');
 
 test('긴 생활법률 상세 화면은 핵심 법리부터 공식 근거까지 바로 이동할 수 있다', async () => {
-  const [page, css] = await Promise.all([
+  const [page, css, sourceJump] = await Promise.all([
     readFile(pagePath, 'utf8'),
     readFile(cssPath, 'utf8'),
+    readFile(sourceJumpPath, 'utf8'),
   ]);
 
   assert.match(page, /aria-label="이 글 안에서 이동"/);
-  for (const section of ['summary', 'rules', 'scenarios', 'actions', 'sources']) {
+  for (const section of ['summary', 'rules', 'scenarios', 'actions']) {
     assert.match(page, new RegExp(`href="#${section}"`), `바로가기 누락: ${section}`);
     assert.match(page, new RegExp(`id="${section}"`), `대상 구역 누락: ${section}`);
   }
+  assert.match(page, /OfficialSourceJump targetId="sources"/);
+  assert.match(page, /id="sources"/);
+  assert.match(sourceJump, /matchMedia\('\(max-width: 800px\)'\)/);
+  assert.match(sourceJump, /scrollIntoView/);
+  assert.match(sourceJump, /classList\.add\('sourceAttention'\)/);
   assert.match(css, /\.knowledgeSectionNav\s*\{/);
   assert.match(css, /\.knowledgeSection[^}]*scroll-margin-top:/);
   assert.match(css, /\.knowledgeAside[^}]*position:\s*sticky/);
