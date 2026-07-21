@@ -5,29 +5,29 @@
     {
       "coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
       "source_id": "housing_lease_ko_0003_03",
+      "law_name_ko": "주택임대차보호법",
+      "article_no": "제3조의3",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C3%EC%A1%B0%EC%9D%983",
       "source_snapshot_id": "snapshot:1c35b925f8d04acba8a9a1b0c9796e07",
-      "last_verified_at": "2026-07-21T08:00:00+00:00",
-      "law_name_ko": "주택임대차보호법",
-      "article_no": "제3조의3"
+      "last_verified_at": "2026-07-21T08:00:00+00:00"
     },
     {
       "coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003",
       "source_id": "housing_lease_ko_0003",
+      "law_name_ko": "주택임대차보호법",
+      "article_no": "제3조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C3%EC%A1%B0",
       "source_snapshot_id": "snapshot:270122f3cab11a485a0327fbd78eb653",
-      "last_verified_at": "2026-07-21T08:00:00+00:00",
-      "law_name_ko": "주택임대차보호법",
-      "article_no": "제3조"
+      "last_verified_at": "2026-07-21T08:00:00+00:00"
     },
     {
       "coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-02",
       "source_id": "housing_lease_ko_0003_02",
+      "law_name_ko": "주택임대차보호법",
+      "article_no": "제3조의2",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C3%EC%A1%B0%EC%9D%982",
       "source_snapshot_id": "snapshot:445ae2ee988bb4c0fcfc07d0baaeaa2c",
-      "last_verified_at": "2026-07-21T08:00:00+00:00",
-      "law_name_ko": "주택임대차보호법",
-      "article_no": "제3조의2"
+      "last_verified_at": "2026-07-21T08:00:00+00:00"
     }
   ],
   "topic_hubs": [
@@ -53,8 +53,8 @@
       "title_ko": "계약 종료와 보증금 미반환이 임차권등기명령 신청의 출발점",
       "proposition_ko": "임대차가 끝난 뒤에도 보증금이 반환되지 않은 임차인은 관할 법원에 임차권등기명령을 신청할 수 있습니다.",
       "norm": {
-        "actor_ko": "임대차가 끝난 뒤 보증금을 반환받지 못한 주택임차인",
-        "conditions_ko": "임대차가 종료함 · 보증금이 반환되지 않음",
+        "actor_ko": "임대차가 끝났지만 보증금을 돌려받지 못한 주택임차인",
+        "conditions_ko": "임대차가 종료했는데도 임대인이 보증금 전부 또는 일부를 반환하지 않은 경우",
         "legal_effect_ko": "임대차가 끝난 뒤에도 보증금이 반환되지 않은 임차인은 관할 법원에 임차권등기명령을 신청할 수 있습니다."
       },
       "source_coordinate_ids": [
@@ -66,8 +66,8 @@
       "title_ko": "임차권등기 완료 뒤 대항요건을 잃어도 기존 권리 유지",
       "proposition_ko": "임차권등기명령에 따른 등기를 마치면 대항력과 우선변제권을 취득할 수 있고, 이미 취득한 권리는 등기 뒤 대항요건을 잃더라도 유지됩니다.",
       "norm": {
-        "actor_ko": "임차권등기명령에 따른 임차권등기를 마친 주택임차인",
-        "conditions_ko": "임차권등기명령의 집행에 따른 임차권등기가 완료됨",
+        "actor_ko": "임차권등기명령을 신청한 주택임차인",
+        "conditions_ko": "법원의 임차권등기명령에 따른 임차권등기가 완료된 경우",
         "legal_effect_ko": "임차권등기명령에 따른 등기를 마치면 대항력과 우선변제권을 취득할 수 있고, 이미 취득한 권리는 등기 뒤 대항요건을 잃더라도 유지됩니다."
       },
       "source_coordinate_ids": [
@@ -79,8 +79,8 @@
       "title_ko": "주택 인도와 주민등록을 모두 마친 다음 날 대항력 발생",
       "proposition_ko": "일반 개인 임차인의 주택임대차는 주택을 인도받고 주민등록을 마치면 그 다음 날부터 제3자에 대한 효력이 생깁니다.",
       "norm": {
-        "actor_ko": "주택을 인도받고 주민등록을 마친 주택임차인",
-        "conditions_ko": "주거용 주택의 일반 개인 임차인 · 주택 인도와 주민등록을 모두 갖춘 경우",
+        "actor_ko": "주택을 인도받고 주민등록을 마친 임차인",
+        "conditions_ko": "주거용 주택을 인도받고 전입신고 등 주민등록을 마친 경우",
         "legal_effect_ko": "일반 개인 임차인의 주택임대차는 주택을 인도받고 주민등록을 마치면 그 다음 날부터 제3자에 대한 효력이 생깁니다."
       },
       "source_coordinate_ids": [
@@ -92,8 +92,8 @@
       "title_ko": "대항요건과 확정일자를 갖추어야 우선변제권 성립",
       "proposition_ko": "대항요건과 임대차계약증서상의 확정일자를 갖춘 임차인은 경매나 공매에서 후순위권리자나 그 밖의 채권자보다 우선하여 보증금을 변제받을 권리가 있습니다.",
       "norm": {
-        "actor_ko": "대항요건과 임대차계약증서상 확정일자를 갖춘 주택임차인",
-        "conditions_ko": "주택 인도와 주민등록 등 대항요건을 갖춤 · 임대차계약증서에 확정일자를 갖춤 · 경매 또는 공매에서 환가대금이 배분됨",
+        "actor_ko": "대항요건과 확정일자를 갖춘 주택임차인",
+        "conditions_ko": "주택 인도·주민등록과 임대차계약증서의 확정일자를 갖춘 뒤 경매·공매가 진행되는 경우",
         "legal_effect_ko": "대항요건과 임대차계약증서상의 확정일자를 갖춘 임차인은 경매나 공매에서 후순위권리자나 그 밖의 채권자보다 우선하여 보증금을 변제받을 권리가 있습니다."
       },
       "source_coordinate_ids": [
@@ -105,8 +105,8 @@
       "title_ko": "임차권등기가 끝난 주택의 후순위 임차인 제한",
       "proposition_ko": "임차권등기명령에 따른 임차권등기가 끝난 주택을 그 이후 임차한 임차인은 주택임대차보호법 제8조의 소액보증금 우선변제권을 받을 수 없습니다.",
       "norm": {
-        "actor_ko": "임차권등기명령에 따른 임차권등기가 끝난 주택을 그 후 임차한 임차인",
-        "conditions_ko": "임차권등기명령에 따른 등기가 이미 완료된 주택 · 그 이후 새로 임차한 임차인",
+        "actor_ko": "임차권등기가 끝난 주택을 그 이후 임차한 사람",
+        "conditions_ko": "임차권등기명령에 따른 등기가 완료된 주택을 그 이후 새로 임차한 경우",
         "legal_effect_ko": "임차권등기명령에 따른 임차권등기가 끝난 주택을 그 이후 임차한 임차인은 주택임대차보호법 제8조의 소액보증금 우선변제권을 받을 수 없습니다."
       },
       "source_coordinate_ids": [
@@ -528,7 +528,8 @@
         "scenario.housing-lease-deposit.housing-lease-fixed-date"
       ],
       "source_coordinate_ids": [
-        "coord.housing-lease-deposit.housing-lease-ko-0003"
+        "coord.housing-lease-deposit.housing-lease-ko-0003",
+        "coord.housing-lease-deposit.housing-lease-ko-0003-02"
       ],
       "hub_ids": [
         "hub.housing-lease-deposit"
