@@ -118,7 +118,8 @@ export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeS
 }
 
 function sourceKind(document: PublicKnowledgeSourceDocument): Exclude<SourceFilter, 'all'> {
-  return document.source.source_kind;
+  const kind = document.source.source_kind;
+  return kind === 'precedent' || kind === 'official_document' ? kind : 'statute';
 }
 
 function FilterButton({active, count, label, onClick}: {active: boolean; count: number; label: string; onClick: () => void}) {
