@@ -412,6 +412,21 @@ function checkStableKnowledgeSource(source, name, errors) {
     }
     return;
   }
+  if (source.source_kind === 'official_document') {
+    if (typeof source.title_ko !== 'string' || !source.title_ko.trim()) errors.push(`${name}의 title_ko가 없습니다.`);
+    if (!['revision_reason', 'revision_text', 'unnumbered_regulation'].includes(source.document_kind)) errors.push(`${name}의 document_kind가 허용되지 않습니다.`);
+    if (!isIsoDate(source.effective_date)) errors.push(`${name}의 effective_date가 유효한 날짜가 아닙니다.`);
+    if (typeof source.promulgation_number !== 'string' || !source.promulgation_number.trim()) errors.push(`${name}의 promulgation_number가 없습니다.`);
+    try {
+      const url = new URL(source.official_url);
+      if (!url.pathname.endsWith('/lsInfoP.do') || !url.searchParams.get('lsiSeq')) {
+        errors.push(`${name}의 공식 URL에 법령 버전 식별자 lsiSeq가 없습니다.`);
+      }
+    } catch {
+      // URL 형식 오류는 isOfficialHttpsUrl에서 별도로 보고한다.
+    }
+    return;
+  }
   if (source.source_kind !== undefined && source.source_kind !== 'statute') {
     errors.push(`${name}의 source_kind가 허용되지 않습니다.`);
     return;
