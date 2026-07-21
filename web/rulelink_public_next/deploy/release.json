@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20260721-001",
-  "snapshot_id": "kr-knowledge-core-20260721-012",
-  "requested_at": "2026-07-21T11:20:00Z",
-  "summary_ko": "생활법률 60개, 근거 인식 검색, 통합 근거 해석, 공식 근거 보관함을 운영 공개한다."
+  "release_id": "production-20260721-002",
+  "snapshot_id": "kr-knowledge-core-20260721-013",
+  "requested_at": "2026-07-21T11:25:00Z",
+  "summary_ko": "7개 생활법률 허브의 65개 안내, 53개 규칙, 40개 상황 분기, 72개 공식 근거와 개정·시행 문서 지원을 운영 공개한다."
 }
