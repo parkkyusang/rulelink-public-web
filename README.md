@@ -75,6 +75,14 @@ https://rulelink.lolphysical.xyz
 
 운영 배포의 기준 저장소는 `parkkyusang/rulelink-public-web`이다. 기능과 운영 번들은 별도 브랜치와 PR로 올리고, 공개 번들 차단 규칙 테스트·타입 검사·정적 빌드·Vercel 미리보기가 성공한 경우에만 `main`에 병합한다. `main` 병합 뒤 Vercel 운영 배포 성공까지 확인한다.
 
+운영본의 승인 출판 스냅샷과 공개 콘텐츠 수는 다음 기계 판독 주소에서 확인한다.
+
+```text
+https://rulelink.lolphysical.xyz/publication.json
+```
+
+이 응답은 공개 스냅샷 식별자, 유형별 콘텐츠 수, 최근 검토시각과 가장 가까운 재검토 기한만 제공한다. 원본 DB 좌표, 승인 파일 해시, 내부 경로는 제공하지 않는다.
+
 ## 로컬 터널 대체 경로
 
 다음 도구는 Vercel 운영 배포와 별개인 로컬 확인 경로다. `start_rulelink_public_all.cmd`를 실행하면 Windows의 8800번 포트에 공개 웹 서버를 열고 RuleLink 전용 Cloudflare 터널 `rulelink-public`을 시작한다. 터널 실행기는 WSL에서 Windows로 연결되는 현재 게이트웨이를 자동 반영한다. `stop_rulelink_public.cmd`는 공개 웹 서버와 RuleLink 전용 터널만 종료한다.
