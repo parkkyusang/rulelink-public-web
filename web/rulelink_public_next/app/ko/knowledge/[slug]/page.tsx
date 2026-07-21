@@ -37,7 +37,7 @@ export default async function KnowledgePage({params}: Props) {
   const {slug} = await params;
   const entry = await findKnowledgeEntry(slug);
   if (!entry) notFound();
-  const {rules, scenarios, sources, related} = await knowledgeDetail(entry);
+  const {rules, scenarios, sources, hubs, related} = await knowledgeDetail(entry);
   const canonicalUrl = `${site.url}/ko/knowledge/${entry.slug}`;
   return (
     <main className="knowledgePage">
@@ -64,7 +64,10 @@ export default async function KnowledgePage({params}: Props) {
         })}}
         type="application/ld+json"
       />
-      <nav className="breadcrumb"><a href="/">홈</a><span>/</span><span>생활법률 지식</span></nav>
+      <nav className="breadcrumb">
+        <a href="/">홈</a><span>/</span><a href="/ko/knowledge">생활법률 지식</a>
+        {hubs[0] ? <><span>/</span><a href={`/ko/hubs/${hubs[0].slug}`}>{hubs[0].title_ko}</a></> : null}
+      </nav>
       <header className="knowledgeHero">
         <p className="eyebrow">{contentTypeLabel(entry.content_type)}</p>
         <h1>{entry.title_ko}</h1>
@@ -75,6 +78,12 @@ export default async function KnowledgePage({params}: Props) {
           <span><b>다음 점검</b>{formatDate(entry.expires_at)}</span>
           <span><b>공식 근거</b>{sources.length}건 연결</span>
         </div>
+        {hubs.length ? (
+          <nav aria-label="소속 주제" className={styles.hubTrail}>
+            <span>이 글이 속한 주제</span>
+            {hubs.map(hub => <a href={`/ko/hubs/${hub.slug}`} key={hub.hub_id}>{hub.title_ko} →</a>)}
+          </nav>
+        ) : null}
       </header>
 
       <section className="knowledgeLayout">
