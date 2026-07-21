@@ -40,6 +40,7 @@ export default function RootLayout({children}: {children: ReactNode}) {
           dangerouslySetInnerHTML={{__html: serializeStructuredData({
             '@context': 'https://schema.org',
             '@type': 'WebSite',
+            '@id': `${site.url}/#website`,
             name: site.name,
             url: site.url,
             description: site.description,

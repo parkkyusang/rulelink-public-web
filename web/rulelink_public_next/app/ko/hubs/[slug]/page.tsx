@@ -4,6 +4,7 @@ import {notFound} from 'next/navigation';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {decisionPathsForKnowledgeHub, entriesForKnowledgeHub, findKnowledgeHub, listKnowledgeHubs} from '@/lib/publication';
 import {site} from '@/lib/site';
+import {buildKnowledgeHubStructuredData} from '@/lib/public-structured-data';
 import {serializeStructuredData} from '@/lib/structured-data';
 
 export const dynamic = 'force-static';
@@ -44,28 +45,24 @@ export default async function KnowledgeHubPage({params}: Props) {
   return (
     <main className="topicPage">
       <script
-        dangerouslySetInnerHTML={{__html: serializeStructuredData({
-          '@context': 'https://schema.org',
-          '@type': 'CollectionPage',
-          '@id': canonicalUrl,
-          url: canonicalUrl,
-          name: hub.title_ko,
+        dangerouslySetInnerHTML={{__html: serializeStructuredData(buildKnowledgeHubStructuredData({
+          breadcrumbs: [
+            {name: '홈', url: site.url},
+            {name: '생활법률 지식', url: `${site.url}/ko/knowledge`},
+            {name: hub.title_ko, url: canonicalUrl},
+          ],
           description: hub.description_ko,
-          inLanguage: 'ko-KR',
-          isPartOf: {
-            '@type': 'WebSite',
-            name: site.name,
-            url: site.url,
-          },
-          numberOfItems: entries.length,
-          hasPart: entries.map(entry => ({
-            '@type': 'WebPage',
-            name: entry.title_ko,
-            description: entry.one_line_answer_ko,
-            url: `${site.url}/ko/knowledge/${entry.slug}`,
+          entries: entries.map(entry => ({
             dateModified: entry.reviewed_at,
+            description: entry.one_line_answer_ko,
+            name: entry.title_ko,
+            url: `${site.url}/ko/knowledge/${entry.slug}`,
           })),
-        })}}
+          pageUrl: canonicalUrl,
+          siteName: site.name,
+          siteUrl: site.url,
+          title: hub.title_ko,
+        }))}}
         type="application/ld+json"
       />
       <nav className="breadcrumb"><a href="/">홈</a><span>/</span><a href="/ko/knowledge">생활법률 지식</a><span>/</span><span>{hub.title_ko}</span></nav>
