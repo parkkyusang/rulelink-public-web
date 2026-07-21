@@ -91,3 +91,20 @@ test('법령변화 인계본은 저자·감수자 표시와 운영 통합 파일
   const manifest = await readJson(path.join(topicDirectory, 'manifest.json'));
   assert.ok(!manifest.topics.some((item) => item.file === 'law-change-briefs.json'));
 });
+
+test('상속권 상실선고는 2026년 제도 시행과 확대 개정을 구분한다', async () => {
+  const handoff = await readJson(handoffPath);
+  const oldAssertion = handoff.assertions.find(
+    (item) => item.assertion_id === 'assertion.kr.change.inheritance-right-loss-system-2026.old',
+  );
+  const brief = handoff.change_briefs.find(
+    (item) => item.change_brief_id === 'kr.change.inheritance-right-loss-system-2026',
+  );
+  assert.ok(oldAssertion && brief);
+  assert.match(oldAssertion.user_facing_text_ko, /2026년 1월 1일/);
+  assert.doesNotMatch(oldAssertion.user_facing_text_ko, /제도가 시행 전/);
+  assert.equal(oldAssertion.source_coordinates[0].effective_from, '2026-01-01');
+  assert.match(brief.summary_ko, /폐지·신설한 것이 아니라/);
+  assert.match(brief.norm_delta.old_frame.temporal_rule.join(' '), /2026-01-01/);
+  assert.match(brief.norm_delta.new_frame.legal_effect.join(' '), /확대된 대상·사유/);
+});
