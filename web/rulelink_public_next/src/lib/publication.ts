@@ -144,7 +144,11 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
   ];
   const seenRelatedIds = new Set<string>();
   const related = relatedIds
-    .filter(contentId => contentId !== entry.content_id && !seenRelatedIds.has(contentId) && seenRelatedIds.add(contentId))
+    .filter(contentId => {
+      if (contentId === entry.content_id || seenRelatedIds.has(contentId)) return false;
+      seenRelatedIds.add(contentId);
+      return true;
+    })
     .map(contentId => entryById.get(contentId))
     .filter((candidate): candidate is PublicKnowledgeEntry => Boolean(candidate))
     .slice(0, 6);
