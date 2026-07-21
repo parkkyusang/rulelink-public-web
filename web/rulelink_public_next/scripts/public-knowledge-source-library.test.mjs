@@ -3,7 +3,6 @@ import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 import {fileURLToPath} from 'node:url';
-import './law-change-topic-handoff-02.test.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repositoryRoot = path.resolve(root, '..', '..');
