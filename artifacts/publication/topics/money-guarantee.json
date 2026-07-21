@@ -100,6 +100,24 @@
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C430%EC%A1%B0",
       "source_snapshot_id": "snapshot:084379d3974c5260edbde413397e9d11",
       "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.money-guarantee.civil-act-ko-0162",
+      "source_id": "civil_act_ko_0162",
+      "law_name_ko": "민법",
+      "article_no": "제162조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C162%EC%A1%B0",
+      "source_snapshot_id": "snapshot:b2bc0405fc2a3ab85fa85df111d7e986",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.money-guarantee.civil-act-ko-0174",
+      "source_id": "civil_act_ko_0174",
+      "law_name_ko": "민법",
+      "article_no": "제174조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C174%EC%A1%B0",
+      "source_snapshot_id": "snapshot:118310dcf6076c4e98ed4a792541fb83",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
     }
   ],
   "topic_hubs": [
@@ -115,7 +133,9 @@
         "content.partial-repayment-allocation",
         "content.guarantee-by-message-validity",
         "content.continuing-guarantee-maximum-amount",
-        "content.scope-of-guarantee-debt"
+        "content.scope-of-guarantee-debt",
+        "content.content-certified-letter-prescription",
+        "content.loan-and-guarantee-evidence-checklist"
       ]
     }
   ],
@@ -125,9 +145,9 @@
       "title_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어…",
       "proposition_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어야 성립한다.",
       "norm": {
-        "actor_ko": "돈을 빌려주는 사람과 빌리는 사람",
+        "actor_ko": "금전을 빌려준 사람과 빌린 사람",
         "conditions_ko": "금전을 이전하고 같은 종류·품질·수량의 금전을 반환하기로 합의한 경우",
-        "legal_effect_ko": "금전소비대차가 성립하여 차주는 약정에 따라 금전을 반환할 의무를 부담합니다."
+        "legal_effect_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어야 성립한다."
       },
       "source_coordinate_ids": [
         "coord.money-guarantee.civil-act-ko-0598"
@@ -138,9 +158,9 @@
       "title_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다.",
       "proposition_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다.",
       "norm": {
-        "actor_ko": "반환시기를 정하지 않은 금전소비대차의 대주",
-        "conditions_ko": "상당한 기간을 정하여 차주에게 반환을 최고한 경우",
-        "legal_effect_ko": "정한 기간이 지나면 반환의무의 이행 여부를 청구·판단할 수 있습니다."
+        "actor_ko": "반환시기를 정하지 않은 금전소비대차의 대주와 차주",
+        "conditions_ko": "금전소비대차는 성립했지만 반환시기를 약정하지 않은 경우",
+        "legal_effect_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다."
       },
       "source_coordinate_ids": [
         "coord.money-guarantee.civil-act-ko-0603"
@@ -151,9 +171,9 @@
       "title_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에…",
       "proposition_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에 따라 어느 채무가 소멸하는지가 달라진다.",
       "norm": {
-        "actor_ko": "복수 채무 또는 비용·이자·원본 중 일부를 변제하는 당사자",
-        "conditions_ko": "변제액이 모든 채무를 소멸시키기에 부족하고 당사자의 충당 지정 유무를 확인한 경우",
-        "legal_effect_ko": "당사자의 유효한 지정 또는 민법상 변제충당 순서에 따라 소멸하는 채무와 잔액이 정해집니다."
+        "actor_ko": "일부 변제를 하는 채무자와 이를 받는 채권자",
+        "conditions_ko": "여러 채무 또는 비용·이자·원본 전부를 소멸시키기에 부족한 금액을 변제하는 경우",
+        "legal_effect_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에 따라 어느 채무가 소멸하는지가 달라진다."
       },
       "source_coordinate_ids": [
         "coord.money-guarantee.civil-act-ko-0476",
@@ -167,9 +187,9 @@
       "title_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발…",
       "proposition_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발생하고 전자적 형태 표시는 원칙적으로 효력이 없다.",
       "norm": {
-        "actor_ko": "주채무를 보증하려는 보증인",
-        "conditions_ko": "기명날인 또는 서명이 있는 서면으로 보증의사를 표시한 경우",
-        "legal_effect_ko": "서면 요건을 충족한 범위에서 보증의 효력이 생기며 전자적 형태의 표시는 원칙적으로 효력이 없습니다."
+        "actor_ko": "보증의사를 표시하는 보증인과 채권자",
+        "conditions_ko": "보증인이 주채무를 보증하기로 하고 기명날인 또는 서명이 있는 서면으로 의사를 표시하는 경우",
+        "legal_effect_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발생하고 전자적 형태 표시는 원칙적으로 효력이 없다."
       },
       "source_coordinate_ids": [
         "coord.money-guarantee.civil-act-ko-0428-02"
@@ -181,8 +201,8 @@
       "proposition_ko": "불확정한 다수 채무를 보증하는 근보증은 최고액을 서면으로 특정하지 않으면 효력이 없다.",
       "norm": {
         "actor_ko": "불확정한 다수 채무를 보증하는 근보증인과 채권자",
-        "conditions_ko": "보증채무의 최고액을 서면으로 특정한 경우",
-        "legal_effect_ko": "최고액 범위에서 근보증 효력이 생기며 최고액이 없으면 근보증계약은 효력이 없습니다."
+        "conditions_ko": "계속적 거래에서 생길 불확정한 다수 채무를 보증하면서 최고액을 정하는 경우",
+        "legal_effect_ko": "불확정한 다수 채무를 보증하는 근보증은 최고액을 서면으로 특정하지 않으면 효력이 없다."
       },
       "source_coordinate_ids": [
         "coord.money-guarantee.civil-act-ko-0428-03"
@@ -193,24 +213,50 @@
       "title_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지…",
       "proposition_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지만 주채무보다 무거운 부담은 주채무 한도로 감축된다.",
       "norm": {
-        "actor_ko": "유효한 보증계약을 체결한 보증인",
-        "conditions_ko": "주채무의 이자·위약금·손해배상 등 종속채무가 존재하고 보증계약에서 범위를 달리 정하지 않은 경우",
-        "legal_effect_ko": "보증채무는 종속채무를 포함하되 보증인의 부담이 주채무보다 무거우면 주채무의 한도로 감축됩니다."
+        "actor_ko": "주채무를 보증한 보증인과 채권자",
+        "conditions_ko": "보증 책임에 주채무의 이자·위약금·손해배상 등 종속 채무가 포함되는지 정하는 경우",
+        "legal_effect_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지만 주채무보다 무거운 부담은 주채무 한도로 감축된다."
       },
       "source_coordinate_ids": [
         "coord.money-guarantee.civil-act-ko-0428",
         "coord.money-guarantee.civil-act-ko-0429",
         "coord.money-guarantee.civil-act-ko-0430"
       ]
+    },
+    {
+      "rule_id": "rule.money-guarantee.rule-general-prescription",
+      "title_ko": "민법상 채권의 일반 소멸시효는 10년이지만 채권 성질에 따른 단기시효·상사시…",
+      "proposition_ko": "민법상 채권의 일반 소멸시효는 10년이지만 채권 성질에 따른 단기시효·상사시효와 기산점을 별도로 확인해야 한다.",
+      "norm": {
+        "actor_ko": "민법상 채권을 행사하려는 채권자와 그 채무자",
+        "conditions_ko": "권리를 행사할 수 있는 때부터 채권의 성질에 맞는 소멸시효기간을 계산하는 경우",
+        "legal_effect_ko": "민법상 채권의 일반 소멸시효는 10년이지만 채권 성질에 따른 단기시효·상사시효와 기산점을 별도로 확인해야 한다."
+      },
+      "source_coordinate_ids": [
+        "coord.money-guarantee.civil-act-ko-0162"
+      ]
+    },
+    {
+      "rule_id": "rule.money-guarantee.rule-demand-six-months",
+      "title_ko": "채무 이행을 요구하는 최고만으로 시효중단 효과가 영구히 유지되는 것은 아니고…",
+      "proposition_ko": "채무 이행을 요구하는 최고만으로 시효중단 효과가 영구히 유지되는 것은 아니고 6개월 안에 재판상 청구 등 후속 조치가 필요하다.",
+      "norm": {
+        "actor_ko": "시효 완성 전에 채무 이행을 최고한 채권자",
+        "conditions_ko": "채무자에게 이행을 요구한 뒤 6개월 안에 재판상 청구·압류·가압류·가처분 등 후속조치를 하는지 판단하는 경우",
+        "legal_effect_ko": "채무 이행을 요구하는 최고만으로 시효중단 효과가 영구히 유지되는 것은 아니고 6개월 안에 재판상 청구 등 후속 조치가 필요하다."
+      },
+      "source_coordinate_ids": [
+        "coord.money-guarantee.civil-act-ko-0174"
+      ]
     }
   ],
   "scenario_branches": [
     {
       "scenario_id": "scenario.money-guarantee.sc-transfer-gift-dispute",
-      "question_ko": "송금 당시 같은 금액을 반환하기로 한 합의 자료가 있나요?",
-      "decision_fact_ko": "반환 약정, 변제기·이자 대화, 일부변제와 송금의 사용 목적",
-      "when_true_ko": "소비대차 성립을 뒷받침하므로 약정 내용과 남은 원금을 계산합니다.",
-      "when_false_ko": "송금 사실만으로 대여를 단정하기 어려우므로 증여·투자·생활비 등 다른 법적 성격을 함께 검토합니다.",
+      "question_ko": "가족·연인에게 송금했는데 상대방이 증여였다고 주장하는 경우",
+      "decision_fact_ko": "송금 당시 반환 합의와 변제기·이자 약정이 있었는지",
+      "when_true_ko": "금전소비대차 성립을 전제로 반환시기와 미변제 금액을 계산합니다.",
+      "when_false_ko": "증여·정산금 등 다른 원인을 배제할 자료가 있는지 추가 확인합니다.",
       "rule_ids": [
         "rule.money-guarantee.rule-loan-agreement"
       ],
@@ -220,10 +266,10 @@
     },
     {
       "scenario_id": "scenario.money-guarantee.sc-no-note",
-      "question_ko": "차용증 없이도 반환 약정을 보여주는 대화·일부변제·채무승인 자료가 있나요?",
-      "decision_fact_ko": "송금 전후 대화, 상환 약속, 일부변제와 상대방의 채무 인정",
-      "when_true_ko": "서면 차용증이 없어도 소비대차 합의와 범위를 자료 전체로 입증할 수 있는지 검토합니다.",
-      "when_false_ko": "금전 이동만으로 반환 합의를 증명하기 어려우므로 거래 목적과 상대방의 반대 정황을 추가 확인합니다.",
+      "question_ko": "차용증 없이 메신저와 송금내역만 남은 경우",
+      "decision_fact_ko": "차용증 대신 메신저·송금내역에 반환 합의가 나타나는지",
+      "when_true_ko": "분산된 자료를 시간순으로 연결해 대여 합의와 금액을 입증합니다.",
+      "when_false_ko": "송금 사실만으로 대여를 단정하지 않고 거래 경위와 당사자 진술을 더 확인합니다.",
       "rule_ids": [
         "rule.money-guarantee.rule-loan-agreement"
       ],
@@ -233,10 +279,10 @@
     },
     {
       "scenario_id": "scenario.money-guarantee.sc-no-due-date",
-      "question_ko": "반환시기를 정하지 않았고 아직 상당한 기간을 정한 최고를 하지 않았나요?",
-      "decision_fact_ko": "변제기 약정 유무, 최고한 금액·기한과 상대방에게 도달한 날짜",
-      "when_true_ko": "상당한 기간을 정하여 원금과 반환기한을 명확히 최고하고 도달자료를 보존합니다.",
-      "when_false_ko": "약정 변제기 또는 최고한 기간의 경과를 기준으로 반환의무 이행과 지체 여부를 검토합니다.",
+      "question_ko": "갚는 날짜를 정하지 않고 돈을 빌려준 경우",
+      "decision_fact_ko": "반환시기를 정한 합의가 있는지",
+      "when_true_ko": "약정 변제기 도래와 미변제를 기준으로 반환을 청구합니다.",
+      "when_false_ko": "상당한 기간을 정한 반환 최고와 그 도달 증거를 준비합니다.",
       "rule_ids": [
         "rule.money-guarantee.rule-no-due-date"
       ],
@@ -246,10 +292,10 @@
     },
     {
       "scenario_id": "scenario.money-guarantee.sc-partial-payment",
-      "question_ko": "변제할 때 어느 채무에 충당할지 당사자가 지정했나요?",
-      "decision_fact_ko": "채무자·채권자의 충당 지정과 이의, 각 채무의 이행기·이자·비용",
-      "when_true_ko": "지정의 순서와 상대방의 즉시 이의 여부를 확인하여 유효한 충당 합의에 따라 잔액을 계산합니다.",
-      "when_false_ko": "이행기와 변제이익 등 법정변제충당 순서 및 비용·이자·원본 순서를 적용해 잔액을 계산합니다.",
+      "question_ko": "여러 차례 돈을 빌려주고 일부만 돌려받은 경우",
+      "decision_fact_ko": "일부 변제 당시 어느 채무에 충당할지 합의하거나 지정했는지",
+      "when_true_ko": "그 합의·지정에 따라 남은 원금과 이자를 다시 계산합니다.",
+      "when_false_ko": "민법상 법정 변제충당 순서에 따라 비용·이자·원본과 여러 채무의 잔액을 계산합니다.",
       "rule_ids": [
         "rule.money-guarantee.rule-payment-allocation"
       ],
@@ -262,10 +308,10 @@
     },
     {
       "scenario_id": "scenario.money-guarantee.sc-message-guarantee",
-      "question_ko": "보증인의 기명날인 또는 서명이 있는 서면이 있나요?",
-      "decision_fact_ko": "보증서 원본, 보증인의 서명·날인과 메시지의 법적 문맥",
-      "when_true_ko": "서면 보증의 범위와 주채무를 대조하여 유효한 보증채무의 범위를 검토합니다.",
-      "when_false_ko": "전자 메시지만으로 표시된 보증의사는 원칙적으로 효력이 없으므로 독립채무 약정이나 별도 법령 적용 여부를 구분합니다.",
+      "question_ko": "메신저로 대신 갚겠다는 답변만 받은 경우",
+      "decision_fact_ko": "보증인의 기명날인 또는 서명이 있는 서면이 존재하는지",
+      "when_true_ko": "보증 범위와 주채무를 특정해 보증계약의 효력을 검토합니다.",
+      "when_false_ko": "메신저 대화만으로 서면 방식이 충족됐다고 단정하지 않고 전자적 형태의 예외를 별도로 확인합니다.",
       "rule_ids": [
         "rule.money-guarantee.rule-guarantee-writing"
       ],
@@ -275,16 +321,34 @@
     },
     {
       "scenario_id": "scenario.money-guarantee.sc-continuing-guarantee",
-      "question_ko": "불확정한 다수 채무를 보증하는 서면에 최고액이 적혀 있나요?",
-      "decision_fact_ko": "보증 대상 거래의 불확정성, 서면 최고액과 보증기간",
-      "when_true_ko": "최고액과 대상 거래의 범위 안에서 보증채무를 계산합니다.",
-      "when_false_ko": "최고액 없는 근보증계약은 효력이 없으므로 특정 채무 보증인지도 다시 구분합니다.",
+      "question_ko": "현재와 장래의 모든 거래채무를 포괄 보증한 경우",
+      "decision_fact_ko": "불확정한 다수 채무를 보증하면서 최고액을 서면으로 특정했는지",
+      "when_true_ko": "최고액과 보증기간·대상채무 범위 안에서 책임을 계산합니다.",
+      "when_false_ko": "최고액 없는 근보증의 효력 제한을 우선 검토합니다.",
       "rule_ids": [
         "rule.money-guarantee.rule-continuing-guarantee-cap",
         "rule.money-guarantee.rule-guarantee-scope"
       ],
       "source_coordinate_ids": [
-        "coord.money-guarantee.civil-act-ko-0428-03"
+        "coord.money-guarantee.civil-act-ko-0428-03",
+        "coord.money-guarantee.civil-act-ko-0428",
+        "coord.money-guarantee.civil-act-ko-0429",
+        "coord.money-guarantee.civil-act-ko-0430"
+      ]
+    },
+    {
+      "scenario_id": "scenario.money-guarantee.sc-content-certified-demand",
+      "question_ko": "시효 만료가 가까워 내용증명으로 갚으라고 요구한 경우",
+      "decision_fact_ko": "채권의 시효 만료일, 최고가 채무자에게 도달한 날과 6개월 안의 후속조치 여부",
+      "when_true_ko": "최고 도달 뒤 6개월 안에 재판상 청구나 압류·가압류·가처분 등 법정 조치를 진행합니다.",
+      "when_false_ko": "후속조치가 없거나 6개월이 지났다면 최고만으로 시효중단 효과가 유지된다고 보지 않고 현재 시효 상태를 다시 계산합니다.",
+      "rule_ids": [
+        "rule.money-guarantee.rule-demand-six-months",
+        "rule.money-guarantee.rule-general-prescription"
+      ],
+      "source_coordinate_ids": [
+        "coord.money-guarantee.civil-act-ko-0174",
+        "coord.money-guarantee.civil-act-ko-0162"
       ]
     }
   ],
@@ -632,9 +696,9 @@
           ]
         },
         {
-          "heading_ko": "전자 형식의 별도 근거와 이미 한 이행을 확인한다",
+          "heading_ko": "영업·사업 전자문서 예외와 이미 한 이행을 확인한다",
           "paragraphs_ko": [
-            "현재 연결 근거는 민법 제428조의2가 정한 일반 원칙입니다. 사업상 전자문서 등 다른 법령이 적용될 가능성이 있다면 그 근거를 별도로 확인하기 전에는 효력을 단정하지 않습니다.",
+            "전자문서법은 보증인이 자기의 영업 또는 사업으로 작성한 보증의사가 표시된 전자문서를 일정한 경우 민법상 서면으로 보는 예외를 둡니다. 일반 개인의 메신저 약속에 곧바로 적용되는 예외는 아닙니다.",
             "보증인이 이미 보증채무를 이행한 경우에는 이행한 한도에서 방식 하자를 이유로 무효를 주장하기 어려울 수 있으므로 지급액과 경위를 확인합니다."
           ]
         }
@@ -714,7 +778,9 @@
       ],
       "source_coordinate_ids": [
         "coord.money-guarantee.civil-act-ko-0428-03",
-        "coord.money-guarantee.civil-act-ko-0429"
+        "coord.money-guarantee.civil-act-ko-0429",
+        "coord.money-guarantee.civil-act-ko-0428",
+        "coord.money-guarantee.civil-act-ko-0430"
       ],
       "hub_ids": [
         "hub.money-guarantee"
@@ -802,6 +868,183 @@
           "위약금",
           "주채무 변경",
           "일부변제"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.content-certified-letter-prescription",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "content-certified-letter-prescription",
+      "title_ko": "내용증명을 보내면 소멸시효가 자동으로 다시 시작하나",
+      "one_line_answer_ko": "내용증명 등 이행 요구는 최고가 될 수 있지만 그것만으로 효과가 계속되는 것은 아니며 6개월 안에 재판상 청구·압류·가압류 등 법정 후속조치를 해야 한다.",
+      "audience_situation_ko": "갚으라는 내용증명만 보내면 소멸시효 걱정이 없어지나?",
+      "key_points_ko": [
+        "내용증명은 발송 내용과 도달을 증명하는 수단이지 판결이 아니다.",
+        "시효 만료일과 최고 도달일을 먼저 계산한다.",
+        "6개월 안의 후속조치를 놓치면 최고만으로 시효중단 효과를 유지할 수 없다."
+      ],
+      "action_steps_ko": [
+        "채권의 종류와 시효기간을 확정한다.",
+        "권리를 행사할 수 있었던 기산점을 확인한다.",
+        "요구 내용과 도달 증거를 확보한다.",
+        "6개월 안에 취할 재판상 조치 일정을 정한다."
+      ],
+      "facts_to_check_ko": [
+        "채권 종류",
+        "변제기",
+        "시효 기산점",
+        "적용 시효기간",
+        "최고 발송일",
+        "도달일",
+        "채무 승인 여부",
+        "재판상 후속조치일"
+      ],
+      "caution_ko": "대여금이 상행위에서 발생했거나 확정판결을 받은 경우 등에는 시효기간과 기산점이 달라질 수 있다.",
+      "search_intents_ko": [
+        "내용증명 소멸시효",
+        "최고 6개월",
+        "독촉장 시효중단"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "내용증명은 요구와 도달을 남기는 수단이다",
+          "paragraphs_ko": [
+            "내용증명은 어떤 내용을 언제 발송했는지 보여주는 유용한 자료지만, 그 자체가 판결이나 강제집행권원이 되는 것은 아닙니다. 상대방에게 도달했는지도 따로 확인합니다.",
+            "민법상 최고는 채무 이행을 구하는 채권자의 의사통지로 특별한 형식이 반드시 필요한 것은 아니지만, 권리행사의 뜻이 명백해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "최고 뒤 6개월의 후속조치를 관리한다",
+          "paragraphs_ko": [
+            "최고만으로 시효중단 효과가 계속 유지되는 것은 아닙니다. 6개월 안에 재판상 청구, 파산절차 참가, 압류·가압류·가처분 등 법이 정한 후속조치를 해야 합니다.",
+            "그 전에 채권의 성질, 변제기와 시효 기산점, 일반 10년인지 단기·상사시효인지, 채무승인이나 확정판결이 있는지를 먼저 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.money-guarantee.rule-general-prescription",
+        "rule.money-guarantee.rule-demand-six-months"
+      ],
+      "scenario_ids": [
+        "scenario.money-guarantee.sc-content-certified-demand"
+      ],
+      "source_coordinate_ids": [
+        "coord.money-guarantee.civil-act-ko-0162",
+        "coord.money-guarantee.civil-act-ko-0174"
+      ],
+      "hub_ids": [
+        "hub.money-guarantee"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.loan-and-guarantee-evidence-checklist",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "loan-and-guarantee-evidence-checklist",
+      "title_ko": "대여금·보증 분쟁 증거 체크리스트",
+      "one_line_answer_ko": "당사자·원금·교부일·반환합의·변제기·이자·보증 범위·일부변제·독촉을 하나의 시간순 원장으로 남겨야 한다.",
+      "audience_situation_ko": "돈을 빌려주거나 보증을 받을 때 무엇을 남겨야 하나?",
+      "key_points_ko": [
+        "차용증과 실제 송금이 일치해야 한다.",
+        "보증서는 주채무와 최고액을 연결해야 한다.",
+        "일부변제와 독촉 이후 잔액·시효 상태를 계속 갱신한다."
+      ],
+      "action_steps_ko": [
+        "대여 건별 고유번호와 당사자를 정한다.",
+        "계약서·송금·대화를 같은 건에 묶는다.",
+        "변제와 충당 내역을 시점별로 기록한다.",
+        "보증 한도와 주채무 잔액을 함께 갱신한다.",
+        "시효 만료 예상일과 후속조치 기한을 표시한다."
+      ],
+      "facts_to_check_ko": [
+        "채권자·채무자 정보",
+        "원금",
+        "송금일",
+        "반환 합의",
+        "변제기",
+        "이자",
+        "보증인·보증서",
+        "최고액",
+        "일부변제",
+        "독촉·도달",
+        "시효 기산점"
+      ],
+      "caution_ko": "원본을 보존하고 사본·캡처에는 생성일과 출처를 함께 기록한다.",
+      "search_intents_ko": [
+        "대여금 증거 체크리스트",
+        "차용증 필수 항목",
+        "보증계약 증거"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "한 건의 거래를 하나의 시간순 원장으로 만든다",
+          "paragraphs_ko": [
+            "대여 건마다 채권자·채무자, 원금, 교부일, 반환 합의, 변제기, 이자와 송금증을 한 묶음으로 관리합니다. 차용증 숫자와 실제 송금액이 다르면 차이를 설명합니다.",
+            "일부변제 때마다 지급일·금액·충당 대상과 남은 비용·이자·원금을 갱신하고, 상대방의 잔액 확인 메시지를 원본으로 보존합니다."
+          ]
+        },
+        {
+          "heading_ko": "보증과 시효를 주채무 원장에 연결한다",
+          "paragraphs_ko": [
+            "보증서는 주채무, 보증인 서명, 보증 범위와 근보증 최고액을 원장에 연결합니다. 주채무가 변제·변경될 때 보증 잔액도 함께 갱신합니다.",
+            "변제기와 시효 만료 예상일, 최고 도달일과 6개월 후속조치 기한을 표시합니다. 캡처뿐 아니라 전체 대화와 문서 원본, 생성일·출처를 함께 보존합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.money-guarantee.rule-loan-agreement",
+        "rule.money-guarantee.rule-no-due-date",
+        "rule.money-guarantee.rule-payment-allocation",
+        "rule.money-guarantee.rule-guarantee-writing",
+        "rule.money-guarantee.rule-continuing-guarantee-cap",
+        "rule.money-guarantee.rule-demand-six-months"
+      ],
+      "scenario_ids": [
+        "scenario.money-guarantee.sc-no-note",
+        "scenario.money-guarantee.sc-partial-payment",
+        "scenario.money-guarantee.sc-continuing-guarantee",
+        "scenario.money-guarantee.sc-content-certified-demand"
+      ],
+      "source_coordinate_ids": [
+        "coord.money-guarantee.civil-act-ko-0598",
+        "coord.money-guarantee.civil-act-ko-0603",
+        "coord.money-guarantee.civil-act-ko-0476",
+        "coord.money-guarantee.civil-act-ko-0477",
+        "coord.money-guarantee.civil-act-ko-0478",
+        "coord.money-guarantee.civil-act-ko-0479",
+        "coord.money-guarantee.civil-act-ko-0428-02",
+        "coord.money-guarantee.civil-act-ko-0428-03",
+        "coord.money-guarantee.civil-act-ko-0174",
+        "coord.money-guarantee.civil-act-ko-0428",
+        "coord.money-guarantee.civil-act-ko-0429",
+        "coord.money-guarantee.civil-act-ko-0430",
+        "coord.money-guarantee.civil-act-ko-0162"
+      ],
+      "hub_ids": [
+        "hub.money-guarantee"
+      ],
+      "related_content_ids": [],
+      "concierge_entry": {
+        "question_ko": "대여금·보증 분쟁 증거 체크리스트",
+        "decision_facts_ko": [
+          "채권자·채무자 정보",
+          "원금",
+          "송금일",
+          "반환 합의",
+          "변제기",
+          "이자",
+          "보증인·보증서",
+          "최고액",
+          "일부변제",
+          "독촉·도달",
+          "시효 기산점"
         ],
         "href": "https://liale-review.lolphysical.xyz"
       }

@@ -168,7 +168,8 @@
         "content.inheritance-renunciation-procedure",
         "content.limited-acceptance-effect",
         "content.special-limited-acceptance-late-debt",
-        "content.limited-acceptance-creditor-notice"
+        "content.limited-acceptance-creditor-notice",
+        "content.inheritance-assets-and-debts-checklist"
       ]
     }
   ],
@@ -178,9 +179,9 @@
       "title_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순…",
       "proposition_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순위에서는 최근친이 선순위다.",
       "norm": {
-        "actor_ko": "피상속인의 혈족",
-        "conditions_ko": "상속개시 당시 선순위 혈족의 존재 여부와 동순위 혈족 사이의 촌수",
-        "legal_effect_ko": "직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순으로 상속인이 정해지고 동순위에서는 최근친이 우선합니다."
+        "actor_ko": "피상속인의 법정상속인이 될 수 있는 친족",
+        "conditions_ko": "피상속인의 사망으로 상속이 개시되고 선순위 친족의 존재와 촌수를 확인하는 경우",
+        "legal_effect_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순위에서는 최근친이 선순위다."
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1000"
@@ -192,8 +193,8 @@
       "proposition_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단독상속인이 된다.",
       "norm": {
         "actor_ko": "피상속인의 법률상 배우자",
-        "conditions_ko": "상속개시 당시 직계비속 또는 직계존속의 존재 여부",
-        "legal_effect_ko": "직계비속 또는 직계존속이 있으면 그들과 공동상속하고, 둘 다 없으면 단독상속합니다."
+        "conditions_ko": "법률상 배우자가 있고 직계비속·직계존속의 존재 여부를 확인하는 경우",
+        "legal_effect_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단독상속인이 된다."
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1003"
@@ -204,9 +205,9 @@
       "title_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선…",
       "proposition_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선택할 수 있고 가정법원이 기간을 연장할 수 있다.",
       "norm": {
-        "actor_ko": "상속개시 있음을 안 상속인",
-        "conditions_ko": "상속개시 있음을 안 날부터 3개월 이내이며, 기간 연장은 가정법원의 결정이 있는 경우",
-        "legal_effect_ko": "기간 안에 단순승인·한정승인·포기를 선택하고 필요한 경우 기간 연장을 청구할 수 있습니다."
+        "actor_ko": "상속개시 사실을 안 상속인",
+        "conditions_ko": "상속개시 있음을 안 날부터 3개월 안에 승인·한정승인·포기를 선택하는 경우",
+        "legal_effect_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선택할 수 있고 가정법원이 기간을 연장할 수 있다."
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1019"
@@ -218,8 +219,8 @@
       "proposition_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효력이 생긴다.",
       "norm": {
         "actor_ko": "상속을 포기하려는 상속인",
-        "conditions_ko": "법정기간 안에 가정법원에 상속포기를 신고하여 수리된 경우",
-        "legal_effect_ko": "상속개시 때부터 상속인이 아니었던 것으로 봅니다."
+        "conditions_ko": "상속개시 있음을 안 날부터 3개월 안에 가정법원에 상속포기를 신고하는 경우",
+        "legal_effect_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효력이 생긴다."
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1041",
@@ -232,9 +233,9 @@
       "title_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 …",
       "proposition_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 조건의 승인이다.",
       "norm": {
-        "actor_ko": "한정승인을 하는 상속인",
-        "conditions_ko": "상속재산 목록을 붙여 법정기간 안에 가정법원에 한정승인을 신고한 경우",
-        "legal_effect_ko": "상속으로 취득한 재산의 한도에서 피상속인의 채무와 유증을 변제합니다."
+        "actor_ko": "상속채무를 상속재산 한도에서 변제하려는 상속인",
+        "conditions_ko": "상속인이 재산목록을 붙여 한정승인을 신고하고 법원이 이를 수리한 경우",
+        "legal_effect_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 조건의 승인이다."
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1028"
@@ -245,9 +246,9 @@
       "title_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변…",
       "proposition_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변제 절차를 따라야 한다.",
       "norm": {
-        "actor_ko": "한정승인자",
-        "conditions_ko": "한정승인 후 상속채권자와 유증받은 사람에 대한 공고·최고 및 신고기간을 거친 경우",
-        "legal_effect_ko": "우선권과 법정 순서에 따라 상속재산으로 채권자와 유증받은 사람에게 변제합니다."
+        "actor_ko": "한정승인을 수리받은 상속인과 상속채권자·수증자",
+        "conditions_ko": "한정승인 수리 후 상속채권자와 수증자에게 공고·최고하고 상속재산으로 변제하는 경우",
+        "legal_effect_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변제 절차를 따라야 한다."
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1030",
@@ -267,9 +268,9 @@
       "title_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그…",
       "proposition_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그 사실을 안 날부터 3개월 내 특별한정승인이 가능할 수 있다.",
       "norm": {
-        "actor_ko": "상속채무가 상속재산을 초과하는 사실을 뒤늦게 안 상속인",
-        "conditions_ko": "법정기간 안에 채무초과를 알지 못한 데 중대한 과실이 없고 그 사실을 안 날부터 3개월 이내인 경우",
-        "legal_effect_ko": "특별한정승인을 신고하여 상속재산 한도의 책임을 주장할 수 있습니다."
+        "actor_ko": "상속채무 초과 사실을 뒤늦게 안 상속인",
+        "conditions_ko": "중대한 과실 없이 채무초과를 알지 못한 채 단순승인한 뒤 그 사실을 안 경우",
+        "legal_effect_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그 사실을 안 날부터 3개월 내 특별한정승인이 가능할 수 있다."
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1019"
@@ -279,10 +280,10 @@
   "scenario_branches": [
     {
       "scenario_id": "scenario.family-inheritance.sc-spouse-children",
-      "question_ko": "사망 당시 법률상 배우자와 자녀가 모두 있나요?",
-      "decision_fact_ko": "법률상 배우자 여부와 직계비속의 존재",
-      "when_true_ko": "배우자와 자녀가 공동상속인이 됩니다. 사망 선후·대습상속·상속결격·상속포기는 별도로 확인합니다.",
-      "when_false_ko": "자녀가 없으면 직계존속의 존재를 확인하고, 직계비속과 직계존속이 모두 없으면 배우자의 단독상속 여부를 검토합니다.",
+      "question_ko": "배우자와 자녀가 있는 일반적인 상속",
+      "decision_fact_ko": "사망 당시 법률상 배우자와 직계비속의 존재",
+      "when_true_ko": "배우자와 자녀가 공동상속인이 되므로 각 상속인의 지위와 상속분을 함께 계산합니다.",
+      "when_false_ko": "자녀가 없으면 직계존속의 존재를 확인하고, 그들도 없으면 배우자 단독상속 가능성을 봅니다.",
       "rule_ids": [
         "rule.family-inheritance.rule-inheritance-order",
         "rule.family-inheritance.rule-spouse-order"
@@ -294,10 +295,10 @@
     },
     {
       "scenario_id": "scenario.family-inheritance.sc-debt-uncertain",
-      "question_ko": "상속개시 있음을 안 날부터 아직 3개월이 지나지 않았나요?",
-      "decision_fact_ko": "상속인임을 안 날과 현재 날짜, 재산·채무 조사 진행상황",
-      "when_true_ko": "재산과 채무를 조사하면서 한정승인·상속포기 여부를 결정하고, 시간이 부족하면 기간 만료 전에 연장청구를 검토합니다.",
-      "when_false_ko": "원칙적인 선택기간 경과 여부를 확인하고, 채무초과를 뒤늦게 안 경우 특별한정승인 요건을 별도로 검토합니다.",
+      "question_ko": "재산과 채무 규모를 아직 모르는 상태에서 3개월이 흐르는 경우",
+      "decision_fact_ko": "상속재산과 채무를 3개월 안에 확정할 수 있는지",
+      "when_true_ko": "조사 결과에 따라 단순승인·한정승인·포기를 기한 안에 선택합니다.",
+      "when_false_ko": "가정법원 기간연장 신청과 한정승인 가능성을 기한 전에 검토합니다.",
       "rule_ids": [
         "rule.family-inheritance.rule-three-months",
         "rule.family-inheritance.rule-limited-effect"
@@ -309,14 +310,16 @@
     },
     {
       "scenario_id": "scenario.family-inheritance.sc-limited-approved",
-      "question_ko": "한정승인 후 공고·최고와 채권자별 변제를 아직 마치지 않았나요?",
-      "decision_fact_ko": "한정승인일, 공고일, 신고기간, 알고 있는 채권자에 대한 최고와 우선권",
-      "when_true_ko": "법정 신고기간과 개별 최고를 관리하고 우선권 및 채권액에 따라 상속재산을 변제해야 합니다.",
-      "when_false_ko": "변제 장부, 잔여 상속재산과 누락 채권자를 확인하여 청산 종결 및 손해배상 위험을 점검합니다.",
+      "question_ko": "한정승인 수리 후 여러 채권자가 변제를 요구하는 경우",
+      "decision_fact_ko": "법원이 한정승인 신고를 수리했는지",
+      "when_true_ko": "공고·최고와 채권자별 변제 순서를 진행합니다.",
+      "when_false_ko": "수리 전에는 상속재산 처분을 피하고 신고 보완과 기한을 확인합니다.",
       "rule_ids": [
         "rule.family-inheritance.rule-limited-procedure"
       ],
       "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1030",
+        "coord.family-inheritance.civil-act-ko-1031",
         "coord.family-inheritance.civil-act-ko-1032",
         "coord.family-inheritance.civil-act-ko-1033",
         "coord.family-inheritance.civil-act-ko-1034",
@@ -329,10 +332,10 @@
     },
     {
       "scenario_id": "scenario.family-inheritance.sc-late-debt",
-      "question_ko": "3개월 안에 채무초과를 알지 못했고 그 데 중대한 과실이 없었나요?",
-      "decision_fact_ko": "새 채무를 안 날, 전체 채무초과를 안 날과 종전 재산·채무 조사 정도",
-      "when_true_ko": "채무초과 사실을 안 날부터 3개월 안에 특별한정승인을 신고할 수 있는지 즉시 검토합니다.",
-      "when_false_ko": "특별한정승인 요건 충족이 어려울 수 있으므로 일반 선택기간과 단순승인 사유를 함께 확인합니다.",
+      "question_ko": "3개월 후 처음 큰 보증채무나 대출채무를 알게 된 경우",
+      "decision_fact_ko": "중대한 과실 없이 채무초과 사실을 뒤늦게 알았는지와 그 사실을 안 날",
+      "when_true_ko": "안 날부터 3개월 내 특별한정승인 요건과 재산목록을 검토합니다.",
+      "when_false_ko": "일반 3개월 기간과 법정단순승인 여부를 기준으로 다른 구제 가능성을 확인합니다.",
       "rule_ids": [
         "rule.family-inheritance.rule-special-limited"
       ],
@@ -392,7 +395,7 @@
           "heading_ko": "가족관계도에 예외 사유를 표시한다",
           "paragraphs_ko": [
             "가족관계증명서와 제적등본을 바탕으로 사망 당시의 배우자·자녀·부모·형제자매를 적고, 피상속인보다 먼저 사망한 사람과 입양관계를 표시합니다.",
-            "대습상속, 상속결격, 상속포기 같은 예외가 있으면 일반 순위만으로 결론낼 수 없습니다. 사실혼 배우자의 법적 지위도 법률상 배우자와 동일하다고 단정하지 말아야 합니다."
+            "대습상속, 상속결격, 상속포기와 2026년 도입된 상속권 상실선고가 있으면 일반 순위만으로 결론낼 수 없습니다. 사실혼 배우자의 법적 지위도 법률상 배우자와 동일하다고 단정하지 말아야 합니다."
           ]
         }
       ],
@@ -472,7 +475,8 @@
         "scenario.family-inheritance.sc-debt-uncertain"
       ],
       "source_coordinate_ids": [
-        "coord.family-inheritance.civil-act-ko-1019"
+        "coord.family-inheritance.civil-act-ko-1019",
+        "coord.family-inheritance.civil-act-ko-1028"
       ],
       "hub_ids": [
         "hub.family-inheritance"
@@ -539,7 +543,7 @@
         {
           "heading_ko": "수리심판과 다음 상속인을 확인한다",
           "paragraphs_ko": [
-            "상속포기는 가정법원의 신고·수리 절차를 거치며, 수리되면 상속개시 때로 소급합니다. 수리 여부를 확인하기 전에 상속재산을 임의로 처분해서는 안 됩니다.",
+            "상속포기 효력은 가정법원의 수리심판이 고지되어야 발생하고, 발생하면 상속개시 때로 소급합니다. 신고 접수만 했다고 재산을 자유롭게 처분해서는 안 됩니다.",
             "포기자가 생기면 남은 공동상속인 또는 후순위 상속인의 지위가 달라질 수 있습니다. 배우자와 자녀의 전원·일부 포기 여부를 구분해 가족관계도를 다시 계산합니다."
           ]
         }
@@ -649,7 +653,8 @@
         "coord.family-inheritance.civil-act-ko-1036",
         "coord.family-inheritance.civil-act-ko-1037",
         "coord.family-inheritance.civil-act-ko-1038",
-        "coord.family-inheritance.civil-act-ko-1039"
+        "coord.family-inheritance.civil-act-ko-1039",
+        "coord.family-inheritance.civil-act-ko-1019"
       ],
       "hub_ids": [
         "hub.family-inheritance"
@@ -838,6 +843,96 @@
           "채권액",
           "상속재산 환가액",
           "변제 내역"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.inheritance-assets-and-debts-checklist",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "inheritance-assets-and-debts-checklist",
+      "title_ko": "상속재산·채무 조사 체크리스트",
+      "one_line_answer_ko": "부동산·예금·보험·차량·세금환급 같은 적극재산과 대출·보증·세금·카드·소송채무를 같은 기준일로 조사하고 미확정 항목을 별도 표시해야 한다.",
+      "audience_situation_ko": "포기나 한정승인을 결정하기 전에 무엇을 조사해야 하나?",
+      "key_points_ko": [
+        "보이는 예금만으로 채무초과를 판단하지 않는다.",
+        "보증채무와 진행 중 소송·집행도 확인한다.",
+        "재산목록에는 근거자료와 조회일을 붙인다."
+      ],
+      "action_steps_ko": [
+        "가족관계와 상속인부터 확정한다.",
+        "금융·부동산·차량·보험·세금 자료를 조회한다.",
+        "우편·전자우편·소송·집행 기록에서 채무를 찾는다.",
+        "적극재산·채무·미확정 항목을 분리한다.",
+        "3개월 기한 안에 선택안을 비교한다."
+      ],
+      "facts_to_check_ko": [
+        "예금·증권",
+        "부동산",
+        "차량",
+        "보험금·해약환급금",
+        "대출·카드",
+        "보증채무",
+        "세금·공과금",
+        "임대차보증금",
+        "진행 중 소송·집행",
+        "디지털자산"
+      ],
+      "caution_ko": "조회에서 나오지 않는 사인 간 채무와 보증도 있을 수 있으므로 우편·메시지·장부를 함께 조사한다.",
+      "search_intents_ko": [
+        "상속재산 조회 체크리스트",
+        "상속채무 조사",
+        "한정승인 재산목록"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "적극재산과 채무를 같은 기준일로 조사한다",
+          "paragraphs_ko": [
+            "예금·증권·부동산·차량·보험·세금환급 등 적극재산과 대출·카드·세금·보증·임대차보증금 반환채무를 함께 조사합니다. 보이는 예금만 보고 채무초과 여부를 판단하면 안 됩니다.",
+            "진행 중인 소송·집행, 우편과 전자우편, 휴대전화 메시지와 장부도 확인해 금융조회에 나타나지 않는 사인 간 채무를 찾습니다."
+          ]
+        },
+        {
+          "heading_ko": "확정·미확정·미조회 항목을 분리한다",
+          "paragraphs_ko": [
+            "각 항목에 금액, 근거문서, 조회일과 평가기준일을 붙이고 금액이 다투어지거나 보증사고가 아직 발생하지 않은 항목은 미확정으로 표시합니다.",
+            "3개월 기한표와 조사표를 연결해 포기·한정승인·단순승인의 결과를 비교합니다. 조회가 끝나지 않았다는 이유로 기한 관리까지 미루지 않습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.family-inheritance.rule-three-months",
+        "rule.family-inheritance.rule-limited-effect",
+        "rule.family-inheritance.rule-special-limited"
+      ],
+      "scenario_ids": [
+        "scenario.family-inheritance.sc-debt-uncertain",
+        "scenario.family-inheritance.sc-late-debt"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1019",
+        "coord.family-inheritance.civil-act-ko-1028"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "related_content_ids": [],
+      "concierge_entry": {
+        "question_ko": "상속재산·채무 조사 체크리스트",
+        "decision_facts_ko": [
+          "예금·증권",
+          "부동산",
+          "차량",
+          "보험금·해약환급금",
+          "대출·카드",
+          "보증채무",
+          "세금·공과금",
+          "임대차보증금",
+          "진행 중 소송·집행",
+          "디지털자산"
         ],
         "href": "https://liale-review.lolphysical.xyz"
       }
