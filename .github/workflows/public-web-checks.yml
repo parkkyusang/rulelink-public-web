@@ -1,0 +1,53 @@
+name: 공개 웹 검증
+
+on:
+  pull_request:
+    paths:
+      - "web/rulelink_public_next/**"
+      - "artifacts/publication/current/bundle.json"
+      - ".github/workflows/public-web-checks.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "web/rulelink_public_next/**"
+      - "artifacts/publication/current/bundle.json"
+      - ".github/workflows/public-web-checks.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-web-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  typecheck-and-build:
+    name: 타입 검사 및 정적 빌드
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: web/rulelink_public_next
+
+    steps:
+      - name: 저장소 받기
+        uses: actions/checkout@v4
+
+      - name: Node.js 준비
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/rulelink_public_next/package-lock.json
+
+      - name: 고정 의존성 설치
+        run: npm ci
+
+      - name: 타입 검사
+        run: npm run typecheck
+
+      - name: 승인 출판본 정적 빌드
+        env:
+          RULELINK_PUBLIC_BUILD_CHECK: "true"
+        run: npm run build
