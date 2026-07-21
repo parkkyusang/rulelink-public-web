@@ -74,7 +74,7 @@ function publicationItem(type, id, title, value, 기준시각) {
   const daysRemaining = expiry ? daysBetween(expiry, 기준시각) : null;
   let status = 'invalid';
   if (daysRemaining !== null) {
-    status = daysRemaining < 0 ? 'expired' : daysRemaining <= 30 ? 'due_soon' : 'healthy';
+    status = expiry.getTime() <= 기준시각.getTime() ? 'expired' : daysRemaining <= 30 ? 'due_soon' : 'healthy';
   }
   return {
     type,
