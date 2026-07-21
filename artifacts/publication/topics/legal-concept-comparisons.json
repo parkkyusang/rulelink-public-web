@@ -1,0 +1,1664 @@
+{
+  "schema": "rulelink_public_knowledge_topic_v1",
+  "topic_id": "hub.legal-concept-comparisons",
+  "sources": [
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-act-ko-1019",
+      "source_id": "civil_act_ko_1019",
+      "law_name_ko": "민법",
+      "article_no": "제1019조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1019%EC%A1%B0",
+      "source_snapshot_id": "snapshot:b9f244982ab300cd344069c882d8e66f",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-act-ko-1026",
+      "source_id": "civil_act_ko_1026",
+      "law_name_ko": "민법",
+      "article_no": "제1026조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1026%EC%A1%B0",
+      "source_snapshot_id": "snapshot:3089d19af02db3f32b2d70f2258089fb",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-act-ko-1041",
+      "source_id": "civil_act_ko_1041",
+      "law_name_ko": "민법",
+      "article_no": "제1041조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1041%EC%A1%B0",
+      "source_snapshot_id": "snapshot:3d41068ed933f7fedc0e8e6991cacfe1",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-act-ko-1042",
+      "source_id": "civil_act_ko_1042",
+      "law_name_ko": "민법",
+      "article_no": "제1042조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1042%EC%A1%B0",
+      "source_snapshot_id": "snapshot:3e8ef32adeedcf6b8f18332cbad7bb0a",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-act-ko-1043",
+      "source_id": "civil_act_ko_1043",
+      "law_name_ko": "민법",
+      "article_no": "제1043조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1043%EC%A1%B0",
+      "source_snapshot_id": "snapshot:cd1ffa531ba8a186837e25d6e9e707fb",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-act-ko-0565",
+      "source_id": "civil_act_ko_0565",
+      "law_name_ko": "민법",
+      "article_no": "제565조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C565%EC%A1%B0",
+      "source_snapshot_id": "snapshot:94799d117e74e7d18b91b5dc1e21d355",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-act-ko-0544",
+      "source_id": "civil_act_ko_0544",
+      "law_name_ko": "민법",
+      "article_no": "제544조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C544%EC%A1%B0",
+      "source_snapshot_id": "snapshot:f8da96047c57278a88f44c08e023c573",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-act-ko-0548",
+      "source_id": "civil_act_ko_0548",
+      "law_name_ko": "민법",
+      "article_no": "제548조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C548%EC%A1%B0",
+      "source_snapshot_id": "snapshot:5e04a90afb476462174ed2238e1a62f9",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-act-ko-0551",
+      "source_id": "civil_act_ko_0551",
+      "law_name_ko": "민법",
+      "article_no": "제551조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C551%EC%A1%B0",
+      "source_snapshot_id": "snapshot:c38aff9e84c0bbaf421f23c45e2a45b3",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.ecommerce-consumer-ko-0017",
+      "source_id": "ecommerce_consumer_ko_0017",
+      "law_name_ko": "전자상거래 등에서의 소비자보호에 관한 법률",
+      "article_no": "제17조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98%20%EB%93%B1%EC%97%90%EC%84%9C%EC%9D%98%20%EC%86%8C%EB%B9%84%EC%9E%90%EB%B3%B4%ED%98%B8%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C17%EC%A1%B0",
+      "source_snapshot_id": "snapshot:9000691e73e3e70501ab42f3a663ae79",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.ecommerce-consumer-ko-0018",
+      "source_id": "ecommerce_consumer_ko_0018",
+      "law_name_ko": "전자상거래 등에서의 소비자보호에 관한 법률",
+      "article_no": "제18조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98%20%EB%93%B1%EC%97%90%EC%84%9C%EC%9D%98%20%EC%86%8C%EB%B9%84%EC%9E%90%EB%B3%B4%ED%98%B8%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C18%EC%A1%B0",
+      "source_snapshot_id": "snapshot:00a11a59976f8ecf3cbe4a3179a14c86",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-act-ko-0598",
+      "source_id": "civil_act_ko_0598",
+      "law_name_ko": "민법",
+      "article_no": "제598조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C598%EC%A1%B0",
+      "source_snapshot_id": "snapshot:62c9abd62ae2907181f1bf7197dc2e43",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-execution-ko-0056",
+      "source_id": "civil_execution_ko_0056",
+      "law_name_ko": "민사집행법",
+      "article_no": "제56조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C56%EC%A1%B0",
+      "source_snapshot_id": "snapshot:64bd12233d06b8c3fae9a500cdbec525",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-procedure-ko-0462",
+      "source_id": "civil_procedure_ko_0462",
+      "law_name_ko": "민사소송법",
+      "article_no": "제462조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C462%EC%A1%B0",
+      "source_snapshot_id": "snapshot:f6f2e92ffcfb8efeafa44cb414ad7b47",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-procedure-ko-0470",
+      "source_id": "civil_procedure_ko_0470",
+      "law_name_ko": "민사소송법",
+      "article_no": "제470조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C470%EC%A1%B0",
+      "source_snapshot_id": "snapshot:5eb1874d3a13d2373c84f05a11428539",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-procedure-ko-0474",
+      "source_id": "civil_procedure_ko_0474",
+      "law_name_ko": "민사소송법",
+      "article_no": "제474조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C474%EC%A1%B0",
+      "source_snapshot_id": "snapshot:e16ef04db903a2d2efd339de72260b6e",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-execution-ko-0276",
+      "source_id": "civil_execution_ko_0276",
+      "law_name_ko": "민사집행법",
+      "article_no": "제276조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C276%EC%A1%B0",
+      "source_snapshot_id": "snapshot:911473f6c813b2789d625d5a55c70524",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-execution-ko-0223",
+      "source_id": "civil_execution_ko_0223",
+      "law_name_ko": "민사집행법",
+      "article_no": "제223조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C223%EC%A1%B0",
+      "source_snapshot_id": "snapshot:14a7526a5c66caa6429fb9658bc32e55",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-execution-ko-0229",
+      "source_id": "civil_execution_ko_0229",
+      "law_name_ko": "민사집행법",
+      "article_no": "제229조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C229%EC%A1%B0",
+      "source_snapshot_id": "snapshot:b9a41a1899c6fe01d7962b306b18db49",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.litigation-promotion-special-ko-0025",
+      "source_id": "litigation_promotion_special_ko_0025",
+      "law_name_ko": "소송촉진 등에 관한 특례법",
+      "article_no": "제25조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%86%A1%EC%B4%89%EC%A7%84%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C25%EC%A1%B0",
+      "source_snapshot_id": "snapshot:50983dddba9cd06682339ba8c6b33d9a",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.litigation-promotion-special-ko-0026",
+      "source_id": "litigation_promotion_special_ko_0026",
+      "law_name_ko": "소송촉진 등에 관한 특례법",
+      "article_no": "제26조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%86%A1%EC%B4%89%EC%A7%84%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C26%EC%A1%B0",
+      "source_snapshot_id": "snapshot:33b1a9b966387025275a6c4531a08027",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-act-ko-0750",
+      "source_id": "civil_act_ko_0750",
+      "law_name_ko": "민법",
+      "article_no": "제750조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C750%EC%A1%B0",
+      "source_snapshot_id": "snapshot:d3b345393950043064f8313fb28edc30",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-act-ko-0751",
+      "source_id": "civil_act_ko_0751",
+      "law_name_ko": "민법",
+      "article_no": "제751조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C751%EC%A1%B0",
+      "source_snapshot_id": "snapshot:40bd12e55f4009a43daa84ffec3b8a3b",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.criminal-procedure-ko-0232",
+      "source_id": "criminal_procedure_ko_0232",
+      "law_name_ko": "형사소송법",
+      "article_no": "제232조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C232%EC%A1%B0",
+      "source_snapshot_id": "snapshot:025fd33a52a5d2117f2a3ab89ae8aae5",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.criminal-procedure-ko-0327",
+      "source_id": "criminal_procedure_ko_0327",
+      "law_name_ko": "형사소송법",
+      "article_no": "제327조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C327%EC%A1%B0",
+      "source_snapshot_id": "snapshot:a3c7fffbd5b3568fcbe72e1895421d21",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-act-ko-0837",
+      "source_id": "civil_act_ko_0837",
+      "law_name_ko": "민법",
+      "article_no": "제837조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C837%EC%A1%B0",
+      "source_snapshot_id": "snapshot:febe813fc06ca259ccad38d2a5b869a9",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-act-ko-0909",
+      "source_id": "civil_act_ko_0909",
+      "law_name_ko": "민법",
+      "article_no": "제909조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C909%EC%A1%B0",
+      "source_snapshot_id": "snapshot:3470e3400cf943157acdefb83d553a63",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-act-ko-0839-02",
+      "source_id": "civil_act_ko_0839_02",
+      "law_name_ko": "민법",
+      "article_no": "제839조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C839%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:7f62e74183a9d8d7317a0754d5624c7e",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-act-ko-0843",
+      "source_id": "civil_act_ko_0843",
+      "law_name_ko": "민법",
+      "article_no": "제843조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C843%EC%A1%B0",
+      "source_snapshot_id": "snapshot:31abd362ea716e1b2845eaeb28fb5c0b",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.civil-act-ko-0806",
+      "source_id": "civil_act_ko_0806",
+      "law_name_ko": "민법",
+      "article_no": "제806조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C806%EC%A1%B0",
+      "source_snapshot_id": "snapshot:abe5d5845360efd5a520a27545e5cd75",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.labor-standards-ko-0002",
+      "source_id": "labor_standards_ko_0002",
+      "law_name_ko": "근로기준법",
+      "article_no": "제2조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C2%EC%A1%B0",
+      "source_snapshot_id": "snapshot:a71a83bf13303c525bd1e3b4a929817a",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.src-supreme-2006da60793",
+      "source_id": "src-supreme-2006da60793",
+      "source_kind": "precedent",
+      "title_ko": "대법원 2007. 1. 25. 선고 2006다60793 판결",
+      "case_number": "2006다60793",
+      "decision_date": "2007-01-25",
+      "official_url": "https://www.law.go.kr/LSW/precInfoP.do?evtNo=2006%EB%8B%A460793",
+      "source_snapshot_id": "snapshot:a86d3079a89fe7fa163f70a54abd9b23",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.labor-standards-ko-0027",
+      "source_id": "labor_standards_ko_0027",
+      "law_name_ko": "근로기준법",
+      "article_no": "제27조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C27%EC%A1%B0",
+      "source_snapshot_id": "snapshot:29e68bc810d31e8a9a2e824bb85c98bd",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.labor-standards-ko-0028",
+      "source_id": "labor_standards_ko_0028",
+      "law_name_ko": "근로기준법",
+      "article_no": "제28조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C28%EC%A1%B0",
+      "source_snapshot_id": "snapshot:4431004a0b3a6b58613eff695aa86d4a",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.src-supreme-2015du48136",
+      "source_id": "src-supreme-2015du48136",
+      "source_kind": "precedent",
+      "title_ko": "대법원 2015. 11. 27. 선고 2015두48136 판결",
+      "case_number": "2015두48136",
+      "decision_date": "2015-11-27",
+      "official_url": "https://www.law.go.kr/LSW/precInfoP.do?precSeq=179619",
+      "source_snapshot_id": "snapshot:912aebd73d43afdb41203fbfa529b844",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.housing-lease-ko-0003",
+      "source_id": "housing_lease_ko_0003",
+      "law_name_ko": "주택임대차보호법",
+      "article_no": "제3조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C3%EC%A1%B0",
+      "source_snapshot_id": "snapshot:270122f3cab11a485a0327fbd78eb653",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.housing-lease-ko-0003-02",
+      "source_id": "housing_lease_ko_0003_02",
+      "law_name_ko": "주택임대차보호법",
+      "article_no": "제3조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C3%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:445ae2ee988bb4c0fcfc07d0baaeaa2c",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.legal-concept-comparisons.housing-lease-ko-0003-03",
+      "source_id": "housing_lease_ko_0003_03",
+      "law_name_ko": "주택임대차보호법",
+      "article_no": "제3조의3",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C3%EC%A1%B0%EC%9D%983",
+      "source_snapshot_id": "snapshot:1c35b925f8d04acba8a9a1b0c9796e07",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.legal-concept-comparisons",
+      "slug": "legal-concept-comparisons",
+      "title_ko": "헷갈리는 법률개념 비교",
+      "description_ko": "겉보기에는 비슷하지만 요건·효과·절차가 다른 생활법률 개념을 결정적 사실과 행동 순서로 나란히 비교합니다.",
+      "content_ids": [
+        "content.inheritance-renunciation-vs-limited-acceptance",
+        "content.earnest-money-cancellation-vs-default-rescission",
+        "content.online-withdrawal-vs-contract-rescission",
+        "content.loan-proof-vs-enforceable-title",
+        "content.payment-order-vs-civil-lawsuit",
+        "content.provisional-attachment-vs-claim-seizure",
+        "content.criminal-compensation-order-vs-civil-damages",
+        "content.criminal-settlement-vs-complaint-withdrawal",
+        "content.parental-authority-vs-custody",
+        "content.property-division-vs-consolation-money",
+        "content.worker-status-vs-contract-label",
+        "content.dismissal-notice-vs-unfair-dismissal-remedy",
+        "content.lease-registration-vs-opposability-priority"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.legal-concept-comparisons.comparison-01",
+      "title_ko": "상속포기와 한정승인은 무엇이 다른가요?",
+      "proposition_ko": "상속포기는 처음부터 상속인이 아니었던 것으로 보는 선택이고, 한정승인은 상속재산 범위에서 채무를 정리하면서 상속인 지위는 유지하는 선택입니다.",
+      "norm": {
+        "actor_ko": "상속포기 또는 한정승인을 선택하려는 상속인",
+        "conditions_ko": "상속개시를 안 날부터 3개월 안에 상속재산·채무와 처분 여부를 확인해 승인 방식을 선택하는 경우",
+        "legal_effect_ko": "상속포기는 처음부터 상속인이 아니었던 것으로 보는 선택이고, 한정승인은 상속재산 범위에서 채무를 정리하면서 상속인 지위는 유지하는 선택입니다."
+      },
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-act-ko-1019",
+        "coord.legal-concept-comparisons.civil-act-ko-1026",
+        "coord.legal-concept-comparisons.civil-act-ko-1041",
+        "coord.legal-concept-comparisons.civil-act-ko-1042",
+        "coord.legal-concept-comparisons.civil-act-ko-1043"
+      ]
+    },
+    {
+      "rule_id": "rule.legal-concept-comparisons.comparison-02",
+      "title_ko": "계약금 해제와 채무불이행 해제는 같은 절차인가요?",
+      "proposition_ko": "계약금 해제는 이행에 착수하기 전 해약금 약정에 따른 해제이고, 채무불이행 해제는 상대방의 이행지체와 상당한 기간의 최고가 중심이 되는 별도 경로입니다.",
+      "norm": {
+        "actor_ko": "계약금 해제 또는 채무불이행 해제를 검토하는 부동산 매매 당사자",
+        "conditions_ko": "계약금 약정, 이행착수, 상대방 채무불이행과 최고 여부에 따라 해제 근거를 선택하는 경우",
+        "legal_effect_ko": "계약금 해제는 이행에 착수하기 전 해약금 약정에 따른 해제이고, 채무불이행 해제는 상대방의 이행지체와 상당한 기간의 최고가 중심이 되는 별도 경로입니다."
+      },
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-act-ko-0565",
+        "coord.legal-concept-comparisons.civil-act-ko-0544",
+        "coord.legal-concept-comparisons.civil-act-ko-0548",
+        "coord.legal-concept-comparisons.civil-act-ko-0551"
+      ]
+    },
+    {
+      "rule_id": "rule.legal-concept-comparisons.comparison-03",
+      "title_ko": "온라인 청약철회와 계약해제는 무엇이 다른가요?",
+      "proposition_ko": "청약철회는 전자상거래법이 정한 기간·예외에 따라 행사하는 소비자 권리이고, 계약해제는 이행지체나 계약위반을 원인으로 하는 일반 계약법상 구제입니다.",
+      "norm": {
+        "actor_ko": "온라인 구매를 취소하려는 소비자와 통신판매업자",
+        "conditions_ko": "통신판매 계약의 단순변심·계약과 다른 이행·철회 제한 사유와 법정기간을 판단하는 경우",
+        "legal_effect_ko": "청약철회는 전자상거래법이 정한 기간·예외에 따라 행사하는 소비자 권리이고, 계약해제는 이행지체나 계약위반을 원인으로 하는 일반 계약법상 구제입니다."
+      },
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.ecommerce-consumer-ko-0017",
+        "coord.legal-concept-comparisons.ecommerce-consumer-ko-0018",
+        "coord.legal-concept-comparisons.civil-act-ko-0544",
+        "coord.legal-concept-comparisons.civil-act-ko-0548"
+      ]
+    },
+    {
+      "rule_id": "rule.legal-concept-comparisons.comparison-04",
+      "title_ko": "차용증과 집행권원은 왜 구분해야 하나요?",
+      "proposition_ko": "차용증과 송금내역은 대여금 채권의 증거이고, 실제 강제집행에는 판결·확정 지급명령·집행승낙 공정증서 등 법이 정한 집행권원이 별도로 필요합니다.",
+      "norm": {
+        "actor_ko": "대여금 채권을 강제회수하려는 채권자",
+        "conditions_ko": "대여금 채권의 증거는 있지만 판결·확정 지급명령·집행승낙 공정증서 등 집행권원 보유 여부를 판단하는 경우",
+        "legal_effect_ko": "차용증과 송금내역은 대여금 채권의 증거이고, 실제 강제집행에는 판결·확정 지급명령·집행승낙 공정증서 등 법이 정한 집행권원이 별도로 필요합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-act-ko-0598",
+        "coord.legal-concept-comparisons.civil-execution-ko-0056"
+      ]
+    },
+    {
+      "rule_id": "rule.legal-concept-comparisons.comparison-05",
+      "title_ko": "지급명령과 민사소송 중 어느 절차가 맞나요?",
+      "proposition_ko": "지급명령은 금전 등의 지급청구를 서면 중심으로 신속하게 처리할 수 있지만, 채무자가 적법하게 이의하면 소송절차로 넘어가므로 주소와 다툼 가능성이 선택을 가릅니다.",
+      "norm": {
+        "actor_ko": "금전 등의 지급을 청구하려는 채권자와 이를 다투는 채무자",
+        "conditions_ko": "금전·대체물·유가증권 지급청구에서 국내 통상송달 가능성과 채무자의 이의 가능성을 비교하는 경우",
+        "legal_effect_ko": "지급명령은 금전 등의 지급청구를 서면 중심으로 신속하게 처리할 수 있지만, 채무자가 적법하게 이의하면 소송절차로 넘어가므로 주소와 다툼 가능성이 선택을 가릅니다."
+      },
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-procedure-ko-0462",
+        "coord.legal-concept-comparisons.civil-procedure-ko-0470",
+        "coord.legal-concept-comparisons.civil-procedure-ko-0474"
+      ]
+    },
+    {
+      "rule_id": "rule.legal-concept-comparisons.comparison-06",
+      "title_ko": "가압류와 채권압류·추심명령은 어떻게 다른가요?",
+      "proposition_ko": "가압류는 집행권원을 얻기 전 장래 집행을 보전하는 절차이고, 채권압류·추심명령은 집행권원에 기초해 예금·급여 같은 채권을 실제 회수하는 본집행 절차입니다.",
+      "norm": {
+        "actor_ko": "가압류 또는 본집행으로 채권을 보전·회수하려는 채권자",
+        "conditions_ko": "집행권원 취득 전 재산 보전 필요성과 취득 후 제3채무자에 대한 채권집행을 구분하는 경우",
+        "legal_effect_ko": "가압류는 집행권원을 얻기 전 장래 집행을 보전하는 절차이고, 채권압류·추심명령은 집행권원에 기초해 예금·급여 같은 채권을 실제 회수하는 본집행 절차입니다."
+      },
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-execution-ko-0276",
+        "coord.legal-concept-comparisons.civil-execution-ko-0223",
+        "coord.legal-concept-comparisons.civil-execution-ko-0229",
+        "coord.legal-concept-comparisons.civil-execution-ko-0056"
+      ]
+    },
+    {
+      "rule_id": "rule.legal-concept-comparisons.comparison-07",
+      "title_ko": "배상명령과 민사 손해배상청구는 무엇이 다른가요?",
+      "proposition_ko": "배상명령은 일정한 형사사건에서 유죄판결과 함께 직접 피해배상을 명하도록 신청하는 간이절차이고, 민사소송은 대상 손해와 당사자 범위를 더 넓게 주장할 수 있지만 별도 절차가 필요합니다.",
+      "norm": {
+        "actor_ko": "형사재판과 별도 민사절차에서 손해 회복을 구하는 범죄피해자",
+        "conditions_ko": "법정 대상 형사사건에서 직접 손해의 배상명령과 별도 불법행위 손해배상청구의 범위를 비교하는 경우",
+        "legal_effect_ko": "배상명령은 일정한 형사사건에서 유죄판결과 함께 직접 피해배상을 명하도록 신청하는 간이절차이고, 민사소송은 대상 손해와 당사자 범위를 더 넓게 주장할 수 있지만 별도 절차가 필요합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.litigation-promotion-special-ko-0025",
+        "coord.legal-concept-comparisons.litigation-promotion-special-ko-0026",
+        "coord.legal-concept-comparisons.civil-act-ko-0750",
+        "coord.legal-concept-comparisons.civil-act-ko-0751"
+      ]
+    },
+    {
+      "rule_id": "rule.legal-concept-comparisons.comparison-08",
+      "title_ko": "형사합의와 고소취소는 같은 뜻인가요?",
+      "proposition_ko": "합의는 피해회복과 처벌의견 등을 정하는 사적 약정이고, 고소취소는 수사기관이나 법원에 하는 절차행위이므로 서로 자동으로 대체되지 않습니다.",
+      "norm": {
+        "actor_ko": "형사합의와 고소취소를 검토하는 피해자와 피고소인",
+        "conditions_ko": "고소한 사건에서 합의금 지급·처벌의견·고소취소 시점과 죄명별 소추조건을 판단하는 경우",
+        "legal_effect_ko": "합의는 피해회복과 처벌의견 등을 정하는 사적 약정이고, 고소취소는 수사기관이나 법원에 하는 절차행위이므로 서로 자동으로 대체되지 않습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.criminal-procedure-ko-0232",
+        "coord.legal-concept-comparisons.criminal-procedure-ko-0327",
+        "coord.legal-concept-comparisons.civil-act-ko-0750"
+      ]
+    },
+    {
+      "rule_id": "rule.legal-concept-comparisons.comparison-09",
+      "title_ko": "친권자와 양육자는 반드시 같은 사람인가요?",
+      "proposition_ko": "친권은 자녀의 신분·재산에 관한 법정 권한과 의무이고, 양육은 일상적인 보호·교육과 비용 부담을 정하는 문제이므로 개념상 구분해 협의하거나 법원의 판단을 받을 수 있습니다.",
+      "norm": {
+        "actor_ko": "이혼 후 미성년 자녀의 친권과 양육사항을 정하는 부모",
+        "conditions_ko": "이혼하면서 미성년 자녀의 법정 권한 행사와 실제 보호·교육·양육비·면접교섭을 정하는 경우",
+        "legal_effect_ko": "친권은 자녀의 신분·재산에 관한 법정 권한과 의무이고, 양육은 일상적인 보호·교육과 비용 부담을 정하는 문제이므로 개념상 구분해 협의하거나 법원의 판단을 받을 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-act-ko-0837",
+        "coord.legal-concept-comparisons.civil-act-ko-0909"
+      ]
+    },
+    {
+      "rule_id": "rule.legal-concept-comparisons.comparison-10",
+      "title_ko": "이혼 재산분할과 위자료는 무엇이 다른가요?",
+      "proposition_ko": "재산분할은 혼인 중 공동으로 형성한 재산의 청산·부양을 중심으로 하고, 위자료는 혼인파탄에 책임 있는 위법행위로 인한 정신적 손해배상이라 목적과 판단요소가 다릅니다.",
+      "norm": {
+        "actor_ko": "이혼에 따른 재산분할과 손해배상을 청구하는 배우자",
+        "conditions_ko": "이혼 후 공동형성 재산의 청산과 혼인파탄 귀책행위의 정신적 손해배상을 각각 판단하는 경우",
+        "legal_effect_ko": "재산분할은 혼인 중 공동으로 형성한 재산의 청산·부양을 중심으로 하고, 위자료는 혼인파탄에 책임 있는 위법행위로 인한 정신적 손해배상이라 목적과 판단요소가 다릅니다."
+      },
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-act-ko-0839-02",
+        "coord.legal-concept-comparisons.civil-act-ko-0843",
+        "coord.legal-concept-comparisons.civil-act-ko-0806"
+      ]
+    },
+    {
+      "rule_id": "rule.legal-concept-comparisons.comparison-11",
+      "title_ko": "프리랜서 계약서와 사업자등록이 있으면 근로자가 아닌가요?",
+      "proposition_ko": "근로자성은 계약 명칭이나 사업자등록만으로 정하지 않고, 업무내용·근무시간·장소의 구속과 지휘감독, 보수 성격, 독립사업 위험 등 실제 관계를 종합해 판단합니다.",
+      "norm": {
+        "actor_ko": "계약 명칭과 실제 노무제공 관계가 다른 노무제공자와 사용자",
+        "conditions_ko": "업무지시·시간장소 구속·보수·독립사업 위험 등 실제 사용종속관계를 종합해 근로자성을 판단하는 경우",
+        "legal_effect_ko": "근로자성은 계약 명칭이나 사업자등록만으로 정하지 않고, 업무내용·근무시간·장소의 구속과 지휘감독, 보수 성격, 독립사업 위험 등 실제 관계를 종합해 판단합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.labor-standards-ko-0002",
+        "coord.legal-concept-comparisons.src-supreme-2006da60793"
+      ]
+    },
+    {
+      "rule_id": "rule.legal-concept-comparisons.comparison-12",
+      "title_ko": "해고 서면통지와 부당해고 구제신청은 별개인가요?",
+      "proposition_ko": "해고사유·시기의 서면통지는 해고 효력의 요건이고, 노동위원회 구제신청은 부당해고를 다투는 별도 절차이므로 신청기간을 따로 지켜야 합니다.",
+      "norm": {
+        "actor_ko": "해고 통지를 받고 부당해고를 다투려는 근로자와 사용자",
+        "conditions_ko": "해고사유·시기의 서면통지 유무와 실제 해고일부터 노동위원회 구제신청 기간을 각각 판단하는 경우",
+        "legal_effect_ko": "해고사유·시기의 서면통지는 해고 효력의 요건이고, 노동위원회 구제신청은 부당해고를 다투는 별도 절차이므로 신청기간을 따로 지켜야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.labor-standards-ko-0027",
+        "coord.legal-concept-comparisons.labor-standards-ko-0028",
+        "coord.legal-concept-comparisons.src-supreme-2015du48136"
+      ]
+    },
+    {
+      "rule_id": "rule.legal-concept-comparisons.comparison-13",
+      "title_ko": "임차권등기와 대항력·우선변제권은 어떻게 다른가요?",
+      "proposition_ko": "대항력과 우선변제권은 점유·전입신고·확정일자 등 요건으로 생기고, 임차권등기는 보증금 미반환 상태에서 이사하더라도 기존 권리를 유지하거나 일정 요건 아래 취득하도록 돕는 절차이므로 신청과 등기 완료를 구분해야 합니다.",
+      "norm": {
+        "actor_ko": "임대차 종료 후 보증금을 돌려받지 못하고 이사하려는 주택임차인",
+        "conditions_ko": "대항요건·확정일자·임대차 종료·보증금 미반환과 임차권등기 완료 시점을 함께 판단하는 경우",
+        "legal_effect_ko": "대항력과 우선변제권은 점유·전입신고·확정일자 등 요건으로 생기고, 임차권등기는 보증금 미반환 상태에서 이사하더라도 기존 권리를 유지하거나 일정 요건 아래 취득하도록 돕는 절차이므로 신청과 등기 완료를 구분해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.housing-lease-ko-0003",
+        "coord.legal-concept-comparisons.housing-lease-ko-0003-02",
+        "coord.legal-concept-comparisons.housing-lease-ko-0003-03"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.legal-concept-comparisons.comparison-01",
+      "question_ko": "상속채무가 걱정되는데 상속포기와 한정승인 중 무엇을 해야 하나요?",
+      "decision_fact_ko": "상속개시를 안 날",
+      "when_true_ko": "상속포기는 처음부터 상속인이 아니었던 것으로 보는 선택이고, 한정승인은 상속재산 범위에서 채무를 정리하면서 상속인 지위는 유지하는 선택입니다.",
+      "when_false_ko": "상속개시를 안 날·적극재산과 채무 규모·상속재산 처분 여부·다음 순위 상속인 존재을 먼저 확인한 뒤 두 제도 중 어느 경로가 적용되는지 판단합니다.",
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-01"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-act-ko-1019",
+        "coord.legal-concept-comparisons.civil-act-ko-1026",
+        "coord.legal-concept-comparisons.civil-act-ko-1041",
+        "coord.legal-concept-comparisons.civil-act-ko-1042",
+        "coord.legal-concept-comparisons.civil-act-ko-1043"
+      ]
+    },
+    {
+      "scenario_id": "scenario.legal-concept-comparisons.comparison-02",
+      "question_ko": "부동산 계약을 끝내려는데 계약금을 포기하면 되는지, 이행을 최고해야 하는지 헷갈립니다.",
+      "decision_fact_ko": "계약금 약정 내용",
+      "when_true_ko": "계약금 해제는 이행에 착수하기 전 해약금 약정에 따른 해제이고, 채무불이행 해제는 상대방의 이행지체와 상당한 기간의 최고가 중심이 되는 별도 경로입니다.",
+      "when_false_ko": "계약금 약정 내용·이행착수 시점·상대방 채무의 이행기·상당한 기간을 정한 최고을 먼저 확인한 뒤 두 제도 중 어느 경로가 적용되는지 판단합니다.",
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-02"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-act-ko-0565",
+        "coord.legal-concept-comparisons.civil-act-ko-0544",
+        "coord.legal-concept-comparisons.civil-act-ko-0548",
+        "coord.legal-concept-comparisons.civil-act-ko-0551"
+      ]
+    },
+    {
+      "scenario_id": "scenario.legal-concept-comparisons.comparison-03",
+      "question_ko": "온라인 구매를 취소하려는데 청약철회 기간을 따져야 하는지 판매자의 계약위반을 주장해야 하는지 알고 싶습니다.",
+      "decision_fact_ko": "계약내용서를 받은 날",
+      "when_true_ko": "청약철회는 전자상거래법이 정한 기간·예외에 따라 행사하는 소비자 권리이고, 계약해제는 이행지체나 계약위반을 원인으로 하는 일반 계약법상 구제입니다.",
+      "when_false_ko": "계약내용서를 받은 날·상품 공급일·상품 사용·훼손 정도·표시·광고와 실제 공급 내용의 차이을 먼저 확인한 뒤 두 제도 중 어느 경로가 적용되는지 판단합니다.",
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-03"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.ecommerce-consumer-ko-0017",
+        "coord.legal-concept-comparisons.ecommerce-consumer-ko-0018",
+        "coord.legal-concept-comparisons.civil-act-ko-0544",
+        "coord.legal-concept-comparisons.civil-act-ko-0548"
+      ]
+    },
+    {
+      "scenario_id": "scenario.legal-concept-comparisons.comparison-04",
+      "question_ko": "차용증과 송금내역이 있으면 바로 통장 압류를 할 수 있나요?",
+      "decision_fact_ko": "금전 교부와 반환약정",
+      "when_true_ko": "차용증과 송금내역은 대여금 채권의 증거이고, 실제 강제집행에는 판결·확정 지급명령·집행승낙 공정증서 등 법이 정한 집행권원이 별도로 필요합니다.",
+      "when_false_ko": "금전 교부와 반환약정·보유 문서의 종류·재판 또는 지급명령 확정 여부·채무자 재산 정보을 먼저 확인한 뒤 두 제도 중 어느 경로가 적용되는지 판단합니다.",
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-04"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-act-ko-0598",
+        "coord.legal-concept-comparisons.civil-execution-ko-0056"
+      ]
+    },
+    {
+      "scenario_id": "scenario.legal-concept-comparisons.comparison-05",
+      "question_ko": "돈을 못 받았는데 지급명령이 빠른지 바로 민사소송을 해야 하는지 알고 싶습니다.",
+      "decision_fact_ko": "청구의 종류",
+      "when_true_ko": "지급명령은 금전 등의 지급청구를 서면 중심으로 신속하게 처리할 수 있지만, 채무자가 적법하게 이의하면 소송절차로 넘어가므로 주소와 다툼 가능성이 선택을 가릅니다.",
+      "when_false_ko": "청구의 종류·채무자 주소와 송달 가능성·채무자의 예상 반박·증거의 복잡성을 먼저 확인한 뒤 두 제도 중 어느 경로가 적용되는지 판단합니다.",
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-05"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-procedure-ko-0462",
+        "coord.legal-concept-comparisons.civil-procedure-ko-0470",
+        "coord.legal-concept-comparisons.civil-procedure-ko-0474"
+      ]
+    },
+    {
+      "scenario_id": "scenario.legal-concept-comparisons.comparison-06",
+      "question_ko": "채무자 통장을 먼저 묶어야 하는지 바로 압류해서 돈을 받아야 하는지 헷갈립니다.",
+      "decision_fact_ko": "집행권원 보유 여부",
+      "when_true_ko": "가압류는 집행권원을 얻기 전 장래 집행을 보전하는 절차이고, 채권압류·추심명령은 집행권원에 기초해 예금·급여 같은 채권을 실제 회수하는 본집행 절차입니다.",
+      "when_false_ko": "집행권원 보유 여부·재산 처분 위험·예금·급여 등 대상 채권·제3채무자의 정확한 표시을 먼저 확인한 뒤 두 제도 중 어느 경로가 적용되는지 판단합니다.",
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-06"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-execution-ko-0276",
+        "coord.legal-concept-comparisons.civil-execution-ko-0223",
+        "coord.legal-concept-comparisons.civil-execution-ko-0229",
+        "coord.legal-concept-comparisons.civil-execution-ko-0056"
+      ]
+    },
+    {
+      "scenario_id": "scenario.legal-concept-comparisons.comparison-07",
+      "question_ko": "형사재판에서 배상명령을 신청할지 별도로 민사소송을 해야 할지 알고 싶습니다.",
+      "decision_fact_ko": "기소된 범죄 유형",
+      "when_true_ko": "배상명령은 일정한 형사사건에서 유죄판결과 함께 직접 피해배상을 명하도록 신청하는 간이절차이고, 민사소송은 대상 손해와 당사자 범위를 더 넓게 주장할 수 있지만 별도 절차가 필요합니다.",
+      "when_false_ko": "기소된 범죄 유형·직접 피해액과 증빙·형사재판 변론종결 여부·피고인의 책임과 손해액 다툼 정도을 먼저 확인한 뒤 두 제도 중 어느 경로가 적용되는지 판단합니다.",
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-07"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.litigation-promotion-special-ko-0025",
+        "coord.legal-concept-comparisons.litigation-promotion-special-ko-0026",
+        "coord.legal-concept-comparisons.civil-act-ko-0750",
+        "coord.legal-concept-comparisons.civil-act-ko-0751"
+      ]
+    },
+    {
+      "scenario_id": "scenario.legal-concept-comparisons.comparison-08",
+      "question_ko": "가해자와 합의하면 고소가 자동으로 취소되고 형사사건이 끝나는지 궁금합니다.",
+      "decision_fact_ko": "적용 죄명",
+      "when_true_ko": "합의는 피해회복과 처벌의견 등을 정하는 사적 약정이고, 고소취소는 수사기관이나 법원에 하는 절차행위이므로 서로 자동으로 대체되지 않습니다.",
+      "when_false_ko": "적용 죄명·합의금 지급 완료 여부·합의서의 처벌의견 문구·제1심 판결선고 전인지을 먼저 확인한 뒤 두 제도 중 어느 경로가 적용되는지 판단합니다.",
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-08"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.criminal-procedure-ko-0232",
+        "coord.legal-concept-comparisons.criminal-procedure-ko-0327",
+        "coord.legal-concept-comparisons.civil-act-ko-0750"
+      ]
+    },
+    {
+      "scenario_id": "scenario.legal-concept-comparisons.comparison-09",
+      "question_ko": "이혼할 때 친권과 양육권을 한 사람에게 모두 정해야 하는지 궁금합니다.",
+      "decision_fact_ko": "자녀의 연령과 의사",
+      "when_true_ko": "친권은 자녀의 신분·재산에 관한 법정 권한과 의무이고, 양육은 일상적인 보호·교육과 비용 부담을 정하는 문제이므로 개념상 구분해 협의하거나 법원의 판단을 받을 수 있습니다.",
+      "when_false_ko": "자녀의 연령과 의사·현재 주된 돌봄 주체·학교·의료 등 중요 결정 구조·부모 간 협력 가능성을 먼저 확인한 뒤 두 제도 중 어느 경로가 적용되는지 판단합니다.",
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-09"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-act-ko-0837",
+        "coord.legal-concept-comparisons.civil-act-ko-0909"
+      ]
+    },
+    {
+      "scenario_id": "scenario.legal-concept-comparisons.comparison-10",
+      "question_ko": "상대방의 잘못이 크면 재산분할도 더 많이 받을 수 있는지 궁금합니다.",
+      "decision_fact_ko": "재산 취득 시기와 자금원",
+      "when_true_ko": "재산분할은 혼인 중 공동으로 형성한 재산의 청산·부양을 중심으로 하고, 위자료는 혼인파탄에 책임 있는 위법행위로 인한 정신적 손해배상이라 목적과 판단요소가 다릅니다.",
+      "when_false_ko": "재산 취득 시기와 자금원·가사·육아·소득 기여·혼인파탄 귀책사유·이혼 성립일과 청구시점을 먼저 확인한 뒤 두 제도 중 어느 경로가 적용되는지 판단합니다.",
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-10"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-act-ko-0839-02",
+        "coord.legal-concept-comparisons.civil-act-ko-0843",
+        "coord.legal-concept-comparisons.civil-act-ko-0806"
+      ]
+    },
+    {
+      "scenario_id": "scenario.legal-concept-comparisons.comparison-11",
+      "question_ko": "계약서에는 프리랜서라고 되어 있고 사업자등록도 있지만 실제로 출퇴근과 업무지시를 받았습니다.",
+      "decision_fact_ko": "업무지시와 평가 수준",
+      "when_true_ko": "근로자성은 계약 명칭이나 사업자등록만으로 정하지 않고, 업무내용·근무시간·장소의 구속과 지휘감독, 보수 성격, 독립사업 위험 등 실제 관계를 종합해 판단합니다.",
+      "when_false_ko": "업무지시와 평가 수준·근무시간·장소 구속·보수의 근로대가성·독립 영업과 손익 위험을 먼저 확인한 뒤 두 제도 중 어느 경로가 적용되는지 판단합니다.",
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-11"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.labor-standards-ko-0002",
+        "coord.legal-concept-comparisons.src-supreme-2006da60793"
+      ]
+    },
+    {
+      "scenario_id": "scenario.legal-concept-comparisons.comparison-12",
+      "question_ko": "해고통지서를 받지 못했는데 노동위원회 구제신청도 따로 해야 하나요?",
+      "decision_fact_ko": "해고 의사표시 존재",
+      "when_true_ko": "해고사유·시기의 서면통지는 해고 효력의 요건이고, 노동위원회 구제신청은 부당해고를 다투는 별도 절차이므로 신청기간을 따로 지켜야 합니다.",
+      "when_false_ko": "해고 의사표시 존재·서면 여부·사유와 시기의 구체성·실제 해고일을 먼저 확인한 뒤 두 제도 중 어느 경로가 적용되는지 판단합니다.",
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-12"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.labor-standards-ko-0027",
+        "coord.legal-concept-comparisons.labor-standards-ko-0028",
+        "coord.legal-concept-comparisons.src-supreme-2015du48136"
+      ]
+    },
+    {
+      "scenario_id": "scenario.legal-concept-comparisons.comparison-13",
+      "question_ko": "보증금을 못 받은 채 이사할 때 임차권등기만 신청하면 권리가 바로 보전되는지 궁금합니다.",
+      "decision_fact_ko": "주택 인도와 전입신고",
+      "when_true_ko": "대항력과 우선변제권은 점유·전입신고·확정일자 등 요건으로 생기고, 임차권등기는 보증금 미반환 상태에서 이사하더라도 기존 권리를 유지하거나 일정 요건 아래 취득하도록 돕는 절차이므로 신청과 등기 완료를 구분해야 합니다.",
+      "when_false_ko": "주택 인도와 전입신고·확정일자·임대차 종료·임차권등기 완료일을 먼저 확인한 뒤 두 제도 중 어느 경로가 적용되는지 판단합니다.",
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-13"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.housing-lease-ko-0003",
+        "coord.legal-concept-comparisons.housing-lease-ko-0003-02",
+        "coord.legal-concept-comparisons.housing-lease-ko-0003-03"
+      ]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.inheritance-renunciation-vs-limited-acceptance",
+      "content_type": "similar_case_comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "inheritance-renunciation-vs-limited-acceptance",
+      "title_ko": "상속포기와 한정승인은 무엇이 다른가요?",
+      "one_line_answer_ko": "상속포기는 처음부터 상속인이 아니었던 것으로 보는 선택이고, 한정승인은 상속재산 범위에서 채무를 정리하면서 상속인 지위는 유지하는 선택입니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "다음 순위 상속인에게 영향이 넘어가는지 비교합니다.",
+        "상속재산을 이미 처분했는지 확인합니다.",
+        "3개월 숙려기간과 신고절차를 함께 봅니다."
+      ],
+      "action_steps_ko": [
+        "사망과 상속개시를 안 날을 확정한다.",
+        "적극재산과 채무를 함께 조회한다.",
+        "재산 처분·인출·채무변제 여부를 기록한다.",
+        "가족 전체의 상속순위까지 보고 법원 신고방식을 정한다."
+      ],
+      "facts_to_check_ko": [
+        "상속개시를 안 날",
+        "적극재산과 채무 규모",
+        "상속재산 처분 여부",
+        "다음 순위 상속인 존재"
+      ],
+      "caution_ko": "상속재산을 임의로 처분한 뒤에는 단순승인 문제가 생길 수 있으므로 선택 전에 재산을 움직이지 않는 것이 안전합니다.",
+      "search_intents_ko": [
+        "상속포기와 한정승인은 무엇이 다른가요?",
+        "상속채무가 걱정되는데 상속포기와 한정승인 중 무엇을 해야 하나요?",
+        "inheritance-renunciation-vs-limited-acceptance"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "두 제도는 채무를 줄이는 방식이 다르다",
+          "paragraphs_ko": [
+            "포기는 상속인 지위 자체를 벗어나는 방식이어서 그 사람의 몫이 다음 상속순위에 영향을 줄 수 있습니다.",
+            "한정승인은 상속인으로서 청산 절차를 진행하되 상속재산을 넘는 고유재산 부담을 제한하는 방식입니다."
+          ]
+        },
+        {
+          "heading_ko": "재산 규모와 가족 전체의 순서를 함께 본다",
+          "paragraphs_ko": [
+            "채무가 명백히 더 큰지, 재산과 채무가 모두 불명확한지에 따라 선택의 실익이 달라집니다.",
+            "본인만 포기하면 끝난다고 단정하지 말고 배우자·자녀·손자녀 등 다음 순위를 함께 확인해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-01"
+      ],
+      "scenario_ids": [
+        "scenario.legal-concept-comparisons.comparison-01"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-act-ko-1019",
+        "coord.legal-concept-comparisons.civil-act-ko-1026",
+        "coord.legal-concept-comparisons.civil-act-ko-1041",
+        "coord.legal-concept-comparisons.civil-act-ko-1042",
+        "coord.legal-concept-comparisons.civil-act-ko-1043"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "related_content_ids": [
+        "content.earnest-money-cancellation-vs-default-rescission",
+        "content.lease-registration-vs-opposability-priority"
+      ]
+    },
+    {
+      "content_id": "content.earnest-money-cancellation-vs-default-rescission",
+      "content_type": "similar_case_comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "earnest-money-cancellation-vs-default-rescission",
+      "title_ko": "계약금 해제와 채무불이행 해제는 같은 절차인가요?",
+      "one_line_answer_ko": "계약금 해제는 이행에 착수하기 전 해약금 약정에 따른 해제이고, 채무불이행 해제는 상대방의 이행지체와 상당한 기간의 최고가 중심이 되는 별도 경로입니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "계약금의 법적 성격을 확인합니다.",
+        "어느 쪽이 이행에 착수했는지 봅니다.",
+        "상대방 귀책과 최고 여부를 구분합니다."
+      ],
+      "action_steps_ko": [
+        "계약서의 계약금·위약금 조항을 읽는다.",
+        "중도금 지급·대출 실행·이전 준비 등 이행착수 자료를 모은다.",
+        "상대방의 불이행 내용과 이행기 도래를 확인한다.",
+        "선택한 해제 근거에 맞춰 통지와 금전 정산을 설계한다."
+      ],
+      "facts_to_check_ko": [
+        "계약금 약정 내용",
+        "이행착수 시점",
+        "상대방 채무의 이행기",
+        "상당한 기간을 정한 최고"
+      ],
+      "caution_ko": "계약금이 오갔다고 언제든 포기·배액상환으로 끝낼 수 있는 것은 아니며, 이행착수 이후에는 적용 경로가 달라질 수 있습니다.",
+      "search_intents_ko": [
+        "계약금 해제와 채무불이행 해제는 같은 절차인가요?",
+        "부동산 계약을 끝내려는데 계약금을 포기하면 되는지, 이행을 최고해야 하는지 헷갈립니다.",
+        "earnest-money-cancellation-vs-default-rescission"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "해제권이 생기는 원인이 다르다",
+          "paragraphs_ko": [
+            "해약금 해제는 계약금 약정과 이행착수 전이라는 시간 경계가 핵심입니다.",
+            "채무불이행 해제는 상대방이 이행기에 이행하지 않았는지와 상당한 기간을 정해 이행을 요구했는지가 핵심입니다."
+          ]
+        },
+        {
+          "heading_ko": "정산과 손해배상도 따로 계산한다",
+          "paragraphs_ko": [
+            "해제 후에는 원상회복 문제가 생기고, 채무불이행에 따른 손해배상은 별도로 검토할 수 있습니다.",
+            "계약금 조항이 손해배상액 예정이나 위약벌까지 겸하는지는 문언 전체를 확인해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-02"
+      ],
+      "scenario_ids": [
+        "scenario.legal-concept-comparisons.comparison-02"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-act-ko-0565",
+        "coord.legal-concept-comparisons.civil-act-ko-0544",
+        "coord.legal-concept-comparisons.civil-act-ko-0548",
+        "coord.legal-concept-comparisons.civil-act-ko-0551"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "related_content_ids": [
+        "content.online-withdrawal-vs-contract-rescission",
+        "content.inheritance-renunciation-vs-limited-acceptance"
+      ]
+    },
+    {
+      "content_id": "content.online-withdrawal-vs-contract-rescission",
+      "content_type": "similar_case_comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "online-withdrawal-vs-contract-rescission",
+      "title_ko": "온라인 청약철회와 계약해제는 무엇이 다른가요?",
+      "one_line_answer_ko": "청약철회는 전자상거래법이 정한 기간·예외에 따라 행사하는 소비자 권리이고, 계약해제는 이행지체나 계약위반을 원인으로 하는 일반 계약법상 구제입니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "단순 변심인지 표시·광고와 다른 이행인지 구분합니다.",
+        "상품 훼손·사용과 철회 예외를 확인합니다.",
+        "통지일과 반환·환급 일정을 남깁니다."
+      ],
+      "action_steps_ko": [
+        "계약내용서와 공급일을 확인한다.",
+        "취소 사유를 단순 변심과 계약위반으로 나눈다.",
+        "기간 안에 철회 의사를 기록이 남는 방식으로 보낸다.",
+        "반환비용과 환급기한을 근거별로 계산한다."
+      ],
+      "facts_to_check_ko": [
+        "계약내용서를 받은 날",
+        "상품 공급일",
+        "상품 사용·훼손 정도",
+        "표시·광고와 실제 공급 내용의 차이"
+      ],
+      "caution_ko": "청약철회가 제한돼도 상품이 광고와 다르거나 계약대로 이행되지 않았다면 별도 구제 가능성이 남을 수 있습니다.",
+      "search_intents_ko": [
+        "온라인 청약철회와 계약해제는 무엇이 다른가요?",
+        "온라인 구매를 취소하려는데 청약철회 기간을 따져야 하는지 판매자의 계약위반을 주장해야 하는지 알고 싶습니다.",
+        "online-withdrawal-vs-contract-rescission"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "소비자 특별권리와 계약위반 구제를 구분한다",
+          "paragraphs_ko": [
+            "전자상거래 청약철회는 잘못이 없는 단순 변심에도 인정될 수 있지만 법정기간과 예외가 있습니다.",
+            "계약해제는 상대방의 불이행과 최고 등 별도 요건을 요구할 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "같은 취소라도 비용과 기한이 달라진다",
+          "paragraphs_ko": [
+            "단순 변심인지 계약과 다른 공급인지에 따라 반환비용 부담이 달라질 수 있습니다.",
+            "판매자에게 보낸 통지와 상품 반환 시점을 각각 증거로 남겨야 환급 지연을 다투기 쉽습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-03"
+      ],
+      "scenario_ids": [
+        "scenario.legal-concept-comparisons.comparison-03"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.ecommerce-consumer-ko-0017",
+        "coord.legal-concept-comparisons.ecommerce-consumer-ko-0018",
+        "coord.legal-concept-comparisons.civil-act-ko-0544",
+        "coord.legal-concept-comparisons.civil-act-ko-0548"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "related_content_ids": [
+        "content.loan-proof-vs-enforceable-title",
+        "content.earnest-money-cancellation-vs-default-rescission"
+      ]
+    },
+    {
+      "content_id": "content.loan-proof-vs-enforceable-title",
+      "content_type": "similar_case_comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "loan-proof-vs-enforceable-title",
+      "title_ko": "차용증과 집행권원은 왜 구분해야 하나요?",
+      "one_line_answer_ko": "차용증과 송금내역은 대여금 채권의 증거이고, 실제 강제집행에는 판결·확정 지급명령·집행승낙 공정증서 등 법이 정한 집행권원이 별도로 필요합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "채권 존재의 증거와 집행 자격 문서를 구분합니다.",
+        "보유 문서가 집행권원인지 확인합니다.",
+        "집행 대상 재산은 별도로 특정합니다."
+      ],
+      "action_steps_ko": [
+        "차용증·송금내역·대화로 대여 사실을 정리한다.",
+        "판결·지급명령·공정증서 보유 여부를 확인한다.",
+        "집행문·확정증명 등 필요한 부속서류를 확인한다.",
+        "예금·급여·부동산 중 집행 대상을 특정한다."
+      ],
+      "facts_to_check_ko": [
+        "금전 교부와 반환약정",
+        "보유 문서의 종류",
+        "재판 또는 지급명령 확정 여부",
+        "채무자 재산 정보"
+      ],
+      "caution_ko": "내용증명이나 단순 인증 차용증은 중요한 증거지만 그 자체가 언제나 집행권원은 아닙니다.",
+      "search_intents_ko": [
+        "차용증과 집행권원은 왜 구분해야 하나요?",
+        "차용증과 송금내역이 있으면 바로 통장 압류를 할 수 있나요?",
+        "loan-proof-vs-enforceable-title"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "증명 단계와 강제실현 단계가 다르다",
+          "paragraphs_ko": [
+            "대여금 채권을 인정받으려면 돈을 준 사실과 돌려받기로 한 약정을 입증해야 합니다.",
+            "그 채권을 국가의 강제력으로 실현하려면 민사집행법상 집행권원을 확보해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "집행권원 뒤에도 재산 특정이 필요하다",
+          "paragraphs_ko": [
+            "판결을 받았다고 자동으로 돈이 입금되는 것은 아닙니다.",
+            "예금채권 압류라면 은행을, 급여 압류라면 사용자를 제3채무자로 특정하는 후속 절차가 필요합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-04"
+      ],
+      "scenario_ids": [
+        "scenario.legal-concept-comparisons.comparison-04"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-act-ko-0598",
+        "coord.legal-concept-comparisons.civil-execution-ko-0056"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "related_content_ids": [
+        "content.payment-order-vs-civil-lawsuit",
+        "content.online-withdrawal-vs-contract-rescission"
+      ]
+    },
+    {
+      "content_id": "content.payment-order-vs-civil-lawsuit",
+      "content_type": "similar_case_comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "payment-order-vs-civil-lawsuit",
+      "title_ko": "지급명령과 민사소송 중 어느 절차가 맞나요?",
+      "one_line_answer_ko": "지급명령은 금전 등의 지급청구를 서면 중심으로 신속하게 처리할 수 있지만, 채무자가 적법하게 이의하면 소송절차로 넘어가므로 주소와 다툼 가능성이 선택을 가릅니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "청구가 금전·대체물·유가증권 지급인지 봅니다.",
+        "채무자 주소와 송달 가능성을 확인합니다.",
+        "사실관계 다툼과 반박 가능성을 평가합니다."
+      ],
+      "action_steps_ko": [
+        "청구액과 발생근거를 표로 정리한다.",
+        "채무자의 정확한 주소를 확인한다.",
+        "계약서·송금·독촉 자료를 준비한다.",
+        "이의가 예상되면 소송 전환 비용과 시간을 함께 계산한다."
+      ],
+      "facts_to_check_ko": [
+        "청구의 종류",
+        "채무자 주소와 송달 가능성",
+        "채무자의 예상 반박",
+        "증거의 복잡성"
+      ],
+      "caution_ko": "지급명령은 상대방이 다투지 않을 때 효율적이며, 이의가 제기되면 확정된 지급명령의 효과를 바로 얻을 수 없습니다.",
+      "search_intents_ko": [
+        "지급명령과 민사소송 중 어느 절차가 맞나요?",
+        "돈을 못 받았는데 지급명령이 빠른지 바로 민사소송을 해야 하는지 알고 싶습니다.",
+        "payment-order-vs-civil-lawsuit"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "다툼이 적을 때 지급명령의 장점이 커진다",
+          "paragraphs_ko": [
+            "지급명령은 법정 출석 없이 서면으로 진행할 수 있어 단순 금전청구에 적합할 수 있습니다.",
+            "반면 계약 성립이나 변제 여부가 크게 다투어질 사건은 처음부터 소송이 더 효율적일 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "송달과 이의 여부가 실제 속도를 결정한다",
+          "paragraphs_ko": [
+            "채무자 주소가 부정확하면 송달 단계에서 지연될 수 있습니다.",
+            "채무자가 이의하면 통상 소송절차에서 주장과 증거를 다시 정리해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-05"
+      ],
+      "scenario_ids": [
+        "scenario.legal-concept-comparisons.comparison-05"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-procedure-ko-0462",
+        "coord.legal-concept-comparisons.civil-procedure-ko-0470",
+        "coord.legal-concept-comparisons.civil-procedure-ko-0474"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "related_content_ids": [
+        "content.provisional-attachment-vs-claim-seizure",
+        "content.loan-proof-vs-enforceable-title"
+      ]
+    },
+    {
+      "content_id": "content.provisional-attachment-vs-claim-seizure",
+      "content_type": "similar_case_comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "provisional-attachment-vs-claim-seizure",
+      "title_ko": "가압류와 채권압류·추심명령은 어떻게 다른가요?",
+      "one_line_answer_ko": "가압류는 집행권원을 얻기 전 장래 집행을 보전하는 절차이고, 채권압류·추심명령은 집행권원에 기초해 예금·급여 같은 채권을 실제 회수하는 본집행 절차입니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "현재 집행권원 보유 여부를 확인합니다.",
+        "재산이 사라질 위험과 보전 필요성을 봅니다.",
+        "제3채무자와 압류 대상 채권을 특정합니다."
+      ],
+      "action_steps_ko": [
+        "판결·확정 지급명령 등 집행권원을 확인한다.",
+        "없다면 보전 필요성과 피보전채권 자료를 준비한다.",
+        "은행·사용자 등 제3채무자 정보를 확보한다.",
+        "본안과 보전·집행의 순서를 일정표로 만든다."
+      ],
+      "facts_to_check_ko": [
+        "집행권원 보유 여부",
+        "재산 처분 위험",
+        "예금·급여 등 대상 채권",
+        "제3채무자의 정확한 표시"
+      ],
+      "caution_ko": "가압류는 돈을 바로 지급받는 절차가 아니며 본안에서 권리를 확정하고 본집행으로 이어갈 준비가 필요합니다.",
+      "search_intents_ko": [
+        "가압류와 채권압류·추심명령은 어떻게 다른가요?",
+        "채무자 통장을 먼저 묶어야 하는지 바로 압류해서 돈을 받아야 하는지 헷갈립니다.",
+        "provisional-attachment-vs-claim-seizure"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "보전과 회수는 목적이 다르다",
+          "paragraphs_ko": [
+            "가압류는 채무자가 재산을 처분해 장래 집행이 어려워지는 상황을 막는 데 초점이 있습니다.",
+            "채권압류와 추심명령은 확정된 집행권원을 바탕으로 제3채무자에 대한 채권을 실제 회수하는 단계입니다."
+          ]
+        },
+        {
+          "heading_ko": "신청 전에 현재 절차 위치를 확인한다",
+          "paragraphs_ko": [
+            "아직 권리를 확정하지 못했다면 보전처분과 본안을 병행할 수 있는지 검토합니다.",
+            "이미 집행권원이 있다면 대상 재산과 제3채무자를 정확히 특정해 본집행으로 진행합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-06"
+      ],
+      "scenario_ids": [
+        "scenario.legal-concept-comparisons.comparison-06"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-execution-ko-0276",
+        "coord.legal-concept-comparisons.civil-execution-ko-0223",
+        "coord.legal-concept-comparisons.civil-execution-ko-0229",
+        "coord.legal-concept-comparisons.civil-execution-ko-0056"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "related_content_ids": [
+        "content.criminal-compensation-order-vs-civil-damages",
+        "content.payment-order-vs-civil-lawsuit"
+      ]
+    },
+    {
+      "content_id": "content.criminal-compensation-order-vs-civil-damages",
+      "content_type": "similar_case_comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "criminal-compensation-order-vs-civil-damages",
+      "title_ko": "배상명령과 민사 손해배상청구는 무엇이 다른가요?",
+      "one_line_answer_ko": "배상명령은 일정한 형사사건에서 유죄판결과 함께 직접 피해배상을 명하도록 신청하는 간이절차이고, 민사소송은 대상 손해와 당사자 범위를 더 넓게 주장할 수 있지만 별도 절차가 필요합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "범죄 유형이 배상명령 대상인지 확인합니다.",
+        "직접 물적 피해·치료비·위자료 등 청구범위를 구분합니다.",
+        "형사재판 진행단계와 신청기한을 확인합니다."
+      ],
+      "action_steps_ko": [
+        "공소장 죄명과 형사재판 법원·사건번호를 확인한다.",
+        "손해항목별 금액과 증빙을 정리한다.",
+        "배상명령 대상과 심리 적합성을 검토한다.",
+        "제외되는 손해나 복잡한 다툼은 민사청구 일정으로 분리한다."
+      ],
+      "facts_to_check_ko": [
+        "기소된 범죄 유형",
+        "직접 피해액과 증빙",
+        "형사재판 변론종결 여부",
+        "피고인의 책임과 손해액 다툼 정도"
+      ],
+      "caution_ko": "배상명령 신청이 각하되거나 일부 손해가 대상에서 빠질 수 있으므로 민사상 시효와 별도 청구 가능성을 함께 관리해야 합니다.",
+      "search_intents_ko": [
+        "배상명령과 민사 손해배상청구는 무엇이 다른가요?",
+        "형사재판에서 배상명령을 신청할지 별도로 민사소송을 해야 할지 알고 싶습니다.",
+        "criminal-compensation-order-vs-civil-damages"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "형사재판에 붙는 간이절차인지 별도 민사절차인지가 다르다",
+          "paragraphs_ko": [
+            "배상명령은 형사재판의 유죄 판단과 함께 일정한 직접 손해의 배상을 명하도록 하는 절차입니다.",
+            "민사소송은 손해항목과 인과관계를 독립적으로 심리하므로 더 복잡한 손해를 다룰 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "속도만 보고 배상명령을 고르지 않는다",
+          "paragraphs_ko": [
+            "형사기록으로 손해액이 명확하면 배상명령의 실익이 클 수 있습니다.",
+            "손해액 산정이 복잡하거나 다른 책임주체까지 청구해야 한다면 민사절차가 필요할 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-07"
+      ],
+      "scenario_ids": [
+        "scenario.legal-concept-comparisons.comparison-07"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.litigation-promotion-special-ko-0025",
+        "coord.legal-concept-comparisons.litigation-promotion-special-ko-0026",
+        "coord.legal-concept-comparisons.civil-act-ko-0750",
+        "coord.legal-concept-comparisons.civil-act-ko-0751"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "related_content_ids": [
+        "content.criminal-settlement-vs-complaint-withdrawal",
+        "content.provisional-attachment-vs-claim-seizure"
+      ]
+    },
+    {
+      "content_id": "content.criminal-settlement-vs-complaint-withdrawal",
+      "content_type": "similar_case_comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "criminal-settlement-vs-complaint-withdrawal",
+      "title_ko": "형사합의와 고소취소는 같은 뜻인가요?",
+      "one_line_answer_ko": "합의는 피해회복과 처벌의견 등을 정하는 사적 약정이고, 고소취소는 수사기관이나 법원에 하는 절차행위이므로 서로 자동으로 대체되지 않습니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "합의서의 지급조건과 처벌의견을 분리합니다.",
+        "해당 범죄에서 고소취소의 법적 효과를 확인합니다.",
+        "취소 시점과 재고소 제한을 검토합니다."
+      ],
+      "action_steps_ko": [
+        "죄명과 고소가 소송조건인지 확인한다.",
+        "합의금·지급일·미지급 시 조치를 문서화한다.",
+        "처벌불원 또는 선처의견의 표현을 따로 정한다.",
+        "고소취소서를 낼지와 제출시점을 별도로 결정한다."
+      ],
+      "facts_to_check_ko": [
+        "적용 죄명",
+        "합의금 지급 완료 여부",
+        "합의서의 처벌의견 문구",
+        "제1심 판결선고 전인지"
+      ],
+      "caution_ko": "고소취소는 다시 고소할 수 없는 효과가 문제될 수 있으므로 합의금 지급 전에 무조건 먼저 제출하지 않도록 순서를 설계해야 합니다.",
+      "search_intents_ko": [
+        "형사합의와 고소취소는 같은 뜻인가요?",
+        "가해자와 합의하면 고소가 자동으로 취소되고 형사사건이 끝나는지 궁금합니다.",
+        "criminal-settlement-vs-complaint-withdrawal"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "돈과 피해회복을 정하는 약정과 형사절차 행위는 다르다",
+          "paragraphs_ko": [
+            "합의서에는 손해배상, 비밀유지, 접근금지, 처벌의견 등 여러 내용을 담을 수 있습니다.",
+            "고소취소는 형사소송법상 방식과 시점에 따라 효력이 판단되는 별도 의사표시입니다."
+          ]
+        },
+        {
+          "heading_ko": "범죄 유형에 따라 사건 종료 효과가 달라진다",
+          "paragraphs_ko": [
+            "모든 범죄가 고소취소만으로 공소기각되는 것은 아닙니다.",
+            "해당 죄가 고소를 소송조건으로 하는지, 처벌불원의사가 어떤 효과를 갖는지 죄명별로 확인해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-08"
+      ],
+      "scenario_ids": [
+        "scenario.legal-concept-comparisons.comparison-08"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.criminal-procedure-ko-0232",
+        "coord.legal-concept-comparisons.criminal-procedure-ko-0327",
+        "coord.legal-concept-comparisons.civil-act-ko-0750"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "related_content_ids": [
+        "content.parental-authority-vs-custody",
+        "content.criminal-compensation-order-vs-civil-damages"
+      ]
+    },
+    {
+      "content_id": "content.parental-authority-vs-custody",
+      "content_type": "similar_case_comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "parental-authority-vs-custody",
+      "title_ko": "친권자와 양육자는 반드시 같은 사람인가요?",
+      "one_line_answer_ko": "친권은 자녀의 신분·재산에 관한 법정 권한과 의무이고, 양육은 일상적인 보호·교육과 비용 부담을 정하는 문제이므로 개념상 구분해 협의하거나 법원의 판단을 받을 수 있습니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "자녀의 실제 생활과 돌봄 주체를 봅니다.",
+        "중요 의사결정과 재산관리 필요를 구분합니다.",
+        "양육비와 면접교섭을 함께 설계합니다."
+      ],
+      "action_steps_ko": [
+        "현재 주거·돌봄·학교·의료 상황을 정리한다.",
+        "주된 양육자와 친권 행사 방식을 구분해 적는다.",
+        "양육비 지급일·방법과 면접교섭 일정을 문서화한다.",
+        "자녀 복리에 맞지 않거나 합의가 안 되면 법원 판단자료를 준비한다."
+      ],
+      "facts_to_check_ko": [
+        "자녀의 연령과 의사",
+        "현재 주된 돌봄 주체",
+        "학교·의료 등 중요 결정 구조",
+        "부모 간 협력 가능성"
+      ],
+      "caution_ko": "명칭만 정하고 실제 인도·생활비·교육·의료 의사결정 방식을 비워두면 이혼 후 분쟁이 반복될 수 있습니다.",
+      "search_intents_ko": [
+        "친권자와 양육자는 반드시 같은 사람인가요?",
+        "이혼할 때 친권과 양육권을 한 사람에게 모두 정해야 하는지 궁금합니다.",
+        "parental-authority-vs-custody"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법정 권한과 실제 돌봄의 초점이 다르다",
+          "paragraphs_ko": [
+            "친권은 미성년 자녀의 신분과 재산에 관한 법률상 권한·의무를 포함합니다.",
+            "양육자 지정은 자녀가 누구와 생활하며 누가 일상적으로 보호·교육할지를 중심으로 합니다."
+          ]
+        },
+        {
+          "heading_ko": "자녀 복리를 기준으로 세부 실행까지 정한다",
+          "paragraphs_ko": [
+            "누가 친권자이고 양육자인지만 적지 말고 양육비, 면접교섭, 학교·의료 결정 방식을 함께 정해야 합니다.",
+            "협의가 자녀 복리에 맞지 않으면 법원이 보정하거나 별도로 정할 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-09"
+      ],
+      "scenario_ids": [
+        "scenario.legal-concept-comparisons.comparison-09"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-act-ko-0837",
+        "coord.legal-concept-comparisons.civil-act-ko-0909"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "related_content_ids": [
+        "content.property-division-vs-consolation-money",
+        "content.criminal-settlement-vs-complaint-withdrawal"
+      ]
+    },
+    {
+      "content_id": "content.property-division-vs-consolation-money",
+      "content_type": "similar_case_comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "property-division-vs-consolation-money",
+      "title_ko": "이혼 재산분할과 위자료는 무엇이 다른가요?",
+      "one_line_answer_ko": "재산분할은 혼인 중 공동으로 형성한 재산의 청산·부양을 중심으로 하고, 위자료는 혼인파탄에 책임 있는 위법행위로 인한 정신적 손해배상이라 목적과 판단요소가 다릅니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "공동재산 형성과 유지 기여를 계산합니다.",
+        "혼인파탄의 귀책행위와 손해를 별도로 정리합니다.",
+        "각 청구의 기간과 증거를 따로 관리합니다."
+      ],
+      "action_steps_ko": [
+        "혼인 전·중·후 재산 목록을 만든다.",
+        "소득·가사·육아·채무 부담의 기여자료를 모은다.",
+        "폭력·부정행위 등 귀책사유 증거를 별도로 보존한다.",
+        "재산분할과 위자료 청구액·기간을 분리해 검토한다."
+      ],
+      "facts_to_check_ko": [
+        "재산 취득 시기와 자금원",
+        "가사·육아·소득 기여",
+        "혼인파탄 귀책사유",
+        "이혼 성립일과 청구시점"
+      ],
+      "caution_ko": "상대방의 잘못이 크다는 사실만으로 재산분할 비율이 자동으로 같은 폭만큼 올라가는 것은 아닙니다.",
+      "search_intents_ko": [
+        "이혼 재산분할과 위자료는 무엇이 다른가요?",
+        "상대방의 잘못이 크면 재산분할도 더 많이 받을 수 있는지 궁금합니다.",
+        "property-division-vs-consolation-money"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "재산 청산과 손해배상은 질문이 다르다",
+          "paragraphs_ko": [
+            "재산분할은 부부가 혼인생활 중 협력해 이룬 재산을 어떻게 나눌지가 중심입니다.",
+            "위자료는 혼인파탄을 일으킨 위법행위와 정신적 손해를 배상할지가 중심입니다."
+          ]
+        },
+        {
+          "heading_ko": "증거와 청구기간도 분리한다",
+          "paragraphs_ko": [
+            "재산분할에는 계좌·부동산·채무·가사노동 자료가 중요합니다.",
+            "위자료에는 귀책행위의 내용, 기간, 혼인파탄과의 인과관계를 보여주는 자료가 중요합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-10"
+      ],
+      "scenario_ids": [
+        "scenario.legal-concept-comparisons.comparison-10"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.civil-act-ko-0839-02",
+        "coord.legal-concept-comparisons.civil-act-ko-0843",
+        "coord.legal-concept-comparisons.civil-act-ko-0806"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "related_content_ids": [
+        "content.worker-status-vs-contract-label",
+        "content.parental-authority-vs-custody"
+      ]
+    },
+    {
+      "content_id": "content.worker-status-vs-contract-label",
+      "content_type": "similar_case_comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "worker-status-vs-contract-label",
+      "title_ko": "프리랜서 계약서와 사업자등록이 있으면 근로자가 아닌가요?",
+      "one_line_answer_ko": "근로자성은 계약 명칭이나 사업자등록만으로 정하지 않고, 업무내용·근무시간·장소의 구속과 지휘감독, 보수 성격, 독립사업 위험 등 실제 관계를 종합해 판단합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "계약 명칭보다 실제 업무통제를 봅니다.",
+        "대체인력 사용과 독립 영업 가능성을 확인합니다.",
+        "보수 산정과 비용·위험 부담을 비교합니다."
+      ],
+      "action_steps_ko": [
+        "업무지시 메시지와 보고체계를 보존한다.",
+        "출퇴근·근무장소·휴가 통제 자료를 모은다.",
+        "보수명세와 원천징수·사업비 부담을 정리한다.",
+        "다른 고객 거래와 대체인력 사용 가능성을 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "업무지시와 평가 수준",
+        "근무시간·장소 구속",
+        "보수의 근로대가성",
+        "독립 영업과 손익 위험"
+      ],
+      "caution_ko": "어느 한 지표만으로 결론내리지 말고 실제 종속관계를 보여주는 여러 사실을 함께 평가해야 합니다.",
+      "search_intents_ko": [
+        "프리랜서 계약서와 사업자등록이 있으면 근로자가 아닌가요?",
+        "계약서에는 프리랜서라고 되어 있고 사업자등록도 있지만 실제로 출퇴근과 업무지시를 받았습니다.",
+        "worker-status-vs-contract-label"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "서류 이름보다 실제 노무 제공 구조를 본다",
+          "paragraphs_ko": [
+            "프리랜서라는 제목과 사업자등록은 판단자료 중 하나일 뿐 결정적이지 않습니다.",
+            "회사가 업무 방식과 시간·장소를 얼마나 통제했는지, 보수가 일의 결과보다 노동 제공의 대가인지가 중요합니다."
+          ]
+        },
+        {
+          "heading_ko": "독립사업자다운 위험과 기회가 있었는지 확인한다",
+          "paragraphs_ko": [
+            "스스로 가격을 정하고 다른 고객을 확보하며 비용과 손실을 부담했다면 독립성이 커질 수 있습니다.",
+            "반대로 대체가 어렵고 조직에 편입돼 지속적으로 지시를 받았다면 근로자성 판단에 반영될 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-11"
+      ],
+      "scenario_ids": [
+        "scenario.legal-concept-comparisons.comparison-11"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.labor-standards-ko-0002",
+        "coord.legal-concept-comparisons.src-supreme-2006da60793"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "related_content_ids": [
+        "content.dismissal-notice-vs-unfair-dismissal-remedy",
+        "content.property-division-vs-consolation-money"
+      ]
+    },
+    {
+      "content_id": "content.dismissal-notice-vs-unfair-dismissal-remedy",
+      "content_type": "similar_case_comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "dismissal-notice-vs-unfair-dismissal-remedy",
+      "title_ko": "해고 서면통지와 부당해고 구제신청은 별개인가요?",
+      "one_line_answer_ko": "해고사유·시기의 서면통지는 해고 효력의 요건이고, 노동위원회 구제신청은 부당해고를 다투는 별도 절차이므로 신청기간을 따로 지켜야 합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "해고 의사표시와 실제 근로종료일을 확정합니다.",
+        "서면에 사유와 시기가 구체적으로 적혔는지 봅니다.",
+        "구제신청 3개월 계산을 별도로 관리합니다."
+      ],
+      "action_steps_ko": [
+        "문자·이메일·통지서 원본을 보존한다.",
+        "사용자가 밝힌 해고사유와 시기를 정리한다.",
+        "실제 해고일을 기준으로 3개월 만료일을 계산한다.",
+        "임금·복직 등 원하는 구제내용과 증거를 준비한다."
+      ],
+      "facts_to_check_ko": [
+        "해고 의사표시 존재",
+        "서면 여부",
+        "사유와 시기의 구체성",
+        "실제 해고일"
+      ],
+      "caution_ko": "서면통지 하자가 있다고 판단해도 노동위원회 구제신청 기간이 자동으로 늘어나지는 않습니다.",
+      "search_intents_ko": [
+        "해고 서면통지와 부당해고 구제신청은 별개인가요?",
+        "해고통지서를 받지 못했는데 노동위원회 구제신청도 따로 해야 하나요?",
+        "dismissal-notice-vs-unfair-dismissal-remedy"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "해고의 유효요건과 다투는 절차를 분리한다",
+          "paragraphs_ko": [
+            "근로기준법은 해고사유와 해고시기를 서면으로 통지하도록 정하고 있습니다.",
+            "그 해고가 부당하다고 노동위원회에 구제를 신청하는 것은 별도의 권리행사입니다."
+          ]
+        },
+        {
+          "heading_ko": "통지서 검토와 기간 계산을 동시에 한다",
+          "paragraphs_ko": [
+            "서면이 없거나 사유가 지나치게 추상적인지 검토하면서도 실제 해고일부터 구제신청 기간을 계산해야 합니다.",
+            "사용자가 나중에 다른 사유를 보태는 경우에 대비해 당시 통지된 자료를 원형대로 보존합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-12"
+      ],
+      "scenario_ids": [
+        "scenario.legal-concept-comparisons.comparison-12"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.labor-standards-ko-0027",
+        "coord.legal-concept-comparisons.labor-standards-ko-0028",
+        "coord.legal-concept-comparisons.src-supreme-2015du48136"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "related_content_ids": [
+        "content.lease-registration-vs-opposability-priority",
+        "content.worker-status-vs-contract-label"
+      ]
+    },
+    {
+      "content_id": "content.lease-registration-vs-opposability-priority",
+      "content_type": "similar_case_comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "lease-registration-vs-opposability-priority",
+      "title_ko": "임차권등기와 대항력·우선변제권은 어떻게 다른가요?",
+      "one_line_answer_ko": "대항력과 우선변제권은 점유·전입신고·확정일자 등 요건으로 생기고, 임차권등기는 보증금 미반환 상태에서 이사하더라도 기존 권리를 유지하거나 일정 요건 아래 취득하도록 돕는 절차이므로 신청과 등기 완료를 구분해야 합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "현재 점유·전입·확정일자를 확인합니다.",
+        "임대차 종료와 보증금 미반환을 확인합니다.",
+        "신청일이 아니라 등기 완료 여부를 봅니다."
+      ],
+      "action_steps_ko": [
+        "등기부와 주민등록·확정일자 자료를 확인한다.",
+        "임대차 종료 통지와 보증금 미반환 자료를 모은다.",
+        "임차권등기명령을 신청하고 등기 완료를 확인한다.",
+        "완료 전 이사·전출이 기존 권리에 미칠 영향을 점검한다."
+      ],
+      "facts_to_check_ko": [
+        "주택 인도와 전입신고",
+        "확정일자",
+        "임대차 종료",
+        "임차권등기 완료일"
+      ],
+      "caution_ko": "법원에 신청서를 냈다는 사실만으로 즉시 등기가 완료되는 것은 아니므로 전출 시점을 성급히 정하면 안 됩니다.",
+      "search_intents_ko": [
+        "임차권등기와 대항력·우선변제권은 어떻게 다른가요?",
+        "보증금을 못 받은 채 이사할 때 임차권등기만 신청하면 권리가 바로 보전되는지 궁금합니다.",
+        "lease-registration-vs-opposability-priority"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "권리의 발생요건과 이사 후 보전수단을 구분한다",
+          "paragraphs_ko": [
+            "대항력은 주택 인도와 주민등록 등 법정 요건을 중심으로 하고, 우선변제권은 확정일자 등 추가 요건과 연결됩니다.",
+            "임차권등기명령은 임대차가 끝났는데 보증금을 받지 못한 임차인이 이사할 필요가 있을 때 활용하는 절차입니다."
+          ]
+        },
+        {
+          "heading_ko": "신청이 아니라 등기 완료를 확인한다",
+          "paragraphs_ko": [
+            "신청 접수 뒤 법원 결정과 등기 촉탁을 거쳐 실제 등기부에 반영되는 시간이 필요합니다.",
+            "이사와 전출 전에는 등기 완료 여부와 기존 대항력·우선변제권 상태를 함께 확인해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.legal-concept-comparisons.comparison-13"
+      ],
+      "scenario_ids": [
+        "scenario.legal-concept-comparisons.comparison-13"
+      ],
+      "source_coordinate_ids": [
+        "coord.legal-concept-comparisons.housing-lease-ko-0003",
+        "coord.legal-concept-comparisons.housing-lease-ko-0003-02",
+        "coord.legal-concept-comparisons.housing-lease-ko-0003-03"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "related_content_ids": [
+        "content.inheritance-renunciation-vs-limited-acceptance",
+        "content.dismissal-notice-vs-unfair-dismissal-remedy"
+      ]
+    }
+  ]
+}
