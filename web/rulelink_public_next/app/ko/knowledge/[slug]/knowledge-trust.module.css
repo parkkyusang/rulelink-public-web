@@ -48,6 +48,32 @@
   font-weight: 500;
 }
 
+.hubTrail {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 14px;
+}
+
+.hubTrail > span {
+  color: #5b6b63;
+  font-size: 12px;
+}
+
+.hubTrail a {
+  background: #e8f5ee;
+  border-radius: 999px;
+  color: #145c3f;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 8px 11px;
+}
+
+.hubTrail a:hover {
+  background: #d9eee2;
+}
+
 @media (max-width: 800px) {
   .trust {
     align-items: stretch;
