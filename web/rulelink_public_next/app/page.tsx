@@ -39,7 +39,7 @@ export default async function HomePage() {
           <h2 id="entry-heading">법 이름을 몰라도, 궁금한 방식으로 들어오세요.</h2>
         </div>
         <div className="entryGrid">
-          <a href={changeBriefs.length ? '#changes' : '/ko/method'}>
+          <a href={changeBriefs.length ? '/ko/changes' : '/ko/method'}>
             <span>01 · 시간</span>
             <h3>법이 바뀌었나요?</h3>
             <p>구법과 현행법을 나란히 놓고 시행일과 적용 경계를 확인합니다.</p>
@@ -67,10 +67,10 @@ export default async function HomePage() {
               <p className="eyebrow">새로 바뀌는 법</p>
               <h2 id="change-heading">시행 전후 달라진 내용을 확인하세요.</h2>
             </div>
-            <p>구법과 신법의 문언·적용요건·효과를 비교하고, 시행 전후에 확인할 사항을 정리합니다.</p>
+            <p>구법과 신법의 문언·적용요건·효과를 비교하고, 시행 전후에 확인할 사항을 정리합니다.<br /><a className="cardLink" href="/ko/changes">전체 법령 변화에서 찾기 →</a></p>
           </div>
           <div className="changeGrid">
-            {changeBriefs.map(brief => (
+            {changeBriefs.slice(0, 3).map(brief => (
               <a className="changeCard" href={`/ko/changes/${brief.slug}`} key={brief.change_brief_id}>
                 <span className={`lifecycle ${brief.lifecycle}`}>{brief.lifecycle === 'future_effective' ? '시행 예정' : '최근 시행'}</span>
                 <span className="changeDate">{formatLegalDate(brief.effective_date)}</span>
