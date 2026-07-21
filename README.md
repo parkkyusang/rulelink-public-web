@@ -1,6 +1,6 @@
 # RuleLink 일반인용 공개 웹
 
-이 앱은 승인된 `rulelink_published_bundle_v1` 출판본만 읽는 공개 정보관이다. RuleLink 원본 DB, Codex 실행기, 사용자 사건 폴더에는 접근하지 않는다.
+이 앱은 승인된 `rulelink_published_bundle_v1` 출판본만 읽는 공개 정보관이다. RuleLink 원본 DB, Codex 실행기, 사용자 사건 폴더에는 접근하지 않는다. 콘텐츠 생산 세션과 공개 웹 세션의 병렬 작업 경계는 [콘텐츠 인계 계약](docs/CONTENT_HANDOFF_CONTRACT_KO.md)을 따른다.
 
 출판본에 `rulelink_public_catalog_v1` 카탈로그를 포함하면 별도 화면 수정 없이 다음 기능이 생긴다.
 
@@ -8,6 +8,9 @@
 - 분야별 필터와 `/ko/topics/[slug]` 정적 주제 화면
 - 같은 주제에 속한 관련 문제카드 자동 연결
 - 카드 상세 목차와 공식 근거 표시
+- 승인된 법리·사실분기·공식 근거를 잇는 지식 보관함
+- 시행 예정·최근 시행 법령을 구분하는 법령 변화 라이브러리
+- 문제카드·연결 지식·법령 변화를 한 번에 찾는 통합 탐색
 
 따라서 콘텐츠 확장은 화면 파일을 복제하는 방식이 아니라 `검증된 카드 추가 -> 카탈로그에 카드 식별자 배치 -> 새 불변 출판본 생성` 순서로 한다.
 
@@ -62,15 +65,19 @@ http://127.0.0.1:8801/editorial
 .\restart_rulelink_editorial_preview.ps1
 ```
 
-## 임시 공개 주소
+## GitHub·Vercel 운영 배포
 
-정식 도메인을 정하기 전에는 다음 주소를 사용한다.
+현재 운영 주소는 다음과 같다.
 
 ```text
 https://rulelink.lolphysical.xyz
 ```
 
-`start_rulelink_public_all.cmd`를 실행하면 Windows의 8800번 포트에 공개 웹 서버를 열고 RuleLink 전용 Cloudflare 터널 `rulelink-public`을 시작한다. 터널 실행기는 WSL에서 Windows로 연결되는 현재 게이트웨이를 자동 반영한다. `stop_rulelink_public.cmd`는 공개 웹 서버와 RuleLink 전용 터널만 종료한다.
+운영 배포의 기준 저장소는 `parkkyusang/rulelink-public-web`이다. 기능과 운영 번들은 별도 브랜치와 PR로 올리고, 공개 번들 차단 규칙 테스트·타입 검사·정적 빌드·Vercel 미리보기가 성공한 경우에만 `main`에 병합한다. `main` 병합 뒤 Vercel 운영 배포 성공까지 확인한다.
+
+## 로컬 터널 대체 경로
+
+다음 도구는 Vercel 운영 배포와 별개인 로컬 확인 경로다. `start_rulelink_public_all.cmd`를 실행하면 Windows의 8800번 포트에 공개 웹 서버를 열고 RuleLink 전용 Cloudflare 터널 `rulelink-public`을 시작한다. 터널 실행기는 WSL에서 Windows로 연결되는 현재 게이트웨이를 자동 반영한다. `stop_rulelink_public.cmd`는 공개 웹 서버와 RuleLink 전용 터널만 종료한다.
 
 터널을 유지한 채 새 빌드만 공개 서버에 반영하려면 다음 명령을 사용한다.
 
