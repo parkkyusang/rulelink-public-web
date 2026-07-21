@@ -2,6 +2,7 @@
 
 import {useEffect, useMemo, useState} from 'react';
 
+import {buildCollectionSearchHref, parseCollectionSearchState, sanitizeCollectionQuery} from '@/lib/collection-search-state';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 
 import type {PublicKnowledgeSearchDocument} from '@/lib/knowledge-search';
@@ -20,6 +21,8 @@ type Props = {
 type ResultKind = 'issue' | 'knowledge' | 'change';
 type ResultFilter = 'all' | ResultKind;
 
+const RESULT_FILTERS = ['all', 'issue', 'knowledge', 'change'] as const satisfies readonly ResultFilter[];
+
 type SearchResult = {
   id: string;
   kind: ResultKind;
@@ -37,15 +40,18 @@ export function SiteSearch({cards, changeBriefs, knowledgeDocuments, topics}: Pr
   const [filter, setFilter] = useState<ResultFilter>('all');
 
   useEffect(() => {
-    const parameters = new URLSearchParams(window.location.search);
-    const initialQuery = (parameters.get('q') ?? '').slice(0, 200);
-    const initialFilter = parameters.get('type');
-    if (initialQuery) setQuery(initialQuery);
-    if (isResultFilter(initialFilter)) setFilter(initialFilter);
+    const initial = parseCollectionSearchState({
+      allowedFilters: RESULT_FILTERS,
+      defaultFilter: 'all',
+      filterParam: 'type',
+      search: window.location.search,
+    });
+    setQuery(initial.query);
+    setFilter(initial.filter);
   }, []);
 
   function updateQuery(value: string) {
-    const nextQuery = value.slice(0, 200);
+    const nextQuery = sanitizeCollectionQuery(value);
     setQuery(nextQuery);
     replaceSearchUrl(nextQuery, filter);
   }
@@ -227,16 +233,14 @@ function FilterButton({active, count, label, onClick}: {active: boolean; count: 
 
 
 function replaceSearchUrl(query: string, filter: ResultFilter) {
-  const url = new URL(window.location.href);
-  if (query.trim()) url.searchParams.set('q', query.trim());
-  else url.searchParams.delete('q');
-  if (filter === 'all') url.searchParams.delete('type');
-  else url.searchParams.set('type', filter);
-  window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
-}
-
-function isResultFilter(value: string | null): value is ResultFilter {
-  return value === 'all' || value === 'issue' || value === 'knowledge' || value === 'change';
+  window.history.replaceState(null, '', buildCollectionSearchHref({
+    defaultFilter: 'all',
+    filter,
+    filterParam: 'type',
+    hash: window.location.hash,
+    pathname: window.location.pathname,
+    query,
+  }));
 }
 
 function normalize(value: string): string {

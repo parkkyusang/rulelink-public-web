@@ -1,7 +1,8 @@
 'use client';
 
-import {useMemo, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 
+import {buildCollectionSearchHref, parseCollectionSearchState, sanitizeCollectionQuery} from '@/lib/collection-search-state';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import type {PublicKnowledgeSourceDocument} from '@/lib/knowledge-search';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
@@ -10,9 +11,34 @@ import styles from './knowledge-source-library.module.css';
 
 type SourceFilter = 'all' | 'statute' | 'precedent' | 'official_document';
 
+const SOURCE_FILTERS = ['all', 'statute', 'precedent', 'official_document'] as const satisfies readonly SourceFilter[];
+
 export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeSourceDocument[]}) {
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<SourceFilter>('all');
+
+  useEffect(() => {
+    const initial = parseCollectionSearchState({
+      allowedFilters: SOURCE_FILTERS,
+      defaultFilter: 'all',
+      filterParam: 'type',
+      search: window.location.search,
+    });
+    setQuery(initial.query);
+    setFilter(initial.filter);
+  }, []);
+
+  function updateQuery(value: string) {
+    const nextQuery = sanitizeCollectionQuery(value);
+    setQuery(nextQuery);
+    replaceSourceUrl(nextQuery, filter);
+  }
+
+  function updateFilter(nextFilter: SourceFilter) {
+    setFilter(nextFilter);
+    replaceSourceUrl(query, nextFilter);
+  }
+
   const normalizedQuery = normalize(query);
   const counts = useMemo(() => ({
     all: documents.length,
@@ -48,7 +74,7 @@ export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeS
           <span aria-hidden="true">⌕</span>
           <input
             id="knowledge-source-search"
-            onChange={event => setQuery(event.target.value.slice(0, 200))}
+            onChange={event => updateQuery(event.target.value)}
             placeholder="예: 민법 제1026조, 2013다73520, 임차권등기"
             type="search"
             value={query}
@@ -57,10 +83,10 @@ export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeS
       </div>
 
       <div aria-label="공식 근거 종류" className={styles.filters} role="group">
-        <FilterButton active={filter === 'all'} count={counts.all} label="전체" onClick={() => setFilter('all')} />
-        <FilterButton active={filter === 'statute'} count={counts.statute} label="법령 조문" onClick={() => setFilter('statute')} />
-        <FilterButton active={filter === 'precedent'} count={counts.precedent} label="판례" onClick={() => setFilter('precedent')} />
-        <FilterButton active={filter === 'official_document'} count={counts.official_document} label="개정·시행 문서" onClick={() => setFilter('official_document')} />
+        <FilterButton active={filter === 'all'} count={counts.all} label="전체" onClick={() => updateFilter('all')} />
+        <FilterButton active={filter === 'statute'} count={counts.statute} label="법령 조문" onClick={() => updateFilter('statute')} />
+        <FilterButton active={filter === 'precedent'} count={counts.precedent} label="판례" onClick={() => updateFilter('precedent')} />
+        <FilterButton active={filter === 'official_document'} count={counts.official_document} label="개정·시행 문서" onClick={() => updateFilter('official_document')} />
       </div>
 
       <p aria-live="polite" className={styles.resultCount}>확인할 수 있는 공식 근거 {visibleDocuments.length}개</p>
@@ -115,6 +141,17 @@ export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeS
       )}
     </section>
   );
+}
+
+function replaceSourceUrl(query: string, filter: SourceFilter) {
+  window.history.replaceState(null, '', buildCollectionSearchHref({
+    defaultFilter: 'all',
+    filter,
+    filterParam: 'type',
+    hash: window.location.hash,
+    pathname: window.location.pathname,
+    query,
+  }));
 }
 
 function sourceKind(document: PublicKnowledgeSourceDocument): Exclude<SourceFilter, 'all'> {

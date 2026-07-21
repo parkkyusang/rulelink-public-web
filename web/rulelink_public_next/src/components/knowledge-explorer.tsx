@@ -1,7 +1,8 @@
 'use client';
 
-import {useMemo, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 
+import {buildCollectionSearchHref, parseCollectionSearchState, sanitizeCollectionQuery} from '@/lib/collection-search-state';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 
 import type {PublicKnowledgeSearchDocument} from '@/lib/knowledge-search';
@@ -18,6 +19,30 @@ type Props = {
 export function KnowledgeExplorer({documents, hubs}: Props) {
   const [query, setQuery] = useState('');
   const [hubId, setHubId] = useState('all');
+  const hubFilters = useMemo(() => ['all', ...hubs.map(hub => hub.hub_id)], [hubs]);
+
+  useEffect(() => {
+    const initial = parseCollectionSearchState({
+      allowedFilters: hubFilters,
+      defaultFilter: 'all',
+      filterParam: 'hub',
+      search: window.location.search,
+    });
+    setQuery(initial.query);
+    setHubId(initial.filter);
+  }, [hubFilters]);
+
+  function updateQuery(value: string) {
+    const nextQuery = sanitizeCollectionQuery(value);
+    setQuery(nextQuery);
+    replaceKnowledgeUrl(nextQuery, hubId);
+  }
+
+  function updateHub(nextHubId: string) {
+    setHubId(nextHubId);
+    replaceKnowledgeUrl(query, nextHubId);
+  }
+
   const normalizedQuery = normalize(query);
   const visibleDocuments = useMemo(() => {
     const queryTokens = normalizedQuery.split(' ').filter(Boolean);
@@ -44,7 +69,7 @@ export function KnowledgeExplorer({documents, hubs}: Props) {
           <span aria-hidden="true">⌕</span>
           <input
             id="knowledge-search"
-            onChange={event => setQuery(event.target.value)}
+            onChange={event => updateQuery(event.target.value)}
             placeholder="예: 보증금 못 받고 이사, 민법 제1026조, 2013다73520"
             type="search"
             value={query}
@@ -54,13 +79,13 @@ export function KnowledgeExplorer({documents, hubs}: Props) {
 
       {hubs.length ? (
         <div aria-label="지식 주제" className={styles.filters} role="group">
-          <button aria-pressed={hubId === 'all'} className={hubId === 'all' ? styles.active : ''} onClick={() => setHubId('all')} type="button">전체</button>
+          <button aria-pressed={hubId === 'all'} className={hubId === 'all' ? styles.active : ''} onClick={() => updateHub('all')} type="button">전체</button>
           {hubs.map(hub => (
             <button
               aria-pressed={hubId === hub.hub_id}
               className={hubId === hub.hub_id ? styles.active : ''}
               key={hub.hub_id}
-              onClick={() => setHubId(hub.hub_id)}
+              onClick={() => updateHub(hub.hub_id)}
               type="button"
             >
               {hub.title_ko}
@@ -103,6 +128,17 @@ export function KnowledgeExplorer({documents, hubs}: Props) {
       )}
     </section>
   );
+}
+
+function replaceKnowledgeUrl(query: string, hubId: string) {
+  window.history.replaceState(null, '', buildCollectionSearchHref({
+    defaultFilter: 'all',
+    filter: hubId,
+    filterParam: 'hub',
+    hash: window.location.hash,
+    pathname: window.location.pathname,
+    query,
+  }));
 }
 
 function evidenceLabelsForDocument(labels: string[], normalizedQuery: string): string[] {
