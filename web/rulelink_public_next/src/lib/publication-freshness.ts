@@ -11,6 +11,13 @@ export function isPublicationFresh(
   return !Number.isNaN(expiresAt.getTime()) && expiresAt.getTime() > now.getTime();
 }
 
+export function filterFreshPublications<T extends PublicationReviewWindow>(
+  values: readonly T[],
+  now: Date = publicationNow(),
+): T[] {
+  return values.filter(value => isPublicationFresh(value, now));
+}
+
 export function publicationNow(): Date {
   const override = process.env.RULELINK_PUBLICATION_NOW;
   if (!override) return new Date();
