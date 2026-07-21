@@ -7,6 +7,7 @@ import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {findKnowledgeEntry, knowledgeDetail, listKnowledgeEntries} from '@/lib/publication';
 import {site} from '@/lib/site';
+import {buildKnowledgePageStructuredData} from '@/lib/public-structured-data';
 import {serializeStructuredData} from '@/lib/structured-data';
 
 import styles from './knowledge-trust.module.css';
@@ -45,34 +46,38 @@ export default async function KnowledgePage({params}: Props) {
   const {rules, scenarios, scenarioRules, sources, hubs, related} = await knowledgeDetail(entry);
   const directRuleIds = new Set(rules.map(rule => rule.rule_id));
   const canonicalUrl = `${site.url}/ko/knowledge/${entry.slug}`;
-  const officialSourceUrls = sources
-    .map(source => browserOfficialSourceUrl(source))
-    .filter((url): url is string => Boolean(url));
+  const officialSources = sources.flatMap(source => {
+    const url = browserOfficialSourceUrl(source) ?? source.official_url;
+    return url ? [{name: sourceLabel(source), url}] : [];
+  });
   return (
     <main className="knowledgePage">
       <script
-        dangerouslySetInnerHTML={{__html: serializeStructuredData({
-          '@context': 'https://schema.org',
-          '@type': 'WebPage',
-          '@id': canonicalUrl,
-          url: canonicalUrl,
-          name: entry.title_ko,
+        dangerouslySetInnerHTML={{__html: serializeStructuredData(buildKnowledgePageStructuredData({
+          audience: entry.audience_situation_ko,
+          breadcrumbs: [
+            {name: '홈', url: site.url},
+            {name: '생활법률 지식', url: `${site.url}/ko/knowledge`},
+            ...(hubs[0] ? [{name: hubs[0].title_ko, url: `${site.url}/ko/hubs/${hubs[0].slug}`}] : []),
+            {name: entry.title_ko, url: canonicalUrl},
+          ],
           description: entry.one_line_answer_ko,
-          keywords: entry.search_intents_ko,
-          inLanguage: 'ko-KR',
-          dateModified: entry.reviewed_at,
-          isBasedOn: officialSourceUrls,
-          isPartOf: {
-            '@type': 'WebSite',
-            name: site.name,
-            url: site.url,
-          },
-          about: rules.map(rule => ({
-            '@type': 'DefinedTerm',
-            name: rule.title_ko,
-            description: rule.proposition_ko,
+          expiresAt: entry.expires_at,
+          officialSources,
+          pageUrl: canonicalUrl,
+          reviewedAt: entry.reviewed_at,
+          rules: rules.map(rule => ({description: rule.proposition_ko, name: rule.title_ko})),
+          scenarios: scenarios.map(scenario => ({
+            decisionFact: scenario.decision_fact_ko,
+            falseOutcome: scenario.when_false_ko,
+            question: scenario.question_ko,
+            trueOutcome: scenario.when_true_ko,
           })),
-        })}}
+          searchIntents: entry.search_intents_ko,
+          siteName: site.name,
+          siteUrl: site.url,
+          title: entry.title_ko,
+        }))}}
         type="application/ld+json"
       />
       <nav className="breadcrumb">
