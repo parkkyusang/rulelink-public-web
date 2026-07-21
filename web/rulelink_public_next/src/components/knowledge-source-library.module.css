@@ -4,8 +4,8 @@
 }
 
 .controls {
-  background: #fff;
-  border: 1px solid #dce5df;
+  background: var(--white);
+  border: 1px solid var(--line);
   border-radius: 18px;
   padding: 22px;
 }
@@ -19,7 +19,7 @@
 
 .searchRow {
   align-items: center;
-  background: #f5f8f6;
+  background: var(--surface-soft);
   border: 1px solid transparent;
   border-radius: 12px;
   display: flex;
@@ -28,13 +28,13 @@
 }
 
 .searchRow:focus-within {
-  background: #fff;
-  border-color: #145c3f;
-  box-shadow: 0 0 0 3px rgba(20, 92, 63, .1);
+  background: var(--white);
+  border-color: var(--green);
+  box-shadow: var(--focus-field);
 }
 
 .searchRow span {
-  color: #145c3f;
+  color: var(--green);
   font-size: 25px;
   transform: rotate(-18deg);
 }
@@ -42,7 +42,7 @@
 .searchRow input {
   background: transparent;
   border: 0;
-  color: #14231c;
+  color: var(--ink);
   font: inherit;
   outline: 0;
   padding: 15px 0;
@@ -58,9 +58,9 @@
 .filters button {
   align-items: center;
   background: transparent;
-  border: 1px solid #b9c8c0;
-  border-radius: 999px;
-  color: #5b6b63;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  color: var(--muted);
   cursor: pointer;
   display: inline-flex;
   font: inherit;
@@ -70,9 +70,9 @@
 }
 
 .filters button span {
-  background: #e9f0ec;
-  border-radius: 999px;
-  color: #145c3f;
+  background: var(--surface-count);
+  border-radius: var(--radius-pill);
+  color: var(--green);
   font-size: 11px;
   font-weight: 800;
   min-width: 22px;
@@ -81,17 +81,17 @@
 
 .filters button:hover,
 .filters button.active {
-  background: #145c3f;
-  border-color: #145c3f;
-  color: #fff;
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--white);
 }
 
 .filters button.active span {
-  background: #fff;
+  background: var(--white);
 }
 
 .resultCount {
-  color: #5b6b63;
+  color: var(--muted);
   font-size: 12px;
   margin: -5px 0 0;
 }
@@ -103,15 +103,15 @@
 }
 
 .card {
-  background: #fff;
-  border: 1px solid #dce5df;
+  background: var(--white);
+  border: 1px solid var(--line);
   border-radius: 18px;
   padding: 25px;
 }
 
 .meta {
   align-items: center;
-  color: #6f7f77;
+  color: var(--muted-soft);
   display: flex;
   flex-wrap: wrap;
   font-size: 11px;
@@ -120,14 +120,14 @@
 }
 
 .meta > span {
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   font-weight: 800;
   padding: 6px 9px;
 }
 
 .statute {
-  background: #e8f5ee;
-  color: #145c3f;
+  background: var(--mint);
+  color: var(--green);
 }
 
 .precedent {
@@ -143,13 +143,13 @@
 }
 
 .card > p {
-  color: #5b6b63;
+  color: var(--muted);
   font-size: 13px;
   margin: 0;
 }
 
 .official {
-  color: #145c3f;
+  color: var(--green);
   display: inline-flex;
   font-size: 12px;
   font-weight: 800;
@@ -157,7 +157,7 @@
 }
 
 .related {
-  border-top: 1px solid #dce5df;
+  border-top: 1px solid var(--line);
   display: grid;
   gap: 7px;
   margin-top: 22px;
@@ -189,20 +189,20 @@
 }
 
 .related > a small {
-  color: #6f7f77;
+  color: var(--muted-soft);
   flex: 0 0 auto;
   font-size: 10px;
 }
 
 .related > em {
-  color: #6f7f77;
+  color: var(--muted-soft);
   font-size: 11px;
   font-style: normal;
   padding: 6px 9px 0;
 }
 
 .empty {
-  background: #fff;
+  background: var(--white);
   border: 1px dashed #a9b8b0;
   border-radius: 16px;
   padding: 38px;
@@ -210,7 +210,7 @@
 }
 
 .empty p {
-  color: #5b6b63;
+  color: var(--muted);
   margin: 8px 0 0;
 }
 
