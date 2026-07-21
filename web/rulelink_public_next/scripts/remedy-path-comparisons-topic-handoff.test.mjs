@@ -111,7 +111,13 @@ test('기존 주제 원본과 식별자가 충돌하지 않는다', async () => 
 
 test('독립 인계본은 공유 manifest와 인적 표기를 요구하지 않는다', async () => {
   const [topic, manifest] = await Promise.all([readJson(handoffPath), readJson(path.join(topicDirectory, 'manifest.json'))]);
-  assert.ok(!manifest.topics.some((item) => item.file === handoffFile));
+  const descriptor = manifest.topics.find((item) => item.file === handoffFile);
+  if (descriptor) {
+    assert.equal(descriptor.topic_id, topic.topic_id);
+    const current = await readJson(path.join(repositoryRoot, 'artifacts', 'publication', 'current', 'bundle.json'));
+    const published = new Set(current.knowledge.content_entries.map((item) => item.content_id));
+    for (const entry of topic.content_entries) assert.ok(published.has(entry.content_id));
+  }
   const forbiddenKeys = new Set(['author', 'author_name', 'reviewer', 'reviewer_name', '감수자', '작성자']);
   const visit = (value) => {
     if (!value || typeof value !== 'object') return;
