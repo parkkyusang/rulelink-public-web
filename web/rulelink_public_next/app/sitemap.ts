@@ -38,6 +38,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly' as const,
       priority: 0.7,
     })),
+    ...(knowledgeEntries.length ? [{
+      url: `${site.url}/ko/knowledge`,
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    }] : []),
     ...knowledgeEntries.map(entry => ({
       url: `${site.url}/ko/knowledge/${entry.slug}`,
       lastModified: new Date(entry.reviewed_at),
