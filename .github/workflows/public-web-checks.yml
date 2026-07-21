@@ -44,6 +44,9 @@ jobs:
       - name: 고정 의존성 설치
         run: npm ci
 
+      - name: 공개 번들 차단 규칙 테스트
+        run: npm run test:publication
+
       - name: 타입 검사
         run: npm run typecheck
 
