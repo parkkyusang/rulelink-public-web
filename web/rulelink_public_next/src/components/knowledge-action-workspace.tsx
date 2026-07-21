@@ -20,8 +20,12 @@ export function KnowledgeActionWorkspace({actionSteps, contentId, factsToCheck, 
   );
   const [checked, setChecked] = useState<CheckState>({});
   const [loadedKey, setLoadedKey] = useState('');
-  const total = actionSteps.length + factsToCheck.length;
-  const completed = Object.keys(checked).length;
+  const validKeys = useMemo(() => new Set([
+    ...factsToCheck.map((_, index) => 'fact:' + index),
+    ...actionSteps.map((_, index) => 'action:' + index),
+  ]), [actionSteps, factsToCheck]);
+  const total = validKeys.size;
+  const completed = Object.keys(checked).filter(key => validKeys.has(key)).length;
   const progress = total ? Math.round((completed / total) * 100) : 0;
 
   useEffect(() => {

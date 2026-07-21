@@ -22,6 +22,7 @@ test('생활법률 상세 글은 기준일별 기기 저장 확인 목록을 제
   assert.match(component, /rulelink-checklist-v1/);
   assert.match(component, /window\.localStorage/);
   assert.match(component, /loadedKey !== storageKey/);
+  assert.match(component, /Object\.keys\(checked\)\.filter\(key => validKeys\.has\(key\)\)/);
   assert.match(component, /role="progressbar"/);
   assert.match(component, /aria-live="polite"/);
   assert.match(component, /표시 상태는 서버로 전송되지 않고 현재 기기에만 저장됩니다/);
