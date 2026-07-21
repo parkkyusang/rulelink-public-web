@@ -110,13 +110,15 @@ function sourceTerms(source: PublicKnowledgeSource): string[] {
   if (source.source_kind === 'precedent') {
     return [source.title_ko, source.case_number, source.decision_date, source.source_id];
   }
+  if (source.source_kind === 'official_document') {
+    return [source.title_ko, source.document_kind, source.effective_date, source.promulgation_number, source.source_id];
+  }
   return [source.law_name_ko, source.article_no, `${source.law_name_ko} ${source.article_no}`, source.source_id];
 }
 
 function sourceLabel(source: PublicKnowledgeSource): string {
-  return source.source_kind === 'precedent'
-    ? source.title_ko
-    : `${source.law_name_ko} ${source.article_no}`;
+  if (source.source_kind === 'precedent' || source.source_kind === 'official_document') return source.title_ko;
+  return `${source.law_name_ko} ${source.article_no}`;
 }
 
 function uniqueTerms(values: string[]): string[] {
