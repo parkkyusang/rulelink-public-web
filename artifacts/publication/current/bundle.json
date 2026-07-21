@@ -1,8 +1,8 @@
 {
   "schema": "rulelink_published_bundle_v1",
-  "snapshot_id": "kr-knowledge-core-20260721-003",
+  "snapshot_id": "kr-knowledge-core-20260721-004",
   "built_at": "2026-07-21T08:30:00+00:00",
-  "source_snapshot_id": "multi-source:2cfa8d3686e1089ec279ab0708176b39",
+  "source_snapshot_id": "multi-source:56ca12cba85cd0bc21afec6cb3c3630d",
   "jurisdiction": "KR",
   "locale": "ko-KR",
   "cards": [],
@@ -224,29 +224,29 @@
     "change-brief-approval:change-brief-approval:draft.kr.change.administrative-appeals-16-2.001:bfd67ae12f04": "aeee98d37f7169116f8fec43e6d86bf3b62e6fb323ee6f36d8210dfbe0a32b32",
     "knowledge:administrative-appeals-depth-v1": "bad025b776e4036be720a1aef1548c1166e6156ae5574a6a8acf6ece6d573009",
     "knowledge-approval:derived-administrative-appeals-depth-20260721-001": "af7f7124f5083d155e1537d098a218f488484d94fa60fd0166c898e7eef1d5c9",
-    "knowledge:content.legal-heir-order-and-spouse": "d4a4b57df408a2a83c3d9e19610cf6ed789e089cf64a8ceda4075eaa9867e65d",
+    "knowledge:content.legal-heir-order-and-spouse": "614b0334231397716df5c44cfb2f6bb688defda39b7e403f8dfe277747ba1aad",
     "knowledge:content.three-month-inheritance-decision-period": "d6145e43b53645c8947f804ec16c209c0c4670dcd7300c4c79fbdc19f20f1440",
-    "knowledge:content.inheritance-renunciation-procedure": "595361bec888c62b50f31f24b45082dfae8ed7423c2ab6840b86aa2ec74d1743",
+    "knowledge:content.inheritance-renunciation-procedure": "7a85e79eab5369640975c4a326f3666e58f908bc7226577d6e1c140c17f06c33",
     "knowledge:content.limited-acceptance-effect": "efca8ccbe169ca8abee929297ab478f73d5af51784427557af54996d5fbed239",
     "knowledge:content.special-limited-acceptance-late-debt": "9d2679de20a06c2fb5d3c64d50cae03236261477a66c91a1b80dedd2602c5267",
     "knowledge:content.limited-acceptance-creditor-notice": "ef283a771044d4cc9ec1e691a6996699cd3b5fc178efc694a738c3a7db618f54",
+    "knowledge:content.move-before-deposit-refund": "a195c563d5615ab5a11200edd5bbd6e061924d7e429de9aac0b48eb8e05f311f",
+    "knowledge:content.lease-registration-application-is-not-completion": "39c9857fe46953df7cb515996fdc2aebabcfe6b7292f2765646a54d7400d2e42",
+    "knowledge:content.lease-registration-order-requirements": "a785367367181ad2fbb1fc9993116251e90226829f47bdc52aa62133ab531e3e",
+    "knowledge:content.rights-after-lease-registration": "2d5bebed470df8fc28aa7ed337aedede278da9f221b4884ef3fec0e366834e02",
+    "knowledge:content.housing-lease-opposability-basics": "0601a79a544e755c69ef06d8ad167bb351ab86a0070c723a8efeb30089eb97e1",
+    "knowledge:content.housing-lease-priority-repayment-basics": "e5392c5742bd95006c0d7af8a7315ee2a51827550879463eafca1ddc890c347d",
+    "knowledge:content.renting-home-with-lease-registration": "6ceb56e8cbbb4d81e2dd5b050baca2fd800a947d800c4c0d7863cd0394586223",
     "knowledge:content.bank-transfer-loan-or-gift": "cc96a40387330b415bd12edc827b439746c7246822280ad579995814eaea2b10",
     "knowledge:content.loan-without-written-note": "b807d80c4a7d18932a7989cff3f9037f30474e54e609a5a096c16da1b8ffaac3",
     "knowledge:content.loan-without-repayment-date": "87d6b4ae7a0ac0bfa94fb93cbc6d3204669a3ad2d248545a84774e7669dc86b7",
     "knowledge:content.partial-repayment-allocation": "5068b7fb12bd88bca0f9ba5e04348ae64552bc67f895f7e43e3379aac3e65873",
-    "knowledge:content.guarantee-by-message-validity": "f77eb0690868c97c85081658c13da8e1a9e0afd88a048cc636e121afc7e1b7e0",
+    "knowledge:content.guarantee-by-message-validity": "c0b7f346cb7997bb0bb2ee0dde5ce2bc065e7db097d413fc301b2ecaf63c48ad",
     "knowledge:content.continuing-guarantee-maximum-amount": "48bd25799c8ce69b52f12d7e9663f3b277ed985f61cddbe8f11119b0abbe8425",
     "knowledge:content.scope-of-guarantee-debt": "e041283d06072aabc8124c4db4be1243cf695b7c067c5823be8ca74cfdf0f248",
     "knowledge:content.shared-mobility-private-facility-defect": "906b0c972cab1eeadc7bf6c45bdebb80315dbd9a259ea8bc3b08c1f3b43952ff",
     "knowledge:content.shared-mobility-other-road-user-fault": "e6f43717a7faf7bd539bde72527bb929ebafef5fda930e39e992abdd60114450",
-    "approval:db-grounded-20260721": "0dc0a26b2e63c94489fd2525737cb80cbb8f8de3636b975fe9d3b15d307b889b",
-    "knowledge:content.admin-appeal.documents-law-change": "61f39a2f1762efbdf879192ca7865c857490a06570ed41cf5e342a06d5eb0d4d",
-    "knowledge:content.admin-appeal.eligibility-document-branch": "7f073724d04efc51c62efdd63819e8921ba1530105c509f85a1938490ae093f5",
-    "knowledge:content.admin-appeal.data-sharing-consent": "4ed17781f78cf6522ef329743dbafeea1fe486351f0f9eccc3b7fe7ab8b26dcc",
-    "knowledge:content.admin-appeal.not-all-documents-waived": "994469260f835ef1f4a5ba6d22dea7b81a90e99b34605ef3a7c073d7fff8469b",
-    "knowledge:content.admin-appeal.application-preparation": "0503932e14916ce0e338a24db48f79b6957821f5a5452c37f384edbbffae8933",
-    "knowledge:content.admin-appeal.qualification-vs-proof": "5df6bf6c5df9f3542b1f7d77de10a2a2233f553f429ca17f030b644da025be58",
-    "knowledge-index:rulelink_public_knowledge_index_v1": "925ce23f210dd9a6b2d89edb7a26109c77b7cd2002b2ed4dcc364c245b5821a7"
+    "approval:db-grounded-20260721": "84789100fd3ae1b1cb2477e343df043dbefe99d9a2b55b6e8c7f0638524ceab9"
   },
   "knowledge": {
     "schema": "rulelink_public_knowledge_index_v1",
@@ -272,270 +272,231 @@
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1000",
         "source_id": "civil_act_ko_1000",
-        "law_name_ko": "민법",
-        "article_no": "제1000조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1000%EC%A1%B0",
+        "official_url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1026990813",
         "source_snapshot_id": "snapshot:5bb3d628e97ff4cb9ae71f7cc2f9c556",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1003",
         "source_id": "civil_act_ko_1003",
-        "law_name_ko": "민법",
-        "article_no": "제1003조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1003%EC%A1%B0",
+        "official_url": "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=1003&lsiSeq=284415&urlMode=lsScJoRltInfoR",
         "source_snapshot_id": "snapshot:c0d629f570ce1480d72712c4fb2f6d4b",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1019",
         "source_id": "civil_act_ko_1019",
-        "law_name_ko": "민법",
-        "article_no": "제1019조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1019%EC%A1%B0",
+        "official_url": "https://www.law.go.kr/LSW/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=900034462",
         "source_snapshot_id": "snapshot:b9f244982ab300cd344069c882d8e66f",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1041",
         "source_id": "civil_act_ko_1041",
-        "law_name_ko": "민법",
-        "article_no": "제1041조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1041%EC%A1%B0",
+        "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=58429",
         "source_snapshot_id": "snapshot:3d41068ed933f7fedc0e8e6991cacfe1",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1042",
         "source_id": "civil_act_ko_1042",
-        "law_name_ko": "민법",
-        "article_no": "제1042조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1042%EC%A1%B0",
+        "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=58429",
         "source_snapshot_id": "snapshot:3e8ef32adeedcf6b8f18332cbad7bb0a",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1043",
         "source_id": "civil_act_ko_1043",
-        "law_name_ko": "민법",
-        "article_no": "제1043조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1043%EC%A1%B0",
+        "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=58429",
         "source_snapshot_id": "snapshot:cd1ffa531ba8a186837e25d6e9e707fb",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1028",
         "source_id": "civil_act_ko_1028",
-        "law_name_ko": "민법",
-        "article_no": "제1028조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1028%EC%A1%B0",
+        "official_url": "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=1028&lsiSeq=284415&urlMode=lsScJoRltInfoR",
         "source_snapshot_id": "snapshot:ff8a4307ac09a35a5c39e10e5dd7729b",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1030",
         "source_id": "civil_act_ko_1030",
-        "law_name_ko": "민법",
-        "article_no": "제1030조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1030%EC%A1%B0",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
         "source_snapshot_id": "snapshot:d3d684ccee303f8cd1f9b6b8f69b6361",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1031",
         "source_id": "civil_act_ko_1031",
-        "law_name_ko": "민법",
-        "article_no": "제1031조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1031%EC%A1%B0",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
         "source_snapshot_id": "snapshot:552587cdda68a86c4770c1b712eebfe5",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1032",
         "source_id": "civil_act_ko_1032",
-        "law_name_ko": "민법",
-        "article_no": "제1032조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1032%EC%A1%B0",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
         "source_snapshot_id": "snapshot:2e8067745cca373db77bb8462b9ab9ed",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1033",
         "source_id": "civil_act_ko_1033",
-        "law_name_ko": "민법",
-        "article_no": "제1033조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1033%EC%A1%B0",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
         "source_snapshot_id": "snapshot:f31b5fb63151869da3fe8ce40625701d",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1034",
         "source_id": "civil_act_ko_1034",
-        "law_name_ko": "민법",
-        "article_no": "제1034조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1034%EC%A1%B0",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
         "source_snapshot_id": "snapshot:b18e757a09f543b4e7f3ea3319e9f134",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1035",
         "source_id": "civil_act_ko_1035",
-        "law_name_ko": "민법",
-        "article_no": "제1035조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1035%EC%A1%B0",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
         "source_snapshot_id": "snapshot:8571ec381e24d6b7518e58b099e01d77",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1036",
         "source_id": "civil_act_ko_1036",
-        "law_name_ko": "민법",
-        "article_no": "제1036조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1036%EC%A1%B0",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
         "source_snapshot_id": "snapshot:7599f8d81a45a306dd50596b8ebcc2eb",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1037",
         "source_id": "civil_act_ko_1037",
-        "law_name_ko": "민법",
-        "article_no": "제1037조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1037%EC%A1%B0",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
         "source_snapshot_id": "snapshot:0bfc3dfd27e08026aa65817eccb119fe",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1038",
         "source_id": "civil_act_ko_1038",
-        "law_name_ko": "민법",
-        "article_no": "제1038조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1038%EC%A1%B0",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
         "source_snapshot_id": "snapshot:5ff9144670cafc7ce7139e1d85b8c8cb",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1039",
         "source_id": "civil_act_ko_1039",
-        "law_name_ko": "민법",
-        "article_no": "제1039조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1039%EC%A1%B0",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
         "source_snapshot_id": "snapshot:5ee8ab3bdf7ef8946157d6de389295f3",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
+        "coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
+        "source_id": "housing_lease_ko_0003_03",
+        "official_url": "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=03&joNo=0003&lsiSeq=276291&urlMode=lsScJoRltInfoR",
+        "source_snapshot_id": "snapshot:1c35b925f8d04acba8a9a1b0c9796e07",
+        "last_verified_at": "2026-07-21T08:00:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003",
+        "source_id": "housing_lease_ko_0003",
+        "official_url": "https://law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1020517777",
+        "source_snapshot_id": "snapshot:270122f3cab11a485a0327fbd78eb653",
+        "last_verified_at": "2026-07-21T08:00:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-02",
+        "source_id": "housing_lease_ko_0003_02",
+        "official_url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1031734157",
+        "source_snapshot_id": "snapshot:445ae2ee988bb4c0fcfc07d0baaeaa2c",
+        "last_verified_at": "2026-07-21T08:00:00+00:00"
+      },
+      {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0598",
         "source_id": "civil_act_ko_0598",
-        "law_name_ko": "민법",
-        "article_no": "제598조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C598%EC%A1%B0",
+        "official_url": "https://www.law.go.kr/LSW/lsLinkProc.do?joNo=059800&lnkJoNo=undefined&lsClsCd=L&lsId=001706&lsNm=%EB%AF%BC%EB%B2%95&mode=4",
         "source_snapshot_id": "snapshot:62c9abd62ae2907181f1bf7197dc2e43",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0603",
         "source_id": "civil_act_ko_0603",
-        "law_name_ko": "민법",
-        "article_no": "제603조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C603%EC%A1%B0",
+        "official_url": "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0603&lsiSeq=284415&urlMode=lsScJoRltInfoR",
         "source_snapshot_id": "snapshot:620a0f688ebec421544fd799c874c735",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0476",
         "source_id": "civil_act_ko_0476",
-        "law_name_ko": "민법",
-        "article_no": "제476조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C476%EC%A1%B0",
+        "official_url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1023596075",
         "source_snapshot_id": "snapshot:17508bd1f1cc8b784be868019fd90482",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0477",
         "source_id": "civil_act_ko_0477",
-        "law_name_ko": "민법",
-        "article_no": "제477조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C477%EC%A1%B0",
+        "official_url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1023596075",
         "source_snapshot_id": "snapshot:8d4552e491f504df2b872e4798b13da7",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0478",
         "source_id": "civil_act_ko_0478",
-        "law_name_ko": "민법",
-        "article_no": "제478조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C478%EC%A1%B0",
+        "official_url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1023596075",
         "source_snapshot_id": "snapshot:0b076a247338119c3dd9802b24b51ae9",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0479",
         "source_id": "civil_act_ko_0479",
-        "law_name_ko": "민법",
-        "article_no": "제479조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C479%EC%A1%B0",
+        "official_url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1023596075",
         "source_snapshot_id": "snapshot:1ae84c4c6865a278b8cdfdbee34a15fb",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0428-02",
         "source_id": "civil_act_ko_0428_02",
-        "law_name_ko": "민법",
-        "article_no": "제428조의2",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C428%EC%A1%B0%EC%9D%982",
+        "official_url": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1016736383",
         "source_snapshot_id": "snapshot:73bd081839cacee21b7b1b32d357749d",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0428-03",
         "source_id": "civil_act_ko_0428_03",
-        "law_name_ko": "민법",
-        "article_no": "제428조의3",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C428%EC%A1%B0%EC%9D%983",
+        "official_url": "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=03&joNo=0428&lsiSeq=284415&urlMode=lsScJoRltInfoR",
         "source_snapshot_id": "snapshot:c5073f9edbc623b7e80ccad062d5fbcd",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0429",
         "source_id": "civil_act_ko_0429",
-        "law_name_ko": "민법",
-        "article_no": "제429조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C429%EC%A1%B0",
+        "official_url": "https://www.law.go.kr/LSW/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=900307360",
         "source_snapshot_id": "snapshot:6942ac509b9968cd14a4746cb2688113",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0428",
         "source_id": "civil_act_ko_0428",
-        "law_name_ko": "민법",
-        "article_no": "제428조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C428%EC%A1%B0",
+        "official_url": "https://www.law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=090800003&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
         "source_snapshot_id": "snapshot:490368327e149e4e150b07272609641e",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0430",
         "source_id": "civil_act_ko_0430",
-        "law_name_ko": "민법",
-        "article_no": "제430조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C430%EC%A1%B0",
+        "official_url": "https://www.law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=090800003&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
         "source_snapshot_id": "snapshot:084379d3974c5260edbde413397e9d11",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.shared-mobility-accident.civil-act-ko-0758",
         "source_id": "civil_act_ko_0758",
-        "law_name_ko": "민법",
-        "article_no": "제758조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C758%EC%A1%B0",
+        "official_url": "https://law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0758&lsiSeq=284415&urlMode=lsScJoRltInfoR",
         "source_snapshot_id": "snapshot:3e889ba204742d5b6bead0009d0e244b",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.shared-mobility-accident.civil-act-ko-0750",
         "source_id": "civil_act_ko_0750",
-        "law_name_ko": "민법",
-        "article_no": "제750조",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C750%EC%A1%B0",
+        "official_url": "https://law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0750&lsiSeq=284415&urlMode=lsScJoRltInfoR",
         "source_snapshot_id": "snapshot:cdf125767ab6640e07d557f6c73a0c53",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       }
@@ -598,9 +559,9 @@
         "title_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순…",
         "proposition_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순위에서는 최근친이 선순위다.",
         "norm": {
-          "actor_ko": "피상속인의 혈족",
-          "conditions_ko": "상속개시 당시 선순위 혈족의 존재 여부와 동순위 혈족 사이의 촌수",
-          "legal_effect_ko": "직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순으로 상속인이 정해지고 동순위에서는 최근친이 우선합니다."
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순위에서는 최근친이 선순위다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1000"
@@ -611,9 +572,9 @@
         "title_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단…",
         "proposition_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단독상속인이 된다.",
         "norm": {
-          "actor_ko": "피상속인의 법률상 배우자",
-          "conditions_ko": "상속개시 당시 직계비속 또는 직계존속의 존재 여부",
-          "legal_effect_ko": "직계비속 또는 직계존속이 있으면 그들과 공동상속하고, 둘 다 없으면 단독상속합니다."
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단독상속인이 된다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1003"
@@ -624,9 +585,9 @@
         "title_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선…",
         "proposition_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선택할 수 있고 가정법원이 기간을 연장할 수 있다.",
         "norm": {
-          "actor_ko": "상속개시 있음을 안 상속인",
-          "conditions_ko": "상속개시 있음을 안 날부터 3개월 이내이며, 기간 연장은 가정법원의 결정이 있는 경우",
-          "legal_effect_ko": "기간 안에 단순승인·한정승인·포기를 선택하고 필요한 경우 기간 연장을 청구할 수 있습니다."
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선택할 수 있고 가정법원이 기간을 연장할 수 있다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1019"
@@ -637,9 +598,9 @@
         "title_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효…",
         "proposition_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효력이 생긴다.",
         "norm": {
-          "actor_ko": "상속을 포기하려는 상속인",
-          "conditions_ko": "법정기간 안에 가정법원에 상속포기를 신고하여 수리된 경우",
-          "legal_effect_ko": "상속개시 때부터 상속인이 아니었던 것으로 봅니다."
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효력이 생긴다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1041",
@@ -652,9 +613,9 @@
         "title_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 …",
         "proposition_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 조건의 승인이다.",
         "norm": {
-          "actor_ko": "한정승인을 하는 상속인",
-          "conditions_ko": "상속재산 목록을 붙여 법정기간 안에 가정법원에 한정승인을 신고한 경우",
-          "legal_effect_ko": "상속으로 취득한 재산의 한도에서 피상속인의 채무와 유증을 변제합니다."
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 조건의 승인이다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1028"
@@ -665,9 +626,9 @@
         "title_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변…",
         "proposition_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변제 절차를 따라야 한다.",
         "norm": {
-          "actor_ko": "한정승인자",
-          "conditions_ko": "한정승인 후 상속채권자와 유증받은 사람에 대한 공고·최고 및 신고기간을 거친 경우",
-          "legal_effect_ko": "우선권과 법정 순서에 따라 상속재산으로 채권자와 유증받은 사람에게 변제합니다."
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변제 절차를 따라야 한다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1030",
@@ -687,12 +648,77 @@
         "title_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그…",
         "proposition_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그 사실을 안 날부터 3개월 내 특별한정승인이 가능할 수 있다.",
         "norm": {
-          "actor_ko": "상속채무가 상속재산을 초과하는 사실을 뒤늦게 안 상속인",
-          "conditions_ko": "법정기간 안에 채무초과를 알지 못한 데 중대한 과실이 없고 그 사실을 안 날부터 3개월 이내인 경우",
-          "legal_effect_ko": "특별한정승인을 신고하여 상속재산 한도의 책임을 주장할 수 있습니다."
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그 사실을 안 날부터 3개월 내 특별한정승인이 가능할 수 있다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1019"
+        ]
+      },
+      {
+        "rule_id": "rule.housing-lease-deposit.housing-lease-registration-application",
+        "title_ko": "계약 종료와 보증금 미반환이 임차권등기명령 신청의 출발점",
+        "proposition_ko": "임대차가 끝난 뒤에도 보증금이 반환되지 않은 임차인은 관할 법원에 임차권등기명령을 신청할 수 있습니다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "임대차가 종료함 · 보증금이 반환되지 않음",
+          "legal_effect_ko": "임대차가 끝난 뒤에도 보증금이 반환되지 않은 임차인은 관할 법원에 임차권등기명령을 신청할 수 있습니다."
+        },
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003-03"
+        ]
+      },
+      {
+        "rule_id": "rule.housing-lease-deposit.housing-lease-registration-completion-effect",
+        "title_ko": "임차권등기 완료 뒤 대항요건을 잃어도 기존 권리 유지",
+        "proposition_ko": "임차권등기명령에 따른 등기를 마치면 대항력과 우선변제권을 취득할 수 있고, 이미 취득한 권리는 등기 뒤 대항요건을 잃더라도 유지됩니다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "임차권등기명령의 집행에 따른 임차권등기가 완료됨",
+          "legal_effect_ko": "임차권등기명령에 따른 등기를 마치면 대항력과 우선변제권을 취득할 수 있고, 이미 취득한 권리는 등기 뒤 대항요건을 잃더라도 유지됩니다."
+        },
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003-03"
+        ]
+      },
+      {
+        "rule_id": "rule.housing-lease-deposit.housing-lease-opposability",
+        "title_ko": "주택 인도와 주민등록을 모두 마친 다음 날 대항력 발생",
+        "proposition_ko": "일반 개인 임차인의 주택임대차는 주택을 인도받고 주민등록을 마치면 그 다음 날부터 제3자에 대한 효력이 생깁니다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "주거용 주택의 일반 개인 임차인 · 주택 인도와 주민등록을 모두 갖춘 경우",
+          "legal_effect_ko": "일반 개인 임차인의 주택임대차는 주택을 인도받고 주민등록을 마치면 그 다음 날부터 제3자에 대한 효력이 생깁니다."
+        },
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003"
+        ]
+      },
+      {
+        "rule_id": "rule.housing-lease-deposit.housing-lease-priority-repayment",
+        "title_ko": "대항요건과 확정일자를 갖추어야 우선변제권 성립",
+        "proposition_ko": "대항요건과 임대차계약증서상의 확정일자를 갖춘 임차인은 경매나 공매에서 후순위권리자나 그 밖의 채권자보다 우선하여 보증금을 변제받을 권리가 있습니다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "주택 인도와 주민등록 등 대항요건을 갖춤 · 임대차계약증서에 확정일자를 갖춤 · 경매 또는 공매에서 환가대금이 배분됨",
+          "legal_effect_ko": "대항요건과 임대차계약증서상의 확정일자를 갖춘 임차인은 경매나 공매에서 후순위권리자나 그 밖의 채권자보다 우선하여 보증금을 변제받을 권리가 있습니다."
+        },
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003-02"
+        ]
+      },
+      {
+        "rule_id": "rule.housing-lease-deposit.housing-lease-later-tenant-small-deposit",
+        "title_ko": "임차권등기가 끝난 주택의 후순위 임차인 제한",
+        "proposition_ko": "임차권등기명령에 따른 임차권등기가 끝난 주택을 그 이후 임차한 임차인은 주택임대차보호법 제8조의 소액보증금 우선변제권을 받을 수 없습니다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "임차권등기명령에 따른 등기가 이미 완료된 주택 · 그 이후 새로 임차한 임차인",
+          "legal_effect_ko": "임차권등기명령에 따른 임차권등기가 끝난 주택을 그 이후 임차한 임차인은 주택임대차보호법 제8조의 소액보증금 우선변제권을 받을 수 없습니다."
+        },
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003-03"
         ]
       },
       {
@@ -700,9 +726,9 @@
         "title_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어…",
         "proposition_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어야 성립한다.",
         "norm": {
-          "actor_ko": "돈을 빌려주는 사람과 빌리는 사람",
-          "conditions_ko": "금전을 이전하고 같은 종류·품질·수량의 금전을 반환하기로 합의한 경우",
-          "legal_effect_ko": "금전소비대차가 성립하여 차주는 약정에 따라 금전을 반환할 의무를 부담합니다."
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어야 성립한다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0598"
@@ -713,9 +739,9 @@
         "title_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다.",
         "proposition_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다.",
         "norm": {
-          "actor_ko": "반환시기를 정하지 않은 금전소비대차의 대주",
-          "conditions_ko": "상당한 기간을 정하여 차주에게 반환을 최고한 경우",
-          "legal_effect_ko": "정한 기간이 지나면 반환의무의 이행 여부를 청구·판단할 수 있습니다."
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0603"
@@ -726,9 +752,9 @@
         "title_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에…",
         "proposition_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에 따라 어느 채무가 소멸하는지가 달라진다.",
         "norm": {
-          "actor_ko": "복수 채무 또는 비용·이자·원본 중 일부를 변제하는 당사자",
-          "conditions_ko": "변제액이 모든 채무를 소멸시키기에 부족하고 당사자의 충당 지정 유무를 확인한 경우",
-          "legal_effect_ko": "당사자의 유효한 지정 또는 민법상 변제충당 순서에 따라 소멸하는 채무와 잔액이 정해집니다."
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에 따라 어느 채무가 소멸하는지가 달라진다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0476",
@@ -742,9 +768,9 @@
         "title_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발…",
         "proposition_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발생하고 전자적 형태 표시는 원칙적으로 효력이 없다.",
         "norm": {
-          "actor_ko": "주채무를 보증하려는 보증인",
-          "conditions_ko": "기명날인 또는 서명이 있는 서면으로 보증의사를 표시한 경우",
-          "legal_effect_ko": "서면 요건을 충족한 범위에서 보증의 효력이 생기며 전자적 형태의 표시는 원칙적으로 효력이 없습니다."
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발생하고 전자적 형태 표시는 원칙적으로 효력이 없다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0428-02"
@@ -755,9 +781,9 @@
         "title_ko": "불확정한 다수 채무를 보증하는 근보증은 최고액을 서면으로 특정하지 않으면 효…",
         "proposition_ko": "불확정한 다수 채무를 보증하는 근보증은 최고액을 서면으로 특정하지 않으면 효력이 없다.",
         "norm": {
-          "actor_ko": "불확정한 다수 채무를 보증하는 근보증인과 채권자",
-          "conditions_ko": "보증채무의 최고액을 서면으로 특정한 경우",
-          "legal_effect_ko": "최고액 범위에서 근보증 효력이 생기며 최고액이 없으면 근보증계약은 효력이 없습니다."
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "불확정한 다수 채무를 보증하는 근보증은 최고액을 서면으로 특정하지 않으면 효력이 없다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0428-03"
@@ -768,9 +794,9 @@
         "title_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지…",
         "proposition_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지만 주채무보다 무거운 부담은 주채무 한도로 감축된다.",
         "norm": {
-          "actor_ko": "유효한 보증계약을 체결한 보증인",
-          "conditions_ko": "주채무의 이자·위약금·손해배상 등 종속채무가 존재하고 보증계약에서 범위를 달리 정하지 않은 경우",
-          "legal_effect_ko": "보증채무는 종속채무를 포함하되 보증인의 부담이 주채무보다 무거우면 주채무의 한도로 감축됩니다."
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지만 주채무보다 무거운 부담은 주채무 한도로 감축된다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0428",
@@ -783,9 +809,9 @@
         "title_ko": "민간 공작물의 설치ㆍ보존 하자",
         "proposition_ko": "공작물의 설치 또는 보존 하자로 타인에게 손해가 발생하면 점유자가 원칙적으로 배상책임을 지고, 점유자가 필요한 주의를 다한 경우에는 소유자가 책임을 질 수 있습니다.",
         "norm": {
-          "actor_ko": "민간 공작물을 사실상 지배·관리하는 점유자와 그 소유자",
-          "conditions_ko": "공작물의 설치·보존 하자와 손해 사이에 인과관계가 있고 점유자의 필요한 주의 여부를 확인한 경우",
-          "legal_effect_ko": "점유자가 원칙적으로 배상책임을 지고, 점유자가 필요한 주의를 다한 경우 소유자가 책임을 질 수 있습니다."
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "사고 원인이 민간 공작물의 설치ㆍ보존 상태에 있음 · 하자와 손해 사이의 인과관계가 있음",
+          "legal_effect_ko": "공작물의 설치 또는 보존 하자로 타인에게 손해가 발생하면 점유자가 원칙적으로 배상책임을 지고, 점유자가 필요한 주의를 다한 경우에는 소유자가 책임을 질 수 있습니다."
         },
         "source_coordinate_ids": [
           "coord.shared-mobility-accident.civil-act-ko-0758"
@@ -796,9 +822,9 @@
         "title_ko": "고의ㆍ과실의 위법행위와 손해 사이의 책임",
         "proposition_ko": "고의 또는 과실로 인한 위법행위로 타인에게 손해를 가한 사람은 그 손해를 배상할 책임이 있습니다.",
         "norm": {
-          "actor_ko": "고의 또는 과실로 타인에게 손해를 가한 사람",
-          "conditions_ko": "주의의무 위반 또는 고의, 위법성, 손해와 인과관계가 인정되는 경우",
-          "legal_effect_ko": "그 위법행위로 발생한 손해를 배상할 책임을 부담합니다."
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "주의의무 위반이나 고의가 있음 · 위법행위와 손해 사이의 인과관계가 인정됨",
+          "legal_effect_ko": "고의 또는 과실로 인한 위법행위로 타인에게 손해를 가한 사람은 그 손해를 배상할 책임이 있습니다."
         },
         "source_coordinate_ids": [
           "coord.shared-mobility-accident.civil-act-ko-0750"
@@ -852,148 +878,161 @@
       },
       {
         "scenario_id": "scenario.family-inheritance.sc-spouse-children",
-        "question_ko": "사망 당시 법률상 배우자와 자녀가 모두 있나요?",
-        "decision_fact_ko": "법률상 배우자 여부와 직계비속의 존재",
-        "when_true_ko": "배우자와 자녀가 공동상속인이 됩니다. 사망 선후·대습상속·상속결격·상속포기는 별도로 확인합니다.",
-        "when_false_ko": "자녀가 없으면 직계존속의 존재를 확인하고, 직계비속과 직계존속이 모두 없으면 배우자의 단독상속 여부를 검토합니다.",
+        "question_ko": "배우자와 자녀가 있는 일반적인 상속",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
         "rule_ids": [
           "rule.family-inheritance.rule-inheritance-order",
           "rule.family-inheritance.rule-spouse-order"
         ],
-        "source_coordinate_ids": [
-          "coord.family-inheritance.civil-act-ko-1000",
-          "coord.family-inheritance.civil-act-ko-1003"
-        ]
+        "source_coordinate_ids": []
       },
       {
         "scenario_id": "scenario.family-inheritance.sc-debt-uncertain",
-        "question_ko": "상속개시 있음을 안 날부터 아직 3개월이 지나지 않았나요?",
-        "decision_fact_ko": "상속인임을 안 날과 현재 날짜, 재산·채무 조사 진행상황",
-        "when_true_ko": "재산과 채무를 조사하면서 한정승인·상속포기 여부를 결정하고, 시간이 부족하면 기간 만료 전에 연장청구를 검토합니다.",
-        "when_false_ko": "원칙적인 선택기간 경과 여부를 확인하고, 채무초과를 뒤늦게 안 경우 특별한정승인 요건을 별도로 검토합니다.",
+        "question_ko": "재산과 채무 규모를 아직 모르는 상태에서 3개월이 흐르는 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
         "rule_ids": [
           "rule.family-inheritance.rule-three-months",
           "rule.family-inheritance.rule-limited-effect"
         ],
-        "source_coordinate_ids": [
-          "coord.family-inheritance.civil-act-ko-1019",
-          "coord.family-inheritance.civil-act-ko-1028"
-        ]
+        "source_coordinate_ids": []
       },
       {
         "scenario_id": "scenario.family-inheritance.sc-limited-approved",
-        "question_ko": "한정승인 후 공고·최고와 채권자별 변제를 아직 마치지 않았나요?",
-        "decision_fact_ko": "한정승인일, 공고일, 신고기간, 알고 있는 채권자에 대한 최고와 우선권",
-        "when_true_ko": "법정 신고기간과 개별 최고를 관리하고 우선권 및 채권액에 따라 상속재산을 변제해야 합니다.",
-        "when_false_ko": "변제 장부, 잔여 상속재산과 누락 채권자를 확인하여 청산 종결 및 손해배상 위험을 점검합니다.",
+        "question_ko": "한정승인 수리 후 여러 채권자가 변제를 요구하는 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
         "rule_ids": [
           "rule.family-inheritance.rule-limited-procedure"
         ],
-        "source_coordinate_ids": [
-          "coord.family-inheritance.civil-act-ko-1032",
-          "coord.family-inheritance.civil-act-ko-1033",
-          "coord.family-inheritance.civil-act-ko-1034",
-          "coord.family-inheritance.civil-act-ko-1035",
-          "coord.family-inheritance.civil-act-ko-1036",
-          "coord.family-inheritance.civil-act-ko-1037",
-          "coord.family-inheritance.civil-act-ko-1038",
-          "coord.family-inheritance.civil-act-ko-1039"
-        ]
+        "source_coordinate_ids": []
       },
       {
         "scenario_id": "scenario.family-inheritance.sc-late-debt",
-        "question_ko": "3개월 안에 채무초과를 알지 못했고 그 데 중대한 과실이 없었나요?",
-        "decision_fact_ko": "새 채무를 안 날, 전체 채무초과를 안 날과 종전 재산·채무 조사 정도",
-        "when_true_ko": "채무초과 사실을 안 날부터 3개월 안에 특별한정승인을 신고할 수 있는지 즉시 검토합니다.",
-        "when_false_ko": "특별한정승인 요건 충족이 어려울 수 있으므로 일반 선택기간과 단순승인 사유를 함께 확인합니다.",
+        "question_ko": "3개월 후 처음 큰 보증채무나 대출채무를 알게 된 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
         "rule_ids": [
           "rule.family-inheritance.rule-special-limited"
         ],
+        "source_coordinate_ids": []
+      },
+      {
+        "scenario_id": "scenario.housing-lease-deposit.housing-lease-lease-ended",
+        "question_ko": "임대차계약이 종료했나요?",
+        "decision_fact_ko": "계약 종료 여부와 종료일",
+        "when_true_ko": "보증금 미반환 여부를 확인해 임차권등기명령 신청 가능성을 검토합니다.",
+        "when_false_ko": "제3조의3에 따른 임차권등기명령 신청요건이 아직 충족되지 않았을 수 있습니다.",
+        "rule_ids": [],
         "source_coordinate_ids": [
-          "coord.family-inheritance.civil-act-ko-1019"
+          "coord.housing-lease-deposit.housing-lease-ko-0003-03"
+        ]
+      },
+      {
+        "scenario_id": "scenario.housing-lease-deposit.housing-lease-deposit-unpaid",
+        "question_ko": "종료한 임대차의 보증금이 아직 반환되지 않았나요?",
+        "decision_fact_ko": "보증금 반환 여부와 미반환 금액",
+        "when_true_ko": "관할 법원의 임차권등기명령 신청요건을 검토합니다.",
+        "when_false_ko": "보증금이 전액 반환됐다면 보전 목적의 임차권등기명령 필요성은 달라집니다.",
+        "rule_ids": [],
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003-03"
+        ]
+      },
+      {
+        "scenario_id": "scenario.housing-lease-deposit.housing-lease-registration-completed-before-move",
+        "question_ko": "전출이나 주택 인도 전에 임차권등기가 완료됐나요?",
+        "decision_fact_ko": "임차권등기 완료일과 전출ㆍ인도일의 선후",
+        "when_true_ko": "등기 완료 뒤 대항요건을 잃더라도 기존 대항력과 우선변제권을 유지할 수 있습니다.",
+        "when_false_ko": "신청만 한 상태에서 먼저 대항요건을 잃으면 권리 보전에 문제가 생길 수 있어 개별 시점 확인이 필요합니다.",
+        "rule_ids": [],
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003-03"
+        ]
+      },
+      {
+        "scenario_id": "scenario.housing-lease-deposit.housing-lease-fixed-date",
+        "question_ko": "주택 인도와 주민등록 외에 임대차계약증서상의 확정일자도 갖추었나요?",
+        "decision_fact_ko": "대항요건과 확정일자 취득 여부ㆍ시점",
+        "when_true_ko": "경매나 공매에서 우선변제권의 성립과 순위를 검토할 수 있습니다.",
+        "when_false_ko": "대항력과 우선변제권을 같은 것으로 보면 안 되며, 확정일자 없는 상태의 권리범위를 따로 검토해야 합니다.",
+        "rule_ids": [],
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003",
+          "coord.housing-lease-deposit.housing-lease-ko-0003-02"
         ]
       },
       {
         "scenario_id": "scenario.money-guarantee.sc-transfer-gift-dispute",
-        "question_ko": "송금 당시 같은 금액을 반환하기로 한 합의 자료가 있나요?",
-        "decision_fact_ko": "반환 약정, 변제기·이자 대화, 일부변제와 송금의 사용 목적",
-        "when_true_ko": "소비대차 성립을 뒷받침하므로 약정 내용과 남은 원금을 계산합니다.",
-        "when_false_ko": "송금 사실만으로 대여를 단정하기 어려우므로 증여·투자·생활비 등 다른 법적 성격을 함께 검토합니다.",
+        "question_ko": "가족·연인에게 송금했는데 상대방이 증여였다고 주장하는 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
         "rule_ids": [
           "rule.money-guarantee.rule-loan-agreement"
         ],
-        "source_coordinate_ids": [
-          "coord.money-guarantee.civil-act-ko-0598"
-        ]
+        "source_coordinate_ids": []
       },
       {
         "scenario_id": "scenario.money-guarantee.sc-no-note",
-        "question_ko": "차용증 없이도 반환 약정을 보여주는 대화·일부변제·채무승인 자료가 있나요?",
-        "decision_fact_ko": "송금 전후 대화, 상환 약속, 일부변제와 상대방의 채무 인정",
-        "when_true_ko": "서면 차용증이 없어도 소비대차 합의와 범위를 자료 전체로 입증할 수 있는지 검토합니다.",
-        "when_false_ko": "금전 이동만으로 반환 합의를 증명하기 어려우므로 거래 목적과 상대방의 반대 정황을 추가 확인합니다.",
+        "question_ko": "차용증 없이 메신저와 송금내역만 남은 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
         "rule_ids": [
           "rule.money-guarantee.rule-loan-agreement"
         ],
-        "source_coordinate_ids": [
-          "coord.money-guarantee.civil-act-ko-0598"
-        ]
+        "source_coordinate_ids": []
       },
       {
         "scenario_id": "scenario.money-guarantee.sc-no-due-date",
-        "question_ko": "반환시기를 정하지 않았고 아직 상당한 기간을 정한 최고를 하지 않았나요?",
-        "decision_fact_ko": "변제기 약정 유무, 최고한 금액·기한과 상대방에게 도달한 날짜",
-        "when_true_ko": "상당한 기간을 정하여 원금과 반환기한을 명확히 최고하고 도달자료를 보존합니다.",
-        "when_false_ko": "약정 변제기 또는 최고한 기간의 경과를 기준으로 반환의무 이행과 지체 여부를 검토합니다.",
+        "question_ko": "갚는 날짜를 정하지 않고 돈을 빌려준 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
         "rule_ids": [
           "rule.money-guarantee.rule-no-due-date"
         ],
-        "source_coordinate_ids": [
-          "coord.money-guarantee.civil-act-ko-0603"
-        ]
+        "source_coordinate_ids": []
       },
       {
         "scenario_id": "scenario.money-guarantee.sc-partial-payment",
-        "question_ko": "변제할 때 어느 채무에 충당할지 당사자가 지정했나요?",
-        "decision_fact_ko": "채무자·채권자의 충당 지정과 이의, 각 채무의 이행기·이자·비용",
-        "when_true_ko": "지정의 순서와 상대방의 즉시 이의 여부를 확인하여 유효한 충당 합의에 따라 잔액을 계산합니다.",
-        "when_false_ko": "이행기와 변제이익 등 법정변제충당 순서 및 비용·이자·원본 순서를 적용해 잔액을 계산합니다.",
+        "question_ko": "여러 차례 돈을 빌려주고 일부만 돌려받은 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
         "rule_ids": [
           "rule.money-guarantee.rule-payment-allocation"
         ],
-        "source_coordinate_ids": [
-          "coord.money-guarantee.civil-act-ko-0476",
-          "coord.money-guarantee.civil-act-ko-0477",
-          "coord.money-guarantee.civil-act-ko-0478",
-          "coord.money-guarantee.civil-act-ko-0479"
-        ]
+        "source_coordinate_ids": []
       },
       {
         "scenario_id": "scenario.money-guarantee.sc-message-guarantee",
-        "question_ko": "보증인의 기명날인 또는 서명이 있는 서면이 있나요?",
-        "decision_fact_ko": "보증서 원본, 보증인의 서명·날인과 메시지의 법적 문맥",
-        "when_true_ko": "서면 보증의 범위와 주채무를 대조하여 유효한 보증채무의 범위를 검토합니다.",
-        "when_false_ko": "전자 메시지만으로 표시된 보증의사는 원칙적으로 효력이 없으므로 독립채무 약정이나 별도 법령 적용 여부를 구분합니다.",
+        "question_ko": "메신저로 대신 갚겠다는 답변만 받은 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
         "rule_ids": [
           "rule.money-guarantee.rule-guarantee-writing"
         ],
-        "source_coordinate_ids": [
-          "coord.money-guarantee.civil-act-ko-0428-02"
-        ]
+        "source_coordinate_ids": []
       },
       {
         "scenario_id": "scenario.money-guarantee.sc-continuing-guarantee",
-        "question_ko": "불확정한 다수 채무를 보증하는 서면에 최고액이 적혀 있나요?",
-        "decision_fact_ko": "보증 대상 거래의 불확정성, 서면 최고액과 보증기간",
-        "when_true_ko": "최고액과 대상 거래의 범위 안에서 보증채무를 계산합니다.",
-        "when_false_ko": "최고액 없는 근보증계약은 효력이 없으므로 특정 채무 보증인지도 다시 구분합니다.",
+        "question_ko": "현재와 장래의 모든 거래채무를 포괄 보증한 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
         "rule_ids": [
           "rule.money-guarantee.rule-continuing-guarantee-cap",
           "rule.money-guarantee.rule-guarantee-scope"
         ],
-        "source_coordinate_ids": [
-          "coord.money-guarantee.civil-act-ko-0428-03"
-        ]
+        "source_coordinate_ids": []
       },
       {
         "scenario_id": "scenario.shared-mobility-accident.shared-mobility-cause-private-facility",
@@ -1504,7 +1543,7 @@
             "heading_ko": "가족관계도에 예외 사유를 표시한다",
             "paragraphs_ko": [
               "가족관계증명서와 제적등본을 바탕으로 사망 당시의 배우자·자녀·부모·형제자매를 적고, 피상속인보다 먼저 사망한 사람과 입양관계를 표시합니다.",
-              "대습상속, 상속결격, 상속포기 같은 예외가 있으면 일반 순위만으로 결론낼 수 없습니다. 사실혼 배우자의 법적 지위도 법률상 배우자와 동일하다고 단정하지 말아야 합니다."
+              "대습상속, 상속결격, 상속포기와 2026년 도입된 상속권 상실선고가 있으면 일반 순위만으로 결론낼 수 없습니다. 사실혼 배우자의 법적 지위도 법률상 배우자와 동일하다고 단정하지 말아야 합니다."
             ]
           }
         ],
@@ -1651,7 +1690,7 @@
           {
             "heading_ko": "수리심판과 다음 상속인을 확인한다",
             "paragraphs_ko": [
-              "상속포기는 가정법원의 신고·수리 절차를 거치며, 수리되면 상속개시 때로 소급합니다. 수리 여부를 확인하기 전에 상속재산을 임의로 처분해서는 안 됩니다.",
+              "상속포기 효력은 가정법원의 수리심판이 고지되어야 발생하고, 발생하면 상속개시 때로 소급합니다. 신고 접수만 했다고 재산을 자유롭게 처분해서는 안 됩니다.",
               "포기자가 생기면 남은 공동상속인 또는 후순위 상속인의 지위가 달라질 수 있습니다. 배우자와 자녀의 전원·일부 포기 여부를 구분해 가족관계도를 다시 계산합니다."
             ]
           }
@@ -1950,6 +1989,529 @@
             "채권액",
             "상속재산 환가액",
             "변제 내역"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.move-before-deposit-refund",
+        "content_type": "procedure_evidence",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "move-before-deposit-refund",
+        "title_ko": "보증금을 못 받은 채 이사해야 한다면 무엇부터 확인해야 하나",
+        "one_line_answer_ko": "계약 종료와 미반환을 확인한 뒤 임차권등기명령을 신청하고, 권리 보전을 위해서는 신청 사실만이 아니라 등기 완료 시점과 전출ㆍ주택 인도 시점의 선후를 확인해야 합니다.",
+        "audience_situation_ko": "새집 이사일이 다가오는데 임대인이 보증금을 돌려주지 않은 경우",
+        "key_points_ko": [
+          "임차권등기명령은 임대차가 종료하고 보증금이 반환되지 않은 경우 신청할 수 있습니다.",
+          "신청과 임차권등기 완료는 같은 시점이 아닙니다.",
+          "기존 대항력과 우선변제권의 유지는 등기 완료와 전출ㆍ인도의 선후에 영향을 받습니다."
+        ],
+        "action_steps_ko": [
+          "계약 종료일과 해지·갱신거절 통지를 정리합니다.",
+          "미반환 보증금 액수와 반환 요구 기록을 확보합니다.",
+          "관할 법원에 임차권등기명령을 신청합니다.",
+          "등기사항증명서에서 임차권등기 완료를 확인한 뒤 전출·인도 시점을 정합니다."
+        ],
+        "facts_to_check_ko": [
+          "계약 종료일",
+          "미반환 보증금",
+          "신청일",
+          "임차권등기 완료일",
+          "전출일",
+          "주택 인도일",
+          "확정일자"
+        ],
+        "caution_ko": "등기 완료 전에 먼저 전출하거나 주택을 인도한 경우의 권리 상태는 시점별로 개별 검토해야 합니다.",
+        "search_intents_ko": [
+          "보증금 못 받고 이사",
+          "임차권등기명령 전출",
+          "보증금 미반환 이사 방법"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "신청할 수 있는 상태인지 먼저 확인합니다",
+            "paragraphs_ko": [
+              "임차권등기명령은 임대차가 끝났고 보증금이 반환되지 않은 경우에 신청할 수 있습니다. 계약 종료일과 미반환 금액이 출발점입니다.",
+              "계약이 아직 끝나지 않았거나 반환 범위에 다툼이 있다면 그 문제를 먼저 정리해야 신청 이유와 소명자료가 분명해집니다."
+            ]
+          },
+          {
+            "heading_ko": "신청과 등기 완료를 구분합니다",
+            "paragraphs_ko": [
+              "신청서를 냈다는 사실만으로 임차권등기가 완료되는 것은 아닙니다. 법이 기존 대항력과 우선변제권의 유지효과를 연결하는 시점은 임차권등기 완료 뒤입니다.",
+              "전출이나 주택 인도를 서두르기 전에 등기사항증명서로 완료 여부를 확인하고, 신청일·등기일·전출일·인도일을 시간순으로 보존합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.housing-lease-deposit.housing-lease-registration-application",
+          "rule.housing-lease-deposit.housing-lease-registration-completion-effect"
+        ],
+        "scenario_ids": [
+          "scenario.housing-lease-deposit.housing-lease-lease-ended",
+          "scenario.housing-lease-deposit.housing-lease-deposit-unpaid",
+          "scenario.housing-lease-deposit.housing-lease-registration-completed-before-move"
+        ],
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003-03"
+        ],
+        "hub_ids": [
+          "hub.housing-lease-deposit"
+        ],
+        "related_content_ids": [
+          "content.lease-registration-application-is-not-completion",
+          "content.lease-registration-order-requirements",
+          "content.rights-after-lease-registration"
+        ],
+        "concierge_entry": {
+          "question_ko": "보증금을 못 받은 채 이사해야 한다면 무엇부터 확인해야 하나",
+          "decision_facts_ko": [
+            "계약 종료일",
+            "미반환 보증금",
+            "신청일",
+            "임차권등기 완료일",
+            "전출일",
+            "주택 인도일",
+            "확정일자"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.lease-registration-application-is-not-completion",
+        "content_type": "misconception_correction",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "lease-registration-application-is-not-completion",
+        "title_ko": "임차권등기명령을 신청만 하면 바로 이사해도 되는 것은 아닙니다",
+        "one_line_answer_ko": "법이 대항력과 우선변제권 유지효과를 연결하는 시점은 임차권등기명령 신청일이 아니라 임차권등기 완료이므로 두 시점을 구분해야 합니다.",
+        "audience_situation_ko": "법원에 신청서를 냈으니 곧바로 전출해도 된다고 생각하는 경우",
+        "key_points_ko": [
+          "신청은 법원 절차의 시작입니다.",
+          "대항력과 우선변제권 유지효과는 임차권등기가 끝난 뒤의 효과로 규정됩니다.",
+          "전출ㆍ점유상실과 등기 완료의 날짜를 증빙으로 남겨야 합니다."
+        ],
+        "action_steps_ko": [
+          "법원 신청 접수일과 사건번호를 기록합니다.",
+          "결정문 송달 여부와 등기 진행 상태를 확인합니다.",
+          "등기사항증명서로 임차권등기 기입을 확인합니다.",
+          "확인 전에는 전출·열쇠 인도 시점을 신중히 정합니다."
+        ],
+        "facts_to_check_ko": [
+          "임차권등기명령 신청일",
+          "결정일",
+          "등기 완료일",
+          "전출일",
+          "열쇠 인도일"
+        ],
+        "caution_ko": "구체적인 등기 완료 여부는 등기사항증명서 등 객관적 자료로 확인해야 합니다.",
+        "search_intents_ko": [
+          "임차권등기 신청 후 이사",
+          "임차권등기 완료 전 전출",
+          "임차권등기명령 신청 효력"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "신청은 절차의 시작일 뿐입니다",
+            "paragraphs_ko": [
+              "임차권등기명령 신청은 법원에 등기를 명해 달라고 요청하는 단계입니다. 신청일과 결정일, 등기 완료일은 서로 다를 수 있습니다.",
+              "대항력과 우선변제권을 보전하려는 목적이라면 접수증만 보고 이사 시점을 정하지 말고 실제 등기 완료를 객관적 자료로 확인해야 합니다."
+            ]
+          },
+          {
+            "heading_ko": "권리 보전은 날짜의 선후가 좌우합니다",
+            "paragraphs_ko": [
+              "등기 완료 뒤 대항요건을 잃는 경우에는 이미 취득한 권리가 유지될 수 있지만, 등기 전에 먼저 전출하거나 점유를 잃은 경우까지 같은 결론이라고 단정할 수 없습니다.",
+              "등기 완료일, 전입 상태 변경일, 열쇠 인도일을 따로 기록하면 어느 시점에 어떤 요건을 갖췄는지 판단할 수 있습니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.housing-lease-deposit.housing-lease-registration-completion-effect"
+        ],
+        "scenario_ids": [
+          "scenario.housing-lease-deposit.housing-lease-registration-completed-before-move"
+        ],
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003-03"
+        ],
+        "hub_ids": [
+          "hub.housing-lease-deposit"
+        ],
+        "related_content_ids": [
+          "content.move-before-deposit-refund",
+          "content.rights-after-lease-registration"
+        ]
+      },
+      {
+        "content_id": "content.lease-registration-order-requirements",
+        "content_type": "fact_branch",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "lease-registration-order-requirements",
+        "title_ko": "임차권등기명령은 언제 신청할 수 있나",
+        "one_line_answer_ko": "임대차가 종료했고 보증금이 반환되지 않았다는 두 사실이 기본 출발점이며, 신청서에는 신청 이유와 등기 원인이 된 사실을 소명해야 합니다.",
+        "audience_situation_ko": "계약이 끝나기 전이거나 보증금 일부만 반환된 상태에서 신청 가능성을 확인하는 경우",
+        "key_points_ko": [
+          "계약 종료 여부를 먼저 확정합니다.",
+          "미반환 보증금의 액수와 반환 경위를 정리합니다.",
+          "임대차 목적물과 대항력ㆍ우선변제권 취득 사실을 소명할 자료를 준비합니다."
+        ],
+        "action_steps_ko": [
+          "계약서와 갱신·해지 통지로 종료일을 확정합니다.",
+          "보증금 지급액·반환액·미반환액을 계산합니다.",
+          "주택 인도·전입신고·확정일자 자료를 모읍니다.",
+          "신청 취지와 이유, 목적물과 권리 취득 사실을 소명자료와 연결합니다."
+        ],
+        "facts_to_check_ko": [
+          "계약서",
+          "갱신ㆍ해지 통지",
+          "보증금 지급 자료",
+          "반환 내역",
+          "주민등록",
+          "점유",
+          "확정일자"
+        ],
+        "caution_ko": "종료 여부나 미반환 금액에 다툼이 있으면 신청과 별도로 보증금 반환청구의 범위를 검토해야 합니다.",
+        "search_intents_ko": [
+          "임차권등기명령 신청 요건",
+          "계약 종료 전 임차권등기",
+          "보증금 일부 미반환 임차권등기"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "종료와 미반환이라는 두 요건부터 봅니다",
+            "paragraphs_ko": [
+              "주택임대차보호법 제3조의3은 임대차가 끝난 후 보증금이 반환되지 않은 경우를 신청의 출발점으로 정합니다.",
+              "계약 종료 여부는 기간 만료만이 아니라 갱신, 해지 통지, 합의 종료 등 구체적인 경위를 확인해야 하고 일부만 반환됐다면 미반환액을 특정해야 합니다."
+            ]
+          },
+          {
+            "heading_ko": "신청 이유를 자료로 소명합니다",
+            "paragraphs_ko": [
+              "신청서에는 신청 취지와 이유, 임차주택, 임차권등기의 원인이 된 사실을 적고 소명해야 합니다.",
+              "계약서, 보증금 지급자료, 종료 통지, 반환 요구, 주민등록과 점유, 확정일자 자료를 각 주장에 대응시켜 준비하면 누락을 줄일 수 있습니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.housing-lease-deposit.housing-lease-registration-application"
+        ],
+        "scenario_ids": [
+          "scenario.housing-lease-deposit.housing-lease-lease-ended",
+          "scenario.housing-lease-deposit.housing-lease-deposit-unpaid"
+        ],
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003-03"
+        ],
+        "hub_ids": [
+          "hub.housing-lease-deposit"
+        ],
+        "related_content_ids": [
+          "content.move-before-deposit-refund",
+          "content.lease-registration-application-is-not-completion"
+        ],
+        "concierge_entry": {
+          "question_ko": "임차권등기명령은 언제 신청할 수 있나",
+          "decision_facts_ko": [
+            "계약서",
+            "갱신ㆍ해지 통지",
+            "보증금 지급 자료",
+            "반환 내역",
+            "주민등록",
+            "점유",
+            "확정일자"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.rights-after-lease-registration",
+        "content_type": "doctrine_explainer",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "rights-after-lease-registration",
+        "title_ko": "임차권등기가 끝난 뒤 전출하면 기존 권리는 어떻게 되나",
+        "one_line_answer_ko": "임차권등기 전에 이미 취득한 대항력과 우선변제권은 등기 뒤 대항요건을 잃더라도 유지됩니다.",
+        "audience_situation_ko": "임차권등기를 마친 뒤 주민등록을 옮기거나 주택을 인도하려는 경우",
+        "key_points_ko": [
+          "기존 대항력 또는 우선변제권의 취득 여부와 순위를 먼저 확인합니다.",
+          "임차권등기 완료 뒤에는 대항요건을 잃더라도 이미 취득한 권리가 유지됩니다.",
+          "등기 전에 권리를 이미 상실한 경우까지 같은 결론이라고 단정할 수 없습니다."
+        ],
+        "action_steps_ko": [
+          "등기 전에 취득한 대항력과 우선변제권을 확인합니다.",
+          "임차권등기 완료일을 등기사항증명서로 확인합니다.",
+          "전출일과 주택 인도일을 기록합니다.",
+          "선순위 담보권과 압류 시점을 함께 대조합니다."
+        ],
+        "facts_to_check_ko": [
+          "주택 인도일",
+          "전입신고일",
+          "확정일자",
+          "임차권등기 완료일",
+          "전출일",
+          "점유상실일"
+        ],
+        "caution_ko": "권리가 유지된다는 말과 선순위 권리보다 우선한다는 말은 다릅니다. 실제 순위는 각 권리의 취득시점을 비교해야 합니다.",
+        "search_intents_ko": [
+          "임차권등기 후 전출 대항력",
+          "임차권등기 우선변제권 유지",
+          "임차권등기 완료 후 이사"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "이미 취득한 권리는 등기 뒤 유지될 수 있습니다",
+            "paragraphs_ko": [
+              "임차권등기를 마치기 전에 대항력이나 우선변제권을 이미 취득했다면, 등기 완료 뒤 주민등록이나 점유 요건을 잃더라도 그 권리는 유지됩니다.",
+              "이 제도는 보증금을 받지 못한 임차인이 이사해야 할 때 기존 권리를 보전하는 기능을 합니다."
+            ]
+          },
+          {
+            "heading_ko": "유지되는 권리와 실제 순위는 다릅니다",
+            "paragraphs_ko": [
+              "권리가 유지된다고 해서 선순위 담보권보다 앞서거나 보증금 전액을 회수한다는 뜻은 아닙니다.",
+              "주택 인도·전입신고·확정일자·임차권등기·선순위 권리의 각 날짜를 비교해 실제 순위와 회수 가능성을 별도로 판단해야 합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.housing-lease-deposit.housing-lease-opposability",
+          "rule.housing-lease-deposit.housing-lease-priority-repayment",
+          "rule.housing-lease-deposit.housing-lease-registration-completion-effect"
+        ],
+        "scenario_ids": [
+          "scenario.housing-lease-deposit.housing-lease-registration-completed-before-move",
+          "scenario.housing-lease-deposit.housing-lease-fixed-date"
+        ],
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003",
+          "coord.housing-lease-deposit.housing-lease-ko-0003-02",
+          "coord.housing-lease-deposit.housing-lease-ko-0003-03"
+        ],
+        "hub_ids": [
+          "hub.housing-lease-deposit"
+        ],
+        "related_content_ids": [
+          "content.housing-lease-opposability-basics",
+          "content.housing-lease-priority-repayment-basics",
+          "content.lease-registration-application-is-not-completion"
+        ]
+      },
+      {
+        "content_id": "content.housing-lease-opposability-basics",
+        "content_type": "doctrine_explainer",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "housing-lease-opposability-basics",
+        "title_ko": "전입신고만 하면 대항력이 생기는가",
+        "one_line_answer_ko": "일반 개인 임차인은 주민등록뿐 아니라 주택 인도도 갖추어야 하고, 두 요건을 마친 다음 날부터 제3자에 대한 효력이 생깁니다.",
+        "audience_situation_ko": "전입신고, 실제 입주, 대항력 발생시점을 혼동하는 경우",
+        "key_points_ko": [
+          "주택 인도와 주민등록을 모두 확인합니다.",
+          "전입신고를 한 때 주민등록이 된 것으로 봅니다.",
+          "제3자에 대한 효력은 요건을 모두 마친 다음 날 발생합니다."
+        ],
+        "action_steps_ko": [
+          "실제 주택 인도와 입주일을 확인합니다.",
+          "전입신고일과 주민등록 상태를 확인합니다.",
+          "두 요건을 모두 마친 다음 날을 대항력 기준일로 표시합니다.",
+          "그 전에 설정된 담보권과 압류를 등기부에서 확인합니다."
+        ],
+        "facts_to_check_ko": [
+          "실제 입주ㆍ인도일",
+          "전입신고일",
+          "주민등록 상태",
+          "등기부상 선순위 권리 시점"
+        ],
+        "caution_ko": "대항력이 있다는 사실만으로 확정일자에 따른 우선변제권까지 당연히 인정되는 것은 아닙니다.",
+        "search_intents_ko": [
+          "전입신고 대항력",
+          "주택 인도 주민등록 다음날",
+          "임차인 대항력 발생 시점"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "전입신고 하나만으로는 부족합니다",
+            "paragraphs_ko": [
+              "일반 개인 임차인의 대항력은 주택 인도와 주민등록을 모두 갖추어야 합니다. 전입신고를 하면 주민등록을 마친 것으로 봅니다.",
+              "실제 입주 없이 주소만 옮겼거나 입주했지만 전입신고를 하지 않은 경우에는 두 요건을 모두 충족했다고 보기 어렵습니다."
+            ]
+          },
+          {
+            "heading_ko": "효력은 두 요건을 마친 다음 날 생깁니다",
+            "paragraphs_ko": [
+              "제3자에 대한 효력은 인도와 주민등록 중 늦게 갖춘 요건을 기준으로 그 다음 날 발생합니다.",
+              "등기부상 담보권과 압류의 시점이 비슷하다면 시간 순서가 결론을 바꿀 수 있으므로 날짜를 정확히 대조해야 합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.housing-lease-deposit.housing-lease-opposability"
+        ],
+        "scenario_ids": [
+          "scenario.housing-lease-deposit.housing-lease-fixed-date"
+        ],
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003"
+        ],
+        "hub_ids": [
+          "hub.housing-lease-deposit"
+        ],
+        "related_content_ids": [
+          "content.housing-lease-priority-repayment-basics",
+          "content.rights-after-lease-registration"
+        ]
+      },
+      {
+        "content_id": "content.housing-lease-priority-repayment-basics",
+        "content_type": "doctrine_explainer",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "housing-lease-priority-repayment-basics",
+        "title_ko": "대항력과 우선변제권은 같은 권리인가",
+        "one_line_answer_ko": "같지 않습니다. 우선변제권은 대항요건에 더해 임대차계약증서상의 확정일자를 갖춰야 경매ㆍ공매 환가대금에서 우선변제를 주장할 수 있습니다.",
+        "audience_situation_ko": "전입신고를 했으니 경매에서 언제나 먼저 보증금을 받는다고 생각하는 경우",
+        "key_points_ko": [
+          "대항요건과 확정일자를 별도로 확인합니다.",
+          "우선변제권은 경매ㆍ공매 환가대금 배분에서 작동합니다.",
+          "실제 배당순위와 회수액은 선순위 권리와 환가대금에 따라 달라집니다."
+        ],
+        "action_steps_ko": [
+          "주택 인도일과 전입신고일을 확인합니다.",
+          "임대차계약서의 확정일자 취득일을 확인합니다.",
+          "선순위 담보권·압류·경매개시 시점을 정리합니다.",
+          "예상 환가대금과 우선순위를 바탕으로 회수 가능액을 검토합니다."
+        ],
+        "facts_to_check_ko": [
+          "주택 인도일",
+          "전입신고일",
+          "확정일자",
+          "선순위 담보권",
+          "압류ㆍ경매 시점",
+          "예상 환가대금"
+        ],
+        "caution_ko": "우선변제권은 보증금 전액 회수를 보장하는 제도가 아닙니다.",
+        "search_intents_ko": [
+          "대항력 우선변제권 차이",
+          "확정일자 우선변제권",
+          "전입신고 경매 보증금"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "대항력과 우선변제권은 작동하는 장면이 다릅니다",
+            "paragraphs_ko": [
+              "대항력은 일정 요건을 갖춘 임대차가 제3자에게 효력을 주장할 수 있게 하는 권리입니다.",
+              "우선변제권은 대항요건에 더해 계약증서상의 확정일자를 갖춘 임차인이 경매·공매 환가대금에서 후순위권리자보다 먼저 변제받을 수 있게 하는 권리입니다."
+            ]
+          },
+          {
+            "heading_ko": "우선변제권도 전액 회수를 보장하지 않습니다",
+            "paragraphs_ko": [
+              "선순위 담보권이나 조세채권 등이 있고 환가대금이 부족하면 보증금 전액을 받지 못할 수 있습니다.",
+              "인도·전입·확정일자와 선순위 권리의 취득시점을 한 표에 놓고 실제 배당순위를 판단해야 합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.housing-lease-deposit.housing-lease-priority-repayment"
+        ],
+        "scenario_ids": [
+          "scenario.housing-lease-deposit.housing-lease-fixed-date"
+        ],
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003",
+          "coord.housing-lease-deposit.housing-lease-ko-0003-02"
+        ],
+        "hub_ids": [
+          "hub.housing-lease-deposit"
+        ],
+        "related_content_ids": [
+          "content.housing-lease-opposability-basics",
+          "content.rights-after-lease-registration"
+        ]
+      },
+      {
+        "content_id": "content.renting-home-with-lease-registration",
+        "content_type": "procedure_evidence",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "renting-home-with-lease-registration",
+        "title_ko": "임차권등기가 있는 집을 새로 임차할 때 확인할 점",
+        "one_line_answer_ko": "임차권등기명령에 따른 등기가 끝난 뒤 새로 임차한 사람은 소액보증금 최우선변제 보호를 받을 수 없으므로 계약 전 등기사항과 기존 임차권을 확인해야 합니다.",
+        "audience_situation_ko": "등기부에 기존 임차권등기가 있는 주택을 새로 계약하려는 경우",
+        "key_points_ko": [
+          "등기의 원인이 임차권등기명령인지 확인합니다.",
+          "새 임대차계약 시점이 기존 임차권등기 완료 뒤인지 확인합니다.",
+          "소액보증금 최우선변제 제한을 계약 위험 판단에 반영합니다."
+        ],
+        "action_steps_ko": [
+          "계약 전에 최신 등기사항증명서를 발급합니다.",
+          "기존 임차권등기의 원인과 완료일을 확인합니다.",
+          "새 계약일·보증금과 선순위 권리를 비교합니다.",
+          "소액보증금 최우선변제 제한을 반영해 계약 여부와 보증 방안을 판단합니다."
+        ],
+        "facts_to_check_ko": [
+          "등기사항증명서",
+          "임차권등기 원인",
+          "등기 완료일",
+          "새 계약일",
+          "보증금",
+          "선순위 권리"
+        ],
+        "caution_ko": "최우선변제 제한 외에도 기존 임차권과 담보권을 포함한 전체 권리순위를 확인해야 합니다.",
+        "search_intents_ko": [
+          "임차권등기 있는 집 계약",
+          "임차권등기 후 새 임차인",
+          "임차권등기 소액보증금 최우선변제"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "기존 임차권등기가 있으면 계약 위험이 달라집니다",
+            "paragraphs_ko": [
+              "임차권등기명령에 따른 등기가 끝난 주택을 그 이후 새로 임차한 사람은 주택임대차보호법 제8조의 소액보증금 우선변제를 받을 수 없습니다.",
+              "보증금이 소액이라는 이유만으로 최우선변제 보호를 기대해서는 안 되며, 기존 등기의 원인과 시점을 먼저 확인해야 합니다."
+            ]
+          },
+          {
+            "heading_ko": "전체 권리순위를 함께 확인합니다",
+            "paragraphs_ko": [
+              "최우선변제 제한만이 위험의 전부는 아닙니다. 기존 임차권, 근저당권, 압류와 새 임대차의 순위를 함께 봐야 합니다.",
+              "계약 전 최신 등기부, 기존 등기 완료일, 새 계약일과 보증금, 보증보험 가능 여부를 확인해 회수 위험을 판단합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.housing-lease-deposit.housing-lease-later-tenant-small-deposit"
+        ],
+        "scenario_ids": [],
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003-03"
+        ],
+        "hub_ids": [
+          "hub.housing-lease-deposit"
+        ],
+        "related_content_ids": [
+          "content.housing-lease-opposability-basics",
+          "content.housing-lease-priority-repayment-basics"
+        ],
+        "concierge_entry": {
+          "question_ko": "임차권등기가 있는 집을 새로 임차할 때 확인할 점",
+          "decision_facts_ko": [
+            "등기사항증명서",
+            "임차권등기 원인",
+            "등기 완료일",
+            "새 계약일",
+            "보증금",
+            "선순위 권리"
           ],
           "href": "https://liale-review.lolphysical.xyz"
         }
@@ -2297,9 +2859,9 @@
             ]
           },
           {
-            "heading_ko": "전자 형식의 별도 근거와 이미 한 이행을 확인한다",
+            "heading_ko": "영업·사업 전자문서 예외와 이미 한 이행을 확인한다",
             "paragraphs_ko": [
-              "현재 연결 근거는 민법 제428조의2가 정한 일반 원칙입니다. 사업상 전자문서 등 다른 법령이 적용될 가능성이 있다면 그 근거를 별도로 확인하기 전에는 효력을 단정하지 않습니다.",
+              "전자문서법은 보증인이 자기의 영업 또는 사업으로 작성한 보증의사가 표시된 전자문서를 일정한 경우 민법상 서면으로 보는 예외를 둡니다. 일반 개인의 메신저 약속에 곧바로 적용되는 예외는 아닙니다.",
               "보증인이 이미 보증채무를 이행한 경우에는 이행한 한도에서 방식 하자를 이유로 무효를 주장하기 어려울 수 있으므로 지급액과 경위를 확인합니다."
             ]
           }
@@ -2647,6 +3209,21 @@
           "content.limited-acceptance-effect",
           "content.special-limited-acceptance-late-debt",
           "content.limited-acceptance-creditor-notice"
+        ]
+      },
+      {
+        "hub_id": "hub.housing-lease-deposit",
+        "slug": "housing-lease-deposit",
+        "title_ko": "주택임대차와 보증금 반환",
+        "description_ko": "대항력과 우선변제권부터 임차권등기명령, 이사 시점, 경매ㆍ배당, 등기 말소까지 보증금 회수의 판단 순서를 연결합니다.",
+        "content_ids": [
+          "content.move-before-deposit-refund",
+          "content.lease-registration-application-is-not-completion",
+          "content.lease-registration-order-requirements",
+          "content.rights-after-lease-registration",
+          "content.housing-lease-opposability-basics",
+          "content.housing-lease-priority-repayment-basics",
+          "content.renting-home-with-lease-registration"
         ]
       },
       {
