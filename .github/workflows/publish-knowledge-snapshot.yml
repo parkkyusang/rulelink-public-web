@@ -1,0 +1,57 @@
+name: 공개 지식 불변 출판본 생성
+
+on:
+  push:
+    branches:
+      - codex/publish-65-20260721-v2
+    paths:
+      - "artifacts/publication/topics/**"
+      - ".github/workflows/publish-knowledge-snapshot.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-knowledge-snapshot-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 저장소 받기
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - name: 노드 준비
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: 주제 원본을 현재본과 불변본으로 조립
+        run: >-
+          node web/rulelink_public_next/scripts/compose-publication-knowledge.mjs
+          --write
+          --snapshot-id kr-knowledge-core-20260721-013
+          --built-at 2026-07-21T11:10:00.000Z
+          --source-snapshot-id multi-source:f598143080493bf6e41caeaf53c228b8
+      - name: 공개 현황 자동 동기화
+        run: node web/rulelink_public_next/scripts/sync-readme-publication-status.mjs --write
+      - name: 생성 결과 검증
+        working-directory: web/rulelink_public_next
+        env:
+          RULELINK_VALIDATION_NOW: 2026-07-21T11:15:00.000Z
+        run: |
+          npm run validate:publication-composition
+          npm run validate:publication-history
+          npm run validate-publication
+          npm run validate:readme-publication
+      - name: 불변 출판본 고정
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add artifacts/publication/current/bundle.json
+          git add artifacts/publication/snapshots/kr-knowledge-core-20260721-013/bundle.json
+          git add README.md
+          git commit -m "65개 생활법률 공개본과 상태 영수증 생성"
+          git push origin HEAD:${{ github.ref_name }}
