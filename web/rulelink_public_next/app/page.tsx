@@ -1,5 +1,6 @@
 import {IssueExplorer} from '@/components/issue-explorer';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
+import {selectHomepageKnowledge} from '@/lib/homepage-knowledge-selection';
 import {
   listChangeBriefs,
   listKnowledgeEntries,
@@ -21,6 +22,7 @@ export default async function HomePage() {
     listKnowledgeEntries(),
     listKnowledgeHubs(),
   ]);
+  const homepageKnowledgeEntries = selectHomepageKnowledge(knowledgeEntries, 6);
   return (
     <main>
       <section className="hero">
@@ -88,12 +90,12 @@ export default async function HomePage() {
         <section className="knowledgeHome" id="knowledge" aria-labelledby="knowledge-heading">
           <div className="changeIntro">
             <div>
-              <p className="eyebrow">연결된 법률지식</p>
-              <h2 id="knowledge-heading">법리에서 사실분기까지 이어서 봅니다.</h2>
+              <p className="eyebrow">최근 기준 확인</p>
+              <h2 id="knowledge-heading">새로 검토한 지식을 여러 주제에서 골라 보여드립니다.</h2>
             </div>
             <p>
-              한 번 쓴 글이 아니라, 같은 법리와 판단 사실을 여러 상황에서 다시 쓸 수 있게 연결한 지식입니다.
-              <br /><a className="cardLink" href="/ko/knowledge">전체 지식에서 검색하기 →</a>
+              같은 주제의 글만 이어지지 않도록 최근 기준 확인일과 주제의 폭을 함께 반영합니다.
+              <br /><a className="cardLink" href="/ko/knowledge">{knowledgeEntries.length}개 전체 지식에서 검색하기 →</a>
             </p>
           </div>
           {knowledgeHubs.length ? (
@@ -106,9 +108,13 @@ export default async function HomePage() {
             </div>
           ) : null}
           <div className="knowledgeGrid">
-            {knowledgeEntries.slice(0, 6).map(entry => (
+            {homepageKnowledgeEntries.map(entry => (
               <a className="knowledgeCard" href={`/ko/knowledge/${entry.slug}`} key={entry.content_id}>
-                <span className="knowledgeMeta"><b>{knowledgeContentTypeLabel(entry.content_type)}</b>{entry.audience_situation_ko}</span>
+                <span className="knowledgeMeta">
+                  <b>{knowledgeContentTypeLabel(entry.content_type)}</b>
+                  <time dateTime={entry.reviewed_at}>기준 확인 {formatReviewDate(entry.reviewed_at)}</time>
+                  <span>{entry.audience_situation_ko}</span>
+                </span>
                 <h3>{entry.title_ko}</h3>
                 <p>{entry.one_line_answer_ko}</p>
                 <strong>법리와 사실분기 보기 →</strong>
@@ -143,6 +149,10 @@ export default async function HomePage() {
       ) : null}
     </main>
   );
+}
+
+function formatReviewDate(value: string): string {
+  return new Intl.DateTimeFormat('ko-KR', {dateStyle: 'medium'}).format(new Date(value));
 }
 
 function formatLegalDate(value: string): string {
