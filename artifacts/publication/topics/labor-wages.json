@@ -1,0 +1,538 @@
+{
+  "schema": "rulelink_public_knowledge_topic_v1",
+  "topic_id": "hub.labor-wages",
+  "sources": [
+    {
+      "coordinate_id": "coord.labor-wages.labor-standards-ko-0036",
+      "source_id": "labor_standards_ko_0036",
+      "law_name_ko": "근로기준법",
+      "article_no": "제36조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C36%EC%A1%B0",
+      "source_snapshot_id": "snapshot:1a407952c492676358a540b100de3c04",
+      "last_verified_at": "2026-07-21T08:15:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.labor-wages.retirement-benefit-ko-0008",
+      "source_id": "retirement_benefit_ko_0008",
+      "law_name_ko": "근로자퇴직급여 보장법",
+      "article_no": "제8조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EC%9E%90%ED%87%B4%EC%A7%81%EA%B8%89%EC%97%AC%20%EB%B3%B4%EC%9E%A5%EB%B2%95/%EC%A0%9C8%EC%A1%B0",
+      "source_snapshot_id": "snapshot:778d57ede7f6e774d5d4a9206391d2b4",
+      "last_verified_at": "2026-07-21T08:15:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.labor-wages.retirement-benefit-ko-0009",
+      "source_id": "retirement_benefit_ko_0009",
+      "law_name_ko": "근로자퇴직급여 보장법",
+      "article_no": "제9조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EC%9E%90%ED%87%B4%EC%A7%81%EA%B8%89%EC%97%AC%20%EB%B3%B4%EC%9E%A5%EB%B2%95/%EC%A0%9C9%EC%A1%B0",
+      "source_snapshot_id": "snapshot:bf9fc59ae5f5fdabbdbcadd2b3cbe8ff",
+      "last_verified_at": "2026-07-21T08:15:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.labor-wages.labor-standards-ko-0027",
+      "source_id": "labor_standards_ko_0027",
+      "law_name_ko": "근로기준법",
+      "article_no": "제27조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C27%EC%A1%B0",
+      "source_snapshot_id": "snapshot:29e68bc810d31e8a9a2e824bb85c98bd",
+      "last_verified_at": "2026-07-21T08:15:00+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.labor-wages",
+      "slug": "labor-wages",
+      "title_ko": "노동·임금",
+      "description_ko": "계약 명칭보다 실제 일한 방식, 퇴직 정산기한, 해고 통지와 구제기한을 사실관계별로 판단하도록 돕는다.",
+      "content_ids": [
+        "content.final-wages-after-retirement-14-days",
+        "content.verbal-delay-agreement-after-retirement",
+        "content.retirement-pay-basic-formula",
+        "content.retirement-pay-payment-deadline",
+        "content.verbal-dismissal-written-notice"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.labor-wages.rule-money-14days",
+      "title_ko": "퇴직 후 임금·금품은 원칙적으로 14일 이내 지급",
+      "proposition_ko": "근로자가 퇴직하면 사용자는 특별한 사정에 관한 당사자 합의가 없는 한 임금·보상금 등 금품을 14일 이내 지급해야 한다.",
+      "norm": {
+        "actor_ko": "퇴직한 근로자와 임금·보상금 등 금품을 지급할 사용자",
+        "conditions_ko": "근로관계가 종료되어 임금·보상금 등 금품의 지급사유가 발생한 경우",
+        "legal_effect_ko": "근로자가 퇴직하면 사용자는 특별한 사정에 관한 당사자 합의가 없는 한 임금·보상금 등 금품을 14일 이내 지급해야 한다."
+      },
+      "source_coordinate_ids": [
+        "coord.labor-wages.labor-standards-ko-0036"
+      ]
+    },
+    {
+      "rule_id": "rule.labor-wages.rule-retirement-14days",
+      "title_ko": "퇴직금도 원칙적으로 14일 이내 지급",
+      "proposition_ko": "퇴직급여도 원칙적으로 퇴직일부터 14일 이내 지급하며 특별한 사정이 있으면 당사자 합의로 기일을 연장할 수 있다.",
+      "norm": {
+        "actor_ko": "퇴직급여를 지급할 사용자와 퇴직 근로자",
+        "conditions_ko": "근로자가 퇴직하여 퇴직금 지급사유가 발생한 경우",
+        "legal_effect_ko": "퇴직급여도 원칙적으로 퇴직일부터 14일 이내 지급하며 특별한 사정이 있으면 당사자 합의로 기일을 연장할 수 있다."
+      },
+      "source_coordinate_ids": [
+        "coord.labor-wages.retirement-benefit-ko-0008",
+        "coord.labor-wages.retirement-benefit-ko-0009"
+      ]
+    },
+    {
+      "rule_id": "rule.labor-wages.rule-retirement-base",
+      "title_ko": "퇴직금 기본액은 1년당 30일분 이상의 평균임금",
+      "proposition_ko": "퇴직금 제도의 기본 출발점은 계속근로 1년에 대하여 30일분 이상의 평균임금이다.",
+      "norm": {
+        "actor_ko": "퇴직금제도를 설정한 사용자와 계속근로한 퇴직 근로자",
+        "conditions_ko": "퇴직금제도의 적용대상 근로자가 1년 이상의 계속근로기간을 마치고 퇴직한 경우",
+        "legal_effect_ko": "퇴직금 제도의 기본 출발점은 계속근로 1년에 대하여 30일분 이상의 평균임금이다."
+      },
+      "source_coordinate_ids": [
+        "coord.labor-wages.retirement-benefit-ko-0008",
+        "coord.labor-wages.retirement-benefit-ko-0009"
+      ]
+    },
+    {
+      "rule_id": "rule.labor-wages.rule-written-dismissal",
+      "title_ko": "해고사유와 해고시기는 서면으로 통지",
+      "proposition_ko": "해고는 해고사유와 해고시기를 서면으로 통지해야 효력이 있다.",
+      "norm": {
+        "actor_ko": "근로자를 해고하려는 사용자와 해고 통지를 받는 근로자",
+        "conditions_ko": "사용자가 근로관계를 일방적으로 종료하는 해고를 하려는 경우",
+        "legal_effect_ko": "해고는 해고사유와 해고시기를 서면으로 통지해야 효력이 있다."
+      },
+      "source_coordinate_ids": [
+        "coord.labor-wages.labor-standards-ko-0027"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.labor-wages.sc-unpaid-after-exit",
+      "question_ko": "퇴직일부터 14일이 지났는데 지급되지 않은 임금·수당·그 밖의 금품이 남아 있나요?",
+      "decision_fact_ko": "정확한 퇴직일, 지급기일 연장 합의와 14일 안에 지급되지 않은 금품의 항목·금액",
+      "when_true_ko": "미지급 항목과 금액을 특정해 지급을 요구하고 요청·답변·일부 지급 기록을 보존합니다.",
+      "when_false_ko": "14일 전이거나 전액 지급됐다면 정산표에서 누락된 임금·수당·그 밖의 금품이 없는지 확인합니다.",
+      "rule_ids": [
+        "rule.labor-wages.rule-money-14days"
+      ],
+      "source_coordinate_ids": [
+        "coord.labor-wages.labor-standards-ko-0036"
+      ]
+    },
+    {
+      "scenario_id": "scenario.labor-wages.sc-verbal-extension",
+      "question_ko": "회사의 지급기일 연장 요청에 대상 금액과 새 지급일을 특정해 동의했나요?",
+      "decision_fact_ko": "특별한 사정, 근로자의 명시적 동의, 연장 대상 금액과 새 지급일",
+      "when_true_ko": "합의한 범위와 새 지급일을 문서화하고 그 기한의 지급 여부를 확인합니다.",
+      "when_false_ko": "사용자의 일방 통보나 근로자의 단순 확인만으로 기한이 연장됐다고 단정하지 않고 원래의 14일 기준을 확인합니다.",
+      "rule_ids": [
+        "rule.labor-wages.rule-money-14days",
+        "rule.labor-wages.rule-retirement-14days"
+      ],
+      "source_coordinate_ids": [
+        "coord.labor-wages.labor-standards-ko-0036",
+        "coord.labor-wages.retirement-benefit-ko-0008",
+        "coord.labor-wages.retirement-benefit-ko-0009"
+      ]
+    },
+    {
+      "scenario_id": "scenario.labor-wages.sc-verbal-dismissal",
+      "question_ko": "해고사유와 해고시기가 적힌 서면을 받았나요?",
+      "decision_fact_ko": "해고사유·해고시기가 적힌 문서의 존재, 전달형식과 실제 근로관계 종료 조치",
+      "when_true_ko": "서면의 내용·전달형식과 해고사유의 정당성을 별개 쟁점으로 나누어 검토합니다.",
+      "when_false_ko": "전화·구두 통보만 있었다면 서면통지 없는 해고의 효력 문제를 우선 확인합니다.",
+      "rule_ids": [
+        "rule.labor-wages.rule-written-dismissal"
+      ],
+      "source_coordinate_ids": [
+        "coord.labor-wages.labor-standards-ko-0027"
+      ]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.final-wages-after-retirement-14-days",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "final-wages-after-retirement-14-days",
+      "title_ko": "퇴직한 뒤 임금은 언제까지 받아야 하나",
+      "one_line_answer_ko": "원칙적으로 퇴직일부터 14일 이내이며, 특별한 사정이 있고 당사자가 지급기일 연장에 합의한 경우는 달라질 수 있다.",
+      "audience_situation_ko": "회사를 그만두면 남은 급여와 수당은 언제까지 지급돼야 하나?",
+      "key_points_ko": [
+        "정산 대상은 임금뿐 아니라 보상금과 그 밖의 금품을 포함할 수 있다.",
+        "14일은 회사의 급여일과 별도로 작동하는 법정 기준이다.",
+        "연장에는 특별한 사정과 당사자 합의가 요구된다."
+      ],
+      "action_steps_ko": [
+        "마지막 근무일과 근로관계 종료일을 확정한다.",
+        "기본급·수당·그 밖의 미정산 금품을 항목별로 계산한다.",
+        "지급기일 연장 합의가 있는지와 범위를 확인한다.",
+        "14일 경과 전후의 지급요청과 회사 답변을 기록으로 남긴다."
+      ],
+      "facts_to_check_ko": [
+        "정확한 퇴직일",
+        "미지급 기본급",
+        "연장·야간·휴일수당",
+        "미사용 연차 관련 금품",
+        "지급기일 연장 합의 존재",
+        "합의의 내용과 기간",
+        "일부 지급 내역"
+      ],
+      "caution_ko": "어떤 금품이 임금인지, 퇴직일이 언제인지에 다툼이 있으면 계산 출발점도 달라진다.",
+      "search_intents_ko": [
+        "퇴직 후 임금 14일",
+        "퇴사 미지급 급여 지급기한",
+        "퇴직 금품청산"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "정기 급여일과 별도로 14일 기준을 본다",
+          "paragraphs_ko": [
+            "퇴직한 근로자에게 지급할 임금·보상금과 그 밖의 금품은 원칙적으로 지급사유가 발생한 때부터 14일 이내에 청산해야 합니다. 회사의 다음 정기 급여일이 더 늦다는 사정만으로 기한이 자동 연장되지는 않습니다.",
+            "계산의 출발점이 되는 퇴직일과 정산 대상 금액부터 확정해야 합니다. 미지급 기본급, 연장·야간·휴일근로수당 등 항목별 발생 근거와 일부 지급 내역을 나눠 봅니다."
+          ]
+        },
+        {
+          "heading_ko": "연장 합의는 존재와 범위를 따로 확인한다",
+          "paragraphs_ko": [
+            "특별한 사정이 있는 경우 당사자 합의로 지급기일을 연장할 수 있으므로, 합의가 있었는지뿐 아니라 어떤 금액을 언제까지 지급하기로 했는지를 확인해야 합니다.",
+            "회사의 자금사정 통보, 근로자의 침묵, 명시적인 동의는 같은 것이 아닙니다. 문자·메신저·전자우편과 정산표를 보존해 합의의 존재와 범위를 구분합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.labor-wages.rule-money-14days"
+      ],
+      "scenario_ids": [
+        "scenario.labor-wages.sc-unpaid-after-exit",
+        "scenario.labor-wages.sc-verbal-extension"
+      ],
+      "source_coordinate_ids": [
+        "coord.labor-wages.labor-standards-ko-0036",
+        "coord.labor-wages.retirement-benefit-ko-0008",
+        "coord.labor-wages.retirement-benefit-ko-0009"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "related_content_ids": [
+        "content.verbal-delay-agreement-after-retirement",
+        "content.retirement-pay-payment-deadline",
+        "content.retirement-pay-basic-formula"
+      ]
+    },
+    {
+      "content_id": "content.verbal-delay-agreement-after-retirement",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "verbal-delay-agreement-after-retirement",
+      "title_ko": "회사가 14일 뒤에 주겠다고 말하면 지급기일이 자동 연장되나",
+      "one_line_answer_ko": "회사의 일방 통보만으로 자동 연장되는 것은 아니며 특별한 사정과 당사자 사이의 합의 여부를 확인해야 한다.",
+      "audience_situation_ko": "회사가 자금 사정 때문에 늦게 준다고 통보하면 기다려야 하나?",
+      "key_points_ko": [
+        "일방 통보와 쌍방 합의는 구별해야 한다.",
+        "합의했다면 대상 금액과 새 지급일이 무엇인지 확인해야 한다.",
+        "대화 기록은 합의의 존재와 범위를 가르는 자료가 된다."
+      ],
+      "action_steps_ko": [
+        "회사의 연장 요청 원문과 제시 사유를 보존한다.",
+        "동의 여부와 동의한 금액·기한을 구분해 기록한다.",
+        "새 지급일과 분할지급 조건을 명확한 문서로 확인한다.",
+        "합의하지 않았다면 일방 통보와 자신의 답변을 함께 남긴다."
+      ],
+      "facts_to_check_ko": [
+        "회사가 제시한 연장 사유",
+        "근로자가 명시적으로 동의했는지",
+        "새 지급일을 정했는지",
+        "연장 대상 금액",
+        "서면·메신저 기록",
+        "일부 지급 여부",
+        "압박이나 오인이 있었는지"
+      ],
+      "caution_ko": "구체적 합의의 유효성과 범위는 대화 내용 및 체결 경위에 따라 달라질 수 있다.",
+      "search_intents_ko": [
+        "퇴직금 지급 연장 합의",
+        "임금 14일 회사 일방 통보",
+        "퇴사 급여 늦게 지급 동의"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "회사의 통보와 당사자 합의는 다르다",
+          "paragraphs_ko": [
+            "회사가 자금 사정이나 내부 정산일을 이유로 늦게 지급하겠다고 알린 것만으로 법정 지급기일이 자동 연장되는 것은 아닙니다. 특별한 사정과 당사자 사이의 합의 여부가 핵심입니다.",
+            "근로자가 답하지 않았거나 단순히 통보를 확인했다는 사정만으로 특정한 연장 합의가 성립했다고 단정하기 어렵습니다. 실제 대화 내용과 체결 경위를 그대로 보존해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "합의했다면 금액과 새 지급일을 특정한다",
+          "paragraphs_ko": [
+            "연장 합의가 있더라도 임금 전부인지 퇴직급여만인지, 일시금인지 분할지급인지, 최종 지급일이 언제인지가 불명확하면 다시 분쟁이 생깁니다.",
+            "금액별 지급표와 새 기일을 문서로 남기고 이미 일부 지급된 금액도 따로 표시합니다. 합의의 유효성은 압박·오인 등 구체적 체결 경위에 따라 달라질 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.labor-wages.rule-money-14days",
+        "rule.labor-wages.rule-retirement-14days"
+      ],
+      "scenario_ids": [
+        "scenario.labor-wages.sc-verbal-extension"
+      ],
+      "source_coordinate_ids": [
+        "coord.labor-wages.labor-standards-ko-0036",
+        "coord.labor-wages.retirement-benefit-ko-0008",
+        "coord.labor-wages.retirement-benefit-ko-0009"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "related_content_ids": [
+        "content.final-wages-after-retirement-14-days",
+        "content.retirement-pay-payment-deadline"
+      ],
+      "concierge_entry": {
+        "question_ko": "회사가 14일 뒤에 주겠다고 말하면 지급기일이 자동 연장되나",
+        "decision_facts_ko": [
+          "회사가 제시한 연장 사유",
+          "근로자가 명시적으로 동의했는지",
+          "새 지급일을 정했는지",
+          "연장 대상 금액",
+          "서면·메신저 기록",
+          "일부 지급 여부",
+          "압박이나 오인이 있었는지"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.retirement-pay-basic-formula",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "retirement-pay-basic-formula",
+      "title_ko": "퇴직금 계산의 기본 출발점",
+      "one_line_answer_ko": "기본 출발점은 계속근로 1년에 대해 30일분 이상의 평균임금이며, 적용대상과 계속근로기간·평균임금 산정자료를 먼저 확정해야 한다.",
+      "audience_situation_ko": "퇴직금은 어떤 기준으로 계산하나?",
+      "key_points_ko": [
+        "단순히 마지막 월급에 근속연수를 곱하는 계산과 다를 수 있다.",
+        "계속근로기간의 시작과 종료가 중요하다.",
+        "평균임금에 포함되는 임금 항목과 산정기간을 확인해야 한다."
+      ],
+      "action_steps_ko": [
+        "입사일·퇴직일과 근무 단절 여부를 확인한다.",
+        "적용대상 여부와 퇴직급여 제도 유형을 먼저 확인한다.",
+        "평균임금 산정에 필요한 임금자료와 기간을 모은다.",
+        "단순 계산값과 실제 지급액의 차이를 항목별로 검토한다."
+      ],
+      "facts_to_check_ko": [
+        "입사일과 퇴직일",
+        "휴직·단절 기간",
+        "최근 임금명세",
+        "정기상여금",
+        "수당의 지급주기",
+        "평균임금 산정기간의 특이사항",
+        "적용제외 가능성"
+      ],
+      "caution_ko": "1년 미만 계속근로 또는 단시간 근로 등 적용범위 쟁점은 현행 조문과 DB 대조 후 별도 분기해야 한다.",
+      "search_intents_ko": [
+        "퇴직금 계산 방법",
+        "퇴직금 평균임금 30일",
+        "계속근로기간 퇴직금"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "기본식보다 먼저 적용대상을 확인한다",
+          "paragraphs_ko": [
+            "퇴직금 제도의 기본 출발점은 계속근로 1년에 대해 30일분 이상의 평균임금입니다. 다만 실제 계산에 앞서 해당 근로관계가 퇴직급여 제도의 적용대상인지, 계속근로기간이 어떻게 이어졌는지를 확인해야 합니다.",
+            "계약을 반복 갱신했거나 휴직·공백이 있었다면 문서상 계약기간만 보고 단절을 단정하지 말고 실제 근로관계의 계속성을 살펴봅니다."
+          ]
+        },
+        {
+          "heading_ko": "평균임금에 들어가는 자료를 확정한다",
+          "paragraphs_ko": [
+            "마지막 월급에 근속연수를 단순히 곱하는 방식과 법정 계산은 다를 수 있습니다. 평균임금 산정기간과 그 기간에 지급된 임금 항목, 정기상여금과 각종 수당의 성격을 확인해야 합니다.",
+            "산정기간에 휴업·휴직 등 특이사항이 있거나 평균임금이 통상적인 생활임금을 지나치게 낮게 반영하는 경우에는 별도 규율이 문제될 수 있으므로 원자료를 보존합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.labor-wages.rule-retirement-base"
+      ],
+      "scenario_ids": [],
+      "source_coordinate_ids": [
+        "coord.labor-wages.retirement-benefit-ko-0008",
+        "coord.labor-wages.retirement-benefit-ko-0009"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "related_content_ids": [
+        "content.retirement-pay-payment-deadline",
+        "content.final-wages-after-retirement-14-days"
+      ]
+    },
+    {
+      "content_id": "content.retirement-pay-payment-deadline",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "retirement-pay-payment-deadline",
+      "title_ko": "퇴직금도 퇴직 후 14일 안에 지급해야 하나",
+      "one_line_answer_ko": "퇴직급여도 원칙적으로 퇴직일부터 14일 이내 지급 대상이며 특별한 사정이 있는 경우 당사자 합의로 기일을 연장할 수 있다.",
+      "audience_situation_ko": "퇴직금 지급일도 다음 급여일까지 기다려야 하나?",
+      "key_points_ko": [
+        "임금 정산과 퇴직급여는 근거법이 다르지만 모두 14일 원칙을 둔다.",
+        "기한 계산에는 퇴직일 확정이 선행돼야 한다.",
+        "연장 합의가 있다면 새 지급일과 범위를 증거로 남기는 편이 안전하다."
+      ],
+      "action_steps_ko": [
+        "퇴직일과 14일째 되는 날을 달력에 표시한다.",
+        "퇴직급여 제도 유형과 예상 산정액을 확인한다.",
+        "연장 합의가 있다면 새 지급일과 범위를 문서로 남긴다.",
+        "실제 지급일·지급액과 미지급 잔액을 대조한다."
+      ],
+      "facts_to_check_ko": [
+        "퇴직일",
+        "퇴직급여 제도 유형",
+        "퇴직금 산정액",
+        "지급 예정일 안내",
+        "연장 합의 유무",
+        "합의된 새 지급일",
+        "중간정산 이력"
+      ],
+      "caution_ko": "퇴직연금 유형과 지급청구 절차에 따라 실제 수령 절차가 달라질 수 있다.",
+      "search_intents_ko": [
+        "퇴직금 14일 지급",
+        "퇴직금 지급기한",
+        "퇴직연금 퇴사 후 언제"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "퇴직급여에도 원칙적인 14일 기한이 있다",
+          "paragraphs_ko": [
+            "퇴직급여는 일반 임금 정산과 근거법은 다르지만, 퇴직일부터 14일 이내 지급이라는 원칙을 둡니다. 다음 급여일이나 회사의 내부 정산일만을 기준으로 기다릴 문제는 아닙니다.",
+            "기한을 계산하려면 먼저 퇴직일을 확정해야 합니다. 사직서상 날짜, 실제 마지막 근무일, 회사가 처리한 퇴직일이 다르면 그 차이를 정리합니다."
+          ]
+        },
+        {
+          "heading_ko": "제도 유형과 지급 절차를 함께 본다",
+          "paragraphs_ko": [
+            "퇴직금제도인지 퇴직연금제도인지에 따라 실제 지급과 청구 절차가 달라질 수 있습니다. 가입 금융기관, 계좌, 회사의 지급 지시 등 필요한 절차를 확인합니다.",
+            "특별한 사정으로 기일을 연장하기로 합의했다면 새 지급일과 대상 금액을 기록으로 남깁니다. 일부만 지급되었다면 미지급 잔액과 지급일을 분리해 관리합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.labor-wages.rule-retirement-14days"
+      ],
+      "scenario_ids": [
+        "scenario.labor-wages.sc-verbal-extension"
+      ],
+      "source_coordinate_ids": [
+        "coord.labor-wages.retirement-benefit-ko-0008",
+        "coord.labor-wages.retirement-benefit-ko-0009",
+        "coord.labor-wages.labor-standards-ko-0036"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "related_content_ids": [
+        "content.retirement-pay-basic-formula",
+        "content.final-wages-after-retirement-14-days",
+        "content.verbal-delay-agreement-after-retirement"
+      ],
+      "concierge_entry": {
+        "question_ko": "퇴직금도 퇴직 후 14일 안에 지급해야 하나",
+        "decision_facts_ko": [
+          "퇴직일",
+          "퇴직급여 제도 유형",
+          "퇴직금 산정액",
+          "지급 예정일 안내",
+          "연장 합의 유무",
+          "합의된 새 지급일",
+          "중간정산 이력"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.verbal-dismissal-written-notice",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "verbal-dismissal-written-notice",
+      "title_ko": "전화나 말로 해고 통보하면 효력이 있나",
+      "one_line_answer_ko": "해고사유와 해고시기를 서면으로 통지해야 해고의 효력이 있으므로 말이나 전화 통보만 있었다면 서면통지 여부를 우선 확인해야 한다.",
+      "audience_situation_ko": "사장이 전화로 내일부터 나오지 말라고 했는데 해고된 것인가?",
+      "key_points_ko": [
+        "서면통지는 단순한 증거 문제가 아니라 해고 효력과 연결된다.",
+        "메신저 통지가 서면 요건을 충족하는지는 내용과 전달형식 등을 구체적으로 살펴야 한다.",
+        "사직 권고와 해고는 구별해야 한다."
+      ],
+      "action_steps_ko": [
+        "전화·대면 통보의 날짜와 정확한 말을 즉시 기록한다.",
+        "문자·메신저·전자우편 원문과 전달형식을 보존한다.",
+        "해고사유와 해고시기가 표시됐는지 따로 확인한다.",
+        "사직 권고인지 일방적 근로관계 종료인지 후속 행동까지 정리한다."
+      ],
+      "facts_to_check_ko": [
+        "통보 수단",
+        "통보 문구 원문",
+        "해고사유 기재 여부",
+        "해고시기 기재 여부",
+        "근로자가 사직 의사를 표시했는지",
+        "출근 차단 여부",
+        "후속 서면 발급 여부"
+      ],
+      "caution_ko": "전자문서가 서면통지에 해당하는지와 사직인지 해고인지는 구체적 사실관계에 따라 판단해야 한다.",
+      "search_intents_ko": [
+        "구두 해고 효력",
+        "전화 해고 서면통지",
+        "카톡 해고 통보 효력"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "말이나 전화 통보만으로 끝낼 수 없다",
+          "paragraphs_ko": [
+            "사용자가 근로자를 해고하려면 해고사유와 해고시기를 서면으로 통지해야 하고, 이 서면통지가 해고 효력과 연결됩니다. 전화나 대면으로 내일부터 나오지 말라고 한 경우에는 후속 서면이 있었는지부터 확인합니다.",
+            "통보 당시의 정확한 표현, 출근 차단, 업무계정 회수, 급여정산 안내 등 후속 조치는 자진사직인지 해고인지 가르는 사실자료가 될 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "메신저라면 내용과 형식을 함께 본다",
+          "paragraphs_ko": [
+            "문자나 메신저가 사용되었다는 이유만으로 언제나 서면요건을 충족하거나 충족하지 않는다고 단정할 수는 없습니다. 발신자, 수신자, 해고사유·시기의 구체성, 전자문서로서의 전달과 보존 가능성을 살펴야 합니다.",
+            "서면통지 요건과 해고사유 자체의 정당성은 별개의 문제입니다. 서면이 있다는 이유만으로 해고가 정당해지는 것도 아니므로 두 쟁점을 나눠 검토합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.labor-wages.rule-written-dismissal"
+      ],
+      "scenario_ids": [
+        "scenario.labor-wages.sc-verbal-dismissal"
+      ],
+      "source_coordinate_ids": [
+        "coord.labor-wages.labor-standards-ko-0027"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "related_content_ids": [
+        "content.final-wages-after-retirement-14-days"
+      ]
+    }
+  ]
+}
