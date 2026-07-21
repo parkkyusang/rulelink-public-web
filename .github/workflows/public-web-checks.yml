@@ -5,7 +5,10 @@ on:
     paths:
       - "web/rulelink_public_next/**"
       - "artifacts/publication/current/bundle.json"
+      - "artifacts/publication/topics/**"
+      - "artifacts/publication/concepts/**"
       - "artifacts/publication/snapshots/**"
+      - "README.md"
       - ".github/workflows/public-web-checks.yml"
   push:
     branches:
@@ -13,14 +16,17 @@ on:
     paths:
       - "web/rulelink_public_next/**"
       - "artifacts/publication/current/bundle.json"
+      - "artifacts/publication/topics/**"
+      - "artifacts/publication/concepts/**"
       - "artifacts/publication/snapshots/**"
+      - "README.md"
       - ".github/workflows/public-web-checks.yml"
 
 permissions:
   contents: read
 
 concurrency:
-  group: public-web-${{ github.workflow }}-${{ github.ref }}
+  group: public-web-${{ (startsWith(github.head_ref, 'codex/integrate-publication-') || startsWith(github.head_ref, 'codex/release-')) && 'publication-serial' || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -44,6 +50,13 @@ jobs:
           node-version: "22"
           cache: npm
           cache-dependency-path: web/rulelink_public_next/package-lock.json
+
+      - name: 병렬 출판 역할별 파일 소유권
+        if: github.event_name == 'pull_request'
+        env:
+          RULELINK_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          RULELINK_HEAD_REF: ${{ github.head_ref }}
+        run: npm run validate:publication-scope -- --base "$RULELINK_BASE_SHA" --head-ref "$RULELINK_HEAD_REF"
 
       - name: 고정 의존성 설치
         run: npm ci
