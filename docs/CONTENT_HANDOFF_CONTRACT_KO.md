@@ -86,7 +86,7 @@ npm run report:publication -- C:\absolute\path\candidate-bundle.json
 
 기계가 읽는 JSON이 필요하면 `--json`을 붙인다. 보고서는 문제카드·법령변화·지식 콘텐츠·허브·공개 주제뿐 아니라 법리카드·사실분기·공식 근거·승인 해시 영수증의 추가·변경·제외를 구분한다. 공개 URL의 추가와 제거, 가장 가까운 재검토 기한, 기준 출처 스냅샷 변경도 함께 표시한다.
 
-같은 `snapshot_id`인데 내용이 다른 후보나 공개 안전검증을 통과하지 못한 후보는 보고 단계에서 거부한다. 이 보고서의 내용은 운영 번들 PR 본문에 그대로 활용한다.
+같은 `snapshot_id`인데 내용이 다른 후보나 공개 안전검증을 통과하지 못한 후보는 보고 단계에서 거부한다. GitHub PR에서는 이 보고서가 검사 요약에 자동 생성되므로, 승인자는 별도 명령 없이 공개 영향 범위를 확인할 수 있다.
 
 ## 7. 승인 출판본 승격
 
@@ -104,6 +104,8 @@ npm run promote:publication -- C:\absolute\path\candidate-bundle.json
 ```
 
 도구는 공개 검증을 먼저 통과시킨 뒤 `artifacts/publication/snapshots/<snapshot_id>/bundle.json`에 불변 보관하고, 그 내용과 동일한 경우에만 `current/bundle.json`을 교체한다. 같은 `snapshot_id`로 다른 내용을 승격하려 하면 `current`를 바꾸기 전에 실패한다. 운영 번들을 수동 복사하거나 기존 불변 스냅샷을 덮어쓰지 않는다.
+
+GitHub 검사는 불변 스냅샷 영역에서 새 `snapshot_id/bundle.json` 추가만 허용한다. 이미 보관된 스냅샷의 수정·삭제·이동이나 임의 보조파일 추가는 실패한다.
 
 ## 8. 검증 명령
 
