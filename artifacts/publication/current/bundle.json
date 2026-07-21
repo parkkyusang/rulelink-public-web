@@ -1,6 +1,6 @@
 {
   "schema": "rulelink_published_bundle_v1",
-  "snapshot_id": "kr-knowledge-core-20260721-004",
+  "snapshot_id": "kr-knowledge-core-20260721-006",
   "built_at": "2026-07-21T08:30:00+00:00",
   "source_snapshot_id": "multi-source:56ca12cba85cd0bc21afec6cb3c3630d",
   "jurisdiction": "KR",
@@ -222,8 +222,6 @@
   "file_hashes": {
     "change-brief:draft.kr.change.administrative-appeals-16-2.001": "bfd67ae12f0463dcf4c1c883ce1e3f7adf5915e991400baabe6b3cf9b40cc98d",
     "change-brief-approval:change-brief-approval:draft.kr.change.administrative-appeals-16-2.001:bfd67ae12f04": "aeee98d37f7169116f8fec43e6d86bf3b62e6fb323ee6f36d8210dfbe0a32b32",
-    "knowledge:administrative-appeals-depth-v1": "bad025b776e4036be720a1aef1548c1166e6156ae5574a6a8acf6ece6d573009",
-    "knowledge-approval:derived-administrative-appeals-depth-20260721-001": "af7f7124f5083d155e1537d098a218f488484d94fa60fd0166c898e7eef1d5c9",
     "approval:db-grounded-20260721": "84789100fd3ae1b1cb2477e343df043dbefe99d9a2b55b6e8c7f0638524ceab9",
     "knowledge:content.admin-appeal.documents-law-change": "61f39a2f1762efbdf879192ca7865c857490a06570ed41cf5e342a06d5eb0d4d",
     "knowledge:content.admin-appeal.eligibility-document-branch": "7f073724d04efc51c62efdd63819e8921ba1530105c509f85a1938490ae093f5",
@@ -231,29 +229,38 @@
     "knowledge:content.admin-appeal.not-all-documents-waived": "994469260f835ef1f4a5ba6d22dea7b81a90e99b34605ef3a7c073d7fff8469b",
     "knowledge:content.admin-appeal.application-preparation": "0503932e14916ce0e338a24db48f79b6957821f5a5452c37f384edbbffae8933",
     "knowledge:content.admin-appeal.qualification-vs-proof": "5df6bf6c5df9f3542b1f7d77de10a2a2233f553f429ca17f030b644da025be58",
-    "knowledge:content.legal-heir-order-and-spouse": "d4a4b57df408a2a83c3d9e19610cf6ed789e089cf64a8ceda4075eaa9867e65d",
-    "knowledge:content.three-month-inheritance-decision-period": "d6145e43b53645c8947f804ec16c209c0c4670dcd7300c4c79fbdc19f20f1440",
-    "knowledge:content.inheritance-renunciation-procedure": "595361bec888c62b50f31f24b45082dfae8ed7423c2ab6840b86aa2ec74d1743",
-    "knowledge:content.limited-acceptance-effect": "efca8ccbe169ca8abee929297ab478f73d5af51784427557af54996d5fbed239",
+    "knowledge:content.online-purchase-cancellation-seven-days": "18d4034aa86e577c49c4af470062beac6f07fae98886b96e676a8fad6d8b2c72",
+    "knowledge:content.who-pays-return-shipping": "dfbd63177a5c41fca66c6e451bdc5b29747cfeeed74be5b616974e8b23737380",
+    "knowledge:content.refund-within-three-business-days": "ff248504f1bb5e0c2bbaab3a537f5166d98d6b637672910304e192a145f712bb",
+    "knowledge:content.paid-but-goods-not-supplied": "0af761aa53f8195bc4b1419edb27be21bb3f01266f300a96a6cc2ae915120f44",
+    "knowledge:content.legal-heir-order-and-spouse": "614b0334231397716df5c44cfb2f6bb688defda39b7e403f8dfe277747ba1aad",
+    "knowledge:content.three-month-inheritance-decision-period": "ceb9cfed0251712240e71a73c63d3435c2d4ebc8c161cc68fbd1a64f832d527d",
+    "knowledge:content.inheritance-renunciation-procedure": "7a85e79eab5369640975c4a326f3666e58f908bc7226577d6e1c140c17f06c33",
+    "knowledge:content.limited-acceptance-effect": "abc790d78e37ffb6935f86724b931a2d81e3e63617056121cbf73bff3a8afb66",
     "knowledge:content.special-limited-acceptance-late-debt": "9d2679de20a06c2fb5d3c64d50cae03236261477a66c91a1b80dedd2602c5267",
     "knowledge:content.limited-acceptance-creditor-notice": "ef283a771044d4cc9ec1e691a6996699cd3b5fc178efc694a738c3a7db618f54",
     "knowledge:content.move-before-deposit-refund": "a195c563d5615ab5a11200edd5bbd6e061924d7e429de9aac0b48eb8e05f311f",
     "knowledge:content.lease-registration-application-is-not-completion": "39c9857fe46953df7cb515996fdc2aebabcfe6b7292f2765646a54d7400d2e42",
     "knowledge:content.lease-registration-order-requirements": "a785367367181ad2fbb1fc9993116251e90226829f47bdc52aa62133ab531e3e",
     "knowledge:content.rights-after-lease-registration": "2d5bebed470df8fc28aa7ed337aedede278da9f221b4884ef3fec0e366834e02",
-    "knowledge:content.housing-lease-opposability-basics": "0601a79a544e755c69ef06d8ad167bb351ab86a0070c723a8efeb30089eb97e1",
+    "knowledge:content.housing-lease-opposability-basics": "d2de1564014713bb1b8aeb9393799dc55fcc892ef8d4e2884228ab628f1e46e9",
     "knowledge:content.housing-lease-priority-repayment-basics": "e5392c5742bd95006c0d7af8a7315ee2a51827550879463eafca1ddc890c347d",
     "knowledge:content.renting-home-with-lease-registration": "6ceb56e8cbbb4d81e2dd5b050baca2fd800a947d800c4c0d7863cd0394586223",
+    "knowledge:content.final-wages-after-retirement-14-days": "f4150169cbdb0059957bbd00195dc869014902a4d0ec3e835f4c266cae7cc2fd",
+    "knowledge:content.verbal-delay-agreement-after-retirement": "d81fe9d72e847dea840aa513dd0fd2699338fd45e81a67ab24b935f641183595",
+    "knowledge:content.retirement-pay-basic-formula": "6d76093bd511fa8817a7822144c54754940297b18e8967e66145acec71215758",
+    "knowledge:content.retirement-pay-payment-deadline": "05ce088e82546e215e80fb6c2a76b715223da4dc1546ba6f27381701539777d5",
+    "knowledge:content.verbal-dismissal-written-notice": "e0fa7ab889bddacf8e7a314ed34597d60201ef85ea4547b9edb674212c1bd769",
     "knowledge:content.bank-transfer-loan-or-gift": "cc96a40387330b415bd12edc827b439746c7246822280ad579995814eaea2b10",
     "knowledge:content.loan-without-written-note": "b807d80c4a7d18932a7989cff3f9037f30474e54e609a5a096c16da1b8ffaac3",
     "knowledge:content.loan-without-repayment-date": "87d6b4ae7a0ac0bfa94fb93cbc6d3204669a3ad2d248545a84774e7669dc86b7",
     "knowledge:content.partial-repayment-allocation": "5068b7fb12bd88bca0f9ba5e04348ae64552bc67f895f7e43e3379aac3e65873",
-    "knowledge:content.guarantee-by-message-validity": "f77eb0690868c97c85081658c13da8e1a9e0afd88a048cc636e121afc7e1b7e0",
-    "knowledge:content.continuing-guarantee-maximum-amount": "48bd25799c8ce69b52f12d7e9663f3b277ed985f61cddbe8f11119b0abbe8425",
+    "knowledge:content.guarantee-by-message-validity": "c0b7f346cb7997bb0bb2ee0dde5ce2bc065e7db097d413fc301b2ecaf63c48ad",
+    "knowledge:content.continuing-guarantee-maximum-amount": "9d5edef11d426a5fc1de431d8e66808efa62b02f4a956a51ad3c0f720a61c812",
     "knowledge:content.scope-of-guarantee-debt": "e041283d06072aabc8124c4db4be1243cf695b7c067c5823be8ca74cfdf0f248",
     "knowledge:content.shared-mobility-private-facility-defect": "906b0c972cab1eeadc7bf6c45bdebb80315dbd9a259ea8bc3b08c1f3b43952ff",
     "knowledge:content.shared-mobility-other-road-user-fault": "e6f43717a7faf7bd539bde72527bb929ebafef5fda930e39e992abdd60114450",
-    "knowledge-index:rulelink_public_knowledge_index_v1": "706c7848b32efed52b6dccf3cb5e6294c375b5277938eb268a8ff5b3f375b309"
+    "knowledge-index:rulelink_public_knowledge_index_v1": "5e6dfc8f4617dd47559fa33992539e4799192cbc272f27d2550514ca560fa72f"
   },
   "knowledge": {
     "schema": "rulelink_public_knowledge_index_v1",
@@ -275,6 +282,51 @@
         "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%96%89%EC%A0%95%EC%8B%AC%ED%8C%90%EB%B2%95%20%EC%8B%9C%ED%96%89%EB%A0%B9/%EC%A0%9C16%EC%A1%B0%EC%9D%982",
         "source_snapshot_id": "snapshot:f46e52f238cfcb804b595d3f2a1447ec",
         "last_verified_at": "2026-07-20T06:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.consumer-online-contracts.ecommerce-consumer-ko-0017",
+        "source_id": "ecommerce_consumer_ko_0017",
+        "law_name_ko": "전자상거래 등에서의 소비자보호에 관한 법률",
+        "article_no": "제17조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98%20%EB%93%B1%EC%97%90%EC%84%9C%EC%9D%98%20%EC%86%8C%EB%B9%84%EC%9E%90%EB%B3%B4%ED%98%B8%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C17%EC%A1%B0",
+        "source_snapshot_id": "snapshot:9000691e73e3e70501ab42f3a663ae79",
+        "last_verified_at": "2026-07-21T07:55:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.consumer-online-contracts.ecommerce-consumer-ko-0018",
+        "source_id": "ecommerce_consumer_ko_0018",
+        "law_name_ko": "전자상거래 등에서의 소비자보호에 관한 법률",
+        "article_no": "제18조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98%20%EB%93%B1%EC%97%90%EC%84%9C%EC%9D%98%20%EC%86%8C%EB%B9%84%EC%9E%90%EB%B3%B4%ED%98%B8%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C18%EC%A1%B0",
+        "source_snapshot_id": "snapshot:00a11a59976f8ecf3cbe4a3179a14c86",
+        "last_verified_at": "2026-07-21T07:55:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.consumer-online-contracts.ecommerce-consumer-ko-0013",
+        "source_id": "ecommerce_consumer_ko_0013",
+        "law_name_ko": "전자상거래 등에서의 소비자보호에 관한 법률",
+        "article_no": "제13조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98%20%EB%93%B1%EC%97%90%EC%84%9C%EC%9D%98%20%EC%86%8C%EB%B9%84%EC%9E%90%EB%B3%B4%ED%98%B8%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C13%EC%A1%B0",
+        "source_snapshot_id": "snapshot:4ce49167c1ae10749e042ec03a8041e6",
+        "last_verified_at": "2026-07-21T07:55:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.consumer-online-contracts.ecommerce-consumer-ko-0014",
+        "source_id": "ecommerce_consumer_ko_0014",
+        "law_name_ko": "전자상거래 등에서의 소비자보호에 관한 법률",
+        "article_no": "제14조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98%20%EB%93%B1%EC%97%90%EC%84%9C%EC%9D%98%20%EC%86%8C%EB%B9%84%EC%9E%90%EB%B3%B4%ED%98%B8%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C14%EC%A1%B0",
+        "source_snapshot_id": "snapshot:aea7f545e0ea6b5e8a2a829e67c662ed",
+        "last_verified_at": "2026-07-21T07:55:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.consumer-online-contracts.ecommerce-consumer-ko-0015",
+        "source_id": "ecommerce_consumer_ko_0015",
+        "law_name_ko": "전자상거래 등에서의 소비자보호에 관한 법률",
+        "article_no": "제15조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98%20%EB%93%B1%EC%97%90%EC%84%9C%EC%9D%98%20%EC%86%8C%EB%B9%84%EC%9E%90%EB%B3%B4%ED%98%B8%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C15%EC%A1%B0",
+        "source_snapshot_id": "snapshot:f8a52a421791937f8763911bc6d9f545",
+        "last_verified_at": "2026-07-21T07:55:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1000",
@@ -430,6 +482,69 @@
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
+        "coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
+        "source_id": "housing_lease_ko_0003_03",
+        "law_name_ko": "주택임대차보호법",
+        "article_no": "제3조의3",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C3%EC%A1%B0%EC%9D%983",
+        "source_snapshot_id": "snapshot:1c35b925f8d04acba8a9a1b0c9796e07",
+        "last_verified_at": "2026-07-21T08:00:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003",
+        "source_id": "housing_lease_ko_0003",
+        "law_name_ko": "주택임대차보호법",
+        "article_no": "제3조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C3%EC%A1%B0",
+        "source_snapshot_id": "snapshot:270122f3cab11a485a0327fbd78eb653",
+        "last_verified_at": "2026-07-21T08:00:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-02",
+        "source_id": "housing_lease_ko_0003_02",
+        "law_name_ko": "주택임대차보호법",
+        "article_no": "제3조의2",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C3%EC%A1%B0%EC%9D%982",
+        "source_snapshot_id": "snapshot:445ae2ee988bb4c0fcfc07d0baaeaa2c",
+        "last_verified_at": "2026-07-21T08:00:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.labor-wages.labor-standards-ko-0036",
+        "source_id": "labor_standards_ko_0036",
+        "law_name_ko": "근로기준법",
+        "article_no": "제36조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C36%EC%A1%B0",
+        "source_snapshot_id": "snapshot:1a407952c492676358a540b100de3c04",
+        "last_verified_at": "2026-07-21T08:15:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.labor-wages.retirement-benefit-ko-0008",
+        "source_id": "retirement_benefit_ko_0008",
+        "law_name_ko": "근로자퇴직급여 보장법",
+        "article_no": "제8조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EC%9E%90%ED%87%B4%EC%A7%81%EA%B8%89%EC%97%AC%20%EB%B3%B4%EC%9E%A5%EB%B2%95/%EC%A0%9C8%EC%A1%B0",
+        "source_snapshot_id": "snapshot:778d57ede7f6e774d5d4a9206391d2b4",
+        "last_verified_at": "2026-07-21T08:15:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.labor-wages.retirement-benefit-ko-0009",
+        "source_id": "retirement_benefit_ko_0009",
+        "law_name_ko": "근로자퇴직급여 보장법",
+        "article_no": "제9조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EC%9E%90%ED%87%B4%EC%A7%81%EA%B8%89%EC%97%AC%20%EB%B3%B4%EC%9E%A5%EB%B2%95/%EC%A0%9C9%EC%A1%B0",
+        "source_snapshot_id": "snapshot:bf9fc59ae5f5fdabbdbcadd2b3cbe8ff",
+        "last_verified_at": "2026-07-21T08:15:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.labor-wages.labor-standards-ko-0027",
+        "source_id": "labor_standards_ko_0027",
+        "law_name_ko": "근로기준법",
+        "article_no": "제27조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C27%EC%A1%B0",
+        "source_snapshot_id": "snapshot:29e68bc810d31e8a9a2e824bb85c98bd",
+        "last_verified_at": "2026-07-21T08:15:00+00:00"
+      },
+      {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0598",
         "source_id": "civil_act_ko_0598",
         "law_name_ko": "민법",
@@ -545,33 +660,6 @@
         "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C750%EC%A1%B0",
         "source_snapshot_id": "snapshot:cdf125767ab6640e07d557f6c73a0c53",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
-      },
-      {
-        "coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
-        "source_id": "housing_lease_ko_0003_03",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C3%EC%A1%B0%EC%9D%983",
-        "source_snapshot_id": "snapshot:1c35b925f8d04acba8a9a1b0c9796e07",
-        "last_verified_at": "2026-07-21T08:00:00+00:00",
-        "law_name_ko": "주택임대차보호법",
-        "article_no": "제3조의3"
-      },
-      {
-        "coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003",
-        "source_id": "housing_lease_ko_0003",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C3%EC%A1%B0",
-        "source_snapshot_id": "snapshot:270122f3cab11a485a0327fbd78eb653",
-        "last_verified_at": "2026-07-21T08:00:00+00:00",
-        "law_name_ko": "주택임대차보호법",
-        "article_no": "제3조"
-      },
-      {
-        "coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-02",
-        "source_id": "housing_lease_ko_0003_02",
-        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C3%EC%A1%B0%EC%9D%982",
-        "source_snapshot_id": "snapshot:445ae2ee988bb4c0fcfc07d0baaeaa2c",
-        "last_verified_at": "2026-07-21T08:00:00+00:00",
-        "law_name_ko": "주택임대차보호법",
-        "article_no": "제3조의2"
       }
     ],
     "rule_cards": [
@@ -628,13 +716,80 @@
         ]
       },
       {
+        "rule_id": "rule.consumer-online-contracts.rule-withdrawal-7days",
+        "title_ko": "통신판매의 일반 청약철회 기간은 계약내용 서면을 받은 날부터 7일이고, 재화…",
+        "proposition_ko": "통신판매의 일반 청약철회 기간은 계약내용 서면을 받은 날부터 7일이고, 재화 공급이 더 늦으면 공급받거나 공급이 시작된 날부터 7일이다.",
+        "norm": {
+          "actor_ko": "통신판매업자와 온라인으로 재화·용역을 구매한 소비자",
+          "conditions_ko": "계약내용 서면을 받았거나 그보다 늦게 재화 공급을 받은 뒤 일반 청약철회를 하는 경우",
+          "legal_effect_ko": "통신판매의 일반 청약철회 기간은 계약내용 서면을 받은 날부터 7일이고, 재화 공급이 더 늦으면 공급받거나 공급이 시작된 날부터 7일이다."
+        },
+        "source_coordinate_ids": [
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0017"
+        ]
+      },
+      {
+        "rule_id": "rule.consumer-online-contracts.rule-nonconforming-3m30d",
+        "title_ko": "표시·광고나 계약과 다르게 이행된 경우 공급받은 날부터 3개월 이내이면서 그…",
+        "proposition_ko": "표시·광고나 계약과 다르게 이행된 경우 공급받은 날부터 3개월 이내이면서 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내에 철회해야 한다.",
+        "norm": {
+          "actor_ko": "표시·광고 또는 계약내용과 다른 재화·용역을 공급받은 소비자",
+          "conditions_ko": "공급받은 날부터 3개월 이내이면서 불일치를 안 날 또는 알 수 있었던 날부터 30일 이내인 경우",
+          "legal_effect_ko": "표시·광고나 계약과 다르게 이행된 경우 공급받은 날부터 3개월 이내이면서 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내에 철회해야 한다."
+        },
+        "source_coordinate_ids": [
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0017"
+        ]
+      },
+      {
+        "rule_id": "rule.consumer-online-contracts.rule-return-cost",
+        "title_ko": "단순변심 철회의 반환비용과 표시·광고 또는 계약 불일치 철회의 반환비용은 부…",
+        "proposition_ko": "단순변심 철회의 반환비용과 표시·광고 또는 계약 불일치 철회의 반환비용은 부담 주체가 다르다.",
+        "norm": {
+          "actor_ko": "청약철회로 재화를 반환하는 소비자와 통신판매업자",
+          "conditions_ko": "단순변심인지 표시·광고 또는 계약내용과 다른 이행인지에 따라 반환비용 부담을 정하는 경우",
+          "legal_effect_ko": "단순변심 철회의 반환비용과 표시·광고 또는 계약 불일치 철회의 반환비용은 부담 주체가 다르다."
+        },
+        "source_coordinate_ids": [
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0018"
+        ]
+      },
+      {
+        "rule_id": "rule.consumer-online-contracts.rule-refund-3businessdays",
+        "title_ko": "철회 후 환급 기준일은 거래유형에 따라 다르지만 통신판매업자는 해당 기준일부…",
+        "proposition_ko": "철회 후 환급 기준일은 거래유형에 따라 다르지만 통신판매업자는 해당 기준일부터 3영업일 이내 환급해야 한다.",
+        "norm": {
+          "actor_ko": "청약철회 통지를 받고 반환 재화 또는 철회의사를 확인한 통신판매업자",
+          "conditions_ko": "청약철회 후 법정 환급 기준일이 도래한 경우",
+          "legal_effect_ko": "철회 후 환급 기준일은 거래유형에 따라 다르지만 통신판매업자는 해당 기준일부터 3영업일 이내 환급해야 한다."
+        },
+        "source_coordinate_ids": [
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0018"
+        ]
+      },
+      {
+        "rule_id": "rule.consumer-online-contracts.rule-supply-timeline",
+        "title_ko": "별도 공급시기 약정이 없다면 통신판매업자는 청약일부터 7일 이내, 선지급식 …",
+        "proposition_ko": "별도 공급시기 약정이 없다면 통신판매업자는 청약일부터 7일 이내, 선지급식 거래는 대금 지급일부터 3영업일 이내 공급에 필요한 조치를 해야 한다.",
+        "norm": {
+          "actor_ko": "온라인 주문을 받은 통신판매업자와 대금을 지급한 소비자",
+          "conditions_ko": "별도 공급시기 약정 없이 소비자가 청약하거나 선지급식 통신판매의 대금을 지급한 경우",
+          "legal_effect_ko": "별도 공급시기 약정이 없다면 통신판매업자는 청약일부터 7일 이내, 선지급식 거래는 대금 지급일부터 3영업일 이내 공급에 필요한 조치를 해야 한다."
+        },
+        "source_coordinate_ids": [
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0013",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0014",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0015"
+        ]
+      },
+      {
         "rule_id": "rule.family-inheritance.rule-inheritance-order",
         "title_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순…",
         "proposition_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순위에서는 최근친이 선순위다.",
         "norm": {
-          "actor_ko": "피상속인의 혈족",
-          "conditions_ko": "상속개시 당시 선순위 혈족의 존재 여부와 동순위 혈족 사이의 촌수",
-          "legal_effect_ko": "직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순으로 상속인이 정해지고 동순위에서는 최근친이 우선합니다."
+          "actor_ko": "피상속인의 법정상속인이 될 수 있는 친족",
+          "conditions_ko": "피상속인의 사망으로 상속이 개시되고 선순위 친족의 존재와 촌수를 확인하는 경우",
+          "legal_effect_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순위에서는 최근친이 선순위다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1000"
@@ -646,8 +801,8 @@
         "proposition_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단독상속인이 된다.",
         "norm": {
           "actor_ko": "피상속인의 법률상 배우자",
-          "conditions_ko": "상속개시 당시 직계비속 또는 직계존속의 존재 여부",
-          "legal_effect_ko": "직계비속 또는 직계존속이 있으면 그들과 공동상속하고, 둘 다 없으면 단독상속합니다."
+          "conditions_ko": "법률상 배우자가 있고 직계비속·직계존속의 존재 여부를 확인하는 경우",
+          "legal_effect_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단독상속인이 된다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1003"
@@ -658,9 +813,9 @@
         "title_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선…",
         "proposition_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선택할 수 있고 가정법원이 기간을 연장할 수 있다.",
         "norm": {
-          "actor_ko": "상속개시 있음을 안 상속인",
-          "conditions_ko": "상속개시 있음을 안 날부터 3개월 이내이며, 기간 연장은 가정법원의 결정이 있는 경우",
-          "legal_effect_ko": "기간 안에 단순승인·한정승인·포기를 선택하고 필요한 경우 기간 연장을 청구할 수 있습니다."
+          "actor_ko": "상속개시 사실을 안 상속인",
+          "conditions_ko": "상속개시 있음을 안 날부터 3개월 안에 승인·한정승인·포기를 선택하는 경우",
+          "legal_effect_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선택할 수 있고 가정법원이 기간을 연장할 수 있다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1019"
@@ -672,8 +827,8 @@
         "proposition_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효력이 생긴다.",
         "norm": {
           "actor_ko": "상속을 포기하려는 상속인",
-          "conditions_ko": "법정기간 안에 가정법원에 상속포기를 신고하여 수리된 경우",
-          "legal_effect_ko": "상속개시 때부터 상속인이 아니었던 것으로 봅니다."
+          "conditions_ko": "상속개시 있음을 안 날부터 3개월 안에 가정법원에 상속포기를 신고하는 경우",
+          "legal_effect_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효력이 생긴다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1041",
@@ -686,9 +841,9 @@
         "title_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 …",
         "proposition_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 조건의 승인이다.",
         "norm": {
-          "actor_ko": "한정승인을 하는 상속인",
-          "conditions_ko": "상속재산 목록을 붙여 법정기간 안에 가정법원에 한정승인을 신고한 경우",
-          "legal_effect_ko": "상속으로 취득한 재산의 한도에서 피상속인의 채무와 유증을 변제합니다."
+          "actor_ko": "상속채무를 상속재산 한도에서 변제하려는 상속인",
+          "conditions_ko": "상속인이 재산목록을 붙여 한정승인을 신고하고 법원이 이를 수리한 경우",
+          "legal_effect_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 조건의 승인이다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1028"
@@ -699,9 +854,9 @@
         "title_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변…",
         "proposition_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변제 절차를 따라야 한다.",
         "norm": {
-          "actor_ko": "한정승인자",
-          "conditions_ko": "한정승인 후 상속채권자와 유증받은 사람에 대한 공고·최고 및 신고기간을 거친 경우",
-          "legal_effect_ko": "우선권과 법정 순서에 따라 상속재산으로 채권자와 유증받은 사람에게 변제합니다."
+          "actor_ko": "한정승인을 수리받은 상속인과 상속채권자·수증자",
+          "conditions_ko": "한정승인 수리 후 상속채권자와 수증자에게 공고·최고하고 상속재산으로 변제하는 경우",
+          "legal_effect_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변제 절차를 따라야 한다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1030",
@@ -721,12 +876,131 @@
         "title_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그…",
         "proposition_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그 사실을 안 날부터 3개월 내 특별한정승인이 가능할 수 있다.",
         "norm": {
-          "actor_ko": "상속채무가 상속재산을 초과하는 사실을 뒤늦게 안 상속인",
-          "conditions_ko": "법정기간 안에 채무초과를 알지 못한 데 중대한 과실이 없고 그 사실을 안 날부터 3개월 이내인 경우",
-          "legal_effect_ko": "특별한정승인을 신고하여 상속재산 한도의 책임을 주장할 수 있습니다."
+          "actor_ko": "상속채무 초과 사실을 뒤늦게 안 상속인",
+          "conditions_ko": "중대한 과실 없이 채무초과를 알지 못한 채 단순승인한 뒤 그 사실을 안 경우",
+          "legal_effect_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그 사실을 안 날부터 3개월 내 특별한정승인이 가능할 수 있다."
         },
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1019"
+        ]
+      },
+      {
+        "rule_id": "rule.housing-lease-deposit.housing-lease-registration-application",
+        "title_ko": "계약 종료와 보증금 미반환이 임차권등기명령 신청의 출발점",
+        "proposition_ko": "임대차가 끝난 뒤에도 보증금이 반환되지 않은 임차인은 관할 법원에 임차권등기명령을 신청할 수 있습니다.",
+        "norm": {
+          "actor_ko": "임대차가 끝났지만 보증금을 돌려받지 못한 주택임차인",
+          "conditions_ko": "임대차가 종료했는데도 임대인이 보증금 전부 또는 일부를 반환하지 않은 경우",
+          "legal_effect_ko": "임대차가 끝난 뒤에도 보증금이 반환되지 않은 임차인은 관할 법원에 임차권등기명령을 신청할 수 있습니다."
+        },
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003-03"
+        ]
+      },
+      {
+        "rule_id": "rule.housing-lease-deposit.housing-lease-registration-completion-effect",
+        "title_ko": "임차권등기 완료 뒤 대항요건을 잃어도 기존 권리 유지",
+        "proposition_ko": "임차권등기명령에 따른 등기를 마치면 대항력과 우선변제권을 취득할 수 있고, 이미 취득한 권리는 등기 뒤 대항요건을 잃더라도 유지됩니다.",
+        "norm": {
+          "actor_ko": "임차권등기명령을 신청한 주택임차인",
+          "conditions_ko": "법원의 임차권등기명령에 따른 임차권등기가 완료된 경우",
+          "legal_effect_ko": "임차권등기명령에 따른 등기를 마치면 대항력과 우선변제권을 취득할 수 있고, 이미 취득한 권리는 등기 뒤 대항요건을 잃더라도 유지됩니다."
+        },
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003-03"
+        ]
+      },
+      {
+        "rule_id": "rule.housing-lease-deposit.housing-lease-opposability",
+        "title_ko": "주택 인도와 주민등록을 모두 마친 다음 날 대항력 발생",
+        "proposition_ko": "일반 개인 임차인의 주택임대차는 주택을 인도받고 주민등록을 마치면 그 다음 날부터 제3자에 대한 효력이 생깁니다.",
+        "norm": {
+          "actor_ko": "주택을 인도받고 주민등록을 마친 임차인",
+          "conditions_ko": "주거용 주택을 인도받고 전입신고 등 주민등록을 마친 경우",
+          "legal_effect_ko": "일반 개인 임차인의 주택임대차는 주택을 인도받고 주민등록을 마치면 그 다음 날부터 제3자에 대한 효력이 생깁니다."
+        },
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003"
+        ]
+      },
+      {
+        "rule_id": "rule.housing-lease-deposit.housing-lease-priority-repayment",
+        "title_ko": "대항요건과 확정일자를 갖추어야 우선변제권 성립",
+        "proposition_ko": "대항요건과 임대차계약증서상의 확정일자를 갖춘 임차인은 경매나 공매에서 후순위권리자나 그 밖의 채권자보다 우선하여 보증금을 변제받을 권리가 있습니다.",
+        "norm": {
+          "actor_ko": "대항요건과 확정일자를 갖춘 주택임차인",
+          "conditions_ko": "주택 인도·주민등록과 임대차계약증서의 확정일자를 갖춘 뒤 경매·공매가 진행되는 경우",
+          "legal_effect_ko": "대항요건과 임대차계약증서상의 확정일자를 갖춘 임차인은 경매나 공매에서 후순위권리자나 그 밖의 채권자보다 우선하여 보증금을 변제받을 권리가 있습니다."
+        },
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003-02"
+        ]
+      },
+      {
+        "rule_id": "rule.housing-lease-deposit.housing-lease-later-tenant-small-deposit",
+        "title_ko": "임차권등기가 끝난 주택의 후순위 임차인 제한",
+        "proposition_ko": "임차권등기명령에 따른 임차권등기가 끝난 주택을 그 이후 임차한 임차인은 주택임대차보호법 제8조의 소액보증금 우선변제권을 받을 수 없습니다.",
+        "norm": {
+          "actor_ko": "임차권등기가 끝난 주택을 그 이후 임차한 사람",
+          "conditions_ko": "임차권등기명령에 따른 등기가 완료된 주택을 그 이후 새로 임차한 경우",
+          "legal_effect_ko": "임차권등기명령에 따른 임차권등기가 끝난 주택을 그 이후 임차한 임차인은 주택임대차보호법 제8조의 소액보증금 우선변제권을 받을 수 없습니다."
+        },
+        "source_coordinate_ids": [
+          "coord.housing-lease-deposit.housing-lease-ko-0003-03"
+        ]
+      },
+      {
+        "rule_id": "rule.labor-wages.rule-money-14days",
+        "title_ko": "근로자가 퇴직하면 사용자는 특별한 사정에 관한 당사자 합의가 없는 한 임금·…",
+        "proposition_ko": "근로자가 퇴직하면 사용자는 특별한 사정에 관한 당사자 합의가 없는 한 임금·보상금 등 금품을 14일 이내 지급해야 한다.",
+        "norm": {
+          "actor_ko": "퇴직한 근로자와 임금·보상금 등 금품을 지급할 사용자",
+          "conditions_ko": "근로관계가 종료되어 임금·보상금 등 금품의 지급사유가 발생한 경우",
+          "legal_effect_ko": "근로자가 퇴직하면 사용자는 특별한 사정에 관한 당사자 합의가 없는 한 임금·보상금 등 금품을 14일 이내 지급해야 한다."
+        },
+        "source_coordinate_ids": [
+          "coord.labor-wages.labor-standards-ko-0036"
+        ]
+      },
+      {
+        "rule_id": "rule.labor-wages.rule-retirement-14days",
+        "title_ko": "퇴직급여도 원칙적으로 퇴직일부터 14일 이내 지급하며 특별한 사정이 있으면 …",
+        "proposition_ko": "퇴직급여도 원칙적으로 퇴직일부터 14일 이내 지급하며 특별한 사정이 있으면 당사자 합의로 기일을 연장할 수 있다.",
+        "norm": {
+          "actor_ko": "퇴직급여를 지급할 사용자와 퇴직 근로자",
+          "conditions_ko": "근로자가 퇴직하여 퇴직금 지급사유가 발생한 경우",
+          "legal_effect_ko": "퇴직급여도 원칙적으로 퇴직일부터 14일 이내 지급하며 특별한 사정이 있으면 당사자 합의로 기일을 연장할 수 있다."
+        },
+        "source_coordinate_ids": [
+          "coord.labor-wages.retirement-benefit-ko-0008",
+          "coord.labor-wages.retirement-benefit-ko-0009"
+        ]
+      },
+      {
+        "rule_id": "rule.labor-wages.rule-retirement-base",
+        "title_ko": "퇴직금 제도의 기본 출발점은 계속근로 1년에 대하여 30일분 이상의 평균임금…",
+        "proposition_ko": "퇴직금 제도의 기본 출발점은 계속근로 1년에 대하여 30일분 이상의 평균임금이다.",
+        "norm": {
+          "actor_ko": "퇴직금제도를 설정한 사용자와 계속근로한 퇴직 근로자",
+          "conditions_ko": "퇴직금제도의 적용대상 근로자가 1년 이상의 계속근로기간을 마치고 퇴직한 경우",
+          "legal_effect_ko": "퇴직금 제도의 기본 출발점은 계속근로 1년에 대하여 30일분 이상의 평균임금이다."
+        },
+        "source_coordinate_ids": [
+          "coord.labor-wages.retirement-benefit-ko-0008",
+          "coord.labor-wages.retirement-benefit-ko-0009"
+        ]
+      },
+      {
+        "rule_id": "rule.labor-wages.rule-written-dismissal",
+        "title_ko": "해고는 해고사유와 해고시기를 서면으로 통지해야 효력이 있다.",
+        "proposition_ko": "해고는 해고사유와 해고시기를 서면으로 통지해야 효력이 있다.",
+        "norm": {
+          "actor_ko": "근로자를 해고하려는 사용자와 해고 통지를 받는 근로자",
+          "conditions_ko": "사용자가 근로관계를 일방적으로 종료하는 해고를 하려는 경우",
+          "legal_effect_ko": "해고는 해고사유와 해고시기를 서면으로 통지해야 효력이 있다."
+        },
+        "source_coordinate_ids": [
+          "coord.labor-wages.labor-standards-ko-0027"
         ]
       },
       {
@@ -734,9 +1008,9 @@
         "title_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어…",
         "proposition_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어야 성립한다.",
         "norm": {
-          "actor_ko": "돈을 빌려주는 사람과 빌리는 사람",
+          "actor_ko": "금전을 빌려준 사람과 빌린 사람",
           "conditions_ko": "금전을 이전하고 같은 종류·품질·수량의 금전을 반환하기로 합의한 경우",
-          "legal_effect_ko": "금전소비대차가 성립하여 차주는 약정에 따라 금전을 반환할 의무를 부담합니다."
+          "legal_effect_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어야 성립한다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0598"
@@ -747,9 +1021,9 @@
         "title_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다.",
         "proposition_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다.",
         "norm": {
-          "actor_ko": "반환시기를 정하지 않은 금전소비대차의 대주",
-          "conditions_ko": "상당한 기간을 정하여 차주에게 반환을 최고한 경우",
-          "legal_effect_ko": "정한 기간이 지나면 반환의무의 이행 여부를 청구·판단할 수 있습니다."
+          "actor_ko": "반환시기를 정하지 않은 금전소비대차의 대주와 차주",
+          "conditions_ko": "금전소비대차는 성립했지만 반환시기를 약정하지 않은 경우",
+          "legal_effect_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0603"
@@ -760,9 +1034,9 @@
         "title_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에…",
         "proposition_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에 따라 어느 채무가 소멸하는지가 달라진다.",
         "norm": {
-          "actor_ko": "복수 채무 또는 비용·이자·원본 중 일부를 변제하는 당사자",
-          "conditions_ko": "변제액이 모든 채무를 소멸시키기에 부족하고 당사자의 충당 지정 유무를 확인한 경우",
-          "legal_effect_ko": "당사자의 유효한 지정 또는 민법상 변제충당 순서에 따라 소멸하는 채무와 잔액이 정해집니다."
+          "actor_ko": "일부 변제를 하는 채무자와 이를 받는 채권자",
+          "conditions_ko": "여러 채무 또는 비용·이자·원본 전부를 소멸시키기에 부족한 금액을 변제하는 경우",
+          "legal_effect_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에 따라 어느 채무가 소멸하는지가 달라진다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0476",
@@ -776,9 +1050,9 @@
         "title_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발…",
         "proposition_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발생하고 전자적 형태 표시는 원칙적으로 효력이 없다.",
         "norm": {
-          "actor_ko": "주채무를 보증하려는 보증인",
-          "conditions_ko": "기명날인 또는 서명이 있는 서면으로 보증의사를 표시한 경우",
-          "legal_effect_ko": "서면 요건을 충족한 범위에서 보증의 효력이 생기며 전자적 형태의 표시는 원칙적으로 효력이 없습니다."
+          "actor_ko": "보증의사를 표시하는 보증인과 채권자",
+          "conditions_ko": "보증인이 주채무를 보증하기로 하고 기명날인 또는 서명이 있는 서면으로 의사를 표시하는 경우",
+          "legal_effect_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발생하고 전자적 형태 표시는 원칙적으로 효력이 없다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0428-02"
@@ -790,8 +1064,8 @@
         "proposition_ko": "불확정한 다수 채무를 보증하는 근보증은 최고액을 서면으로 특정하지 않으면 효력이 없다.",
         "norm": {
           "actor_ko": "불확정한 다수 채무를 보증하는 근보증인과 채권자",
-          "conditions_ko": "보증채무의 최고액을 서면으로 특정한 경우",
-          "legal_effect_ko": "최고액 범위에서 근보증 효력이 생기며 최고액이 없으면 근보증계약은 효력이 없습니다."
+          "conditions_ko": "계속적 거래에서 생길 불확정한 다수 채무를 보증하면서 최고액을 정하는 경우",
+          "legal_effect_ko": "불확정한 다수 채무를 보증하는 근보증은 최고액을 서면으로 특정하지 않으면 효력이 없다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0428-03"
@@ -802,9 +1076,9 @@
         "title_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지…",
         "proposition_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지만 주채무보다 무거운 부담은 주채무 한도로 감축된다.",
         "norm": {
-          "actor_ko": "유효한 보증계약을 체결한 보증인",
-          "conditions_ko": "주채무의 이자·위약금·손해배상 등 종속채무가 존재하고 보증계약에서 범위를 달리 정하지 않은 경우",
-          "legal_effect_ko": "보증채무는 종속채무를 포함하되 보증인의 부담이 주채무보다 무거우면 주채무의 한도로 감축됩니다."
+          "actor_ko": "주채무를 보증한 보증인과 채권자",
+          "conditions_ko": "보증 책임에 주채무의 이자·위약금·손해배상 등 종속 채무가 포함되는지 정하는 경우",
+          "legal_effect_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지만 주채무보다 무거운 부담은 주채무 한도로 감축된다."
         },
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0428",
@@ -817,9 +1091,9 @@
         "title_ko": "민간 공작물의 설치ㆍ보존 하자",
         "proposition_ko": "공작물의 설치 또는 보존 하자로 타인에게 손해가 발생하면 점유자가 원칙적으로 배상책임을 지고, 점유자가 필요한 주의를 다한 경우에는 소유자가 책임을 질 수 있습니다.",
         "norm": {
-          "actor_ko": "민간 공작물을 사실상 지배·관리하는 점유자와 그 소유자",
-          "conditions_ko": "공작물의 설치·보존 하자와 손해 사이에 인과관계가 있고 점유자의 필요한 주의 여부를 확인한 경우",
-          "legal_effect_ko": "점유자가 원칙적으로 배상책임을 지고, 점유자가 필요한 주의를 다한 경우 소유자가 책임을 질 수 있습니다."
+          "actor_ko": "민간 공작물의 점유자·소유자와 그 하자로 손해를 입은 사람",
+          "conditions_ko": "민간 공작물의 설치·보존 하자와 발생한 손해 사이에 인과관계가 있는 경우",
+          "legal_effect_ko": "공작물의 설치 또는 보존 하자로 타인에게 손해가 발생하면 점유자가 원칙적으로 배상책임을 지고, 점유자가 필요한 주의를 다한 경우에는 소유자가 책임을 질 수 있습니다."
         },
         "source_coordinate_ids": [
           "coord.shared-mobility-accident.civil-act-ko-0758"
@@ -830,77 +1104,12 @@
         "title_ko": "고의ㆍ과실의 위법행위와 손해 사이의 책임",
         "proposition_ko": "고의 또는 과실로 인한 위법행위로 타인에게 손해를 가한 사람은 그 손해를 배상할 책임이 있습니다.",
         "norm": {
-          "actor_ko": "고의 또는 과실로 타인에게 손해를 가한 사람",
-          "conditions_ko": "주의의무 위반 또는 고의, 위법성, 손해와 인과관계가 인정되는 경우",
-          "legal_effect_ko": "그 위법행위로 발생한 손해를 배상할 책임을 부담합니다."
+          "actor_ko": "고의·과실로 위법행위를 한 사람과 그로 인해 손해를 입은 사람",
+          "conditions_ko": "주의의무 위반 또는 고의의 위법행위와 발생한 손해 사이에 인과관계가 있는 경우",
+          "legal_effect_ko": "고의 또는 과실로 인한 위법행위로 타인에게 손해를 가한 사람은 그 손해를 배상할 책임이 있습니다."
         },
         "source_coordinate_ids": [
           "coord.shared-mobility-accident.civil-act-ko-0750"
-        ]
-      },
-      {
-        "rule_id": "rule.housing-lease-deposit.housing-lease-registration-application",
-        "title_ko": "계약 종료와 보증금 미반환이 임차권등기명령 신청의 출발점",
-        "proposition_ko": "임대차가 끝난 뒤에도 보증금이 반환되지 않은 임차인은 관할 법원에 임차권등기명령을 신청할 수 있습니다.",
-        "norm": {
-          "actor_ko": "임대차가 끝난 뒤 보증금을 반환받지 못한 주택임차인",
-          "conditions_ko": "임대차가 종료함 · 보증금이 반환되지 않음",
-          "legal_effect_ko": "임대차가 끝난 뒤에도 보증금이 반환되지 않은 임차인은 관할 법원에 임차권등기명령을 신청할 수 있습니다."
-        },
-        "source_coordinate_ids": [
-          "coord.housing-lease-deposit.housing-lease-ko-0003-03"
-        ]
-      },
-      {
-        "rule_id": "rule.housing-lease-deposit.housing-lease-registration-completion-effect",
-        "title_ko": "임차권등기 완료 뒤 대항요건을 잃어도 기존 권리 유지",
-        "proposition_ko": "임차권등기명령에 따른 등기를 마치면 대항력과 우선변제권을 취득할 수 있고, 이미 취득한 권리는 등기 뒤 대항요건을 잃더라도 유지됩니다.",
-        "norm": {
-          "actor_ko": "임차권등기명령에 따른 임차권등기를 마친 주택임차인",
-          "conditions_ko": "임차권등기명령의 집행에 따른 임차권등기가 완료됨",
-          "legal_effect_ko": "임차권등기명령에 따른 등기를 마치면 대항력과 우선변제권을 취득할 수 있고, 이미 취득한 권리는 등기 뒤 대항요건을 잃더라도 유지됩니다."
-        },
-        "source_coordinate_ids": [
-          "coord.housing-lease-deposit.housing-lease-ko-0003-03"
-        ]
-      },
-      {
-        "rule_id": "rule.housing-lease-deposit.housing-lease-opposability",
-        "title_ko": "주택 인도와 주민등록을 모두 마친 다음 날 대항력 발생",
-        "proposition_ko": "일반 개인 임차인의 주택임대차는 주택을 인도받고 주민등록을 마치면 그 다음 날부터 제3자에 대한 효력이 생깁니다.",
-        "norm": {
-          "actor_ko": "주택을 인도받고 주민등록을 마친 주택임차인",
-          "conditions_ko": "주거용 주택의 일반 개인 임차인 · 주택 인도와 주민등록을 모두 갖춘 경우",
-          "legal_effect_ko": "일반 개인 임차인의 주택임대차는 주택을 인도받고 주민등록을 마치면 그 다음 날부터 제3자에 대한 효력이 생깁니다."
-        },
-        "source_coordinate_ids": [
-          "coord.housing-lease-deposit.housing-lease-ko-0003"
-        ]
-      },
-      {
-        "rule_id": "rule.housing-lease-deposit.housing-lease-priority-repayment",
-        "title_ko": "대항요건과 확정일자를 갖추어야 우선변제권 성립",
-        "proposition_ko": "대항요건과 임대차계약증서상의 확정일자를 갖춘 임차인은 경매나 공매에서 후순위권리자나 그 밖의 채권자보다 우선하여 보증금을 변제받을 권리가 있습니다.",
-        "norm": {
-          "actor_ko": "대항요건과 임대차계약증서상 확정일자를 갖춘 주택임차인",
-          "conditions_ko": "주택 인도와 주민등록 등 대항요건을 갖춤 · 임대차계약증서에 확정일자를 갖춤 · 경매 또는 공매에서 환가대금이 배분됨",
-          "legal_effect_ko": "대항요건과 임대차계약증서상의 확정일자를 갖춘 임차인은 경매나 공매에서 후순위권리자나 그 밖의 채권자보다 우선하여 보증금을 변제받을 권리가 있습니다."
-        },
-        "source_coordinate_ids": [
-          "coord.housing-lease-deposit.housing-lease-ko-0003-02"
-        ]
-      },
-      {
-        "rule_id": "rule.housing-lease-deposit.housing-lease-later-tenant-small-deposit",
-        "title_ko": "임차권등기가 끝난 주택의 후순위 임차인 제한",
-        "proposition_ko": "임차권등기명령에 따른 임차권등기가 끝난 주택을 그 이후 임차한 임차인은 주택임대차보호법 제8조의 소액보증금 우선변제권을 받을 수 없습니다.",
-        "norm": {
-          "actor_ko": "임차권등기명령에 따른 임차권등기가 끝난 주택을 그 후 임차한 임차인",
-          "conditions_ko": "임차권등기명령에 따른 등기가 이미 완료된 주택 · 그 이후 새로 임차한 임차인",
-          "legal_effect_ko": "임차권등기명령에 따른 임차권등기가 끝난 주택을 그 이후 임차한 임차인은 주택임대차보호법 제8조의 소액보증금 우선변제권을 받을 수 없습니다."
-        },
-        "source_coordinate_ids": [
-          "coord.housing-lease-deposit.housing-lease-ko-0003-03"
         ]
       }
     ],
@@ -950,11 +1159,58 @@
         ]
       },
       {
+        "scenario_id": "scenario.consumer-online-contracts.sc-change-mind",
+        "question_ko": "온라인으로 산 정상 상품을 받은 뒤 마음이 바뀐 경우",
+        "decision_fact_ko": "계약내용 서면 수신일·상품 수령일과 청약철회 통지일",
+        "when_true_ko": "일반 7일 기간 안이라면 철회 통지와 반환 절차를 진행하고 반환비용 부담을 확인합니다.",
+        "when_false_ko": "7일이 지났다면 계약 불일치 여부와 별도 기산점·판매자의 더 긴 약정이 있는지 확인합니다.",
+        "rule_ids": [
+          "rule.consumer-online-contracts.rule-withdrawal-7days",
+          "rule.consumer-online-contracts.rule-return-cost"
+        ],
+        "source_coordinate_ids": [
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0017",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0018"
+        ]
+      },
+      {
+        "scenario_id": "scenario.consumer-online-contracts.sc-not-as-advertised",
+        "question_ko": "상세페이지와 다른 재질·기능의 상품을 받은 경우",
+        "decision_fact_ko": "표시·광고 또는 계약내용과 실제 공급된 상품의 차이 및 그 발견일",
+        "when_true_ko": "3개월·30일 기간을 모두 확인해 불일치 사유를 특정한 철회 통지를 합니다.",
+        "when_false_ko": "법정 불일치 철회기간을 벗어났다면 하자담보·약정상 반품 등 다른 근거를 확인합니다.",
+        "rule_ids": [
+          "rule.consumer-online-contracts.rule-nonconforming-3m30d",
+          "rule.consumer-online-contracts.rule-return-cost"
+        ],
+        "source_coordinate_ids": [
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0017",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0018"
+        ]
+      },
+      {
+        "scenario_id": "scenario.consumer-online-contracts.sc-undelivered",
+        "question_ko": "선결제했지만 물품 공급이 어렵다는 통보를 받거나 배송 진행을 확인할 수 없는 경우",
+        "decision_fact_ko": "청약일·대금 지급일과 약정한 공급시기 및 실제 공급 여부",
+        "when_true_ko": "법정 또는 약정 공급기한과 환급 기준일을 계산해 공급·환급을 요구합니다.",
+        "when_false_ko": "아직 공급기한 전이라면 약정 배송일과 주문 처리상태를 먼저 확인합니다.",
+        "rule_ids": [
+          "rule.consumer-online-contracts.rule-supply-timeline",
+          "rule.consumer-online-contracts.rule-refund-3businessdays"
+        ],
+        "source_coordinate_ids": [
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0013",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0014",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0015",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0018"
+        ]
+      },
+      {
         "scenario_id": "scenario.family-inheritance.sc-spouse-children",
-        "question_ko": "사망 당시 법률상 배우자와 자녀가 모두 있나요?",
-        "decision_fact_ko": "법률상 배우자 여부와 직계비속의 존재",
-        "when_true_ko": "배우자와 자녀가 공동상속인이 됩니다. 사망 선후·대습상속·상속결격·상속포기는 별도로 확인합니다.",
-        "when_false_ko": "자녀가 없으면 직계존속의 존재를 확인하고, 직계비속과 직계존속이 모두 없으면 배우자의 단독상속 여부를 검토합니다.",
+        "question_ko": "배우자와 자녀가 있는 일반적인 상속",
+        "decision_fact_ko": "사망 당시 법률상 배우자와 직계비속의 존재",
+        "when_true_ko": "배우자와 자녀가 공동상속인이 되므로 각 상속인의 지위와 상속분을 함께 계산합니다.",
+        "when_false_ko": "자녀가 없으면 직계존속의 존재를 확인하고, 그들도 없으면 배우자 단독상속 가능성을 봅니다.",
         "rule_ids": [
           "rule.family-inheritance.rule-inheritance-order",
           "rule.family-inheritance.rule-spouse-order"
@@ -966,10 +1222,10 @@
       },
       {
         "scenario_id": "scenario.family-inheritance.sc-debt-uncertain",
-        "question_ko": "상속개시 있음을 안 날부터 아직 3개월이 지나지 않았나요?",
-        "decision_fact_ko": "상속인임을 안 날과 현재 날짜, 재산·채무 조사 진행상황",
-        "when_true_ko": "재산과 채무를 조사하면서 한정승인·상속포기 여부를 결정하고, 시간이 부족하면 기간 만료 전에 연장청구를 검토합니다.",
-        "when_false_ko": "원칙적인 선택기간 경과 여부를 확인하고, 채무초과를 뒤늦게 안 경우 특별한정승인 요건을 별도로 검토합니다.",
+        "question_ko": "재산과 채무 규모를 아직 모르는 상태에서 3개월이 흐르는 경우",
+        "decision_fact_ko": "상속재산과 채무를 3개월 안에 확정할 수 있는지",
+        "when_true_ko": "조사 결과에 따라 단순승인·한정승인·포기를 기한 안에 선택합니다.",
+        "when_false_ko": "가정법원 기간연장 신청과 한정승인 가능성을 기한 전에 검토합니다.",
         "rule_ids": [
           "rule.family-inheritance.rule-three-months",
           "rule.family-inheritance.rule-limited-effect"
@@ -981,14 +1237,16 @@
       },
       {
         "scenario_id": "scenario.family-inheritance.sc-limited-approved",
-        "question_ko": "한정승인 후 공고·최고와 채권자별 변제를 아직 마치지 않았나요?",
-        "decision_fact_ko": "한정승인일, 공고일, 신고기간, 알고 있는 채권자에 대한 최고와 우선권",
-        "when_true_ko": "법정 신고기간과 개별 최고를 관리하고 우선권 및 채권액에 따라 상속재산을 변제해야 합니다.",
-        "when_false_ko": "변제 장부, 잔여 상속재산과 누락 채권자를 확인하여 청산 종결 및 손해배상 위험을 점검합니다.",
+        "question_ko": "한정승인 수리 후 여러 채권자가 변제를 요구하는 경우",
+        "decision_fact_ko": "법원이 한정승인 신고를 수리했는지",
+        "when_true_ko": "공고·최고와 채권자별 변제 순서를 진행합니다.",
+        "when_false_ko": "수리 전에는 상속재산 처분을 피하고 신고 보완과 기한을 확인합니다.",
         "rule_ids": [
           "rule.family-inheritance.rule-limited-procedure"
         ],
         "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1030",
+          "coord.family-inheritance.civil-act-ko-1031",
           "coord.family-inheritance.civil-act-ko-1032",
           "coord.family-inheritance.civil-act-ko-1033",
           "coord.family-inheritance.civil-act-ko-1034",
@@ -1001,119 +1259,15 @@
       },
       {
         "scenario_id": "scenario.family-inheritance.sc-late-debt",
-        "question_ko": "3개월 안에 채무초과를 알지 못했고 그 데 중대한 과실이 없었나요?",
-        "decision_fact_ko": "새 채무를 안 날, 전체 채무초과를 안 날과 종전 재산·채무 조사 정도",
-        "when_true_ko": "채무초과 사실을 안 날부터 3개월 안에 특별한정승인을 신고할 수 있는지 즉시 검토합니다.",
-        "when_false_ko": "특별한정승인 요건 충족이 어려울 수 있으므로 일반 선택기간과 단순승인 사유를 함께 확인합니다.",
+        "question_ko": "3개월 후 처음 큰 보증채무나 대출채무를 알게 된 경우",
+        "decision_fact_ko": "중대한 과실 없이 채무초과 사실을 뒤늦게 알았는지와 그 사실을 안 날",
+        "when_true_ko": "안 날부터 3개월 내 특별한정승인 요건과 재산목록을 검토합니다.",
+        "when_false_ko": "일반 3개월 기간과 법정단순승인 여부를 기준으로 다른 구제 가능성을 확인합니다.",
         "rule_ids": [
           "rule.family-inheritance.rule-special-limited"
         ],
         "source_coordinate_ids": [
           "coord.family-inheritance.civil-act-ko-1019"
-        ]
-      },
-      {
-        "scenario_id": "scenario.money-guarantee.sc-transfer-gift-dispute",
-        "question_ko": "송금 당시 같은 금액을 반환하기로 한 합의 자료가 있나요?",
-        "decision_fact_ko": "반환 약정, 변제기·이자 대화, 일부변제와 송금의 사용 목적",
-        "when_true_ko": "소비대차 성립을 뒷받침하므로 약정 내용과 남은 원금을 계산합니다.",
-        "when_false_ko": "송금 사실만으로 대여를 단정하기 어려우므로 증여·투자·생활비 등 다른 법적 성격을 함께 검토합니다.",
-        "rule_ids": [
-          "rule.money-guarantee.rule-loan-agreement"
-        ],
-        "source_coordinate_ids": [
-          "coord.money-guarantee.civil-act-ko-0598"
-        ]
-      },
-      {
-        "scenario_id": "scenario.money-guarantee.sc-no-note",
-        "question_ko": "차용증 없이도 반환 약정을 보여주는 대화·일부변제·채무승인 자료가 있나요?",
-        "decision_fact_ko": "송금 전후 대화, 상환 약속, 일부변제와 상대방의 채무 인정",
-        "when_true_ko": "서면 차용증이 없어도 소비대차 합의와 범위를 자료 전체로 입증할 수 있는지 검토합니다.",
-        "when_false_ko": "금전 이동만으로 반환 합의를 증명하기 어려우므로 거래 목적과 상대방의 반대 정황을 추가 확인합니다.",
-        "rule_ids": [
-          "rule.money-guarantee.rule-loan-agreement"
-        ],
-        "source_coordinate_ids": [
-          "coord.money-guarantee.civil-act-ko-0598"
-        ]
-      },
-      {
-        "scenario_id": "scenario.money-guarantee.sc-no-due-date",
-        "question_ko": "반환시기를 정하지 않았고 아직 상당한 기간을 정한 최고를 하지 않았나요?",
-        "decision_fact_ko": "변제기 약정 유무, 최고한 금액·기한과 상대방에게 도달한 날짜",
-        "when_true_ko": "상당한 기간을 정하여 원금과 반환기한을 명확히 최고하고 도달자료를 보존합니다.",
-        "when_false_ko": "약정 변제기 또는 최고한 기간의 경과를 기준으로 반환의무 이행과 지체 여부를 검토합니다.",
-        "rule_ids": [
-          "rule.money-guarantee.rule-no-due-date"
-        ],
-        "source_coordinate_ids": [
-          "coord.money-guarantee.civil-act-ko-0603"
-        ]
-      },
-      {
-        "scenario_id": "scenario.money-guarantee.sc-partial-payment",
-        "question_ko": "변제할 때 어느 채무에 충당할지 당사자가 지정했나요?",
-        "decision_fact_ko": "채무자·채권자의 충당 지정과 이의, 각 채무의 이행기·이자·비용",
-        "when_true_ko": "지정의 순서와 상대방의 즉시 이의 여부를 확인하여 유효한 충당 합의에 따라 잔액을 계산합니다.",
-        "when_false_ko": "이행기와 변제이익 등 법정변제충당 순서 및 비용·이자·원본 순서를 적용해 잔액을 계산합니다.",
-        "rule_ids": [
-          "rule.money-guarantee.rule-payment-allocation"
-        ],
-        "source_coordinate_ids": [
-          "coord.money-guarantee.civil-act-ko-0476",
-          "coord.money-guarantee.civil-act-ko-0477",
-          "coord.money-guarantee.civil-act-ko-0478",
-          "coord.money-guarantee.civil-act-ko-0479"
-        ]
-      },
-      {
-        "scenario_id": "scenario.money-guarantee.sc-message-guarantee",
-        "question_ko": "보증인의 기명날인 또는 서명이 있는 서면이 있나요?",
-        "decision_fact_ko": "보증서 원본, 보증인의 서명·날인과 메시지의 법적 문맥",
-        "when_true_ko": "서면 보증의 범위와 주채무를 대조하여 유효한 보증채무의 범위를 검토합니다.",
-        "when_false_ko": "전자 메시지만으로 표시된 보증의사는 원칙적으로 효력이 없으므로 독립채무 약정이나 별도 법령 적용 여부를 구분합니다.",
-        "rule_ids": [
-          "rule.money-guarantee.rule-guarantee-writing"
-        ],
-        "source_coordinate_ids": [
-          "coord.money-guarantee.civil-act-ko-0428-02"
-        ]
-      },
-      {
-        "scenario_id": "scenario.money-guarantee.sc-continuing-guarantee",
-        "question_ko": "불확정한 다수 채무를 보증하는 서면에 최고액이 적혀 있나요?",
-        "decision_fact_ko": "보증 대상 거래의 불확정성, 서면 최고액과 보증기간",
-        "when_true_ko": "최고액과 대상 거래의 범위 안에서 보증채무를 계산합니다.",
-        "when_false_ko": "최고액 없는 근보증계약은 효력이 없으므로 특정 채무 보증인지도 다시 구분합니다.",
-        "rule_ids": [
-          "rule.money-guarantee.rule-continuing-guarantee-cap",
-          "rule.money-guarantee.rule-guarantee-scope"
-        ],
-        "source_coordinate_ids": [
-          "coord.money-guarantee.civil-act-ko-0428-03"
-        ]
-      },
-      {
-        "scenario_id": "scenario.shared-mobility-accident.shared-mobility-cause-private-facility",
-        "question_ko": "민간 건물ㆍ주차시설ㆍ거치시설의 설치나 보존 상태가 사고 원인인가요?",
-        "decision_fact_ko": "시설물의 점유자ㆍ소유자와 설치ㆍ보존 하자",
-        "when_true_ko": "점유자의 주의와 소유자의 책임 순서를 포함해 민법 제758조 적용 가능성을 검토합니다.",
-        "when_false_ko": "다른 이용자 또는 차량의 과실과 이용자 자신의 운전행위를 검토합니다.",
-        "rule_ids": [],
-        "source_coordinate_ids": [
-          "coord.shared-mobility-accident.civil-act-ko-0758"
-        ]
-      },
-      {
-        "scenario_id": "scenario.shared-mobility-accident.shared-mobility-other-person",
-        "question_ko": "다른 차량ㆍ보행자ㆍ이용자의 행위가 사고에 기여했나요?",
-        "decision_fact_ko": "상대방의 구체적 행위와 주의의무 위반",
-        "when_true_ko": "상대방의 과실, 위법성, 인과관계와 공동 원인 가능성을 검토합니다.",
-        "when_false_ko": "단독사고라면 기기ㆍ도로ㆍ시설ㆍ이용자 조작 원인을 더 세밀하게 확인합니다.",
-        "rule_ids": [],
-        "source_coordinate_ids": [
-          "coord.shared-mobility-accident.civil-act-ko-0750"
         ]
       },
       {
@@ -1159,6 +1313,155 @@
         "source_coordinate_ids": [
           "coord.housing-lease-deposit.housing-lease-ko-0003",
           "coord.housing-lease-deposit.housing-lease-ko-0003-02"
+        ]
+      },
+      {
+        "scenario_id": "scenario.labor-wages.sc-unpaid-after-exit",
+        "question_ko": "퇴직 후 14일이 지났는데 임금과 수당 일부가 지급되지 않은 경우",
+        "decision_fact_ko": "정확한 퇴직일과 14일 이내 지급되지 않은 임금·수당·그 밖의 금품",
+        "when_true_ko": "미지급 항목과 금액을 특정해 지급을 요구하고 요청·답변 기록을 보존합니다.",
+        "when_false_ko": "14일 전이거나 전액 지급됐다면 정산내역에 누락된 항목이 없는지 확인합니다.",
+        "rule_ids": [
+          "rule.labor-wages.rule-money-14days"
+        ],
+        "source_coordinate_ids": [
+          "coord.labor-wages.labor-standards-ko-0036"
+        ]
+      },
+      {
+        "scenario_id": "scenario.labor-wages.sc-verbal-extension",
+        "question_ko": "회사가 자금 사정을 이유로 지급기일을 늦추겠다고 말했지만 근로자 동의가 불명확한 경우",
+        "decision_fact_ko": "특별한 사정과 근로자의 명시적 동의, 연장 대상 금액 및 새 지급일",
+        "when_true_ko": "합의한 범위와 새 지급일을 문서화하고 그 기한에 맞춰 지급 여부를 확인합니다.",
+        "when_false_ko": "사용자의 일방 통보만으로 기한이 연장됐다고 보지 않고 원래의 14일 기준을 적용합니다.",
+        "rule_ids": [
+          "rule.labor-wages.rule-money-14days",
+          "rule.labor-wages.rule-retirement-14days"
+        ],
+        "source_coordinate_ids": [
+          "coord.labor-wages.labor-standards-ko-0036",
+          "coord.labor-wages.retirement-benefit-ko-0008",
+          "coord.labor-wages.retirement-benefit-ko-0009"
+        ]
+      },
+      {
+        "scenario_id": "scenario.labor-wages.sc-verbal-dismissal",
+        "question_ko": "전화나 메신저로 내일부터 나오지 말라는 통보만 받은 경우",
+        "decision_fact_ko": "해고사유와 해고시기가 적힌 서면의 교부 여부 및 실제 근로관계 종료 조치",
+        "when_true_ko": "서면의 내용·전달형식과 해고사유의 정당성을 나누어 검토합니다.",
+        "when_false_ko": "전화·구두 통보만 있었다면 서면통지 없는 해고의 효력 문제를 우선 확인합니다.",
+        "rule_ids": [
+          "rule.labor-wages.rule-written-dismissal"
+        ],
+        "source_coordinate_ids": [
+          "coord.labor-wages.labor-standards-ko-0027"
+        ]
+      },
+      {
+        "scenario_id": "scenario.money-guarantee.sc-transfer-gift-dispute",
+        "question_ko": "가족·연인에게 송금했는데 상대방이 증여였다고 주장하는 경우",
+        "decision_fact_ko": "송금 당시 반환 합의와 변제기·이자 약정이 있었는지",
+        "when_true_ko": "금전소비대차 성립을 전제로 반환시기와 미변제 금액을 계산합니다.",
+        "when_false_ko": "증여·정산금 등 다른 원인을 배제할 자료가 있는지 추가 확인합니다.",
+        "rule_ids": [
+          "rule.money-guarantee.rule-loan-agreement"
+        ],
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0598"
+        ]
+      },
+      {
+        "scenario_id": "scenario.money-guarantee.sc-no-note",
+        "question_ko": "차용증 없이 메신저와 송금내역만 남은 경우",
+        "decision_fact_ko": "차용증 대신 메신저·송금내역에 반환 합의가 나타나는지",
+        "when_true_ko": "분산된 자료를 시간순으로 연결해 대여 합의와 금액을 입증합니다.",
+        "when_false_ko": "송금 사실만으로 대여를 단정하지 않고 거래 경위와 당사자 진술을 더 확인합니다.",
+        "rule_ids": [
+          "rule.money-guarantee.rule-loan-agreement"
+        ],
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0598"
+        ]
+      },
+      {
+        "scenario_id": "scenario.money-guarantee.sc-no-due-date",
+        "question_ko": "갚는 날짜를 정하지 않고 돈을 빌려준 경우",
+        "decision_fact_ko": "반환시기를 정한 합의가 있는지",
+        "when_true_ko": "약정 변제기 도래와 미변제를 기준으로 반환을 청구합니다.",
+        "when_false_ko": "상당한 기간을 정한 반환 최고와 그 도달 증거를 준비합니다.",
+        "rule_ids": [
+          "rule.money-guarantee.rule-no-due-date"
+        ],
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0603"
+        ]
+      },
+      {
+        "scenario_id": "scenario.money-guarantee.sc-partial-payment",
+        "question_ko": "여러 차례 돈을 빌려주고 일부만 돌려받은 경우",
+        "decision_fact_ko": "일부 변제 당시 어느 채무에 충당할지 합의하거나 지정했는지",
+        "when_true_ko": "그 합의·지정에 따라 남은 원금과 이자를 다시 계산합니다.",
+        "when_false_ko": "민법상 법정 변제충당 순서에 따라 비용·이자·원본과 여러 채무의 잔액을 계산합니다.",
+        "rule_ids": [
+          "rule.money-guarantee.rule-payment-allocation"
+        ],
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0476",
+          "coord.money-guarantee.civil-act-ko-0477",
+          "coord.money-guarantee.civil-act-ko-0478",
+          "coord.money-guarantee.civil-act-ko-0479"
+        ]
+      },
+      {
+        "scenario_id": "scenario.money-guarantee.sc-message-guarantee",
+        "question_ko": "메신저로 대신 갚겠다는 답변만 받은 경우",
+        "decision_fact_ko": "보증인의 기명날인 또는 서명이 있는 서면이 존재하는지",
+        "when_true_ko": "보증 범위와 주채무를 특정해 보증계약의 효력을 검토합니다.",
+        "when_false_ko": "메신저 대화만으로 서면 방식이 충족됐다고 단정하지 않고 전자적 형태의 예외를 별도로 확인합니다.",
+        "rule_ids": [
+          "rule.money-guarantee.rule-guarantee-writing"
+        ],
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0428-02"
+        ]
+      },
+      {
+        "scenario_id": "scenario.money-guarantee.sc-continuing-guarantee",
+        "question_ko": "현재와 장래의 모든 거래채무를 포괄 보증한 경우",
+        "decision_fact_ko": "불확정한 다수 채무를 보증하면서 최고액을 서면으로 특정했는지",
+        "when_true_ko": "최고액과 보증기간·대상채무 범위 안에서 책임을 계산합니다.",
+        "when_false_ko": "최고액 없는 근보증의 효력 제한을 우선 검토합니다.",
+        "rule_ids": [
+          "rule.money-guarantee.rule-continuing-guarantee-cap",
+          "rule.money-guarantee.rule-guarantee-scope"
+        ],
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0428-03",
+          "coord.money-guarantee.civil-act-ko-0428",
+          "coord.money-guarantee.civil-act-ko-0429",
+          "coord.money-guarantee.civil-act-ko-0430"
+        ]
+      },
+      {
+        "scenario_id": "scenario.shared-mobility-accident.shared-mobility-cause-private-facility",
+        "question_ko": "민간 건물ㆍ주차시설ㆍ거치시설의 설치나 보존 상태가 사고 원인인가요?",
+        "decision_fact_ko": "시설물의 점유자ㆍ소유자와 설치ㆍ보존 하자",
+        "when_true_ko": "점유자의 주의와 소유자의 책임 순서를 포함해 민법 제758조 적용 가능성을 검토합니다.",
+        "when_false_ko": "다른 이용자 또는 차량의 과실과 이용자 자신의 운전행위를 검토합니다.",
+        "rule_ids": [],
+        "source_coordinate_ids": [
+          "coord.shared-mobility-accident.civil-act-ko-0758"
+        ]
+      },
+      {
+        "scenario_id": "scenario.shared-mobility-accident.shared-mobility-other-person",
+        "question_ko": "다른 차량ㆍ보행자ㆍ이용자의 행위가 사고에 기여했나요?",
+        "decision_fact_ko": "상대방의 구체적 행위와 주의의무 위반",
+        "when_true_ko": "상대방의 과실, 위법성, 인과관계와 공동 원인 가능성을 검토합니다.",
+        "when_false_ko": "단독사고라면 기기ㆍ도로ㆍ시설ㆍ이용자 조작 원인을 더 세밀하게 확인합니다.",
+        "rule_ids": [],
+        "source_coordinate_ids": [
+          "coord.shared-mobility-accident.civil-act-ko-0750"
         ]
       }
     ],
@@ -1599,6 +1902,311 @@
         ]
       },
       {
+        "content_id": "content.online-purchase-cancellation-seven-days",
+        "content_type": "doctrine_explainer",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "online-purchase-cancellation-seven-days",
+        "title_ko": "온라인 쇼핑 반품은 무조건 7일 안에만 가능한가",
+        "one_line_answer_ko": "단순변심 철회는 원칙적으로 계약내용 서면 또는 더 늦은 상품 공급을 기준으로 7일이지만, 상품이 광고·계약과 다르면 별도의 3개월·30일 기준이 적용될 수 있다.",
+        "audience_situation_ko": "온라인으로 산 물건은 받은 날부터 7일 안에만 반품할 수 있나?",
+        "key_points_ko": [
+          "7일의 시작점부터 확인한다.",
+          "단순변심과 계약 불일치를 구분한다.",
+          "판매자가 더 긴 기간을 약정했다면 그 기간을 따른다."
+        ],
+        "action_steps_ko": [
+          "주문서·계약내용 수신일과 배송완료일을 확인한다.",
+          "철회 사유를 단순변심 또는 계약 불일치로 분류한다.",
+          "기한 안에 기록이 남는 방식으로 철회 의사를 보낸다.",
+          "반송 송장과 판매자 답변을 보관한다."
+        ],
+        "facts_to_check_ko": [
+          "계약내용 서면 수신일",
+          "상품 수령일",
+          "철회 통지일",
+          "판매페이지 반품정책",
+          "판매자 주소 확인 가능일",
+          "철회 방해 행위 여부"
+        ],
+        "caution_ko": "7일과 3개월·30일은 선택적으로 유리한 기간 하나만 적용하는 관계가 아니므로 사유와 각 기산점을 함께 확인해야 한다.",
+        "search_intents_ko": [
+          "온라인 쇼핑 반품 기간",
+          "전자상거래 청약철회 7일",
+          "택배 반품 언제까지"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "7일은 언제부터 세는가",
+            "paragraphs_ko": [
+              "온라인 구매의 일반 청약철회 기간은 단순히 결제일부터 7일이 아닙니다. 계약내용에 관한 서면을 받은 날이 출발점이고, 상품 공급이 그보다 늦으면 상품을 받거나 공급이 시작된 날부터 계산합니다.",
+              "계약서면을 받지 못했거나 판매자 주소를 알 수 없어 철회하기 어려웠다면 주소를 안 날 또는 알 수 있었던 날, 철회 방해가 있었다면 방해가 끝난 날이 별도 출발점이 될 수 있습니다."
+            ]
+          },
+          {
+            "heading_ko": "7일이 지났다면 사유를 다시 분류한다",
+            "paragraphs_ko": [
+              "상품이 정상이고 마음만 바뀐 경우와 표시·광고 또는 계약내용과 다른 경우는 적용되는 기간이 다릅니다. 후자라면 공급받은 날부터 3개월 이내이면서 불일치를 안 날 또는 알 수 있었던 날부터 30일 이내인지 함께 봅니다.",
+              "따라서 주문일 하나만 확인해서 포기하면 안 됩니다. 계약서면 수신일, 배송완료일, 불일치 발견일, 철회 통지일을 한 줄의 시간표로 정리하는 것이 먼저입니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.consumer-online-contracts.rule-withdrawal-7days",
+          "rule.consumer-online-contracts.rule-nonconforming-3m30d"
+        ],
+        "scenario_ids": [
+          "scenario.consumer-online-contracts.sc-change-mind",
+          "scenario.consumer-online-contracts.sc-not-as-advertised"
+        ],
+        "source_coordinate_ids": [
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0017",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0018"
+        ],
+        "hub_ids": [
+          "hub.consumer-online-contracts"
+        ],
+        "related_content_ids": []
+      },
+      {
+        "content_id": "content.who-pays-return-shipping",
+        "content_type": "doctrine_explainer",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "who-pays-return-shipping",
+        "title_ko": "온라인 반품 배송비는 누가 부담하나",
+        "one_line_answer_ko": "단순변심 철회와 표시·광고 또는 계약 불일치 철회는 반환비용 부담 주체가 다르므로 반품 사유를 먼저 확정해야 한다.",
+        "audience_situation_ko": "반품 배송비를 소비자가 내야 하나 판매자가 내야 하나?",
+        "key_points_ko": [
+          "배송비 문제는 철회 가능 여부와 별도로 판단한다.",
+          "단순변심인지 계약 불이행인지 증거로 구분한다.",
+          "판매자가 정한 반품비가 법정 부담구조와 맞는지 확인한다."
+        ],
+        "action_steps_ko": [
+          "반품 사유를 문장으로 명확히 적는다.",
+          "광고·계약 불일치 자료를 첨부한다.",
+          "판매자가 요구한 비용 내역을 저장한다.",
+          "환급액에서 공제된 금액을 확인한다."
+        ],
+        "facts_to_check_ko": [
+          "반품 사유",
+          "상품 하자·불일치 여부",
+          "최초 배송비",
+          "반송비",
+          "도서산간 추가비",
+          "판매자 공제 내역",
+          "반품 약관"
+        ],
+        "caution_ko": "교환이나 일부 반품, 묶음배송은 실제 발생 비용과 계약 구조를 추가로 봐야 한다.",
+        "search_intents_ko": [
+          "반품 배송비 부담",
+          "불량상품 반품비",
+          "단순변심 왕복배송비"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "먼저 반품 사유를 확정한다",
+            "paragraphs_ko": [
+              "단순변심에 따른 일반 청약철회라면 반환에 필요한 비용은 원칙적으로 소비자가 부담합니다. 반대로 상품이 표시·광고나 계약내용과 달라 철회하는 경우에는 반환비용을 통신판매업자가 부담합니다.",
+              "같은 '반품'이라도 비용 결론은 사유에 따라 달라집니다. 판매자에게 보내는 통지에서 단순변심인지 하자·불일치인지 명확히 적어야 합니다."
+            ]
+          },
+          {
+            "heading_ko": "공제된 금액을 항목별로 확인한다",
+            "paragraphs_ko": [
+              "최초 배송비, 반송비, 도서산간 추가비, 묶음배송 비용이 한꺼번에 표시되면 법정 부담구조를 확인하기 어렵습니다. 판매자가 요구하거나 환급액에서 공제한 금액의 명목과 계산근거를 요청합니다.",
+              "교환이나 일부 반품은 실제 발생 비용과 계약 구조가 달라질 수 있으므로 전체 주문과 반환 대상의 관계도 함께 봅니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.consumer-online-contracts.rule-return-cost"
+        ],
+        "scenario_ids": [
+          "scenario.consumer-online-contracts.sc-change-mind",
+          "scenario.consumer-online-contracts.sc-not-as-advertised"
+        ],
+        "source_coordinate_ids": [
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0018",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0017"
+        ],
+        "hub_ids": [
+          "hub.consumer-online-contracts"
+        ],
+        "related_content_ids": []
+      },
+      {
+        "content_id": "content.refund-within-three-business-days",
+        "content_type": "procedure_evidence",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "refund-within-three-business-days",
+        "title_ko": "반품한 뒤 환불은 언제까지 받아야 하나",
+        "one_line_answer_ko": "재화는 판매자가 반환받은 날, 용역·디지털콘텐츠 또는 미공급 거래는 철회한 날 등 법이 정한 기준일부터 3영업일 이내 환급이 원칙이다.",
+        "audience_situation_ko": "판매자가 반품을 받았는데 환불을 계속 미룬다.",
+        "key_points_ko": [
+          "거래 대상에 따라 3영업일의 시작점이 다르다.",
+          "카드결제는 결제업자에 대한 청구 정지·취소 절차도 확인한다.",
+          "지연 시 지연배상금 문제가 생길 수 있다."
+        ],
+        "action_steps_ko": [
+          "반송 배송완료일 또는 철회 통지일을 확인한다.",
+          "판매자의 환급 예정일 답변을 저장한다.",
+          "카드사·결제사업자의 취소 상태를 조회한다.",
+          "환급액과 공제내역을 대조한다."
+        ],
+        "facts_to_check_ko": [
+          "거래가 재화·용역·디지털콘텐츠 중 무엇인지",
+          "반환 완료일",
+          "철회 통지일",
+          "미공급 여부",
+          "결제수단",
+          "결제취소 요청일",
+          "실제 환급일",
+          "공제 내역"
+        ],
+        "caution_ko": "영업일 계산과 환급 기준일을 달력일과 혼동하지 않아야 한다.",
+        "search_intents_ko": [
+          "반품 환불 기간",
+          "3영업일 환급",
+          "온라인 쇼핑 환불 지연"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "3영업일의 시작점이 거래마다 다르다",
+            "paragraphs_ko": [
+              "재화는 판매자가 반환받은 날부터, 용역·디지털콘텐츠는 철회한 날부터, 애초에 공급되지 않은 거래도 철회한 날부터 3영업일 이내 환급이 원칙입니다.",
+              "반송을 보낸 날이 아니라 판매자가 반환받은 날이 기준이 되는 경우가 있으므로 배송조회 완료시각을 보존해야 합니다. 주말과 공휴일을 포함한 달력일과 영업일도 구분합니다."
+            ]
+          },
+          {
+            "heading_ko": "결제 취소의 실제 진행을 확인한다",
+            "paragraphs_ko": [
+              "카드나 전자결제라면 판매자는 결제업자에게 청구 정지나 취소를 요청해야 합니다. 판매자가 '취소 처리했다'고 답한 것과 카드사에 실제 반영된 것은 다를 수 있습니다.",
+              "판매자 답변, 카드사 승인취소 상태, 실제 환급일, 공제내역을 한 표에서 대조하면 지연 여부와 금액 차이를 확인하기 쉽습니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.consumer-online-contracts.rule-refund-3businessdays"
+        ],
+        "scenario_ids": [
+          "scenario.consumer-online-contracts.sc-undelivered",
+          "scenario.consumer-online-contracts.sc-change-mind"
+        ],
+        "source_coordinate_ids": [
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0018",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0013",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0014",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0015",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0017"
+        ],
+        "hub_ids": [
+          "hub.consumer-online-contracts"
+        ],
+        "related_content_ids": [],
+        "concierge_entry": {
+          "question_ko": "반품한 뒤 환불은 언제까지 받아야 하나",
+          "decision_facts_ko": [
+            "거래가 재화·용역·디지털콘텐츠 중 무엇인지",
+            "반환 완료일",
+            "철회 통지일",
+            "미공급 여부",
+            "결제수단",
+            "결제취소 요청일",
+            "실제 환급일",
+            "공제 내역"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.paid-but-goods-not-supplied",
+        "content_type": "procedure_evidence",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "paid-but-goods-not-supplied",
+        "title_ko": "결제했는데 배송되지 않을 때 확인할 순서",
+        "one_line_answer_ko": "별도 공급시기 약정, 공급에 필요한 조치 여부, 공급 곤란 통지와 선지급 대금 환급조치가 있었는지를 순서대로 확인한다.",
+        "audience_situation_ko": "선결제했는데 판매자가 배송하지 않거나 공급이 어렵다고 한다.",
+        "key_points_ko": [
+          "별도의 배송일 약정이 있으면 먼저 그 약정을 본다.",
+          "선지급식 거래의 공급조치 기한과 실제 배송완료는 같은 개념이 아니다.",
+          "공급이 곤란하면 지체 없는 통지와 환급조치가 문제된다."
+        ],
+        "action_steps_ko": [
+          "주문 당시 배송예정일을 저장한다.",
+          "운송장 발급과 실제 집화 여부를 구분한다.",
+          "공급곤란 통지 내용을 확보한다.",
+          "취소·환급 요청과 답변을 기록한다."
+        ],
+        "facts_to_check_ko": [
+          "청약일",
+          "대금 지급일",
+          "약정 배송일",
+          "운송장 발급일",
+          "집화·배송조회",
+          "공급곤란 인지·통지일",
+          "환급조치일"
+        ],
+        "caution_ko": "배송 지연만으로 곧바로 계약 해제 결론을 내리기보다 약정과 법정 의무 위반을 구분한다.",
+        "search_intents_ko": [
+          "결제 후 배송 안됨",
+          "온라인 쇼핑 미배송 환불",
+          "선결제 공급 3영업일"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "약정 배송일과 법정 공급조치를 구분한다",
+            "paragraphs_ko": [
+              "별도의 공급시기 약정이 없다면 통신판매업자는 청약일부터 7일 이내 공급에 필요한 조치를 해야 하고, 선지급식 거래라면 대금 지급일부터 3영업일 이내 필요한 조치를 해야 합니다.",
+              "이 규정은 반드시 그 기간 안에 배송을 완료한다는 뜻과 같지 않습니다. 주문 당시 약정 배송일, 운송장 발급, 실제 집화와 이동 상황을 구분해 봅니다."
+            ]
+          },
+          {
+            "heading_ko": "공급이 어렵다면 통지와 환급조치를 본다",
+            "paragraphs_ko": [
+              "판매자가 공급하기 어렵다는 사실을 알았다면 지체 없이 그 사유를 알려야 합니다. 선지급식 거래에서는 대금 지급일부터 3영업일 이내 환급하거나 환급에 필요한 조치도 해야 합니다.",
+              "품절 통지일, 취소 요청일, 결제 취소 요청일과 실제 환급일을 순서대로 정리하면 단순 지연과 공급곤란 처리 실패를 나눌 수 있습니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.consumer-online-contracts.rule-supply-timeline",
+          "rule.consumer-online-contracts.rule-refund-3businessdays"
+        ],
+        "scenario_ids": [
+          "scenario.consumer-online-contracts.sc-undelivered"
+        ],
+        "source_coordinate_ids": [
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0013",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0014",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0015",
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0018"
+        ],
+        "hub_ids": [
+          "hub.consumer-online-contracts"
+        ],
+        "related_content_ids": [],
+        "concierge_entry": {
+          "question_ko": "결제했는데 배송되지 않을 때 확인할 순서",
+          "decision_facts_ko": [
+            "청약일",
+            "대금 지급일",
+            "약정 배송일",
+            "운송장 발급일",
+            "집화·배송조회",
+            "공급곤란 인지·통지일",
+            "환급조치일"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
         "content_id": "content.legal-heir-order-and-spouse",
         "content_type": "doctrine_explainer",
         "editorial_status": "approved",
@@ -1648,7 +2256,7 @@
             "heading_ko": "가족관계도에 예외 사유를 표시한다",
             "paragraphs_ko": [
               "가족관계증명서와 제적등본을 바탕으로 사망 당시의 배우자·자녀·부모·형제자매를 적고, 피상속인보다 먼저 사망한 사람과 입양관계를 표시합니다.",
-              "대습상속, 상속결격, 상속포기 같은 예외가 있으면 일반 순위만으로 결론낼 수 없습니다. 사실혼 배우자의 법적 지위도 법률상 배우자와 동일하다고 단정하지 말아야 합니다."
+              "대습상속, 상속결격, 상속포기와 2026년 도입된 상속권 상실선고가 있으면 일반 순위만으로 결론낼 수 없습니다. 사실혼 배우자의 법적 지위도 법률상 배우자와 동일하다고 단정하지 말아야 합니다."
             ]
           }
         ],
@@ -1728,7 +2336,8 @@
           "scenario.family-inheritance.sc-debt-uncertain"
         ],
         "source_coordinate_ids": [
-          "coord.family-inheritance.civil-act-ko-1019"
+          "coord.family-inheritance.civil-act-ko-1019",
+          "coord.family-inheritance.civil-act-ko-1028"
         ],
         "hub_ids": [
           "hub.family-inheritance"
@@ -1795,7 +2404,7 @@
           {
             "heading_ko": "수리심판과 다음 상속인을 확인한다",
             "paragraphs_ko": [
-              "상속포기는 가정법원의 신고·수리 절차를 거치며, 수리되면 상속개시 때로 소급합니다. 수리 여부를 확인하기 전에 상속재산을 임의로 처분해서는 안 됩니다.",
+              "상속포기 효력은 가정법원의 수리심판이 고지되어야 발생하고, 발생하면 상속개시 때로 소급합니다. 신고 접수만 했다고 재산을 자유롭게 처분해서는 안 됩니다.",
               "포기자가 생기면 남은 공동상속인 또는 후순위 상속인의 지위가 달라질 수 있습니다. 배우자와 자녀의 전원·일부 포기 여부를 구분해 가족관계도를 다시 계산합니다."
             ]
           }
@@ -1905,7 +2514,8 @@
           "coord.family-inheritance.civil-act-ko-1036",
           "coord.family-inheritance.civil-act-ko-1037",
           "coord.family-inheritance.civil-act-ko-1038",
-          "coord.family-inheritance.civil-act-ko-1039"
+          "coord.family-inheritance.civil-act-ko-1039",
+          "coord.family-inheritance.civil-act-ko-1019"
         ],
         "hub_ids": [
           "hub.family-inheritance"
@@ -2464,7 +3074,8 @@
           "scenario.housing-lease-deposit.housing-lease-fixed-date"
         ],
         "source_coordinate_ids": [
-          "coord.housing-lease-deposit.housing-lease-ko-0003"
+          "coord.housing-lease-deposit.housing-lease-ko-0003",
+          "coord.housing-lease-deposit.housing-lease-ko-0003-02"
         ],
         "hub_ids": [
           "hub.housing-lease-deposit"
@@ -2620,6 +3231,369 @@
           ],
           "href": "https://liale-review.lolphysical.xyz"
         }
+      },
+      {
+        "content_id": "content.final-wages-after-retirement-14-days",
+        "content_type": "doctrine_explainer",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "final-wages-after-retirement-14-days",
+        "title_ko": "퇴직한 뒤 임금은 언제까지 받아야 하나",
+        "one_line_answer_ko": "원칙적으로 퇴직일부터 14일 이내이며, 특별한 사정이 있고 당사자가 지급기일 연장에 합의한 경우는 달라질 수 있다.",
+        "audience_situation_ko": "회사를 그만두면 남은 급여와 수당은 언제까지 지급돼야 하나?",
+        "key_points_ko": [
+          "정산 대상은 임금뿐 아니라 보상금과 그 밖의 금품을 포함할 수 있다.",
+          "14일은 회사의 급여일과 별도로 작동하는 법정 기준이다.",
+          "연장에는 특별한 사정과 당사자 합의가 요구된다."
+        ],
+        "action_steps_ko": [
+          "마지막 근무일과 근로관계 종료일을 확정한다.",
+          "기본급·수당·그 밖의 미정산 금품을 항목별로 계산한다.",
+          "지급기일 연장 합의가 있는지와 범위를 확인한다.",
+          "14일 경과 전후의 지급요청과 회사 답변을 기록으로 남긴다."
+        ],
+        "facts_to_check_ko": [
+          "정확한 퇴직일",
+          "미지급 기본급",
+          "연장·야간·휴일수당",
+          "미사용 연차 관련 금품",
+          "지급기일 연장 합의 존재",
+          "합의의 내용과 기간",
+          "일부 지급 내역"
+        ],
+        "caution_ko": "어떤 금품이 임금인지, 퇴직일이 언제인지에 다툼이 있으면 계산 출발점도 달라진다.",
+        "search_intents_ko": [
+          "퇴직 후 임금 14일",
+          "퇴사 미지급 급여 지급기한",
+          "퇴직 금품청산"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "정기 급여일과 별도로 14일 기준을 본다",
+            "paragraphs_ko": [
+              "퇴직한 근로자에게 지급할 임금·보상금과 그 밖의 금품은 원칙적으로 지급사유가 발생한 때부터 14일 이내에 청산해야 합니다. 회사의 다음 정기 급여일이 더 늦다는 사정만으로 기한이 자동 연장되지는 않습니다.",
+              "계산의 출발점이 되는 퇴직일과 정산 대상 금액부터 확정해야 합니다. 미지급 기본급, 연장·야간·휴일근로수당 등 항목별 발생 근거와 일부 지급 내역을 나눠 봅니다."
+            ]
+          },
+          {
+            "heading_ko": "연장 합의는 존재와 범위를 따로 확인한다",
+            "paragraphs_ko": [
+              "특별한 사정이 있는 경우 당사자 합의로 지급기일을 연장할 수 있으므로, 합의가 있었는지뿐 아니라 어떤 금액을 언제까지 지급하기로 했는지를 확인해야 합니다.",
+              "회사의 자금사정 통보, 근로자의 침묵, 명시적인 동의는 같은 것이 아닙니다. 문자·메신저·전자우편과 정산표를 보존해 합의의 존재와 범위를 구분합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.labor-wages.rule-money-14days"
+        ],
+        "scenario_ids": [
+          "scenario.labor-wages.sc-unpaid-after-exit",
+          "scenario.labor-wages.sc-verbal-extension"
+        ],
+        "source_coordinate_ids": [
+          "coord.labor-wages.labor-standards-ko-0036",
+          "coord.labor-wages.retirement-benefit-ko-0008",
+          "coord.labor-wages.retirement-benefit-ko-0009"
+        ],
+        "hub_ids": [
+          "hub.labor-wages"
+        ],
+        "related_content_ids": []
+      },
+      {
+        "content_id": "content.verbal-delay-agreement-after-retirement",
+        "content_type": "fact_branch",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "verbal-delay-agreement-after-retirement",
+        "title_ko": "회사가 14일 뒤에 주겠다고 말하면 지급기일이 자동 연장되나",
+        "one_line_answer_ko": "회사의 일방 통보만으로 자동 연장되는 것은 아니며 특별한 사정과 당사자 사이의 합의 여부를 확인해야 한다.",
+        "audience_situation_ko": "회사가 자금 사정 때문에 늦게 준다고 통보하면 기다려야 하나?",
+        "key_points_ko": [
+          "일방 통보와 쌍방 합의는 구별해야 한다.",
+          "합의했다면 대상 금액과 새 지급일이 무엇인지 확인해야 한다.",
+          "대화 기록은 합의의 존재와 범위를 가르는 자료가 된다."
+        ],
+        "action_steps_ko": [
+          "회사의 연장 요청 원문과 제시 사유를 보존한다.",
+          "동의 여부와 동의한 금액·기한을 구분해 기록한다.",
+          "새 지급일과 분할지급 조건을 명확한 문서로 확인한다.",
+          "합의하지 않았다면 일방 통보와 자신의 답변을 함께 남긴다."
+        ],
+        "facts_to_check_ko": [
+          "회사가 제시한 연장 사유",
+          "근로자가 명시적으로 동의했는지",
+          "새 지급일을 정했는지",
+          "연장 대상 금액",
+          "서면·메신저 기록",
+          "일부 지급 여부",
+          "압박이나 오인이 있었는지"
+        ],
+        "caution_ko": "구체적 합의의 유효성과 범위는 대화 내용 및 체결 경위에 따라 달라질 수 있다.",
+        "search_intents_ko": [
+          "퇴직금 지급 연장 합의",
+          "임금 14일 회사 일방 통보",
+          "퇴사 급여 늦게 지급 동의"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "회사의 통보와 당사자 합의는 다르다",
+            "paragraphs_ko": [
+              "회사가 자금 사정이나 내부 정산일을 이유로 늦게 지급하겠다고 알린 것만으로 법정 지급기일이 자동 연장되는 것은 아닙니다. 특별한 사정과 당사자 사이의 합의 여부가 핵심입니다.",
+              "근로자가 답하지 않았거나 단순히 통보를 확인했다는 사정만으로 특정한 연장 합의가 성립했다고 단정하기 어렵습니다. 실제 대화 내용과 체결 경위를 그대로 보존해야 합니다."
+            ]
+          },
+          {
+            "heading_ko": "합의했다면 금액과 새 지급일을 특정한다",
+            "paragraphs_ko": [
+              "연장 합의가 있더라도 임금 전부인지 퇴직급여만인지, 일시금인지 분할지급인지, 최종 지급일이 언제인지가 불명확하면 다시 분쟁이 생깁니다.",
+              "금액별 지급표와 새 기일을 문서로 남기고 이미 일부 지급된 금액도 따로 표시합니다. 합의의 유효성은 압박·오인 등 구체적 체결 경위에 따라 달라질 수 있습니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.labor-wages.rule-money-14days",
+          "rule.labor-wages.rule-retirement-14days"
+        ],
+        "scenario_ids": [
+          "scenario.labor-wages.sc-verbal-extension"
+        ],
+        "source_coordinate_ids": [
+          "coord.labor-wages.labor-standards-ko-0036",
+          "coord.labor-wages.retirement-benefit-ko-0008",
+          "coord.labor-wages.retirement-benefit-ko-0009"
+        ],
+        "hub_ids": [
+          "hub.labor-wages"
+        ],
+        "related_content_ids": [],
+        "concierge_entry": {
+          "question_ko": "회사가 14일 뒤에 주겠다고 말하면 지급기일이 자동 연장되나",
+          "decision_facts_ko": [
+            "회사가 제시한 연장 사유",
+            "근로자가 명시적으로 동의했는지",
+            "새 지급일을 정했는지",
+            "연장 대상 금액",
+            "서면·메신저 기록",
+            "일부 지급 여부",
+            "압박이나 오인이 있었는지"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.retirement-pay-basic-formula",
+        "content_type": "doctrine_explainer",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "retirement-pay-basic-formula",
+        "title_ko": "퇴직금 계산의 기본 출발점",
+        "one_line_answer_ko": "기본 출발점은 계속근로 1년에 대해 30일분 이상의 평균임금이며, 적용대상과 계속근로기간·평균임금 산정자료를 먼저 확정해야 한다.",
+        "audience_situation_ko": "퇴직금은 어떤 기준으로 계산하나?",
+        "key_points_ko": [
+          "단순히 마지막 월급에 근속연수를 곱하는 계산과 다를 수 있다.",
+          "계속근로기간의 시작과 종료가 중요하다.",
+          "평균임금에 포함되는 임금 항목과 산정기간을 확인해야 한다."
+        ],
+        "action_steps_ko": [
+          "입사일·퇴직일과 근무 단절 여부를 확인한다.",
+          "적용대상 여부와 퇴직급여 제도 유형을 먼저 확인한다.",
+          "평균임금 산정에 필요한 임금자료와 기간을 모은다.",
+          "단순 계산값과 실제 지급액의 차이를 항목별로 검토한다."
+        ],
+        "facts_to_check_ko": [
+          "입사일과 퇴직일",
+          "휴직·단절 기간",
+          "최근 임금명세",
+          "정기상여금",
+          "수당의 지급주기",
+          "평균임금 산정기간의 특이사항",
+          "적용제외 가능성"
+        ],
+        "caution_ko": "1년 미만 계속근로 또는 단시간 근로 등 적용범위 쟁점은 현행 조문과 DB 대조 후 별도 분기해야 한다.",
+        "search_intents_ko": [
+          "퇴직금 계산 방법",
+          "퇴직금 평균임금 30일",
+          "계속근로기간 퇴직금"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "기본식보다 먼저 적용대상을 확인한다",
+            "paragraphs_ko": [
+              "퇴직금 제도의 기본 출발점은 계속근로 1년에 대해 30일분 이상의 평균임금입니다. 다만 실제 계산에 앞서 해당 근로관계가 퇴직급여 제도의 적용대상인지, 계속근로기간이 어떻게 이어졌는지를 확인해야 합니다.",
+              "계약을 반복 갱신했거나 휴직·공백이 있었다면 문서상 계약기간만 보고 단절을 단정하지 말고 실제 근로관계의 계속성을 살펴봅니다."
+            ]
+          },
+          {
+            "heading_ko": "평균임금에 들어가는 자료를 확정한다",
+            "paragraphs_ko": [
+              "마지막 월급에 근속연수를 단순히 곱하는 방식과 법정 계산은 다를 수 있습니다. 평균임금 산정기간과 그 기간에 지급된 임금 항목, 정기상여금과 각종 수당의 성격을 확인해야 합니다.",
+              "산정기간에 휴업·휴직 등 특이사항이 있거나 평균임금이 통상적인 생활임금을 지나치게 낮게 반영하는 경우에는 별도 규율이 문제될 수 있으므로 원자료를 보존합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.labor-wages.rule-retirement-base"
+        ],
+        "scenario_ids": [],
+        "source_coordinate_ids": [
+          "coord.labor-wages.retirement-benefit-ko-0008",
+          "coord.labor-wages.retirement-benefit-ko-0009"
+        ],
+        "hub_ids": [
+          "hub.labor-wages"
+        ],
+        "related_content_ids": []
+      },
+      {
+        "content_id": "content.retirement-pay-payment-deadline",
+        "content_type": "procedure_evidence",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "retirement-pay-payment-deadline",
+        "title_ko": "퇴직금도 퇴직 후 14일 안에 지급해야 하나",
+        "one_line_answer_ko": "퇴직급여도 원칙적으로 퇴직일부터 14일 이내 지급 대상이며 특별한 사정이 있는 경우 당사자 합의로 기일을 연장할 수 있다.",
+        "audience_situation_ko": "퇴직금 지급일도 다음 급여일까지 기다려야 하나?",
+        "key_points_ko": [
+          "임금 정산과 퇴직급여는 근거법이 다르지만 모두 14일 원칙을 둔다.",
+          "기한 계산에는 퇴직일 확정이 선행돼야 한다.",
+          "연장 합의가 있다면 새 지급일과 범위를 증거로 남기는 편이 안전하다."
+        ],
+        "action_steps_ko": [
+          "퇴직일과 14일째 되는 날을 달력에 표시한다.",
+          "퇴직급여 제도 유형과 예상 산정액을 확인한다.",
+          "연장 합의가 있다면 새 지급일과 범위를 문서로 남긴다.",
+          "실제 지급일·지급액과 미지급 잔액을 대조한다."
+        ],
+        "facts_to_check_ko": [
+          "퇴직일",
+          "퇴직급여 제도 유형",
+          "퇴직금 산정액",
+          "지급 예정일 안내",
+          "연장 합의 유무",
+          "합의된 새 지급일",
+          "중간정산 이력"
+        ],
+        "caution_ko": "퇴직연금 유형과 지급청구 절차에 따라 실제 수령 절차가 달라질 수 있다.",
+        "search_intents_ko": [
+          "퇴직금 14일 지급",
+          "퇴직금 지급기한",
+          "퇴직연금 퇴사 후 언제"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "퇴직급여에도 원칙적인 14일 기한이 있다",
+            "paragraphs_ko": [
+              "퇴직급여는 일반 임금 정산과 근거법은 다르지만, 퇴직일부터 14일 이내 지급이라는 원칙을 둡니다. 다음 급여일이나 회사의 내부 정산일만을 기준으로 기다릴 문제는 아닙니다.",
+              "기한을 계산하려면 먼저 퇴직일을 확정해야 합니다. 사직서상 날짜, 실제 마지막 근무일, 회사가 처리한 퇴직일이 다르면 그 차이를 정리합니다."
+            ]
+          },
+          {
+            "heading_ko": "제도 유형과 지급 절차를 함께 본다",
+            "paragraphs_ko": [
+              "퇴직금제도인지 퇴직연금제도인지에 따라 실제 지급과 청구 절차가 달라질 수 있습니다. 가입 금융기관, 계좌, 회사의 지급 지시 등 필요한 절차를 확인합니다.",
+              "특별한 사정으로 기일을 연장하기로 합의했다면 새 지급일과 대상 금액을 기록으로 남깁니다. 일부만 지급되었다면 미지급 잔액과 지급일을 분리해 관리합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.labor-wages.rule-retirement-14days"
+        ],
+        "scenario_ids": [
+          "scenario.labor-wages.sc-verbal-extension"
+        ],
+        "source_coordinate_ids": [
+          "coord.labor-wages.retirement-benefit-ko-0008",
+          "coord.labor-wages.retirement-benefit-ko-0009",
+          "coord.labor-wages.labor-standards-ko-0036"
+        ],
+        "hub_ids": [
+          "hub.labor-wages"
+        ],
+        "related_content_ids": [],
+        "concierge_entry": {
+          "question_ko": "퇴직금도 퇴직 후 14일 안에 지급해야 하나",
+          "decision_facts_ko": [
+            "퇴직일",
+            "퇴직급여 제도 유형",
+            "퇴직금 산정액",
+            "지급 예정일 안내",
+            "연장 합의 유무",
+            "합의된 새 지급일",
+            "중간정산 이력"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.verbal-dismissal-written-notice",
+        "content_type": "misconception_correction",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "verbal-dismissal-written-notice",
+        "title_ko": "전화나 말로 해고 통보하면 효력이 있나",
+        "one_line_answer_ko": "해고사유와 해고시기를 서면으로 통지해야 해고의 효력이 있으므로 말이나 전화 통보만 있었다면 서면통지 여부를 우선 확인해야 한다.",
+        "audience_situation_ko": "사장이 전화로 내일부터 나오지 말라고 했는데 해고된 것인가?",
+        "key_points_ko": [
+          "서면통지는 단순한 증거 문제가 아니라 해고 효력과 연결된다.",
+          "메신저 통지가 서면 요건을 충족하는지는 내용과 전달형식 등을 구체적으로 살펴야 한다.",
+          "사직 권고와 해고는 구별해야 한다."
+        ],
+        "action_steps_ko": [
+          "전화·대면 통보의 날짜와 정확한 말을 즉시 기록한다.",
+          "문자·메신저·전자우편 원문과 전달형식을 보존한다.",
+          "해고사유와 해고시기가 표시됐는지 따로 확인한다.",
+          "사직 권고인지 일방적 근로관계 종료인지 후속 행동까지 정리한다."
+        ],
+        "facts_to_check_ko": [
+          "통보 수단",
+          "통보 문구 원문",
+          "해고사유 기재 여부",
+          "해고시기 기재 여부",
+          "근로자가 사직 의사를 표시했는지",
+          "출근 차단 여부",
+          "후속 서면 발급 여부"
+        ],
+        "caution_ko": "전자문서가 서면통지에 해당하는지와 사직인지 해고인지는 구체적 사실관계에 따라 판단해야 한다.",
+        "search_intents_ko": [
+          "구두 해고 효력",
+          "전화 해고 서면통지",
+          "카톡 해고 통보 효력"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "말이나 전화 통보만으로 끝낼 수 없다",
+            "paragraphs_ko": [
+              "사용자가 근로자를 해고하려면 해고사유와 해고시기를 서면으로 통지해야 하고, 이 서면통지가 해고 효력과 연결됩니다. 전화나 대면으로 내일부터 나오지 말라고 한 경우에는 후속 서면이 있었는지부터 확인합니다.",
+              "통보 당시의 정확한 표현, 출근 차단, 업무계정 회수, 급여정산 안내 등 후속 조치는 자진사직인지 해고인지 가르는 사실자료가 될 수 있습니다."
+            ]
+          },
+          {
+            "heading_ko": "메신저라면 내용과 형식을 함께 본다",
+            "paragraphs_ko": [
+              "문자나 메신저가 사용되었다는 이유만으로 언제나 서면요건을 충족하거나 충족하지 않는다고 단정할 수는 없습니다. 발신자, 수신자, 해고사유·시기의 구체성, 전자문서로서의 전달과 보존 가능성을 살펴야 합니다.",
+              "서면통지 요건과 해고사유 자체의 정당성은 별개의 문제입니다. 서면이 있다는 이유만으로 해고가 정당해지는 것도 아니므로 두 쟁점을 나눠 검토합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.labor-wages.rule-written-dismissal"
+        ],
+        "scenario_ids": [
+          "scenario.labor-wages.sc-verbal-dismissal"
+        ],
+        "source_coordinate_ids": [
+          "coord.labor-wages.labor-standards-ko-0027"
+        ],
+        "hub_ids": [
+          "hub.labor-wages"
+        ],
+        "related_content_ids": []
       },
       {
         "content_id": "content.bank-transfer-loan-or-gift",
@@ -2964,9 +3938,9 @@
             ]
           },
           {
-            "heading_ko": "전자 형식의 별도 근거와 이미 한 이행을 확인한다",
+            "heading_ko": "영업·사업 전자문서 예외와 이미 한 이행을 확인한다",
             "paragraphs_ko": [
-              "현재 연결 근거는 민법 제428조의2가 정한 일반 원칙입니다. 사업상 전자문서 등 다른 법령이 적용될 가능성이 있다면 그 근거를 별도로 확인하기 전에는 효력을 단정하지 않습니다.",
+              "전자문서법은 보증인이 자기의 영업 또는 사업으로 작성한 보증의사가 표시된 전자문서를 일정한 경우 민법상 서면으로 보는 예외를 둡니다. 일반 개인의 메신저 약속에 곧바로 적용되는 예외는 아닙니다.",
               "보증인이 이미 보증채무를 이행한 경우에는 이행한 한도에서 방식 하자를 이유로 무효를 주장하기 어려울 수 있으므로 지급액과 경위를 확인합니다."
             ]
           }
@@ -3046,7 +4020,9 @@
         ],
         "source_coordinate_ids": [
           "coord.money-guarantee.civil-act-ko-0428-03",
-          "coord.money-guarantee.civil-act-ko-0429"
+          "coord.money-guarantee.civil-act-ko-0429",
+          "coord.money-guarantee.civil-act-ko-0428",
+          "coord.money-guarantee.civil-act-ko-0430"
         ],
         "hub_ids": [
           "hub.money-guarantee"
@@ -3303,6 +4279,18 @@
         ]
       },
       {
+        "hub_id": "hub.consumer-online-contracts",
+        "slug": "consumer-online-contracts",
+        "title_ko": "소비자·온라인 계약",
+        "description_ko": "온라인 구매·구독·플랫폼 거래에서 철회 가능 기간, 예외, 환급과 판매자 확인을 행동 순서로 안내한다.",
+        "content_ids": [
+          "content.online-purchase-cancellation-seven-days",
+          "content.who-pays-return-shipping",
+          "content.refund-within-three-business-days",
+          "content.paid-but-goods-not-supplied"
+        ]
+      },
+      {
         "hub_id": "hub.family-inheritance",
         "slug": "family-inheritance",
         "title_ko": "가족·상속",
@@ -3314,6 +4302,34 @@
           "content.limited-acceptance-effect",
           "content.special-limited-acceptance-late-debt",
           "content.limited-acceptance-creditor-notice"
+        ]
+      },
+      {
+        "hub_id": "hub.housing-lease-deposit",
+        "slug": "housing-lease-deposit",
+        "title_ko": "주택임대차와 보증금 반환",
+        "description_ko": "대항력과 우선변제권부터 임차권등기명령, 이사 시점, 경매ㆍ배당, 등기 말소까지 보증금 회수의 판단 순서를 연결합니다.",
+        "content_ids": [
+          "content.move-before-deposit-refund",
+          "content.lease-registration-application-is-not-completion",
+          "content.lease-registration-order-requirements",
+          "content.rights-after-lease-registration",
+          "content.housing-lease-opposability-basics",
+          "content.housing-lease-priority-repayment-basics",
+          "content.renting-home-with-lease-registration"
+        ]
+      },
+      {
+        "hub_id": "hub.labor-wages",
+        "slug": "labor-wages",
+        "title_ko": "노동·임금",
+        "description_ko": "계약 명칭보다 실제 일한 방식, 퇴직 정산기한, 해고 통지와 구제기한을 사실관계별로 판단하도록 돕는다.",
+        "content_ids": [
+          "content.final-wages-after-retirement-14-days",
+          "content.verbal-delay-agreement-after-retirement",
+          "content.retirement-pay-basic-formula",
+          "content.retirement-pay-payment-deadline",
+          "content.verbal-dismissal-written-notice"
         ]
       },
       {
@@ -3339,21 +4355,6 @@
         "content_ids": [
           "content.shared-mobility-private-facility-defect",
           "content.shared-mobility-other-road-user-fault"
-        ]
-      },
-      {
-        "hub_id": "hub.housing-lease-deposit",
-        "slug": "housing-lease-deposit",
-        "title_ko": "주택임대차와 보증금 반환",
-        "description_ko": "대항력과 우선변제권부터 임차권등기명령, 이사 시점, 경매ㆍ배당, 등기 말소까지 보증금 회수의 판단 순서를 연결합니다.",
-        "content_ids": [
-          "content.move-before-deposit-refund",
-          "content.lease-registration-application-is-not-completion",
-          "content.lease-registration-order-requirements",
-          "content.rights-after-lease-registration",
-          "content.housing-lease-opposability-basics",
-          "content.housing-lease-priority-repayment-basics",
-          "content.renting-home-with-lease-registration"
         ]
       }
     ]
