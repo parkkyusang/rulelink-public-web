@@ -66,6 +66,75 @@ test('내부 사건 경로와 내부 필드를 거부한다', async () => {
   assert.match(result.stderr, /내부 전용 필드|내부 경로/);
 });
 
+
+test('재검토 기한이 지난 문제카드를 거부한다', async () => {
+  const bundle = baseBundle();
+  bundle.cards = [{
+    issue_card_id: 'issue.expired',
+    editorial_status: 'approved',
+    reviewed_at: '2026-07-01T00:00:00+09:00',
+    expires_at: '2026-07-21T11:59:00+09:00',
+    assertion_ids: [],
+  }];
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /재검토 기한이 지났습니다/);
+});
+
+test('재검토 기한이 지난 지식 콘텐츠를 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  bundle.knowledge.content_entries[0].expires_at = '2026-07-21T11:59:00+09:00';
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /재검토 기한이 지났습니다/);
+});
+
+test('시행일이 도래한 시행 예정 브리핑을 거부한다', async () => {
+  const bundle = baseBundle();
+  bundle.change_briefs = [changeBrief({
+    lifecycle: 'future_effective',
+    effective_date: '2026-07-21',
+  })];
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /시행일이 도래했으므로 시행 예정 상태일 수 없습니다/);
+});
+
+test('미래 시행일을 최근 시행으로 표시한 브리핑을 거부한다', async () => {
+  const bundle = baseBundle();
+  bundle.change_briefs = [changeBrief({
+    lifecycle: 'recently_effective',
+    effective_date: '2026-07-22',
+  })];
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /시행일 전이므로 최근 시행 상태일 수 없습니다/);
+});
+
+test('검증되지 않은 주장 근거를 거부한다', async () => {
+  const bundle = baseBundle();
+  bundle.assertions = [{
+    assertion_id: 'assertion.unverified',
+    source_coordinates: [{
+      source_snapshot_id: 'snapshot.unverified',
+      official_url: 'https://www.law.go.kr/법령/테스트법',
+      last_verified_at: '2026-07-21T00:00:00+00:00',
+      validation_status: 'unverified',
+    }],
+  }];
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /검증 상태가 아닙니다/);
+});
+
+test('미래 근거 점검시각을 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  bundle.knowledge.sources[0].last_verified_at = '2026-07-22T00:00:00+09:00';
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /검증 기준시각보다 미래/);
+});
+
 async function validate(payload) {
   const taskTemp = await mkdtemp(path.join(tmpdir(), 'rulelink-publication-guard-'));
   const bundlePath = path.join(taskTemp, 'bundle.json');
@@ -74,7 +143,11 @@ async function validate(payload) {
     return spawnSync(process.execPath, [validatorPath], {
       cwd: taskTemp,
       encoding: 'utf8',
-      env: {...process.env, RULELINK_WEB_BUNDLE_PATH: bundlePath},
+      env: {
+        ...process.env,
+        RULELINK_WEB_BUNDLE_PATH: bundlePath,
+        RULELINK_VALIDATION_NOW: '2026-07-21T12:00:00+09:00',
+      },
     });
   } finally {
     await rm(taskTemp, {recursive: true, force: true});
@@ -93,6 +166,20 @@ function baseBundle() {
     assertions: [],
     change_briefs: [],
     file_hashes: {},
+  };
+}
+
+
+function changeBrief(overrides = {}) {
+  return {
+    change_brief_id: 'brief.lifecycle',
+    editorial_status: 'approved',
+    lifecycle: 'future_effective',
+    effective_date: '2026-08-01',
+    reviewed_at: '2026-07-21T09:00:00+09:00',
+    expires_at: '2026-10-21T00:00:00+09:00',
+    assertion_ids: [],
+    ...overrides,
   };
 }
 
