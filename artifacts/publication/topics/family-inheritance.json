@@ -1,0 +1,846 @@
+{
+  "schema": "rulelink_public_knowledge_topic_v1",
+  "topic_id": "hub.family-inheritance",
+  "sources": [
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1000",
+      "source_id": "civil_act_ko_1000",
+      "law_name_ko": "민법",
+      "article_no": "제1000조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1000%EC%A1%B0",
+      "source_snapshot_id": "snapshot:5bb3d628e97ff4cb9ae71f7cc2f9c556",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1003",
+      "source_id": "civil_act_ko_1003",
+      "law_name_ko": "민법",
+      "article_no": "제1003조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1003%EC%A1%B0",
+      "source_snapshot_id": "snapshot:c0d629f570ce1480d72712c4fb2f6d4b",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1019",
+      "source_id": "civil_act_ko_1019",
+      "law_name_ko": "민법",
+      "article_no": "제1019조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1019%EC%A1%B0",
+      "source_snapshot_id": "snapshot:b9f244982ab300cd344069c882d8e66f",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1041",
+      "source_id": "civil_act_ko_1041",
+      "law_name_ko": "민법",
+      "article_no": "제1041조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1041%EC%A1%B0",
+      "source_snapshot_id": "snapshot:3d41068ed933f7fedc0e8e6991cacfe1",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1042",
+      "source_id": "civil_act_ko_1042",
+      "law_name_ko": "민법",
+      "article_no": "제1042조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1042%EC%A1%B0",
+      "source_snapshot_id": "snapshot:3e8ef32adeedcf6b8f18332cbad7bb0a",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1043",
+      "source_id": "civil_act_ko_1043",
+      "law_name_ko": "민법",
+      "article_no": "제1043조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1043%EC%A1%B0",
+      "source_snapshot_id": "snapshot:cd1ffa531ba8a186837e25d6e9e707fb",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1028",
+      "source_id": "civil_act_ko_1028",
+      "law_name_ko": "민법",
+      "article_no": "제1028조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1028%EC%A1%B0",
+      "source_snapshot_id": "snapshot:ff8a4307ac09a35a5c39e10e5dd7729b",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1030",
+      "source_id": "civil_act_ko_1030",
+      "law_name_ko": "민법",
+      "article_no": "제1030조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1030%EC%A1%B0",
+      "source_snapshot_id": "snapshot:d3d684ccee303f8cd1f9b6b8f69b6361",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1031",
+      "source_id": "civil_act_ko_1031",
+      "law_name_ko": "민법",
+      "article_no": "제1031조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1031%EC%A1%B0",
+      "source_snapshot_id": "snapshot:552587cdda68a86c4770c1b712eebfe5",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1032",
+      "source_id": "civil_act_ko_1032",
+      "law_name_ko": "민법",
+      "article_no": "제1032조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1032%EC%A1%B0",
+      "source_snapshot_id": "snapshot:2e8067745cca373db77bb8462b9ab9ed",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1033",
+      "source_id": "civil_act_ko_1033",
+      "law_name_ko": "민법",
+      "article_no": "제1033조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1033%EC%A1%B0",
+      "source_snapshot_id": "snapshot:f31b5fb63151869da3fe8ce40625701d",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1034",
+      "source_id": "civil_act_ko_1034",
+      "law_name_ko": "민법",
+      "article_no": "제1034조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1034%EC%A1%B0",
+      "source_snapshot_id": "snapshot:b18e757a09f543b4e7f3ea3319e9f134",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1035",
+      "source_id": "civil_act_ko_1035",
+      "law_name_ko": "민법",
+      "article_no": "제1035조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1035%EC%A1%B0",
+      "source_snapshot_id": "snapshot:8571ec381e24d6b7518e58b099e01d77",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1036",
+      "source_id": "civil_act_ko_1036",
+      "law_name_ko": "민법",
+      "article_no": "제1036조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1036%EC%A1%B0",
+      "source_snapshot_id": "snapshot:7599f8d81a45a306dd50596b8ebcc2eb",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1037",
+      "source_id": "civil_act_ko_1037",
+      "law_name_ko": "민법",
+      "article_no": "제1037조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1037%EC%A1%B0",
+      "source_snapshot_id": "snapshot:0bfc3dfd27e08026aa65817eccb119fe",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1038",
+      "source_id": "civil_act_ko_1038",
+      "law_name_ko": "민법",
+      "article_no": "제1038조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1038%EC%A1%B0",
+      "source_snapshot_id": "snapshot:5ff9144670cafc7ce7139e1d85b8c8cb",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1039",
+      "source_id": "civil_act_ko_1039",
+      "law_name_ko": "민법",
+      "article_no": "제1039조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1039%EC%A1%B0",
+      "source_snapshot_id": "snapshot:5ee8ab3bdf7ef8946157d6de389295f3",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.family-inheritance",
+      "slug": "family-inheritance",
+      "title_ko": "가족·상속",
+      "description_ko": "사망 후 누가 상속인인지, 채무가 있을 때 3개월 안에 무엇을 조사하고 포기·한정승인 중 무엇을 선택할지 안내한다.",
+      "content_ids": [
+        "content.legal-heir-order-and-spouse",
+        "content.three-month-inheritance-decision-period",
+        "content.inheritance-renunciation-procedure",
+        "content.limited-acceptance-effect",
+        "content.special-limited-acceptance-late-debt",
+        "content.limited-acceptance-creditor-notice"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.family-inheritance.rule-inheritance-order",
+      "title_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순…",
+      "proposition_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순위에서는 최근친이 선순위다.",
+      "norm": {
+        "actor_ko": "피상속인의 혈족",
+        "conditions_ko": "상속개시 당시 선순위 혈족의 존재 여부와 동순위 혈족 사이의 촌수",
+        "legal_effect_ko": "직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순으로 상속인이 정해지고 동순위에서는 최근친이 우선합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1000"
+      ]
+    },
+    {
+      "rule_id": "rule.family-inheritance.rule-spouse-order",
+      "title_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단…",
+      "proposition_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단독상속인이 된다.",
+      "norm": {
+        "actor_ko": "피상속인의 법률상 배우자",
+        "conditions_ko": "상속개시 당시 직계비속 또는 직계존속의 존재 여부",
+        "legal_effect_ko": "직계비속 또는 직계존속이 있으면 그들과 공동상속하고, 둘 다 없으면 단독상속합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1003"
+      ]
+    },
+    {
+      "rule_id": "rule.family-inheritance.rule-three-months",
+      "title_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선…",
+      "proposition_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선택할 수 있고 가정법원이 기간을 연장할 수 있다.",
+      "norm": {
+        "actor_ko": "상속개시 있음을 안 상속인",
+        "conditions_ko": "상속개시 있음을 안 날부터 3개월 이내이며, 기간 연장은 가정법원의 결정이 있는 경우",
+        "legal_effect_ko": "기간 안에 단순승인·한정승인·포기를 선택하고 필요한 경우 기간 연장을 청구할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1019"
+      ]
+    },
+    {
+      "rule_id": "rule.family-inheritance.rule-renunciation",
+      "title_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효…",
+      "proposition_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효력이 생긴다.",
+      "norm": {
+        "actor_ko": "상속을 포기하려는 상속인",
+        "conditions_ko": "법정기간 안에 가정법원에 상속포기를 신고하여 수리된 경우",
+        "legal_effect_ko": "상속개시 때부터 상속인이 아니었던 것으로 봅니다."
+      },
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1041",
+        "coord.family-inheritance.civil-act-ko-1042",
+        "coord.family-inheritance.civil-act-ko-1043"
+      ]
+    },
+    {
+      "rule_id": "rule.family-inheritance.rule-limited-effect",
+      "title_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 …",
+      "proposition_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 조건의 승인이다.",
+      "norm": {
+        "actor_ko": "한정승인을 하는 상속인",
+        "conditions_ko": "상속재산 목록을 붙여 법정기간 안에 가정법원에 한정승인을 신고한 경우",
+        "legal_effect_ko": "상속으로 취득한 재산의 한도에서 피상속인의 채무와 유증을 변제합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1028"
+      ]
+    },
+    {
+      "rule_id": "rule.family-inheritance.rule-limited-procedure",
+      "title_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변…",
+      "proposition_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변제 절차를 따라야 한다.",
+      "norm": {
+        "actor_ko": "한정승인자",
+        "conditions_ko": "한정승인 후 상속채권자와 유증받은 사람에 대한 공고·최고 및 신고기간을 거친 경우",
+        "legal_effect_ko": "우선권과 법정 순서에 따라 상속재산으로 채권자와 유증받은 사람에게 변제합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1030",
+        "coord.family-inheritance.civil-act-ko-1031",
+        "coord.family-inheritance.civil-act-ko-1032",
+        "coord.family-inheritance.civil-act-ko-1033",
+        "coord.family-inheritance.civil-act-ko-1034",
+        "coord.family-inheritance.civil-act-ko-1035",
+        "coord.family-inheritance.civil-act-ko-1036",
+        "coord.family-inheritance.civil-act-ko-1037",
+        "coord.family-inheritance.civil-act-ko-1038",
+        "coord.family-inheritance.civil-act-ko-1039"
+      ]
+    },
+    {
+      "rule_id": "rule.family-inheritance.rule-special-limited",
+      "title_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그…",
+      "proposition_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그 사실을 안 날부터 3개월 내 특별한정승인이 가능할 수 있다.",
+      "norm": {
+        "actor_ko": "상속채무가 상속재산을 초과하는 사실을 뒤늦게 안 상속인",
+        "conditions_ko": "법정기간 안에 채무초과를 알지 못한 데 중대한 과실이 없고 그 사실을 안 날부터 3개월 이내인 경우",
+        "legal_effect_ko": "특별한정승인을 신고하여 상속재산 한도의 책임을 주장할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1019"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.family-inheritance.sc-spouse-children",
+      "question_ko": "사망 당시 법률상 배우자와 자녀가 모두 있나요?",
+      "decision_fact_ko": "법률상 배우자 여부와 직계비속의 존재",
+      "when_true_ko": "배우자와 자녀가 공동상속인이 됩니다. 사망 선후·대습상속·상속결격·상속포기는 별도로 확인합니다.",
+      "when_false_ko": "자녀가 없으면 직계존속의 존재를 확인하고, 직계비속과 직계존속이 모두 없으면 배우자의 단독상속 여부를 검토합니다.",
+      "rule_ids": [
+        "rule.family-inheritance.rule-inheritance-order",
+        "rule.family-inheritance.rule-spouse-order"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1000",
+        "coord.family-inheritance.civil-act-ko-1003"
+      ]
+    },
+    {
+      "scenario_id": "scenario.family-inheritance.sc-debt-uncertain",
+      "question_ko": "상속개시 있음을 안 날부터 아직 3개월이 지나지 않았나요?",
+      "decision_fact_ko": "상속인임을 안 날과 현재 날짜, 재산·채무 조사 진행상황",
+      "when_true_ko": "재산과 채무를 조사하면서 한정승인·상속포기 여부를 결정하고, 시간이 부족하면 기간 만료 전에 연장청구를 검토합니다.",
+      "when_false_ko": "원칙적인 선택기간 경과 여부를 확인하고, 채무초과를 뒤늦게 안 경우 특별한정승인 요건을 별도로 검토합니다.",
+      "rule_ids": [
+        "rule.family-inheritance.rule-three-months",
+        "rule.family-inheritance.rule-limited-effect"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1019",
+        "coord.family-inheritance.civil-act-ko-1028"
+      ]
+    },
+    {
+      "scenario_id": "scenario.family-inheritance.sc-limited-approved",
+      "question_ko": "한정승인 후 공고·최고와 채권자별 변제를 아직 마치지 않았나요?",
+      "decision_fact_ko": "한정승인일, 공고일, 신고기간, 알고 있는 채권자에 대한 최고와 우선권",
+      "when_true_ko": "법정 신고기간과 개별 최고를 관리하고 우선권 및 채권액에 따라 상속재산을 변제해야 합니다.",
+      "when_false_ko": "변제 장부, 잔여 상속재산과 누락 채권자를 확인하여 청산 종결 및 손해배상 위험을 점검합니다.",
+      "rule_ids": [
+        "rule.family-inheritance.rule-limited-procedure"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1032",
+        "coord.family-inheritance.civil-act-ko-1033",
+        "coord.family-inheritance.civil-act-ko-1034",
+        "coord.family-inheritance.civil-act-ko-1035",
+        "coord.family-inheritance.civil-act-ko-1036",
+        "coord.family-inheritance.civil-act-ko-1037",
+        "coord.family-inheritance.civil-act-ko-1038",
+        "coord.family-inheritance.civil-act-ko-1039"
+      ]
+    },
+    {
+      "scenario_id": "scenario.family-inheritance.sc-late-debt",
+      "question_ko": "3개월 안에 채무초과를 알지 못했고 그 데 중대한 과실이 없었나요?",
+      "decision_fact_ko": "새 채무를 안 날, 전체 채무초과를 안 날과 종전 재산·채무 조사 정도",
+      "when_true_ko": "채무초과 사실을 안 날부터 3개월 안에 특별한정승인을 신고할 수 있는지 즉시 검토합니다.",
+      "when_false_ko": "특별한정승인 요건 충족이 어려울 수 있으므로 일반 선택기간과 단순승인 사유를 함께 확인합니다.",
+      "rule_ids": [
+        "rule.family-inheritance.rule-special-limited"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1019"
+      ]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.legal-heir-order-and-spouse",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "legal-heir-order-and-spouse",
+      "title_ko": "누가 법정상속인이 되는가",
+      "one_line_answer_ko": "직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순으로 정하고 배우자는 직계비속 또는 직계존속과 공동상속하며 그들이 없으면 단독상속한다.",
+      "audience_situation_ko": "배우자·자녀·부모·형제자매 중 누가 먼저 상속받나?",
+      "key_points_ko": [
+        "가족관계도와 사망 선후를 먼저 확정한다.",
+        "동순위에서는 최근친과 공동상속 여부를 본다.",
+        "대습상속·결격·상속권 상실은 별도 분기다."
+      ],
+      "action_steps_ko": [
+        "가족관계증명서와 제적등본을 확보한다.",
+        "피상속인보다 먼저 사망한 가족을 표시한다.",
+        "배우자·자녀·부모 존재를 순서대로 확인한다.",
+        "포기·결격·상실선고 여부를 추가한다."
+      ],
+      "facts_to_check_ko": [
+        "사망일",
+        "법률상 배우자",
+        "직계비속",
+        "직계존속",
+        "형제자매",
+        "4촌 방계혈족",
+        "선사망자",
+        "입양관계",
+        "포기·결격 여부"
+      ],
+      "caution_ko": "사실혼 배우자와 법률상 배우자의 지위, 입양·친생관계는 별도 확인이 필요하다.",
+      "search_intents_ko": [
+        "법정상속 순위",
+        "배우자 상속순위",
+        "자녀 부모 형제 상속"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "혈족의 순위와 배우자 지위를 함께 본다",
+          "paragraphs_ko": [
+            "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순입니다. 같은 순위에서는 촌수가 가까운 사람이 먼저이고 같은 촌수의 사람이 여럿이면 공동상속인이 됩니다.",
+            "법률상 배우자는 직계비속 또는 직계존속이 있으면 그들과 같은 순위로 공동상속하고, 그들이 없으면 단독상속합니다. 배우자를 혈족 순위표의 다음 칸에 단순히 넣어서는 안 됩니다."
+          ]
+        },
+        {
+          "heading_ko": "가족관계도에 예외 사유를 표시한다",
+          "paragraphs_ko": [
+            "가족관계증명서와 제적등본을 바탕으로 사망 당시의 배우자·자녀·부모·형제자매를 적고, 피상속인보다 먼저 사망한 사람과 입양관계를 표시합니다.",
+            "대습상속, 상속결격, 상속포기 같은 예외가 있으면 일반 순위만으로 결론낼 수 없습니다. 사실혼 배우자의 법적 지위도 법률상 배우자와 동일하다고 단정하지 말아야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.family-inheritance.rule-inheritance-order",
+        "rule.family-inheritance.rule-spouse-order"
+      ],
+      "scenario_ids": [
+        "scenario.family-inheritance.sc-spouse-children"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1000",
+        "coord.family-inheritance.civil-act-ko-1003"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.three-month-inheritance-decision-period",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "three-month-inheritance-decision-period",
+      "title_ko": "상속포기·한정승인 3개월은 언제부터 계산하나",
+      "one_line_answer_ko": "법은 상속개시 있음을 안 날부터 3개월을 기준으로 하므로 사망일만이 아니라 자신이 상속인이 되었음을 안 시점을 구체적으로 확인해야 한다.",
+      "audience_situation_ko": "사망일부터 무조건 3개월 안에 신청해야 하나?",
+      "key_points_ko": [
+        "사망 사실과 상속인 지위를 안 시점이 핵심이다.",
+        "선순위자 포기로 후순위가 된 경우 별도 기산점 쟁점이 생긴다.",
+        "기간이 부족하면 만료 전 연장청구 가능성을 검토한다."
+      ],
+      "action_steps_ko": [
+        "사망 사실을 안 날을 기록한다.",
+        "가족관계와 선순위자 포기 사실을 확인한다.",
+        "법원·채권자 통지 수령일을 보존한다.",
+        "3개월 만료 예상일을 달력에 표시한다.",
+        "필요하면 기간 연장청구를 준비한다."
+      ],
+      "facts_to_check_ko": [
+        "사망일",
+        "사망을 안 날",
+        "자신이 상속인임을 안 날",
+        "선순위자 포기 수리일",
+        "법원 통지일",
+        "채권통지일",
+        "연장청구 여부"
+      ],
+      "caution_ko": "기산점은 구체적 사정에 따라 다툼이 생길 수 있으므로 가장 이른 가능일을 기준으로 준비하는 편이 안전하다.",
+      "search_intents_ko": [
+        "상속포기 3개월 기산점",
+        "한정승인 기간",
+        "상속개시 있음을 안 날"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "사망일만이 아니라 상속인임을 안 날을 본다",
+          "paragraphs_ko": [
+            "민법은 상속개시 있음을 안 날부터 3개월 동안 단순승인·한정승인·포기를 선택하도록 합니다. 통상 사망 사실을 안 날과 겹칠 수 있지만, 자신이 상속인이 되었음을 언제 알았는지가 구체적으로 문제될 수 있습니다.",
+            "선순위자의 포기로 뒤늦게 후순위 상속인이 된 경우에는 포기 수리 사실과 자신이 상속인이 되었음을 현실적으로 안 시점을 확인합니다."
+          ]
+        },
+        {
+          "heading_ko": "기한을 기다리지 말고 조사와 연장을 병행한다",
+          "paragraphs_ko": [
+            "법원 통지, 채권자의 청구서, 가족 연락과 우편 수령일을 보존하고 가장 이른 기산 가능일을 기준으로 만료일을 계산하는 편이 안전합니다.",
+            "재산·채무 조사가 끝나지 않아 선택하기 어렵다면 기간 만료 전에 가정법원에 기간 연장을 청구할 수 있는지 검토합니다. 연장될 것이라고 가정해 원래 기한을 넘겨서는 안 됩니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.family-inheritance.rule-three-months"
+      ],
+      "scenario_ids": [
+        "scenario.family-inheritance.sc-debt-uncertain"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1019"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "related_content_ids": [],
+      "concierge_entry": {
+        "question_ko": "상속포기·한정승인 3개월은 언제부터 계산하나",
+        "decision_facts_ko": [
+          "사망일",
+          "사망을 안 날",
+          "자신이 상속인임을 안 날",
+          "선순위자 포기 수리일",
+          "법원 통지일",
+          "채권통지일",
+          "연장청구 여부"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.inheritance-renunciation-procedure",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "inheritance-renunciation-procedure",
+      "title_ko": "상속포기는 가족끼리 말하면 끝나는가",
+      "one_line_answer_ko": "민법상 상속포기는 3개월 기간 안에 가정법원에 신고해야 하며 가족 사이의 말이나 상속재산분할 합의만으로 같은 효력이 생기지 않는다.",
+      "audience_situation_ko": "재산을 받지 않겠다고 가족에게 말하거나 합의서에 서명하면 상속포기가 되나?",
+      "key_points_ko": [
+        "법원 신고와 가족 간 재산포기 표현을 구별한다.",
+        "포기 효력은 상속개시 때로 소급한다.",
+        "포기자가 생기면 다른 상속인의 지위·상속분을 다시 계산한다."
+      ],
+      "action_steps_ko": [
+        "관할 가정법원과 제출서류를 확인한다.",
+        "3개월 기한 안에 신고한다.",
+        "수리심판문과 확정 관련 서류를 보관한다.",
+        "다른 가족의 상속순위를 다시 점검한다."
+      ],
+      "facts_to_check_ko": [
+        "상속개시를 안 날",
+        "법원 신고일",
+        "관할법원",
+        "수리 여부",
+        "공동상속인",
+        "배우자 존재",
+        "후순위 상속인"
+      ],
+      "caution_ko": "상속포기는 특정 재산이나 특정 채무만 골라서 하는 방식이 아니다.",
+      "search_intents_ko": [
+        "상속포기 방법",
+        "가정법원 상속포기 신고",
+        "상속포기 가족 합의"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "가족 간 합의와 법정 상속포기는 다르다",
+          "paragraphs_ko": [
+            "상속재산을 받지 않겠다고 가족에게 말하거나 분할협의서에 자신의 몫이 없다고 적는 것만으로 민법상 상속포기가 되는 것은 아닙니다. 법정 기간 안에 가정법원에 포기신고를 해야 합니다.",
+            "포기신고는 특정 예금이나 특정 채무만 골라 제외하는 절차가 아닙니다. 상속인 지위에서 벗어나는 효과와 가족 사이의 재산분배 합의를 구분해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "수리심판과 다음 상속인을 확인한다",
+          "paragraphs_ko": [
+            "상속포기는 가정법원의 신고·수리 절차를 거치며, 수리되면 상속개시 때로 소급합니다. 수리 여부를 확인하기 전에 상속재산을 임의로 처분해서는 안 됩니다.",
+            "포기자가 생기면 남은 공동상속인 또는 후순위 상속인의 지위가 달라질 수 있습니다. 배우자와 자녀의 전원·일부 포기 여부를 구분해 가족관계도를 다시 계산합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.family-inheritance.rule-renunciation",
+        "rule.family-inheritance.rule-inheritance-order",
+        "rule.family-inheritance.rule-spouse-order"
+      ],
+      "scenario_ids": [
+        "scenario.family-inheritance.sc-spouse-children"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1041",
+        "coord.family-inheritance.civil-act-ko-1042",
+        "coord.family-inheritance.civil-act-ko-1043",
+        "coord.family-inheritance.civil-act-ko-1000",
+        "coord.family-inheritance.civil-act-ko-1003"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "related_content_ids": [],
+      "concierge_entry": {
+        "question_ko": "상속포기는 가족끼리 말하면 끝나는가",
+        "decision_facts_ko": [
+          "상속개시를 안 날",
+          "법원 신고일",
+          "관할법원",
+          "수리 여부",
+          "공동상속인",
+          "배우자 존재",
+          "후순위 상속인"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.limited-acceptance-effect",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "limited-acceptance-effect",
+      "title_ko": "한정승인은 빚을 전혀 갚지 않는 제도인가",
+      "one_line_answer_ko": "한정승인은 채무를 없애는 것이 아니라 상속으로 취득한 재산의 한도에서 피상속인의 채무와 유증을 변제하는 조건으로 상속을 승인하는 제도다.",
+      "audience_situation_ko": "한정승인을 하면 상속채무를 모두 없앨 수 있나?",
+      "key_points_ko": [
+        "상속포기와 한정승인의 효과를 구별한다.",
+        "상속재산과 고유재산을 회계상 분리해 관리한다.",
+        "수리 후에도 공고·최고·배당변제 절차가 남는다."
+      ],
+      "action_steps_ko": [
+        "적극재산과 채무 목록을 작성한다.",
+        "재산목록을 붙여 법원에 신고한다.",
+        "상속재산을 개인재산과 분리한다.",
+        "수리 후 채권자 공고와 변제 절차를 진행한다."
+      ],
+      "facts_to_check_ko": [
+        "상속 적극재산",
+        "상속채무",
+        "유증",
+        "담보권",
+        "재산목록",
+        "법원 수리일",
+        "채권자 수",
+        "고유재산 혼입 여부"
+      ],
+      "caution_ko": "한정승인 수리만 받고 후속 청산절차를 하지 않으면 다른 채권자에 대한 책임 문제가 생길 수 있다.",
+      "search_intents_ko": [
+        "한정승인 효과",
+        "상속 빚 재산 한도",
+        "한정승인 채무 변제"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "채무가 사라지는 것이 아니라 책임 재원이 제한된다",
+          "paragraphs_ko": [
+            "한정승인은 상속으로 취득할 재산의 한도에서 피상속인의 채무와 유증을 변제하는 조건으로 상속을 승인하는 제도입니다. 채무의 존재 자체를 없애는 제도는 아닙니다.",
+            "상속포기와 달리 상속인 지위는 유지되므로 적극재산·채무·담보와 유증을 재산목록에 정확히 반영해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "법원 수리 뒤에도 청산 절차가 남는다",
+          "paragraphs_ko": [
+            "한정승인 신고에는 재산목록을 붙이고, 수리 뒤에는 채권자 공고·최고, 신고기간 관리와 우선권을 반영한 변제 절차를 진행합니다.",
+            "상속재산과 개인 고유재산을 회계상 분리하고 일부 채권자에게 임의로 먼저 지급하지 않도록 합니다. 절차 위반으로 다른 채권자가 변제받지 못하면 손해배상 문제가 생길 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.family-inheritance.rule-limited-effect",
+        "rule.family-inheritance.rule-limited-procedure"
+      ],
+      "scenario_ids": [
+        "scenario.family-inheritance.sc-debt-uncertain",
+        "scenario.family-inheritance.sc-limited-approved"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1028",
+        "coord.family-inheritance.civil-act-ko-1030",
+        "coord.family-inheritance.civil-act-ko-1031",
+        "coord.family-inheritance.civil-act-ko-1032",
+        "coord.family-inheritance.civil-act-ko-1033",
+        "coord.family-inheritance.civil-act-ko-1034",
+        "coord.family-inheritance.civil-act-ko-1035",
+        "coord.family-inheritance.civil-act-ko-1036",
+        "coord.family-inheritance.civil-act-ko-1037",
+        "coord.family-inheritance.civil-act-ko-1038",
+        "coord.family-inheritance.civil-act-ko-1039"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.special-limited-acceptance-late-debt",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "special-limited-acceptance-late-debt",
+      "title_ko": "3개월 뒤 숨은 빚을 알게 되면 방법이 없나",
+      "one_line_answer_ko": "중대한 과실 없이 채무초과 사실을 3개월 안에 몰랐다면 그 사실을 안 날부터 3개월 내 특별한정승인을 검토할 수 있다.",
+      "audience_situation_ko": "상속받은 뒤 한참 지나서 보증채무를 처음 알았다.",
+      "key_points_ko": [
+        "단순히 채무 하나를 늦게 안 것과 채무초과 사실을 늦게 안 것을 구분한다.",
+        "몰랐던 데 중대한 과실이 없었는지가 핵심이다.",
+        "알게 된 날과 3개월 기한을 입증할 자료가 필요하다."
+      ],
+      "action_steps_ko": [
+        "새 채무 통지서와 수령일을 보존한다.",
+        "기존 조사 범위와 결과를 정리한다.",
+        "적극재산과 전체 채무를 다시 계산한다.",
+        "안 날부터 3개월 만료일을 표시한다.",
+        "이미 처분한 상속재산도 목록화한다."
+      ],
+      "facts_to_check_ko": [
+        "새 채무 종류·금액",
+        "통지 수령일",
+        "채무초과를 안 날",
+        "기존 재산조사",
+        "조사하지 못한 이유",
+        "이미 처분한 재산",
+        "기존 변제",
+        "신고일"
+      ],
+      "caution_ko": "중대한 과실 여부와 채무초과를 실제로 안 날은 사실판단이므로 즉시 자료를 확보해야 한다.",
+      "search_intents_ko": [
+        "특별한정승인 숨은 빚",
+        "3개월 지난 상속채무",
+        "상속채무 초과 뒤늦게 발견"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "늦게 안 채무와 늦게 안 채무초과를 구분한다",
+          "paragraphs_ko": [
+            "특별한정승인은 채무 하나를 뒤늦게 발견했다는 이유만으로 자동 허용되는 것이 아닙니다. 상속채무가 상속재산을 초과한다는 사실을 법정 기간 안에 중대한 과실 없이 알지 못했는지가 핵심입니다.",
+            "요건을 충족하면 그 채무초과 사실을 안 날부터 3개월 안에 한정승인을 검토할 수 있습니다. 새 채무의 통지일과 전체 재산·채무를 다시 계산한 시점을 나누어 기록합니다."
+          ]
+        },
+        {
+          "heading_ko": "과거의 조사와 처분까지 공개적으로 정리한다",
+          "paragraphs_ko": [
+            "사망 후 어떤 금융·부동산·보증 조사를 했고 무엇을 확인하지 못했는지, 조사하지 못한 이유가 무엇인지 자료로 남깁니다. 단순히 몰랐다는 진술만으로 중대한 과실 여부가 정해지지는 않습니다.",
+            "이미 상속재산을 처분하거나 채권자에게 변제한 사실이 있다면 숨기지 말고 금액·시점·수령자를 목록화합니다. 특별한정승인의 청산범위에도 영향을 줄 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.family-inheritance.rule-special-limited",
+        "rule.family-inheritance.rule-limited-procedure"
+      ],
+      "scenario_ids": [
+        "scenario.family-inheritance.sc-late-debt"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1019",
+        "coord.family-inheritance.civil-act-ko-1030",
+        "coord.family-inheritance.civil-act-ko-1031",
+        "coord.family-inheritance.civil-act-ko-1032",
+        "coord.family-inheritance.civil-act-ko-1033",
+        "coord.family-inheritance.civil-act-ko-1034",
+        "coord.family-inheritance.civil-act-ko-1035",
+        "coord.family-inheritance.civil-act-ko-1036",
+        "coord.family-inheritance.civil-act-ko-1037",
+        "coord.family-inheritance.civil-act-ko-1038",
+        "coord.family-inheritance.civil-act-ko-1039"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "related_content_ids": [],
+      "concierge_entry": {
+        "question_ko": "3개월 뒤 숨은 빚을 알게 되면 방법이 없나",
+        "decision_facts_ko": [
+          "새 채무 종류·금액",
+          "통지 수령일",
+          "채무초과를 안 날",
+          "기존 재산조사",
+          "조사하지 못한 이유",
+          "이미 처분한 재산",
+          "기존 변제",
+          "신고일"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.limited-acceptance-creditor-notice",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "limited-acceptance-creditor-notice",
+      "title_ko": "한정승인 수리 뒤 바로 끝나는가",
+      "one_line_answer_ko": "수리 뒤 5일 내 일반상속채권자와 유증받은 자에게 공고하고 2개월 이상의 신고기간을 두는 등 청산절차를 이어가야 한다.",
+      "audience_situation_ko": "법원에서 한정승인이 수리됐으면 채권자 연락을 무시해도 되나?",
+      "key_points_ko": [
+        "법원 수리와 상속재산 청산은 별개 단계다.",
+        "알고 있는 채권자에게는 별도 최고가 문제된다.",
+        "우선권과 채권액에 따른 배당순서를 지켜야 한다."
+      ],
+      "action_steps_ko": [
+        "수리일을 확인한다.",
+        "공고 문안을 준비해 5일 내 공고한다.",
+        "알고 있는 채권자 목록을 만들고 최고한다.",
+        "신고기간 만료 뒤 채권·우선권을 확정한다.",
+        "상속재산 범위에서 배당변제한다."
+      ],
+      "facts_to_check_ko": [
+        "수리일",
+        "공고일",
+        "신고기간",
+        "알고 있는 채권자",
+        "담보권·우선권",
+        "채권액",
+        "상속재산 환가액",
+        "변제 내역"
+      ],
+      "caution_ko": "일부 채권자만 우선 변제하면 다른 채권자에 대한 손해배상 문제가 생길 수 있다.",
+      "search_intents_ko": [
+        "한정승인 후 절차",
+        "한정승인 공고 5일",
+        "상속채권자 배당변제"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "한정승인 수리는 청산의 출발점이다",
+          "paragraphs_ko": [
+            "한정승인자는 한정승인을 한 날부터 5일 안에 일반상속채권자와 유증받은 사람에게 한정승인 사실과 채권·수증 신고를 공고하고, 신고기간은 2개월 이상으로 정해야 합니다.",
+            "알고 있는 채권자에게는 공고만으로 끝내지 않고 별도 최고가 문제됩니다. 수리일, 공고일, 신고기간과 최고 발송·도달자료를 한 묶음으로 보존합니다."
+          ]
+        },
+        {
+          "heading_ko": "신고기간 뒤 우선권과 비율에 따라 변제한다",
+          "paragraphs_ko": [
+            "신고기간이 끝나면 신고한 채권자와 알고 있는 채권자에게 각 채권액 비율로 변제하되 담보권 등 우선권 있는 채권자의 권리를 해치지 않아야 합니다.",
+            "일부 채권자에게 임의로 먼저 지급해 다른 채권자가 변제받지 못하면 한정승인자가 손해를 배상할 수 있습니다. 재산 환가와 변제 내역을 계속 장부화합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.family-inheritance.rule-limited-procedure",
+        "rule.family-inheritance.rule-limited-effect"
+      ],
+      "scenario_ids": [
+        "scenario.family-inheritance.sc-limited-approved"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1030",
+        "coord.family-inheritance.civil-act-ko-1031",
+        "coord.family-inheritance.civil-act-ko-1032",
+        "coord.family-inheritance.civil-act-ko-1033",
+        "coord.family-inheritance.civil-act-ko-1034",
+        "coord.family-inheritance.civil-act-ko-1035",
+        "coord.family-inheritance.civil-act-ko-1036",
+        "coord.family-inheritance.civil-act-ko-1037",
+        "coord.family-inheritance.civil-act-ko-1038",
+        "coord.family-inheritance.civil-act-ko-1039",
+        "coord.family-inheritance.civil-act-ko-1028"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "related_content_ids": [],
+      "concierge_entry": {
+        "question_ko": "한정승인 수리 뒤 바로 끝나는가",
+        "decision_facts_ko": [
+          "수리일",
+          "공고일",
+          "신고기간",
+          "알고 있는 채권자",
+          "담보권·우선권",
+          "채권액",
+          "상속재산 환가액",
+          "변제 내역"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    }
+  ]
+}
