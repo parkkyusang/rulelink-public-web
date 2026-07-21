@@ -86,3 +86,53 @@
     justify-content: space-between;
   }
 }
+
+.branchRules {
+  align-items: center;
+  border-top: 1px solid #dce5df;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 14px;
+}
+
+.branchRulesLabel {
+  color: #5b6b63;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  margin-right: 2px;
+}
+
+.branchRules a,
+.branchRuleChip {
+  background: #edf7f1;
+  border: 1px solid #cfe3d7;
+  border-radius: 999px;
+  color: #145c3f;
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1.35;
+  padding: 7px 10px;
+}
+
+.branchRules a:hover {
+  background: #dcefe4;
+  border-color: #a9cdb8;
+}
+
+@media (max-width: 800px) {
+  .branchRules {
+    align-items: stretch;
+  }
+
+  .branchRulesLabel {
+    flex-basis: 100%;
+  }
+
+  .branchRules a,
+  .branchRuleChip {
+    border-radius: 10px;
+  }
+}

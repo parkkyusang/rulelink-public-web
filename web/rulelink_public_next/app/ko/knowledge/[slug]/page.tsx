@@ -40,7 +40,8 @@ export default async function KnowledgePage({params}: Props) {
   const {slug} = await params;
   const entry = await findKnowledgeEntry(slug);
   if (!entry) notFound();
-  const {rules, scenarios, sources, hubs, related} = await knowledgeDetail(entry);
+  const {rules, scenarios, scenarioRules, sources, hubs, related} = await knowledgeDetail(entry);
+  const directRuleIds = new Set(rules.map(rule => rule.rule_id));
   const canonicalUrl = `${site.url}/ko/knowledge/${entry.slug}`;
   const officialSourceUrls = sources
     .map(source => browserOfficialSourceUrl(source))
@@ -117,7 +118,7 @@ export default async function KnowledgePage({params}: Props) {
             <h2>먼저 기준을 확인합니다.</h2>
             <div className="ruleStack">
               {rules.map(rule => (
-                <article className="ruleCard" key={rule.rule_id}>
+                <article className="ruleCard" id={rule.rule_id} key={rule.rule_id}>
                   <h3>{rule.title_ko}</h3>
                   <p>{rule.proposition_ko}</p>
                   <dl className="normSlots">
@@ -135,16 +136,29 @@ export default async function KnowledgePage({params}: Props) {
               <p className="eyebrow">결론을 가르는 사실</p>
               <h2>내 상황은 어느 쪽입니까?</h2>
               <div className="branchStack">
-                {scenarios.map(branch => (
-                  <article className="branchCard" key={branch.scenario_id}>
-                    <h3>{branch.question_ko}</h3>
-                    <p className="decisionFact">확인할 사실 · {branch.decision_fact_ko}</p>
-                    <div className="branchOutcomes">
-                      <p><b>해당하면</b>{branch.when_true_ko}</p>
-                      <p><b>해당하지 않으면</b>{branch.when_false_ko}</p>
-                    </div>
-                  </article>
-                ))}
+                {scenarios.map(branch => {
+                  const linkedRules = scenarioRules[branch.scenario_id] ?? [];
+                  return (
+                    <article className="branchCard" key={branch.scenario_id}>
+                      <h3>{branch.question_ko}</h3>
+                      <p className="decisionFact">확인할 사실 · {branch.decision_fact_ko}</p>
+                      <div className="branchOutcomes">
+                        <p><b>해당하면</b>{branch.when_true_ko}</p>
+                        <p><b>해당하지 않으면</b>{branch.when_false_ko}</p>
+                      </div>
+                      {linkedRules.length ? (
+                        <div aria-label="이 사실분기에 연결된 법리" className={styles.branchRules}>
+                          <span className={styles.branchRulesLabel}>연결 법리</span>
+                          {linkedRules.map(rule => directRuleIds.has(rule.rule_id) ? (
+                            <a href={`#${rule.rule_id}`} key={rule.rule_id}>{rule.title_ko} ↓</a>
+                          ) : (
+                            <span className={styles.branchRuleChip} key={rule.rule_id}>{rule.title_ko}</span>
+                          ))}
+                        </div>
+                      ) : null}
+                    </article>
+                  );
+                })}
               </div>
             </section>
           ) : null}
