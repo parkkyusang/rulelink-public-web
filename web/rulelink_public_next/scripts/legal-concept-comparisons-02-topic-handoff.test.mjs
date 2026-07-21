@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
+import {readFile, readdir} from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 import {fileURLToPath} from 'node:url';
@@ -13,6 +13,15 @@ const handoffPath = path.join(topicDirectory, handoffFile);
 
 async function readJson(filePath) {
   return JSON.parse(await readFile(filePath, 'utf8'));
+}
+
+async function allTopicContentIds() {
+  const ids = new Set();
+  for (const file of (await readdir(topicDirectory)).filter((item) => item.endsWith('.json') && item !== 'manifest.json')) {
+    const topic = await readJson(path.join(topicDirectory, file));
+    for (const entry of topic.content_entries ?? []) ids.add(entry.content_id);
+  }
+  return ids;
 }
 
 function stableStatuteUrl(source) {
@@ -33,6 +42,7 @@ test('두 번째 법률개념 비교 인계본은 출처·규칙·사실분기 �
   const ruleIds = new Set(topic.rule_cards.map((item) => item.rule_id));
   const scenarioIds = new Set(topic.scenario_branches.map((item) => item.scenario_id));
   const contentIds = new Set(topic.content_entries.map((item) => item.content_id));
+  const allContentIds = await allTopicContentIds();
   assert.equal(sourceIds.size, topic.sources.length);
   assert.equal(ruleIds.size, topic.rule_cards.length);
   assert.equal(scenarioIds.size, topic.scenario_branches.length);
@@ -61,11 +71,19 @@ test('두 번째 법률개념 비교 인계본은 출처·규칙·사실분기 �
     assert.ok(entry.rule_ids.every((id) => ruleIds.has(id)));
     assert.ok(entry.scenario_ids.every((id) => scenarioIds.has(id)));
     assert.ok(entry.source_coordinate_ids.every((id) => sourceIds.has(id)));
-    assert.ok(entry.related_content_ids.every((id) => contentIds.has(id)));
+    assert.ok(entry.related_content_ids.every((id) => allContentIds.has(id)));
     assert.ok(entry.key_points_ko.length >= 3);
     assert.ok(entry.action_steps_ko.length >= 3);
     assert.ok(entry.facts_to_check_ko.length >= 3);
     assert.ok(entry.body_sections.length >= 2);
+  }
+});
+
+test('비교 요약 10건이 기존 상세 정본으로 이어진다', async () => {
+  const topic = await readJson(handoffPath);
+  const local = new Set(topic.content_entries.map((item) => item.content_id));
+  for (const entry of topic.content_entries) {
+    assert.ok(entry.related_content_ids.some((id) => !local.has(id)), `${entry.content_id}: 외부 상세 정본 링크가 없습니다.`);
   }
 });
 

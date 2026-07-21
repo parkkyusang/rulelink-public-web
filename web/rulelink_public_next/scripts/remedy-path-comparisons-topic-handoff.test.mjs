@@ -14,6 +14,15 @@ async function readJson(filePath) {
   return JSON.parse(await readFile(filePath, 'utf8'));
 }
 
+async function allTopicContentIds() {
+  const ids = new Set();
+  for (const file of (await readdir(topicDirectory)).filter((item) => item.endsWith('.json') && item !== 'manifest.json')) {
+    const topic = await readJson(path.join(topicDirectory, file));
+    for (const entry of topic.content_entries ?? []) ids.add(entry.content_id);
+  }
+  return ids;
+}
+
 function stableStatuteUrl(source) {
   return new URL(`https://www.law.go.kr/${['법령', source.law_name_ko, source.article_no].map(encodeURIComponent).join('/')}`).href;
 }
@@ -31,6 +40,7 @@ test('구제절차 선택 비교 인계본은 10개 콘텐츠의 근거·규칙�
   const rules = new Set(topic.rule_cards.map((item) => item.rule_id));
   const scenarios = new Set(topic.scenario_branches.map((item) => item.scenario_id));
   const contents = new Set(topic.content_entries.map((item) => item.content_id));
+  const allContentIds = await allTopicContentIds();
   assert.equal(sources.size, topic.sources.length);
   assert.equal(rules.size, topic.rule_cards.length);
   assert.equal(scenarios.size, topic.scenario_branches.length);
@@ -56,9 +66,16 @@ test('구제절차 선택 비교 인계본은 10개 콘텐츠의 근거·규칙�
     assert.ok(entry.rule_ids.every((id) => rules.has(id)));
     assert.ok(entry.scenario_ids.every((id) => scenarios.has(id)));
     assert.ok(entry.source_coordinate_ids.every((id) => sources.has(id)));
-    assert.ok(entry.related_content_ids.every((id) => contents.has(id)));
+    assert.ok(entry.related_content_ids.every((id) => allContentIds.has(id)));
     assert.ok(entry.key_points_ko.length >= 3 && entry.action_steps_ko.length >= 3 && entry.facts_to_check_ko.length >= 3);
   }
+});
+
+test('구제절차 비교축은 관련 기존 상세 정본을 충분히 연결한다', async () => {
+  const topic = await readJson(handoffPath);
+  const local = new Set(topic.content_entries.map((item) => item.content_id));
+  const externalLinks = topic.content_entries.flatMap((entry) => entry.related_content_ids).filter((id) => !local.has(id));
+  assert.ok(new Set(externalLinks).size >= 8);
 });
 
 test('제소·정지·불복·중복보상의 핵심 선택 기준을 회귀검사로 고정한다', async () => {
