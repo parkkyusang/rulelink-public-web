@@ -60,15 +60,27 @@ export type PublicCatalog = {
   topics: PublicTopic[];
 };
 
-export type PublicKnowledgeSource = {
+type PublicKnowledgeSourceBase = {
   coordinate_id: string;
   source_id: string;
-  law_name_ko: string;
-  article_no: string;
   official_url: string;
   source_snapshot_id: string;
   last_verified_at: string;
 };
+
+export type PublicKnowledgeSource = PublicKnowledgeSourceBase & (
+  | {
+      source_kind?: 'statute';
+      law_name_ko: string;
+      article_no: string;
+    }
+  | {
+      source_kind: 'precedent';
+      title_ko: string;
+      case_number: string;
+      decision_date: string;
+    }
+);
 
 export type PublicRuleCard = {
   rule_id: string;
