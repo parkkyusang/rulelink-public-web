@@ -7,7 +7,7 @@
     "validate-publication": "node scripts/validate-publication-bundle.mjs",
     "validate:publication-history": "node scripts/validate-publication-history.mjs",
     "validate:snapshot-diff": "node scripts/validate-publication-snapshot-diff.mjs",
-    "test:publication": "node --test scripts/validate-publication-bundle.test.mjs scripts/promote-publication.test.mjs scripts/validate-publication-history.test.mjs scripts/report-publication-diff.test.mjs scripts/validate-publication-snapshot-diff.test.mjs scripts/report-publication-freshness.test.mjs",
+    "test:publication": "node --test scripts/validate-publication-bundle.test.mjs scripts/promote-publication.test.mjs scripts/validate-publication-history.test.mjs scripts/report-publication-diff.test.mjs scripts/validate-publication-snapshot-diff.test.mjs scripts/report-publication-freshness.test.mjs scripts/publication-freshness-runtime.test.mjs",
     "report:publication": "node scripts/report-publication-diff.mjs",
     "promote:publication": "node scripts/promote-publication.mjs",
     "predev": "npm run validate:publication-history && npm run sync-publication && npm run validate-publication",
