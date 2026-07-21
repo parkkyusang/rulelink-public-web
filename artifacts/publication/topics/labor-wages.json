@@ -39,6 +39,17 @@
       "last_verified_at": "2026-07-21T08:15:00+00:00"
     },
     {
+      "coordinate_id": "coord.labor-wages.src-supreme-2015du48136",
+      "source_id": "src-supreme-2015du48136",
+      "source_kind": "precedent",
+      "title_ko": "대법원 2015. 11. 27. 선고 2015두48136 판결",
+      "case_number": "2015두48136",
+      "decision_date": "2015-11-27",
+      "official_url": "https://www.law.go.kr/LSW/precInfoP.do?precSeq=179619",
+      "source_snapshot_id": "snapshot:912aebd73d43afdb41203fbfa529b844",
+      "last_verified_at": "2026-07-21T08:15:00+00:00"
+    },
+    {
       "coordinate_id": "coord.labor-wages.labor-standards-ko-0028",
       "source_id": "labor_standards_ko_0028",
       "law_name_ko": "근로기준법",
@@ -60,6 +71,7 @@
         "content.retirement-pay-basic-formula",
         "content.retirement-pay-payment-deadline",
         "content.verbal-dismissal-written-notice",
+        "content.specific-reason-in-dismissal-notice",
         "content.unfair-dismissal-remedy-three-months"
       ]
     }
@@ -120,6 +132,20 @@
       ]
     },
     {
+      "rule_id": "rule.labor-wages.rule-concrete-dismissal-reason",
+      "title_ko": "해고 서면은 근로자가 어떤 사유로 해고되는지 구체적으로 알 수 있을 정도여야…",
+      "proposition_ko": "해고 서면은 근로자가 어떤 사유로 해고되는지 구체적으로 알 수 있을 정도여야 한다.",
+      "norm": {
+        "actor_ko": "근로자를 해고하는 사용자와 해고 통지를 받는 근로자",
+        "conditions_ko": "서면 해고통지의 사유가 근로자가 구체적인 해고 원인을 알 수 있을 정도로 특정됐는지 판단하는 경우",
+        "legal_effect_ko": "해고 서면은 근로자가 어떤 사유로 해고되는지 구체적으로 알 수 있을 정도여야 한다."
+      },
+      "source_coordinate_ids": [
+        "coord.labor-wages.labor-standards-ko-0027",
+        "coord.labor-wages.src-supreme-2015du48136"
+      ]
+    },
+    {
       "rule_id": "rule.labor-wages.rule-remedy-3months",
       "title_ko": "부당해고 등의 구제신청은 부당해고가 있었던 날부터 3개월 이내에 해야 한다.",
       "proposition_ko": "부당해고 등의 구제신청은 부당해고가 있었던 날부터 3개월 이내에 해야 한다.",
@@ -174,6 +200,20 @@
       ],
       "source_coordinate_ids": [
         "coord.labor-wages.labor-standards-ko-0027"
+      ]
+    },
+    {
+      "scenario_id": "scenario.labor-wages.sc-vague-letter",
+      "question_ko": "해고통지서에 회사 사정 또는 근무태도 불량이라고만 적힌 경우",
+      "decision_fact_ko": "해고통지서만 읽고 근로자가 해고의 구체적 사실과 이유를 구별할 수 있는지",
+      "when_true_ko": "행위·일시·규정 위반 등 방어 가능한 정도로 특정됐다면 서면통지 요건과 해고사유의 정당성을 나누어 검토합니다.",
+      "when_false_ko": "추상적 평가나 규정명만 적었다면 해고사유 특정이 부족한지 판례 기준으로 검토합니다.",
+      "rule_ids": [
+        "rule.labor-wages.rule-concrete-dismissal-reason"
+      ],
+      "source_coordinate_ids": [
+        "coord.labor-wages.labor-standards-ko-0027",
+        "coord.labor-wages.src-supreme-2015du48136"
       ]
     },
     {
@@ -550,6 +590,73 @@
       ],
       "source_coordinate_ids": [
         "coord.labor-wages.labor-standards-ko-0027"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.specific-reason-in-dismissal-notice",
+      "content_type": "precedent_doctrine",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "specific-reason-in-dismissal-notice",
+      "title_ko": "해고통지서에는 이유를 얼마나 구체적으로 써야 하나",
+      "one_line_answer_ko": "근로자가 해고의 구체적 사유를 알 수 있어 대응할 수 있을 정도로 기재되어야 하며 추상적 표현만으로 충분한지는 실제 통지 내용과 경위를 본다.",
+      "audience_situation_ko": "해고통지서에 회사 사정 또는 근무태도 불량이라고만 적어도 되나?",
+      "key_points_ko": [
+        "서면에는 해고시기뿐 아니라 해고사유가 드러나야 한다.",
+        "근로자가 방어할 수 있을 정도의 구체성이 핵심이다.",
+        "수습근로자에 대한 본채용 거부도 이 원칙이 문제될 수 있다."
+      ],
+      "action_steps_ko": [
+        "해고통지서 전체와 전달 봉투·전자기록을 보존한다.",
+        "사유 문구에서 행위·시기·근거규정이 특정됐는지 표시한다.",
+        "사전 경고·징계자료와 통지서 내용을 대조한다.",
+        "서면요건 충족 여부와 해고 정당성을 별도 항목으로 검토한다."
+      ],
+      "facts_to_check_ko": [
+        "통지서 전체 문구",
+        "문제된 행위의 일시·내용",
+        "취업규칙 조항 표시",
+        "사전 경고·징계자료",
+        "근로자가 알고 있던 구체적 사유",
+        "수습·본채용 단계 여부",
+        "해고시기 기재"
+      ],
+      "caution_ko": "구체성 충족 여부와 해고사유 자체의 정당성은 서로 구별되는 쟁점이다.",
+      "search_intents_ko": [
+        "해고통지서 사유 구체성",
+        "근무태도 불량 해고통지",
+        "해고사유 서면 기재"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "근로자가 대응할 수 있을 정도로 알려야 한다",
+          "paragraphs_ko": [
+            "해고통지서에는 단순히 해고시기만 적는 것이 아니라 근로자가 어떤 사유로 근로관계가 종료되는지 알 수 있을 정도의 해고사유가 드러나야 합니다. 추상적인 문구만 있을 때는 실제 통지의 전체 내용과 경위를 봅니다.",
+            "회사 사정, 근무태도 불량, 규정 위반 같은 표현만으로는 문제된 행위와 시점을 알기 어려울 수 있습니다. 다만 근로자가 통지서와 연결된 구체적 사유를 이미 알고 있었는지 등도 함께 검토될 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "서면의 구체성과 해고의 정당성은 나눈다",
+          "paragraphs_ko": [
+            "통지서가 충분히 구체적인지는 절차와 효력의 문제이고, 적힌 사유가 실제 존재하며 해고할 정도로 중대한지는 실체적 정당성의 문제입니다. 하나가 충족되었다고 다른 하나까지 자동으로 인정되는 것은 아닙니다.",
+            "수습기간 종료 후 본채용 거부처럼 명칭이 해고와 다르게 표현된 경우에도 근로관계 종료의 실질과 적용 법리를 확인해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.labor-wages.rule-concrete-dismissal-reason"
+      ],
+      "scenario_ids": [
+        "scenario.labor-wages.sc-vague-letter"
+      ],
+      "source_coordinate_ids": [
+        "coord.labor-wages.labor-standards-ko-0027",
+        "coord.labor-wages.src-supreme-2015du48136"
       ],
       "hub_ids": [
         "hub.labor-wages"
