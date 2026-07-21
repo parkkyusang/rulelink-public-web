@@ -106,3 +106,13 @@ function item(id, expiresAt) {
     expires_at: expiresAt,
   };
 }
+
+test('재검토 임박 상태는 보고서를 남기고 일일 점검을 실패시킨다', async () => {
+  await withBundle(async bundlePath => {
+    await writeFile(bundlePath, JSON.stringify(bundle()), 'utf8');
+    const result = report(bundlePath, ['--fail-on-attention']);
+    assert.equal(result.status, 1);
+    assert.match(result.stdout, /재검토 임박/);
+    assert.match(result.stderr, /재검토가 필요한 공개 콘텐츠가 1개/);
+  });
+});

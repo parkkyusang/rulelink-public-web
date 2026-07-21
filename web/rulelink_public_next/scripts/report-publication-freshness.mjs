@@ -19,6 +19,13 @@ try {
 
 const report = buildFreshnessReport(bundle, now);
 process.stdout.write(options.json ? `${JSON.stringify(report, null, 2)}\n` : renderMarkdown(report));
+if (options.failOnAttention) {
+  const attentionCount = report.status_counts.due_soon + report.status_counts.expired + report.status_counts.invalid;
+  if (attentionCount > 0) {
+    process.stderr.write(`재검토가 필요한 공개 콘텐츠가 ${attentionCount}개입니다.\n`);
+    process.exitCode = 1;
+  }
+}
 
 function buildFreshnessReport(value, 기준시각) {
   const items = [
@@ -127,10 +134,13 @@ function parseArguments(args) {
   let bundle = '';
   let repoRoot = '';
   let json = false;
+  let failOnAttention = false;
   for (let index = 0; index < args.length; index += 1) {
     const argument = args[index];
     if (argument === '--json') {
       json = true;
+    } else if (argument === '--fail-on-attention') {
+      failOnAttention = true;
     } else if (argument === '--bundle') {
       bundle = args[index + 1] || '';
       index += 1;
@@ -143,7 +153,7 @@ function parseArguments(args) {
   }
   if (args.includes('--bundle') && !bundle) fail('--bundle 뒤에 경로가 필요합니다.');
   if (args.includes('--repo-root') && !repoRoot) fail('--repo-root 뒤에 경로가 필요합니다.');
-  return {bundle, repoRoot, json};
+  return {bundle, repoRoot, json, failOnAttention};
 }
 
 function parseNow(value) {
