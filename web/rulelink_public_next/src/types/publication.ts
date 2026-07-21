@@ -100,6 +100,15 @@ export type PublicKnowledgeEntry = {
   title_ko: string;
   one_line_answer_ko: string;
   audience_situation_ko: string;
+  key_points_ko: string[];
+  action_steps_ko: string[];
+  facts_to_check_ko: string[];
+  caution_ko: string;
+  search_intents_ko: string[];
+  body_sections: Array<{
+    heading_ko: string;
+    paragraphs_ko: string[];
+  }>;
   rule_ids: string[];
   scenario_ids: string[];
   source_coordinate_ids: string[];
