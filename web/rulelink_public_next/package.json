@@ -11,6 +11,7 @@
     "dev:next": "next dev",
     "prebuild": "node scripts/assert-safe-build.mjs && npm run sync-publication && npm run validate-publication",
     "build": "next build",
+    "smoke:public-build": "node scripts/smoke-public-build.mjs",
     "build:check": "node scripts/build-check.mjs",
     "start": "next start -p 8800",
     "typecheck": "next typegen && tsc --noEmit"
