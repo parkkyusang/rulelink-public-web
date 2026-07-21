@@ -1,10 +1,10 @@
 import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
+import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {entriesForKnowledgeHub, findKnowledgeHub, listKnowledgeHubs} from '@/lib/publication';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
-import type {PublicKnowledgeEntry} from '@/types/publication';
 
 export const dynamic = 'force-static';
 
@@ -75,7 +75,7 @@ export default async function KnowledgeHubPage({params}: Props) {
       <div className="knowledgeGrid">
         {entries.map(entry => (
           <a className="knowledgeCard" href={`/ko/knowledge/${entry.slug}`} key={entry.content_id}>
-            <span>{contentTypeLabel(entry.content_type)} · 기준 확인 {formatDate(entry.reviewed_at)}</span>
+            <span className="knowledgeMeta">{knowledgeContentTypeLabel(entry.content_type)} · 기준 확인 {formatDate(entry.reviewed_at)}</span>
             <h2>{entry.title_ko}</h2>
             <p>{entry.one_line_answer_ko}</p>
             <strong>법리와 사실분기 보기 →</strong>
@@ -90,16 +90,3 @@ function formatDate(value: string): string {
   return new Intl.DateTimeFormat('ko-KR', {dateStyle: 'medium'}).format(new Date(value));
 }
 
-function contentTypeLabel(type: PublicKnowledgeEntry['content_type']): string {
-  const labels: Record<PublicKnowledgeEntry['content_type'], string> = {
-    law_change: '법령 변경',
-    doctrine_explainer: '법리 해설',
-    fact_branch: '사실 분기',
-    precedent_doctrine: '판례 법리',
-    similar_case_comparison: '유사사례 비교',
-    misconception_correction: '오해 바로잡기',
-    procedure_evidence: '절차와 증거',
-    recurring_issue_generalization: '반복 쟁점',
-  };
-  return labels[type];
-}

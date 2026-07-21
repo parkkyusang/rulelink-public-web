@@ -1,4 +1,5 @@
 import {IssueExplorer} from '@/components/issue-explorer';
+import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {
   listChangeBriefs,
   listKnowledgeEntries,
@@ -107,7 +108,7 @@ export default async function HomePage() {
           <div className="knowledgeGrid">
             {knowledgeEntries.slice(0, 6).map(entry => (
               <a className="knowledgeCard" href={`/ko/knowledge/${entry.slug}`} key={entry.content_id}>
-                <span>{entry.audience_situation_ko}</span>
+                <span className="knowledgeMeta"><b>{knowledgeContentTypeLabel(entry.content_type)}</b>{entry.audience_situation_ko}</span>
                 <h3>{entry.title_ko}</h3>
                 <p>{entry.one_line_answer_ko}</p>
                 <strong>법리와 사실분기 보기 →</strong>

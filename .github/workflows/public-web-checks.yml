@@ -64,6 +64,9 @@ jobs:
           git show "${RULELINK_BASE_SHA}:artifacts/publication/current/bundle.json" > "${RUNNER_TEMP}/rulelink-base-bundle.json"
           npm run report:publication -- ../../artifacts/publication/current/bundle.json --current "${RUNNER_TEMP}/rulelink-base-bundle.json" >> "${GITHUB_STEP_SUMMARY}"
 
+      - name: 공개본 최신성 보고
+        run: npm run report:freshness >> "$GITHUB_STEP_SUMMARY"
+
       - name: 타입 검사
         run: npm run typecheck
 

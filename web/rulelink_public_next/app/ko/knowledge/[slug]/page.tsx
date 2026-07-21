@@ -1,6 +1,7 @@
 import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
+import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {findKnowledgeEntry, knowledgeDetail, listKnowledgeEntries} from '@/lib/publication';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
@@ -69,7 +70,7 @@ export default async function KnowledgePage({params}: Props) {
         {hubs[0] ? <><span>/</span><a href={`/ko/hubs/${hubs[0].slug}`}>{hubs[0].title_ko}</a></> : null}
       </nav>
       <header className="knowledgeHero">
-        <p className="eyebrow">{contentTypeLabel(entry.content_type)}</p>
+        <p className="eyebrow">{knowledgeContentTypeLabel(entry.content_type)}</p>
         <h1>{entry.title_ko}</h1>
         <p>{entry.one_line_answer_ko}</p>
         <span className="audienceBadge">{entry.audience_situation_ko}</span>
@@ -158,20 +159,6 @@ export default async function KnowledgePage({params}: Props) {
       ) : null}
     </main>
   );
-}
-
-function contentTypeLabel(type: string): string {
-  const labels: Record<string, string> = {
-    law_change: '법령 변경',
-    doctrine_explainer: '법리 해설',
-    fact_branch: '사실 분기',
-    precedent_doctrine: '판례 법리',
-    similar_case_comparison: '유사사례 비교',
-    misconception_correction: '오해 바로잡기',
-    procedure_evidence: '절차와 증거',
-    recurring_issue_generalization: '반복 쟁점',
-  };
-  return labels[type] ?? '생활법률 지식';
 }
 
 function formatDate(value: string): string {

@@ -2,6 +2,8 @@
 
 import {useMemo, useState} from 'react';
 
+import {knowledgeContentTypeLabel} from '@/lib/content-labels';
+
 import type {PublicKnowledgeEntry, PublicKnowledgeHub} from '@/types/publication';
 
 import styles from './knowledge-explorer.module.css';
@@ -30,7 +32,7 @@ export function KnowledgeExplorer({entries, hubs}: Props) {
           entry.title_ko,
           entry.one_line_answer_ko,
           entry.audience_situation_ko,
-          contentTypeLabel(entry.content_type),
+          knowledgeContentTypeLabel(entry.content_type),
           ...hubTerms,
         ].join(' '));
         return queryTokens.every(token => searchText.includes(token));
@@ -78,7 +80,7 @@ export function KnowledgeExplorer({entries, hubs}: Props) {
           {visibleEntries.map(entry => (
             <a className={styles.card} href={`/ko/knowledge/${entry.slug}`} key={entry.content_id}>
               <div className={styles.meta}>
-                <span>{contentTypeLabel(entry.content_type)}</span>
+                <span>{knowledgeContentTypeLabel(entry.content_type)}</span>
                 <time dateTime={entry.reviewed_at}>기준 확인 {formatDate(entry.reviewed_at)}</time>
               </div>
               <h2>{entry.title_ko}</h2>
@@ -106,16 +108,3 @@ function formatDate(value: string): string {
   return new Intl.DateTimeFormat('ko-KR', {dateStyle: 'medium'}).format(new Date(value));
 }
 
-function contentTypeLabel(type: PublicKnowledgeEntry['content_type']): string {
-  const labels: Record<PublicKnowledgeEntry['content_type'], string> = {
-    law_change: '법령 변경',
-    doctrine_explainer: '법리 해설',
-    fact_branch: '사실 분기',
-    precedent_doctrine: '판례 법리',
-    similar_case_comparison: '유사사례 비교',
-    misconception_correction: '오해 바로잡기',
-    procedure_evidence: '절차와 증거',
-    recurring_issue_generalization: '반복 쟁점',
-  };
-  return labels[type];
-}
