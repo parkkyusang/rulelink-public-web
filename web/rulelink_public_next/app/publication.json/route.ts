@@ -1,5 +1,6 @@
 import {
   listChangeBriefs,
+  listConceptCards,
   listKnowledgeEntries,
   listKnowledgeHubs,
   listPublishedCards,
@@ -11,10 +12,11 @@ export const dynamic = 'force-static';
 export const revalidate = 3600;
 
 export async function GET() {
-  const [bundle, cards, changeBriefs, knowledgeEntries, knowledgeHubs, publicTopics] = await Promise.all([
+  const [bundle, cards, changeBriefs, concepts, knowledgeEntries, knowledgeHubs, publicTopics] = await Promise.all([
     loadPublishedBundle(),
     listPublishedCards(),
     listChangeBriefs(),
+    listConceptCards(),
     listKnowledgeEntries(),
     listKnowledgeHubs(),
     listPublishedTopics(),
@@ -22,11 +24,13 @@ export async function GET() {
   const reviewDates = [
     ...cards.map(card => card.reviewed_at),
     ...changeBriefs.map(brief => brief.reviewed_at),
+    ...concepts.map(concept => concept.reviewed_at),
     ...knowledgeEntries.map(entry => entry.reviewed_at),
   ];
   const expiryDates = [
     ...cards.map(card => card.expires_at),
     ...changeBriefs.map(brief => brief.expires_at),
+    ...concepts.map(concept => concept.expires_at),
     ...knowledgeEntries.map(entry => entry.expires_at),
   ];
   const published = bundle?.schema === 'rulelink_published_bundle_v1';
@@ -39,6 +43,7 @@ export async function GET() {
     counts: {
       issue_cards: cards.length,
       change_briefs: changeBriefs.length,
+      concept_cards: concepts.length,
       knowledge_entries: knowledgeEntries.length,
       knowledge_hubs: knowledgeHubs.length,
       public_topics: publicTopics.length,

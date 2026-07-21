@@ -111,6 +111,37 @@ export type PublicScenarioBranch = {
   source_coordinate_ids: string[];
 };
 
+export type PublicConceptAssertion = {
+  assertion_id: string;
+  role: 'plain_definition' | 'legal_definition' | 'elements' | 'legal_effects' | 'judgment_factors' | 'limits' | 'procedure';
+  text_ko: string;
+  source_coordinate_ids: string[];
+};
+
+export type PublicConceptCard = {
+  concept_id: string;
+  version: string;
+  slug: string;
+  preferred_term_ko: string;
+  aliases_ko: string[];
+  plain_definition_ko: string;
+  legal_definition_ko: string;
+  elements_ko: string[];
+  legal_effects_ko: string[];
+  judgment_factors_ko: string[];
+  limits_and_counterexamples_ko: string[];
+  confused_with_ko: string[];
+  examples_ko: string[];
+  assertions: PublicConceptAssertion[];
+  source_coordinate_ids: string[];
+  related_rule_ids: string[];
+  related_concept_ids: string[];
+  related_content_ids: string[];
+  reviewed_at: string;
+  expires_at: string;
+  editorial_status: 'source_verified' | 'legal_reviewed' | 'approved';
+};
+
 export type PublicKnowledgeEntry = {
   content_id: string;
   content_type: 'law_change' | 'doctrine_explainer' | 'fact_branch' | 'precedent_doctrine' | 'similar_case_comparison' | 'misconception_correction' | 'procedure_evidence' | 'recurring_issue_generalization';
@@ -135,6 +166,7 @@ export type PublicKnowledgeEntry = {
   source_coordinate_ids: string[];
   hub_ids: string[];
   related_content_ids: string[];
+  concept_ids?: string[];
   lawyer_workspace_entry?: {
     question_ko: string;
     decision_facts_ko: string[];
@@ -158,6 +190,7 @@ export type PublicKnowledgeIndex = {
   scenario_branches: PublicScenarioBranch[];
   content_entries: PublicKnowledgeEntry[];
   topic_hubs: PublicKnowledgeHub[];
+  concept_cards?: PublicConceptCard[];
 };
 
 export type NormSlot = 'actor' | 'object' | 'trigger' | 'conditions' | 'exception' | 'operation' | 'legal_effect' | 'temporal_rule' | 'transition_rule';

@@ -8,6 +8,7 @@ import type {
   EditorialOperationsQueue,
   LegalChangeBrief,
   LegalIssueCard,
+  PublicConceptCard,
   PublicContentBundle,
   PublicKnowledgeEntry,
   PublicKnowledgeHub,
@@ -113,6 +114,14 @@ export async function listKnowledgeEntries(): Promise<PublicKnowledgeEntry[]> {
   return filterFreshPublications((await loadPublishedBundle())?.knowledge?.content_entries ?? []);
 }
 
+export async function listConceptCards(): Promise<PublicConceptCard[]> {
+  return filterFreshPublications((await loadPublishedBundle())?.knowledge?.concept_cards ?? []);
+}
+
+export async function findConceptCard(slug: string): Promise<PublicConceptCard | null> {
+  return (await listConceptCards()).find(concept => concept.slug === slug) ?? null;
+}
+
 export async function listKnowledgeSearchDocuments() {
   const knowledge = (await loadPublishedBundle())?.knowledge;
   if (!knowledge) return [];
@@ -133,6 +142,32 @@ export async function listKnowledgeSourceDocuments() {
 
 export async function findKnowledgeEntry(slug: string): Promise<PublicKnowledgeEntry | null> {
   return (await listKnowledgeEntries()).find(entry => entry.slug === slug) ?? null;
+}
+
+export async function conceptDetail(concept: PublicConceptCard): Promise<{
+  sources: PublicKnowledgeSource[];
+  rules: PublicRuleCard[];
+  relatedConcepts: PublicConceptCard[];
+  relatedEntries: PublicKnowledgeEntry[];
+}> {
+  const knowledge = (await loadPublishedBundle())?.knowledge;
+  if (!knowledge) return {sources: [], rules: [], relatedConcepts: [], relatedEntries: []};
+  const sourceIds = new Set([
+    ...concept.source_coordinate_ids,
+    ...concept.assertions.flatMap(assertion => assertion.source_coordinate_ids),
+  ]);
+  const ruleIds = new Set(concept.related_rule_ids);
+  const relatedConceptIds = new Set(concept.related_concept_ids);
+  const relatedEntryIds = new Set(concept.related_content_ids);
+  return {
+    sources: knowledge.sources.filter(source => sourceIds.has(source.coordinate_id)),
+    rules: knowledge.rule_cards.filter(rule => ruleIds.has(rule.rule_id)),
+    relatedConcepts: filterFreshPublications(knowledge.concept_cards ?? [])
+      .filter(candidate => relatedConceptIds.has(candidate.concept_id)),
+    relatedEntries: filterFreshPublications(knowledge.content_entries)
+      .filter(entry => relatedEntryIds.has(entry.content_id) || (entry.concept_ids ?? []).includes(concept.concept_id))
+      .slice(0, 8),
+  };
 }
 
 export async function listKnowledgeHubs(): Promise<PublicKnowledgeHub[]> {
@@ -181,6 +216,7 @@ export async function decisionPathsForKnowledgeHub(hub: PublicKnowledgeHub): Pro
 }
 
 export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
+  concepts: PublicConceptCard[];
   rules: PublicRuleCard[];
   scenarios: PublicScenarioBranch[];
   scenarioRules: Record<string, PublicRuleCard[]>;
@@ -189,7 +225,7 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
   related: PublicKnowledgeEntry[];
 }> {
   const knowledge = (await loadPublishedBundle())?.knowledge;
-  if (!knowledge) return {rules: [], scenarios: [], scenarioRules: {}, sources: [], hubs: [], related: []};
+  if (!knowledge) return {concepts: [], rules: [], scenarios: [], scenarioRules: {}, sources: [], hubs: [], related: []};
   const graph = resolveKnowledgeEntryGraph(knowledge, entry);
   const directRuleIds = new Set(entry.rule_ids);
   const ruleById = new Map(graph.rules.map(rule => [rule.rule_id, rule]));
@@ -217,6 +253,7 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
     .filter((candidate): candidate is PublicKnowledgeEntry => Boolean(candidate))
     .slice(0, 6);
   return {
+    concepts: graph.concepts,
     rules: graph.rules.filter(rule => directRuleIds.has(rule.rule_id)),
     scenarios: graph.scenarios,
     scenarioRules,
@@ -244,6 +281,7 @@ function isPublishedBundle(value: unknown): value is PublishedBundle {
       bundle.knowledge.schema === 'rulelink_public_knowledge_index_v1'
       && Array.isArray(bundle.knowledge.content_entries)
       && bundle.knowledge.content_entries.every(entry => entry.editorial_status === 'approved')
+      && (!bundle.knowledge.concept_cards || bundle.knowledge.concept_cards.every(concept => concept.editorial_status === 'approved'))
     ));
 }
 
@@ -260,6 +298,7 @@ function isEditorialPreviewBundle(value: unknown): value is PublicContentBundle 
       bundle.knowledge.schema === 'rulelink_public_knowledge_index_v1'
       && Array.isArray(bundle.knowledge.content_entries)
       && bundle.knowledge.content_entries.every(entry => entry.editorial_status === 'source_verified' || entry.editorial_status === 'legal_reviewed')
+      && (!bundle.knowledge.concept_cards || bundle.knowledge.concept_cards.every(concept => ['source_verified', 'legal_reviewed', 'approved'].includes(concept.editorial_status)))
     ));
 }
 

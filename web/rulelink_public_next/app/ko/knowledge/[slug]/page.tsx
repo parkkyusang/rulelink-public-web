@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
 import {KnowledgeActionWorkspace} from '@/components/knowledge-action-workspace';
+import {LegalConceptText} from '@/components/legal-concept-text';
 import {OfficialSourceJump} from '@/components/official-source-jump';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
@@ -43,7 +44,7 @@ export default async function KnowledgePage({params}: Props) {
   const {slug} = await params;
   const entry = await findKnowledgeEntry(slug);
   if (!entry) notFound();
-  const {rules, scenarios, scenarioRules, sources, hubs, related} = await knowledgeDetail(entry);
+  const {concepts, rules, scenarios, scenarioRules, sources, hubs, related} = await knowledgeDetail(entry);
   const directRuleIds = new Set(rules.map(rule => rule.rule_id));
   const canonicalUrl = `${site.url}/ko/knowledge/${entry.slug}`;
   const officialSources = sources.flatMap(source => {
@@ -87,7 +88,7 @@ export default async function KnowledgePage({params}: Props) {
       <header className="knowledgeHero">
         <p className="eyebrow">{knowledgeContentTypeLabel(entry.content_type)}</p>
         <h1>{entry.title_ko}</h1>
-        <p>{entry.one_line_answer_ko}</p>
+        <p><LegalConceptText concepts={concepts} text={entry.one_line_answer_ko} /></p>
         <span className="audienceBadge">{entry.audience_situation_ko}</span>
         <div aria-label="콘텐츠 기준일" className={styles.trust}>
           <span><b>기준 확인</b>{formatDate(entry.reviewed_at)}</span>
@@ -105,6 +106,7 @@ export default async function KnowledgePage({params}: Props) {
       <nav aria-label="이 글 안에서 이동" className="knowledgeSectionNav">
         <span>이 글에서</span>
         <a href="#summary">핵심 정리</a>
+        {concepts.length ? <a href="#concepts">용어 해설</a> : null}
         <a href="#rules">적용 법리</a>
         {scenarios.length ? <a href="#scenarios">결론 사실</a> : null}
         <a href="#actions">할 일과 자료</a>
@@ -117,13 +119,13 @@ export default async function KnowledgePage({params}: Props) {
             <p className="eyebrow">핵심 정리</p>
             <h2>무엇부터 확인해야 하나요?</h2>
             <ul>
-              {entry.key_points_ko.map(point => <li key={point}>{point}</li>)}
+              {entry.key_points_ko.map(point => <li key={point}><LegalConceptText concepts={concepts} text={point} /></li>)}
             </ul>
             <div className="ruleStack">
               {entry.body_sections.map(section => (
                 <article className="ruleCard" key={section.heading_ko}>
                   <h3>{section.heading_ko}</h3>
-                  {section.paragraphs_ko.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+                  {section.paragraphs_ko.map(paragraph => <p key={paragraph}><LegalConceptText concepts={concepts} text={paragraph} /></p>)}
                 </article>
               ))}
             </div>
@@ -138,11 +140,11 @@ export default async function KnowledgePage({params}: Props) {
                 return (
                   <article className="ruleCard" id={rule.rule_id} key={rule.rule_id}>
                     <h3>{rule.title_ko}</h3>
-                    {!propositionRepeatsEffect ? <p>{rule.proposition_ko}</p> : null}
+                    {!propositionRepeatsEffect ? <p><LegalConceptText concepts={concepts} text={rule.proposition_ko} /></p> : null}
                     <dl className="normSlots">
-                      <div><dt>누가</dt><dd>{rule.norm.actor_ko}</dd></div>
-                      <div><dt>어떤 때</dt><dd>{rule.norm.conditions_ko}</dd></div>
-                      <div><dt>결과</dt><dd>{rule.norm.legal_effect_ko}</dd></div>
+                      <div><dt>누가</dt><dd><LegalConceptText concepts={concepts} text={rule.norm.actor_ko} /></dd></div>
+                      <div><dt>어떤 때</dt><dd><LegalConceptText concepts={concepts} text={rule.norm.conditions_ko} /></dd></div>
+                      <div><dt>결과</dt><dd><LegalConceptText concepts={concepts} text={rule.norm.legal_effect_ko} /></dd></div>
                     </dl>
                   </article>
                 );
@@ -159,11 +161,11 @@ export default async function KnowledgePage({params}: Props) {
                   const linkedRules = scenarioRules[branch.scenario_id] ?? [];
                   return (
                     <article className="branchCard" key={branch.scenario_id}>
-                      <h3>{branch.question_ko}</h3>
-                      <p className="decisionFact">확인할 사실 · {branch.decision_fact_ko}</p>
+                      <h3><LegalConceptText concepts={concepts} text={branch.question_ko} /></h3>
+                      <p className="decisionFact">확인할 사실 · <LegalConceptText concepts={concepts} text={branch.decision_fact_ko} /></p>
                       <div className="branchOutcomes">
-                        <p><b>해당하면</b>{branch.when_true_ko}</p>
-                        <p><b>해당하지 않으면</b>{branch.when_false_ko}</p>
+                        <p><b>해당하면</b><LegalConceptText concepts={concepts} text={branch.when_true_ko} /></p>
+                        <p><b>해당하지 않으면</b><LegalConceptText concepts={concepts} text={branch.when_false_ko} /></p>
                       </div>
                       {linkedRules.length ? (
                         <div aria-label="이 사실분기에 연결된 법리" className={styles.branchRules}>
@@ -196,6 +198,19 @@ export default async function KnowledgePage({params}: Props) {
         </div>
 
         <aside className="knowledgeAside">
+          {concepts.length ? (
+            <section className={styles.conceptPanel} id="concepts">
+              <p className="eyebrow">본문 용어 해설</p>
+              <h2>모르는 말은 여기서 이어집니다</h2>
+              <p>본문의 점선 용어에 마우스를 올리거나 선택하면 쉬운 뜻이 나타납니다.</p>
+              {concepts.map(concept => (
+                <a href={`/ko/concepts/${concept.slug}`} key={concept.concept_id}>
+                  <strong>{concept.preferred_term_ko}</strong>
+                  <span>{concept.plain_definition_ko}</span>
+                </a>
+              ))}
+            </section>
+          ) : null}
           {entry.lawyer_workspace_entry ? (
             <section className="lawyerWorkspacePanel">
               <p className="eyebrow">변호사 전용 사건 검토</p>

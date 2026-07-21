@@ -1,0 +1,78 @@
+.term {
+  display: inline;
+  position: relative;
+}
+
+.termLink {
+  border-bottom: 1px dotted #397d5d;
+  color: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+
+.termLink:hover,
+.termLink:focus-visible {
+  background: #e8f4ed;
+  border-bottom-style: solid;
+  border-radius: 3px;
+  color: #145c3d;
+  outline: none;
+}
+
+.popover {
+  background: #102b20;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 13px;
+  bottom: calc(100% + 9px);
+  box-shadow: 0 16px 42px rgba(10,35,25,.22);
+  color: #eff8f2;
+  display: none;
+  left: 50%;
+  line-height: 1.55;
+  max-width: min(320px, calc(100vw - 32px));
+  min-width: 260px;
+  padding: 15px 17px;
+  position: absolute;
+  transform: translateX(-50%);
+  width: max-content;
+  z-index: 30;
+}
+
+.popover strong,
+.popover span,
+.popover em {
+  display: block;
+}
+
+.popover strong {
+  color: white;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.popover span {
+  font-size: 12px;
+}
+
+.popover em {
+  color: #8fd2af;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 750;
+  margin-top: 9px;
+}
+
+.term:hover .popover,
+.term:focus-within .popover {
+  display: block;
+}
+
+@media (max-width: 800px) {
+  .popover {
+    bottom: auto;
+    left: 0;
+    top: calc(100% + 8px);
+    transform: none;
+  }
+}

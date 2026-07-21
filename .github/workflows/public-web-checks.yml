@@ -54,15 +54,18 @@ jobs:
       - name: 병렬 출판 역할별 파일 소유권
         if: github.event_name == 'pull_request'
         env:
-          RULELINK_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          RULELINK_BASE_REF: origin/${{ github.base_ref }}
           RULELINK_HEAD_REF: ${{ github.head_ref }}
-        run: npm run validate:publication-scope -- --base "$RULELINK_BASE_SHA" --head-ref "$RULELINK_HEAD_REF"
+        run: npm run validate:publication-scope -- --base "$RULELINK_BASE_REF" --head-ref "$RULELINK_HEAD_REF"
 
       - name: 고정 의존성 설치
         run: npm ci
 
       - name: 공개 번들 차단 규칙 테스트
         run: npm run test:publication
+
+      - name: 주제별 인계 테스트 자동 발견
+        run: npm run test:publication-topics
 
       - name: 과거 출판 스냅샷 변경 차단
         env:

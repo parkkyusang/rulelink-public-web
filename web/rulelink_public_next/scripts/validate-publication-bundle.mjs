@@ -49,6 +49,11 @@ export function validatePublishedBundle(value, options = {}) {
   validateSlugs(cards, 'issue_card_id', '문제카드', errors);
   validateSlugs(briefs, 'change_brief_id', '법령변화 브리핑', errors);
   const assertionIds = uniqueIds(assertions, 'assertion_id', '주장', errors);
+  const knowledgeContentIds = new Set(
+    isRecord(value.knowledge) && Array.isArray(value.knowledge.content_entries)
+      ? value.knowledge.content_entries.map(entry => entry?.content_id).filter(id => typeof id === 'string')
+      : [],
+  );
   validateAssertions(assertions, now, errors);
 
   for (const [index, card] of cards.entries()) {
@@ -74,12 +79,14 @@ export function validatePublishedBundle(value, options = {}) {
     checkReviewWindow(brief, `법령변화 브리핑 ${label(brief, 'change_brief_id')}`, now, errors);
     checkChangeLifecycle(brief, now, errors);
     checkReferences(brief.related_issue_card_ids, cardIds, `법령변화 브리핑 ${label(brief, 'change_brief_id')}의 related_issue_card_ids`, errors);
+    checkReferences(brief.related_content_ids ?? [], knowledgeContentIds, `법령변화 브리핑 ${label(brief, 'change_brief_id')}의 related_content_ids`, errors);
     checkReferences(brief.assertion_ids, assertionIds, `법령변화 브리핑 ${label(brief, 'change_brief_id')}의 assertion_ids`, errors);
   }
 
   if (value.catalog !== undefined) validateCatalog(value.catalog, cardIds, errors);
   if (value.knowledge !== undefined) validateKnowledge(value.knowledge, now, value.file_hashes, errors);
-  scanForInternalData(value, '$', errors);
+  validateChangeCompositionReceipts(value, value.file_hashes, errors);
+  scanForInternalData(value, 'root', errors);
   return [...new Set(errors)];
 }
 
@@ -114,16 +121,20 @@ function validateKnowledge(value, now, fileHashes, errors) {
   const scenarios = requireArray(value, 'scenario_branches', errors, 'knowledge');
   const entries = requireArray(value, 'content_entries', errors, 'knowledge');
   const hubs = requireArray(value, 'topic_hubs', errors, 'knowledge');
+  const concepts = optionalArray(value, 'concept_cards', errors, 'knowledge');
 
   const sourceIds = uniqueIds(sources, 'coordinate_id', '공식 근거', errors);
   const ruleIds = uniqueIds(rules, 'rule_id', '법리카드', errors);
   const scenarioIds = uniqueIds(scenarios, 'scenario_id', '사실분기', errors);
   const entryIds = uniqueIds(entries, 'content_id', '지식 콘텐츠', errors);
   const hubIds = uniqueIds(hubs, 'hub_id', '주제 허브', errors);
+  const conceptIds = uniqueIds(concepts, 'concept_id', '법률개념', errors);
   for (const entry of entries) validateKnowledgeObjectReceipt(entry, 'content_id', 'knowledge', fileHashes, errors);
+  for (const concept of concepts) validateKnowledgeObjectReceipt(concept, 'concept_id', 'knowledge-concept', fileHashes, errors);
   validateKnowledgeIndexReceipt(value, fileHashes, errors);
   validateSlugs(entries, 'content_id', '지식 콘텐츠', errors);
   validateSlugs(hubs, 'hub_id', '주제 허브', errors);
+  validateSlugs(concepts, 'concept_id', '법률개념', errors);
 
   for (const source of sources) {
     if (!isRecord(source)) continue;
@@ -192,6 +203,7 @@ function validateKnowledge(value, now, fileHashes, errors) {
     checkReferences(entry.source_coordinate_ids, sourceIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 source_coordinate_ids`, errors);
     checkReferences(entry.hub_ids, hubIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 hub_ids`, errors);
     checkReferences(entry.related_content_ids, entryIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 related_content_ids`, errors);
+    checkReferences(entry.concept_ids ?? [], conceptIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 concept_ids`, errors);
     const entryName = `지식 콘텐츠 ${label(entry, 'content_id')}`;
     requireNonEmptyStringArray(entry, 'key_points_ko', 2, entryName, errors);
     requireNonEmptyStringArray(entry, 'action_steps_ko', 2, entryName, errors);
@@ -220,6 +232,55 @@ function validateKnowledge(value, now, fileHashes, errors) {
   for (const hub of hubs) {
     if (!isRecord(hub)) continue;
     checkReferences(hub.content_ids, entryIds, `주제 허브 ${label(hub, 'hub_id')}의 content_ids`, errors);
+  }
+
+  const conceptRoles = new Set(['plain_definition', 'legal_definition', 'elements', 'legal_effects', 'judgment_factors', 'limits', 'procedure']);
+  for (const [index, concept] of concepts.entries()) {
+    if (!isRecord(concept)) {
+      errors.push(`concept_cards[${index}]는 객체여야 합니다.`);
+      continue;
+    }
+    const conceptName = `법률개념 ${label(concept, 'concept_id')}`;
+    if (concept.editorial_status !== 'approved') errors.push(`${conceptName}이 승인 상태가 아닙니다.`);
+    checkReviewWindow(concept, conceptName, now, errors);
+    if (typeof concept.version !== 'string' || !/^\d+\.\d+\.\d+$/.test(concept.version)) {
+      errors.push(`${conceptName}의 version은 의미적 버전 형식이어야 합니다.`);
+    }
+    for (const field of ['preferred_term_ko', 'plain_definition_ko', 'legal_definition_ko']) {
+      if (typeof concept[field] !== 'string' || !concept[field].trim()) errors.push(`${conceptName}의 ${field}가 비어 있습니다.`);
+    }
+    for (const [field, minimum] of [
+      ['aliases_ko', 0],
+      ['elements_ko', 1],
+      ['legal_effects_ko', 1],
+      ['judgment_factors_ko', 0],
+      ['limits_and_counterexamples_ko', 1],
+      ['confused_with_ko', 0],
+      ['examples_ko', 1],
+    ]) requireNonEmptyStringArray(concept, field, minimum, conceptName, errors);
+    checkReferences(concept.source_coordinate_ids, sourceIds, `${conceptName}의 source_coordinate_ids`, errors);
+    checkReferences(concept.related_rule_ids, ruleIds, `${conceptName}의 related_rule_ids`, errors);
+    checkReferences(concept.related_concept_ids, conceptIds, `${conceptName}의 related_concept_ids`, errors);
+    checkReferences(concept.related_content_ids, entryIds, `${conceptName}의 related_content_ids`, errors);
+    const conceptAssertions = requireArray(concept, 'assertions', errors, conceptName);
+    if (conceptAssertions.length < 2) errors.push(`${conceptName}의 assertions는 쉬운 설명과 법률상 정의를 포함해 둘 이상이어야 합니다.`);
+    uniqueIds(conceptAssertions, 'assertion_id', `${conceptName} 주장`, errors);
+    const roles = new Set();
+    for (const [assertionIndex, assertion] of conceptAssertions.entries()) {
+      if (!isRecord(assertion)) {
+        errors.push(`${conceptName}의 assertions[${assertionIndex}]는 객체여야 합니다.`);
+        continue;
+      }
+      if (!conceptRoles.has(assertion.role)) errors.push(`${conceptName} 주장 ${label(assertion, 'assertion_id')}의 role이 허용되지 않습니다.`);
+      roles.add(assertion.role);
+      if (typeof assertion.text_ko !== 'string' || !assertion.text_ko.trim()) errors.push(`${conceptName} 주장 ${label(assertion, 'assertion_id')}의 text_ko가 비어 있습니다.`);
+      const assertionSources = requireArray(assertion, 'source_coordinate_ids', errors, `${conceptName} 주장 ${label(assertion, 'assertion_id')}`);
+      if (assertionSources.length === 0) errors.push(`${conceptName} 주장 ${label(assertion, 'assertion_id')}에는 근거가 하나 이상 필요합니다.`);
+      checkReferences(assertionSources, sourceIds, `${conceptName} 주장 ${label(assertion, 'assertion_id')}의 source_coordinate_ids`, errors);
+    }
+    for (const requiredRole of ['plain_definition', 'legal_definition']) {
+      if (!roles.has(requiredRole)) errors.push(`${conceptName}에 ${requiredRole} 주장이 없습니다.`);
+    }
   }
 }
 
@@ -356,6 +417,23 @@ function validateKnowledgeIndexReceipt(value, fileHashes, errors) {
   }
 }
 
+function validateChangeCompositionReceipts(bundle, fileHashes, errors) {
+  const schema = 'rulelink_public_change_composition_v1';
+  const indexKey = `change-index:${schema}`;
+  if (!isRecord(fileHashes) || fileHashes[indexKey] === undefined) return;
+  for (const assertion of bundle.assertions ?? []) {
+    validateKnowledgeObjectReceipt(assertion, 'assertion_id', 'change-assertion', fileHashes, errors);
+  }
+  for (const brief of bundle.change_briefs ?? []) {
+    validateKnowledgeObjectReceipt(brief, 'change_brief_id', 'change-brief', fileHashes, errors);
+  }
+  const composition = {schema, assertions: bundle.assertions ?? [], change_briefs: bundle.change_briefs ?? []};
+  const expected = createHash('sha256').update(canonicalJson(composition)).digest('hex');
+  if (fileHashes[indexKey] !== expected) {
+    errors.push('법령변화 전체 연결구조의 내용 해시 영수증이 일치하지 않습니다.');
+  }
+}
+
 function canonicalJson(value) {
   if (Array.isArray(value)) return `[${value.map(canonicalJson).join(',')}]`;
   if (isRecord(value)) {
@@ -365,7 +443,9 @@ function canonicalJson(value) {
 }
 
 function knowledgeEntryCount(value) {
-  return isRecord(value) && Array.isArray(value.content_entries) ? value.content_entries.length : 0;
+  if (!isRecord(value)) return 0;
+  return (Array.isArray(value.content_entries) ? value.content_entries.length : 0)
+    + (Array.isArray(value.concept_cards) ? value.concept_cards.length : 0);
 }
 
 function scanForInternalData(value, location, errors) {
