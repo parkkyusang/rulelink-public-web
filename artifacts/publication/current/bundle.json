@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_published_bundle_v1",
-  "snapshot_id": "kr-law-change-20260720-001",
-  "built_at": "2026-07-20T07:20:56.391252+00:00",
+  "snapshot_id": "kr-knowledge-administrative-appeals-20260721-001",
+  "built_at": "2026-07-21T08:00:00+00:00",
   "source_snapshot_id": "timeline:event:5071889dab50e639c04d0b5fefa00073",
   "jurisdiction": "KR",
   "locale": "ko-KR",
@@ -221,6 +221,343 @@
   ],
   "file_hashes": {
     "change-brief:draft.kr.change.administrative-appeals-16-2.001": "bfd67ae12f0463dcf4c1c883ce1e3f7adf5915e991400baabe6b3cf9b40cc98d",
-    "change-brief-approval:change-brief-approval:draft.kr.change.administrative-appeals-16-2.001:bfd67ae12f04": "aeee98d37f7169116f8fec43e6d86bf3b62e6fb323ee6f36d8210dfbe0a32b32"
+    "change-brief-approval:change-brief-approval:draft.kr.change.administrative-appeals-16-2.001:bfd67ae12f04": "aeee98d37f7169116f8fec43e6d86bf3b62e6fb323ee6f36d8210dfbe0a32b32",
+    "knowledge:administrative-appeals-v1": "31a01832f89e144592d32f20cbc38ee99f067b989e59489b7a1047cb2a2eb9be",
+    "knowledge-approval:derived-administrative-appeals-20260721-001": "b17d0fc6142c7cf4aa5003f79b15974b0111a00ed887b9a696f2e1805e69f46b"
+  },
+  "knowledge": {
+    "schema": "rulelink_public_knowledge_index_v1",
+    "sources": [
+      {
+        "coordinate_id": "coord.administrative-appeals-16-2.historical-2025-10-01",
+        "source_id": "administrative_appeals_enforcement_decree_ko_0016_02",
+        "official_url": "https://www.law.go.kr/LSW/lawView.do?lawId=005621",
+        "source_snapshot_id": "snapshot:088d4ff81a0e97e58d2f1b0bc746d895",
+        "last_verified_at": "2026-07-20T06:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.administrative-appeals-16-2.current-2026-06-16",
+        "source_id": "administrative_appeals_enforcement_decree_ko_0016_02",
+        "official_url": "https://www.law.go.kr/LSW/lawView.do?lawId=005621",
+        "source_snapshot_id": "snapshot:f46e52f238cfcb804b595d3f2a1447ec",
+        "last_verified_at": "2026-07-20T06:30:00+00:00"
+      }
+    ],
+    "rule_cards": [
+      {
+        "rule_id": "rule.admin-appeal.appointed-representative.old-document-rule",
+        "title_ko": "종전에는 자격군 모두가 소명서류를 직접 제출",
+        "proposition_ko": "2025년 10월 1일부터 2026년 6월 15일까지의 문언에서는 국선대리인 신청 자격군 모두가 해당 자격의 소명서류를 신청과 함께 제출해야 했습니다.",
+        "norm": {
+          "actor_ko": "행정심판 국선대리인 선임을 신청하는 청구인",
+          "conditions_ko": "2025년 10월 1일부터 2026년 6월 15일까지 적용되는 신청 절차",
+          "legal_effect_ko": "자격군과 관계없이 자격 소명서류를 직접 제출"
+        },
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.historical-2025-10-01"
+        ]
+      },
+      {
+        "rule_id": "rule.admin-appeal.appointed-representative.current-direct-documents",
+        "title_ko": "현재도 직접 소명서류를 내야 하는 자격군",
+        "proposition_ko": "2026년 6월 16일 이후 기초연금 수급자와 북한이탈주민 보호대상자는 국선대리인 선임 신청서와 자격 소명서류를 함께 제출해야 합니다.",
+        "norm": {
+          "actor_ko": "기초연금 수급자 또는 북한이탈주민 보호대상자로 신청하는 청구인",
+          "conditions_ko": "2026년 6월 16일 이후 국선대리인 선임을 신청",
+          "legal_effect_ko": "선임 신청서와 자격 소명서류를 함께 제출"
+        },
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ]
+      },
+      {
+        "rule_id": "rule.admin-appeal.appointed-representative.current-data-sharing",
+        "title_ko": "행정정보 확인으로 소명할 수 있는 자격군",
+        "proposition_ko": "기초생활수급자, 한부모가족 지원대상자, 장애인연금 수급자와 경제적 곤란 인정대상자는 동의한 경우 위원회가 행정정보 공동이용으로 자격을 확인할 수 있습니다.",
+        "norm": {
+          "actor_ko": "시행령 제16조의2제1항제1호ㆍ제2호ㆍ제4호 또는 제6호 자격으로 신청하는 청구인",
+          "conditions_ko": "2026년 6월 16일 이후 신청하고 행정정보 확인에 동의",
+          "legal_effect_ko": "위원회의 행정정보 확인으로 자격 소명 가능"
+        },
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ]
+      },
+      {
+        "rule_id": "rule.admin-appeal.appointed-representative.no-consent",
+        "title_ko": "행정정보 확인에 동의하지 않는 경우",
+        "proposition_ko": "행정정보 확인 대상 자격군이라도 공동이용 확인에 동의하지 않으면 해당 자격의 소명서류를 직접 제출해야 합니다.",
+        "norm": {
+          "actor_ko": "행정정보 확인 대상 자격군에 해당하는 청구인",
+          "conditions_ko": "행정정보 공동이용 확인에 동의하지 않음",
+          "legal_effect_ko": "해당 자격의 소명서류를 직접 제출"
+        },
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ]
+      }
+    ],
+    "scenario_branches": [
+      {
+        "scenario_id": "scenario.admin-appeal.application-date",
+        "question_ko": "국선대리인 선임 신청 절차의 기준일이 2026년 6월 16일 이후인가요?",
+        "decision_fact_ko": "적용할 신청 절차의 시점",
+        "when_true_ko": "현재 문언에 따라 자격군과 행정정보 확인 동의 여부를 나누어 첨부서류를 판단합니다.",
+        "when_false_ko": "2026년 6월 15일까지의 종전 문언에서는 자격군 모두가 소명서류를 직접 제출하는 구조였습니다. 시행일 당시 처리 중인 신청의 적용례는 별도 확인이 필요합니다.",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.old-document-rule",
+          "rule.admin-appeal.appointed-representative.current-direct-documents",
+          "rule.admin-appeal.appointed-representative.current-data-sharing"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.historical-2025-10-01",
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ]
+      },
+      {
+        "scenario_id": "scenario.admin-appeal.eligibility-group",
+        "question_ko": "기초연금 수급자 또는 북한이탈주민 보호대상자 자격으로 신청하나요?",
+        "decision_fact_ko": "신청자가 해당하는 국선대리인 신청 자격군",
+        "when_true_ko": "현재도 자격 소명서류를 선임 신청서와 함께 제출해야 합니다.",
+        "when_false_ko": "다른 자격군이라면 행정정보 확인 대상인지와 동의 여부를 추가로 확인해야 합니다.",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.current-direct-documents",
+          "rule.admin-appeal.appointed-representative.current-data-sharing"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ]
+      },
+      {
+        "scenario_id": "scenario.admin-appeal.data-sharing-consent",
+        "question_ko": "위원회의 행정정보 공동이용 확인에 동의하나요?",
+        "decision_fact_ko": "행정정보 공동이용 확인 동의 여부",
+        "when_true_ko": "확인 대상 자격군이라면 위원회가 행정정보로 자격을 확인할 수 있습니다.",
+        "when_false_ko": "확인 대상 자격군이어도 해당 자격의 소명서류를 직접 제출해야 합니다.",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.current-data-sharing",
+          "rule.admin-appeal.appointed-representative.no-consent"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ]
+      }
+    ],
+    "content_entries": [
+      {
+        "content_id": "content.admin-appeal.documents-law-change",
+        "content_type": "law_change",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-20T06:30:00+00:00",
+        "expires_at": "2026-10-20T00:00:00+00:00",
+        "slug": "administrative-appeal-appointed-representative-documents-change",
+        "title_ko": "행정심판 국선대리인 신청서류는 2026년 6월 16일부터 어떻게 달라졌나",
+        "one_line_answer_ko": "신청 자격과 기한은 유지되지만, 일부 자격군은 동의하면 자격 소명서류를 직접 내는 대신 위원회의 행정정보 확인을 이용할 수 있게 됐습니다.",
+        "audience_situation_ko": "행정심판 국선대리인 선임을 신청하면서 구법과 현재 절차의 차이를 확인하려는 경우",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.old-document-rule",
+          "rule.admin-appeal.appointed-representative.current-direct-documents",
+          "rule.admin-appeal.appointed-representative.current-data-sharing",
+          "rule.admin-appeal.appointed-representative.no-consent"
+        ],
+        "scenario_ids": [
+          "scenario.admin-appeal.application-date"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.historical-2025-10-01",
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ],
+        "hub_ids": [
+          "hub.administrative-appeals"
+        ],
+        "related_content_ids": [
+          "content.admin-appeal.eligibility-document-branch",
+          "content.admin-appeal.not-all-documents-waived"
+        ]
+      },
+      {
+        "content_id": "content.admin-appeal.eligibility-document-branch",
+        "content_type": "fact_branch",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-20T06:30:00+00:00",
+        "expires_at": "2026-10-20T00:00:00+00:00",
+        "slug": "administrative-appeal-which-eligibility-documents",
+        "title_ko": "내 자격군은 국선대리인 신청 때 증명서류를 직접 내야 하나",
+        "one_line_answer_ko": "기초연금 수급자와 북한이탈주민 보호대상자는 직접 제출하고, 일부 다른 자격군은 행정정보 확인 동의 여부에 따라 달라집니다.",
+        "audience_situation_ko": "국선대리인 신청 자격은 알지만 어떤 첨부서류를 준비해야 하는지 모르는 경우",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.current-direct-documents",
+          "rule.admin-appeal.appointed-representative.current-data-sharing"
+        ],
+        "scenario_ids": [
+          "scenario.admin-appeal.eligibility-group",
+          "scenario.admin-appeal.data-sharing-consent"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ],
+        "hub_ids": [
+          "hub.administrative-appeals"
+        ],
+        "related_content_ids": [
+          "content.admin-appeal.data-sharing-consent",
+          "content.admin-appeal.application-preparation"
+        ],
+        "concierge_entry": {
+          "question_ko": "내가 해당하는 국선대리인 신청 자격군과 필요한 소명서류를 사실관계에 맞춰 확인하고 싶습니다.",
+          "decision_facts_ko": [
+            "신청 자격군",
+            "신청일",
+            "행정정보 확인 동의 여부"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.admin-appeal.data-sharing-consent",
+        "content_type": "fact_branch",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-20T06:30:00+00:00",
+        "expires_at": "2026-10-20T00:00:00+00:00",
+        "slug": "administrative-appeal-data-sharing-consent",
+        "title_ko": "행정정보 확인에 동의하지 않으면 신청할 수 없나",
+        "one_line_answer_ko": "신청 자체가 막히는 것은 아니지만, 행정정보 확인 대상 자격군도 동의하지 않으면 자격 소명서류를 직접 제출해야 합니다.",
+        "audience_situation_ko": "행정정보 공동이용에 동의하지 않고 국선대리인 선임을 신청하려는 경우",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.current-data-sharing",
+          "rule.admin-appeal.appointed-representative.no-consent"
+        ],
+        "scenario_ids": [
+          "scenario.admin-appeal.data-sharing-consent"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ],
+        "hub_ids": [
+          "hub.administrative-appeals"
+        ],
+        "related_content_ids": [
+          "content.admin-appeal.eligibility-document-branch",
+          "content.admin-appeal.application-preparation"
+        ]
+      },
+      {
+        "content_id": "content.admin-appeal.not-all-documents-waived",
+        "content_type": "misconception_correction",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-20T06:30:00+00:00",
+        "expires_at": "2026-10-20T00:00:00+00:00",
+        "slug": "administrative-appeal-documents-not-fully-waived",
+        "title_ko": "법이 바뀌어 국선대리인 증명서류가 모두 없어진 것은 아닙니다",
+        "one_line_answer_ko": "서류 부담이 줄어든 자격군이 있지만, 직접 제출이 유지되는 자격군과 동의하지 않아 직접 내야 하는 경우가 남아 있습니다.",
+        "audience_situation_ko": "개정 뒤에는 모든 신청자가 증명서류를 내지 않아도 된다고 이해한 경우",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.current-direct-documents",
+          "rule.admin-appeal.appointed-representative.current-data-sharing",
+          "rule.admin-appeal.appointed-representative.no-consent"
+        ],
+        "scenario_ids": [
+          "scenario.admin-appeal.eligibility-group",
+          "scenario.admin-appeal.data-sharing-consent"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ],
+        "hub_ids": [
+          "hub.administrative-appeals"
+        ],
+        "related_content_ids": [
+          "content.admin-appeal.documents-law-change",
+          "content.admin-appeal.eligibility-document-branch"
+        ]
+      },
+      {
+        "content_id": "content.admin-appeal.application-preparation",
+        "content_type": "procedure_evidence",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-20T06:30:00+00:00",
+        "expires_at": "2026-10-20T00:00:00+00:00",
+        "slug": "administrative-appeal-appointed-representative-preparation",
+        "title_ko": "국선대리인 선임 신청 전에 확인할 세 가지",
+        "one_line_answer_ko": "신청 시점, 자신이 속한 자격군, 행정정보 확인 동의 여부를 먼저 확인해야 필요한 첨부서류를 정할 수 있습니다.",
+        "audience_situation_ko": "행정심판 국선대리인 선임 신청을 준비하는 청구인 또는 지원기관 담당자",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.current-direct-documents",
+          "rule.admin-appeal.appointed-representative.current-data-sharing",
+          "rule.admin-appeal.appointed-representative.no-consent"
+        ],
+        "scenario_ids": [
+          "scenario.admin-appeal.application-date",
+          "scenario.admin-appeal.eligibility-group",
+          "scenario.admin-appeal.data-sharing-consent"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ],
+        "hub_ids": [
+          "hub.administrative-appeals"
+        ],
+        "related_content_ids": [
+          "content.admin-appeal.eligibility-document-branch",
+          "content.admin-appeal.data-sharing-consent"
+        ],
+        "concierge_entry": {
+          "question_ko": "국선대리인 선임 신청에 필요한 자료와 아직 확인해야 할 사실을 정리하고 싶습니다.",
+          "decision_facts_ko": [
+            "신청일",
+            "신청 자격군",
+            "행정정보 확인 동의 여부",
+            "보유한 소명서류"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.admin-appeal.qualification-vs-proof",
+        "content_type": "doctrine_explainer",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-20T06:30:00+00:00",
+        "expires_at": "2026-10-20T00:00:00+00:00",
+        "slug": "administrative-appeal-qualification-and-proof-method",
+        "title_ko": "국선대리인 신청 자격과 자격을 증명하는 방법은 구분해야 합니다",
+        "one_line_answer_ko": "이번 개정의 핵심은 신청 가능 대상 자체보다 일부 자격군의 소명 방식이 직접 제출에서 행정정보 확인으로 바뀐 데 있습니다.",
+        "audience_situation_ko": "서류 제출 방식의 변경을 국선대리인 신청 자격 확대와 혼동하는 경우",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.old-document-rule",
+          "rule.admin-appeal.appointed-representative.current-direct-documents",
+          "rule.admin-appeal.appointed-representative.current-data-sharing"
+        ],
+        "scenario_ids": [
+          "scenario.admin-appeal.application-date"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.historical-2025-10-01",
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ],
+        "hub_ids": [
+          "hub.administrative-appeals"
+        ],
+        "related_content_ids": [
+          "content.admin-appeal.documents-law-change",
+          "content.admin-appeal.not-all-documents-waived"
+        ]
+      }
+    ],
+    "topic_hubs": [
+      {
+        "hub_id": "hub.administrative-appeals",
+        "slug": "administrative-appeals",
+        "title_ko": "행정처분과 행정심판",
+        "description_ko": "처분 통지 뒤 불복방법과 행정심판 절차에서 결론을 가르는 시점ㆍ자격ㆍ서류를 연결해 확인합니다.",
+        "content_ids": [
+          "content.admin-appeal.documents-law-change",
+          "content.admin-appeal.eligibility-document-branch",
+          "content.admin-appeal.data-sharing-consent",
+          "content.admin-appeal.not-all-documents-waived",
+          "content.admin-appeal.application-preparation",
+          "content.admin-appeal.qualification-vs-proof"
+        ]
+      }
+    ]
   }
 }
