@@ -1,5 +1,6 @@
 import type {
   PublicKnowledgeEntry,
+  PublicKnowledgeHub,
   PublicKnowledgeIndex,
   PublicKnowledgeSource,
   PublicRuleCard,
@@ -12,37 +13,29 @@ export type PublicKnowledgeSearchDocument = {
   evidence_labels_ko: string[];
 };
 
+export type ResolvedKnowledgeEntryGraph = {
+  scenarios: PublicScenarioBranch[];
+  rules: PublicRuleCard[];
+  sources: PublicKnowledgeSource[];
+  hubs: PublicKnowledgeHub[];
+};
+
+export function resolveKnowledgeEntryGraph(
+  knowledge: PublicKnowledgeIndex,
+  entry: PublicKnowledgeEntry,
+): ResolvedKnowledgeEntryGraph {
+  return createKnowledgeEntryResolver(knowledge)(entry);
+}
+
 export function buildKnowledgeSearchDocuments(
   knowledge: PublicKnowledgeIndex,
   visibleContentIds?: ReadonlySet<string>,
 ): PublicKnowledgeSearchDocument[] {
-  const scenarioById = new Map(knowledge.scenario_branches.map(scenario => [scenario.scenario_id, scenario]));
-  const ruleById = new Map(knowledge.rule_cards.map(rule => [rule.rule_id, rule]));
-  const hubById = new Map(knowledge.topic_hubs.map(hub => [hub.hub_id, hub]));
-
+  const resolveEntry = createKnowledgeEntryResolver(knowledge);
   return knowledge.content_entries
     .filter(entry => !visibleContentIds || visibleContentIds.has(entry.content_id))
     .map(entry => {
-      const scenarios = entry.scenario_ids
-        .map(scenarioId => scenarioById.get(scenarioId))
-        .filter((scenario): scenario is PublicScenarioBranch => Boolean(scenario));
-      const referencedRuleIds = new Set([
-        ...entry.rule_ids,
-        ...scenarios.flatMap(scenario => scenario.rule_ids),
-      ]);
-      const rules = [...referencedRuleIds]
-        .map(ruleId => ruleById.get(ruleId))
-        .filter((rule): rule is PublicRuleCard => Boolean(rule));
-      const referencedSourceIds = new Set([
-        ...entry.source_coordinate_ids,
-        ...rules.flatMap(rule => rule.source_coordinate_ids),
-        ...scenarios.flatMap(scenario => scenario.source_coordinate_ids),
-      ]);
-      const sources = knowledge.sources.filter(source => referencedSourceIds.has(source.coordinate_id));
-      const hubs = entry.hub_ids
-        .map(hubId => hubById.get(hubId))
-        .filter((hub): hub is NonNullable<typeof hub> => Boolean(hub));
-
+      const {scenarios, rules, sources, hubs} = resolveEntry(entry);
       return {
         entry,
         search_terms_ko: uniqueTerms([
@@ -63,6 +56,35 @@ export function buildKnowledgeSearchDocuments(
         evidence_labels_ko: uniqueTerms(sources.map(sourceLabel)),
       };
     });
+}
+
+function createKnowledgeEntryResolver(knowledge: PublicKnowledgeIndex) {
+  const scenarioById = new Map(knowledge.scenario_branches.map(scenario => [scenario.scenario_id, scenario]));
+  const ruleById = new Map(knowledge.rule_cards.map(rule => [rule.rule_id, rule]));
+  const hubById = new Map(knowledge.topic_hubs.map(hub => [hub.hub_id, hub]));
+
+  return (entry: PublicKnowledgeEntry): ResolvedKnowledgeEntryGraph => {
+    const scenarios = entry.scenario_ids
+      .map(scenarioId => scenarioById.get(scenarioId))
+      .filter((scenario): scenario is PublicScenarioBranch => Boolean(scenario));
+    const referencedRuleIds = new Set([
+      ...entry.rule_ids,
+      ...scenarios.flatMap(scenario => scenario.rule_ids),
+    ]);
+    const rules = [...referencedRuleIds]
+      .map(ruleId => ruleById.get(ruleId))
+      .filter((rule): rule is PublicRuleCard => Boolean(rule));
+    const referencedSourceIds = new Set([
+      ...entry.source_coordinate_ids,
+      ...rules.flatMap(rule => rule.source_coordinate_ids),
+      ...scenarios.flatMap(scenario => scenario.source_coordinate_ids),
+    ]);
+    const sources = knowledge.sources.filter(source => referencedSourceIds.has(source.coordinate_id));
+    const hubs = entry.hub_ids
+      .map(hubId => hubById.get(hubId))
+      .filter((hub): hub is PublicKnowledgeHub => Boolean(hub));
+    return {scenarios, rules, sources, hubs};
+  };
 }
 
 function ruleTerms(rule: PublicRuleCard): string[] {

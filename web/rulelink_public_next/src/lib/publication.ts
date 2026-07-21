@@ -1,7 +1,7 @@
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 
-import {buildKnowledgeSearchDocuments} from '@/lib/knowledge-search';
+import {buildKnowledgeSearchDocuments, resolveKnowledgeEntryGraph} from '@/lib/knowledge-search';
 import {filterFreshPublications} from '@/lib/publication-freshness';
 
 import type {
@@ -181,25 +181,21 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
 }> {
   const knowledge = (await loadPublishedBundle())?.knowledge;
   if (!knowledge) return {rules: [], scenarios: [], scenarioRules: {}, sources: [], hubs: [], related: []};
-  const ruleIds = new Set(entry.rule_ids);
-  const scenarioIds = new Set(entry.scenario_ids);
-  const scenarios = knowledge.scenario_branches.filter(scenario => scenarioIds.has(scenario.scenario_id));
-  const ruleById = new Map(knowledge.rule_cards.map(rule => [rule.rule_id, rule]));
+  const graph = resolveKnowledgeEntryGraph(knowledge, entry);
+  const directRuleIds = new Set(entry.rule_ids);
+  const ruleById = new Map(graph.rules.map(rule => [rule.rule_id, rule]));
   const scenarioRules = Object.fromEntries(
-    scenarios.map(scenario => [
+    graph.scenarios.map(scenario => [
       scenario.scenario_id,
       scenario.rule_ids
         .map(ruleId => ruleById.get(ruleId))
         .filter((rule): rule is PublicRuleCard => Boolean(rule)),
     ]),
   );
-  const sourceIds = new Set(entry.source_coordinate_ids);
-  const hubIds = new Set(entry.hub_ids);
-  const hubs = knowledge.topic_hubs.filter(hub => hubIds.has(hub.hub_id));
   const entryById = new Map(filterFreshPublications(knowledge.content_entries).map(candidate => [candidate.content_id, candidate]));
   const relatedIds = [
     ...entry.related_content_ids,
-    ...hubs.flatMap(hub => hub.content_ids),
+    ...graph.hubs.flatMap(hub => hub.content_ids),
   ];
   const seenRelatedIds = new Set<string>();
   const related = relatedIds
@@ -212,11 +208,11 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
     .filter((candidate): candidate is PublicKnowledgeEntry => Boolean(candidate))
     .slice(0, 6);
   return {
-    rules: knowledge.rule_cards.filter(rule => ruleIds.has(rule.rule_id)),
-    scenarios,
+    rules: graph.rules.filter(rule => directRuleIds.has(rule.rule_id)),
+    scenarios: graph.scenarios,
     scenarioRules,
-    sources: knowledge.sources.filter(source => sourceIds.has(source.coordinate_id)),
-    hubs,
+    sources: graph.sources,
+    hubs: graph.hubs,
     related,
   };
 }
