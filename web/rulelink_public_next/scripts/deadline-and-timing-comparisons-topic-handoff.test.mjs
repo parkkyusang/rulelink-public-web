@@ -106,7 +106,13 @@ test("새 식별자는 기존 주제와 충돌하지 않고 상세 정본 연결
 
 test("독립 인계본은 공유 출판 상태와 인적 표기를 요구하지 않는다", async () => {
   const manifest = JSON.parse(await readFile(new URL("manifest.json", topicsDir), "utf8"));
-  assert.equal(JSON.stringify(manifest).includes(topicFileName), false);
+  const integrated = JSON.stringify(manifest).includes(topicFileName);
+  const current = JSON.parse(await readFile(new URL("../current/bundle.json", topicsDir), "utf8"));
+  assert.equal(
+    current.knowledge.topic_hubs.some(hub => hub.hub_id === topic.topic_id),
+    integrated,
+    "manifest 통합 여부와 current 정본의 허브 포함 여부가 같아야 합니다.",
+  );
   assert.equal(JSON.stringify(topic).includes("author"), false);
   assert.equal(JSON.stringify(topic).includes("reviewer"), false);
 });

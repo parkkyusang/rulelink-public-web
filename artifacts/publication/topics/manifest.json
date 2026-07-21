@@ -55,8 +55,40 @@
       "file": "legal-concept-comparisons.json"
     },
     {
+      "topic_id": "hub.legal-concept-comparisons-02",
+      "file": "legal-concept-comparisons-02.json"
+    },
+    {
+      "topic_id": "hub.remedy-path-comparisons",
+      "file": "remedy-path-comparisons.json"
+    },
+    {
+      "topic_id": "hub.deadline-and-timing-comparisons",
+      "file": "deadline-and-timing-comparisons.json"
+    },
+    {
       "topic_id": "hub.legal-service-boundaries",
       "file": "legal-service-boundaries.json"
+    }
+  ],
+  "concepts": [
+    {
+      "concept_group_id": "concept-group.inheritance",
+      "file": "inheritance.json"
+    }
+  ],
+  "change_brief_sets": [
+    {
+      "change_brief_set_id": "change-brief-set.administrative-appeals",
+      "file": "law-change-briefs-administrative-appeals.json"
+    },
+    {
+      "change_brief_set_id": "change-brief-set.core-01",
+      "file": "law-change-briefs.json"
+    },
+    {
+      "change_brief_set_id": "change-brief-set.core-02",
+      "file": "law-change-briefs-02.json"
     }
   ],
   "content_entry_topic_order": [
@@ -73,6 +105,9 @@
     "hub.real-estate-sale",
     "hub.crime-victim-response",
     "hub.legal-concept-comparisons",
+    "hub.legal-concept-comparisons-02",
+    "hub.remedy-path-comparisons",
+    "hub.deadline-and-timing-comparisons",
     "hub.legal-service-boundaries"
   ]
 }

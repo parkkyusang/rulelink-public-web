@@ -840,7 +840,10 @@
       ],
       "related_content_ids": [
         "content.earnest-money-cancellation-vs-default-rescission",
-        "content.lease-registration-vs-opposability-priority"
+        "content.lease-registration-vs-opposability-priority",
+        "content.inheritance-renunciation-procedure",
+        "content.limited-acceptance-effect",
+        "content.three-month-inheritance-decision-period"
       ]
     },
     {
@@ -909,7 +912,10 @@
       ],
       "related_content_ids": [
         "content.online-withdrawal-vs-contract-rescission",
-        "content.inheritance-renunciation-vs-limited-acceptance"
+        "content.inheritance-renunciation-vs-limited-acceptance",
+        "content.earnest-money-rescission-cutoff",
+        "content.seller-misses-title-transfer-date",
+        "content.rescission-restitution-and-damages"
       ]
     },
     {
@@ -978,7 +984,10 @@
       ],
       "related_content_ids": [
         "content.loan-proof-vs-enforceable-title",
-        "content.earnest-money-cancellation-vs-default-rescission"
+        "content.earnest-money-cancellation-vs-default-rescission",
+        "content.online-purchase-cancellation-seven-days",
+        "content.goods-different-from-advertisement-deadline",
+        "content.paid-but-goods-not-supplied"
       ]
     },
     {
@@ -1045,7 +1054,9 @@
       ],
       "related_content_ids": [
         "content.payment-order-vs-civil-lawsuit",
-        "content.online-withdrawal-vs-contract-rescission"
+        "content.online-withdrawal-vs-contract-rescission",
+        "content.loan-without-written-note",
+        "content.documents-that-allow-compulsory-enforcement"
       ]
     },
     {
@@ -1113,7 +1124,9 @@
       ],
       "related_content_ids": [
         "content.provisional-attachment-vs-claim-seizure",
-        "content.loan-proof-vs-enforceable-title"
+        "content.loan-proof-vs-enforceable-title",
+        "content.when-payment-order-fits",
+        "content.payment-order-objection-two-weeks"
       ]
     },
     {
@@ -1182,7 +1195,9 @@
       ],
       "related_content_ids": [
         "content.criminal-compensation-order-vs-civil-damages",
-        "content.payment-order-vs-civil-lawsuit"
+        "content.payment-order-vs-civil-lawsuit",
+        "content.provisional-attachment-before-judgment",
+        "content.bank-account-seizure-and-collection-order"
       ]
     },
     {
@@ -1251,7 +1266,10 @@
       ],
       "related_content_ids": [
         "content.criminal-settlement-vs-complaint-withdrawal",
-        "content.provisional-attachment-vs-claim-seizure"
+        "content.provisional-attachment-vs-claim-seizure",
+        "content.compensation-order-eligible-damages",
+        "content.compensation-order-application-deadline",
+        "content.civil-damages-after-crime"
       ]
     },
     {
@@ -1319,7 +1337,9 @@
       ],
       "related_content_ids": [
         "content.parental-authority-vs-custody",
-        "content.criminal-compensation-order-vs-civil-damages"
+        "content.criminal-compensation-order-vs-civil-damages",
+        "content.settlement-and-punishment-intent",
+        "content.report-complaint-accusation-difference"
       ]
     },
     {
@@ -1386,7 +1406,9 @@
       ],
       "related_content_ids": [
         "content.property-division-vs-consolation-money",
-        "content.criminal-settlement-vs-complaint-withdrawal"
+        "content.criminal-settlement-vs-complaint-withdrawal",
+        "content.divorce-child-custody-support-parental-authority-agreement",
+        "content.noncustodial-parent-child-visitation"
       ]
     },
     {
@@ -1454,7 +1476,9 @@
       ],
       "related_content_ids": [
         "content.worker-status-vs-contract-label",
-        "content.parental-authority-vs-custody"
+        "content.parental-authority-vs-custody",
+        "content.divorce-consolation-money-vs-property-division",
+        "content.divorce-property-division-two-year-period"
       ]
     },
     {
@@ -1521,7 +1545,10 @@
       ],
       "related_content_ids": [
         "content.dismissal-notice-vs-unfair-dismissal-remedy",
-        "content.property-division-vs-consolation-money"
+        "content.property-division-vs-consolation-money",
+        "content.freelancer-contract-worker-status",
+        "content.business-registration-does-not-decide-worker-status",
+        "content.worker-status-evidence-checklist"
       ]
     },
     {
@@ -1589,7 +1616,10 @@
       ],
       "related_content_ids": [
         "content.lease-registration-vs-opposability-priority",
-        "content.worker-status-vs-contract-label"
+        "content.worker-status-vs-contract-label",
+        "content.verbal-dismissal-written-notice",
+        "content.specific-reason-in-dismissal-notice",
+        "content.unfair-dismissal-remedy-three-months"
       ]
     },
     {
@@ -1657,7 +1687,10 @@
       ],
       "related_content_ids": [
         "content.inheritance-renunciation-vs-limited-acceptance",
-        "content.dismissal-notice-vs-unfair-dismissal-remedy"
+        "content.dismissal-notice-vs-unfair-dismissal-remedy",
+        "content.lease-registration-application-is-not-completion",
+        "content.housing-lease-opposability-basics",
+        "content.housing-lease-priority-repayment-basics"
       ]
     }
   ]
