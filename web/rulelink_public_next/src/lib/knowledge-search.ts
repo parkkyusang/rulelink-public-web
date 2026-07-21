@@ -13,6 +13,13 @@ export type PublicKnowledgeSearchDocument = {
   evidence_labels_ko: string[];
 };
 
+export type PublicKnowledgeSourceDocument = {
+  source: PublicKnowledgeSource;
+  label_ko: string;
+  search_terms_ko: string[];
+  entries: PublicKnowledgeEntry[];
+};
+
 export type ResolvedKnowledgeEntryGraph = {
   scenarios: PublicScenarioBranch[];
   rules: PublicRuleCard[];
@@ -34,28 +41,62 @@ export function buildKnowledgeSearchDocuments(
   const resolveEntry = createKnowledgeEntryResolver(knowledge);
   return knowledge.content_entries
     .filter(entry => !visibleContentIds || visibleContentIds.has(entry.content_id))
+    .map(entry => makeKnowledgeSearchDocument(entry, resolveEntry(entry)));
+}
+
+export function buildKnowledgeSourceDocuments(
+  knowledge: PublicKnowledgeIndex,
+  visibleContentIds?: ReadonlySet<string>,
+): PublicKnowledgeSourceDocument[] {
+  const resolveEntry = createKnowledgeEntryResolver(knowledge);
+  const resolvedEntries = knowledge.content_entries
+    .filter(entry => !visibleContentIds || visibleContentIds.has(entry.content_id))
     .map(entry => {
-      const {scenarios, rules, sources, hubs} = resolveEntry(entry);
-      return {
-        entry,
-        search_terms_ko: uniqueTerms([
-          entry.title_ko,
-          entry.one_line_answer_ko,
-          entry.audience_situation_ko,
-          ...entry.search_intents_ko,
-          ...entry.key_points_ko,
-          ...entry.action_steps_ko,
-          ...entry.facts_to_check_ko,
-          entry.caution_ko,
-          ...entry.body_sections.flatMap(section => [section.heading_ko, ...section.paragraphs_ko]),
-          ...hubs.flatMap(hub => [hub.title_ko, hub.description_ko]),
-          ...rules.flatMap(ruleTerms),
-          ...scenarios.flatMap(scenarioTerms),
-          ...sources.flatMap(sourceTerms),
-        ]),
-        evidence_labels_ko: uniqueTerms(sources.map(sourceLabel)),
-      };
+      const graph = resolveEntry(entry);
+      return {document: makeKnowledgeSearchDocument(entry, graph), graph};
     });
+
+  return knowledge.sources
+    .map(source => {
+      const relatedDocuments = resolvedEntries
+        .filter(({graph}) => graph.sources.some(candidate => candidate.coordinate_id === source.coordinate_id))
+        .map(({document}) => document);
+      return {
+        source,
+        label_ko: sourceLabel(source),
+        search_terms_ko: uniqueTerms([
+          ...sourceTerms(source),
+          ...relatedDocuments.flatMap(document => document.search_terms_ko),
+        ]),
+        entries: relatedDocuments.map(document => document.entry),
+      };
+    })
+    .filter(document => document.entries.length > 0);
+}
+
+function makeKnowledgeSearchDocument(
+  entry: PublicKnowledgeEntry,
+  graph: ResolvedKnowledgeEntryGraph,
+): PublicKnowledgeSearchDocument {
+  return {
+    entry,
+    search_terms_ko: uniqueTerms([
+      entry.title_ko,
+      entry.one_line_answer_ko,
+      entry.audience_situation_ko,
+      ...entry.search_intents_ko,
+      ...entry.key_points_ko,
+      ...entry.action_steps_ko,
+      ...entry.facts_to_check_ko,
+      entry.caution_ko,
+      ...entry.body_sections.flatMap(section => [section.heading_ko, ...section.paragraphs_ko]),
+      ...graph.hubs.flatMap(hub => [hub.title_ko, hub.description_ko]),
+      ...graph.rules.flatMap(ruleTerms),
+      ...graph.scenarios.flatMap(scenarioTerms),
+      ...graph.sources.flatMap(sourceTerms),
+    ]),
+    evidence_labels_ko: uniqueTerms(graph.sources.map(sourceLabel)),
+  };
 }
 
 function createKnowledgeEntryResolver(knowledge: PublicKnowledgeIndex) {

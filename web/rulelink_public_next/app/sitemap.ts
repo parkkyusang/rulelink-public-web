@@ -6,6 +6,7 @@ import {
   listChangeBriefs,
   listKnowledgeEntries,
   listKnowledgeHubs,
+  listKnowledgeSourceDocuments,
   listPublishedCards,
   listPublishedTopics,
 } from '@/lib/publication';
@@ -13,12 +14,13 @@ import {site} from '@/lib/site';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (!site.indexing) return [];
-  const [cards, topics, changeBriefs, knowledgeEntries, knowledgeHubs] = await Promise.all([
+  const [cards, topics, changeBriefs, knowledgeEntries, knowledgeHubs, knowledgeSources] = await Promise.all([
     listPublishedCards(),
     listPublishedTopics(),
     listChangeBriefs(),
     listKnowledgeEntries(),
     listKnowledgeHubs(),
+    listKnowledgeSourceDocuments(),
   ]);
   return [
     {url: site.url, changeFrequency: 'weekly', priority: 1},
@@ -57,6 +59,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly' as const,
       priority: 0.85,
     })),
+    ...(knowledgeSources.length ? [{
+      url: `${site.url}/ko/sources`,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    }] : []),
     ...knowledgeHubs.map(hub => ({
       url: `${site.url}/ko/hubs/${hub.slug}`,
       changeFrequency: 'weekly' as const,

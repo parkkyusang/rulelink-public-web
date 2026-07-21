@@ -42,6 +42,7 @@ export function expectedLiveRoutes(bundle) {
   for (const topic of bundle.catalog?.topics ?? []) routes.add(`/ko/topics/${topic.slug}`);
   if ((bundle.change_briefs?.length ?? 0) > 0) routes.add('/ko/changes');
   if ((bundle.knowledge?.content_entries?.length ?? 0) > 0) routes.add('/ko/knowledge');
+  if ((bundle.knowledge?.sources?.length ?? 0) > 0) routes.add('/ko/sources');
   return [...routes];
 }
 

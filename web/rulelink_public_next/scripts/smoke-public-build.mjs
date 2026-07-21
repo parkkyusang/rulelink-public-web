@@ -44,6 +44,7 @@ try {
   assert(homeResponse.ok, `홈 응답 실패: ${homeResponse.status}`);
   const homeHtml = await homeResponse.text();
   assert(homeHtml.includes('href="/ko/knowledge">상황별 지식</a>'), '상단 메뉴가 공개 지식으로 연결되지 않습니다.');
+  assert(homeHtml.includes('href="/ko/sources">공식 근거</a>'), '상단 메뉴가 공식 근거 보관함으로 연결되지 않습니다.');
   for (const entry of (bundle.knowledge?.content_entries ?? []).slice(0, 6)) {
     assert(homeHtml.includes(`href="/ko/knowledge/${entry.slug}"`), `홈에서 공개 지식이 노출되지 않습니다: ${entry.slug}`);
   }
@@ -55,6 +56,7 @@ try {
   }
 
   const indexableRoutes = new Set(['/', '/ko/method', '/ko/search']);
+  if ((bundle.knowledge?.sources?.length ?? 0) > 0) indexableRoutes.add('/ko/sources');
   for (const card of bundle.cards ?? []) indexableRoutes.add(`/ko/issues/${card.slug}`);
   for (const brief of bundle.change_briefs ?? []) indexableRoutes.add(`/ko/changes/${brief.slug}`);
   for (const entry of bundle.knowledge?.content_entries ?? []) indexableRoutes.add(`/ko/knowledge/${entry.slug}`);

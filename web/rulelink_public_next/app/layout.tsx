@@ -62,6 +62,7 @@ export default function RootLayout({children}: {children: ReactNode}) {
             {preview ? <a href="/editorial">편집 운영</a> : null}
             <a href="/ko/search">전체에서 찾기</a>
             <a href="/ko/knowledge">상황별 지식</a>
+            <a href="/ko/sources">공식 근거</a>
             <a href="/ko/method">콘텐츠 원칙</a>
           </nav>
         </header>
