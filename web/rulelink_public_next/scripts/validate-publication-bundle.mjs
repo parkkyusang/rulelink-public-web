@@ -136,6 +136,19 @@ function validateKnowledge(value, now, fileHashes, errors) {
   validateSlugs(hubs, 'hub_id', '주제 허브', errors);
   validateSlugs(concepts, 'concept_id', '법률개념', errors);
 
+  for (const hub of hubs) {
+    if (!isRecord(hub)) continue;
+    const hubName = `주제 허브 ${label(hub, 'hub_id')}`;
+    for (const field of ['title_ko', 'description_ko']) {
+      if (typeof hub[field] !== 'string' || !hub[field].trim()) {
+        errors.push(`${hubName}의 ${field}가 비어 있습니다.`);
+      }
+    }
+    const hubContentIds = requireArray(hub, 'content_ids', errors, hubName);
+    if (hubContentIds.length === 0) errors.push(`${hubName}의 content_ids는 하나 이상이어야 합니다.`);
+    checkReferences(hubContentIds, entryIds, `${hubName}의 content_ids`, errors);
+  }
+
   for (const source of sources) {
     if (!isRecord(source)) continue;
     if ('source_hash' in source) errors.push(`공개 지식 근거 ${label(source, 'coordinate_id')}에 source_hash가 남아 있습니다.`);

@@ -61,6 +61,23 @@ test('공개 지식의 끊어진 참조를 거부한다', async () => {
   assert.match(result.stderr, /존재하지 않는 참조/);
 });
 
+test('주제 허브는 정식 설명과 실제 콘텐츠 참조를 가져야 한다', async () => {
+  const missingDescription = knowledgeBundle();
+  missingDescription.knowledge.topic_hubs[0].summary_ko = missingDescription.knowledge.topic_hubs[0].description_ko;
+  delete missingDescription.knowledge.topic_hubs[0].description_ko;
+  missingDescription.file_hashes[`knowledge-index:${missingDescription.knowledge.schema}`] = contentReceipt(missingDescription.knowledge);
+  const descriptionResult = await validate(missingDescription);
+  assert.notEqual(descriptionResult.status, 0);
+  assert.match(descriptionResult.stderr, /주제 허브.*description_ko가 비어 있습니다/);
+
+  const brokenReference = knowledgeBundle();
+  brokenReference.knowledge.topic_hubs[0].content_ids = ['content.missing'];
+  brokenReference.file_hashes[`knowledge-index:${brokenReference.knowledge.schema}`] = contentReceipt(brokenReference.knowledge);
+  const referenceResult = await validate(brokenReference);
+  assert.notEqual(referenceResult.status, 0);
+  assert.match(referenceResult.stderr, /주제 허브.*content_ids.*존재하지 않는 참조/);
+});
+
 test('공개 지식의 실천 안내가 부족하면 거부한다', async () => {
   const bundle = knowledgeBundle();
   bundle.knowledge.content_entries[0].action_steps_ko = [];
