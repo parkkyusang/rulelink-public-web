@@ -37,6 +37,10 @@
     {
       "topic_id": "hub.divorce-parenting",
       "file": "divorce-parenting.json"
+    },
+    {
+      "topic_id": "hub.debt-enforcement",
+      "file": "debt-enforcement.json"
     }
   ],
   "content_entry_topic_order": [
@@ -48,6 +52,7 @@
     "hub.money-guarantee",
     "hub.shared-mobility-accident",
     "hub.everyday-damages",
-    "hub.divorce-parenting"
+    "hub.divorce-parenting",
+    "hub.debt-enforcement"
   ]
 }
