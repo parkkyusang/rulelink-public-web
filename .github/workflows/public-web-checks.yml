@@ -64,6 +64,9 @@ jobs:
       - name: 공개 번들 차단 규칙 테스트
         run: npm run test:publication
 
+      - name: 주제별 인계 테스트 자동 발견
+        run: npm run test:publication-topics
+
       - name: 과거 출판 스냅샷 변경 차단
         env:
           RULELINK_SNAPSHOT_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
