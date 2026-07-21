@@ -79,7 +79,7 @@ export function validatePublishedBundle(value, options = {}) {
     checkReviewWindow(brief, `법령변화 브리핑 ${label(brief, 'change_brief_id')}`, now, errors);
     checkChangeLifecycle(brief, now, errors);
     checkReferences(brief.related_issue_card_ids, cardIds, `법령변화 브리핑 ${label(brief, 'change_brief_id')}의 related_issue_card_ids`, errors);
-    checkReferences(brief.related_content_ids, knowledgeContentIds, `법령변화 브리핑 ${label(brief, 'change_brief_id')}의 related_content_ids`, errors);
+    checkReferences(brief.related_content_ids ?? [], knowledgeContentIds, `법령변화 브리핑 ${label(brief, 'change_brief_id')}의 related_content_ids`, errors);
     checkReferences(brief.assertion_ids, assertionIds, `법령변화 브리핑 ${label(brief, 'change_brief_id')}의 assertion_ids`, errors);
   }
 
@@ -203,7 +203,7 @@ function validateKnowledge(value, now, fileHashes, errors) {
     checkReferences(entry.source_coordinate_ids, sourceIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 source_coordinate_ids`, errors);
     checkReferences(entry.hub_ids, hubIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 hub_ids`, errors);
     checkReferences(entry.related_content_ids, entryIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 related_content_ids`, errors);
-    checkReferences(entry.concept_ids, conceptIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 concept_ids`, errors);
+    checkReferences(entry.concept_ids ?? [], conceptIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 concept_ids`, errors);
     const entryName = `지식 콘텐츠 ${label(entry, 'content_id')}`;
     requireNonEmptyStringArray(entry, 'key_points_ko', 2, entryName, errors);
     requireNonEmptyStringArray(entry, 'action_steps_ko', 2, entryName, errors);
