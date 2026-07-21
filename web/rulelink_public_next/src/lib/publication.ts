@@ -1,6 +1,7 @@
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 
+import {buildKnowledgeSearchDocuments} from '@/lib/knowledge-search';
 import {filterFreshPublications} from '@/lib/publication-freshness';
 
 import type {
@@ -110,6 +111,15 @@ export async function relatedChangeBriefsForCard(card: LegalIssueCard, limit = 6
 
 export async function listKnowledgeEntries(): Promise<PublicKnowledgeEntry[]> {
   return filterFreshPublications((await loadPublishedBundle())?.knowledge?.content_entries ?? []);
+}
+
+export async function listKnowledgeSearchDocuments() {
+  const knowledge = (await loadPublishedBundle())?.knowledge;
+  if (!knowledge) return [];
+  const visibleContentIds = new Set(
+    filterFreshPublications(knowledge.content_entries).map(entry => entry.content_id),
+  );
+  return buildKnowledgeSearchDocuments(knowledge, visibleContentIds);
 }
 
 export async function findKnowledgeEntry(slug: string): Promise<PublicKnowledgeEntry | null> {

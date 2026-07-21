@@ -4,14 +4,16 @@ import {useEffect, useMemo, useState} from 'react';
 
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 
-import type {LegalChangeBrief, LegalIssueCard, PublicKnowledgeEntry, PublicTopic} from '@/types/publication';
+import type {PublicKnowledgeSearchDocument} from '@/lib/knowledge-search';
+
+import type {LegalChangeBrief, LegalIssueCard, PublicTopic} from '@/types/publication';
 
 import styles from './site-search.module.css';
 
 type Props = {
   cards: LegalIssueCard[];
   changeBriefs: LegalChangeBrief[];
-  knowledgeEntries: PublicKnowledgeEntry[];
+  knowledgeDocuments: PublicKnowledgeSearchDocument[];
   topics: PublicTopic[];
 };
 
@@ -27,9 +29,10 @@ type SearchResult = {
   href: string;
   reviewedAt: string;
   searchText: string;
+  evidenceLabels?: string[];
 };
 
-export function SiteSearch({cards, changeBriefs, knowledgeEntries, topics}: Props) {
+export function SiteSearch({cards, changeBriefs, knowledgeDocuments, topics}: Props) {
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<ResultFilter>('all');
 
@@ -53,8 +56,8 @@ export function SiteSearch({cards, changeBriefs, knowledgeEntries, topics}: Prop
   }
 
   const results = useMemo(
-    () => buildResults(cards, changeBriefs, knowledgeEntries, topics),
-    [cards, changeBriefs, knowledgeEntries, topics],
+    () => buildResults(cards, changeBriefs, knowledgeDocuments, topics),
+    [cards, changeBriefs, knowledgeDocuments, topics],
   );
   const counts = useMemo(() => ({
     all: results.length,
@@ -74,14 +77,14 @@ export function SiteSearch({cards, changeBriefs, knowledgeEntries, topics}: Prop
   return (
     <section aria-labelledby="site-search-heading" className={styles.search}>
       <div className={styles.searchBox}>
-        <label htmlFor="site-search">지금 겪고 있는 일이나 법 이름을 적어보세요</label>
+        <label htmlFor="site-search">상황, 법 이름, 조문이나 사건번호를 적어보세요</label>
         <div className={styles.searchInput}>
           <span aria-hidden="true">⌕</span>
           <input
             autoComplete="off"
             id="site-search"
             onChange={event => updateQuery(event.target.value)}
-            placeholder="예: 처분 통지를 받음, 시행일, 보증금 반환"
+            placeholder="예: 보증금 반환, 민법 제1026조, 2013다73520"
             type="search"
             value={query}
           />
@@ -109,6 +112,12 @@ export function SiteSearch({cards, changeBriefs, knowledgeEntries, topics}: Prop
               <h2>{result.title}</h2>
               <p>{result.summary}</p>
               <small>{result.context}</small>
+              {result.evidenceLabels?.length ? (
+                <div aria-label="연결된 공식 근거" className={styles.evidence}>
+                  <b>연결 근거</b>
+                  {evidenceLabelsForResult(result.evidenceLabels, normalizedQuery).map(label => <span key={label}>{label}</span>)}
+                </div>
+              ) : null}
               <strong>내용 확인하기 <span aria-hidden="true">→</span></strong>
             </a>
           ))}
@@ -126,7 +135,7 @@ export function SiteSearch({cards, changeBriefs, knowledgeEntries, topics}: Prop
 function buildResults(
   cards: LegalIssueCard[],
   changeBriefs: LegalChangeBrief[],
-  knowledgeEntries: PublicKnowledgeEntry[],
+  knowledgeDocuments: PublicKnowledgeSearchDocument[],
   topics: PublicTopic[],
 ): SearchResult[] {
   const topicByCardId = new Map<string, PublicTopic[]>();
@@ -152,7 +161,9 @@ function buildResults(
         ...brief.action_checklist,
       ],
     })),
-    ...knowledgeEntries.map(entry => makeResult({
+    ...knowledgeDocuments.map(document => {
+      const entry = document.entry;
+      return makeResult({
       id: entry.content_id,
       kind: 'knowledge',
       title: entry.title_ko,
@@ -166,8 +177,11 @@ function buildResults(
         ...entry.search_intents_ko,
         ...entry.key_points_ko,
         ...entry.facts_to_check_ko,
+        ...document.search_terms_ko,
       ],
-    })),
+      evidenceLabels: document.evidence_labels_ko,
+    });
+    }),
     ...cards.map(card => {
       const cardTopics = topicByCardId.get(card.issue_card_id) ?? [];
       return makeResult({
@@ -195,6 +209,12 @@ function makeResult(value: Omit<SearchResult, 'searchText'> & {terms: string[]})
     ...result,
     searchText: normalize([result.title, result.summary, result.context, ...terms].join(' ')),
   };
+}
+
+function evidenceLabelsForResult(labels: string[], normalizedQuery: string): string[] {
+  const tokens = normalizedQuery.split(' ').filter(Boolean);
+  const matched = labels.filter(label => tokens.some(token => normalize(label).includes(token)));
+  return [...new Set([...matched, ...labels])].slice(0, 3);
 }
 
 function FilterButton({active, count, label, onClick}: {active: boolean; count: number; label: string; onClick: () => void}) {
