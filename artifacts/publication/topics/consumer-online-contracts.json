@@ -65,7 +65,7 @@
   "rule_cards": [
     {
       "rule_id": "rule.consumer-online-contracts.rule-withdrawal-7days",
-      "title_ko": "통신판매의 일반 청약철회 기간은 계약내용 서면을 받은 날부터 7일이고, 재화…",
+      "title_ko": "일반 청약철회는 원칙적으로 7일",
       "proposition_ko": "통신판매의 일반 청약철회 기간은 계약내용 서면을 받은 날부터 7일이고, 재화 공급이 더 늦으면 공급받거나 공급이 시작된 날부터 7일이다.",
       "norm": {
         "actor_ko": "통신판매업자와 온라인으로 재화·용역을 구매한 소비자",
@@ -77,8 +77,21 @@
       ]
     },
     {
+      "rule_id": "rule.consumer-online-contracts.rule-withdrawal-restrictions",
+      "title_ko": "7일 안이어도 법정 제한사유가 있으면 일반 철회가 제한될 수 있음",
+      "proposition_ko": "소비자 책임의 훼손, 사용·일부 소비로 가치가 크게 감소한 경우, 복제 가능한 재화의 포장 훼손, 디지털콘텐츠 제공 개시 등 법정 사유가 있으면 일반 청약철회가 제한될 수 있다.",
+      "norm": {
+        "actor_ko": "통신판매로 재화·용역·디지털콘텐츠를 구매하고 일반 청약철회를 요구하는 소비자",
+        "conditions_ko": "소비자의 책임 있는 훼손, 사용·일부 소비에 따른 가치 감소, 복제 가능한 재화의 포장 훼손, 디지털콘텐츠 제공 개시 등 법정 제한사유가 있는 경우",
+        "legal_effect_ko": "일반 청약철회가 제한될 수 있다. 다만 표시·광고 또는 계약 불일치 철회와 통신판매업자의 법정 고지조치 여부는 별도로 판단한다."
+      },
+      "source_coordinate_ids": [
+        "coord.consumer-online-contracts.ecommerce-consumer-ko-0017"
+      ]
+    },
+    {
       "rule_id": "rule.consumer-online-contracts.rule-nonconforming-3m30d",
-      "title_ko": "표시·광고나 계약과 다르게 이행된 경우 공급받은 날부터 3개월 이내이면서 그…",
+      "title_ko": "계약 불일치 철회는 3개월·30일 기준",
       "proposition_ko": "표시·광고나 계약과 다르게 이행된 경우 공급받은 날부터 3개월 이내이면서 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내에 철회해야 한다.",
       "norm": {
         "actor_ko": "표시·광고 또는 계약내용과 다른 재화·용역을 공급받은 소비자",
@@ -91,7 +104,7 @@
     },
     {
       "rule_id": "rule.consumer-online-contracts.rule-return-cost",
-      "title_ko": "단순변심 철회의 반환비용과 표시·광고 또는 계약 불일치 철회의 반환비용은 부…",
+      "title_ko": "반품비 부담은 철회 사유에 따라 달라짐",
       "proposition_ko": "단순변심 철회의 반환비용과 표시·광고 또는 계약 불일치 철회의 반환비용은 부담 주체가 다르다.",
       "norm": {
         "actor_ko": "청약철회로 재화를 반환하는 소비자와 통신판매업자",
@@ -104,7 +117,7 @@
     },
     {
       "rule_id": "rule.consumer-online-contracts.rule-refund-3businessdays",
-      "title_ko": "철회 후 환급 기준일은 거래유형에 따라 다르지만 통신판매업자는 해당 기준일부…",
+      "title_ko": "환급은 기준일부터 3영업일 이내",
       "proposition_ko": "철회 후 환급 기준일은 거래유형에 따라 다르지만 통신판매업자는 해당 기준일부터 3영업일 이내 환급해야 한다.",
       "norm": {
         "actor_ko": "청약철회 통지를 받고 반환 재화 또는 철회의사를 확인한 통신판매업자",
@@ -117,7 +130,7 @@
     },
     {
       "rule_id": "rule.consumer-online-contracts.rule-supply-timeline",
-      "title_ko": "별도 공급시기 약정이 없다면 통신판매업자는 청약일부터 7일 이내, 선지급식 …",
+      "title_ko": "미공급 거래의 공급·환급 조치 기한",
       "proposition_ko": "별도 공급시기 약정이 없다면 통신판매업자는 청약일부터 7일 이내, 선지급식 거래는 대금 지급일부터 3영업일 이내 공급에 필요한 조치를 해야 한다.",
       "norm": {
         "actor_ko": "온라인 주문을 받은 통신판매업자와 대금을 지급한 소비자",
@@ -134,12 +147,13 @@
   "scenario_branches": [
     {
       "scenario_id": "scenario.consumer-online-contracts.sc-change-mind",
-      "question_ko": "온라인으로 산 정상 상품을 받은 뒤 마음이 바뀐 경우",
-      "decision_fact_ko": "계약내용 서면 수신일·상품 수령일과 청약철회 통지일",
-      "when_true_ko": "일반 7일 기간 안이라면 철회 통지와 반환 절차를 진행하고 반환비용 부담을 확인합니다.",
-      "when_false_ko": "7일이 지났다면 계약 불일치 여부와 별도 기산점·판매자의 더 긴 약정이 있는지 확인합니다.",
+      "question_ko": "일반 7일 기간 안이고 상품 훼손·사용 등 법정 철회 제한사유가 없나요?",
+      "decision_fact_ko": "계약내용 서면 수신일·상품 수령일·철회 통지일과 상품 훼손·사용·콘텐츠 제공 개시 여부",
+      "when_true_ko": "일반 청약철회 통지를 하고 반환 절차와 비용 부담을 확인합니다.",
+      "when_false_ko": "법정 제한사유와 판매자의 고지조치를 확인하고, 표시·광고 또는 계약 불일치 철회가 가능한지 별도로 검토합니다.",
       "rule_ids": [
         "rule.consumer-online-contracts.rule-withdrawal-7days",
+        "rule.consumer-online-contracts.rule-withdrawal-restrictions",
         "rule.consumer-online-contracts.rule-return-cost"
       ],
       "source_coordinate_ids": [
@@ -149,10 +163,10 @@
     },
     {
       "scenario_id": "scenario.consumer-online-contracts.sc-not-as-advertised",
-      "question_ko": "상세페이지와 다른 재질·기능의 상품을 받은 경우",
-      "decision_fact_ko": "표시·광고 또는 계약내용과 실제 공급된 상품의 차이 및 그 발견일",
-      "when_true_ko": "3개월·30일 기간을 모두 확인해 불일치 사유를 특정한 철회 통지를 합니다.",
-      "when_false_ko": "법정 불일치 철회기간을 벗어났다면 하자담보·약정상 반품 등 다른 근거를 확인합니다.",
+      "question_ko": "공급된 상품·용역이 표시·광고 또는 계약내용과 실제로 다른가요?",
+      "decision_fact_ko": "표시·광고 또는 계약내용과 실제 공급 내용의 차이, 공급일과 불일치 발견일",
+      "when_true_ko": "공급일부터 3개월 이내이면서 불일치를 안 날 또는 알 수 있었던 날부터 30일 이내인지 확인해 철회 통지를 합니다.",
+      "when_false_ko": "일반 청약철회 기간과 법정 제한사유, 판매자가 별도로 약정한 반품 기준을 확인합니다.",
       "rule_ids": [
         "rule.consumer-online-contracts.rule-nonconforming-3m30d",
         "rule.consumer-online-contracts.rule-return-cost"
@@ -164,10 +178,10 @@
     },
     {
       "scenario_id": "scenario.consumer-online-contracts.sc-undelivered",
-      "question_ko": "선결제했지만 물품 공급이 어렵다는 통보를 받거나 배송 진행을 확인할 수 없는 경우",
-      "decision_fact_ko": "청약일·대금 지급일과 약정한 공급시기 및 실제 공급 여부",
-      "when_true_ko": "법정 또는 약정 공급기한과 환급 기준일을 계산해 공급·환급을 요구합니다.",
-      "when_false_ko": "아직 공급기한 전이라면 약정 배송일과 주문 처리상태를 먼저 확인합니다.",
+      "question_ko": "약정한 공급시기가 지났거나 판매자가 공급 곤란을 알렸나요?",
+      "decision_fact_ko": "청약일·대금 지급일·약정 공급일·공급조치와 공급 곤란 통지일",
+      "when_true_ko": "약정과 법정 공급조치 기한을 대조하고 취소·환급 및 결제취소 조치를 요구합니다.",
+      "when_false_ko": "아직 공급기한 전이라면 주문 처리와 실제 집화 여부를 확인하고 약정일을 기준으로 기록을 남깁니다.",
       "rule_ids": [
         "rule.consumer-online-contracts.rule-supply-timeline",
         "rule.consumer-online-contracts.rule-refund-3businessdays"
@@ -194,7 +208,8 @@
       "key_points_ko": [
         "7일의 시작점부터 확인한다.",
         "단순변심과 계약 불일치를 구분한다.",
-        "판매자가 더 긴 기간을 약정했다면 그 기간을 따른다."
+        "판매자가 더 긴 기간을 약정했다면 그 기간을 따른다.",
+        "7일 안이어도 상품 상태·사용 여부·디지털콘텐츠 제공 개시 등에 따라 일반 철회가 제한될 수 있다."
       ],
       "action_steps_ko": [
         "주문서·계약내용 수신일과 배송완료일을 확인한다.",
@@ -208,9 +223,13 @@
         "철회 통지일",
         "판매페이지 반품정책",
         "판매자 주소 확인 가능일",
-        "철회 방해 행위 여부"
+        "철회 방해 행위 여부",
+        "상품 훼손·사용·일부 소비 여부",
+        "복제 가능한 재화의 포장 훼손 여부",
+        "디지털콘텐츠 제공 개시 여부",
+        "판매자의 철회 제한 고지·시험사용 제공 여부"
       ],
-      "caution_ko": "7일과 3개월·30일은 선택적으로 유리한 기간 하나만 적용하는 관계가 아니므로 사유와 각 기산점을 함께 확인해야 한다.",
+      "caution_ko": "기간 안이라는 사실만으로 철회가 확정되는 것은 아닙니다. 법정 제한사유와 판매자의 고지조치를 확인하고, 표시·광고 또는 계약 불일치 철회는 일반 철회와 별도로 판단해야 합니다.",
       "search_intents_ko": [
         "온라인 쇼핑 반품 기간",
         "전자상거래 청약철회 7일",
@@ -230,10 +249,18 @@
             "상품이 정상이고 마음만 바뀐 경우와 표시·광고 또는 계약내용과 다른 경우는 적용되는 기간이 다릅니다. 후자라면 공급받은 날부터 3개월 이내이면서 불일치를 안 날 또는 알 수 있었던 날부터 30일 이내인지 함께 봅니다.",
             "따라서 주문일 하나만 확인해서 포기하면 안 됩니다. 계약서면 수신일, 배송완료일, 불일치 발견일, 철회 통지일을 한 줄의 시간표로 정리하는 것이 먼저입니다."
           ]
+        },
+        {
+          "heading_ko": "7일 안이어도 철회 제한사유를 확인한다",
+          "paragraphs_ko": [
+            "소비자의 책임으로 상품이 훼손되었거나 사용·일부 소비로 가치가 크게 감소한 경우, 복제 가능한 재화의 포장을 훼손한 경우, 디지털콘텐츠 제공이 시작된 경우 등에는 일반 청약철회가 제한될 수 있습니다.",
+            "다만 판매자가 법이 요구하는 사전 고지나 시험사용 제공 등의 조치를 했는지, 상품이 표시·광고 또는 계약내용과 달라 별도 철회가 가능한지는 따로 확인해야 합니다."
+          ]
         }
       ],
       "rule_ids": [
         "rule.consumer-online-contracts.rule-withdrawal-7days",
+        "rule.consumer-online-contracts.rule-withdrawal-restrictions",
         "rule.consumer-online-contracts.rule-nonconforming-3m30d"
       ],
       "scenario_ids": [
@@ -247,7 +274,10 @@
       "hub_ids": [
         "hub.consumer-online-contracts"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.who-pays-return-shipping",
+        "content.refund-within-three-business-days"
+      ]
     },
     {
       "content_id": "content.who-pays-return-shipping",
@@ -315,7 +345,10 @@
       "hub_ids": [
         "hub.consumer-online-contracts"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.online-purchase-cancellation-seven-days",
+        "content.refund-within-three-business-days"
+      ]
     },
     {
       "content_id": "content.refund-within-three-business-days",
@@ -387,7 +420,10 @@
       "hub_ids": [
         "hub.consumer-online-contracts"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.online-purchase-cancellation-seven-days",
+        "content.paid-but-goods-not-supplied"
+      ],
       "concierge_entry": {
         "question_ko": "반품한 뒤 환불은 언제까지 받아야 하나",
         "decision_facts_ko": [
@@ -471,7 +507,10 @@
       "hub_ids": [
         "hub.consumer-online-contracts"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.refund-within-three-business-days",
+        "content.online-purchase-cancellation-seven-days"
+      ],
       "concierge_entry": {
         "question_ko": "결제했는데 배송되지 않을 때 확인할 순서",
         "decision_facts_ko": [

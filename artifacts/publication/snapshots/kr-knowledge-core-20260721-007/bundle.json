@@ -231,10 +231,10 @@
     "knowledge:content.admin-appeal.not-all-documents-waived": "994469260f835ef1f4a5ba6d22dea7b81a90e99b34605ef3a7c073d7fff8469b",
     "knowledge:content.admin-appeal.application-preparation": "0503932e14916ce0e338a24db48f79b6957821f5a5452c37f384edbbffae8933",
     "knowledge:content.admin-appeal.qualification-vs-proof": "5df6bf6c5df9f3542b1f7d77de10a2a2233f553f429ca17f030b644da025be58",
-    "knowledge:content.online-purchase-cancellation-seven-days": "18d4034aa86e577c49c4af470062beac6f07fae98886b96e676a8fad6d8b2c72",
-    "knowledge:content.who-pays-return-shipping": "dfbd63177a5c41fca66c6e451bdc5b29747cfeeed74be5b616974e8b23737380",
-    "knowledge:content.refund-within-three-business-days": "ff248504f1bb5e0c2bbaab3a537f5166d98d6b637672910304e192a145f712bb",
-    "knowledge:content.paid-but-goods-not-supplied": "0af761aa53f8195bc4b1419edb27be21bb3f01266f300a96a6cc2ae915120f44",
+    "knowledge:content.online-purchase-cancellation-seven-days": "23912c541ed7fcedc07fcfb600e1477e784716970ff1eb2ac7e35fa906ec12b2",
+    "knowledge:content.who-pays-return-shipping": "31cb5f3cdf1b0fec94f39b98418b94a58bcb57493a9a5f7b047ff35cf74a640e",
+    "knowledge:content.refund-within-three-business-days": "eea75581660aaa64f41b8b1652193e3aa31e40a6db536a3a48ab22cf24bb2735",
+    "knowledge:content.paid-but-goods-not-supplied": "428697034148098ddec39efdaaa8ccdf3d09d81443b1b2bbcc1f6873badeb2fb",
     "knowledge:content.legal-heir-order-and-spouse": "d4a4b57df408a2a83c3d9e19610cf6ed789e089cf64a8ceda4075eaa9867e65d",
     "knowledge:content.three-month-inheritance-decision-period": "d6145e43b53645c8947f804ec16c209c0c4670dcd7300c4c79fbdc19f20f1440",
     "knowledge:content.inheritance-renunciation-procedure": "595361bec888c62b50f31f24b45082dfae8ed7423c2ab6840b86aa2ec74d1743",
@@ -248,11 +248,11 @@
     "knowledge:content.housing-lease-opposability-basics": "0601a79a544e755c69ef06d8ad167bb351ab86a0070c723a8efeb30089eb97e1",
     "knowledge:content.housing-lease-priority-repayment-basics": "e5392c5742bd95006c0d7af8a7315ee2a51827550879463eafca1ddc890c347d",
     "knowledge:content.renting-home-with-lease-registration": "6ceb56e8cbbb4d81e2dd5b050baca2fd800a947d800c4c0d7863cd0394586223",
-    "knowledge:content.final-wages-after-retirement-14-days": "f4150169cbdb0059957bbd00195dc869014902a4d0ec3e835f4c266cae7cc2fd",
-    "knowledge:content.verbal-delay-agreement-after-retirement": "d81fe9d72e847dea840aa513dd0fd2699338fd45e81a67ab24b935f641183595",
-    "knowledge:content.retirement-pay-basic-formula": "6d76093bd511fa8817a7822144c54754940297b18e8967e66145acec71215758",
-    "knowledge:content.retirement-pay-payment-deadline": "05ce088e82546e215e80fb6c2a76b715223da4dc1546ba6f27381701539777d5",
-    "knowledge:content.verbal-dismissal-written-notice": "e0fa7ab889bddacf8e7a314ed34597d60201ef85ea4547b9edb674212c1bd769",
+    "knowledge:content.final-wages-after-retirement-14-days": "10916e707e02f39ca339f32bfaea12280acdf1bc3c015c7e494caca32587e05a",
+    "knowledge:content.verbal-delay-agreement-after-retirement": "b82a6bf03c7f68360741eb435f8517cc64ba577beda70f43c382610bf2022faa",
+    "knowledge:content.retirement-pay-basic-formula": "66ad5f4553be0f4440d1c3d1575af8a88d9fe2e098e4e6240b5ee3445fab61f2",
+    "knowledge:content.retirement-pay-payment-deadline": "068fc97f52aba9dc46ea5b25c490b3d762ffde1e56a8e912ce9bf07b2f7fcefa",
+    "knowledge:content.verbal-dismissal-written-notice": "cbfcb4d570117f4f0bdebd85acf682546abc90fbc1ececb78edbbb36ed2866cb",
     "knowledge:content.bank-transfer-loan-or-gift": "cc96a40387330b415bd12edc827b439746c7246822280ad579995814eaea2b10",
     "knowledge:content.loan-without-written-note": "b807d80c4a7d18932a7989cff3f9037f30474e54e609a5a096c16da1b8ffaac3",
     "knowledge:content.loan-without-repayment-date": "87d6b4ae7a0ac0bfa94fb93cbc6d3204669a3ad2d248545a84774e7669dc86b7",
@@ -262,7 +262,7 @@
     "knowledge:content.scope-of-guarantee-debt": "e041283d06072aabc8124c4db4be1243cf695b7c067c5823be8ca74cfdf0f248",
     "knowledge:content.shared-mobility-private-facility-defect": "906b0c972cab1eeadc7bf6c45bdebb80315dbd9a259ea8bc3b08c1f3b43952ff",
     "knowledge:content.shared-mobility-other-road-user-fault": "e6f43717a7faf7bd539bde72527bb929ebafef5fda930e39e992abdd60114450",
-    "knowledge-index:rulelink_public_knowledge_index_v1": "9b3ff229f5a60687313259de9aeb3f42caa4be9df1f826e20a7f648a60960a54"
+    "knowledge-index:rulelink_public_knowledge_index_v1": "86d866eab16a2b0c1feda8aad68a5242a4edb29094c326fc931165f5815670e2"
   },
   "knowledge": {
     "schema": "rulelink_public_knowledge_index_v1",
@@ -814,7 +814,7 @@
       },
       {
         "rule_id": "rule.consumer-online-contracts.rule-withdrawal-7days",
-        "title_ko": "통신판매의 일반 청약철회 기간은 계약내용 서면을 받은 날부터 7일이고, 재화…",
+        "title_ko": "일반 청약철회는 원칙적으로 7일",
         "proposition_ko": "통신판매의 일반 청약철회 기간은 계약내용 서면을 받은 날부터 7일이고, 재화 공급이 더 늦으면 공급받거나 공급이 시작된 날부터 7일이다.",
         "norm": {
           "actor_ko": "통신판매업자와 온라인으로 재화·용역을 구매한 소비자",
@@ -826,8 +826,21 @@
         ]
       },
       {
+        "rule_id": "rule.consumer-online-contracts.rule-withdrawal-restrictions",
+        "title_ko": "7일 안이어도 법정 제한사유가 있으면 일반 철회가 제한될 수 있음",
+        "proposition_ko": "소비자 책임의 훼손, 사용·일부 소비로 가치가 크게 감소한 경우, 복제 가능한 재화의 포장 훼손, 디지털콘텐츠 제공 개시 등 법정 사유가 있으면 일반 청약철회가 제한될 수 있다.",
+        "norm": {
+          "actor_ko": "통신판매로 재화·용역·디지털콘텐츠를 구매하고 일반 청약철회를 요구하는 소비자",
+          "conditions_ko": "소비자의 책임 있는 훼손, 사용·일부 소비에 따른 가치 감소, 복제 가능한 재화의 포장 훼손, 디지털콘텐츠 제공 개시 등 법정 제한사유가 있는 경우",
+          "legal_effect_ko": "일반 청약철회가 제한될 수 있다. 다만 표시·광고 또는 계약 불일치 철회와 통신판매업자의 법정 고지조치 여부는 별도로 판단한다."
+        },
+        "source_coordinate_ids": [
+          "coord.consumer-online-contracts.ecommerce-consumer-ko-0017"
+        ]
+      },
+      {
         "rule_id": "rule.consumer-online-contracts.rule-nonconforming-3m30d",
-        "title_ko": "표시·광고나 계약과 다르게 이행된 경우 공급받은 날부터 3개월 이내이면서 그…",
+        "title_ko": "계약 불일치 철회는 3개월·30일 기준",
         "proposition_ko": "표시·광고나 계약과 다르게 이행된 경우 공급받은 날부터 3개월 이내이면서 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내에 철회해야 한다.",
         "norm": {
           "actor_ko": "표시·광고 또는 계약내용과 다른 재화·용역을 공급받은 소비자",
@@ -840,7 +853,7 @@
       },
       {
         "rule_id": "rule.consumer-online-contracts.rule-return-cost",
-        "title_ko": "단순변심 철회의 반환비용과 표시·광고 또는 계약 불일치 철회의 반환비용은 부…",
+        "title_ko": "반품비 부담은 철회 사유에 따라 달라짐",
         "proposition_ko": "단순변심 철회의 반환비용과 표시·광고 또는 계약 불일치 철회의 반환비용은 부담 주체가 다르다.",
         "norm": {
           "actor_ko": "청약철회로 재화를 반환하는 소비자와 통신판매업자",
@@ -853,7 +866,7 @@
       },
       {
         "rule_id": "rule.consumer-online-contracts.rule-refund-3businessdays",
-        "title_ko": "철회 후 환급 기준일은 거래유형에 따라 다르지만 통신판매업자는 해당 기준일부…",
+        "title_ko": "환급은 기준일부터 3영업일 이내",
         "proposition_ko": "철회 후 환급 기준일은 거래유형에 따라 다르지만 통신판매업자는 해당 기준일부터 3영업일 이내 환급해야 한다.",
         "norm": {
           "actor_ko": "청약철회 통지를 받고 반환 재화 또는 철회의사를 확인한 통신판매업자",
@@ -866,7 +879,7 @@
       },
       {
         "rule_id": "rule.consumer-online-contracts.rule-supply-timeline",
-        "title_ko": "별도 공급시기 약정이 없다면 통신판매업자는 청약일부터 7일 이내, 선지급식 …",
+        "title_ko": "미공급 거래의 공급·환급 조치 기한",
         "proposition_ko": "별도 공급시기 약정이 없다면 통신판매업자는 청약일부터 7일 이내, 선지급식 거래는 대금 지급일부터 3영업일 이내 공급에 필요한 조치를 해야 한다.",
         "norm": {
           "actor_ko": "온라인 주문을 받은 통신판매업자와 대금을 지급한 소비자",
@@ -1048,7 +1061,7 @@
       },
       {
         "rule_id": "rule.labor-wages.rule-money-14days",
-        "title_ko": "근로자가 퇴직하면 사용자는 특별한 사정에 관한 당사자 합의가 없는 한 임금·…",
+        "title_ko": "퇴직 후 임금·금품은 원칙적으로 14일 이내 지급",
         "proposition_ko": "근로자가 퇴직하면 사용자는 특별한 사정에 관한 당사자 합의가 없는 한 임금·보상금 등 금품을 14일 이내 지급해야 한다.",
         "norm": {
           "actor_ko": "퇴직한 근로자와 임금·보상금 등 금품을 지급할 사용자",
@@ -1061,7 +1074,7 @@
       },
       {
         "rule_id": "rule.labor-wages.rule-retirement-14days",
-        "title_ko": "퇴직급여도 원칙적으로 퇴직일부터 14일 이내 지급하며 특별한 사정이 있으면 …",
+        "title_ko": "퇴직금도 원칙적으로 14일 이내 지급",
         "proposition_ko": "퇴직급여도 원칙적으로 퇴직일부터 14일 이내 지급하며 특별한 사정이 있으면 당사자 합의로 기일을 연장할 수 있다.",
         "norm": {
           "actor_ko": "퇴직급여를 지급할 사용자와 퇴직 근로자",
@@ -1075,7 +1088,7 @@
       },
       {
         "rule_id": "rule.labor-wages.rule-retirement-base",
-        "title_ko": "퇴직금 제도의 기본 출발점은 계속근로 1년에 대하여 30일분 이상의 평균임금…",
+        "title_ko": "퇴직금 기본액은 1년당 30일분 이상의 평균임금",
         "proposition_ko": "퇴직금 제도의 기본 출발점은 계속근로 1년에 대하여 30일분 이상의 평균임금이다.",
         "norm": {
           "actor_ko": "퇴직금제도를 설정한 사용자와 계속근로한 퇴직 근로자",
@@ -1089,7 +1102,7 @@
       },
       {
         "rule_id": "rule.labor-wages.rule-written-dismissal",
-        "title_ko": "해고는 해고사유와 해고시기를 서면으로 통지해야 효력이 있다.",
+        "title_ko": "해고사유와 해고시기는 서면으로 통지",
         "proposition_ko": "해고는 해고사유와 해고시기를 서면으로 통지해야 효력이 있다.",
         "norm": {
           "actor_ko": "근로자를 해고하려는 사용자와 해고 통지를 받는 근로자",
@@ -1257,12 +1270,13 @@
       },
       {
         "scenario_id": "scenario.consumer-online-contracts.sc-change-mind",
-        "question_ko": "온라인으로 산 정상 상품을 받은 뒤 마음이 바뀐 경우",
-        "decision_fact_ko": "계약내용 서면 수신일·상품 수령일과 청약철회 통지일",
-        "when_true_ko": "일반 7일 기간 안이라면 철회 통지와 반환 절차를 진행하고 반환비용 부담을 확인합니다.",
-        "when_false_ko": "7일이 지났다면 계약 불일치 여부와 별도 기산점·판매자의 더 긴 약정이 있는지 확인합니다.",
+        "question_ko": "일반 7일 기간 안이고 상품 훼손·사용 등 법정 철회 제한사유가 없나요?",
+        "decision_fact_ko": "계약내용 서면 수신일·상품 수령일·철회 통지일과 상품 훼손·사용·콘텐츠 제공 개시 여부",
+        "when_true_ko": "일반 청약철회 통지를 하고 반환 절차와 비용 부담을 확인합니다.",
+        "when_false_ko": "법정 제한사유와 판매자의 고지조치를 확인하고, 표시·광고 또는 계약 불일치 철회가 가능한지 별도로 검토합니다.",
         "rule_ids": [
           "rule.consumer-online-contracts.rule-withdrawal-7days",
+          "rule.consumer-online-contracts.rule-withdrawal-restrictions",
           "rule.consumer-online-contracts.rule-return-cost"
         ],
         "source_coordinate_ids": [
@@ -1272,10 +1286,10 @@
       },
       {
         "scenario_id": "scenario.consumer-online-contracts.sc-not-as-advertised",
-        "question_ko": "상세페이지와 다른 재질·기능의 상품을 받은 경우",
-        "decision_fact_ko": "표시·광고 또는 계약내용과 실제 공급된 상품의 차이 및 그 발견일",
-        "when_true_ko": "3개월·30일 기간을 모두 확인해 불일치 사유를 특정한 철회 통지를 합니다.",
-        "when_false_ko": "법정 불일치 철회기간을 벗어났다면 하자담보·약정상 반품 등 다른 근거를 확인합니다.",
+        "question_ko": "공급된 상품·용역이 표시·광고 또는 계약내용과 실제로 다른가요?",
+        "decision_fact_ko": "표시·광고 또는 계약내용과 실제 공급 내용의 차이, 공급일과 불일치 발견일",
+        "when_true_ko": "공급일부터 3개월 이내이면서 불일치를 안 날 또는 알 수 있었던 날부터 30일 이내인지 확인해 철회 통지를 합니다.",
+        "when_false_ko": "일반 청약철회 기간과 법정 제한사유, 판매자가 별도로 약정한 반품 기준을 확인합니다.",
         "rule_ids": [
           "rule.consumer-online-contracts.rule-nonconforming-3m30d",
           "rule.consumer-online-contracts.rule-return-cost"
@@ -1287,10 +1301,10 @@
       },
       {
         "scenario_id": "scenario.consumer-online-contracts.sc-undelivered",
-        "question_ko": "선결제했지만 물품 공급이 어렵다는 통보를 받거나 배송 진행을 확인할 수 없는 경우",
-        "decision_fact_ko": "청약일·대금 지급일과 약정한 공급시기 및 실제 공급 여부",
-        "when_true_ko": "법정 또는 약정 공급기한과 환급 기준일을 계산해 공급·환급을 요구합니다.",
-        "when_false_ko": "아직 공급기한 전이라면 약정 배송일과 주문 처리상태를 먼저 확인합니다.",
+        "question_ko": "약정한 공급시기가 지났거나 판매자가 공급 곤란을 알렸나요?",
+        "decision_fact_ko": "청약일·대금 지급일·약정 공급일·공급조치와 공급 곤란 통지일",
+        "when_true_ko": "약정과 법정 공급조치 기한을 대조하고 취소·환급 및 결제취소 조치를 요구합니다.",
+        "when_false_ko": "아직 공급기한 전이라면 주문 처리와 실제 집화 여부를 확인하고 약정일을 기준으로 기록을 남깁니다.",
         "rule_ids": [
           "rule.consumer-online-contracts.rule-supply-timeline",
           "rule.consumer-online-contracts.rule-refund-3businessdays"
@@ -1412,10 +1426,10 @@
       },
       {
         "scenario_id": "scenario.labor-wages.sc-unpaid-after-exit",
-        "question_ko": "퇴직 후 14일이 지났는데 임금과 수당 일부가 지급되지 않은 경우",
-        "decision_fact_ko": "정확한 퇴직일과 14일 이내 지급되지 않은 임금·수당·그 밖의 금품",
-        "when_true_ko": "미지급 항목과 금액을 특정해 지급을 요구하고 요청·답변 기록을 보존합니다.",
-        "when_false_ko": "14일 전이거나 전액 지급됐다면 정산내역에 누락된 항목이 없는지 확인합니다.",
+        "question_ko": "퇴직일부터 14일이 지났는데 지급되지 않은 임금·수당·그 밖의 금품이 남아 있나요?",
+        "decision_fact_ko": "정확한 퇴직일, 지급기일 연장 합의와 14일 안에 지급되지 않은 금품의 항목·금액",
+        "when_true_ko": "미지급 항목과 금액을 특정해 지급을 요구하고 요청·답변·일부 지급 기록을 보존합니다.",
+        "when_false_ko": "14일 전이거나 전액 지급됐다면 정산표에서 누락된 임금·수당·그 밖의 금품이 없는지 확인합니다.",
         "rule_ids": [
           "rule.labor-wages.rule-money-14days"
         ],
@@ -1425,10 +1439,10 @@
       },
       {
         "scenario_id": "scenario.labor-wages.sc-verbal-extension",
-        "question_ko": "회사가 자금 사정을 이유로 지급기일을 늦추겠다고 말했지만 근로자 동의가 불명확한 경우",
-        "decision_fact_ko": "특별한 사정과 근로자의 명시적 동의, 연장 대상 금액 및 새 지급일",
-        "when_true_ko": "합의한 범위와 새 지급일을 문서화하고 그 기한에 맞춰 지급 여부를 확인합니다.",
-        "when_false_ko": "사용자의 일방 통보만으로 기한이 연장됐다고 보지 않고 원래의 14일 기준을 적용합니다.",
+        "question_ko": "회사의 지급기일 연장 요청에 대상 금액과 새 지급일을 특정해 동의했나요?",
+        "decision_fact_ko": "특별한 사정, 근로자의 명시적 동의, 연장 대상 금액과 새 지급일",
+        "when_true_ko": "합의한 범위와 새 지급일을 문서화하고 그 기한의 지급 여부를 확인합니다.",
+        "when_false_ko": "사용자의 일방 통보나 근로자의 단순 확인만으로 기한이 연장됐다고 단정하지 않고 원래의 14일 기준을 확인합니다.",
         "rule_ids": [
           "rule.labor-wages.rule-money-14days",
           "rule.labor-wages.rule-retirement-14days"
@@ -1441,9 +1455,9 @@
       },
       {
         "scenario_id": "scenario.labor-wages.sc-verbal-dismissal",
-        "question_ko": "전화나 메신저로 내일부터 나오지 말라는 통보만 받은 경우",
-        "decision_fact_ko": "해고사유와 해고시기가 적힌 서면의 교부 여부 및 실제 근로관계 종료 조치",
-        "when_true_ko": "서면의 내용·전달형식과 해고사유의 정당성을 나누어 검토합니다.",
+        "question_ko": "해고사유와 해고시기가 적힌 서면을 받았나요?",
+        "decision_fact_ko": "해고사유·해고시기가 적힌 문서의 존재, 전달형식과 실제 근로관계 종료 조치",
+        "when_true_ko": "서면의 내용·전달형식과 해고사유의 정당성을 별개 쟁점으로 나누어 검토합니다.",
         "when_false_ko": "전화·구두 통보만 있었다면 서면통지 없는 해고의 효력 문제를 우선 확인합니다.",
         "rule_ids": [
           "rule.labor-wages.rule-written-dismissal"
@@ -2006,7 +2020,8 @@
         "key_points_ko": [
           "7일의 시작점부터 확인한다.",
           "단순변심과 계약 불일치를 구분한다.",
-          "판매자가 더 긴 기간을 약정했다면 그 기간을 따른다."
+          "판매자가 더 긴 기간을 약정했다면 그 기간을 따른다.",
+          "7일 안이어도 상품 상태·사용 여부·디지털콘텐츠 제공 개시 등에 따라 일반 철회가 제한될 수 있다."
         ],
         "action_steps_ko": [
           "주문서·계약내용 수신일과 배송완료일을 확인한다.",
@@ -2020,9 +2035,13 @@
           "철회 통지일",
           "판매페이지 반품정책",
           "판매자 주소 확인 가능일",
-          "철회 방해 행위 여부"
+          "철회 방해 행위 여부",
+          "상품 훼손·사용·일부 소비 여부",
+          "복제 가능한 재화의 포장 훼손 여부",
+          "디지털콘텐츠 제공 개시 여부",
+          "판매자의 철회 제한 고지·시험사용 제공 여부"
         ],
-        "caution_ko": "7일과 3개월·30일은 선택적으로 유리한 기간 하나만 적용하는 관계가 아니므로 사유와 각 기산점을 함께 확인해야 한다.",
+        "caution_ko": "기간 안이라는 사실만으로 철회가 확정되는 것은 아닙니다. 법정 제한사유와 판매자의 고지조치를 확인하고, 표시·광고 또는 계약 불일치 철회는 일반 철회와 별도로 판단해야 합니다.",
         "search_intents_ko": [
           "온라인 쇼핑 반품 기간",
           "전자상거래 청약철회 7일",
@@ -2042,10 +2061,18 @@
               "상품이 정상이고 마음만 바뀐 경우와 표시·광고 또는 계약내용과 다른 경우는 적용되는 기간이 다릅니다. 후자라면 공급받은 날부터 3개월 이내이면서 불일치를 안 날 또는 알 수 있었던 날부터 30일 이내인지 함께 봅니다.",
               "따라서 주문일 하나만 확인해서 포기하면 안 됩니다. 계약서면 수신일, 배송완료일, 불일치 발견일, 철회 통지일을 한 줄의 시간표로 정리하는 것이 먼저입니다."
             ]
+          },
+          {
+            "heading_ko": "7일 안이어도 철회 제한사유를 확인한다",
+            "paragraphs_ko": [
+              "소비자의 책임으로 상품이 훼손되었거나 사용·일부 소비로 가치가 크게 감소한 경우, 복제 가능한 재화의 포장을 훼손한 경우, 디지털콘텐츠 제공이 시작된 경우 등에는 일반 청약철회가 제한될 수 있습니다.",
+              "다만 판매자가 법이 요구하는 사전 고지나 시험사용 제공 등의 조치를 했는지, 상품이 표시·광고 또는 계약내용과 달라 별도 철회가 가능한지는 따로 확인해야 합니다."
+            ]
           }
         ],
         "rule_ids": [
           "rule.consumer-online-contracts.rule-withdrawal-7days",
+          "rule.consumer-online-contracts.rule-withdrawal-restrictions",
           "rule.consumer-online-contracts.rule-nonconforming-3m30d"
         ],
         "scenario_ids": [
@@ -2059,7 +2086,10 @@
         "hub_ids": [
           "hub.consumer-online-contracts"
         ],
-        "related_content_ids": []
+        "related_content_ids": [
+          "content.who-pays-return-shipping",
+          "content.refund-within-three-business-days"
+        ]
       },
       {
         "content_id": "content.who-pays-return-shipping",
@@ -2127,7 +2157,10 @@
         "hub_ids": [
           "hub.consumer-online-contracts"
         ],
-        "related_content_ids": []
+        "related_content_ids": [
+          "content.online-purchase-cancellation-seven-days",
+          "content.refund-within-three-business-days"
+        ]
       },
       {
         "content_id": "content.refund-within-three-business-days",
@@ -2199,7 +2232,10 @@
         "hub_ids": [
           "hub.consumer-online-contracts"
         ],
-        "related_content_ids": [],
+        "related_content_ids": [
+          "content.online-purchase-cancellation-seven-days",
+          "content.paid-but-goods-not-supplied"
+        ],
         "concierge_entry": {
           "question_ko": "반품한 뒤 환불은 언제까지 받아야 하나",
           "decision_facts_ko": [
@@ -2283,7 +2319,10 @@
         "hub_ids": [
           "hub.consumer-online-contracts"
         ],
-        "related_content_ids": [],
+        "related_content_ids": [
+          "content.refund-within-three-business-days",
+          "content.online-purchase-cancellation-seven-days"
+        ],
         "concierge_entry": {
           "question_ko": "결제했는데 배송되지 않을 때 확인할 순서",
           "decision_facts_ko": [
@@ -3388,7 +3427,11 @@
         "hub_ids": [
           "hub.labor-wages"
         ],
-        "related_content_ids": []
+        "related_content_ids": [
+          "content.verbal-delay-agreement-after-retirement",
+          "content.retirement-pay-payment-deadline",
+          "content.retirement-pay-basic-formula"
+        ]
       },
       {
         "content_id": "content.verbal-delay-agreement-after-retirement",
@@ -3457,7 +3500,10 @@
         "hub_ids": [
           "hub.labor-wages"
         ],
-        "related_content_ids": [],
+        "related_content_ids": [
+          "content.final-wages-after-retirement-14-days",
+          "content.retirement-pay-payment-deadline"
+        ],
         "concierge_entry": {
           "question_ko": "회사가 14일 뒤에 주겠다고 말하면 지급기일이 자동 연장되나",
           "decision_facts_ko": [
@@ -3535,7 +3581,10 @@
         "hub_ids": [
           "hub.labor-wages"
         ],
-        "related_content_ids": []
+        "related_content_ids": [
+          "content.retirement-pay-payment-deadline",
+          "content.final-wages-after-retirement-14-days"
+        ]
       },
       {
         "content_id": "content.retirement-pay-payment-deadline",
@@ -3603,7 +3652,11 @@
         "hub_ids": [
           "hub.labor-wages"
         ],
-        "related_content_ids": [],
+        "related_content_ids": [
+          "content.retirement-pay-basic-formula",
+          "content.final-wages-after-retirement-14-days",
+          "content.verbal-delay-agreement-after-retirement"
+        ],
         "concierge_entry": {
           "question_ko": "퇴직금도 퇴직 후 14일 안에 지급해야 하나",
           "decision_facts_ko": [
@@ -3682,7 +3735,9 @@
         "hub_ids": [
           "hub.labor-wages"
         ],
-        "related_content_ids": []
+        "related_content_ids": [
+          "content.final-wages-after-retirement-14-days"
+        ]
       },
       {
         "content_id": "content.bank-transfer-loan-or-gift",

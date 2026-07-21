@@ -57,7 +57,7 @@
   "rule_cards": [
     {
       "rule_id": "rule.labor-wages.rule-money-14days",
-      "title_ko": "근로자가 퇴직하면 사용자는 특별한 사정에 관한 당사자 합의가 없는 한 임금·…",
+      "title_ko": "퇴직 후 임금·금품은 원칙적으로 14일 이내 지급",
       "proposition_ko": "근로자가 퇴직하면 사용자는 특별한 사정에 관한 당사자 합의가 없는 한 임금·보상금 등 금품을 14일 이내 지급해야 한다.",
       "norm": {
         "actor_ko": "퇴직한 근로자와 임금·보상금 등 금품을 지급할 사용자",
@@ -70,7 +70,7 @@
     },
     {
       "rule_id": "rule.labor-wages.rule-retirement-14days",
-      "title_ko": "퇴직급여도 원칙적으로 퇴직일부터 14일 이내 지급하며 특별한 사정이 있으면 …",
+      "title_ko": "퇴직금도 원칙적으로 14일 이내 지급",
       "proposition_ko": "퇴직급여도 원칙적으로 퇴직일부터 14일 이내 지급하며 특별한 사정이 있으면 당사자 합의로 기일을 연장할 수 있다.",
       "norm": {
         "actor_ko": "퇴직급여를 지급할 사용자와 퇴직 근로자",
@@ -84,7 +84,7 @@
     },
     {
       "rule_id": "rule.labor-wages.rule-retirement-base",
-      "title_ko": "퇴직금 제도의 기본 출발점은 계속근로 1년에 대하여 30일분 이상의 평균임금…",
+      "title_ko": "퇴직금 기본액은 1년당 30일분 이상의 평균임금",
       "proposition_ko": "퇴직금 제도의 기본 출발점은 계속근로 1년에 대하여 30일분 이상의 평균임금이다.",
       "norm": {
         "actor_ko": "퇴직금제도를 설정한 사용자와 계속근로한 퇴직 근로자",
@@ -98,7 +98,7 @@
     },
     {
       "rule_id": "rule.labor-wages.rule-written-dismissal",
-      "title_ko": "해고는 해고사유와 해고시기를 서면으로 통지해야 효력이 있다.",
+      "title_ko": "해고사유와 해고시기는 서면으로 통지",
       "proposition_ko": "해고는 해고사유와 해고시기를 서면으로 통지해야 효력이 있다.",
       "norm": {
         "actor_ko": "근로자를 해고하려는 사용자와 해고 통지를 받는 근로자",
@@ -113,10 +113,10 @@
   "scenario_branches": [
     {
       "scenario_id": "scenario.labor-wages.sc-unpaid-after-exit",
-      "question_ko": "퇴직 후 14일이 지났는데 임금과 수당 일부가 지급되지 않은 경우",
-      "decision_fact_ko": "정확한 퇴직일과 14일 이내 지급되지 않은 임금·수당·그 밖의 금품",
-      "when_true_ko": "미지급 항목과 금액을 특정해 지급을 요구하고 요청·답변 기록을 보존합니다.",
-      "when_false_ko": "14일 전이거나 전액 지급됐다면 정산내역에 누락된 항목이 없는지 확인합니다.",
+      "question_ko": "퇴직일부터 14일이 지났는데 지급되지 않은 임금·수당·그 밖의 금품이 남아 있나요?",
+      "decision_fact_ko": "정확한 퇴직일, 지급기일 연장 합의와 14일 안에 지급되지 않은 금품의 항목·금액",
+      "when_true_ko": "미지급 항목과 금액을 특정해 지급을 요구하고 요청·답변·일부 지급 기록을 보존합니다.",
+      "when_false_ko": "14일 전이거나 전액 지급됐다면 정산표에서 누락된 임금·수당·그 밖의 금품이 없는지 확인합니다.",
       "rule_ids": [
         "rule.labor-wages.rule-money-14days"
       ],
@@ -126,10 +126,10 @@
     },
     {
       "scenario_id": "scenario.labor-wages.sc-verbal-extension",
-      "question_ko": "회사가 자금 사정을 이유로 지급기일을 늦추겠다고 말했지만 근로자 동의가 불명확한 경우",
-      "decision_fact_ko": "특별한 사정과 근로자의 명시적 동의, 연장 대상 금액 및 새 지급일",
-      "when_true_ko": "합의한 범위와 새 지급일을 문서화하고 그 기한에 맞춰 지급 여부를 확인합니다.",
-      "when_false_ko": "사용자의 일방 통보만으로 기한이 연장됐다고 보지 않고 원래의 14일 기준을 적용합니다.",
+      "question_ko": "회사의 지급기일 연장 요청에 대상 금액과 새 지급일을 특정해 동의했나요?",
+      "decision_fact_ko": "특별한 사정, 근로자의 명시적 동의, 연장 대상 금액과 새 지급일",
+      "when_true_ko": "합의한 범위와 새 지급일을 문서화하고 그 기한의 지급 여부를 확인합니다.",
+      "when_false_ko": "사용자의 일방 통보나 근로자의 단순 확인만으로 기한이 연장됐다고 단정하지 않고 원래의 14일 기준을 확인합니다.",
       "rule_ids": [
         "rule.labor-wages.rule-money-14days",
         "rule.labor-wages.rule-retirement-14days"
@@ -142,9 +142,9 @@
     },
     {
       "scenario_id": "scenario.labor-wages.sc-verbal-dismissal",
-      "question_ko": "전화나 메신저로 내일부터 나오지 말라는 통보만 받은 경우",
-      "decision_fact_ko": "해고사유와 해고시기가 적힌 서면의 교부 여부 및 실제 근로관계 종료 조치",
-      "when_true_ko": "서면의 내용·전달형식과 해고사유의 정당성을 나누어 검토합니다.",
+      "question_ko": "해고사유와 해고시기가 적힌 서면을 받았나요?",
+      "decision_fact_ko": "해고사유·해고시기가 적힌 문서의 존재, 전달형식과 실제 근로관계 종료 조치",
+      "when_true_ko": "서면의 내용·전달형식과 해고사유의 정당성을 별개 쟁점으로 나누어 검토합니다.",
       "when_false_ko": "전화·구두 통보만 있었다면 서면통지 없는 해고의 효력 문제를 우선 확인합니다.",
       "rule_ids": [
         "rule.labor-wages.rule-written-dismissal"
@@ -222,7 +222,11 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.verbal-delay-agreement-after-retirement",
+        "content.retirement-pay-payment-deadline",
+        "content.retirement-pay-basic-formula"
+      ]
     },
     {
       "content_id": "content.verbal-delay-agreement-after-retirement",
@@ -291,7 +295,10 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.final-wages-after-retirement-14-days",
+        "content.retirement-pay-payment-deadline"
+      ],
       "concierge_entry": {
         "question_ko": "회사가 14일 뒤에 주겠다고 말하면 지급기일이 자동 연장되나",
         "decision_facts_ko": [
@@ -369,7 +376,10 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.retirement-pay-payment-deadline",
+        "content.final-wages-after-retirement-14-days"
+      ]
     },
     {
       "content_id": "content.retirement-pay-payment-deadline",
@@ -437,7 +447,11 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.retirement-pay-basic-formula",
+        "content.final-wages-after-retirement-14-days",
+        "content.verbal-delay-agreement-after-retirement"
+      ],
       "concierge_entry": {
         "question_ko": "퇴직금도 퇴직 후 14일 안에 지급해야 하나",
         "decision_facts_ko": [
@@ -516,7 +530,9 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.final-wages-after-retirement-14-days"
+      ]
     }
   ]
 }
