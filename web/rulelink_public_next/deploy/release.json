@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20260721-007",
-  "snapshot_id": "kr-knowledge-core-20260721-018",
-  "requested_at": "2026-07-21T13:04:07.400Z",
-  "summary_ko": "12개 생활법률 허브의 123개 안내, 110개 법리, 89개 사실분기, 148개 공식 근거와 형사피해 신고·피해회복 지식축을 운영 공개한다."
+  "release_id": "production-20260721-008",
+  "snapshot_id": "kr-knowledge-core-20260721-019",
+  "requested_at": "2026-07-21T13:11:00.000Z",
+  "summary_ko": "13개 생활법률 허브의 130개 안내, 117개 법리, 93개 사실분기, 158개 공식 근거와 법률정보·변호사 업무 경계를 운영 공개하고 법리카드 중복 및 공식근거 탐색을 개선한다."
 }
