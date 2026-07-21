@@ -33,6 +33,9 @@ export function KnowledgeExplorer({entries, hubs}: Props) {
           entry.one_line_answer_ko,
           entry.audience_situation_ko,
           knowledgeContentTypeLabel(entry.content_type),
+          ...entry.search_intents_ko,
+          ...entry.key_points_ko,
+          ...entry.facts_to_check_ko,
           ...hubTerms,
         ].join(' '));
         return queryTokens.every(token => searchText.includes(token));

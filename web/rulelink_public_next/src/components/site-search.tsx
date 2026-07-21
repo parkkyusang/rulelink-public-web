@@ -160,7 +160,13 @@ function buildResults(
       context: `${knowledgeContentTypeLabel(entry.content_type)} · ${entry.audience_situation_ko}`,
       href: `/ko/knowledge/${entry.slug}`,
       reviewedAt: entry.reviewed_at,
-      terms: [entry.audience_situation_ko, knowledgeContentTypeLabel(entry.content_type)],
+      terms: [
+        entry.audience_situation_ko,
+        knowledgeContentTypeLabel(entry.content_type),
+        ...entry.search_intents_ko,
+        ...entry.key_points_ko,
+        ...entry.facts_to_check_ko,
+      ],
     })),
     ...cards.map(card => {
       const cardTopics = topicByCardId.get(card.issue_card_id) ?? [];
