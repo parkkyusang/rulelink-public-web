@@ -2,7 +2,7 @@ import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
-import {entriesForKnowledgeHub, findKnowledgeHub, listKnowledgeHubs} from '@/lib/publication';
+import {decisionPathsForKnowledgeHub, entriesForKnowledgeHub, findKnowledgeHub, listKnowledgeHubs} from '@/lib/publication';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
 
@@ -35,7 +35,10 @@ export default async function KnowledgeHubPage({params}: Props) {
   const {slug} = await params;
   const hub = await findKnowledgeHub(slug);
   if (!hub) notFound();
-  const entries = await entriesForKnowledgeHub(hub);
+  const [entries, decisionPaths] = await Promise.all([
+    entriesForKnowledgeHub(hub),
+    decisionPathsForKnowledgeHub(hub),
+  ]);
   if (!entries.length) notFound();
   const canonicalUrl = `${site.url}/ko/hubs/${hub.slug}`;
   return (
@@ -72,7 +75,42 @@ export default async function KnowledgeHubPage({params}: Props) {
         <p>{hub.description_ko}</p>
         <span className="audienceBadge">연결된 지식 {entries.length}개</span>
       </header>
-      <div className="knowledgeGrid">
+      {decisionPaths.length ? (
+        <section aria-labelledby="hub-decision-heading" className="hubDecisionSection">
+          <div className="hubDecisionIntro">
+            <div>
+              <p className="eyebrow">결론을 가르는 질문</p>
+              <h2 id="hub-decision-heading">어떤 사실부터 확인해야 하나요?</h2>
+            </div>
+            <p>같은 주제라도 사실 하나가 적용 법리와 다음 행동을 바꿉니다. 내 상황과 가까운 질문에서 연결된 안내를 확인하세요.</p>
+          </div>
+          <div className="hubDecisionGrid">
+            {decisionPaths.map((path, index) => (
+              <article className="hubDecisionCard" key={path.scenario.scenario_id}>
+                <span className="hubDecisionNumber">판단 질문 {String(index + 1).padStart(2, '0')}</span>
+                <h3>{path.scenario.question_ko}</h3>
+                <p><b>확인할 사실</b>{path.scenario.decision_fact_ko}</p>
+                <div className="hubDecisionLinks">
+                  {path.entries.map(entry => (
+                    <a href={`/ko/knowledge/${entry.slug}#scenarios`} key={entry.content_id}>
+                      <span>{entry.title_ko}</span><b aria-hidden="true">→</b>
+                    </a>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+      <section aria-labelledby="hub-all-entries-heading" className="hubAllEntries">
+        <div className="sectionHeading">
+          <div>
+            <p className="eyebrow">전체 안내</p>
+            <h2 id="hub-all-entries-heading">이 주제의 검토된 글</h2>
+          </div>
+          <span className="snapshot">{entries.length}개</span>
+        </div>
+        <div className="knowledgeGrid">
         {entries.map(entry => (
           <a className="knowledgeCard" href={`/ko/knowledge/${entry.slug}`} key={entry.content_id}>
             <span className="knowledgeMeta">{knowledgeContentTypeLabel(entry.content_type)} · 기준 확인 {formatDate(entry.reviewed_at)}</span>
@@ -81,7 +119,8 @@ export default async function KnowledgeHubPage({params}: Props) {
             <strong>법리와 사실분기 보기 →</strong>
           </a>
         ))}
-      </div>
+        </div>
+      </section>
     </main>
   );
 }

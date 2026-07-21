@@ -134,6 +134,33 @@ export async function entriesForKnowledgeHub(hub: PublicKnowledgeHub): Promise<P
   return hub.content_ids.map(contentId => byId.get(contentId)).filter((entry): entry is PublicKnowledgeEntry => Boolean(entry));
 }
 
+export async function decisionPathsForKnowledgeHub(hub: PublicKnowledgeHub): Promise<Array<{
+  scenario: PublicScenarioBranch;
+  entries: PublicKnowledgeEntry[];
+}>> {
+  const knowledge = (await loadPublishedBundle())?.knowledge;
+  if (!knowledge) return [];
+  const visibleEntryById = new Map(
+    filterFreshPublications(knowledge.content_entries).map(entry => [entry.content_id, entry]),
+  );
+  const hubEntries = hub.content_ids
+    .map(contentId => visibleEntryById.get(contentId))
+    .filter((entry): entry is PublicKnowledgeEntry => Boolean(entry));
+  const entriesByScenarioId = new Map<string, PublicKnowledgeEntry[]>();
+
+  for (const entry of hubEntries) {
+    for (const scenarioId of entry.scenario_ids) {
+      const linked = entriesByScenarioId.get(scenarioId) ?? [];
+      if (!linked.some(candidate => candidate.content_id === entry.content_id)) linked.push(entry);
+      entriesByScenarioId.set(scenarioId, linked);
+    }
+  }
+
+  return knowledge.scenario_branches
+    .map(scenario => ({scenario, entries: entriesByScenarioId.get(scenario.scenario_id) ?? []}))
+    .filter(path => path.entries.length > 0);
+}
+
 export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
   rules: PublicRuleCard[];
   scenarios: PublicScenarioBranch[];
