@@ -51,7 +51,7 @@ export default async function HomePage() {
             <p>같은 법이라도 결과를 바꾸는 질문과 사실분기를 먼저 보여줍니다.</p>
             <strong>전체 승인 정보에서 찾기 →</strong>
           </a>
-          <a href={cards.length ? '#issues' : '/ko/method'}>
+          <a href={cards.length ? '#issues' : knowledgeEntries.length ? '/ko/knowledge' : '/ko/method'}>
             <span>03 · 행동</span>
             <h3>무엇을 준비해야 하나요?</h3>
             <p>필요한 자료, 다음 행동, 개별 검토가 필요한 경계를 구분합니다.</p>
@@ -117,27 +117,29 @@ export default async function HomePage() {
         </section>
       ) : null}
 
-      <section className="contentSection" id="issues">
-        <div className="sectionHeading">
-          <div>
-            <p className="eyebrow">검토된 문제카드</p>
-            <h2>어떤 일로 찾아오셨나요?</h2>
+      {cards.length ? (
+        <section className="contentSection" id="issues">
+          <div className="sectionHeading">
+            <div>
+              <p className="eyebrow">검토된 문제카드</p>
+              <h2>어떤 일로 찾아오셨나요?</h2>
+            </div>
+            {bundle ? (
+              <span className="snapshot">
+                {bundle.schema === 'rulelink_published_bundle_v1' ? `출판본 ${bundle.snapshot_id}` : '내부 편집 미리보기'}
+              </span>
+            ) : null}
           </div>
-          {bundle ? (
-            <span className="snapshot">
-              {bundle.schema === 'rulelink_published_bundle_v1' ? `출판본 ${bundle.snapshot_id}` : '내부 편집 미리보기'}
-            </span>
-          ) : null}
-        </div>
-        {cards.length ? (
           <IssueExplorer cards={cards} topics={topics} />
-        ) : (
+        </section>
+      ) : !knowledgeEntries.length ? (
+        <section className="contentSection" id="issues">
           <div className="emptyState">
             <h3>검토된 법률정보를 준비하고 있습니다.</h3>
             <p>승인된 출판본만 이 화면에 표시됩니다.</p>
           </div>
-        )}
-      </section>
+        </section>
+      ) : null}
     </main>
   );
 }
