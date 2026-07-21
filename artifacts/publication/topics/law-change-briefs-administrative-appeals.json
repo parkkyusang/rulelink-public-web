@@ -1,0 +1,224 @@
+{
+  "schema": "rulelink_public_change_brief_set_v1",
+  "generated_at": "2026-07-21T13:17:10.996Z",
+  "source_contract": "extracted_without_content_change_from_snapshot_020_current_bundle",
+  "assertions": [
+    {
+      "assertion_id": "assertion.kr.change.administrative-appeals-16-2.old-documents",
+      "user_facing_text_ko": "종전 문언은 국선대리인 신청 자격군 모두가 해당 자격을 소명하는 서류를 신청과 함께 제출하도록 정했습니다.",
+      "proposition_type": "procedure",
+      "applies_when": [
+        "2025년 10월 1일부터 2026년 6월 15일까지의 종전 신청 절차를 설명하는 경우"
+      ],
+      "does_not_apply_when": [
+        "2026년 6월 16일 이후 현재 절차를 설명하는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "administrative_appeals_enforcement_decree_ko_0016_02",
+          "law_key": "administrative_appeals_enforcement_decree",
+          "article_no": "제16조의2",
+          "source_snapshot_id": "snapshot:088d4ff81a0e97e58d2f1b0bc746d895",
+          "version_scope": "historical",
+          "effective_from": "2025-10-01",
+          "official_url": "https://www.law.go.kr/LSW/lawView.do?lawId=005621",
+          "source_hash": "sha256:aa9033b366ad8186080dcc506315fb6d5e9372cae39d2ea660f90d98b0290f19",
+          "last_verified_at": "2026-07-20T06:30:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.administrative-appeals-16-2.current-split",
+      "user_facing_text_ko": "현재 문언은 총리령상 선임 신청서를 제출하도록 하고, 기초연금 수급자와 북한이탈주민 보호대상자에게는 자격 소명서류를 함께 제출하도록 정합니다.",
+      "proposition_type": "procedure",
+      "applies_when": [
+        "2026년 6월 16일 이후 국선대리인 선임을 신청하는 경우"
+      ],
+      "does_not_apply_when": [
+        "다른 자격군의 행정정보 확인 절차만 설명하는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "administrative_appeals_enforcement_decree_ko_0016_02",
+          "law_key": "administrative_appeals_enforcement_decree",
+          "article_no": "제16조의2",
+          "source_snapshot_id": "snapshot:f46e52f238cfcb804b595d3f2a1447ec",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2026-06-16",
+          "official_url": "https://www.law.go.kr/LSW/lawView.do?lawId=005621",
+          "source_hash": "sha256:0a15fd774b3e712c593f0d59f738f4037c11a4fea8e83bd85b621d9585c6c824",
+          "last_verified_at": "2026-07-20T06:30:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.administrative-appeals-16-2.data-sharing",
+      "user_facing_text_ko": "현재 문언은 기초생활수급자·한부모가족 지원대상자·장애인연금 수급자·경제적 곤란 인정대상자의 자격을 위원회가 행정정보 공동이용으로 확인할 수 있게 하고, 청구인이 확인에 동의하지 않으면 서류를 직접 제출하도록 정합니다.",
+      "proposition_type": "procedure",
+      "applies_when": [
+        "제1항제1호·제2호·제4호 또는 제6호 자격으로 신청하는 경우"
+      ],
+      "does_not_apply_when": [
+        "제1항제3호 또는 제5호 자격으로 신청하는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "administrative_appeals_enforcement_decree_ko_0016_02",
+          "law_key": "administrative_appeals_enforcement_decree",
+          "article_no": "제16조의2",
+          "source_snapshot_id": "snapshot:f46e52f238cfcb804b595d3f2a1447ec",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2026-06-16",
+          "official_url": "https://www.law.go.kr/LSW/lawView.do?lawId=005621",
+          "source_hash": "sha256:0a15fd774b3e712c593f0d59f738f4037c11a4fea8e83bd85b621d9585c6c824",
+          "last_verified_at": "2026-07-20T06:30:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    }
+  ],
+  "change_briefs": [
+    {
+      "change_brief_id": "kr.change.administrative-appeals-state-representative-documents",
+      "jurisdiction": "KR",
+      "locale": "ko-KR",
+      "slug": "administrative-appeals-state-representative-documents",
+      "title_ko": "행정심판 국선대리인 신청 때 일부 증명서류를 직접 내지 않아도 됩니다",
+      "summary_ko": "2026년 6월 16일부터 일부 국선대리인 신청 자격은 위원회가 행정정보 공동이용으로 확인할 수 있게 됐습니다. 자격군과 동의 여부에 따라 직접 제출할 서류가 달라집니다.",
+      "editorial_status": "approved",
+      "version": "0.1.0",
+      "lifecycle": "recently_effective",
+      "law_key": "administrative_appeals_enforcement_decree",
+      "law_name_ko": "행정심판법 시행령",
+      "article_no": "제16조의2",
+      "promulgation_date": "",
+      "effective_date": "2026-06-16",
+      "reviewed_at": "2026-07-20T06:30:00+00:00",
+      "expires_at": "2026-10-20T00:00:00+00:00",
+      "affected_audiences": [
+        "행정심판에서 국선대리인 선임을 신청하려는 청구인",
+        "국선대리인 신청서류를 준비하는 지원기관 담당자"
+      ],
+      "changed_points": [
+        "국선대리인 신청 가능 대상과 심리기일 전이라는 신청기한은 유지됩니다.",
+        "기초연금 수급자와 북한이탈주민 보호대상자는 자격 소명서류를 신청서와 함께 제출해야 합니다.",
+        "기초생활수급자·한부모가족 지원대상자·장애인연금 수급자·경제적 곤란 인정대상자는 위원회가 행정정보 공동이용으로 자격을 확인할 수 있습니다.",
+        "행정정보 확인에 동의하지 않으면 해당 소명서류를 직접 제출해야 합니다."
+      ],
+      "action_checklist": [
+        "자신이 시행령 제16조의2제1항 중 어느 자격군에 해당하는지 확인합니다.",
+        "총리령으로 정한 국선대리인 선임 신청서를 준비합니다.",
+        "제1항제3호 또는 제5호에 해당하면 자격 소명서류를 함께 준비합니다.",
+        "제1항제1호·제2호·제4호 또는 제6호에 해당하면 행정정보 공동이용 동의 여부를 확인합니다.",
+        "법 제38조제1항의 심리기일 전에 신청합니다."
+      ],
+      "transition_status": "verification_needed",
+      "transition_note_ko": "2026년 6월 16일 전에 접수되어 시행일 당시 처리 중이던 신청에 관한 적용례는 현재 근거 묶음에서 확인되지 않았습니다.",
+      "norm_delta": {
+        "change_type": "mixed_change",
+        "changed_slots": [
+          "conditions",
+          "exception",
+          "operation",
+          "legal_effect",
+          "temporal_rule"
+        ],
+        "old_frame": {
+          "source_snapshot_ids": [
+            "snapshot:088d4ff81a0e97e58d2f1b0bc746d895"
+          ],
+          "actor": [
+            "행정심판법 시행령 제16조의2제1항 각 호의 어느 하나에 해당하는 청구인"
+          ],
+          "object": [
+            "행정심판 국선대리인 선임 신청"
+          ],
+          "trigger": [
+            "국선대리인 선임을 신청하려는 경우"
+          ],
+          "conditions": [
+            "법 제38조제1항에 따른 심리기일 전까지 신청",
+            "해당 자격을 소명하는 서류를 함께 제출"
+          ],
+          "exception": [],
+          "operation": [
+            "신청과 자격 소명서류를 위원회에 제출"
+          ],
+          "legal_effect": [
+            "자격군과 관계없이 신청자가 자격 소명서류를 직접 제출해야 함"
+          ],
+          "temporal_rule": [
+            "2025년 10월 1일부터 2026년 6월 15일까지 시행된 문언"
+          ],
+          "transition_rule": []
+        },
+        "new_frame": {
+          "source_snapshot_ids": [
+            "snapshot:f46e52f238cfcb804b595d3f2a1447ec"
+          ],
+          "actor": [
+            "행정심판법 시행령 제16조의2제1항 각 호의 어느 하나에 해당하는 청구인"
+          ],
+          "object": [
+            "행정심판 국선대리인 선임 신청"
+          ],
+          "trigger": [
+            "국선대리인 선임을 신청하려는 경우"
+          ],
+          "conditions": [
+            "법 제38조제1항에 따른 심리기일 전까지 신청",
+            "총리령으로 정하는 선임 신청서를 위원회에 제출",
+            "제1항제3호 또는 제5호 청구인은 자격 소명서류를 함께 제출"
+          ],
+          "exception": [
+            "제1항제1호·제2호·제4호 또는 제6호 청구인이 행정정보 확인에 동의하지 않으면 자격 소명서류를 직접 제출"
+          ],
+          "operation": [
+            "선임 신청서를 위원회에 제출",
+            "일부 자격군은 위원회가 행정정보 공동이용으로 자격 확인"
+          ],
+          "legal_effect": [
+            "일부 자격군은 동의한 경우 자격 소명서류를 직접 제출하지 않고 위원회의 행정정보 확인으로 갈음할 수 있음"
+          ],
+          "temporal_rule": [
+            "2026년 6월 16일부터 시행 중인 문언"
+          ],
+          "transition_rule": []
+        },
+        "legal_effect_delta_ko": "국선대리인 신청 자격과 기한은 그대로지만, 일부 자격군의 증명 방식이 직접 서류 제출에서 위원회의 행정정보 확인으로 바뀌었습니다. 기초연금 수급자와 북한이탈주민 보호대상자는 여전히 소명서류를 함께 제출해야 합니다.",
+        "life_situation_impacts": [
+          "신청 전에 자신이 어느 자격군에 해당하는지에 따라 첨부서류를 달리 준비해야 합니다.",
+          "행정정보 확인 대상 자격군은 공동이용에 동의하면 증명서류 직접 제출 부담을 줄일 수 있습니다.",
+          "행정정보 확인에 동의하지 않으면 종전처럼 해당 증명서류를 준비해야 합니다."
+        ],
+        "unresolved_questions": [
+          "2026년 6월 16일 전에 접수되어 시행일 당시 처리 중이던 신청에는 어느 문언이 적용되는가",
+          "총리령상 선임 신청서의 구체적인 서식과 제출 채널은 무엇인가"
+        ]
+      },
+      "related_issue_card_ids": [],
+      "assertion_ids": [
+        "assertion.kr.change.administrative-appeals-16-2.old-documents",
+        "assertion.kr.change.administrative-appeals-16-2.current-split",
+        "assertion.kr.change.administrative-appeals-16-2.data-sharing"
+      ],
+      "source_event_ids": [
+        "event:5071889dab50e639c04d0b5fefa00073"
+      ],
+      "old_snapshot_ids": [
+        "snapshot:088d4ff81a0e97e58d2f1b0bc746d895"
+      ],
+      "new_snapshot_ids": [
+        "snapshot:f46e52f238cfcb804b595d3f2a1447ec"
+      ]
+    }
+  ],
+  "checks": {
+    "source_bundle_snapshot_id": "kr-knowledge-core-20260721-020",
+    "extracted_without_content_change": true,
+    "old_current_separated": true,
+    "named_author_publication": false
+  }
+}
