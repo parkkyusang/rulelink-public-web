@@ -1,0 +1,238 @@
+{
+  "schema": "rulelink_public_knowledge_topic_v1",
+  "topic_id": "hub.shared-mobility-accident",
+  "sources": [
+    {
+      "coordinate_id": "coord.shared-mobility-accident.civil-act-ko-0758",
+      "source_id": "civil_act_ko_0758",
+      "law_name_ko": "민법",
+      "article_no": "제758조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C758%EC%A1%B0",
+      "source_snapshot_id": "snapshot:3e889ba204742d5b6bead0009d0e244b",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.shared-mobility-accident.civil-act-ko-0750",
+      "source_id": "civil_act_ko_0750",
+      "law_name_ko": "민법",
+      "article_no": "제750조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C750%EC%A1%B0",
+      "source_snapshot_id": "snapshot:cdf125767ab6640e07d557f6c73a0c53",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.shared-mobility-accident",
+      "slug": "shared-mobility-accident",
+      "title_ko": "공유자전거ㆍ공유이동 사고",
+      "description_ko": "기기 결함, 도로ㆍ시설 하자, 다른 사람의 과실, 이용자 과실을 분리해 책임주체와 필요한 증거를 찾습니다.",
+      "content_ids": [
+        "content.shared-mobility-private-facility-defect",
+        "content.shared-mobility-other-road-user-fault"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.shared-mobility-accident.shared-mobility-private-structure-defect",
+      "title_ko": "민간 공작물의 설치ㆍ보존 하자",
+      "proposition_ko": "공작물의 설치 또는 보존 하자로 타인에게 손해가 발생하면 점유자가 원칙적으로 배상책임을 지고, 점유자가 필요한 주의를 다한 경우에는 소유자가 책임을 질 수 있습니다.",
+      "norm": {
+        "actor_ko": "민간 공작물을 사실상 지배·관리하는 점유자와 그 소유자",
+        "conditions_ko": "공작물의 설치·보존 하자와 손해 사이에 인과관계가 있고 점유자의 필요한 주의 여부를 확인한 경우",
+        "legal_effect_ko": "점유자가 원칙적으로 배상책임을 지고, 점유자가 필요한 주의를 다한 경우 소유자가 책임을 질 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.shared-mobility-accident.civil-act-ko-0758"
+      ]
+    },
+    {
+      "rule_id": "rule.shared-mobility-accident.shared-mobility-general-tort",
+      "title_ko": "고의ㆍ과실의 위법행위와 손해 사이의 책임",
+      "proposition_ko": "고의 또는 과실로 인한 위법행위로 타인에게 손해를 가한 사람은 그 손해를 배상할 책임이 있습니다.",
+      "norm": {
+        "actor_ko": "고의 또는 과실로 타인에게 손해를 가한 사람",
+        "conditions_ko": "주의의무 위반 또는 고의, 위법성, 손해와 인과관계가 인정되는 경우",
+        "legal_effect_ko": "그 위법행위로 발생한 손해를 배상할 책임을 부담합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.shared-mobility-accident.civil-act-ko-0750"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.shared-mobility-accident.shared-mobility-cause-private-facility",
+      "question_ko": "민간 건물ㆍ주차시설ㆍ거치시설의 설치나 보존 상태가 사고 원인인가요?",
+      "decision_fact_ko": "시설물의 점유자ㆍ소유자와 설치ㆍ보존 하자",
+      "when_true_ko": "점유자의 주의와 소유자의 책임 순서를 포함해 민법 제758조 적용 가능성을 검토합니다.",
+      "when_false_ko": "다른 이용자 또는 차량의 과실과 이용자 자신의 운전행위를 검토합니다.",
+      "rule_ids": [],
+      "source_coordinate_ids": [
+        "coord.shared-mobility-accident.civil-act-ko-0758"
+      ]
+    },
+    {
+      "scenario_id": "scenario.shared-mobility-accident.shared-mobility-other-person",
+      "question_ko": "다른 차량ㆍ보행자ㆍ이용자의 행위가 사고에 기여했나요?",
+      "decision_fact_ko": "상대방의 구체적 행위와 주의의무 위반",
+      "when_true_ko": "상대방의 과실, 위법성, 인과관계와 공동 원인 가능성을 검토합니다.",
+      "when_false_ko": "단독사고라면 기기ㆍ도로ㆍ시설ㆍ이용자 조작 원인을 더 세밀하게 확인합니다.",
+      "rule_ids": [],
+      "source_coordinate_ids": [
+        "coord.shared-mobility-accident.civil-act-ko-0750"
+      ]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.shared-mobility-private-facility-defect",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "shared-mobility-private-facility-defect",
+      "title_ko": "상가ㆍ주차장ㆍ거치시설의 하자로 사고가 났다면",
+      "one_line_answer_ko": "민간 공작물의 설치ㆍ보존 하자가 원인이라면 점유자의 책임을 먼저 검토하고, 점유자가 필요한 주의를 다한 경우 소유자의 책임이 문제될 수 있습니다.",
+      "audience_situation_ko": "민간 부지의 경사로ㆍ차단시설ㆍ거치대ㆍ바닥 파손 등으로 사고가 난 경우",
+      "key_points_ko": [
+        "사고 시설의 점유자와 소유자를 구분합니다.",
+        "시설이 용도에 따라 통상 갖춰야 할 안전성을 확보했는지 확인합니다.",
+        "점검ㆍ경고ㆍ통제조치가 실제로 이루어졌는지 확인합니다."
+      ],
+      "action_steps_ko": [
+        "사고 시설이 공공인지 민간인지 먼저 확인한다.",
+        "점유자·관리자·소유자의 명칭과 연락처를 확보한다.",
+        "설치 상태·파손·경고표지·통제조치를 촬영한다.",
+        "CCTV와 점검·민원·보수기록 보존을 요청한다."
+      ],
+      "facts_to_check_ko": [
+        "시설 종류",
+        "점유자",
+        "소유자",
+        "설치 상태",
+        "점검기록",
+        "경고표지",
+        "사고 이전 민원",
+        "CCTV"
+      ],
+      "caution_ko": "공공 도로인지 민간 공작물인지에 따라 우선 검토할 책임 규정이 달라질 수 있습니다.",
+      "search_intents_ko": [
+        "주차장 바닥 사고 손해배상",
+        "상가 시설물 하자 자전거 사고",
+        "민법 758조 점유자 소유자 책임"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "민간시설이면 점유자와 소유자를 구분한다",
+          "paragraphs_ko": [
+            "상가 진입로, 주차장, 민간 거치대와 바닥 같은 공작물의 설치·보존 하자로 손해가 발생하면 민법 제758조에 따른 책임이 문제될 수 있습니다. 실제로 시설을 지배·관리한 점유자와 소유자가 누구인지 구분합니다.",
+            "점유자가 손해 방지에 필요한 주의를 다했는지에 따라 소유자 책임이 이어질 수 있으므로 관리계약, 점검주체와 조치 내역을 확인해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "용도에 맞는 안전성과 인과관계를 본다",
+          "paragraphs_ko": [
+            "시설이 오래되었거나 파손되었다는 사실만으로 모든 사고 책임이 정해지지는 않습니다. 그 용도와 이용상황에 비추어 필요한 안전성을 갖췄는지, 사고 당시 상태가 실제 사고로 이어졌는지를 봅니다.",
+            "사고 전 민원, 반복 사고, 보수 요청, 경고표지와 접근 통제 여부를 확보하고 기기나 이용자 운전 같은 다른 원인도 함께 기록합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.shared-mobility-accident.shared-mobility-private-structure-defect"
+      ],
+      "scenario_ids": [
+        "scenario.shared-mobility-accident.shared-mobility-cause-private-facility"
+      ],
+      "source_coordinate_ids": [
+        "coord.shared-mobility-accident.civil-act-ko-0758"
+      ],
+      "hub_ids": [
+        "hub.shared-mobility-accident"
+      ],
+      "related_content_ids": [],
+      "concierge_entry": {
+        "question_ko": "상가ㆍ주차장ㆍ거치시설의 하자로 사고가 났다면",
+        "decision_facts_ko": [
+          "시설 종류",
+          "점유자",
+          "소유자",
+          "설치 상태",
+          "점검기록",
+          "경고표지",
+          "사고 이전 민원",
+          "CCTV"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.shared-mobility-other-road-user-fault",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "shared-mobility-other-road-user-fault",
+      "title_ko": "차량ㆍ보행자ㆍ다른 이용자의 행동이 사고에 영향을 준 경우",
+      "one_line_answer_ko": "상대방의 구체적인 주의의무 위반과 사고 사이의 인과관계를 확인해야 하며, 기기나 도로 하자와 함께 공동 원인이 되었을 가능성도 검토해야 합니다.",
+      "audience_situation_ko": "충돌ㆍ급회피ㆍ진로방해로 공유이동 사고가 발생한 경우",
+      "key_points_ko": [
+        "상대방의 진로ㆍ속도ㆍ신호ㆍ주의행위를 구체화합니다.",
+        "직접 충돌이 없어도 급회피를 유발한 행위와 사고 사이의 관계를 확인합니다.",
+        "다른 원인과 함께 작용했다면 책임 분담 가능성을 검토합니다."
+      ],
+      "action_steps_ko": [
+        "상대방 인적사항·차량번호와 연락처를 확보한다.",
+        "블랙박스·CCTV·목격자의 보존 가능 위치를 확인한다.",
+        "충돌 또는 급회피 전후의 진로·속도·신호를 도식화한다.",
+        "상대방 행위와 기기·도로·이용자 요인을 함께 비교한다."
+      ],
+      "facts_to_check_ko": [
+        "상대방 인적사항",
+        "차량번호",
+        "블랙박스",
+        "CCTV",
+        "목격자",
+        "충돌 여부",
+        "회피경로",
+        "신호"
+      ],
+      "caution_ko": "상대방이 현장을 떠나기 전에 식별정보와 영상 보존 요청을 확보하는 것이 중요합니다.",
+      "search_intents_ko": [
+        "비접촉 자전거 사고 손해배상",
+        "차 피하다 자전거 넘어짐",
+        "공유자전거 차량 충돌 책임"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "직접 충돌이 없어도 사고 과정을 본다",
+          "paragraphs_ko": [
+            "차량이나 보행자의 급진입을 피하다 넘어지는 등 직접 부딪치지 않은 사고에서도 상대방의 구체적 행위가 급회피와 손해를 일으켰는지 확인할 수 있습니다.",
+            "상대방의 진로, 속도, 신호준수와 전방주시, 이용자가 위험을 인지한 시점과 회피경로를 영상·목격자·현장 흔적으로 재구성합니다."
+          ]
+        },
+        {
+          "heading_ko": "여러 원인이 함께 작용할 수 있다",
+          "paragraphs_ko": [
+            "상대방의 주의의무 위반이 있더라도 기기 제동 이상이나 도로 하자, 이용자의 운전이 함께 사고에 기여했을 수 있습니다. 각 원인의 존재와 인과관계를 따로 적습니다.",
+            "상대방이 현장을 떠나면 식별과 영상 확보가 급격히 어려워집니다. 안전을 확보한 뒤 차량번호·인적사항을 확인하고 주변 영상의 보존을 신속히 요청합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.shared-mobility-accident.shared-mobility-general-tort"
+      ],
+      "scenario_ids": [
+        "scenario.shared-mobility-accident.shared-mobility-other-person"
+      ],
+      "source_coordinate_ids": [
+        "coord.shared-mobility-accident.civil-act-ko-0750"
+      ],
+      "hub_ids": [
+        "hub.shared-mobility-accident"
+      ],
+      "related_content_ids": []
+    }
+  ]
+}
