@@ -1,6 +1,6 @@
 # RuleLink 일반인용 공개 웹
 
-이 앱은 승인된 `rulelink_published_bundle_v1` 출판본만 읽는 공개 정보관이다. RuleLink 원본 DB, Codex 실행기, 사용자 사건 폴더에는 접근하지 않는다. 콘텐츠 생산 세션과 공개 웹 세션의 병렬 작업 경계는 [콘텐츠 인계 계약](docs/CONTENT_HANDOFF_CONTRACT_KO.md)을 따르고, 화면 확장은 [공개 웹 시각 체계](docs/PUBLIC_VISUAL_SYSTEM_KO.md)를 따른다.
+이 앱은 승인된 `rulelink_published_bundle_v1` 출판본만 읽는 공개 정보관이다. RuleLink 원본 DB, Codex 실행기, 사용자 사건 폴더에는 접근하지 않는다. 콘텐츠 생산 세션과 공개 웹 세션의 병렬 작업 경계는 [콘텐츠 인계 계약](docs/CONTENT_HANDOFF_CONTRACT_KO.md)을 따르고, 주제별 원본 통합은 [공개 지식 합성 표준](docs/PUBLIC_KNOWLEDGE_COMPOSITION_STANDARD_KO.md), 화면 확장은 [공개 웹 시각 체계](docs/PUBLIC_VISUAL_SYSTEM_KO.md), 운영 배포는 [Vercel 배포 정책](docs/VERCEL_DEPLOYMENT_POLICY_KO.md)을 따른다.
 
 출판본에 `rulelink_public_catalog_v1` 카탈로그를 포함하면 별도 화면 수정 없이 다음 기능이 생긴다.
 
@@ -73,7 +73,7 @@ http://127.0.0.1:8801/editorial
 https://rulelink.lolphysical.xyz
 ```
 
-운영 배포의 기준 저장소는 `parkkyusang/rulelink-public-web`이다. 기능과 운영 번들은 별도 브랜치와 PR로 올리고, 공개 번들 차단 규칙 테스트·타입 검사·정적 빌드·Vercel 미리보기가 성공한 경우에만 `main`에 병합한다. `main` 병합 뒤 Vercel 운영 배포 성공까지 확인한다.
+운영 배포의 기준 저장소는 `parkkyusang/rulelink-public-web`이다. 기능과 운영 번들은 별도 브랜치와 PR로 올리고, 공개 번들 차단 규칙 테스트·타입 검사·정적 빌드·공개 경로 스모크 검사가 모두 통과한 경우에만 `main`에 병합한다. 일반 `codex/*` 브랜치는 GitHub Actions만 실행하고 Vercel 미리보기를 만들지 않는다. 실제 브라우저 시각 검수가 필요한 변경만 `preview-*` 브랜치를 사용한다. `main` 병합 뒤에는 Vercel 운영 배포 성공과 실제 공개 스냅샷을 확인한다.
 
 운영본의 승인 출판 스냅샷과 공개 콘텐츠 수는 다음 기계 판독 주소에서 확인한다.
 
@@ -141,11 +141,12 @@ $env:NEXT_PUBLIC_RULELINK_SITE_URL='https://rulelink.lolphysical.xyz'
 
 ## 현재 공개본
 
-현재 공개본 `kr-knowledge-administrative-appeals-20260721-001`에는 행정심판법 시행령
-제16조의2의 최근 시행 브리핑 1건, 같은 승인 근거에서 파생한 연결 지식 6개, 법리카드
-4개, 사실분기 3개, 공식 근거 좌표 2개와 행정심판 주제 허브 1개가 들어 있다. 새로운
-법리나 원문을 추가한 것이 아니라 기존 승인 주장과 구법ㆍ현행법 스냅샷을 사용자
-질문형ㆍ절차형ㆍ오해교정형 진입점으로 구성한 공개본이다.
+저장소 `main`의 승인 출판본 `kr-knowledge-core-20260721-008`에는 최근 시행
+법령변화 브리핑 1건과 연결 주장 3개, 생활법률 지식 45개, 주제 허브 7개, 법리카드
+39개, 사실분기 28개, 공식 근거 좌표 51개가 들어 있다. 생활법률 지식은 행정심판,
+소비자ㆍ온라인 계약, 가족ㆍ상속, 주택임대차 보증금, 노동ㆍ임금, 금전ㆍ보증,
+공유자전거ㆍ공유이동 사고로 나뉜다. 각 글은 공식 근거, 핵심 법리, 예ㆍ아니오
+사실분기, 행동 순서, 보관할 자료, 관련 글과 컨시어지 진입점을 함께 제공한다.
 
 ## 최신성 일일 점검
 
