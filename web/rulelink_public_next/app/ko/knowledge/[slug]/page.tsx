@@ -89,6 +89,22 @@ export default async function KnowledgePage({params}: Props) {
       <section className="knowledgeLayout">
         <div>
           <section className="knowledgeSection">
+            <p className="eyebrow">핵심 정리</p>
+            <h2>무엇부터 확인해야 하나요?</h2>
+            <ul>
+              {entry.key_points_ko.map(point => <li key={point}>{point}</li>)}
+            </ul>
+            <div className="ruleStack">
+              {entry.body_sections.map(section => (
+                <article className="ruleCard" key={section.heading_ko}>
+                  <h3>{section.heading_ko}</h3>
+                  {section.paragraphs_ko.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="knowledgeSection">
             <p className="eyebrow">적용 법리</p>
             <h2>먼저 기준을 확인합니다.</h2>
             <div className="ruleStack">
@@ -124,6 +140,22 @@ export default async function KnowledgePage({params}: Props) {
               </div>
             </section>
           ) : null}
+
+          <section className="knowledgeSection">
+            <p className="eyebrow">지금 할 일과 자료</p>
+            <h2>다음 순서로 준비합니다.</h2>
+            <div className="ruleStack">
+              <article className="ruleCard">
+                <h3>행동 순서</h3>
+                <ol>{entry.action_steps_ko.map(step => <li key={step}>{step}</li>)}</ol>
+              </article>
+              <article className="ruleCard">
+                <h3>확인하고 보관할 사실</h3>
+                <ul>{entry.facts_to_check_ko.map(fact => <li key={fact}>{fact}</li>)}</ul>
+              </article>
+            </div>
+            <p><b>주의할 점</b> · {entry.caution_ko}</p>
+          </section>
         </div>
 
         <aside className="knowledgeAside">
