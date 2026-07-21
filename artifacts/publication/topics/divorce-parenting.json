@@ -1,0 +1,1151 @@
+{
+  "schema": "rulelink_public_knowledge_topic_v1",
+  "topic_id": "hub.divorce-parenting",
+  "sources": [
+    {
+      "coordinate_id": "coord.divorce-parenting.civil-act-ko-0834",
+      "source_id": "civil_act_ko_0834",
+      "law_name_ko": "민법",
+      "article_no": "제834조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C834%EC%A1%B0",
+      "source_snapshot_id": "snapshot:1010620b4b2b37fca5034a1bdaf1b8e7",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.divorce-parenting.civil-act-ko-0836",
+      "source_id": "civil_act_ko_0836",
+      "law_name_ko": "민법",
+      "article_no": "제836조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C836%EC%A1%B0",
+      "source_snapshot_id": "snapshot:c6de389098e6b7ba77799a384ec2ed02",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.divorce-parenting.civil-act-ko-0836-02",
+      "source_id": "civil_act_ko_0836_02",
+      "law_name_ko": "민법",
+      "article_no": "제836조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C836%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:99d9495fd8ee1c2d9b328c05b58b82c1",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.divorce-parenting.civil-act-ko-0837",
+      "source_id": "civil_act_ko_0837",
+      "law_name_ko": "민법",
+      "article_no": "제837조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C837%EC%A1%B0",
+      "source_snapshot_id": "snapshot:febe813fc06ca259ccad38d2a5b869a9",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.divorce-parenting.civil-act-ko-0909",
+      "source_id": "civil_act_ko_0909",
+      "law_name_ko": "민법",
+      "article_no": "제909조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C909%EC%A1%B0",
+      "source_snapshot_id": "snapshot:3470e3400cf943157acdefb83d553a63",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.divorce-parenting.civil-act-ko-0837-02",
+      "source_id": "civil_act_ko_0837_02",
+      "law_name_ko": "민법",
+      "article_no": "제837조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C837%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:55d619ea18f5431f889b3a2f6eb0d455",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.divorce-parenting.civil-act-ko-0839-02",
+      "source_id": "civil_act_ko_0839_02",
+      "law_name_ko": "민법",
+      "article_no": "제839조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C839%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:7f62e74183a9d8d7317a0754d5624c7e",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.divorce-parenting.civil-act-ko-0843",
+      "source_id": "civil_act_ko_0843",
+      "law_name_ko": "민법",
+      "article_no": "제843조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C843%EC%A1%B0",
+      "source_snapshot_id": "snapshot:31abd362ea716e1b2845eaeb28fb5c0b",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.divorce-parenting.civil-act-ko-0839-03",
+      "source_id": "civil_act_ko_0839_03",
+      "law_name_ko": "민법",
+      "article_no": "제839조의3",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C839%EC%A1%B0%EC%9D%983",
+      "source_snapshot_id": "snapshot:31c11204506356b6106c3a37e44c8983",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.divorce-parenting.civil-act-ko-0840",
+      "source_id": "civil_act_ko_0840",
+      "law_name_ko": "민법",
+      "article_no": "제840조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C840%EC%A1%B0",
+      "source_snapshot_id": "snapshot:95f6c7739264453fb21922465bddc629",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.divorce-parenting.civil-act-ko-0806",
+      "source_id": "civil_act_ko_0806",
+      "law_name_ko": "민법",
+      "article_no": "제806조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C806%EC%A1%B0",
+      "source_snapshot_id": "snapshot:abe5d5845360efd5a520a27545e5cd75",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.divorce-parenting",
+      "slug": "divorce-parenting",
+      "title_ko": "이혼·양육·재산분할",
+      "description_ko": "협의·재판상 이혼의 성립, 숙려기간, 자녀 양육·친권·면접교섭, 재산분할과 위자료를 절차와 기간에 따라 안내합니다.",
+      "content_ids": [
+        "content.consensual-divorce-needs-court-confirmation-and-report",
+        "content.consensual-divorce-cooling-period",
+        "content.divorce-cooling-period-shortening-for-violence",
+        "content.divorce-child-custody-support-parental-authority-agreement",
+        "content.child-support-record-is-not-private-memo",
+        "content.noncustodial-parent-child-visitation",
+        "content.divorce-property-division-two-year-period",
+        "content.asset-transfer-harming-property-division",
+        "content.six-grounds-for-judicial-divorce",
+        "content.divorce-consolation-money-vs-property-division"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.divorce-parenting.consensual-divorce-formation",
+      "title_ko": "협의이혼의 성립",
+      "proposition_ko": "협의이혼은 부부의 합의만으로 끝나지 않고 가정법원의 확인을 받아 법정 신고를 해야 효력이 생깁니다.",
+      "norm": {
+        "actor_ko": "협의상 이혼을 하려는 부부",
+        "conditions_ko": "가정법원의 이혼의사 확인을 거쳐 가족관계등록법상 신고로 협의이혼을 성립시키는 경우",
+        "legal_effect_ko": "협의이혼은 부부의 합의만으로 끝나지 않고 가정법원의 확인을 받아 법정 신고를 해야 효력이 생깁니다."
+      },
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0834",
+        "coord.divorce-parenting.civil-act-ko-0836"
+      ]
+    },
+    {
+      "rule_id": "rule.divorce-parenting.cooling-period",
+      "title_ko": "협의이혼 숙려기간",
+      "proposition_ko": "이혼 안내를 받은 뒤 양육할 자녀가 있으면 3개월, 없으면 1개월이 지난 후 원칙적으로 이혼의사 확인을 받을 수 있습니다.",
+      "norm": {
+        "actor_ko": "가정법원에 협의이혼 의사확인을 신청한 부부",
+        "conditions_ko": "이혼 안내를 받은 뒤 양육할 자녀의 유무에 따라 법정 숙려기간을 계산하는 경우",
+        "legal_effect_ko": "이혼 안내를 받은 뒤 양육할 자녀가 있으면 3개월, 없으면 1개월이 지난 후 원칙적으로 이혼의사 확인을 받을 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0836-02"
+      ]
+    },
+    {
+      "rule_id": "rule.divorce-parenting.urgent-shortening",
+      "title_ko": "숙려기간 단축·면제",
+      "proposition_ko": "폭력으로 일방에게 참을 수 없는 고통이 예상되는 등 급박한 사정이 있으면 가정법원이 숙려기간을 단축하거나 면제할 수 있습니다.",
+      "norm": {
+        "actor_ko": "폭력 등으로 신속한 협의이혼 확인이 필요한 당사자",
+        "conditions_ko": "참을 수 없는 고통이 예상되는 등 급박한 사정으로 숙려기간의 단축·면제를 구하는 경우",
+        "legal_effect_ko": "폭력으로 일방에게 참을 수 없는 고통이 예상되는 등 급박한 사정이 있으면 가정법원이 숙려기간을 단축하거나 면제할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0836-02"
+      ]
+    },
+    {
+      "rule_id": "rule.divorce-parenting.child-rearing-agreement",
+      "title_ko": "자녀 양육·친권 사항의 결정",
+      "proposition_ko": "양육할 자녀가 있는 협의이혼에서는 양육자·양육비·면접교섭 등 양육사항과 친권자를 정한 협의서 또는 가정법원 심판정본을 제출해야 합니다.",
+      "norm": {
+        "actor_ko": "협의이혼하면서 양육할 미성년 자녀가 있는 부모",
+        "conditions_ko": "양육자·양육비·면접교섭 등 자녀 양육사항과 친권자를 정해 협의서 또는 심판정본을 제출하는 경우",
+        "legal_effect_ko": "양육할 자녀가 있는 협의이혼에서는 양육자·양육비·면접교섭 등 양육사항과 친권자를 정한 협의서 또는 가정법원 심판정본을 제출해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0836-02",
+        "coord.divorce-parenting.civil-act-ko-0837",
+        "coord.divorce-parenting.civil-act-ko-0909"
+      ]
+    },
+    {
+      "rule_id": "rule.divorce-parenting.child-support-record",
+      "title_ko": "양육비부담조서",
+      "proposition_ko": "가정법원은 당사자가 협의한 양육비 부담 내용을 확인하는 양육비부담조서를 작성하며 그 효력에는 가사소송법 제41조가 준용됩니다.",
+      "norm": {
+        "actor_ko": "협의이혼하면서 양육비 부담을 협의한 부모",
+        "conditions_ko": "가정법원이 협의된 양육비 부담 내용을 확인해 양육비부담조서를 작성하는 경우",
+        "legal_effect_ko": "가정법원은 당사자가 협의한 양육비 부담 내용을 확인하는 양육비부담조서를 작성하며 그 효력에는 가사소송법 제41조가 준용됩니다."
+      },
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0836-02"
+      ]
+    },
+    {
+      "rule_id": "rule.divorce-parenting.visitation",
+      "title_ko": "면접교섭권과 자녀 복리",
+      "proposition_ko": "자녀를 직접 양육하지 않는 부모와 자녀는 상호 면접교섭할 권리가 있지만 자녀의 복리를 위해 제한·배제·변경될 수 있습니다.",
+      "norm": {
+        "actor_ko": "자녀를 직접 양육하지 않는 부모와 그 자녀",
+        "conditions_ko": "자의 복리를 기준으로 상호 면접교섭의 실시·제한·배제·변경을 판단하는 경우",
+        "legal_effect_ko": "자녀를 직접 양육하지 않는 부모와 자녀는 상호 면접교섭할 권리가 있지만 자녀의 복리를 위해 제한·배제·변경될 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0837-02"
+      ]
+    },
+    {
+      "rule_id": "rule.divorce-parenting.property-division",
+      "title_ko": "이혼 후 재산분할",
+      "proposition_ko": "이혼한 부부 일방은 상대방에게 재산분할을 청구할 수 있고, 협의되지 않으면 가정법원이 당사자 쌍방의 협력으로 이룩한 재산과 여러 사정을 고려해 정합니다. 청구권은 이혼한 날부터 2년이 지나면 소멸합니다.",
+      "norm": {
+        "actor_ko": "이혼한 부부 중 재산분할을 청구하려는 사람",
+        "conditions_ko": "협의 또는 재판상 이혼 후 부부가 협력해 이룩한 재산의 분할과 2년의 행사기간을 판단하는 경우",
+        "legal_effect_ko": "이혼한 부부 일방은 상대방에게 재산분할을 청구할 수 있고, 협의되지 않으면 가정법원이 당사자 쌍방의 협력으로 이룩한 재산과 여러 사정을 고려해 정합니다. 청구권은 이혼한 날부터 2년이 지나면 소멸합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0839-02",
+        "coord.divorce-parenting.civil-act-ko-0843"
+      ]
+    },
+    {
+      "rule_id": "rule.divorce-parenting.property-fraud-revocation",
+      "title_ko": "재산분할을 해치는 처분의 취소",
+      "proposition_ko": "상대방이 재산분할청구권 행사를 해함을 알면서 재산권을 목적으로 한 법률행위를 한 경우 일정 요건 아래 취소와 원상회복을 가정법원에 청구할 수 있습니다.",
+      "norm": {
+        "actor_ko": "재산분할청구권 보전을 위해 상대방의 재산처분을 취소하려는 사람",
+        "conditions_ko": "상대방이 재산분할청구권 행사를 해함을 알면서 재산권을 목적으로 한 법률행위를 한 경우",
+        "legal_effect_ko": "상대방이 재산분할청구권 행사를 해함을 알면서 재산권을 목적으로 한 법률행위를 한 경우 일정 요건 아래 취소와 원상회복을 가정법원에 청구할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0839-03",
+        "coord.divorce-parenting.civil-act-ko-0843"
+      ]
+    },
+    {
+      "rule_id": "rule.divorce-parenting.judicial-divorce-grounds",
+      "title_ko": "재판상 이혼원인",
+      "proposition_ko": "재판상 이혼은 배우자의 부정행위, 악의의 유기, 심히 부당한 대우, 3년 이상 생사불명 또는 그 밖에 혼인을 계속하기 어려운 중대한 사유 등 민법 제840조의 원인을 구체적으로 주장·증명해야 합니다.",
+      "norm": {
+        "actor_ko": "재판상 이혼을 청구하려는 배우자",
+        "conditions_ko": "민법 제840조 각 호의 배우자 부정행위·악의의 유기·심히 부당한 대우·생사불명·혼인을 계속하기 어려운 중대한 사유 중 해당 원인을 판단하는 경우",
+        "legal_effect_ko": "재판상 이혼은 배우자의 부정행위, 악의의 유기, 심히 부당한 대우, 3년 이상 생사불명 또는 그 밖에 혼인을 계속하기 어려운 중대한 사유 등 민법 제840조의 원인을 구체적으로 주장·증명해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0840"
+      ]
+    },
+    {
+      "rule_id": "rule.divorce-parenting.divorce-damages",
+      "title_ko": "이혼 위자료와 재산분할의 구분",
+      "proposition_ko": "재판상 이혼의 손해배상에는 민법 제843조에 따라 제806조가 준용되고, 재산분할은 제839조의2에 따라 별도로 판단됩니다.",
+      "norm": {
+        "actor_ko": "혼인관계 파탄에 책임 있는 약혼·혼인 당사자와 손해를 입은 상대방",
+        "conditions_ko": "재판상 이혼에서 민법 제843조가 제806조의 재산상·정신상 손해배상 규정을 준용하는 경우",
+        "legal_effect_ko": "재판상 이혼의 손해배상에는 민법 제843조에 따라 제806조가 준용되고, 재산분할은 제839조의2에 따라 별도로 판단됩니다."
+      },
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0806",
+        "coord.divorce-parenting.civil-act-ko-0839-02",
+        "coord.divorce-parenting.civil-act-ko-0843"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.divorce-parenting.report-completed",
+      "question_ko": "가정법원의 이혼의사 확인 뒤 법정 신고까지 완료했나요?",
+      "decision_fact_ko": "이혼의사 확인과 신고 완료 여부",
+      "when_true_ko": "협의이혼이 성립한 날짜와 가족관계등록부 반영을 확인합니다.",
+      "when_false_ko": "합의서나 확인만으로 이혼이 성립했다고 보지 않고 신고 절차를 완료합니다.",
+      "rule_ids": [
+        "rule.divorce-parenting.consensual-divorce-formation"
+      ],
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0834",
+        "coord.divorce-parenting.civil-act-ko-0836"
+      ]
+    },
+    {
+      "scenario_id": "scenario.divorce-parenting.has-dependent-child",
+      "question_ko": "포태 중인 자녀를 포함해 양육해야 할 자녀가 있나요?",
+      "decision_fact_ko": "양육할 자녀의 존재",
+      "when_true_ko": "3개월 숙려기간과 양육·친권 협의서 또는 심판정본을 준비합니다.",
+      "when_false_ko": "원칙적으로 1개월 숙려기간을 적용합니다.",
+      "rule_ids": [
+        "rule.divorce-parenting.cooling-period",
+        "rule.divorce-parenting.child-rearing-agreement"
+      ],
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0836-02",
+        "coord.divorce-parenting.civil-act-ko-0837",
+        "coord.divorce-parenting.civil-act-ko-0909"
+      ]
+    },
+    {
+      "scenario_id": "scenario.divorce-parenting.urgent-violence",
+      "question_ko": "폭력 등으로 참을 수 없는 고통이 예상되는 급박한 사정이 있나요?",
+      "decision_fact_ko": "숙려기간을 그대로 기다리기 어려운 급박한 사정",
+      "when_true_ko": "가정법원에 단축·면제를 요청하고 폭력·위험 자료를 제출합니다.",
+      "when_false_ko": "법정 숙려기간을 전제로 확인 일정을 준비합니다.",
+      "rule_ids": [
+        "rule.divorce-parenting.urgent-shortening"
+      ],
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0836-02"
+      ]
+    },
+    {
+      "scenario_id": "scenario.divorce-parenting.child-agreement-complete",
+      "question_ko": "양육자·양육비·면접교섭과 친권자에 관한 협의가 구체적으로 완성됐나요?",
+      "decision_fact_ko": "자녀 양육·친권 협의의 완성도",
+      "when_true_ko": "협의서를 제출하고 양육비부담조서의 지급 조건을 확인합니다.",
+      "when_false_ko": "가정법원 심판이 필요한 사항과 자녀 복리 자료를 준비합니다.",
+      "rule_ids": [
+        "rule.divorce-parenting.child-rearing-agreement",
+        "rule.divorce-parenting.child-support-record"
+      ],
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0836-02",
+        "coord.divorce-parenting.civil-act-ko-0837",
+        "coord.divorce-parenting.civil-act-ko-0909"
+      ]
+    },
+    {
+      "scenario_id": "scenario.divorce-parenting.visitation-welfare",
+      "question_ko": "예정한 면접교섭 방식이 현재 자녀의 복리에 부합하나요?",
+      "decision_fact_ko": "자녀의 연령·의사·생활과 안전에 맞는 면접 방식",
+      "when_true_ko": "일정·장소·인도방법·연락수단을 구체화해 실시합니다.",
+      "when_false_ko": "제한·배제·변경을 구할 사정과 대체 방식을 정리합니다.",
+      "rule_ids": [
+        "rule.divorce-parenting.visitation"
+      ],
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0837-02"
+      ]
+    },
+    {
+      "scenario_id": "scenario.divorce-parenting.within-two-years",
+      "question_ko": "이혼한 날부터 재산분할청구권을 행사할 2년이 지나지 않았나요?",
+      "decision_fact_ko": "법률상 이혼일과 재산분할 청구 시점",
+      "when_true_ko": "분할 대상·기여도 자료를 정리해 협의 또는 가정법원 청구를 진행합니다.",
+      "when_false_ko": "기간 경과 효과와 다른 재산상 청구 가능성을 개별 검토합니다.",
+      "rule_ids": [
+        "rule.divorce-parenting.property-division"
+      ],
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0839-02",
+        "coord.divorce-parenting.civil-act-ko-0843"
+      ]
+    },
+    {
+      "scenario_id": "scenario.divorce-parenting.judicial-ground",
+      "question_ko": "민법 제840조의 재판상 이혼원인 중 구체적으로 해당하는 사실이 있나요?",
+      "decision_fact_ko": "법정 이혼원인에 해당하는 구체적 행위와 발생시점",
+      "when_true_ko": "해당 원인의 계속성·중대성·증거를 중심으로 재판상 이혼을 검토합니다.",
+      "when_false_ko": "단순 갈등을 법정 원인으로 단정하지 않고 혼인 파탄 사실을 추가 확인합니다.",
+      "rule_ids": [
+        "rule.divorce-parenting.judicial-divorce-grounds"
+      ],
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0840"
+      ]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.consensual-divorce-needs-court-confirmation-and-report",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "consensual-divorce-needs-court-confirmation-and-report",
+      "title_ko": "이혼합의서에 서명했다고 바로 이혼이 되는 것은 아닙니다",
+      "one_line_answer_ko": "가정법원의 이혼의사 확인을 받고 법정 신고까지 해야 협의이혼의 효력이 생깁니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "합의·의사확인·신고를 구분합니다.",
+        "법률상 이혼일은 신고 완료 여부와 연결됩니다.",
+        "재산·자녀 합의의 이행과 이혼 성립은 별도 관리합니다."
+      ],
+      "action_steps_ko": [
+        "가정법원 안내와 의사확인 일정을 확인한다.",
+        "필요한 자녀 협의서와 신분서류를 준비한다.",
+        "확인 뒤 신고기한과 접수기관을 확인한다.",
+        "가족관계등록부 반영을 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "합의서 작성일",
+        "이혼 안내일",
+        "의사확인일",
+        "신고 접수일",
+        "자녀 유무",
+        "양육·친권 협의"
+      ],
+      "caution_ko": "재산분할·양육비 합의가 있다는 사실과 법률상 이혼 성립 여부를 혼동하면 기간 계산이 달라질 수 있습니다.",
+      "search_intents_ko": [
+        "이혼합의서에 서명했다고 바로 이혼이 되는 것은 아닙니다",
+        "협의이혼 합의서만 쓰면 법적으로 이혼한 것인가?",
+        "consensual divorce needs court confirmation and report"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "세 단계가 모두 같은 것은 아니다",
+          "paragraphs_ko": [
+            "부부가 이혼에 합의한 것은 협의이혼의 출발점입니다. 그러나 민법 제836조는 가정법원의 확인을 받고 법정 방식으로 신고해야 효력이 생기도록 정합니다.",
+            "따라서 서명일, 법원 확인일, 신고일을 따로 기록해야 재산분할 기간과 가족관계등록 상태를 정확히 관리할 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "신고 뒤 등록 상태까지 확인한다",
+          "paragraphs_ko": [
+            "확인서를 받았더라도 신고가 누락되면 혼인관계가 그대로 남을 수 있습니다. 신고 접수증과 가족관계등록부를 확인합니다.",
+            "자녀·재산 합의서의 의무는 이혼 성립과 별개로 구체적인 지급일·이행방법을 관리해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.divorce-parenting.consensual-divorce-formation"
+      ],
+      "scenario_ids": [
+        "scenario.divorce-parenting.report-completed"
+      ],
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0834",
+        "coord.divorce-parenting.civil-act-ko-0836"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "related_content_ids": [
+        "content.consensual-divorce-cooling-period",
+        "content.divorce-child-custody-support-parental-authority-agreement",
+        "content.divorce-property-division-two-year-period"
+      ]
+    },
+    {
+      "content_id": "content.consensual-divorce-cooling-period",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "consensual-divorce-cooling-period",
+      "title_ko": "협의이혼 숙려기간은 자녀 유무에 따라 3개월 또는 1개월입니다",
+      "one_line_answer_ko": "이혼 안내를 받은 날부터 양육할 자녀가 있으면 3개월, 없으면 1개월이 지난 후 원칙적으로 이혼의사 확인을 받을 수 있습니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "기산점은 가정법원의 이혼 안내일입니다.",
+        "포태 중인 자녀도 양육할 자녀에 포함됩니다.",
+        "급박한 사정이 있으면 단축·면제가 가능합니다."
+      ],
+      "action_steps_ko": [
+        "이혼 안내를 받은 날짜를 기록한다.",
+        "포태 중인 자녀를 포함해 양육할 자녀 유무를 확인한다.",
+        "자녀가 있으면 양육·친권 협의서를 준비한다.",
+        "확인기일과 신고 일정을 함께 관리한다."
+      ],
+      "facts_to_check_ko": [
+        "이혼 안내일",
+        "양육할 자녀",
+        "임신 여부",
+        "확인기일",
+        "급박한 사정",
+        "협의서 준비상태"
+      ],
+      "caution_ko": "사건 접수일이나 합의서 작성일이 숙려기간의 기산점이라고 단정하지 말고 실제 안내일을 확인해야 합니다.",
+      "search_intents_ko": [
+        "협의이혼 숙려기간은 자녀 유무에 따라 3개월 또는 1개월입니다",
+        "협의이혼 신청 후 얼마나 기다려야 하나?",
+        "consensual divorce cooling period"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "자녀가 있으면 3개월, 없으면 1개월",
+          "paragraphs_ko": [
+            "민법 제836조의2는 협의이혼 안내 후 숙려기간을 두고 양육할 자녀의 유무에 따라 기간을 달리합니다. 포태 중인 자녀도 포함됩니다.",
+            "기간 중에는 이혼 의사뿐 아니라 주거, 생활비, 양육자, 양육비, 면접교섭과 친권 문제를 구체적으로 정리합니다."
+          ]
+        },
+        {
+          "heading_ko": "기간만 기다리면 절차가 끝나는 것은 아니다",
+          "paragraphs_ko": [
+            "숙려기간이 지났더라도 자녀 협의서 등 필요한 제출자료가 빠지면 확인 절차가 완성되지 않습니다.",
+            "법원에서 정한 확인기일과 출석요건, 확인 뒤 신고 절차를 별도로 확인해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.divorce-parenting.cooling-period"
+      ],
+      "scenario_ids": [
+        "scenario.divorce-parenting.has-dependent-child"
+      ],
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0836-02",
+        "coord.divorce-parenting.civil-act-ko-0837",
+        "coord.divorce-parenting.civil-act-ko-0909"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "related_content_ids": [
+        "content.consensual-divorce-needs-court-confirmation-and-report",
+        "content.divorce-cooling-period-shortening-for-violence",
+        "content.divorce-child-custody-support-parental-authority-agreement"
+      ],
+      "concierge_entry": {
+        "question_ko": "협의이혼 숙려기간은 자녀 유무에 따라 3개월 또는 1개월입니다",
+        "decision_facts_ko": [
+          "이혼 안내일",
+          "양육할 자녀",
+          "임신 여부",
+          "확인기일",
+          "급박한 사정",
+          "협의서 준비상태"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.divorce-cooling-period-shortening-for-violence",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "divorce-cooling-period-shortening-for-violence",
+      "title_ko": "폭력 등 급박한 사정이 있으면 숙려기간 단축·면제를 요청할 수 있습니다",
+      "one_line_answer_ko": "폭력으로 일방에게 참을 수 없는 고통이 예상되는 등 급박한 사정이 있으면 가정법원이 숙려기간을 단축하거나 면제할 수 있습니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "자동 면제가 아니라 법원의 판단이 필요합니다.",
+        "현재 위험과 급박성을 보여주는 자료가 중요합니다.",
+        "이혼 절차와 별도로 신변안전 조치를 검토합니다."
+      ],
+      "action_steps_ko": [
+        "폭력 발생일·내용·현재 위험을 시간순으로 정리한다.",
+        "신고·진료·사진·메시지 등 자료를 확보한다.",
+        "법원에 단축·면제 사유와 자료를 제출한다.",
+        "필요하면 긴급보호·상담·임시거처를 별도로 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "폭력 유형",
+        "최근 발생일",
+        "진료·신고기록",
+        "위협 메시지",
+        "동거 여부",
+        "자녀 위험",
+        "안전한 연락수단"
+      ],
+      "caution_ko": "숙려기간 단축·면제는 신변보호 조치 자체가 아니므로 현재 위험에는 별도의 보호제도를 함께 검토해야 합니다.",
+      "search_intents_ko": [
+        "폭력 등 급박한 사정이 있으면 숙려기간 단축·면제를 요청할 수 있습니다",
+        "가정폭력이 있어도 협의이혼 숙려기간을 모두 기다려야 하나?",
+        "divorce cooling period shortening for violence"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "급박한 사정을 구체적으로 소명한다",
+          "paragraphs_ko": [
+            "법은 폭력으로 참을 수 없는 고통이 예상되는 경우 등을 예로 들어 숙려기간 단축·면제를 허용합니다. 단순한 조급함이 아니라 기다리는 동안 생길 위험과 고통을 설명해야 합니다.",
+            "경찰 신고, 진료기록, 사진, 녹음, 메시지, 상담기록처럼 시점이 확인되는 자료가 도움이 됩니다."
+          ]
+        },
+        {
+          "heading_ko": "이혼 확인과 안전 확보를 분리한다",
+          "paragraphs_ko": [
+            "숙려기간이 줄어도 상대방 접근이나 폭력이 자동 중단되는 것은 아닙니다. 법원 출석과 연락 과정에서 안전한 방식이 필요한지 확인합니다.",
+            "자녀가 위험에 노출된 경우 자녀의 거처와 인도, 학교·보육시설 연락, 상담 등도 함께 계획합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.divorce-parenting.urgent-shortening"
+      ],
+      "scenario_ids": [
+        "scenario.divorce-parenting.urgent-violence"
+      ],
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0836-02"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "related_content_ids": [
+        "content.consensual-divorce-cooling-period",
+        "content.divorce-child-custody-support-parental-authority-agreement",
+        "content.six-grounds-for-judicial-divorce"
+      ],
+      "concierge_entry": {
+        "question_ko": "폭력 등 급박한 사정이 있으면 숙려기간 단축·면제를 요청할 수 있습니다",
+        "decision_facts_ko": [
+          "폭력 유형",
+          "최근 발생일",
+          "진료·신고기록",
+          "위협 메시지",
+          "동거 여부",
+          "자녀 위험",
+          "안전한 연락수단"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.divorce-child-custody-support-parental-authority-agreement",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "divorce-child-custody-support-parental-authority-agreement",
+      "title_ko": "미성년 자녀가 있으면 양육과 친권 사항을 구체적으로 정해야 합니다",
+      "one_line_answer_ko": "양육자·양육비·면접교섭 등 자녀 양육사항과 친권자를 정한 협의서 또는 가정법원 심판정본을 제출해야 합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "양육자와 친권자를 구분해 결정합니다.",
+        "양육비의 금액·지급일·기간을 구체화합니다.",
+        "면접교섭 일정과 인도방법을 정합니다."
+      ],
+      "action_steps_ko": [
+        "자녀의 생활·학교·건강 일정을 정리한다.",
+        "양육자와 친권자 결정을 문서화한다.",
+        "양육비 금액·지급계좌·지급일·종료시점을 적는다.",
+        "면접교섭 일정·장소·연락·인도방법을 정한다."
+      ],
+      "facts_to_check_ko": [
+        "자녀 연령",
+        "주거·학교",
+        "주양육 경과",
+        "부모 소득",
+        "양육비 항목",
+        "친권자",
+        "면접 일정",
+        "자녀 의사"
+      ],
+      "caution_ko": "부모의 편의보다 자녀의 복리가 기준이며 사정이 바뀌면 협의나 재판을 통해 내용이 변경될 수 있습니다.",
+      "search_intents_ko": [
+        "미성년 자녀가 있으면 양육과 친권 사항을 구체적으로 정해야 합니다",
+        "협의이혼할 때 자녀 문제는 무엇을 합의해야 하나?",
+        "divorce child custody support parental authority agreement"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "자녀 생활이 끊기지 않도록 항목을 나눈다",
+          "paragraphs_ko": [
+            "양육자는 누구인지, 자녀가 어디서 생활하고 학교·의료 결정을 어떻게 할지, 비용을 누가 언제 부담할지를 구체적으로 정합니다.",
+            "친권자 결정은 양육자 지정과 같은 말이 아니므로 협의서에서 두 항목을 각각 확인합니다."
+          ]
+        },
+        {
+          "heading_ko": "모호한 표현을 일정과 금액으로 바꾼다",
+          "paragraphs_ko": [
+            "‘서로 협의한다’는 표현만으로는 지급과 면접 과정에서 갈등이 반복될 수 있습니다. 금액, 날짜, 계좌, 장소, 인도방법을 적습니다.",
+            "합의가 되지 않거나 자녀 복리에 맞지 않으면 가정법원이 정할 수 있으므로 자녀 생활자료와 부모의 양육계획을 준비합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.divorce-parenting.child-rearing-agreement",
+        "rule.divorce-parenting.child-support-record"
+      ],
+      "scenario_ids": [
+        "scenario.divorce-parenting.child-agreement-complete",
+        "scenario.divorce-parenting.has-dependent-child"
+      ],
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0836-02",
+        "coord.divorce-parenting.civil-act-ko-0837",
+        "coord.divorce-parenting.civil-act-ko-0909"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "related_content_ids": [
+        "content.consensual-divorce-cooling-period",
+        "content.child-support-record-is-not-private-memo",
+        "content.noncustodial-parent-child-visitation"
+      ],
+      "concierge_entry": {
+        "question_ko": "미성년 자녀가 있으면 양육과 친권 사항을 구체적으로 정해야 합니다",
+        "decision_facts_ko": [
+          "자녀 연령",
+          "주거·학교",
+          "주양육 경과",
+          "부모 소득",
+          "양육비 항목",
+          "친권자",
+          "면접 일정",
+          "자녀 의사"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.child-support-record-is-not-private-memo",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "child-support-record-is-not-private-memo",
+      "title_ko": "양육비부담조서는 당사자끼리 쓴 메모와 다릅니다",
+      "one_line_answer_ko": "가정법원은 협의한 양육비 부담 내용을 확인해 양육비부담조서를 작성하므로 금액·지급일·기간을 구체적으로 정하고 조서 내용을 확인해야 합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "법원이 협의 내용을 확인해 조서를 작성합니다.",
+        "효력에는 가사소송법 제41조가 준용됩니다.",
+        "모호한 조건은 향후 이행 갈등을 키울 수 있습니다."
+      ],
+      "action_steps_ko": [
+        "부모별 소득과 자녀 정기비용을 계산한다.",
+        "월 금액·지급일·계좌·시작일을 정한다.",
+        "교육·의료 등 비정기비용 분담 방식을 적는다.",
+        "작성된 조서의 내용과 보관방법을 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "부모 소득",
+        "자녀 연령",
+        "정기 양육비",
+        "비정기 비용",
+        "지급일",
+        "지급계좌",
+        "지급기간",
+        "연체 기록"
+      ],
+      "caution_ko": "이 글은 구체적인 강제집행 절차까지 설명하지 않으므로 미지급이 발생하면 조서 내용과 별도의 집행 절차를 확인해야 합니다.",
+      "search_intents_ko": [
+        "양육비부담조서는 당사자끼리 쓴 메모와 다릅니다",
+        "양육비는 구두로 합의해도 충분한가?",
+        "child support record is not private memo"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "합의 내용을 법원이 확인한다",
+          "paragraphs_ko": [
+            "민법 제836조의2는 가정법원이 협의된 양육비 부담 내용을 확인해 양육비부담조서를 작성하도록 합니다. 따라서 사적 메모와 법원이 작성한 조서를 구분해야 합니다.",
+            "금액만 적지 말고 지급일, 계좌, 시작일, 종료 조건과 비정기비용 분담을 구체화하면 이행 여부를 확인하기 쉽습니다."
+          ]
+        },
+        {
+          "heading_ko": "현재 생활비와 장래 변화를 함께 본다",
+          "paragraphs_ko": [
+            "자녀의 연령, 학교, 의료 필요와 부모의 소득을 확인해 현실적인 금액과 방식을 정합니다.",
+            "소득이나 양육환경이 크게 바뀌었을 때의 협의·변경 경로를 미리 정하더라도 실제 변경에는 법적 절차가 필요할 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.divorce-parenting.child-support-record",
+        "rule.divorce-parenting.child-rearing-agreement"
+      ],
+      "scenario_ids": [
+        "scenario.divorce-parenting.child-agreement-complete"
+      ],
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0836-02",
+        "coord.divorce-parenting.civil-act-ko-0837",
+        "coord.divorce-parenting.civil-act-ko-0909"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "related_content_ids": [
+        "content.divorce-child-custody-support-parental-authority-agreement",
+        "content.noncustodial-parent-child-visitation"
+      ]
+    },
+    {
+      "content_id": "content.noncustodial-parent-child-visitation",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "noncustodial-parent-child-visitation",
+      "title_ko": "면접교섭은 비양육 부모만이 아니라 자녀와의 상호 권리입니다",
+      "one_line_answer_ko": "비양육 부모와 자녀는 상호 면접교섭할 권리가 있지만 방식은 자녀 복리를 기준으로 정하고 필요하면 제한·배제·변경될 수 있습니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "자녀의 연령·생활·의사를 확인합니다.",
+        "일정·장소·연락·인도방법을 구체화합니다.",
+        "안전 문제가 있으면 제한·변경 가능성을 검토합니다."
+      ],
+      "action_steps_ko": [
+        "자녀의 학교·수면·치료 일정을 확인한다.",
+        "면접 날짜·장소·인도자·연락수단을 정한다.",
+        "불이행·갈등 기록을 감정 표현과 분리해 보존한다.",
+        "안전 우려가 있으면 구체적 사건과 대체방식을 정리한다."
+      ],
+      "facts_to_check_ko": [
+        "자녀 연령·의사",
+        "생활 일정",
+        "부모 거주지",
+        "과거 면접 이행",
+        "폭력·중독 위험",
+        "인도방법",
+        "연락수단"
+      ],
+      "caution_ko": "면접교섭을 상대방에 대한 보상·제재 수단으로 사용해서는 안 되며 자녀 복리가 우선입니다.",
+      "search_intents_ko": [
+        "면접교섭은 비양육 부모만이 아니라 자녀와의 상호 권리입니다",
+        "양육하지 않는 부모는 언제든 원하는 방식으로 아이를 만날 수 있나?",
+        "noncustodial parent child visitation"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "상호 권리이지만 자녀 복리가 기준이다",
+          "paragraphs_ko": [
+            "민법 제837조의2는 비양육 부모와 자녀가 서로 면접교섭할 권리를 가진다고 정합니다. 부모 한쪽의 편의만으로 일정을 정하는 구조가 아닙니다.",
+            "자녀의 나이, 학교, 건강, 의사와 부모 사이의 거리·갈등 수준을 고려해 실행 가능한 방법을 정합니다."
+          ]
+        },
+        {
+          "heading_ko": "안전과 생활 변화에 따라 조정할 수 있다",
+          "paragraphs_ko": [
+            "폭력, 중독, 납치 위험이나 반복적인 불이행처럼 자녀 복리를 해치는 구체적 사정이 있으면 제한·배제·변경이 문제될 수 있습니다.",
+            "막연한 불안보다 날짜와 행동이 확인되는 자료를 정리하고 감독·중립장소·비대면 연락 같은 대체 방식도 검토합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.divorce-parenting.visitation"
+      ],
+      "scenario_ids": [
+        "scenario.divorce-parenting.visitation-welfare"
+      ],
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0837-02"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "related_content_ids": [
+        "content.divorce-child-custody-support-parental-authority-agreement",
+        "content.child-support-record-is-not-private-memo"
+      ],
+      "concierge_entry": {
+        "question_ko": "면접교섭은 비양육 부모만이 아니라 자녀와의 상호 권리입니다",
+        "decision_facts_ko": [
+          "자녀 연령·의사",
+          "생활 일정",
+          "부모 거주지",
+          "과거 면접 이행",
+          "폭력·중독 위험",
+          "인도방법",
+          "연락수단"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.divorce-property-division-two-year-period",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "divorce-property-division-two-year-period",
+      "title_ko": "재산분할청구권은 이혼한 날부터 2년이 지나면 소멸합니다",
+      "one_line_answer_ko": "협의 또는 재판상 이혼 후 재산분할을 청구할 수 있지만 이혼한 날부터 2년이 지나면 청구권이 소멸하므로 법률상 이혼일을 기준으로 관리해야 합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "명의만으로 분할 여부가 결정되지 않습니다.",
+        "쌍방의 협력으로 이룩한 재산과 여러 사정을 봅니다.",
+        "2년의 행사기간을 별도로 관리합니다."
+      ],
+      "action_steps_ko": [
+        "가족관계등록부에서 법률상 이혼일을 확인한다.",
+        "부동산·예금·보험·퇴직급여·채무 목록을 만든다.",
+        "취득시기·자금출처·가사·육아 기여자료를 확보한다.",
+        "2년 만료 전에 협의와 법원 청구 일정을 관리한다."
+      ],
+      "facts_to_check_ko": [
+        "법률상 이혼일",
+        "재산 명의",
+        "취득시기",
+        "자금출처",
+        "가사·육아 기여",
+        "채무",
+        "재산가액",
+        "처분 정황"
+      ],
+      "caution_ko": "2년은 단순 권고기간이 아니며 협의만 계속하다 기간을 넘기지 않도록 실제 청구 시점을 관리해야 합니다.",
+      "search_intents_ko": [
+        "재산분할청구권은 이혼한 날부터 2년이 지나면 소멸합니다",
+        "이혼한 뒤 재산분할은 언제까지 청구해야 하나?",
+        "divorce property division two year period"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "분할 대상은 명의보다 형성과정을 본다",
+          "paragraphs_ko": [
+            "민법 제839조의2는 부부 쌍방의 협력으로 이룩한 재산과 여러 사정을 고려하도록 합니다. 한쪽 명의라는 이유만으로 곧바로 제외되는 것은 아닙니다.",
+            "취득 시기, 혼인 전 재산, 상속·증여, 대출, 소득뿐 아니라 가사와 양육 기여를 자료로 정리합니다."
+          ]
+        },
+        {
+          "heading_ko": "이혼일과 2년 만료일을 고정한다",
+          "paragraphs_ko": [
+            "협의이혼은 신고로 효력이 생기므로 합의서 작성일이나 별거일과 법률상 이혼일을 구분합니다. 재판상 이혼도 확정 시점을 확인해야 합니다.",
+            "재산을 찾는 동안에도 기간은 진행되므로 만료 전에 어떤 방식으로 권리를 행사할지 결정합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.divorce-parenting.property-division"
+      ],
+      "scenario_ids": [
+        "scenario.divorce-parenting.within-two-years"
+      ],
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0839-02",
+        "coord.divorce-parenting.civil-act-ko-0843"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "related_content_ids": [
+        "content.consensual-divorce-needs-court-confirmation-and-report",
+        "content.asset-transfer-harming-property-division",
+        "content.divorce-consolation-money-vs-property-division"
+      ]
+    },
+    {
+      "content_id": "content.asset-transfer-harming-property-division",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "asset-transfer-harming-property-division",
+      "title_ko": "재산분할을 피하려는 재산처분은 사해행위 취소가 문제될 수 있습니다",
+      "one_line_answer_ko": "상대방이 재산분할청구권 행사를 해함을 알면서 재산권을 목적으로 한 법률행위를 했다면 요건에 따라 취소와 원상회복을 청구할 수 있습니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "처분 시점·상대방·대가를 확인합니다.",
+        "재산분할청구권을 해치는 인식이 있었는지 봅니다.",
+        "모든 증여·매매가 자동 취소되는 것은 아닙니다."
+      ],
+      "action_steps_ko": [
+        "등기·계좌·차량·법인변동을 날짜순으로 확인한다.",
+        "처분 상대방과 관계·대가 지급을 조사한다.",
+        "처분 전후 잔여재산과 채무를 비교한다.",
+        "자료 보전과 가정법원 청구 필요성을 신속히 검토한다."
+      ],
+      "facts_to_check_ko": [
+        "처분일",
+        "재산 종류·가액",
+        "양수인 관계",
+        "대가 지급",
+        "잔여재산",
+        "이혼 협의·소송 시점",
+        "해할 의도 자료"
+      ],
+      "caution_ko": "상대방 재산을 임의로 가져오거나 처분하면 별도 법적 문제가 생길 수 있으므로 보전은 법정 절차로 해야 합니다.",
+      "search_intents_ko": [
+        "재산분할을 피하려는 재산처분은 사해행위 취소가 문제될 수 있습니다",
+        "배우자가 이혼 전에 재산을 다른 사람에게 넘기면 끝인가?",
+        "asset transfer harming property division"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "처분 자체보다 청구권을 해치는 구조를 본다",
+          "paragraphs_ko": [
+            "이혼 전후 재산이전이 있었다고 모두 취소되는 것은 아닙니다. 재산분할청구권 행사를 해치는 법률행위인지, 상대방이 그 점을 알았는지 확인합니다.",
+            "처분 상대방과의 관계, 실제 대가, 처분 후 남은 재산, 이혼 협의·소송 시점을 함께 봅니다."
+          ]
+        },
+        {
+          "heading_ko": "사라지기 쉬운 재산자료를 먼저 확보한다",
+          "paragraphs_ko": [
+            "부동산 등기, 차량등록, 계좌 흐름, 법인 지분과 보험·증권 변동은 시점별로 보존합니다.",
+            "보전 필요성이 있으면 임의 대응보다 가정법원 청구와 별도의 보전처분 가능성을 신속히 검토합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.divorce-parenting.property-fraud-revocation",
+        "rule.divorce-parenting.property-division"
+      ],
+      "scenario_ids": [
+        "scenario.divorce-parenting.within-two-years"
+      ],
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0839-03",
+        "coord.divorce-parenting.civil-act-ko-0839-02",
+        "coord.divorce-parenting.civil-act-ko-0843"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "related_content_ids": [
+        "content.divorce-property-division-two-year-period",
+        "content.divorce-consolation-money-vs-property-division"
+      ],
+      "concierge_entry": {
+        "question_ko": "재산분할을 피하려는 재산처분은 사해행위 취소가 문제될 수 있습니다",
+        "decision_facts_ko": [
+          "처분일",
+          "재산 종류·가액",
+          "양수인 관계",
+          "대가 지급",
+          "잔여재산",
+          "이혼 협의·소송 시점",
+          "해할 의도 자료"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.six-grounds-for-judicial-divorce",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "six-grounds-for-judicial-divorce",
+      "title_ko": "재판상 이혼은 민법 제840조의 구체적인 원인이 필요합니다",
+      "one_line_answer_ko": "협의가 되지 않는다는 사실만으로는 부족하고 부정행위, 악의의 유기, 심히 부당한 대우, 3년 이상 생사불명 또는 혼인을 계속하기 어려운 중대한 사유 등 법정 원인을 구체적으로 주장·증명해야 합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "어느 법정 원인에 해당하는지 분류합니다.",
+        "행위의 시점·반복성·중대성을 확인합니다.",
+        "혼인 파탄과 증거를 연결합니다."
+      ],
+      "action_steps_ko": [
+        "혼인·별거·갈등 경과를 시간순으로 작성한다.",
+        "해당 원인별 메시지·금융·진료·신고자료를 확보한다.",
+        "자녀·주거·생활비의 현재 상태를 정리한다.",
+        "원인별 주장과 증거의 대응표를 만든다."
+      ],
+      "facts_to_check_ko": [
+        "부정행위",
+        "생활비 중단·유기",
+        "폭력·모욕",
+        "직계존속 대우",
+        "생사불명 기간",
+        "별거 기간",
+        "회복 노력",
+        "자녀 상황"
+      ],
+      "caution_ko": "유책성·별거기간·혼인 파탄에 관한 판례 법리는 사실관계에 따라 달라지므로 조문만으로 승소 가능성을 단정할 수 없습니다.",
+      "search_intents_ko": [
+        "재판상 이혼은 민법 제840조의 구체적인 원인이 필요합니다",
+        "상대방이 협의이혼을 거부하면 곧바로 재판상 이혼이 되나?",
+        "six grounds for judicial divorce"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "갈등을 법정 원인별 사실로 바꾼다",
+          "paragraphs_ko": [
+            "‘성격 차이’나 ‘관계가 나쁘다’는 표현만으로는 재판상 이혼원인이 구체화되지 않습니다. 민법 제840조 각 호 중 어떤 사유와 연결되는지 봅니다.",
+            "행위의 발생일, 반복 횟수, 피해 정도, 혼인 회복 노력과 별거 경위를 시간순으로 정리합니다."
+          ]
+        },
+        {
+          "heading_ko": "이혼 여부와 자녀·재산 문제를 함께 준비한다",
+          "paragraphs_ko": [
+            "재판상 이혼에서는 이혼원인뿐 아니라 자녀 양육·면접교섭, 재산분할, 손해배상 문제가 함께 제기될 수 있습니다.",
+            "각 쟁점은 기준과 자료가 다르므로 하나의 감정적 서술 대신 쟁점별 사실·증거표를 만듭니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.divorce-parenting.judicial-divorce-grounds"
+      ],
+      "scenario_ids": [
+        "scenario.divorce-parenting.judicial-ground"
+      ],
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0840"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "related_content_ids": [
+        "content.divorce-cooling-period-shortening-for-violence",
+        "content.divorce-property-division-two-year-period",
+        "content.divorce-consolation-money-vs-property-division"
+      ]
+    },
+    {
+      "content_id": "content.divorce-consolation-money-vs-property-division",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "divorce-consolation-money-vs-property-division",
+      "title_ko": "이혼 위자료와 재산분할은 목적과 판단기준이 다릅니다",
+      "one_line_answer_ko": "위자료는 혼인 파탄 책임에 따른 손해배상이고 재산분할은 부부가 협력해 이룩한 재산의 청산이므로 각각의 요건과 자료를 따로 검토합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "위자료는 파탄 책임과 손해를 봅니다.",
+        "재산분할은 재산 형성과 기여를 봅니다.",
+        "두 청구의 기간과 증거를 각각 관리합니다."
+      ],
+      "action_steps_ko": [
+        "혼인 파탄 행위와 손해자료를 별도 묶음으로 만든다.",
+        "전체 재산·채무와 형성과정을 목록화한다.",
+        "법률상 이혼일과 각 청구기간을 확인한다.",
+        "합의서에서 위자료·재산분할·양육비 항목을 분리한다."
+      ],
+      "facts_to_check_ko": [
+        "파탄 원인",
+        "책임 당사자",
+        "정신·재산상 손해",
+        "재산 목록",
+        "취득시기",
+        "기여도",
+        "법률상 이혼일",
+        "기존 합의 문구"
+      ],
+      "caution_ko": "위자료와 재산분할을 한 금액으로 합의하려면 어떤 권리를 얼마로 정산하는지 문구를 분명히 해야 추가 분쟁을 줄일 수 있습니다.",
+      "search_intents_ko": [
+        "이혼 위자료와 재산분할은 목적과 판단기준이 다릅니다",
+        "재산분할을 받으면 위자료는 따로 받을 수 없나?",
+        "divorce consolation money vs property division"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "두 청구는 묻는 질문이 다르다",
+          "paragraphs_ko": [
+            "위자료는 혼인 파탄에 책임 있는 행위와 그로 인한 재산상·정신상 손해를 중심으로 봅니다. 재산분할은 혼인 중 부부의 협력으로 형성한 재산을 청산하는 제도입니다.",
+            "따라서 한쪽의 명백한 잘못이 있다고 해서 재산분할 기준이 위자료와 완전히 같아지는 것은 아닙니다."
+          ]
+        },
+        {
+          "heading_ko": "합의서와 증거도 분리한다",
+          "paragraphs_ko": [
+            "합의할 때 위자료, 재산분할, 양육비, 채무 부담을 항목별로 적고 지급일·이전방법을 구체화합니다.",
+            "이미 지급한 돈이 어느 항목인지 불분명하면 추후 청구 포기 범위를 두고 다툴 수 있으므로 권리별 정산 문구를 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.divorce-parenting.divorce-damages",
+        "rule.divorce-parenting.property-division"
+      ],
+      "scenario_ids": [
+        "scenario.divorce-parenting.within-two-years",
+        "scenario.divorce-parenting.judicial-ground"
+      ],
+      "source_coordinate_ids": [
+        "coord.divorce-parenting.civil-act-ko-0806",
+        "coord.divorce-parenting.civil-act-ko-0839-02",
+        "coord.divorce-parenting.civil-act-ko-0843",
+        "coord.divorce-parenting.civil-act-ko-0840"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "related_content_ids": [
+        "content.divorce-property-division-two-year-period",
+        "content.asset-transfer-harming-property-division",
+        "content.six-grounds-for-judicial-divorce"
+      ]
+    }
+  ]
+}
