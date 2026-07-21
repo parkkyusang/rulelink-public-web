@@ -40,6 +40,20 @@ try {
     assert(!publicStatusText.includes(forbidden), `publication.json에 비공개 필드가 있습니다: ${forbidden}`);
   }
 
+  const homeResponse = await fetch(baseUrl, {cache: 'no-store'});
+  assert(homeResponse.ok, `홈 응답 실패: ${homeResponse.status}`);
+  const homeHtml = await homeResponse.text();
+  assert(homeHtml.includes('href="/ko/knowledge">상황별 지식</a>'), '상단 메뉴가 공개 지식으로 연결되지 않습니다.');
+  for (const entry of (bundle.knowledge?.content_entries ?? []).slice(0, 6)) {
+    assert(homeHtml.includes(`href="/ko/knowledge/${entry.slug}"`), `홈에서 공개 지식이 노출되지 않습니다: ${entry.slug}`);
+  }
+  for (const hub of bundle.knowledge?.topic_hubs ?? []) {
+    assert(homeHtml.includes(`href="/ko/hubs/${hub.slug}"`), `홈에서 공개 지식 허브가 노출되지 않습니다: ${hub.slug}`);
+  }
+  if ((bundle.cards?.length ?? 0) === 0 && (bundle.knowledge?.content_entries?.length ?? 0) > 0) {
+    assert(!homeHtml.includes('검토된 법률정보를 준비하고 있습니다.'), '공개 지식이 있는데 준비 중 빈 화면을 표시합니다.');
+  }
+
   const routes = new Set(['/', '/ko/method', '/ko/search', '/publication.json', '/robots.txt']);
   for (const card of bundle.cards ?? []) routes.add(`/ko/issues/${card.slug}`);
   for (const brief of bundle.change_briefs ?? []) routes.add(`/ko/changes/${brief.slug}`);
