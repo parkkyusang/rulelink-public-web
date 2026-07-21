@@ -4,6 +4,7 @@ export const revalidate = 3600;
 
 import {
   listChangeBriefs,
+  listConceptCards,
   listKnowledgeEntries,
   listKnowledgeHubs,
   listKnowledgeSourceDocuments,
@@ -14,10 +15,11 @@ import {site} from '@/lib/site';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (!site.indexing) return [];
-  const [cards, topics, changeBriefs, knowledgeEntries, knowledgeHubs, knowledgeSources] = await Promise.all([
+  const [cards, topics, changeBriefs, concepts, knowledgeEntries, knowledgeHubs, knowledgeSources] = await Promise.all([
     listPublishedCards(),
     listPublishedTopics(),
     listChangeBriefs(),
+    listConceptCards(),
     listKnowledgeEntries(),
     listKnowledgeHubs(),
     listKnowledgeSourceDocuments(),
@@ -47,6 +49,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${site.url}/ko/topics/${topic.slug}`,
       changeFrequency: 'weekly' as const,
       priority: 0.7,
+    })),
+    ...(concepts.length ? [{
+      url: `${site.url}/ko/concepts`,
+      changeFrequency: 'weekly' as const,
+      priority: 0.85,
+    }] : []),
+    ...concepts.map(concept => ({
+      url: `${site.url}/ko/concepts/${concept.slug}`,
+      lastModified: new Date(concept.reviewed_at),
+      changeFrequency: 'monthly' as const,
+      priority: 0.82,
     })),
     ...(knowledgeEntries.length ? [{
       url: `${site.url}/ko/knowledge`,
