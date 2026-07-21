@@ -40,6 +40,8 @@ export function validatePublishedBundle(value, options = {}) {
   const assertions = requireArray(value, 'assertions', errors);
   const briefs = optionalArray(value, 'change_briefs', errors);
   const cardIds = uniqueIds(cards, 'issue_card_id', '문제카드', errors);
+  validateSlugs(cards, 'issue_card_id', '문제카드', errors);
+  validateSlugs(briefs, 'change_brief_id', '법령변화 브리핑', errors);
   const assertionIds = uniqueIds(assertions, 'assertion_id', '주장', errors);
   validateAssertions(assertions, now, errors);
 
@@ -86,6 +88,7 @@ function validateCatalog(value, cardIds, errors) {
   }
   const topics = requireArray(value, 'topics', errors, 'catalog');
   uniqueIds(topics, 'topic_id', '공개 주제', errors);
+  validateSlugs(topics, 'topic_id', '공개 주제', errors);
   for (const topic of topics) {
     if (!isRecord(topic)) continue;
     checkReferences(topic.issue_card_ids, cardIds, `공개 주제 ${label(topic, 'topic_id')}의 issue_card_ids`, errors);
@@ -111,6 +114,8 @@ function validateKnowledge(value, now, errors) {
   const scenarioIds = uniqueIds(scenarios, 'scenario_id', '사실분기', errors);
   const entryIds = uniqueIds(entries, 'content_id', '지식 콘텐츠', errors);
   const hubIds = uniqueIds(hubs, 'hub_id', '주제 허브', errors);
+  validateSlugs(entries, 'content_id', '지식 콘텐츠', errors);
+  validateSlugs(hubs, 'hub_id', '주제 허브', errors);
 
   for (const source of sources) {
     if (!isRecord(source)) continue;
@@ -335,6 +340,23 @@ function uniqueIds(items, key, labelName, errors) {
     ids.add(item[key]);
   }
   return ids;
+}
+
+
+function validateSlugs(items, idKey, labelName, errors) {
+  const seen = new Set();
+  for (const item of items) {
+    if (!isRecord(item)) continue;
+    const itemLabel = label(item, idKey);
+    if (typeof item.slug !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.slug)) {
+      errors.push(`${labelName} ${itemLabel}의 slug는 영문 소문자·숫자·하이픈으로 된 공개 URL 식별자여야 합니다.`);
+      continue;
+    }
+    if (seen.has(item.slug)) {
+      errors.push(`${labelName}의 공개 URL 식별자가 중복됩니다: ${item.slug}`);
+    }
+    seen.add(item.slug);
+  }
 }
 
 function checkReferences(value, allowed, location, errors) {
