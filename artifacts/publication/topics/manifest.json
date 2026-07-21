@@ -51,6 +51,10 @@
       "file": "crime-victim-response.json"
     },
     {
+      "topic_id": "hub.legal-concept-comparisons",
+      "file": "legal-concept-comparisons.json"
+    },
+    {
       "topic_id": "hub.legal-service-boundaries",
       "file": "legal-service-boundaries.json"
     }
@@ -68,6 +72,7 @@
     "hub.debt-enforcement",
     "hub.real-estate-sale",
     "hub.crime-victim-response",
+    "hub.legal-concept-comparisons",
     "hub.legal-service-boundaries"
   ]
 }
