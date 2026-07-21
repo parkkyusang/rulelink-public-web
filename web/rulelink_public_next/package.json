@@ -7,7 +7,7 @@
     "validate-publication": "node scripts/validate-publication-bundle.mjs",
     "validate:publication-history": "node scripts/validate-publication-history.mjs",
     "validate:snapshot-diff": "node scripts/validate-publication-snapshot-diff.mjs",
-    "test:publication": "node --test scripts/validate-publication-bundle.test.mjs scripts/promote-publication.test.mjs scripts/validate-publication-history.test.mjs scripts/report-publication-diff.test.mjs scripts/validate-publication-snapshot-diff.test.mjs scripts/report-publication-freshness.test.mjs scripts/publication-freshness-runtime.test.mjs scripts/public-knowledge-search-contract.test.mjs scripts/public-knowledge-reasoning-links.test.mjs scripts/vercel-deployment-policy.test.mjs scripts/smoke-live-publication.test.mjs scripts/compose-publication-knowledge.test.mjs",
+    "test:publication": "node --test scripts/validate-publication-bundle.test.mjs scripts/promote-publication.test.mjs scripts/validate-publication-history.test.mjs scripts/report-publication-diff.test.mjs scripts/validate-publication-snapshot-diff.test.mjs scripts/report-publication-freshness.test.mjs scripts/publication-freshness-runtime.test.mjs scripts/public-knowledge-search-contract.test.mjs scripts/public-knowledge-reasoning-links.test.mjs scripts/vercel-deployment-policy.test.mjs scripts/smoke-live-publication.test.mjs scripts/knowledge-detail-navigation.test.mjs scripts/sync-readme-publication-status.test.mjs scripts/compose-publication-knowledge.test.mjs",
     "report:publication": "node scripts/report-publication-diff.mjs",
     "promote:publication": "node scripts/promote-publication.mjs",
     "predev": "npm run validate:publication-composition && npm run validate:publication-history && npm run sync-publication && npm run validate-publication",
@@ -20,7 +20,9 @@
     "start": "next start -p 8800",
     "typecheck": "next typegen && tsc --noEmit",
     "report:freshness": "node scripts/report-publication-freshness.mjs",
-    "compose:publication": "node scripts/compose-publication-knowledge.mjs --write",
+    "compose:publication": "node scripts/compose-publication-knowledge.mjs --write && node scripts/sync-readme-publication-status.mjs --write",
+    "sync:readme-publication": "node scripts/sync-readme-publication-status.mjs --write",
+    "validate:readme-publication": "node scripts/sync-readme-publication-status.mjs --check",
     "validate:publication-composition": "node scripts/compose-publication-knowledge.mjs --check"
   },
   "dependencies": {
