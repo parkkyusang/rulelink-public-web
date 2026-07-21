@@ -22,5 +22,6 @@ test('긴 생활법률 상세 화면은 핵심 법리부터 공식 근거까지 
   assert.match(css, /\.knowledgeSectionNav\s*\{/);
   assert.match(css, /\.knowledgeSection[^}]*scroll-margin-top:/);
   assert.match(css, /\.knowledgeAside[^}]*position:\s*sticky/);
+  assert.match(css, /\.ruleCard\[id\][^}]*scroll-margin-top:/);
   assert.match(css, /@media \(max-width: 800px\)[\s\S]*\.knowledgeAside\s*\{position:\s*static;/);
 });

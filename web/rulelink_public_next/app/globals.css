@@ -156,6 +156,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .knowledgeSectionNav a:hover {background: var(--mint); color: var(--green);}
 .knowledgeLayout {display: grid; gap: 52px; grid-template-columns: minmax(0,1.7fr) minmax(270px,.75fr); padding-top: 20px;}
 .knowledgeSection {border-bottom: 1px solid var(--line); padding: 38px 0; scroll-margin-top: 82px;}
+.ruleCard[id] {scroll-margin-top: 82px;}
 .knowledgeSection h2 {font-size: 29px; letter-spacing: -.04em; margin: 0 0 24px;}
 .ruleStack, .branchStack {display: grid; gap: 14px;}
 .ruleCard, .branchCard {background: var(--white); border: 1px solid var(--line); border-radius: 17px; padding: 25px;}
