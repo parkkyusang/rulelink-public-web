@@ -1,0 +1,2210 @@
+{
+  "schema": "rulelink_published_bundle_v1",
+  "snapshot_id": "kr-knowledge-core-20260721-002",
+  "built_at": "2026-07-21T08:30:00+00:00",
+  "source_snapshot_id": "multi-source:2d2cee55cdf2c94c4e70eca9c4fdf531",
+  "jurisdiction": "KR",
+  "locale": "ko-KR",
+  "cards": [],
+  "assertions": [
+    {
+      "assertion_id": "assertion.kr.change.administrative-appeals-16-2.old-documents",
+      "user_facing_text_ko": "종전 문언은 국선대리인 신청 자격군 모두가 해당 자격을 소명하는 서류를 신청과 함께 제출하도록 정했습니다.",
+      "proposition_type": "procedure",
+      "applies_when": [
+        "2025년 10월 1일부터 2026년 6월 15일까지의 종전 신청 절차를 설명하는 경우"
+      ],
+      "does_not_apply_when": [
+        "2026년 6월 16일 이후 현재 절차를 설명하는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "administrative_appeals_enforcement_decree_ko_0016_02",
+          "law_key": "administrative_appeals_enforcement_decree",
+          "article_no": "제16조의2",
+          "source_snapshot_id": "snapshot:088d4ff81a0e97e58d2f1b0bc746d895",
+          "version_scope": "historical",
+          "effective_from": "2025-10-01",
+          "official_url": "https://www.law.go.kr/LSW/lawView.do?lawId=005621",
+          "source_hash": "sha256:aa9033b366ad8186080dcc506315fb6d5e9372cae39d2ea660f90d98b0290f19",
+          "last_verified_at": "2026-07-20T06:30:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.administrative-appeals-16-2.current-split",
+      "user_facing_text_ko": "현재 문언은 총리령상 선임 신청서를 제출하도록 하고, 기초연금 수급자와 북한이탈주민 보호대상자에게는 자격 소명서류를 함께 제출하도록 정합니다.",
+      "proposition_type": "procedure",
+      "applies_when": [
+        "2026년 6월 16일 이후 국선대리인 선임을 신청하는 경우"
+      ],
+      "does_not_apply_when": [
+        "다른 자격군의 행정정보 확인 절차만 설명하는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "administrative_appeals_enforcement_decree_ko_0016_02",
+          "law_key": "administrative_appeals_enforcement_decree",
+          "article_no": "제16조의2",
+          "source_snapshot_id": "snapshot:f46e52f238cfcb804b595d3f2a1447ec",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2026-06-16",
+          "official_url": "https://www.law.go.kr/LSW/lawView.do?lawId=005621",
+          "source_hash": "sha256:0a15fd774b3e712c593f0d59f738f4037c11a4fea8e83bd85b621d9585c6c824",
+          "last_verified_at": "2026-07-20T06:30:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.administrative-appeals-16-2.data-sharing",
+      "user_facing_text_ko": "현재 문언은 기초생활수급자·한부모가족 지원대상자·장애인연금 수급자·경제적 곤란 인정대상자의 자격을 위원회가 행정정보 공동이용으로 확인할 수 있게 하고, 청구인이 확인에 동의하지 않으면 서류를 직접 제출하도록 정합니다.",
+      "proposition_type": "procedure",
+      "applies_when": [
+        "제1항제1호·제2호·제4호 또는 제6호 자격으로 신청하는 경우"
+      ],
+      "does_not_apply_when": [
+        "제1항제3호 또는 제5호 자격으로 신청하는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "administrative_appeals_enforcement_decree_ko_0016_02",
+          "law_key": "administrative_appeals_enforcement_decree",
+          "article_no": "제16조의2",
+          "source_snapshot_id": "snapshot:f46e52f238cfcb804b595d3f2a1447ec",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2026-06-16",
+          "official_url": "https://www.law.go.kr/LSW/lawView.do?lawId=005621",
+          "source_hash": "sha256:0a15fd774b3e712c593f0d59f738f4037c11a4fea8e83bd85b621d9585c6c824",
+          "last_verified_at": "2026-07-20T06:30:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    }
+  ],
+  "change_briefs": [
+    {
+      "change_brief_id": "kr.change.administrative-appeals-state-representative-documents",
+      "jurisdiction": "KR",
+      "locale": "ko-KR",
+      "slug": "administrative-appeals-state-representative-documents",
+      "title_ko": "행정심판 국선대리인 신청 때 일부 증명서류를 직접 내지 않아도 됩니다",
+      "summary_ko": "2026년 6월 16일부터 일부 국선대리인 신청 자격은 위원회가 행정정보 공동이용으로 확인할 수 있게 됐습니다. 자격군과 동의 여부에 따라 직접 제출할 서류가 달라집니다.",
+      "editorial_status": "approved",
+      "version": "0.1.0",
+      "lifecycle": "recently_effective",
+      "law_key": "administrative_appeals_enforcement_decree",
+      "law_name_ko": "행정심판법 시행령",
+      "article_no": "제16조의2",
+      "promulgation_date": "",
+      "effective_date": "2026-06-16",
+      "reviewed_at": "2026-07-20T06:30:00+00:00",
+      "expires_at": "2026-10-20T00:00:00+00:00",
+      "affected_audiences": [
+        "행정심판에서 국선대리인 선임을 신청하려는 청구인",
+        "국선대리인 신청서류를 준비하는 지원기관 담당자"
+      ],
+      "changed_points": [
+        "국선대리인 신청 가능 대상과 심리기일 전이라는 신청기한은 유지됩니다.",
+        "기초연금 수급자와 북한이탈주민 보호대상자는 자격 소명서류를 신청서와 함께 제출해야 합니다.",
+        "기초생활수급자·한부모가족 지원대상자·장애인연금 수급자·경제적 곤란 인정대상자는 위원회가 행정정보 공동이용으로 자격을 확인할 수 있습니다.",
+        "행정정보 확인에 동의하지 않으면 해당 소명서류를 직접 제출해야 합니다."
+      ],
+      "action_checklist": [
+        "자신이 시행령 제16조의2제1항 중 어느 자격군에 해당하는지 확인합니다.",
+        "총리령으로 정한 국선대리인 선임 신청서를 준비합니다.",
+        "제1항제3호 또는 제5호에 해당하면 자격 소명서류를 함께 준비합니다.",
+        "제1항제1호·제2호·제4호 또는 제6호에 해당하면 행정정보 공동이용 동의 여부를 확인합니다.",
+        "법 제38조제1항의 심리기일 전에 신청합니다."
+      ],
+      "transition_status": "verification_needed",
+      "transition_note_ko": "2026년 6월 16일 전에 접수되어 시행일 당시 처리 중이던 신청에 관한 적용례는 현재 근거 묶음에서 확인되지 않았습니다.",
+      "norm_delta": {
+        "change_type": "mixed_change",
+        "changed_slots": [
+          "conditions",
+          "exception",
+          "operation",
+          "legal_effect",
+          "temporal_rule"
+        ],
+        "old_frame": {
+          "source_snapshot_ids": [
+            "snapshot:088d4ff81a0e97e58d2f1b0bc746d895"
+          ],
+          "actor": [
+            "행정심판법 시행령 제16조의2제1항 각 호의 어느 하나에 해당하는 청구인"
+          ],
+          "object": [
+            "행정심판 국선대리인 선임 신청"
+          ],
+          "trigger": [
+            "국선대리인 선임을 신청하려는 경우"
+          ],
+          "conditions": [
+            "법 제38조제1항에 따른 심리기일 전까지 신청",
+            "해당 자격을 소명하는 서류를 함께 제출"
+          ],
+          "exception": [],
+          "operation": [
+            "신청과 자격 소명서류를 위원회에 제출"
+          ],
+          "legal_effect": [
+            "자격군과 관계없이 신청자가 자격 소명서류를 직접 제출해야 함"
+          ],
+          "temporal_rule": [
+            "2025년 10월 1일부터 2026년 6월 15일까지 시행된 문언"
+          ],
+          "transition_rule": []
+        },
+        "new_frame": {
+          "source_snapshot_ids": [
+            "snapshot:f46e52f238cfcb804b595d3f2a1447ec"
+          ],
+          "actor": [
+            "행정심판법 시행령 제16조의2제1항 각 호의 어느 하나에 해당하는 청구인"
+          ],
+          "object": [
+            "행정심판 국선대리인 선임 신청"
+          ],
+          "trigger": [
+            "국선대리인 선임을 신청하려는 경우"
+          ],
+          "conditions": [
+            "법 제38조제1항에 따른 심리기일 전까지 신청",
+            "총리령으로 정하는 선임 신청서를 위원회에 제출",
+            "제1항제3호 또는 제5호 청구인은 자격 소명서류를 함께 제출"
+          ],
+          "exception": [
+            "제1항제1호·제2호·제4호 또는 제6호 청구인이 행정정보 확인에 동의하지 않으면 자격 소명서류를 직접 제출"
+          ],
+          "operation": [
+            "선임 신청서를 위원회에 제출",
+            "일부 자격군은 위원회가 행정정보 공동이용으로 자격 확인"
+          ],
+          "legal_effect": [
+            "일부 자격군은 동의한 경우 자격 소명서류를 직접 제출하지 않고 위원회의 행정정보 확인으로 갈음할 수 있음"
+          ],
+          "temporal_rule": [
+            "2026년 6월 16일부터 시행 중인 문언"
+          ],
+          "transition_rule": []
+        },
+        "legal_effect_delta_ko": "국선대리인 신청 자격과 기한은 그대로지만, 일부 자격군의 증명 방식이 직접 서류 제출에서 위원회의 행정정보 확인으로 바뀌었습니다. 기초연금 수급자와 북한이탈주민 보호대상자는 여전히 소명서류를 함께 제출해야 합니다.",
+        "life_situation_impacts": [
+          "신청 전에 자신이 어느 자격군에 해당하는지에 따라 첨부서류를 달리 준비해야 합니다.",
+          "행정정보 확인 대상 자격군은 공동이용에 동의하면 증명서류 직접 제출 부담을 줄일 수 있습니다.",
+          "행정정보 확인에 동의하지 않으면 종전처럼 해당 증명서류를 준비해야 합니다."
+        ],
+        "unresolved_questions": [
+          "2026년 6월 16일 전에 접수되어 시행일 당시 처리 중이던 신청에는 어느 문언이 적용되는가",
+          "총리령상 선임 신청서의 구체적인 서식과 제출 채널은 무엇인가"
+        ]
+      },
+      "related_issue_card_ids": [],
+      "assertion_ids": [
+        "assertion.kr.change.administrative-appeals-16-2.old-documents",
+        "assertion.kr.change.administrative-appeals-16-2.current-split",
+        "assertion.kr.change.administrative-appeals-16-2.data-sharing"
+      ],
+      "source_event_ids": [
+        "event:5071889dab50e639c04d0b5fefa00073"
+      ],
+      "old_snapshot_ids": [
+        "snapshot:088d4ff81a0e97e58d2f1b0bc746d895"
+      ],
+      "new_snapshot_ids": [
+        "snapshot:f46e52f238cfcb804b595d3f2a1447ec"
+      ]
+    }
+  ],
+  "file_hashes": {
+    "change-brief:draft.kr.change.administrative-appeals-16-2.001": "bfd67ae12f0463dcf4c1c883ce1e3f7adf5915e991400baabe6b3cf9b40cc98d",
+    "change-brief-approval:change-brief-approval:draft.kr.change.administrative-appeals-16-2.001:bfd67ae12f04": "aeee98d37f7169116f8fec43e6d86bf3b62e6fb323ee6f36d8210dfbe0a32b32",
+    "knowledge:administrative-appeals-depth-v1": "bad025b776e4036be720a1aef1548c1166e6156ae5574a6a8acf6ece6d573009",
+    "knowledge-approval:derived-administrative-appeals-depth-20260721-001": "af7f7124f5083d155e1537d098a218f488484d94fa60fd0166c898e7eef1d5c9",
+    "knowledge:content.legal-heir-order-and-spouse": "ea451e319e307d61781ba73153f48dcf55224c430b9a0da66cb37a8f2b7764e2",
+    "knowledge:content.three-month-inheritance-decision-period": "a72295162979eceb2c66f5ed37a82660d34436bfbe3197b874545efe8ffe13d2",
+    "knowledge:content.inheritance-renunciation-procedure": "8e71d2d509e44fca5d978acc1f435408a19b580088a68f013d951664c13e6ec3",
+    "knowledge:content.limited-acceptance-effect": "7b0854ad818a5feda2d0a1e4065afa19a57d8fabc22718b85599621c13a2e2e9",
+    "knowledge:content.special-limited-acceptance-late-debt": "aacdff787e575d7bfd39a3fee304d8b526ebfa23f04e574311c28b2fd6792952",
+    "knowledge:content.limited-acceptance-creditor-notice": "65be3addf68c5bfb3d2dd1a7bdf2eb605b13bf5a682f72b61b78dd1c59e3c2bd",
+    "knowledge:content.bank-transfer-loan-or-gift": "21cae106748dc29f57c6a1e606fc52d471ca85b2406d83125961de3c5c414f9f",
+    "knowledge:content.loan-without-written-note": "d531b38550724ba6870373f1f94ac82b38171683bb7ad9b7641d2c7a78cbe321",
+    "knowledge:content.loan-without-repayment-date": "da2123c91664f78bbab895f7f5318dd7d43ee6874a3a87612f0aa4969eb59a2b",
+    "knowledge:content.partial-repayment-allocation": "32956422861389db1939e687955df7caaf7e69c2d700bf5cfeb14c12e2704b56",
+    "knowledge:content.guarantee-by-message-validity": "71c2174e31398ea6f6ab543b52a41c54e6b70847bdbd0996fa557cc2a851a875",
+    "knowledge:content.continuing-guarantee-maximum-amount": "8de2cdcaa2098d4b5143a025bc7c67a9491c37cca72f79dc54c676926a447e5c",
+    "knowledge:content.scope-of-guarantee-debt": "0bfbf7cef7cb30c03f8da64a0c1dc1e9ad2f31d2065cf7fa0211bf700da7ef8f",
+    "knowledge:content.shared-mobility-private-facility-defect": "906b0c972cab1eeadc7bf6c45bdebb80315dbd9a259ea8bc3b08c1f3b43952ff",
+    "knowledge:content.shared-mobility-other-road-user-fault": "e6f43717a7faf7bd539bde72527bb929ebafef5fda930e39e992abdd60114450",
+    "approval:db-grounded-20260721": "7de6471ce00dbed8cb9aa31106058923228339c016f6d39f7e0906961bc26c6a"
+  },
+  "knowledge": {
+    "schema": "rulelink_public_knowledge_index_v1",
+    "sources": [
+      {
+        "coordinate_id": "coord.administrative-appeals-16-2.historical-2025-10-01",
+        "source_id": "administrative_appeals_enforcement_decree_ko_0016_02",
+        "official_url": "https://www.law.go.kr/LSW/lawView.do?lawId=005621",
+        "source_snapshot_id": "snapshot:088d4ff81a0e97e58d2f1b0bc746d895",
+        "last_verified_at": "2026-07-20T06:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.administrative-appeals-16-2.current-2026-06-16",
+        "source_id": "administrative_appeals_enforcement_decree_ko_0016_02",
+        "official_url": "https://www.law.go.kr/LSW/lawView.do?lawId=005621",
+        "source_snapshot_id": "snapshot:f46e52f238cfcb804b595d3f2a1447ec",
+        "last_verified_at": "2026-07-20T06:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1000",
+        "source_id": "civil_act_ko_1000",
+        "official_url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1026990813",
+        "source_snapshot_id": "snapshot:5bb3d628e97ff4cb9ae71f7cc2f9c556",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1003",
+        "source_id": "civil_act_ko_1003",
+        "official_url": "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=1003&lsiSeq=284415&urlMode=lsScJoRltInfoR",
+        "source_snapshot_id": "snapshot:c0d629f570ce1480d72712c4fb2f6d4b",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1019",
+        "source_id": "civil_act_ko_1019",
+        "official_url": "https://www.law.go.kr/LSW/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=900034462",
+        "source_snapshot_id": "snapshot:b9f244982ab300cd344069c882d8e66f",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1041",
+        "source_id": "civil_act_ko_1041",
+        "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=58429",
+        "source_snapshot_id": "snapshot:3d41068ed933f7fedc0e8e6991cacfe1",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1042",
+        "source_id": "civil_act_ko_1042",
+        "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=58429",
+        "source_snapshot_id": "snapshot:3e8ef32adeedcf6b8f18332cbad7bb0a",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1043",
+        "source_id": "civil_act_ko_1043",
+        "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=58429",
+        "source_snapshot_id": "snapshot:cd1ffa531ba8a186837e25d6e9e707fb",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1028",
+        "source_id": "civil_act_ko_1028",
+        "official_url": "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=1028&lsiSeq=284415&urlMode=lsScJoRltInfoR",
+        "source_snapshot_id": "snapshot:ff8a4307ac09a35a5c39e10e5dd7729b",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1030",
+        "source_id": "civil_act_ko_1030",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "source_snapshot_id": "snapshot:d3d684ccee303f8cd1f9b6b8f69b6361",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1031",
+        "source_id": "civil_act_ko_1031",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "source_snapshot_id": "snapshot:552587cdda68a86c4770c1b712eebfe5",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1032",
+        "source_id": "civil_act_ko_1032",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "source_snapshot_id": "snapshot:2e8067745cca373db77bb8462b9ab9ed",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1033",
+        "source_id": "civil_act_ko_1033",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "source_snapshot_id": "snapshot:f31b5fb63151869da3fe8ce40625701d",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1034",
+        "source_id": "civil_act_ko_1034",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "source_snapshot_id": "snapshot:b18e757a09f543b4e7f3ea3319e9f134",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1035",
+        "source_id": "civil_act_ko_1035",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "source_snapshot_id": "snapshot:8571ec381e24d6b7518e58b099e01d77",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1036",
+        "source_id": "civil_act_ko_1036",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "source_snapshot_id": "snapshot:7599f8d81a45a306dd50596b8ebcc2eb",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1037",
+        "source_id": "civil_act_ko_1037",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "source_snapshot_id": "snapshot:0bfc3dfd27e08026aa65817eccb119fe",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1038",
+        "source_id": "civil_act_ko_1038",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "source_snapshot_id": "snapshot:5ff9144670cafc7ce7139e1d85b8c8cb",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.family-inheritance.civil-act-ko-1039",
+        "source_id": "civil_act_ko_1039",
+        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "source_snapshot_id": "snapshot:5ee8ab3bdf7ef8946157d6de389295f3",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.money-guarantee.civil-act-ko-0598",
+        "source_id": "civil_act_ko_0598",
+        "official_url": "https://www.law.go.kr/LSW/lsLinkProc.do?joNo=059800&lnkJoNo=undefined&lsClsCd=L&lsId=001706&lsNm=%EB%AF%BC%EB%B2%95&mode=4",
+        "source_snapshot_id": "snapshot:62c9abd62ae2907181f1bf7197dc2e43",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.money-guarantee.civil-act-ko-0603",
+        "source_id": "civil_act_ko_0603",
+        "official_url": "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0603&lsiSeq=284415&urlMode=lsScJoRltInfoR",
+        "source_snapshot_id": "snapshot:620a0f688ebec421544fd799c874c735",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.money-guarantee.civil-act-ko-0476",
+        "source_id": "civil_act_ko_0476",
+        "official_url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1023596075",
+        "source_snapshot_id": "snapshot:17508bd1f1cc8b784be868019fd90482",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.money-guarantee.civil-act-ko-0477",
+        "source_id": "civil_act_ko_0477",
+        "official_url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1023596075",
+        "source_snapshot_id": "snapshot:8d4552e491f504df2b872e4798b13da7",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.money-guarantee.civil-act-ko-0478",
+        "source_id": "civil_act_ko_0478",
+        "official_url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1023596075",
+        "source_snapshot_id": "snapshot:0b076a247338119c3dd9802b24b51ae9",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.money-guarantee.civil-act-ko-0479",
+        "source_id": "civil_act_ko_0479",
+        "official_url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1023596075",
+        "source_snapshot_id": "snapshot:1ae84c4c6865a278b8cdfdbee34a15fb",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.money-guarantee.civil-act-ko-0428-02",
+        "source_id": "civil_act_ko_0428_02",
+        "official_url": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1016736383",
+        "source_snapshot_id": "snapshot:73bd081839cacee21b7b1b32d357749d",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.money-guarantee.civil-act-ko-0428-03",
+        "source_id": "civil_act_ko_0428_03",
+        "official_url": "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=03&joNo=0428&lsiSeq=284415&urlMode=lsScJoRltInfoR",
+        "source_snapshot_id": "snapshot:c5073f9edbc623b7e80ccad062d5fbcd",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.money-guarantee.civil-act-ko-0429",
+        "source_id": "civil_act_ko_0429",
+        "official_url": "https://www.law.go.kr/LSW/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=900307360",
+        "source_snapshot_id": "snapshot:6942ac509b9968cd14a4746cb2688113",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.money-guarantee.civil-act-ko-0428",
+        "source_id": "civil_act_ko_0428",
+        "official_url": "https://www.law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=090800003&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "source_snapshot_id": "snapshot:490368327e149e4e150b07272609641e",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.money-guarantee.civil-act-ko-0430",
+        "source_id": "civil_act_ko_0430",
+        "official_url": "https://www.law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=090800003&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "source_snapshot_id": "snapshot:084379d3974c5260edbde413397e9d11",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.shared-mobility-accident.civil-act-ko-0758",
+        "source_id": "civil_act_ko_0758",
+        "official_url": "https://law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0758&lsiSeq=284415&urlMode=lsScJoRltInfoR",
+        "source_snapshot_id": "snapshot:3e889ba204742d5b6bead0009d0e244b",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.shared-mobility-accident.civil-act-ko-0750",
+        "source_id": "civil_act_ko_0750",
+        "official_url": "https://law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0750&lsiSeq=284415&urlMode=lsScJoRltInfoR",
+        "source_snapshot_id": "snapshot:cdf125767ab6640e07d557f6c73a0c53",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      }
+    ],
+    "rule_cards": [
+      {
+        "rule_id": "rule.admin-appeal.appointed-representative.old-document-rule",
+        "title_ko": "종전에는 자격군 모두가 소명서류를 직접 제출",
+        "proposition_ko": "2025년 10월 1일부터 2026년 6월 15일까지의 문언에서는 국선대리인 신청 자격군 모두가 해당 자격의 소명서류를 신청과 함께 제출해야 했습니다.",
+        "norm": {
+          "actor_ko": "행정심판 국선대리인 선임을 신청하는 청구인",
+          "conditions_ko": "2025년 10월 1일부터 2026년 6월 15일까지 적용되는 신청 절차",
+          "legal_effect_ko": "자격군과 관계없이 자격 소명서류를 직접 제출"
+        },
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.historical-2025-10-01"
+        ]
+      },
+      {
+        "rule_id": "rule.admin-appeal.appointed-representative.current-direct-documents",
+        "title_ko": "현재도 직접 소명서류를 내야 하는 자격군",
+        "proposition_ko": "2026년 6월 16일 이후 기초연금 수급자와 북한이탈주민 보호대상자는 국선대리인 선임 신청서와 자격 소명서류를 함께 제출해야 합니다.",
+        "norm": {
+          "actor_ko": "기초연금 수급자 또는 북한이탈주민 보호대상자로 신청하는 청구인",
+          "conditions_ko": "2026년 6월 16일 이후 국선대리인 선임을 신청",
+          "legal_effect_ko": "선임 신청서와 자격 소명서류를 함께 제출"
+        },
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ]
+      },
+      {
+        "rule_id": "rule.admin-appeal.appointed-representative.current-data-sharing",
+        "title_ko": "행정정보 확인으로 소명할 수 있는 자격군",
+        "proposition_ko": "기초생활수급자, 한부모가족 지원대상자, 장애인연금 수급자와 경제적 곤란 인정대상자는 동의한 경우 위원회가 행정정보 공동이용으로 자격을 확인할 수 있습니다.",
+        "norm": {
+          "actor_ko": "시행령 제16조의2제1항제1호ㆍ제2호ㆍ제4호 또는 제6호 자격으로 신청하는 청구인",
+          "conditions_ko": "2026년 6월 16일 이후 신청하고 행정정보 확인에 동의",
+          "legal_effect_ko": "위원회의 행정정보 확인으로 자격 소명 가능"
+        },
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ]
+      },
+      {
+        "rule_id": "rule.admin-appeal.appointed-representative.no-consent",
+        "title_ko": "행정정보 확인에 동의하지 않는 경우",
+        "proposition_ko": "행정정보 확인 대상 자격군이라도 공동이용 확인에 동의하지 않으면 해당 자격의 소명서류를 직접 제출해야 합니다.",
+        "norm": {
+          "actor_ko": "행정정보 확인 대상 자격군에 해당하는 청구인",
+          "conditions_ko": "행정정보 공동이용 확인에 동의하지 않음",
+          "legal_effect_ko": "해당 자격의 소명서류를 직접 제출"
+        },
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ]
+      },
+      {
+        "rule_id": "rule.family-inheritance.rule-inheritance-order",
+        "title_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순…",
+        "proposition_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순위에서는 최근친이 선순위다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순위에서는 최근친이 선순위다."
+        },
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1000"
+        ]
+      },
+      {
+        "rule_id": "rule.family-inheritance.rule-spouse-order",
+        "title_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단…",
+        "proposition_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단독상속인이 된다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단독상속인이 된다."
+        },
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1003"
+        ]
+      },
+      {
+        "rule_id": "rule.family-inheritance.rule-three-months",
+        "title_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선…",
+        "proposition_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선택할 수 있고 가정법원이 기간을 연장할 수 있다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선택할 수 있고 가정법원이 기간을 연장할 수 있다."
+        },
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1019"
+        ]
+      },
+      {
+        "rule_id": "rule.family-inheritance.rule-renunciation",
+        "title_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효…",
+        "proposition_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효력이 생긴다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효력이 생긴다."
+        },
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1041",
+          "coord.family-inheritance.civil-act-ko-1042",
+          "coord.family-inheritance.civil-act-ko-1043"
+        ]
+      },
+      {
+        "rule_id": "rule.family-inheritance.rule-limited-effect",
+        "title_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 …",
+        "proposition_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 조건의 승인이다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 조건의 승인이다."
+        },
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1028"
+        ]
+      },
+      {
+        "rule_id": "rule.family-inheritance.rule-limited-procedure",
+        "title_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변…",
+        "proposition_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변제 절차를 따라야 한다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변제 절차를 따라야 한다."
+        },
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1030",
+          "coord.family-inheritance.civil-act-ko-1031",
+          "coord.family-inheritance.civil-act-ko-1032",
+          "coord.family-inheritance.civil-act-ko-1033",
+          "coord.family-inheritance.civil-act-ko-1034",
+          "coord.family-inheritance.civil-act-ko-1035",
+          "coord.family-inheritance.civil-act-ko-1036",
+          "coord.family-inheritance.civil-act-ko-1037",
+          "coord.family-inheritance.civil-act-ko-1038",
+          "coord.family-inheritance.civil-act-ko-1039"
+        ]
+      },
+      {
+        "rule_id": "rule.family-inheritance.rule-special-limited",
+        "title_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그…",
+        "proposition_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그 사실을 안 날부터 3개월 내 특별한정승인이 가능할 수 있다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그 사실을 안 날부터 3개월 내 특별한정승인이 가능할 수 있다."
+        },
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1019"
+        ]
+      },
+      {
+        "rule_id": "rule.money-guarantee.rule-loan-agreement",
+        "title_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어…",
+        "proposition_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어야 성립한다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어야 성립한다."
+        },
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0598"
+        ]
+      },
+      {
+        "rule_id": "rule.money-guarantee.rule-no-due-date",
+        "title_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다.",
+        "proposition_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다."
+        },
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0603"
+        ]
+      },
+      {
+        "rule_id": "rule.money-guarantee.rule-payment-allocation",
+        "title_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에…",
+        "proposition_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에 따라 어느 채무가 소멸하는지가 달라진다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에 따라 어느 채무가 소멸하는지가 달라진다."
+        },
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0476",
+          "coord.money-guarantee.civil-act-ko-0477",
+          "coord.money-guarantee.civil-act-ko-0478",
+          "coord.money-guarantee.civil-act-ko-0479"
+        ]
+      },
+      {
+        "rule_id": "rule.money-guarantee.rule-guarantee-writing",
+        "title_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발…",
+        "proposition_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발생하고 전자적 형태 표시는 원칙적으로 효력이 없다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발생하고 전자적 형태 표시는 원칙적으로 효력이 없다."
+        },
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0428-02"
+        ]
+      },
+      {
+        "rule_id": "rule.money-guarantee.rule-continuing-guarantee-cap",
+        "title_ko": "불확정한 다수 채무를 보증하는 근보증은 최고액을 서면으로 특정하지 않으면 효…",
+        "proposition_ko": "불확정한 다수 채무를 보증하는 근보증은 최고액을 서면으로 특정하지 않으면 효력이 없다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "불확정한 다수 채무를 보증하는 근보증은 최고액을 서면으로 특정하지 않으면 효력이 없다."
+        },
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0428-03"
+        ]
+      },
+      {
+        "rule_id": "rule.money-guarantee.rule-guarantee-scope",
+        "title_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지…",
+        "proposition_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지만 주채무보다 무거운 부담은 주채무 한도로 감축된다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "조문과 구체적 사실관계가 정한 요건을 충족하는 경우",
+          "legal_effect_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지만 주채무보다 무거운 부담은 주채무 한도로 감축된다."
+        },
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0428",
+          "coord.money-guarantee.civil-act-ko-0429",
+          "coord.money-guarantee.civil-act-ko-0430"
+        ]
+      },
+      {
+        "rule_id": "rule.shared-mobility-accident.shared-mobility-private-structure-defect",
+        "title_ko": "민간 공작물의 설치ㆍ보존 하자",
+        "proposition_ko": "공작물의 설치 또는 보존 하자로 타인에게 손해가 발생하면 점유자가 원칙적으로 배상책임을 지고, 점유자가 필요한 주의를 다한 경우에는 소유자가 책임을 질 수 있습니다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "사고 원인이 민간 공작물의 설치ㆍ보존 상태에 있음 · 하자와 손해 사이의 인과관계가 있음",
+          "legal_effect_ko": "공작물의 설치 또는 보존 하자로 타인에게 손해가 발생하면 점유자가 원칙적으로 배상책임을 지고, 점유자가 필요한 주의를 다한 경우에는 소유자가 책임을 질 수 있습니다."
+        },
+        "source_coordinate_ids": [
+          "coord.shared-mobility-accident.civil-act-ko-0758"
+        ]
+      },
+      {
+        "rule_id": "rule.shared-mobility-accident.shared-mobility-general-tort",
+        "title_ko": "고의ㆍ과실의 위법행위와 손해 사이의 책임",
+        "proposition_ko": "고의 또는 과실로 인한 위법행위로 타인에게 손해를 가한 사람은 그 손해를 배상할 책임이 있습니다.",
+        "norm": {
+          "actor_ko": "해당 법률관계의 당사자",
+          "conditions_ko": "주의의무 위반이나 고의가 있음 · 위법행위와 손해 사이의 인과관계가 인정됨",
+          "legal_effect_ko": "고의 또는 과실로 인한 위법행위로 타인에게 손해를 가한 사람은 그 손해를 배상할 책임이 있습니다."
+        },
+        "source_coordinate_ids": [
+          "coord.shared-mobility-accident.civil-act-ko-0750"
+        ]
+      }
+    ],
+    "scenario_branches": [
+      {
+        "scenario_id": "scenario.admin-appeal.application-date",
+        "question_ko": "국선대리인 선임 신청 절차의 기준일이 2026년 6월 16일 이후인가요?",
+        "decision_fact_ko": "적용할 신청 절차의 시점",
+        "when_true_ko": "현재 문언에 따라 자격군과 행정정보 확인 동의 여부를 나누어 첨부서류를 판단합니다.",
+        "when_false_ko": "2026년 6월 15일까지의 종전 문언에서는 자격군 모두가 소명서류를 직접 제출하는 구조였습니다. 시행일 당시 처리 중인 신청의 적용례는 별도 확인이 필요합니다.",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.old-document-rule",
+          "rule.admin-appeal.appointed-representative.current-direct-documents",
+          "rule.admin-appeal.appointed-representative.current-data-sharing"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.historical-2025-10-01",
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ]
+      },
+      {
+        "scenario_id": "scenario.admin-appeal.eligibility-group",
+        "question_ko": "기초연금 수급자 또는 북한이탈주민 보호대상자 자격으로 신청하나요?",
+        "decision_fact_ko": "신청자가 해당하는 국선대리인 신청 자격군",
+        "when_true_ko": "현재도 자격 소명서류를 선임 신청서와 함께 제출해야 합니다.",
+        "when_false_ko": "다른 자격군이라면 행정정보 확인 대상인지와 동의 여부를 추가로 확인해야 합니다.",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.current-direct-documents",
+          "rule.admin-appeal.appointed-representative.current-data-sharing"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ]
+      },
+      {
+        "scenario_id": "scenario.admin-appeal.data-sharing-consent",
+        "question_ko": "위원회의 행정정보 공동이용 확인에 동의하나요?",
+        "decision_fact_ko": "행정정보 공동이용 확인 동의 여부",
+        "when_true_ko": "확인 대상 자격군이라면 위원회가 행정정보로 자격을 확인할 수 있습니다.",
+        "when_false_ko": "확인 대상 자격군이어도 해당 자격의 소명서류를 직접 제출해야 합니다.",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.current-data-sharing",
+          "rule.admin-appeal.appointed-representative.no-consent"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ]
+      },
+      {
+        "scenario_id": "scenario.family-inheritance.sc-spouse-children",
+        "question_ko": "배우자와 자녀가 있는 일반적인 상속",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "rule_ids": [
+          "rule.family-inheritance.rule-inheritance-order",
+          "rule.family-inheritance.rule-spouse-order"
+        ],
+        "source_coordinate_ids": []
+      },
+      {
+        "scenario_id": "scenario.family-inheritance.sc-debt-uncertain",
+        "question_ko": "재산과 채무 규모를 아직 모르는 상태에서 3개월이 흐르는 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "rule_ids": [
+          "rule.family-inheritance.rule-three-months",
+          "rule.family-inheritance.rule-limited-effect"
+        ],
+        "source_coordinate_ids": []
+      },
+      {
+        "scenario_id": "scenario.family-inheritance.sc-limited-approved",
+        "question_ko": "한정승인 수리 후 여러 채권자가 변제를 요구하는 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "rule_ids": [
+          "rule.family-inheritance.rule-limited-procedure"
+        ],
+        "source_coordinate_ids": []
+      },
+      {
+        "scenario_id": "scenario.family-inheritance.sc-late-debt",
+        "question_ko": "3개월 후 처음 큰 보증채무나 대출채무를 알게 된 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "rule_ids": [
+          "rule.family-inheritance.rule-special-limited"
+        ],
+        "source_coordinate_ids": []
+      },
+      {
+        "scenario_id": "scenario.money-guarantee.sc-transfer-gift-dispute",
+        "question_ko": "가족·연인에게 송금했는데 상대방이 증여였다고 주장하는 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "rule_ids": [
+          "rule.money-guarantee.rule-loan-agreement"
+        ],
+        "source_coordinate_ids": []
+      },
+      {
+        "scenario_id": "scenario.money-guarantee.sc-no-note",
+        "question_ko": "차용증 없이 메신저와 송금내역만 남은 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "rule_ids": [
+          "rule.money-guarantee.rule-loan-agreement"
+        ],
+        "source_coordinate_ids": []
+      },
+      {
+        "scenario_id": "scenario.money-guarantee.sc-no-due-date",
+        "question_ko": "갚는 날짜를 정하지 않고 돈을 빌려준 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "rule_ids": [
+          "rule.money-guarantee.rule-no-due-date"
+        ],
+        "source_coordinate_ids": []
+      },
+      {
+        "scenario_id": "scenario.money-guarantee.sc-partial-payment",
+        "question_ko": "여러 차례 돈을 빌려주고 일부만 돌려받은 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "rule_ids": [
+          "rule.money-guarantee.rule-payment-allocation"
+        ],
+        "source_coordinate_ids": []
+      },
+      {
+        "scenario_id": "scenario.money-guarantee.sc-message-guarantee",
+        "question_ko": "메신저로 대신 갚겠다는 답변만 받은 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "rule_ids": [
+          "rule.money-guarantee.rule-guarantee-writing"
+        ],
+        "source_coordinate_ids": []
+      },
+      {
+        "scenario_id": "scenario.money-guarantee.sc-continuing-guarantee",
+        "question_ko": "현재와 장래의 모든 거래채무를 포괄 보증한 경우",
+        "decision_fact_ko": "질문에 해당하는 구체적 사실",
+        "when_true_ko": "연결된 법리의 요건과 효과를 적용해 검토합니다.",
+        "when_false_ko": "다른 사실분기와 예외를 이어서 확인합니다.",
+        "rule_ids": [
+          "rule.money-guarantee.rule-continuing-guarantee-cap",
+          "rule.money-guarantee.rule-guarantee-scope"
+        ],
+        "source_coordinate_ids": []
+      },
+      {
+        "scenario_id": "scenario.shared-mobility-accident.shared-mobility-cause-private-facility",
+        "question_ko": "민간 건물ㆍ주차시설ㆍ거치시설의 설치나 보존 상태가 사고 원인인가요?",
+        "decision_fact_ko": "시설물의 점유자ㆍ소유자와 설치ㆍ보존 하자",
+        "when_true_ko": "점유자의 주의와 소유자의 책임 순서를 포함해 민법 제758조 적용 가능성을 검토합니다.",
+        "when_false_ko": "다른 이용자 또는 차량의 과실과 이용자 자신의 운전행위를 검토합니다.",
+        "rule_ids": [],
+        "source_coordinate_ids": [
+          "coord.shared-mobility-accident.civil-act-ko-0758"
+        ]
+      },
+      {
+        "scenario_id": "scenario.shared-mobility-accident.shared-mobility-other-person",
+        "question_ko": "다른 차량ㆍ보행자ㆍ이용자의 행위가 사고에 기여했나요?",
+        "decision_fact_ko": "상대방의 구체적 행위와 주의의무 위반",
+        "when_true_ko": "상대방의 과실, 위법성, 인과관계와 공동 원인 가능성을 검토합니다.",
+        "when_false_ko": "단독사고라면 기기ㆍ도로ㆍ시설ㆍ이용자 조작 원인을 더 세밀하게 확인합니다.",
+        "rule_ids": [],
+        "source_coordinate_ids": [
+          "coord.shared-mobility-accident.civil-act-ko-0750"
+        ]
+      }
+    ],
+    "content_entries": [
+      {
+        "content_id": "content.admin-appeal.documents-law-change",
+        "content_type": "law_change",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-20T06:30:00+00:00",
+        "expires_at": "2026-10-20T00:00:00+00:00",
+        "slug": "administrative-appeal-appointed-representative-documents-change",
+        "title_ko": "행정심판 국선대리인 신청서류는 2026년 6월 16일부터 어떻게 달라졌나",
+        "one_line_answer_ko": "신청 자격과 기한은 유지되지만, 일부 자격군은 동의하면 자격 소명서류를 직접 내는 대신 위원회의 행정정보 확인을 이용할 수 있게 됐습니다.",
+        "audience_situation_ko": "행정심판 국선대리인 선임을 신청하면서 구법과 현재 절차의 차이를 확인하려는 경우",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.old-document-rule",
+          "rule.admin-appeal.appointed-representative.current-direct-documents",
+          "rule.admin-appeal.appointed-representative.current-data-sharing",
+          "rule.admin-appeal.appointed-representative.no-consent"
+        ],
+        "scenario_ids": [
+          "scenario.admin-appeal.application-date"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.historical-2025-10-01",
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ],
+        "hub_ids": [
+          "hub.administrative-appeals"
+        ],
+        "related_content_ids": [
+          "content.admin-appeal.eligibility-document-branch",
+          "content.admin-appeal.not-all-documents-waived"
+        ],
+        "key_points_ko": [
+          "2026년 6월 16일 전후의 절차를 구분합니다.",
+          "현재도 직접 서류를 내야 하는 자격군이 있습니다.",
+          "행정정보 확인 대상이라도 동의하지 않으면 직접 제출합니다."
+        ],
+        "action_steps_ko": [
+          "신청 절차에 적용할 기준일을 확인합니다.",
+          "시행령 제16조의2의 어느 자격군에 해당하는지 확인합니다.",
+          "행정정보 공동이용 동의 여부를 정합니다.",
+          "자격군과 동의 여부에 맞춰 신청서와 소명서류를 준비합니다."
+        ],
+        "facts_to_check_ko": [
+          "신청일과 처리 상태",
+          "신청 자격군",
+          "행정정보 공동이용 동의 여부",
+          "현재 보유한 자격 소명서류"
+        ],
+        "caution_ko": "2026년 6월 16일 전에 접수되어 시행일 당시 처리 중이던 신청의 적용례는 별도 확인이 필요합니다.",
+        "search_intents_ko": [
+          "행정심판 국선대리인 서류 개정",
+          "국선대리인 신청서류 2026",
+          "행정정보 공동이용 국선대리인"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "바뀐 것은 자격보다 소명 방식입니다",
+            "paragraphs_ko": [
+              "국선대리인 신청 가능 대상과 심리기일 전이라는 신청기한은 유지됩니다. 이번 변경의 중심은 일부 자격군이 자격을 증명하는 방식입니다.",
+              "종전에는 자격군 모두가 소명서류를 직접 냈지만, 현재는 일부 자격군이 동의하면 위원회의 행정정보 확인으로 자격을 소명할 수 있습니다."
+            ]
+          },
+          {
+            "heading_ko": "현재도 자격군별로 준비물이 다릅니다",
+            "paragraphs_ko": [
+              "기초연금 수급자와 북한이탈주민 보호대상자는 현재도 신청서와 자격 소명서류를 함께 제출합니다.",
+              "기초생활수급자·한부모가족 지원대상자·장애인연금 수급자·경제적 곤란 인정대상자는 행정정보 확인 대상이지만, 확인에 동의하지 않으면 소명서류를 직접 제출해야 합니다."
+            ]
+          }
+        ]
+      },
+      {
+        "content_id": "content.admin-appeal.eligibility-document-branch",
+        "content_type": "fact_branch",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-20T06:30:00+00:00",
+        "expires_at": "2026-10-20T00:00:00+00:00",
+        "slug": "administrative-appeal-which-eligibility-documents",
+        "title_ko": "내 자격군은 국선대리인 신청 때 증명서류를 직접 내야 하나",
+        "one_line_answer_ko": "기초연금 수급자와 북한이탈주민 보호대상자는 직접 제출하고, 일부 다른 자격군은 행정정보 확인 동의 여부에 따라 달라집니다.",
+        "audience_situation_ko": "국선대리인 신청 자격은 알지만 어떤 첨부서류를 준비해야 하는지 모르는 경우",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.current-direct-documents",
+          "rule.admin-appeal.appointed-representative.current-data-sharing"
+        ],
+        "scenario_ids": [
+          "scenario.admin-appeal.eligibility-group",
+          "scenario.admin-appeal.data-sharing-consent"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ],
+        "hub_ids": [
+          "hub.administrative-appeals"
+        ],
+        "related_content_ids": [
+          "content.admin-appeal.data-sharing-consent",
+          "content.admin-appeal.application-preparation"
+        ],
+        "concierge_entry": {
+          "question_ko": "내가 해당하는 국선대리인 신청 자격군과 필요한 소명서류를 사실관계에 맞춰 확인하고 싶습니다.",
+          "decision_facts_ko": [
+            "신청 자격군",
+            "신청일",
+            "행정정보 확인 동의 여부"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        },
+        "key_points_ko": [
+          "먼저 자신의 신청 자격군을 특정합니다.",
+          "기초연금 수급자와 북한이탈주민 보호대상자는 직접 제출합니다.",
+          "다른 대상 자격군은 행정정보 확인 동의 여부를 추가로 봅니다."
+        ],
+        "action_steps_ko": [
+          "신청 근거가 되는 자격을 하나씩 확인합니다.",
+          "기초연금·북한이탈주민 자격이면 소명서류를 준비합니다.",
+          "그 밖의 행정정보 확인 대상이면 동의 여부를 확인합니다.",
+          "최종 제출 전에 신청서와 첨부서류 목록을 대조합니다."
+        ],
+        "facts_to_check_ko": [
+          "구체적인 신청 자격",
+          "신청 예정일",
+          "행정정보 확인 대상 여부",
+          "공동이용 동의 여부"
+        ],
+        "caution_ko": "여러 자격에 동시에 해당하더라도 실제 신청에 사용할 자격과 그 소명 방식을 분명히 정해야 합니다.",
+        "search_intents_ko": [
+          "국선대리인 자격 증명서류",
+          "행정심판 국선대리인 첨부서류",
+          "기초연금 국선대리인 서류"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "자격군을 먼저 나누어야 합니다",
+            "paragraphs_ko": [
+              "기초연금 수급자 또는 북한이탈주민 보호대상자 자격으로 신청한다면 현재도 자격 소명서류를 신청서와 함께 내야 합니다.",
+              "그 밖의 행정정보 확인 대상 자격군이라면 서류를 바로 준비하기 전에 위원회의 행정정보 확인을 이용할 수 있는지 봅니다."
+            ]
+          },
+          {
+            "heading_ko": "동의 여부가 두 번째 분기입니다",
+            "paragraphs_ko": [
+              "행정정보 확인 대상 자격군이 공동이용에 동의하면 위원회가 행정정보로 자격을 확인할 수 있습니다.",
+              "동의하지 않으면 신청할 수 없는 것이 아니라, 해당 자격의 소명서류를 직접 제출하는 방식으로 바뀝니다."
+            ]
+          }
+        ]
+      },
+      {
+        "content_id": "content.admin-appeal.data-sharing-consent",
+        "content_type": "fact_branch",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-20T06:30:00+00:00",
+        "expires_at": "2026-10-20T00:00:00+00:00",
+        "slug": "administrative-appeal-data-sharing-consent",
+        "title_ko": "행정정보 확인에 동의하지 않으면 신청할 수 없나",
+        "one_line_answer_ko": "신청 자체가 막히는 것은 아니지만, 행정정보 확인 대상 자격군도 동의하지 않으면 자격 소명서류를 직접 제출해야 합니다.",
+        "audience_situation_ko": "행정정보 공동이용에 동의하지 않고 국선대리인 선임을 신청하려는 경우",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.current-data-sharing",
+          "rule.admin-appeal.appointed-representative.no-consent"
+        ],
+        "scenario_ids": [
+          "scenario.admin-appeal.data-sharing-consent"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ],
+        "hub_ids": [
+          "hub.administrative-appeals"
+        ],
+        "related_content_ids": [
+          "content.admin-appeal.eligibility-document-branch",
+          "content.admin-appeal.application-preparation"
+        ],
+        "key_points_ko": [
+          "동의하지 않아도 신청 자체가 막히지는 않습니다.",
+          "동의하지 않으면 자격 소명서류를 직접 제출합니다.",
+          "이 분기는 행정정보 확인 대상 자격군에 관한 것입니다."
+        ],
+        "action_steps_ko": [
+          "자신이 행정정보 확인 대상 자격군인지 확인합니다.",
+          "공동이용 동의 여부를 명확히 정합니다.",
+          "동의하지 않는다면 해당 자격의 소명서류를 준비합니다.",
+          "접수 전에 누락 서류가 없는지 확인합니다."
+        ],
+        "facts_to_check_ko": [
+          "신청 자격군",
+          "행정정보 확인 대상 여부",
+          "동의 여부",
+          "대체하여 제출할 소명서류"
+        ],
+        "caution_ko": "기초연금 수급자와 북한이탈주민 보호대상자는 행정정보 확인 동의 분기와 별개로 직접 제출 자격군입니다.",
+        "search_intents_ko": [
+          "행정정보 공동이용 동의 거부",
+          "국선대리인 행정정보 동의",
+          "국선대리인 서류 직접 제출"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "동의는 신청 가능 여부가 아니라 소명 방법을 가릅니다",
+            "paragraphs_ko": [
+              "행정정보 공동이용에 동의하지 않았다는 이유만으로 국선대리인 선임 신청 자체가 배제되는 구조는 아닙니다.",
+              "다만 행정정보 확인으로 갈음할 수 없으므로, 신청자가 해당 자격의 소명서류를 직접 제출해야 합니다."
+            ]
+          },
+          {
+            "heading_ko": "대상 자격군인지부터 확인해야 합니다",
+            "paragraphs_ko": [
+              "이 선택은 기초생활수급자·한부모가족 지원대상자·장애인연금 수급자·경제적 곤란 인정대상자처럼 행정정보 확인 대상인 경우에 문제됩니다.",
+              "직접 제출 자격군과 혼동하지 말고, 자격군 확인 뒤 동의 여부와 첨부서류를 정합니다."
+            ]
+          }
+        ]
+      },
+      {
+        "content_id": "content.admin-appeal.not-all-documents-waived",
+        "content_type": "misconception_correction",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-20T06:30:00+00:00",
+        "expires_at": "2026-10-20T00:00:00+00:00",
+        "slug": "administrative-appeal-documents-not-fully-waived",
+        "title_ko": "법이 바뀌어 국선대리인 증명서류가 모두 없어진 것은 아닙니다",
+        "one_line_answer_ko": "서류 부담이 줄어든 자격군이 있지만, 직접 제출이 유지되는 자격군과 동의하지 않아 직접 내야 하는 경우가 남아 있습니다.",
+        "audience_situation_ko": "개정 뒤에는 모든 신청자가 증명서류를 내지 않아도 된다고 이해한 경우",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.current-direct-documents",
+          "rule.admin-appeal.appointed-representative.current-data-sharing",
+          "rule.admin-appeal.appointed-representative.no-consent"
+        ],
+        "scenario_ids": [
+          "scenario.admin-appeal.eligibility-group",
+          "scenario.admin-appeal.data-sharing-consent"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ],
+        "hub_ids": [
+          "hub.administrative-appeals"
+        ],
+        "related_content_ids": [
+          "content.admin-appeal.documents-law-change",
+          "content.admin-appeal.eligibility-document-branch"
+        ],
+        "key_points_ko": [
+          "개정으로 모든 증명서류가 없어진 것은 아닙니다.",
+          "직접 제출이 유지된 자격군이 있습니다.",
+          "행정정보 확인 대상도 미동의 시 직접 제출합니다."
+        ],
+        "action_steps_ko": [
+          "'서류 면제'라는 안내만 믿지 말고 자격군을 확인합니다.",
+          "자신에게 적용되는 현재 문언을 확인합니다.",
+          "행정정보 확인 동의 여부를 점검합니다.",
+          "필요한 소명서류를 제출목록에 반영합니다."
+        ],
+        "facts_to_check_ko": [
+          "신청 자격군",
+          "신청 시점",
+          "행정정보 확인 가능 여부",
+          "공동이용 동의 여부"
+        ],
+        "caution_ko": "서류 제출 방식이 간소화된 것과 신청 자격 자체가 확대된 것은 서로 다른 문제입니다.",
+        "search_intents_ko": [
+          "국선대리인 서류 면제",
+          "행정심판 증명서류 없어짐",
+          "국선대리인 개정 오해"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "정확한 표현은 일부 자격군의 제출 부담 완화입니다",
+            "paragraphs_ko": [
+              "현재도 기초연금 수급자와 북한이탈주민 보호대상자는 자격 소명서류를 신청서와 함께 제출해야 합니다.",
+              "따라서 개정을 모든 신청자의 첨부서류 폐지로 이해하면 실제 접수에서 누락이 생길 수 있습니다."
+            ]
+          },
+          {
+            "heading_ko": "행정정보 확인에도 조건이 있습니다",
+            "paragraphs_ko": [
+              "행정정보 확인 대상 자격군은 공동이용에 동의한 경우 위원회의 확인으로 자격을 소명할 수 있습니다.",
+              "동의하지 않으면 다시 직접 제출 방식이 적용되므로 자격군과 동의 여부를 함께 확인해야 합니다."
+            ]
+          }
+        ]
+      },
+      {
+        "content_id": "content.admin-appeal.application-preparation",
+        "content_type": "procedure_evidence",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-20T06:30:00+00:00",
+        "expires_at": "2026-10-20T00:00:00+00:00",
+        "slug": "administrative-appeal-appointed-representative-preparation",
+        "title_ko": "국선대리인 선임 신청 전에 확인할 세 가지",
+        "one_line_answer_ko": "신청 시점, 자신이 속한 자격군, 행정정보 확인 동의 여부를 먼저 확인해야 필요한 첨부서류를 정할 수 있습니다.",
+        "audience_situation_ko": "행정심판 국선대리인 선임 신청을 준비하는 청구인 또는 지원기관 담당자",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.current-direct-documents",
+          "rule.admin-appeal.appointed-representative.current-data-sharing",
+          "rule.admin-appeal.appointed-representative.no-consent"
+        ],
+        "scenario_ids": [
+          "scenario.admin-appeal.application-date",
+          "scenario.admin-appeal.eligibility-group",
+          "scenario.admin-appeal.data-sharing-consent"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ],
+        "hub_ids": [
+          "hub.administrative-appeals"
+        ],
+        "related_content_ids": [
+          "content.admin-appeal.eligibility-document-branch",
+          "content.admin-appeal.data-sharing-consent"
+        ],
+        "concierge_entry": {
+          "question_ko": "국선대리인 선임 신청에 필요한 자료와 아직 확인해야 할 사실을 정리하고 싶습니다.",
+          "decision_facts_ko": [
+            "신청일",
+            "신청 자격군",
+            "행정정보 확인 동의 여부",
+            "보유한 소명서류"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        },
+        "key_points_ko": [
+          "신청 절차의 기준일을 확인합니다.",
+          "신청에 사용할 자격군을 특정합니다.",
+          "행정정보 확인 동의 여부로 첨부서류를 확정합니다."
+        ],
+        "action_steps_ko": [
+          "신청일과 심리기일을 확인합니다.",
+          "신청에 사용할 자격군을 정합니다.",
+          "행정정보 확인 대상인지 확인합니다.",
+          "동의 여부에 따라 직접 제출할 소명서류를 준비합니다.",
+          "신청서와 첨부서류를 제출 전 다시 대조합니다."
+        ],
+        "facts_to_check_ko": [
+          "신청 예정일",
+          "심리기일",
+          "신청 자격군",
+          "행정정보 확인 동의 여부",
+          "보유한 소명서류"
+        ],
+        "caution_ko": "신청은 법 제38조제1항의 심리기일 전에 해야 하므로 서류 확인 때문에 신청 시점을 놓치지 않도록 합니다.",
+        "search_intents_ko": [
+          "국선대리인 신청 준비",
+          "행정심판 국선대리인 체크리스트",
+          "국선대리인 심리기일 전 신청"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "첫째, 적용할 절차와 신청기한을 확인합니다",
+            "paragraphs_ko": [
+              "현재 절차는 2026년 6월 16일 이후 문언을 기준으로 자격군과 동의 여부를 나눕니다.",
+              "국선대리인 선임 신청은 심리기일 전에 해야 하므로 기준일과 남은 시간을 먼저 확인합니다."
+            ]
+          },
+          {
+            "heading_ko": "둘째, 자격군과 소명 방식을 연결합니다",
+            "paragraphs_ko": [
+              "자신이 어느 신청 자격군에 해당하는지 특정한 뒤 직접 제출 자격군인지 행정정보 확인 대상인지 구분합니다.",
+              "행정정보 확인 대상이라면 공동이용 동의 여부까지 정해야 최종 첨부서류 목록이 완성됩니다."
+            ]
+          }
+        ]
+      },
+      {
+        "content_id": "content.admin-appeal.qualification-vs-proof",
+        "content_type": "doctrine_explainer",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-20T06:30:00+00:00",
+        "expires_at": "2026-10-20T00:00:00+00:00",
+        "slug": "administrative-appeal-qualification-and-proof-method",
+        "title_ko": "국선대리인 신청 자격과 자격을 증명하는 방법은 구분해야 합니다",
+        "one_line_answer_ko": "이번 개정의 핵심은 신청 가능 대상 자체보다 일부 자격군의 소명 방식이 직접 제출에서 행정정보 확인으로 바뀐 데 있습니다.",
+        "audience_situation_ko": "서류 제출 방식의 변경을 국선대리인 신청 자격 확대와 혼동하는 경우",
+        "rule_ids": [
+          "rule.admin-appeal.appointed-representative.old-document-rule",
+          "rule.admin-appeal.appointed-representative.current-direct-documents",
+          "rule.admin-appeal.appointed-representative.current-data-sharing"
+        ],
+        "scenario_ids": [
+          "scenario.admin-appeal.application-date"
+        ],
+        "source_coordinate_ids": [
+          "coord.administrative-appeals-16-2.historical-2025-10-01",
+          "coord.administrative-appeals-16-2.current-2026-06-16"
+        ],
+        "hub_ids": [
+          "hub.administrative-appeals"
+        ],
+        "related_content_ids": [
+          "content.admin-appeal.documents-law-change",
+          "content.admin-appeal.not-all-documents-waived"
+        ],
+        "key_points_ko": [
+          "신청 자격과 자격 소명 방법은 다른 개념입니다.",
+          "이번 개정의 핵심은 일부 자격군의 소명 방식 변경입니다.",
+          "서류 간소화를 자격 확대와 혼동하면 안 됩니다."
+        ],
+        "action_steps_ko": [
+          "먼저 국선대리인 신청 자격 해당 여부를 확인합니다.",
+          "그 다음 해당 자격을 어떤 방식으로 소명하는지 확인합니다.",
+          "구법과 현행법의 기준일을 구분합니다.",
+          "직접 제출 또는 행정정보 확인 중 적용되는 방식을 준비합니다."
+        ],
+        "facts_to_check_ko": [
+          "신청 자격 해당 여부",
+          "신청에 사용할 구체적 자격",
+          "신청 시점",
+          "소명 방식",
+          "행정정보 확인 동의 여부"
+        ],
+        "caution_ko": "자격이 있다는 사실만으로 신청이 완성되는 것은 아니며, 현재 문언에 맞는 신청서와 소명 절차를 갖춰야 합니다.",
+        "search_intents_ko": [
+          "국선대리인 신청 자격",
+          "국선대리인 자격 증명 방법",
+          "행정심판 행정정보 확인"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "자격은 누가 신청할 수 있는지에 관한 문제입니다",
+            "paragraphs_ko": [
+              "국선대리인 신청 자격은 신청자가 법령상 대상에 해당하는지를 판단하는 단계입니다.",
+              "자격이 없다면 소명 방법을 선택할 문제가 생기지 않고, 자격이 있다면 다음으로 그 사실을 어떻게 증명할지 봅니다."
+            ]
+          },
+          {
+            "heading_ko": "소명 방법은 자격을 어떻게 확인할지에 관한 문제입니다",
+            "paragraphs_ko": [
+              "종전에는 각 자격군이 소명서류를 직접 제출하는 구조였지만, 현재는 일부 자격군이 동의하면 위원회의 행정정보 확인을 이용할 수 있습니다.",
+              "이 변화는 일부 신청자의 제출 부담을 줄인 것이지, 그 자체로 신청 가능 대상 전체를 넓힌 변화라고 볼 수는 없습니다."
+            ]
+          }
+        ]
+      },
+      {
+        "content_id": "content.legal-heir-order-and-spouse",
+        "content_type": "doctrine",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "legal-heir-order-and-spouse",
+        "title_ko": "누가 법정상속인이 되는가",
+        "one_line_answer_ko": "",
+        "audience_situation_ko": "",
+        "key_points_ko": [],
+        "action_steps_ko": [],
+        "facts_to_check_ko": [],
+        "caution_ko": "",
+        "search_intents_ko": [],
+        "body_sections": [
+          {
+            "heading_ko": "혈족의 순위와 배우자 지위를 함께 본다",
+            "paragraphs_ko": [
+              "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순입니다. 같은 순위에서는 촌수가 가까운 사람이 먼저이고 같은 촌수의 사람이 여럿이면 공동상속인이 됩니다.",
+              "법률상 배우자는 직계비속 또는 직계존속이 있으면 그들과 같은 순위로 공동상속하고, 그들이 없으면 단독상속합니다. 배우자를 혈족 순위표의 다음 칸에 단순히 넣어서는 안 됩니다."
+            ]
+          },
+          {
+            "heading_ko": "가족관계도에 예외 사유를 표시한다",
+            "paragraphs_ko": [
+              "가족관계증명서와 제적등본을 바탕으로 사망 당시의 배우자·자녀·부모·형제자매를 적고, 피상속인보다 먼저 사망한 사람과 입양관계를 표시합니다.",
+              "대습상속, 상속결격, 상속포기와 2026년 도입된 상속권 상실선고가 있으면 일반 순위만으로 결론낼 수 없습니다. 사실혼 배우자의 법적 지위도 법률상 배우자와 동일하다고 단정하지 말아야 합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.family-inheritance.rule-inheritance-order",
+          "rule.family-inheritance.rule-spouse-order"
+        ],
+        "scenario_ids": [
+          "scenario.family-inheritance.sc-spouse-children"
+        ],
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1000",
+          "coord.family-inheritance.civil-act-ko-1003"
+        ],
+        "hub_ids": [
+          "hub.family-inheritance"
+        ],
+        "related_content_ids": []
+      },
+      {
+        "content_id": "content.three-month-inheritance-decision-period",
+        "content_type": "procedure",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "three-month-inheritance-decision-period",
+        "title_ko": "상속포기·한정승인 3개월은 언제부터 계산하나",
+        "one_line_answer_ko": "",
+        "audience_situation_ko": "",
+        "key_points_ko": [],
+        "action_steps_ko": [],
+        "facts_to_check_ko": [],
+        "caution_ko": "",
+        "search_intents_ko": [],
+        "body_sections": [
+          {
+            "heading_ko": "사망일만이 아니라 상속인임을 안 날을 본다",
+            "paragraphs_ko": [
+              "민법은 상속개시 있음을 안 날부터 3개월 동안 단순승인·한정승인·포기를 선택하도록 합니다. 통상 사망 사실을 안 날과 겹칠 수 있지만, 자신이 상속인이 되었음을 언제 알았는지가 구체적으로 문제될 수 있습니다.",
+              "선순위자의 포기로 뒤늦게 후순위 상속인이 된 경우에는 포기 수리 사실과 자신이 상속인이 되었음을 현실적으로 안 시점을 확인합니다."
+            ]
+          },
+          {
+            "heading_ko": "기한을 기다리지 말고 조사와 연장을 병행한다",
+            "paragraphs_ko": [
+              "법원 통지, 채권자의 청구서, 가족 연락과 우편 수령일을 보존하고 가장 이른 기산 가능일을 기준으로 만료일을 계산하는 편이 안전합니다.",
+              "재산·채무 조사가 끝나지 않아 선택하기 어렵다면 기간 만료 전에 가정법원에 기간 연장을 청구할 수 있는지 검토합니다. 연장될 것이라고 가정해 원래 기한을 넘겨서는 안 됩니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.family-inheritance.rule-three-months"
+        ],
+        "scenario_ids": [
+          "scenario.family-inheritance.sc-debt-uncertain"
+        ],
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1019"
+        ],
+        "hub_ids": [
+          "hub.family-inheritance"
+        ],
+        "related_content_ids": []
+      },
+      {
+        "content_id": "content.inheritance-renunciation-procedure",
+        "content_type": "procedure",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "inheritance-renunciation-procedure",
+        "title_ko": "상속포기는 가족끼리 말하면 끝나는가",
+        "one_line_answer_ko": "",
+        "audience_situation_ko": "",
+        "key_points_ko": [],
+        "action_steps_ko": [],
+        "facts_to_check_ko": [],
+        "caution_ko": "",
+        "search_intents_ko": [],
+        "body_sections": [
+          {
+            "heading_ko": "가족 간 합의와 법정 상속포기는 다르다",
+            "paragraphs_ko": [
+              "상속재산을 받지 않겠다고 가족에게 말하거나 분할협의서에 자신의 몫이 없다고 적는 것만으로 민법상 상속포기가 되는 것은 아닙니다. 법정 기간 안에 가정법원에 포기신고를 해야 합니다.",
+              "포기신고는 특정 예금이나 특정 채무만 골라 제외하는 절차가 아닙니다. 상속인 지위에서 벗어나는 효과와 가족 사이의 재산분배 합의를 구분해야 합니다."
+            ]
+          },
+          {
+            "heading_ko": "수리심판과 다음 상속인을 확인한다",
+            "paragraphs_ko": [
+              "상속포기 효력은 가정법원의 수리심판이 고지되어야 발생하고, 발생하면 상속개시 때로 소급합니다. 신고 접수만 했다고 재산을 자유롭게 처분해서는 안 됩니다.",
+              "포기자가 생기면 남은 공동상속인 또는 후순위 상속인의 지위가 달라질 수 있습니다. 배우자와 자녀의 전원·일부 포기 여부를 구분해 가족관계도를 다시 계산합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.family-inheritance.rule-renunciation",
+          "rule.family-inheritance.rule-inheritance-order",
+          "rule.family-inheritance.rule-spouse-order"
+        ],
+        "scenario_ids": [
+          "scenario.family-inheritance.sc-spouse-children"
+        ],
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1041",
+          "coord.family-inheritance.civil-act-ko-1042",
+          "coord.family-inheritance.civil-act-ko-1043",
+          "coord.family-inheritance.civil-act-ko-1000",
+          "coord.family-inheritance.civil-act-ko-1003"
+        ],
+        "hub_ids": [
+          "hub.family-inheritance"
+        ],
+        "related_content_ids": []
+      },
+      {
+        "content_id": "content.limited-acceptance-effect",
+        "content_type": "doctrine",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "limited-acceptance-effect",
+        "title_ko": "한정승인은 빚을 전혀 갚지 않는 제도인가",
+        "one_line_answer_ko": "",
+        "audience_situation_ko": "",
+        "key_points_ko": [],
+        "action_steps_ko": [],
+        "facts_to_check_ko": [],
+        "caution_ko": "",
+        "search_intents_ko": [],
+        "body_sections": [
+          {
+            "heading_ko": "채무가 사라지는 것이 아니라 책임 재원이 제한된다",
+            "paragraphs_ko": [
+              "한정승인은 상속으로 취득할 재산의 한도에서 피상속인의 채무와 유증을 변제하는 조건으로 상속을 승인하는 제도입니다. 채무의 존재 자체를 없애는 제도는 아닙니다.",
+              "상속포기와 달리 상속인 지위는 유지되므로 적극재산·채무·담보와 유증을 재산목록에 정확히 반영해야 합니다."
+            ]
+          },
+          {
+            "heading_ko": "법원 수리 뒤에도 청산 절차가 남는다",
+            "paragraphs_ko": [
+              "한정승인 신고에는 재산목록을 붙이고, 수리 뒤에는 채권자 공고·최고, 신고기간 관리와 우선권을 반영한 변제 절차를 진행합니다.",
+              "상속재산과 개인 고유재산을 회계상 분리하고 일부 채권자에게 임의로 먼저 지급하지 않도록 합니다. 절차 위반으로 다른 채권자가 변제받지 못하면 손해배상 문제가 생길 수 있습니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.family-inheritance.rule-limited-effect",
+          "rule.family-inheritance.rule-limited-procedure"
+        ],
+        "scenario_ids": [
+          "scenario.family-inheritance.sc-debt-uncertain",
+          "scenario.family-inheritance.sc-limited-approved"
+        ],
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1028",
+          "coord.family-inheritance.civil-act-ko-1030",
+          "coord.family-inheritance.civil-act-ko-1031",
+          "coord.family-inheritance.civil-act-ko-1032",
+          "coord.family-inheritance.civil-act-ko-1033",
+          "coord.family-inheritance.civil-act-ko-1034",
+          "coord.family-inheritance.civil-act-ko-1035",
+          "coord.family-inheritance.civil-act-ko-1036",
+          "coord.family-inheritance.civil-act-ko-1037",
+          "coord.family-inheritance.civil-act-ko-1038",
+          "coord.family-inheritance.civil-act-ko-1039"
+        ],
+        "hub_ids": [
+          "hub.family-inheritance"
+        ],
+        "related_content_ids": []
+      },
+      {
+        "content_id": "content.special-limited-acceptance-late-debt",
+        "content_type": "fact_branch",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "special-limited-acceptance-late-debt",
+        "title_ko": "3개월 뒤 숨은 빚을 알게 되면 방법이 없나",
+        "one_line_answer_ko": "",
+        "audience_situation_ko": "",
+        "key_points_ko": [],
+        "action_steps_ko": [],
+        "facts_to_check_ko": [],
+        "caution_ko": "",
+        "search_intents_ko": [],
+        "body_sections": [
+          {
+            "heading_ko": "늦게 안 채무와 늦게 안 채무초과를 구분한다",
+            "paragraphs_ko": [
+              "특별한정승인은 채무 하나를 뒤늦게 발견했다는 이유만으로 자동 허용되는 것이 아닙니다. 상속채무가 상속재산을 초과한다는 사실을 법정 기간 안에 중대한 과실 없이 알지 못했는지가 핵심입니다.",
+              "요건을 충족하면 그 채무초과 사실을 안 날부터 3개월 안에 한정승인을 검토할 수 있습니다. 새 채무의 통지일과 전체 재산·채무를 다시 계산한 시점을 나누어 기록합니다."
+            ]
+          },
+          {
+            "heading_ko": "과거의 조사와 처분까지 공개적으로 정리한다",
+            "paragraphs_ko": [
+              "사망 후 어떤 금융·부동산·보증 조사를 했고 무엇을 확인하지 못했는지, 조사하지 못한 이유가 무엇인지 자료로 남깁니다. 단순히 몰랐다는 진술만으로 중대한 과실 여부가 정해지지는 않습니다.",
+              "이미 상속재산을 처분하거나 채권자에게 변제한 사실이 있다면 숨기지 말고 금액·시점·수령자를 목록화합니다. 특별한정승인의 청산범위에도 영향을 줄 수 있습니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.family-inheritance.rule-special-limited",
+          "rule.family-inheritance.rule-limited-procedure"
+        ],
+        "scenario_ids": [
+          "scenario.family-inheritance.sc-late-debt"
+        ],
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1019",
+          "coord.family-inheritance.civil-act-ko-1030",
+          "coord.family-inheritance.civil-act-ko-1031",
+          "coord.family-inheritance.civil-act-ko-1032",
+          "coord.family-inheritance.civil-act-ko-1033",
+          "coord.family-inheritance.civil-act-ko-1034",
+          "coord.family-inheritance.civil-act-ko-1035",
+          "coord.family-inheritance.civil-act-ko-1036",
+          "coord.family-inheritance.civil-act-ko-1037",
+          "coord.family-inheritance.civil-act-ko-1038",
+          "coord.family-inheritance.civil-act-ko-1039"
+        ],
+        "hub_ids": [
+          "hub.family-inheritance"
+        ],
+        "related_content_ids": [],
+        "concierge_entry": {
+          "question_ko": "3개월 뒤 숨은 빚을 알게 되면 방법이 없나",
+          "decision_facts_ko": [],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.limited-acceptance-creditor-notice",
+        "content_type": "procedure",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "limited-acceptance-creditor-notice",
+        "title_ko": "한정승인 수리 뒤 바로 끝나는가",
+        "one_line_answer_ko": "",
+        "audience_situation_ko": "",
+        "key_points_ko": [],
+        "action_steps_ko": [],
+        "facts_to_check_ko": [],
+        "caution_ko": "",
+        "search_intents_ko": [],
+        "body_sections": [
+          {
+            "heading_ko": "한정승인 수리는 청산의 출발점이다",
+            "paragraphs_ko": [
+              "한정승인자는 한정승인을 한 날부터 5일 안에 일반상속채권자와 유증받은 사람에게 한정승인 사실과 채권·수증 신고를 공고하고, 신고기간은 2개월 이상으로 정해야 합니다.",
+              "알고 있는 채권자에게는 공고만으로 끝내지 않고 별도 최고가 문제됩니다. 수리일, 공고일, 신고기간과 최고 발송·도달자료를 한 묶음으로 보존합니다."
+            ]
+          },
+          {
+            "heading_ko": "신고기간 뒤 우선권과 비율에 따라 변제한다",
+            "paragraphs_ko": [
+              "신고기간이 끝나면 신고한 채권자와 알고 있는 채권자에게 각 채권액 비율로 변제하되 담보권 등 우선권 있는 채권자의 권리를 해치지 않아야 합니다.",
+              "일부 채권자에게 임의로 먼저 지급해 다른 채권자가 변제받지 못하면 한정승인자가 손해를 배상할 수 있습니다. 재산 환가와 변제 내역을 계속 장부화합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.family-inheritance.rule-limited-procedure",
+          "rule.family-inheritance.rule-limited-effect"
+        ],
+        "scenario_ids": [
+          "scenario.family-inheritance.sc-limited-approved"
+        ],
+        "source_coordinate_ids": [
+          "coord.family-inheritance.civil-act-ko-1030",
+          "coord.family-inheritance.civil-act-ko-1031",
+          "coord.family-inheritance.civil-act-ko-1032",
+          "coord.family-inheritance.civil-act-ko-1033",
+          "coord.family-inheritance.civil-act-ko-1034",
+          "coord.family-inheritance.civil-act-ko-1035",
+          "coord.family-inheritance.civil-act-ko-1036",
+          "coord.family-inheritance.civil-act-ko-1037",
+          "coord.family-inheritance.civil-act-ko-1038",
+          "coord.family-inheritance.civil-act-ko-1039",
+          "coord.family-inheritance.civil-act-ko-1028"
+        ],
+        "hub_ids": [
+          "hub.family-inheritance"
+        ],
+        "related_content_ids": []
+      },
+      {
+        "content_id": "content.bank-transfer-loan-or-gift",
+        "content_type": "fact_branch",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "bank-transfer-loan-or-gift",
+        "title_ko": "돈을 송금하면 자동으로 대여금이 되나",
+        "one_line_answer_ko": "",
+        "audience_situation_ko": "",
+        "key_points_ko": [],
+        "action_steps_ko": [],
+        "facts_to_check_ko": [],
+        "caution_ko": "",
+        "search_intents_ko": [],
+        "body_sections": [
+          {
+            "heading_ko": "송금 사실과 반환 합의는 따로 증명한다",
+            "paragraphs_ko": [
+              "계좌이체 내역은 돈이 상대방에게 이동한 사실과 금액·시각을 보여주지만, 그 돈을 같은 종류·수량으로 돌려주기로 했다는 소비대차 합의까지 자동으로 증명하지는 않습니다.",
+              "상대방의 요청, 빌려 달라는 표현, 상환 약속, 변제기와 이자 대화, 일부변제를 송금내역과 시간순으로 연결해야 합니다."
+            ]
+          },
+          {
+            "heading_ko": "관계와 사용 경위까지 양쪽 방향으로 점검한다",
+            "paragraphs_ko": [
+              "가족·연인 관계, 생활비·공동사업비·투자금 같은 사용 목적, 증여라는 표현이 있었는지도 법적 성격을 판단하는 자료가 됩니다.",
+              "대여에 유리한 자료만 모으기보다 증여나 공동비용으로 해석될 정황도 함께 정리해야 상대방 주장에 대비하고 잔액을 정확히 계산할 수 있습니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.money-guarantee.rule-loan-agreement"
+        ],
+        "scenario_ids": [
+          "scenario.money-guarantee.sc-transfer-gift-dispute"
+        ],
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0598"
+        ],
+        "hub_ids": [
+          "hub.money-guarantee"
+        ],
+        "related_content_ids": [],
+        "concierge_entry": {
+          "question_ko": "돈을 송금하면 자동으로 대여금이 되나",
+          "decision_facts_ko": [],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.loan-without-written-note",
+        "content_type": "misconception",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "loan-without-written-note",
+        "title_ko": "차용증이 없으면 빌려준 돈을 받을 수 없나",
+        "one_line_answer_ko": "",
+        "audience_situation_ko": "",
+        "key_points_ko": [],
+        "action_steps_ko": [],
+        "facts_to_check_ko": [],
+        "caution_ko": "",
+        "search_intents_ko": [],
+        "body_sections": [
+          {
+            "heading_ko": "차용증 부재는 계약 부재와 같지 않다",
+            "paragraphs_ko": [
+              "금전소비대차가 반드시 정형화된 차용증으로만 성립하는 것은 아닙니다. 다만 서면이 없으면 반환 합의와 원금·변제기·이자를 둘러싼 증명 부담이 커집니다.",
+              "송금 전후 전체 대화, 상대방의 채무 인정, 일부변제, 상환 연기 요청을 한 사건으로 묶어 합의의 내용을 재구성합니다."
+            ]
+          },
+          {
+            "heading_ko": "사후 확인은 기존 사실을 정확히 특정한다",
+            "paragraphs_ko": [
+              "현재 잔액을 확인받을 수 있다면 대여일·원금·기존 변제액·남은 금액·새 변제기를 구체적으로 적고 상대방의 확인 답변을 원본으로 보존합니다.",
+              "자신이 일방적으로 만든 정리표만으로는 상대방의 합의를 증명하기 어렵습니다. 객관적인 송금과 대화, 상대방의 반응을 각 항목과 연결합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.money-guarantee.rule-loan-agreement"
+        ],
+        "scenario_ids": [
+          "scenario.money-guarantee.sc-no-note"
+        ],
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0598"
+        ],
+        "hub_ids": [
+          "hub.money-guarantee"
+        ],
+        "related_content_ids": []
+      },
+      {
+        "content_id": "content.loan-without-repayment-date",
+        "content_type": "doctrine",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "loan-without-repayment-date",
+        "title_ko": "갚는 날짜를 정하지 않고 빌려준 돈은 언제 청구하나",
+        "one_line_answer_ko": "",
+        "audience_situation_ko": "",
+        "key_points_ko": [],
+        "action_steps_ko": [],
+        "facts_to_check_ko": [],
+        "caution_ko": "",
+        "search_intents_ko": [],
+        "body_sections": [
+          {
+            "heading_ko": "변제기 약정이 정말 없는지 먼저 확인한다",
+            "paragraphs_ko": [
+              "정식 차용증에 날짜가 없어도 메신저에서 월급날, 사업 정산 후, 특정 달 말처럼 반환시기를 합의했을 수 있습니다. 기존 대화와 일부변제 경위를 먼저 확인합니다.",
+              "반환시기의 약정이 없다면 대주는 상당한 기간을 정해 반환을 최고해야 합니다. 단순히 지금 당장 갚으라는 말과 일정한 기한을 둔 최고를 구분합니다."
+            ]
+          },
+          {
+            "heading_ko": "금액·기한·도달을 한 번에 남긴다",
+            "paragraphs_ko": [
+              "요구할 원금과 이자, 반환기한을 명확히 적고 상대방에게 도달한 날짜를 확인할 수 있는 방식으로 보냅니다. 상대방 답변과 분할상환 제안도 함께 보존합니다.",
+              "상당한 기간은 법에 일률적인 일수로 정해져 있지 않습니다. 금액, 거래 경위, 당사자 관계와 이행 준비 가능성을 반영해 정합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.money-guarantee.rule-no-due-date"
+        ],
+        "scenario_ids": [
+          "scenario.money-guarantee.sc-no-due-date"
+        ],
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0603"
+        ],
+        "hub_ids": [
+          "hub.money-guarantee"
+        ],
+        "related_content_ids": []
+      },
+      {
+        "content_id": "content.partial-repayment-allocation",
+        "content_type": "procedure",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "partial-repayment-allocation",
+        "title_ko": "일부만 갚았을 때 원금이 얼마나 남았나",
+        "one_line_answer_ko": "",
+        "audience_situation_ko": "",
+        "key_points_ko": [],
+        "action_steps_ko": [],
+        "facts_to_check_ko": [],
+        "caution_ko": "",
+        "search_intents_ko": [],
+        "body_sections": [
+          {
+            "heading_ko": "여러 채무 중 어느 채무를 갚았는지 먼저 정한다",
+            "paragraphs_ko": [
+              "같은 채권자에게 여러 대여금이 있고 일부만 지급되면 변제 당시 채무자가 어느 채무에 충당할지 지정했는지, 지정하지 않았다면 채권자가 지정했고 즉시 이의가 있었는지를 봅니다.",
+              "아무 지정도 없으면 이행기 도래 여부, 채무자의 변제이익, 이행기 선후와 채무액 비율에 따른 법정 순서를 검토합니다."
+            ]
+          },
+          {
+            "heading_ko": "비용·이자·원본 순서를 별도로 적용한다",
+            "paragraphs_ko": [
+              "한 채무 안에 비용과 이자·원본이 함께 남아 있고 지급액이 전부를 없애지 못하면 원칙적으로 비용, 이자, 원본 순서로 충당합니다. 입금액을 원금에서 바로 빼면 잔액이 달라질 수 있습니다.",
+              "당사자의 특별한 합의가 있는지, 일방 지정에 상대방이 지체 없이 이의하지 않아 묵시적 합의가 되었는지도 확인하고 시점별 계산표를 만듭니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.money-guarantee.rule-payment-allocation"
+        ],
+        "scenario_ids": [
+          "scenario.money-guarantee.sc-partial-payment"
+        ],
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0476",
+          "coord.money-guarantee.civil-act-ko-0477",
+          "coord.money-guarantee.civil-act-ko-0478",
+          "coord.money-guarantee.civil-act-ko-0479"
+        ],
+        "hub_ids": [
+          "hub.money-guarantee"
+        ],
+        "related_content_ids": []
+      },
+      {
+        "content_id": "content.guarantee-by-message-validity",
+        "content_type": "misconception",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "guarantee-by-message-validity",
+        "title_ko": "메신저로 대신 갚겠다고 하면 보증이 성립하나",
+        "one_line_answer_ko": "",
+        "audience_situation_ko": "",
+        "key_points_ko": [],
+        "action_steps_ko": [],
+        "facts_to_check_ko": [],
+        "caution_ko": "",
+        "search_intents_ko": [],
+        "body_sections": [
+          {
+            "heading_ko": "일반적인 메시지만으로 보증이 성립한다고 단정할 수 없다",
+            "paragraphs_ko": [
+              "민법상 보증은 보증인의 기명날인 또는 서명이 있는 서면으로 의사를 표시해야 효력이 생기고, 전자적 형태로 표시한 보증의사는 원칙적으로 효력이 없습니다. 카카오톡으로 대신 갚겠다는 말만 받은 경우 형식과 문맥을 함께 봅니다.",
+              "그 표현이 주채무자의 채무를 보증하려는 것인지, 단순한 도의적 약속인지, 별도의 독립채무를 부담하려는 합의인지도 구분해야 합니다."
+            ]
+          },
+          {
+            "heading_ko": "영업·사업 전자문서 예외와 이미 한 이행을 확인한다",
+            "paragraphs_ko": [
+              "전자문서법은 보증인이 자기의 영업 또는 사업으로 작성한 보증의사가 표시된 전자문서를 일정한 경우 민법상 서면으로 보는 예외를 둡니다. 일반 개인의 메신저 약속에 곧바로 적용되는 예외는 아닙니다.",
+              "보증인이 이미 보증채무를 이행한 경우에는 이행한 한도에서 방식 하자를 이유로 무효를 주장하기 어려울 수 있으므로 지급액과 경위를 확인합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.money-guarantee.rule-guarantee-writing"
+        ],
+        "scenario_ids": [
+          "scenario.money-guarantee.sc-message-guarantee"
+        ],
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0428-02"
+        ],
+        "hub_ids": [
+          "hub.money-guarantee"
+        ],
+        "related_content_ids": []
+      },
+      {
+        "content_id": "content.continuing-guarantee-maximum-amount",
+        "content_type": "doctrine",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "continuing-guarantee-maximum-amount",
+        "title_ko": "앞으로 생길 모든 빚을 보증한다는 약정은 유효한가",
+        "one_line_answer_ko": "",
+        "audience_situation_ko": "",
+        "key_points_ko": [],
+        "action_steps_ko": [],
+        "facts_to_check_ko": [],
+        "caution_ko": "",
+        "search_intents_ko": [],
+        "body_sections": [
+          {
+            "heading_ko": "특정 채무 보증과 근보증을 구분한다",
+            "paragraphs_ko": [
+              "이미 특정된 한 건의 채무를 보증하는 것과 계속 거래에서 현재·장래에 생길 불확정한 다수 채무를 보증하는 근보증은 다릅니다. 문서 제목보다 실제 포괄 범위를 봅니다.",
+              "근보증은 보증채무의 최고액을 서면으로 특정해야 하고, 최고액을 적지 않은 보증계약은 효력이 없습니다."
+            ]
+          },
+          {
+            "heading_ko": "최고액 외에도 대상 거래와 원금 확정을 본다",
+            "paragraphs_ko": [
+              "최고액이 있다고 해서 모든 거래가 자동 포함되는 것은 아닙니다. 채권자·주채무자, 대상 거래, 보증기간과 원금 확정 사유를 보증서 문언에서 확인합니다.",
+              "현재 주채무 잔액과 이자·지연손해금 등 부수채무를 계산한 뒤 보증 최고액과 대조하고 보증인보호법 등 특별법 적용 가능성도 확인합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.money-guarantee.rule-continuing-guarantee-cap",
+          "rule.money-guarantee.rule-guarantee-scope"
+        ],
+        "scenario_ids": [
+          "scenario.money-guarantee.sc-continuing-guarantee"
+        ],
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0428-03",
+          "coord.money-guarantee.civil-act-ko-0429"
+        ],
+        "hub_ids": [
+          "hub.money-guarantee"
+        ],
+        "related_content_ids": []
+      },
+      {
+        "content_id": "content.scope-of-guarantee-debt",
+        "content_type": "fact_branch",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "scope-of-guarantee-debt",
+        "title_ko": "보증인은 원금만 갚으면 되는가",
+        "one_line_answer_ko": "",
+        "audience_situation_ko": "",
+        "key_points_ko": [],
+        "action_steps_ko": [],
+        "facts_to_check_ko": [],
+        "caution_ko": "",
+        "search_intents_ko": [],
+        "body_sections": [
+          {
+            "heading_ko": "보증은 원금만을 뜻하지 않을 수 있다",
+            "paragraphs_ko": [
+              "민법은 보증채무가 원칙적으로 주채무의 이자, 위약금, 손해배상과 그 밖의 종속채무를 포함한다고 정합니다. 따라서 보증서에 원금 숫자만 보인다는 이유로 부수채무가 언제나 제외된다고 단정할 수 없습니다.",
+              "다만 보증서의 대상·범위 제한, 근보증 최고액과 특별법상 보호규정을 함께 봐야 실제 청구 가능액이 정해집니다."
+            ]
+          },
+          {
+            "heading_ko": "주채무보다 무거운 부담은 줄어든다",
+            "paragraphs_ko": [
+              "보증인의 부담이 주채무의 목적이나 형태보다 무거우면 주채무 한도로 감축됩니다. 주채무가 일부 변제·면제되었거나 변경된 경우 그 영향도 확인합니다.",
+              "주채무 계약서와 보증서를 나란히 놓고 원금, 약정이자, 지연손해금, 위약금, 일부변제와 최고액을 같은 기준일로 계산합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.money-guarantee.rule-guarantee-scope",
+          "rule.money-guarantee.rule-continuing-guarantee-cap"
+        ],
+        "scenario_ids": [
+          "scenario.money-guarantee.sc-continuing-guarantee"
+        ],
+        "source_coordinate_ids": [
+          "coord.money-guarantee.civil-act-ko-0428",
+          "coord.money-guarantee.civil-act-ko-0429",
+          "coord.money-guarantee.civil-act-ko-0430",
+          "coord.money-guarantee.civil-act-ko-0428-03"
+        ],
+        "hub_ids": [
+          "hub.money-guarantee"
+        ],
+        "related_content_ids": [],
+        "concierge_entry": {
+          "question_ko": "보증인은 원금만 갚으면 되는가",
+          "decision_facts_ko": [],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.shared-mobility-private-facility-defect",
+        "content_type": "fact_branch",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "shared-mobility-private-facility-defect",
+        "title_ko": "상가ㆍ주차장ㆍ거치시설의 하자로 사고가 났다면",
+        "one_line_answer_ko": "민간 공작물의 설치ㆍ보존 하자가 원인이라면 점유자의 책임을 먼저 검토하고, 점유자가 필요한 주의를 다한 경우 소유자의 책임이 문제될 수 있습니다.",
+        "audience_situation_ko": "민간 부지의 경사로ㆍ차단시설ㆍ거치대ㆍ바닥 파손 등으로 사고가 난 경우",
+        "key_points_ko": [
+          "사고 시설의 점유자와 소유자를 구분합니다.",
+          "시설이 용도에 따라 통상 갖춰야 할 안전성을 확보했는지 확인합니다.",
+          "점검ㆍ경고ㆍ통제조치가 실제로 이루어졌는지 확인합니다."
+        ],
+        "action_steps_ko": [
+          "사고 시설이 공공인지 민간인지 먼저 확인한다.",
+          "점유자·관리자·소유자의 명칭과 연락처를 확보한다.",
+          "설치 상태·파손·경고표지·통제조치를 촬영한다.",
+          "CCTV와 점검·민원·보수기록 보존을 요청한다."
+        ],
+        "facts_to_check_ko": [
+          "시설 종류",
+          "점유자",
+          "소유자",
+          "설치 상태",
+          "점검기록",
+          "경고표지",
+          "사고 이전 민원",
+          "CCTV"
+        ],
+        "caution_ko": "공공 도로인지 민간 공작물인지에 따라 우선 검토할 책임 규정이 달라질 수 있습니다.",
+        "search_intents_ko": [
+          "주차장 바닥 사고 손해배상",
+          "상가 시설물 하자 자전거 사고",
+          "민법 758조 점유자 소유자 책임"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "민간시설이면 점유자와 소유자를 구분한다",
+            "paragraphs_ko": [
+              "상가 진입로, 주차장, 민간 거치대와 바닥 같은 공작물의 설치·보존 하자로 손해가 발생하면 민법 제758조에 따른 책임이 문제될 수 있습니다. 실제로 시설을 지배·관리한 점유자와 소유자가 누구인지 구분합니다.",
+              "점유자가 손해 방지에 필요한 주의를 다했는지에 따라 소유자 책임이 이어질 수 있으므로 관리계약, 점검주체와 조치 내역을 확인해야 합니다."
+            ]
+          },
+          {
+            "heading_ko": "용도에 맞는 안전성과 인과관계를 본다",
+            "paragraphs_ko": [
+              "시설이 오래되었거나 파손되었다는 사실만으로 모든 사고 책임이 정해지지는 않습니다. 그 용도와 이용상황에 비추어 필요한 안전성을 갖췄는지, 사고 당시 상태가 실제 사고로 이어졌는지를 봅니다.",
+              "사고 전 민원, 반복 사고, 보수 요청, 경고표지와 접근 통제 여부를 확보하고 기기나 이용자 운전 같은 다른 원인도 함께 기록합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.shared-mobility-accident.shared-mobility-private-structure-defect"
+        ],
+        "scenario_ids": [
+          "scenario.shared-mobility-accident.shared-mobility-cause-private-facility"
+        ],
+        "source_coordinate_ids": [
+          "coord.shared-mobility-accident.civil-act-ko-0758"
+        ],
+        "hub_ids": [
+          "hub.shared-mobility-accident"
+        ],
+        "related_content_ids": [],
+        "concierge_entry": {
+          "question_ko": "상가ㆍ주차장ㆍ거치시설의 하자로 사고가 났다면",
+          "decision_facts_ko": [
+            "시설 종류",
+            "점유자",
+            "소유자",
+            "설치 상태",
+            "점검기록",
+            "경고표지",
+            "사고 이전 민원",
+            "CCTV"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.shared-mobility-other-road-user-fault",
+        "content_type": "doctrine_explainer",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "shared-mobility-other-road-user-fault",
+        "title_ko": "차량ㆍ보행자ㆍ다른 이용자의 행동이 사고에 영향을 준 경우",
+        "one_line_answer_ko": "상대방의 구체적인 주의의무 위반과 사고 사이의 인과관계를 확인해야 하며, 기기나 도로 하자와 함께 공동 원인이 되었을 가능성도 검토해야 합니다.",
+        "audience_situation_ko": "충돌ㆍ급회피ㆍ진로방해로 공유이동 사고가 발생한 경우",
+        "key_points_ko": [
+          "상대방의 진로ㆍ속도ㆍ신호ㆍ주의행위를 구체화합니다.",
+          "직접 충돌이 없어도 급회피를 유발한 행위와 사고 사이의 관계를 확인합니다.",
+          "다른 원인과 함께 작용했다면 책임 분담 가능성을 검토합니다."
+        ],
+        "action_steps_ko": [
+          "상대방 인적사항·차량번호와 연락처를 확보한다.",
+          "블랙박스·CCTV·목격자의 보존 가능 위치를 확인한다.",
+          "충돌 또는 급회피 전후의 진로·속도·신호를 도식화한다.",
+          "상대방 행위와 기기·도로·이용자 요인을 함께 비교한다."
+        ],
+        "facts_to_check_ko": [
+          "상대방 인적사항",
+          "차량번호",
+          "블랙박스",
+          "CCTV",
+          "목격자",
+          "충돌 여부",
+          "회피경로",
+          "신호"
+        ],
+        "caution_ko": "상대방이 현장을 떠나기 전에 식별정보와 영상 보존 요청을 확보하는 것이 중요합니다.",
+        "search_intents_ko": [
+          "비접촉 자전거 사고 손해배상",
+          "차 피하다 자전거 넘어짐",
+          "공유자전거 차량 충돌 책임"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "직접 충돌이 없어도 사고 과정을 본다",
+            "paragraphs_ko": [
+              "차량이나 보행자의 급진입을 피하다 넘어지는 등 직접 부딪치지 않은 사고에서도 상대방의 구체적 행위가 급회피와 손해를 일으켰는지 확인할 수 있습니다.",
+              "상대방의 진로, 속도, 신호준수와 전방주시, 이용자가 위험을 인지한 시점과 회피경로를 영상·목격자·현장 흔적으로 재구성합니다."
+            ]
+          },
+          {
+            "heading_ko": "여러 원인이 함께 작용할 수 있다",
+            "paragraphs_ko": [
+              "상대방의 주의의무 위반이 있더라도 기기 제동 이상이나 도로 하자, 이용자의 운전이 함께 사고에 기여했을 수 있습니다. 각 원인의 존재와 인과관계를 따로 적습니다.",
+              "상대방이 현장을 떠나면 식별과 영상 확보가 급격히 어려워집니다. 안전을 확보한 뒤 차량번호·인적사항을 확인하고 주변 영상의 보존을 신속히 요청합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.shared-mobility-accident.shared-mobility-general-tort"
+        ],
+        "scenario_ids": [
+          "scenario.shared-mobility-accident.shared-mobility-other-person"
+        ],
+        "source_coordinate_ids": [
+          "coord.shared-mobility-accident.civil-act-ko-0750"
+        ],
+        "hub_ids": [
+          "hub.shared-mobility-accident"
+        ],
+        "related_content_ids": []
+      }
+    ],
+    "topic_hubs": [
+      {
+        "hub_id": "hub.administrative-appeals",
+        "slug": "administrative-appeals",
+        "title_ko": "행정처분과 행정심판",
+        "description_ko": "처분 통지 뒤 불복방법과 행정심판 절차에서 결론을 가르는 시점ㆍ자격ㆍ서류를 연결해 확인합니다.",
+        "content_ids": [
+          "content.admin-appeal.documents-law-change",
+          "content.admin-appeal.eligibility-document-branch",
+          "content.admin-appeal.data-sharing-consent",
+          "content.admin-appeal.not-all-documents-waived",
+          "content.admin-appeal.application-preparation",
+          "content.admin-appeal.qualification-vs-proof"
+        ]
+      },
+      {
+        "hub_id": "hub.family-inheritance",
+        "slug": "family-inheritance",
+        "title_ko": "가족·상속",
+        "description_ko": "사망 후 누가 상속인인지, 채무가 있을 때 3개월 안에 무엇을 조사하고 포기·한정승인 중 무엇을 선택할지 안내한다.",
+        "content_ids": [
+          "content.legal-heir-order-and-spouse",
+          "content.three-month-inheritance-decision-period",
+          "content.inheritance-renunciation-procedure",
+          "content.limited-acceptance-effect",
+          "content.special-limited-acceptance-late-debt",
+          "content.limited-acceptance-creditor-notice"
+        ]
+      },
+      {
+        "hub_id": "hub.money-guarantee",
+        "slug": "money-guarantee",
+        "title_ko": "금전거래·보증",
+        "description_ko": "가족·지인·사업상 금전거래에서 대여 합의, 변제, 이자, 보증 범위와 시효 조치를 증거 중심으로 판단하도록 돕는다.",
+        "content_ids": [
+          "content.bank-transfer-loan-or-gift",
+          "content.loan-without-written-note",
+          "content.loan-without-repayment-date",
+          "content.partial-repayment-allocation",
+          "content.guarantee-by-message-validity",
+          "content.continuing-guarantee-maximum-amount",
+          "content.scope-of-guarantee-debt"
+        ]
+      },
+      {
+        "hub_id": "hub.shared-mobility-accident",
+        "slug": "shared-mobility-accident",
+        "title_ko": "공유자전거ㆍ공유이동 사고",
+        "description_ko": "기기 결함, 도로ㆍ시설 하자, 다른 사람의 과실, 이용자 과실을 분리해 책임주체와 필요한 증거를 찾습니다.",
+        "content_ids": [
+          "content.shared-mobility-private-facility-defect",
+          "content.shared-mobility-other-road-user-fault"
+        ]
+      }
+    ]
+  }
+}
