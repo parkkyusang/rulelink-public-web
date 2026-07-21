@@ -1,11 +1,15 @@
-import {listChangeBriefs, listKnowledgeEntries} from '@/lib/publication';
+import {listChangeBriefs, listConceptCards, listKnowledgeEntries} from '@/lib/publication';
 import {site} from '@/lib/site';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
 
 export async function GET() {
-  const [briefs, knowledgeEntries] = await Promise.all([listChangeBriefs(), listKnowledgeEntries()]);
+  const [briefs, concepts, knowledgeEntries] = await Promise.all([
+    listChangeBriefs(),
+    listConceptCards(),
+    listKnowledgeEntries(),
+  ]);
   const changeItems = briefs.map(brief => {
     const url = `${site.url}/ko/changes/${brief.slug}`;
     return [
@@ -16,6 +20,19 @@ export async function GET() {
       `<description>${escapeXml(brief.summary_ko)}</description>`,
       `<category>${escapeXml(brief.law_name_ko)}</category>`,
       `<pubDate>${new Date(brief.reviewed_at).toUTCString()}</pubDate>`,
+      '</item>',
+    ].join('');
+  });
+  const conceptItems = concepts.map(concept => {
+    const url = `${site.url}/ko/concepts/${concept.slug}`;
+    return [
+      '<item>',
+      `<title>${escapeXml(concept.preferred_term_ko)} 뜻과 법률상 의미</title>`,
+      `<link>${escapeXml(url)}</link>`,
+      `<guid isPermaLink="true">${escapeXml(url)}</guid>`,
+      `<description>${escapeXml(concept.plain_definition_ko)}</description>`,
+      '<category>법률용어</category>',
+      `<pubDate>${new Date(concept.reviewed_at).toUTCString()}</pubDate>`,
       '</item>',
     ].join('');
   });
@@ -32,7 +49,7 @@ export async function GET() {
       '</item>',
     ].join('');
   });
-  const items = [...changeItems, ...knowledgeItems].join('');
+  const items = [...changeItems, ...conceptItems, ...knowledgeItems].join('');
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
