@@ -46,6 +46,27 @@
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98%20%EB%93%B1%EC%97%90%EC%84%9C%EC%9D%98%20%EC%86%8C%EB%B9%84%EC%9E%90%EB%B3%B4%ED%98%B8%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C15%EC%A1%B0",
       "source_snapshot_id": "snapshot:f8a52a421791937f8763911bc6d9f545",
       "last_verified_at": "2026-07-21T07:55:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.consumer-online-contracts.ecommerce-consumer-ko-0020-04",
+      "source_id": "ecommerce_consumer_ko_0020_04",
+      "law_name_ko": "전자상거래 등에서의 소비자보호에 관한 법률",
+      "article_no": "제20조의4",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98%20%EB%93%B1%EC%97%90%EC%84%9C%EC%9D%98%20%EC%86%8C%EB%B9%84%EC%9E%90%EB%B3%B4%ED%98%B8%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C20%EC%A1%B0%EC%9D%984",
+      "source_snapshot_id": "snapshot:8a1aec26352f849b6e4223da51818c58",
+      "last_verified_at": "2026-07-21T07:55:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.consumer-online-contracts.src-ecommerce-revision-20260721",
+      "source_id": "src-ecommerce-revision-20260721",
+      "source_kind": "official_document",
+      "document_kind": "revision_text",
+      "title_ko": "전자상거래 등에서의 소비자보호에 관한 법률",
+      "effective_date": "2026-07-21",
+      "promulgation_number": "법률 제21312호",
+      "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=282793&viewCls=lsRvsDocInfoR",
+      "source_snapshot_id": "snapshot:02db1cc69a101bf763210f3a1377f866",
+      "last_verified_at": "2026-07-21T07:55:00+00:00"
     }
   ],
   "topic_hubs": [
@@ -62,7 +83,9 @@
         "content.who-pays-return-shipping",
         "content.refund-within-three-business-days",
         "content.paid-but-goods-not-supplied",
-        "content.free-trial-to-paid-subscription"
+        "content.free-trial-to-paid-subscription",
+        "content.platform-seller-information-2026-change",
+        "content.online-contract-evidence-checklist"
       ]
     }
   ],
@@ -174,6 +197,20 @@
         "coord.consumer-online-contracts.ecommerce-consumer-ko-0014",
         "coord.consumer-online-contracts.ecommerce-consumer-ko-0015"
       ]
+    },
+    {
+      "rule_id": "rule.consumer-online-contracts.rule-platform-information",
+      "title_ko": "통신판매중개자는 자신이 거래 당사자가 아니라는 점을 고지하고 사업자 판매자의…",
+      "proposition_ko": "통신판매중개자는 자신이 거래 당사자가 아니라는 점을 고지하고 사업자 판매자의 신원정보를 확인·제공해야 한다. 2026년 7월 21일부터 개인 간 거래에서는 개인 판매자 신원정보를 확인하고, 분쟁 시 법이 정한 요청 주체에게 신원정보와 거래내역을 제공해 해결에 협조해야 한다.",
+      "norm": {
+        "actor_ko": "개인 간 거래를 중개하는 통신판매중개업자와 개인 판매자·거래 당사자",
+        "conditions_ko": "2026년 7월 21일 이후 개인 판매자가 참여한 플랫폼 거래에서 신원정보 확인과 분쟁협조 의무가 문제되는 경우",
+        "legal_effect_ko": "통신판매중개자는 자신이 거래 당사자가 아니라는 점을 고지하고 사업자 판매자의 신원정보를 확인·제공해야 한다. 2026년 7월 21일부터 개인 간 거래에서는 개인 판매자 신원정보를 확인하고, 분쟁 시 법이 정한 요청 주체에게 신원정보와 거래내역을 제공해 해결에 협조해야 한다."
+      },
+      "source_coordinate_ids": [
+        "coord.consumer-online-contracts.ecommerce-consumer-ko-0020-04",
+        "coord.consumer-online-contracts.src-ecommerce-revision-20260721"
+      ]
     }
   ],
   "scenario_branches": [
@@ -264,6 +301,20 @@
         "coord.consumer-online-contracts.ecommerce-consumer-ko-0013",
         "coord.consumer-online-contracts.ecommerce-consumer-ko-0014",
         "coord.consumer-online-contracts.ecommerce-consumer-ko-0015"
+      ]
+    },
+    {
+      "scenario_id": "scenario.consumer-online-contracts.sc-platform-seller-unknown",
+      "question_ko": "플랫폼에서 거래한 판매자의 연락처와 신원을 확인하기 어려운 경우",
+      "decision_fact_ko": "거래일이 2026년 7월 21일 이후인지, 판매자가 개인인지, 법정 요청 주체와 절차를 갖췄는지",
+      "when_true_ko": "플랫폼에 신원정보와 거래내역 제공을 적법한 절차로 요청하고 요청·회신 기록을 보존합니다.",
+      "when_false_ko": "시행 전 거래이거나 요청 요건이 불명확하면 플랫폼 약관·분쟁조정 절차와 다른 증거확보 수단을 확인합니다.",
+      "rule_ids": [
+        "rule.consumer-online-contracts.rule-platform-information"
+      ],
+      "source_coordinate_ids": [
+        "coord.consumer-online-contracts.ecommerce-consumer-ko-0020-04",
+        "coord.consumer-online-contracts.src-ecommerce-revision-20260721"
       ]
     }
   ],
@@ -868,6 +919,168 @@
         "hub.consumer-online-contracts"
       ],
       "related_content_ids": []
+    },
+    {
+      "content_id": "content.platform-seller-information-2026-change",
+      "content_type": "law_change",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "platform-seller-information-2026-change",
+      "title_ko": "2026년 7월 21일부터 플랫폼 판매자 정보 확인이 어떻게 달라졌나",
+      "one_line_answer_ko": "2026년 7월 21일부터 개인 간 거래 플랫폼은 개인 판매자의 신원정보를 확인하고, 분쟁 시 법이 정한 요청 주체에게 신원정보와 거래내역을 제공해 해결에 협조해야 한다.",
+      "audience_situation_ko": "중고·개인판매 플랫폼에서 상대방 정보를 플랫폼에 요청할 수 있나?",
+      "key_points_ko": [
+        "사업자 판매자와 개인 판매자를 구분한다.",
+        "개정 시행일인 2026년 7월 21일 전후를 구분한다.",
+        "정보 제공의 요청 주체와 플랫폼 절차를 확인한다."
+      ],
+      "action_steps_ko": [
+        "거래일과 분쟁발생일을 확인한다.",
+        "판매자 프로필과 사업자 표시를 저장한다.",
+        "플랫폼의 당사자 고지 화면을 확보한다.",
+        "정해진 절차로 판매자 정보 제공을 요청하고 답변을 보관한다."
+      ],
+      "facts_to_check_ko": [
+        "거래일",
+        "플랫폼 유형",
+        "판매자의 사업자 여부",
+        "개인판매자 여부",
+        "플랫폼 고지 내용",
+        "제공된 신원정보",
+        "정보요청 일시와 답변",
+        "손해 발생과 인과관계"
+      ],
+      "caution_ko": "소비자가 언제나 아무 조건 없이 개인 판매자의 모든 정보를 직접 받을 수 있다는 뜻은 아니므로 제20조의4의 요청 주체와 절차를 확인해야 한다.",
+      "search_intents_ko": [
+        "플랫폼 개인판매자 정보",
+        "전자상거래법 2026 개정",
+        "중고거래 판매자 신원"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "2026년 7월 21일부터 개인 간 거래 규율이 분리됐다",
+          "paragraphs_ko": [
+            "개정법은 사업자 판매자에 대한 기존 신원정보 확인·제공 구조와 별도로, 개인 판매자가 참여하는 개인 간 거래에 관한 통신판매중개업자의 의무를 제20조의4에 신설했습니다.",
+            "플랫폼은 개인 판매자의 법정 신원정보를 확인해야 하고, 분쟁이 생기면 법이 정한 요청 주체의 요청에 따라 신원정보와 거래내역을 제공해 해결에 협조해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "소비자가 언제나 바로 정보를 받는다는 뜻은 아니다",
+          "paragraphs_ko": [
+            "정보 제공의 요청 주체와 절차는 법령과 플랫폼의 분쟁처리 절차를 확인해야 합니다. 거래 상대방이라는 이유만으로 아무 조건 없이 모든 개인정보를 직접 받을 수 있다고 단정하면 안 됩니다.",
+            "거래일, 판매자의 사업자·개인 구분, 플랫폼의 당사자 고지, 정보요청 경로와 답변을 보존하고 2026년 7월 21일 전후 어느 법이 적용되는지 나눠 봅니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.consumer-online-contracts.rule-platform-information"
+      ],
+      "scenario_ids": [
+        "scenario.consumer-online-contracts.sc-platform-seller-unknown"
+      ],
+      "source_coordinate_ids": [
+        "coord.consumer-online-contracts.ecommerce-consumer-ko-0020-04",
+        "coord.consumer-online-contracts.src-ecommerce-revision-20260721"
+      ],
+      "hub_ids": [
+        "hub.consumer-online-contracts"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.online-contract-evidence-checklist",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "online-contract-evidence-checklist",
+      "title_ko": "온라인 구매 분쟁 증거 체크리스트",
+      "one_line_answer_ko": "결제내역만이 아니라 광고·옵션·약관·주문확인·배송·철회 통지·반송·환급 과정을 시간순으로 보존해야 한다.",
+      "audience_situation_ko": "반품·환불 분쟁이 생기면 무엇을 저장해야 하나?",
+      "key_points_ko": [
+        "판매페이지는 수정될 수 있으므로 전체 화면을 즉시 저장한다.",
+        "날짜가 드러나는 원본 자료를 우선한다.",
+        "전화 내용은 통화일시와 요지를 기록하고 가능하면 서면 답변으로 확인한다."
+      ],
+      "action_steps_ko": [
+        "상세페이지와 판매자 정보를 저장한다.",
+        "주문·결제·배송 타임라인을 만든다.",
+        "하자나 불일치를 사진·영상으로 남긴다.",
+        "철회 통지와 반송 송장을 보관한다.",
+        "환급·카드취소 내역을 대조한다."
+      ],
+      "facts_to_check_ko": [
+        "상품 상세페이지",
+        "선택 옵션",
+        "판매자 신원정보",
+        "주문서와 결제내역",
+        "배송조회",
+        "개봉·하자 사진",
+        "철회 통지",
+        "반송 송장",
+        "고객센터 답변",
+        "환급 내역"
+      ],
+      "caution_ko": "계정 화면만 믿지 말고 플랫폼 밖에서도 열 수 있는 파일 형태로 원본과 날짜를 보존한다.",
+      "search_intents_ko": [
+        "온라인 쇼핑 분쟁 증거",
+        "반품 증거 자료",
+        "전자상거래 계약 화면 저장"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "결제내역만으로는 부족하다",
+          "paragraphs_ko": [
+            "온라인 구매 분쟁의 결론은 계약내용, 공급시점, 상품 상태, 철회 사유와 통지시점에 따라 갈립니다. 따라서 결제 영수증뿐 아니라 상세페이지·옵션·약관·배송·대화 기록을 함께 보존해야 합니다.",
+            "판매페이지와 계정 화면은 수정되거나 접근이 막힐 수 있습니다. 날짜와 전체 주소가 보이는 화면, 원본 사진·영상, 내려받은 주문서를 플랫폼 밖에서도 열 수 있는 파일로 저장합니다."
+          ]
+        },
+        {
+          "heading_ko": "시간순 사건표를 만든다",
+          "paragraphs_ko": [
+            "주문, 계약서면 수신, 결제, 배송, 개봉, 불일치 발견, 철회 통지, 반송, 환급을 날짜순으로 놓으면 적용 기간과 책임 주체를 빠르게 확인할 수 있습니다.",
+            "전화상담은 통화일시와 담당자·핵심 답변을 적고 가능하면 같은 내용을 이메일이나 채팅으로 다시 확인합니다. 각 주장 옆에 이를 뒷받침하는 자료 파일을 연결합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.consumer-online-contracts.rule-withdrawal-7days",
+        "rule.consumer-online-contracts.rule-nonconforming-3m30d",
+        "rule.consumer-online-contracts.rule-refund-3businessdays",
+        "rule.consumer-online-contracts.rule-platform-information"
+      ],
+      "scenario_ids": [
+        "scenario.consumer-online-contracts.sc-change-mind",
+        "scenario.consumer-online-contracts.sc-not-as-advertised",
+        "scenario.consumer-online-contracts.sc-platform-seller-unknown"
+      ],
+      "source_coordinate_ids": [
+        "coord.consumer-online-contracts.ecommerce-consumer-ko-0017",
+        "coord.consumer-online-contracts.ecommerce-consumer-ko-0018",
+        "coord.consumer-online-contracts.ecommerce-consumer-ko-0020-04",
+        "coord.consumer-online-contracts.src-ecommerce-revision-20260721"
+      ],
+      "hub_ids": [
+        "hub.consumer-online-contracts"
+      ],
+      "related_content_ids": [],
+      "concierge_entry": {
+        "question_ko": "온라인 구매 분쟁 증거 체크리스트",
+        "decision_facts_ko": [
+          "상품 상세페이지",
+          "선택 옵션",
+          "판매자 신원정보",
+          "주문서와 결제내역",
+          "배송조회",
+          "개봉·하자 사진",
+          "철회 통지",
+          "반송 송장",
+          "고객센터 답변",
+          "환급 내역"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
     }
   ]
 }
