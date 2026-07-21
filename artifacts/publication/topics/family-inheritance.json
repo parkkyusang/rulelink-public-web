@@ -21,6 +21,17 @@
       "last_verified_at": "2026-07-21T08:30:00+00:00"
     },
     {
+      "coordinate_id": "coord.family-inheritance.src-supreme-2020geu42",
+      "source_id": "src-supreme-2020geu42",
+      "source_kind": "precedent",
+      "title_ko": "대법원 2023. 3. 23. 자 2020그42 전원합의체 결정",
+      "case_number": "2020그42",
+      "decision_date": "2023-03-23",
+      "official_url": "https://www.law.go.kr/precInfoP.do?mode=0&precSeq=234385",
+      "source_snapshot_id": "snapshot:f91bd7aa6d0094d32d17b0b9347d233a",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
       "coordinate_id": "coord.family-inheritance.civil-act-ko-1019",
       "source_id": "civil_act_ko_1019",
       "law_name_ko": "민법",
@@ -174,6 +185,45 @@
       "official_url": "https://www.law.go.kr/precInfoP.do?precSeq=187951",
       "source_snapshot_id": "snapshot:18b62b10e79d258e45e1b367b333d586",
       "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1001",
+      "source_id": "civil_act_ko_1001",
+      "law_name_ko": "민법",
+      "article_no": "제1001조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1001%EC%A1%B0",
+      "source_snapshot_id": "snapshot:0ddea81999ec616d43249627e09c6c67",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1004-02",
+      "source_id": "civil_act_ko_1004_02",
+      "law_name_ko": "민법",
+      "article_no": "제1004조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1004%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:249347b5699e0b74b2c7cdfc22df547c",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1010",
+      "source_id": "civil_act_ko_1010",
+      "law_name_ko": "민법",
+      "article_no": "제1010조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1010%EC%A1%B0",
+      "source_snapshot_id": "snapshot:b6cb761969185ba1d4b0c4843a7409f0",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.src-civil-revision-20260317",
+      "source_id": "src-civil-revision-20260317",
+      "source_kind": "official_document",
+      "document_kind": "revision_text",
+      "title_ko": "민법",
+      "effective_date": "2026-03-17",
+      "promulgation_number": "법률 제21454호",
+      "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=284415&viewCls=lsRvsDocInfoR",
+      "source_snapshot_id": "snapshot:ce3547629209d32d593ff08acf7a8686",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
     }
   ],
   "topic_hubs": [
@@ -184,13 +234,15 @@
       "description_ko": "사망 후 누가 상속인인지, 채무가 있을 때 3개월 안에 무엇을 조사하고 포기·한정승인 중 무엇을 선택할지 안내한다.",
       "content_ids": [
         "content.legal-heir-order-and-spouse",
+        "content.spouse-when-all-children-renounce",
         "content.three-month-inheritance-decision-period",
         "content.inheritance-renunciation-procedure",
         "content.limited-acceptance-effect",
         "content.special-limited-acceptance-late-debt",
         "content.estate-disposal-before-renunciation",
         "content.limited-acceptance-creditor-notice",
-        "content.inheritance-assets-and-debts-checklist"
+        "content.inheritance-assets-and-debts-checklist",
+        "content.2026-loss-of-inheritance-right-and-representation"
       ]
     }
   ],
@@ -219,6 +271,19 @@
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1003"
+      ]
+    },
+    {
+      "rule_id": "rule.family-inheritance.rule-all-children-renounce",
+      "title_ko": "배우자와 자녀가 공동상속인인 상황에서 자녀 전부가 상속을 포기하면 배우자가 …",
+      "proposition_ko": "배우자와 자녀가 공동상속인인 상황에서 자녀 전부가 상속을 포기하면 배우자가 단독상속인이 되고 손자녀가 배우자와 공동상속인이 되지 않는다는 전원합의체 결정이 있다.",
+      "norm": {
+        "actor_ko": "피상속인의 배우자와 공동상속인이던 자녀 전원",
+        "conditions_ko": "법률상 배우자가 존재하고 공동상속인인 자녀가 모두 적법하게 상속을 포기한 경우",
+        "legal_effect_ko": "배우자와 자녀가 공동상속인인 상황에서 자녀 전부가 상속을 포기하면 배우자가 단독상속인이 되고 손자녀가 배우자와 공동상속인이 되지 않는다는 전원합의체 결정이 있다."
+      },
+      "source_coordinate_ids": [
+        "coord.family-inheritance.src-supreme-2020geu42"
       ]
     },
     {
@@ -310,6 +375,22 @@
         "coord.family-inheritance.civil-act-ko-1026",
         "coord.family-inheritance.src-supreme-disposal-187951"
       ]
+    },
+    {
+      "rule_id": "rule.family-inheritance.rule-2026-representation-change",
+      "title_ko": "2026년 3월 17일 개정 민법은 상속권 상실선고 제도와 연결해 제1001…",
+      "proposition_ko": "2026년 3월 17일 개정 민법은 상속권 상실선고 제도와 연결해 제1001조 대습상속 사유에 제1004조의2를 반영했다.",
+      "norm": {
+        "actor_ko": "상속권 상실선고를 받은 사람이 있는 상속관계의 직계비속·배우자",
+        "conditions_ko": "2026년 3월 17일 시행 개정 민법에 따라 상속권 상실과 대습상속의 연결을 판단하는 경우",
+        "legal_effect_ko": "2026년 3월 17일 개정 민법은 상속권 상실선고 제도와 연결해 제1001조 대습상속 사유에 제1004조의2를 반영했다."
+      },
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1001",
+        "coord.family-inheritance.civil-act-ko-1004-02",
+        "coord.family-inheritance.civil-act-ko-1010",
+        "coord.family-inheritance.src-civil-revision-20260317"
+      ]
     }
   ],
   "scenario_branches": [
@@ -326,6 +407,19 @@
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1000",
         "coord.family-inheritance.civil-act-ko-1003"
+      ]
+    },
+    {
+      "scenario_id": "scenario.family-inheritance.sc-all-children-renounce",
+      "question_ko": "배우자는 한정승인하고 자녀 전부가 포기한 경우",
+      "decision_fact_ko": "법률상 배우자가 존재하고 공동상속인인 자녀 전원의 상속포기가 수리됐는지",
+      "when_true_ko": "2020그42 전원합의체 결정에 따라 배우자가 단독상속인이 되고 손자녀가 새 공동상속인이 되지 않는 법리를 검토합니다.",
+      "when_false_ko": "배우자가 없거나 자녀 일부만 포기했다면 같은 결론을 적용하지 않고 남은 공동상속인과 후순위 상속인을 다시 확인합니다.",
+      "rule_ids": [
+        "rule.family-inheritance.rule-all-children-renounce"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.src-supreme-2020geu42"
       ]
     },
     {
@@ -390,6 +484,22 @@
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1026",
         "coord.family-inheritance.src-supreme-disposal-187951"
+      ]
+    },
+    {
+      "scenario_id": "scenario.family-inheritance.sc-loss-of-inheritance-right",
+      "question_ko": "부양의무 중대 위반 등을 이유로 상속권 상실선고가 문제되는 경우",
+      "decision_fact_ko": "상속권 상실선고 사유·청구·확정 여부와 상속개시일",
+      "when_true_ko": "개정 민법의 상속권 상실 효과와 대습상속 조문을 함께 적용해 후순위 상속관계를 계산합니다.",
+      "when_false_ko": "선고가 확정되지 않았거나 경과규정상 적용범위가 다르면 종전 상속관계와 별도 구제절차를 확인합니다.",
+      "rule_ids": [
+        "rule.family-inheritance.rule-2026-representation-change"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1001",
+        "coord.family-inheritance.civil-act-ko-1004-02",
+        "coord.family-inheritance.civil-act-ko-1010",
+        "coord.family-inheritance.src-civil-revision-20260317"
       ]
     }
   ],
@@ -458,6 +568,72 @@
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1000",
         "coord.family-inheritance.civil-act-ko-1003"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.spouse-when-all-children-renounce",
+      "content_type": "precedent_doctrine",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "spouse-when-all-children-renounce",
+      "title_ko": "자녀 전원이 상속을 포기하면 손자녀에게 내려가나",
+      "one_line_answer_ko": "대법원 전원합의체는 배우자와 자녀 중 자녀 전부가 포기한 경우 배우자가 단독상속인이 되고 손자녀가 공동상속인이 되지 않는다고 판례를 변경했다.",
+      "audience_situation_ko": "배우자가 있고 자녀 모두 포기하면 손자녀가 상속인이 되나?",
+      "key_points_ko": [
+        "배우자가 있는 경우와 없는 경우를 구분한다.",
+        "일부 자녀만 포기한 경우와 전원 포기는 다르다.",
+        "2023년 전원합의체 결정이 종래 판례를 변경했다."
+      ],
+      "action_steps_ko": [
+        "배우자 존재를 확인한다.",
+        "자녀 전원의 포기 수리 여부를 확인한다.",
+        "손자녀에게 온 채권통지나 승계집행문을 보존한다.",
+        "상속개시일과 판례 적용관계를 검토한다."
+      ],
+      "facts_to_check_ko": [
+        "법률상 배우자",
+        "자녀 수",
+        "전원 포기 여부",
+        "포기 수리일",
+        "손자녀 존재",
+        "배우자의 한정승인 여부",
+        "채권자의 집행 절차"
+      ],
+      "caution_ko": "배우자가 없거나 자녀 일부만 포기한 경우에는 같은 결론을 그대로 적용하지 않는다.",
+      "search_intents_ko": [
+        "자녀 전원 상속포기 손자녀",
+        "배우자 단독상속 2020그42",
+        "상속포기 다음 순위"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "배우자가 있고 자녀 전부가 포기한 경우의 현재 판례",
+          "paragraphs_ko": [
+            "대법원 전원합의체는 배우자와 자녀가 공동상속인인데 자녀 전부가 상속을 포기하면 포기한 자녀의 상속분이 남은 배우자에게 귀속되어 배우자가 단독상속인이 된다고 판단했습니다.",
+            "이 경우 손자녀나 직계존속이 배우자와 새로 공동상속인이 된다는 종래 판례는 2023년 결정에 배치되는 범위에서 변경되었습니다."
+          ]
+        },
+        {
+          "heading_ko": "비슷해 보여도 다른 경우를 나눈다",
+          "paragraphs_ko": [
+            "배우자와 자녀 모두가 포기한 경우에는 공동상속인 일부만 포기한 경우와 달라 후순위 상속인을 다시 확인해야 합니다. 자녀 일부만 포기한 경우에도 배우자와 포기하지 않은 자녀 사이에서 상속분이 정리됩니다.",
+            "따라서 배우자 존재, 자녀 전원의 포기 여부, 각 수리심판과 채권자의 승계집행 절차를 정확히 확인한 뒤 전원합의체 법리를 적용합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.family-inheritance.rule-all-children-renounce"
+      ],
+      "scenario_ids": [
+        "scenario.family-inheritance.sc-all-children-renounce"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.src-supreme-2020geu42"
       ],
       "hub_ids": [
         "hub.family-inheritance"
@@ -1057,6 +1233,80 @@
         ],
         "href": "https://liale-review.lolphysical.xyz"
       }
+    },
+    {
+      "content_id": "content.2026-loss-of-inheritance-right-and-representation",
+      "content_type": "law_change",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "2026-loss-of-inheritance-right-and-representation",
+      "title_ko": "2026년 민법 개정: 상속권 상실과 대습상속 연결",
+      "one_line_answer_ko": "2026년 3월 17일 개정 민법은 상속권 상실선고 제도와 연결하여 제1001조 대습상속 사유에 제1004조의2에 따라 상속인이 되지 못한 경우를 반영했다.",
+      "audience_situation_ko": "부양의무를 중대하게 위반한 상속인의 상속권이 상실되면 그 자녀가 대습상속할 수 있나?",
+      "key_points_ko": [
+        "상속결격과 상속권 상실선고를 구분한다.",
+        "상속권 상실선고의 원인·청구권자·기간을 별도 확인한다.",
+        "개정 시행일과 상속개시일에 따른 적용례를 확인해야 한다."
+      ],
+      "action_steps_ko": [
+        "상속개시일을 확정한다.",
+        "상실선고 사유와 관련 자료를 정리한다.",
+        "청구권자와 제척기간을 확인한다.",
+        "상실 대상자의 직계비속·배우자를 가족관계도로 표시한다.",
+        "개정법 적용례를 대조한다."
+      ],
+      "facts_to_check_ko": [
+        "상속개시일",
+        "개정 시행일",
+        "상실 사유",
+        "부양·학대 관련 자료",
+        "청구권자",
+        "청구기간",
+        "대상자의 직계비속",
+        "배우자",
+        "선고 확정 여부"
+      ],
+      "caution_ko": "상속권 상실선고의 구체적 요건과 적용례는 제1004조의2 및 부칙을 함께 검토해야 한다.",
+      "search_intents_ko": [
+        "상속권 상실 2026 민법",
+        "제1004조의2 대습상속",
+        "2026 상속법 개정"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "구법과 현행법의 대습상속 사유가 달라졌다",
+          "paragraphs_ko": [
+            "개정 전 민법 제1001조는 상속인이 될 직계비속 또는 형제자매가 상속개시 전에 사망하거나 제1004조의 상속결격자가 된 경우를 대습상속의 중심 사유로 두었습니다.",
+            "2026년 3월 17일 시행된 현행법은 새 제1004조의2에 따라 상속인이 되지 못한 경우도 제1001조의 대습상속 사유에 포함했습니다. 따라서 상속권 상실선고 대상자의 직계비속 지위를 개정 전 문언만으로 판단해서는 안 됩니다."
+          ]
+        },
+        {
+          "heading_ko": "상속개시일과 경과규정을 먼저 적용한다",
+          "paragraphs_ko": [
+            "상속권 상실선고는 부양의무의 중대한 위반, 중대한 범죄행위나 심히 부당한 대우 등 법정 사유와 청구권자·청구기간을 갖춘 별도 재판절차입니다. 도덕적 비난만으로 자동 상실되는 것은 아닙니다.",
+            "개정법은 2024년 4월 25일 이후 시행 전 상속이 개시된 일부 경우에 시행일부터 6개월 안의 특례 청구를 두는 등 경과규정을 포함합니다. 상속개시일, 상실사유를 안 날, 청구권자와 선고 확정일을 부칙과 함께 대조해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.family-inheritance.rule-2026-representation-change",
+        "rule.family-inheritance.rule-inheritance-order"
+      ],
+      "scenario_ids": [
+        "scenario.family-inheritance.sc-loss-of-inheritance-right"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1001",
+        "coord.family-inheritance.civil-act-ko-1004-02",
+        "coord.family-inheritance.civil-act-ko-1010",
+        "coord.family-inheritance.src-civil-revision-20260317",
+        "coord.family-inheritance.civil-act-ko-1000"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "related_content_ids": []
     }
   ]
 }
