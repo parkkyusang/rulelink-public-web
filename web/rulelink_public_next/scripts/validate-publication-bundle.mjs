@@ -20,12 +20,13 @@ try {
   fail([`출판본 JSON을 읽을 수 없습니다: ${error instanceof Error ? error.message : String(error)}`]);
 }
 
-const errors = validatePublishedBundle(bundle);
+const errors = validatePublishedBundle(bundle, {now: process.env.RULELINK_VALIDATION_NOW});
 if (errors.length) fail(errors);
 process.stdout.write(`공개 번들 안전검증 통과: ${bundlePath}\n`);
 
-export function validatePublishedBundle(value) {
+export function validatePublishedBundle(value, options = {}) {
   const errors = [];
+  const now = validationTime(options.now, errors);
   if (!isRecord(value)) return ['출판본 최상위 값은 객체여야 합니다.'];
   if (value.schema !== 'rulelink_published_bundle_v1') {
     errors.push('공개 빌드는 rulelink_published_bundle_v1만 허용합니다.');
@@ -33,11 +34,13 @@ export function validatePublishedBundle(value) {
   if (value.preview_only === true) errors.push('내부 편집 미리보기 표시는 공개 번들에 들어갈 수 없습니다.');
   if (value.jurisdiction !== 'KR') errors.push('공개 번들의 관할은 KR이어야 합니다.');
   if (value.locale !== 'ko-KR') errors.push('공개 번들의 언어는 ko-KR이어야 합니다.');
+  checkNotFutureTimestamp(value.built_at, '출판본 built_at', now, errors);
 
   const cards = requireArray(value, 'cards', errors);
   const assertions = requireArray(value, 'assertions', errors);
   const briefs = optionalArray(value, 'change_briefs', errors);
   const assertionIds = uniqueIds(assertions, 'assertion_id', '주장', errors);
+  validateAssertions(assertions, now, errors);
 
   for (const [index, card] of cards.entries()) {
     if (!isRecord(card)) {
@@ -47,6 +50,7 @@ export function validatePublishedBundle(value) {
     if (card.editorial_status !== 'approved') {
       errors.push(`문제카드 ${label(card, 'issue_card_id')}가 승인 상태가 아닙니다.`);
     }
+    checkReviewWindow(card, `문제카드 ${label(card, 'issue_card_id')}`, now, errors);
     checkReferences(card.assertion_ids, assertionIds, `문제카드 ${label(card, 'issue_card_id')}의 assertion_ids`, errors);
   }
 
@@ -58,15 +62,17 @@ export function validatePublishedBundle(value) {
     if (brief.editorial_status !== 'approved') {
       errors.push(`법령변화 브리핑 ${label(brief, 'change_brief_id')}이 승인 상태가 아닙니다.`);
     }
+    checkReviewWindow(brief, `법령변화 브리핑 ${label(brief, 'change_brief_id')}`, now, errors);
+    checkChangeLifecycle(brief, now, errors);
     checkReferences(brief.assertion_ids, assertionIds, `법령변화 브리핑 ${label(brief, 'change_brief_id')}의 assertion_ids`, errors);
   }
 
-  if (value.knowledge !== undefined) validateKnowledge(value.knowledge, errors);
+  if (value.knowledge !== undefined) validateKnowledge(value.knowledge, now, errors);
   scanForInternalData(value, '$', errors);
   return [...new Set(errors)];
 }
 
-function validateKnowledge(value, errors) {
+function validateKnowledge(value, now, errors) {
   if (!isRecord(value)) {
     errors.push('knowledge는 객체여야 합니다.');
     return;
@@ -92,6 +98,7 @@ function validateKnowledge(value, errors) {
     if (!isOfficialHttpsUrl(source.official_url)) {
       errors.push(`공개 지식 근거 ${label(source, 'coordinate_id')}의 공식 URL이 허용된 정부 도메인이 아닙니다.`);
     }
+    checkNotFutureTimestamp(source.last_verified_at, `공개 지식 근거 ${label(source, 'coordinate_id')}의 last_verified_at`, now, errors);
   }
 
   for (const rule of rules) {
@@ -110,6 +117,7 @@ function validateKnowledge(value, errors) {
     if (entry.editorial_status !== 'approved') {
       errors.push(`지식 콘텐츠 ${label(entry, 'content_id')}가 승인 상태가 아닙니다.`);
     }
+    checkReviewWindow(entry, `지식 콘텐츠 ${label(entry, 'content_id')}`, now, errors);
     checkReferences(entry.rule_ids, ruleIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 rule_ids`, errors);
     checkReferences(entry.scenario_ids, scenarioIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 scenario_ids`, errors);
     checkReferences(entry.source_coordinate_ids, sourceIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 source_coordinate_ids`, errors);
@@ -127,6 +135,104 @@ function validateKnowledge(value, errors) {
     if (!isRecord(hub)) continue;
     checkReferences(hub.content_ids, entryIds, `주제 허브 ${label(hub, 'hub_id')}의 content_ids`, errors);
   }
+}
+
+
+function validateAssertions(assertions, now, errors) {
+  for (const [index, assertion] of assertions.entries()) {
+    if (!isRecord(assertion)) {
+      errors.push(`assertions[${index}]는 객체여야 합니다.`);
+      continue;
+    }
+    const name = `주장 ${label(assertion, 'assertion_id')}`;
+    const coordinates = requireArray(assertion, 'source_coordinates', errors, name);
+    for (const [coordinateIndex, coordinate] of coordinates.entries()) {
+      if (!isRecord(coordinate)) {
+        errors.push(`${name}의 source_coordinates[${coordinateIndex}]는 객체여야 합니다.`);
+        continue;
+      }
+      if (coordinate.validation_status !== 'verified') {
+        errors.push(`${name}의 근거 ${label(coordinate, 'source_snapshot_id')}가 검증 상태가 아닙니다.`);
+      }
+      if (!isOfficialHttpsUrl(coordinate.official_url)) {
+        errors.push(`${name}의 근거 ${label(coordinate, 'source_snapshot_id')} 공식 URL이 허용된 정부 도메인이 아닙니다.`);
+      }
+      checkNotFutureTimestamp(
+        coordinate.last_verified_at,
+        `${name}의 근거 ${label(coordinate, 'source_snapshot_id')} last_verified_at`,
+        now,
+        errors,
+      );
+    }
+  }
+}
+
+function checkReviewWindow(value, name, now, errors) {
+  const reviewedAt = parseTimestamp(value.reviewed_at, `${name} reviewed_at`, errors);
+  const expiresAt = parseTimestamp(value.expires_at, `${name} expires_at`, errors);
+  if (!reviewedAt || !expiresAt || !now) return;
+  if (reviewedAt.getTime() > now.getTime() + 5 * 60 * 1000) {
+    errors.push(`${name}의 검토일이 검증 기준시각보다 미래입니다.`);
+  }
+  if (expiresAt.getTime() <= reviewedAt.getTime()) {
+    errors.push(`${name}의 재검토 기한은 검토일보다 뒤여야 합니다.`);
+  }
+  if (expiresAt.getTime() <= now.getTime()) {
+    errors.push(`${name}의 재검토 기한이 지났습니다.`);
+  }
+}
+
+function checkChangeLifecycle(brief, now, errors) {
+  const name = `법령변화 브리핑 ${label(brief, 'change_brief_id')}`;
+  if (!isIsoDate(brief.effective_date)) {
+    errors.push(`${name}의 effective_date는 유효한 YYYY-MM-DD 날짜여야 합니다.`);
+    return;
+  }
+  if (!now) return;
+  const today = seoulDate(now);
+  if (brief.lifecycle === 'future_effective' && brief.effective_date <= today) {
+    errors.push(`${name}은 시행일이 도래했으므로 시행 예정 상태일 수 없습니다.`);
+  } else if (brief.lifecycle === 'recently_effective' && brief.effective_date > today) {
+    errors.push(`${name}은 시행일 전이므로 최근 시행 상태일 수 없습니다.`);
+  } else if (!['future_effective', 'recently_effective'].includes(brief.lifecycle)) {
+    errors.push(`${name}의 lifecycle 값이 허용되지 않습니다.`);
+  }
+}
+
+function checkNotFutureTimestamp(value, name, now, errors) {
+  const timestamp = parseTimestamp(value, name, errors);
+  if (timestamp && now && timestamp.getTime() > now.getTime() + 5 * 60 * 1000) {
+    errors.push(`${name}이 검증 기준시각보다 미래입니다.`);
+  }
+}
+
+function parseTimestamp(value, name, errors) {
+  if (typeof value !== 'string' || !value.trim()) {
+    errors.push(`${name}은 유효한 날짜시각이어야 합니다.`);
+    return null;
+  }
+  const timestamp = new Date(value);
+  if (Number.isNaN(timestamp.getTime())) {
+    errors.push(`${name}은 유효한 날짜시각이어야 합니다.`);
+    return null;
+  }
+  return timestamp;
+}
+
+function validationTime(value, errors) {
+  if (value === undefined || value === '') return new Date();
+  return parseTimestamp(value, '검증 기준시각', errors);
+}
+
+function seoulDate(value) {
+  return new Date(value.getTime() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
+}
+
+function isIsoDate(value) {
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const [year, month, day] = value.split('-').map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day;
 }
 
 function scanForInternalData(value, location, errors) {
