@@ -1,3 +1,4 @@
+import {createHash} from 'node:crypto';
 import {access, readFile} from 'node:fs/promises';
 import path from 'node:path';
 
@@ -77,7 +78,7 @@ export function validatePublishedBundle(value, options = {}) {
   }
 
   if (value.catalog !== undefined) validateCatalog(value.catalog, cardIds, errors);
-  if (value.knowledge !== undefined) validateKnowledge(value.knowledge, now, errors);
+  if (value.knowledge !== undefined) validateKnowledge(value.knowledge, now, value.file_hashes, errors);
   scanForInternalData(value, '$', errors);
   return [...new Set(errors)];
 }
@@ -100,7 +101,7 @@ function validateCatalog(value, cardIds, errors) {
   }
 }
 
-function validateKnowledge(value, now, errors) {
+function validateKnowledge(value, now, fileHashes, errors) {
   if (!isRecord(value)) {
     errors.push('knowledge는 객체여야 합니다.');
     return;
@@ -119,6 +120,8 @@ function validateKnowledge(value, now, errors) {
   const scenarioIds = uniqueIds(scenarios, 'scenario_id', '사실분기', errors);
   const entryIds = uniqueIds(entries, 'content_id', '지식 콘텐츠', errors);
   const hubIds = uniqueIds(hubs, 'hub_id', '주제 허브', errors);
+  for (const entry of entries) validateKnowledgeObjectReceipt(entry, 'content_id', 'knowledge', fileHashes, errors);
+  validateKnowledgeIndexReceipt(value, fileHashes, errors);
   validateSlugs(entries, 'content_id', '지식 콘텐츠', errors);
   validateSlugs(hubs, 'hub_id', '주제 허브', errors);
 
@@ -128,18 +131,47 @@ function validateKnowledge(value, now, errors) {
     if (!isOfficialHttpsUrl(source.official_url)) {
       errors.push(`공개 지식 근거 ${label(source, 'coordinate_id')}의 공식 URL이 허용된 정부 도메인이 아닙니다.`);
     }
+    checkStableKnowledgeSource(source, `공개 지식 근거 ${label(source, 'coordinate_id')}`, errors);
     checkNotFutureTimestamp(source.last_verified_at, `공개 지식 근거 ${label(source, 'coordinate_id')}의 last_verified_at`, now, errors);
   }
 
   for (const rule of rules) {
     if (!isRecord(rule)) continue;
     checkReferences(rule.source_coordinate_ids, sourceIds, `법리카드 ${label(rule, 'rule_id')}의 source_coordinate_ids`, errors);
+    const ruleName = `법리카드 ${label(rule, 'rule_id')}`;
+    if (!isRecord(rule.norm)) {
+      errors.push(`${ruleName}의 norm이 객체가 아닙니다.`);
+    } else {
+      for (const field of ['actor_ko', 'conditions_ko', 'legal_effect_ko']) {
+        if (typeof rule.norm[field] !== 'string' || !rule.norm[field].trim()) errors.push(`${ruleName}의 norm.${field}가 비어 있습니다.`);
+      }
+      if (['해당 법률관계의 당사자', '당사자'].includes(rule.norm.actor_ko?.trim())) {
+        errors.push(`${ruleName}의 norm.actor_ko가 적용 주체를 구체화하지 않은 자리표시자입니다.`);
+      }
+      if (rule.norm.conditions_ko?.includes('조문과 구체적 사실관계가 정한 요건')) {
+        errors.push(`${ruleName}의 norm.conditions_ko가 적용 요건을 구체화하지 않은 자리표시자입니다.`);
+      }
+    }
   }
 
   for (const scenario of scenarios) {
     if (!isRecord(scenario)) continue;
-    checkReferences(scenario.rule_ids, ruleIds, `사실분기 ${label(scenario, 'scenario_id')}의 rule_ids`, errors);
-    checkReferences(scenario.source_coordinate_ids, sourceIds, `사실분기 ${label(scenario, 'scenario_id')}의 source_coordinate_ids`, errors);
+    const scenarioName = `사실분기 ${label(scenario, 'scenario_id')}`;
+    checkReferences(scenario.rule_ids, ruleIds, `${scenarioName}의 rule_ids`, errors);
+    const scenarioSources = requireArray(scenario, 'source_coordinate_ids', errors, scenarioName);
+    checkReferences(scenarioSources, sourceIds, `${scenarioName}의 source_coordinate_ids`, errors);
+    if (scenarioSources.length === 0) errors.push(`${scenarioName}에는 조문 근거가 하나 이상 필요합니다.`);
+    for (const field of ['question_ko', 'decision_fact_ko', 'when_true_ko', 'when_false_ko']) {
+      if (typeof scenario[field] !== 'string' || !scenario[field].trim()) errors.push(`${scenarioName}의 ${field}가 비어 있습니다.`);
+    }
+    const placeholderValues = [
+      '질문에 해당하는 구체적 사실',
+      '연결된 법리의 요건과 효과를 적용해 검토합니다.',
+      '다른 사실분기와 예외를 이어서 확인합니다.',
+    ];
+    if (placeholderValues.some(value => [scenario.decision_fact_ko, scenario.when_true_ko, scenario.when_false_ko].includes(value))) {
+      errors.push(`${scenarioName}에 사용자 판단을 돕지 못하는 자리표시자 문구가 있습니다.`);
+    }
   }
 
   for (const entry of entries) {
@@ -153,6 +185,23 @@ function validateKnowledge(value, now, errors) {
     checkReferences(entry.source_coordinate_ids, sourceIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 source_coordinate_ids`, errors);
     checkReferences(entry.hub_ids, hubIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 hub_ids`, errors);
     checkReferences(entry.related_content_ids, entryIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 related_content_ids`, errors);
+    const entryName = `지식 콘텐츠 ${label(entry, 'content_id')}`;
+    requireNonEmptyStringArray(entry, 'key_points_ko', 2, entryName, errors);
+    requireNonEmptyStringArray(entry, 'action_steps_ko', 2, entryName, errors);
+    requireNonEmptyStringArray(entry, 'facts_to_check_ko', 2, entryName, errors);
+    requireNonEmptyStringArray(entry, 'search_intents_ko', 1, entryName, errors);
+    if (typeof entry.caution_ko !== 'string' || !entry.caution_ko.trim()) {
+      errors.push(`${entryName}의 caution_ko는 비어 있지 않은 문자열이어야 합니다.`);
+    }
+    const bodySections = requireArray(entry, 'body_sections', errors, entryName);
+    if (bodySections.length < 1) errors.push(`${entryName}의 body_sections는 하나 이상이어야 합니다.`);
+    for (const [sectionIndex, section] of bodySections.entries()) {
+      if (!isRecord(section) || typeof section.heading_ko !== 'string' || !section.heading_ko.trim()) {
+        errors.push(`${entryName}의 body_sections[${sectionIndex}] 제목이 없습니다.`);
+        continue;
+      }
+      requireNonEmptyStringArray(section, 'paragraphs_ko', 1, `${entryName}의 body_sections[${sectionIndex}]`, errors);
+    }
     if (entry.concierge_entry !== undefined) {
       const href = isRecord(entry.concierge_entry) ? entry.concierge_entry.href : undefined;
       if (!isConciergeUrl(href)) {
@@ -283,6 +332,31 @@ function validateFileHashes(value, errors) {
   return entries.length;
 }
 
+function validateKnowledgeObjectReceipt(value, idKey, prefix, fileHashes, errors) {
+  if (!isRecord(value) || typeof value[idKey] !== 'string') return;
+  const key = `${prefix}:${value[idKey]}`;
+  const expected = createHash('sha256').update(canonicalJson(value)).digest('hex');
+  if (!isRecord(fileHashes) || fileHashes[key] !== expected) {
+    errors.push(`${key}의 내용 해시 영수증이 현재 공개 내용과 일치하지 않습니다.`);
+  }
+}
+
+function validateKnowledgeIndexReceipt(value, fileHashes, errors) {
+  const key = `knowledge-index:${value.schema}`;
+  const expected = createHash('sha256').update(canonicalJson(value)).digest('hex');
+  if (!isRecord(fileHashes) || fileHashes[key] !== expected) {
+    errors.push('공개 지식 전체 연결구조의 내용 해시 영수증이 일치하지 않습니다.');
+  }
+}
+
+function canonicalJson(value) {
+  if (Array.isArray(value)) return `[${value.map(canonicalJson).join(',')}]`;
+  if (isRecord(value)) {
+    return `{${Object.keys(value).sort().map(key => `${JSON.stringify(key)}:${canonicalJson(value[key])}`).join(',')}}`;
+  }
+  return JSON.stringify(value);
+}
+
 function knowledgeEntryCount(value) {
   return isRecord(value) && Array.isArray(value.content_entries) ? value.content_entries.length : 0;
 }
@@ -323,6 +397,25 @@ function looksLikeInternalPath(value) {
     || /(?:^|[/\\])data[/\\]db(?:[/\\]|$)/i.test(value);
 }
 
+function checkStableKnowledgeSource(source, name, errors) {
+  if (typeof source.law_name_ko !== 'string' || !source.law_name_ko.trim()) {
+    errors.push(`${name}의 law_name_ko가 없습니다.`);
+    return;
+  }
+  if (typeof source.article_no !== 'string' || !/^제[1-9]\d*조(?:의[1-9]\d*)?$/.test(source.article_no.trim())) {
+    errors.push(`${name}의 article_no가 유효한 조문 표기가 아닙니다.`);
+    return;
+  }
+  const expected = new URL(`https://www.law.go.kr/${['법령', source.law_name_ko.trim(), source.article_no.trim()].map(encodeURIComponent).join('/')}`).href;
+  try {
+    if (new URL(source.official_url).href !== expected) {
+      errors.push(`${name}의 공식 URL이 법령명·조문번호와 일치하는 안정 주소가 아닙니다.`);
+    }
+  } catch {
+    // URL 형식 오류는 isOfficialHttpsUrl에서 별도로 보고한다.
+  }
+}
+
 function isOfficialHttpsUrl(value) {
   if (typeof value !== 'string') return false;
   try {
@@ -354,6 +447,19 @@ function requireArray(value, key, errors, prefix = '') {
 function optionalArray(value, key, errors) {
   if (value[key] === undefined) return [];
   return requireArray(value, key, errors);
+}
+
+function requireNonEmptyStringArray(value, key, minimum, prefix, errors) {
+  const items = requireArray(value, key, errors, prefix);
+  if (items.length < minimum) {
+    errors.push(`${prefix}.${key}는 ${minimum}개 이상이어야 합니다.`);
+  }
+  for (const [index, item] of items.entries()) {
+    if (typeof item !== 'string' || !item.trim()) {
+      errors.push(`${prefix}.${key}[${index}]는 비어 있지 않은 문자열이어야 합니다.`);
+    }
+  }
+  return items;
 }
 
 function uniqueIds(items, key, labelName, errors) {

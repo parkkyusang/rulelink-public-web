@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {mkdtemp, rm, writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
@@ -48,6 +49,22 @@ test('공개 지식의 끊어진 참조를 거부한다', async () => {
   const result = await validate(bundle);
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /존재하지 않는 참조/);
+});
+
+test('공개 지식의 실천 안내가 부족하면 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  bundle.knowledge.content_entries[0].action_steps_ko = [];
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /action_steps_ko는 2개 이상/);
+});
+
+test('공개 지식의 완성 본문이 비어 있으면 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  bundle.knowledge.content_entries[0].body_sections[0].paragraphs_ko = [];
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /paragraphs_ko는 1개 이상/);
 });
 
 test('허용되지 않은 컨시어지 주소를 거부한다', async () => {
@@ -125,6 +142,46 @@ test('검증되지 않은 주장 근거를 거부한다', async () => {
   const result = await validate(bundle);
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /검증 상태가 아닙니다/);
+});
+
+test('공개 지식 근거의 URL이 법령명과 조문번호에 맞지 않으면 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  bundle.knowledge.sources[0].official_url = 'https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%B2%95/%EC%A0%9C2%EC%A1%B0';
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /법령명·조문번호와 일치하는 안정 주소/);
+});
+
+test('공개 지식 근거의 법령명이나 조문번호가 없으면 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  delete bundle.knowledge.sources[0].article_no;
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /article_no가 유효한 조문 표기가 아닙니다/);
+});
+
+test('법리 슬롯의 적용 주체와 요건이 자리표시자면 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  bundle.knowledge.rule_cards[0].norm.actor_ko = '해당 법률관계의 당사자';
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /적용 주체를 구체화하지 않은 자리표시자/);
+});
+
+test('사실분기의 결론이 공통 자리표시자면 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  bundle.knowledge.scenario_branches[0].when_true_ko = '연결된 법리의 요건과 효과를 적용해 검토합니다.';
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /사용자 판단을 돕지 못하는 자리표시자/);
+});
+
+test('공개 지식 내용을 영수증 갱신 없이 바꾸면 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  bundle.knowledge.content_entries[0].one_line_answer_ko = '영수증 이후 바뀐 내용입니다.';
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /내용 해시 영수증이 현재 공개 내용과 일치하지 않습니다/);
 });
 
 test('미래 근거 점검시각을 거부한다', async () => {
@@ -284,14 +341,16 @@ function changeBrief(overrides = {}) {
 }
 
 function knowledgeBundle() {
-  return {
+  const bundle = {
     ...baseBundle(),
     knowledge: {
       schema: 'rulelink_public_knowledge_index_v1',
       sources: [{
         coordinate_id: 'source.one',
-        source_id: 'law.one',
-        official_url: 'https://www.law.go.kr/법령/테스트법',
+        source_id: 'test_law_ko_0001',
+        law_name_ko: '테스트법',
+        article_no: '제1조',
+        official_url: 'https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%B2%95/%EC%A0%9C1%EC%A1%B0',
         source_snapshot_id: 'snapshot.one',
         last_verified_at: '2026-07-21T00:00:00+00:00',
       }],
@@ -321,6 +380,15 @@ function knowledgeBundle() {
         title_ko: '검증 콘텐츠',
         one_line_answer_ko: '검증 콘텐츠입니다.',
         audience_situation_ko: '법률정보를 찾는 경우',
+        key_points_ko: ['적용 기준을 확인합니다.', '사실관계를 구분합니다.'],
+        action_steps_ko: ['기준일을 확인합니다.', '관련 자료를 보관합니다.'],
+        facts_to_check_ko: ['기준일', '당사자 지위'],
+        caution_ko: '구체적인 사실에 따라 결론이 달라질 수 있습니다.',
+        search_intents_ko: ['검증 콘텐츠'],
+        body_sections: [{
+          heading_ko: '판단 순서',
+          paragraphs_ko: ['기준과 사실을 순서대로 대조합니다.'],
+        }],
         rule_ids: ['rule.one'],
         scenario_ids: ['scenario.one'],
         source_coordinate_ids: ['source.one'],
@@ -341,4 +409,21 @@ function knowledgeBundle() {
       }],
     },
   };
+  for (const entry of bundle.knowledge.content_entries) {
+    bundle.file_hashes[`knowledge:${entry.content_id}`] = contentReceipt(entry);
+  }
+  bundle.file_hashes[`knowledge-index:${bundle.knowledge.schema}`] = contentReceipt(bundle.knowledge);
+  return bundle;
+}
+
+function contentReceipt(value) {
+  return createHash('sha256').update(canonicalJson(value)).digest('hex');
+}
+
+function canonicalJson(value) {
+  if (Array.isArray(value)) return `[${value.map(canonicalJson).join(',')}]`;
+  if (value && typeof value === 'object') {
+    return `{${Object.keys(value).sort().map(key => `${JSON.stringify(key)}:${canonicalJson(value[key])}`).join(',')}}`;
+  }
+  return JSON.stringify(value);
 }

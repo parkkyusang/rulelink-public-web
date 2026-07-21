@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
+import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {findKnowledgeEntry, knowledgeDetail, listKnowledgeEntries} from '@/lib/publication';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
@@ -23,6 +24,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   return {
     title: entry.title_ko,
     description: entry.one_line_answer_ko,
+    keywords: entry.search_intents_ko,
     alternates: {canonical},
     openGraph: {
       type: 'article',
@@ -40,6 +42,9 @@ export default async function KnowledgePage({params}: Props) {
   if (!entry) notFound();
   const {rules, scenarios, sources, hubs, related} = await knowledgeDetail(entry);
   const canonicalUrl = `${site.url}/ko/knowledge/${entry.slug}`;
+  const officialSourceUrls = sources
+    .map(source => browserOfficialSourceUrl(source))
+    .filter((url): url is string => Boolean(url));
   return (
     <main className="knowledgePage">
       <script
@@ -50,8 +55,10 @@ export default async function KnowledgePage({params}: Props) {
           url: canonicalUrl,
           name: entry.title_ko,
           description: entry.one_line_answer_ko,
+          keywords: entry.search_intents_ko,
           inLanguage: 'ko-KR',
           dateModified: entry.reviewed_at,
+          isBasedOn: officialSourceUrls,
           isPartOf: {
             '@type': 'WebSite',
             name: site.name,
@@ -90,6 +97,22 @@ export default async function KnowledgePage({params}: Props) {
       <section className="knowledgeLayout">
         <div>
           <section className="knowledgeSection">
+            <p className="eyebrow">핵심 정리</p>
+            <h2>무엇부터 확인해야 하나요?</h2>
+            <ul>
+              {entry.key_points_ko.map(point => <li key={point}>{point}</li>)}
+            </ul>
+            <div className="ruleStack">
+              {entry.body_sections.map(section => (
+                <article className="ruleCard" key={section.heading_ko}>
+                  <h3>{section.heading_ko}</h3>
+                  {section.paragraphs_ko.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="knowledgeSection">
             <p className="eyebrow">적용 법리</p>
             <h2>먼저 기준을 확인합니다.</h2>
             <div className="ruleStack">
@@ -125,6 +148,22 @@ export default async function KnowledgePage({params}: Props) {
               </div>
             </section>
           ) : null}
+
+          <section className="knowledgeSection">
+            <p className="eyebrow">지금 할 일과 자료</p>
+            <h2>다음 순서로 준비합니다.</h2>
+            <div className="ruleStack">
+              <article className="ruleCard">
+                <h3>행동 순서</h3>
+                <ol>{entry.action_steps_ko.map(step => <li key={step}>{step}</li>)}</ol>
+              </article>
+              <article className="ruleCard">
+                <h3>확인하고 보관할 사실</h3>
+                <ul>{entry.facts_to_check_ko.map(fact => <li key={fact}>{fact}</li>)}</ul>
+              </article>
+            </div>
+            <p><b>주의할 점</b> · {entry.caution_ko}</p>
+          </section>
         </div>
 
         <aside className="knowledgeAside">
@@ -140,8 +179,8 @@ export default async function KnowledgePage({params}: Props) {
             <h2>공식 근거</h2>
             <p className={styles.sourcesIntro}>원문 주소와 마지막 확인일을 함께 표시합니다.</p>
             {sources.map(source => (
-              <a className={styles.sourceLink} href={source.official_url} key={source.coordinate_id} rel="noreferrer" target="_blank">
-                <span>공식 원문 보기 <span aria-hidden="true">↗</span></span>
+              <a className={styles.sourceLink} href={browserOfficialSourceUrl(source) ?? source.official_url} key={source.coordinate_id} rel="noreferrer" target="_blank">
+                <span>{source.law_name_ko} {source.article_no} 원문 <span aria-hidden="true">↗</span></span>
                 <small>원문 확인 {formatDate(source.last_verified_at)}</small>
               </a>
             ))}
