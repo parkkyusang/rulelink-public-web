@@ -1,8 +1,8 @@
 {
   "schema": "rulelink_published_bundle_v1",
-  "snapshot_id": "kr-knowledge-core-20260721-016",
-  "built_at": "2026-07-21T12:25:02.806Z",
-  "source_snapshot_id": "db-grounded-public-fragment-20260721-debt-enforcement",
+  "snapshot_id": "kr-knowledge-core-20260721-017",
+  "built_at": "2026-07-21T12:44:59.920Z",
+  "source_snapshot_id": "db-grounded-public-fragment-20260721-real-estate-sale",
   "jurisdiction": "KR",
   "locale": "ko-KR",
   "cards": [],
@@ -322,7 +322,19 @@
     "knowledge:content.2026-livelihood-account-protection": "67ef178826b623731536deda21da1450416bfeaa10e3c51a9fc6a4b5c6c0e43e",
     "knowledge:content.property-disclosure-when-assets-unknown": "2afba928073763e56f8d91e4014299d7e033cee4e2a2f24deb2567427ca54bbe",
     "knowledge:content.fraudulent-transfer-before-enforcement": "35cd4cae3491a6937c0af6a29b649395c6952e904af603e10f1a5ade531e332c",
-    "knowledge-index:rulelink_public_knowledge_index_v1": "aa71fd934fe6041117f3f70d04645d4065f36650c5b694cfd0cb0ddd11ec47d6"
+    "knowledge-index:rulelink_public_knowledge_index_v1": "c5ab378cda99a57c17ac9cfc084406af0f54c0e1ba36e735776ce5d1255d9a11",
+    "knowledge:content.real-estate-sale-contract-before-signing": "ffa45e9f46e7c5fc56e83bdac2e60fd379aa7d29fe63cfa5ea5b94624f6a5e64",
+    "knowledge:content.real-estate-reservation-deposit-meaning": "825d45cccb3f6d05301b91a3b8d758561c8d3a93d6d644ae1a36d7f1590df1b4",
+    "knowledge:content.earnest-money-rescission-cutoff": "d689cb02f478e4d875a52aa25423e006cb29461de5ff3fc57426d806293055de",
+    "knowledge:content.interim-payment-and-concurrent-closing": "7d2cb3dd67c9fd0c9738f73a60fae32d3c19b52c5ee18a3f1009da0bb016a810",
+    "knowledge:content.seller-misses-title-transfer-date": "a162987f6b3d39097aa46d8528e1a4bc2a4921196bcbace8ac27b7588bafec3c",
+    "knowledge:content.rescission-restitution-and-damages": "72ad1a452b9cc109ba9b00380f89c1eb7c4d3c24f5150b9aab9340bf81f65733",
+    "knowledge:content.seller-does-not-own-property": "aa4364ce105aa9d3ac110db067b9872400bbe2cdc7a0f7a8f2033991fc227814",
+    "knowledge:content.hidden-defect-after-purchase": "8d709dad6c1555a8c6f636d12e05b509218274386e2b0a5f08b91f80bb6e068c",
+    "knowledge:content.ownership-changes-only-after-registration": "900023f499f1f709435236a3bd6bb49fb4f870bf4290684bf0967cafded69321",
+    "knowledge:content.mistake-fraud-in-real-estate-contract": "fb85e7e3c43728f71ec8bbccc565d64d2e92c2be6cea6e81938a8e70df6738c2",
+    "knowledge:content.real-estate-transaction-reporting-30-days": "aa76b8c6b82a73e8e65aa2fb96682f473e121a0cc6f2f1492d870adf10572a7a",
+    "knowledge:content.broker-confirmation-explanation-checklist": "f32ba8f63bfa44bfd1a0b802b10cc8d01e1ab7ead9163f2680de52e6d5fd2d8e"
   },
   "knowledge": {
     "schema": "rulelink_public_knowledge_index_v1",
@@ -1328,6 +1340,168 @@
         "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C406%EC%A1%B0",
         "source_snapshot_id": "snapshot:7331d63f7a9dc3877d1c0ffaf42c0461",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.civil-act-ko-0563",
+        "source_id": "civil_act_ko_0563",
+        "law_name_ko": "민법",
+        "article_no": "제563조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C563%EC%A1%B0",
+        "source_snapshot_id": "snapshot:59a7051768192ad6298665f0da677db2",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.civil-act-ko-0565",
+        "source_id": "civil_act_ko_0565",
+        "law_name_ko": "민법",
+        "article_no": "제565조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C565%EC%A1%B0",
+        "source_snapshot_id": "snapshot:94799d117e74e7d18b91b5dc1e21d355",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.civil-act-ko-0536",
+        "source_id": "civil_act_ko_0536",
+        "law_name_ko": "민법",
+        "article_no": "제536조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C536%EC%A1%B0",
+        "source_snapshot_id": "snapshot:a8afe0a0588cd459b8c7e55e62c9ec97",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.civil-act-ko-0568",
+        "source_id": "civil_act_ko_0568",
+        "law_name_ko": "민법",
+        "article_no": "제568조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C568%EC%A1%B0",
+        "source_snapshot_id": "snapshot:f7f6720e6570f8e1546a41366cff10e5",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.civil-act-ko-0186",
+        "source_id": "civil_act_ko_0186",
+        "law_name_ko": "민법",
+        "article_no": "제186조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C186%EC%A1%B0",
+        "source_snapshot_id": "snapshot:bde27f0c0f178f1272175a85d946698d",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.civil-act-ko-0544",
+        "source_id": "civil_act_ko_0544",
+        "law_name_ko": "민법",
+        "article_no": "제544조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C544%EC%A1%B0",
+        "source_snapshot_id": "snapshot:f8da96047c57278a88f44c08e023c573",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.civil-act-ko-0548",
+        "source_id": "civil_act_ko_0548",
+        "law_name_ko": "민법",
+        "article_no": "제548조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C548%EC%A1%B0",
+        "source_snapshot_id": "snapshot:5e04a90afb476462174ed2238e1a62f9",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.civil-act-ko-0551",
+        "source_id": "civil_act_ko_0551",
+        "law_name_ko": "민법",
+        "article_no": "제551조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C551%EC%A1%B0",
+        "source_snapshot_id": "snapshot:c38aff9e84c0bbaf421f23c45e2a45b3",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.civil-act-ko-0569",
+        "source_id": "civil_act_ko_0569",
+        "law_name_ko": "민법",
+        "article_no": "제569조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C569%EC%A1%B0",
+        "source_snapshot_id": "snapshot:0205339ae0725beb81e1dc88ad5e5102",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.civil-act-ko-0570",
+        "source_id": "civil_act_ko_0570",
+        "law_name_ko": "민법",
+        "article_no": "제570조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C570%EC%A1%B0",
+        "source_snapshot_id": "snapshot:a3d769b2f21213bb707ea4e894ef6286",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.civil-act-ko-0575",
+        "source_id": "civil_act_ko_0575",
+        "law_name_ko": "민법",
+        "article_no": "제575조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C575%EC%A1%B0",
+        "source_snapshot_id": "snapshot:d6b7bfe9d0c41d1d74d8e2945d83c867",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.civil-act-ko-0580",
+        "source_id": "civil_act_ko_0580",
+        "law_name_ko": "민법",
+        "article_no": "제580조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C580%EC%A1%B0",
+        "source_snapshot_id": "snapshot:7b4345397d96aef6903a037defb0f62d",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.civil-act-ko-0582",
+        "source_id": "civil_act_ko_0582",
+        "law_name_ko": "민법",
+        "article_no": "제582조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C582%EC%A1%B0",
+        "source_snapshot_id": "snapshot:39cb029145a9b224525a4a7f73ee99ce",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.civil-act-ko-0109",
+        "source_id": "civil_act_ko_0109",
+        "law_name_ko": "민법",
+        "article_no": "제109조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C109%EC%A1%B0",
+        "source_snapshot_id": "snapshot:d06f5070462b5df93f3eeb4fe0dedacc",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.civil-act-ko-0110",
+        "source_id": "civil_act_ko_0110",
+        "law_name_ko": "민법",
+        "article_no": "제110조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C110%EC%A1%B0",
+        "source_snapshot_id": "snapshot:2eb0cb3dd308f81ef41e259b93b3ebe5",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.real-estate-transaction-reporting-ko-0003",
+        "source_id": "real_estate_transaction_reporting_ko_0003",
+        "law_name_ko": "부동산 거래신고 등에 관한 법률",
+        "article_no": "제3조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B6%80%EB%8F%99%EC%82%B0%20%EA%B1%B0%EB%9E%98%EC%8B%A0%EA%B3%A0%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C3%EC%A1%B0",
+        "source_snapshot_id": "snapshot:7432ec2c9161af19156c9337484d1ca6",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.real-estate-transaction-reporting-ko-0003-02",
+        "source_id": "real_estate_transaction_reporting_ko_0003_02",
+        "law_name_ko": "부동산 거래신고 등에 관한 법률",
+        "article_no": "제3조의2",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B6%80%EB%8F%99%EC%82%B0%20%EA%B1%B0%EB%9E%98%EC%8B%A0%EA%B3%A0%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C3%EC%A1%B0%EC%9D%982",
+        "source_snapshot_id": "snapshot:5d3b8ed7780171b66490aa767f7031a4",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
+      },
+      {
+        "coordinate_id": "coord.real-estate-sale.licensed-real-estate-agents-act-ko-0025",
+        "source_id": "licensed_real_estate_agents_act_ko_0025",
+        "law_name_ko": "공인중개사법",
+        "article_no": "제25조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B3%B5%EC%9D%B8%EC%A4%91%EA%B0%9C%EC%82%AC%EB%B2%95/%EC%A0%9C25%EC%A1%B0",
+        "source_snapshot_id": "snapshot:933f9ab68394d4091cc707b5df1b244b",
+        "last_verified_at": "2026-07-21T08:30:00+00:00"
       }
     ],
     "topic_hubs": [
@@ -1507,6 +1681,26 @@
           "content.2026-livelihood-account-protection",
           "content.property-disclosure-when-assets-unknown",
           "content.fraudulent-transfer-before-enforcement"
+        ]
+      },
+      {
+        "hub_id": "hub.real-estate-sale",
+        "slug": "real-estate-sale",
+        "title_ko": "부동산 매매·계약금",
+        "description_ko": "계약 성립과 가계약금부터 해약금, 중도금·잔금, 소유권이전, 하자, 취소, 실거래 신고와 중개 확인까지 매매 전 과정을 연결합니다.",
+        "content_ids": [
+          "content.real-estate-sale-contract-before-signing",
+          "content.real-estate-reservation-deposit-meaning",
+          "content.earnest-money-rescission-cutoff",
+          "content.interim-payment-and-concurrent-closing",
+          "content.seller-misses-title-transfer-date",
+          "content.rescission-restitution-and-damages",
+          "content.seller-does-not-own-property",
+          "content.hidden-defect-after-purchase",
+          "content.ownership-changes-only-after-registration",
+          "content.mistake-fraud-in-real-estate-contract",
+          "content.real-estate-transaction-reporting-30-days",
+          "content.broker-confirmation-explanation-checklist"
         ]
       }
     ],
@@ -2663,6 +2857,176 @@
         "source_coordinate_ids": [
           "coord.debt-enforcement.civil-act-ko-0406"
         ]
+      },
+      {
+        "rule_id": "rule.real-estate-sale.real-estate-01",
+        "title_ko": "부동산 계약서를 아직 안 썼으면 계약이 아닌가요",
+        "proposition_ko": "매매목적물과 대금 등 핵심 조건에 합의했다면 서면 전에도 계약 성립이 문제될 수 있으므로, 합의 내용과 계약 체결 의사를 함께 확인해야 합니다.",
+        "norm": {
+          "actor_ko": "부동산 매매계약의 체결 여부를 판단하는 당사자",
+          "conditions_ko": "매매조건을 합의했지만 정식 계약서에 서명하지 않았습니다.",
+          "legal_effect_ko": "매매목적물과 대금 등 핵심 조건에 합의했다면 서면 전에도 계약 성립이 문제될 수 있으므로, 합의 내용과 계약 체결 의사를 함께 확인해야 합니다."
+        },
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0563"
+        ]
+      },
+      {
+        "rule_id": "rule.real-estate-sale.real-estate-02",
+        "title_ko": "가계약금을 보냈다면 무조건 계약금으로 포기해야 하나요",
+        "proposition_ko": "송금 명칭보다 계약 성립 여부, 반환 약정, 해약금 약정과 실제 교부 범위를 확인해야 하며 자동으로 몰취된다고 단정할 수 없습니다.",
+        "norm": {
+          "actor_ko": "가계약금 명목의 금전을 주고받은 매매 당사자",
+          "conditions_ko": "정식 계약 전 소액을 보냈는데 거래를 중단하고 싶습니다.",
+          "legal_effect_ko": "송금 명칭보다 계약 성립 여부, 반환 약정, 해약금 약정과 실제 교부 범위를 확인해야 하며 자동으로 몰취된다고 단정할 수 없습니다."
+        },
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0563",
+          "coord.real-estate-sale.civil-act-ko-0565"
+        ]
+      },
+      {
+        "rule_id": "rule.real-estate-sale.real-estate-03",
+        "title_ko": "계약금만 포기하면 언제까지 부동산 계약을 해제할 수 있나요",
+        "proposition_ko": "다른 약정이 없다면 상대방 또는 자신이 이행에 착수하기 전까지만 계약금 포기나 배액상환에 의한 해제가 원칙적으로 가능합니다.",
+        "norm": {
+          "actor_ko": "계약금 해약해제를 검토하는 매매 당사자",
+          "conditions_ko": "잔금 전이면 언제든 계약금을 포기하고 해제할 수 있나요?",
+          "legal_effect_ko": "다른 약정이 없다면 상대방 또는 자신이 이행에 착수하기 전까지만 계약금 포기나 배액상환에 의한 해제가 원칙적으로 가능합니다."
+        },
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0565"
+        ]
+      },
+      {
+        "rule_id": "rule.real-estate-sale.real-estate-04",
+        "title_ko": "중도금을 지급한 뒤 잔금과 소유권이전은 어떻게 맞바꾸나요",
+        "proposition_ko": "특약이나 관습이 없으면 권리이전 의무와 대금지급 의무는 동시에 이행하는 것이 원칙이므로 잔금일의 서류·말소·지급 순서를 구체화해야 합니다.",
+        "norm": {
+          "actor_ko": "잔금과 소유권이전 의무를 이행하는 매도인·매수인",
+          "conditions_ko": "매수인은 잔금을, 매도인은 등기서류를 누가 먼저 줘야 하는지 다툽니다.",
+          "legal_effect_ko": "특약이나 관습이 없으면 권리이전 의무와 대금지급 의무는 동시에 이행하는 것이 원칙이므로 잔금일의 서류·말소·지급 순서를 구체화해야 합니다."
+        },
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0536",
+          "coord.real-estate-sale.civil-act-ko-0568",
+          "coord.real-estate-sale.civil-act-ko-0186"
+        ]
+      },
+      {
+        "rule_id": "rule.real-estate-sale.real-estate-05",
+        "title_ko": "매도인이 잔금일에 소유권이전을 해주지 않으면 바로 해제할 수 있나요",
+        "proposition_ko": "원칙적으로 상당한 기간을 정해 이행을 최고하고 그 기간에도 이행하지 않을 때 해제를 검토하며, 자신의 동시이행 준비도 입증해야 합니다.",
+        "norm": {
+          "actor_ko": "상대방의 매매계약 불이행을 이유로 해제하려는 당사자",
+          "conditions_ko": "잔금은 준비했는데 매도인이 등기 이전을 미룹니다.",
+          "legal_effect_ko": "원칙적으로 상당한 기간을 정해 이행을 최고하고 그 기간에도 이행하지 않을 때 해제를 검토하며, 자신의 동시이행 준비도 입증해야 합니다."
+        },
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0536",
+          "coord.real-estate-sale.civil-act-ko-0544",
+          "coord.real-estate-sale.civil-act-ko-0568"
+        ]
+      },
+      {
+        "rule_id": "rule.real-estate-sale.real-estate-06",
+        "title_ko": "부동산 계약을 해제하면 돈만 돌려받으면 끝인가요",
+        "proposition_ko": "해제되면 원상회복이 기본이고 반환할 금전에는 받은 날부터 이자가 문제되며, 손해배상청구가 별도로 배제되는 것은 아닙니다.",
+        "norm": {
+          "actor_ko": "해제 뒤 원상회복과 손해배상을 정산하는 매매 당사자",
+          "conditions_ko": "해제 뒤 계약금·중도금 반환과 손해배상을 함께 요구할 수 있나요?",
+          "legal_effect_ko": "해제되면 원상회복이 기본이고 반환할 금전에는 받은 날부터 이자가 문제되며, 손해배상청구가 별도로 배제되는 것은 아닙니다."
+        },
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0548",
+          "coord.real-estate-sale.civil-act-ko-0551"
+        ]
+      },
+      {
+        "rule_id": "rule.real-estate-sale.real-estate-07",
+        "title_ko": "등기 명의자가 아닌 사람이 부동산을 팔면 계약은 무조건 무효인가요",
+        "proposition_ko": "타인의 권리를 매매하는 계약도 곧바로 무효가 되는 것은 아니지만, 매도인은 그 권리를 취득해 이전해야 하고 불가능하면 매수인은 해제를 검토할 수 있습니다.",
+        "norm": {
+          "actor_ko": "현재 타인 소유인 권리를 매매한 매도인과 매수인",
+          "conditions_ko": "매도인이 현재 소유자가 아닌 사실을 뒤늦게 알았습니다.",
+          "legal_effect_ko": "타인의 권리를 매매하는 계약도 곧바로 무효가 되는 것은 아니지만, 매도인은 그 권리를 취득해 이전해야 하고 불가능하면 매수인은 해제를 검토할 수 있습니다."
+        },
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0569",
+          "coord.real-estate-sale.civil-act-ko-0570",
+          "coord.real-estate-sale.civil-act-ko-0186"
+        ]
+      },
+      {
+        "rule_id": "rule.real-estate-sale.real-estate-08",
+        "title_ko": "집을 산 뒤 숨은 하자를 발견하면 언제까지 책임을 물을 수 있나요",
+        "proposition_ko": "하자가 계약 목적 달성에 미치는 영향, 매수인의 선의·무과실, 안 날부터 6개월의 행사기간을 확인해 해제 또는 손해배상을 검토합니다.",
+        "norm": {
+          "actor_ko": "매매목적물의 하자를 발견한 매수인과 매도인",
+          "conditions_ko": "입주 뒤 누수나 구조상 하자를 발견했습니다.",
+          "legal_effect_ko": "하자가 계약 목적 달성에 미치는 영향, 매수인의 선의·무과실, 안 날부터 6개월의 행사기간을 확인해 해제 또는 손해배상을 검토합니다."
+        },
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0575",
+          "coord.real-estate-sale.civil-act-ko-0580",
+          "coord.real-estate-sale.civil-act-ko-0582"
+        ]
+      },
+      {
+        "rule_id": "rule.real-estate-sale.real-estate-09",
+        "title_ko": "잔금을 다 냈으면 소유권이 자동으로 넘어오나요",
+        "proposition_ko": "부동산에 관한 법률행위로 인한 소유권 변동은 등기해야 효력이 생기므로 잔금 지급과 등기 완료를 같은 것으로 보면 안 됩니다.",
+        "norm": {
+          "actor_ko": "부동산 소유권을 이전받으려는 매수인과 매도인",
+          "conditions_ko": "매매대금을 지급했지만 소유권이전등기가 아직입니다.",
+          "legal_effect_ko": "부동산에 관한 법률행위로 인한 소유권 변동은 등기해야 효력이 생기므로 잔금 지급과 등기 완료를 같은 것으로 보면 안 됩니다."
+        },
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0186",
+          "coord.real-estate-sale.civil-act-ko-0568"
+        ]
+      },
+      {
+        "rule_id": "rule.real-estate-sale.real-estate-10",
+        "title_ko": "중요 사실을 잘못 알거나 속아 계약했다면 취소할 수 있나요",
+        "proposition_ko": "법률행위의 중요부분에 관한 착오인지, 상대방의 사기인지, 중대한 과실이나 제3자 관계가 있는지를 나눠 취소 가능성을 판단합니다.",
+        "norm": {
+          "actor_ko": "착오·사기로 부동산 계약을 체결한 당사자",
+          "conditions_ko": "면적·용도·개발계획 설명을 믿고 샀는데 사실과 달랐습니다.",
+          "legal_effect_ko": "법률행위의 중요부분에 관한 착오인지, 상대방의 사기인지, 중대한 과실이나 제3자 관계가 있는지를 나눠 취소 가능성을 판단합니다."
+        },
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0109",
+          "coord.real-estate-sale.civil-act-ko-0110"
+        ]
+      },
+      {
+        "rule_id": "rule.real-estate-sale.real-estate-11",
+        "title_ko": "부동산 매매계약과 해제는 언제까지 신고해야 하나요",
+        "proposition_ko": "대상 계약은 원칙적으로 체결일부터 30일 이내 신고하고, 신고 뒤 해제·무효·취소가 확정되면 그 날부터 30일 이내 해제등 신고를 해야 합니다.",
+        "norm": {
+          "actor_ko": "부동산 거래계약 또는 해제등을 신고할 의무자",
+          "conditions_ko": "계약을 체결하거나 해제했는데 실거래 신고기한이 궁금합니다.",
+          "legal_effect_ko": "대상 계약은 원칙적으로 체결일부터 30일 이내 신고하고, 신고 뒤 해제·무효·취소가 확정되면 그 날부터 30일 이내 해제등 신고를 해야 합니다."
+        },
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.real-estate-transaction-reporting-ko-0003",
+          "coord.real-estate-sale.real-estate-transaction-reporting-ko-0003-02"
+        ]
+      },
+      {
+        "rule_id": "rule.real-estate-sale.real-estate-12",
+        "title_ko": "공인중개사에게 계약 전에 어떤 자료와 설명을 요구해야 하나요",
+        "proposition_ko": "중개가 완성되기 전에 대상물의 상태·입지·권리관계와 거래·이용 제한을 근거자료와 함께 확인·설명받고, 계약서와 확인·설명서의 불일치를 점검해야 합니다.",
+        "norm": {
+          "actor_ko": "중개대상물의 권리를 취득하려는 중개의뢰인과 개업공인중개사",
+          "conditions_ko": "등기만 보면 충분한지, 확인·설명서를 언제 받아야 하는지 궁금합니다.",
+          "legal_effect_ko": "중개가 완성되기 전에 대상물의 상태·입지·권리관계와 거래·이용 제한을 근거자료와 함께 확인·설명받고, 계약서와 확인·설명서의 불일치를 점검해야 합니다."
+        },
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.licensed-real-estate-agents-act-ko-0025",
+          "coord.real-estate-sale.civil-act-ko-0186"
+        ]
       }
     ],
     "scenario_branches": [
@@ -3574,6 +3938,162 @@
         ],
         "source_coordinate_ids": [
           "coord.debt-enforcement.civil-act-ko-0406"
+        ]
+      },
+      {
+        "scenario_id": "scenario.real-estate-sale.real-estate-01",
+        "question_ko": "매매조건을 합의했지만 정식 계약서에 서명하지 않았습니다.",
+        "decision_fact_ko": "목적물 특정 여부",
+        "when_true_ko": "매매목적물과 대금 등 핵심 조건에 합의했다면 서면 전에도 계약 성립이 문제될 수 있으므로, 합의 내용과 계약 체결 의사를 함께 확인해야 합니다.",
+        "when_false_ko": "목적물 특정 여부·매매대금 합의 여부·계약 체결 의사·추가 조건이나 승인 유보 자료를 먼저 확인한 뒤 결론을 정합니다.",
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-01"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0563"
+        ]
+      },
+      {
+        "scenario_id": "scenario.real-estate-sale.real-estate-02",
+        "question_ko": "정식 계약 전 소액을 보냈는데 거래를 중단하고 싶습니다.",
+        "decision_fact_ko": "송금액과 전체 계약금",
+        "when_true_ko": "송금 명칭보다 계약 성립 여부, 반환 약정, 해약금 약정과 실제 교부 범위를 확인해야 하며 자동으로 몰취된다고 단정할 수 없습니다.",
+        "when_false_ko": "송금액과 전체 계약금·송금 명목·반환·몰취 합의·핵심 조건 합의 여부 자료를 먼저 확인한 뒤 결론을 정합니다.",
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-02"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0563",
+          "coord.real-estate-sale.civil-act-ko-0565"
+        ]
+      },
+      {
+        "scenario_id": "scenario.real-estate-sale.real-estate-03",
+        "question_ko": "잔금 전이면 언제든 계약금을 포기하고 해제할 수 있나요?",
+        "decision_fact_ko": "계약금 실제 교부",
+        "when_true_ko": "다른 약정이 없다면 상대방 또는 자신이 이행에 착수하기 전까지만 계약금 포기나 배액상환에 의한 해제가 원칙적으로 가능합니다.",
+        "when_false_ko": "계약금 실제 교부·해약금 특약·이행착수 행위와 날짜·해제 통보 도달일 자료를 먼저 확인한 뒤 결론을 정합니다.",
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-03"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0565"
+        ]
+      },
+      {
+        "scenario_id": "scenario.real-estate-sale.real-estate-04",
+        "question_ko": "매수인은 잔금을, 매도인은 등기서류를 누가 먼저 줘야 하는지 다툽니다.",
+        "decision_fact_ko": "잔금일과 장소",
+        "when_true_ko": "특약이나 관습이 없으면 권리이전 의무와 대금지급 의무는 동시에 이행하는 것이 원칙이므로 잔금일의 서류·말소·지급 순서를 구체화해야 합니다.",
+        "when_false_ko": "잔금일과 장소·말소 대상 권리·등기 필요서류·지급 준비와 이행제공 자료를 먼저 확인한 뒤 결론을 정합니다.",
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-04"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0536",
+          "coord.real-estate-sale.civil-act-ko-0568",
+          "coord.real-estate-sale.civil-act-ko-0186"
+        ]
+      },
+      {
+        "scenario_id": "scenario.real-estate-sale.real-estate-05",
+        "question_ko": "잔금은 준비했는데 매도인이 등기 이전을 미룹니다.",
+        "decision_fact_ko": "매도인의 미이행 내용",
+        "when_true_ko": "원칙적으로 상당한 기간을 정해 이행을 최고하고 그 기간에도 이행하지 않을 때 해제를 검토하며, 자신의 동시이행 준비도 입증해야 합니다.",
+        "when_false_ko": "매도인의 미이행 내용·매수인의 잔금 준비·최고 내용과 도달일·명백한 이행거절 여부 자료를 먼저 확인한 뒤 결론을 정합니다.",
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-05"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0536",
+          "coord.real-estate-sale.civil-act-ko-0544",
+          "coord.real-estate-sale.civil-act-ko-0568"
+        ]
+      },
+      {
+        "scenario_id": "scenario.real-estate-sale.real-estate-06",
+        "question_ko": "매도인이 현재 소유자가 아닌 사실을 뒤늦게 알았습니다.",
+        "decision_fact_ko": "현재 등기명의자",
+        "when_true_ko": "타인의 권리를 매매하는 계약도 곧바로 무효가 되는 것은 아니지만, 매도인은 그 권리를 취득해 이전해야 하고 불가능하면 매수인은 해제를 검토할 수 있습니다.",
+        "when_false_ko": "현재 등기명의자·매도인의 권한·권리 취득 가능성·매수인의 인식 자료를 먼저 확인한 뒤 결론을 정합니다.",
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-07"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0569",
+          "coord.real-estate-sale.civil-act-ko-0570",
+          "coord.real-estate-sale.civil-act-ko-0186"
+        ]
+      },
+      {
+        "scenario_id": "scenario.real-estate-sale.real-estate-07",
+        "question_ko": "입주 뒤 누수나 구조상 하자를 발견했습니다.",
+        "decision_fact_ko": "하자 존재와 원인",
+        "when_true_ko": "하자가 계약 목적 달성에 미치는 영향, 매수인의 선의·무과실, 안 날부터 6개월의 행사기간을 확인해 해제 또는 손해배상을 검토합니다.",
+        "when_false_ko": "하자 존재와 원인·계약 목적 달성 영향·발견일·매수인의 사전 인식과 과실 자료를 먼저 확인한 뒤 결론을 정합니다.",
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-08"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0575",
+          "coord.real-estate-sale.civil-act-ko-0580",
+          "coord.real-estate-sale.civil-act-ko-0582"
+        ]
+      },
+      {
+        "scenario_id": "scenario.real-estate-sale.real-estate-08",
+        "question_ko": "매매대금을 지급했지만 소유권이전등기가 아직입니다.",
+        "decision_fact_ko": "잔금 지급 여부",
+        "when_true_ko": "부동산에 관한 법률행위로 인한 소유권 변동은 등기해야 효력이 생기므로 잔금 지급과 등기 완료를 같은 것으로 보면 안 됩니다.",
+        "when_false_ko": "잔금 지급 여부·등기 접수·완료 여부·기존 담보·가압류·매도인의 등기협력 자료를 먼저 확인한 뒤 결론을 정합니다.",
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-09"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0186",
+          "coord.real-estate-sale.civil-act-ko-0568"
+        ]
+      },
+      {
+        "scenario_id": "scenario.real-estate-sale.real-estate-09",
+        "question_ko": "면적·용도·개발계획 설명을 믿고 샀는데 사실과 달랐습니다.",
+        "decision_fact_ko": "잘못 안 사실의 중요성",
+        "when_true_ko": "법률행위의 중요부분에 관한 착오인지, 상대방의 사기인지, 중대한 과실이나 제3자 관계가 있는지를 나눠 취소 가능성을 판단합니다.",
+        "when_false_ko": "잘못 안 사실의 중요성·중대한 과실 여부·기망 주체와 내용·선의의 제3자 존재 자료를 먼저 확인한 뒤 결론을 정합니다.",
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-10"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0109",
+          "coord.real-estate-sale.civil-act-ko-0110"
+        ]
+      },
+      {
+        "scenario_id": "scenario.real-estate-sale.real-estate-10",
+        "question_ko": "계약을 체결하거나 해제했는데 실거래 신고기한이 궁금합니다.",
+        "decision_fact_ko": "신고대상 계약 여부",
+        "when_true_ko": "대상 계약은 원칙적으로 체결일부터 30일 이내 신고하고, 신고 뒤 해제·무효·취소가 확정되면 그 날부터 30일 이내 해제등 신고를 해야 합니다.",
+        "when_false_ko": "신고대상 계약 여부·계약 체결일·해제·무효·취소 확정일·중개 여부와 신고 주체 자료를 먼저 확인한 뒤 결론을 정합니다.",
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-11"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.real-estate-transaction-reporting-ko-0003",
+          "coord.real-estate-sale.real-estate-transaction-reporting-ko-0003-02"
+        ]
+      },
+      {
+        "scenario_id": "scenario.real-estate-sale.real-estate-11",
+        "question_ko": "등기만 보면 충분한지, 확인·설명서를 언제 받아야 하는지 궁금합니다.",
+        "decision_fact_ko": "중개 완성 전 설명 여부",
+        "when_true_ko": "중개가 완성되기 전에 대상물의 상태·입지·권리관계와 거래·이용 제한을 근거자료와 함께 확인·설명받고, 계약서와 확인·설명서의 불일치를 점검해야 합니다.",
+        "when_false_ko": "중개 완성 전 설명 여부·제시된 근거자료·권리·이용제한·설명서와 실제 상태의 차이 자료를 먼저 확인한 뒤 결론을 정합니다.",
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-12"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.licensed-real-estate-agents-act-ko-0025",
+          "coord.real-estate-sale.civil-act-ko-0186"
         ]
       }
     ],
@@ -11060,6 +11580,892 @@
           "content.bank-account-seizure-and-collection-order",
           "content.property-disclosure-when-assets-unknown"
         ]
+      },
+      {
+        "content_id": "content.real-estate-sale-contract-before-signing",
+        "content_type": "misconception_correction",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "real-estate-sale-contract-before-signing",
+        "title_ko": "부동산 계약서를 아직 안 썼으면 계약이 아닌가요?",
+        "one_line_answer_ko": "매매목적물과 대금 등 핵심 조건에 합의했다면 서면 전에도 계약 성립이 문제될 수 있으므로, 합의 내용과 계약 체결 의사를 함께 확인해야 합니다.",
+        "audience_situation_ko": "",
+        "key_points_ko": [
+          "계약서 작성과 계약 성립은 같은 문제가 아닙니다.",
+          "목적물·대금과 확정 의사를 확인합니다.",
+          "가계약금 명칭만으로 결론내리지 않습니다."
+        ],
+        "action_steps_ko": [
+          "문자·메신저·녹취와 송금내역을 보존한다.",
+          "목적물·대금·지급일 합의가 있었는지 시간순으로 정리한다.",
+          "정식 계약 전제나 추가 승인 조건을 확인한다.",
+          "일방적으로 파기 통보하기 전에 성립 여부를 검토한다."
+        ],
+        "facts_to_check_ko": [
+          "목적물 특정 여부",
+          "매매대금 합의 여부",
+          "계약 체결 의사",
+          "추가 조건이나 승인 유보"
+        ],
+        "caution_ko": "토지거래허가 등 별도 법률이 요구하는 절차가 있거나 당사자가 서면 체결을 효력요건으로 합의한 경우에는 추가 검토가 필요합니다.",
+        "search_intents_ko": [
+          "부동산 계약서를 아직 안 썼으면 계약이 아닌가요?",
+          "매매조건을 합의했지만 정식 계약서에 서명하지 않았습니다.",
+          "real estate sale contract before signing"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "서명보다 합의의 완성도를 본다",
+            "paragraphs_ko": [
+              "민법상 매매는 권리를 이전하고 대금을 지급하기로 약정하면 효력이 생깁니다.",
+              "따라서 계약서가 없다는 사실만으로 언제나 계약이 없다고 단정할 수 없습니다."
+            ]
+          },
+          {
+            "heading_ko": "가계약 단계의 말과 행동을 함께 본다",
+            "paragraphs_ko": [
+              "목적물과 가격만 오갔는지, 지급일·잔금일·특약까지 확정했는지 구분합니다.",
+              "정식 계약 때까지 구속되지 않기로 한 사정이 있다면 그 자료도 함께 보존해야 합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-01"
+        ],
+        "scenario_ids": [
+          "scenario.real-estate-sale.real-estate-01"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0563"
+        ],
+        "hub_ids": [
+          "hub.real-estate-sale"
+        ],
+        "related_content_ids": [
+          "content.real-estate-reservation-deposit-meaning",
+          "content.earnest-money-rescission-cutoff",
+          "content.mistake-fraud-in-real-estate-contract"
+        ]
+      },
+      {
+        "content_id": "content.real-estate-reservation-deposit-meaning",
+        "content_type": "fact_branch",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "real-estate-reservation-deposit-meaning",
+        "title_ko": "가계약금을 보냈다면 무조건 계약금으로 포기해야 하나요?",
+        "one_line_answer_ko": "송금 명칭보다 계약 성립 여부, 반환 약정, 해약금 약정과 실제 교부 범위를 확인해야 하며 자동으로 몰취된다고 단정할 수 없습니다.",
+        "audience_situation_ko": "",
+        "key_points_ko": [
+          "가계약금이라는 이름만으로 법적 성격이 정해지지 않습니다.",
+          "계약 성립과 해약금 약정을 나눠 봅니다.",
+          "반환·몰취 조건의 합의 증거가 핵심입니다."
+        ],
+        "action_steps_ko": [
+          "송금 전후 대화를 원문으로 보존한다.",
+          "계약 성립 여부와 송금 목적을 구분해 정리한다.",
+          "반환·배액상환·몰취 문구를 확인한다.",
+          "추가 지급이나 처분 전에 법적 성격을 검토한다."
+        ],
+        "facts_to_check_ko": [
+          "송금액과 전체 계약금",
+          "송금 명목",
+          "반환·몰취 합의",
+          "핵심 조건 합의 여부"
+        ],
+        "caution_ko": "일부 계약금만 지급한 경우의 해약금 범위는 약정과 판례 법리에 따라 달라질 수 있어 송금액만으로 계산하면 위험합니다.",
+        "search_intents_ko": [
+          "가계약금을 보냈다면 무조건 계약금으로 포기해야 하나요?",
+          "정식 계약 전 소액을 보냈는데 거래를 중단하고 싶습니다.",
+          "real estate reservation deposit meaning"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "먼저 계약이 성립했는지 확인한다",
+            "paragraphs_ko": [
+              "계약이 성립하지 않았다면 송금액 반환 문제와 해약금 해제 문제는 같은 구조가 아닙니다.",
+              "목적물·가격·당사자와 구속 의사가 확정됐는지부터 봅니다."
+            ]
+          },
+          {
+            "heading_ko": "그 다음 돈의 약정을 해석한다",
+            "paragraphs_ko": [
+              "민법 제565조는 계약금 등이 실제 교부되고 다른 약정이 없을 때 해약금으로 추정하는 구조입니다.",
+              "반환 조건이나 별도 위약금 약정이 있다면 그 문언이 우선 쟁점이 됩니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-02"
+        ],
+        "scenario_ids": [
+          "scenario.real-estate-sale.real-estate-02"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0563",
+          "coord.real-estate-sale.civil-act-ko-0565"
+        ],
+        "hub_ids": [
+          "hub.real-estate-sale"
+        ],
+        "related_content_ids": [
+          "content.real-estate-sale-contract-before-signing",
+          "content.earnest-money-rescission-cutoff",
+          "content.rescission-restitution-and-damages"
+        ],
+        "concierge_entry": {
+          "question_ko": "가계약금을 보냈다면 무조건 계약금으로 포기해야 하나요?",
+          "decision_facts_ko": [
+            "송금액과 전체 계약금",
+            "송금 명목",
+            "반환·몰취 합의",
+            "핵심 조건 합의 여부"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.earnest-money-rescission-cutoff",
+        "content_type": "doctrine_explainer",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "earnest-money-rescission-cutoff",
+        "title_ko": "계약금만 포기하면 언제까지 부동산 계약을 해제할 수 있나요?",
+        "one_line_answer_ko": "다른 약정이 없다면 상대방 또는 자신이 이행에 착수하기 전까지만 계약금 포기나 배액상환에 의한 해제가 원칙적으로 가능합니다.",
+        "audience_situation_ko": "",
+        "key_points_ko": [
+          "잔금일이 아니라 이행착수 여부가 경계입니다.",
+          "교부자는 포기, 수령자는 배액상환 구조입니다.",
+          "별도 특약이 있으면 먼저 확인합니다."
+        ],
+        "action_steps_ko": [
+          "계약금 교부와 특약을 확인한다.",
+          "중도금 지급·수령과 이행 준비 행위를 시간순으로 적는다.",
+          "해제 의사표시의 도달 증거를 남긴다.",
+          "배액상환이면 실제 제공 방법까지 준비한다."
+        ],
+        "facts_to_check_ko": [
+          "계약금 실제 교부",
+          "해약금 특약",
+          "이행착수 행위와 날짜",
+          "해제 통보 도달일"
+        ],
+        "caution_ko": "무엇이 이행착수인지와 중도금 선지급의 효력은 구체적 약정과 판례에 따라 달라질 수 있습니다.",
+        "search_intents_ko": [
+          "계약금만 포기하면 언제까지 부동산 계약을 해제할 수 있나요?",
+          "잔금 전이면 언제든 계약금을 포기하고 해제할 수 있나요?",
+          "earnest money rescission cutoff"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "해약금 해제에는 시간 경계가 있다",
+            "paragraphs_ko": [
+              "계약금이 교부되고 다른 약정이 없으면 민법 제565조의 해약금 해제가 문제됩니다.",
+              "그 행사는 당사자 일방이 이행에 착수하기 전까지라는 제한을 받습니다."
+            ]
+          },
+          {
+            "heading_ko": "통보만이 아니라 포기·상환의 실행을 준비한다",
+            "paragraphs_ko": [
+              "매수인은 교부한 계약금을 포기하고, 매도인은 받은 금액의 배액을 상환하는 구조입니다.",
+              "상대방이 이미 이행에 착수했는지 불분명하면 일방적 파기보다 사실관계를 먼저 고정해야 합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-03"
+        ],
+        "scenario_ids": [
+          "scenario.real-estate-sale.real-estate-03"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0565"
+        ],
+        "hub_ids": [
+          "hub.real-estate-sale"
+        ],
+        "related_content_ids": [
+          "content.real-estate-reservation-deposit-meaning",
+          "content.interim-payment-and-concurrent-closing",
+          "content.rescission-restitution-and-damages"
+        ]
+      },
+      {
+        "content_id": "content.interim-payment-and-concurrent-closing",
+        "content_type": "procedure_evidence",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "interim-payment-and-concurrent-closing",
+        "title_ko": "중도금을 지급한 뒤 잔금과 소유권이전은 어떻게 맞바꾸나요?",
+        "one_line_answer_ko": "특약이나 관습이 없으면 권리이전 의무와 대금지급 의무는 동시에 이행하는 것이 원칙이므로 잔금일의 서류·말소·지급 순서를 구체화해야 합니다.",
+        "audience_situation_ko": "",
+        "key_points_ko": [
+          "매도인의 권리이전과 매수인의 대금지급은 원칙적으로 동시이행입니다.",
+          "단순 준비와 적법한 이행제공을 구분합니다.",
+          "잔금일 이전 권리변동도 재확인합니다."
+        ],
+        "action_steps_ko": [
+          "잔금일 직전 등기사항증명서를 다시 확인한다.",
+          "말소할 담보권과 필요서류를 목록화한다.",
+          "은행·법무사·중개사와 지급·접수 순서를 정한다.",
+          "불이행 시 이행제공 증거를 남긴다."
+        ],
+        "facts_to_check_ko": [
+          "잔금일과 장소",
+          "말소 대상 권리",
+          "등기 필요서류",
+          "지급 준비와 이행제공"
+        ],
+        "caution_ko": "특약으로 선이행 의무를 정했거나 상대방의 이행이 현저히 곤란해진 경우에는 동시이행 판단이 달라질 수 있습니다.",
+        "search_intents_ko": [
+          "중도금을 지급한 뒤 잔금과 소유권이전은 어떻게 맞바꾸나요?",
+          "매수인은 잔금을, 매도인은 등기서류를 누가 먼저 줘야 하는지 다툽니다.",
+          "interim payment and concurrent closing"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "잔금과 권리이전은 하나의 결제 절차다",
+            "paragraphs_ko": [
+              "매도인은 권리를 이전하고 매수인은 대금을 지급할 의무를 부담합니다.",
+              "특별한 약정이나 관습이 없으면 두 의무는 동시에 이행하는 것이 원칙입니다."
+            ]
+          },
+          {
+            "heading_ko": "현장 순서를 사전에 고정한다",
+            "paragraphs_ko": [
+              "등기서류 교부, 기존 담보 말소, 잔금 이체와 등기 접수의 순서를 미리 정합니다.",
+              "한쪽이 불이행했다고 주장하려면 자신이 무엇을 준비하고 제공했는지 남겨야 합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-04"
+        ],
+        "scenario_ids": [
+          "scenario.real-estate-sale.real-estate-04"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0536",
+          "coord.real-estate-sale.civil-act-ko-0568",
+          "coord.real-estate-sale.civil-act-ko-0186"
+        ],
+        "hub_ids": [
+          "hub.real-estate-sale"
+        ],
+        "related_content_ids": [
+          "content.earnest-money-rescission-cutoff",
+          "content.seller-misses-title-transfer-date",
+          "content.ownership-changes-only-after-registration"
+        ],
+        "concierge_entry": {
+          "question_ko": "중도금을 지급한 뒤 잔금과 소유권이전은 어떻게 맞바꾸나요?",
+          "decision_facts_ko": [
+            "잔금일과 장소",
+            "말소 대상 권리",
+            "등기 필요서류",
+            "지급 준비와 이행제공"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.seller-misses-title-transfer-date",
+        "content_type": "procedure_evidence",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "seller-misses-title-transfer-date",
+        "title_ko": "매도인이 잔금일에 소유권이전을 해주지 않으면 바로 해제할 수 있나요?",
+        "one_line_answer_ko": "원칙적으로 상당한 기간을 정해 이행을 최고하고 그 기간에도 이행하지 않을 때 해제를 검토하며, 자신의 동시이행 준비도 입증해야 합니다.",
+        "audience_situation_ko": "",
+        "key_points_ko": [
+          "통상 상당한 기간의 최고가 먼저 필요합니다.",
+          "미리 이행거절을 표시한 경우는 예외가 될 수 있습니다.",
+          "잔금 지급 준비와 등기협력 요구를 함께 남깁니다."
+        ],
+        "action_steps_ko": [
+          "잔금 지급 가능 상태를 객관화한다.",
+          "등기이전·말소에 필요한 이행을 서면으로 최고한다.",
+          "상당한 추가 기간과 불이행 시 조치를 명시한다.",
+          "도달 후 이행 여부를 기록한다."
+        ],
+        "facts_to_check_ko": [
+          "매도인의 미이행 내용",
+          "매수인의 잔금 준비",
+          "최고 내용과 도달일",
+          "명백한 이행거절 여부"
+        ],
+        "caution_ko": "최고 없는 즉시 해제가 가능한지는 정기행위, 명백한 이행거절, 특약 등 구체적 사정에 따라 달라집니다.",
+        "search_intents_ko": [
+          "매도인이 잔금일에 소유권이전을 해주지 않으면 바로 해제할 수 있나요?",
+          "잔금은 준비했는데 매도인이 등기 이전을 미룹니다.",
+          "seller misses title transfer date"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "상대방의 불이행과 자신의 준비를 함께 증명한다",
+            "paragraphs_ko": [
+              "매도인의 등기이전 의무와 매수인의 잔금 의무가 동시이행 관계라면 한쪽 주장만으로 지체가 확정되지 않을 수 있습니다.",
+              "잔금 준비와 등기협력 요구를 같은 시점에 남기는 것이 중요합니다."
+            ]
+          },
+          {
+            "heading_ko": "해제 전 상당한 이행기회를 준다",
+            "paragraphs_ko": [
+              "민법 제544조는 원칙적으로 상당한 기간을 정한 최고와 그 기간 내 미이행을 요구합니다.",
+              "최고서에는 이행할 내용, 기한, 불이행 시 해제 의사를 분명히 적습니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-05"
+        ],
+        "scenario_ids": [
+          "scenario.real-estate-sale.real-estate-05"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0536",
+          "coord.real-estate-sale.civil-act-ko-0544",
+          "coord.real-estate-sale.civil-act-ko-0568"
+        ],
+        "hub_ids": [
+          "hub.real-estate-sale"
+        ],
+        "related_content_ids": [
+          "content.interim-payment-and-concurrent-closing",
+          "content.rescission-restitution-and-damages",
+          "content.ownership-changes-only-after-registration"
+        ],
+        "concierge_entry": {
+          "question_ko": "매도인이 잔금일에 소유권이전을 해주지 않으면 바로 해제할 수 있나요?",
+          "decision_facts_ko": [
+            "매도인의 미이행 내용",
+            "매수인의 잔금 준비",
+            "최고 내용과 도달일",
+            "명백한 이행거절 여부"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.rescission-restitution-and-damages",
+        "content_type": "doctrine_explainer",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "rescission-restitution-and-damages",
+        "title_ko": "부동산 계약을 해제하면 돈만 돌려받으면 끝인가요?",
+        "one_line_answer_ko": "해제되면 원상회복이 기본이고 반환할 금전에는 받은 날부터 이자가 문제되며, 손해배상청구가 별도로 배제되는 것은 아닙니다.",
+        "audience_situation_ko": "",
+        "key_points_ko": [
+          "해제의 기본 효과는 원상회복입니다.",
+          "반환금의 이자 기산을 확인합니다.",
+          "손해배상은 귀책사유와 손해 입증이 별도 필요합니다."
+        ],
+        "action_steps_ko": [
+          "지급액과 지급일을 표로 만든다.",
+          "해제 의사표시와 도달을 보존한다.",
+          "반환받을 금액·이자와 돌려줄 급부를 정리한다.",
+          "추가 손해의 인과관계 자료를 구분한다."
+        ],
+        "facts_to_check_ko": [
+          "유효한 해제 여부",
+          "각 지급일과 금액",
+          "상대방 귀책사유",
+          "추가 손해와 인과관계"
+        ],
+        "caution_ko": "계약금 해약해제에는 민법 제551조가 적용되지 않으므로 채무불이행 해제와 구분해야 합니다.",
+        "search_intents_ko": [
+          "부동산 계약을 해제하면 돈만 돌려받으면 끝인가요?",
+          "해제 뒤 계약금·중도금 반환과 손해배상을 함께 요구할 수 있나요?",
+          "rescission restitution and damages"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "원상회복과 손해배상은 서로 다른 계산이다",
+            "paragraphs_ko": [
+              "계약 해제의 직접 효과는 각 당사자가 받은 급부를 되돌리는 원상회복입니다.",
+              "금전을 반환하는 경우 받은 날부터 이자를 가산하는 문제가 생깁니다."
+            ]
+          },
+          {
+            "heading_ko": "추가 손해는 자동으로 인정되지 않는다",
+            "paragraphs_ko": [
+              "민법은 해제가 손해배상청구를 막지 않는다고 정하지만 손해액과 인과관계는 따로 입증해야 합니다.",
+              "계약금 포기·배액상환에 의한 해약해제인지 채무불이행 해제인지 먼저 구분합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-06"
+        ],
+        "scenario_ids": [],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0548",
+          "coord.real-estate-sale.civil-act-ko-0551"
+        ],
+        "hub_ids": [
+          "hub.real-estate-sale"
+        ],
+        "related_content_ids": [
+          "content.earnest-money-rescission-cutoff",
+          "content.seller-misses-title-transfer-date",
+          "content.hidden-defect-after-purchase"
+        ]
+      },
+      {
+        "content_id": "content.seller-does-not-own-property",
+        "content_type": "misconception_correction",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "seller-does-not-own-property",
+        "title_ko": "등기 명의자가 아닌 사람이 부동산을 팔면 계약은 무조건 무효인가요?",
+        "one_line_answer_ko": "타인의 권리를 매매하는 계약도 곧바로 무효가 되는 것은 아니지만, 매도인은 그 권리를 취득해 이전해야 하고 불가능하면 매수인은 해제를 검토할 수 있습니다.",
+        "audience_situation_ko": "",
+        "key_points_ko": [
+          "타인 권리 매매와 무효를 동일시하지 않습니다.",
+          "매도인의 취득·이전 가능성을 확인합니다.",
+          "불가능해진 시점과 매수인의 인식이 중요합니다."
+        ],
+        "action_steps_ko": [
+          "최신 등기사항증명서로 소유자를 확인한다.",
+          "매도인의 처분권한과 취득 계획 자료를 요구한다.",
+          "이전 가능 기한을 서면으로 정한다.",
+          "불가능하면 해제·반환 범위를 검토한다."
+        ],
+        "facts_to_check_ko": [
+          "현재 등기명의자",
+          "매도인의 권한",
+          "권리 취득 가능성",
+          "매수인의 인식"
+        ],
+        "caution_ko": "대리권, 명의신탁, 공동소유, 처분제한이 얽히면 계약 효력과 등기 가능성을 별도로 검토해야 합니다.",
+        "search_intents_ko": [
+          "등기 명의자가 아닌 사람이 부동산을 팔면 계약은 무조건 무효인가요?",
+          "매도인이 현재 소유자가 아닌 사실을 뒤늦게 알았습니다.",
+          "seller does not own property"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "현재 소유자가 아니어도 약정 자체는 가능하다",
+            "paragraphs_ko": [
+              "민법 제569조는 타인의 권리를 매매의 목적으로 삼을 수 있음을 전제로 매도인의 취득·이전 의무를 정합니다.",
+              "따라서 등기명의가 다르다는 이유만으로 모든 계약이 즉시 무효가 되는 것은 아닙니다."
+            ]
+          },
+          {
+            "heading_ko": "결국 이전할 수 있는지가 핵심이다",
+            "paragraphs_ko": [
+              "매도인이 권리를 취득해 이전할 수 없다면 매수인은 민법 제570조에 따른 해제를 검토할 수 있습니다.",
+              "등기명의, 위임, 공동소유자의 동의와 처분제한을 잔금 전에 확인해야 합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-07"
+        ],
+        "scenario_ids": [
+          "scenario.real-estate-sale.real-estate-06"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0569",
+          "coord.real-estate-sale.civil-act-ko-0570",
+          "coord.real-estate-sale.civil-act-ko-0186"
+        ],
+        "hub_ids": [
+          "hub.real-estate-sale"
+        ],
+        "related_content_ids": [
+          "content.interim-payment-and-concurrent-closing",
+          "content.hidden-defect-after-purchase",
+          "content.ownership-changes-only-after-registration"
+        ]
+      },
+      {
+        "content_id": "content.hidden-defect-after-purchase",
+        "content_type": "fact_branch",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "hidden-defect-after-purchase",
+        "title_ko": "집을 산 뒤 숨은 하자를 발견하면 언제까지 책임을 물을 수 있나요?",
+        "one_line_answer_ko": "하자가 계약 목적 달성에 미치는 영향, 매수인의 선의·무과실, 안 날부터 6개월의 행사기간을 확인해 해제 또는 손해배상을 검토합니다.",
+        "audience_situation_ko": "",
+        "key_points_ko": [
+          "단순 불편과 법적 하자를 구분합니다.",
+          "매수인이 알았거나 과실로 몰랐는지 확인합니다.",
+          "안 날부터 6개월 내 권리행사 증거를 남깁니다."
+        ],
+        "action_steps_ko": [
+          "발견 즉시 사진·영상과 점검보고서를 확보한다.",
+          "하자의 원인·범위·수리비를 전문가에게 확인한다.",
+          "매도인에게 하자와 요구사항을 서면 통지한다.",
+          "계약서의 고지·면책 특약과 현장 확인자료를 대조한다."
+        ],
+        "facts_to_check_ko": [
+          "하자 존재와 원인",
+          "계약 목적 달성 영향",
+          "발견일",
+          "매수인의 사전 인식과 과실"
+        ],
+        "caution_ko": "신축 공동주택의 사업주체 책임, 집합건물 책임, 별도 품질보증 등 특별법·특약이 함께 적용될 수 있습니다.",
+        "search_intents_ko": [
+          "집을 산 뒤 숨은 하자를 발견하면 언제까지 책임을 물을 수 있나요?",
+          "입주 뒤 누수나 구조상 하자를 발견했습니다.",
+          "hidden defect after purchase"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "하자의 중대성과 매수인의 인식을 함께 본다",
+            "paragraphs_ko": [
+              "민법 제580조는 목적물 하자에 대해 제575조제1항을 준용하지만 매수인이 알았거나 과실로 몰랐다면 제한합니다.",
+              "계약 목적을 달성할 수 없는 정도인지에 따라 해제 가능성도 달라집니다."
+            ]
+          },
+          {
+            "heading_ko": "발견 시점부터 권리행사를 기록한다",
+            "paragraphs_ko": [
+              "민법 제582조의 권리는 매수인이 사실을 안 날부터 6개월 내 행사해야 합니다.",
+              "하자 통지, 수리 요구, 손해배상 또는 해제 의사를 도달 가능한 방식으로 남겨야 합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-08"
+        ],
+        "scenario_ids": [
+          "scenario.real-estate-sale.real-estate-07"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0575",
+          "coord.real-estate-sale.civil-act-ko-0580",
+          "coord.real-estate-sale.civil-act-ko-0582"
+        ],
+        "hub_ids": [
+          "hub.real-estate-sale"
+        ],
+        "related_content_ids": [
+          "content.rescission-restitution-and-damages",
+          "content.seller-does-not-own-property",
+          "content.broker-confirmation-explanation-checklist"
+        ],
+        "concierge_entry": {
+          "question_ko": "집을 산 뒤 숨은 하자를 발견하면 언제까지 책임을 물을 수 있나요?",
+          "decision_facts_ko": [
+            "하자 존재와 원인",
+            "계약 목적 달성 영향",
+            "발견일",
+            "매수인의 사전 인식과 과실"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.ownership-changes-only-after-registration",
+        "content_type": "doctrine_explainer",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "ownership-changes-only-after-registration",
+        "title_ko": "잔금을 다 냈으면 소유권이 자동으로 넘어오나요?",
+        "one_line_answer_ko": "부동산에 관한 법률행위로 인한 소유권 변동은 등기해야 효력이 생기므로 잔금 지급과 등기 완료를 같은 것으로 보면 안 됩니다.",
+        "audience_situation_ko": "",
+        "key_points_ko": [
+          "계약·대금지급과 물권변동을 구분합니다.",
+          "등기 접수 전 권리변동을 다시 확인합니다.",
+          "등기서류와 말소절차를 잔금과 연동합니다."
+        ],
+        "action_steps_ko": [
+          "최신 등기사항증명서를 발급한다.",
+          "소유권이전 필요서류와 세금·비용을 확인한다.",
+          "잔금 지급과 등기 접수를 같은 절차로 설계한다.",
+          "접수 뒤 등기 완료와 변동사항을 재확인한다."
+        ],
+        "facts_to_check_ko": [
+          "잔금 지급 여부",
+          "등기 접수·완료 여부",
+          "기존 담보·가압류",
+          "매도인의 등기협력"
+        ],
+        "caution_ko": "상속·경매 등 법률 규정에 따른 물권취득은 민법 제187조가 문제될 수 있으므로 일반 매매와 구분합니다.",
+        "search_intents_ko": [
+          "잔금을 다 냈으면 소유권이 자동으로 넘어오나요?",
+          "매매대금을 지급했지만 소유권이전등기가 아직입니다.",
+          "ownership changes only after registration"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "채권계약과 소유권 변동은 단계가 다르다",
+            "paragraphs_ko": [
+              "매매계약은 권리이전 의무를 만들지만 일반 부동산 매매의 소유권 변동은 등기가 필요합니다.",
+              "잔금을 냈다는 사실만으로 제3자에 대한 소유권 취득이 완성됐다고 볼 수 없습니다."
+            ]
+          },
+          {
+            "heading_ko": "잔금일을 등기 실행일로 설계한다",
+            "paragraphs_ko": [
+              "잔금 전에 새 근저당·가압류나 처분이 생기지 않았는지 다시 확인합니다.",
+              "지급, 말소, 서류교부, 등기접수를 연속된 절차로 운영해야 공백을 줄일 수 있습니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-09"
+        ],
+        "scenario_ids": [
+          "scenario.real-estate-sale.real-estate-08"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0186",
+          "coord.real-estate-sale.civil-act-ko-0568"
+        ],
+        "hub_ids": [
+          "hub.real-estate-sale"
+        ],
+        "related_content_ids": [
+          "content.interim-payment-and-concurrent-closing",
+          "content.seller-does-not-own-property",
+          "content.real-estate-transaction-reporting-30-days"
+        ]
+      },
+      {
+        "content_id": "content.mistake-fraud-in-real-estate-contract",
+        "content_type": "fact_branch",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "mistake-fraud-in-real-estate-contract",
+        "title_ko": "중요 사실을 잘못 알거나 속아 계약했다면 취소할 수 있나요?",
+        "one_line_answer_ko": "법률행위의 중요부분에 관한 착오인지, 상대방의 사기인지, 중대한 과실이나 제3자 관계가 있는지를 나눠 취소 가능성을 판단합니다.",
+        "audience_situation_ko": "",
+        "key_points_ko": [
+          "단순 기대와 중요부분 착오를 구분합니다.",
+          "누가 어떤 거짓말을 했는지 특정합니다.",
+          "취소 의사표시와 상대방 도달을 증명합니다."
+        ],
+        "action_steps_ko": [
+          "광고·문자·확인설명서 원본을 보존한다.",
+          "사실과 설명의 차이를 항목별로 적는다.",
+          "계약 결정에 미친 영향을 정리한다.",
+          "취소 통지 전 제3자 권리관계를 확인한다."
+        ],
+        "facts_to_check_ko": [
+          "잘못 안 사실의 중요성",
+          "중대한 과실 여부",
+          "기망 주체와 내용",
+          "선의의 제3자 존재"
+        ],
+        "caution_ko": "착오 취소는 표의자의 중대한 과실로 제한될 수 있고 사기 취소는 선의의 제3자에게 대항하지 못할 수 있습니다.",
+        "search_intents_ko": [
+          "중요 사실을 잘못 알거나 속아 계약했다면 취소할 수 있나요?",
+          "면적·용도·개발계획 설명을 믿고 샀는데 사실과 달랐습니다.",
+          "mistake fraud in real estate contract"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "사실이 틀렸다는 것만으로 충분하지 않다",
+            "paragraphs_ko": [
+              "착오는 법률행위 내용의 중요부분에 관한 것이어야 하고 중대한 과실 여부가 문제됩니다.",
+              "단순한 장래 기대나 주관적 동기가 계약 내용으로 표시되지 않았다면 판단이 달라질 수 있습니다."
+            ]
+          },
+          {
+            "heading_ko": "사기라면 기망과 계약 사이의 연결을 입증한다",
+            "paragraphs_ko": [
+              "누가 어떤 정보를 거짓으로 알렸고 그 때문에 계약했는지를 자료로 연결합니다.",
+              "취소는 상대방에게 도달해야 하며 이미 권리를 취득한 제3자 관계도 확인해야 합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-10"
+        ],
+        "scenario_ids": [
+          "scenario.real-estate-sale.real-estate-09"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.civil-act-ko-0109",
+          "coord.real-estate-sale.civil-act-ko-0110"
+        ],
+        "hub_ids": [
+          "hub.real-estate-sale"
+        ],
+        "related_content_ids": [
+          "content.real-estate-sale-contract-before-signing",
+          "content.hidden-defect-after-purchase",
+          "content.broker-confirmation-explanation-checklist"
+        ],
+        "concierge_entry": {
+          "question_ko": "중요 사실을 잘못 알거나 속아 계약했다면 취소할 수 있나요?",
+          "decision_facts_ko": [
+            "잘못 안 사실의 중요성",
+            "중대한 과실 여부",
+            "기망 주체와 내용",
+            "선의의 제3자 존재"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.real-estate-transaction-reporting-30-days",
+        "content_type": "procedure_evidence",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "real-estate-transaction-reporting-30-days",
+        "title_ko": "부동산 매매계약과 해제는 언제까지 신고해야 하나요?",
+        "one_line_answer_ko": "대상 계약은 원칙적으로 체결일부터 30일 이내 신고하고, 신고 뒤 해제·무효·취소가 확정되면 그 날부터 30일 이내 해제등 신고를 해야 합니다.",
+        "audience_situation_ko": "",
+        "key_points_ko": [
+          "계약 체결 신고와 해제등 신고를 구분합니다.",
+          "각 기산일로부터 30일을 계산합니다.",
+          "중개거래와 직거래의 신고 주체를 확인합니다."
+        ],
+        "action_steps_ko": [
+          "계약 체결일과 해제등 확정일을 기록한다.",
+          "중개사 신고 여부와 접수증을 확인한다.",
+          "신고 내용이 실제 계약과 일치하는지 검토한다.",
+          "상대방이 신고를 거부하면 단독신고 절차를 확인한다."
+        ],
+        "facts_to_check_ko": [
+          "신고대상 계약 여부",
+          "계약 체결일",
+          "해제·무효·취소 확정일",
+          "중개 여부와 신고 주체"
+        ],
+        "caution_ko": "거짓 신고, 지연 신고와 자금조달계획서 등 부수 의무는 거래 지역·가격·당사자에 따라 추가될 수 있습니다.",
+        "search_intents_ko": [
+          "부동산 매매계약과 해제는 언제까지 신고해야 하나요?",
+          "계약을 체결하거나 해제했는데 실거래 신고기한이 궁금합니다.",
+          "real estate transaction reporting 30 days"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "계약 신고와 거래 종료 신고는 별개다",
+            "paragraphs_ko": [
+              "부동산 매매 등 신고대상 계약은 실제 거래가격 등 정해진 사항을 계약 체결일부터 30일 이내 신고해야 합니다.",
+              "개업공인중개사가 중개한 거래인지 직거래인지에 따라 신고 방식과 주체를 확인합니다."
+            ]
+          },
+          {
+            "heading_ko": "해제되었다고 최초 신고가 자동 정리되지는 않는다",
+            "paragraphs_ko": [
+              "신고한 계약이 해제·무효·취소된 경우 그 확정일부터 30일 이내 해제등 신고가 필요합니다.",
+              "상대방이 공동신고를 거부하는 경우 법이 정한 단독신고 절차를 확인합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-11"
+        ],
+        "scenario_ids": [
+          "scenario.real-estate-sale.real-estate-10"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.real-estate-transaction-reporting-ko-0003",
+          "coord.real-estate-sale.real-estate-transaction-reporting-ko-0003-02"
+        ],
+        "hub_ids": [
+          "hub.real-estate-sale"
+        ],
+        "related_content_ids": [
+          "content.real-estate-sale-contract-before-signing",
+          "content.rescission-restitution-and-damages",
+          "content.ownership-changes-only-after-registration"
+        ],
+        "concierge_entry": {
+          "question_ko": "부동산 매매계약과 해제는 언제까지 신고해야 하나요?",
+          "decision_facts_ko": [
+            "신고대상 계약 여부",
+            "계약 체결일",
+            "해제·무효·취소 확정일",
+            "중개 여부와 신고 주체"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
+      },
+      {
+        "content_id": "content.broker-confirmation-explanation-checklist",
+        "content_type": "procedure_evidence",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-21T08:30:00+00:00",
+        "expires_at": "2026-10-21T00:00:00+00:00",
+        "slug": "broker-confirmation-explanation-checklist",
+        "title_ko": "공인중개사에게 계약 전에 어떤 자료와 설명을 요구해야 하나요?",
+        "one_line_answer_ko": "중개가 완성되기 전에 대상물의 상태·입지·권리관계와 거래·이용 제한을 근거자료와 함께 확인·설명받고, 계약서와 확인·설명서의 불일치를 점검해야 합니다.",
+        "audience_situation_ko": "",
+        "key_points_ko": [
+          "설명은 중개 완성 전에 이루어져야 합니다.",
+          "등기사항증명서·신탁원부·건축물대장 등 근거자료를 확인합니다.",
+          "설명서와 실제 자료의 불일치를 즉시 기록합니다."
+        ],
+        "action_steps_ko": [
+          "최신 등기·건축물·토지 관련 자료를 요구한다.",
+          "소유권·저당권·신탁·임차권을 항목별로 확인한다.",
+          "이용제한과 시설 상태를 현장에서 대조한다.",
+          "확인·설명서와 특약에 빠진 내용을 보완한다."
+        ],
+        "facts_to_check_ko": [
+          "중개 완성 전 설명 여부",
+          "제시된 근거자료",
+          "권리·이용제한",
+          "설명서와 실제 상태의 차이"
+        ],
+        "caution_ko": "중개사의 확인·설명의무가 매수인의 독립적인 등기·현장 확인을 모두 대신하는 것은 아닙니다.",
+        "search_intents_ko": [
+          "공인중개사에게 계약 전에 어떤 자료와 설명을 요구해야 하나요?",
+          "등기만 보면 충분한지, 확인·설명서를 언제 받아야 하는지 궁금합니다.",
+          "broker confirmation explanation checklist"
+        ],
+        "body_sections": [
+          {
+            "heading_ko": "설명만 듣지 말고 근거자료를 본다",
+            "paragraphs_ko": [
+              "공인중개사법 제25조는 중개 완성 전에 상태·입지·권리관계와 법령상 제한을 성실·정확하게 설명하도록 합니다.",
+              "등기사항증명서, 신탁원부, 건축물대장 등 설명의 근거자료도 함께 제시해야 합니다."
+            ]
+          },
+          {
+            "heading_ko": "확인·설명서를 계약 판단 기록으로 남긴다",
+            "paragraphs_ko": [
+              "등기와 공부가 일치하는지, 실제 시설 상태와 설명이 같은지 대조합니다.",
+              "불일치나 확인 불가 항목은 구두로 넘기지 말고 특약과 확인·설명서에 남겨야 합니다."
+            ]
+          }
+        ],
+        "rule_ids": [
+          "rule.real-estate-sale.real-estate-12"
+        ],
+        "scenario_ids": [
+          "scenario.real-estate-sale.real-estate-11"
+        ],
+        "source_coordinate_ids": [
+          "coord.real-estate-sale.licensed-real-estate-agents-act-ko-0025",
+          "coord.real-estate-sale.civil-act-ko-0186"
+        ],
+        "hub_ids": [
+          "hub.real-estate-sale"
+        ],
+        "related_content_ids": [
+          "content.seller-does-not-own-property",
+          "content.hidden-defect-after-purchase",
+          "content.mistake-fraud-in-real-estate-contract"
+        ],
+        "concierge_entry": {
+          "question_ko": "공인중개사에게 계약 전에 어떤 자료와 설명을 요구해야 하나요?",
+          "decision_facts_ko": [
+            "중개 완성 전 설명 여부",
+            "제시된 근거자료",
+            "권리·이용제한",
+            "설명서와 실제 상태의 차이"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
       }
     ]
   }
