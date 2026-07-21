@@ -4,44 +4,37 @@ import {useMemo, useState} from 'react';
 
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 
-import type {PublicKnowledgeEntry, PublicKnowledgeHub} from '@/types/publication';
+import type {PublicKnowledgeSearchDocument} from '@/lib/knowledge-search';
+
+import type {PublicKnowledgeHub} from '@/types/publication';
 
 import styles from './knowledge-explorer.module.css';
 
 type Props = {
-  entries: PublicKnowledgeEntry[];
+  documents: PublicKnowledgeSearchDocument[];
   hubs: PublicKnowledgeHub[];
 };
 
-export function KnowledgeExplorer({entries, hubs}: Props) {
+export function KnowledgeExplorer({documents, hubs}: Props) {
   const [query, setQuery] = useState('');
   const [hubId, setHubId] = useState('all');
   const normalizedQuery = normalize(query);
-  const visibleEntries = useMemo(() => {
-    const hubById = new Map(hubs.map(hub => [hub.hub_id, hub]));
+  const visibleDocuments = useMemo(() => {
     const queryTokens = normalizedQuery.split(' ').filter(Boolean);
-    return entries
-      .filter(entry => {
+    return documents
+      .filter(document => {
+        const entry = document.entry;
         if (hubId !== 'all' && !entry.hub_ids.includes(hubId)) return false;
         if (!queryTokens.length) return true;
-        const hubTerms = entry.hub_ids
-          .map(entryHubId => hubById.get(entryHubId))
-          .filter((hub): hub is PublicKnowledgeHub => Boolean(hub))
-          .flatMap(hub => [hub.title_ko, hub.description_ko]);
         const searchText = normalize([
-          entry.title_ko,
-          entry.one_line_answer_ko,
-          entry.audience_situation_ko,
           knowledgeContentTypeLabel(entry.content_type),
-          ...entry.search_intents_ko,
-          ...entry.key_points_ko,
-          ...entry.facts_to_check_ko,
-          ...hubTerms,
+          ...document.search_terms_ko,
         ].join(' '));
         return queryTokens.every(token => searchText.includes(token));
       })
-      .sort((left, right) => right.reviewed_at.localeCompare(left.reviewed_at) || left.title_ko.localeCompare(right.title_ko, 'ko'));
-  }, [entries, hubId, hubs, normalizedQuery]);
+      .sort((left, right) => right.entry.reviewed_at.localeCompare(left.entry.reviewed_at)
+        || left.entry.title_ko.localeCompare(right.entry.title_ko, 'ko'));
+  }, [documents, hubId, normalizedQuery]);
 
   return (
     <section aria-labelledby="knowledge-library-heading" className={styles.explorer}>
@@ -52,7 +45,7 @@ export function KnowledgeExplorer({entries, hubs}: Props) {
           <input
             id="knowledge-search"
             onChange={event => setQuery(event.target.value)}
-            placeholder="예: 보증금 못 받고 이사, 처분 통지를 받음"
+            placeholder="예: 보증금 못 받고 이사, 민법 제1026조, 2013다73520"
             type="search"
             value={query}
           />
@@ -76,11 +69,13 @@ export function KnowledgeExplorer({entries, hubs}: Props) {
         </div>
       ) : null}
 
-      <p aria-live="polite" className={styles.resultCount}>확인할 수 있는 지식 {visibleEntries.length}개</p>
+      <p aria-live="polite" className={styles.resultCount}>확인할 수 있는 지식 {visibleDocuments.length}개</p>
 
-      {visibleEntries.length ? (
+      {visibleDocuments.length ? (
         <div className={styles.grid}>
-          {visibleEntries.map(entry => (
+          {visibleDocuments.map(document => {
+            const entry = document.entry;
+            return (
             <a className={styles.card} href={`/ko/knowledge/${entry.slug}`} key={entry.content_id}>
               <div className={styles.meta}>
                 <span>{knowledgeContentTypeLabel(entry.content_type)}</span>
@@ -89,9 +84,16 @@ export function KnowledgeExplorer({entries, hubs}: Props) {
               <h2>{entry.title_ko}</h2>
               <p>{entry.one_line_answer_ko}</p>
               <small>{entry.audience_situation_ko}</small>
+              {document.evidence_labels_ko.length ? (
+                <div aria-label="연결된 공식 근거" className={styles.evidence}>
+                  <b>연결 근거</b>
+                  {evidenceLabelsForDocument(document.evidence_labels_ko, normalizedQuery).map(label => <span key={label}>{label}</span>)}
+                </div>
+              ) : null}
               <strong>법리와 사실분기 보기 <span aria-hidden="true">→</span></strong>
             </a>
-          ))}
+            );
+          })}
         </div>
       ) : (
         <div className={styles.empty}>
@@ -101,6 +103,12 @@ export function KnowledgeExplorer({entries, hubs}: Props) {
       )}
     </section>
   );
+}
+
+function evidenceLabelsForDocument(labels: string[], normalizedQuery: string): string[] {
+  const tokens = normalizedQuery.split(' ').filter(Boolean);
+  const matched = labels.filter(label => tokens.some(token => normalize(label).includes(token)));
+  return [...new Set([...matched, ...labels])].slice(0, 2);
 }
 
 function normalize(value: string): string {

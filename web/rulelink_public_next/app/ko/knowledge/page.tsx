@@ -2,7 +2,7 @@ import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
 import {KnowledgeExplorer} from '@/components/knowledge-explorer';
-import {listKnowledgeEntries, listKnowledgeHubs} from '@/lib/publication';
+import {listKnowledgeHubs, listKnowledgeSearchDocuments} from '@/lib/publication';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
 
@@ -21,7 +21,8 @@ export const metadata: Metadata = {
 };
 
 export default async function KnowledgeLibraryPage() {
-  const [entries, hubs] = await Promise.all([listKnowledgeEntries(), listKnowledgeHubs()]);
+  const [documents, hubs] = await Promise.all([listKnowledgeSearchDocuments(), listKnowledgeHubs()]);
+  const entries = documents.map(document => document.entry);
   if (!entries.length) notFound();
   const canonicalUrl = `${site.url}/ko/knowledge`;
   return (
@@ -57,7 +58,7 @@ export default async function KnowledgeLibraryPage() {
         <h1 id="knowledge-library-heading">내 상황에서 법리와 사실분기를 찾습니다.</h1>
         <p>승인된 지식만 모아 보여줍니다. 법률용어를 몰라도 겪고 있는 상황이나 궁금한 내용을 검색할 수 있습니다.</p>
       </header>
-      <KnowledgeExplorer entries={entries} hubs={hubs} />
+      <KnowledgeExplorer documents={documents} hubs={hubs} />
     </main>
   );
 }
