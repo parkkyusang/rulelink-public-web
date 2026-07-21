@@ -86,7 +86,8 @@ export function validatePublishedBundle(value, options = {}) {
   if (value.catalog !== undefined) validateCatalog(value.catalog, cardIds, errors);
   if (value.knowledge !== undefined) validateKnowledge(value.knowledge, now, value.file_hashes, errors);
   validateChangeCompositionReceipts(value, value.file_hashes, errors);
-  scanForInternalData(value, '
+  scanForInternalData(value, 'root', errors);
+  return [...new Set(errors)];
 }
 
 
