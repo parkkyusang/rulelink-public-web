@@ -8,7 +8,7 @@ import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 
 import styles from './knowledge-source-library.module.css';
 
-type SourceFilter = 'all' | 'statute' | 'precedent';
+type SourceFilter = 'all' | 'statute' | 'precedent' | 'official_document';
 
 export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeSourceDocument[]}) {
   const [query, setQuery] = useState('');
@@ -18,6 +18,7 @@ export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeS
     all: documents.length,
     statute: documents.filter(document => sourceKind(document) === 'statute').length,
     precedent: documents.filter(document => sourceKind(document) === 'precedent').length,
+    official_document: documents.filter(document => sourceKind(document) === 'official_document').length,
   }), [documents]);
   const visibleDocuments = useMemo(() => {
     const tokens = normalizedQuery.split(' ').filter(Boolean);
@@ -31,7 +32,10 @@ export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeS
       .sort((left, right) => {
         const leftKind = sourceKind(left);
         const rightKind = sourceKind(right);
-        if (leftKind !== rightKind) return leftKind === 'precedent' ? -1 : 1;
+        if (leftKind !== rightKind) {
+          const order = {precedent: 0, official_document: 1, statute: 2};
+          return order[leftKind] - order[rightKind];
+        }
         return right.entries.length - left.entries.length || left.label_ko.localeCompare(right.label_ko, 'ko');
       });
   }, [documents, filter, normalizedQuery]);
@@ -56,6 +60,7 @@ export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeS
         <FilterButton active={filter === 'all'} count={counts.all} label="전체" onClick={() => setFilter('all')} />
         <FilterButton active={filter === 'statute'} count={counts.statute} label="법령 조문" onClick={() => setFilter('statute')} />
         <FilterButton active={filter === 'precedent'} count={counts.precedent} label="판례" onClick={() => setFilter('precedent')} />
+        <FilterButton active={filter === 'official_document'} count={counts.official_document} label="개정·시행 문서" onClick={() => setFilter('official_document')} />
       </div>
 
       <p aria-live="polite" className={styles.resultCount}>확인할 수 있는 공식 근거 {visibleDocuments.length}개</p>
@@ -69,13 +74,19 @@ export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeS
               <article className={styles.card} key={source.coordinate_id}>
                 <div className={styles.meta}>
                   <span className={sourceKind(document) === 'precedent' ? styles.precedent : styles.statute}>
-                    {sourceKind(document) === 'precedent' ? '판례' : '법령 조문'}
+                    {sourceKind(document) === 'precedent'
+                      ? '판례'
+                      : sourceKind(document) === 'official_document'
+                        ? '개정·시행 문서'
+                        : '법령 조문'}
                   </span>
                   <time dateTime={source.last_verified_at}>원문 확인 {formatDate(source.last_verified_at)}</time>
                 </div>
                 <h2>{document.label_ko}</h2>
                 {source.source_kind === 'precedent' ? (
                   <p>사건번호 {source.case_number} · 선고일 {formatDate(source.decision_date)}</p>
+                ) : source.source_kind === 'official_document' ? (
+                  <p>{source.promulgation_number} · 시행 {formatDate(source.effective_date)}</p>
                 ) : (
                   <p>{source.law_name_ko} {source.article_no}</p>
                 )}
@@ -107,7 +118,8 @@ export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeS
 }
 
 function sourceKind(document: PublicKnowledgeSourceDocument): Exclude<SourceFilter, 'all'> {
-  return document.source.source_kind === 'precedent' ? 'precedent' : 'statute';
+  const kind = document.source.source_kind;
+  return kind === 'precedent' || kind === 'official_document' ? kind : 'statute';
 }
 
 function FilterButton({active, count, label, onClick}: {active: boolean; count: number; label: string; onClick: () => void}) {
