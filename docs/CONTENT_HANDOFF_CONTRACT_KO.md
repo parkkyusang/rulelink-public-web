@@ -75,7 +75,20 @@ web/rulelink_public_next/content/bundle.json
 - 승인 기록 해시가 현재 콘텐츠 해시와 일치한다는 확인
 - 내부 편집 미리보기나 사건 데이터가 포함되지 않았다는 확인
 
-## 6. 승인 출판본 승격
+## 6. 승인 전 변경 보고
+
+후보 번들을 승격하기 전에 현재 운영본과 비교한 한글 검토 보고서를 만든다.
+
+```powershell
+Set-Location web\rulelink_public_next
+npm run report:publication -- C:\absolute\path\candidate-bundle.json
+```
+
+기계가 읽는 JSON이 필요하면 `--json`을 붙인다. 보고서는 문제카드·법령변화·지식 콘텐츠·허브·공개 주제뿐 아니라 법리카드·사실분기·공식 근거·승인 해시 영수증의 추가·변경·제외를 구분한다. 공개 URL의 추가와 제거, 가장 가까운 재검토 기한, 기준 출처 스냅샷 변경도 함께 표시한다.
+
+같은 `snapshot_id`인데 내용이 다른 후보나 공개 안전검증을 통과하지 못한 후보는 보고 단계에서 거부한다. 이 보고서의 내용은 운영 번들 PR 본문에 그대로 활용한다.
+
+## 7. 승인 출판본 승격
 
 콘텐츠 세션과 출판기가 만든 후보 번들은 먼저 검사 전용 모드로 확인한다.
 
@@ -92,7 +105,7 @@ npm run promote:publication -- C:\absolute\path\candidate-bundle.json
 
 도구는 공개 검증을 먼저 통과시킨 뒤 `artifacts/publication/snapshots/<snapshot_id>/bundle.json`에 불변 보관하고, 그 내용과 동일한 경우에만 `current/bundle.json`을 교체한다. 같은 `snapshot_id`로 다른 내용을 승격하려 하면 `current`를 바꾸기 전에 실패한다. 운영 번들을 수동 복사하거나 기존 불변 스냅샷을 덮어쓰지 않는다.
 
-## 7. 검증 명령
+## 8. 검증 명령
 
 ```powershell
 Set-Location web\rulelink_public_next

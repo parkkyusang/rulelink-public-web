@@ -5,6 +5,7 @@ on:
     paths:
       - "web/rulelink_public_next/**"
       - "artifacts/publication/current/bundle.json"
+      - "artifacts/publication/snapshots/**"
       - ".github/workflows/public-web-checks.yml"
   push:
     branches:
@@ -12,6 +13,7 @@ on:
     paths:
       - "web/rulelink_public_next/**"
       - "artifacts/publication/current/bundle.json"
+      - "artifacts/publication/snapshots/**"
       - ".github/workflows/public-web-checks.yml"
 
 permissions:
