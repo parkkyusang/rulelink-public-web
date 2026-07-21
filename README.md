@@ -1,6 +1,6 @@
 # RuleLink 일반인용 공개 웹
 
-이 앱은 승인된 `rulelink_published_bundle_v1` 출판본만 읽는 공개 정보관이다. RuleLink 원본 DB, Codex 실행기, 사용자 사건 폴더에는 접근하지 않는다. 콘텐츠 생산 세션과 공개 웹 세션의 병렬 작업 경계는 [콘텐츠 인계 계약](docs/CONTENT_HANDOFF_CONTRACT_KO.md)을 따르고, 주제별 원본 통합은 [공개 지식 합성 표준](docs/PUBLIC_KNOWLEDGE_COMPOSITION_STANDARD_KO.md), 화면 확장은 [공개 웹 시각 체계](docs/PUBLIC_VISUAL_SYSTEM_KO.md), 운영 배포는 [Vercel 배포 정책](docs/VERCEL_DEPLOYMENT_POLICY_KO.md)을 따른다.
+이 앱은 승인된 `rulelink_published_bundle_v1` 출판본만 읽는 공개 정보관이다. RuleLink 원본 DB, Codex 실행기, 사용자 사건 폴더에는 접근하지 않는다. 콘텐츠 생산 세션과 공개 웹 세션의 병렬 작업 경계는 [콘텐츠 인계 계약](docs/CONTENT_HANDOFF_CONTRACT_KO.md)을 따르고, 주제별 원본 통합은 [공개 지식 합성 표준](docs/PUBLIC_KNOWLEDGE_COMPOSITION_STANDARD_KO.md), 화면 확장과 시각 전담 작업은 [공개 웹 시각 체계](docs/PUBLIC_VISUAL_SYSTEM_KO.md), 운영 배포는 [Vercel 배포 정책](docs/VERCEL_DEPLOYMENT_POLICY_KO.md)을 따른다.
 
 출판본에 `rulelink_public_catalog_v1` 카탈로그를 포함하면 별도 화면 수정 없이 다음 기능이 생긴다.
 
@@ -141,9 +141,9 @@ $env:NEXT_PUBLIC_RULELINK_SITE_URL='https://rulelink.lolphysical.xyz'
 
 ## 현재 공개본
 
-저장소 `main`의 승인 출판본 `kr-knowledge-core-20260721-008`에는 최근 시행
-법령변화 브리핑 1건과 연결 주장 3개, 생활법률 지식 45개, 주제 허브 7개, 법리카드
-39개, 사실분기 28개, 공식 근거 좌표 51개가 들어 있다. 생활법률 지식은 행정심판,
+저장소 `main`의 승인 출판본 `kr-knowledge-core-20260721-009`에는 최근 시행
+법령변화 브리핑 1건과 연결 주장 3개, 생활법률 지식 50개, 주제 허브 7개, 법리카드
+42개, 사실분기 31개, 공식 근거 좌표 54개가 들어 있다. 생활법률 지식은 행정심판,
 소비자ㆍ온라인 계약, 가족ㆍ상속, 주택임대차 보증금, 노동ㆍ임금, 금전ㆍ보증,
 공유자전거ㆍ공유이동 사고로 나뉜다. 각 글은 공식 근거, 핵심 법리, 예ㆍ아니오
 사실분기, 행동 순서, 보관할 자료, 관련 글과 컨시어지 진입점을 함께 제공한다.
