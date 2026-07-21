@@ -1,0 +1,1530 @@
+{
+  "schema": "rulelink_public_knowledge_topic_v1",
+  "topic_id": "hub.crime-victim-response",
+  "sources": [
+    {
+      "coordinate_id": "coord.crime-victim-response.crime-victim-protection-ko-0007",
+      "source_id": "crime_victim_protection_ko_0007",
+      "law_name_ko": "범죄피해자 보호법",
+      "article_no": "제7조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B2%94%EC%A3%84%ED%94%BC%ED%95%B4%EC%9E%90%20%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C7%EC%A1%B0",
+      "source_snapshot_id": "snapshot:b03bbbb46023411dcabd011600d2b989",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.crime-victim-protection-ko-0009",
+      "source_id": "crime_victim_protection_ko_0009",
+      "law_name_ko": "범죄피해자 보호법",
+      "article_no": "제9조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B2%94%EC%A3%84%ED%94%BC%ED%95%B4%EC%9E%90%20%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C9%EC%A1%B0",
+      "source_snapshot_id": "snapshot:d1a7b5f19f3db8c1e2a0ab5cd4f0983b",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0237",
+      "source_id": "criminal_procedure_ko_0237",
+      "law_name_ko": "형사소송법",
+      "article_no": "제237조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C237%EC%A1%B0",
+      "source_snapshot_id": "snapshot:4952a3fd44077413b423c3ae49ce8215",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.civil-act-ko-0750",
+      "source_id": "civil_act_ko_0750",
+      "law_name_ko": "민법",
+      "article_no": "제750조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C750%EC%A1%B0",
+      "source_snapshot_id": "snapshot:d3b345393950043064f8313fb28edc30",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0223",
+      "source_id": "criminal_procedure_ko_0223",
+      "law_name_ko": "형사소송법",
+      "article_no": "제223조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C223%EC%A1%B0",
+      "source_snapshot_id": "snapshot:737e6553a3a377b4367bb9412012948f",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0234",
+      "source_id": "criminal_procedure_ko_0234",
+      "law_name_ko": "형사소송법",
+      "article_no": "제234조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C234%EC%A1%B0",
+      "source_snapshot_id": "snapshot:9f234a9ff1113ddf55f48da09506db89",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0238",
+      "source_id": "criminal_procedure_ko_0238",
+      "law_name_ko": "형사소송법",
+      "article_no": "제238조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C238%EC%A1%B0",
+      "source_snapshot_id": "snapshot:0682175b9a85e42cad3bc2f846a8c1b1",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0258",
+      "source_id": "criminal_procedure_ko_0258",
+      "law_name_ko": "형사소송법",
+      "article_no": "제258조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C258%EC%A1%B0",
+      "source_snapshot_id": "snapshot:b42fb817b113b1324d4a63b49cf2461b",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0259",
+      "source_id": "criminal_procedure_ko_0259",
+      "law_name_ko": "형사소송법",
+      "article_no": "제259조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C259%EC%A1%B0",
+      "source_snapshot_id": "snapshot:58bc9698d6ac4e3789a58ab725a6bb66",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0259-02",
+      "source_id": "criminal_procedure_ko_0259_02",
+      "law_name_ko": "형사소송법",
+      "article_no": "제259조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C259%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:e0837c3b59a1916184eb4a770ff85f4d",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.crime-victim-protection-ko-0008",
+      "source_id": "crime_victim_protection_ko_0008",
+      "law_name_ko": "범죄피해자 보호법",
+      "article_no": "제8조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B2%94%EC%A3%84%ED%94%BC%ED%95%B4%EC%9E%90%20%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C8%EC%A1%B0",
+      "source_snapshot_id": "snapshot:1555698f62cc6af6453f217d2efd4192",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0294-02",
+      "source_id": "criminal_procedure_ko_0294_02",
+      "law_name_ko": "형사소송법",
+      "article_no": "제294조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C294%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:ff6bfc6ea51065f6be7f23fcc9de3515",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0294-04",
+      "source_id": "criminal_procedure_ko_0294_04",
+      "law_name_ko": "형사소송법",
+      "article_no": "제294조의4",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C294%EC%A1%B0%EC%9D%984",
+      "source_snapshot_id": "snapshot:f28fe4d7ab23fd627d30a225f322de2d",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0232",
+      "source_id": "criminal_procedure_ko_0232",
+      "law_name_ko": "형사소송법",
+      "article_no": "제232조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C232%EC%A1%B0",
+      "source_snapshot_id": "snapshot:025fd33a52a5d2117f2a3ab89ae8aae5",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0327",
+      "source_id": "criminal_procedure_ko_0327",
+      "law_name_ko": "형사소송법",
+      "article_no": "제327조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C327%EC%A1%B0",
+      "source_snapshot_id": "snapshot:a3c7fffbd5b3568fcbe72e1895421d21",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+      "source_id": "litigation_promotion_special_ko_0025",
+      "law_name_ko": "소송촉진 등에 관한 특례법",
+      "article_no": "제25조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%86%A1%EC%B4%89%EC%A7%84%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C25%EC%A1%B0",
+      "source_snapshot_id": "snapshot:50983dddba9cd06682339ba8c6b33d9a",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
+      "source_id": "litigation_promotion_special_ko_0026",
+      "law_name_ko": "소송촉진 등에 관한 특례법",
+      "article_no": "제26조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%86%A1%EC%B4%89%EC%A7%84%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C26%EC%A1%B0",
+      "source_snapshot_id": "snapshot:33b1a9b966387025275a6c4531a08027",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.civil-act-ko-0751",
+      "source_id": "civil_act_ko_0751",
+      "law_name_ko": "민법",
+      "article_no": "제751조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C751%EC%A1%B0",
+      "source_snapshot_id": "snapshot:40bd12e55f4009a43daa84ffec3b8a3b",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.civil-act-ko-0766",
+      "source_id": "civil_act_ko_0766",
+      "law_name_ko": "민법",
+      "article_no": "제766조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C766%EC%A1%B0",
+      "source_snapshot_id": "snapshot:1d99de5a0cb30e368505e0b9d6d48279",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.crime-victim-protection-ko-0016",
+      "source_id": "crime_victim_protection_ko_0016",
+      "law_name_ko": "범죄피해자 보호법",
+      "article_no": "제16조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B2%94%EC%A3%84%ED%94%BC%ED%95%B4%EC%9E%90%20%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C16%EC%A1%B0",
+      "source_snapshot_id": "snapshot:73680bd4a1b386678a9bf080de3ff1d7",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.crime-victim-protection-ko-0025",
+      "source_id": "crime_victim_protection_ko_0025",
+      "law_name_ko": "범죄피해자 보호법",
+      "article_no": "제25조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B2%94%EC%A3%84%ED%94%BC%ED%95%B4%EC%9E%90%20%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C25%EC%A1%B0",
+      "source_snapshot_id": "snapshot:d8b29dcdb00df57aea8c3bf8ff4c0b32",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.crime-victim-response",
+      "slug": "crime-victim-response",
+      "title_ko": "형사피해 신고와 피해회복",
+      "description_ko": "긴급 안전과 증거보존부터 고소·고발, 처분통지, 공판 참여, 기록 열람, 합의, 배상명령, 민사청구와 범죄피해 구조금까지 피해 회복 경로를 연결합니다.",
+      "content_ids": [
+        "content.crime-victim-urgent-safety-and-support",
+        "content.crime-evidence-preservation-first-steps",
+        "content.report-complaint-accusation-difference",
+        "content.how-to-file-criminal-complaint",
+        "content.notice-of-prosecution-or-nonprosecution",
+        "content.victim-case-information-notifications",
+        "content.victim-statement-in-criminal-trial",
+        "content.victim-access-to-trial-records",
+        "content.settlement-and-punishment-intent",
+        "content.compensation-order-eligible-damages",
+        "content.compensation-order-application-deadline",
+        "content.civil-damages-after-crime",
+        "content.crime-victim-relief-fund-eligibility-deadline"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.crime-victim-response.crime-victim-01",
+      "title_ko": "범죄피해 직후 안전이 불안하면 신고 외에 무엇을 요청할 수 있나요",
+      "proposition_ko": "긴급 위험은 112 등 즉시 대응을 우선하고, 수사기관에 신변보호 필요성을 알리며 상담·의료·법률구조·주거지원 등 피해자 지원을 함께 문의합니다.",
+      "norm": {
+        "actor_ko": "긴급한 안전·지원이 필요한 범죄피해자와 보호기관",
+        "conditions_ko": "보복이나 재접촉 위험이 있고 치료·주거 지원도 필요합니다.",
+        "legal_effect_ko": "긴급 위험은 112 등 즉시 대응을 우선하고, 수사기관에 신변보호 필요성을 알리며 상담·의료·법률구조·주거지원 등 피해자 지원을 함께 문의합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.crime-victim-protection-ko-0007",
+        "coord.crime-victim-response.crime-victim-protection-ko-0009"
+      ]
+    },
+    {
+      "rule_id": "rule.crime-victim-response.crime-victim-02",
+      "title_ko": "신고 전에 어떤 증거부터 보존해야 하나요",
+      "proposition_ko": "원본성을 해치지 않게 자료를 보존하고 사건 시간표·피해내역·증거목록을 만든 뒤, 고소·진술과 민사상 손해입증에 함께 사용할 수 있도록 관리합니다.",
+      "norm": {
+        "actor_ko": "형사절차와 민사배상을 준비하는 범죄피해자",
+        "conditions_ko": "메신저·통화·계좌·진단서·CCTV처럼 사라지기 쉬운 자료가 있습니다.",
+        "legal_effect_ko": "원본성을 해치지 않게 자료를 보존하고 사건 시간표·피해내역·증거목록을 만든 뒤, 고소·진술과 민사상 손해입증에 함께 사용할 수 있도록 관리합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0237",
+        "coord.crime-victim-response.civil-act-ko-0750"
+      ]
+    },
+    {
+      "rule_id": "rule.crime-victim-response.crime-victim-03",
+      "title_ko": "신고·고소·고발은 모두 같은 절차인가요",
+      "proposition_ko": "피해자의 처벌 요구 의사표시인 고소, 제3자의 고발, 긴급상황 신고·일반 진정은 법적 지위와 후속 권리가 다를 수 있으므로 접수 형태를 확인해야 합니다.",
+      "norm": {
+        "actor_ko": "범죄피해자·고소권자·고발인",
+        "conditions_ko": "피해자가 경찰에 사실을 알리면 모두 고소가 되는지 궁금합니다.",
+        "legal_effect_ko": "피해자의 처벌 요구 의사표시인 고소, 제3자의 고발, 긴급상황 신고·일반 진정은 법적 지위와 후속 권리가 다를 수 있으므로 접수 형태를 확인해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0223",
+        "coord.crime-victim-response.criminal-procedure-ko-0234",
+        "coord.crime-victim-response.criminal-procedure-ko-0237"
+      ]
+    },
+    {
+      "rule_id": "rule.crime-victim-response.crime-victim-04",
+      "title_ko": "고소장은 어디에 어떤 방식으로 제출하나요",
+      "proposition_ko": "고소·고발은 서면 또는 구술로 검사나 사법경찰관에게 해야 하며, 구술이면 조서를 작성하므로 범죄사실과 처벌 의사를 명확히 하고 접수 증거를 받아야 합니다.",
+      "norm": {
+        "actor_ko": "고소·고발을 접수하려는 사람과 수사기관",
+        "conditions_ko": "온라인 민원만 넣어도 정식 고소가 되는지 궁금합니다.",
+        "legal_effect_ko": "고소·고발은 서면 또는 구술로 검사나 사법경찰관에게 해야 하며, 구술이면 조서를 작성하므로 범죄사실과 처벌 의사를 명확히 하고 접수 증거를 받아야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0237",
+        "coord.crime-victim-response.criminal-procedure-ko-0238"
+      ]
+    },
+    {
+      "rule_id": "rule.crime-victim-response.crime-victim-05",
+      "title_ko": "고소한 사건의 기소·불기소 결과와 이유는 어떻게 확인하나요",
+      "proposition_ko": "검사는 고소·고발 사건의 처분 취지를 법정 기간 안에 통지하고, 불기소이면 고소인·고발인의 청구에 따라 7일 이내 서면으로 이유를 설명해야 합니다.",
+      "norm": {
+        "actor_ko": "처분 통지와 불기소 이유를 확인하려는 고소인·고발인",
+        "conditions_ko": "처분 통지는 받았지만 불기소 이유를 모르겠습니다.",
+        "legal_effect_ko": "검사는 고소·고발 사건의 처분 취지를 법정 기간 안에 통지하고, 불기소이면 고소인·고발인의 청구에 따라 7일 이내 서면으로 이유를 설명해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0258",
+        "coord.crime-victim-response.criminal-procedure-ko-0259"
+      ]
+    },
+    {
+      "rule_id": "rule.crime-victim-response.crime-victim-06",
+      "title_ko": "피해자는 공판일·재판결과·피고인 석방을 통지받을 수 있나요",
+      "proposition_ko": "피해자 등은 신청을 통해 공소제기 여부, 공판 일시·장소, 재판결과, 구속·석방 등 정보를 통지받을 수 있으므로 연락처와 통지 신청 상태를 확인해야 합니다.",
+      "norm": {
+        "actor_ko": "사건 진행정보를 요청하는 범죄피해자등",
+        "conditions_ko": "사건 진행을 계속 직접 조회해야 하는지 궁금합니다.",
+        "legal_effect_ko": "피해자 등은 신청을 통해 공소제기 여부, 공판 일시·장소, 재판결과, 구속·석방 등 정보를 통지받을 수 있으므로 연락처와 통지 신청 상태를 확인해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0259-02",
+        "coord.crime-victim-response.crime-victim-protection-ko-0008"
+      ]
+    },
+    {
+      "rule_id": "rule.crime-victim-response.crime-victim-07",
+      "title_ko": "피해자는 형사재판에서 피해와 처벌 의견을 직접 말할 수 있나요",
+      "proposition_ko": "피해자 등은 신청해 증인신문과 피해 정도·결과·처벌 의견을 진술할 기회를 구할 수 있으나, 이미 충분히 진술했거나 재판 지연 우려가 있는 경우 등 예외가 있습니다.",
+      "norm": {
+        "actor_ko": "공판에서 진술하려는 범죄피해자등",
+        "conditions_ko": "공판에서 피해 정도와 처벌 의견을 진술하고 싶습니다.",
+        "legal_effect_ko": "피해자 등은 신청해 증인신문과 피해 정도·결과·처벌 의견을 진술할 기회를 구할 수 있으나, 이미 충분히 진술했거나 재판 지연 우려가 있는 경우 등 예외가 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0294-02"
+      ]
+    },
+    {
+      "rule_id": "rule.crime-victim-response.crime-victim-08",
+      "title_ko": "피해자는 진행 중인 형사재판 기록을 열람·등사할 수 있나요",
+      "proposition_ko": "소송계속 중인 사건의 피해자 등은 재판장에게 기록 열람·등사를 신청할 수 있고 권리구제·진술권 보장 필요성이 인정되면 원칙적으로 허가 대상이지만 제한 사유와 사용조건이 붙을 수 있습니다.",
+      "norm": {
+        "actor_ko": "공판기록을 열람·등사하려는 범죄피해자등",
+        "conditions_ko": "민사청구와 진술 준비를 위해 공판기록이 필요합니다.",
+        "legal_effect_ko": "소송계속 중인 사건의 피해자 등은 재판장에게 기록 열람·등사를 신청할 수 있고 권리구제·진술권 보장 필요성이 인정되면 원칙적으로 허가 대상이지만 제한 사유와 사용조건이 붙을 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0294-04"
+      ]
+    },
+    {
+      "rule_id": "rule.crime-victim-response.crime-victim-09",
+      "title_ko": "형사합의를 하면 사건이 자동으로 끝나나요",
+      "proposition_ko": "친고죄의 고소취소나 반의사불벌죄의 처벌의사 철회는 제1심 판결 전이라는 제한과 공소기각 효과가 있지만, 다른 범죄는 합의만으로 공소가 자동 종료되지 않습니다.",
+      "norm": {
+        "actor_ko": "합의·고소취소·처벌불원을 검토하는 피해자와 피고인",
+        "conditions_ko": "합의서나 처벌불원서를 쓰면 모든 범죄가 종결되는지 궁금합니다.",
+        "legal_effect_ko": "친고죄의 고소취소나 반의사불벌죄의 처벌의사 철회는 제1심 판결 전이라는 제한과 공소기각 효과가 있지만, 다른 범죄는 합의만으로 공소가 자동 종료되지 않습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0232",
+        "coord.crime-victim-response.criminal-procedure-ko-0327"
+      ]
+    },
+    {
+      "rule_id": "rule.crime-victim-response.crime-victim-10",
+      "title_ko": "형사재판에서 배상명령으로 어떤 손해를 받을 수 있나요",
+      "proposition_ko": "법이 정한 대상 범죄의 유죄판결 절차에서는 직접적인 물적 피해, 치료비 손해와 위자료 또는 합의된 손해배상액에 대해 배상명령을 신청할 수 있습니다.",
+      "norm": {
+        "actor_ko": "배상명령 대상 손해를 청구하려는 범죄피해자",
+        "conditions_ko": "별도 민사소송 없이 치료비·위자료를 청구하고 싶습니다.",
+        "legal_effect_ko": "법이 정한 대상 범죄의 유죄판결 절차에서는 직접적인 물적 피해, 치료비 손해와 위자료 또는 합의된 손해배상액에 대해 배상명령을 신청할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0025"
+      ]
+    },
+    {
+      "rule_id": "rule.crime-victim-response.crime-victim-11",
+      "title_ko": "배상명령은 언제, 어느 법원에 어떻게 신청하나요",
+      "proposition_ko": "피해자는 제1심 또는 제2심 공판의 변론 종결 전까지 사건이 계속된 법원에 신청서와 피고인 수만큼의 부본, 필요한 증거서류를 제출할 수 있습니다.",
+      "norm": {
+        "actor_ko": "배상명령 신청을 준비하는 범죄피해자",
+        "conditions_ko": "형사사건이 재판 중인데 신청시기를 놓칠까 걱정됩니다.",
+        "legal_effect_ko": "피해자는 제1심 또는 제2심 공판의 변론 종결 전까지 사건이 계속된 법원에 신청서와 피고인 수만큼의 부본, 필요한 증거서류를 제출할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0026"
+      ]
+    },
+    {
+      "rule_id": "rule.crime-victim-response.crime-victim-12",
+      "title_ko": "형사사건과 별도로 민사 손해배상을 청구할 수 있나요",
+      "proposition_ko": "고의·과실의 위법행위로 생긴 재산상·정신상 손해는 민사청구 대상이 될 수 있고, 손해와 가해자를 안 날부터 3년 및 불법행위일부터 10년의 시효를 함께 관리해야 합니다.",
+      "norm": {
+        "actor_ko": "불법행위 손해배상을 청구하려는 범죄피해자",
+        "conditions_ko": "형사처벌과 피해금 회복이 같은 절차인지 궁금합니다.",
+        "legal_effect_ko": "고의·과실의 위법행위로 생긴 재산상·정신상 손해는 민사청구 대상이 될 수 있고, 손해와 가해자를 안 날부터 3년 및 불법행위일부터 10년의 시효를 함께 관리해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.civil-act-ko-0750",
+        "coord.crime-victim-response.civil-act-ko-0751",
+        "coord.crime-victim-response.civil-act-ko-0766"
+      ]
+    },
+    {
+      "rule_id": "rule.crime-victim-response.crime-victim-13",
+      "title_ko": "가해자에게 배상받지 못하면 범죄피해 구조금을 신청할 수 있나요",
+      "proposition_ko": "구조대상 범죄피해로 전부 또는 일부 배상받지 못한 경우 등에는 구조금을 검토할 수 있고, 안 날부터 3년·발생일부터 10년 안에 관할 지구심의회에 신청해야 합니다.",
+      "norm": {
+        "actor_ko": "범죄피해 구조금을 신청하려는 구조피해자 또는 유족",
+        "conditions_ko": "생명·신체 피해가 크지만 가해자에게 배상받기 어렵습니다.",
+        "legal_effect_ko": "구조대상 범죄피해로 전부 또는 일부 배상받지 못한 경우 등에는 구조금을 검토할 수 있고, 안 날부터 3년·발생일부터 10년 안에 관할 지구심의회에 신청해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.crime-victim-protection-ko-0016",
+        "coord.crime-victim-response.crime-victim-protection-ko-0025"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.crime-victim-response.crime-victim-01",
+      "question_ko": "보복이나 재접촉 위험이 있고 치료·주거 지원도 필요합니다.",
+      "decision_fact_ko": "현재 위험 수준",
+      "when_true_ko": "긴급 위험은 112 등 즉시 대응을 우선하고, 수사기관에 신변보호 필요성을 알리며 상담·의료·법률구조·주거지원 등 피해자 지원을 함께 문의합니다.",
+      "when_false_ko": "현재 위험 수준·가해자의 접근·협박·치료·주거 필요·보호 요청과 처리 결과를 먼저 확인한 뒤 다음 절차를 정합니다.",
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-01"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.crime-victim-protection-ko-0007",
+        "coord.crime-victim-response.crime-victim-protection-ko-0009"
+      ]
+    },
+    {
+      "scenario_id": "scenario.crime-victim-response.crime-victim-02",
+      "question_ko": "메신저·통화·계좌·진단서·CCTV처럼 사라지기 쉬운 자료가 있습니다.",
+      "decision_fact_ko": "자료 생성일",
+      "when_true_ko": "원본성을 해치지 않게 자료를 보존하고 사건 시간표·피해내역·증거목록을 만든 뒤, 고소·진술과 민사상 손해입증에 함께 사용할 수 있도록 관리합니다.",
+      "when_false_ko": "자료 생성일·원본 보관 위치·CCTV 보존기간·피해와 자료의 연결를 먼저 확인한 뒤 다음 절차를 정합니다.",
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-02"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0237",
+        "coord.crime-victim-response.civil-act-ko-0750"
+      ]
+    },
+    {
+      "scenario_id": "scenario.crime-victim-response.crime-victim-03",
+      "question_ko": "피해자가 경찰에 사실을 알리면 모두 고소가 되는지 궁금합니다.",
+      "decision_fact_ko": "피해자 여부",
+      "when_true_ko": "피해자의 처벌 요구 의사표시인 고소, 제3자의 고발, 긴급상황 신고·일반 진정은 법적 지위와 후속 권리가 다를 수 있으므로 접수 형태를 확인해야 합니다.",
+      "when_false_ko": "피해자 여부·처벌 요구 의사·접수 형태·사건번호와 지위를 먼저 확인한 뒤 다음 절차를 정합니다.",
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-03"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0223",
+        "coord.crime-victim-response.criminal-procedure-ko-0234",
+        "coord.crime-victim-response.criminal-procedure-ko-0237"
+      ]
+    },
+    {
+      "scenario_id": "scenario.crime-victim-response.crime-victim-04",
+      "question_ko": "온라인 민원만 넣어도 정식 고소가 되는지 궁금합니다.",
+      "decision_fact_ko": "접수기관",
+      "when_true_ko": "고소·고발은 서면 또는 구술로 검사나 사법경찰관에게 해야 하며, 구술이면 조서를 작성하므로 범죄사실과 처벌 의사를 명확히 하고 접수 증거를 받아야 합니다.",
+      "when_false_ko": "접수기관·범죄사실 특정·처벌 요구 의사·제출 증거목록를 먼저 확인한 뒤 다음 절차를 정합니다.",
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-04"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0237",
+        "coord.crime-victim-response.criminal-procedure-ko-0238"
+      ]
+    },
+    {
+      "scenario_id": "scenario.crime-victim-response.crime-victim-05",
+      "question_ko": "처분 통지는 받았지만 불기소 이유를 모르겠습니다.",
+      "decision_fact_ko": "처분 종류",
+      "when_true_ko": "검사는 고소·고발 사건의 처분 취지를 법정 기간 안에 통지하고, 불기소이면 고소인·고발인의 청구에 따라 7일 이내 서면으로 이유를 설명해야 합니다.",
+      "when_false_ko": "처분 종류·통지일·이유고지 청구일·불복기한를 먼저 확인한 뒤 다음 절차를 정합니다.",
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-05"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0258",
+        "coord.crime-victim-response.criminal-procedure-ko-0259"
+      ]
+    },
+    {
+      "scenario_id": "scenario.crime-victim-response.crime-victim-06",
+      "question_ko": "사건 진행을 계속 직접 조회해야 하는지 궁금합니다.",
+      "decision_fact_ko": "피해자 또는 법정대리인 지위",
+      "when_true_ko": "피해자 등은 신청을 통해 공소제기 여부, 공판 일시·장소, 재판결과, 구속·석방 등 정보를 통지받을 수 있으므로 연락처와 통지 신청 상태를 확인해야 합니다.",
+      "when_false_ko": "피해자 또는 법정대리인 지위·통지 신청 여부·사건번호·현재 연락처를 먼저 확인한 뒤 다음 절차를 정합니다.",
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-06"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0259-02",
+        "coord.crime-victim-response.crime-victim-protection-ko-0008"
+      ]
+    },
+    {
+      "scenario_id": "scenario.crime-victim-response.crime-victim-07",
+      "question_ko": "공판에서 피해 정도와 처벌 의견을 진술하고 싶습니다.",
+      "decision_fact_ko": "피해자등 지위",
+      "when_true_ko": "피해자 등은 신청해 증인신문과 피해 정도·결과·처벌 의견을 진술할 기회를 구할 수 있으나, 이미 충분히 진술했거나 재판 지연 우려가 있는 경우 등 예외가 있습니다.",
+      "when_false_ko": "피해자등 지위·신청 여부·기존 공판 진술·출석 가능성를 먼저 확인한 뒤 다음 절차를 정합니다.",
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-07"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0294-02"
+      ]
+    },
+    {
+      "scenario_id": "scenario.crime-victim-response.crime-victim-08",
+      "question_ko": "민사청구와 진술 준비를 위해 공판기록이 필요합니다.",
+      "decision_fact_ko": "신청인 지위",
+      "when_true_ko": "소송계속 중인 사건의 피해자 등은 재판장에게 기록 열람·등사를 신청할 수 있고 권리구제·진술권 보장 필요성이 인정되면 원칙적으로 허가 대상이지만 제한 사유와 사용조건이 붙을 수 있습니다.",
+      "when_false_ko": "신청인 지위·필요 기록 범위·사용 목적·제한 사유를 먼저 확인한 뒤 다음 절차를 정합니다.",
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-08"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0294-04"
+      ]
+    },
+    {
+      "scenario_id": "scenario.crime-victim-response.crime-victim-09",
+      "question_ko": "합의서나 처벌불원서를 쓰면 모든 범죄가 종결되는지 궁금합니다.",
+      "decision_fact_ko": "죄명과 소추조건",
+      "when_true_ko": "친고죄의 고소취소나 반의사불벌죄의 처벌의사 철회는 제1심 판결 전이라는 제한과 공소기각 효과가 있지만, 다른 범죄는 합의만으로 공소가 자동 종료되지 않습니다.",
+      "when_false_ko": "죄명과 소추조건·제1심 판결 시점·합의금 지급·고소취소·처벌불원 문구를 먼저 확인한 뒤 다음 절차를 정합니다.",
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-09"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0232",
+        "coord.crime-victim-response.criminal-procedure-ko-0327"
+      ]
+    },
+    {
+      "scenario_id": "scenario.crime-victim-response.crime-victim-10",
+      "question_ko": "별도 민사소송 없이 치료비·위자료를 청구하고 싶습니다.",
+      "decision_fact_ko": "기소 죄명",
+      "when_true_ko": "법이 정한 대상 범죄의 유죄판결 절차에서는 직접적인 물적 피해, 치료비 손해와 위자료 또는 합의된 손해배상액에 대해 배상명령을 신청할 수 있습니다.",
+      "when_false_ko": "기소 죄명·직접 피해 항목·치료비·위자료·배상책임 명백성를 먼저 확인한 뒤 다음 절차를 정합니다.",
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-10"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0025"
+      ]
+    },
+    {
+      "scenario_id": "scenario.crime-victim-response.crime-victim-11",
+      "question_ko": "형사사건이 재판 중인데 신청시기를 놓칠까 걱정됩니다.",
+      "decision_fact_ko": "심급과 변론종결",
+      "when_true_ko": "피해자는 제1심 또는 제2심 공판의 변론 종결 전까지 사건이 계속된 법원에 신청서와 피고인 수만큼의 부본, 필요한 증거서류를 제출할 수 있습니다.",
+      "when_false_ko": "심급과 변론종결·피고인 수·청구금액과 증거·동일 피해 민사소송를 먼저 확인한 뒤 다음 절차를 정합니다.",
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-11"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0026"
+      ]
+    },
+    {
+      "scenario_id": "scenario.crime-victim-response.crime-victim-12",
+      "question_ko": "형사처벌과 피해금 회복이 같은 절차인지 궁금합니다.",
+      "decision_fact_ko": "가해자와 손해 인지일",
+      "when_true_ko": "고의·과실의 위법행위로 생긴 재산상·정신상 손해는 민사청구 대상이 될 수 있고, 손해와 가해자를 안 날부터 3년 및 불법행위일부터 10년의 시효를 함께 관리해야 합니다.",
+      "when_false_ko": "가해자와 손해 인지일·불법행위일·손해항목·금액·기존 합의·배상명령를 먼저 확인한 뒤 다음 절차를 정합니다.",
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-12"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.civil-act-ko-0750",
+        "coord.crime-victim-response.civil-act-ko-0751",
+        "coord.crime-victim-response.civil-act-ko-0766"
+      ]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.crime-victim-urgent-safety-and-support",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "crime-victim-urgent-safety-and-support",
+      "title_ko": "범죄피해 직후 안전이 불안하면 신고 외에 무엇을 요청할 수 있나요?",
+      "one_line_answer_ko": "긴급 위험은 112 등 즉시 대응을 우선하고, 수사기관에 신변보호 필요성을 알리며 상담·의료·법률구조·주거지원 등 피해자 지원을 함께 문의합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "긴급 안전과 형사절차 준비를 분리합니다.",
+        "보복 우려를 구체적 사실로 알립니다.",
+        "치료·상담·주거·법률 지원을 동시에 확인합니다."
+      ],
+      "action_steps_ko": [
+        "현재 위험하면 즉시 긴급신고를 한다.",
+        "가해자의 접근·협박 기록을 보존한다.",
+        "수사담당자에게 신변보호 필요성을 서면으로 알린다.",
+        "범죄피해자 지원기관의 의료·상담·주거지원을 문의한다."
+      ],
+      "facts_to_check_ko": [
+        "현재 위험 수준",
+        "가해자의 접근·협박",
+        "치료·주거 필요",
+        "보호 요청과 처리 결과"
+      ],
+      "caution_ko": "보호조치의 종류와 요건은 범죄 유형·위험 정도·관할기관에 따라 달라질 수 있습니다.",
+      "search_intents_ko": [
+        "범죄피해 직후 안전이 불안하면 신고 외에 무엇을 요청할 수 있나요?",
+        "보복이나 재접촉 위험이 있고 치료·주거 지원도 필요합니다.",
+        "crime victim urgent safety and support"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "형사절차보다 먼저 현재 안전을 확보한다",
+          "paragraphs_ko": [
+            "현장 위험이 계속되면 증거 정리보다 즉시 안전한 장소와 긴급 대응을 우선합니다.",
+            "보복이나 재접촉 우려는 추상적으로 적기보다 최근 연락·접근·협박의 날짜와 내용을 제시합니다."
+          ]
+        },
+        {
+          "heading_ko": "피해 회복 지원을 별도 경로로 요청한다",
+          "paragraphs_ko": [
+            "범죄피해자 보호법은 상담, 의료, 구조금, 법률구조, 취업·주거지원 등 보호대책을 예정합니다.",
+            "수사 진행과 별개로 필요한 지원을 목록화해 담당기관에 문의합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-01"
+      ],
+      "scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-01"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.crime-victim-protection-ko-0007",
+        "coord.crime-victim-response.crime-victim-protection-ko-0009"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "related_content_ids": [
+        "content.crime-evidence-preservation-first-steps",
+        "content.victim-case-information-notifications",
+        "content.crime-victim-relief-fund-eligibility-deadline"
+      ],
+      "concierge_entry": {
+        "question_ko": "범죄피해 직후 안전이 불안하면 신고 외에 무엇을 요청할 수 있나요?",
+        "decision_facts_ko": [
+          "현재 위험 수준",
+          "가해자의 접근·협박",
+          "치료·주거 필요",
+          "보호 요청과 처리 결과"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.crime-evidence-preservation-first-steps",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "crime-evidence-preservation-first-steps",
+      "title_ko": "신고 전에 어떤 증거부터 보존해야 하나요?",
+      "one_line_answer_ko": "원본성을 해치지 않게 자료를 보존하고 사건 시간표·피해내역·증거목록을 만든 뒤, 고소·진술과 민사상 손해입증에 함께 사용할 수 있도록 관리합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "원본과 제출용 사본을 구분합니다.",
+        "생성일·수집경위를 남깁니다.",
+        "CCTV 등 보존기간이 짧은 자료를 먼저 요청합니다."
+      ],
+      "action_steps_ko": [
+        "기기와 계정의 원본 자료를 백업한다.",
+        "화면 캡처와 함께 대화 전체·파일 원본을 보존한다.",
+        "병원 진료와 피해사진의 날짜를 연결한다.",
+        "증거목록에 출처·보관자·제출 여부를 기록한다."
+      ],
+      "facts_to_check_ko": [
+        "자료 생성일",
+        "원본 보관 위치",
+        "CCTV 보존기간",
+        "피해와 자료의 연결"
+      ],
+      "caution_ko": "불법적인 계정 접속·도청·위치추적 등으로 자료를 확보하면 별도 위법 문제가 생길 수 있으므로 적법한 보존 방법을 사용해야 합니다.",
+      "search_intents_ko": [
+        "신고 전에 어떤 증거부터 보존해야 하나요?",
+        "메신저·통화·계좌·진단서·CCTV처럼 사라지기 쉬운 자료가 있습니다.",
+        "crime evidence preservation first steps"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "사라질 위험이 큰 자료부터 고정한다",
+          "paragraphs_ko": [
+            "CCTV, 플랫폼 기록, 통화내역은 보존기간이나 계정 상태에 따라 사라질 수 있습니다.",
+            "원본 파일과 메타정보를 유지하고 편집본은 별도로 만듭니다."
+          ]
+        },
+        {
+          "heading_ko": "증거를 사건의 요소와 연결한다",
+          "paragraphs_ko": [
+            "자료를 많이 모으는 것보다 누가 언제 무엇을 했고 어떤 피해가 생겼는지를 연결하는 것이 중요합니다.",
+            "형사사건 제출본과 치료비·휴업손해 등 민사상 손해자료를 구분해 목록화합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-02"
+      ],
+      "scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-02"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0237",
+        "coord.crime-victim-response.civil-act-ko-0750"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "related_content_ids": [
+        "content.crime-victim-urgent-safety-and-support",
+        "content.how-to-file-criminal-complaint",
+        "content.civil-damages-after-crime"
+      ],
+      "concierge_entry": {
+        "question_ko": "신고 전에 어떤 증거부터 보존해야 하나요?",
+        "decision_facts_ko": [
+          "자료 생성일",
+          "원본 보관 위치",
+          "CCTV 보존기간",
+          "피해와 자료의 연결"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.report-complaint-accusation-difference",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "report-complaint-accusation-difference",
+      "title_ko": "신고·고소·고발은 모두 같은 절차인가요?",
+      "one_line_answer_ko": "피해자의 처벌 요구 의사표시인 고소, 제3자의 고발, 긴급상황 신고·일반 진정은 법적 지위와 후속 권리가 다를 수 있으므로 접수 형태를 확인해야 합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "피해자는 원칙적으로 고소할 수 있습니다.",
+        "누구든지 범죄가 있다고 생각하면 고발할 수 있습니다.",
+        "단순 신고·진정과 고소·고발의 접수 상태를 확인합니다."
+      ],
+      "action_steps_ko": [
+        "접수 문서의 제목과 취지를 확인한다.",
+        "처벌을 구하는 의사를 명확히 적는다.",
+        "사건번호와 고소인·피해자 지위를 확인한다.",
+        "접수증과 담당기관 정보를 보관한다."
+      ],
+      "facts_to_check_ko": [
+        "피해자 여부",
+        "처벌 요구 의사",
+        "접수 형태",
+        "사건번호와 지위"
+      ],
+      "caution_ko": "친고죄·반의사불벌죄 여부나 법정대리인·대리인의 고소권은 범죄와 당사자 관계에 따라 별도 검토가 필요합니다.",
+      "search_intents_ko": [
+        "신고·고소·고발은 모두 같은 절차인가요?",
+        "피해자가 경찰에 사실을 알리면 모두 고소가 되는지 궁금합니다.",
+        "report complaint accusation difference"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "누가 어떤 의사로 제출했는지 본다",
+          "paragraphs_ko": [
+            "형사소송법은 피해자의 고소와 누구나 할 수 있는 고발을 구분합니다.",
+            "긴급신고나 민원 제출만으로 고소인·고발인의 절차상 지위가 언제나 생기는 것은 아닙니다."
+          ]
+        },
+        {
+          "heading_ko": "접수 뒤 자신의 지위를 확인한다",
+          "paragraphs_ko": [
+            "처벌을 구하는 취지와 구체적 범죄사실이 접수됐는지 확인합니다.",
+            "사건번호, 담당자, 피해자·고소인 지위를 기록해야 이후 통지와 이유고지 권리를 놓치지 않습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-03"
+      ],
+      "scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-03"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0223",
+        "coord.crime-victim-response.criminal-procedure-ko-0234",
+        "coord.crime-victim-response.criminal-procedure-ko-0237"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "related_content_ids": [
+        "content.crime-victim-urgent-safety-and-support",
+        "content.how-to-file-criminal-complaint",
+        "content.notice-of-prosecution-or-nonprosecution"
+      ]
+    },
+    {
+      "content_id": "content.how-to-file-criminal-complaint",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "how-to-file-criminal-complaint",
+      "title_ko": "고소장은 어디에 어떤 방식으로 제출하나요?",
+      "one_line_answer_ko": "고소·고발은 서면 또는 구술로 검사나 사법경찰관에게 해야 하며, 구술이면 조서를 작성하므로 범죄사실과 처벌 의사를 명확히 하고 접수 증거를 받아야 합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "서면과 구술 모두 가능하지만 접수기관이 중요합니다.",
+        "구술 고소는 조서 작성 내용을 확인합니다.",
+        "사실·증거·처벌의사를 구분해 적습니다."
+      ],
+      "action_steps_ko": [
+        "관할 경찰서나 검찰청의 접수방법을 확인한다.",
+        "당사자·일시·장소·행위를 시간순으로 적는다.",
+        "증거목록과 원본 보관 위치를 붙인다.",
+        "접수증·사건번호와 제출본을 보관한다."
+      ],
+      "facts_to_check_ko": [
+        "접수기관",
+        "범죄사실 특정",
+        "처벌 요구 의사",
+        "제출 증거목록"
+      ],
+      "caution_ko": "국민신문고·기관 민원이 언제나 형사소송법상 고소·고발로 접수되는 것은 아니므로 사건번호와 접수 지위를 확인해야 합니다.",
+      "search_intents_ko": [
+        "고소장은 어디에 어떤 방식으로 제출하나요?",
+        "온라인 민원만 넣어도 정식 고소가 되는지 궁금합니다.",
+        "how to file criminal complaint"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법이 정한 상대방에게 의사를 표시한다",
+          "paragraphs_ko": [
+            "고소·고발은 검사 또는 사법경찰관에게 서면이나 구술로 해야 합니다.",
+            "구술로 접수하면 조서에 범죄사실과 처벌 의사가 정확히 반영됐는지 확인합니다."
+          ]
+        },
+        {
+          "heading_ko": "접수 가능한 사건서류로 정리한다",
+          "paragraphs_ko": [
+            "감정적 평가보다 행위자, 일시, 장소, 구체적 행위와 피해를 먼저 적습니다.",
+            "증거는 번호를 붙여 목록화하고 제출본과 원본을 구분합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-04"
+      ],
+      "scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-04"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0237",
+        "coord.crime-victim-response.criminal-procedure-ko-0238"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "related_content_ids": [
+        "content.crime-evidence-preservation-first-steps",
+        "content.report-complaint-accusation-difference",
+        "content.notice-of-prosecution-or-nonprosecution"
+      ],
+      "concierge_entry": {
+        "question_ko": "고소장은 어디에 어떤 방식으로 제출하나요?",
+        "decision_facts_ko": [
+          "접수기관",
+          "범죄사실 특정",
+          "처벌 요구 의사",
+          "제출 증거목록"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.notice-of-prosecution-or-nonprosecution",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "notice-of-prosecution-or-nonprosecution",
+      "title_ko": "고소한 사건의 기소·불기소 결과와 이유는 어떻게 확인하나요?",
+      "one_line_answer_ko": "검사는 고소·고발 사건의 처분 취지를 법정 기간 안에 통지하고, 불기소이면 고소인·고발인의 청구에 따라 7일 이내 서면으로 이유를 설명해야 합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "처분 취지 통지와 이유고지는 별개입니다.",
+        "불기소 이유는 청구해야 하는 구조입니다.",
+        "통지일·청구일·수령일을 기록합니다."
+      ],
+      "action_steps_ko": [
+        "처분 통지서와 송달일을 보존한다.",
+        "불기소이면 이유고지를 서면으로 청구한다.",
+        "처분죄명·이유·증거판단을 구분해 읽는다.",
+        "불복기한과 가능한 절차를 즉시 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "처분 종류",
+        "통지일",
+        "이유고지 청구일",
+        "불복기한"
+      ],
+      "caution_ko": "항고·재정신청 등 불복 가능성과 기한은 처분 주체, 고소권자 여부와 범죄 유형에 따라 달라지므로 이유고지 수령 즉시 확인해야 합니다.",
+      "search_intents_ko": [
+        "고소한 사건의 기소·불기소 결과와 이유는 어떻게 확인하나요?",
+        "처분 통지는 받았지만 불기소 이유를 모르겠습니다.",
+        "notice of prosecution or nonprosecution"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "결과 통지와 이유 설명을 구분한다",
+          "paragraphs_ko": [
+            "형사소송법 제258조는 고소·고발 사건의 처분 취지를 서면으로 통지하도록 합니다.",
+            "불기소 이유의 구체적 서면 설명은 제259조에 따른 별도 청구가 필요합니다."
+          ]
+        },
+        {
+          "heading_ko": "받은 날부터 다음 절차를 계산한다",
+          "paragraphs_ko": [
+            "통지서와 이유고지서를 함께 읽어 수사기관이 인정·배척한 사실과 증거를 표시합니다.",
+            "불복 절차가 있다면 송달일을 기준으로 기한을 먼저 고정합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-05"
+      ],
+      "scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-05"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0258",
+        "coord.crime-victim-response.criminal-procedure-ko-0259"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "related_content_ids": [
+        "content.report-complaint-accusation-difference",
+        "content.victim-case-information-notifications",
+        "content.victim-statement-in-criminal-trial"
+      ],
+      "concierge_entry": {
+        "question_ko": "고소한 사건의 기소·불기소 결과와 이유는 어떻게 확인하나요?",
+        "decision_facts_ko": [
+          "처분 종류",
+          "통지일",
+          "이유고지 청구일",
+          "불복기한"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.victim-case-information-notifications",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "victim-case-information-notifications",
+      "title_ko": "피해자는 공판일·재판결과·피고인 석방을 통지받을 수 있나요?",
+      "one_line_answer_ko": "피해자 등은 신청을 통해 공소제기 여부, 공판 일시·장소, 재판결과, 구속·석방 등 정보를 통지받을 수 있으므로 연락처와 통지 신청 상태를 확인해야 합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "피해자 정보 통지는 신청이 필요한 항목이 있습니다.",
+        "공판·재판결과와 구금 변동도 대상이 될 수 있습니다.",
+        "연락처 변경을 즉시 알립니다."
+      ],
+      "action_steps_ko": [
+        "담당 검찰청에 피해자 통지 신청방법을 확인한다.",
+        "사건번호·피고인·연락처를 정확히 제출한다.",
+        "공판기일과 재판결과 통지를 요청한다.",
+        "연락처 변경과 통지 누락을 기록한다."
+      ],
+      "facts_to_check_ko": [
+        "피해자 또는 법정대리인 지위",
+        "통지 신청 여부",
+        "사건번호",
+        "현재 연락처"
+      ],
+      "caution_ko": "구체적인 제공 범위와 제한은 수사·재판 상황, 개인정보와 안전 사유에 따라 달라질 수 있습니다.",
+      "search_intents_ko": [
+        "피해자는 공판일·재판결과·피고인 석방을 통지받을 수 있나요?",
+        "사건 진행을 계속 직접 조회해야 하는지 궁금합니다.",
+        "victim case information notifications"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "통지를 기다리기 전에 신청 상태를 확인한다",
+          "paragraphs_ko": [
+            "피해자는 사건 결과뿐 아니라 공판 일정과 구금 관련 사실 등 절차 정보를 요청할 수 있습니다.",
+            "접수 단계에서 자동으로 모든 정보가 오는지 단정하지 말고 신청 여부를 확인합니다."
+          ]
+        },
+        {
+          "heading_ko": "정보를 행동기한과 연결한다",
+          "paragraphs_ko": [
+            "공판일 통지는 진술권 신청과 배상명령 준비 시점을 정하는 자료가 됩니다.",
+            "재판결과와 석방 통지는 안전계획과 민사상 집행 준비에도 연결해 관리합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-06"
+      ],
+      "scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-06"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0259-02",
+        "coord.crime-victim-response.crime-victim-protection-ko-0008"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "related_content_ids": [
+        "content.crime-victim-urgent-safety-and-support",
+        "content.notice-of-prosecution-or-nonprosecution",
+        "content.victim-statement-in-criminal-trial"
+      ],
+      "concierge_entry": {
+        "question_ko": "피해자는 공판일·재판결과·피고인 석방을 통지받을 수 있나요?",
+        "decision_facts_ko": [
+          "피해자 또는 법정대리인 지위",
+          "통지 신청 여부",
+          "사건번호",
+          "현재 연락처"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.victim-statement-in-criminal-trial",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "victim-statement-in-criminal-trial",
+      "title_ko": "피해자는 형사재판에서 피해와 처벌 의견을 직접 말할 수 있나요?",
+      "one_line_answer_ko": "피해자 등은 신청해 증인신문과 피해 정도·결과·처벌 의견을 진술할 기회를 구할 수 있으나, 이미 충분히 진술했거나 재판 지연 우려가 있는 경우 등 예외가 있습니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "진술기회는 신청을 전제로 준비합니다.",
+        "피해 정도·결과와 처벌 의견을 구분합니다.",
+        "출석통지를 받고 불출석하면 철회로 볼 수 있습니다."
+      ],
+      "action_steps_ko": [
+        "공판기일과 담당 재판부를 확인한다.",
+        "피해자 진술 신청 방법과 기한을 문의한다.",
+        "피해경과·치료·생활변화를 간결히 정리한다.",
+        "출석이 어렵다면 미리 재판부에 알린다."
+      ],
+      "facts_to_check_ko": [
+        "피해자등 지위",
+        "신청 여부",
+        "기존 공판 진술",
+        "출석 가능성"
+      ],
+      "caution_ko": "피해자 진술권은 공소사실의 입증 책임이나 당사자 지위를 피해자에게 이전하는 제도가 아닙니다.",
+      "search_intents_ko": [
+        "피해자는 형사재판에서 피해와 처벌 의견을 직접 말할 수 있나요?",
+        "공판에서 피해 정도와 처벌 의견을 진술하고 싶습니다.",
+        "victim statement in criminal trial"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "진술할 범위를 미리 구조화한다",
+          "paragraphs_ko": [
+            "법원은 신청이 있으면 원칙적으로 피해자등을 증인으로 신문하고 피해 정도와 처벌 의견 등을 말할 기회를 줍니다.",
+            "같은 내용을 반복하거나 절차를 현저히 지연할 우려가 있으면 예외가 인정될 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "진술과 증거자료를 구분한다",
+          "paragraphs_ko": [
+            "치료기록·손해자료는 제출 경로를 확인하고, 법정 진술은 피해의 경과와 현재 영향을 중심으로 준비합니다.",
+            "출석통지를 받은 뒤 정당한 이유 없이 불출석하면 신청 철회로 처리될 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-07"
+      ],
+      "scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-07"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0294-02"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "related_content_ids": [
+        "content.notice-of-prosecution-or-nonprosecution",
+        "content.victim-case-information-notifications",
+        "content.victim-access-to-trial-records"
+      ]
+    },
+    {
+      "content_id": "content.victim-access-to-trial-records",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "victim-access-to-trial-records",
+      "title_ko": "피해자는 진행 중인 형사재판 기록을 열람·등사할 수 있나요?",
+      "one_line_answer_ko": "소송계속 중인 사건의 피해자 등은 재판장에게 기록 열람·등사를 신청할 수 있고 권리구제·진술권 보장 필요성이 인정되면 원칙적으로 허가 대상이지만 제한 사유와 사용조건이 붙을 수 있습니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "신청 가능한 피해자등의 범위를 확인합니다.",
+        "필요한 기록과 사용목적을 특정합니다.",
+        "허가조건과 개인정보 보호의무를 지킵니다."
+      ],
+      "action_steps_ko": [
+        "사건번호와 재판부를 확인한다.",
+        "필요한 기록 범위와 권리구제 목적을 적는다.",
+        "불허·조건부 허가 이유를 확인한다.",
+        "등사자료를 목적 밖으로 공개하지 않는다."
+      ],
+      "facts_to_check_ko": [
+        "신청인 지위",
+        "필요 기록 범위",
+        "사용 목적",
+        "제한 사유"
+      ],
+      "caution_ko": "열람·등사한 정보로 관계인의 명예·생활 평온을 해하거나 재판에 지장을 주어서는 안 되며, 일부 결정은 불복이 제한됩니다.",
+      "search_intents_ko": [
+        "피해자는 진행 중인 형사재판 기록을 열람·등사할 수 있나요?",
+        "민사청구와 진술 준비를 위해 공판기록이 필요합니다.",
+        "victim access to trial records"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "필요성과 범위를 구체화한다",
+          "paragraphs_ko": [
+            "피해자등은 진행 중인 사건의 소송기록 열람·등사를 재판장에게 신청할 수 있습니다.",
+            "민사상 권리구제나 피해자 진술 준비에 필요한 기록을 항목별로 특정하면 판단에 도움이 됩니다."
+          ]
+        },
+        {
+          "heading_ko": "허가받은 자료의 사용조건을 지킨다",
+          "paragraphs_ko": [
+            "국가안전, 사생활, 증거인멸, 영업비밀이나 재판 상황에 따른 제한이 있을 수 있습니다.",
+            "등사 허가에 사용목적 제한이나 조건이 붙으면 그 범위 안에서만 관리합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-08"
+      ],
+      "scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-08"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0294-04"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "related_content_ids": [
+        "content.victim-case-information-notifications",
+        "content.victim-statement-in-criminal-trial",
+        "content.civil-damages-after-crime"
+      ],
+      "concierge_entry": {
+        "question_ko": "피해자는 진행 중인 형사재판 기록을 열람·등사할 수 있나요?",
+        "decision_facts_ko": [
+          "신청인 지위",
+          "필요 기록 범위",
+          "사용 목적",
+          "제한 사유"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.settlement-and-punishment-intent",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "settlement-and-punishment-intent",
+      "title_ko": "형사합의를 하면 사건이 자동으로 끝나나요?",
+      "one_line_answer_ko": "친고죄의 고소취소나 반의사불벌죄의 처벌의사 철회는 제1심 판결 전이라는 제한과 공소기각 효과가 있지만, 다른 범죄는 합의만으로 공소가 자동 종료되지 않습니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "범죄가 친고죄·반의사불벌죄인지 먼저 봅니다.",
+        "고소취소·처벌의사 철회의 시점을 확인합니다.",
+        "형사상 의사표시와 민사상 정산 범위를 분리합니다."
+      ],
+      "action_steps_ko": [
+        "적용 죄명과 공소사실을 확인한다.",
+        "합의금·손해배상 범위와 처벌의사를 별도 문구로 정한다.",
+        "제1심 판결 전 제출 여부를 확인한다.",
+        "원본·송금·제출 증거를 보존한다."
+      ],
+      "facts_to_check_ko": [
+        "죄명과 소추조건",
+        "제1심 판결 시점",
+        "합의금 지급",
+        "고소취소·처벌불원 문구"
+      ],
+      "caution_ko": "합의서의 민·형사상 청구 포기 문구는 장래 손해와 집행에 큰 영향을 줄 수 있으므로 서명 전 범위를 정확히 검토해야 합니다.",
+      "search_intents_ko": [
+        "형사합의를 하면 사건이 자동으로 끝나나요?",
+        "합의서나 처벌불원서를 쓰면 모든 범죄가 종결되는지 궁금합니다.",
+        "settlement and punishment intent"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "합의의 형사절차 효과는 죄명에 따라 다르다",
+          "paragraphs_ko": [
+            "친고죄의 고소취소나 반의사불벌죄의 처벌의사 철회는 법이 정한 소추조건과 시점에 연결됩니다.",
+            "그 밖의 범죄에서는 합의가 있어도 공소가 자동으로 사라진다고 볼 수 없습니다."
+          ]
+        },
+        {
+          "heading_ko": "처벌 의사와 손해배상 정산을 분리한다",
+          "paragraphs_ko": [
+            "처벌불원, 고소취소, 합의금 지급, 추가 민사청구 포기는 서로 다른 문구입니다.",
+            "지급기한·분할·불이행 효과와 아직 확정되지 않은 치료비까지 합의 범위에 포함되는지 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-09"
+      ],
+      "scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-09"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.criminal-procedure-ko-0232",
+        "coord.crime-victim-response.criminal-procedure-ko-0327"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "related_content_ids": [
+        "content.victim-statement-in-criminal-trial",
+        "content.compensation-order-eligible-damages",
+        "content.civil-damages-after-crime"
+      ]
+    },
+    {
+      "content_id": "content.compensation-order-eligible-damages",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "compensation-order-eligible-damages",
+      "title_ko": "형사재판에서 배상명령으로 어떤 손해를 받을 수 있나요?",
+      "one_line_answer_ko": "법이 정한 대상 범죄의 유죄판결 절차에서는 직접적인 물적 피해, 치료비 손해와 위자료 또는 합의된 손해배상액에 대해 배상명령을 신청할 수 있습니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "대상 범죄인지 확인합니다.",
+        "직접 물적 피해·치료비·위자료를 특정합니다.",
+        "책임과 금액이 명백해야 합니다."
+      ],
+      "action_steps_ko": [
+        "공소장 죄명과 배상명령 대상 여부를 확인한다.",
+        "손해항목별 금액표를 만든다.",
+        "영수증·진단서·합의서를 정리한다.",
+        "복잡한 장래손해는 민사청구와 비교한다."
+      ],
+      "facts_to_check_ko": [
+        "기소 죄명",
+        "직접 피해 항목",
+        "치료비·위자료",
+        "배상책임 명백성"
+      ],
+      "caution_ko": "피해액이나 책임범위가 명확하지 않거나 형사재판을 지연시킬 우려가 있으면 배상명령을 하지 않을 수 있습니다.",
+      "search_intents_ko": [
+        "형사재판에서 배상명령으로 어떤 손해를 받을 수 있나요?",
+        "별도 민사소송 없이 치료비·위자료를 청구하고 싶습니다.",
+        "compensation order eligible damages"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "대상 범죄와 손해범위를 먼저 확인한다",
+          "paragraphs_ko": [
+            "소송촉진법 제25조는 열거된 범죄 등의 유죄판결 절차에서 배상명령을 허용합니다.",
+            "직접적인 물적 피해, 치료비 손해와 위자료를 자료로 특정해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "간이한 배상에 맞는 사건인지 판단한다",
+          "paragraphs_ko": [
+            "복잡한 과실비율, 장래치료비나 다수 책임자의 분담처럼 별도 심리가 많이 필요한 쟁점은 배상명령에 맞지 않을 수 있습니다.",
+            "각하 가능성과 별도 민사소송의 시간·비용을 함께 비교합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-10"
+      ],
+      "scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-10"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0025"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "related_content_ids": [
+        "content.victim-access-to-trial-records",
+        "content.settlement-and-punishment-intent",
+        "content.compensation-order-application-deadline"
+      ]
+    },
+    {
+      "content_id": "content.compensation-order-application-deadline",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "compensation-order-application-deadline",
+      "title_ko": "배상명령은 언제, 어느 법원에 어떻게 신청하나요?",
+      "one_line_answer_ko": "피해자는 제1심 또는 제2심 공판의 변론 종결 전까지 사건이 계속된 법원에 신청서와 피고인 수만큼의 부본, 필요한 증거서류를 제출할 수 있습니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "제1심·제2심 변론 종결 전이 기한입니다.",
+        "사건 계속 법원과 피고인 수를 확인합니다.",
+        "이미 같은 피해 민사소송이 계속 중이면 중복 신청이 제한됩니다."
+      ],
+      "action_steps_ko": [
+        "형사 사건번호와 재판부를 확인한다.",
+        "변론종결 예상일 전에 신청한다.",
+        "배상대상·내용·금액과 증거를 붙인다.",
+        "별도 민사소송 계속 여부를 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "심급과 변론종결",
+        "피고인 수",
+        "청구금액과 증거",
+        "동일 피해 민사소송"
+      ],
+      "caution_ko": "배상명령 신청은 대상 범죄·손해 범위의 제한을 받으며, 각하된 손해를 다시 신청할 수 있는지와 민사소송 전환은 별도 확인이 필요합니다.",
+      "search_intents_ko": [
+        "배상명령은 언제, 어느 법원에 어떻게 신청하나요?",
+        "형사사건이 재판 중인데 신청시기를 놓칠까 걱정됩니다.",
+        "compensation order application deadline"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "기한은 선고일이 아니라 변론종결 전이다",
+          "paragraphs_ko": [
+            "피해자는 제1심 또는 제2심 공판의 변론이 끝나기 전까지 사건이 계속된 법원에 신청합니다.",
+            "공판 진행이 빠를 수 있으므로 기소와 재판부를 확인한 즉시 준비합니다."
+          ]
+        },
+        {
+          "heading_ko": "신청서와 증거를 손해항목별로 맞춘다",
+          "paragraphs_ko": [
+            "사건번호, 당사자, 배상의 대상과 금액을 적고 피고인 수에 맞는 부본을 준비합니다.",
+            "같은 범죄피해에 관한 민사소송이 이미 계속 중이면 배상신청이 제한됩니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-11"
+      ],
+      "scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-11"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0026"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "related_content_ids": [
+        "content.victim-case-information-notifications",
+        "content.compensation-order-eligible-damages",
+        "content.civil-damages-after-crime"
+      ],
+      "concierge_entry": {
+        "question_ko": "배상명령은 언제, 어느 법원에 어떻게 신청하나요?",
+        "decision_facts_ko": [
+          "심급과 변론종결",
+          "피고인 수",
+          "청구금액과 증거",
+          "동일 피해 민사소송"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    },
+    {
+      "content_id": "content.civil-damages-after-crime",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "civil-damages-after-crime",
+      "title_ko": "형사사건과 별도로 민사 손해배상을 청구할 수 있나요?",
+      "one_line_answer_ko": "고의·과실의 위법행위로 생긴 재산상·정신상 손해는 민사청구 대상이 될 수 있고, 손해와 가해자를 안 날부터 3년 및 불법행위일부터 10년의 시효를 함께 관리해야 합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "형사책임과 민사배상은 별개입니다.",
+        "재산상 손해와 위자료를 구분합니다.",
+        "3년·10년 시효를 함께 계산합니다."
+      ],
+      "action_steps_ko": [
+        "가해자·손해를 안 날과 행위일을 기록한다.",
+        "치료비·휴업손해·재산피해를 표로 만든다.",
+        "형사기록 열람·등사 가능성을 확인한다.",
+        "합의·배상명령·민사소송의 중복을 정리한다."
+      ],
+      "facts_to_check_ko": [
+        "가해자와 손해 인지일",
+        "불법행위일",
+        "손해항목·금액",
+        "기존 합의·배상명령"
+      ],
+      "caution_ko": "2020년 10월 20일 이후 성년 대상 성적 침해 등 일부 피해에는 민법 제766조제3항의 별도 장기시효가 적용될 수 있습니다.",
+      "search_intents_ko": [
+        "형사사건과 별도로 민사 손해배상을 청구할 수 있나요?",
+        "형사처벌과 피해금 회복이 같은 절차인지 궁금합니다.",
+        "civil damages after crime"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "처벌과 배상을 분리해 설계한다",
+          "paragraphs_ko": [
+            "형사재판은 국가의 처벌 절차이고 피해자의 손해가 자동으로 전부 지급되는 절차는 아닙니다.",
+            "불법행위 손해배상은 행위, 위법성, 고의·과실, 손해와 인과관계를 민사적으로 정리해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "시효와 중복회수를 함께 관리한다",
+          "paragraphs_ko": [
+            "일반 불법행위 청구는 안 날부터 3년과 행위일부터 10년을 함께 봅니다.",
+            "합의금·보험금·배상명령으로 받은 금액이 있으면 같은 손해의 중복회수를 피하도록 정산합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-12"
+      ],
+      "scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-12"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.civil-act-ko-0750",
+        "coord.crime-victim-response.civil-act-ko-0751",
+        "coord.crime-victim-response.civil-act-ko-0766"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "related_content_ids": [
+        "content.crime-evidence-preservation-first-steps",
+        "content.victim-access-to-trial-records",
+        "content.compensation-order-eligible-damages"
+      ]
+    },
+    {
+      "content_id": "content.crime-victim-relief-fund-eligibility-deadline",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "crime-victim-relief-fund-eligibility-deadline",
+      "title_ko": "가해자에게 배상받지 못하면 범죄피해 구조금을 신청할 수 있나요?",
+      "one_line_answer_ko": "구조대상 범죄피해로 전부 또는 일부 배상받지 못한 경우 등에는 구조금을 검토할 수 있고, 안 날부터 3년·발생일부터 10년 안에 관할 지구심의회에 신청해야 합니다.",
+      "audience_situation_ko": "",
+      "key_points_ko": [
+        "모든 재산범죄 피해가 구조금 대상은 아닙니다.",
+        "생명·신체의 구조대상 범죄피해와 미배상 상태를 확인합니다.",
+        "3년·10년 신청기간을 함께 지킵니다."
+      ],
+      "action_steps_ko": [
+        "범죄피해와 생명·신체 손해 자료를 모은다.",
+        "가해자·보험 등으로부터 받은 배상액을 정리한다.",
+        "주소지·거주지·범죄발생지 관할 지구심의회를 확인한다.",
+        "인지일과 발생일 기준 신청기한을 계산한다."
+      ],
+      "facts_to_check_ko": [
+        "구조대상 범죄피해",
+        "미배상 금액",
+        "피해 인지일",
+        "범죄 발생일"
+      ],
+      "caution_ko": "구조금은 가해자의 민사배상책임을 대신하는 보편적 피해보상금이 아니며 지급요건·제외사유·금액 산정은 별도 심사를 받습니다.",
+      "search_intents_ko": [
+        "가해자에게 배상받지 못하면 범죄피해 구조금을 신청할 수 있나요?",
+        "생명·신체 피해가 크지만 가해자에게 배상받기 어렵습니다.",
+        "crime victim relief fund eligibility deadline"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "구조대상 피해와 미배상 상태를 확인한다",
+          "paragraphs_ko": [
+            "범죄피해자 보호법의 구조금은 타인의 범죄행위로 생명·신체에 피해를 받은 경우를 중심으로 합니다.",
+            "가해자나 다른 경로에서 이미 배상받은 금액과 아직 회복되지 않은 피해를 구분합니다."
+          ]
+        },
+        {
+          "heading_ko": "두 신청기간을 동시에 계산한다",
+          "paragraphs_ko": [
+            "신청은 구조대상 범죄피해 발생을 안 날부터 3년, 발생일부터 10년이 지나기 전에 해야 합니다.",
+            "주소지·거주지·범죄발생지를 관할하는 지구심의회와 필요한 서류를 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-13"
+      ],
+      "scenario_ids": [],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.crime-victim-protection-ko-0016",
+        "coord.crime-victim-response.crime-victim-protection-ko-0025"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "related_content_ids": [
+        "content.crime-victim-urgent-safety-and-support",
+        "content.victim-case-information-notifications",
+        "content.civil-damages-after-crime"
+      ],
+      "concierge_entry": {
+        "question_ko": "가해자에게 배상받지 못하면 범죄피해 구조금을 신청할 수 있나요?",
+        "decision_facts_ko": [
+          "구조대상 범죄피해",
+          "미배상 금액",
+          "피해 인지일",
+          "범죄 발생일"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
+    }
+  ]
+}

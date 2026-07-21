@@ -45,6 +45,10 @@
     {
       "topic_id": "hub.real-estate-sale",
       "file": "real-estate-sale.json"
+    },
+    {
+      "topic_id": "hub.crime-victim-response",
+      "file": "crime-victim-response.json"
     }
   ],
   "content_entry_topic_order": [
@@ -58,6 +62,7 @@
     "hub.everyday-damages",
     "hub.divorce-parenting",
     "hub.debt-enforcement",
-    "hub.real-estate-sale"
+    "hub.real-estate-sale",
+    "hub.crime-victim-response"
   ]
 }
