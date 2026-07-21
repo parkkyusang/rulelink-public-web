@@ -22,6 +22,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   return {
     title: entry.title_ko,
     description: entry.one_line_answer_ko,
+    keywords: entry.search_intents_ko,
     alternates: {canonical},
     openGraph: {
       type: 'article',
@@ -49,6 +50,7 @@ export default async function KnowledgePage({params}: Props) {
           url: canonicalUrl,
           name: entry.title_ko,
           description: entry.one_line_answer_ko,
+          keywords: entry.search_intents_ko,
           inLanguage: 'ko-KR',
           dateModified: entry.reviewed_at,
           isPartOf: {
