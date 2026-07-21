@@ -5,6 +5,8 @@ import {findKnowledgeEntry, knowledgeDetail, listKnowledgeEntries} from '@/lib/p
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
 
+import styles from './knowledge-trust.module.css';
+
 export const dynamic = 'force-static';
 
 type Props = {params: Promise<{slug: string}>};
@@ -68,7 +70,7 @@ export default async function KnowledgePage({params}: Props) {
         <h1>{entry.title_ko}</h1>
         <p>{entry.one_line_answer_ko}</p>
         <span className="audienceBadge">{entry.audience_situation_ko}</span>
-        <div aria-label="콘텐츠 기준일" className="knowledgeTrust">
+        <div aria-label="콘텐츠 기준일" className={styles.trust}>
           <span><b>기준 확인</b>{formatDate(entry.reviewed_at)}</span>
           <span><b>다음 점검</b>{formatDate(entry.expires_at)}</span>
           <span><b>공식 근거</b>{sources.length}건 연결</span>
@@ -126,9 +128,9 @@ export default async function KnowledgePage({params}: Props) {
           ) : null}
           <section className="knowledgeSources">
             <h2>공식 근거</h2>
-            <p>원문 주소와 마지막 확인일을 함께 표시합니다.</p>
+            <p className={styles.sourcesIntro}>원문 주소와 마지막 확인일을 함께 표시합니다.</p>
             {sources.map(source => (
-              <a href={source.official_url} key={source.coordinate_id} rel="noreferrer" target="_blank">
+              <a className={styles.sourceLink} href={source.official_url} key={source.coordinate_id} rel="noreferrer" target="_blank">
                 <span>공식 원문 보기 <span aria-hidden="true">↗</span></span>
                 <small>원문 확인 {formatDate(source.last_verified_at)}</small>
               </a>
