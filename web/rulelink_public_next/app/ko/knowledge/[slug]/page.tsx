@@ -95,9 +95,18 @@ export default async function KnowledgePage({params}: Props) {
         ) : null}
       </header>
 
+      <nav aria-label="이 글 안에서 이동" className="knowledgeSectionNav">
+        <span>이 글에서</span>
+        <a href="#summary">핵심 정리</a>
+        <a href="#rules">적용 법리</a>
+        {scenarios.length ? <a href="#scenarios">결론 사실</a> : null}
+        <a href="#actions">할 일과 자료</a>
+        <a href="#sources">공식 근거</a>
+      </nav>
+
       <section className="knowledgeLayout">
         <div>
-          <section className="knowledgeSection">
+          <section className="knowledgeSection" id="summary">
             <p className="eyebrow">핵심 정리</p>
             <h2>무엇부터 확인해야 하나요?</h2>
             <ul>
@@ -113,7 +122,7 @@ export default async function KnowledgePage({params}: Props) {
             </div>
           </section>
 
-          <section className="knowledgeSection">
+          <section className="knowledgeSection" id="rules">
             <p className="eyebrow">적용 법리</p>
             <h2>먼저 기준을 확인합니다.</h2>
             <div className="ruleStack">
@@ -132,7 +141,7 @@ export default async function KnowledgePage({params}: Props) {
           </section>
 
           {scenarios.length ? (
-            <section className="knowledgeSection">
+            <section className="knowledgeSection" id="scenarios">
               <p className="eyebrow">결론을 가르는 사실</p>
               <h2>내 상황은 어느 쪽입니까?</h2>
               <div className="branchStack">
@@ -163,7 +172,7 @@ export default async function KnowledgePage({params}: Props) {
             </section>
           ) : null}
 
-          <section className="knowledgeSection">
+          <section className="knowledgeSection" id="actions">
             <p className="eyebrow">지금 할 일과 자료</p>
             <h2>다음 순서로 준비합니다.</h2>
             <div className="ruleStack">
@@ -189,7 +198,7 @@ export default async function KnowledgePage({params}: Props) {
               <a href={entry.concierge_entry.href}>룰링크 컨시어지에서 이어서 검토 <span aria-hidden="true">→</span></a>
             </section>
           ) : null}
-          <section className="knowledgeSources">
+          <section className="knowledgeSources" id="sources">
             <h2>공식 근거</h2>
             <p className={styles.sourcesIntro}>원문 주소와 마지막 확인일을 함께 표시합니다.</p>
             {sources.map(source => (
