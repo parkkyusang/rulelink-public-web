@@ -1,4 +1,5 @@
 import type {
+  PublicConceptCard,
   PublicKnowledgeEntry,
   PublicKnowledgeHub,
   PublicKnowledgeIndex,
@@ -21,6 +22,7 @@ export type PublicKnowledgeSourceDocument = {
 };
 
 export type ResolvedKnowledgeEntryGraph = {
+  concepts: PublicConceptCard[];
   scenarios: PublicScenarioBranch[];
   rules: PublicRuleCard[];
   sources: PublicKnowledgeSource[];
@@ -91,6 +93,7 @@ function makeKnowledgeSearchDocument(
       entry.caution_ko,
       ...entry.body_sections.flatMap(section => [section.heading_ko, ...section.paragraphs_ko]),
       ...graph.hubs.flatMap(hub => [hub.title_ko, hub.description_ko]),
+      ...graph.concepts.flatMap(conceptTerms),
       ...graph.rules.flatMap(ruleTerms),
       ...graph.scenarios.flatMap(scenarioTerms),
       ...graph.sources.flatMap(sourceTerms),
@@ -103,6 +106,7 @@ function createKnowledgeEntryResolver(knowledge: PublicKnowledgeIndex) {
   const scenarioById = new Map(knowledge.scenario_branches.map(scenario => [scenario.scenario_id, scenario]));
   const ruleById = new Map(knowledge.rule_cards.map(rule => [rule.rule_id, rule]));
   const hubById = new Map(knowledge.topic_hubs.map(hub => [hub.hub_id, hub]));
+  const conceptById = new Map((knowledge.concept_cards ?? []).map(concept => [concept.concept_id, concept]));
 
   return (entry: PublicKnowledgeEntry): ResolvedKnowledgeEntryGraph => {
     const scenarios = entry.scenario_ids
@@ -115,17 +119,38 @@ function createKnowledgeEntryResolver(knowledge: PublicKnowledgeIndex) {
     const rules = [...referencedRuleIds]
       .map(ruleId => ruleById.get(ruleId))
       .filter((rule): rule is PublicRuleCard => Boolean(rule));
+    const concepts = (entry.concept_ids ?? [])
+      .map(conceptId => conceptById.get(conceptId))
+      .filter((concept): concept is PublicConceptCard => Boolean(concept));
     const referencedSourceIds = new Set([
       ...entry.source_coordinate_ids,
       ...rules.flatMap(rule => rule.source_coordinate_ids),
       ...scenarios.flatMap(scenario => scenario.source_coordinate_ids),
+      ...concepts.flatMap(concept => concept.source_coordinate_ids),
+      ...concepts.flatMap(concept => concept.assertions.flatMap(assertion => assertion.source_coordinate_ids)),
     ]);
     const sources = knowledge.sources.filter(source => referencedSourceIds.has(source.coordinate_id));
     const hubs = entry.hub_ids
       .map(hubId => hubById.get(hubId))
       .filter((hub): hub is PublicKnowledgeHub => Boolean(hub));
-    return {scenarios, rules, sources, hubs};
+    return {concepts, scenarios, rules, sources, hubs};
   };
+}
+
+function conceptTerms(concept: PublicConceptCard): string[] {
+  return [
+    concept.preferred_term_ko,
+    ...concept.aliases_ko,
+    concept.plain_definition_ko,
+    concept.legal_definition_ko,
+    ...concept.elements_ko,
+    ...concept.legal_effects_ko,
+    ...concept.judgment_factors_ko,
+    ...concept.limits_and_counterexamples_ko,
+    ...concept.confused_with_ko,
+    ...concept.examples_ko,
+    ...concept.assertions.map(assertion => assertion.text_ko),
+  ];
 }
 
 function ruleTerms(rule: PublicRuleCard): string[] {
