@@ -310,6 +310,64 @@
           "validation_status": "verified"
         }
       ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.victim-trial-record-access-2025.old",
+      "user_facing_text_ko": "2025년 9월 18일까지는 피해자의 공판기록 열람·등사를 재판장이 상당하다고 인정할 때 허가할 수 있는 재량 구조였습니다.",
+      "proposition_type": "temporal_rule",
+      "applies_when": [
+        "2025-09-19 전 열람·등사 신청 절차를 설명하는 경우"
+      ],
+      "does_not_apply_when": [
+        "2025-09-19 이후 신청을 설명하는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "src-criminal-procedure-revision-20796",
+          "source_snapshot_id": "snapshot:dc35ad444d8922b17c1542d79c4dd2e7",
+          "version_scope": "historical",
+          "effective_from": "2025-03-18",
+          "official_url": "https://www.law.go.kr/LSW/lsRvsDocListP.do?chrClsCd=010102&lsId=001671&lsRvsGubun=all",
+          "source_hash": "sha256:dc35ad444d8922b17c1542d79c4dd2e781b6d7173756115931a545a302406c1e",
+          "last_verified_at": "2026-07-21T13:45:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.victim-trial-record-access-2025.current",
+      "user_facing_text_ko": "2025년 9월 19일부터 피해자 권리구제 또는 진술권 보장에 필요하다고 인정되면 재판장은 공판기록 열람·등사를 원칙적으로 허가해야 합니다.",
+      "proposition_type": "legal_effect",
+      "applies_when": [
+        "2025-09-19 이후 피해자 등이 소송계속 중인 사건 기록을 신청하는 경우"
+      ],
+      "does_not_apply_when": [
+        "법정 제한사유 또는 심리 상황상 상당한 불허 사유가 있는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "criminal_procedure_ko_0294_04",
+          "law_key": "criminal_procedure",
+          "article_no": "제294조의4",
+          "source_snapshot_id": "snapshot:f28fe4d7ab23fd627d30a225f322de2d",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2025-09-19",
+          "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C294%EC%A1%B0%EC%9D%984",
+          "source_hash": "sha256:f28fe4d7ab23fd627d30a225f322de2de76f5973f71d2f5140a3b6fa83e81477",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        },
+        {
+          "source_id": "src-criminal-procedure-revision-20796",
+          "source_snapshot_id": "snapshot:dc35ad444d8922b17c1542d79c4dd2e7",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2025-09-19",
+          "official_url": "https://www.law.go.kr/LSW/lsRvsDocListP.do?chrClsCd=010102&lsId=001671&lsRvsGubun=all",
+          "source_hash": "sha256:dc35ad444d8922b17c1542d79c4dd2e781b6d7173756115931a545a302406c1e",
+          "last_verified_at": "2026-07-21T13:45:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
     }
   ],
   "change_briefs": [
@@ -980,6 +1038,92 @@
       "new_snapshot_ids": [
         "snapshot:0bda91fb0a7a72f90a5814354657f781",
         "snapshot:d0100e8dc52367aa4a59040729a635cd"
+      ]
+    },
+    {
+      "change_brief_id": "kr.change.victim-trial-record-access-2025",
+      "jurisdiction": "KR",
+      "locale": "ko-KR",
+      "slug": "victim-trial-record-access-2025",
+      "title_ko": "2025년 9월 19일부터 피해자의 공판기록 열람·등사 허가 기준이 강화됐습니다",
+      "summary_ko": "피해자의 권리구제나 진술권 보장에 필요하면 원칙적으로 허가해야 하고, 불허 또는 조건부 허가 시 이유를 통지해야 합니다.",
+      "editorial_status": "approved",
+      "version": "0.1.0",
+      "lifecycle": "currently_effective",
+      "law_key": "criminal_procedure",
+      "law_name_ko": "형사소송법",
+      "article_no": "제294조의4",
+      "promulgation_date": "2025-03-18",
+      "effective_date": "2025-09-19",
+      "reviewed_at": "2026-07-21T13:45:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "affected_audiences": [
+        "진행 중인 형사재판 기록이 필요한 범죄피해자와 유족",
+        "민사상 권리구제 또는 피해자 진술을 준비하는 대리인"
+      ],
+      "changed_points": [
+        "필요성이 인정될 때 허가할 수 있다는 재량 문언이 원칙적으로 허가해야 한다는 문언으로 바뀌었습니다.",
+        "피해자 진술권 보장 필요성이 독립적인 허가 사유로 명시됐습니다.",
+        "불허 또는 사용목적 제한·조건부 허가 시 이유 통지 절차가 추가됐습니다."
+      ],
+      "action_checklist": [
+        "사건번호와 재판부를 확인합니다.",
+        "필요한 기록 범위와 권리구제·진술 준비 목적을 구체적으로 적습니다.",
+        "불허 또는 조건부 허가라면 통지된 이유를 확인합니다.",
+        "등사자료의 목적 외 공개와 관계인 명예·생활 평온 침해를 피합니다."
+      ],
+      "transition_status": "verified",
+      "transition_note_ko": "개정 규정은 2025년 9월 19일 이후 제294조의4 제1항에 따라 신청하는 경우부터 적용됩니다.",
+      "norm_delta": {
+        "change_type": "legal_effect_change",
+        "changed_slots": ["conditions", "exception", "operation", "legal_effect", "transition_rule"],
+        "old_frame": {
+          "source_snapshot_ids": ["snapshot:dc35ad444d8922b17c1542d79c4dd2e7"],
+          "actor": ["소송계속 중인 사건의 피해자 등"],
+          "object": ["소송기록 열람·등사"],
+          "trigger": ["피해자 등의 신청"],
+          "conditions": ["권리구제 필요성 또는 그 밖의 정당한 사유와 상당성"],
+          "exception": [],
+          "operation": ["재판장이 범죄 성질·심리 상황 등을 고려"],
+          "legal_effect": ["재판장이 허가할 수 있음"],
+          "temporal_rule": ["2025-09-18까지"],
+          "transition_rule": ["종전 신청에는 종전 규율 적용"]
+        },
+        "new_frame": {
+          "source_snapshot_ids": [
+            "snapshot:f28fe4d7ab23fd627d30a225f322de2d",
+            "snapshot:dc35ad444d8922b17c1542d79c4dd2e7"
+          ],
+          "actor": ["소송계속 중인 사건의 피해자 등"],
+          "object": ["소송기록 열람·등사"],
+          "trigger": ["피해자 등의 신청"],
+          "conditions": ["권리구제 또는 피해자 진술권 보장에 필요"],
+          "exception": ["법정 제한사유 또는 심리 상황상 상당한 이유"],
+          "operation": ["불허·조건부 허가 시 이유 통지"],
+          "legal_effect": ["필요성이 인정되면 원칙적으로 허가"],
+          "temporal_rule": ["2025-09-19부터"],
+          "transition_rule": ["시행 이후 신청분부터 적용"]
+        },
+        "legal_effect_delta_ko": "재량적 허가 중심에서 필요성이 인정되면 원칙적으로 허가하는 구조로 강화됐습니다.",
+        "life_situation_impacts": [
+          "신청서에 권리구제 또는 진술 준비 필요성을 구체적으로 적을 실익이 커졌습니다.",
+          "불허·조건부 허가 이유를 받아 후속 대응을 검토할 수 있습니다."
+        ],
+        "unresolved_questions": []
+      },
+      "related_issue_card_ids": [],
+      "related_content_ids": [
+        "content.victim-access-to-trial-records"
+      ],
+      "assertion_ids": [
+        "assertion.kr.change.victim-trial-record-access-2025.old",
+        "assertion.kr.change.victim-trial-record-access-2025.current"
+      ],
+      "source_event_ids": ["event:victim-trial-record-access-2025"],
+      "old_snapshot_ids": ["snapshot:dc35ad444d8922b17c1542d79c4dd2e7"],
+      "new_snapshot_ids": [
+        "snapshot:f28fe4d7ab23fd627d30a225f322de2d",
+        "snapshot:dc35ad444d8922b17c1542d79c4dd2e7"
       ]
     }
   ],
