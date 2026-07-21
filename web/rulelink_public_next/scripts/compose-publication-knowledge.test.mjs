@@ -1,7 +1,12 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import {applyKnowledgeComposition, assembleKnowledge, contentReceipt} from './compose-publication-knowledge.mjs';
+import {
+  applyKnowledgeComposition,
+  assembleChangeBriefSets,
+  assembleKnowledge,
+  contentReceipt,
+} from './compose-publication-knowledge.mjs';
 
 function descriptor(topicId, file) { return {topic_id: topicId, file}; }
 
@@ -26,6 +31,55 @@ function manifest(topics, contentEntryOrder = null) {
     ...(contentEntryOrder ? {content_entry_topic_order: contentEntryOrder} : {}),
   };
 }
+
+test('독립 법령변화 묶음을 공개 콘텐츠 참조와 함께 결정론적으로 합친다', () => {
+  const baseManifest = manifest([descriptor('hub.first', 'first.json')]);
+  const knowledge = assembleKnowledge(baseManifest, [topic('hub.first', 'first')]);
+  const changeManifest = {
+    ...baseManifest,
+    change_brief_sets: [{change_brief_set_id: 'changes.one', file: 'changes-one.json'}],
+  };
+  const changeComposition = assembleChangeBriefSets(changeManifest, [{
+    schema: 'rulelink_public_change_brief_set_v1',
+    assertions: [{assertion_id: 'assertion.change.one'}],
+    change_briefs: [{
+      change_brief_id: 'change.one',
+      assertion_ids: ['assertion.change.one'],
+      related_content_ids: ['content.first'],
+    }],
+  }], knowledge);
+  assert.deepEqual(changeComposition.assertions.map(item => item.assertion_id), ['assertion.change.one']);
+  assert.deepEqual(changeComposition.change_briefs.map(item => item.change_brief_id), ['change.one']);
+
+  const bundle = applyKnowledgeComposition({file_hashes: {}}, knowledge, changeComposition);
+  assert.equal(bundle.assertions[0].assertion_id, 'assertion.change.one');
+  assert.equal(bundle.file_hashes['change-brief:change.one'], contentReceipt(changeComposition.change_briefs[0]));
+  assert.equal(
+    bundle.file_hashes['change-index:rulelink_public_change_composition_v1'],
+    contentReceipt(changeComposition),
+  );
+});
+
+test('법령변화 묶음의 끊어진 공개 콘텐츠 참조를 거부한다', () => {
+  const baseManifest = manifest([descriptor('hub.first', 'first.json')]);
+  const knowledge = assembleKnowledge(baseManifest, [topic('hub.first', 'first')]);
+  assert.throws(
+    () => assembleChangeBriefSets(
+      {...baseManifest, change_brief_sets: [{change_brief_set_id: 'changes.one', file: 'changes-one.json'}]},
+      [{
+        schema: 'rulelink_public_change_brief_set_v1',
+        assertions: [{assertion_id: 'assertion.change.one'}],
+        change_briefs: [{
+          change_brief_id: 'change.one',
+          assertion_ids: ['assertion.change.one'],
+          related_content_ids: ['content.missing'],
+        }],
+      }],
+      knowledge,
+    ),
+    /존재하지 않는 공개 콘텐츠/,
+  );
+});
 
 test('독립 개념 묶음을 지식 그래프에 합치고 영수증을 만든다', () => {
   const descriptors = [descriptor('hub.first', 'first.json')];
