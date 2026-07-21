@@ -75,7 +75,24 @@ web/rulelink_public_next/content/bundle.json
 - 승인 기록 해시가 현재 콘텐츠 해시와 일치한다는 확인
 - 내부 편집 미리보기나 사건 데이터가 포함되지 않았다는 확인
 
-## 6. 검증 명령
+## 6. 승인 출판본 승격
+
+콘텐츠 세션과 출판기가 만든 후보 번들은 먼저 검사 전용 모드로 확인한다.
+
+```powershell
+Set-Location web\rulelink_public_next
+npm run promote:publication -- C:\absolute\path\candidate-bundle.json --check
+```
+
+최종 승격은 `--check`를 빼고 실행한다.
+
+```powershell
+npm run promote:publication -- C:\absolute\path\candidate-bundle.json
+```
+
+도구는 공개 검증을 먼저 통과시킨 뒤 `artifacts/publication/snapshots/<snapshot_id>/bundle.json`에 불변 보관하고, 그 내용과 동일한 경우에만 `current/bundle.json`을 교체한다. 같은 `snapshot_id`로 다른 내용을 승격하려 하면 `current`를 바꾸기 전에 실패한다. 운영 번들을 수동 복사하거나 기존 불변 스냅샷을 덮어쓰지 않는다.
+
+## 7. 검증 명령
 
 ```powershell
 Set-Location web\rulelink_public_next
