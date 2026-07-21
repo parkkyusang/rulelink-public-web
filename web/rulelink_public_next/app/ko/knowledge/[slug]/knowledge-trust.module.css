@@ -136,3 +136,47 @@
     border-radius: 10px;
   }
 }
+
+.conceptPanel {
+  background: #f1f7f3;
+  border: 1px solid #cfe1d6;
+  border-radius: 18px;
+  margin-bottom: 24px;
+  padding: 23px;
+  scroll-margin-top: 82px;
+}
+
+.conceptPanel h2 {
+  font-size: 20px;
+  line-height: 1.45;
+  margin: 7px 0 9px;
+}
+
+.conceptPanel > p:not(:first-child) {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.conceptPanel a {
+  border-top: 1px solid #d3e3d9;
+  display: block;
+  padding: 13px 0;
+}
+
+.conceptPanel a strong,
+.conceptPanel a span {
+  display: block;
+}
+
+.conceptPanel a strong {
+  color: var(--green);
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.conceptPanel a span {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
