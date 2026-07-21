@@ -37,6 +37,15 @@
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C27%EC%A1%B0",
       "source_snapshot_id": "snapshot:29e68bc810d31e8a9a2e824bb85c98bd",
       "last_verified_at": "2026-07-21T08:15:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.labor-wages.labor-standards-ko-0028",
+      "source_id": "labor_standards_ko_0028",
+      "law_name_ko": "근로기준법",
+      "article_no": "제28조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C28%EC%A1%B0",
+      "source_snapshot_id": "snapshot:4431004a0b3a6b58613eff695aa86d4a",
+      "last_verified_at": "2026-07-21T08:15:00+00:00"
     }
   ],
   "topic_hubs": [
@@ -50,14 +59,15 @@
         "content.verbal-delay-agreement-after-retirement",
         "content.retirement-pay-basic-formula",
         "content.retirement-pay-payment-deadline",
-        "content.verbal-dismissal-written-notice"
+        "content.verbal-dismissal-written-notice",
+        "content.unfair-dismissal-remedy-three-months"
       ]
     }
   ],
   "rule_cards": [
     {
       "rule_id": "rule.labor-wages.rule-money-14days",
-      "title_ko": "퇴직 후 임금·금품은 원칙적으로 14일 이내 지급",
+      "title_ko": "근로자가 퇴직하면 사용자는 특별한 사정에 관한 당사자 합의가 없는 한 임금·…",
       "proposition_ko": "근로자가 퇴직하면 사용자는 특별한 사정에 관한 당사자 합의가 없는 한 임금·보상금 등 금품을 14일 이내 지급해야 한다.",
       "norm": {
         "actor_ko": "퇴직한 근로자와 임금·보상금 등 금품을 지급할 사용자",
@@ -70,7 +80,7 @@
     },
     {
       "rule_id": "rule.labor-wages.rule-retirement-14days",
-      "title_ko": "퇴직금도 원칙적으로 14일 이내 지급",
+      "title_ko": "퇴직급여도 원칙적으로 퇴직일부터 14일 이내 지급하며 특별한 사정이 있으면 …",
       "proposition_ko": "퇴직급여도 원칙적으로 퇴직일부터 14일 이내 지급하며 특별한 사정이 있으면 당사자 합의로 기일을 연장할 수 있다.",
       "norm": {
         "actor_ko": "퇴직급여를 지급할 사용자와 퇴직 근로자",
@@ -84,7 +94,7 @@
     },
     {
       "rule_id": "rule.labor-wages.rule-retirement-base",
-      "title_ko": "퇴직금 기본액은 1년당 30일분 이상의 평균임금",
+      "title_ko": "퇴직금 제도의 기본 출발점은 계속근로 1년에 대하여 30일분 이상의 평균임금…",
       "proposition_ko": "퇴직금 제도의 기본 출발점은 계속근로 1년에 대하여 30일분 이상의 평균임금이다.",
       "norm": {
         "actor_ko": "퇴직금제도를 설정한 사용자와 계속근로한 퇴직 근로자",
@@ -98,7 +108,7 @@
     },
     {
       "rule_id": "rule.labor-wages.rule-written-dismissal",
-      "title_ko": "해고사유와 해고시기는 서면으로 통지",
+      "title_ko": "해고는 해고사유와 해고시기를 서면으로 통지해야 효력이 있다.",
       "proposition_ko": "해고는 해고사유와 해고시기를 서면으로 통지해야 효력이 있다.",
       "norm": {
         "actor_ko": "근로자를 해고하려는 사용자와 해고 통지를 받는 근로자",
@@ -108,15 +118,28 @@
       "source_coordinate_ids": [
         "coord.labor-wages.labor-standards-ko-0027"
       ]
+    },
+    {
+      "rule_id": "rule.labor-wages.rule-remedy-3months",
+      "title_ko": "부당해고 등의 구제신청은 부당해고가 있었던 날부터 3개월 이내에 해야 한다.",
+      "proposition_ko": "부당해고 등의 구제신청은 부당해고가 있었던 날부터 3개월 이내에 해야 한다.",
+      "norm": {
+        "actor_ko": "부당해고 등의 구제를 신청하려는 근로자",
+        "conditions_ko": "해고 등 불이익 처분이 있었던 날부터 노동위원회 구제신청 기간을 계산하는 경우",
+        "legal_effect_ko": "부당해고 등의 구제신청은 부당해고가 있었던 날부터 3개월 이내에 해야 한다."
+      },
+      "source_coordinate_ids": [
+        "coord.labor-wages.labor-standards-ko-0028"
+      ]
     }
   ],
   "scenario_branches": [
     {
       "scenario_id": "scenario.labor-wages.sc-unpaid-after-exit",
-      "question_ko": "퇴직일부터 14일이 지났는데 지급되지 않은 임금·수당·그 밖의 금품이 남아 있나요?",
-      "decision_fact_ko": "정확한 퇴직일, 지급기일 연장 합의와 14일 안에 지급되지 않은 금품의 항목·금액",
-      "when_true_ko": "미지급 항목과 금액을 특정해 지급을 요구하고 요청·답변·일부 지급 기록을 보존합니다.",
-      "when_false_ko": "14일 전이거나 전액 지급됐다면 정산표에서 누락된 임금·수당·그 밖의 금품이 없는지 확인합니다.",
+      "question_ko": "퇴직 후 14일이 지났는데 임금과 수당 일부가 지급되지 않은 경우",
+      "decision_fact_ko": "정확한 퇴직일과 14일 이내 지급되지 않은 임금·수당·그 밖의 금품",
+      "when_true_ko": "미지급 항목과 금액을 특정해 지급을 요구하고 요청·답변 기록을 보존합니다.",
+      "when_false_ko": "14일 전이거나 전액 지급됐다면 정산내역에 누락된 항목이 없는지 확인합니다.",
       "rule_ids": [
         "rule.labor-wages.rule-money-14days"
       ],
@@ -126,10 +149,10 @@
     },
     {
       "scenario_id": "scenario.labor-wages.sc-verbal-extension",
-      "question_ko": "회사의 지급기일 연장 요청에 대상 금액과 새 지급일을 특정해 동의했나요?",
-      "decision_fact_ko": "특별한 사정, 근로자의 명시적 동의, 연장 대상 금액과 새 지급일",
-      "when_true_ko": "합의한 범위와 새 지급일을 문서화하고 그 기한의 지급 여부를 확인합니다.",
-      "when_false_ko": "사용자의 일방 통보나 근로자의 단순 확인만으로 기한이 연장됐다고 단정하지 않고 원래의 14일 기준을 확인합니다.",
+      "question_ko": "회사가 자금 사정을 이유로 지급기일을 늦추겠다고 말했지만 근로자 동의가 불명확한 경우",
+      "decision_fact_ko": "특별한 사정과 근로자의 명시적 동의, 연장 대상 금액 및 새 지급일",
+      "when_true_ko": "합의한 범위와 새 지급일을 문서화하고 그 기한에 맞춰 지급 여부를 확인합니다.",
+      "when_false_ko": "사용자의 일방 통보만으로 기한이 연장됐다고 보지 않고 원래의 14일 기준을 적용합니다.",
       "rule_ids": [
         "rule.labor-wages.rule-money-14days",
         "rule.labor-wages.rule-retirement-14days"
@@ -142,15 +165,30 @@
     },
     {
       "scenario_id": "scenario.labor-wages.sc-verbal-dismissal",
-      "question_ko": "해고사유와 해고시기가 적힌 서면을 받았나요?",
-      "decision_fact_ko": "해고사유·해고시기가 적힌 문서의 존재, 전달형식과 실제 근로관계 종료 조치",
-      "when_true_ko": "서면의 내용·전달형식과 해고사유의 정당성을 별개 쟁점으로 나누어 검토합니다.",
+      "question_ko": "전화나 메신저로 내일부터 나오지 말라는 통보만 받은 경우",
+      "decision_fact_ko": "해고사유와 해고시기가 적힌 서면의 교부 여부 및 실제 근로관계 종료 조치",
+      "when_true_ko": "서면의 내용·전달형식과 해고사유의 정당성을 나누어 검토합니다.",
       "when_false_ko": "전화·구두 통보만 있었다면 서면통지 없는 해고의 효력 문제를 우선 확인합니다.",
       "rule_ids": [
         "rule.labor-wages.rule-written-dismissal"
       ],
       "source_coordinate_ids": [
         "coord.labor-wages.labor-standards-ko-0027"
+      ]
+    },
+    {
+      "scenario_id": "scenario.labor-wages.sc-resignation-dispute",
+      "question_ko": "회사는 자진사직이라 하고 근로자는 사실상 해고라고 주장하는 경우",
+      "decision_fact_ko": "근로자가 자발적으로 사직 의사를 확정했는지와 사용자가 퇴직을 강요하거나 일방 종료했는지",
+      "when_true_ko": "사직서·대화·업무배제 경위를 시간순으로 대조해 해고 여부와 구제신청 기산일을 정합니다.",
+      "when_false_ko": "자진사직인지 해고인지 불명확하면 서면 통지, 출근 저지와 당사자 발언 등 객관 자료를 추가 확인합니다.",
+      "rule_ids": [
+        "rule.labor-wages.rule-written-dismissal",
+        "rule.labor-wages.rule-remedy-3months"
+      ],
+      "source_coordinate_ids": [
+        "coord.labor-wages.labor-standards-ko-0027",
+        "coord.labor-wages.labor-standards-ko-0028"
       ]
     }
   ],
@@ -222,11 +260,7 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": [
-        "content.verbal-delay-agreement-after-retirement",
-        "content.retirement-pay-payment-deadline",
-        "content.retirement-pay-basic-formula"
-      ]
+      "related_content_ids": []
     },
     {
       "content_id": "content.verbal-delay-agreement-after-retirement",
@@ -295,10 +329,7 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": [
-        "content.final-wages-after-retirement-14-days",
-        "content.retirement-pay-payment-deadline"
-      ],
+      "related_content_ids": [],
       "concierge_entry": {
         "question_ko": "회사가 14일 뒤에 주겠다고 말하면 지급기일이 자동 연장되나",
         "decision_facts_ko": [
@@ -376,10 +407,7 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": [
-        "content.retirement-pay-payment-deadline",
-        "content.final-wages-after-retirement-14-days"
-      ]
+      "related_content_ids": []
     },
     {
       "content_id": "content.retirement-pay-payment-deadline",
@@ -447,11 +475,7 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": [
-        "content.retirement-pay-basic-formula",
-        "content.final-wages-after-retirement-14-days",
-        "content.verbal-delay-agreement-after-retirement"
-      ],
+      "related_content_ids": [],
       "concierge_entry": {
         "question_ko": "퇴직금도 퇴직 후 14일 안에 지급해야 하나",
         "decision_facts_ko": [
@@ -530,9 +554,91 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": [
-        "content.final-wages-after-retirement-14-days"
-      ]
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.unfair-dismissal-remedy-three-months",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "unfair-dismissal-remedy-three-months",
+      "title_ko": "부당해고 구제신청은 언제까지 해야 하나",
+      "one_line_answer_ko": "부당해고 등이 있었던 날부터 3개월 이내에 구제신청해야 하므로 해고일과 기간 만료일을 먼저 확정해야 한다.",
+      "audience_situation_ko": "부당해고라고 생각하면 노동위원회에 언제까지 신청해야 하나?",
+      "key_points_ko": [
+        "3개월은 준비가 끝난 뒤부터가 아니라 부당해고 등이 있었던 날을 기준으로 한다.",
+        "사직인지 해고인지 다투더라도 기한 문제를 미루지 않아야 한다.",
+        "서면통지와 실제 근로관계 종료일 자료를 함께 보존해야 한다."
+      ],
+      "action_steps_ko": [
+        "통보일·통지된 해고일·실제 종료일을 한 표에 적는다.",
+        "세 날짜가 다르면 가장 이른 만료 가능성을 기준으로 즉시 검토한다.",
+        "서면통지·사직서·출입 및 계정 차단 기록을 보존한다.",
+        "3개월 만료 직전까지 기다리지 말고 관할 노동위원회 접수 준비를 진행한다."
+      ],
+      "facts_to_check_ko": [
+        "통보받은 날",
+        "통지된 해고일",
+        "실제 출근 종료일",
+        "서면통지서",
+        "사직서 제출 여부",
+        "회사 출입·계정 차단일",
+        "구제신청 접수일",
+        "기간 말일의 휴일 여부"
+      ],
+      "caution_ko": "기간 계산과 해고일 확정에 다툼이 있으면 만료 직전까지 기다리지 말고 즉시 검토해야 한다.",
+      "search_intents_ko": [
+        "부당해고 구제신청 3개월",
+        "노동위원회 부당해고 신청기간",
+        "해고일 기간 계산"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "준비가 끝난 날이 아니라 해고가 있었던 날부터 센다",
+          "paragraphs_ko": [
+            "부당해고 등의 구제신청은 부당해고가 있었던 날부터 3개월 이내에 해야 합니다. 자료를 모두 모은 날이나 부당하다고 확신한 날부터 새로 시작되는 기간이 아닙니다.",
+            "통보를 받은 날, 통지서에 적힌 해고일, 실제 출근이 차단된 날이 서로 다르면 구제기한의 출발점을 둘러싼 다툼이 생길 수 있습니다. 각 날짜와 근거자료를 한눈에 보이게 정리합니다."
+          ]
+        },
+        {
+          "heading_ko": "사직인지 해고인지 다퉈도 기한 관리는 먼저 한다",
+          "paragraphs_ko": [
+            "회사는 자진사직이라고 하고 근로자는 사실상 해고라고 주장하는 경우에도, 결론이 날 때까지 기다리면 신청기간 문제가 생길 수 있습니다. 사직서 작성 경위, 권고·압박 내용, 출근 차단과 회사의 후속 조치를 모읍니다.",
+            "기간 말일 계산에 의문이 있다면 가장 보수적인 날짜를 기준으로 움직이는 편이 안전합니다. 구제신청과 별도로 임금·퇴직급여 등 다른 청구의 절차와 기한은 따로 확인해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.labor-wages.rule-remedy-3months",
+        "rule.labor-wages.rule-written-dismissal"
+      ],
+      "scenario_ids": [
+        "scenario.labor-wages.sc-resignation-dispute",
+        "scenario.labor-wages.sc-verbal-dismissal"
+      ],
+      "source_coordinate_ids": [
+        "coord.labor-wages.labor-standards-ko-0028",
+        "coord.labor-wages.labor-standards-ko-0027"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "related_content_ids": [],
+      "concierge_entry": {
+        "question_ko": "부당해고 구제신청은 언제까지 해야 하나",
+        "decision_facts_ko": [
+          "통보받은 날",
+          "통지된 해고일",
+          "실제 출근 종료일",
+          "서면통지서",
+          "사직서 제출 여부",
+          "회사 출입·계정 차단일",
+          "구제신청 접수일",
+          "기간 말일의 휴일 여부"
+        ],
+        "href": "https://liale-review.lolphysical.xyz"
+      }
     }
   ]
 }
