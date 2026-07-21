@@ -204,9 +204,12 @@
       "scenario_id": "scenario.shared-mobility-accident.shared-mobility-cause-device",
       "question_ko": "제동ㆍ조향ㆍ바퀴ㆍ프레임 등 기기 이상이 사고의 직접 원인인가요?",
       "decision_fact_ko": "사고 직전 기기 상태와 이상 작동",
-      "when_true_ko": "제조물 결함, 운영자의 점검ㆍ정비 과실, 계약상 안전한 기기 제공의무를 나누어 검토합니다.",
+      "when_true_ko": "제조물 결함과 운영자의 점검ㆍ정비 관련 과실을 나누고, 각각의 원인과 손해 사이 인과관계를 검토합니다.",
       "when_false_ko": "도로ㆍ시설 상태, 다른 사람의 행위, 이용자의 운전행위를 다음 원인으로 검토합니다.",
-      "rule_ids": [],
+      "rule_ids": [
+        "rule.shared-mobility-accident.shared-mobility-product-defect",
+        "rule.shared-mobility-accident.shared-mobility-general-tort"
+      ],
       "source_coordinate_ids": [
         "coord.shared-mobility-accident.product-liability-ko-0002",
         "coord.shared-mobility-accident.product-liability-ko-0003",
@@ -217,9 +220,11 @@
       "scenario_id": "scenario.shared-mobility-accident.shared-mobility-cause-public-road",
       "question_ko": "포트홀ㆍ단차ㆍ파손된 안전시설 등 공공 도로의 상태가 사고 원인인가요?",
       "decision_fact_ko": "사고 장소의 관리주체와 설치ㆍ관리 상태",
-      "when_true_ko": "도로 관리주체, 하자의 존재, 예견ㆍ회피 가능성, 신고ㆍ보수 이력을 확인합니다.",
+      "when_true_ko": "도로 관리주체, 설치ㆍ관리 하자의 존재, 사고와의 인과관계, 신고ㆍ보수 이력을 확인합니다.",
       "when_false_ko": "민간 시설물 하자 또는 다른 원인 분기로 이동합니다.",
-      "rule_ids": [],
+      "rule_ids": [
+        "rule.shared-mobility-accident.shared-mobility-public-facility-defect"
+      ],
       "source_coordinate_ids": [
         "coord.shared-mobility-accident.state-compensation-ko-0005"
       ]
@@ -230,7 +235,9 @@
       "decision_fact_ko": "시설물의 점유자ㆍ소유자와 설치ㆍ보존 하자",
       "when_true_ko": "점유자의 주의와 소유자의 책임 순서를 포함해 민법 제758조 적용 가능성을 검토합니다.",
       "when_false_ko": "다른 이용자 또는 차량의 과실과 이용자 자신의 운전행위를 검토합니다.",
-      "rule_ids": [],
+      "rule_ids": [
+        "rule.shared-mobility-accident.shared-mobility-private-structure-defect"
+      ],
       "source_coordinate_ids": [
         "coord.shared-mobility-accident.civil-act-ko-0758"
       ]
@@ -241,7 +248,9 @@
       "decision_fact_ko": "상대방의 구체적 행위와 주의의무 위반",
       "when_true_ko": "상대방의 과실, 위법성, 인과관계와 공동 원인 가능성을 검토합니다.",
       "when_false_ko": "단독사고라면 기기ㆍ도로ㆍ시설ㆍ이용자 조작 원인을 더 세밀하게 확인합니다.",
-      "rule_ids": [],
+      "rule_ids": [
+        "rule.shared-mobility-accident.shared-mobility-general-tort"
+      ],
       "source_coordinate_ids": [
         "coord.shared-mobility-accident.civil-act-ko-0750"
       ]
@@ -252,7 +261,10 @@
       "decision_fact_ko": "이용자의 운전행위와 사고 회피 가능성",
       "when_true_ko": "상대방 책임의 성립과 별도로 과실상계에 반영될 수 있습니다.",
       "when_false_ko": "피해자 과실을 추정하지 말고 다른 원인의 책임과 인과관계에 집중합니다.",
-      "rule_ids": [],
+      "rule_ids": [
+        "rule.shared-mobility-accident.shared-mobility-comparative-negligence",
+        "rule.shared-mobility-accident.shared-mobility-bicycle-passage"
+      ],
       "source_coordinate_ids": [
         "coord.shared-mobility-accident.civil-act-ko-0396",
         "coord.shared-mobility-accident.civil-act-ko-0763",
@@ -512,7 +524,7 @@
       "expires_at": "2026-10-21T00:00:00+00:00",
       "slug": "shared-mobility-public-road-defect",
       "title_ko": "포트홀이나 도로 단차 때문에 사고가 났다면",
-      "one_line_answer_ko": "도로가 공공 영조물인지, 통상 갖춰야 할 안전성을 잃은 설치ㆍ관리 하자가 있었는지, 그 하자가 사고를 일으켰는지를 확인해야 합니다.",
+      "one_line_answer_ko": "도로가 공공 영조물인지, 설치ㆍ관리 하자가 있었는지, 그 하자가 사고를 일으켰는지를 확인해야 합니다.",
       "audience_situation_ko": "포트홀ㆍ파손ㆍ단차ㆍ배수 문제나 안전시설 상태 때문에 넘어진 경우",
       "key_points_ko": [
         "정확한 사고 위치와 도로 관리주체를 확인합니다.",
@@ -545,8 +557,8 @@
         {
           "heading_ko": "도로 사고와 도로 하자는 같은 말이 아니다",
           "paragraphs_ko": [
-            "도로에서 넘어졌다는 사실만으로 국가나 지방자치단체의 책임이 곧바로 인정되지는 않습니다. 해당 장소가 공공 영조물인지, 설치·관리 상태가 통상 갖춰야 할 안전성을 잃었는지, 그 하자가 사고 원인이었는지를 확인합니다.",
-            "포트홀이나 단차의 깊이·폭, 지속기간, 시인성, 조명·날씨, 경고표지와 임시조치, 이전 신고와 보수 이력은 하자 판단의 중요한 사실자료입니다."
+            "도로에서 넘어졌다는 사실만으로 국가나 지방자치단체의 책임이 곧바로 인정되지는 않습니다. 해당 장소가 공공 영조물인지, 설치ㆍ관리 하자가 있었는지, 그 하자가 사고 원인이었는지를 확인합니다.",
+            "포트홀이나 단차의 깊이·폭, 지속기간, 시인성, 조명·날씨, 경고표지와 임시조치, 이전 신고와 보수 이력은 설치·관리 하자 여부를 확인하기 위해 함께 정리할 사실자료입니다."
           ]
         },
         {
