@@ -40,7 +40,7 @@ export function contentReceipt(value) {
   return createHash('sha256').update(canonicalJson(value)).digest('hex');
 }
 
-export function assembleKnowledge(manifest, loadedTopics) {
+export function assembleKnowledge(manifest, loadedTopics, loadedConceptGroups = []) {
   if (manifest?.schema !== 'rulelink_public_knowledge_manifest_v1') throw new Error('주제 조립 manifest 스키마가 올바르지 않습니다.');
   if (manifest.knowledge_schema !== 'rulelink_public_knowledge_index_v1') throw new Error('공개 지식 스키마가 올바르지 않습니다.');
   if (!Array.isArray(manifest.topics) || !manifest.topics.length) throw new Error('조립할 주제가 없습니다.');
@@ -99,6 +99,37 @@ export function assembleKnowledge(manifest, loadedTopics) {
     for (const topicId of order) assembled[collection].push(...topicsById.get(topicId)[collection]);
   }
 
+  const conceptDescriptors = manifest.concepts ?? [];
+  if (!Array.isArray(conceptDescriptors)) throw new Error('manifest.concepts는 배열이어야 합니다.');
+  if (conceptDescriptors.length !== loadedConceptGroups.length) throw new Error('manifest와 읽은 개념 파일 수가 다릅니다.');
+  if (conceptDescriptors.length) assembled.concept_cards = [];
+  const conceptGroupIds = new Set();
+  const conceptFiles = new Set();
+  for (let index = 0; index < conceptDescriptors.length; index += 1) {
+    const descriptor = conceptDescriptors[index];
+    const group = loadedConceptGroups[index];
+    if (!descriptor || typeof descriptor.concept_group_id !== 'string' || typeof descriptor.file !== 'string') {
+      throw new Error(`manifest.concepts[${index}]가 올바르지 않습니다.`);
+    }
+    if (conceptGroupIds.has(descriptor.concept_group_id)) throw new Error(`중복 개념 묶음 식별자: ${descriptor.concept_group_id}`);
+    if (conceptFiles.has(descriptor.file)) throw new Error(`중복 개념 파일: ${descriptor.file}`);
+    conceptGroupIds.add(descriptor.concept_group_id);
+    conceptFiles.add(descriptor.file);
+    if (group?.schema !== 'rulelink_public_concept_group_v1') throw new Error(`${descriptor.file}의 개념 묶음 스키마가 올바르지 않습니다.`);
+    if (group.concept_group_id !== descriptor.concept_group_id) throw new Error(`${descriptor.file}의 concept_group_id가 manifest와 다릅니다.`);
+    if (!Array.isArray(group.sources) || !Array.isArray(group.concept_cards)) throw new Error(`${descriptor.file}의 sources 또는 concept_cards가 배열이 아닙니다.`);
+    assembled.sources.push(...group.sources);
+    assembled.concept_cards.push(...group.concept_cards);
+  }
+  if (assembled.concept_cards) {
+    const conceptIds = new Set();
+    for (const concept of assembled.concept_cards) {
+      if (typeof concept?.concept_id !== 'string' || !concept.concept_id) throw new Error('개념카드에 유효하지 않은 concept_id가 있습니다.');
+      if (conceptIds.has(concept.concept_id)) throw new Error(`개념 묶음 사이에 중복된 concept_id: ${concept.concept_id}`);
+      conceptIds.add(concept.concept_id);
+    }
+  }
+
   for (const [collection, idKey] of collections) {
     const ids = new Set();
     for (const item of assembled[collection]) {
@@ -116,9 +147,10 @@ export function applyKnowledgeComposition(bundle, knowledge) {
   next.knowledge = knowledge;
   const hashes = {...(next.file_hashes ?? {})};
   for (const key of Object.keys(hashes)) {
-    if (key.startsWith('knowledge:content.') || key.startsWith('knowledge-index:')) delete hashes[key];
+    if (key.startsWith('knowledge:content.') || key.startsWith('knowledge-concept:') || key.startsWith('knowledge-index:')) delete hashes[key];
   }
   for (const entry of knowledge.content_entries) hashes[`knowledge:${entry.content_id}`] = contentReceipt(entry);
+  for (const concept of knowledge.concept_cards ?? []) hashes[`knowledge-concept:${concept.concept_id}`] = contentReceipt(concept);
   hashes[`knowledge-index:${knowledge.schema}`] = contentReceipt(knowledge);
   next.file_hashes = hashes;
   return next;
@@ -132,7 +164,13 @@ export async function loadComposition(manifestPath = defaultManifestPath) {
     if (!/^[a-z0-9-]+\.json$/.test(descriptor.file)) throw new Error(`주제 파일명이 안전하지 않습니다: ${descriptor.file}`);
     loadedTopics.push(JSON.parse(await readFile(path.join(manifestDirectory, descriptor.file), 'utf8')));
   }
-  return {manifest, knowledge: assembleKnowledge(manifest, loadedTopics)};
+  const loadedConceptGroups = [];
+  const conceptDirectory = path.resolve(manifestDirectory, '..', 'concepts');
+  for (const descriptor of manifest.concepts ?? []) {
+    if (!/^[a-z0-9-]+\.json$/.test(descriptor.file)) throw new Error(`개념 파일명이 안전하지 않습니다: ${descriptor.file}`);
+    loadedConceptGroups.push(JSON.parse(await readFile(path.join(conceptDirectory, descriptor.file), 'utf8')));
+  }
+  return {manifest, knowledge: assembleKnowledge(manifest, loadedTopics, loadedConceptGroups)};
 }
 
 async function main() {
@@ -149,7 +187,7 @@ async function main() {
   if (!writeMode) {
     if (canonicalJson(current.knowledge) !== canonicalJson(expected.knowledge)) throw new Error('현재 공개 지식이 주제별 원본의 합성 결과와 다릅니다. current를 직접 편집하지 말고 조립기를 실행하세요.');
     if (canonicalJson(current.file_hashes) !== canonicalJson(expected.file_hashes)) throw new Error('현재 공개 지식의 해시 영수증이 주제별 합성 결과와 다릅니다.');
-    console.log(`주제별 공개 지식 합성 검증 통과: ${knowledge.topic_hubs.length}개 허브, ${knowledge.content_entries.length}개 콘텐츠`);
+    console.log(`주제별 공개 지식 합성 검증 통과: ${knowledge.topic_hubs.length}개 허브, ${knowledge.content_entries.length}개 콘텐츠, ${knowledge.concept_cards?.length ?? 0}개 개념`);
     return;
   }
 
@@ -172,7 +210,7 @@ async function main() {
     await writeFile(snapshotPath, text, 'utf8');
   }
   await writeFile(currentPath, text, 'utf8');
-  console.log(`주제별 공개 지식 합성 완료: ${snapshotId}, ${knowledge.content_entries.length}개 콘텐츠`);
+  console.log(`주제별 공개 지식 합성 완료: ${snapshotId}, ${knowledge.content_entries.length}개 콘텐츠, ${knowledge.concept_cards?.length ?? 0}개 개념`);
 }
 
 function option(args, name) {
