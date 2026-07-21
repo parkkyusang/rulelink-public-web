@@ -11,16 +11,23 @@
       "file": "family-inheritance.json"
     },
     {
-      "topic_id": "hub.housing-lease-deposit",
-      "file": "housing-lease-deposit.json"
-    },
-    {
       "topic_id": "hub.money-guarantee",
       "file": "money-guarantee.json"
     },
     {
       "topic_id": "hub.shared-mobility-accident",
       "file": "shared-mobility-accident.json"
+    },
+    {
+      "topic_id": "hub.housing-lease-deposit",
+      "file": "housing-lease-deposit.json"
     }
+  ],
+  "content_entry_topic_order": [
+    "hub.administrative-appeals",
+    "hub.family-inheritance",
+    "hub.housing-lease-deposit",
+    "hub.money-guarantee",
+    "hub.shared-mobility-accident"
   ]
 }

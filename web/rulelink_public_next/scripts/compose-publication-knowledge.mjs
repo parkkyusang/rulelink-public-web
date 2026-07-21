@@ -36,6 +36,7 @@ export function assembleKnowledge(manifest, loadedTopics) {
 
   const topicIds = new Set();
   const fileNames = new Set();
+  const topicsById = new Map();
   const assembled = {
     schema: manifest.knowledge_schema,
     sources: [],
@@ -65,7 +66,17 @@ export function assembleKnowledge(manifest, loadedTopics) {
     for (const entry of topic.content_entries) {
       if (!Array.isArray(entry.hub_ids) || !entry.hub_ids.includes(descriptor.topic_id)) throw new Error(`${descriptor.file}의 ${entry.content_id}가 소유 주제를 참조하지 않습니다.`);
     }
-    for (const [collection] of collections) assembled[collection].push(...topic[collection]);
+    topicsById.set(descriptor.topic_id, topic);
+  }
+
+  const defaultOrder = manifest.topics.map(item => item.topic_id);
+  const entryOrder = manifest.content_entry_topic_order ?? defaultOrder;
+  if (entryOrder.length !== defaultOrder.length || new Set(entryOrder).size !== defaultOrder.length || entryOrder.some(topicId => !topicsById.has(topicId))) {
+    throw new Error('content_entry_topic_order는 manifest의 모든 주제를 한 번씩 포함해야 합니다.');
+  }
+  for (const [collection] of collections) {
+    const order = collection === 'content_entries' ? entryOrder : defaultOrder;
+    for (const topicId of order) assembled[collection].push(...topicsById.get(topicId)[collection]);
   }
 
   for (const [collection, idKey] of collections) {

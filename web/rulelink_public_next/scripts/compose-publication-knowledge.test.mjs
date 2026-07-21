@@ -18,8 +18,13 @@ function topic(topicId, suffix) {
   };
 }
 
-function manifest(topics) {
-  return {schema: 'rulelink_public_knowledge_manifest_v1', knowledge_schema: 'rulelink_public_knowledge_index_v1', topics};
+function manifest(topics, contentEntryOrder = null) {
+  return {
+    schema: 'rulelink_public_knowledge_manifest_v1',
+    knowledge_schema: 'rulelink_public_knowledge_index_v1',
+    topics,
+    ...(contentEntryOrder ? {content_entry_topic_order: contentEntryOrder} : {}),
+  };
 }
 
 test('manifest 순서대로 주제별 지식을 결정론적으로 합친다', () => {
@@ -27,6 +32,16 @@ test('manifest 순서대로 주제별 지식을 결정론적으로 합친다', (
   const knowledge = assembleKnowledge(manifest(descriptors), [topic('hub.first', 'first'), topic('hub.second', 'second')]);
   assert.deepEqual(knowledge.topic_hubs.map(item => item.hub_id), ['hub.first', 'hub.second']);
   assert.deepEqual(knowledge.content_entries.map(item => item.content_id), ['content.first', 'content.second']);
+});
+
+test('콘텐츠 배열만 명시한 주제 순서를 사용할 수 있다', () => {
+  const descriptors = [descriptor('hub.first', 'first.json'), descriptor('hub.second', 'second.json')];
+  const knowledge = assembleKnowledge(
+    manifest(descriptors, ['hub.second', 'hub.first']),
+    [topic('hub.first', 'first'), topic('hub.second', 'second')],
+  );
+  assert.deepEqual(knowledge.topic_hubs.map(item => item.hub_id), ['hub.first', 'hub.second']);
+  assert.deepEqual(knowledge.content_entries.map(item => item.content_id), ['content.second', 'content.first']);
 });
 
 test('주제 사이의 중복 식별자를 거부한다', () => {
