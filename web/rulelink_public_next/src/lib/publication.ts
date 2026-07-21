@@ -1,7 +1,20 @@
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 
-import type {EditorialOperationsQueue, LegalChangeBrief, LegalIssueCard, PublicContentBundle, PublicTopic, PublishedBundle, SourceAssertion} from '@/types/publication';
+import type {
+  EditorialOperationsQueue,
+  LegalChangeBrief,
+  LegalIssueCard,
+  PublicContentBundle,
+  PublicKnowledgeEntry,
+  PublicKnowledgeHub,
+  PublicKnowledgeSource,
+  PublicRuleCard,
+  PublicScenarioBranch,
+  PublicTopic,
+  PublishedBundle,
+  SourceAssertion,
+} from '@/types/publication';
 
 export async function loadPublishedBundle(): Promise<PublicContentBundle | null> {
   const bundlePath = publicationBundlePath();
@@ -74,6 +87,47 @@ export async function assertionsForChangeBrief(brief: LegalChangeBrief): Promise
   return bundle.assertions.filter(assertion => allowed.has(assertion.assertion_id));
 }
 
+export async function listKnowledgeEntries(): Promise<PublicKnowledgeEntry[]> {
+  return (await loadPublishedBundle())?.knowledge?.content_entries ?? [];
+}
+
+export async function findKnowledgeEntry(slug: string): Promise<PublicKnowledgeEntry | null> {
+  return (await listKnowledgeEntries()).find(entry => entry.slug === slug) ?? null;
+}
+
+export async function listKnowledgeHubs(): Promise<PublicKnowledgeHub[]> {
+  return (await loadPublishedBundle())?.knowledge?.topic_hubs ?? [];
+}
+
+export async function findKnowledgeHub(slug: string): Promise<PublicKnowledgeHub | null> {
+  return (await listKnowledgeHubs()).find(hub => hub.slug === slug) ?? null;
+}
+
+export async function entriesForKnowledgeHub(hub: PublicKnowledgeHub): Promise<PublicKnowledgeEntry[]> {
+  const byId = new Map((await listKnowledgeEntries()).map(entry => [entry.content_id, entry]));
+  return hub.content_ids.map(contentId => byId.get(contentId)).filter((entry): entry is PublicKnowledgeEntry => Boolean(entry));
+}
+
+export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
+  rules: PublicRuleCard[];
+  scenarios: PublicScenarioBranch[];
+  sources: PublicKnowledgeSource[];
+  related: PublicKnowledgeEntry[];
+}> {
+  const knowledge = (await loadPublishedBundle())?.knowledge;
+  if (!knowledge) return {rules: [], scenarios: [], sources: [], related: []};
+  const ruleIds = new Set(entry.rule_ids);
+  const scenarioIds = new Set(entry.scenario_ids);
+  const sourceIds = new Set(entry.source_coordinate_ids);
+  const relatedIds = new Set(entry.related_content_ids);
+  return {
+    rules: knowledge.rule_cards.filter(rule => ruleIds.has(rule.rule_id)),
+    scenarios: knowledge.scenario_branches.filter(scenario => scenarioIds.has(scenario.scenario_id)),
+    sources: knowledge.sources.filter(source => sourceIds.has(source.coordinate_id)),
+    related: knowledge.content_entries.filter(candidate => relatedIds.has(candidate.content_id)),
+  };
+}
+
 export function publicationBundlePath(): string {
   const filename = editorialPreviewEnabled() ? 'editorial-preview-bundle.json' : 'bundle.json';
   return path.join(process.cwd(), 'content', filename);
@@ -87,7 +141,12 @@ function isPublishedBundle(value: unknown): value is PublishedBundle {
     && Array.isArray(bundle.cards)
     && Array.isArray(bundle.assertions)
     && bundle.cards.every(card => card.editorial_status === 'approved')
-    && (!bundle.change_briefs || bundle.change_briefs.every(brief => brief.editorial_status === 'approved'));
+    && (!bundle.change_briefs || bundle.change_briefs.every(brief => brief.editorial_status === 'approved'))
+    && (!bundle.knowledge || (
+      bundle.knowledge.schema === 'rulelink_public_knowledge_index_v1'
+      && Array.isArray(bundle.knowledge.content_entries)
+      && bundle.knowledge.content_entries.every(entry => entry.editorial_status === 'approved')
+    ));
 }
 
 function isEditorialPreviewBundle(value: unknown): value is PublicContentBundle {

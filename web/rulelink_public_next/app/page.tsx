@@ -1,12 +1,24 @@
 import {IssueExplorer} from '@/components/issue-explorer';
-import {listChangeBriefs, listPublishedCards, listPublishedTopics, loadPublishedBundle} from '@/lib/publication';
+import {
+  listChangeBriefs,
+  listKnowledgeEntries,
+  listKnowledgeHubs,
+  listPublishedCards,
+  listPublishedTopics,
+  loadPublishedBundle,
+} from '@/lib/publication';
 import {site} from '@/lib/site';
 
 export const dynamic = 'force-static';
 
 export default async function HomePage() {
-  const [cards, topics, bundle, changeBriefs] = await Promise.all([
-    listPublishedCards(), listPublishedTopics(), loadPublishedBundle(), listChangeBriefs(),
+  const [cards, topics, bundle, changeBriefs, knowledgeEntries, knowledgeHubs] = await Promise.all([
+    listPublishedCards(),
+    listPublishedTopics(),
+    loadPublishedBundle(),
+    listChangeBriefs(),
+    listKnowledgeEntries(),
+    listKnowledgeHubs(),
   ]);
   return (
     <main>
@@ -21,8 +33,35 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <section className="entrySection" aria-labelledby="entry-heading">
+        <div className="entryIntro">
+          <p className="eyebrow">세 가지 시작점</p>
+          <h2 id="entry-heading">법 이름을 몰라도, 궁금한 방식으로 들어오세요.</h2>
+        </div>
+        <div className="entryGrid">
+          <a href={changeBriefs.length ? '#changes' : '/ko/method'}>
+            <span>01 · 시간</span>
+            <h3>법이 바뀌었나요?</h3>
+            <p>구법과 현행법을 나란히 놓고 시행일과 적용 경계를 확인합니다.</p>
+            <strong>변경 전후에서 찾기 →</strong>
+          </a>
+          <a href={knowledgeEntries.length ? '#knowledge' : '#issues'}>
+            <span>02 · 사실</span>
+            <h3>어떤 사실이 결론을 가르나요?</h3>
+            <p>같은 법이라도 결과를 바꾸는 질문과 사실분기를 먼저 보여줍니다.</p>
+            <strong>내 상황에서 찾기 →</strong>
+          </a>
+          <a href={cards.length ? '#issues' : '/ko/method'}>
+            <span>03 · 행동</span>
+            <h3>무엇을 준비해야 하나요?</h3>
+            <p>필요한 자료, 다음 행동, 개별 검토가 필요한 경계를 구분합니다.</p>
+            <strong>절차와 자료에서 찾기 →</strong>
+          </a>
+        </div>
+      </section>
+
       {changeBriefs.length ? (
-        <section className="changeSection" aria-labelledby="change-heading">
+        <section className="changeSection" id="changes" aria-labelledby="change-heading">
           <div className="changeIntro">
             <div>
               <p className="eyebrow">새로 바뀌는 법</p>
@@ -38,6 +77,37 @@ export default async function HomePage() {
                 <h3>{brief.title_ko}</h3>
                 <p>{brief.summary_ko}</p>
                 <strong>개정 전후와 확인사항 보기 <span aria-hidden="true">→</span></strong>
+              </a>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {knowledgeEntries.length ? (
+        <section className="knowledgeHome" id="knowledge" aria-labelledby="knowledge-heading">
+          <div className="changeIntro">
+            <div>
+              <p className="eyebrow">연결된 법률지식</p>
+              <h2 id="knowledge-heading">법리에서 사실분기까지 이어서 봅니다.</h2>
+            </div>
+            <p>한 번 쓴 글이 아니라, 같은 법리와 판단 사실을 여러 상황에서 다시 쓸 수 있게 연결한 지식입니다.</p>
+          </div>
+          {knowledgeHubs.length ? (
+            <div className="hubRail">
+              {knowledgeHubs.map(hub => (
+                <a href={`/ko/hubs/${hub.slug}`} key={hub.hub_id}>
+                  <span>주제 허브</span><strong>{hub.title_ko}</strong><small>{hub.description_ko}</small>
+                </a>
+              ))}
+            </div>
+          ) : null}
+          <div className="knowledgeGrid">
+            {knowledgeEntries.slice(0, 6).map(entry => (
+              <a className="knowledgeCard" href={`/ko/knowledge/${entry.slug}`} key={entry.content_id}>
+                <span>{entry.audience_situation_ko}</span>
+                <h3>{entry.title_ko}</h3>
+                <p>{entry.one_line_answer_ko}</p>
+                <strong>법리와 사실분기 보기 →</strong>
               </a>
             ))}
           </div>

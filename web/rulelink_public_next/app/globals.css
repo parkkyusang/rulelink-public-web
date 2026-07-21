@@ -27,6 +27,16 @@ a {color: inherit; text-decoration: none;}
 .trustRail {border-top: 1px solid rgba(255,255,255,.18); display: flex; gap: 34px; margin-top: 42px; padding-top: 22px; position: relative; z-index: 1;}
 .trustRail span {align-items: center; color: #d9ebe1; display: flex; font-size: 13px; gap: 8px;}
 .trustRail b {color: #8fd2af; font-family: Georgia, serif; font-size: 12px;}
+.entrySection {margin: 0 auto 76px; max-width: 1180px; padding: 0 24px;}
+.entryIntro {max-width: 760px;}
+.entryIntro h2 {font-size: 31px; letter-spacing: -.04em; line-height: 1.35; margin: 0 0 26px;}
+.entryGrid {display: grid; gap: 14px; grid-template-columns: repeat(3,1fr);}
+.entryGrid a {background: var(--white); border: 1px solid var(--line); border-radius: 18px; display: flex; flex-direction: column; min-height: 250px; padding: 25px;}
+.entryGrid a:hover {border-color: #9bb8a8; box-shadow: 0 16px 38px rgba(20,55,40,.07);}
+.entryGrid span {color: var(--green); font-family: Georgia,serif; font-size: 12px; font-weight: 750;}
+.entryGrid h3 {font-size: 23px; letter-spacing: -.035em; margin: 34px 0 12px;}
+.entryGrid p {color: var(--muted); line-height: 1.65; margin: 0;}
+.entryGrid strong {color: var(--green); font-size: 13px; margin-top: auto; padding-top: 25px;}
 .changeSection {margin: 0 auto 76px; max-width: 1180px; padding: 0 24px;}
 .changeIntro {align-items: end; display: grid; gap: 48px; grid-template-columns: 1fr 1fr; margin-bottom: 24px;}
 .changeIntro h2 {font-size: 31px; letter-spacing: -.04em; line-height: 1.35; margin: 0;}
@@ -42,6 +52,19 @@ a {color: inherit; text-decoration: none;}
 .changeCard p {color: #52627b; line-height: 1.65; margin: 0;}
 .changeCard strong {color: #173f7a; font-size: 13px; margin-top: auto; padding-top: 28px;}
 .contentSection {margin: 0 auto 100px; max-width: 1180px; padding: 0 24px;}
+.knowledgeHome {margin: 0 auto 82px; max-width: 1180px; padding: 0 24px;}
+.hubRail {display: flex; gap: 12px; margin-bottom: 18px; overflow-x: auto; padding-bottom: 4px;}
+.hubRail a {background: var(--green-dark); border-radius: 15px; color: white; display: grid; flex: 0 0 310px; gap: 8px; padding: 20px;}
+.hubRail span {color: #8fd2af; font-size: 11px; font-weight: 750;}
+.hubRail strong {font-size: 19px;}
+.hubRail small {color: #d9ebe1; line-height: 1.5;}
+.knowledgeGrid {display: grid; gap: 16px; grid-template-columns: repeat(3,1fr);}
+.knowledgeCard {background: var(--white); border: 1px solid var(--line); border-radius: 18px; display: flex; flex-direction: column; min-height: 260px; padding: 25px;}
+.knowledgeCard:hover {border-color: #9bb8a8; transform: translateY(-2px);}
+.knowledgeCard > span {color: var(--muted); font-size: 11px; line-height: 1.5;}
+.knowledgeCard h2, .knowledgeCard h3 {font-size: 22px; letter-spacing: -.035em; line-height: 1.4; margin: 28px 0 12px;}
+.knowledgeCard p {color: var(--muted); line-height: 1.65; margin: 0;}
+.knowledgeCard strong {color: var(--green); font-size: 13px; margin-top: auto; padding-top: 24px;}
 .sectionHeading {align-items: end; display: flex; justify-content: space-between; margin-bottom: 28px;}
 .sectionHeading h2 {font-size: 31px; letter-spacing: -.04em; margin: 0;}
 .snapshot {color: var(--muted); font-size: 12px;}
@@ -108,6 +131,34 @@ a {color: inherit; text-decoration: none;}
 .topicHero {border-bottom: 1px solid var(--line); margin-bottom: 34px; padding: 66px 0 42px;}
 .topicHero h1 {font-size: clamp(38px, 6vw, 60px); letter-spacing: -.055em; margin: 0 0 18px;}
 .topicHero > p:not(.eyebrow) {color: var(--muted); font-size: 18px; line-height: 1.7; max-width: 720px;}
+.knowledgePage {margin: 0 auto; max-width: 1080px; padding: 34px 24px 110px;}
+.knowledgeHero {border-bottom: 1px solid var(--line); padding: 68px 0 44px;}
+.knowledgeHero h1 {font-size: clamp(38px,6vw,61px); letter-spacing: -.055em; line-height: 1.16; margin: 0 0 24px;}
+.knowledgeHero > p:not(.eyebrow) {color: var(--muted); font-size: 20px; line-height: 1.7; max-width: 820px;}
+.audienceBadge {background: var(--mint); border-radius: 999px; color: var(--green); display: inline-flex; font-size: 12px; font-weight: 750; margin-top: 18px; padding: 8px 12px;}
+.knowledgeLayout {display: grid; gap: 52px; grid-template-columns: minmax(0,1.7fr) minmax(270px,.75fr); padding-top: 20px;}
+.knowledgeSection {border-bottom: 1px solid var(--line); padding: 38px 0;}
+.knowledgeSection h2 {font-size: 29px; letter-spacing: -.04em; margin: 0 0 24px;}
+.ruleStack, .branchStack {display: grid; gap: 14px;}
+.ruleCard, .branchCard {background: var(--white); border: 1px solid var(--line); border-radius: 17px; padding: 25px;}
+.ruleCard h3, .branchCard h3 {font-size: 21px; margin: 0 0 12px;}
+.ruleCard > p {color: var(--muted); line-height: 1.7;}
+.normSlots {display: grid; gap: 1px; grid-template-columns: repeat(3,1fr); margin: 22px 0 0; overflow: hidden;}
+.normSlots div {background: #f5f8f6; padding: 15px;}
+.normSlots dt {color: var(--green); font-size: 11px; font-weight: 750; margin-bottom: 8px;}
+.normSlots dd {font-size: 13px; line-height: 1.55; margin: 0;}
+.decisionFact {color: var(--muted); font-size: 13px;}
+.branchOutcomes {display: grid; gap: 10px; grid-template-columns: 1fr 1fr; margin-top: 20px;}
+.branchOutcomes p {background: #f5f8f6; border-radius: 11px; line-height: 1.6; margin: 0; padding: 15px;}
+.branchOutcomes b {color: var(--green); display: block; font-size: 11px; margin-bottom: 7px;}
+.knowledgeAside {padding-top: 38px;}
+.conciergePanel {background: var(--green-dark); border-radius: 18px; color: white; padding: 24px;}
+.conciergePanel h2 {font-size: 21px; line-height: 1.45; margin: 0 0 18px;}
+.conciergePanel ul {color: #d9ebe1; font-size: 13px; line-height: 1.6; padding-left: 18px;}
+.conciergePanel a {border-top: 1px solid rgba(255,255,255,.18); color: #8fd2af; display: block; font-size: 13px; font-weight: 750; margin-top: 20px; padding-top: 18px;}
+.knowledgeSources {border-top: 1px solid var(--line); margin-top: 24px; padding-top: 22px;}
+.knowledgeSources h2 {font-size: 17px;}
+.knowledgeSources a {color: var(--green); display: block; font-size: 13px; font-weight: 750; padding: 8px 0;}
 .methodPage {margin: 0 auto; max-width: 1080px; padding: 34px 24px 100px;}
 .methodHero {padding: 70px 0 54px;}
 .methodHero h1 {font-size: clamp(38px, 6vw, 62px); letter-spacing: -.055em; line-height: 1.14; margin: 0 0 24px;}
@@ -197,17 +248,18 @@ a {color: inherit; text-decoration: none;}
   .siteNav a {font-size: 11px;}
   .hero {border-radius: 0; margin-top: 0; padding: 58px 24px;}
   .trustRail {align-items: flex-start; flex-direction: column; gap: 12px;}
-  .cardGrid, .issueLayout, .relatedGrid {grid-template-columns: 1fr;}
+  .cardGrid, .issueLayout, .relatedGrid, .entryGrid, .knowledgeGrid, .knowledgeLayout {grid-template-columns: 1fr;}
   .methodGrid, .methodSection {grid-template-columns: 1fr;}
   .changeIntro, .changeGrid, .changeBody, .changeAssertionGrid, .lifeImpact {grid-template-columns: 1fr;}
   .effectivePanel {grid-template-columns: 1fr;}
   .normDeltaRow {grid-template-columns: 1fr;}
   .normVersion {border-left: 0; border-top: 1px solid var(--line);}
+  .normSlots, .branchOutcomes {grid-template-columns: 1fr;}
   .sectionHeading {align-items: start; flex-direction: column; gap: 12px;}
   .sectionNav {overflow-x: auto; position: static;}
   .sectionNav a {flex: 0 0 auto;}
   .siteFooter {flex-direction: column;}
-  .changePage, .issuePage, .methodPage, .topicPage {max-width: 100%; min-width: 0; overflow-x: clip; padding-left: 18px; padding-right: 18px; width: 100%;}
+  .changePage, .issuePage, .methodPage, .topicPage, .knowledgePage {max-width: 100%; min-width: 0; overflow-x: clip; padding-left: 18px; padding-right: 18px; width: 100%;}
   .editorialPage {max-width: 100%; padding-left: 18px; padding-right: 18px;}
   .editorialSummary {grid-template-columns: repeat(2,1fr);}
   .clusterGrid {grid-template-columns: 1fr;}

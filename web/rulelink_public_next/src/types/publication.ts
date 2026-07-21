@@ -60,6 +60,75 @@ export type PublicCatalog = {
   topics: PublicTopic[];
 };
 
+export type PublicKnowledgeSource = {
+  coordinate_id: string;
+  source_id: string;
+  official_url: string;
+  source_snapshot_id: string;
+  last_verified_at: string;
+};
+
+export type PublicRuleCard = {
+  rule_id: string;
+  title_ko: string;
+  proposition_ko: string;
+  norm: {
+    actor_ko: string;
+    conditions_ko: string;
+    legal_effect_ko: string;
+  };
+  source_coordinate_ids: string[];
+};
+
+export type PublicScenarioBranch = {
+  scenario_id: string;
+  question_ko: string;
+  decision_fact_ko: string;
+  when_true_ko: string;
+  when_false_ko: string;
+  rule_ids: string[];
+  source_coordinate_ids: string[];
+};
+
+export type PublicKnowledgeEntry = {
+  content_id: string;
+  content_type: 'law_change' | 'doctrine_explainer' | 'fact_branch' | 'precedent_doctrine' | 'similar_case_comparison' | 'misconception_correction' | 'procedure_evidence' | 'recurring_issue_generalization';
+  editorial_status: 'approved';
+  reviewed_at: string;
+  expires_at: string;
+  slug: string;
+  title_ko: string;
+  one_line_answer_ko: string;
+  audience_situation_ko: string;
+  rule_ids: string[];
+  scenario_ids: string[];
+  source_coordinate_ids: string[];
+  hub_ids: string[];
+  related_content_ids: string[];
+  concierge_entry?: {
+    question_ko: string;
+    decision_facts_ko: string[];
+    href: string;
+  };
+};
+
+export type PublicKnowledgeHub = {
+  hub_id: string;
+  slug: string;
+  title_ko: string;
+  description_ko: string;
+  content_ids: string[];
+};
+
+export type PublicKnowledgeIndex = {
+  schema: 'rulelink_public_knowledge_index_v1';
+  sources: PublicKnowledgeSource[];
+  rule_cards: PublicRuleCard[];
+  scenario_branches: PublicScenarioBranch[];
+  content_entries: PublicKnowledgeEntry[];
+  topic_hubs: PublicKnowledgeHub[];
+};
+
 export type NormSlot = 'actor' | 'object' | 'trigger' | 'conditions' | 'exception' | 'operation' | 'legal_effect' | 'temporal_rule' | 'transition_rule';
 
 export type NormFrame = {
@@ -125,6 +194,7 @@ export type PublishedBundle = {
   cards: LegalIssueCard[];
   assertions: SourceAssertion[];
   change_briefs?: LegalChangeBrief[];
+  knowledge?: PublicKnowledgeIndex;
   catalog?: PublicCatalog;
   file_hashes: Record<string, string>;
 };
@@ -139,6 +209,7 @@ export type EditorialPreviewBundle = {
   cards: LegalIssueCard[];
   assertions: SourceAssertion[];
   change_briefs?: LegalChangeBrief[];
+  knowledge?: PublicKnowledgeIndex;
   catalog: PublicCatalog;
   file_hashes: Record<string, string>;
 };
