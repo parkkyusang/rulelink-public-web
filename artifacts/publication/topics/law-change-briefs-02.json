@@ -1,6 +1,6 @@
 {
   "schema": "rulelink_public_change_brief_set_v1",
-  "generated_at": "2026-07-21T15:30:00+00:00",
+  "generated_at": "2026-07-21T14:20:00+00:00",
   "source_contract": "existing_active_db_coordinates_and_verified_official_revision_documents",
   "assertions": [
     {
@@ -17,7 +17,7 @@
           "effective_from": "2002-01-14",
           "official_url": "https://www.law.go.kr/LSW/lsRvsRsnListP.do?chrClsCd=010202&lsId=001706&lsRvsGubun=all",
           "source_hash": "sha256:8baadcccbd6fe3209a48616789bbb42b864e48a635838d185eff33b196916aab",
-          "last_verified_at": "2026-07-21T15:20:00+00:00",
+          "last_verified_at": "2026-07-21T14:20:00+00:00",
           "validation_status": "verified"
         }
       ]
@@ -38,7 +38,7 @@
           "effective_from": "2022-12-13",
           "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1019%EC%A1%B0",
           "source_hash": "sha256:b9f244982ab300cd344069c882d8e66f99fd0ae4acfce76fa3151822ab302a89",
-          "last_verified_at": "2026-07-21T15:20:00+00:00",
+          "last_verified_at": "2026-07-21T14:20:00+00:00",
           "validation_status": "verified"
         },
         {
@@ -48,7 +48,7 @@
           "effective_from": "2022-12-13",
           "official_url": "https://www.law.go.kr/LSW/lsRvsRsnListP.do?chrClsCd=010202&lsId=001706&lsRvsGubun=all",
           "source_hash": "sha256:8baadcccbd6fe3209a48616789bbb42b864e48a635838d185eff33b196916aab",
-          "last_verified_at": "2026-07-21T15:20:00+00:00",
+          "last_verified_at": "2026-07-21T14:20:00+00:00",
           "validation_status": "verified"
         }
       ]
@@ -67,7 +67,7 @@
           "effective_from": "2021-10-14",
           "official_url": "https://www.law.go.kr/LSW/lsRvsDocListP.do?chrClsCd=010202&lsId=001872&lsRvsGubun=all",
           "source_hash": "sha256:d7baada251902cba79f83d947fdf4b0551ac32e9f05b4a62494c45173431e78a",
-          "last_verified_at": "2026-07-21T15:20:00+00:00",
+          "last_verified_at": "2026-07-21T14:20:00+00:00",
           "validation_status": "verified"
         }
       ]
@@ -88,7 +88,7 @@
           "effective_from": "2021-11-19",
           "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C48%EC%A1%B0",
           "source_hash": "sha256:0036d72e7eba7c85adb7afe50dfaad66f10c24dd94d917175398e782ff43440a",
-          "last_verified_at": "2026-07-21T15:20:00+00:00",
+          "last_verified_at": "2026-07-21T14:20:00+00:00",
           "validation_status": "verified"
         },
         {
@@ -98,7 +98,7 @@
           "effective_from": "2021-11-19",
           "official_url": "https://www.law.go.kr/LSW/lsRvsDocListP.do?chrClsCd=010202&lsId=001872&lsRvsGubun=all",
           "source_hash": "sha256:d7baada251902cba79f83d947fdf4b0551ac32e9f05b4a62494c45173431e78a",
-          "last_verified_at": "2026-07-21T15:20:00+00:00",
+          "last_verified_at": "2026-07-21T14:20:00+00:00",
           "validation_status": "verified"
         }
       ]
@@ -117,7 +117,7 @@
           "effective_from": "2020-07-31",
           "official_url": "https://www.law.go.kr/LSW/lsRvsDocListP.do?chrClsCd=010202&lsId=001248&lsRvsGubun=all",
           "source_hash": "sha256:975c4019a5209f39ec4bdbc78e8c7cf3450d6e8cdf9559656c73d7e8023b9ff4",
-          "last_verified_at": "2026-07-21T15:20:00+00:00",
+          "last_verified_at": "2026-07-21T14:20:00+00:00",
           "validation_status": "verified"
         }
       ]
@@ -138,7 +138,7 @@
           "effective_from": "2023-04-18",
           "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C3%EC%A1%B0%EC%9D%987",
           "source_hash": "sha256:5faa979bb1762dbaab65a1fca9a9bd45bc115f17d6fc8a128a29b521766056c0",
-          "last_verified_at": "2026-07-21T15:20:00+00:00",
+          "last_verified_at": "2026-07-21T14:20:00+00:00",
           "validation_status": "verified"
         },
         {
@@ -148,7 +148,7 @@
           "effective_from": "2023-04-18",
           "official_url": "https://www.law.go.kr/LSW/lsRvsDocListP.do?chrClsCd=010202&lsId=001248&lsRvsGubun=all",
           "source_hash": "sha256:975c4019a5209f39ec4bdbc78e8c7cf3450d6e8cdf9559656c73d7e8023b9ff4",
-          "last_verified_at": "2026-07-21T15:20:00+00:00",
+          "last_verified_at": "2026-07-21T14:20:00+00:00",
           "validation_status": "verified"
         }
       ]
@@ -167,7 +167,7 @@
           "effective_from": "2025-09-19",
           "official_url": "https://www.law.go.kr/LSW/lsRvsRsnListP.do?lsId=001671",
           "source_hash": "sha256:e6d8456b27bb748590e5803e1e1595d9503706891b0675255196aa8aca84699e",
-          "last_verified_at": "2026-07-21T15:20:00+00:00",
+          "last_verified_at": "2026-07-21T14:20:00+00:00",
           "validation_status": "verified"
         }
       ]
@@ -188,7 +188,7 @@
           "effective_from": "2026-06-24",
           "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C294%EC%A1%B0%EC%9D%985",
           "source_hash": "sha256:4f5ffddbdab93c5da89f7091452b8b84a27f196fd5bb275b0851cc37d6cde1a8",
-          "last_verified_at": "2026-07-21T15:20:00+00:00",
+          "last_verified_at": "2026-07-21T14:20:00+00:00",
           "validation_status": "verified"
         },
         {
@@ -198,7 +198,7 @@
           "effective_from": "2026-06-24",
           "official_url": "https://www.law.go.kr/LSW/lsRvsRsnListP.do?lsId=001671",
           "source_hash": "sha256:e6d8456b27bb748590e5803e1e1595d9503706891b0675255196aa8aca84699e",
-          "last_verified_at": "2026-07-21T15:20:00+00:00",
+          "last_verified_at": "2026-07-21T14:20:00+00:00",
           "validation_status": "verified"
         }
       ]
@@ -220,7 +220,7 @@
       "article_no": "제1019조제4항",
       "promulgation_date": "2022-12-13",
       "effective_date": "2022-12-13",
-      "reviewed_at": "2026-07-21T15:30:00+00:00",
+      "reviewed_at": "2026-07-21T14:20:00+00:00",
       "expires_at": "2026-10-21T00:00:00+00:00",
       "affected_audiences": ["미성년 때 부모 등 법정대리인이 상속을 단순승인한 사람", "성년 후 처음으로 상속채무 초과사실을 알게 된 상속인"],
       "changed_points": [
@@ -284,7 +284,7 @@
       "article_no": "제48조제2항",
       "promulgation_date": "2021-05-18",
       "effective_date": "2021-11-19",
-      "reviewed_at": "2026-07-21T15:30:00+00:00",
+      "reviewed_at": "2026-07-21T14:20:00+00:00",
       "expires_at": "2026-10-21T00:00:00+00:00",
       "affected_audiences": ["임금을 지급하는 사용자", "임금 계산과 공제내역을 확인하려는 근로자"],
       "changed_points": ["사업장 내부 임금대장 작성과 별도로 근로자에게 임금명세서를 교부해야 합니다.", "종이뿐 아니라 전자문서로도 교부할 수 있습니다.", "구성항목·계산방법·공제내역 등 시행령상 기재사항을 빠뜨리지 않아야 합니다."],
@@ -344,7 +344,7 @@
       "article_no": "제3조의7",
       "promulgation_date": "2023-04-18",
       "effective_date": "2023-04-18",
-      "reviewed_at": "2026-07-21T15:30:00+00:00",
+      "reviewed_at": "2026-07-21T14:20:00+00:00",
       "expires_at": "2026-10-21T00:00:00+00:00",
       "affected_audiences": ["새 주택 임대차계약을 체결하는 임차인과 임대인", "선순위 보증금·조세 체납 위험을 확인하는 중개사"],
       "changed_points": ["임대인은 계약 체결 때 해당 주택의 확정일자·차임·보증금 정보를 제시해야 합니다.", "국세·지방세 납세증명서도 제시 대상입니다.", "계약 전에 임차인의 정보열람에 동의하는 방식으로 제시를 갈음할 수 있습니다.", "이 조문은 법률의 일반 시행 유예와 달리 공포일인 2023년 4월 18일부터 즉시 시행됐습니다."],
@@ -404,7 +404,7 @@
       "article_no": "제294조의5",
       "promulgation_date": "2025-12-23",
       "effective_date": "2026-06-24",
-      "reviewed_at": "2026-07-21T15:30:00+00:00",
+      "reviewed_at": "2026-07-21T14:20:00+00:00",
       "expires_at": "2026-10-21T00:00:00+00:00",
       "affected_audiences": ["진행 중인 형사재판의 피해자와 일정한 유족·대리인", "민사상 권리구제 또는 피해자 진술을 준비하는 변호사"],
       "changed_points": ["피해자가 검사가 증거로 신청할 서류·물건의 열람·등사를 검사에게 신청하는 절차가 신설됐습니다.", "권리구제 또는 피해자 진술권 보장에 필요하면 법정 예외가 없는 한 허가해야 합니다.", "불허하거나 사용목적 제한·조건을 붙이면 이유를 통지해야 합니다.", "열람·등사로 알게 된 사항은 관계인의 명예·생활 평온과 수사·재판을 해치지 않도록 사용해야 합니다."],

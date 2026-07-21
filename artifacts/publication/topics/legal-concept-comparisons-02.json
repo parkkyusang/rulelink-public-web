@@ -33,7 +33,7 @@
     "hub_id":"hub.legal-concept-comparisons-02",
     "slug":"legal-concept-comparisons-02",
     "title_ko":"헷갈리는 법률절차와 효과 비교",
-    "summary_ko":"비슷한 말이지만 요건·시점·효과가 다른 생활법률 개념을 공식 조문과 사실분기로 구분합니다.",
+    "description_ko":"비슷한 말이지만 요건·시점·효과가 다른 생활법률 개념을 공식 조문과 사실분기로 구분합니다.",
     "content_ids":["content.contract-rescission-vs-cancellation","content.reservation-deposit-vs-earnest-money","content.certified-demand-vs-judicial-claim","content.lease-registration-application-vs-completion","content.report-vs-complaint-vs-accusation","content.divorce-agreement-vs-effective-divorce","content.loan-obligation-vs-guarantee-obligation","content.contractual-interest-vs-default-damages","content.provisional-attachment-vs-property-disclosure","content.crime-victim-relief-fund-vs-civil-damages"]
   }],
   "rule_cards": [
