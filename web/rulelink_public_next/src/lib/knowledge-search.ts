@@ -207,6 +207,11 @@ function sourceLabel(source: PublicKnowledgeSource): string {
   return `${source.law_name_ko} ${source.article_no}`;
 }
 
-function uniqueTerms(values: string[]): string[] {
-  return [...new Set(values.map(value => value.trim()).filter(Boolean))];
+function uniqueTerms(values: Array<string | null | undefined>): string[] {
+  return [...new Set(
+    values
+      .filter((value): value is string => typeof value === 'string')
+      .map(value => value.trim())
+      .filter(Boolean),
+  )];
 }
