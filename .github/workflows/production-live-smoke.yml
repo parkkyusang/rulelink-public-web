@@ -1,0 +1,42 @@
+name: 운영 배포 실제 주소 점검
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rulelink-production-live-smoke
+  cancel-in-progress: true
+
+jobs:
+  live-smoke:
+    name: 운영 도메인 스냅샷 및 공개 경로 확인
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: web/rulelink_public_next
+
+    steps:
+      - name: 저장소 받기
+        uses: actions/checkout@v4
+
+      - name: Node.js 준비
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Vercel 반영 대기 후 운영 실주소 확인
+        shell: bash
+        env:
+          RULELINK_PUBLIC_BASE_URL: https://rulelink.lolphysical.xyz
+          RULELINK_LIVE_SMOKE_ATTEMPTS: "42"
+          RULELINK_LIVE_SMOKE_DELAY_MS: "10000"
+        run: |
+          set -o pipefail
+          node scripts/smoke-live-publication.mjs | tee -a "$GITHUB_STEP_SUMMARY"
