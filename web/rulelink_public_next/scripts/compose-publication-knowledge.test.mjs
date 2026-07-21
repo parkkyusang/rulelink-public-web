@@ -1,8 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import './law-change-topic-handoff.test.mjs';
-
 import {applyKnowledgeComposition, assembleKnowledge, contentReceipt} from './compose-publication-knowledge.mjs';
 
 function descriptor(topicId, file) { return {topic_id: topicId, file}; }
@@ -28,6 +26,30 @@ function manifest(topics, contentEntryOrder = null) {
     ...(contentEntryOrder ? {content_entry_topic_order: contentEntryOrder} : {}),
   };
 }
+
+test('독립 개념 묶음을 지식 그래프에 합치고 영수증을 만든다', () => {
+  const descriptors = [descriptor('hub.first', 'first.json')];
+  const concept = {
+    concept_id: 'concept.one',
+    slug: 'concept-one',
+    preferred_term_ko: '검증개념',
+  };
+  const knowledge = assembleKnowledge(
+    {...manifest(descriptors), concepts: [{concept_group_id: 'concept-group.one', file: 'one.json'}]},
+    [topic('hub.first', 'first')],
+    [{
+      schema: 'rulelink_public_concept_group_v1',
+      concept_group_id: 'concept-group.one',
+      sources: [{coordinate_id: 'source.concept'}],
+      concept_cards: [concept],
+    }],
+  );
+  assert.deepEqual(knowledge.concept_cards, [concept]);
+  assert.ok(knowledge.sources.some(source => source.coordinate_id === 'source.concept'));
+
+  const bundle = applyKnowledgeComposition({file_hashes: {}}, knowledge);
+  assert.equal(bundle.file_hashes['knowledge-concept:concept.one'], contentReceipt(concept));
+});
 
 test('manifest 순서대로 주제별 지식을 결정론적으로 합친다', () => {
   const descriptors = [descriptor('hub.first', 'first.json'), descriptor('hub.second', 'second.json')];
