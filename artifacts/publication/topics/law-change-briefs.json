@@ -1,0 +1,1138 @@
+{
+  "schema": "rulelink_public_change_brief_set_v1",
+  "generated_at": "2026-07-21T13:35:00+00:00",
+  "source_contract": "existing_active_db_coordinates_and_verified_official_revision_documents",
+  "assertions": [
+    {
+      "assertion_id": "assertion.kr.change.platform-c2c-seller-verification-2026.old",
+      "user_facing_text_ko": "2026년 7월 20일까지는 신설된 제20조의4의 개인 판매자 신원확인·분쟁협조 의무가 시행 전이었습니다.",
+      "proposition_type": "temporal_rule",
+      "applies_when": [
+        "2026-07-21 전 종전 상태를 설명하는 경우"
+      ],
+      "does_not_apply_when": [
+        "2026-07-21 이후 현행 절차를 설명하는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "src-ecommerce-revision-20260721",
+          "source_snapshot_id": "snapshot:02db1cc69a101bf763210f3a1377f866",
+          "version_scope": "historical",
+          "effective_from": "2026-01-20",
+          "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=282793&viewCls=lsRvsDocInfoR",
+          "source_hash": "sha256:02db1cc69a101bf763210f3a1377f86671fe7a3a462b0edaaf9491412fd6c4a5",
+          "last_verified_at": "2026-07-21T07:55:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.platform-c2c-seller-verification-2026.current",
+      "user_facing_text_ko": "2026년 7월 21일부터 통신판매중개업자는 개인 판매자의 신원정보를 확인하고 분쟁 시 법정 요청에 따라 정보와 거래내역을 제공해 협조해야 합니다.",
+      "proposition_type": "legal_effect",
+      "applies_when": [
+        "2026-07-21 이후 현행법을 적용하는 경우"
+      ],
+      "does_not_apply_when": [
+        "시행 전 사건에 경과규정이 적용되는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "ecommerce_consumer_ko_0020_04",
+          "law_key": "ecommerce_consumer",
+          "article_no": "제20조의4",
+          "source_snapshot_id": "snapshot:8a1aec26352f849b6e4223da51818c58",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2026-07-21",
+          "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98%20%EB%93%B1%EC%97%90%EC%84%9C%EC%9D%98%20%EC%86%8C%EB%B9%84%EC%9E%90%EB%B3%B4%ED%98%B8%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C20%EC%A1%B0%EC%9D%984",
+          "source_hash": "sha256:8a1aec26352f849b6e4223da51818c58ba9def0beae4594d297b6aea6931d307",
+          "last_verified_at": "2026-07-21T07:55:00+00:00",
+          "validation_status": "verified"
+        },
+        {
+          "source_id": "src-ecommerce-revision-20260721",
+          "source_snapshot_id": "snapshot:02db1cc69a101bf763210f3a1377f866",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2026-07-21",
+          "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=282793&viewCls=lsRvsDocInfoR",
+          "source_hash": "sha256:02db1cc69a101bf763210f3a1377f86671fe7a3a462b0edaaf9491412fd6c4a5",
+          "last_verified_at": "2026-07-21T07:55:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.inheritance-right-loss-system-2026.old",
+      "user_facing_text_ko": "2026년 1월 1일부터 3월 16일까지 상속권 상실선고는 피상속인의 직계존속인 상속인을 중심으로 하고, 부양의무 위반도 미성년자 부양의무로 한정했습니다.",
+      "proposition_type": "temporal_rule",
+      "applies_when": [
+        "2026-01-01부터 2026-03-16까지 시행된 종전 제1004조의2를 설명하는 경우"
+      ],
+      "does_not_apply_when": [
+        "2025-12-31 이전 제도 시행 전 상태를 설명하는 경우",
+        "2026-03-17 이후 확대된 현행 절차를 설명하는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "src-civil-revision-20260317",
+          "source_snapshot_id": "snapshot:ce3547629209d32d593ff08acf7a8686",
+          "version_scope": "historical",
+          "effective_from": "2026-01-01",
+          "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=284415&viewCls=lsRvsDocInfoR",
+          "source_hash": "sha256:ce3547629209d32d593ff08acf7a868680bea744f24c757f2227c2603c9d2ecc",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.inheritance-right-loss-system-2026.current",
+      "user_facing_text_ko": "2026년 3월 17일부터 상속권 상실 대상이 모든 상속인이 될 사람으로 확대되고, 부양의무 위반도 미성년자에 대한 의무로 한정되지 않습니다.",
+      "proposition_type": "legal_effect",
+      "applies_when": [
+        "2026-03-17 이후 현행법을 적용하는 경우"
+      ],
+      "does_not_apply_when": [
+        "시행 전 사건에 경과규정이 적용되는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "civil_act_ko_1004_02",
+          "law_key": "civil_act",
+          "article_no": "제1004조의2",
+          "source_snapshot_id": "snapshot:249347b5699e0b74b2c7cdfc22df547c",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2026-03-17",
+          "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1004%EC%A1%B0%EC%9D%982",
+          "source_hash": "sha256:249347b5699e0b74b2c7cdfc22df547cf190c8c781e1a00e468aff9611e7f12f",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        },
+        {
+          "source_id": "src-civil-revision-20260317",
+          "source_snapshot_id": "snapshot:ce3547629209d32d593ff08acf7a8686",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2026-03-17",
+          "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=284415&viewCls=lsRvsDocInfoR",
+          "source_hash": "sha256:ce3547629209d32d593ff08acf7a868680bea744f24c757f2227c2603c9d2ecc",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.inheritance-representation-link-2026.old",
+      "user_facing_text_ko": "개정 전 제1001조는 상속개시 전 사망과 제1004조의 상속결격을 대습상속의 중심 사유로 규정했습니다.",
+      "proposition_type": "temporal_rule",
+      "applies_when": [
+        "2026-03-17 전 종전 상태를 설명하는 경우"
+      ],
+      "does_not_apply_when": [
+        "2026-03-17 이후 현행 절차를 설명하는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "src-civil-revision-20260317",
+          "source_snapshot_id": "snapshot:ce3547629209d32d593ff08acf7a8686",
+          "version_scope": "historical",
+          "effective_from": "2026-03-17",
+          "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=284415&viewCls=lsRvsDocInfoR",
+          "source_hash": "sha256:ce3547629209d32d593ff08acf7a868680bea744f24c757f2227c2603c9d2ecc",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.inheritance-representation-link-2026.current",
+      "user_facing_text_ko": "현행 제1001조는 제1004조의2에 따라 상속인이 되지 못한 경우도 대습상속 사유에 포함합니다.",
+      "proposition_type": "legal_effect",
+      "applies_when": [
+        "2026-03-17 이후 현행법을 적용하는 경우"
+      ],
+      "does_not_apply_when": [
+        "시행 전 사건에 경과규정이 적용되는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "civil_act_ko_1001",
+          "law_key": "civil_act",
+          "article_no": "제1001조",
+          "source_snapshot_id": "snapshot:0ddea81999ec616d43249627e09c6c67",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2026-03-17",
+          "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1001%EC%A1%B0",
+          "source_hash": "sha256:0ddea81999ec616d43249627e09c6c67acc21c76011b26f849cff6009ea4faa0",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        },
+        {
+          "source_id": "civil_act_ko_1004_02",
+          "law_key": "civil_act",
+          "article_no": "제1004조의2",
+          "source_snapshot_id": "snapshot:249347b5699e0b74b2c7cdfc22df547c",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2026-03-17",
+          "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1004%EC%A1%B0%EC%9D%982",
+          "source_hash": "sha256:249347b5699e0b74b2c7cdfc22df547cf190c8c781e1a00e468aff9611e7f12f",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        },
+        {
+          "source_id": "civil_act_ko_1010",
+          "law_key": "civil_act",
+          "article_no": "제1010조",
+          "source_snapshot_id": "snapshot:b6cb761969185ba1d4b0c4843a7409f0",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2026-03-17",
+          "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1010%EC%A1%B0",
+          "source_hash": "sha256:b6cb761969185ba1d4b0c4843a7409f0fe091c0207e7e12bf9a003a854cf61df",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.livelihood-account-2026.old",
+      "user_facing_text_ko": "2026년 1월 31일까지는 현행 제246조의2의 전용 생계비계좌 제도가 시행 전이었습니다.",
+      "proposition_type": "temporal_rule",
+      "applies_when": [
+        "2026-02-01 전 종전 상태를 설명하는 경우"
+      ],
+      "does_not_apply_when": [
+        "2026-02-01 이후 현행 절차를 설명하는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "civil_execution_ko_0246_02",
+          "law_key": "civil_execution",
+          "article_no": "제246조의2",
+          "source_snapshot_id": "snapshot:ff58c1d8755856865de21fba650211cd",
+          "version_scope": "historical",
+          "effective_from": "2025-01-31",
+          "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C246%EC%A1%B0%EC%9D%982",
+          "source_hash": "sha256:ff58c1d8755856865de21fba650211cd96f247d1f61a9951a565ef54a9be260b",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.livelihood-account-2026.current",
+      "user_facing_text_ko": "2026년 2월 1일부터 자연인은 법정 요건에 따라 한 사람당 하나의 생계비계좌를 개설할 수 있고 그 예치금은 압류금지 대상이 됩니다.",
+      "proposition_type": "legal_effect",
+      "applies_when": [
+        "2026-02-01 이후 현행법을 적용하는 경우"
+      ],
+      "does_not_apply_when": [
+        "시행 전 사건에 경과규정이 적용되는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "civil_execution_ko_0246_02",
+          "law_key": "civil_execution",
+          "article_no": "제246조의2",
+          "source_snapshot_id": "snapshot:ff58c1d8755856865de21fba650211cd",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2026-02-01",
+          "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C246%EC%A1%B0%EC%9D%982",
+          "source_hash": "sha256:ff58c1d8755856865de21fba650211cd96f247d1f61a9951a565ef54a9be260b",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        },
+        {
+          "source_id": "civil_execution_ko_0246",
+          "law_key": "civil_execution",
+          "article_no": "제246조",
+          "source_snapshot_id": "snapshot:7775f68b6cbbbb45116ca18713f47330",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2026-02-01",
+          "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C246%EC%A1%B0",
+          "source_hash": "sha256:7775f68b6cbbbb45116ca18713f47330445ec05f88ba657f0326696c3c290aaa",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.private-loan-interest-cap-2021.old",
+      "user_facing_text_ko": "2021년 7월 6일까지 체결·갱신된 금전대차 계약에는 당시 최고이자율 연 24퍼센트 기준이 적용됐습니다.",
+      "proposition_type": "temporal_rule",
+      "applies_when": [
+        "2021-07-07 전 체결하거나 갱신한 계약의 상한을 설명하는 경우"
+      ],
+      "does_not_apply_when": [
+        "2021-07-07 이후 체결하거나 갱신한 계약을 설명하는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "src-interest-rate-20",
+          "source_snapshot_id": "snapshot:0bda91fb0a7a72f90a5814354657f781",
+          "version_scope": "historical",
+          "effective_from": "2018-02-08",
+          "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20210707&lsiSeq=230727&urlMode=lsInfoP",
+          "source_hash": "sha256:0bda91fb0a7a72f90a5814354657f781939e037dc56e677a36dd19a6f9f61372",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.private-loan-interest-cap-2021.current",
+      "user_facing_text_ko": "2021년 7월 7일 이후 체결하거나 갱신한 금전대차 계약의 최고이자율은 연 20퍼센트입니다.",
+      "proposition_type": "legal_effect",
+      "applies_when": [
+        "2021-07-07 이후 체결하거나 갱신한 금전대차 계약"
+      ],
+      "does_not_apply_when": [
+        "시행 전 계약이 갱신되지 않은 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "src-interest-rate-20",
+          "source_snapshot_id": "snapshot:0bda91fb0a7a72f90a5814354657f781",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2021-07-07",
+          "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20210707&lsiSeq=230727&urlMode=lsInfoP",
+          "source_hash": "sha256:0bda91fb0a7a72f90a5814354657f781939e037dc56e677a36dd19a6f9f61372",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        },
+        {
+          "source_id": "interest_limit_ko_0002",
+          "law_key": "interest_limit",
+          "article_no": "제2조",
+          "source_snapshot_id": "snapshot:d0100e8dc52367aa4a59040729a635cd",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2021-07-07",
+          "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%B4%EC%9E%90%EC%A0%9C%ED%95%9C%EB%B2%95/%EC%A0%9C2%EC%A1%B0",
+          "source_hash": "sha256:d0100e8dc52367aa4a59040729a635cdaa19fcc877f9ccac31972299131451bf",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.victim-trial-record-access-2025.old",
+      "user_facing_text_ko": "2025년 9월 18일까지는 피해자의 공판기록 열람·등사를 재판장이 상당하다고 인정할 때 허가할 수 있는 재량 구조였습니다.",
+      "proposition_type": "temporal_rule",
+      "applies_when": [
+        "2025-09-19 전 열람·등사 신청 절차를 설명하는 경우"
+      ],
+      "does_not_apply_when": [
+        "2025-09-19 이후 신청을 설명하는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "src-criminal-procedure-revision-20796",
+          "source_snapshot_id": "snapshot:dc35ad444d8922b17c1542d79c4dd2e7",
+          "version_scope": "historical",
+          "effective_from": "2025-03-18",
+          "official_url": "https://www.law.go.kr/LSW/lsRvsDocListP.do?chrClsCd=010102&lsId=001671&lsRvsGubun=all",
+          "source_hash": "sha256:dc35ad444d8922b17c1542d79c4dd2e781b6d7173756115931a545a302406c1e",
+          "last_verified_at": "2026-07-21T13:45:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    },
+    {
+      "assertion_id": "assertion.kr.change.victim-trial-record-access-2025.current",
+      "user_facing_text_ko": "2025년 9월 19일부터 피해자 권리구제 또는 진술권 보장에 필요하다고 인정되면 재판장은 공판기록 열람·등사를 원칙적으로 허가해야 합니다.",
+      "proposition_type": "legal_effect",
+      "applies_when": [
+        "2025-09-19 이후 피해자 등이 소송계속 중인 사건 기록을 신청하는 경우"
+      ],
+      "does_not_apply_when": [
+        "법정 제한사유 또는 심리 상황상 상당한 불허 사유가 있는 경우"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "criminal_procedure_ko_0294_04",
+          "law_key": "criminal_procedure",
+          "article_no": "제294조의4",
+          "source_snapshot_id": "snapshot:f28fe4d7ab23fd627d30a225f322de2d",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2025-09-19",
+          "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C294%EC%A1%B0%EC%9D%984",
+          "source_hash": "sha256:f28fe4d7ab23fd627d30a225f322de2de76f5973f71d2f5140a3b6fa83e81477",
+          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "validation_status": "verified"
+        },
+        {
+          "source_id": "src-criminal-procedure-revision-20796",
+          "source_snapshot_id": "snapshot:dc35ad444d8922b17c1542d79c4dd2e7",
+          "version_scope": "current_as_of_review",
+          "effective_from": "2025-09-19",
+          "official_url": "https://www.law.go.kr/LSW/lsRvsDocListP.do?chrClsCd=010102&lsId=001671&lsRvsGubun=all",
+          "source_hash": "sha256:dc35ad444d8922b17c1542d79c4dd2e781b6d7173756115931a545a302406c1e",
+          "last_verified_at": "2026-07-21T13:45:00+00:00",
+          "validation_status": "verified"
+        }
+      ]
+    }
+  ],
+  "change_briefs": [
+    {
+      "change_brief_id": "kr.change.platform-c2c-seller-verification-2026",
+      "jurisdiction": "KR",
+      "locale": "ko-KR",
+      "slug": "platform-c2c-seller-verification-2026",
+      "title_ko": "개인 간 거래 플랫폼은 2026년 7월 21일부터 판매자 신원정보를 확인합니다",
+      "summary_ko": "개인 판매자가 참여하는 플랫폼 거래에서는 판매자 신원정보 확인과 분쟁 시 정보·거래내역 제공 협조 의무가 새로 적용됩니다.",
+      "editorial_status": "approved",
+      "version": "0.1.0",
+      "lifecycle": "recently_effective",
+      "law_key": "ecommerce_consumer",
+      "law_name_ko": "전자상거래 등에서의 소비자보호에 관한 법률",
+      "article_no": "제20조의4",
+      "promulgation_date": "2026-01-20",
+      "effective_date": "2026-07-21",
+      "reviewed_at": "2026-07-21T13:35:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "affected_audiences": [
+        "중고거래·개인 간 거래 플랫폼 이용자",
+        "개인 판매자를 중개하는 온라인 플랫폼 운영자"
+      ],
+      "changed_points": [
+        "개인 판매자의 성명·전화번호 등 법정 신원정보를 확인하는 절차가 신설됐습니다.",
+        "분쟁이 발생하면 법정 요청 주체에게 확인한 신원정보와 거래내역을 제공해 해결에 협조해야 합니다.",
+        "일반 통신판매업자와 개인 판매자의 법적 지위를 구분해야 합니다."
+      ],
+      "action_checklist": [
+        "거래 화면에서 판매자가 사업자인지 개인인지 확인합니다.",
+        "플랫폼이 판매자 신원정보를 어떤 방식으로 확인하는지 확인합니다.",
+        "분쟁이 생기면 주문번호·결제·대화·배송 자료를 보존합니다.",
+        "법이 정한 요청 경로로 판매자 정보와 거래내역 제공을 요구합니다."
+      ],
+      "transition_status": "verified",
+      "transition_note_ko": "2026-07-21 시행 전후를 구분하고, 시행 전 사건은 해당 개정 부칙의 적용례를 함께 확인합니다.",
+      "norm_delta": {
+        "change_type": "mixed_change",
+        "changed_slots": [
+          "conditions",
+          "operation",
+          "legal_effect",
+          "temporal_rule",
+          "transition_rule"
+        ],
+        "old_frame": {
+          "source_snapshot_ids": [
+            "snapshot:02db1cc69a101bf763210f3a1377f866"
+          ],
+          "actor": [
+            "중고거래·개인 간 거래 플랫폼 이용자",
+            "개인 판매자를 중개하는 온라인 플랫폼 운영자"
+          ],
+          "object": [
+            "제20조의4"
+          ],
+          "trigger": [
+            "2026-07-21 전 종전 상태"
+          ],
+          "conditions": [
+            "2026년 7월 20일까지는 신설된 제20조의4의 개인 판매자 신원확인·분쟁협조 의무가 시행 전이었습니다."
+          ],
+          "exception": [],
+          "operation": [
+            "종전 규율에 따라 판단"
+          ],
+          "legal_effect": [
+            "2026년 7월 20일까지는 신설된 제20조의4의 개인 판매자 신원확인·분쟁협조 의무가 시행 전이었습니다."
+          ],
+          "temporal_rule": [
+            "2026-07-21 전"
+          ],
+          "transition_rule": [
+            "시행 전 사건은 부칙 적용례 확인"
+          ]
+        },
+        "new_frame": {
+          "source_snapshot_ids": [
+            "snapshot:8a1aec26352f849b6e4223da51818c58",
+            "snapshot:02db1cc69a101bf763210f3a1377f866"
+          ],
+          "actor": [
+            "중고거래·개인 간 거래 플랫폼 이용자",
+            "개인 판매자를 중개하는 온라인 플랫폼 운영자"
+          ],
+          "object": [
+            "제20조의4"
+          ],
+          "trigger": [
+            "2026-07-21 이후 현행 규정 적용"
+          ],
+          "conditions": [
+            "개인 판매자의 성명·전화번호 등 법정 신원정보를 확인하는 절차가 신설됐습니다.",
+            "분쟁이 발생하면 법정 요청 주체에게 확인한 신원정보와 거래내역을 제공해 해결에 협조해야 합니다.",
+            "일반 통신판매업자와 개인 판매자의 법적 지위를 구분해야 합니다."
+          ],
+          "exception": [
+            "구체적 경과규정이 별도로 적용되는 사건"
+          ],
+          "operation": [
+            "거래 화면에서 판매자가 사업자인지 개인인지 확인합니다.",
+            "플랫폼이 판매자 신원정보를 어떤 방식으로 확인하는지 확인합니다.",
+            "분쟁이 생기면 주문번호·결제·대화·배송 자료를 보존합니다.",
+            "법이 정한 요청 경로로 판매자 정보와 거래내역 제공을 요구합니다."
+          ],
+          "legal_effect": [
+            "2026년 7월 21일부터 통신판매중개업자는 개인 판매자의 신원정보를 확인하고 분쟁 시 법정 요청에 따라 정보와 거래내역을 제공해 협조해야 합니다."
+          ],
+          "temporal_rule": [
+            "2026-07-21부터 시행"
+          ],
+          "transition_rule": [
+            "상속개시일·신청일·거래일 등 사건 기준일과 부칙 대조"
+          ]
+        },
+        "legal_effect_delta_ko": "개인 판매자가 참여하는 플랫폼 거래에서는 판매자 신원정보 확인과 분쟁 시 정보·거래내역 제공 협조 의무가 새로 적용됩니다.",
+        "life_situation_impacts": [
+          "거래 화면에서 판매자가 사업자인지 개인인지 확인합니다.",
+          "플랫폼이 판매자 신원정보를 어떤 방식으로 확인하는지 확인합니다.",
+          "분쟁이 생기면 주문번호·결제·대화·배송 자료를 보존합니다."
+        ],
+        "unresolved_questions": [
+          "개별 사건의 기준일에 해당 개정 부칙이 어떻게 적용되는가"
+        ]
+      },
+      "related_issue_card_ids": [],
+      "related_content_ids": [
+        "content.platform-seller-information-2026-change"
+      ],
+      "assertion_ids": [
+        "assertion.kr.change.platform-c2c-seller-verification-2026.old",
+        "assertion.kr.change.platform-c2c-seller-verification-2026.current"
+      ],
+      "source_event_ids": [
+        "event:platform-c2c-seller-verification-2026"
+      ],
+      "old_snapshot_ids": [
+        "snapshot:02db1cc69a101bf763210f3a1377f866"
+      ],
+      "new_snapshot_ids": [
+        "snapshot:8a1aec26352f849b6e4223da51818c58",
+        "snapshot:02db1cc69a101bf763210f3a1377f866"
+      ]
+    },
+    {
+      "change_brief_id": "kr.change.inheritance-right-loss-system-2026",
+      "jurisdiction": "KR",
+      "locale": "ko-KR",
+      "slug": "inheritance-right-loss-system-2026",
+      "title_ko": "2026년 3월 17일부터 상속권 상실 대상과 사유 범위가 확대됐습니다",
+      "summary_ko": "2026년 1월 1일 시행된 제도를 폐지·신설한 것이 아니라, 직계존속 중심 대상과 미성년자 부양의무 중심 사유를 모든 상속인이 될 사람과 일반 부양의무로 넓힌 개정입니다.",
+      "editorial_status": "approved",
+      "version": "0.1.0",
+      "lifecycle": "recently_effective",
+      "law_key": "civil_act",
+      "law_name_ko": "민법",
+      "article_no": "제1004조의2",
+      "promulgation_date": "2026-03-17",
+      "effective_date": "2026-03-17",
+      "reviewed_at": "2026-07-21T13:35:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "affected_audiences": [
+        "부양의무를 중대하게 위반한 상속인이 있는 유족",
+        "상속권 상실심판 청구를 검토하는 공동상속인"
+      ],
+      "changed_points": [
+        "상속권 상실선고 제도 자체는 2026년 1월 1일부터 시행됐습니다.",
+        "2026년 3월 17일부터 대상이 직계존속에 한정되지 않고 모든 상속인이 될 사람으로 확대됐습니다.",
+        "부양의무 위반은 미성년자에 대한 의무로 한정되지 않으며 범죄행위의 피해 범위도 직계혈족으로 넓어졌습니다."
+      ],
+      "action_checklist": [
+        "피상속인의 사망일과 상속개시일을 확정합니다.",
+        "부양의무 위반·범죄·부당대우 자료를 시간순으로 정리합니다.",
+        "누가 언제 심판을 청구할 수 있는지 확인합니다.",
+        "선고 확정 여부와 다른 상속인의 순위를 함께 계산합니다."
+      ],
+      "transition_status": "verified",
+      "transition_note_ko": "제도 시행일인 2026년 1월 1일과 확대 개정일인 2026년 3월 17일을 구분하고, 2024년 4월 25일 이후 상속개시 사건에 관한 적용례와 특례를 함께 확인합니다.",
+      "norm_delta": {
+        "change_type": "mixed_change",
+        "changed_slots": [
+          "conditions",
+          "operation",
+          "legal_effect",
+          "temporal_rule",
+          "transition_rule"
+        ],
+        "old_frame": {
+          "source_snapshot_ids": [
+            "snapshot:ce3547629209d32d593ff08acf7a8686"
+          ],
+          "actor": [
+            "부양의무를 중대하게 위반한 상속인이 있는 유족",
+            "상속권 상실심판 청구를 검토하는 공동상속인"
+          ],
+          "object": [
+            "제1004조의2"
+          ],
+          "trigger": [
+            "2026-01-01부터 2026-03-16까지 종전 제1004조의2 적용"
+          ],
+          "conditions": [
+            "상속인이 될 사람이 피상속인의 직계존속이고, 미성년자 부양의무의 중대한 위반 등 종전 법정 사유가 있는 경우"
+          ],
+          "exception": [],
+          "operation": [
+            "종전 대상·사유 범위와 청구기간에 따라 심판 청구"
+          ],
+          "legal_effect": [
+            "직계존속인 상속인을 중심으로 상속권 상실선고가 가능했습니다."
+          ],
+          "temporal_rule": [
+            "2026-01-01부터 2026-03-16까지"
+          ],
+          "transition_rule": [
+            "2024-04-25 이후 상속개시 사건에 대한 종전 법률의 적용례·특례 확인"
+          ]
+        },
+        "new_frame": {
+          "source_snapshot_ids": [
+            "snapshot:249347b5699e0b74b2c7cdfc22df547c",
+            "snapshot:ce3547629209d32d593ff08acf7a8686"
+          ],
+          "actor": [
+            "부양의무를 중대하게 위반한 상속인이 있는 유족",
+            "상속권 상실심판 청구를 검토하는 공동상속인"
+          ],
+          "object": [
+            "제1004조의2"
+          ],
+          "trigger": [
+            "2026-03-17 이후 현행 규정 적용"
+          ],
+          "conditions": [
+            "상속인이 될 사람 일반으로 대상이 확대됐습니다.",
+            "부양의무 위반은 미성년자 부양의무로 한정되지 않습니다.",
+            "중대한 범죄행위의 피해 범위가 피상속인의 직계혈족으로 확대됐습니다."
+          ],
+          "exception": [
+            "구체적 경과규정이 별도로 적용되는 사건"
+          ],
+          "operation": [
+            "피상속인의 사망일과 상속개시일을 확정합니다.",
+            "부양의무 위반·범죄·부당대우 자료를 시간순으로 정리합니다.",
+            "누가 언제 심판을 청구할 수 있는지 확인합니다.",
+            "선고 확정 여부와 다른 상속인의 순위를 함께 계산합니다."
+          ],
+          "legal_effect": [
+            "확대된 대상·사유와 청구요건을 충족하면 가정법원이 상속권 상실을 선고할 수 있습니다."
+          ],
+          "temporal_rule": [
+            "2026-03-17부터 시행"
+          ],
+          "transition_rule": [
+            "상속개시일·행위일·인지일과 2026년 개정 부칙의 적용례·6개월 특례 대조"
+          ]
+        },
+        "legal_effect_delta_ko": "기존 상속권 상실선고 제도의 대상과 부양의무·범죄행위 사유 범위가 확대됐습니다.",
+        "life_situation_impacts": [
+          "피상속인의 사망일과 상속개시일을 확정합니다.",
+          "부양의무 위반·범죄·부당대우 자료를 시간순으로 정리합니다.",
+          "누가 언제 심판을 청구할 수 있는지 확인합니다."
+        ],
+        "unresolved_questions": [
+          "개별 사건의 기준일에 해당 개정 부칙이 어떻게 적용되는가"
+        ]
+      },
+      "related_issue_card_ids": [],
+      "related_content_ids": [
+        "content.2026-loss-of-inheritance-right-and-representation"
+      ],
+      "assertion_ids": [
+        "assertion.kr.change.inheritance-right-loss-system-2026.old",
+        "assertion.kr.change.inheritance-right-loss-system-2026.current"
+      ],
+      "source_event_ids": [
+        "event:inheritance-right-loss-system-2026"
+      ],
+      "old_snapshot_ids": [
+        "snapshot:ce3547629209d32d593ff08acf7a8686"
+      ],
+      "new_snapshot_ids": [
+        "snapshot:249347b5699e0b74b2c7cdfc22df547c",
+        "snapshot:ce3547629209d32d593ff08acf7a8686"
+      ]
+    },
+    {
+      "change_brief_id": "kr.change.inheritance-representation-link-2026",
+      "jurisdiction": "KR",
+      "locale": "ko-KR",
+      "slug": "inheritance-representation-link-2026",
+      "title_ko": "상속권을 잃은 사람의 자녀에게 대습상속이 연결될 수 있습니다",
+      "summary_ko": "2026년 3월 17일부터 제1004조의2에 따라 상속인이 되지 못한 경우도 제1001조의 대습상속 사유에 포함됐습니다.",
+      "editorial_status": "approved",
+      "version": "0.1.0",
+      "lifecycle": "recently_effective",
+      "law_key": "civil_act",
+      "law_name_ko": "민법",
+      "article_no": "제1001조",
+      "promulgation_date": "",
+      "effective_date": "2026-03-17",
+      "reviewed_at": "2026-07-21T13:35:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "affected_audiences": [
+        "상속권 상실선고 대상자의 직계비속과 배우자",
+        "상속순위를 다시 계산해야 하는 공동상속인"
+      ],
+      "changed_points": [
+        "종전 제1001조의 사망·상속결격 중심 사유에 상속권 상실선고가 연결됐습니다.",
+        "상실 대상자의 직계비속이 대습상속인이 될 수 있는지 확인해야 합니다.",
+        "상속개시일과 부칙 적용례가 결론을 가릅니다."
+      ],
+      "action_checklist": [
+        "상속개시일과 개정 시행일을 나란히 적습니다.",
+        "상실선고 대상자의 직계비속·배우자를 가족관계도로 표시합니다.",
+        "상실선고 청구와 확정 상태를 확인합니다.",
+        "제1001조와 제1010조에 따라 대습상속인의 범위를 계산합니다."
+      ],
+      "transition_status": "verified",
+      "transition_note_ko": "2026-03-17 시행 전후를 구분하고, 시행 전 사건은 해당 개정 부칙의 적용례를 함께 확인합니다.",
+      "norm_delta": {
+        "change_type": "mixed_change",
+        "changed_slots": [
+          "conditions",
+          "operation",
+          "legal_effect",
+          "temporal_rule",
+          "transition_rule"
+        ],
+        "old_frame": {
+          "source_snapshot_ids": [
+            "snapshot:ce3547629209d32d593ff08acf7a8686"
+          ],
+          "actor": [
+            "상속권 상실선고 대상자의 직계비속과 배우자",
+            "상속순위를 다시 계산해야 하는 공동상속인"
+          ],
+          "object": [
+            "제1001조"
+          ],
+          "trigger": [
+            "2026-03-17 전 종전 상태"
+          ],
+          "conditions": [
+            "개정 전 제1001조는 상속개시 전 사망과 제1004조의 상속결격을 대습상속의 중심 사유로 규정했습니다."
+          ],
+          "exception": [],
+          "operation": [
+            "종전 규율에 따라 판단"
+          ],
+          "legal_effect": [
+            "개정 전 제1001조는 상속개시 전 사망과 제1004조의 상속결격을 대습상속의 중심 사유로 규정했습니다."
+          ],
+          "temporal_rule": [
+            "2026-03-17 전"
+          ],
+          "transition_rule": [
+            "시행 전 사건은 부칙 적용례 확인"
+          ]
+        },
+        "new_frame": {
+          "source_snapshot_ids": [
+            "snapshot:0ddea81999ec616d43249627e09c6c67",
+            "snapshot:249347b5699e0b74b2c7cdfc22df547c",
+            "snapshot:b6cb761969185ba1d4b0c4843a7409f0"
+          ],
+          "actor": [
+            "상속권 상실선고 대상자의 직계비속과 배우자",
+            "상속순위를 다시 계산해야 하는 공동상속인"
+          ],
+          "object": [
+            "제1001조"
+          ],
+          "trigger": [
+            "2026-03-17 이후 현행 규정 적용"
+          ],
+          "conditions": [
+            "종전 제1001조의 사망·상속결격 중심 사유에 상속권 상실선고가 연결됐습니다.",
+            "상실 대상자의 직계비속이 대습상속인이 될 수 있는지 확인해야 합니다.",
+            "상속개시일과 부칙 적용례가 결론을 가릅니다."
+          ],
+          "exception": [
+            "구체적 경과규정이 별도로 적용되는 사건"
+          ],
+          "operation": [
+            "상속개시일과 개정 시행일을 나란히 적습니다.",
+            "상실선고 대상자의 직계비속·배우자를 가족관계도로 표시합니다.",
+            "상실선고 청구와 확정 상태를 확인합니다.",
+            "제1001조와 제1010조에 따라 대습상속인의 범위를 계산합니다."
+          ],
+          "legal_effect": [
+            "현행 제1001조는 제1004조의2에 따라 상속인이 되지 못한 경우도 대습상속 사유에 포함합니다."
+          ],
+          "temporal_rule": [
+            "2026-03-17부터 시행"
+          ],
+          "transition_rule": [
+            "상속개시일·신청일·거래일 등 사건 기준일과 부칙 대조"
+          ]
+        },
+        "legal_effect_delta_ko": "2026년 3월 17일부터 제1004조의2에 따라 상속인이 되지 못한 경우도 제1001조의 대습상속 사유에 포함됐습니다.",
+        "life_situation_impacts": [
+          "상속개시일과 개정 시행일을 나란히 적습니다.",
+          "상실선고 대상자의 직계비속·배우자를 가족관계도로 표시합니다.",
+          "상실선고 청구와 확정 상태를 확인합니다."
+        ],
+        "unresolved_questions": [
+          "개별 사건의 기준일에 해당 개정 부칙이 어떻게 적용되는가"
+        ]
+      },
+      "related_issue_card_ids": [],
+      "related_content_ids": [
+        "content.2026-loss-of-inheritance-right-and-representation",
+        "content.legal-heir-order-and-spouse"
+      ],
+      "assertion_ids": [
+        "assertion.kr.change.inheritance-representation-link-2026.old",
+        "assertion.kr.change.inheritance-representation-link-2026.current"
+      ],
+      "source_event_ids": [
+        "event:inheritance-representation-link-2026"
+      ],
+      "old_snapshot_ids": [
+        "snapshot:ce3547629209d32d593ff08acf7a8686"
+      ],
+      "new_snapshot_ids": [
+        "snapshot:0ddea81999ec616d43249627e09c6c67",
+        "snapshot:249347b5699e0b74b2c7cdfc22df547c",
+        "snapshot:b6cb761969185ba1d4b0c4843a7409f0"
+      ]
+    },
+    {
+      "change_brief_id": "kr.change.livelihood-account-2026",
+      "jurisdiction": "KR",
+      "locale": "ko-KR",
+      "slug": "livelihood-account-2026",
+      "title_ko": "2026년 2월 1일부터 압류금지 생계비계좌를 만들 수 있습니다",
+      "summary_ko": "자연인은 법정 금융기관에서 한 사람당 하나의 생계비계좌를 개설해 법정 한도 안의 생계비를 압류로부터 보호할 수 있습니다.",
+      "editorial_status": "approved",
+      "version": "0.1.0",
+      "lifecycle": "recently_effective",
+      "law_key": "civil_execution",
+      "law_name_ko": "민사집행법",
+      "article_no": "제246조의2",
+      "promulgation_date": "2025-01-31",
+      "effective_date": "2026-02-01",
+      "reviewed_at": "2026-07-21T13:35:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "affected_audiences": [
+        "예금 압류로 생계가 곤란해질 우려가 있는 채무자",
+        "급여·예금 압류 범위를 확인하는 채권자와 제3채무자"
+      ],
+      "changed_points": [
+        "기존 일반예금의 압류금지 범위와 별도로 전용 생계비계좌 제도가 신설됐습니다.",
+        "여러 금융기관을 합쳐 한 사람당 하나만 개설할 수 있습니다.",
+        "계좌에 넣을 수 있는 금액과 대상 금융기관은 시행령 기준을 함께 확인해야 합니다."
+      ],
+      "action_checklist": [
+        "본인 명의의 생계비계좌가 이미 있는지 확인합니다.",
+        "개설 가능한 금융기관과 현재 법정 한도를 확인합니다.",
+        "일반 계좌와 생계비계좌의 입금 내역을 분리합니다.",
+        "압류가 발생하면 계좌 종류와 보호대상 금액을 서류로 소명합니다."
+      ],
+      "transition_status": "verified",
+      "transition_note_ko": "2026-02-01 시행 전후를 구분하고, 시행 전 사건은 해당 개정 부칙의 적용례를 함께 확인합니다.",
+      "norm_delta": {
+        "change_type": "mixed_change",
+        "changed_slots": [
+          "conditions",
+          "operation",
+          "legal_effect",
+          "temporal_rule",
+          "transition_rule"
+        ],
+        "old_frame": {
+          "source_snapshot_ids": [
+            "snapshot:ff58c1d8755856865de21fba650211cd"
+          ],
+          "actor": [
+            "예금 압류로 생계가 곤란해질 우려가 있는 채무자",
+            "급여·예금 압류 범위를 확인하는 채권자와 제3채무자"
+          ],
+          "object": [
+            "제246조의2"
+          ],
+          "trigger": [
+            "2026-02-01 전 종전 상태"
+          ],
+          "conditions": [
+            "2026년 1월 31일까지는 현행 제246조의2의 전용 생계비계좌 제도가 시행 전이었습니다."
+          ],
+          "exception": [],
+          "operation": [
+            "종전 규율에 따라 판단"
+          ],
+          "legal_effect": [
+            "2026년 1월 31일까지는 현행 제246조의2의 전용 생계비계좌 제도가 시행 전이었습니다."
+          ],
+          "temporal_rule": [
+            "2026-02-01 전"
+          ],
+          "transition_rule": [
+            "시행 전 사건은 부칙 적용례 확인"
+          ]
+        },
+        "new_frame": {
+          "source_snapshot_ids": [
+            "snapshot:ff58c1d8755856865de21fba650211cd",
+            "snapshot:7775f68b6cbbbb45116ca18713f47330"
+          ],
+          "actor": [
+            "예금 압류로 생계가 곤란해질 우려가 있는 채무자",
+            "급여·예금 압류 범위를 확인하는 채권자와 제3채무자"
+          ],
+          "object": [
+            "제246조의2"
+          ],
+          "trigger": [
+            "2026-02-01 이후 현행 규정 적용"
+          ],
+          "conditions": [
+            "기존 일반예금의 압류금지 범위와 별도로 전용 생계비계좌 제도가 신설됐습니다.",
+            "여러 금융기관을 합쳐 한 사람당 하나만 개설할 수 있습니다.",
+            "계좌에 넣을 수 있는 금액과 대상 금융기관은 시행령 기준을 함께 확인해야 합니다."
+          ],
+          "exception": [
+            "구체적 경과규정이 별도로 적용되는 사건"
+          ],
+          "operation": [
+            "본인 명의의 생계비계좌가 이미 있는지 확인합니다.",
+            "개설 가능한 금융기관과 현재 법정 한도를 확인합니다.",
+            "일반 계좌와 생계비계좌의 입금 내역을 분리합니다.",
+            "압류가 발생하면 계좌 종류와 보호대상 금액을 서류로 소명합니다."
+          ],
+          "legal_effect": [
+            "2026년 2월 1일부터 자연인은 법정 요건에 따라 한 사람당 하나의 생계비계좌를 개설할 수 있고 그 예치금은 압류금지 대상이 됩니다."
+          ],
+          "temporal_rule": [
+            "2026-02-01부터 시행"
+          ],
+          "transition_rule": [
+            "상속개시일·신청일·거래일 등 사건 기준일과 부칙 대조"
+          ]
+        },
+        "legal_effect_delta_ko": "자연인은 법정 금융기관에서 한 사람당 하나의 생계비계좌를 개설해 법정 한도 안의 생계비를 압류로부터 보호할 수 있습니다.",
+        "life_situation_impacts": [
+          "본인 명의의 생계비계좌가 이미 있는지 확인합니다.",
+          "개설 가능한 금융기관과 현재 법정 한도를 확인합니다.",
+          "일반 계좌와 생계비계좌의 입금 내역을 분리합니다."
+        ],
+        "unresolved_questions": [
+          "개별 사건의 기준일에 해당 개정 부칙이 어떻게 적용되는가"
+        ]
+      },
+      "related_issue_card_ids": [],
+      "related_content_ids": [
+        "content.2026-livelihood-account-protection",
+        "content.wage-and-protected-claim-seizure"
+      ],
+      "assertion_ids": [
+        "assertion.kr.change.livelihood-account-2026.old",
+        "assertion.kr.change.livelihood-account-2026.current"
+      ],
+      "source_event_ids": [
+        "event:livelihood-account-2026"
+      ],
+      "old_snapshot_ids": [
+        "snapshot:ff58c1d8755856865de21fba650211cd"
+      ],
+      "new_snapshot_ids": [
+        "snapshot:ff58c1d8755856865de21fba650211cd",
+        "snapshot:7775f68b6cbbbb45116ca18713f47330"
+      ]
+    },
+    {
+      "change_brief_id": "kr.change.private-loan-interest-cap-2021",
+      "jurisdiction": "KR",
+      "locale": "ko-KR",
+      "slug": "private-loan-interest-cap-2021",
+      "title_ko": "2021년 7월 7일부터 개인 간 금전대차 최고이자율은 연 20퍼센트입니다",
+      "summary_ko": "최고이자율이 연 24퍼센트에서 연 20퍼센트로 낮아졌고 시행일 이후 새로 체결하거나 갱신한 계약부터 적용됩니다.",
+      "editorial_status": "approved",
+      "version": "0.1.0",
+      "lifecycle": "currently_effective",
+      "law_key": "interest_limit",
+      "law_name_ko": "이자제한법 및 이자제한법 제2조제1항의 최고이자율에 관한 규정",
+      "article_no": "제2조",
+      "promulgation_date": "2021-04-06",
+      "effective_date": "2021-07-07",
+      "reviewed_at": "2026-07-21T13:50:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "affected_audiences": [
+        "지인·가족 등 개인 간 금전대차의 채권자와 채무자",
+        "2021년 전후로 계약을 갱신한 당사자"
+      ],
+      "changed_points": [
+        "계약상 최고이자율이 연 24퍼센트에서 연 20퍼센트로 낮아졌습니다.",
+        "2021년 7월 7일 이후 새로 체결하거나 갱신한 계약부터 적용됩니다.",
+        "수수료·할인금·선이자 등 명칭과 무관하게 실질상 이자를 합산해야 합니다."
+      ],
+      "action_checklist": [
+        "계약일과 갱신일을 확정합니다.",
+        "실제로 받은 원금과 명목상 이자 외 비용을 모두 적습니다.",
+        "적용 시점의 최고이자율과 실제 부담률을 대조합니다.",
+        "초과 지급액의 원본 충당 또는 반환 문제를 별도로 계산합니다."
+      ],
+      "transition_status": "verified",
+      "transition_note_ko": "2021년 7월 7일 이후 최초 체결 또는 갱신된 계약인지가 적용 기준입니다.",
+      "norm_delta": {
+        "change_type": "legal_effect_change",
+        "changed_slots": [
+          "conditions",
+          "legal_effect",
+          "temporal_rule",
+          "transition_rule"
+        ],
+        "old_frame": {
+          "source_snapshot_ids": [
+            "snapshot:0bda91fb0a7a72f90a5814354657f781"
+          ],
+          "actor": ["금전대차의 채권자와 채무자"],
+          "object": ["계약상 최고이자율"],
+          "trigger": ["2021-07-07 전 계약 체결 또는 갱신"],
+          "conditions": ["당시 시행 중인 연 24퍼센트 상한 적용"],
+          "exception": [],
+          "operation": ["계약·갱신일 기준 상한 대조"],
+          "legal_effect": ["연 24퍼센트 초과 부분은 당시 상한 규율에 따라 판단"],
+          "temporal_rule": ["2021-07-06까지"],
+          "transition_rule": ["종전 계약이 갱신됐는지 확인"]
+        },
+        "new_frame": {
+          "source_snapshot_ids": [
+            "snapshot:0bda91fb0a7a72f90a5814354657f781",
+            "snapshot:d0100e8dc52367aa4a59040729a635cd"
+          ],
+          "actor": ["금전대차의 채권자와 채무자"],
+          "object": ["계약상 최고이자율"],
+          "trigger": ["2021-07-07 이후 계약 체결 또는 갱신"],
+          "conditions": ["명목과 무관하게 실질상 이자를 합산"],
+          "exception": ["대차원금 10만원 미만 등 법정 예외"],
+          "operation": ["실제 원금과 이자성 비용을 기준으로 부담률 계산"],
+          "legal_effect": ["계약상 최고이자율 연 20퍼센트 적용"],
+          "temporal_rule": ["2021-07-07부터"],
+          "transition_rule": ["시행 후 최초 체결·갱신분부터 적용"]
+        },
+        "legal_effect_delta_ko": "최고이자율이 연 24퍼센트에서 연 20퍼센트로 낮아졌습니다.",
+        "life_situation_impacts": [
+          "계약일과 갱신일에 따라 적용 상한이 달라집니다.",
+          "수수료와 선이자도 실질상 이자에 포함될 수 있습니다."
+        ],
+        "unresolved_questions": []
+      },
+      "related_issue_card_ids": [],
+      "related_content_ids": [
+        "content.private-loan-interest-limit"
+      ],
+      "assertion_ids": [
+        "assertion.kr.change.private-loan-interest-cap-2021.old",
+        "assertion.kr.change.private-loan-interest-cap-2021.current"
+      ],
+      "source_event_ids": [
+        "event:private-loan-interest-cap-2021"
+      ],
+      "old_snapshot_ids": [
+        "snapshot:0bda91fb0a7a72f90a5814354657f781"
+      ],
+      "new_snapshot_ids": [
+        "snapshot:0bda91fb0a7a72f90a5814354657f781",
+        "snapshot:d0100e8dc52367aa4a59040729a635cd"
+      ]
+    },
+    {
+      "change_brief_id": "kr.change.victim-trial-record-access-2025",
+      "jurisdiction": "KR",
+      "locale": "ko-KR",
+      "slug": "victim-trial-record-access-2025",
+      "title_ko": "2025년 9월 19일부터 피해자의 공판기록 열람·등사 허가 기준이 강화됐습니다",
+      "summary_ko": "피해자의 권리구제나 진술권 보장에 필요하면 원칙적으로 허가해야 하고, 불허 또는 조건부 허가 시 이유를 통지해야 합니다.",
+      "editorial_status": "approved",
+      "version": "0.1.0",
+      "lifecycle": "currently_effective",
+      "law_key": "criminal_procedure",
+      "law_name_ko": "형사소송법",
+      "article_no": "제294조의4",
+      "promulgation_date": "2025-03-18",
+      "effective_date": "2025-09-19",
+      "reviewed_at": "2026-07-21T13:45:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "affected_audiences": [
+        "진행 중인 형사재판 기록이 필요한 범죄피해자와 유족",
+        "민사상 권리구제 또는 피해자 진술을 준비하는 대리인"
+      ],
+      "changed_points": [
+        "필요성이 인정될 때 허가할 수 있다는 재량 문언이 원칙적으로 허가해야 한다는 문언으로 바뀌었습니다.",
+        "피해자 진술권 보장 필요성이 독립적인 허가 사유로 명시됐습니다.",
+        "불허 또는 사용목적 제한·조건부 허가 시 이유 통지 절차가 추가됐습니다."
+      ],
+      "action_checklist": [
+        "사건번호와 재판부를 확인합니다.",
+        "필요한 기록 범위와 권리구제·진술 준비 목적을 구체적으로 적습니다.",
+        "불허 또는 조건부 허가라면 통지된 이유를 확인합니다.",
+        "등사자료의 목적 외 공개와 관계인 명예·생활 평온 침해를 피합니다."
+      ],
+      "transition_status": "verified",
+      "transition_note_ko": "개정 규정은 2025년 9월 19일 이후 제294조의4 제1항에 따라 신청하는 경우부터 적용됩니다.",
+      "norm_delta": {
+        "change_type": "legal_effect_change",
+        "changed_slots": ["conditions", "exception", "operation", "legal_effect", "transition_rule"],
+        "old_frame": {
+          "source_snapshot_ids": ["snapshot:dc35ad444d8922b17c1542d79c4dd2e7"],
+          "actor": ["소송계속 중인 사건의 피해자 등"],
+          "object": ["소송기록 열람·등사"],
+          "trigger": ["피해자 등의 신청"],
+          "conditions": ["권리구제 필요성 또는 그 밖의 정당한 사유와 상당성"],
+          "exception": [],
+          "operation": ["재판장이 범죄 성질·심리 상황 등을 고려"],
+          "legal_effect": ["재판장이 허가할 수 있음"],
+          "temporal_rule": ["2025-09-18까지"],
+          "transition_rule": ["종전 신청에는 종전 규율 적용"]
+        },
+        "new_frame": {
+          "source_snapshot_ids": [
+            "snapshot:f28fe4d7ab23fd627d30a225f322de2d",
+            "snapshot:dc35ad444d8922b17c1542d79c4dd2e7"
+          ],
+          "actor": ["소송계속 중인 사건의 피해자 등"],
+          "object": ["소송기록 열람·등사"],
+          "trigger": ["피해자 등의 신청"],
+          "conditions": ["권리구제 또는 피해자 진술권 보장에 필요"],
+          "exception": ["법정 제한사유 또는 심리 상황상 상당한 이유"],
+          "operation": ["불허·조건부 허가 시 이유 통지"],
+          "legal_effect": ["필요성이 인정되면 원칙적으로 허가"],
+          "temporal_rule": ["2025-09-19부터"],
+          "transition_rule": ["시행 이후 신청분부터 적용"]
+        },
+        "legal_effect_delta_ko": "재량적 허가 중심에서 필요성이 인정되면 원칙적으로 허가하는 구조로 강화됐습니다.",
+        "life_situation_impacts": [
+          "신청서에 권리구제 또는 진술 준비 필요성을 구체적으로 적을 실익이 커졌습니다.",
+          "불허·조건부 허가 이유를 받아 후속 대응을 검토할 수 있습니다."
+        ],
+        "unresolved_questions": []
+      },
+      "related_issue_card_ids": [],
+      "related_content_ids": [
+        "content.victim-access-to-trial-records"
+      ],
+      "assertion_ids": [
+        "assertion.kr.change.victim-trial-record-access-2025.old",
+        "assertion.kr.change.victim-trial-record-access-2025.current"
+      ],
+      "source_event_ids": ["event:victim-trial-record-access-2025"],
+      "old_snapshot_ids": ["snapshot:dc35ad444d8922b17c1542d79c4dd2e7"],
+      "new_snapshot_ids": [
+        "snapshot:f28fe4d7ab23fd627d30a225f322de2d",
+        "snapshot:dc35ad444d8922b17c1542d79c4dd2e7"
+      ]
+    }
+  ],
+  "checks": {
+    "official_web_verified": true,
+    "active_db_exact": true,
+    "old_current_separated": true,
+    "transition_rule_present": true,
+    "named_author_publication": false
+  }
+}

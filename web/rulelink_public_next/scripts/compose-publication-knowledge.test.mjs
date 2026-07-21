@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
+import './law-change-topic-handoff.test.mjs';
+
 import {applyKnowledgeComposition, assembleKnowledge, contentReceipt} from './compose-publication-knowledge.mjs';
 
 function descriptor(topicId, file) { return {topic_id: topicId, file}; }
