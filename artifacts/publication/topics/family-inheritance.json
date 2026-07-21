@@ -154,6 +154,26 @@
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1039%EC%A1%B0",
       "source_snapshot_id": "snapshot:5ee8ab3bdf7ef8946157d6de389295f3",
       "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.civil-act-ko-1026",
+      "source_id": "civil_act_ko_1026",
+      "law_name_ko": "민법",
+      "article_no": "제1026조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1026%EC%A1%B0",
+      "source_snapshot_id": "snapshot:3089d19af02db3f32b2d70f2258089fb",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.family-inheritance.src-supreme-disposal-187951",
+      "source_id": "src-supreme-disposal-187951",
+      "source_kind": "precedent",
+      "title_ko": "대법원 2016. 12. 29. 선고 2013다73520 판결",
+      "case_number": "2013다73520",
+      "decision_date": "2016-12-29",
+      "official_url": "https://www.law.go.kr/precInfoP.do?precSeq=187951",
+      "source_snapshot_id": "snapshot:18b62b10e79d258e45e1b367b333d586",
+      "last_verified_at": "2026-07-21T08:30:00+00:00"
     }
   ],
   "topic_hubs": [
@@ -168,6 +188,7 @@
         "content.inheritance-renunciation-procedure",
         "content.limited-acceptance-effect",
         "content.special-limited-acceptance-late-debt",
+        "content.estate-disposal-before-renunciation",
         "content.limited-acceptance-creditor-notice",
         "content.inheritance-assets-and-debts-checklist"
       ]
@@ -275,6 +296,20 @@
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1019"
       ]
+    },
+    {
+      "rule_id": "rule.family-inheritance.rule-deemed-acceptance",
+      "title_ko": "상속재산 처분, 기간 내 포기·한정승인 미실시, 포기·한정승인 후 은닉·부정…",
+      "proposition_ko": "상속재산 처분, 기간 내 포기·한정승인 미실시, 포기·한정승인 후 은닉·부정소비 등은 법정단순승인 사유가 될 수 있다.",
+      "norm": {
+        "actor_ko": "상속재산을 처분하려는 상속인",
+        "conditions_ko": "상속포기·한정승인 전후에 상속재산을 처분하거나 은닉·부정소비해 법정단순승인 사유가 문제되는 경우",
+        "legal_effect_ko": "상속재산 처분, 기간 내 포기·한정승인 미실시, 포기·한정승인 후 은닉·부정소비 등은 법정단순승인 사유가 될 수 있다."
+      },
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1026",
+        "coord.family-inheritance.src-supreme-disposal-187951"
+      ]
     }
   ],
   "scenario_branches": [
@@ -341,6 +376,20 @@
       ],
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1019"
+      ]
+    },
+    {
+      "scenario_id": "scenario.family-inheritance.sc-use-estate-money",
+      "question_ko": "포기 신고 뒤 수리 전에 상속예금을 인출·사용한 경우",
+      "decision_fact_ko": "상속포기 신고 전후에 상속재산을 인출·매각·소비했는지와 사용 목적",
+      "when_true_ko": "보존행위나 상속채무 변제 범위를 넘어 처분한 경우 법정단순승인 가능성을 판례 법리에 따라 검토합니다.",
+      "when_false_ko": "상속재산을 분리 보관하고 처분하지 않았다면 포기 신고와 수리 절차를 계속 진행합니다.",
+      "rule_ids": [
+        "rule.family-inheritance.rule-deemed-acceptance"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1026",
+        "coord.family-inheritance.src-supreme-disposal-187951"
       ]
     }
   ],
@@ -753,6 +802,78 @@
         ],
         "href": "https://liale-review.lolphysical.xyz"
       }
+    },
+    {
+      "content_id": "content.estate-disposal-before-renunciation",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "expires_at": "2026-10-21T00:00:00+00:00",
+      "slug": "estate-disposal-before-renunciation",
+      "title_ko": "상속포기 신고 후 재산을 써도 되는가",
+      "one_line_answer_ko": "포기 신고를 했더라도 수리심판 고지 전 상속재산을 처분하면 법정단순승인으로 볼 수 있다는 판례가 있으므로 임의 인출·매각을 피해야 한다.",
+      "audience_situation_ko": "상속포기 신청은 했으니 고인의 예금을 장례비로 써도 되나?",
+      "key_points_ko": [
+        "신고일과 포기 효력 발생 시점을 구별한다.",
+        "상속재산 처분행위는 법정단순승인 사유가 될 수 있다.",
+        "보존행위인지 처분행위인지 구체적으로 구분한다."
+      ],
+      "action_steps_ko": [
+        "상속계좌·차량·부동산을 동결해 관리한다.",
+        "이미 인출하거나 처분한 내역을 즉시 정리한다.",
+        "사용 목적과 수령자를 기록한다.",
+        "포기 수리심판 고지일을 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "포기 신고일",
+        "수리심판 고지일",
+        "처분 재산",
+        "처분일",
+        "금액·대금",
+        "사용처",
+        "보존 필요성",
+        "다른 상속인의 동의"
+      ],
+      "caution_ko": "장례비 사용 등이 언제나 처분행위가 아니라고 단정할 수 없으므로 집행 전에 개별 검토가 필요하다.",
+      "search_intents_ko": [
+        "상속포기 후 예금 인출",
+        "상속재산 처분 단순승인",
+        "포기 수리 전 재산 사용"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "신고 접수 뒤에도 처분을 조심해야 한다",
+          "paragraphs_ko": [
+            "대법원은 상속포기 신고 뒤라도 수리심판이 고지되기 전에 상속재산을 처분하면 법정단순승인 사유가 될 수 있다고 판단했습니다. 포기의 효력이 신고 즉시 완성된다고 생각하면 위험합니다.",
+            "예금 인출, 차량·부동산 매각, 채권 추심처럼 재산의 법적·사실적 상태를 바꾸는 행위가 무엇이었는지 정확히 기록합니다."
+          ]
+        },
+        {
+          "heading_ko": "보존과 처분, 상속재산과 고유재산을 구분한다",
+          "paragraphs_ko": [
+            "재산을 훼손되지 않게 보관하는 행위와 재산을 소비·매각하는 행위는 같지 않습니다. 다만 장례비 지출처럼 목적이 정당해 보이는 경우도 구체적 금액과 경위에 따라 판단이 필요하므로 집행 전에 검토하는 편이 안전합니다.",
+            "사망보험금처럼 수익자 지정에 따라 상속인의 고유재산이 될 수 있는 항목도 있으므로, 피상속인의 모든 명의·관련 재산을 일률적으로 상속재산이라 단정하지 않습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.family-inheritance.rule-deemed-acceptance",
+        "rule.family-inheritance.rule-renunciation"
+      ],
+      "scenario_ids": [
+        "scenario.family-inheritance.sc-use-estate-money"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1026",
+        "coord.family-inheritance.src-supreme-disposal-187951",
+        "coord.family-inheritance.civil-act-ko-1041",
+        "coord.family-inheritance.civil-act-ko-1042",
+        "coord.family-inheritance.civil-act-ko-1043"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "related_content_ids": []
     },
     {
       "content_id": "content.limited-acceptance-creditor-notice",

@@ -398,6 +398,24 @@ function looksLikeInternalPath(value) {
 }
 
 function checkStableKnowledgeSource(source, name, errors) {
+  if (source.source_kind === 'precedent') {
+    if (typeof source.title_ko !== 'string' || !source.title_ko.trim()) errors.push(`${name}의 판례 제목이 없습니다.`);
+    if (typeof source.case_number !== 'string' || !/^\d{2,4}[가-힣]+\d+$/.test(source.case_number.trim())) errors.push(`${name}의 사건번호가 유효하지 않습니다.`);
+    if (!isIsoDate(source.decision_date)) errors.push(`${name}의 선고일이 유효한 YYYY-MM-DD 날짜가 아닙니다.`);
+    if ('law_name_ko' in source || 'article_no' in source) errors.push(`${name}에 판례와 법령 조문 필드가 혼합돼 있습니다.`);
+    try {
+      const url = new URL(source.official_url);
+      const stableId = url.searchParams.get('precSeq') || url.searchParams.get('evtNo');
+      if (!url.pathname.endsWith('/precInfoP.do') || !stableId) errors.push(`${name}의 공식 URL에 판례 문서 식별자가 없습니다.`);
+    } catch {
+      // URL 형식 오류는 isOfficialHttpsUrl에서 별도로 보고한다.
+    }
+    return;
+  }
+  if (source.source_kind !== undefined && source.source_kind !== 'statute') {
+    errors.push(`${name}의 source_kind가 허용되지 않습니다.`);
+    return;
+  }
   if (typeof source.law_name_ko !== 'string' || !source.law_name_ko.trim()) {
     errors.push(`${name}의 law_name_ko가 없습니다.`);
     return;
