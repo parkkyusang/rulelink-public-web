@@ -5,7 +5,8 @@
   "scripts": {
     "sync-publication": "node scripts/sync-publication.mjs",
     "validate-publication": "node scripts/validate-publication-bundle.mjs",
-    "test:publication": "node --test scripts/validate-publication-bundle.test.mjs",
+    "test:publication": "node --test scripts/validate-publication-bundle.test.mjs scripts/promote-publication.test.mjs",
+    "promote:publication": "node scripts/promote-publication.mjs",
     "predev": "npm run sync-publication && npm run validate-publication",
     "dev": "next dev -p 8800",
     "dev:next": "next dev",
