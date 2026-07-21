@@ -1,6 +1,8 @@
 import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
+import {knowledgeContentTypeLabel} from '@/lib/content-labels';
+import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {findKnowledgeEntry, knowledgeDetail, listKnowledgeEntries} from '@/lib/publication';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
@@ -40,6 +42,9 @@ export default async function KnowledgePage({params}: Props) {
   if (!entry) notFound();
   const {rules, scenarios, sources, hubs, related} = await knowledgeDetail(entry);
   const canonicalUrl = `${site.url}/ko/knowledge/${entry.slug}`;
+  const officialSourceUrls = sources
+    .map(source => browserOfficialSourceUrl(source))
+    .filter((url): url is string => Boolean(url));
   return (
     <main className="knowledgePage">
       <script
@@ -53,6 +58,7 @@ export default async function KnowledgePage({params}: Props) {
           keywords: entry.search_intents_ko,
           inLanguage: 'ko-KR',
           dateModified: entry.reviewed_at,
+          isBasedOn: officialSourceUrls,
           isPartOf: {
             '@type': 'WebSite',
             name: site.name,
@@ -71,7 +77,7 @@ export default async function KnowledgePage({params}: Props) {
         {hubs[0] ? <><span>/</span><a href={`/ko/hubs/${hubs[0].slug}`}>{hubs[0].title_ko}</a></> : null}
       </nav>
       <header className="knowledgeHero">
-        <p className="eyebrow">{contentTypeLabel(entry.content_type)}</p>
+        <p className="eyebrow">{knowledgeContentTypeLabel(entry.content_type)}</p>
         <h1>{entry.title_ko}</h1>
         <p>{entry.one_line_answer_ko}</p>
         <span className="audienceBadge">{entry.audience_situation_ko}</span>
@@ -173,8 +179,8 @@ export default async function KnowledgePage({params}: Props) {
             <h2>공식 근거</h2>
             <p className={styles.sourcesIntro}>원문 주소와 마지막 확인일을 함께 표시합니다.</p>
             {sources.map(source => (
-              <a className={styles.sourceLink} href={source.official_url} key={source.coordinate_id} rel="noreferrer" target="_blank">
-                <span>공식 원문 보기 <span aria-hidden="true">↗</span></span>
+              <a className={styles.sourceLink} href={browserOfficialSourceUrl(source) ?? source.official_url} key={source.coordinate_id} rel="noreferrer" target="_blank">
+                <span>{source.law_name_ko} {source.article_no} 원문 <span aria-hidden="true">↗</span></span>
                 <small>원문 확인 {formatDate(source.last_verified_at)}</small>
               </a>
             ))}
@@ -192,20 +198,6 @@ export default async function KnowledgePage({params}: Props) {
       ) : null}
     </main>
   );
-}
-
-function contentTypeLabel(type: string): string {
-  const labels: Record<string, string> = {
-    law_change: '법령 변경',
-    doctrine_explainer: '법리 해설',
-    fact_branch: '사실 분기',
-    precedent_doctrine: '판례 법리',
-    similar_case_comparison: '유사사례 비교',
-    misconception_correction: '오해 바로잡기',
-    procedure_evidence: '절차와 증거',
-    recurring_issue_generalization: '반복 쟁점',
-  };
-  return labels[type] ?? '생활법률 지식';
 }
 
 function formatDate(value: string): string {

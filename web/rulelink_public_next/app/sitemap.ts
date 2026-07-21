@@ -1,5 +1,7 @@
 import type {MetadataRoute} from 'next';
 
+export const revalidate = 3600;
+
 import {
   listChangeBriefs,
   listKnowledgeEntries,

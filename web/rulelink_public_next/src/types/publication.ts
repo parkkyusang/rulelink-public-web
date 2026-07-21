@@ -63,6 +63,8 @@ export type PublicCatalog = {
 export type PublicKnowledgeSource = {
   coordinate_id: string;
   source_id: string;
+  law_name_ko: string;
+  article_no: string;
   official_url: string;
   source_snapshot_id: string;
   last_verified_at: string;

@@ -2,6 +2,7 @@ import {listChangeBriefs, listKnowledgeEntries} from '@/lib/publication';
 import {site} from '@/lib/site';
 
 export const dynamic = 'force-static';
+export const revalidate = 3600;
 
 export async function GET() {
   const [briefs, knowledgeEntries] = await Promise.all([listChangeBriefs(), listKnowledgeEntries()]);

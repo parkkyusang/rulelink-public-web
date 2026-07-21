@@ -143,6 +143,22 @@ test('검증되지 않은 주장 근거를 거부한다', async () => {
   assert.match(result.stderr, /검증 상태가 아닙니다/);
 });
 
+test('공개 지식 근거의 URL이 법령명과 조문번호에 맞지 않으면 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  bundle.knowledge.sources[0].official_url = 'https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%B2%95/%EC%A0%9C2%EC%A1%B0';
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /법령명·조문번호와 일치하는 안정 주소/);
+});
+
+test('공개 지식 근거의 법령명이나 조문번호가 없으면 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  delete bundle.knowledge.sources[0].article_no;
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /article_no가 유효한 조문 표기가 아닙니다/);
+});
+
 test('미래 근거 점검시각을 거부한다', async () => {
   const bundle = knowledgeBundle();
   bundle.knowledge.sources[0].last_verified_at = '2026-07-22T00:00:00+09:00';
@@ -306,8 +322,10 @@ function knowledgeBundle() {
       schema: 'rulelink_public_knowledge_index_v1',
       sources: [{
         coordinate_id: 'source.one',
-        source_id: 'law.one',
-        official_url: 'https://www.law.go.kr/법령/테스트법',
+        source_id: 'test_law_ko_0001',
+        law_name_ko: '테스트법',
+        article_no: '제1조',
+        official_url: 'https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%B2%95/%EC%A0%9C1%EC%A1%B0',
         source_snapshot_id: 'snapshot.one',
         last_verified_at: '2026-07-21T00:00:00+00:00',
       }],

@@ -1,0 +1,53 @@
+name: 공개본 최신성 일일 점검
+
+on:
+  schedule:
+    # 매일 한국시간 오전 7시 17분
+    - cron: "17 22 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publication-freshness-daily
+  cancel-in-progress: true
+
+jobs:
+  freshness:
+    name: 재검토 기한 및 시행 상태 점검
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: web/rulelink_public_next
+
+    steps:
+      - name: 저장소 받기
+        uses: actions/checkout@v4
+
+      - name: Node.js 준비
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/rulelink_public_next/package-lock.json
+
+      - name: 고정 의존성 설치
+        run: npm ci
+
+      - name: 불변 출판 이력 확인
+        env:
+          RULELINK_REQUIRE_PUBLICATION_BUNDLE: "true"
+        run: npm run validate:publication-history
+
+      - name: 현재 승인본 동기화
+        run: npm run sync-publication
+
+      - name: 재검토 기한 및 시행 상태 차단 검사
+        env:
+          RULELINK_REQUIRE_PUBLICATION_BUNDLE: "true"
+        run: npm run validate-publication
+
+      - name: 최신성 보고서 생성 및 30일 전 알림
+        run: npm run report:freshness -- --fail-on-attention >> "$GITHUB_STEP_SUMMARY"

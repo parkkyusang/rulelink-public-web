@@ -128,6 +128,7 @@ function validateKnowledge(value, now, errors) {
     if (!isOfficialHttpsUrl(source.official_url)) {
       errors.push(`공개 지식 근거 ${label(source, 'coordinate_id')}의 공식 URL이 허용된 정부 도메인이 아닙니다.`);
     }
+    checkStableKnowledgeSource(source, `공개 지식 근거 ${label(source, 'coordinate_id')}`, errors);
     checkNotFutureTimestamp(source.last_verified_at, `공개 지식 근거 ${label(source, 'coordinate_id')}의 last_verified_at`, now, errors);
   }
 
@@ -338,6 +339,25 @@ function looksLikeInternalPath(value) {
     || /(?:^|[/\\])inbox[/\\]jobs(?:[/\\]|$)/i.test(value)
     || /(?:^|[/\\])\.codex[/\\]skills(?:[/\\]|$)/i.test(value)
     || /(?:^|[/\\])data[/\\]db(?:[/\\]|$)/i.test(value);
+}
+
+function checkStableKnowledgeSource(source, name, errors) {
+  if (typeof source.law_name_ko !== 'string' || !source.law_name_ko.trim()) {
+    errors.push(`${name}의 law_name_ko가 없습니다.`);
+    return;
+  }
+  if (typeof source.article_no !== 'string' || !/^제[1-9]\d*조(?:의[1-9]\d*)?$/.test(source.article_no.trim())) {
+    errors.push(`${name}의 article_no가 유효한 조문 표기가 아닙니다.`);
+    return;
+  }
+  const expected = new URL(`https://www.law.go.kr/${['법령', source.law_name_ko.trim(), source.article_no.trim()].map(encodeURIComponent).join('/')}`).href;
+  try {
+    if (new URL(source.official_url).href !== expected) {
+      errors.push(`${name}의 공식 URL이 법령명·조문번호와 일치하는 안정 주소가 아닙니다.`);
+    }
+  } catch {
+    // URL 형식 오류는 isOfficialHttpsUrl에서 별도로 보고한다.
+  }
 }
 
 function isOfficialHttpsUrl(value) {

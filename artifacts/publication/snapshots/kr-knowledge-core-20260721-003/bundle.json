@@ -247,224 +247,288 @@
       {
         "coordinate_id": "coord.administrative-appeals-16-2.historical-2025-10-01",
         "source_id": "administrative_appeals_enforcement_decree_ko_0016_02",
-        "official_url": "https://www.law.go.kr/LSW/lawView.do?lawId=005621",
+        "law_name_ko": "행정심판법 시행령",
+        "article_no": "제16조의2",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%96%89%EC%A0%95%EC%8B%AC%ED%8C%90%EB%B2%95%20%EC%8B%9C%ED%96%89%EB%A0%B9/%EC%A0%9C16%EC%A1%B0%EC%9D%982",
         "source_snapshot_id": "snapshot:088d4ff81a0e97e58d2f1b0bc746d895",
         "last_verified_at": "2026-07-20T06:30:00+00:00"
       },
       {
         "coordinate_id": "coord.administrative-appeals-16-2.current-2026-06-16",
         "source_id": "administrative_appeals_enforcement_decree_ko_0016_02",
-        "official_url": "https://www.law.go.kr/LSW/lawView.do?lawId=005621",
+        "law_name_ko": "행정심판법 시행령",
+        "article_no": "제16조의2",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%96%89%EC%A0%95%EC%8B%AC%ED%8C%90%EB%B2%95%20%EC%8B%9C%ED%96%89%EB%A0%B9/%EC%A0%9C16%EC%A1%B0%EC%9D%982",
         "source_snapshot_id": "snapshot:f46e52f238cfcb804b595d3f2a1447ec",
         "last_verified_at": "2026-07-20T06:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1000",
         "source_id": "civil_act_ko_1000",
-        "official_url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1026990813",
+        "law_name_ko": "민법",
+        "article_no": "제1000조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1000%EC%A1%B0",
         "source_snapshot_id": "snapshot:5bb3d628e97ff4cb9ae71f7cc2f9c556",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1003",
         "source_id": "civil_act_ko_1003",
-        "official_url": "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=1003&lsiSeq=284415&urlMode=lsScJoRltInfoR",
+        "law_name_ko": "민법",
+        "article_no": "제1003조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1003%EC%A1%B0",
         "source_snapshot_id": "snapshot:c0d629f570ce1480d72712c4fb2f6d4b",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1019",
         "source_id": "civil_act_ko_1019",
-        "official_url": "https://www.law.go.kr/LSW/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=900034462",
+        "law_name_ko": "민법",
+        "article_no": "제1019조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1019%EC%A1%B0",
         "source_snapshot_id": "snapshot:b9f244982ab300cd344069c882d8e66f",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1041",
         "source_id": "civil_act_ko_1041",
-        "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=58429",
+        "law_name_ko": "민법",
+        "article_no": "제1041조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1041%EC%A1%B0",
         "source_snapshot_id": "snapshot:3d41068ed933f7fedc0e8e6991cacfe1",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1042",
         "source_id": "civil_act_ko_1042",
-        "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=58429",
+        "law_name_ko": "민법",
+        "article_no": "제1042조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1042%EC%A1%B0",
         "source_snapshot_id": "snapshot:3e8ef32adeedcf6b8f18332cbad7bb0a",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1043",
         "source_id": "civil_act_ko_1043",
-        "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=58429",
+        "law_name_ko": "민법",
+        "article_no": "제1043조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1043%EC%A1%B0",
         "source_snapshot_id": "snapshot:cd1ffa531ba8a186837e25d6e9e707fb",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1028",
         "source_id": "civil_act_ko_1028",
-        "official_url": "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=1028&lsiSeq=284415&urlMode=lsScJoRltInfoR",
+        "law_name_ko": "민법",
+        "article_no": "제1028조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1028%EC%A1%B0",
         "source_snapshot_id": "snapshot:ff8a4307ac09a35a5c39e10e5dd7729b",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1030",
         "source_id": "civil_act_ko_1030",
-        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "law_name_ko": "민법",
+        "article_no": "제1030조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1030%EC%A1%B0",
         "source_snapshot_id": "snapshot:d3d684ccee303f8cd1f9b6b8f69b6361",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1031",
         "source_id": "civil_act_ko_1031",
-        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "law_name_ko": "민법",
+        "article_no": "제1031조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1031%EC%A1%B0",
         "source_snapshot_id": "snapshot:552587cdda68a86c4770c1b712eebfe5",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1032",
         "source_id": "civil_act_ko_1032",
-        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "law_name_ko": "민법",
+        "article_no": "제1032조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1032%EC%A1%B0",
         "source_snapshot_id": "snapshot:2e8067745cca373db77bb8462b9ab9ed",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1033",
         "source_id": "civil_act_ko_1033",
-        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "law_name_ko": "민법",
+        "article_no": "제1033조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1033%EC%A1%B0",
         "source_snapshot_id": "snapshot:f31b5fb63151869da3fe8ce40625701d",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1034",
         "source_id": "civil_act_ko_1034",
-        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "law_name_ko": "민법",
+        "article_no": "제1034조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1034%EC%A1%B0",
         "source_snapshot_id": "snapshot:b18e757a09f543b4e7f3ea3319e9f134",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1035",
         "source_id": "civil_act_ko_1035",
-        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "law_name_ko": "민법",
+        "article_no": "제1035조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1035%EC%A1%B0",
         "source_snapshot_id": "snapshot:8571ec381e24d6b7518e58b099e01d77",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1036",
         "source_id": "civil_act_ko_1036",
-        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "law_name_ko": "민법",
+        "article_no": "제1036조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1036%EC%A1%B0",
         "source_snapshot_id": "snapshot:7599f8d81a45a306dd50596b8ebcc2eb",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1037",
         "source_id": "civil_act_ko_1037",
-        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "law_name_ko": "민법",
+        "article_no": "제1037조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1037%EC%A1%B0",
         "source_snapshot_id": "snapshot:0bfc3dfd27e08026aa65817eccb119fe",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1038",
         "source_id": "civil_act_ko_1038",
-        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "law_name_ko": "민법",
+        "article_no": "제1038조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1038%EC%A1%B0",
         "source_snapshot_id": "snapshot:5ff9144670cafc7ce7139e1d85b8c8cb",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.family-inheritance.civil-act-ko-1039",
         "source_id": "civil_act_ko_1039",
-        "official_url": "https://law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=111500000&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "law_name_ko": "민법",
+        "article_no": "제1039조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1039%EC%A1%B0",
         "source_snapshot_id": "snapshot:5ee8ab3bdf7ef8946157d6de389295f3",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0598",
         "source_id": "civil_act_ko_0598",
-        "official_url": "https://www.law.go.kr/LSW/lsLinkProc.do?joNo=059800&lnkJoNo=undefined&lsClsCd=L&lsId=001706&lsNm=%EB%AF%BC%EB%B2%95&mode=4",
+        "law_name_ko": "민법",
+        "article_no": "제598조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C598%EC%A1%B0",
         "source_snapshot_id": "snapshot:62c9abd62ae2907181f1bf7197dc2e43",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0603",
         "source_id": "civil_act_ko_0603",
-        "official_url": "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0603&lsiSeq=284415&urlMode=lsScJoRltInfoR",
+        "law_name_ko": "민법",
+        "article_no": "제603조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C603%EC%A1%B0",
         "source_snapshot_id": "snapshot:620a0f688ebec421544fd799c874c735",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0476",
         "source_id": "civil_act_ko_0476",
-        "official_url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1023596075",
+        "law_name_ko": "민법",
+        "article_no": "제476조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C476%EC%A1%B0",
         "source_snapshot_id": "snapshot:17508bd1f1cc8b784be868019fd90482",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0477",
         "source_id": "civil_act_ko_0477",
-        "official_url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1023596075",
+        "law_name_ko": "민법",
+        "article_no": "제477조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C477%EC%A1%B0",
         "source_snapshot_id": "snapshot:8d4552e491f504df2b872e4798b13da7",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0478",
         "source_id": "civil_act_ko_0478",
-        "official_url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1023596075",
+        "law_name_ko": "민법",
+        "article_no": "제478조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C478%EC%A1%B0",
         "source_snapshot_id": "snapshot:0b076a247338119c3dd9802b24b51ae9",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0479",
         "source_id": "civil_act_ko_0479",
-        "official_url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1023596075",
+        "law_name_ko": "민법",
+        "article_no": "제479조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C479%EC%A1%B0",
         "source_snapshot_id": "snapshot:1ae84c4c6865a278b8cdfdbee34a15fb",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0428-02",
         "source_id": "civil_act_ko_0428_02",
-        "official_url": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1016736383",
+        "law_name_ko": "민법",
+        "article_no": "제428조의2",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C428%EC%A1%B0%EC%9D%982",
         "source_snapshot_id": "snapshot:73bd081839cacee21b7b1b32d357749d",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0428-03",
         "source_id": "civil_act_ko_0428_03",
-        "official_url": "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=03&joNo=0428&lsiSeq=284415&urlMode=lsScJoRltInfoR",
+        "law_name_ko": "민법",
+        "article_no": "제428조의3",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C428%EC%A1%B0%EC%9D%983",
         "source_snapshot_id": "snapshot:c5073f9edbc623b7e80ccad062d5fbcd",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0429",
         "source_id": "civil_act_ko_0429",
-        "official_url": "https://www.law.go.kr/LSW/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=900307360",
+        "law_name_ko": "민법",
+        "article_no": "제429조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C429%EC%A1%B0",
         "source_snapshot_id": "snapshot:6942ac509b9968cd14a4746cb2688113",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0428",
         "source_id": "civil_act_ko_0428",
-        "official_url": "https://www.law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=090800003&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "law_name_ko": "민법",
+        "article_no": "제428조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C428%EC%A1%B0",
         "source_snapshot_id": "snapshot:490368327e149e4e150b07272609641e",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.money-guarantee.civil-act-ko-0430",
         "source_id": "civil_act_ko_0430",
-        "official_url": "https://www.law.go.kr/LSW/LsiJoLinkP.do?docType=JO&joNo=090800003&languageType=KO&lsNm=%EB%AF%BC%EB%B2%95&paras=1",
+        "law_name_ko": "민법",
+        "article_no": "제430조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C430%EC%A1%B0",
         "source_snapshot_id": "snapshot:084379d3974c5260edbde413397e9d11",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.shared-mobility-accident.civil-act-ko-0758",
         "source_id": "civil_act_ko_0758",
-        "official_url": "https://law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0758&lsiSeq=284415&urlMode=lsScJoRltInfoR",
+        "law_name_ko": "민법",
+        "article_no": "제758조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C758%EC%A1%B0",
         "source_snapshot_id": "snapshot:3e889ba204742d5b6bead0009d0e244b",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       },
       {
         "coordinate_id": "coord.shared-mobility-accident.civil-act-ko-0750",
         "source_id": "civil_act_ko_0750",
-        "official_url": "https://law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0750&lsiSeq=284415&urlMode=lsScJoRltInfoR",
+        "law_name_ko": "민법",
+        "article_no": "제750조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C750%EC%A1%B0",
         "source_snapshot_id": "snapshot:cdf125767ab6640e07d557f6c73a0c53",
         "last_verified_at": "2026-07-21T08:30:00+00:00"
       }

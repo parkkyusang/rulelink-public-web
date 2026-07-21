@@ -6,7 +6,8 @@
     "sync-publication": "node scripts/sync-publication.mjs",
     "validate-publication": "node scripts/validate-publication-bundle.mjs",
     "validate:publication-history": "node scripts/validate-publication-history.mjs",
-    "test:publication": "node --test scripts/validate-publication-bundle.test.mjs scripts/promote-publication.test.mjs scripts/validate-publication-history.test.mjs scripts/report-publication-diff.test.mjs",
+    "validate:snapshot-diff": "node scripts/validate-publication-snapshot-diff.mjs",
+    "test:publication": "node --test scripts/validate-publication-bundle.test.mjs scripts/promote-publication.test.mjs scripts/validate-publication-history.test.mjs scripts/report-publication-diff.test.mjs scripts/validate-publication-snapshot-diff.test.mjs scripts/report-publication-freshness.test.mjs scripts/publication-freshness-runtime.test.mjs",
     "report:publication": "node scripts/report-publication-diff.mjs",
     "promote:publication": "node scripts/promote-publication.mjs",
     "predev": "npm run validate:publication-history && npm run sync-publication && npm run validate-publication",
@@ -17,7 +18,8 @@
     "smoke:public-build": "node scripts/smoke-public-build.mjs",
     "build:check": "node scripts/build-check.mjs",
     "start": "next start -p 8800",
-    "typecheck": "next typegen && tsc --noEmit"
+    "typecheck": "next typegen && tsc --noEmit",
+    "report:freshness": "node scripts/report-publication-freshness.mjs"
   },
   "dependencies": {
     "next": "16.2.9",
