@@ -302,6 +302,33 @@ test('내부 경로 형태의 출판 파일 해시 키를 거부한다', async (
   assert.match(result.stderr, /공개할 수 없는 키/);
 });
 
+test('주장별 공식 근거와 영수증을 갖춘 법률개념을 허용한다', async () => {
+  const bundle = knowledgeBundle();
+  addConcept(bundle);
+  const result = await validate(bundle);
+  assert.equal(result.status, 0, result.stderr);
+});
+
+test('법률개념 주장의 끊어진 근거 참조를 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  const concept = addConcept(bundle);
+  concept.assertions[0].source_coordinate_ids = ['source.missing'];
+  refreshConceptReceipts(bundle);
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /법률개념.*존재하지 않는 참조/);
+});
+
+test('법률개념의 쉬운 설명과 법률상 정의 역할이 빠지면 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  const concept = addConcept(bundle);
+  concept.assertions = concept.assertions.filter(assertion => assertion.role !== 'legal_definition');
+  refreshConceptReceipts(bundle);
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /legal_definition 주장이 없습니다/);
+});
+
 async function validate(payload) {
   const taskTemp = await mkdtemp(path.join(tmpdir(), 'rulelink-publication-guard-'));
   const bundlePath = path.join(taskTemp, 'bundle.json');
@@ -434,6 +461,59 @@ function knowledgeBundle() {
   }
   bundle.file_hashes[`knowledge-index:${bundle.knowledge.schema}`] = contentReceipt(bundle.knowledge);
   return bundle;
+}
+
+function addConcept(bundle) {
+  const concept = {
+    concept_id: 'concept.one',
+    version: '1.0.0',
+    slug: 'concept-one',
+    preferred_term_ko: '검증개념',
+    aliases_ko: ['개념별칭'],
+    plain_definition_ko: '일반인이 이해할 수 있는 쉬운 뜻입니다.',
+    legal_definition_ko: '검증 법령의 근거로 확정한 법률상 의미입니다.',
+    elements_ko: ['검증 요건이 충족되어야 합니다.'],
+    legal_effects_ko: ['검증된 법률효과가 발생합니다.'],
+    judgment_factors_ko: [],
+    limits_and_counterexamples_ko: ['구체적 사실에 따라 적용되지 않을 수 있습니다.'],
+    confused_with_ko: [],
+    examples_ko: ['검증 사실이 있으면 적용 여부를 살펴봅니다.'],
+    assertions: [
+      {
+        assertion_id: 'plain-definition',
+        role: 'plain_definition',
+        text_ko: '일반인이 이해할 수 있는 쉬운 뜻입니다.',
+        source_coordinate_ids: ['source.one'],
+      },
+      {
+        assertion_id: 'legal-definition',
+        role: 'legal_definition',
+        text_ko: '검증 법령의 근거로 확정한 법률상 의미입니다.',
+        source_coordinate_ids: ['source.one'],
+      },
+    ],
+    source_coordinate_ids: ['source.one'],
+    related_rule_ids: ['rule.one'],
+    related_concept_ids: [],
+    related_content_ids: ['content.one'],
+    reviewed_at: '2026-07-21T00:00:00+00:00',
+    expires_at: '2026-10-21T00:00:00+00:00',
+    editorial_status: 'approved',
+  };
+  bundle.knowledge.concept_cards = [concept];
+  bundle.knowledge.content_entries[0].concept_ids = [concept.concept_id];
+  refreshConceptReceipts(bundle);
+  return concept;
+}
+
+function refreshConceptReceipts(bundle) {
+  for (const entry of bundle.knowledge.content_entries) {
+    bundle.file_hashes[`knowledge:${entry.content_id}`] = contentReceipt(entry);
+  }
+  for (const concept of bundle.knowledge.concept_cards ?? []) {
+    bundle.file_hashes[`knowledge-concept:${concept.concept_id}`] = contentReceipt(concept);
+  }
+  bundle.file_hashes[`knowledge-index:${bundle.knowledge.schema}`] = contentReceipt(bundle.knowledge);
 }
 
 function contentReceipt(value) {
