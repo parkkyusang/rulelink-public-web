@@ -437,7 +437,7 @@ function knowledgeBundle() {
         rule_id: 'rule.one',
         title_ko: '법리',
         proposition_ko: '검증용 법리입니다.',
-        norm: {actor_ko: '당사자', conditions_ko: '요건', legal_effect_ko: '효과'},
+        norm: {actor_ko: '검증 법률관계의 권리·의무 당사자', conditions_ko: '검증 요건', legal_effect_ko: '검증 효과'},
         source_coordinate_ids: ['source.one'],
       }],
       scenario_branches: [{
