@@ -90,7 +90,10 @@ export default async function HomePage() {
               <p className="eyebrow">연결된 법률지식</p>
               <h2 id="knowledge-heading">법리에서 사실분기까지 이어서 봅니다.</h2>
             </div>
-            <p>한 번 쓴 글이 아니라, 같은 법리와 판단 사실을 여러 상황에서 다시 쓸 수 있게 연결한 지식입니다.</p>
+            <p>
+              한 번 쓴 글이 아니라, 같은 법리와 판단 사실을 여러 상황에서 다시 쓸 수 있게 연결한 지식입니다.
+              <br /><a className="cardLink" href="/ko/knowledge">전체 지식에서 검색하기 →</a>
+            </p>
           </div>
           {knowledgeHubs.length ? (
             <div className="hubRail">
