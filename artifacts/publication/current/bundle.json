@@ -1,8 +1,8 @@
 {
   "schema": "rulelink_published_bundle_v1",
-  "snapshot_id": "kr-knowledge-core-20260721-002",
+  "snapshot_id": "kr-knowledge-core-20260721-003",
   "built_at": "2026-07-21T08:30:00+00:00",
-  "source_snapshot_id": "multi-source:2d2cee55cdf2c94c4e70eca9c4fdf531",
+  "source_snapshot_id": "multi-source:2cfa8d3686e1089ec279ab0708176b39",
   "jurisdiction": "KR",
   "locale": "ko-KR",
   "cards": [],
@@ -224,22 +224,22 @@
     "change-brief-approval:change-brief-approval:draft.kr.change.administrative-appeals-16-2.001:bfd67ae12f04": "aeee98d37f7169116f8fec43e6d86bf3b62e6fb323ee6f36d8210dfbe0a32b32",
     "knowledge:administrative-appeals-depth-v1": "bad025b776e4036be720a1aef1548c1166e6156ae5574a6a8acf6ece6d573009",
     "knowledge-approval:derived-administrative-appeals-depth-20260721-001": "af7f7124f5083d155e1537d098a218f488484d94fa60fd0166c898e7eef1d5c9",
-    "knowledge:content.legal-heir-order-and-spouse": "ea451e319e307d61781ba73153f48dcf55224c430b9a0da66cb37a8f2b7764e2",
-    "knowledge:content.three-month-inheritance-decision-period": "a72295162979eceb2c66f5ed37a82660d34436bfbe3197b874545efe8ffe13d2",
-    "knowledge:content.inheritance-renunciation-procedure": "8e71d2d509e44fca5d978acc1f435408a19b580088a68f013d951664c13e6ec3",
-    "knowledge:content.limited-acceptance-effect": "7b0854ad818a5feda2d0a1e4065afa19a57d8fabc22718b85599621c13a2e2e9",
-    "knowledge:content.special-limited-acceptance-late-debt": "aacdff787e575d7bfd39a3fee304d8b526ebfa23f04e574311c28b2fd6792952",
-    "knowledge:content.limited-acceptance-creditor-notice": "65be3addf68c5bfb3d2dd1a7bdf2eb605b13bf5a682f72b61b78dd1c59e3c2bd",
-    "knowledge:content.bank-transfer-loan-or-gift": "21cae106748dc29f57c6a1e606fc52d471ca85b2406d83125961de3c5c414f9f",
-    "knowledge:content.loan-without-written-note": "d531b38550724ba6870373f1f94ac82b38171683bb7ad9b7641d2c7a78cbe321",
-    "knowledge:content.loan-without-repayment-date": "da2123c91664f78bbab895f7f5318dd7d43ee6874a3a87612f0aa4969eb59a2b",
-    "knowledge:content.partial-repayment-allocation": "32956422861389db1939e687955df7caaf7e69c2d700bf5cfeb14c12e2704b56",
-    "knowledge:content.guarantee-by-message-validity": "71c2174e31398ea6f6ab543b52a41c54e6b70847bdbd0996fa557cc2a851a875",
-    "knowledge:content.continuing-guarantee-maximum-amount": "8de2cdcaa2098d4b5143a025bc7c67a9491c37cca72f79dc54c676926a447e5c",
-    "knowledge:content.scope-of-guarantee-debt": "0bfbf7cef7cb30c03f8da64a0c1dc1e9ad2f31d2065cf7fa0211bf700da7ef8f",
+    "knowledge:content.legal-heir-order-and-spouse": "614b0334231397716df5c44cfb2f6bb688defda39b7e403f8dfe277747ba1aad",
+    "knowledge:content.three-month-inheritance-decision-period": "d6145e43b53645c8947f804ec16c209c0c4670dcd7300c4c79fbdc19f20f1440",
+    "knowledge:content.inheritance-renunciation-procedure": "7a85e79eab5369640975c4a326f3666e58f908bc7226577d6e1c140c17f06c33",
+    "knowledge:content.limited-acceptance-effect": "efca8ccbe169ca8abee929297ab478f73d5af51784427557af54996d5fbed239",
+    "knowledge:content.special-limited-acceptance-late-debt": "9d2679de20a06c2fb5d3c64d50cae03236261477a66c91a1b80dedd2602c5267",
+    "knowledge:content.limited-acceptance-creditor-notice": "ef283a771044d4cc9ec1e691a6996699cd3b5fc178efc694a738c3a7db618f54",
+    "knowledge:content.bank-transfer-loan-or-gift": "cc96a40387330b415bd12edc827b439746c7246822280ad579995814eaea2b10",
+    "knowledge:content.loan-without-written-note": "b807d80c4a7d18932a7989cff3f9037f30474e54e609a5a096c16da1b8ffaac3",
+    "knowledge:content.loan-without-repayment-date": "87d6b4ae7a0ac0bfa94fb93cbc6d3204669a3ad2d248545a84774e7669dc86b7",
+    "knowledge:content.partial-repayment-allocation": "5068b7fb12bd88bca0f9ba5e04348ae64552bc67f895f7e43e3379aac3e65873",
+    "knowledge:content.guarantee-by-message-validity": "c0b7f346cb7997bb0bb2ee0dde5ce2bc065e7db097d413fc301b2ecaf63c48ad",
+    "knowledge:content.continuing-guarantee-maximum-amount": "48bd25799c8ce69b52f12d7e9663f3b277ed985f61cddbe8f11119b0abbe8425",
+    "knowledge:content.scope-of-guarantee-debt": "e041283d06072aabc8124c4db4be1243cf695b7c067c5823be8ca74cfdf0f248",
     "knowledge:content.shared-mobility-private-facility-defect": "906b0c972cab1eeadc7bf6c45bdebb80315dbd9a259ea8bc3b08c1f3b43952ff",
     "knowledge:content.shared-mobility-other-road-user-fault": "e6f43717a7faf7bd539bde72527bb929ebafef5fda930e39e992abdd60114450",
-    "approval:db-grounded-20260721": "7de6471ce00dbed8cb9aa31106058923228339c016f6d39f7e0906961bc26c6a"
+    "approval:db-grounded-20260721": "0dc0a26b2e63c94489fd2525737cb80cbb8f8de3636b975fe9d3b15d307b889b"
   },
   "knowledge": {
     "schema": "rulelink_public_knowledge_index_v1",
@@ -1353,19 +1353,42 @@
       },
       {
         "content_id": "content.legal-heir-order-and-spouse",
-        "content_type": "doctrine",
+        "content_type": "doctrine_explainer",
         "editorial_status": "approved",
         "reviewed_at": "2026-07-21T08:30:00+00:00",
         "expires_at": "2026-10-21T00:00:00+00:00",
         "slug": "legal-heir-order-and-spouse",
         "title_ko": "누가 법정상속인이 되는가",
-        "one_line_answer_ko": "",
-        "audience_situation_ko": "",
-        "key_points_ko": [],
-        "action_steps_ko": [],
-        "facts_to_check_ko": [],
-        "caution_ko": "",
-        "search_intents_ko": [],
+        "one_line_answer_ko": "직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순으로 정하고 배우자는 직계비속 또는 직계존속과 공동상속하며 그들이 없으면 단독상속한다.",
+        "audience_situation_ko": "배우자·자녀·부모·형제자매 중 누가 먼저 상속받나?",
+        "key_points_ko": [
+          "가족관계도와 사망 선후를 먼저 확정한다.",
+          "동순위에서는 최근친과 공동상속 여부를 본다.",
+          "대습상속·결격·상속권 상실은 별도 분기다."
+        ],
+        "action_steps_ko": [
+          "가족관계증명서와 제적등본을 확보한다.",
+          "피상속인보다 먼저 사망한 가족을 표시한다.",
+          "배우자·자녀·부모 존재를 순서대로 확인한다.",
+          "포기·결격·상실선고 여부를 추가한다."
+        ],
+        "facts_to_check_ko": [
+          "사망일",
+          "법률상 배우자",
+          "직계비속",
+          "직계존속",
+          "형제자매",
+          "4촌 방계혈족",
+          "선사망자",
+          "입양관계",
+          "포기·결격 여부"
+        ],
+        "caution_ko": "사실혼 배우자와 법률상 배우자의 지위, 입양·친생관계는 별도 확인이 필요하다.",
+        "search_intents_ko": [
+          "법정상속 순위",
+          "배우자 상속순위",
+          "자녀 부모 형제 상속"
+        ],
         "body_sections": [
           {
             "heading_ko": "혈족의 순위와 배우자 지위를 함께 본다",
@@ -1400,19 +1423,41 @@
       },
       {
         "content_id": "content.three-month-inheritance-decision-period",
-        "content_type": "procedure",
+        "content_type": "procedure_evidence",
         "editorial_status": "approved",
         "reviewed_at": "2026-07-21T08:30:00+00:00",
         "expires_at": "2026-10-21T00:00:00+00:00",
         "slug": "three-month-inheritance-decision-period",
         "title_ko": "상속포기·한정승인 3개월은 언제부터 계산하나",
-        "one_line_answer_ko": "",
-        "audience_situation_ko": "",
-        "key_points_ko": [],
-        "action_steps_ko": [],
-        "facts_to_check_ko": [],
-        "caution_ko": "",
-        "search_intents_ko": [],
+        "one_line_answer_ko": "법은 상속개시 있음을 안 날부터 3개월을 기준으로 하므로 사망일만이 아니라 자신이 상속인이 되었음을 안 시점을 구체적으로 확인해야 한다.",
+        "audience_situation_ko": "사망일부터 무조건 3개월 안에 신청해야 하나?",
+        "key_points_ko": [
+          "사망 사실과 상속인 지위를 안 시점이 핵심이다.",
+          "선순위자 포기로 후순위가 된 경우 별도 기산점 쟁점이 생긴다.",
+          "기간이 부족하면 만료 전 연장청구 가능성을 검토한다."
+        ],
+        "action_steps_ko": [
+          "사망 사실을 안 날을 기록한다.",
+          "가족관계와 선순위자 포기 사실을 확인한다.",
+          "법원·채권자 통지 수령일을 보존한다.",
+          "3개월 만료 예상일을 달력에 표시한다.",
+          "필요하면 기간 연장청구를 준비한다."
+        ],
+        "facts_to_check_ko": [
+          "사망일",
+          "사망을 안 날",
+          "자신이 상속인임을 안 날",
+          "선순위자 포기 수리일",
+          "법원 통지일",
+          "채권통지일",
+          "연장청구 여부"
+        ],
+        "caution_ko": "기산점은 구체적 사정에 따라 다툼이 생길 수 있으므로 가장 이른 가능일을 기준으로 준비하는 편이 안전하다.",
+        "search_intents_ko": [
+          "상속포기 3개월 기산점",
+          "한정승인 기간",
+          "상속개시 있음을 안 날"
+        ],
         "body_sections": [
           {
             "heading_ko": "사망일만이 아니라 상속인임을 안 날을 본다",
@@ -1441,23 +1486,57 @@
         "hub_ids": [
           "hub.family-inheritance"
         ],
-        "related_content_ids": []
+        "related_content_ids": [],
+        "concierge_entry": {
+          "question_ko": "상속포기·한정승인 3개월은 언제부터 계산하나",
+          "decision_facts_ko": [
+            "사망일",
+            "사망을 안 날",
+            "자신이 상속인임을 안 날",
+            "선순위자 포기 수리일",
+            "법원 통지일",
+            "채권통지일",
+            "연장청구 여부"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
       },
       {
         "content_id": "content.inheritance-renunciation-procedure",
-        "content_type": "procedure",
+        "content_type": "procedure_evidence",
         "editorial_status": "approved",
         "reviewed_at": "2026-07-21T08:30:00+00:00",
         "expires_at": "2026-10-21T00:00:00+00:00",
         "slug": "inheritance-renunciation-procedure",
         "title_ko": "상속포기는 가족끼리 말하면 끝나는가",
-        "one_line_answer_ko": "",
-        "audience_situation_ko": "",
-        "key_points_ko": [],
-        "action_steps_ko": [],
-        "facts_to_check_ko": [],
-        "caution_ko": "",
-        "search_intents_ko": [],
+        "one_line_answer_ko": "민법상 상속포기는 3개월 기간 안에 가정법원에 신고해야 하며 가족 사이의 말이나 상속재산분할 합의만으로 같은 효력이 생기지 않는다.",
+        "audience_situation_ko": "재산을 받지 않겠다고 가족에게 말하거나 합의서에 서명하면 상속포기가 되나?",
+        "key_points_ko": [
+          "법원 신고와 가족 간 재산포기 표현을 구별한다.",
+          "포기 효력은 상속개시 때로 소급한다.",
+          "포기자가 생기면 다른 상속인의 지위·상속분을 다시 계산한다."
+        ],
+        "action_steps_ko": [
+          "관할 가정법원과 제출서류를 확인한다.",
+          "3개월 기한 안에 신고한다.",
+          "수리심판문과 확정 관련 서류를 보관한다.",
+          "다른 가족의 상속순위를 다시 점검한다."
+        ],
+        "facts_to_check_ko": [
+          "상속개시를 안 날",
+          "법원 신고일",
+          "관할법원",
+          "수리 여부",
+          "공동상속인",
+          "배우자 존재",
+          "후순위 상속인"
+        ],
+        "caution_ko": "상속포기는 특정 재산이나 특정 채무만 골라서 하는 방식이 아니다.",
+        "search_intents_ko": [
+          "상속포기 방법",
+          "가정법원 상속포기 신고",
+          "상속포기 가족 합의"
+        ],
         "body_sections": [
           {
             "heading_ko": "가족 간 합의와 법정 상속포기는 다르다",
@@ -1492,23 +1571,58 @@
         "hub_ids": [
           "hub.family-inheritance"
         ],
-        "related_content_ids": []
+        "related_content_ids": [],
+        "concierge_entry": {
+          "question_ko": "상속포기는 가족끼리 말하면 끝나는가",
+          "decision_facts_ko": [
+            "상속개시를 안 날",
+            "법원 신고일",
+            "관할법원",
+            "수리 여부",
+            "공동상속인",
+            "배우자 존재",
+            "후순위 상속인"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
       },
       {
         "content_id": "content.limited-acceptance-effect",
-        "content_type": "doctrine",
+        "content_type": "doctrine_explainer",
         "editorial_status": "approved",
         "reviewed_at": "2026-07-21T08:30:00+00:00",
         "expires_at": "2026-10-21T00:00:00+00:00",
         "slug": "limited-acceptance-effect",
         "title_ko": "한정승인은 빚을 전혀 갚지 않는 제도인가",
-        "one_line_answer_ko": "",
-        "audience_situation_ko": "",
-        "key_points_ko": [],
-        "action_steps_ko": [],
-        "facts_to_check_ko": [],
-        "caution_ko": "",
-        "search_intents_ko": [],
+        "one_line_answer_ko": "한정승인은 채무를 없애는 것이 아니라 상속으로 취득한 재산의 한도에서 피상속인의 채무와 유증을 변제하는 조건으로 상속을 승인하는 제도다.",
+        "audience_situation_ko": "한정승인을 하면 상속채무를 모두 없앨 수 있나?",
+        "key_points_ko": [
+          "상속포기와 한정승인의 효과를 구별한다.",
+          "상속재산과 고유재산을 회계상 분리해 관리한다.",
+          "수리 후에도 공고·최고·배당변제 절차가 남는다."
+        ],
+        "action_steps_ko": [
+          "적극재산과 채무 목록을 작성한다.",
+          "재산목록을 붙여 법원에 신고한다.",
+          "상속재산을 개인재산과 분리한다.",
+          "수리 후 채권자 공고와 변제 절차를 진행한다."
+        ],
+        "facts_to_check_ko": [
+          "상속 적극재산",
+          "상속채무",
+          "유증",
+          "담보권",
+          "재산목록",
+          "법원 수리일",
+          "채권자 수",
+          "고유재산 혼입 여부"
+        ],
+        "caution_ko": "한정승인 수리만 받고 후속 청산절차를 하지 않으면 다른 채권자에 대한 책임 문제가 생길 수 있다.",
+        "search_intents_ko": [
+          "한정승인 효과",
+          "상속 빚 재산 한도",
+          "한정승인 채무 변제"
+        ],
         "body_sections": [
           {
             "heading_ko": "채무가 사라지는 것이 아니라 책임 재원이 제한된다",
@@ -1559,13 +1673,36 @@
         "expires_at": "2026-10-21T00:00:00+00:00",
         "slug": "special-limited-acceptance-late-debt",
         "title_ko": "3개월 뒤 숨은 빚을 알게 되면 방법이 없나",
-        "one_line_answer_ko": "",
-        "audience_situation_ko": "",
-        "key_points_ko": [],
-        "action_steps_ko": [],
-        "facts_to_check_ko": [],
-        "caution_ko": "",
-        "search_intents_ko": [],
+        "one_line_answer_ko": "중대한 과실 없이 채무초과 사실을 3개월 안에 몰랐다면 그 사실을 안 날부터 3개월 내 특별한정승인을 검토할 수 있다.",
+        "audience_situation_ko": "상속받은 뒤 한참 지나서 보증채무를 처음 알았다.",
+        "key_points_ko": [
+          "단순히 채무 하나를 늦게 안 것과 채무초과 사실을 늦게 안 것을 구분한다.",
+          "몰랐던 데 중대한 과실이 없었는지가 핵심이다.",
+          "알게 된 날과 3개월 기한을 입증할 자료가 필요하다."
+        ],
+        "action_steps_ko": [
+          "새 채무 통지서와 수령일을 보존한다.",
+          "기존 조사 범위와 결과를 정리한다.",
+          "적극재산과 전체 채무를 다시 계산한다.",
+          "안 날부터 3개월 만료일을 표시한다.",
+          "이미 처분한 상속재산도 목록화한다."
+        ],
+        "facts_to_check_ko": [
+          "새 채무 종류·금액",
+          "통지 수령일",
+          "채무초과를 안 날",
+          "기존 재산조사",
+          "조사하지 못한 이유",
+          "이미 처분한 재산",
+          "기존 변제",
+          "신고일"
+        ],
+        "caution_ko": "중대한 과실 여부와 채무초과를 실제로 안 날은 사실판단이므로 즉시 자료를 확보해야 한다.",
+        "search_intents_ko": [
+          "특별한정승인 숨은 빚",
+          "3개월 지난 상속채무",
+          "상속채무 초과 뒤늦게 발견"
+        ],
         "body_sections": [
           {
             "heading_ko": "늦게 안 채무와 늦게 안 채무초과를 구분한다",
@@ -1608,25 +1745,57 @@
         "related_content_ids": [],
         "concierge_entry": {
           "question_ko": "3개월 뒤 숨은 빚을 알게 되면 방법이 없나",
-          "decision_facts_ko": [],
+          "decision_facts_ko": [
+            "새 채무 종류·금액",
+            "통지 수령일",
+            "채무초과를 안 날",
+            "기존 재산조사",
+            "조사하지 못한 이유",
+            "이미 처분한 재산",
+            "기존 변제",
+            "신고일"
+          ],
           "href": "https://liale-review.lolphysical.xyz"
         }
       },
       {
         "content_id": "content.limited-acceptance-creditor-notice",
-        "content_type": "procedure",
+        "content_type": "procedure_evidence",
         "editorial_status": "approved",
         "reviewed_at": "2026-07-21T08:30:00+00:00",
         "expires_at": "2026-10-21T00:00:00+00:00",
         "slug": "limited-acceptance-creditor-notice",
         "title_ko": "한정승인 수리 뒤 바로 끝나는가",
-        "one_line_answer_ko": "",
-        "audience_situation_ko": "",
-        "key_points_ko": [],
-        "action_steps_ko": [],
-        "facts_to_check_ko": [],
-        "caution_ko": "",
-        "search_intents_ko": [],
+        "one_line_answer_ko": "수리 뒤 5일 내 일반상속채권자와 유증받은 자에게 공고하고 2개월 이상의 신고기간을 두는 등 청산절차를 이어가야 한다.",
+        "audience_situation_ko": "법원에서 한정승인이 수리됐으면 채권자 연락을 무시해도 되나?",
+        "key_points_ko": [
+          "법원 수리와 상속재산 청산은 별개 단계다.",
+          "알고 있는 채권자에게는 별도 최고가 문제된다.",
+          "우선권과 채권액에 따른 배당순서를 지켜야 한다."
+        ],
+        "action_steps_ko": [
+          "수리일을 확인한다.",
+          "공고 문안을 준비해 5일 내 공고한다.",
+          "알고 있는 채권자 목록을 만들고 최고한다.",
+          "신고기간 만료 뒤 채권·우선권을 확정한다.",
+          "상속재산 범위에서 배당변제한다."
+        ],
+        "facts_to_check_ko": [
+          "수리일",
+          "공고일",
+          "신고기간",
+          "알고 있는 채권자",
+          "담보권·우선권",
+          "채권액",
+          "상속재산 환가액",
+          "변제 내역"
+        ],
+        "caution_ko": "일부 채권자만 우선 변제하면 다른 채권자에 대한 손해배상 문제가 생길 수 있다.",
+        "search_intents_ko": [
+          "한정승인 후 절차",
+          "한정승인 공고 5일",
+          "상속채권자 배당변제"
+        ],
         "body_sections": [
           {
             "heading_ko": "한정승인 수리는 청산의 출발점이다",
@@ -1666,7 +1835,21 @@
         "hub_ids": [
           "hub.family-inheritance"
         ],
-        "related_content_ids": []
+        "related_content_ids": [],
+        "concierge_entry": {
+          "question_ko": "한정승인 수리 뒤 바로 끝나는가",
+          "decision_facts_ko": [
+            "수리일",
+            "공고일",
+            "신고기간",
+            "알고 있는 채권자",
+            "담보권·우선권",
+            "채권액",
+            "상속재산 환가액",
+            "변제 내역"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
       },
       {
         "content_id": "content.bank-transfer-loan-or-gift",
@@ -1676,13 +1859,35 @@
         "expires_at": "2026-10-21T00:00:00+00:00",
         "slug": "bank-transfer-loan-or-gift",
         "title_ko": "돈을 송금하면 자동으로 대여금이 되나",
-        "one_line_answer_ko": "",
-        "audience_situation_ko": "",
-        "key_points_ko": [],
-        "action_steps_ko": [],
-        "facts_to_check_ko": [],
-        "caution_ko": "",
-        "search_intents_ko": [],
+        "one_line_answer_ko": "송금은 돈이 이동한 사실을 보여주지만 반환하기로 한 합의까지 자동으로 증명하지는 않으므로 송금 전후 대화와 상환 약속을 함께 봐야 한다.",
+        "audience_situation_ko": "계좌로 돈을 보냈는데 상대방이 선물이었다고 한다.",
+        "key_points_ko": [
+          "금전 이동과 대여 합의는 다른 사실이다.",
+          "반환 의무·기한·이자에 관한 대화가 중요하다.",
+          "당사자 관계와 돈의 사용 경위도 법적 성격 판단자료가 된다."
+        ],
+        "action_steps_ko": [
+          "송금 전후 대화를 시간순으로 모은다.",
+          "상대방의 상환 약속 표현을 원본으로 저장한다.",
+          "송금 메모·계좌내역·일부변제를 연결한다.",
+          "증여라고 볼 만한 표현이나 정황도 함께 점검한다."
+        ],
+        "facts_to_check_ko": [
+          "송금일과 금액",
+          "송금 전 요청 내용",
+          "반환 약속",
+          "변제기",
+          "이자 약정",
+          "당사자 관계",
+          "돈의 사용 목적",
+          "일부변제 여부"
+        ],
+        "caution_ko": "송금내역 하나만으로 결론내리지 말고 반환 합의의 존재를 입증할 전체 자료를 구성해야 한다.",
+        "search_intents_ko": [
+          "송금 대여금 증명",
+          "계좌이체 돈 빌려준 증거",
+          "증여 대여 구분"
+        ],
         "body_sections": [
           {
             "heading_ko": "송금 사실과 반환 합의는 따로 증명한다",
@@ -1714,25 +1919,56 @@
         "related_content_ids": [],
         "concierge_entry": {
           "question_ko": "돈을 송금하면 자동으로 대여금이 되나",
-          "decision_facts_ko": [],
+          "decision_facts_ko": [
+            "송금일과 금액",
+            "송금 전 요청 내용",
+            "반환 약속",
+            "변제기",
+            "이자 약정",
+            "당사자 관계",
+            "돈의 사용 목적",
+            "일부변제 여부"
+          ],
           "href": "https://liale-review.lolphysical.xyz"
         }
       },
       {
         "content_id": "content.loan-without-written-note",
-        "content_type": "misconception",
+        "content_type": "misconception_correction",
         "editorial_status": "approved",
         "reviewed_at": "2026-07-21T08:30:00+00:00",
         "expires_at": "2026-10-21T00:00:00+00:00",
         "slug": "loan-without-written-note",
         "title_ko": "차용증이 없으면 빌려준 돈을 받을 수 없나",
-        "one_line_answer_ko": "",
-        "audience_situation_ko": "",
-        "key_points_ko": [],
-        "action_steps_ko": [],
-        "facts_to_check_ko": [],
-        "caution_ko": "",
-        "search_intents_ko": [],
+        "one_line_answer_ko": "차용증이 없다는 이유만으로 소비대차가 성립하지 않는 것은 아니지만 반환 합의를 입증하기 어려워질 수 있으므로 대화·송금·일부변제·채무승인 자료를 결합해야 한다.",
+        "audience_situation_ko": "차용증을 쓰지 않았으면 대여금 청구가 불가능한가?",
+        "key_points_ko": [
+          "계약 성립과 증명 난이도를 구별한다.",
+          "전자대화도 합의 내용을 보여주는 자료가 될 수 있다.",
+          "사후 확인서를 받는다면 원금·변제기·기존 지급내역을 정확히 적는다."
+        ],
+        "action_steps_ko": [
+          "전체 대화를 내보내기 형식으로 보존한다.",
+          "송금 건별 목적과 상대방 답변을 매칭한다.",
+          "일부변제 내역을 표시한다.",
+          "현재 잔액을 상대방에게 확인 요청하고 답변을 저장한다."
+        ],
+        "facts_to_check_ko": [
+          "대여 요청 표현",
+          "반환 약속",
+          "원금 합계",
+          "변제기",
+          "이자",
+          "일부변제",
+          "채무 인정 메시지",
+          "녹취의 적법한 확보"
+        ],
+        "caution_ko": "사후에 일방적으로 작성한 정리표는 보조자료이므로 상대방의 확인이나 객관자료와 연결하는 것이 중요하다.",
+        "search_intents_ko": [
+          "차용증 없이 돈 받기",
+          "차용증 없는 대여금",
+          "메신저 대여 증거"
+        ],
         "body_sections": [
           {
             "heading_ko": "차용증 부재는 계약 부재와 같지 않다",
@@ -1765,19 +2001,40 @@
       },
       {
         "content_id": "content.loan-without-repayment-date",
-        "content_type": "doctrine",
+        "content_type": "doctrine_explainer",
         "editorial_status": "approved",
         "reviewed_at": "2026-07-21T08:30:00+00:00",
         "expires_at": "2026-10-21T00:00:00+00:00",
         "slug": "loan-without-repayment-date",
         "title_ko": "갚는 날짜를 정하지 않고 빌려준 돈은 언제 청구하나",
-        "one_line_answer_ko": "",
-        "audience_situation_ko": "",
-        "key_points_ko": [],
-        "action_steps_ko": [],
-        "facts_to_check_ko": [],
-        "caution_ko": "",
-        "search_intents_ko": [],
+        "one_line_answer_ko": "반환시기 약정이 없다면 대주는 상당한 기간을 정해 반환을 요구해야 하므로 요구일·도달일·정한 기간을 기록으로 남겨야 한다.",
+        "audience_situation_ko": "변제기를 정하지 않았는데 당장 돌려달라고 할 수 있나?",
+        "key_points_ko": [
+          "변제기 약정이 있었는지 먼저 확인한다.",
+          "상당한 기간을 정한 최고가 필요하다.",
+          "상당성은 금액·관계·경위 등 구체적 사정과 연결될 수 있다."
+        ],
+        "action_steps_ko": [
+          "기존 대화에서 변제기 약정을 다시 확인한다.",
+          "상환할 금액과 기한을 명시해 요구한다.",
+          "요구가 도달했다는 자료를 보존한다.",
+          "정한 기간 경과 뒤 후속 절차를 검토한다."
+        ],
+        "facts_to_check_ko": [
+          "변제기 약정",
+          "요구한 원금",
+          "이자 포함 여부",
+          "최고 발송일",
+          "상대방 도달일",
+          "정한 반환기간",
+          "상대방 답변"
+        ],
+        "caution_ko": "상당한 기간이 며칠인지 일률적으로 정해지는 것은 아니므로 사건 사정을 반영해야 한다.",
+        "search_intents_ko": [
+          "변제기 없는 대여금",
+          "갚는 날짜 없는 차용증",
+          "상당한 기간 반환 최고"
+        ],
         "body_sections": [
           {
             "heading_ko": "변제기 약정이 정말 없는지 먼저 확인한다",
@@ -1810,19 +2067,41 @@
       },
       {
         "content_id": "content.partial-repayment-allocation",
-        "content_type": "procedure",
+        "content_type": "procedure_evidence",
         "editorial_status": "approved",
         "reviewed_at": "2026-07-21T08:30:00+00:00",
         "expires_at": "2026-10-21T00:00:00+00:00",
         "slug": "partial-repayment-allocation",
         "title_ko": "일부만 갚았을 때 원금이 얼마나 남았나",
-        "one_line_answer_ko": "",
-        "audience_situation_ko": "",
-        "key_points_ko": [],
-        "action_steps_ko": [],
-        "facts_to_check_ko": [],
-        "caution_ko": "",
-        "search_intents_ko": [],
+        "one_line_answer_ko": "당사자가 어느 채무에 충당할지 지정했는지와 비용·이자·원본의 법정 충당순서를 확인해야 하므로 입금액만 빼서 잔액을 계산하면 틀릴 수 있다.",
+        "audience_situation_ko": "원금과 이자가 있는데 일부만 받으면 어디부터 갚은 것으로 보나?",
+        "key_points_ko": [
+          "여러 채무 중 어느 채무에 갚은 것인지 특정한다.",
+          "지정이 없다면 법정변제충당 순서를 검토한다.",
+          "비용·이자·원본의 충당 순서도 따로 적용될 수 있다."
+        ],
+        "action_steps_ko": [
+          "대여 건별 원금·변제기를 나눈다.",
+          "각 입금 당시의 충당 지정 메시지를 확인한다.",
+          "비용·이자·원본을 구분해 계산표를 만든다.",
+          "상대방에게 잔액 확인을 요청한다."
+        ],
+        "facts_to_check_ko": [
+          "대여 건수",
+          "각 원금",
+          "각 변제기",
+          "약정 이자",
+          "비용",
+          "일부변제일·금액",
+          "충당 지정",
+          "즉시 이의 여부"
+        ],
+        "caution_ko": "지연손해금이나 약정이자 계산이 얽히면 단순 잔액표가 아니라 시점별 계산이 필요하다.",
+        "search_intents_ko": [
+          "일부변제 원금 이자 순서",
+          "변제충당 계산",
+          "여러 대여금 일부 상환"
+        ],
         "body_sections": [
           {
             "heading_ko": "여러 채무 중 어느 채무를 갚았는지 먼저 정한다",
@@ -1854,23 +2133,58 @@
         "hub_ids": [
           "hub.money-guarantee"
         ],
-        "related_content_ids": []
+        "related_content_ids": [],
+        "concierge_entry": {
+          "question_ko": "일부만 갚았을 때 원금이 얼마나 남았나",
+          "decision_facts_ko": [
+            "대여 건수",
+            "각 원금",
+            "각 변제기",
+            "약정 이자",
+            "비용",
+            "일부변제일·금액",
+            "충당 지정",
+            "즉시 이의 여부"
+          ],
+          "href": "https://liale-review.lolphysical.xyz"
+        }
       },
       {
         "content_id": "content.guarantee-by-message-validity",
-        "content_type": "misconception",
+        "content_type": "misconception_correction",
         "editorial_status": "approved",
         "reviewed_at": "2026-07-21T08:30:00+00:00",
         "expires_at": "2026-10-21T00:00:00+00:00",
         "slug": "guarantee-by-message-validity",
         "title_ko": "메신저로 대신 갚겠다고 하면 보증이 성립하나",
-        "one_line_answer_ko": "",
-        "audience_situation_ko": "",
-        "key_points_ko": [],
-        "action_steps_ko": [],
-        "facts_to_check_ko": [],
-        "caution_ko": "",
-        "search_intents_ko": [],
+        "one_line_answer_ko": "민법은 보증인의 기명날인 또는 서명이 있는 서면을 요구하고 전자적 형태의 보증의사는 원칙적으로 효력이 없다고 규정하므로 메시지 내용만으로 단정하면 안 된다.",
+        "audience_situation_ko": "가족이 카톡으로 내가 대신 갚겠다고 했는데 보증인에게 청구할 수 있나?",
+        "key_points_ko": [
+          "보증과 단순한 도의적 약속을 구별한다.",
+          "서면·기명날인 또는 서명 요건을 확인한다.",
+          "보증인이 이미 이행한 부분은 방식 하자 주장에 제한이 생길 수 있다."
+        ],
+        "action_steps_ko": [
+          "원본 보증서 존재 여부를 확인한다.",
+          "보증인의 서명·날인을 확인한다.",
+          "메시지가 보증인지 독립채무 약정인지 문맥을 본다.",
+          "이미 지급한 금액과 경위를 정리한다."
+        ],
+        "facts_to_check_ko": [
+          "보증 대상 주채무",
+          "보증 문구",
+          "서면 원본",
+          "서명·기명날인",
+          "전자적 형태 여부",
+          "보증인의 지급 여부",
+          "작성 시점"
+        ],
+        "caution_ko": "보증인이 영업 또는 사업으로 작성한 전자문서 등 특별법상 예외 가능성은 별도로 확인해야 한다.",
+        "search_intents_ko": [
+          "카톡 보증 효력",
+          "전자문서 보증계약",
+          "보증 서면 기명날인"
+        ],
         "body_sections": [
           {
             "heading_ko": "일반적인 메시지만으로 보증이 성립한다고 단정할 수 없다",
@@ -1903,19 +2217,40 @@
       },
       {
         "content_id": "content.continuing-guarantee-maximum-amount",
-        "content_type": "doctrine",
+        "content_type": "doctrine_explainer",
         "editorial_status": "approved",
         "reviewed_at": "2026-07-21T08:30:00+00:00",
         "expires_at": "2026-10-21T00:00:00+00:00",
         "slug": "continuing-guarantee-maximum-amount",
         "title_ko": "앞으로 생길 모든 빚을 보증한다는 약정은 유효한가",
-        "one_line_answer_ko": "",
-        "audience_situation_ko": "",
-        "key_points_ko": [],
-        "action_steps_ko": [],
-        "facts_to_check_ko": [],
-        "caution_ko": "",
-        "search_intents_ko": [],
+        "one_line_answer_ko": "불확정한 다수 채무에 대한 근보증은 보증채무 최고액을 서면으로 특정해야 하며 최고액이 없으면 효력이 없다.",
+        "audience_situation_ko": "현재와 장래의 모든 거래채무를 보증한다고만 쓰면 되는가?",
+        "key_points_ko": [
+          "특정 채무 보증과 근보증을 구분한다.",
+          "최고액이 서면에 명확히 적혔는지 확인한다.",
+          "보증기간·대상 거래·원금 확정 사유도 함께 특정해야 분쟁이 줄어든다."
+        ],
+        "action_steps_ko": [
+          "보증서가 포괄하는 거래를 목록화한다.",
+          "최고액 기재를 확인한다.",
+          "보증기간과 원금 확정 조건을 확인한다.",
+          "주채무 잔액과 보증 한도를 대조한다."
+        ],
+        "facts_to_check_ko": [
+          "주채무 종류",
+          "장래채무 포함 여부",
+          "최고액",
+          "서면 기재",
+          "보증기간",
+          "원금 확정 사유",
+          "현재 잔액"
+        ],
+        "caution_ko": "별도의 보증인 보호 특별법이 적용되는 보증인지도 확인해야 한다.",
+        "search_intents_ko": [
+          "근보증 최고액",
+          "포괄근보증 효력",
+          "장래채무 보증"
+        ],
         "body_sections": [
           {
             "heading_ko": "특정 채무 보증과 근보증을 구분한다",
@@ -1956,13 +2291,35 @@
         "expires_at": "2026-10-21T00:00:00+00:00",
         "slug": "scope-of-guarantee-debt",
         "title_ko": "보증인은 원금만 갚으면 되는가",
-        "one_line_answer_ko": "",
-        "audience_situation_ko": "",
-        "key_points_ko": [],
-        "action_steps_ko": [],
-        "facts_to_check_ko": [],
-        "caution_ko": "",
-        "search_intents_ko": [],
+        "one_line_answer_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함할 수 있지만 보증서 문언과 최고액, 주채무보다 무거운 부담 여부를 함께 본다.",
+        "audience_situation_ko": "보증서에 원금만 적혀 있는데 이자와 위약금도 부담하나?",
+        "key_points_ko": [
+          "보증 대상 원금과 부수채무를 구분한다.",
+          "근보증이면 최고액이 전체 부담의 상한과 연결된다.",
+          "보증인의 부담이 주채무보다 무거우면 주채무 한도로 감축되는 규정이 있다."
+        ],
+        "action_steps_ko": [
+          "주채무 계약서와 보증서를 나란히 대조한다.",
+          "원금·이자·지연손해금·위약금을 분리 계산한다.",
+          "보증 최고액과 청구액을 비교한다.",
+          "주채무의 소멸·변경 여부를 확인한다."
+        ],
+        "facts_to_check_ko": [
+          "보증서 문언",
+          "보증 원금",
+          "최고액",
+          "약정이자",
+          "지연손해금",
+          "위약금",
+          "주채무 변경",
+          "일부변제"
+        ],
+        "caution_ko": "보증채무의 구체적 범위는 보증계약 해석과 특별법 적용에 따라 달라질 수 있다.",
+        "search_intents_ko": [
+          "보증채무 범위",
+          "보증인 이자 위약금",
+          "보증 원금 한도"
+        ],
         "body_sections": [
           {
             "heading_ko": "보증은 원금만을 뜻하지 않을 수 있다",
@@ -1998,7 +2355,16 @@
         "related_content_ids": [],
         "concierge_entry": {
           "question_ko": "보증인은 원금만 갚으면 되는가",
-          "decision_facts_ko": [],
+          "decision_facts_ko": [
+            "보증서 문언",
+            "보증 원금",
+            "최고액",
+            "약정이자",
+            "지연손해금",
+            "위약금",
+            "주채무 변경",
+            "일부변제"
+          ],
           "href": "https://liale-review.lolphysical.xyz"
         }
       },
