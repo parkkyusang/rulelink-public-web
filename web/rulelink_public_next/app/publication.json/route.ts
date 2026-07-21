@@ -1,13 +1,24 @@
-import {loadPublishedBundle} from '@/lib/publication';
+import {
+  listChangeBriefs,
+  listKnowledgeEntries,
+  listKnowledgeHubs,
+  listPublishedCards,
+  listPublishedTopics,
+  loadPublishedBundle,
+} from '@/lib/publication';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
 
 export async function GET() {
-  const bundle = await loadPublishedBundle();
-  const cards = bundle?.cards ?? [];
-  const changeBriefs = bundle?.change_briefs ?? [];
-  const knowledgeEntries = bundle?.knowledge?.content_entries ?? [];
+  const [bundle, cards, changeBriefs, knowledgeEntries, knowledgeHubs, publicTopics] = await Promise.all([
+    loadPublishedBundle(),
+    listPublishedCards(),
+    listChangeBriefs(),
+    listKnowledgeEntries(),
+    listKnowledgeHubs(),
+    listPublishedTopics(),
+  ]);
   const reviewDates = [
     ...cards.map(card => card.reviewed_at),
     ...changeBriefs.map(brief => brief.reviewed_at),
@@ -29,8 +40,8 @@ export async function GET() {
       issue_cards: cards.length,
       change_briefs: changeBriefs.length,
       knowledge_entries: knowledgeEntries.length,
-      knowledge_hubs: bundle?.knowledge?.topic_hubs.length ?? 0,
-      public_topics: bundle?.catalog?.topics.length ?? 0,
+      knowledge_hubs: knowledgeHubs.length,
+      public_topics: publicTopics.length,
     },
     latest_reviewed_at: extremeDate(reviewDates, 'latest'),
     earliest_expires_at: extremeDate(expiryDates, 'earliest'),
