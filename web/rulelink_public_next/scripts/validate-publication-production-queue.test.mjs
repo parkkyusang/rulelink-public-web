@@ -36,8 +36,8 @@ test('대기열에 없는 PR 의존성과 역순 통합을 거부한다', () => 
   assert.ok(validateProductionQueue(missing).some(error => error.includes('의존 PR #999')));
 
   const reversed = clone(queue);
-  reversed.items.find(item => item.pr_number === 104).integration_order = 120;
-  assert.ok(validateProductionQueue(reversed).some(error => error.includes('선행 PR #104')));
+  reversed.items.find(item => item.pr_number === 100).integration_order = 120;
+  assert.ok(validateProductionQueue(reversed).some(error => error.includes('선행 PR #100')));
 });
 
 test('기존 주제 개정은 topic-only 직접 통합 상태가 될 수 없다', () => {
