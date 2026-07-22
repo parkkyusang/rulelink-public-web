@@ -8,6 +8,7 @@ import {
   expectedLiveRoutes,
   expectedPublicationCounts,
   representativeOfficialUrls,
+  validateInlineConceptBoundaries,
   validateLivePublication,
 } from './smoke-live-publication.mjs';
 
@@ -74,6 +75,19 @@ test('운영 공개 건수는 원본 배열이 아니라 최신성과 실제 연
     knowledge_hubs: 1,
     public_topics: 1,
   });
+});
+
+test('운영 HTML은 긴 법률용어 내부의 짧은 개념어 버튼을 허용하지 않는다', () => {
+  const partial = '<p>법정<span><button class="legal-concept-text_termButton">상속인</button></span>을 확인한다.</p>';
+  const standalone = '<p><span><button class="legal-concept-text_termButton">상속인</button></span>은 확인한다.</p>';
+  const distinct = '<p><span><button class="legal-concept-text_termButton">법정상속인</button></span>을 확인한다.</p>';
+
+  assert.throws(
+    () => validateInlineConceptBoundaries(partial, '/ko/knowledge/example'),
+    /긴 용어 내부의 부분 해설/,
+  );
+  assert.doesNotThrow(() => validateInlineConceptBoundaries(standalone, '/ko/knowledge/example'));
+  assert.doesNotThrow(() => validateInlineConceptBoundaries(distinct, '/ko/knowledge/example'));
 });
 
 test('운영 실주소 점검은 승인된 상세 경로와 허브를 빠짐없이 포함한다', () => {

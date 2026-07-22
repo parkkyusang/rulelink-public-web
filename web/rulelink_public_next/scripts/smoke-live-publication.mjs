@@ -46,6 +46,23 @@ export function validateLivePublication(publication, bundle) {
   }
 }
 
+export function validateInlineConceptBoundaries(html, route = 'unknown') {
+  const openMarker = '\uFFF0';
+  const closeMarker = '\uFFF1';
+  const annotatedText = html
+    .replace(/<button\b([^>]*)>([\s\S]*?)<\/button>/giu, (button, attributes, label) => {
+      if (!attributes.includes('termButton')) return button;
+      return `${openMarker}${label.replace(/<[^>]*>/gu, '')}${closeMarker}`;
+    })
+    .replace(/<[^>]*>/gu, '');
+  const partialMatch = annotatedText.match(/[\p{L}\p{N}_]\uFFF0([^\uFFF1]+)\uFFF1/u);
+
+  assert(
+    !partialMatch,
+    `운영 본문에서 긴 용어 내부의 부분 해설이 발견되었습니다: ${route} -> ${partialMatch?.[1] ?? ''}`,
+  );
+}
+
 export function expectedLiveRoutes(bundle) {
   const routes = new Set(['/']);
   for (const card of bundle.cards ?? []) routes.add(`/ko/issues/${card.slug}`);
@@ -103,6 +120,9 @@ export async function main() {
       for (const route of routes) {
         const response = await fetchWithTimeout(new URL(route, baseUrl));
         assert(response.ok, `운영 공개 경로 응답 실패: ${route} -> ${response.status}`);
+        if ((response.headers.get('content-type') ?? '').includes('text/html')) {
+          validateInlineConceptBoundaries(await response.text(), route);
+        }
       }
 
       const homeHtml = await (await fetchWithTimeout(new URL('/', baseUrl))).text();
