@@ -101,3 +101,10 @@ test('공식 근거 보관함도 같은 점진 표시 계약으로 전체 검색
   assert.match(sourceLibrary, /controlsId="knowledge-source-result-grid"/);
   assert.match(sourceLibrary, /아직 펼치지 않은 공식 근거에도/);
 });
+
+test('통합검색도 같은 점진 표시 계약으로 전체 검색과 초기 렌더링을 분리한다', () => {
+  assert.match(siteSearch, /visibleResults\.slice\(0, visibleLimit\)/);
+  assert.match(siteSearch, /setVisibleLimit\(DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE\)/);
+  assert.match(siteSearch, /controlsId="site-search-result-grid"/);
+  assert.match(siteSearch, /아직 펼치지 않은 법률정보에도/);
+});
