@@ -1,3 +1,8 @@
+import contentTypeContract from '@/lib/knowledge-content-types.json';
+
+export type PublicKnowledgeContentType = keyof typeof contentTypeContract.canonical;
+export type PublicKnowledgeContentTypeAlias = keyof typeof contentTypeContract.aliases;
+
 export type SourceCoordinate = {
   source_id?: string;
   law_key?: string;
@@ -144,7 +149,7 @@ export type PublicConceptCard = {
 
 export type PublicKnowledgeEntry = {
   content_id: string;
-  content_type: 'law_change' | 'doctrine_explainer' | 'fact_branch' | 'precedent_doctrine' | 'similar_case_comparison' | 'misconception_correction' | 'procedure_evidence' | 'recurring_issue_generalization';
+  content_type: PublicKnowledgeContentType | PublicKnowledgeContentTypeAlias;
   editorial_status: 'source_verified' | 'legal_reviewed' | 'approved';
   reviewed_at: string;
   expires_at: string;

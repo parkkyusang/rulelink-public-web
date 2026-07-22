@@ -10,6 +10,10 @@ const repoRoot = path.resolve(appRoot, '..', '..');
 const topicsDirectory = path.join(repoRoot, 'artifacts', 'publication', 'topics');
 const conceptsDirectory = path.join(repoRoot, 'artifacts', 'publication', 'concepts');
 const manifestPath = path.join(topicsDirectory, 'manifest.json');
+const contentTypeContractPath = path.join(appRoot, 'src', 'lib', 'knowledge-content-types.json');
+const contentTypeContract = JSON.parse(await readFile(contentTypeContractPath, 'utf8'));
+const canonicalContentTypes = new Set(Object.keys(contentTypeContract.canonical));
+const contentTypeAliases = new Map(Object.entries(contentTypeContract.aliases));
 
 const KNOWLEDGE_TOPIC_SCHEMA = 'rulelink_public_knowledge_topic_v1';
 const TOPIC_HANDOFF_SCHEMA = 'rulelink_public_topic_handoff_v1';
@@ -65,6 +69,10 @@ export function auditPublicationTopicQueue({manifest, topicFiles, conceptGroups 
   });
   const knowledge = assembleKnowledge(nextManifest, projectedTopics, conceptGroups);
   const errors = validateKnowledgeReferences(knowledge);
+  const contentTypes = summarizeContentTypes(knowledge.content_entries);
+  for (const unknown of contentTypes.unknown) {
+    errors.push(`${unknown.content_id} -> 지원하지 않는 콘텐츠 유형: ${unknown.content_type}`);
+  }
   if (errors.length) {
     throw new Error(['공개 콘텐츠 대기열의 연결 검증에 실패했습니다.', ...errors.map(error => `- ${error}`)].join('\n'));
   }
@@ -73,6 +81,7 @@ export function auditPublicationTopicQueue({manifest, topicFiles, conceptGroups 
     queued_files: queuedFiles,
     manifest: nextManifest,
     knowledge,
+    content_types: contentTypes,
     counts: {
       topics: nextManifest.topics.length,
       sources: knowledge.sources.length,
@@ -83,6 +92,27 @@ export function auditPublicationTopicQueue({manifest, topicFiles, conceptGroups 
       concepts: knowledge.concept_cards?.length ?? 0,
     },
   };
+}
+
+export function summarizeContentTypes(entries) {
+  const canonicalCounts = {};
+  const aliases = [];
+  const unknown = [];
+  for (const entry of entries) {
+    const type = String(entry.content_type ?? '');
+    if (canonicalContentTypes.has(type)) {
+      canonicalCounts[type] = (canonicalCounts[type] ?? 0) + 1;
+      continue;
+    }
+    const normalized = contentTypeAliases.get(type);
+    if (normalized) {
+      canonicalCounts[normalized] = (canonicalCounts[normalized] ?? 0) + 1;
+      aliases.push({content_id: entry.content_id, content_type: type, normalized_content_type: normalized});
+      continue;
+    }
+    unknown.push({content_id: entry.content_id, content_type: type || '<empty>'});
+  }
+  return {canonical_counts: canonicalCounts, aliases, unknown};
 }
 
 export async function loadAndAuditPublicationTopicQueue() {
@@ -155,6 +185,7 @@ async function main() {
   const queued = result.queued_files.length ? result.queued_files.join(', ') : '없음';
   console.log(`공개 콘텐츠 대기열 검증 통과: 미통합 주제 ${result.queued_files.length}개 (${queued})`);
   console.log(`예상 정본: 허브 ${result.counts.hubs} / 콘텐츠 ${result.counts.content} / 법리 ${result.counts.rules} / 사실분기 ${result.counts.scenarios} / 근거 ${result.counts.sources}`);
+  console.log(`콘텐츠 유형: 과거 별칭 ${result.content_types.aliases.length}건 / 미지원 ${result.content_types.unknown.length}건`);
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === scriptPath) {

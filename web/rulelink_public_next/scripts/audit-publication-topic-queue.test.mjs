@@ -5,9 +5,10 @@ import {
   auditPublicationTopicQueue,
   loadAndAuditPublicationTopicQueue,
   projectQueuedTopic,
+  summarizeContentTypes,
 } from './audit-publication-topic-queue.mjs';
 
-function topic({topicId, contentId, relatedContentIds = [], schema = 'rulelink_public_knowledge_topic_v1'}) {
+function topic({topicId, contentId, contentType = 'doctrine_explainer', relatedContentIds = [], schema = 'rulelink_public_knowledge_topic_v1'}) {
   const hubId = topicId.startsWith('topic.') ? topicId.replace(/^topic\./u, 'hub.') : topicId;
   return {
     schema,
@@ -42,6 +43,7 @@ function topic({topicId, contentId, relatedContentIds = [], schema = 'rulelink_p
     }],
     content_entries: [{
       content_id: contentId,
+      content_type: contentType,
       slug: contentId.replace(/^content\./u, ''),
       rule_ids: [`rule.${contentId}`],
       scenario_ids: [`scenario.${contentId}`],
@@ -112,4 +114,28 @@ test('현재 저장소의 공개 정본과 주제 원본 대기열을 함께 감
   assert.ok(result.counts.topics >= 17);
   assert.ok(result.counts.content >= 173);
   assert.equal(result.counts.topics, result.counts.hubs);
+  assert.equal(result.content_types.unknown.length, 0);
+});
+
+test('과거 유형 별칭은 표준 유형으로 집계하고 알 수 없는 유형은 거부한다', () => {
+  const summary = summarizeContentTypes([
+    {content_id: 'content.canonical', content_type: 'procedure_evidence'},
+    {content_id: 'content.alias', content_type: 'procedure_guide'},
+    {content_id: 'content.unknown', content_type: 'invented_type'},
+  ]);
+  assert.equal(summary.canonical_counts.procedure_evidence, 2);
+  assert.deepEqual(summary.aliases, [{
+    content_id: 'content.alias',
+    content_type: 'procedure_guide',
+    normalized_content_type: 'procedure_evidence',
+  }]);
+  assert.deepEqual(summary.unknown, [{content_id: 'content.unknown', content_type: 'invented_type'}]);
+
+  assert.throws(() => auditPublicationTopicQueue({
+    manifest: manifest(),
+    topicFiles: new Map([
+      ['listed.json', topic({topicId: 'hub.listed', contentId: 'content.listed'})],
+      ['queued.json', topic({topicId: 'hub.queued', contentId: 'content.queued', contentType: 'invented_type'})],
+    ]),
+  }), /지원하지 않는 콘텐츠 유형/u);
 });
