@@ -212,8 +212,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .ruleCard, .branchCard {background: var(--white); border: 1px solid var(--line); border-radius: 17px; padding: 25px;}
 .ruleCard h3, .branchCard h3 {font-size: 21px; margin: 0 0 12px;}
 .ruleCard > p {color: var(--muted); line-height: 1.7;}
-.normSlots {display: grid; gap: 1px; grid-template-columns: repeat(3,1fr); margin: 22px 0 0; overflow: hidden;}
-.normSlots div {background: #f5f8f6; padding: 15px;}
+.normSlots {display: grid; gap: 1px; grid-template-columns: repeat(3,1fr); margin: 22px 0 0; overflow: visible;}
+.normSlots div {background: #f5f8f6; min-width: 0; padding: 15px; position: relative;}
+.normSlots div:hover, .normSlots div:focus-within {z-index: 1;}
 .normSlots dt {color: var(--green); font-size: 11px; font-weight: 750; margin-bottom: 8px;}
 .normSlots dd {font-size: 13px; line-height: 1.55; margin: 0;}
 .decisionFact {color: var(--muted); font-size: 13px;}
