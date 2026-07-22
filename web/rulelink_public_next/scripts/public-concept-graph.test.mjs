@@ -3,7 +3,11 @@ import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 
-import {inlineTermsForConcept, validateConceptTermRelations} from '../src/lib/concept-terms.ts';
+import {
+  inlineTermsForConcept,
+  splitTextByConceptTerms,
+  validateConceptTermRelations,
+} from '../src/lib/concept-terms.ts';
 import {resolveKnowledgeEntryGraph} from '../src/lib/knowledge-search.ts';
 
 const root = process.cwd();
@@ -34,6 +38,23 @@ test('검색 관련어는 근거 있는 완전 동의어·약어·표기변형�
   });
 
   assert.deepEqual(terms, ['상속인', '상속권자']);
+});
+
+test('짧은 개념어는 긴 복합 법률용어 안에서 부분 일치하지 않는다', () => {
+  const sentence = '피상속인과 법정상속인·공동상속인을 확인한 상속인은 기간을 지킨다.';
+  const genericParts = splitTextByConceptTerms(sentence, ['상속인']);
+
+  assert.equal(genericParts.join(''), sentence);
+  assert.equal(genericParts.filter(part => part === '상속인').length, 1);
+  assert.ok(genericParts.some(part => part.includes('피상속인과 법정상속인·공동상속인을')));
+
+  const distinctParts = splitTextByConceptTerms(
+    sentence,
+    ['상속인', '법정상속인', '공동상속인'],
+  );
+  assert.equal(distinctParts.filter(part => part === '법정상속인').length, 1);
+  assert.equal(distinctParts.filter(part => part === '공동상속인').length, 1);
+  assert.equal(distinctParts.filter(part => part === '상속인').length, 1);
 });
 
 test('용어 관계 계약은 관계 미분류·근거 누락·본문 자동 해설 중복을 차단한다', () => {

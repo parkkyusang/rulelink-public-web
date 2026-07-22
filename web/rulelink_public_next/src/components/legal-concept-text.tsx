@@ -2,7 +2,7 @@
 
 import {useEffect, useId, useRef, useState, type ReactNode} from 'react';
 
-import {inlineTermsForConcept} from '@/lib/concept-terms';
+import {inlineTermsForConcept, splitTextByConceptTerms} from '@/lib/concept-terms';
 import type {PublicConceptCard} from '@/types/publication';
 
 import styles from './legal-concept-text.module.css';
@@ -49,7 +49,7 @@ export function LegalConceptText({concepts, text}: {concepts: ConceptTerm[]; tex
   const terms = [...termToConcept.keys()].sort((left, right) => right.length - left.length);
   if (!terms.length) return <>{text}</>;
 
-  const parts = text.split(new RegExp(`(${terms.map(escapeRegExp).join('|')})`, 'gu'));
+  const parts = splitTextByConceptTerms(text, terms);
   const rendered: ReactNode[] = parts.map((part, index) => {
     const concept = termToConcept.get(part);
     if (!concept) return part;
@@ -94,6 +94,3 @@ export function LegalConceptText({concepts, text}: {concepts: ConceptTerm[]; tex
   );
 }
 
-function escapeRegExp(value: string): string {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
