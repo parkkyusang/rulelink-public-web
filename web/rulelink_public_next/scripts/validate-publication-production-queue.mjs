@@ -174,6 +174,23 @@ export function validateProductionQueue(queue) {
       }
     }
 
+    if (item.supersedes_prs !== undefined) {
+      if (!Array.isArray(item.supersedes_prs)) {
+        errors.push(`${label}.supersedes_prs는 배열이어야 합니다.`);
+      } else {
+        const seenSuperseded = new Set();
+        for (const supersededPr of item.supersedes_prs) {
+          if (!isPositiveInteger(supersededPr)) {
+            errors.push(`${label}의 대체 대상 PR 번호가 올바르지 않습니다.`);
+            continue;
+          }
+          if (supersededPr === item.pr_number) errors.push(`${label}가 자기 PR을 대체할 수 없습니다.`);
+          if (seenSuperseded.has(supersededPr)) errors.push(`${label}의 대체 대상 PR이 중복됩니다: #${supersededPr}`);
+          seenSuperseded.add(supersededPr);
+        }
+      }
+    }
+
     if (activeWipStatuses.has(item.status)) {
       const count = (activeWipByOwner.get(item.owner_role) || 0) + 1;
       activeWipByOwner.set(item.owner_role, count);
@@ -205,6 +222,14 @@ export function validateProductionQueue(queue) {
     }
   }
 
+  for (const item of queue.items) {
+    for (const supersededPr of item.supersedes_prs || []) {
+      if (byPr.has(supersededPr)) {
+        errors.push(`#${item.pr_number}가 대체한 #${supersededPr}은 활성 대기열에 함께 남을 수 없습니다.`);
+      }
+    }
+  }
+
   const visiting = new Set();
   const visited = new Set();
   function visit(pr) {
@@ -227,6 +252,13 @@ export function validateProductionQueue(queue) {
   const sourceTotal = queue.items.reduce((sum, item) => sum + (item.counts?.sources || 0), 0);
   if (summary.official_source_references_checked !== sourceTotal) {
     errors.push('감사한 공식 근거 참조 수와 대기열 근거 합계가 다릅니다.');
+  }
+  const statusSummaryKeys = ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked'];
+  for (const status of statusSummaryKeys) {
+    const actual = queue.items.filter(item => item.status === status).length;
+    if (summary[status] !== actual) {
+      errors.push(`audit_summary.${status}와 실제 상태 수가 다릅니다: expected=${actual}, actual=${String(summary[status])}`);
+    }
   }
   if (summary.official_url_failures !== 0) errors.push('공식 URL 실패가 남아 있습니다.');
   if (summary.exact_cross_pr_content_id_collisions !== 0) errors.push('대기 PR 사이 content_id 충돌이 남아 있습니다.');

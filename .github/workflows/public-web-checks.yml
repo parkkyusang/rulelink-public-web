@@ -5,6 +5,7 @@ on:
     paths:
       - "web/rulelink_public_next/**"
       - "artifacts/publication/current/bundle.json"
+      - "artifacts/publication/production-queue.json"
       - "artifacts/publication/topics/**"
       - "artifacts/publication/concepts/**"
       - "artifacts/publication/snapshots/**"
@@ -16,6 +17,7 @@ on:
     paths:
       - "web/rulelink_public_next/**"
       - "artifacts/publication/current/bundle.json"
+      - "artifacts/publication/production-queue.json"
       - "artifacts/publication/topics/**"
       - "artifacts/publication/concepts/**"
       - "artifacts/publication/snapshots/**"

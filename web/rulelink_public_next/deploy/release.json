@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20260723-014",
+  "release_id": "production-20260723-015",
   "snapshot_id": "kr-knowledge-core-20260721-021",
-  "requested_at": "2026-07-22T22:11:52.826Z",
-  "summary_ko": "모바일 전역 헤더를 브랜드·검색·메뉴 한 줄 구조와 접근 가능한 펼침 메뉴로 개편해 운영에 반영한다."
+  "requested_at": "2026-07-22T22:45:37.123Z",
+  "summary_ko": "주제 허브를 횡스크롤 없는 반응형 카드 디렉터리로 개편하고, 법률용어 해설을 카드 경계에 잘리지 않는 접근 가능한 팝오버로 운영에 반영한다."
 }

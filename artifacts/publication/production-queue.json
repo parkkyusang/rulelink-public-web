@@ -26,7 +26,9 @@
     "broken_related_content_ids": 0,
     "semantic_overlap_decisions": 3,
     "ready_for_integration": 10,
-    "needs_rework": 7
+    "needs_rework": 7,
+    "migration_required": 2,
+    "blocked": 1
   },
   "items": [
     {
