@@ -19,7 +19,7 @@
       "article_no": "제3조",
       "title_ko": "대항력 등",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
-      "source_snapshot_id": "snapshot:1d9c6a00a2afec23963281fd3a8e60c",
+      "source_snapshot_id": "snapshot:1d9c6a00a2afec23963281fd3a8e60c2",
       "last_verified_at": "2026-07-22T05:10:00+00:00"
     },
     {
@@ -149,7 +149,7 @@
       "article_no": "제19조의2",
       "title_ko": "관리비 내역의 제공",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
-      "source_snapshot_id": "snapshot:959d1d862d7fa5e33a9dae165cec9b0",
+      "source_snapshot_id": "snapshot:959d1d862d7fa5e33a9dae165cec9b06",
       "last_verified_at": "2026-07-22T05:10:00+00:00"
     },
     {
@@ -159,7 +159,7 @@
       "article_no": "제20조",
       "title_ko": "상가건물임대차분쟁조정위원회",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
-      "source_snapshot_id": "snapshot:4a04b15c57fdeaea6a3e000e0e5fa9d",
+      "source_snapshot_id": "snapshot:4a04b15c57fdeaea6a3e000e0e5fa9d3",
       "last_verified_at": "2026-07-22T05:10:00+00:00"
     }
   ],
@@ -852,7 +852,7 @@
     },
     {
       "content_id": "content.commercial-lease-rent-arrears",
-      "content_type": "risk_prevention",
+      "content_type": "procedure_evidence",
       "editorial_status": "approved",
       "reviewed_at": "2026-07-22T05:10:00+00:00",
       "expires_at": "2026-10-22T00:00:00+00:00",
@@ -987,7 +987,7 @@
     },
     {
       "content_id": "content.commercial-lease-rent-increase-and-conversion",
-      "content_type": "comparison_guide",
+      "content_type": "similar_case_comparison",
       "editorial_status": "approved",
       "reviewed_at": "2026-07-22T05:10:00+00:00",
       "expires_at": "2026-10-22T00:00:00+00:00",
