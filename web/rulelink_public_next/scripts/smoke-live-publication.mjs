@@ -5,6 +5,8 @@ import {pathToFileURL} from 'node:url';
 import {filterFreshPublications} from '../src/lib/publication-freshness.ts';
 
 const DEFAULT_BASE_URL = 'https://rulelink.lolphysical.xyz';
+const nonVisibleElementPattern = /<(script|style|template|noscript)\b[^>]*>[\s\S]*?<\/\1\s*>/giu;
+const textFlowBoundaryPattern = /<\/?(?:address|article|aside|blockquote|body|br|dd|div|dl|dt|fieldset|figcaption|figure|footer|form|h[1-6]|head|header|hgroup|hr|html|li|main|menu|nav|ol|p|pre|search|section|table|tbody|td|tfoot|th|thead|tr|ul)\b[^>]*>/giu;
 
 export function expectedPublicationCounts(bundle, now) {
   const visibleCards = filterFreshPublications(bundle.cards ?? [], now);
@@ -50,11 +52,18 @@ export function validateInlineConceptBoundaries(html, route = 'unknown') {
   const openMarker = '\uFFF0';
   const closeMarker = '\uFFF1';
   const annotatedText = html
+    // React 전송 데이터와 비가시 요소는 화면의 텍스트 흐름이 아니므로 경계 판정에서 제외한다.
+    .replace(nonVisibleElementPattern, '\n')
     .replace(/<button\b([^>]*)>([\s\S]*?)<\/button>/giu, (button, attributes, label) => {
       if (!attributes.includes('termButton')) return button;
       return `${openMarker}${label.replace(/<[^>]*>/gu, '')}${closeMarker}`;
     })
+    // 블록 사이에는 실제 단어 연속성이 없다. 인라인 태그만 제거해 같은 문장 안의 경계는 보존한다.
+    .replace(textFlowBoundaryPattern, '\n')
     .replace(/<[^>]*>/gu, '');
+
+  // 본문 자동 해설과 같은 규칙이다. 앞에 문자가 붙은 법정상속인·공동상속인은 차단하고,
+  // 뒤에 붙는 한국어 조사(상속인이·상속인은 등)는 정상적인 독립 용례로 인정한다.
   const partialMatch = annotatedText.match(/[\p{L}\p{N}_]\uFFF0([^\uFFF1]+)\uFFF1/u);
 
   assert(

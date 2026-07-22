@@ -79,15 +79,31 @@ test('운영 공개 건수는 원본 배열이 아니라 최신성과 실제 연
 
 test('운영 HTML은 긴 법률용어 내부의 짧은 개념어 버튼을 허용하지 않는다', () => {
   const partial = '<p>법정<span><button class="legal-concept-text_termButton">상속인</button></span>을 확인한다.</p>';
-  const standalone = '<p><span><button class="legal-concept-text_termButton">상속인</button></span>은 확인한다.</p>';
+  const subjectParticle = '<p><span><button class="legal-concept-text_termButton">상속인</button></span>이 확인한다.</p>';
+  const topicParticle = '<p><span><button class="legal-concept-text_termButton">상속인</button></span>은 확인한다.</p>';
   const distinct = '<p><span><button class="legal-concept-text_termButton">법정상속인</button></span>을 확인한다.</p>';
 
   assert.throws(
     () => validateInlineConceptBoundaries(partial, '/ko/knowledge/example'),
     /긴 용어 내부의 부분 해설/,
   );
-  assert.doesNotThrow(() => validateInlineConceptBoundaries(standalone, '/ko/knowledge/example'));
+  assert.doesNotThrow(() => validateInlineConceptBoundaries(subjectParticle, '/ko/knowledge/example'));
+  assert.doesNotThrow(() => validateInlineConceptBoundaries(topicParticle, '/ko/knowledge/example'));
   assert.doesNotThrow(() => validateInlineConceptBoundaries(distinct, '/ko/knowledge/example'));
+});
+
+test('운영 HTML 토큰 경계는 서로 다른 블록과 전송 스크립트의 문자를 이어 붙이지 않는다', () => {
+  const separateBlocks = [
+    '<p>상속개시 사실을 안 상속인</p>',
+    '<p><span><button class="legal-concept-text_termButton">상속인</button></span>은 확인한다.</p>',
+  ].join('');
+  const nextPayload = [
+    '<script>self.__next_f.push([1,"법정<span><button class=\\"legal-concept-text_termButton\\">상속인</button></span>"])</script>',
+    '<p><span><button class="legal-concept-text_termButton">상속인</button></span>이 확인한다.</p>',
+  ].join('');
+
+  assert.doesNotThrow(() => validateInlineConceptBoundaries(separateBlocks, '/ko/knowledge/example'));
+  assert.doesNotThrow(() => validateInlineConceptBoundaries(nextPayload, '/ko/knowledge/example'));
 });
 
 test('운영 실주소 점검은 승인된 상세 경로와 허브를 빠짐없이 포함한다', () => {
