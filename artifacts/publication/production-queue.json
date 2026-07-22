@@ -24,9 +24,9 @@
     "official_url_failures": 0,
     "exact_cross_pr_content_id_collisions": 0,
     "broken_related_content_ids": 0,
-    "semantic_overlap_decisions": 4,
-    "ready_for_integration": 9,
-    "needs_rework": 8
+    "semantic_overlap_decisions": 3,
+    "ready_for_integration": 10,
+    "needs_rework": 7
   },
   "items": [
     {
@@ -342,17 +342,17 @@
       ]
     },
     {
-      "queue_id": "publication-pr-98",
-      "pr_number": 98,
-      "title_ko": "해고·퇴직·실업 대응 10건",
-      "branch": "codex/content-employment-exit-20260722",
-      "head_sha": "9d01319977b4acdf1a50135e2dbccdb9696d15f3",
+      "queue_id": "publication-pr-127",
+      "pr_number": 127,
+      "title_ko": "해고·퇴직·실업 대응 10건 재작업",
+      "branch": "codex/content-employment-exit-rework-20260723",
+      "head_sha": "d101aa7eae09dc4c655aff514b20d1d10a01b4f1",
       "owner_role": "content_production",
       "topic_id": "hub.employment-exit",
       "topic_file": "artifacts/publication/topics/employment-exit.json",
       "test_file": "web/rulelink_public_next/scripts/employment-exit-topic-handoff.test.mjs",
       "change_mode": "new_topic",
-      "status": "needs_rework",
+      "status": "ready_for_integration",
       "counts": {
         "sources": 13,
         "rule_cards": 12,
@@ -361,7 +361,7 @@
         "topic_hubs": 1
       },
       "depends_on_prs": [],
-      "integration_order": null,
+      "integration_order": 20,
       "official_url_check": {
         "status": "passed",
         "referenced_count": 13
@@ -371,16 +371,12 @@
         "mismatch_count": 0
       },
       "integration_checks": [
-        "중복 질문을 제거하고 현재 content.labor-commission-rereview-vs-lawsuit-deadline으로 연결하거나 독자적인 결론변경 사실을 가진 질문으로 교체한다.",
-        "비표준 콘텐츠 유형이 있으면 표준 8종으로 정규화한다."
+        "현재 정본과 중복되던 노동위원회 재심·소송 제기기간 문항이 제거되었는지 통합 시 재확인한다.",
+        "대체 문항의 근로기준법 제25조 재고용 요건과 활성 DB snapshot 일치를 유지한다.",
+        "표준 콘텐츠 유형만 사용하는지 통합 시 재확인한다."
       ],
-      "blocking_reason_ko": "현재 정본의 노동위원회 재심·소송 제기기간 콘텐츠와 질문·효과가 사실상 같습니다.",
-      "overlap_decisions": [
-        {
-          "target_content_id": "content.labor-commission-rereview-vs-lawsuit-deadline",
-          "relationship": "merge_required",
-          "rationale_ko": "노동위원회 재심 10일과 행정소송 15일의 질문·절차·기한·효과가 현재 정본과 실질적으로 같습니다."
-        }
+      "supersedes_prs": [
+        98
       ]
     },
     {
