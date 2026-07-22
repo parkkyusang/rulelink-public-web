@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20260721-010",
+  "release_id": "production-20260723-011",
   "snapshot_id": "kr-knowledge-core-20260721-021",
-  "requested_at": "2026-07-21T15:38:36.109Z",
-  "summary_ko": "17개 생활법률 허브의 173개 안내, 3개 법률개념, 160개 법리, 136개 사실분기, 266개 공식 근거와 11개 법령변화를 운영 공개한다."
+  "requested_at": "2026-07-22T19:24:21.656Z",
+  "summary_ko": "스냅샷 021의 17개 생활법률 허브와 173개 안내를 운영에 유지하고, 운영 검색 허용·robots.txt·사이트맵 생성을 배포 환경에서 강제한다."
 }
