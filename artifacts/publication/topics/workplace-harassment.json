@@ -1110,7 +1110,9 @@
       "hub_ids": [
         "hub.workplace-harassment"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.industrial-accident-recognition"
+      ]
     }
   ]
 }
