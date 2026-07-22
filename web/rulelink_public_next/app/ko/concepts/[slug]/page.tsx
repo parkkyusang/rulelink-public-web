@@ -114,7 +114,8 @@ export default async function ConceptPage({params}: Props) {
         <aside className={styles.aside}>
           {concept.aliases_ko.length ? (
             <section>
-              <h2>함께 쓰는 말</h2>
+              <h2>함께 찾는 말</h2>
+              <p>검색 편의를 위해 연결한 표현입니다. 같은 뜻인지, 하위 개념인지, 쉬운 표현인지는 근거와 관계 분류를 따로 확인합니다.</p>
               <p>{concept.aliases_ko.join(', ')}</p>
             </section>
           ) : null}

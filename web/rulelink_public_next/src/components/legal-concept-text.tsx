@@ -2,13 +2,14 @@
 
 import {useEffect, useId, useRef, useState, type ReactNode} from 'react';
 
+import {inlineTermsForConcept} from '@/lib/concept-terms';
 import type {PublicConceptCard} from '@/types/publication';
 
 import styles from './legal-concept-text.module.css';
 
 type ConceptTerm = Pick<
   PublicConceptCard,
-  'concept_id' | 'slug' | 'preferred_term_ko' | 'aliases_ko' | 'plain_definition_ko'
+  'concept_id' | 'slug' | 'preferred_term_ko' | 'term_relations' | 'plain_definition_ko'
 >;
 
 export function LegalConceptText({concepts, text}: {concepts: ConceptTerm[]; text: string}) {
@@ -41,9 +42,8 @@ export function LegalConceptText({concepts, text}: {concepts: ConceptTerm[]; tex
 
   const termToConcept = new Map<string, ConceptTerm>();
   for (const concept of concepts) {
-    for (const term of [concept.preferred_term_ko, ...concept.aliases_ko]) {
-      const normalized = term.trim();
-      if (normalized.length >= 2 && !termToConcept.has(normalized)) termToConcept.set(normalized, concept);
+    for (const term of inlineTermsForConcept(concept)) {
+      if (term.length >= 2 && !termToConcept.has(term)) termToConcept.set(term, concept);
     }
   }
   const terms = [...termToConcept.keys()].sort((left, right) => right.length - left.length);

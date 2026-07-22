@@ -118,12 +118,19 @@ export type PublicConceptAssertion = {
   source_coordinate_ids: string[];
 };
 
+export type PublicConceptTermRelation = {
+  term_ko: string;
+  relation: 'exact_synonym' | 'abbreviation' | 'spelling_variant' | 'plain_language' | 'narrower' | 'broader' | 'related';
+  source_coordinate_ids: string[];
+};
+
 export type PublicConceptCard = {
   concept_id: string;
   version: string;
   slug: string;
   preferred_term_ko: string;
   aliases_ko: string[];
+  term_relations?: PublicConceptTermRelation[];
   plain_definition_ko: string;
   legal_definition_ko: string;
   elements_ko: string[];
