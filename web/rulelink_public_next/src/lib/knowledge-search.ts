@@ -9,10 +9,21 @@ import type {
 } from '@/types/publication';
 
 export type PublicKnowledgeSearchDocument = {
-  entry: PublicKnowledgeEntry;
+  entry: PublicKnowledgeSearchEntry;
   search_terms_ko: string[];
   evidence_labels_ko: string[];
 };
+
+export type PublicKnowledgeSearchEntry = Pick<PublicKnowledgeEntry,
+  | 'content_id'
+  | 'content_type'
+  | 'slug'
+  | 'title_ko'
+  | 'one_line_answer_ko'
+  | 'audience_situation_ko'
+  | 'reviewed_at'
+  | 'hub_ids'
+>;
 
 export type PublicKnowledgeSourceDocument = {
   source: PublicKnowledgeSource;
@@ -57,16 +68,16 @@ export function buildKnowledgeSourceDocuments(
     .filter(entry => !visibleContentIds || visibleContentIds.has(entry.content_id))
     .map(entry => {
       const graph = resolveEntry(entry);
-      return {document: makeKnowledgeSearchDocument(entry, graph), graph};
+      return {document: makeKnowledgeSearchDocument(entry, graph), entry, graph};
     });
   const visibleConcepts = (knowledge.concept_cards ?? [])
     .filter(concept => !visibleConceptIds || visibleConceptIds.has(concept.concept_id));
 
   return knowledge.sources
     .map(source => {
-      const relatedDocuments = resolvedEntries
-        .filter(({graph}) => graph.sources.some(candidate => candidate.coordinate_id === source.coordinate_id))
-        .map(({document}) => document);
+      const relatedEntries = resolvedEntries
+        .filter(({graph}) => graph.sources.some(candidate => candidate.coordinate_id === source.coordinate_id));
+      const relatedDocuments = relatedEntries.map(({document}) => document);
       const relatedConcepts = visibleConcepts.filter(concept => conceptReferencesSource(concept, source.coordinate_id));
       return {
         source,
@@ -76,7 +87,7 @@ export function buildKnowledgeSourceDocuments(
           ...relatedDocuments.flatMap(document => document.search_terms_ko),
           ...relatedConcepts.flatMap(conceptTerms),
         ]),
-        entries: relatedDocuments.map(document => document.entry),
+        entries: relatedEntries.map(({entry}) => entry),
         concepts: relatedConcepts,
       };
     })
@@ -93,11 +104,19 @@ function makeKnowledgeSearchDocument(
   graph: ResolvedKnowledgeEntryGraph,
 ): PublicKnowledgeSearchDocument {
   return {
-    entry,
+    // 목록과 통합검색에는 카드 표시 필드만 전달한다. 본문 전체는 상세 정적 페이지에만 둔다.
+    entry: {
+      content_id: entry.content_id,
+      content_type: entry.content_type,
+      slug: entry.slug,
+      title_ko: entry.title_ko,
+      one_line_answer_ko: entry.one_line_answer_ko,
+      audience_situation_ko: entry.audience_situation_ko,
+      reviewed_at: entry.reviewed_at,
+      hub_ids: entry.hub_ids,
+    },
     search_terms_ko: uniqueTerms([
-      entry.title_ko,
-      entry.one_line_answer_ko,
-      entry.audience_situation_ko,
+      // 제목ㆍ한 문장 답변ㆍ대상 상황은 위 카드 필드로 이미 전달되므로 중복 직렬화하지 않는다.
       ...entry.search_intents_ko,
       ...entry.key_points_ko,
       ...entry.action_steps_ko,
