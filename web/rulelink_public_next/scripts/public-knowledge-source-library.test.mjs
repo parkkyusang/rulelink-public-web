@@ -60,6 +60,8 @@ test('공식 근거 보관함은 검색·원문·연결 안내와 전체 공개 
   assert.match(componentSource, /browserOfficialSourceUrl/);
   assert.match(componentSource, /document\.entries/);
   assert.match(componentSource, /document\.concepts/);
+  assert.match(componentSource, /displayedDocuments/);
+  assert.match(componentSource, /ProgressiveResultFooter/);
   assert.match(layoutSource, /href="\/ko\/sources">공식 근거/);
   assert.match(sitemapSource, /\/ko\/sources/);
   assert.match(localSmoke, /\/ko\/sources/);

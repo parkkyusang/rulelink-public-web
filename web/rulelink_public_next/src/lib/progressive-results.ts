@@ -1,8 +1,8 @@
-export const KNOWLEDGE_RESULT_BATCH_SIZE = 24;
+export const DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE = 24;
 
 export function initialProgressiveResultLimit(
   total: number,
-  batchSize = KNOWLEDGE_RESULT_BATCH_SIZE,
+  batchSize = DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE,
 ): number {
   return Math.min(normalizeCount(total), normalizeBatchSize(batchSize));
 }
@@ -10,7 +10,7 @@ export function initialProgressiveResultLimit(
 export function nextProgressiveResultLimit(
   total: number,
   current: number,
-  batchSize = KNOWLEDGE_RESULT_BATCH_SIZE,
+  batchSize = DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE,
 ): number {
   const normalizedTotal = normalizeCount(total);
   const normalizedBatchSize = normalizeBatchSize(batchSize);
@@ -23,5 +23,5 @@ function normalizeCount(value: number): number {
 }
 
 function normalizeBatchSize(value: number): number {
-  return Number.isFinite(value) ? Math.max(1, Math.floor(value)) : KNOWLEDGE_RESULT_BATCH_SIZE;
+  return Number.isFinite(value) ? Math.max(1, Math.floor(value)) : DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE;
 }

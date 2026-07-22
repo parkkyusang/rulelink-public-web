@@ -5,8 +5,8 @@ import {useEffect, useMemo, useState} from 'react';
 import {buildCollectionSearchHref, parseCollectionSearchState, sanitizeCollectionQuery} from '@/lib/collection-search-state';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {
+  DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE,
   initialProgressiveResultLimit,
-  KNOWLEDGE_RESULT_BATCH_SIZE,
   nextProgressiveResultLimit,
 } from '@/lib/progressive-results';
 
@@ -15,6 +15,7 @@ import type {PublicKnowledgeSearchDocument} from '@/lib/knowledge-search';
 import type {PublicKnowledgeHub} from '@/types/publication';
 
 import styles from './knowledge-explorer.module.css';
+import {ProgressiveResultFooter} from './progressive-result-footer';
 
 type Props = {
   documents: PublicKnowledgeSearchDocument[];
@@ -36,19 +37,19 @@ export function KnowledgeExplorer({documents, hubs}: Props) {
     });
     setQuery(initial.query);
     setHubId(initial.filter);
-    setVisibleLimit(KNOWLEDGE_RESULT_BATCH_SIZE);
+    setVisibleLimit(DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE);
   }, [hubFilters]);
 
   function updateQuery(value: string) {
     const nextQuery = sanitizeCollectionQuery(value);
     setQuery(nextQuery);
-    setVisibleLimit(KNOWLEDGE_RESULT_BATCH_SIZE);
+    setVisibleLimit(DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE);
     replaceKnowledgeUrl(nextQuery, hubId);
   }
 
   function updateHub(nextHubId: string) {
     setHubId(nextHubId);
-    setVisibleLimit(KNOWLEDGE_RESULT_BATCH_SIZE);
+    setVisibleLimit(DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE);
     replaceKnowledgeUrl(query, nextHubId);
   }
 
@@ -135,18 +136,13 @@ export function KnowledgeExplorer({documents, hubs}: Props) {
               );
             })}
           </div>
-          {hiddenResultCount > 0 ? (
-            <div className={styles.loadMore}>
-              <button
-                aria-controls="knowledge-result-grid"
-                onClick={() => setVisibleLimit(current => nextProgressiveResultLimit(visibleDocuments.length, current))}
-                type="button"
-              >
-                지식 더 보기 <span>({hiddenResultCount}개 남음)</span>
-              </button>
-              <p>검색과 주제 필터는 아직 펼치지 않은 지식에도 똑같이 적용됩니다.</p>
-            </div>
-          ) : null}
+          <ProgressiveResultFooter
+            controlsId="knowledge-result-grid"
+            description="검색과 주제 필터는 아직 펼치지 않은 지식에도 똑같이 적용됩니다."
+            hiddenCount={hiddenResultCount}
+            label="지식 더 보기"
+            onLoadMore={() => setVisibleLimit(current => nextProgressiveResultLimit(visibleDocuments.length, current))}
+          />
         </>
       ) : (
         <div className={styles.empty}>

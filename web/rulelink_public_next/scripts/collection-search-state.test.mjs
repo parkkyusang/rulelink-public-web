@@ -10,8 +10,8 @@ import {
   parseCollectionSearchState,
 } from '../src/lib/collection-search-state.ts';
 import {
+  DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE,
   initialProgressiveResultLimit,
-  KNOWLEDGE_RESULT_BATCH_SIZE,
   nextProgressiveResultLimit,
 } from '../src/lib/progressive-results.ts';
 
@@ -81,7 +81,7 @@ test('세 검색 화면은 같은 주소 상태 계약을 사용한다', () => {
 });
 
 test('지식 보관함은 전체 검색을 유지하면서 24건씩 점진적으로 펼친다', () => {
-  assert.equal(KNOWLEDGE_RESULT_BATCH_SIZE, 24);
+  assert.equal(DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE, 24);
   assert.equal(initialProgressiveResultLimit(173), 24);
   assert.equal(initialProgressiveResultLimit(12), 12);
   assert.equal(nextProgressiveResultLimit(173, 24), 48);
@@ -90,7 +90,14 @@ test('지식 보관함은 전체 검색을 유지하면서 24건씩 점진적으
   assert.equal(nextProgressiveResultLimit(50, Number.NaN), 24);
 
   assert.match(knowledgeExplorer, /visibleDocuments\.slice\(0, visibleLimit\)/);
-  assert.match(knowledgeExplorer, /setVisibleLimit\(KNOWLEDGE_RESULT_BATCH_SIZE\)/);
-  assert.match(knowledgeExplorer, /aria-controls="knowledge-result-grid"/);
+  assert.match(knowledgeExplorer, /setVisibleLimit\(DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE\)/);
+  assert.match(knowledgeExplorer, /controlsId="knowledge-result-grid"/);
   assert.match(knowledgeExplorer, /검색과 주제 필터는 아직 펼치지 않은 지식에도/);
+});
+
+test('공식 근거 보관함도 같은 점진 표시 계약으로 전체 검색과 초기 렌더링을 분리한다', () => {
+  assert.match(sourceLibrary, /visibleDocuments\.slice\(0, visibleLimit\)/);
+  assert.match(sourceLibrary, /setVisibleLimit\(DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE\)/);
+  assert.match(sourceLibrary, /controlsId="knowledge-source-result-grid"/);
+  assert.match(sourceLibrary, /아직 펼치지 않은 공식 근거에도/);
 });
