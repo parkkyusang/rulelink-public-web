@@ -1,0 +1,727 @@
+{
+  "schema": "rulelink_publication_production_queue_v1",
+  "audited_on": "2026-07-23",
+  "current_publication": {
+    "snapshot_id": "kr-knowledge-core-20260721-021",
+    "topic_hubs": 17,
+    "content_entries": 173,
+    "rule_cards": 160,
+    "scenario_branches": 136,
+    "sources": 266,
+    "live_parity": "verified"
+  },
+  "policy": {
+    "wip_limit_per_producer": 1,
+    "content_pr_file_limit": 2,
+    "direct_merge_for_existing_topic_revision": false,
+    "require_explicit_overlap_decision": true,
+    "require_dependency_order": true
+  },
+  "audit_summary": {
+    "open_content_prs": 20,
+    "official_source_references_checked": 328,
+    "unique_official_urls_checked": 274,
+    "official_url_failures": 0,
+    "exact_cross_pr_content_id_collisions": 0,
+    "broken_related_content_ids": 0
+  },
+  "items": [
+    {
+      "queue_id": "publication-pr-85",
+      "pr_number": 85,
+      "title_ko": "첫 비교축의 대상 상황 13건 보강",
+      "branch": "codex/content-comparison-audience-02-20260722",
+      "head_sha": "e10ae17e67e02321f2057ba9213ef1d8d50dc7f9",
+      "owner_role": "content_production",
+      "topic_id": "hub.legal-concept-comparisons",
+      "topic_file": "artifacts/publication/topics/legal-concept-comparisons.json",
+      "test_file": "web/rulelink_public_next/scripts/legal-concept-comparisons-topic-handoff.test.mjs",
+      "change_mode": "existing_topic_revision",
+      "status": "migration_required",
+      "counts": {
+        "sources": 38,
+        "rule_cards": 13,
+        "scenario_branches": 13,
+        "content_entries": 13,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": null,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 38
+      },
+      "source_freshness": {
+        "status": "existing_topic_revision"
+      },
+      "integration_checks": [
+        "원 PR을 직접 병합하지 않고 주제 원본·current·새 불변 snapshot을 같은 migration에서 이관한다."
+      ]
+    },
+    {
+      "queue_id": "publication-pr-87",
+      "pr_number": 87,
+      "title_ko": "2026년 정보통신망법 생활질문 10건 추가",
+      "branch": "codex/content-information-network-20260722",
+      "head_sha": "4ca5a8d66ff12bb226c3211a1d539b58de18d0f9",
+      "owner_role": "content_production",
+      "topic_id": "topic.information-network-rights-2026",
+      "topic_file": "artifacts/publication/topics/information-network-rights-2026.json",
+      "test_file": "web/rulelink_public_next/scripts/information-network-rights-2026-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "needs_rework",
+      "counts": {
+        "sources": 23,
+        "rule_cards": 10,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": null,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 23
+      },
+      "source_freshness": {
+        "status": "rework_required",
+        "mismatch_count": 22
+      },
+      "integration_checks": [
+        "2026-07-07 시행 현행 조문 22개를 활성 DB 기준으로 재근거화한다."
+      ],
+      "blocking_reason_ko": "2026-07-07 시행 현행 조문 22개를 활성 DB 기준으로 재근거화한다."
+    },
+    {
+      "queue_id": "publication-pr-88",
+      "pr_number": 88,
+      "title_ko": "개인회생·개인파산·면책 공개 콘텐츠 10건",
+      "branch": "codex/content-personal-insolvency-20260722",
+      "head_sha": "14c55f84b7845471eb48a4925d9b387553317eeb",
+      "owner_role": "content_production",
+      "topic_id": "hub.personal-insolvency-recovery",
+      "topic_file": "artifacts/publication/topics/personal-insolvency-recovery.json",
+      "test_file": "web/rulelink_public_next/scripts/personal-insolvency-recovery-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "needs_rework",
+      "counts": {
+        "sources": 17,
+        "rule_cards": 10,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": null,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 17
+      },
+      "source_freshness": {
+        "status": "rework_required",
+        "mismatch_count": 17
+      },
+      "integration_checks": [
+        "#114와 겹치는 개인회생 절차 설명을 제거하고 개인회생·파산 선택과 면책범위 비교 허브로 재구성한다.",
+        "활성 DB 기준으로 17개 근거 좌표를 재결박하고 비표준 콘텐츠 유형을 정규화한다."
+      ],
+      "blocking_reason_ko": "#114와 겹치는 개인회생 절차 설명을 제거하고 개인회생·파산 선택과 면책범위 비교 허브로 재구성한다.",
+      "overlap_decisions": [
+        {
+          "target_pr": 114,
+          "relationship": "split_required",
+          "rationale_ko": "직접 중복 5건, 부분 중복 2건, source_id 교집합 9개이므로 두 허브의 역할을 분리해야 한다."
+        }
+      ]
+    },
+    {
+      "queue_id": "publication-pr-89",
+      "pr_number": 89,
+      "title_ko": "피의자 조사·체포·구속·압수수색 권리 콘텐츠 10건",
+      "branch": "codex/content-suspect-rights-20260722",
+      "head_sha": "37541b9be85d3bce3d68b4c3a0b0c25fa93084ed",
+      "owner_role": "content_production",
+      "topic_id": "hub.suspect-rights",
+      "topic_file": "artifacts/publication/topics/suspect-rights.json",
+      "test_file": "web/rulelink_public_next/scripts/suspect-rights-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "needs_rework",
+      "counts": {
+        "sources": 17,
+        "rule_cards": 10,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": null,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 17
+      },
+      "source_freshness": {
+        "status": "rework_required",
+        "mismatch_count": 17
+      },
+      "integration_checks": [
+        "현행 근거 17개를 활성 DB 기준으로 재결박하고 비표준 콘텐츠 유형을 정규화한다.",
+        "#109보다 먼저 통합할 수 있는 상태로 만든다."
+      ],
+      "blocking_reason_ko": "현행 근거 17개를 활성 DB 기준으로 재결박하고 비표준 콘텐츠 유형을 정규화한다."
+    },
+    {
+      "queue_id": "publication-pr-92",
+      "pr_number": 92,
+      "title_ko": "개인정보 권리·유출 대응 공개 콘텐츠 10건",
+      "branch": "codex/content-personal-data-rights-20260722",
+      "head_sha": "9d6e2d13bbfb3979308f0b70b9300306eaf14e91",
+      "owner_role": "content_production",
+      "topic_id": "hub.personal-data-rights",
+      "topic_file": "artifacts/publication/topics/personal-data-rights.json",
+      "test_file": "web/rulelink_public_next/scripts/personal-data-rights-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "needs_rework",
+      "counts": {
+        "sources": 14,
+        "rule_cards": 10,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": null,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 14
+      },
+      "source_freshness": {
+        "status": "rework_required",
+        "mismatch_count": 13
+      },
+      "integration_checks": [
+        "법령 13개를 활성 DB 기준으로 재결박하고 판례 1개 외부 근거의 출처 계보를 고정한다."
+      ],
+      "blocking_reason_ko": "법령 13개를 활성 DB 기준으로 재결박하고 판례 1개 외부 근거의 출처 계보를 고정한다."
+    },
+    {
+      "queue_id": "publication-pr-93",
+      "pr_number": 93,
+      "title_ko": "상속 법리카드 중복 표현 정비",
+      "branch": "codex/content-inheritance-rulecopy-20260722",
+      "head_sha": "4d37d92d5c775d554a95910f18dfc0156054bbde",
+      "owner_role": "content_production",
+      "topic_id": "hub.family-inheritance",
+      "topic_file": "artifacts/publication/topics/family-inheritance.json",
+      "test_file": "web/rulelink_public_next/scripts/family-inheritance-rule-copy-topic-handoff.test.mjs",
+      "change_mode": "existing_topic_revision",
+      "status": "migration_required",
+      "counts": {
+        "sources": 24,
+        "rule_cards": 10,
+        "scenario_branches": 7,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": null,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 24
+      },
+      "source_freshness": {
+        "status": "existing_topic_revision"
+      },
+      "integration_checks": [
+        "원 PR을 직접 병합하지 않고 주제 원본·current·새 불변 snapshot을 같은 migration에서 이관한다."
+      ]
+    },
+    {
+      "queue_id": "publication-pr-95",
+      "pr_number": 95,
+      "title_ko": "상가건물 임대차 공개 콘텐츠 11건",
+      "branch": "codex/content-commercial-lease-20260722",
+      "head_sha": "0e993fa6708a6114fc298e59995d500db17b510c",
+      "owner_role": "content_production",
+      "topic_id": "hub.commercial-lease",
+      "topic_file": "artifacts/publication/topics/commercial-lease.json",
+      "test_file": "web/rulelink_public_next/scripts/commercial-lease-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "ready_for_integration",
+      "counts": {
+        "sources": 16,
+        "rule_cards": 13,
+        "scenario_branches": 11,
+        "content_entries": 11,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": 30,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 16
+      },
+      "source_freshness": {
+        "status": "rebind_before_integration",
+        "mismatch_count": 3
+      },
+      "integration_checks": [
+        "합성 직전 드리프트 좌표 3개를 활성 DB 기준으로 재검증한다.",
+        "비표준 콘텐츠 유형이 있으면 표준 8종으로 정규화한다."
+      ]
+    },
+    {
+      "queue_id": "publication-pr-96",
+      "pr_number": 96,
+      "title_ko": "의료사고·의료분쟁 대응 공개 콘텐츠 10건",
+      "branch": "codex/content-medical-dispute-20260722",
+      "head_sha": "8b6716ead7bf4ae9bb6c941a087e83d9c6961c89",
+      "owner_role": "content_production",
+      "topic_id": "hub.medical-dispute",
+      "topic_file": "artifacts/publication/topics/medical-dispute.json",
+      "test_file": "web/rulelink_public_next/scripts/medical-dispute-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "needs_rework",
+      "counts": {
+        "sources": 13,
+        "rule_cards": 12,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": null,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 13
+      },
+      "source_freshness": {
+        "status": "external_provenance_required",
+        "mismatch_count": 13
+      },
+      "integration_checks": [
+        "13개 근거를 Source Maintenance 또는 검증된 공개 근거 계보에 편입한다.",
+        "현재 상세 정본으로 이어지는 외부 관련 콘텐츠를 최소 1개 추가한다."
+      ],
+      "blocking_reason_ko": "13개 근거를 Source Maintenance 또는 검증된 공개 근거 계보에 편입한다."
+    },
+    {
+      "queue_id": "publication-pr-97",
+      "pr_number": 97,
+      "title_ko": "자동차 교통사고·보험 대응 10건",
+      "branch": "codex/content-auto-accident-insurance-20260722",
+      "head_sha": "90bd2a5a026aa655a02de5c4371cbb30817aa552",
+      "owner_role": "content_production",
+      "topic_id": "hub.auto-accident-insurance",
+      "topic_file": "artifacts/publication/topics/auto-accident-insurance.json",
+      "test_file": "web/rulelink_public_next/scripts/auto-accident-insurance-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "ready_for_integration",
+      "counts": {
+        "sources": 11,
+        "rule_cards": 12,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": 40,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 11
+      },
+      "source_freshness": {
+        "status": "rebind_before_integration",
+        "mismatch_count": 5
+      },
+      "integration_checks": [
+        "드리프트 좌표 5개를 활성 DB 기준으로 재검증한다.",
+        "비표준 콘텐츠 유형이 있으면 표준 8종으로 정규화한다."
+      ]
+    },
+    {
+      "queue_id": "publication-pr-98",
+      "pr_number": 98,
+      "title_ko": "해고·퇴직·실업 대응 10건",
+      "branch": "codex/content-employment-exit-20260722",
+      "head_sha": "9d01319977b4acdf1a50135e2dbccdb9696d15f3",
+      "owner_role": "content_production",
+      "topic_id": "hub.employment-exit",
+      "topic_file": "artifacts/publication/topics/employment-exit.json",
+      "test_file": "web/rulelink_public_next/scripts/employment-exit-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "ready_for_integration",
+      "counts": {
+        "sources": 13,
+        "rule_cards": 12,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": 20,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 13
+      },
+      "source_freshness": {
+        "status": "current",
+        "mismatch_count": 0
+      },
+      "integration_checks": [
+        "비표준 콘텐츠 유형이 있으면 표준 8종으로 정규화한다."
+      ]
+    },
+    {
+      "queue_id": "publication-pr-100",
+      "pr_number": 100,
+      "title_ko": "산업재해·산재보험 생활법률 콘텐츠 10건",
+      "branch": "codex/content-industrial-accident-20260722",
+      "head_sha": "b2890780c5db576fa77a1cb808fb9b6be4c98024",
+      "owner_role": "content_production",
+      "topic_id": "hub.industrial-accident",
+      "topic_file": "artifacts/publication/topics/industrial-accident.json",
+      "test_file": "web/rulelink_public_next/scripts/industrial-accident-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "ready_for_integration",
+      "counts": {
+        "sources": 14,
+        "rule_cards": 11,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": 50,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 14
+      },
+      "source_freshness": {
+        "status": "rebind_before_integration",
+        "mismatch_count": 4
+      },
+      "integration_checks": [
+        "드리프트 좌표 4개를 활성 DB 기준으로 재검증한다.",
+        "비표준 콘텐츠 유형이 있으면 표준 8종으로 정규화한다."
+      ]
+    },
+    {
+      "queue_id": "publication-pr-101",
+      "pr_number": 101,
+      "title_ko": "직장 내 괴롭힘·성희롱 대응 콘텐츠 10건",
+      "branch": "codex/content-workplace-harassment-20260722",
+      "head_sha": "e026e84e35e0ff7e454e119860908f5cb1d754d8",
+      "owner_role": "content_production",
+      "topic_id": "hub.workplace-harassment",
+      "topic_file": "artifacts/publication/topics/workplace-harassment.json",
+      "test_file": "web/rulelink_public_next/scripts/workplace-harassment-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "ready_for_integration",
+      "counts": {
+        "sources": 12,
+        "rule_cards": 10,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [
+        100
+      ],
+      "integration_order": 100,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 12
+      },
+      "source_freshness": {
+        "status": "rebind_before_integration",
+        "mismatch_count": 6
+      },
+      "integration_checks": [
+        "#100 통합 뒤 관련 콘텐츠 참조가 닫히는지 검사한다.",
+        "드리프트 좌표 6개를 활성 DB 기준으로 재검증하고 유형을 정규화한다."
+      ]
+    },
+    {
+      "queue_id": "publication-pr-103",
+      "pr_number": 103,
+      "title_ko": "학교폭력 신고·보호·조치 생활법률 콘텐츠 10건",
+      "branch": "codex/content-school-violence-20260723",
+      "head_sha": "d07c1599ea7127bd5d35874e5ea6e184fa862b79",
+      "owner_role": "content_production",
+      "topic_id": "hub.school-violence",
+      "topic_file": "artifacts/publication/topics/school-violence.json",
+      "test_file": "web/rulelink_public_next/scripts/school-violence-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "ready_for_integration",
+      "counts": {
+        "sources": 12,
+        "rule_cards": 10,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": 60,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 12
+      },
+      "source_freshness": {
+        "status": "rebind_before_integration",
+        "mismatch_count": 2
+      },
+      "integration_checks": [
+        "드리프트 좌표 2개를 활성 DB 기준으로 재검증하고 유형을 정규화한다."
+      ]
+    },
+    {
+      "queue_id": "publication-pr-104",
+      "pr_number": 104,
+      "title_ko": "민사소송·소액재판 생활법률 콘텐츠 10건",
+      "branch": "codex/content-civil-small-claims-20260723",
+      "head_sha": "935c0d086d9f5a050057dbe20b01d56a6238d11f",
+      "owner_role": "content_production",
+      "topic_id": "hub.civil-small-claims",
+      "topic_file": "artifacts/publication/topics/civil-small-claims.json",
+      "test_file": "web/rulelink_public_next/scripts/civil-small-claims-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "ready_for_integration",
+      "counts": {
+        "sources": 20,
+        "rule_cards": 10,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": 70,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 20
+      },
+      "source_freshness": {
+        "status": "rebind_before_integration",
+        "mismatch_count": 5
+      },
+      "integration_checks": [
+        "드리프트 좌표 5개를 활성 DB 기준으로 재검증한다."
+      ]
+    },
+    {
+      "queue_id": "publication-pr-105",
+      "pr_number": 105,
+      "title_ko": "가정폭력·스토킹 안전대응 생활법률 콘텐츠 10건",
+      "branch": "codex/content-domestic-violence-stalking-20260723",
+      "head_sha": "eabcdcade6f267194e3c0061a38971e706b16709",
+      "owner_role": "content_production",
+      "topic_id": "hub.domestic-violence-stalking",
+      "topic_file": "artifacts/publication/topics/domestic-violence-stalking.json",
+      "test_file": "web/rulelink_public_next/scripts/domestic-violence-stalking-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "ready_for_integration",
+      "counts": {
+        "sources": 22,
+        "rule_cards": 10,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": 80,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 22
+      },
+      "source_freshness": {
+        "status": "rebind_before_integration",
+        "mismatch_count": 2
+      },
+      "integration_checks": [
+        "드리프트 좌표 2개를 활성 DB 기준으로 재검증한다."
+      ]
+    },
+    {
+      "queue_id": "publication-pr-107",
+      "pr_number": 107,
+      "title_ko": "주택임대차 갱신·수선·차임 생활법률 콘텐츠 10건",
+      "branch": "codex/content-housing-lease-living-20260723",
+      "head_sha": "9c268213b0b8b2c37dae43816e0e9b9606e64cec",
+      "owner_role": "content_production",
+      "topic_id": "hub.housing-lease-living",
+      "topic_file": "artifacts/publication/topics/housing-lease-living.json",
+      "test_file": "web/rulelink_public_next/scripts/housing-lease-living-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "ready_for_integration",
+      "counts": {
+        "sources": 13,
+        "rule_cards": 10,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": 90,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 13
+      },
+      "source_freshness": {
+        "status": "rebind_before_integration",
+        "mismatch_count": 1
+      },
+      "integration_checks": [
+        "드리프트 좌표 1개를 활성 DB 기준으로 재검증한다."
+      ]
+    },
+    {
+      "queue_id": "publication-pr-109",
+      "pr_number": 109,
+      "title_ko": "음주운전·도주·면허처분 생활법률 콘텐츠 10건",
+      "branch": "codex/content-traffic-criminal-license-20260723",
+      "head_sha": "91bdd38f356c09d82205448b4624277797ff9808",
+      "owner_role": "content_production",
+      "topic_id": "hub.traffic-criminal-license",
+      "topic_file": "artifacts/publication/topics/traffic-criminal-license.json",
+      "test_file": "web/rulelink_public_next/scripts/traffic-criminal-license-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "blocked",
+      "counts": {
+        "sources": 11,
+        "rule_cards": 10,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [
+        89,
+        97
+      ],
+      "integration_order": null,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 11
+      },
+      "source_freshness": {
+        "status": "rebind_before_integration",
+        "mismatch_count": 8
+      },
+      "integration_checks": [
+        "#89 재작업과 #97 통합 뒤에만 통합한다.",
+        "드리프트 좌표 8개를 활성 DB 기준으로 재검증한다."
+      ],
+      "blocking_reason_ko": "#89 재작업과 #97 통합 뒤에만 통합한다."
+    },
+    {
+      "queue_id": "publication-pr-111",
+      "pr_number": 111,
+      "title_ko": "누수·층간소음·공용부분 생활분쟁 콘텐츠 10건",
+      "branch": "codex/content-neighbor-leak-noise-20260723",
+      "head_sha": "a9fd9016c2961e5b329f161bb9de1f694c3328bf",
+      "owner_role": "content_production",
+      "topic_id": "hub.neighbor-leak-noise",
+      "topic_file": "artifacts/publication/topics/neighbor-leak-noise.json",
+      "test_file": "web/rulelink_public_next/scripts/neighbor-leak-noise-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "ready_for_integration",
+      "counts": {
+        "sources": 12,
+        "rule_cards": 10,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [
+        104,
+        107
+      ],
+      "integration_order": 110,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 12
+      },
+      "source_freshness": {
+        "status": "rebind_before_integration",
+        "mismatch_count": 2
+      },
+      "integration_checks": [
+        "#104와 #107 뒤 관련 콘텐츠 참조가 닫히는지 검사한다.",
+        "드리프트 좌표 2개를 활성 DB 기준으로 재검증한다."
+      ]
+    },
+    {
+      "queue_id": "publication-pr-113",
+      "pr_number": 113,
+      "title_ko": "보이스피싱 지급정지·피해환급 콘텐츠 10건",
+      "branch": "codex/content-voice-phishing-refund-20260723",
+      "head_sha": "3be1d8132fe775c94c2e4ec2884e165dc7d4a385",
+      "owner_role": "content_production",
+      "topic_id": "hub.voice-phishing-refund",
+      "topic_file": "artifacts/publication/topics/voice-phishing-refund.json",
+      "test_file": "web/rulelink_public_next/scripts/voice-phishing-refund-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "ready_for_integration",
+      "counts": {
+        "sources": 12,
+        "rule_cards": 10,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": 10,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 12
+      },
+      "source_freshness": {
+        "status": "current",
+        "mismatch_count": 0
+      },
+      "integration_checks": [
+        "2026-12-17 미래 시행 전자금융거래법 판의 혼입 차단 시험을 유지한다."
+      ]
+    },
+    {
+      "queue_id": "publication-pr-114",
+      "pr_number": 114,
+      "title_ko": "개인회생 신청·변제·면책 10건",
+      "branch": "codex/content-personal-rehabilitation-20260723",
+      "head_sha": "3cc5740f9e0dba7b06086ddfeba201258f4cd8aa",
+      "owner_role": "content_production",
+      "topic_id": "hub.personal-rehabilitation",
+      "topic_file": "artifacts/publication/topics/personal-rehabilitation.json",
+      "test_file": "web/rulelink_public_next/scripts/personal-rehabilitation-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "needs_rework",
+      "counts": {
+        "sources": 14,
+        "rule_cards": 10,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": null,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 14
+      },
+      "source_freshness": {
+        "status": "current",
+        "mismatch_count": 0
+      },
+      "integration_checks": [
+        "기존 10건 중 #88과 직접 중복 5건·부분 중복 2건을 제거한다.",
+        "신청기각·계획변경·절차폐지를 포함한 개인회생 절차진행·변제관리 허브로 새 식별자를 사용해 재구성한다."
+      ],
+      "blocking_reason_ko": "기존 10건 중 #88과 직접 중복 5건·부분 중복 2건을 제거한다.",
+      "overlap_decisions": [
+        {
+          "target_pr": 88,
+          "relationship": "split_required",
+          "rationale_ko": "개인회생 절차 공통 설명을 제거하고 절차진행·변제관리의 비중복 상세만 남긴다."
+        }
+      ]
+    }
+  ]
+}
