@@ -27,10 +27,18 @@ export type PublicKnowledgeSearchEntry = Pick<PublicKnowledgeEntry,
 
 export type PublicKnowledgeSourceDocument = {
   source: PublicKnowledgeSource;
+  source_coordinate_ids: string[];
   label_ko: string;
   search_terms_ko: string[];
   entries: PublicKnowledgeEntry[];
   concepts: PublicConceptCard[];
+};
+
+export type PublicKnowledgeSourceGroup = {
+  source: PublicKnowledgeSource;
+  sources: PublicKnowledgeSource[];
+  source_coordinate_ids: string[];
+  version_label_ko: string | null;
 };
 
 export type ResolvedKnowledgeEntryGraph = {
@@ -73,17 +81,23 @@ export function buildKnowledgeSourceDocuments(
   const visibleConcepts = (knowledge.concept_cards ?? [])
     .filter(concept => !visibleConceptIds || visibleConceptIds.has(concept.concept_id));
 
-  return knowledge.sources
-    .map(source => {
+  return groupKnowledgeSources(knowledge.sources)
+    .map(group => {
+      const source = group.source;
+      const coordinateIds = new Set(group.source_coordinate_ids);
       const relatedEntries = resolvedEntries
-        .filter(({graph}) => graph.sources.some(candidate => candidate.coordinate_id === source.coordinate_id));
+        .filter(({graph}) => graph.sources.some(candidate => coordinateIds.has(candidate.coordinate_id)));
       const relatedDocuments = relatedEntries.map(({document}) => document);
-      const relatedConcepts = visibleConcepts.filter(concept => conceptReferencesSource(concept, source.coordinate_id));
+      const relatedConcepts = visibleConcepts.filter(concept => (
+        group.source_coordinate_ids.some(coordinateId => conceptReferencesSource(concept, coordinateId))
+      ));
       return {
         source,
-        label_ko: sourceLabel(source),
+        source_coordinate_ids: group.source_coordinate_ids,
+        label_ko: [sourceLabel(source), group.version_label_ko].filter(Boolean).join(' · '),
         search_terms_ko: uniqueTerms([
-          ...sourceTerms(source),
+          ...group.sources.flatMap(sourceTerms),
+          group.version_label_ko,
           ...relatedDocuments.flatMap(document => document.search_terms_ko),
           ...relatedConcepts.flatMap(conceptTerms),
         ]),
@@ -92,6 +106,47 @@ export function buildKnowledgeSourceDocuments(
       };
     })
     .filter(document => document.entries.length > 0 || document.concepts.length > 0);
+}
+
+export function groupKnowledgeSources(sources: PublicKnowledgeSource[]): PublicKnowledgeSourceGroup[] {
+  // 같은 현행 조문도 주제별 과거 해시 산식 때문에 snapshot 식별자가 다를 수 있다.
+  // source_id와 공식 주소를 공개 원천의 기준으로 삼고, 명시된 시간축 좌표만 별도 보존한다.
+  const groups = new Map<string, PublicKnowledgeSourceGroup>();
+  for (const source of sources) {
+    const version = sourceProjectionVersion(source);
+    const key = [
+      source.source_id,
+      source.source_kind ?? 'statute',
+      sourceLabel(source),
+      source.official_url,
+      version?.scope ?? '',
+      version?.date ?? '',
+    ].join('|');
+    const existing = groups.get(key);
+    if (existing) {
+      existing.sources.push(source);
+      existing.source_coordinate_ids.push(source.coordinate_id);
+      continue;
+    }
+    groups.set(key, {
+      source,
+      sources: [source],
+      source_coordinate_ids: [source.coordinate_id],
+      version_label_ko: version ? sourceVersionLabel(version.scope, version.date) : null,
+    });
+  }
+  return [...groups.values()];
+}
+
+function sourceProjectionVersion(source: PublicKnowledgeSource): {scope: 'historical' | 'current' | 'future'; date: string} | null {
+  const match = source.coordinate_id.match(/(?:^|\.)(historical|current|future)-(\d{4}-\d{2}-\d{2})(?:\.|$)/u);
+  if (!match) return null;
+  return {scope: match[1] as 'historical' | 'current' | 'future', date: match[2]};
+}
+
+function sourceVersionLabel(scope: 'historical' | 'current' | 'future', date: string): string {
+  const labels = {historical: '종전 기준', current: '현행 기준', future: '시행 예정'} as const;
+  return `${labels[scope]} ${date}`;
 }
 
 function conceptReferencesSource(concept: PublicConceptCard, sourceId: string): boolean {
