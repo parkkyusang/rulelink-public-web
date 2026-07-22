@@ -14,6 +14,7 @@ export function expectedPublicationCounts(bundle, now) {
   return {
     issue_cards: visibleCards.length,
     change_briefs: filterFreshPublications(bundle.change_briefs ?? [], now).length,
+    concept_cards: filterFreshPublications(bundle.knowledge?.concept_cards ?? [], now).length,
     knowledge_entries: filterFreshPublications(bundle.knowledge?.content_entries ?? [], now).length,
     knowledge_hubs: (bundle.knowledge?.topic_hubs ?? []).filter(hub => (
       hub.content_ids.some(contentId => (
@@ -33,9 +34,10 @@ export function validateLivePublication(publication, bundle) {
     publication.snapshot_id === bundle.snapshot_id,
     `운영 스냅샷이 main과 다릅니다: expected=${bundle.snapshot_id}, actual=${publication.snapshot_id}`,
   );
+  const expectedCounts = expectedPublicationCounts(bundle);
   assert(
-    JSON.stringify(publication.counts) === JSON.stringify(expectedPublicationCounts(bundle)),
-    '운영 주소의 공개 콘텐츠 수가 main 출판본과 다릅니다.',
+    JSON.stringify(publication.counts) === JSON.stringify(expectedCounts),
+    `운영 주소의 공개 콘텐츠 수가 main 출판본과 다릅니다: expected=${JSON.stringify(expectedCounts)}, actual=${JSON.stringify(publication.counts)}`,
   );
 
   const publicStatusText = JSON.stringify(publication);
