@@ -11,6 +11,7 @@ export function inferPublicationRole(headRef = '') {
   if (/^codex\/integrate-publication-[a-z0-9._/-]+$/u.test(headRef)) return 'integrator';
   if (/^codex\/migrate-publication-[a-z0-9._/-]+$/u.test(headRef)) return 'migration';
   if (/^codex\/release-[a-z0-9._/-]+$/u.test(headRef)) return 'release';
+  if (/^codex\/govern-publication-[a-z0-9._/-]+$/u.test(headRef)) return 'governance';
   return null;
 }
 
@@ -21,11 +22,17 @@ export function normalizeChangedPath(value) {
 export function isPublicationGovernedPath(filePath) {
   const value = normalizeChangedPath(filePath);
   return value === 'README.md'
+    || value === 'docs/CONTENT_HANDOFF_CONTRACT_KO.md'
+    || value === 'artifacts/publication/production-queue.json'
     || value === 'artifacts/publication/current/bundle.json'
     || value === 'artifacts/publication/topics/manifest.json'
     || value === 'artifacts/publication/concepts/manifest.json'
     || /^artifacts\/publication\/(?:topics|concepts)\/[a-z0-9-]+\.json$/u.test(value)
     || /^artifacts\/publication\/snapshots\/[a-z0-9._-]+\/bundle\.json$/u.test(value)
+    || value === 'web/rulelink_public_next/scripts/validate-publication-session-scope.mjs'
+    || value === 'web/rulelink_public_next/scripts/validate-publication-session-scope.test.mjs'
+    || value === 'web/rulelink_public_next/scripts/validate-publication-production-queue.mjs'
+    || value === 'web/rulelink_public_next/scripts/validate-publication-production-queue.test.mjs'
     || value === 'web/rulelink_public_next/deploy/release.json';
 }
 
@@ -40,6 +47,7 @@ export function allowedForRole(role, filePath) {
   }
   if (role === 'integrator') {
     return value === 'README.md'
+      || value === 'artifacts/publication/production-queue.json'
       || value === 'artifacts/publication/current/bundle.json'
       || value === 'artifacts/publication/topics/manifest.json'
       || value === 'artifacts/publication/concepts/manifest.json'
@@ -49,6 +57,15 @@ export function allowedForRole(role, filePath) {
     return allowedForRole('topic', value) || allowedForRole('integrator', value);
   }
   if (role === 'release') return value === 'web/rulelink_public_next/deploy/release.json';
+  if (role === 'governance') {
+    return value === 'docs/CONTENT_HANDOFF_CONTRACT_KO.md'
+      || value === 'artifacts/publication/production-queue.json'
+      || value === 'web/rulelink_public_next/package.json'
+      || value === 'web/rulelink_public_next/scripts/validate-publication-session-scope.mjs'
+      || value === 'web/rulelink_public_next/scripts/validate-publication-session-scope.test.mjs'
+      || value === 'web/rulelink_public_next/scripts/validate-publication-production-queue.mjs'
+      || value === 'web/rulelink_public_next/scripts/validate-publication-production-queue.test.mjs';
+  }
   return false;
 }
 
@@ -58,8 +75,8 @@ export function validatePublicationScope(headRef, changedPaths) {
   const governed = paths.filter(isPublicationGovernedPath);
   if (!role) {
     return governed.length
-      ? {ok: false, role: null, invalid: governed, message: '출판 데이터는 역할 접두사가 있는 브랜치에서만 수정할 수 있습니다.'}
-      : {ok: true, role: null, invalid: [], message: '출판 데이터 변경이 없어 역할 검사를 건너뜁니다.'};
+      ? {ok: false, role: null, invalid: governed, message: '출판 데이터와 생산 계약은 역할 접두사가 있는 브랜치에서만 수정할 수 있습니다.'}
+      : {ok: true, role: null, invalid: [], message: '출판 관련 변경이 없어 역할 검사를 건너뜁니다.'};
   }
   const invalid = paths.filter(filePath => !allowedForRole(role, filePath));
   return invalid.length
