@@ -18,7 +18,7 @@ test('본문 법률용어가 쉬운 뜻 팝오버와 독립 개념 페이지를 
   assert.match(component, /plain_definition_ko/);
   assert.match(component, /inlineTermsForConcept/);
   assert.doesNotMatch(component, /\.\.\.concept\.aliases_ko/);
-  assert.match(component, /\/ko\/concepts\/\$\{concept\.slug\}/);
+  assert.match(component, /\/ko\/concepts\/\$\{activePart\.concept\.slug\}/);
   assert.match(component, /aria-expanded=\{isOpen\}/);
   assert.match(component, /role="group"/);
   assert.match(component, /개념 페이지에서 근거와 요건 보기/);
@@ -95,15 +95,19 @@ test('용어 관계 계약은 관계 미분류·근거 누락·본문 자동 해
   );
 });
 
-test('법리의 누가·어떤 때·결과 칸은 용어 팝오버를 자르지 않는다', async () => {
-  const [globals, popover] = await Promise.all([
-    read('app/globals.css'),
+test('법률용어 팝오버는 카드 overflow와 무관한 충돌 회피 포털에 표시된다', async () => {
+  const [component, popover] = await Promise.all([
+    read('src/components/legal-concept-text.tsx'),
     read('src/components/legal-concept-text.module.css'),
   ]);
-  assert.match(globals, /\.normSlots \{[^}]*overflow: visible;/);
-  assert.doesNotMatch(globals, /\.normSlots \{[^}]*overflow: hidden;/);
-  assert.match(globals, /\.normSlots div:hover, \.normSlots div:focus-within \{z-index: 1;\}/);
-  assert.match(popover, /\.popover \{[^}]*z-index: 30;/s);
+  assert.match(component, /FloatingPortal/);
+  assert.match(component, /strategy: 'fixed'/);
+  assert.match(component, /flip\(/);
+  assert.match(component, /shift\(/);
+  assert.match(component, /size\(/);
+  assert.match(component, /refs\.setFloating/);
+  assert.match(popover, /\.popover \{[^}]*position: fixed;[^}]*z-index: 1000;/s);
+  assert.doesNotMatch(popover, /\.popover \{[^}]*position: absolute;/s);
 });
 
 test('개념 생산 계약은 후보 수집부터 근거·관계 검증과 축적 우선순위를 고정한다', async () => {
