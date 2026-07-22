@@ -50,6 +50,10 @@ test('운영 공개 건수는 원본 배열이 아니라 최신성과 실제 연
       ],
     },
     knowledge: {
+      concept_cards: [
+        {expires_at: '2026-07-24T00:00:00Z'},
+        {expires_at: '2026-07-22T00:00:00Z'},
+      ],
       content_entries: [
         {content_id: 'content.visible', expires_at: '2026-07-24T00:00:00Z'},
         {content_id: 'content.expired', expires_at: '2026-07-22T00:00:00Z'},
@@ -65,6 +69,7 @@ test('운영 공개 건수는 원본 배열이 아니라 최신성과 실제 연
   assert.deepEqual(counts, {
     issue_cards: 1,
     change_briefs: 1,
+    concept_cards: 1,
     knowledge_entries: 1,
     knowledge_hubs: 1,
     public_topics: 1,
