@@ -1,0 +1,252 @@
+import {readFile} from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+
+const scriptPath = fileURLToPath(import.meta.url);
+const appRoot = path.resolve(path.dirname(scriptPath), '..');
+const repoRoot = path.resolve(appRoot, '..', '..');
+const defaultQueuePath = path.join(repoRoot, 'artifacts', 'publication', 'production-queue.json');
+
+const statuses = new Set([
+  'planned',
+  'claimed',
+  'in_progress',
+  'pr_open',
+  'ready_for_integration',
+  'migration_required',
+  'needs_rework',
+  'blocked',
+  'integrated',
+  'superseded',
+  'withdrawn',
+]);
+const modes = new Set(['new_topic', 'existing_topic_revision']);
+const activeWipStatuses = new Set(['claimed', 'in_progress']);
+const terminalStatuses = new Set(['integrated', 'superseded', 'withdrawn']);
+const freshnessStatuses = new Set([
+  'current',
+  'rebind_before_integration',
+  'rework_required',
+  'external_provenance_required',
+  'existing_topic_revision',
+]);
+const overlapRelationships = new Set([
+  'distinct',
+  'merge_required',
+  'split_required',
+  'supersedes',
+  'superseded_by',
+]);
+
+function nonEmpty(value) {
+  return typeof value === 'string' && value.trim().length > 0;
+}
+
+function isPositiveInteger(value) {
+  return Number.isInteger(value) && value > 0;
+}
+
+export function validateProductionQueue(queue) {
+  const errors = [];
+  if (!queue || typeof queue !== 'object') return ['대기열은 JSON 객체여야 합니다.'];
+  if (queue.schema !== 'rulelink_publication_production_queue_v1') {
+    errors.push('지원하지 않는 생산 대기열 스키마입니다.');
+  }
+  if (!/^\d{4}-\d{2}-\d{2}$/u.test(queue.audited_on || '')) {
+    errors.push('audited_on은 YYYY-MM-DD 형식이어야 합니다.');
+  }
+  if (!Array.isArray(queue.items)) {
+    errors.push('items 배열이 필요합니다.');
+    return errors;
+  }
+
+  const byPr = new Map();
+  const queueIds = new Set();
+  const topicClaims = new Map();
+  const fileClaims = new Map();
+  const activeWipByOwner = new Map();
+
+  for (const [index, item] of queue.items.entries()) {
+    const label = `items[${index}]`;
+    if (!item || typeof item !== 'object') {
+      errors.push(`${label}는 객체여야 합니다.`);
+      continue;
+    }
+    if (!nonEmpty(item.queue_id)) errors.push(`${label}.queue_id가 필요합니다.`);
+    else if (queueIds.has(item.queue_id)) errors.push(`중복 queue_id: ${item.queue_id}`);
+    else queueIds.add(item.queue_id);
+
+    if (!isPositiveInteger(item.pr_number)) errors.push(`${label}.pr_number는 양의 정수여야 합니다.`);
+    else if (byPr.has(item.pr_number)) errors.push(`중복 PR 번호: #${item.pr_number}`);
+    else byPr.set(item.pr_number, item);
+
+    for (const field of ['title_ko', 'branch', 'head_sha', 'owner_role', 'topic_id', 'topic_file', 'test_file']) {
+      if (!nonEmpty(item[field])) errors.push(`${label}.${field}가 필요합니다.`);
+    }
+    if (nonEmpty(item.branch) && !/^codex\/content-[a-z0-9._/-]+$/u.test(item.branch)) {
+      errors.push(`${label}.branch는 codex/content-* 형식이어야 합니다.`);
+    }
+    if (nonEmpty(item.head_sha) && !/^[0-9a-f]{40}$/u.test(item.head_sha)) {
+      errors.push(`${label}.head_sha는 40자리 커밋 SHA여야 합니다.`);
+    }
+    if (nonEmpty(item.topic_file) && !/^artifacts\/publication\/topics\/[a-z0-9-]+\.json$/u.test(item.topic_file)) {
+      errors.push(`${label}.topic_file 경로가 올바르지 않습니다.`);
+    }
+    if (nonEmpty(item.test_file) && !/^web\/rulelink_public_next\/scripts\/[a-z0-9-]+(?:topic|handoff)[a-z0-9-]*\.test\.mjs$/u.test(item.test_file)) {
+      errors.push(`${label}.test_file은 전용 topic/handoff 시험이어야 합니다.`);
+    }
+    if (!modes.has(item.change_mode)) errors.push(`${label}.change_mode가 올바르지 않습니다.`);
+    if (!statuses.has(item.status)) errors.push(`${label}.status가 올바르지 않습니다.`);
+
+    if (nonEmpty(item.topic_id) && !terminalStatuses.has(item.status)) {
+      const prior = topicClaims.get(item.topic_id);
+      if (prior) errors.push(`활성 topic_id 중복: ${item.topic_id} (#${prior}, #${item.pr_number})`);
+      else topicClaims.set(item.topic_id, item.pr_number);
+    }
+    if (nonEmpty(item.topic_file) && !terminalStatuses.has(item.status)) {
+      const prior = fileClaims.get(item.topic_file);
+      if (prior) errors.push(`활성 topic_file 중복: ${item.topic_file} (#${prior}, #${item.pr_number})`);
+      else fileClaims.set(item.topic_file, item.pr_number);
+    }
+
+    const counts = item.counts;
+    if (!counts || typeof counts !== 'object') errors.push(`${label}.counts가 필요합니다.`);
+    else for (const field of ['sources', 'rule_cards', 'scenario_branches', 'content_entries', 'topic_hubs']) {
+      if (!isPositiveInteger(counts[field])) errors.push(`${label}.counts.${field}는 양의 정수여야 합니다.`);
+    }
+
+    if (!Array.isArray(item.depends_on_prs)) errors.push(`${label}.depends_on_prs 배열이 필요합니다.`);
+    else {
+      const unique = new Set(item.depends_on_prs);
+      if (unique.size !== item.depends_on_prs.length) errors.push(`${label}.depends_on_prs에 중복이 있습니다.`);
+      if (unique.has(item.pr_number)) errors.push(`${label}가 자기 PR에 의존합니다.`);
+      for (const pr of unique) if (!isPositiveInteger(pr)) errors.push(`${label}.depends_on_prs 값은 양의 정수여야 합니다.`);
+    }
+
+    if (item.status === 'ready_for_integration' && !isPositiveInteger(item.integration_order)) {
+      errors.push(`${label}의 ready_for_integration 상태에는 integration_order가 필요합니다.`);
+    }
+    if (['needs_rework', 'blocked'].includes(item.status) && !nonEmpty(item.blocking_reason_ko)) {
+      errors.push(`${label}의 ${item.status} 상태에는 blocking_reason_ko가 필요합니다.`);
+    }
+    if (item.status === 'migration_required' && item.change_mode !== 'existing_topic_revision') {
+      errors.push(`${label}의 migration_required는 기존 주제 개정에만 사용할 수 있습니다.`);
+    }
+    if (item.change_mode === 'existing_topic_revision' && item.status === 'ready_for_integration') {
+      errors.push(`${label}의 기존 주제 개정은 topic-only 직접 통합 상태가 될 수 없습니다.`);
+    }
+
+    if (!item.official_url_check || item.official_url_check.status !== 'passed') {
+      errors.push(`${label}.official_url_check는 passed여야 합니다.`);
+    } else if (counts && item.official_url_check.referenced_count !== counts.sources) {
+      errors.push(`${label}의 공식 URL 검사 수와 근거 수가 다릅니다.`);
+    }
+
+    if (!item.source_freshness || !freshnessStatuses.has(item.source_freshness.status)) {
+      errors.push(`${label}.source_freshness.status가 올바르지 않습니다.`);
+    } else if ('mismatch_count' in item.source_freshness) {
+      const mismatch = item.source_freshness.mismatch_count;
+      if (!Number.isInteger(mismatch) || mismatch < 0 || (counts && mismatch > counts.sources)) {
+        errors.push(`${label}.source_freshness.mismatch_count가 올바르지 않습니다.`);
+      }
+    }
+
+    if (!Array.isArray(item.integration_checks) || item.integration_checks.length === 0 || item.integration_checks.some(value => !nonEmpty(value))) {
+      errors.push(`${label}.integration_checks에는 하나 이상의 한글 검사조건이 필요합니다.`);
+    }
+
+    if (item.overlap_decisions !== undefined) {
+      if (!Array.isArray(item.overlap_decisions)) errors.push(`${label}.overlap_decisions는 배열이어야 합니다.`);
+      else for (const decision of item.overlap_decisions) {
+        if (!isPositiveInteger(decision.target_pr) || decision.target_pr === item.pr_number) {
+          errors.push(`${label}의 overlap target_pr가 올바르지 않습니다.`);
+        }
+        if (!overlapRelationships.has(decision.relationship)) {
+          errors.push(`${label}의 overlap relationship이 올바르지 않습니다.`);
+        }
+        if (!nonEmpty(decision.rationale_ko)) errors.push(`${label}의 overlap 근거가 필요합니다.`);
+      }
+    }
+
+    if (activeWipStatuses.has(item.status)) {
+      const count = (activeWipByOwner.get(item.owner_role) || 0) + 1;
+      activeWipByOwner.set(item.owner_role, count);
+    }
+  }
+
+  for (const [owner, count] of activeWipByOwner) {
+    const limit = queue.policy?.wip_limit_per_producer;
+    if (!isPositiveInteger(limit) || count > limit) {
+      errors.push(`${owner}의 동시 진행 항목 ${count}개가 제한 ${limit || 0}개를 초과합니다.`);
+    }
+  }
+
+  for (const item of queue.items) {
+    for (const dependency of item.depends_on_prs || []) {
+      const target = byPr.get(dependency);
+      if (!target) errors.push(`#${item.pr_number}의 의존 PR #${dependency}가 대기열에 없습니다.`);
+      else if (terminalStatuses.has(target.status) && target.status !== 'integrated') {
+        errors.push(`#${item.pr_number}가 사용할 수 없는 #${dependency}(${target.status})에 의존합니다.`);
+      } else if (isPositiveInteger(item.integration_order) && isPositiveInteger(target.integration_order)
+        && target.integration_order >= item.integration_order) {
+        errors.push(`#${item.pr_number}의 통합 순서가 선행 PR #${dependency}보다 앞서거나 같습니다.`);
+      }
+    }
+    for (const decision of item.overlap_decisions || []) {
+      if (!byPr.has(decision.target_pr)) errors.push(`#${item.pr_number}의 중복 판정 대상 #${decision.target_pr}가 대기열에 없습니다.`);
+    }
+  }
+
+  const visiting = new Set();
+  const visited = new Set();
+  function visit(pr) {
+    if (visiting.has(pr)) {
+      errors.push(`PR 의존성 순환이 있습니다: #${pr}`);
+      return;
+    }
+    if (visited.has(pr)) return;
+    visiting.add(pr);
+    for (const dependency of byPr.get(pr)?.depends_on_prs || []) if (byPr.has(dependency)) visit(dependency);
+    visiting.delete(pr);
+    visited.add(pr);
+  }
+  for (const pr of byPr.keys()) visit(pr);
+
+  const summary = queue.audit_summary || {};
+  if (summary.open_content_prs !== queue.items.length) {
+    errors.push('audit_summary.open_content_prs와 items 수가 다릅니다.');
+  }
+  const sourceTotal = queue.items.reduce((sum, item) => sum + (item.counts?.sources || 0), 0);
+  if (summary.official_source_references_checked !== sourceTotal) {
+    errors.push('감사한 공식 근거 참조 수와 대기열 근거 합계가 다릅니다.');
+  }
+  if (summary.official_url_failures !== 0) errors.push('공식 URL 실패가 남아 있습니다.');
+  if (summary.exact_cross_pr_content_id_collisions !== 0) errors.push('대기 PR 사이 content_id 충돌이 남아 있습니다.');
+  if (summary.broken_related_content_ids !== 0) errors.push('깨진 관련 콘텐츠 참조가 남아 있습니다.');
+
+  return [...new Set(errors)];
+}
+
+async function main() {
+  const queuePath = process.argv[2] ? path.resolve(process.argv[2]) : defaultQueuePath;
+  const queue = JSON.parse(await readFile(queuePath, 'utf8'));
+  const errors = validateProductionQueue(queue);
+  if (errors.length) {
+    console.error(`공개 콘텐츠 생산 대기열 검증 실패: ${errors.length}건`);
+    for (const error of errors) console.error(`- ${error}`);
+    process.exitCode = 1;
+    return;
+  }
+  const ready = queue.items.filter(item => item.status === 'ready_for_integration').length;
+  const rework = queue.items.filter(item => item.status === 'needs_rework').length;
+  const migration = queue.items.filter(item => item.status === 'migration_required').length;
+  const blocked = queue.items.filter(item => item.status === 'blocked').length;
+  console.log(`공개 콘텐츠 생산 대기열 검증 통과: 전체 ${queue.items.length}개 / 통합 준비 ${ready}개 / 재작업 ${rework}개 / 이관 필요 ${migration}개 / 의존 차단 ${blocked}개`);
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === scriptPath) {
+  main().catch(error => {
+    console.error(`공개 콘텐츠 생산 대기열 검증 실패: ${error instanceof Error ? error.message : String(error)}`);
+    process.exitCode = 1;
+  });
+}
