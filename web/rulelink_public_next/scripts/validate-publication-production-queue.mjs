@@ -158,8 +158,14 @@ export function validateProductionQueue(queue) {
     if (item.overlap_decisions !== undefined) {
       if (!Array.isArray(item.overlap_decisions)) errors.push(`${label}.overlap_decisions는 배열이어야 합니다.`);
       else for (const decision of item.overlap_decisions) {
-        if (!isPositiveInteger(decision.target_pr) || decision.target_pr === item.pr_number) {
-          errors.push(`${label}의 overlap target_pr가 올바르지 않습니다.`);
+        const hasPrTarget = isPositiveInteger(decision.target_pr);
+        const hasContentTarget = nonEmpty(decision.target_content_id)
+          && /^content\.[a-z0-9._-]+$/u.test(decision.target_content_id);
+        if (Number(hasPrTarget) + Number(hasContentTarget) !== 1) {
+          errors.push(`${label}의 overlap 대상은 target_pr 또는 target_content_id 중 하나여야 합니다.`);
+        }
+        if (hasPrTarget && decision.target_pr === item.pr_number) {
+          errors.push(`${label}가 자기 PR을 overlap 대상으로 사용합니다.`);
         }
         if (!overlapRelationships.has(decision.relationship)) {
           errors.push(`${label}의 overlap relationship이 올바르지 않습니다.`);
@@ -193,7 +199,9 @@ export function validateProductionQueue(queue) {
       }
     }
     for (const decision of item.overlap_decisions || []) {
-      if (!byPr.has(decision.target_pr)) errors.push(`#${item.pr_number}의 중복 판정 대상 #${decision.target_pr}가 대기열에 없습니다.`);
+      if (decision.target_pr && !byPr.has(decision.target_pr)) {
+        errors.push(`#${item.pr_number}의 중복 판정 대상 #${decision.target_pr}가 대기열에 없습니다.`);
+      }
     }
   }
 
