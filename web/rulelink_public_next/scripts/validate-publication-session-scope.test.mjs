@@ -57,12 +57,15 @@ test('이관자는 이미 통합된 주제와 공유 정본을 한 번에 갱신
 test('생산계약 역할만 공식 대기열·계약·검증기를 함께 바꿀 수 있다', () => {
   const result = validatePublicationScope('codex/govern-publication-production-control-20260723', [
     'docs/CONTENT_HANDOFF_CONTRACT_KO.md',
+    'docs/PUBLICATION_SEMANTIC_OVERLAP_CONTRACT_KO.md',
     'artifacts/publication/production-queue.json',
     'web/rulelink_public_next/package.json',
     'web/rulelink_public_next/scripts/validate-publication-session-scope.mjs',
     'web/rulelink_public_next/scripts/validate-publication-session-scope.test.mjs',
     'web/rulelink_public_next/scripts/validate-publication-production-queue.mjs',
     'web/rulelink_public_next/scripts/validate-publication-production-queue.test.mjs',
+    'web/rulelink_public_next/scripts/audit-publication-semantic-overlap.mjs',
+    'web/rulelink_public_next/scripts/audit-publication-semantic-overlap.test.mjs',
   ]);
   assert.equal(result.ok, true);
   assert.equal(allowedForRole('governance', 'artifacts/publication/current/bundle.json'), false);

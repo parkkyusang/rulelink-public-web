@@ -23,6 +23,7 @@ export function isPublicationGovernedPath(filePath) {
   const value = normalizeChangedPath(filePath);
   return value === 'README.md'
     || value === 'docs/CONTENT_HANDOFF_CONTRACT_KO.md'
+    || value === 'docs/PUBLICATION_SEMANTIC_OVERLAP_CONTRACT_KO.md'
     || value === 'artifacts/publication/production-queue.json'
     || value === 'artifacts/publication/current/bundle.json'
     || value === 'artifacts/publication/topics/manifest.json'
@@ -33,6 +34,8 @@ export function isPublicationGovernedPath(filePath) {
     || value === 'web/rulelink_public_next/scripts/validate-publication-session-scope.test.mjs'
     || value === 'web/rulelink_public_next/scripts/validate-publication-production-queue.mjs'
     || value === 'web/rulelink_public_next/scripts/validate-publication-production-queue.test.mjs'
+    || value === 'web/rulelink_public_next/scripts/audit-publication-semantic-overlap.mjs'
+    || value === 'web/rulelink_public_next/scripts/audit-publication-semantic-overlap.test.mjs'
     || value === 'web/rulelink_public_next/deploy/release.json';
 }
 
@@ -59,12 +62,15 @@ export function allowedForRole(role, filePath) {
   if (role === 'release') return value === 'web/rulelink_public_next/deploy/release.json';
   if (role === 'governance') {
     return value === 'docs/CONTENT_HANDOFF_CONTRACT_KO.md'
+      || value === 'docs/PUBLICATION_SEMANTIC_OVERLAP_CONTRACT_KO.md'
       || value === 'artifacts/publication/production-queue.json'
       || value === 'web/rulelink_public_next/package.json'
       || value === 'web/rulelink_public_next/scripts/validate-publication-session-scope.mjs'
       || value === 'web/rulelink_public_next/scripts/validate-publication-session-scope.test.mjs'
       || value === 'web/rulelink_public_next/scripts/validate-publication-production-queue.mjs'
-      || value === 'web/rulelink_public_next/scripts/validate-publication-production-queue.test.mjs';
+      || value === 'web/rulelink_public_next/scripts/validate-publication-production-queue.test.mjs'
+      || value === 'web/rulelink_public_next/scripts/audit-publication-semantic-overlap.mjs'
+      || value === 'web/rulelink_public_next/scripts/audit-publication-semantic-overlap.test.mjs';
   }
   return false;
 }
