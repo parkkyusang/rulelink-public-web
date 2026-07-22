@@ -3,6 +3,8 @@ import {mkdir, readFile, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
+import {validateConceptTermRelations} from '../src/lib/concept-terms.ts';
+
 const scriptPath = fileURLToPath(import.meta.url);
 const appRoot = path.resolve(path.dirname(scriptPath), '..');
 const repoRoot = path.resolve(appRoot, '..', '..');
@@ -128,6 +130,7 @@ export function assembleKnowledge(manifest, loadedTopics, loadedConceptGroups = 
       if (conceptIds.has(concept.concept_id)) throw new Error(`개념 묶음 사이에 중복된 concept_id: ${concept.concept_id}`);
       conceptIds.add(concept.concept_id);
     }
+    validateConceptTermRelations(assembled.concept_cards, assembled.sources);
   }
 
   for (const [collection, idKey] of collections) {
