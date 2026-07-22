@@ -40,12 +40,13 @@ export function validateConceptTermRelations(
     if (!preferred) throw new Error(`${concept.concept_id}의 대표 용어가 비어 있습니다.`);
     claimInlineTerm(inlineOwnerByTerm, preferred, concept.concept_id);
 
-    if (concept.aliases_ko.some(alias => alias.trim() === preferred)) {
+    const declaredAliases = concept.aliases_ko ?? [];
+    if (declaredAliases.some(alias => alias.trim() === preferred)) {
       throw new Error(`${concept.concept_id}의 대표 용어가 검색 별칭에 중복되어 있습니다: ${preferred}`);
     }
 
     if (concept.term_relations === undefined) continue;
-    const aliases = new Set(concept.aliases_ko.map(alias => alias.trim()).filter(Boolean));
+    const aliases = new Set(declaredAliases.map(alias => alias.trim()).filter(Boolean));
     const relatedTerms = new Set<string>();
 
     for (const relation of concept.term_relations) {
