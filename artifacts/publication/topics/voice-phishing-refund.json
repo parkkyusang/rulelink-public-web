@@ -1,0 +1,1104 @@
+{
+  "schema": "rulelink_public_knowledge_topic_v1",
+  "topic_id": "hub.voice-phishing-refund",
+  "sources": [
+    {
+      "coordinate_id": "coord.voice-phishing-refund.special-0002",
+      "source_id": "law_011359_ko_0002",
+      "law_name_ko": "전기통신금융사기 피해 방지 및 피해금 환급에 관한 특별법",
+      "article_no": "제2조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EA%B8%B0%ED%86%B5%EC%8B%A0%EA%B8%88%EC%9C%B5%EC%82%AC%EA%B8%B0%20%ED%94%BC%ED%95%B4%20%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EA%B8%88%20%ED%99%98%EA%B8%89%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%B3%84%EB%B2%95/%EC%A0%9C2%EC%A1%B0",
+      "source_snapshot_id": "snapshot:b6418a5b72cbf20526ff44c8c39001e0",
+      "last_verified_at": "2026-07-23T07:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.voice-phishing-refund.special-0003",
+      "source_id": "law_011359_ko_0003",
+      "law_name_ko": "전기통신금융사기 피해 방지 및 피해금 환급에 관한 특별법",
+      "article_no": "제3조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EA%B8%B0%ED%86%B5%EC%8B%A0%EA%B8%88%EC%9C%B5%EC%82%AC%EA%B8%B0%20%ED%94%BC%ED%95%B4%20%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EA%B8%88%20%ED%99%98%EA%B8%89%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%B3%84%EB%B2%95/%EC%A0%9C3%EC%A1%B0",
+      "source_snapshot_id": "snapshot:c1352b34fbb91b1e457a66cbd6543912",
+      "last_verified_at": "2026-07-23T07:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.voice-phishing-refund.special-0004",
+      "source_id": "law_011359_ko_0004",
+      "law_name_ko": "전기통신금융사기 피해 방지 및 피해금 환급에 관한 특별법",
+      "article_no": "제4조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EA%B8%B0%ED%86%B5%EC%8B%A0%EA%B8%88%EC%9C%B5%EC%82%AC%EA%B8%B0%20%ED%94%BC%ED%95%B4%20%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EA%B8%88%20%ED%99%98%EA%B8%89%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%B3%84%EB%B2%95/%EC%A0%9C4%EC%A1%B0",
+      "source_snapshot_id": "snapshot:2a93bf127549dc41137c381d6b63e6f4",
+      "last_verified_at": "2026-07-23T07:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.voice-phishing-refund.special-0005",
+      "source_id": "law_011359_ko_0005",
+      "law_name_ko": "전기통신금융사기 피해 방지 및 피해금 환급에 관한 특별법",
+      "article_no": "제5조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EA%B8%B0%ED%86%B5%EC%8B%A0%EA%B8%88%EC%9C%B5%EC%82%AC%EA%B8%B0%20%ED%94%BC%ED%95%B4%20%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EA%B8%88%20%ED%99%98%EA%B8%89%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%B3%84%EB%B2%95/%EC%A0%9C5%EC%A1%B0",
+      "source_snapshot_id": "snapshot:d6f7f9a70440a9687ef937815757f04f",
+      "last_verified_at": "2026-07-23T07:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.voice-phishing-refund.special-0006",
+      "source_id": "law_011359_ko_0006",
+      "law_name_ko": "전기통신금융사기 피해 방지 및 피해금 환급에 관한 특별법",
+      "article_no": "제6조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EA%B8%B0%ED%86%B5%EC%8B%A0%EA%B8%88%EC%9C%B5%EC%82%AC%EA%B8%B0%20%ED%94%BC%ED%95%B4%20%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EA%B8%88%20%ED%99%98%EA%B8%89%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%B3%84%EB%B2%95/%EC%A0%9C6%EC%A1%B0",
+      "source_snapshot_id": "snapshot:f97a698980872e4ead25f117c18df935",
+      "last_verified_at": "2026-07-23T07:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.voice-phishing-refund.special-0007",
+      "source_id": "law_011359_ko_0007",
+      "law_name_ko": "전기통신금융사기 피해 방지 및 피해금 환급에 관한 특별법",
+      "article_no": "제7조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EA%B8%B0%ED%86%B5%EC%8B%A0%EA%B8%88%EC%9C%B5%EC%82%AC%EA%B8%B0%20%ED%94%BC%ED%95%B4%20%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EA%B8%88%20%ED%99%98%EA%B8%89%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%B3%84%EB%B2%95/%EC%A0%9C7%EC%A1%B0",
+      "source_snapshot_id": "snapshot:dd0f6e64169f54df08905d4b8697547a",
+      "last_verified_at": "2026-07-23T07:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.voice-phishing-refund.special-0008",
+      "source_id": "law_011359_ko_0008",
+      "law_name_ko": "전기통신금융사기 피해 방지 및 피해금 환급에 관한 특별법",
+      "article_no": "제8조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EA%B8%B0%ED%86%B5%EC%8B%A0%EA%B8%88%EC%9C%B5%EC%82%AC%EA%B8%B0%20%ED%94%BC%ED%95%B4%20%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EA%B8%88%20%ED%99%98%EA%B8%89%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%B3%84%EB%B2%95/%EC%A0%9C8%EC%A1%B0",
+      "source_snapshot_id": "snapshot:a111cb0cbc4b3eac918355aa547a9578",
+      "last_verified_at": "2026-07-23T07:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.voice-phishing-refund.special-0009",
+      "source_id": "law_011359_ko_0009",
+      "law_name_ko": "전기통신금융사기 피해 방지 및 피해금 환급에 관한 특별법",
+      "article_no": "제9조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EA%B8%B0%ED%86%B5%EC%8B%A0%EA%B8%88%EC%9C%B5%EC%82%AC%EA%B8%B0%20%ED%94%BC%ED%95%B4%20%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EA%B8%88%20%ED%99%98%EA%B8%89%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%B3%84%EB%B2%95/%EC%A0%9C9%EC%A1%B0",
+      "source_snapshot_id": "snapshot:016097b2878751ba5a97149f44d0ab0b",
+      "last_verified_at": "2026-07-23T07:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.voice-phishing-refund.special-0010",
+      "source_id": "law_011359_ko_0010",
+      "law_name_ko": "전기통신금융사기 피해 방지 및 피해금 환급에 관한 특별법",
+      "article_no": "제10조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EA%B8%B0%ED%86%B5%EC%8B%A0%EA%B8%88%EC%9C%B5%EC%82%AC%EA%B8%B0%20%ED%94%BC%ED%95%B4%20%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EA%B8%88%20%ED%99%98%EA%B8%89%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%B3%84%EB%B2%95/%EC%A0%9C10%EC%A1%B0",
+      "source_snapshot_id": "snapshot:0541f2b398b4c3a493c5428f03ca8cde",
+      "last_verified_at": "2026-07-23T07:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.voice-phishing-refund.special-0011",
+      "source_id": "law_011359_ko_0011",
+      "law_name_ko": "전기통신금융사기 피해 방지 및 피해금 환급에 관한 특별법",
+      "article_no": "제11조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EA%B8%B0%ED%86%B5%EC%8B%A0%EA%B8%88%EC%9C%B5%EC%82%AC%EA%B8%B0%20%ED%94%BC%ED%95%B4%20%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EA%B8%88%20%ED%99%98%EA%B8%89%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%B3%84%EB%B2%95/%EC%A0%9C11%EC%A1%B0",
+      "source_snapshot_id": "snapshot:cf398b7b246d6f957a4b5002fa4d0a9f",
+      "last_verified_at": "2026-07-23T07:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.voice-phishing-refund.special-0012",
+      "source_id": "law_011359_ko_0012",
+      "law_name_ko": "전기통신금융사기 피해 방지 및 피해금 환급에 관한 특별법",
+      "article_no": "제12조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EA%B8%B0%ED%86%B5%EC%8B%A0%EA%B8%88%EC%9C%B5%EC%82%AC%EA%B8%B0%20%ED%94%BC%ED%95%B4%20%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EA%B8%88%20%ED%99%98%EA%B8%89%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%B3%84%EB%B2%95/%EC%A0%9C12%EC%A1%B0",
+      "source_snapshot_id": "snapshot:06a2351c4816aa27384e22c22894d827",
+      "last_verified_at": "2026-07-23T07:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.voice-phishing-refund.civil-0750",
+      "source_id": "civil_act_ko_0750",
+      "law_name_ko": "민법",
+      "article_no": "제750조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C750%EC%A1%B0",
+      "source_snapshot_id": "snapshot:cdf125767ab6640e07d557f6c73a0c53",
+      "last_verified_at": "2026-07-23T07:00:00+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.voice-phishing-refund",
+      "slug": "voice-phishing-refund",
+      "title_ko": "보이스피싱 지급정지·피해환급",
+      "description_ko": "특별법 적용 여부부터 금융회사 피해구제 신청, 연계 지급정지, 현금 교부·출금형 신고, 채권소멸 공고, 추가 신청, 명의인 이의제기, 환급액과 남은 민사청구까지 시간순으로 찾습니다.",
+      "content_ids": [
+        "content.voice-phishing-refund-covered-scam",
+        "content.voice-phishing-refund-immediate-application",
+        "content.voice-phishing-refund-transferred-again",
+        "content.voice-phishing-refund-cash-delivery-withdrawal",
+        "content.voice-phishing-refund-low-balance-request",
+        "content.voice-phishing-refund-late-application",
+        "content.voice-phishing-refund-account-holder-objection",
+        "content.voice-phishing-refund-claim-extinction-timeline",
+        "content.voice-phishing-refund-refund-amount",
+        "content.voice-phishing-refund-refund-and-civil-claim"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.voice-phishing-refund.covered-scam",
+      "title_ko": "보이스피싱 피해환급 특별법은 중고거래 사기에도 적용되나",
+      "proposition_ko": "특별법상 전기통신금융사기는 전기통신을 이용한 기망·공갈로 자금 등을 취득하는 행위이지만 재화·용역 공급을 가장한 행위는 원칙적으로 제외되고 대출을 가장한 행위는 포함됩니다.",
+      "norm": {
+        "actor_ko": "계좌이체·현금교부 사기 피해자와 금융회사",
+        "conditions_ko": "사기 수법이 기관·지인·대출 사칭인지, 상품·용역 거래를 가장한 것인지 구분되는 경우",
+        "legal_effect_ko": "특별법 피해구제 적용 여부를 먼저 가르고 적용되지 않더라도 형사신고·민사청구 가능성은 별도로 검토합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0002"
+      ]
+    },
+    {
+      "rule_id": "rule.voice-phishing-refund.immediate-application",
+      "title_ko": "보이스피싱 송금 직후 어디에 지급정지를 신청해야 하나",
+      "proposition_ko": "송금·이체형 전기통신금융사기 피해자는 송금계좌 또는 사기이용계좌를 관리하는 금융회사에 피해구제와 지급정지를 신청할 수 있습니다.",
+      "norm": {
+        "actor_ko": "송금·이체형 피해자와 관련 금융회사",
+        "conditions_ko": "전기통신금융사기로 피해금이 사기이용계좌에 송금·이체된 경우",
+        "legal_effect_ko": "금융회사는 거래내역을 확인해 사기이용계좌로 의심할 사정이 있으면 즉시 계좌 전부를 지급정지해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0003",
+        "coord.voice-phishing-refund.special-0004"
+      ]
+    },
+    {
+      "rule_id": "rule.voice-phishing-refund.transferred-again",
+      "title_ko": "피해금이 다른 은행 계좌로 다시 옮겨졌다면 끝인가",
+      "proposition_ko": "피해금이 다른 금융회사의 사기이용계좌로 송금·이체되면 피해구제 신청을 받은 금융회사는 필요한 정보를 제공하고 해당 금융회사에 지급정지를 요청해야 합니다.",
+      "norm": {
+        "actor_ko": "최초 신청 금융회사와 피해금이 이동한 다른 금융회사",
+        "conditions_ko": "피해금이 금융회사 사이의 다른 사기이용계좌로 연속 이동한 경우",
+        "legal_effect_ko": "최초 수취계좌뿐 아니라 확인된 후속 사기이용계좌에도 지급정지 요청이 이어질 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0003",
+        "coord.voice-phishing-refund.special-0004"
+      ]
+    },
+    {
+      "rule_id": "rule.voice-phishing-refund.cash-delivery-withdrawal",
+      "title_ko": "현금을 전달했거나 계좌에서 직접 출금된 경우도 같은 신청인가",
+      "proposition_ko": "현금 교부·출금형 전기통신금융사기에서는 수사기관이 사기이용계좌 금융회사에 지급정지를 요청하고 정해진 기한 안에 피해자와 피해금을 특정해 통지합니다.",
+      "norm": {
+        "actor_ko": "현금 교부·출금형 피해자, 수사기관과 금융회사",
+        "conditions_ko": "피해자가 자금을 직접 송금한 것이 아니라 현금을 교부했거나 계좌에서 출금된 경우",
+        "legal_effect_ko": "금융회사 신청만으로 단정하지 말고 수사기관 신고와 피해자·피해금 특정 절차를 신속히 진행해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0002",
+        "coord.voice-phishing-refund.special-0003"
+      ]
+    },
+    {
+      "rule_id": "rule.voice-phishing-refund.low-balance-request",
+      "title_ko": "사기계좌 잔액이 3만원 이하면 피해환급 절차가 열리지 않나",
+      "proposition_ko": "지급정지 계좌 잔액이 3만원 이하의 대통령령상 금액 이하이면 원칙적으로 공고 요청 예외가 될 수 있으나 피해자가 통지 후 30일 안에 개시를 요청하면 제외되지 않습니다.",
+      "norm": {
+        "actor_ko": "소액 잔액 사기계좌의 피해자와 금융회사",
+        "conditions_ko": "지급정지 계좌 잔액이 법정 소액 범위이고 채권소멸절차 개시 여부가 문제되는 경우",
+        "legal_effect_ko": "잔액이 적다는 이유로 포기하지 말고 지급정지 통지일과 30일 요청기한을 확인해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0005"
+      ]
+    },
+    {
+      "rule_id": "rule.voice-phishing-refund.late-application",
+      "title_ko": "채권소멸 공고 뒤에 피해 사실을 알았어도 신청할 수 있나",
+      "proposition_ko": "채권소멸절차 개시 공고 전에 신청하지 않은 피해자는 공고일부터 2개월 이내에 금융회사에 추가 피해구제를 신청할 수 있습니다.",
+      "norm": {
+        "actor_ko": "뒤늦게 확인된 추가 피해자와 금융회사",
+        "conditions_ko": "같은 사기이용계좌에 이미 채권소멸절차 개시 공고가 이루어진 경우",
+        "legal_effect_ko": "공고일을 기준으로 2개월 기한 안에 피해금과 거래를 특정해 추가 신청할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0006"
+      ]
+    },
+    {
+      "rule_id": "rule.voice-phishing-refund.account-holder-objection",
+      "title_ko": "사기계좌 명의인이 이의제기하면 지급정지가 바로 풀리나",
+      "proposition_ko": "명의인은 공고일 기준 2개월이 지나기 전까지 법정 사유를 객관적 자료로 소명해 이의제기할 수 있고 금융회사는 피해자와 금융감독원에 이를 통지합니다.",
+      "norm": {
+        "actor_ko": "사기이용계좌 명의인, 피해자, 금융회사와 금융감독원",
+        "conditions_ko": "명의인이 계좌의 정당성·정당한 권원 등을 이유로 지급정지와 채권소멸절차에 이의를 제기한 경우",
+        "legal_effect_ko": "이의제기만으로 결과를 단정하지 않고 통지일, 소명자료, 지급정지 유지·종료 조건과 소송 여부를 확인합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0007",
+        "coord.voice-phishing-refund.special-0008"
+      ]
+    },
+    {
+      "rule_id": "rule.voice-phishing-refund.claim-extinction-timeline",
+      "title_ko": "지급정지 뒤 피해환급까지 2개월은 왜 기다리나",
+      "proposition_ko": "공고된 범위의 명의인 채권은 최초 채권소멸절차 개시 공고일부터 2개월이 지나면 소멸하고 금융감독원은 소멸 사실과 금액을 통지합니다.",
+      "norm": {
+        "actor_ko": "피해자, 계좌 명의인, 금융회사와 금융감독원",
+        "conditions_ko": "지급정지 뒤 채권소멸절차 개시 공고가 이루어진 경우",
+        "legal_effect_ko": "최초 공고일·2개월 경과일·추가 피해신청·이의제기 상태를 함께 관리해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0005",
+        "coord.voice-phishing-refund.special-0006",
+        "coord.voice-phishing-refund.special-0009"
+      ]
+    },
+    {
+      "rule_id": "rule.voice-phishing-refund.refund-amount",
+      "title_ko": "보이스피싱 피해금은 전액 환급되는가",
+      "proposition_ko": "총피해금액이 소멸채권액을 초과하면 소멸채권액을 각 피해자의 피해금액 비율에 따라 배분하고 그렇지 않으면 해당 피해금액으로 정합니다.",
+      "norm": {
+        "actor_ko": "동일 사기이용계좌의 여러 피해자와 금융감독원·금융회사",
+        "conditions_ko": "채권소멸 뒤 피해환급금의 지급대상과 금액을 결정하는 경우",
+        "legal_effect_ko": "금융감독원은 채권소멸일부터 14일 이내 지급대상과 금액을 결정·통지하고 금융회사는 지체 없이 지급합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0010"
+      ]
+    },
+    {
+      "rule_id": "rule.voice-phishing-refund.refund-and-civil-claim",
+      "title_ko": "피해환급금을 받으면 가해자에게 더는 청구할 수 없나",
+      "proposition_ko": "피해환급금을 받은 경우 손해배상 등 청구권은 환급받은 한도에서 소멸하고, 전액 배상된 피해자나 부당이득·공범 가담 등 법정 사유가 있는 자는 환급받을 수 없습니다.",
+      "norm": {
+        "actor_ko": "피해환급금을 받은 피해자와 가해자·관련 책임자",
+        "conditions_ko": "피해환급 전후의 남은 손해와 별도 손해배상청구 범위를 정하는 경우",
+        "legal_effect_ko": "총손해·기존 배상·피해환급액을 대조해 중복청구를 제외하고 미회수 손해의 민사청구를 검토합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0011",
+        "coord.voice-phishing-refund.special-0012",
+        "coord.voice-phishing-refund.civil-0750"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.voice-phishing-refund.covered-scam",
+      "question_ko": "돈을 보낸 이유가 상품·용역 거래였나요, 기관·지인·대출 사칭이었나요?",
+      "decision_fact_ko": "송금 유도 문구, 상대방 사칭 대상, 상품·용역 약속, 대출 제공·알선 여부, 송금 계좌, 대화·통화 기록",
+      "when_true_ko": "상품·용역 거래를 가장했다면 특별법 제외 가능성을 확인하고 형사·민사 경로를 병행합니다.",
+      "when_false_ko": "기관·지인·대출 사칭 등 특별법상 행위인지 금융회사에 즉시 확인합니다.",
+      "rule_ids": [
+        "rule.voice-phishing-refund.covered-scam"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0002"
+      ]
+    },
+    {
+      "scenario_id": "scenario.voice-phishing-refund.immediate-application",
+      "question_ko": "송금한 금융회사나 상대 계좌 금융회사에 피해구제 신청을 접수했나요?",
+      "decision_fact_ko": "송금 시각, 송금액, 송금·수취 계좌, 금융회사 접수번호, 사기 인지 시각, 경찰 신고번호",
+      "when_true_ko": "접수번호와 지급정지 통지, 잔액·후속 절차 안내를 보존합니다.",
+      "when_false_ko": "거래내역을 준비해 금융회사 피해신고 창구에 즉시 신청하고 경찰에도 신고합니다.",
+      "rule_ids": [
+        "rule.voice-phishing-refund.immediate-application"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0003",
+        "coord.voice-phishing-refund.special-0004"
+      ]
+    },
+    {
+      "scenario_id": "scenario.voice-phishing-refund.transferred-again",
+      "question_ko": "금융회사에 후속 이체계좌가 확인됐는지와 다른 금융회사 요청 여부를 물었나요?",
+      "decision_fact_ko": "최초 수취계좌, 후속 이체계좌, 각 이체 시각, 각 금융회사, 지급정지 요청일, 남은 계좌 잔액",
+      "when_true_ko": "각 계좌와 금융회사별 처리상태를 표로 관리합니다.",
+      "when_false_ko": "최초 신청 금융회사에 피해금 이동경로와 연계 지급정지 여부를 확인합니다.",
+      "rule_ids": [
+        "rule.voice-phishing-refund.transferred-again"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0003",
+        "coord.voice-phishing-refund.special-0004"
+      ]
+    },
+    {
+      "scenario_id": "scenario.voice-phishing-refund.cash-delivery-withdrawal",
+      "question_ko": "피해 방식이 계좌이체였나요, 현금 전달 또는 무단 출금이었나요?",
+      "decision_fact_ko": "현금 전달 장소, 전달 상대 인상착의, 출금 시각·장소, 출금계좌, 경찰 신고번호, 피해금 특정자료",
+      "when_true_ko": "현금 교부·출금형이면 수사기관에 구체적 피해자료를 제출해 지급정지 요청을 확인합니다.",
+      "when_false_ko": "송금·이체형 피해구제 신청 경로를 우선 진행합니다.",
+      "rule_ids": [
+        "rule.voice-phishing-refund.cash-delivery-withdrawal"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0002",
+        "coord.voice-phishing-refund.special-0003"
+      ]
+    },
+    {
+      "scenario_id": "scenario.voice-phishing-refund.low-balance-request",
+      "question_ko": "지급정지 통지를 받은 날부터 30일이 지나기 전에 개시 요청을 했나요?",
+      "decision_fact_ko": "지급정지 통지일, 계좌 잔액, 피해금액, 개시 요청일, 금융회사 접수증, 공고 여부",
+      "when_true_ko": "접수증을 보존하고 공고·채권소멸 절차 진행 여부를 확인합니다.",
+      "when_false_ko": "아직 30일 안이라면 금융회사에 즉시 서면 요청하고 경과했다면 다른 회수수단을 검토합니다.",
+      "rule_ids": [
+        "rule.voice-phishing-refund.low-balance-request"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0005"
+      ]
+    },
+    {
+      "scenario_id": "scenario.voice-phishing-refund.late-application",
+      "question_ko": "해당 계좌의 최초 공고일과 추가 신청일을 확인했나요?",
+      "decision_fact_ko": "사기이용계좌, 최초 공고일, 추가 신청일, 송금 시각·금액, 금융회사, 수사기관 통지 여부",
+      "when_true_ko": "신청서와 거래내역을 제출하고 공고 반영 여부를 확인합니다.",
+      "when_false_ko": "금융회사·금융감독원에서 공고일을 확인해 남은 기간을 즉시 계산합니다.",
+      "rule_ids": [
+        "rule.voice-phishing-refund.late-application"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0006"
+      ]
+    },
+    {
+      "scenario_id": "scenario.voice-phishing-refund.account-holder-objection",
+      "question_ko": "이의제기 사유와 피해자 통지일, 지급정지 유지 여부를 확인했나요?",
+      "decision_fact_ko": "이의제기 접수일, 이의 사유, 객관적 소명자료, 피해자 통지일, 지급정지 상태, 관련 소송 여부",
+      "when_true_ko": "통지 후 법정 기간과 금융회사 처리결과를 추적하고 필요한 민사 대응을 준비합니다.",
+      "when_false_ko": "금융회사에 이의제기 문서와 현재 지급정지 상태를 서면 확인합니다.",
+      "rule_ids": [
+        "rule.voice-phishing-refund.account-holder-objection"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0007",
+        "coord.voice-phishing-refund.special-0008"
+      ]
+    },
+    {
+      "scenario_id": "scenario.voice-phishing-refund.claim-extinction-timeline",
+      "question_ko": "지급정지일이 아니라 최초 채권소멸 공고일부터 2개월을 계산했나요?",
+      "decision_fact_ko": "지급정지일, 최초 공고일, 2개월 경과일, 추가 피해신청, 명의인 이의제기, 채권소멸 통지",
+      "when_true_ko": "채권소멸 통지 뒤 피해환급 결정·지급 단계로 넘어갑니다.",
+      "when_false_ko": "금융회사나 금융감독원 공고에서 정확한 최초 공고일을 확인합니다.",
+      "rule_ids": [
+        "rule.voice-phishing-refund.claim-extinction-timeline"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0005",
+        "coord.voice-phishing-refund.special-0006",
+        "coord.voice-phishing-refund.special-0009"
+      ]
+    },
+    {
+      "scenario_id": "scenario.voice-phishing-refund.refund-amount",
+      "question_ko": "소멸채권 잔액, 총피해금액과 본인 피해금액을 각각 확인했나요?",
+      "decision_fact_ko": "소멸채권액, 총피해금액, 본인 피해금액, 피해자 수, 채권소멸일, 환급 결정 통지일",
+      "when_true_ko": "비례 산식과 통지 금액을 대조하고 금융회사 지급일을 확인합니다.",
+      "when_false_ko": "금융회사에 잔액·총피해액·본인 인정 피해액의 확인 가능 범위를 문의합니다.",
+      "rule_ids": [
+        "rule.voice-phishing-refund.refund-amount"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0010"
+      ]
+    },
+    {
+      "scenario_id": "scenario.voice-phishing-refund.refund-and-civil-claim",
+      "question_ko": "총손해에서 이미 받은 배상과 피해환급금을 뺀 미회수 손해가 남았나요?",
+      "decision_fact_ko": "총 피해금액, 가해자 배상액, 피해환급금, 보험·기타 보전, 미회수 손해, 가해자 재산·집행 가능성",
+      "when_true_ko": "미회수 손해와 책임 근거를 특정해 별도 민사청구·집행을 검토합니다.",
+      "when_false_ko": "전액 보전됐다면 동일 손해를 중복 청구하지 않도록 정산표를 보존합니다.",
+      "rule_ids": [
+        "rule.voice-phishing-refund.refund-and-civil-claim"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0011",
+        "coord.voice-phishing-refund.special-0012",
+        "coord.voice-phishing-refund.civil-0750"
+      ]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.voice-phishing-refund-covered-scam",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T07:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "voice-phishing-refund-covered-scam",
+      "title_ko": "보이스피싱 피해환급 특별법은 중고거래 사기에도 적용되나",
+      "one_line_answer_ko": "일반적인 재화·용역 거래를 가장한 사기는 특별법의 전기통신금융사기에서 제외될 수 있습니다. 다만 대출 제공·알선·중개를 가장한 행위는 포함됩니다.",
+      "audience_situation_ko": "계좌이체 사기를 당했지만 보이스피싱 피해환급 절차 대상인지 모르는 사람",
+      "key_points_ko": [
+        "특별법상 전기통신금융사기는 전기통신을 이용한 기망·공갈로 자금 등을 취득하는 행위이지만 재화·용역 공급을 가장한 행위는 원칙적으로 제외되고 대출을 가장한 행위는 포함됩니다.",
+        "특별법 피해구제 적용 여부를 먼저 가르고 적용되지 않더라도 형사신고·민사청구 가능성은 별도로 검토합니다.",
+        "형사신고와 특별법 피해구제, 남은 손해의 민사청구는 목적과 절차를 나누어 관리합니다."
+      ],
+      "action_steps_ko": [
+        "송금 목적과 상대방 설명을 한 문장으로 정리한다.",
+        "채팅·문자·통화기록과 판매글을 보존한다.",
+        "송금 금융회사에 특별법 피해구제 대상 여부를 확인한다.",
+        "대상이 아니어도 경찰 신고와 민사 회수 자료를 준비한다."
+      ],
+      "facts_to_check_ko": [
+        "송금 유도 문구",
+        "상대방 사칭 대상",
+        "상품·용역 약속",
+        "대출 제공·알선 여부",
+        "송금 계좌",
+        "대화·통화 기록"
+      ],
+      "caution_ko": "지급정지 신청만으로 전액 회수가 보장되는 것은 아니며 공고일·신청기한·계좌 잔액과 다른 피해자의 존재를 함께 확인해야 합니다.",
+      "search_intents_ko": [
+        "보이스피싱 피해환급 특별법은 중고거래 사기에도 적용되나",
+        "보이스피싱 피해구제",
+        "사기 피해 회수"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "특별법상 전기통신금융사기는 전기통신을 이용한 기망·공갈로 자금 등을 취득하는 행위이지만 재화·용역 공급을 가장한 행위는 원칙적으로 제외되고 대출을 가장한 행위는 포함됩니다.",
+            "특별법 피해구제 적용 여부를 먼저 가르고 적용되지 않더라도 형사신고·민사청구 가능성은 별도로 검토합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "송금 유도 문구, 상대방 사칭 대상, 상품·용역 약속, 대출 제공·알선 여부, 송금 계좌, 대화·통화 기록",
+            "상품·용역 거래를 가장했다면 특별법 제외 가능성을 확인하고 형사·민사 경로를 병행합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.voice-phishing-refund.covered-scam"
+      ],
+      "scenario_ids": [
+        "scenario.voice-phishing-refund.covered-scam"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0002"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "related_content_ids": [
+        "content.paid-but-goods-not-supplied",
+        "content.report-complaint-accusation-difference"
+      ]
+    },
+    {
+      "content_id": "content.voice-phishing-refund-immediate-application",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T07:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "voice-phishing-refund-immediate-application",
+      "title_ko": "보이스피싱 송금 직후 어디에 지급정지를 신청해야 하나",
+      "one_line_answer_ko": "돈을 보낸 계좌의 금융회사 또는 사기이용계좌를 관리하는 금융회사에 피해구제와 지급정지를 즉시 신청할 수 있습니다.",
+      "audience_situation_ko": "보이스피싱을 알아차린 직후 계좌이체를 멈추거나 회수하려는 피해자",
+      "key_points_ko": [
+        "송금·이체형 전기통신금융사기 피해자는 송금계좌 또는 사기이용계좌를 관리하는 금융회사에 피해구제와 지급정지를 신청할 수 있습니다.",
+        "금융회사는 거래내역을 확인해 사기이용계좌로 의심할 사정이 있으면 즉시 계좌 전부를 지급정지해야 합니다.",
+        "형사신고와 특별법 피해구제, 남은 손해의 민사청구는 목적과 절차를 나누어 관리합니다."
+      ],
+      "action_steps_ko": [
+        "송금 금융회사에 즉시 전화하거나 방문해 피해구제를 신청한다.",
+        "수취계좌·금액·시각을 정확히 제공한다.",
+        "경찰에 신고하고 사건·접수번호를 받는다.",
+        "금융회사의 지급정지·후속서류 안내를 기록한다."
+      ],
+      "facts_to_check_ko": [
+        "송금 시각",
+        "송금액",
+        "송금·수취 계좌",
+        "금융회사 접수번호",
+        "사기 인지 시각",
+        "경찰 신고번호"
+      ],
+      "caution_ko": "지급정지 신청만으로 전액 회수가 보장되는 것은 아니며 공고일·신청기한·계좌 잔액과 다른 피해자의 존재를 함께 확인해야 합니다.",
+      "search_intents_ko": [
+        "보이스피싱 송금 직후 어디에 지급정지를 신청해야 하나",
+        "보이스피싱 피해구제",
+        "지급정지 피해환급 절차"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "송금·이체형 전기통신금융사기 피해자는 송금계좌 또는 사기이용계좌를 관리하는 금융회사에 피해구제와 지급정지를 신청할 수 있습니다.",
+            "금융회사는 거래내역을 확인해 사기이용계좌로 의심할 사정이 있으면 즉시 계좌 전부를 지급정지해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "송금 시각, 송금액, 송금·수취 계좌, 금융회사 접수번호, 사기 인지 시각, 경찰 신고번호",
+            "접수번호와 지급정지 통지, 잔액·후속 절차 안내를 보존합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.voice-phishing-refund.immediate-application"
+      ],
+      "scenario_ids": [
+        "scenario.voice-phishing-refund.immediate-application"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0003",
+        "coord.voice-phishing-refund.special-0004"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "related_content_ids": [
+        "content.crime-victim-urgent-safety-and-support",
+        "content.crime-evidence-preservation-first-steps"
+      ]
+    },
+    {
+      "content_id": "content.voice-phishing-refund-transferred-again",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T07:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "voice-phishing-refund-transferred-again",
+      "title_ko": "피해금이 다른 은행 계좌로 다시 옮겨졌다면 끝인가",
+      "one_line_answer_ko": "아닙니다. 신청받은 금융회사는 피해금이 다른 금융회사의 사기이용계좌로 이동한 경우 필요한 정보를 제공하고 그 금융회사에 지급정지를 요청해야 합니다.",
+      "audience_situation_ko": "보이스피싱 돈이 여러 계좌로 연속 이체된 정황을 확인한 피해자",
+      "key_points_ko": [
+        "피해금이 다른 금융회사의 사기이용계좌로 송금·이체되면 피해구제 신청을 받은 금융회사는 필요한 정보를 제공하고 해당 금융회사에 지급정지를 요청해야 합니다.",
+        "최초 수취계좌뿐 아니라 확인된 후속 사기이용계좌에도 지급정지 요청이 이어질 수 있습니다.",
+        "형사신고와 특별법 피해구제, 남은 손해의 민사청구는 목적과 절차를 나누어 관리합니다."
+      ],
+      "action_steps_ko": [
+        "최초 수취계좌 이후 이동내역을 금융회사에 확인한다.",
+        "관련 금융회사별 접수번호를 구분해 적는다.",
+        "경찰에 추가 계좌와 거래내역을 제출한다.",
+        "지급정지 여부와 잔액을 계좌별로 갱신한다."
+      ],
+      "facts_to_check_ko": [
+        "최초 수취계좌",
+        "후속 이체계좌",
+        "각 이체 시각",
+        "각 금융회사",
+        "지급정지 요청일",
+        "남은 계좌 잔액"
+      ],
+      "caution_ko": "지급정지 신청만으로 전액 회수가 보장되는 것은 아니며 공고일·신청기한·계좌 잔액과 다른 피해자의 존재를 함께 확인해야 합니다.",
+      "search_intents_ko": [
+        "피해금이 다른 은행 계좌로 다시 옮겨졌다면 끝인가",
+        "보이스피싱 피해구제",
+        "지급정지 피해환급 절차"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "피해금이 다른 금융회사의 사기이용계좌로 송금·이체되면 피해구제 신청을 받은 금융회사는 필요한 정보를 제공하고 해당 금융회사에 지급정지를 요청해야 합니다.",
+            "최초 수취계좌뿐 아니라 확인된 후속 사기이용계좌에도 지급정지 요청이 이어질 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "최초 수취계좌, 후속 이체계좌, 각 이체 시각, 각 금융회사, 지급정지 요청일, 남은 계좌 잔액",
+            "각 계좌와 금융회사별 처리상태를 표로 관리합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.voice-phishing-refund.transferred-again"
+      ],
+      "scenario_ids": [
+        "scenario.voice-phishing-refund.transferred-again"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0003",
+        "coord.voice-phishing-refund.special-0004"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "related_content_ids": [
+        "content.voice-phishing-refund-immediate-application",
+        "content.crime-evidence-preservation-first-steps"
+      ]
+    },
+    {
+      "content_id": "content.voice-phishing-refund-cash-delivery-withdrawal",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T07:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "voice-phishing-refund-cash-delivery-withdrawal",
+      "title_ko": "현금을 전달했거나 계좌에서 직접 출금된 경우도 같은 신청인가",
+      "one_line_answer_ko": "현금 교부·출금형 피해는 송금·이체형과 절차가 다릅니다. 수사기관이 관련 사기이용계좌의 지급정지를 요청하고 피해자와 피해금을 특정해 통지하는 구조입니다.",
+      "audience_situation_ko": "대면으로 현금을 건넸거나 개인정보 탈취 뒤 계좌에서 돈이 출금된 피해자",
+      "key_points_ko": [
+        "현금 교부·출금형 전기통신금융사기에서는 수사기관이 사기이용계좌 금융회사에 지급정지를 요청하고 정해진 기한 안에 피해자와 피해금을 특정해 통지합니다.",
+        "금융회사 신청만으로 단정하지 말고 수사기관 신고와 피해자·피해금 특정 절차를 신속히 진행해야 합니다.",
+        "형사신고와 특별법 피해구제, 남은 손해의 민사청구는 목적과 절차를 나누어 관리합니다."
+      ],
+      "action_steps_ko": [
+        "112 신고와 금융회사 사고신고를 함께 한다.",
+        "현금 전달·출금 위치와 시각을 정리한다.",
+        "CCTV·출금내역·통화기록 보존을 요청한다.",
+        "수사기관의 계좌 지급정지 요청과 피해금 통지 여부를 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "현금 전달 장소",
+        "전달 상대 인상착의",
+        "출금 시각·장소",
+        "출금계좌",
+        "경찰 신고번호",
+        "피해금 특정자료"
+      ],
+      "caution_ko": "지급정지 신청만으로 전액 회수가 보장되는 것은 아니며 공고일·신청기한·계좌 잔액과 다른 피해자의 존재를 함께 확인해야 합니다.",
+      "search_intents_ko": [
+        "현금을 전달했거나 계좌에서 직접 출금된 경우도 같은 신청인가",
+        "보이스피싱 피해구제",
+        "사기 피해 회수"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "현금 교부·출금형 전기통신금융사기에서는 수사기관이 사기이용계좌 금융회사에 지급정지를 요청하고 정해진 기한 안에 피해자와 피해금을 특정해 통지합니다.",
+            "금융회사 신청만으로 단정하지 말고 수사기관 신고와 피해자·피해금 특정 절차를 신속히 진행해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "현금 전달 장소, 전달 상대 인상착의, 출금 시각·장소, 출금계좌, 경찰 신고번호, 피해금 특정자료",
+            "현금 교부·출금형이면 수사기관에 구체적 피해자료를 제출해 지급정지 요청을 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.voice-phishing-refund.cash-delivery-withdrawal"
+      ],
+      "scenario_ids": [
+        "scenario.voice-phishing-refund.cash-delivery-withdrawal"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0002",
+        "coord.voice-phishing-refund.special-0003"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "related_content_ids": [
+        "content.how-to-file-criminal-complaint",
+        "content.crime-evidence-preservation-first-steps"
+      ]
+    },
+    {
+      "content_id": "content.voice-phishing-refund-low-balance-request",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T07:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "voice-phishing-refund-low-balance-request",
+      "title_ko": "사기계좌 잔액이 3만원 이하면 피해환급 절차가 열리지 않나",
+      "one_line_answer_ko": "원칙적으로 일정 소액 잔액은 채권소멸절차 개시 대상에서 제외될 수 있지만, 피해자가 지급정지 통지를 받은 날부터 30일 안에 개시를 요청하면 예외가 될 수 있습니다.",
+      "audience_situation_ko": "지급정지는 됐지만 사기이용계좌 잔액이 적다는 안내를 받은 피해자",
+      "key_points_ko": [
+        "지급정지 계좌 잔액이 3만원 이하의 대통령령상 금액 이하이면 원칙적으로 공고 요청 예외가 될 수 있으나 피해자가 통지 후 30일 안에 개시를 요청하면 제외되지 않습니다.",
+        "잔액이 적다는 이유로 포기하지 말고 지급정지 통지일과 30일 요청기한을 확인해야 합니다.",
+        "형사신고와 특별법 피해구제, 남은 손해의 민사청구는 목적과 절차를 나누어 관리합니다."
+      ],
+      "action_steps_ko": [
+        "지급정지 통지서를 확보한다.",
+        "통지일부터 30일 기한을 계산한다.",
+        "금융회사에 채권소멸절차 개시를 명시적으로 요청한다.",
+        "요청 접수와 후속 공고 여부를 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "지급정지 통지일",
+        "계좌 잔액",
+        "피해금액",
+        "개시 요청일",
+        "금융회사 접수증",
+        "공고 여부"
+      ],
+      "caution_ko": "지급정지 신청만으로 전액 회수가 보장되는 것은 아니며 공고일·신청기한·계좌 잔액과 다른 피해자의 존재를 함께 확인해야 합니다.",
+      "search_intents_ko": [
+        "사기계좌 잔액이 3만원 이하면 피해환급 절차가 열리지 않나",
+        "보이스피싱 피해구제",
+        "사기 피해 회수"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "지급정지 계좌 잔액이 3만원 이하의 대통령령상 금액 이하이면 원칙적으로 공고 요청 예외가 될 수 있으나 피해자가 통지 후 30일 안에 개시를 요청하면 제외되지 않습니다.",
+            "잔액이 적다는 이유로 포기하지 말고 지급정지 통지일과 30일 요청기한을 확인해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "지급정지 통지일, 계좌 잔액, 피해금액, 개시 요청일, 금융회사 접수증, 공고 여부",
+            "접수증을 보존하고 공고·채권소멸 절차 진행 여부를 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.voice-phishing-refund.low-balance-request"
+      ],
+      "scenario_ids": [
+        "scenario.voice-phishing-refund.low-balance-request"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0005"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "related_content_ids": [
+        "content.voice-phishing-refund-immediate-application",
+        "content.civil-damages-after-crime"
+      ]
+    },
+    {
+      "content_id": "content.voice-phishing-refund-late-application",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T07:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "voice-phishing-refund-late-application",
+      "title_ko": "채권소멸 공고 뒤에 피해 사실을 알았어도 신청할 수 있나",
+      "one_line_answer_ko": "공고 전에 신청하지 못한 피해자도 최초 채권소멸절차 개시 공고일부터 2개월 이내에는 금융회사에 피해구제를 신청할 수 있습니다.",
+      "audience_situation_ko": "다른 피해자의 지급정지·공고 뒤 뒤늦게 같은 사기계좌 피해를 확인한 사람",
+      "key_points_ko": [
+        "채권소멸절차 개시 공고 전에 신청하지 않은 피해자는 공고일부터 2개월 이내에 금융회사에 추가 피해구제를 신청할 수 있습니다.",
+        "공고일을 기준으로 2개월 기한 안에 피해금과 거래를 특정해 추가 신청할 수 있습니다.",
+        "형사신고와 특별법 피해구제, 남은 손해의 민사청구는 목적과 절차를 나누어 관리합니다."
+      ],
+      "action_steps_ko": [
+        "사기이용계좌의 최초 공고일을 확인한다.",
+        "공고일부터 2개월 마감일을 계산한다.",
+        "송금내역과 피해 경위를 금융회사에 제출한다.",
+        "추가 공고·피해자 인정 여부를 추적한다."
+      ],
+      "facts_to_check_ko": [
+        "사기이용계좌",
+        "최초 공고일",
+        "추가 신청일",
+        "송금 시각·금액",
+        "금융회사",
+        "수사기관 통지 여부"
+      ],
+      "caution_ko": "지급정지 신청만으로 전액 회수가 보장되는 것은 아니며 공고일·신청기한·계좌 잔액과 다른 피해자의 존재를 함께 확인해야 합니다.",
+      "search_intents_ko": [
+        "채권소멸 공고 뒤에 피해 사실을 알았어도 신청할 수 있나",
+        "보이스피싱 피해구제",
+        "지급정지 피해환급 절차"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "채권소멸절차 개시 공고 전에 신청하지 않은 피해자는 공고일부터 2개월 이내에 금융회사에 추가 피해구제를 신청할 수 있습니다.",
+            "공고일을 기준으로 2개월 기한 안에 피해금과 거래를 특정해 추가 신청할 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "사기이용계좌, 최초 공고일, 추가 신청일, 송금 시각·금액, 금융회사, 수사기관 통지 여부",
+            "신청서와 거래내역을 제출하고 공고 반영 여부를 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.voice-phishing-refund.late-application"
+      ],
+      "scenario_ids": [
+        "scenario.voice-phishing-refund.late-application"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0006"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "related_content_ids": [
+        "content.voice-phishing-refund-claim-extinction-timeline",
+        "content.crime-evidence-preservation-first-steps"
+      ]
+    },
+    {
+      "content_id": "content.voice-phishing-refund-account-holder-objection",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T07:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "voice-phishing-refund-account-holder-objection",
+      "title_ko": "사기계좌 명의인이 이의제기하면 지급정지가 바로 풀리나",
+      "one_line_answer_ko": "바로 풀리는 것은 아닙니다. 명의인은 객관적 자료로 사기계좌가 아니거나 정당한 권원이 있음을 소명할 수 있고, 피해자 통지 뒤 일정 기간 지급정지가 유지되는 구조가 있습니다.",
+      "audience_situation_ko": "계좌 명의인의 이의제기 통지를 받고 환급이 중단될까 걱정하는 피해자",
+      "key_points_ko": [
+        "명의인은 공고일 기준 2개월이 지나기 전까지 법정 사유를 객관적 자료로 소명해 이의제기할 수 있고 금융회사는 피해자와 금융감독원에 이를 통지합니다.",
+        "이의제기만으로 결과를 단정하지 않고 통지일, 소명자료, 지급정지 유지·종료 조건과 소송 여부를 확인합니다.",
+        "형사신고와 특별법 피해구제, 남은 손해의 민사청구는 목적과 절차를 나누어 관리합니다."
+      ],
+      "action_steps_ko": [
+        "이의제기 통지서와 사유를 확보한다.",
+        "피해자 통지일을 기록한다.",
+        "금융회사에 지급정지 유지·종료 상태를 확인한다.",
+        "소송이 제기됐는지와 별도 민사대응 필요성을 검토한다."
+      ],
+      "facts_to_check_ko": [
+        "이의제기 접수일",
+        "이의 사유",
+        "객관적 소명자료",
+        "피해자 통지일",
+        "지급정지 상태",
+        "관련 소송 여부"
+      ],
+      "caution_ko": "지급정지 신청만으로 전액 회수가 보장되는 것은 아니며 공고일·신청기한·계좌 잔액과 다른 피해자의 존재를 함께 확인해야 합니다.",
+      "search_intents_ko": [
+        "사기계좌 명의인이 이의제기하면 지급정지가 바로 풀리나",
+        "보이스피싱 피해구제",
+        "사기 피해 회수"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "명의인은 공고일 기준 2개월이 지나기 전까지 법정 사유를 객관적 자료로 소명해 이의제기할 수 있고 금융회사는 피해자와 금융감독원에 이를 통지합니다.",
+            "이의제기만으로 결과를 단정하지 않고 통지일, 소명자료, 지급정지 유지·종료 조건과 소송 여부를 확인합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "이의제기 접수일, 이의 사유, 객관적 소명자료, 피해자 통지일, 지급정지 상태, 관련 소송 여부",
+            "통지 후 법정 기간과 금융회사 처리결과를 추적하고 필요한 민사 대응을 준비합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.voice-phishing-refund.account-holder-objection"
+      ],
+      "scenario_ids": [
+        "scenario.voice-phishing-refund.account-holder-objection"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0007",
+        "coord.voice-phishing-refund.special-0008"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "related_content_ids": [
+        "content.voice-phishing-refund-claim-extinction-timeline",
+        "content.civil-damages-after-crime"
+      ]
+    },
+    {
+      "content_id": "content.voice-phishing-refund-claim-extinction-timeline",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T07:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "voice-phishing-refund-claim-extinction-timeline",
+      "title_ko": "지급정지 뒤 피해환급까지 2개월은 왜 기다리나",
+      "one_line_answer_ko": "공고된 명의인 채권은 최초 채권소멸절차 개시 공고일부터 2개월이 지나면 소멸합니다. 이 기간에는 추가 피해신청과 명의인의 이의제기가 함께 진행될 수 있습니다.",
+      "audience_situation_ko": "지급정지는 됐지만 환급이 바로 되지 않아 절차와 날짜를 확인하려는 피해자",
+      "key_points_ko": [
+        "공고된 범위의 명의인 채권은 최초 채권소멸절차 개시 공고일부터 2개월이 지나면 소멸하고 금융감독원은 소멸 사실과 금액을 통지합니다.",
+        "최초 공고일·2개월 경과일·추가 피해신청·이의제기 상태를 함께 관리해야 합니다.",
+        "형사신고와 특별법 피해구제, 남은 손해의 민사청구는 목적과 절차를 나누어 관리합니다."
+      ],
+      "action_steps_ko": [
+        "금융감독원의 최초 공고일을 확인한다.",
+        "2개월 경과일을 달력에 기록한다.",
+        "추가 신청·이의제기 여부를 금융회사에 확인한다.",
+        "채권소멸 통지와 금액을 보존한다."
+      ],
+      "facts_to_check_ko": [
+        "지급정지일",
+        "최초 공고일",
+        "2개월 경과일",
+        "추가 피해신청",
+        "명의인 이의제기",
+        "채권소멸 통지"
+      ],
+      "caution_ko": "지급정지 신청만으로 전액 회수가 보장되는 것은 아니며 공고일·신청기한·계좌 잔액과 다른 피해자의 존재를 함께 확인해야 합니다.",
+      "search_intents_ko": [
+        "지급정지 뒤 피해환급까지 2개월은 왜 기다리나",
+        "보이스피싱 피해구제",
+        "지급정지 피해환급 절차"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "공고된 범위의 명의인 채권은 최초 채권소멸절차 개시 공고일부터 2개월이 지나면 소멸하고 금융감독원은 소멸 사실과 금액을 통지합니다.",
+            "최초 공고일·2개월 경과일·추가 피해신청·이의제기 상태를 함께 관리해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "지급정지일, 최초 공고일, 2개월 경과일, 추가 피해신청, 명의인 이의제기, 채권소멸 통지",
+            "채권소멸 통지 뒤 피해환급 결정·지급 단계로 넘어갑니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.voice-phishing-refund.claim-extinction-timeline"
+      ],
+      "scenario_ids": [
+        "scenario.voice-phishing-refund.claim-extinction-timeline"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0005",
+        "coord.voice-phishing-refund.special-0006",
+        "coord.voice-phishing-refund.special-0009"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "related_content_ids": [
+        "content.voice-phishing-refund-late-application",
+        "content.voice-phishing-refund-refund-amount"
+      ]
+    },
+    {
+      "content_id": "content.voice-phishing-refund-refund-amount",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T07:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "voice-phishing-refund-refund-amount",
+      "title_ko": "보이스피싱 피해금은 전액 환급되는가",
+      "one_line_answer_ko": "항상 전액은 아닙니다. 사기계좌에서 소멸된 채권액이 총피해액보다 적으면 피해자별 피해액 비율에 따라 나누어 산정합니다.",
+      "audience_situation_ko": "사기계좌 잔액이 피해액보다 적거나 여러 피해자가 있어 환급액을 알고 싶은 사람",
+      "key_points_ko": [
+        "총피해금액이 소멸채권액을 초과하면 소멸채권액을 각 피해자의 피해금액 비율에 따라 배분하고 그렇지 않으면 해당 피해금액으로 정합니다.",
+        "금융감독원은 채권소멸일부터 14일 이내 지급대상과 금액을 결정·통지하고 금융회사는 지체 없이 지급합니다.",
+        "형사신고와 특별법 피해구제, 남은 손해의 민사청구는 목적과 절차를 나누어 관리합니다."
+      ],
+      "action_steps_ko": [
+        "본인 인정 피해금액을 확인한다.",
+        "소멸채권액과 총피해금액을 구분한다.",
+        "비례 배분 여부와 결정 통지를 확인한다.",
+        "통지 뒤 실제 입금일과 금액을 기록한다."
+      ],
+      "facts_to_check_ko": [
+        "소멸채권액",
+        "총피해금액",
+        "본인 피해금액",
+        "피해자 수",
+        "채권소멸일",
+        "환급 결정 통지일"
+      ],
+      "caution_ko": "지급정지 신청만으로 전액 회수가 보장되는 것은 아니며 공고일·신청기한·계좌 잔액과 다른 피해자의 존재를 함께 확인해야 합니다.",
+      "search_intents_ko": [
+        "보이스피싱 피해금은 전액 환급되는가",
+        "보이스피싱 피해구제",
+        "사기 피해 회수"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "총피해금액이 소멸채권액을 초과하면 소멸채권액을 각 피해자의 피해금액 비율에 따라 배분하고 그렇지 않으면 해당 피해금액으로 정합니다.",
+            "금융감독원은 채권소멸일부터 14일 이내 지급대상과 금액을 결정·통지하고 금융회사는 지체 없이 지급합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "소멸채권액, 총피해금액, 본인 피해금액, 피해자 수, 채권소멸일, 환급 결정 통지일",
+            "비례 산식과 통지 금액을 대조하고 금융회사 지급일을 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.voice-phishing-refund.refund-amount"
+      ],
+      "scenario_ids": [
+        "scenario.voice-phishing-refund.refund-amount"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0010"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "related_content_ids": [
+        "content.voice-phishing-refund-claim-extinction-timeline",
+        "content.what-accident-damages-can-be-claimed"
+      ]
+    },
+    {
+      "content_id": "content.voice-phishing-refund-refund-and-civil-claim",
+      "content_type": "similar_case_comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T07:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "voice-phishing-refund-refund-and-civil-claim",
+      "title_ko": "피해환급금을 받으면 가해자에게 더는 청구할 수 없나",
+      "one_line_answer_ko": "환급받은 한도에서는 손해배상 등 청구권이 소멸하지만, 환급되지 않은 손해까지 자동으로 사라지는 것은 아닙니다. 다만 전액 배상·공범 가담 등은 환급 제한 사유가 됩니다.",
+      "audience_situation_ko": "일부 피해환급금을 받은 뒤 가해자 상대 민사청구 가능 범위를 확인하려는 피해자",
+      "key_points_ko": [
+        "피해환급금을 받은 경우 손해배상 등 청구권은 환급받은 한도에서 소멸하고, 전액 배상된 피해자나 부당이득·공범 가담 등 법정 사유가 있는 자는 환급받을 수 없습니다.",
+        "총손해·기존 배상·피해환급액을 대조해 중복청구를 제외하고 미회수 손해의 민사청구를 검토합니다.",
+        "형사신고와 특별법 피해구제, 남은 손해의 민사청구는 목적과 절차를 나누어 관리합니다."
+      ],
+      "action_steps_ko": [
+        "총 피해와 회수액을 한 표로 정리한다.",
+        "환급금 결정·입금 자료를 보존한다.",
+        "미회수 손해와 책임 상대방을 특정한다.",
+        "배상명령·민사소송·집행 가능성을 별도로 검토한다."
+      ],
+      "facts_to_check_ko": [
+        "총 피해금액",
+        "가해자 배상액",
+        "피해환급금",
+        "보험·기타 보전",
+        "미회수 손해",
+        "가해자 재산·집행 가능성"
+      ],
+      "caution_ko": "지급정지 신청만으로 전액 회수가 보장되는 것은 아니며 공고일·신청기한·계좌 잔액과 다른 피해자의 존재를 함께 확인해야 합니다.",
+      "search_intents_ko": [
+        "피해환급금을 받으면 가해자에게 더는 청구할 수 없나",
+        "보이스피싱 피해구제",
+        "사기 피해 회수"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "피해환급금을 받은 경우 손해배상 등 청구권은 환급받은 한도에서 소멸하고, 전액 배상된 피해자나 부당이득·공범 가담 등 법정 사유가 있는 자는 환급받을 수 없습니다.",
+            "총손해·기존 배상·피해환급액을 대조해 중복청구를 제외하고 미회수 손해의 민사청구를 검토합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "총 피해금액, 가해자 배상액, 피해환급금, 보험·기타 보전, 미회수 손해, 가해자 재산·집행 가능성",
+            "미회수 손해와 책임 근거를 특정해 별도 민사청구·집행을 검토합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.voice-phishing-refund.refund-and-civil-claim"
+      ],
+      "scenario_ids": [
+        "scenario.voice-phishing-refund.refund-and-civil-claim"
+      ],
+      "source_coordinate_ids": [
+        "coord.voice-phishing-refund.special-0011",
+        "coord.voice-phishing-refund.special-0012",
+        "coord.voice-phishing-refund.civil-0750"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "related_content_ids": [
+        "content.civil-damages-after-crime",
+        "content.compensation-order-eligible-damages"
+      ]
+    }
+  ]
+}
