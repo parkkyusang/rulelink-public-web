@@ -6,13 +6,14 @@ import {fileURLToPath} from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repositoryRoot = path.resolve(root, '..', '..');
-const [bundle, projectionSource, rankingSource, pageSource, componentSource, layoutSource, sitemapSource, localSmoke, liveSmoke] = await Promise.all([
+const [bundle, projectionSource, rankingSource, pageSource, componentSource, layoutSource, headerSource, sitemapSource, localSmoke, liveSmoke] = await Promise.all([
   readFile(path.join(repositoryRoot, 'artifacts/publication/current/bundle.json'), 'utf8').then(JSON.parse),
   readFile(path.join(root, 'src/lib/knowledge-search.ts'), 'utf8'),
   readFile(path.join(root, 'src/lib/knowledge-source-ranking.ts'), 'utf8'),
   readFile(path.join(root, 'app/ko/sources/page.tsx'), 'utf8'),
   readFile(path.join(root, 'src/components/knowledge-source-library.tsx'), 'utf8'),
   readFile(path.join(root, 'app/layout.tsx'), 'utf8'),
+  readFile(path.join(root, 'src/components/site-header.tsx'), 'utf8'),
   readFile(path.join(root, 'app/sitemap.ts'), 'utf8'),
   readFile(path.join(root, 'scripts/smoke-public-build.mjs'), 'utf8'),
   readFile(path.join(root, 'scripts/smoke-live-publication.mjs'), 'utf8'),
@@ -66,7 +67,8 @@ test('공식 근거 보관함은 검색·원문·연결 안내와 전체 공개 
   assert.match(componentSource, /document\.concepts/);
   assert.match(componentSource, /displayedDocuments/);
   assert.match(componentSource, /ProgressiveResultFooter/);
-  assert.match(layoutSource, /href="\/ko\/sources">공식 근거/);
+  assert.match(layoutSource, /<SiteHeader/);
+  assert.match(headerSource, /href="\/ko\/sources">공식 근거/);
   assert.match(sitemapSource, /\/ko\/sources/);
   assert.match(localSmoke, /\/ko\/sources/);
   assert.match(liveSmoke, /\/ko\/sources/);

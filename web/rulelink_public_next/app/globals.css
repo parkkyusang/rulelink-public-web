@@ -40,11 +40,6 @@ a, button, input { -webkit-tap-highlight-color: transparent;}
 a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {outline: 2px solid var(--green); outline-offset: 3px; box-shadow: var(--focus-ring);}
 ::selection {background: #bfe5d0; color: var(--green-dark);}
 .previewBanner {background: #8a3b12; color: white; font-size: 12px; font-weight: 750; letter-spacing: .02em; padding: 9px 18px; text-align: center;}
-.siteHeader {align-items: baseline; display: flex; gap: 12px; margin: 0 auto; max-width: 1180px; padding: 28px 24px;}
-.brand {font-family: var(--font-display); font-size: 29px; font-weight: 700; letter-spacing: -.04em;}
-.siteNav {display: flex; gap: 24px; margin-left: auto;}
-.siteNav a {border-radius: 7px; color: var(--muted); font-size: 13px; font-weight: 700; padding: 5px 3px; transition: color .18s ease;}
-.siteNav a:hover {color: var(--green);}
 .hero {background: var(--green-dark); border-radius: 30px; color: var(--white); margin: 14px auto 58px; max-width: 1180px; overflow: hidden; padding: 82px 72px; position: relative;}
 .hero::after {background: radial-gradient(circle, rgba(255,255,255,.18), transparent 68%); content: ""; height: 420px; position: absolute; right: -100px; top: -140px; width: 420px;}
 .eyebrow {font-size: 13px; font-weight: 700; letter-spacing: .08em; margin: 0 0 16px; text-transform: uppercase;}
@@ -331,9 +326,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   .eyebrow, .cardLink, .knowledgeCard strong {text-decoration: underline;}
 }
 @media (max-width: 800px) {
-  .siteHeader {align-items: flex-start; flex-direction: column; gap: 14px; padding: 20px 18px;}
-  .siteNav {gap: 18px; margin-left: 0; width: 100%;}
-  .siteNav a {font-size: 11px;}
   .hero {border-radius: 0; margin-top: 0; padding: 58px 24px;}
   .trustRail {align-items: flex-start; flex-direction: column; gap: 12px;}
   .cardGrid, .issueLayout, .relatedGrid, .entryGrid, .knowledgeGrid, .knowledgeLayout {grid-template-columns: 1fr;}

@@ -1,6 +1,7 @@
 import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 
+import {SiteHeader} from '@/components/site-header';
 import {site} from '@/lib/site';
 import {editorialPreviewEnabled, listConceptCards} from '@/lib/publication';
 import {serializeStructuredData} from '@/lib/structured-data';
@@ -58,17 +59,7 @@ export default async function RootLayout({children}: {children: ReactNode}) {
           type="application/ld+json"
         />
         {preview ? <div className="previewBanner">내부 편집 미리보기 · 외부 공개 및 법률정보 이용 금지</div> : null}
-        <header className="siteHeader">
-          <a className="brand" href="/">{site.name}</a>
-          <nav aria-label="주요 메뉴" className="siteNav">
-            {preview ? <a href="/editorial">편집 운영</a> : null}
-            <a href="/ko/search">전체에서 찾기</a>
-            {hasConcepts ? <a href="/ko/concepts">법률용어</a> : null}
-            <a href="/ko/knowledge">상황별 지식</a>
-            <a href="/ko/sources">공식 근거</a>
-            <a href="/ko/method">콘텐츠 원칙</a>
-          </nav>
-        </header>
+        <SiteHeader hasConcepts={hasConcepts} preview={preview} siteName={site.name} />
         {children}
         <footer className="siteFooter">
           <strong>{site.name}</strong>

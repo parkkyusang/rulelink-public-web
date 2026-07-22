@@ -142,11 +142,15 @@ test('개념 상세는 요건 효과 한계와 문장별 공식 근거를 노출
 });
 
 test('개념 경로는 상단 메뉴 사이트맵 RSS와 운영 스모크에 연결된다', async () => {
-  const layout = await read('app/layout.tsx');
+  const [layout, header] = await Promise.all([
+    read('app/layout.tsx'),
+    read('src/components/site-header.tsx'),
+  ]);
   const sitemap = await read('app/sitemap.ts');
   const feed = await read('app/feed.xml/route.ts');
   const smoke = await read('scripts/smoke-public-build.mjs');
-  assert.match(layout, /\/ko\/concepts/);
+  assert.match(layout, /<SiteHeader/);
+  assert.match(header, /\/ko\/concepts/);
   assert.match(sitemap, /listConceptCards/);
   assert.match(feed, /conceptItems/);
   assert.match(smoke, /concept_cards/);
