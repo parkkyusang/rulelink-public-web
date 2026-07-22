@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20260723-012",
+  "release_id": "production-20260723-013",
   "snapshot_id": "kr-knowledge-core-20260721-021",
-  "requested_at": "2026-07-22T20:14:08.655Z",
-  "summary_ko": "법리의 누가·어떤 때·결과 칸에서 법률용어 팝오버가 잘리지 않게 하고, 근거 있는 완전 동의어만 같은 본문 해설을 사용하도록 운영에 반영한다."
+  "requested_at": "2026-07-22T20:30:00.126Z",
+  "summary_ko": "복합 법률용어 안의 짧은 용어가 잘못 밑줄 처리되는 것을 막고, 독립 용어와 조사 결합만 정확히 해설하도록 운영에 반영한다."
 }
