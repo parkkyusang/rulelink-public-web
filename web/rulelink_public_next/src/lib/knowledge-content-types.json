@@ -1,0 +1,28 @@
+{
+  "schema": "rulelink_public_content_type_contract_v1",
+  "fallback_label_ko": "법률정보",
+  "canonical": {
+    "law_change": "법령 변경",
+    "doctrine_explainer": "법리 해설",
+    "fact_branch": "사실 분기",
+    "precedent_doctrine": "판례 법리",
+    "similar_case_comparison": "유사사례 비교",
+    "misconception_correction": "오해 바로잡기",
+    "procedure_evidence": "절차와 증거",
+    "recurring_issue_generalization": "반복 쟁점"
+  },
+  "aliases": {
+    "comparison": "similar_case_comparison",
+    "comparison_guide": "similar_case_comparison",
+    "deadline": "procedure_evidence",
+    "deadline_explainer": "procedure_evidence",
+    "deadline_guide": "procedure_evidence",
+    "emergency_response": "procedure_evidence",
+    "explainer": "doctrine_explainer",
+    "fact_branch_guide": "fact_branch",
+    "procedure_guide": "procedure_evidence",
+    "remedy_guide": "procedure_evidence",
+    "remedy_map": "procedure_evidence",
+    "risk_prevention": "procedure_evidence"
+  }
+}

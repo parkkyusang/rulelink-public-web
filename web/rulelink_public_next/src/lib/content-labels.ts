@@ -1,16 +1,15 @@
-import type {PublicKnowledgeEntry} from '@/types/publication';
+import contentTypeContract from '@/lib/knowledge-content-types.json';
+import type {PublicKnowledgeContentType} from '@/types/publication';
 
-const labels: Record<PublicKnowledgeEntry['content_type'], string> = {
-  law_change: '법령 변경',
-  doctrine_explainer: '법리 해설',
-  fact_branch: '사실 분기',
-  precedent_doctrine: '판례 법리',
-  similar_case_comparison: '유사사례 비교',
-  misconception_correction: '오해 바로잡기',
-  procedure_evidence: '절차와 증거',
-  recurring_issue_generalization: '반복 쟁점',
-};
+const canonicalLabels = contentTypeContract.canonical as Record<PublicKnowledgeContentType, string>;
+const aliases = contentTypeContract.aliases as Record<string, PublicKnowledgeContentType>;
 
-export function knowledgeContentTypeLabel(type: PublicKnowledgeEntry['content_type']): string {
-  return labels[type];
+export function normalizeKnowledgeContentType(type: string): PublicKnowledgeContentType | null {
+  if (Object.hasOwn(canonicalLabels, type)) return type as PublicKnowledgeContentType;
+  return aliases[type] ?? null;
+}
+
+export function knowledgeContentTypeLabel(type: string): string {
+  const normalized = normalizeKnowledgeContentType(type);
+  return normalized ? canonicalLabels[normalized] : contentTypeContract.fallback_label_ko;
 }
