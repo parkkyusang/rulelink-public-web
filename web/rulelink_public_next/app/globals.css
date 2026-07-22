@@ -107,6 +107,19 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .hubDecisionLinks a:hover {background: var(--mint);}
 .hubDecisionLinks a span {line-height: 1.45;}
 .hubAllEntries {margin-bottom: 20px;}
+.hubConnections {border-top: 1px solid var(--line); margin-top: 58px; padding-top: 48px;}
+.hubConnectionsIntro {align-items: end; display: grid; gap: 42px; grid-template-columns: 1fr 1fr; margin-bottom: 24px;}
+.hubConnectionsIntro h2 {font-size: 31px; letter-spacing: -.04em; line-height: 1.35; margin: 0;}
+.hubConnectionsIntro > p {color: var(--muted); line-height: 1.7; margin: 0;}
+.hubConnectionGrid {display: grid; gap: 14px; grid-template-columns: repeat(2,minmax(0,1fr));}
+.hubConnectionCard {background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-card); display: flex; flex-direction: column; min-width: 0; padding: 25px; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;}
+.hubConnectionCard:hover {border-color: #9bb8a8; box-shadow: var(--shadow-card); transform: translateY(-2px);}
+.hubConnectionMeta {color: var(--green); font-size: 11px; font-weight: 800; letter-spacing: .04em;}
+.hubConnectionCard h3 {font-size: 22px; letter-spacing: -.03em; line-height: 1.4; margin: 18px 0 10px;}
+.hubConnectionCard > p {color: var(--muted); line-height: 1.65; margin: 0;}
+.hubConnectionBridge {border-top: 1px solid var(--line); color: var(--muted); display: grid; font-size: 12px; gap: 6px; line-height: 1.55; margin-top: 22px; padding-top: 16px;}
+.hubConnectionBridge b {color: var(--ink); font-size: 10px; letter-spacing: .03em;}
+.hubConnectionCard > strong {color: var(--green); font-size: 13px; margin-top: auto; padding-top: 22px;}
 .knowledgeGrid {display: grid; gap: 16px; grid-template-columns: repeat(3,1fr);}
 .knowledgeCard {background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-card); display: flex; flex-direction: column; min-height: 260px; padding: 25px; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;}
 .knowledgeCard:hover {border-color: #9bb8a8; box-shadow: var(--shadow-card); transform: translateY(-2px);}
@@ -326,7 +339,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   .methodGrid, .methodSection {grid-template-columns: 1fr;}
   .hubGrid {grid-template-columns: 1fr;}
   .hubDirectoryHeading {align-items: start; flex-direction: column; gap: 7px;}
-  .changeIntro, .changeGrid, .changeBody, .changeAssertionGrid, .lifeImpact, .hubDecisionIntro, .hubDecisionGrid {grid-template-columns: 1fr;}
+  .changeIntro, .changeGrid, .changeBody, .changeAssertionGrid, .lifeImpact, .hubDecisionIntro, .hubDecisionGrid, .hubConnectionsIntro, .hubConnectionGrid {grid-template-columns: 1fr;}
   .effectivePanel {grid-template-columns: 1fr;}
   .normDeltaRow {grid-template-columns: 1fr;}
   .normVersion {border-left: 0; border-top: 1px solid var(--line);}

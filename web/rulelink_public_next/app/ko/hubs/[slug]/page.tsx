@@ -2,7 +2,7 @@ import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
-import {decisionPathsForKnowledgeHub, entriesForKnowledgeHub, findKnowledgeHub, listKnowledgeHubs} from '@/lib/publication';
+import {connectedKnowledgeHubs, decisionPathsForKnowledgeHub, entriesForKnowledgeHub, findKnowledgeHub, listKnowledgeHubs} from '@/lib/publication';
 import {site} from '@/lib/site';
 import {buildKnowledgeHubStructuredData} from '@/lib/public-structured-data';
 import {serializeStructuredData} from '@/lib/structured-data';
@@ -36,9 +36,10 @@ export default async function KnowledgeHubPage({params}: Props) {
   const {slug} = await params;
   const hub = await findKnowledgeHub(slug);
   if (!hub) notFound();
-  const [entries, decisionPaths] = await Promise.all([
+  const [entries, decisionPaths, connections] = await Promise.all([
     entriesForKnowledgeHub(hub),
     decisionPathsForKnowledgeHub(hub),
+    connectedKnowledgeHubs(hub),
   ]);
   if (!entries.length) notFound();
   const canonicalUrl = `${site.url}/ko/hubs/${hub.slug}`;
@@ -118,6 +119,31 @@ export default async function KnowledgeHubPage({params}: Props) {
         ))}
         </div>
       </section>
+      {connections.length ? (
+        <section aria-labelledby="hub-connections-heading" className="hubConnections">
+          <div className="hubConnectionsIntro">
+            <div>
+              <p className="eyebrow">연결해서 보는 주제</p>
+              <h2 id="hub-connections-heading">이 문제와 맞닿은 법률 경로</h2>
+            </div>
+            <p>상세 글 사이에 실제로 연결된 비교·기한·구제절차를 따라 다음 주제를 골랐습니다.</p>
+          </div>
+          <div className="hubConnectionGrid">
+            {connections.map(connection => (
+              <a className="hubConnectionCard" href={`/ko/hubs/${connection.hub.slug}`} key={connection.hub.hub_id}>
+                <span className="hubConnectionMeta">함께 확인할 주제</span>
+                <h3>{connection.hub.title_ko}</h3>
+                <p>{connection.hub.description_ko}</p>
+                <span className="hubConnectionBridge">
+                  <b>이어지는 안내</b>
+                  {connection.bridgeEntries.map(entry => entry.title_ko).join(' · ')}
+                </span>
+                <strong>주제 전체 보기 <span aria-hidden="true">→</span></strong>
+              </a>
+            ))}
+          </div>
+        </section>
+      ) : null}
     </main>
   );
 }
