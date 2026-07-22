@@ -1,0 +1,1260 @@
+{
+  "schema": "rulelink_public_knowledge_topic_v1",
+  "topic_id": "hub.commercial-lease",
+  "sources": [
+    {
+      "coordinate_id": "coord.commercial-lease.commercial-lease-ko-0002",
+      "source_id": "commercial_lease_ko_0002",
+      "law_name_ko": "상가건물 임대차보호법",
+      "article_no": "제2조",
+      "title_ko": "적용범위",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
+      "source_snapshot_id": "snapshot:724498cc3a92ca6939cadc8328d2cf0f",
+      "last_verified_at": "2026-07-22T05:10:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.commercial-lease.commercial-lease-ko-0003",
+      "source_id": "commercial_lease_ko_0003",
+      "law_name_ko": "상가건물 임대차보호법",
+      "article_no": "제3조",
+      "title_ko": "대항력 등",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
+      "source_snapshot_id": "snapshot:1d9c6a00a2afec23963281fd3a8e60c2",
+      "last_verified_at": "2026-07-22T05:10:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.commercial-lease.commercial-lease-ko-0004",
+      "source_id": "commercial_lease_ko_0004",
+      "law_name_ko": "상가건물 임대차보호법",
+      "article_no": "제4조",
+      "title_ko": "확정일자 부여 및 임대차정보의 제공 등",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
+      "source_snapshot_id": "snapshot:b70a07dd3d220873faa70d94b28da52e",
+      "last_verified_at": "2026-07-22T05:10:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.commercial-lease.commercial-lease-ko-0005",
+      "source_id": "commercial_lease_ko_0005",
+      "law_name_ko": "상가건물 임대차보호법",
+      "article_no": "제5조",
+      "title_ko": "보증금의 회수",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
+      "source_snapshot_id": "snapshot:27d338062dcb0a856bbe73fd4f49f656",
+      "last_verified_at": "2026-07-22T05:10:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.commercial-lease.commercial-lease-ko-0006",
+      "source_id": "commercial_lease_ko_0006",
+      "law_name_ko": "상가건물 임대차보호법",
+      "article_no": "제6조",
+      "title_ko": "임차권등기명령",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
+      "source_snapshot_id": "snapshot:868f409769b920d9313a5d10b1e2a31d",
+      "last_verified_at": "2026-07-22T05:10:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.commercial-lease.commercial-lease-ko-0009",
+      "source_id": "commercial_lease_ko_0009",
+      "law_name_ko": "상가건물 임대차보호법",
+      "article_no": "제9조",
+      "title_ko": "임대차기간 등",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
+      "source_snapshot_id": "snapshot:d88fb6aa651b41cfee3e2342fef6244b",
+      "last_verified_at": "2026-07-22T05:10:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.commercial-lease.commercial-lease-ko-0010",
+      "source_id": "commercial_lease_ko_0010",
+      "law_name_ko": "상가건물 임대차보호법",
+      "article_no": "제10조",
+      "title_ko": "계약갱신 요구 등",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
+      "source_snapshot_id": "snapshot:1e7ccf5e5ebb15e63ea54caffd3352de",
+      "last_verified_at": "2026-07-22T05:10:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.commercial-lease.commercial-lease-ko-0010-03",
+      "source_id": "commercial_lease_ko_0010_03",
+      "law_name_ko": "상가건물 임대차보호법",
+      "article_no": "제10조의3",
+      "title_ko": "권리금의 정의 등",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
+      "source_snapshot_id": "snapshot:6e5796b6baf27047bbd039a0fdd2193f",
+      "last_verified_at": "2026-07-22T05:10:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.commercial-lease.commercial-lease-ko-0010-04",
+      "source_id": "commercial_lease_ko_0010_04",
+      "law_name_ko": "상가건물 임대차보호법",
+      "article_no": "제10조의4",
+      "title_ko": "권리금 회수기회 보호 등",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
+      "source_snapshot_id": "snapshot:5d77c09a5eb6de889a0c4b42096de695",
+      "last_verified_at": "2026-07-22T05:10:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.commercial-lease.commercial-lease-ko-0010-05",
+      "source_id": "commercial_lease_ko_0010_05",
+      "law_name_ko": "상가건물 임대차보호법",
+      "article_no": "제10조의5",
+      "title_ko": "권리금 적용 제외",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
+      "source_snapshot_id": "snapshot:efcf094dd364395a0ea8c44c2b11a8fb",
+      "last_verified_at": "2026-07-22T05:10:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.commercial-lease.commercial-lease-ko-0010-08",
+      "source_id": "commercial_lease_ko_0010_08",
+      "law_name_ko": "상가건물 임대차보호법",
+      "article_no": "제10조의8",
+      "title_ko": "차임연체와 해지",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
+      "source_snapshot_id": "snapshot:becea8c05193844530b23ca64adc08d8",
+      "last_verified_at": "2026-07-22T05:10:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.commercial-lease.commercial-lease-ko-0011",
+      "source_id": "commercial_lease_ko_0011",
+      "law_name_ko": "상가건물 임대차보호법",
+      "article_no": "제11조",
+      "title_ko": "차임 등의 증감청구권",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
+      "source_snapshot_id": "snapshot:d4b50be5ea68aaa12d2a0cec207a2645",
+      "last_verified_at": "2026-07-22T05:10:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.commercial-lease.commercial-lease-ko-0011-02",
+      "source_id": "commercial_lease_ko_0011_02",
+      "law_name_ko": "상가건물 임대차보호법",
+      "article_no": "제11조의2",
+      "title_ko": "폐업으로 인한 임차인의 해지권",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
+      "source_snapshot_id": "snapshot:7fb3ade7ffb9afef43270682f9877885",
+      "last_verified_at": "2026-07-22T05:10:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.commercial-lease.commercial-lease-ko-0012",
+      "source_id": "commercial_lease_ko_0012",
+      "law_name_ko": "상가건물 임대차보호법",
+      "article_no": "제12조",
+      "title_ko": "월 차임 전환 시 산정률의 제한",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
+      "source_snapshot_id": "snapshot:119a07f74cf3c64821a90338bff86223",
+      "last_verified_at": "2026-07-22T05:10:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.commercial-lease.commercial-lease-ko-0019-02",
+      "source_id": "commercial_lease_ko_0019_02",
+      "law_name_ko": "상가건물 임대차보호법",
+      "article_no": "제19조의2",
+      "title_ko": "관리비 내역의 제공",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
+      "source_snapshot_id": "snapshot:959d1d862d7fa5e33a9dae165cec9b06",
+      "last_verified_at": "2026-07-22T05:10:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.commercial-lease.commercial-lease-ko-0020",
+      "source_id": "commercial_lease_ko_0020",
+      "law_name_ko": "상가건물 임대차보호법",
+      "article_no": "제20조",
+      "title_ko": "상가건물임대차분쟁조정위원회",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95",
+      "source_snapshot_id": "snapshot:4a04b15c57fdeaea6a3e000e0e5fa9d3",
+      "last_verified_at": "2026-07-22T05:10:00+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.commercial-lease",
+      "slug": "commercial-lease",
+      "title_ko": "상가건물 임대차",
+      "description_ko": "상가 계약 전 적용범위부터 대항력·확정일자·보증금 회수, 갱신·연체·권리금·차임·관리비·분쟁조정까지 영업 지속과 퇴거의 판단 순서를 연결합니다.",
+      "content_ids": [
+        "content.commercial-lease-act-scope",
+        "content.commercial-lease-opposability-and-registration",
+        "content.commercial-lease-priority-repayment",
+        "content.commercial-lease-move-before-deposit-refund",
+        "content.commercial-lease-renewal-right",
+        "content.commercial-lease-rent-arrears",
+        "content.commercial-lease-key-money-recovery",
+        "content.commercial-lease-rent-increase-and-conversion",
+        "content.commercial-lease-management-fee-breakdown",
+        "content.commercial-lease-dispute-conciliation",
+        "content.commercial-lease-closure-termination"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.commercial-lease.scope",
+      "title_ko": "보증금 규모와 관계없이 조문별 적용범위를 나누어 확인",
+      "proposition_ko": "상가건물 임대차보호법은 사업자등록 대상 건물의 영업용 임대차에 적용되며, 환산보증금이 기준을 넘더라도 대항력·갱신·권리금 등 일부 조문은 적용될 수 있습니다.",
+      "norm": {
+        "actor_ko": "상가건물을 영업용으로 임차한 사업자 또는 예비 임차인",
+        "conditions_ko": "건물 용도, 사업자등록 대상 여부, 지역과 환산보증금을 확인하는 경우",
+        "legal_effect_ko": "일률적으로 법 전체의 적용 여부를 단정하지 않고 보호하려는 권리마다 적용 조문을 따로 판단합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0002"
+      ]
+    },
+    {
+      "rule_id": "rule.commercial-lease.opposability",
+      "title_ko": "건물 인도와 사업자등록 신청 다음 날 대항력 발생",
+      "proposition_ko": "등기 없는 상가임대차도 건물을 인도받고 사업자등록을 신청하면 그 다음 날부터 제3자에게 효력이 생깁니다.",
+      "norm": {
+        "actor_ko": "상가를 인도받아 영업하며 사업자등록을 신청한 임차인",
+        "conditions_ko": "건물 인도와 사업자등록 신청을 모두 갖추고 소유자 변경 등 제3자 관계가 문제되는 경우",
+        "legal_effect_ko": "요건을 유지한 임차인은 새 소유자 등에게 임대차관계를 주장할 수 있고 건물 양수인은 원칙적으로 임대인 지위를 승계합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0003"
+      ]
+    },
+    {
+      "rule_id": "rule.commercial-lease.priority-repayment",
+      "title_ko": "대항요건과 확정일자를 갖춘 뒤 우선변제 순위 확보",
+      "proposition_ko": "건물 인도·사업자등록 신청과 임대차계약서의 확정일자를 갖춘 임차인은 경매·공매에서 후순위권리자보다 우선하여 보증금을 변제받을 수 있습니다.",
+      "norm": {
+        "actor_ko": "대항요건과 확정일자를 갖춘 상가임차인",
+        "conditions_ko": "임차 상가가 경매 또는 공매되고 보증금 배당순위가 문제되는 경우",
+        "legal_effect_ko": "대항력만으로 우선변제권이 생기는 것은 아니며 각 요건을 갖춘 시점을 기준으로 다른 권리와 순위를 비교합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0003",
+        "coord.commercial-lease.commercial-lease-ko-0004",
+        "coord.commercial-lease.commercial-lease-ko-0005"
+      ]
+    },
+    {
+      "rule_id": "rule.commercial-lease.lease-registration-order",
+      "title_ko": "계약 종료 뒤 보증금 미반환 시 임차권등기명령 검토",
+      "proposition_ko": "임대차가 끝났는데도 보증금을 돌려받지 못한 임차인은 관할 법원에 임차권등기명령을 신청할 수 있습니다.",
+      "norm": {
+        "actor_ko": "종료한 상가임대차의 보증금을 돌려받지 못한 임차인",
+        "conditions_ko": "이전이나 점포 반환이 필요하지만 대항력·우선변제권을 보전해야 하는 경우",
+        "legal_effect_ko": "임차권등기가 완료되면 이사하거나 사업자등록지를 옮긴 뒤에도 법정 범위에서 기존 대항력과 우선변제권을 보전할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0006"
+      ]
+    },
+    {
+      "rule_id": "rule.commercial-lease.minimum-term",
+      "title_ko": "1년 미만 약정은 원칙적으로 1년으로 보되 임차인은 짧은 기간 주장 가능",
+      "proposition_ko": "기간을 정하지 않았거나 1년 미만으로 정한 상가임대차는 원칙적으로 1년으로 보지만 임차인은 1년 미만의 약정기간이 유효하다고 주장할 수 있습니다.",
+      "norm": {
+        "actor_ko": "1년 미만 또는 기간을 정하지 않은 상가임대차의 임차인",
+        "conditions_ko": "계약 종료일과 보증금 반환시점에 다툼이 있는 경우",
+        "legal_effect_ko": "임대인은 원칙적으로 1년 보호기간을 무시해 조기 퇴거를 요구할 수 없고, 임차인은 필요하면 실제 단기 약정을 주장할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0009"
+      ]
+    },
+    {
+      "rule_id": "rule.commercial-lease.renewal",
+      "title_ko": "만료 6개월 전부터 1개월 전까지 갱신 요구, 전체 10년 한도",
+      "proposition_ko": "임차인은 임대차기간 만료 6개월 전부터 1개월 전까지 갱신을 요구할 수 있고, 최초 기간을 포함한 전체 10년 범위에서 보호받습니다.",
+      "norm": {
+        "actor_ko": "계약을 계속하려는 상가임차인",
+        "conditions_ko": "법정 기간 안에 갱신 의사를 표시하고 갱신거절 사유와 전체 임대기간을 확인하는 경우",
+        "legal_effect_ko": "정당한 거절 사유가 없으면 임대인은 갱신 요구를 거절하지 못하며 갱신 후에도 차임·보증금은 법정 범위에서 조정될 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0010"
+      ]
+    },
+    {
+      "rule_id": "rule.commercial-lease.three-rents-arrears",
+      "title_ko": "3기 차임액에 이르는 연체는 해지·갱신거절 사유",
+      "proposition_ko": "차임연체액이 3기의 차임액에 이르면 임대인은 계약을 해지할 수 있고 갱신 요구도 거절할 수 있습니다.",
+      "norm": {
+        "actor_ko": "차임을 연체한 상가임차인과 계약을 정리하려는 임대인",
+        "conditions_ko": "연체액 합계가 월수와 무관하게 3기분 차임액에 이르렀는지 확인하는 경우",
+        "legal_effect_ko": "3기분 기준에 이르면 임대인은 해지 또는 갱신거절을 주장할 수 있으므로 지급일·일부 변제·충당 내역을 정확히 계산해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0010",
+        "coord.commercial-lease.commercial-lease-ko-0010-08"
+      ]
+    },
+    {
+      "rule_id": "rule.commercial-lease.key-money",
+      "title_ko": "종료 6개월 전부터 종료 시까지 권리금 회수기회 보호",
+      "proposition_ko": "임대인은 임대차 종료 6개월 전부터 종료 시까지 정당한 사유 없이 신규임차인과의 계약을 방해해 임차인의 권리금 회수기회를 침해해서는 안 됩니다.",
+      "norm": {
+        "actor_ko": "권리금을 회수하려고 신규임차인을 주선한 상가임차인",
+        "conditions_ko": "보호기간 안에 신규임차인을 특정해 주선하고 임대인의 거절·고액조건 요구 등 방해행위가 있는 경우",
+        "legal_effect_ko": "방해로 손해가 발생하면 임차인은 법정 한도에서 손해배상을 청구할 수 있으며 종료일부터 3년의 소멸시효와 적용 제외·정당한 사유를 함께 확인해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0010-03",
+        "coord.commercial-lease.commercial-lease-ko-0010-04",
+        "coord.commercial-lease.commercial-lease-ko-0010-05"
+      ]
+    },
+    {
+      "rule_id": "rule.commercial-lease.rent-change",
+      "title_ko": "차임·보증금 증액은 사유·상한·1년 간격을 확인",
+      "proposition_ko": "조세·공과금이나 경제사정 변화로 차임·보증금이 상당하지 않게 되면 증감을 청구할 수 있지만 증액은 법정 상한과 1년 간격 제한을 받습니다.",
+      "norm": {
+        "actor_ko": "차임 또는 보증금 조정을 요구하는 임대인·임차인",
+        "conditions_ko": "직전 계약 또는 증액 시점, 증액률, 경제사정 변동을 확인하는 경우",
+        "legal_effect_ko": "임대인의 통지만으로 모든 증액이 확정되는 것은 아니며 제한을 넘는 부분과 분쟁 가능성을 별도로 검토합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0011"
+      ]
+    },
+    {
+      "rule_id": "rule.commercial-lease.monthly-conversion",
+      "title_ko": "보증금을 월세로 돌릴 때 법정 환산한도 적용",
+      "proposition_ko": "보증금 전부 또는 일부를 월 차임으로 전환할 때에는 법이 정한 두 산정률 중 낮은 비율을 적용한 범위를 넘을 수 없습니다.",
+      "norm": {
+        "actor_ko": "보증금을 줄이고 월 차임을 늘리려는 임대인·임차인",
+        "conditions_ko": "전환 대상 보증금, 기준금리, 시행령 비율과 계산 기준일을 확인하는 경우",
+        "legal_effect_ko": "약정 월세가 법정 전환한도를 넘는지 계산해 초과 부분의 효력을 검토해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0012"
+      ]
+    },
+    {
+      "rule_id": "rule.commercial-lease.management-fee",
+      "title_ko": "임차인이 관리비 내역을 요구하면 임대인은 제공해야 함",
+      "proposition_ko": "계약에 따라 임차인이 관리비를 납부하는 경우 임차인은 부과된 관리비 내역을 요구할 수 있고 임대인은 이에 따라야 합니다.",
+      "norm": {
+        "actor_ko": "관리비를 납부하는 상가임차인",
+        "conditions_ko": "관리비 총액만 고지됐거나 항목·산정근거를 확인하려는 경우",
+        "legal_effect_ko": "임차인은 부과기간·항목·금액의 내역을 받아 계약상 부담과 실제 지출을 대조할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0019-02"
+      ]
+    },
+    {
+      "rule_id": "rule.commercial-lease.conciliation",
+      "title_ko": "차임·보증금·수선·권리금 분쟁은 조정위원회 이용 가능",
+      "proposition_ko": "상가건물임대차분쟁조정위원회는 차임·보증금, 기간, 반환, 유지·수선, 권리금 등 상가임대차 분쟁을 조정합니다.",
+      "norm": {
+        "actor_ko": "상가임대차 분쟁의 임대인 또는 임차인",
+        "conditions_ko": "소송 전 합의 가능한 쟁점과 상대방의 조정 참여 가능성을 검토하는 경우",
+        "legal_effect_ko": "조정절차를 통해 쟁점과 증거를 정리하고 합의를 시도할 수 있으나 신청만으로 강제집행이나 시효 문제가 자동 해결되는 것은 아닙니다."
+      },
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0020"
+      ]
+    },
+    {
+      "rule_id": "rule.commercial-lease.closure-termination",
+      "title_ko": "집합제한·금지로 폐업한 임차인의 해지권",
+      "proposition_ko": "상가 임차인이 법정 집합제한·금지 또는 운영시간 제한 조치를 총 3개월 이상 받아 경제사정이 중대하게 변동해 폐업한 경우 임대차계약을 해지할 수 있습니다.",
+      "norm": {
+        "actor_ko": "집합제한·금지 등으로 폐업한 상가 임차인과 임대인",
+        "conditions_ko": "법정 조치를 총 3개월 이상 받고 그로 인한 경제사정의 중대한 변동으로 폐업한 경우",
+        "legal_effect_ko": "임대인이 해지 통고를 받은 날부터 3개월이 지나면 임대차 해지의 효력이 발생합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0011-02"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.commercial-lease.scope",
+      "question_ko": "점포가 사업자등록 대상 영업용 건물이고 환산보증금 구간도 확인했나요?",
+      "decision_fact_ko": "건물의 주된 용도, 사업자등록, 지역, 보증금과 월세",
+      "when_true_ko": "보호하려는 권리마다 적용 조문을 나누어 판단합니다.",
+      "when_false_ko": "주거·일시사용·사업자등록 비대상 여부부터 확인해야 합니다.",
+      "rule_ids": [
+        "rule.commercial-lease.scope"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0002"
+      ]
+    },
+    {
+      "scenario_id": "scenario.commercial-lease.opposability",
+      "question_ko": "건물을 인도받고 사업자등록을 신청한 날짜가 언제인가요?",
+      "decision_fact_ko": "인도일, 사업자등록 신청일, 소유권 변동일",
+      "when_true_ko": "두 요건을 모두 갖춘 다음 날을 기준으로 제3자 대항력을 검토합니다.",
+      "when_false_ko": "새 소유자나 경매 관계에서 임대차를 주장하기 어려울 수 있습니다.",
+      "rule_ids": [
+        "rule.commercial-lease.opposability"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0003"
+      ]
+    },
+    {
+      "scenario_id": "scenario.commercial-lease.priority",
+      "question_ko": "대항요건과 확정일자를 모두 갖추었나요?",
+      "decision_fact_ko": "인도·사업자등록 신청·확정일자·선순위 권리의 각 날짜",
+      "when_true_ko": "경매·공매에서 우선변제 순위를 비교할 수 있습니다.",
+      "when_false_ko": "대항력과 우선변제권을 혼동하지 말고 부족한 요건을 보완합니다.",
+      "rule_ids": [
+        "rule.commercial-lease.priority-repayment"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0003",
+        "coord.commercial-lease.commercial-lease-ko-0004",
+        "coord.commercial-lease.commercial-lease-ko-0005"
+      ]
+    },
+    {
+      "scenario_id": "scenario.commercial-lease.move-before-refund",
+      "question_ko": "계약이 끝났지만 보증금을 못 받은 채 이전해야 하나요?",
+      "decision_fact_ko": "종료일, 미반환액, 임차권등기 완료일, 이전 예정일",
+      "when_true_ko": "이전 전에 임차권등기명령 신청과 등기 완료를 확인합니다.",
+      "when_false_ko": "등기 완료 전 점유·사업자등록을 잃으면 권리 보전에 문제가 생길 수 있습니다.",
+      "rule_ids": [
+        "rule.commercial-lease.lease-registration-order"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0006"
+      ]
+    },
+    {
+      "scenario_id": "scenario.commercial-lease.renewal-window",
+      "question_ko": "계약 만료 6개월 전부터 1개월 전 사이에 갱신을 요구했나요?",
+      "decision_fact_ko": "만료일, 요구일, 최초 입점일, 갱신거절 사유",
+      "when_true_ko": "전체 10년 한도와 거절 사유를 대조합니다.",
+      "when_false_ko": "법정 요구기간을 벗어난 경우 묵시갱신·별도 합의 여부를 봅니다.",
+      "rule_ids": [
+        "rule.commercial-lease.minimum-term",
+        "rule.commercial-lease.renewal"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0009",
+        "coord.commercial-lease.commercial-lease-ko-0010"
+      ]
+    },
+    {
+      "scenario_id": "scenario.commercial-lease.arrears",
+      "question_ko": "미납액이 실제로 3기분 차임액에 이르렀나요?",
+      "decision_fact_ko": "각 지급기일, 약정 차임, 일부 변제와 충당 내역",
+      "when_true_ko": "해지·갱신거절 위험이 크므로 미납 계산과 대응을 즉시 정리합니다.",
+      "when_false_ko": "다른 거절·해지 사유가 있는지는 별도로 확인합니다.",
+      "rule_ids": [
+        "rule.commercial-lease.three-rents-arrears"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0010",
+        "coord.commercial-lease.commercial-lease-ko-0010-08"
+      ]
+    },
+    {
+      "scenario_id": "scenario.commercial-lease.key-money",
+      "question_ko": "종료 6개월 전부터 종료일까지 신규임차인을 구체적으로 주선했나요?",
+      "decision_fact_ko": "종료일, 신규임차인 인적사항·지급능력, 권리금 약정, 임대인 답변",
+      "when_true_ko": "방해행위·정당한 사유·손해액을 증거로 정리합니다.",
+      "when_false_ko": "단순히 권리금 기대가 있었다는 사정만으로 회수기회 침해가 성립하지 않을 수 있습니다.",
+      "rule_ids": [
+        "rule.commercial-lease.key-money"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0010-03",
+        "coord.commercial-lease.commercial-lease-ko-0010-04",
+        "coord.commercial-lease.commercial-lease-ko-0010-05"
+      ]
+    },
+    {
+      "scenario_id": "scenario.commercial-lease.rent-increase",
+      "question_ko": "직전 증액 후 1년이 지났고 법정 상한 안인가요?",
+      "decision_fact_ko": "직전 계약·증액일, 종전·요구 금액, 증액률, 사유",
+      "when_true_ko": "증액의 근거와 계산을 서면으로 대조합니다.",
+      "when_false_ko": "기간·상한을 넘으면 초과 부분의 효력을 검토합니다.",
+      "rule_ids": [
+        "rule.commercial-lease.rent-change",
+        "rule.commercial-lease.monthly-conversion"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0011",
+        "coord.commercial-lease.commercial-lease-ko-0012"
+      ]
+    },
+    {
+      "scenario_id": "scenario.commercial-lease.management-fee",
+      "question_ko": "관리비의 기간별 항목과 금액을 받았나요?",
+      "decision_fact_ko": "계약 조항, 부과기간, 항목별 금액, 증빙, 공용·전용 구분",
+      "when_true_ko": "계약상 부담과 실제 부과 내역을 대조합니다.",
+      "when_false_ko": "총액만으로는 과다·중복 부과 여부를 판단하기 어렵습니다.",
+      "rule_ids": [
+        "rule.commercial-lease.management-fee"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0019-02"
+      ]
+    },
+    {
+      "scenario_id": "scenario.commercial-lease.conciliation",
+      "question_ko": "분쟁 쟁점과 원하는 해결안을 문서로 정리했나요?",
+      "decision_fact_ko": "계약서, 통지, 정산표, 사진·영수증, 상대방 연락처",
+      "when_true_ko": "관할 조정위원회 신청과 합의안을 검토합니다.",
+      "when_false_ko": "긴급 보전·집행·시효 문제가 있으면 다른 절차를 병행할지 판단합니다.",
+      "rule_ids": [
+        "rule.commercial-lease.conciliation"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0020"
+      ]
+    },
+    {
+      "scenario_id": "scenario.commercial-lease.closure-termination",
+      "question_ko": "법정 집합제한·금지 또는 운영시간 제한을 합계 3개월 이상 받고 경제사정의 중대한 변동으로 폐업했나요?",
+      "decision_fact_ko": "조치 근거·기간, 운영시간 제한, 매출·비용 변화, 폐업일, 해지통고 도달일",
+      "when_true_ko": "폐업과 조치·경제사정 사이 인과관계를 자료로 정리해 임대인에게 해지 통고를 하고 도달일부터 3개월을 계산합니다.",
+      "when_false_ko": "단순 매출감소나 자진폐업만으로 특별 해지권을 단정하지 않고 약정·합의해지 등 다른 근거를 확인합니다.",
+      "rule_ids": [
+        "rule.commercial-lease.closure-termination"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0011-02"
+      ]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.commercial-lease-act-scope",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:10:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "commercial-lease-act-scope",
+      "title_ko": "상가임대차보호법은 보증금이 크면 전혀 적용되지 않나요?",
+      "one_line_answer_ko": "환산보증금 기준을 넘더라도 대항력·계약갱신·권리금 등 일부 핵심 조문은 적용되므로 권리별로 나누어 확인해야 합니다.",
+      "audience_situation_ko": "상가 계약 전후에 자신의 보증금 규모가 법정 보호범위에 드는지 확인하려는 임차인",
+      "key_points_ko": [
+        "영업용·사업자등록 대상 건물인지 먼저 봅니다.",
+        "보증금과 월세를 환산해 지역 기준과 비교합니다.",
+        "기준 초과라도 적용되는 조문을 따로 봅니다."
+      ],
+      "action_steps_ko": [
+        "계약서의 보증금·월세를 적습니다.",
+        "건물의 실제 주된 용도를 확인합니다.",
+        "지역별 환산보증금 기준을 확인합니다.",
+        "필요한 권리별 적용 조문을 표시합니다."
+      ],
+      "facts_to_check_ko": [
+        "건물 용도",
+        "사업자등록 대상 여부",
+        "보증금",
+        "월세",
+        "지역",
+        "일시사용 여부"
+      ],
+      "caution_ko": "법 전체가 적용된다거나 전혀 적용되지 않는다는 식의 이분법은 부정확합니다.",
+      "search_intents_ko": [
+        "상가임대차보호법은 보증금이 크면 전혀 적용되지 않나요?",
+        "상가임대차 act-scope",
+        "상가 계약 전후에 자신의 보증금 규모가 법정 보호범위에 드는지 확인하려는 임차인"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "적용범위는 권리별로 나뉩니다",
+          "paragraphs_ko": [
+            "제2조는 일반 적용범위와 보증금 기준을 두면서도 대항력·갱신·권리금 등 일부 조문은 기준 초과 임대차에도 적용하도록 합니다."
+          ]
+        },
+        {
+          "heading_ko": "계약 전 숫자를 고정합니다",
+          "paragraphs_ko": [
+            "보증금과 월세, 지역, 영업용도는 계약서와 사업자등록 자료로 확인해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.commercial-lease.scope"
+      ],
+      "scenario_ids": [
+        "scenario.commercial-lease.scope"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0002"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "related_content_ids": [
+        "content.commercial-lease-opposability-and-registration",
+        "content.commercial-lease-renewal-right"
+      ]
+    },
+    {
+      "content_id": "content.commercial-lease-opposability-and-registration",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:10:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "commercial-lease-opposability-and-registration",
+      "title_ko": "상가를 인도받고 사업자등록을 하면 언제부터 대항력이 생기나요?",
+      "one_line_answer_ko": "건물 인도와 사업자등록 신청을 모두 갖춘 다음 날부터 제3자에게 임대차를 주장할 수 있습니다.",
+      "audience_situation_ko": "상가 소유자가 바뀌거나 경매 가능성이 있어 임대차 대항력을 확보하려는 임차인",
+      "key_points_ko": [
+        "인도와 사업자등록 신청이 모두 필요합니다.",
+        "효력 발생일은 두 요건을 갖춘 다음 날입니다.",
+        "요건 유지 여부도 계속 확인합니다."
+      ],
+      "action_steps_ko": [
+        "열쇠·점유 인도일을 기록합니다.",
+        "사업자등록 신청 접수증을 보관합니다.",
+        "등기부의 권리 취득일과 비교합니다.",
+        "이전 전에는 권리 보전수단을 확인합니다."
+      ],
+      "facts_to_check_ko": [
+        "인도일",
+        "사업자등록 신청일",
+        "실제 영업장 주소",
+        "등기부 권리일",
+        "점유·등록 유지"
+      ],
+      "caution_ko": "사업자등록증 발급일과 신청일, 계약 체결일과 건물 인도일을 혼동하면 안 됩니다.",
+      "search_intents_ko": [
+        "상가를 인도받고 사업자등록을 하면 언제부터 대항력이 생기나요?",
+        "상가임대차 opposability-and-registration",
+        "상가 소유자가 바뀌거나 경매 가능성이 있어 임대차 대항력을 확보하려는 임차인"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "두 요건의 늦은 날을 기준으로 봅니다",
+          "paragraphs_ko": [
+            "건물 인도와 사업자등록 신청 중 하나만 갖춘 상태에서는 제3자 대항력의 요건이 완성되지 않습니다."
+          ]
+        },
+        {
+          "heading_ko": "새 소유자와의 관계",
+          "paragraphs_ko": [
+            "대항력을 갖춘 임대차에서는 건물 양수인이 임대인의 지위를 승계하는지가 핵심입니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.commercial-lease.opposability"
+      ],
+      "scenario_ids": [
+        "scenario.commercial-lease.opposability"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0003"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "related_content_ids": [
+        "content.commercial-lease-priority-repayment",
+        "content.commercial-lease-move-before-deposit-refund",
+        "content.housing-lease-opposability-basics"
+      ]
+    },
+    {
+      "content_id": "content.commercial-lease-priority-repayment",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:10:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "commercial-lease-priority-repayment",
+      "title_ko": "상가 확정일자만 받으면 경매에서 보증금을 먼저 받나요?",
+      "one_line_answer_ko": "확정일자만으로는 부족하고 건물 인도·사업자등록 신청에 따른 대항요건까지 갖춰야 우선변제권을 검토할 수 있습니다.",
+      "audience_situation_ko": "상가가 경매·공매될 위험에 대비해 보증금 회수 순위를 확인하려는 임차인",
+      "key_points_ko": [
+        "대항요건과 확정일자는 서로 다른 요건입니다.",
+        "각 요건을 갖춘 시점을 선순위 권리와 비교합니다.",
+        "경매에서는 배당 절차도 별도로 확인합니다."
+      ],
+      "action_steps_ko": [
+        "계약서에 확정일자를 받습니다.",
+        "인도·사업자등록 신청일을 증빙합니다.",
+        "등기부 선순위 권리를 확인합니다.",
+        "경매개시 시 배당요구 기한을 확인합니다."
+      ],
+      "facts_to_check_ko": [
+        "확정일자",
+        "인도일",
+        "사업자등록 신청일",
+        "근저당 등기일",
+        "환산보증금",
+        "배당요구 종기"
+      ],
+      "caution_ko": "우선변제권이 있어도 선순위 담보권보다 항상 먼저 받는 것은 아닙니다.",
+      "search_intents_ko": [
+        "상가 확정일자만 받으면 경매에서 보증금을 먼저 받나요?",
+        "상가임대차 priority-repayment",
+        "상가가 경매·공매될 위험에 대비해 보증금 회수 순위를 확인하려는 임차인"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "요건과 순위를 분리합니다",
+          "paragraphs_ko": [
+            "우선변제권의 성립 여부와 실제 배당순위는 별개의 질문입니다."
+          ]
+        },
+        {
+          "heading_ko": "경매 자료를 함께 봅니다",
+          "paragraphs_ko": [
+            "매각대금과 선순위 채권액에 따라 보증금 전액을 회수하지 못할 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.commercial-lease.priority-repayment"
+      ],
+      "scenario_ids": [
+        "scenario.commercial-lease.priority"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0003",
+        "coord.commercial-lease.commercial-lease-ko-0004",
+        "coord.commercial-lease.commercial-lease-ko-0005"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "related_content_ids": [
+        "content.commercial-lease-opposability-and-registration",
+        "content.commercial-lease-move-before-deposit-refund",
+        "content.housing-lease-priority-repayment-basics"
+      ]
+    },
+    {
+      "content_id": "content.commercial-lease-move-before-deposit-refund",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:10:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "commercial-lease-move-before-deposit-refund",
+      "title_ko": "상가 보증금을 못 받은 채 먼저 이전해도 되나요?",
+      "one_line_answer_ko": "계약 종료 뒤 보증금이 미반환됐다면 이전 전에 임차권등기명령을 신청하고 등기 완료까지 확인하는 것이 권리 보전에 중요합니다.",
+      "audience_situation_ko": "폐업·이전 때문에 점포를 비워야 하지만 보증금을 돌려받지 못한 임차인",
+      "key_points_ko": [
+        "신청과 등기 완료는 다릅니다.",
+        "종료와 미반환이 신청의 출발점입니다.",
+        "점유·사업자등록을 먼저 잃지 않도록 순서를 봅니다."
+      ],
+      "action_steps_ko": [
+        "종료 통지와 만료일을 확정합니다.",
+        "미반환 보증금 액수를 정산합니다.",
+        "관할 법원에 임차권등기명령을 신청합니다.",
+        "등기부에서 등기 완료를 확인한 뒤 이전합니다."
+      ],
+      "facts_to_check_ko": [
+        "계약 종료일",
+        "미반환액",
+        "점포 인도 예정일",
+        "사업자등록 이전일",
+        "임차권등기 완료일"
+      ],
+      "caution_ko": "임차권등기명령을 신청했다는 사실만으로 즉시 대항력 보전 효과가 완성되는 것은 아닙니다.",
+      "search_intents_ko": [
+        "상가 보증금을 못 받은 채 먼저 이전해도 되나요?",
+        "상가임대차 move-before-deposit-refund",
+        "폐업·이전 때문에 점포를 비워야 하지만 보증금을 돌려받지 못한 임차인"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "이전 순서가 결론을 좌우합니다",
+          "paragraphs_ko": [
+            "권리 보전은 신청일이 아니라 실제 임차권등기가 마쳐졌는지까지 확인해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "보증금 청구는 별도입니다",
+          "paragraphs_ko": [
+            "임차권등기는 권리 보전수단이며 보증금을 자동 지급하게 하는 절차는 아닙니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.commercial-lease.lease-registration-order"
+      ],
+      "scenario_ids": [
+        "scenario.commercial-lease.move-before-refund"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0006"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "related_content_ids": [
+        "content.commercial-lease-priority-repayment",
+        "content.commercial-lease-dispute-conciliation",
+        "content.move-before-deposit-refund",
+        "content.lease-registration-application-is-not-completion"
+      ]
+    },
+    {
+      "content_id": "content.commercial-lease-renewal-right",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:10:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "commercial-lease-renewal-right",
+      "title_ko": "상가 임차인은 언제까지 계약갱신을 요구할 수 있나요?",
+      "one_line_answer_ko": "만료 6개월 전부터 1개월 전까지 요구하고 최초 임대차기간을 포함한 전체 10년 범위에서 보호받습니다.",
+      "audience_situation_ko": "영업을 계속하기 위해 상가 계약 갱신 시기와 보호기간을 확인하려는 임차인",
+      "key_points_ko": [
+        "요구 가능한 기간을 지킵니다.",
+        "최초 입점일부터 전체 10년을 계산합니다.",
+        "법정 갱신거절 사유를 따로 확인합니다."
+      ],
+      "action_steps_ko": [
+        "최초 계약일과 점유 시작일을 확인합니다.",
+        "현재 만료일의 6개월 전·1개월 전을 계산합니다.",
+        "문자·내용증명 등 도달 증거를 남깁니다.",
+        "임대인의 거절사유와 자료를 요청합니다."
+      ],
+      "facts_to_check_ko": [
+        "최초 임대차기간",
+        "현재 만료일",
+        "갱신 요구일",
+        "누적 임대기간",
+        "연체·무단전대·철거 사유"
+      ],
+      "caution_ko": "10년 안이라고 무조건 갱신되는 것은 아니며 법정 거절사유가 있으면 결론이 달라집니다.",
+      "search_intents_ko": [
+        "상가 임차인은 언제까지 계약갱신을 요구할 수 있나요?",
+        "상가임대차 renewal-right",
+        "영업을 계속하기 위해 상가 계약 갱신 시기와 보호기간을 확인하려는 임차인"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "기간과 사유를 함께 봅니다",
+          "paragraphs_ko": [
+            "갱신요구권은 행사기간, 전체 보호기간, 거절사유를 모두 충족해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "갱신 조건",
+          "paragraphs_ko": [
+            "갱신되면 원칙적으로 종전 조건이 이어지지만 차임과 보증금은 법정 범위에서 조정될 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.commercial-lease.minimum-term",
+        "rule.commercial-lease.renewal"
+      ],
+      "scenario_ids": [
+        "scenario.commercial-lease.renewal-window"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0009",
+        "coord.commercial-lease.commercial-lease-ko-0010"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "related_content_ids": [
+        "content.commercial-lease-rent-arrears",
+        "content.commercial-lease-rent-increase-and-conversion"
+      ]
+    },
+    {
+      "content_id": "content.commercial-lease-rent-arrears",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:10:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "commercial-lease-rent-arrears",
+      "title_ko": "상가 월세를 몇 달 밀리면 계약이 해지될 수 있나요?",
+      "one_line_answer_ko": "연체액 합계가 3기분 차임액에 이르면 임대인은 계약을 해지하거나 갱신을 거절할 수 있습니다.",
+      "audience_situation_ko": "차임 일부 또는 여러 달을 연체해 해지·명도 위험을 확인하려는 상가임차인",
+      "key_points_ko": [
+        "달력상 3개월이 아니라 3기분 금액을 계산합니다.",
+        "일부 변제와 충당 내역을 반영합니다.",
+        "해지 통지의 도달과 이후 지급을 기록합니다."
+      ],
+      "action_steps_ko": [
+        "계약상 지급일과 월 차임을 표로 만듭니다.",
+        "각 지급액·미납액을 대조합니다.",
+        "임대인의 충당 주장을 확인합니다.",
+        "해지·갱신거절 통지를 보존합니다."
+      ],
+      "facts_to_check_ko": [
+        "월 차임",
+        "지급기일",
+        "미납 합계",
+        "일부 변제",
+        "충당 내역",
+        "해지 통지일"
+      ],
+      "caution_ko": "연체금을 뒤늦게 지급해도 이미 발생한 해지 효력이 항상 사라지는 것은 아닙니다.",
+      "search_intents_ko": [
+        "상가 월세를 몇 달 밀리면 계약이 해지될 수 있나요?",
+        "상가임대차 rent-arrears",
+        "차임 일부 또는 여러 달을 연체해 해지·명도 위험을 확인하려는 상가임차인"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "3기분 금액을 계산합니다",
+          "paragraphs_ko": [
+            "불연속 연체나 일부 지급이 있으면 단순히 미납 개월 수만 세지 말고 금액 기준으로 계산해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "갱신과 해지를 함께 봅니다",
+          "paragraphs_ko": [
+            "같은 연체 사실이 계약 해지뿐 아니라 갱신거절 사유로도 작용할 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.commercial-lease.three-rents-arrears"
+      ],
+      "scenario_ids": [
+        "scenario.commercial-lease.arrears"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0010",
+        "coord.commercial-lease.commercial-lease-ko-0010-08"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "related_content_ids": [
+        "content.commercial-lease-renewal-right",
+        "content.commercial-lease-dispute-conciliation"
+      ]
+    },
+    {
+      "content_id": "content.commercial-lease-key-money-recovery",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:10:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "commercial-lease-key-money-recovery",
+      "title_ko": "임대인이 새 임차인 계약을 거절하면 권리금을 배상해야 하나요?",
+      "one_line_answer_ko": "종료 6개월 전부터 종료 시까지 임차인이 신규임차인을 구체적으로 주선했는데 임대인이 정당한 사유 없이 방해해 손해가 생겼다면 배상책임이 문제될 수 있습니다.",
+      "audience_situation_ko": "폐업·이전 과정에서 신규임차인을 구해 권리금을 회수하려는 상가임차인",
+      "key_points_ko": [
+        "보호기간 안의 구체적 주선이 필요합니다.",
+        "임대인의 방해행위와 정당한 사유를 구분합니다.",
+        "손해액 한도와 3년 시효를 확인합니다."
+      ],
+      "action_steps_ko": [
+        "신규임차인의 인적사항과 지급능력을 정리합니다.",
+        "권리금계약서와 지급 조건을 보존합니다.",
+        "임대인에게 계약 체결을 서면 요청합니다.",
+        "거절 사유·고액 조건·연락 내역을 저장합니다."
+      ],
+      "facts_to_check_ko": [
+        "임대차 종료일",
+        "신규임차인 주선일",
+        "권리금 약정액",
+        "신규임차인 지급능력",
+        "임대인 거절사유",
+        "방해행위일"
+      ],
+      "caution_ko": "권리금 자체를 임대인이 직접 지급하는 제도가 아니라 회수기회 방해로 인한 손해배상 구조입니다.",
+      "search_intents_ko": [
+        "임대인이 새 임차인 계약을 거절하면 권리금을 배상해야 하나요?",
+        "상가임대차 key-money-recovery",
+        "폐업·이전 과정에서 신규임차인을 구해 권리금을 회수하려는 상가임차인"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "권리금과 회수기회 보호는 다릅니다",
+          "paragraphs_ko": [
+            "법은 신규임차인에게서 권리금을 받을 기회를 보호하며 임대인이 모든 권리금을 보장하는 것은 아닙니다."
+          ]
+        },
+        {
+          "heading_ko": "증거가 핵심입니다",
+          "paragraphs_ko": [
+            "누구를 언제 어떤 조건으로 주선했고 임대인이 무엇을 이유로 거절했는지 시간순 자료가 필요합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.commercial-lease.key-money"
+      ],
+      "scenario_ids": [
+        "scenario.commercial-lease.key-money"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0010-03",
+        "coord.commercial-lease.commercial-lease-ko-0010-04",
+        "coord.commercial-lease.commercial-lease-ko-0010-05"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "related_content_ids": [
+        "content.commercial-lease-renewal-right",
+        "content.commercial-lease-dispute-conciliation"
+      ]
+    },
+    {
+      "content_id": "content.commercial-lease-rent-increase-and-conversion",
+      "content_type": "similar_case_comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:10:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "commercial-lease-rent-increase-and-conversion",
+      "title_ko": "상가 임대인이 월세를 마음대로 올리거나 보증금을 월세로 바꿀 수 있나요?",
+      "one_line_answer_ko": "증액은 사유·법정 상한·1년 간격 제한을 받고, 보증금의 월세 전환도 법정 산정률 중 낮은 비율을 넘을 수 없습니다.",
+      "audience_situation_ko": "상가 월세·보증금 인상 통지나 보증금의 월세 전환 제안을 받은 임차인",
+      "key_points_ko": [
+        "직전 증액일과 요구일을 비교합니다.",
+        "종전·요구 금액으로 증액률을 계산합니다.",
+        "보증금 전환은 기준금리와 시행령 비율을 확인합니다."
+      ],
+      "action_steps_ko": [
+        "계약서와 이전 증액 합의를 모읍니다.",
+        "인상 전후 금액과 비율을 계산합니다.",
+        "임대인에게 산정근거를 요청합니다.",
+        "초과 여부와 합의 범위를 서면으로 답변합니다."
+      ],
+      "facts_to_check_ko": [
+        "직전 증액일",
+        "종전 차임·보증금",
+        "요구 금액",
+        "증액 사유",
+        "전환 보증금",
+        "기준금리·시행령 비율"
+      ],
+      "caution_ko": "경제사정 변화에 따른 증감청구와 당사자의 새로운 합의를 같은 것으로 단정하면 안 됩니다.",
+      "search_intents_ko": [
+        "상가 임대인이 월세를 마음대로 올리거나 보증금을 월세로 바꿀 수 있나요?",
+        "상가임대차 rent-increase-and-conversion",
+        "상가 월세·보증금 인상 통지나 보증금의 월세 전환 제안을 받은 임차인"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "증액 시점과 비율",
+          "paragraphs_ko": [
+            "증액 요구는 직전 계약 또는 증액 후 1년 제한과 법정 비율을 함께 확인합니다."
+          ]
+        },
+        {
+          "heading_ko": "월세 전환 계산",
+          "paragraphs_ko": [
+            "전환 대상 보증금에 법정 산정률을 적용한 연간 금액을 월 단위로 환산해 약정액과 비교합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.commercial-lease.rent-change",
+        "rule.commercial-lease.monthly-conversion"
+      ],
+      "scenario_ids": [
+        "scenario.commercial-lease.rent-increase"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0011",
+        "coord.commercial-lease.commercial-lease-ko-0012"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "related_content_ids": [
+        "content.commercial-lease-renewal-right",
+        "content.commercial-lease-management-fee-breakdown"
+      ]
+    },
+    {
+      "content_id": "content.commercial-lease-management-fee-breakdown",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:10:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "commercial-lease-management-fee-breakdown",
+      "title_ko": "상가 관리비 내역을 임대인에게 요구할 수 있나요?",
+      "one_line_answer_ko": "계약상 관리비를 납부하는 임차인은 부과된 관리비 내역을 요구할 수 있고 임대인은 이를 제공해야 합니다.",
+      "audience_situation_ko": "관리비가 크게 올랐거나 총액만 고지되어 산정내역을 확인하려는 상가임차인",
+      "key_points_ko": [
+        "계약상 관리비 조항을 확인합니다.",
+        "부과기간과 항목별 금액을 요구합니다.",
+        "공용·전용 비용과 별도 공과금을 구분합니다."
+      ],
+      "action_steps_ko": [
+        "계약서·고지서·이체내역을 모읍니다.",
+        "기간별 관리비 내역을 서면 요구합니다.",
+        "항목별 증감과 중복을 대조합니다.",
+        "미제공 답변과 분쟁 경위를 보존합니다."
+      ],
+      "facts_to_check_ko": [
+        "관리비 약정",
+        "부과기간",
+        "항목별 금액",
+        "수도·전기 등 별도 공과금",
+        "산정근거",
+        "증빙 제공 여부"
+      ],
+      "caution_ko": "내역 제공청구권이 모든 관리비 항목의 적정성을 자동 확정하거나 지급의무를 바로 없애는 것은 아닙니다.",
+      "search_intents_ko": [
+        "상가 관리비 내역을 임대인에게 요구할 수 있나요?",
+        "상가임대차 management-fee-breakdown",
+        "관리비가 크게 올랐거나 총액만 고지되어 산정내역을 확인하려는 상가임차인"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "먼저 내역을 확보합니다",
+          "paragraphs_ko": [
+            "총액만으로는 계약상 부담인지 실제 관리비인지 판단하기 어려우므로 항목별 자료가 출발점입니다."
+          ]
+        },
+        {
+          "heading_ko": "계약과 실제 부과를 대조합니다",
+          "paragraphs_ko": [
+            "수선비·광고비·공과금 등 항목이 누구의 부담인지 계약과 법률관계를 따로 봅니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.commercial-lease.management-fee"
+      ],
+      "scenario_ids": [
+        "scenario.commercial-lease.management-fee"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0019-02"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "related_content_ids": [
+        "content.commercial-lease-rent-increase-and-conversion",
+        "content.commercial-lease-dispute-conciliation"
+      ]
+    },
+    {
+      "content_id": "content.commercial-lease-dispute-conciliation",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:10:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "commercial-lease-dispute-conciliation",
+      "title_ko": "상가임대차 분쟁도 조정위원회에서 해결할 수 있나요?",
+      "one_line_answer_ko": "차임·보증금, 기간, 반환, 수선, 권리금 등은 상가건물임대차분쟁조정위원회에서 조정을 신청할 수 있습니다.",
+      "audience_situation_ko": "임대인과 협의가 막혀 소송 전 조정 절차와 준비자료를 확인하려는 당사자",
+      "key_points_ko": [
+        "조정할 쟁점과 금액을 특정합니다.",
+        "계약·통지·정산 증거를 붙입니다.",
+        "긴급 보전·시효·집행 문제는 별도로 봅니다."
+      ],
+      "action_steps_ko": [
+        "분쟁 경위를 날짜순으로 정리합니다.",
+        "요구사항과 양보 가능한 범위를 적습니다.",
+        "계약서·통지·정산표·사진을 첨부합니다.",
+        "관할 위원회와 신청방법을 확인합니다."
+      ],
+      "facts_to_check_ko": [
+        "임대차 목적물",
+        "당사자 주소",
+        "분쟁 금액",
+        "계약·갱신·해지 통지",
+        "수선·권리금 증거",
+        "원하는 조정안"
+      ],
+      "caution_ko": "상대방 불응이나 급박한 명도·집행 상황에서는 조정만으로 충분하지 않을 수 있습니다.",
+      "search_intents_ko": [
+        "상가임대차 분쟁도 조정위원회에서 해결할 수 있나요?",
+        "상가임대차 dispute-conciliation",
+        "임대인과 협의가 막혀 소송 전 조정 절차와 준비자료를 확인하려는 당사자"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "조정 대상",
+          "paragraphs_ko": [
+            "법은 차임·보증금 증감, 기간, 반환, 유지·수선, 권리금 등 주요 분쟁을 조정 대상으로 둡니다."
+          ]
+        },
+        {
+          "heading_ko": "자료 중심으로 신청합니다",
+          "paragraphs_ko": [
+            "사실관계와 금액표, 통지 도달자료를 갖추면 쟁점 정리와 합의 가능성을 높일 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.commercial-lease.conciliation"
+      ],
+      "scenario_ids": [
+        "scenario.commercial-lease.conciliation"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0020"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "related_content_ids": [
+        "content.commercial-lease-rent-arrears",
+        "content.commercial-lease-key-money-recovery",
+        "content.commercial-lease-management-fee-breakdown",
+        "content.civil-mediation-vs-civil-lawsuit"
+      ]
+    },
+    {
+      "content_id": "content.commercial-lease-closure-termination",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T08:30:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "commercial-lease-closure-termination",
+      "title_ko": "집합제한·금지로 폐업하면 상가 임대차를 해지할 수 있나요?",
+      "one_line_answer_ko": "법정 집합제한·금지나 운영시간 제한을 총 3개월 이상 받아 경제사정이 중대하게 변동해 폐업한 경우 해지할 수 있고, 임대인이 통고를 받은 날부터 3개월 뒤 효력이 생깁니다.",
+      "audience_situation_ko": "감염병 관련 집합제한·금지 또는 운영시간 제한으로 폐업한 뒤 남은 상가 임대차를 종료하려는 임차인",
+      "key_points_ko": [
+        "법에서 정한 집합제한·금지 또는 운영시간 제한 조치여야 합니다.",
+        "조치기간 합계 3개월 이상과 경제사정의 중대한 변동으로 인한 폐업을 확인합니다.",
+        "해지는 임대인이 통고를 받은 날부터 3개월 뒤 효력이 생깁니다."
+      ],
+      "action_steps_ko": [
+        "행정조치의 근거·기간·대상 사업장을 확인한다.",
+        "매출·비용 변화와 폐업신고 자료를 확보한다.",
+        "해지 사유와 폐업 경위를 적어 임대인에게 통고한다.",
+        "통고 도달일과 3개월 경과일을 증명할 자료를 보존한다."
+      ],
+      "facts_to_check_ko": [
+        "집합제한·금지 조치",
+        "운영시간 제한 조치",
+        "조치기간 합계",
+        "경제사정의 중대한 변동",
+        "폐업일·폐업신고",
+        "해지통고 도달일"
+      ],
+      "caution_ko": "일반적인 매출감소나 임차인의 임의 폐업만으로 특별 해지권이 생기는 것은 아니므로 법정 조치·기간·인과관계를 함께 확인해야 합니다.",
+      "search_intents_ko": [
+        "상가 폐업 임대차 해지",
+        "집합금지 상가 계약해지",
+        "상가임대차보호법 제11조의2"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "특별 해지권의 요건",
+          "paragraphs_ko": [
+            "법정 집합제한·금지 또는 운영시간 제한을 총 3개월 이상 받고, 그 조치로 경제사정이 중대하게 변동해 폐업한 경우여야 합니다.",
+            "조치 문서, 매출·비용 변화와 폐업 자료로 요건 사이의 연결을 설명해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "효력 발생 시점",
+          "paragraphs_ko": [
+            "요건을 충족하더라도 통고 즉시 끝나는 것이 아니라 임대인이 해지 통고를 받은 날부터 3개월이 지나야 효력이 발생합니다.",
+            "내용증명·전자문서 등 도달일을 확인할 수 있는 방식으로 통고하고 차임·보증금 정산 시점을 구분합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.commercial-lease.closure-termination"
+      ],
+      "scenario_ids": [
+        "scenario.commercial-lease.closure-termination"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0011-02"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "related_content_ids": [
+        "content.commercial-lease-rent-arrears",
+        "content.commercial-lease-dispute-conciliation",
+        "content.civil-mediation-vs-civil-lawsuit"
+      ]
+    }
+  ]
+}
