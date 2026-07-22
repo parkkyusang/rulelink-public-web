@@ -2,15 +2,26 @@ import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 
+import {filterFreshPublications} from '../src/lib/publication-freshness.ts';
+
 const DEFAULT_BASE_URL = 'https://rulelink.lolphysical.xyz';
 
-export function expectedPublicationCounts(bundle) {
+export function expectedPublicationCounts(bundle, now) {
+  const visibleCards = filterFreshPublications(bundle.cards ?? [], now);
+  const visibleCardIds = new Set(visibleCards.map(card => card.issue_card_id));
+  const visibleTopics = (bundle.catalog?.topics ?? [])
+    .filter(topic => topic.issue_card_ids.some(cardId => visibleCardIds.has(cardId)));
   return {
-    issue_cards: bundle.cards?.length ?? 0,
-    change_briefs: bundle.change_briefs?.length ?? 0,
-    knowledge_entries: bundle.knowledge?.content_entries?.length ?? 0,
-    knowledge_hubs: bundle.knowledge?.topic_hubs?.length ?? 0,
-    public_topics: bundle.catalog?.topics?.length ?? 0,
+    issue_cards: visibleCards.length,
+    change_briefs: filterFreshPublications(bundle.change_briefs ?? [], now).length,
+    knowledge_entries: filterFreshPublications(bundle.knowledge?.content_entries ?? [], now).length,
+    knowledge_hubs: (bundle.knowledge?.topic_hubs ?? []).filter(hub => (
+      hub.content_ids.some(contentId => (
+        filterFreshPublications(bundle.knowledge?.content_entries ?? [], now)
+          .some(entry => entry.content_id === contentId)
+      ))
+    )).length,
+    public_topics: visibleTopics.length,
   };
 }
 
