@@ -7,6 +7,7 @@ import {OfficialSourceJump} from '@/components/official-source-jump';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {findKnowledgeEntry, knowledgeDetail, listKnowledgeEntries} from '@/lib/publication';
+import {shouldShowPublicRuleProposition} from '@/lib/public-rule-presentation';
 import {site} from '@/lib/site';
 import {buildKnowledgePageStructuredData} from '@/lib/public-structured-data';
 import {serializeStructuredData} from '@/lib/structured-data';
@@ -136,11 +137,11 @@ export default async function KnowledgePage({params}: Props) {
             <h2>먼저 기준을 확인합니다.</h2>
             <div className="ruleStack">
               {rules.map(rule => {
-                const propositionRepeatsEffect = sameDisplayText(rule.proposition_ko, rule.norm.legal_effect_ko);
+                const showProposition = shouldShowPublicRuleProposition(rule.proposition_ko, rule.norm.legal_effect_ko);
                 return (
                   <article className="ruleCard" id={rule.rule_id} key={rule.rule_id}>
                     <h3>{rule.title_ko}</h3>
-                    {!propositionRepeatsEffect ? <p><LegalConceptText concepts={concepts} text={rule.proposition_ko} /></p> : null}
+                    {showProposition ? <p><LegalConceptText concepts={concepts} text={rule.proposition_ko} /></p> : null}
                     <dl className="normSlots">
                       <div><dt>누가</dt><dd><LegalConceptText concepts={concepts} text={rule.norm.actor_ko} /></dd></div>
                       <div><dt>어떤 때</dt><dd><LegalConceptText concepts={concepts} text={rule.norm.conditions_ko} /></dd></div>
@@ -243,11 +244,6 @@ export default async function KnowledgePage({params}: Props) {
       ) : null}
     </main>
   );
-}
-
-function sameDisplayText(left: string, right: string): boolean {
-  const normalize = (value: string) => value.replace(/[\s.…"'“”‘’(),·-]/g, '').replace(/(?:이다|입니다|한다|합니다|된다|됩니다)$/u, '');
-  return normalize(left) === normalize(right);
 }
 
 function sourceLabel(source: import('@/types/publication').PublicKnowledgeSource): string {
