@@ -16,8 +16,8 @@ function clone(value) {
 test('현재 공개 콘텐츠 생산 대기열은 역할·중복·의존성 계약을 만족한다', () => {
   assert.deepEqual(validateProductionQueue(queue), []);
   assert.equal(queue.items.length, 20);
-  assert.equal(queue.items.filter(item => item.status === 'ready_for_integration').length, 11);
-  assert.equal(queue.items.filter(item => item.status === 'needs_rework').length, 6);
+  assert.equal(queue.items.filter(item => item.status === 'ready_for_integration').length, 9);
+  assert.equal(queue.items.filter(item => item.status === 'needs_rework').length, 8);
   assert.equal(queue.items.filter(item => item.status === 'migration_required').length, 2);
   assert.equal(queue.items.filter(item => item.status === 'blocked').length, 1);
 });
@@ -36,8 +36,8 @@ test('대기열에 없는 PR 의존성과 역순 통합을 거부한다', () => 
   assert.ok(validateProductionQueue(missing).some(error => error.includes('의존 PR #999')));
 
   const reversed = clone(queue);
-  reversed.items.find(item => item.pr_number === 104).integration_order = 120;
-  assert.ok(validateProductionQueue(reversed).some(error => error.includes('선행 PR #104')));
+  reversed.items.find(item => item.pr_number === 100).integration_order = 120;
+  assert.ok(validateProductionQueue(reversed).some(error => error.includes('선행 PR #100')));
 });
 
 test('기존 주제 개정은 topic-only 직접 통합 상태가 될 수 없다', () => {
@@ -52,4 +52,14 @@ test('중복 PR은 명시적인 분리·병합 판정과 한글 근거를 가져
   const value = clone(queue);
   value.items.find(item => item.pr_number === 88).overlap_decisions[0].rationale_ko = '';
   assert.ok(validateProductionQueue(value).some(error => error.includes('overlap 근거가 필요합니다')));
+});
+
+test('현재 정본과의 의미 중복은 content_id 대상으로 기록할 수 있다', () => {
+  const item = queue.items.find(value => value.pr_number === 98);
+  assert.equal(item.overlap_decisions[0].target_content_id, 'content.labor-commission-rereview-vs-lawsuit-deadline');
+  assert.deepEqual(validateProductionQueue(queue), []);
+
+  const invalid = clone(queue);
+  invalid.items.find(value => value.pr_number === 98).overlap_decisions[0].target_pr = 107;
+  assert.ok(validateProductionQueue(invalid).some(error => error.includes('target_pr 또는 target_content_id 중 하나')));
 });

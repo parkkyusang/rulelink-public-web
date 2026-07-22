@@ -23,7 +23,10 @@
     "unique_official_urls_checked": 274,
     "official_url_failures": 0,
     "exact_cross_pr_content_id_collisions": 0,
-    "broken_related_content_ids": 0
+    "broken_related_content_ids": 0,
+    "semantic_overlap_decisions": 4,
+    "ready_for_integration": 9,
+    "needs_rework": 8
   },
   "items": [
     {
@@ -349,7 +352,7 @@
       "topic_file": "artifacts/publication/topics/employment-exit.json",
       "test_file": "web/rulelink_public_next/scripts/employment-exit-topic-handoff.test.mjs",
       "change_mode": "new_topic",
-      "status": "ready_for_integration",
+      "status": "needs_rework",
       "counts": {
         "sources": 13,
         "rule_cards": 12,
@@ -358,7 +361,7 @@
         "topic_hubs": 1
       },
       "depends_on_prs": [],
-      "integration_order": 20,
+      "integration_order": null,
       "official_url_check": {
         "status": "passed",
         "referenced_count": 13
@@ -368,7 +371,16 @@
         "mismatch_count": 0
       },
       "integration_checks": [
+        "중복 질문을 제거하고 현재 content.labor-commission-rereview-vs-lawsuit-deadline으로 연결하거나 독자적인 결론변경 사실을 가진 질문으로 교체한다.",
         "비표준 콘텐츠 유형이 있으면 표준 8종으로 정규화한다."
+      ],
+      "blocking_reason_ko": "현재 정본의 노동위원회 재심·소송 제기기간 콘텐츠와 질문·효과가 사실상 같습니다.",
+      "overlap_decisions": [
+        {
+          "target_content_id": "content.labor-commission-rereview-vs-lawsuit-deadline",
+          "relationship": "merge_required",
+          "rationale_ko": "노동위원회 재심 10일과 행정소송 15일의 질문·절차·기한·효과가 현재 정본과 실질적으로 같습니다."
+        }
       ]
     },
     {
@@ -622,7 +634,7 @@
       "topic_file": "artifacts/publication/topics/neighbor-leak-noise.json",
       "test_file": "web/rulelink_public_next/scripts/neighbor-leak-noise-topic-handoff.test.mjs",
       "change_mode": "new_topic",
-      "status": "ready_for_integration",
+      "status": "needs_rework",
       "counts": {
         "sources": 12,
         "rule_cards": 10,
@@ -634,7 +646,7 @@
         104,
         107
       ],
-      "integration_order": 110,
+      "integration_order": null,
       "official_url_check": {
         "status": "passed",
         "referenced_count": 12
@@ -644,8 +656,17 @@
         "mismatch_count": 2
       },
       "integration_checks": [
+        "#107과 겹치는 수선의무·수리비 질문을 제거하거나 윗집·공용부분·임대목적물 등 누수 원인별 결론변경 사실이 다른 질문으로 재구성한다.",
         "#104와 #107 뒤 관련 콘텐츠 참조가 닫히는지 검사한다.",
         "드리프트 좌표 2개를 활성 DB 기준으로 재검증한다."
+      ],
+      "blocking_reason_ko": "#107과 임대인의 수선의무 및 임차인의 수리비 상환 질문 2건이 같은 조문과 법률효과를 반복합니다.",
+      "overlap_decisions": [
+        {
+          "target_pr": 107,
+          "relationship": "split_required",
+          "rationale_ko": "민법 제623조 수선의무와 제626조 비용상환을 같은 법률효과로 반복하므로 #111은 누수 원인·점유자·공용부분 책임 축만 남겨야 합니다."
+        }
       ]
     },
     {
