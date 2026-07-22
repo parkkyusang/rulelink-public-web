@@ -190,6 +190,7 @@
       "source_coordinate_ids": [
         "coord.traffic-criminal-license.road-0054",
         "coord.traffic-criminal-license.road-0148",
+        "coord.traffic-criminal-license.traffic-special-0003",
         "coord.traffic-criminal-license.specific-0005-3"
       ]
     },
@@ -331,6 +332,7 @@
       "source_coordinate_ids": [
         "coord.traffic-criminal-license.road-0054",
         "coord.traffic-criminal-license.road-0148",
+        "coord.traffic-criminal-license.traffic-special-0003",
         "coord.traffic-criminal-license.specific-0005-3"
       ]
     },
@@ -742,6 +744,7 @@
       "source_coordinate_ids": [
         "coord.traffic-criminal-license.road-0054",
         "coord.traffic-criminal-license.road-0148",
+        "coord.traffic-criminal-license.traffic-special-0003",
         "coord.traffic-criminal-license.specific-0005-3"
       ],
       "hub_ids": [
