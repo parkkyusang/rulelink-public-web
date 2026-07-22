@@ -5,8 +5,9 @@
 }
 
 .heading {
-  align-items: end;
+  align-items: start;
   display: flex;
+  gap: 20px;
   justify-content: space-between;
   margin-bottom: 15px;
 }
@@ -17,9 +18,103 @@
   margin: 0;
 }
 
+.heading p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+  margin: 7px 0 0;
+  max-width: 58ch;
+}
+
 .heading > span {
   color: var(--muted);
+  flex: 0 0 auto;
   font-size: 12px;
+  padding-top: 5px;
+}
+
+.controls {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  margin-bottom: 12px;
+  padding: 18px 20px;
+}
+
+.controls > label {
+  display: block;
+  font-size: 13px;
+  font-weight: 750;
+  margin-bottom: 9px;
+}
+
+.searchRow {
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--line-strong);
+  border-radius: 11px;
+  display: flex;
+  gap: 10px;
+  min-width: 0;
+  padding: 0 8px 0 14px;
+}
+
+.searchRow:focus-within {
+  border-color: var(--green);
+  box-shadow: var(--focus-field);
+}
+
+.searchRow > span {
+  color: var(--green);
+  flex: 0 0 auto;
+  font-size: 23px;
+  transform: rotate(-18deg);
+}
+
+.searchRow input {
+  background: transparent;
+  border: 0;
+  color: var(--ink);
+  flex: 1 1 auto;
+  font: inherit;
+  min-width: 0;
+  outline: 0;
+  padding: 13px 0;
+}
+
+.searchRow input::placeholder {
+  color: #86928c;
+}
+
+.searchRow button {
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  color: var(--green);
+  cursor: pointer;
+  flex: 0 0 auto;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 750;
+  min-height: 44px;
+  padding: 0 10px;
+}
+
+.controls > p,
+.resultCount,
+.actions p,
+.noScript {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.controls > p {
+  margin: 8px 0 0;
+}
+
+.resultCount {
+  margin: 0 0 12px;
 }
 
 .grid {
@@ -42,6 +137,10 @@
   min-width: 0;
   padding: 22px;
   transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.card[hidden] {
+  display: none;
 }
 
 .card:hover {
@@ -85,11 +184,74 @@
   word-break: keep-all;
 }
 
+.empty {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  margin-top: 14px;
+  padding: 20px;
+}
+
+.empty strong {
+  display: block;
+  font-size: 14px;
+}
+
+.empty p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 7px 0 0;
+}
+
+.actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.actions button {
+  background: var(--white);
+  border: 1px solid var(--green);
+  border-radius: 999px;
+  color: var(--green);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  min-height: 46px;
+  padding: 10px 17px;
+}
+
+.actions button:hover {
+  background: var(--green);
+  color: var(--white);
+}
+
+.actions p {
+  margin: 0;
+}
+
+.noScript {
+  margin: 12px 0 0;
+}
+
 @media (max-width: 640px) {
   .heading {
     align-items: start;
     flex-direction: column;
     gap: 7px;
+  }
+
+  .heading > span {
+    padding-top: 0;
+  }
+
+  .controls {
+    padding: 16px;
   }
 
   .grid {
@@ -98,6 +260,16 @@
 
   .card {
     min-height: 0;
+    width: 100%;
+  }
+
+  .actions {
+    align-items: stretch;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .actions button {
     width: 100%;
   }
 }
