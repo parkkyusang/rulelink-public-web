@@ -490,7 +490,7 @@
   "content_entries": [
     {
       "content_id": "content.civil-small-claims-jurisdiction",
-      "content_type": "procedure_guide",
+      "content_type": "procedure_evidence",
       "editorial_status": "approved",
       "reviewed_at": "2026-07-23T02:00:00+00:00",
       "expires_at": "2026-10-23T02:00:00+00:00",
@@ -633,7 +633,7 @@
     },
     {
       "content_id": "content.civil-small-claims-filing-method",
-      "content_type": "procedure_guide",
+      "content_type": "procedure_evidence",
       "editorial_status": "approved",
       "reviewed_at": "2026-07-23T02:00:00+00:00",
       "expires_at": "2026-10-23T02:00:00+00:00",
@@ -703,7 +703,7 @@
     },
     {
       "content_id": "content.civil-small-claims-complaint-content",
-      "content_type": "procedure_guide",
+      "content_type": "procedure_evidence",
       "editorial_status": "approved",
       "reviewed_at": "2026-07-23T02:00:00+00:00",
       "expires_at": "2026-10-23T02:00:00+00:00",
@@ -772,7 +772,7 @@
     },
     {
       "content_id": "content.civil-small-claims-answer-default",
-      "content_type": "remedy_guide",
+      "content_type": "procedure_evidence",
       "editorial_status": "approved",
       "reviewed_at": "2026-07-23T02:00:00+00:00",
       "expires_at": "2026-10-23T02:00:00+00:00",
@@ -842,7 +842,7 @@
     },
     {
       "content_id": "content.civil-small-claims-evidence-hearing",
-      "content_type": "procedure_guide",
+      "content_type": "procedure_evidence",
       "editorial_status": "approved",
       "reviewed_at": "2026-07-23T02:00:00+00:00",
       "expires_at": "2026-10-23T02:00:00+00:00",
@@ -986,7 +986,7 @@
     },
     {
       "content_id": "content.civil-small-claims-family-representation",
-      "content_type": "procedure_guide",
+      "content_type": "procedure_evidence",
       "editorial_status": "approved",
       "reviewed_at": "2026-07-23T02:00:00+00:00",
       "expires_at": "2026-10-23T02:00:00+00:00",
@@ -1055,7 +1055,7 @@
     },
     {
       "content_id": "content.civil-small-claims-judgment-enforcement",
-      "content_type": "remedy_guide",
+      "content_type": "procedure_evidence",
       "editorial_status": "approved",
       "reviewed_at": "2026-07-23T02:00:00+00:00",
       "expires_at": "2026-10-23T02:00:00+00:00",
@@ -1130,7 +1130,7 @@
     },
     {
       "content_id": "content.civil-small-claims-costs-appeal",
-      "content_type": "remedy_guide",
+      "content_type": "procedure_evidence",
       "editorial_status": "approved",
       "reviewed_at": "2026-07-23T02:00:00+00:00",
       "expires_at": "2026-10-23T02:00:00+00:00",
