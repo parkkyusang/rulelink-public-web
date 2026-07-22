@@ -1,0 +1,1129 @@
+{
+  "schema": "rulelink_public_knowledge_topic_v1",
+  "topic_id": "hub.industrial-accident",
+  "sources": [
+    {
+      "coordinate_id": "coord.industrial-accident.act-0005",
+      "source_id": "industrial_accident_compensation_insurance_act_ko_0005",
+      "law_name_ko": "산업재해보상보험법",
+      "article_no": "제5조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C5%EC%A1%B0",
+      "source_snapshot_id": "snapshot:9fd58a63b8024215d097233c714e8654",
+      "last_verified_at": "2026-07-22T13:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.industrial-accident.act-0006",
+      "source_id": "industrial_accident_compensation_insurance_act_ko_0006",
+      "law_name_ko": "산업재해보상보험법",
+      "article_no": "제6조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C6%EC%A1%B0",
+      "source_snapshot_id": "snapshot:f99b8b7b3150ee745988c2d4cbd7f3c",
+      "last_verified_at": "2026-07-22T13:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.industrial-accident.act-0036",
+      "source_id": "industrial_accident_compensation_insurance_act_ko_0036",
+      "law_name_ko": "산업재해보상보험법",
+      "article_no": "제36조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C36%EC%A1%B0",
+      "source_snapshot_id": "snapshot:26d40f2dd6d3b3d75a8681d90528abb5",
+      "last_verified_at": "2026-07-22T13:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.industrial-accident.act-0037",
+      "source_id": "industrial_accident_compensation_insurance_act_ko_0037",
+      "law_name_ko": "산업재해보상보험법",
+      "article_no": "제37조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C37%EC%A1%B0",
+      "source_snapshot_id": "snapshot:3c17edff2f521946e5037b0075a80067",
+      "last_verified_at": "2026-07-22T13:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.industrial-accident.act-0040",
+      "source_id": "industrial_accident_compensation_insurance_act_ko_0040",
+      "law_name_ko": "산업재해보상보험법",
+      "article_no": "제40조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C40%EC%A1%B0",
+      "source_snapshot_id": "snapshot:27fcb917f3a457c120fd9cb4ac0ffc19",
+      "last_verified_at": "2026-07-22T13:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.industrial-accident.act-0052",
+      "source_id": "industrial_accident_compensation_insurance_act_ko_0052",
+      "law_name_ko": "산업재해보상보험법",
+      "article_no": "제52조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C52%EC%A1%B0",
+      "source_snapshot_id": "snapshot:84b3d54399ee5678aef65aed3c977b87",
+      "last_verified_at": "2026-07-22T13:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.industrial-accident.act-0057",
+      "source_id": "industrial_accident_compensation_insurance_act_ko_0057",
+      "law_name_ko": "산업재해보상보험법",
+      "article_no": "제57조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C57%EC%A1%B0",
+      "source_snapshot_id": "snapshot:4eedafc672cd3cc440f0a33ed023f152",
+      "last_verified_at": "2026-07-22T13:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.industrial-accident.act-0062",
+      "source_id": "industrial_accident_compensation_insurance_act_ko_0062",
+      "law_name_ko": "산업재해보상보험법",
+      "article_no": "제62조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C62%EC%A1%B0",
+      "source_snapshot_id": "snapshot:bdfc129e5fa2e2f38012db7e7aaa411",
+      "last_verified_at": "2026-07-22T13:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.industrial-accident.act-0071",
+      "source_id": "industrial_accident_compensation_insurance_act_ko_0071",
+      "law_name_ko": "산업재해보상보험법",
+      "article_no": "제71조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C71%EC%A1%B0",
+      "source_snapshot_id": "snapshot:f847fe29e000b2cd297b109ab88b25ae",
+      "last_verified_at": "2026-07-22T13:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.industrial-accident.act-0112",
+      "source_id": "industrial_accident_compensation_insurance_act_ko_0112",
+      "law_name_ko": "산업재해보상보험법",
+      "article_no": "제112조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C112%EC%A1%B0",
+      "source_snapshot_id": "snapshot:8de7b72ba6bd5c5449bc4acb48168a6",
+      "last_verified_at": "2026-07-22T13:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.industrial-accident.act-0116",
+      "source_id": "industrial_accident_compensation_insurance_act_ko_0116",
+      "law_name_ko": "산업재해보상보험법",
+      "article_no": "제116조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C116%EC%A1%B0",
+      "source_snapshot_id": "snapshot:37008f9c8dd9b9b6d054afbe12e1f3c",
+      "last_verified_at": "2026-07-22T13:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.industrial-accident.act-0123",
+      "source_id": "industrial_accident_compensation_insurance_act_ko_0123",
+      "law_name_ko": "산업재해보상보험법",
+      "article_no": "제123조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C123%EC%A1%B0",
+      "source_snapshot_id": "snapshot:33951c0efd472136b764855a49d11951",
+      "last_verified_at": "2026-07-22T13:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.industrial-accident.act-0123-2",
+      "source_id": "industrial_accident_compensation_insurance_act_ko_0123_02",
+      "law_name_ko": "산업재해보상보험법",
+      "article_no": "제123조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C123%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:bec15a7c4759eaaa3e7952857d855d78",
+      "last_verified_at": "2026-07-22T13:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.industrial-accident.act-0124",
+      "source_id": "industrial_accident_compensation_insurance_act_ko_0124",
+      "law_name_ko": "산업재해보상보험법",
+      "article_no": "제124조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C124%EC%A1%B0",
+      "source_snapshot_id": "snapshot:fb91d3c1da7afaad9a358760299f50cc",
+      "last_verified_at": "2026-07-22T13:00:00+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.industrial-accident",
+      "slug": "industrial-accident",
+      "title_ko": "산업재해·산재보험 대응",
+      "description_ko": "회사의 동의 여부가 아니라 적용대상과 업무관련성부터 확인하고, 사고·질병·출퇴근 재해의 인정기준, 치료·휴업·장해·유족급여, 청구기간까지 순서대로 찾습니다.",
+      "content_ids": [
+        "content.industrial-accident-employer-refusal",
+        "content.industrial-accident-recognition",
+        "content.industrial-accident-commute-detour",
+        "content.industrial-accident-benefit-map",
+        "content.industrial-accident-medical-benefit",
+        "content.industrial-accident-temporary-disability",
+        "content.industrial-accident-disability-benefit",
+        "content.industrial-accident-survivor-funeral",
+        "content.industrial-accident-special-coverage",
+        "content.industrial-accident-limitation-period"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.industrial-accident.workplace-scope",
+      "title_ko": "산재보험의 사업장 적용범위",
+      "proposition_ko": "산재보험 적용 여부는 사업주가 보험가입 신고를 했는지만으로 정하지 않고 법정 적용범위와 근로자성을 먼저 확인합니다.",
+      "norm": {
+        "actor_ko": "근로자를 사용하는 사업 또는 사업장과 그곳에서 일한 사람",
+        "conditions_ko": "산재보험법 적용사업인지와 근로기준법상 근로자에 해당하는지를 판단하는 경우",
+        "legal_effect_ko": "근로자를 사용하는 모든 사업 또는 사업장에 원칙적으로 적용하되 대통령령이 정한 제외사업은 별도로 확인합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0005",
+        "coord.industrial-accident.act-0006"
+      ]
+    },
+    {
+      "rule_id": "rule.industrial-accident.employer-assistance",
+      "title_ko": "사업주의 산재청구 조력과 자료제공",
+      "proposition_ko": "사업주의 확인이나 동의가 없다는 사정만으로 산재청구를 포기할 필요는 없으며 적용대상과 업무관련성은 자료로 판단합니다.",
+      "norm": {
+        "actor_ko": "보험급여를 청구하는 사람과 사업주",
+        "conditions_ko": "재해자가 사고로 절차 수행이 어렵거나 산재청구에 필요한 증명·자료를 사업주에게 요구하는 경우",
+        "legal_effect_ko": "사업주는 청구 절차를 돕고 필요한 증명과 자료를 제공해야 하며, 행방불명 등으로 제공이 불가능하면 이를 생략할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0116"
+      ]
+    },
+    {
+      "rule_id": "rule.industrial-accident.recognition",
+      "title_ko": "업무상 사고·질병·출퇴근 재해의 인정기준",
+      "proposition_ko": "발생 장소가 회사 안인지보다 업무 또는 통상적인 출퇴근과 재해 사이의 상당인과관계가 있는지가 핵심입니다.",
+      "norm": {
+        "actor_ko": "업무상 사유로 부상·질병·장해 또는 사망이 발생한 근로자",
+        "conditions_ko": "업무상 사고, 업무상 질병 또는 출퇴근 재해 유형에 해당하고 업무와 재해 사이 상당인과관계가 있는 경우",
+        "legal_effect_ko": "고의·자해·범죄행위 등 법정 제외사유가 없다면 업무상의 재해로 인정될 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0037"
+      ]
+    },
+    {
+      "rule_id": "rule.industrial-accident.commute-route",
+      "title_ko": "출퇴근 경로 일탈·중단의 효과",
+      "proposition_ko": "통상적인 출퇴근 중 사고도 산재가 될 수 있지만 이동 경로를 벗어나거나 개인 용무로 중단한 구간은 별도 판단합니다.",
+      "norm": {
+        "actor_ko": "통상적인 경로와 방법으로 출퇴근하던 근로자",
+        "conditions_ko": "출퇴근 중 사고가 발생했고 경로 일탈·중단 여부와 그 사유를 확인하는 경우",
+        "legal_effect_ko": "원칙적으로 일탈·중단 중과 그 뒤 이동 중 사고는 제외되지만 일상생활에 필요한 법정 행위라면 출퇴근 재해로 인정될 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0037"
+      ]
+    },
+    {
+      "rule_id": "rule.industrial-accident.benefit-types",
+      "title_ko": "산재보험급여의 여덟 가지 기본 유형",
+      "proposition_ko": "산재 승인은 하나의 정액 보상을 뜻하지 않으며 재해 경과와 남은 손해에 맞춰 급여 종류를 나누어 청구합니다.",
+      "norm": {
+        "actor_ko": "업무상 재해를 입은 근로자 또는 유족",
+        "conditions_ko": "치료, 취업불능, 장해, 간병, 사망, 장기요양 또는 직업복귀 필요가 발생한 경우",
+        "legal_effect_ko": "요양·휴업·장해·간병·유족·상병보상연금·장례비·직업재활급여 중 해당 요건을 갖춘 급여를 청구할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0036"
+      ]
+    },
+    {
+      "rule_id": "rule.industrial-accident.medical-benefit",
+      "title_ko": "요양급여의 대상과 범위",
+      "proposition_ko": "업무상 부상·질병의 치료비는 원칙적으로 산재보험 의료기관에서 치료를 제공하는 방식으로 보상합니다.",
+      "norm": {
+        "actor_ko": "업무상 사유로 부상을 입거나 질병에 걸린 근로자",
+        "conditions_ko": "업무상 재해가 인정되고 부상·질병이 3일을 초과하는 요양을 필요로 하는 경우",
+        "legal_effect_ko": "진찰·검사, 약제·진료재료, 수술·치료, 재활, 입원, 간병, 이송 등의 요양급여를 받을 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0040"
+      ]
+    },
+    {
+      "rule_id": "rule.industrial-accident.temporary-disability",
+      "title_ko": "요양 중 취업하지 못한 기간의 휴업급여",
+      "proposition_ko": "치료를 받았다는 사실만으로 휴업급여가 자동 지급되는 것은 아니며 요양 때문에 실제로 취업하지 못한 기간을 확인합니다.",
+      "norm": {
+        "actor_ko": "업무상 부상·질병으로 요양하면서 취업하지 못한 근로자",
+        "conditions_ko": "요양과 취업불능 사이의 관련성이 있고 취업하지 못한 기간이 3일을 초과하는 경우",
+        "legal_effect_ko": "취업하지 못한 날에 대하여 원칙적으로 1일당 평균임금의 70퍼센트에 상당하는 휴업급여를 지급합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0052"
+      ]
+    },
+    {
+      "rule_id": "rule.industrial-accident.disability-benefit",
+      "title_ko": "치유 뒤 남은 장해에 대한 장해급여",
+      "proposition_ko": "치료 중인 상태와 치료가 끝난 뒤 장해가 남은 상태는 급여 판단 단계가 다릅니다.",
+      "norm": {
+        "actor_ko": "업무상 부상·질병이 치유된 뒤 신체 등에 장해가 남은 근로자",
+        "conditions_ko": "치유 시점과 남은 장해 상태를 확정하고 법정 장해등급에 해당하는 경우",
+        "legal_effect_ko": "장해등급에 따라 장해보상연금 또는 장해보상일시금을 지급하며 일부 등급은 지급방식에 제한이 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0057"
+      ]
+    },
+    {
+      "rule_id": "rule.industrial-accident.survivor-funeral",
+      "title_ko": "업무상 사망의 유족급여와 장례비",
+      "proposition_ko": "업무상 사망 뒤 유족에게 지급하는 급여와 실제 장례를 치른 사람에게 지급하는 장례비는 수급요건과 수령인이 다릅니다.",
+      "norm": {
+        "actor_ko": "업무상 사망한 근로자의 유족 또는 실제 장례를 지낸 사람",
+        "conditions_ko": "근로자의 업무상 사망이 인정되고 유족 자격 또는 장례 집행 사실을 확인한 경우",
+        "legal_effect_ko": "법정 유족에게 유족보상연금 또는 요건에 따른 일시금을 지급하고, 장례를 지낸 사람에게 법정 범위의 장례비를 지급합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0062",
+        "coord.industrial-accident.act-0071"
+      ]
+    },
+    {
+      "rule_id": "rule.industrial-accident.special-coverage",
+      "title_ko": "현장실습생·학생연구자·중소기업 사업주의 특례",
+      "proposition_ko": "근로계약서가 없거나 사업주라는 이유만으로 모두 배제되는 것은 아니지만 각 특례가 정한 신분·사업·가입 요건을 따로 충족해야 합니다.",
+      "norm": {
+        "actor_ko": "법정 현장실습생, 학생연구자 또는 중소기업 사업주와 일정한 가족종사자",
+        "conditions_ko": "각 특례의 대상, 노무·연구·실습 내용과 필요한 가입신청·승인 여부를 확인하는 경우",
+        "legal_effect_ko": "현장실습생과 학생연구자는 법정 범위에서 근로자로 보아 적용하고, 중소기업 사업주 등은 신청과 공단 승인을 거쳐 가입할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0123",
+        "coord.industrial-accident.act-0123-2",
+        "coord.industrial-accident.act-0124"
+      ]
+    },
+    {
+      "rule_id": "rule.industrial-accident.limitation",
+      "title_ko": "보험급여 청구권의 3년·5년 소멸시효",
+      "proposition_ko": "재해 발생일부터 무조건 하나의 기간을 세는 방식이 아니라 급여 종류와 각 청구권의 발생시점을 구분해야 합니다.",
+      "norm": {
+        "actor_ko": "산재보험급여를 청구할 수 있는 근로자 또는 유족",
+        "conditions_ko": "급여 종류와 청구권 발생시점, 과거 청구·시효중단 사유를 확인하는 경우",
+        "legal_effect_ko": "보험급여 청구권은 원칙적으로 3년이고 장해급여·유족급여·장례비·진폐보상연금·진폐유족연금은 5년간 행사하지 않으면 소멸합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0112"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.industrial-accident.employer-refusal",
+      "question_ko": "회사가 산재 신청서 확인이나 자료 제공을 거부하는가?",
+      "decision_fact_ko": "실제 근로관계, 적용사업 여부, 재해경위 자료와 사업주의 협조 가능성",
+      "when_true_ko": "회사 동의와 산재 인정요건을 구분하고, 근로계약·임금·근무기록·진료기록 등 확보 가능한 자료로 청구를 준비합니다.",
+      "when_false_ko": "사업주의 증명과 재해조사 자료를 받아 업무관련성 입증자료에 포함합니다.",
+      "rule_ids": [
+        "rule.industrial-accident.workplace-scope",
+        "rule.industrial-accident.employer-assistance"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0005",
+        "coord.industrial-accident.act-0006",
+        "coord.industrial-accident.act-0116"
+      ]
+    },
+    {
+      "scenario_id": "scenario.industrial-accident.accident-disease",
+      "question_ko": "재해가 업무상 사고·질병·출퇴근 재해 중 어디에 해당하는가?",
+      "decision_fact_ko": "발생 시각·장소·업무내용, 유해요인 노출, 진단과 업무 사이의 관련성",
+      "when_true_ko": "해당 유형의 구체적 인정기준에 맞춰 시간순 경위와 의학자료를 결합합니다.",
+      "when_false_ko": "단순히 직장과 관련되어 보인다는 사정만으로 결론내리지 말고 상당인과관계를 보완합니다.",
+      "rule_ids": [
+        "rule.industrial-accident.recognition"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0037"
+      ]
+    },
+    {
+      "scenario_id": "scenario.industrial-accident.commute-detour",
+      "question_ko": "출퇴근 중 통상 경로를 벗어나거나 이동을 중단했는가?",
+      "decision_fact_ko": "평소 경로·방법, 일탈 또는 중단의 목적·시간·장소와 사고 지점",
+      "when_true_ko": "일상생활에 필요한 법정 사유인지와 정상 경로 복귀 여부를 별도로 확인합니다.",
+      "when_false_ko": "통상적인 경로와 방법의 출퇴근인지 입증하는 교통·위치·근무기록을 모읍니다.",
+      "rule_ids": [
+        "rule.industrial-accident.commute-route"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0037"
+      ]
+    },
+    {
+      "scenario_id": "scenario.industrial-accident.benefit-map",
+      "question_ko": "현재 필요한 보상이 치료·소득·장해·유족 중 무엇인가?",
+      "decision_fact_ko": "치료 단계, 취업불능 기간, 치유 여부, 장해, 간병, 사망과 직업복귀 필요",
+      "when_true_ko": "현재 단계에 해당하는 급여를 청구하고 이후 상태 변화에 따라 다음 급여를 검토합니다.",
+      "when_false_ko": "산재 승인 자체와 개별 급여 요건을 구분해 빠진 청구 항목이 없는지 확인합니다.",
+      "rule_ids": [
+        "rule.industrial-accident.benefit-types"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0036"
+      ]
+    },
+    {
+      "scenario_id": "scenario.industrial-accident.medical-days",
+      "question_ko": "업무상 부상·질병이 3일을 초과하는 요양을 필요로 하는가?",
+      "decision_fact_ko": "진단명, 치료 필요기간, 실제 진료내용과 업무관련성",
+      "when_true_ko": "산재보험 의료기관의 요양급여와 필요한 치료 범위를 신청합니다.",
+      "when_false_ko": "3일 이내 요양으로 치유되는 경우의 요양급여 제한과 다른 책임 경로를 구분합니다.",
+      "rule_ids": [
+        "rule.industrial-accident.medical-benefit"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0040"
+      ]
+    },
+    {
+      "scenario_id": "scenario.industrial-accident.no-work",
+      "question_ko": "요양 때문에 실제로 일을 하지 못한 기간이 3일을 초과하는가?",
+      "decision_fact_ko": "요양기간, 의학적 취업불능, 실제 근무·임금 지급 여부와 평균임금",
+      "when_true_ko": "취업하지 못한 날과 평균임금 자료를 기준으로 휴업급여를 청구합니다.",
+      "when_false_ko": "치료기간과 취업불능기간이 같은지 다시 확인하고 법정 대기기간을 구분합니다.",
+      "rule_ids": [
+        "rule.industrial-accident.temporary-disability"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0052"
+      ]
+    },
+    {
+      "scenario_id": "scenario.industrial-accident.remaining-disability",
+      "question_ko": "치료가 끝난 뒤에도 신체·정신 기능에 장해가 남았는가?",
+      "decision_fact_ko": "치유 시점, 잔존 증상, 검사결과, 노동능력과 장해등급 판단자료",
+      "when_true_ko": "치유 후 장해 상태를 고정해 장해등급과 연금·일시금 지급방식을 검토합니다.",
+      "when_false_ko": "아직 치료 중이면 요양·휴업 단계와 추가 치료 필요성을 먼저 확인합니다.",
+      "rule_ids": [
+        "rule.industrial-accident.disability-benefit"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0057"
+      ]
+    },
+    {
+      "scenario_id": "scenario.industrial-accident.death",
+      "question_ko": "근로자의 사망과 업무상 재해 사이의 관련성이 인정되는가?",
+      "decision_fact_ko": "사망원인, 업무·노출·사고 경위, 유족 자격과 실제 장례 집행자",
+      "when_true_ko": "유족급여 수급자격과 장례비 수령인을 나누어 각각 필요한 자료를 준비합니다.",
+      "when_false_ko": "사망 전 진료기록과 업무자료를 보완해 상당인과관계를 먼저 검토합니다.",
+      "rule_ids": [
+        "rule.industrial-accident.survivor-funeral"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0062",
+        "coord.industrial-accident.act-0071"
+      ]
+    },
+    {
+      "scenario_id": "scenario.industrial-accident.special-person",
+      "question_ko": "일반 근로자가 아닌 현장실습생·학생연구자·사업주 등에 해당하는가?",
+      "decision_fact_ko": "신분, 실습·연구·노무 내용, 사업 요건과 가입신청·공단 승인 여부",
+      "when_true_ko": "해당 특례의 대상요건과 보험관계 성립 시점을 개별적으로 확인합니다.",
+      "when_false_ko": "근로기준법상 근로자성과 일반 사업장 적용범위부터 판단합니다.",
+      "rule_ids": [
+        "rule.industrial-accident.workplace-scope",
+        "rule.industrial-accident.special-coverage"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0005",
+        "coord.industrial-accident.act-0006",
+        "coord.industrial-accident.act-0123",
+        "coord.industrial-accident.act-0123-2",
+        "coord.industrial-accident.act-0124"
+      ]
+    },
+    {
+      "scenario_id": "scenario.industrial-accident.claim-time",
+      "question_ko": "청구하려는 급여가 3년 시효인가 5년 시효인가?",
+      "decision_fact_ko": "급여 종류, 청구권 발생시점, 과거 청구와 시효중단 자료",
+      "when_true_ko": "장해·유족·장례비·진폐 관련 법정 급여는 5년 기준을 적용해 남은 기간을 계산합니다.",
+      "when_false_ko": "그 밖의 보험급여는 원칙적인 3년 기준과 각 급여의 발생시점을 확인합니다.",
+      "rule_ids": [
+        "rule.industrial-accident.limitation"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0112"
+      ]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.industrial-accident-employer-refusal",
+      "content_type": "procedure_guide",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T13:00:00+00:00",
+      "expires_at": "2026-10-22T13:00:00+00:00",
+      "slug": "industrial-accident-employer-refusal",
+      "title_ko": "회사가 산재 신청을 거부하면 신청할 수 없나요?",
+      "one_line_answer_ko": "회사 확인이나 동의가 없다는 이유만으로 산재청구가 막히는 것은 아니며, 근로자성·적용사업·업무관련성을 객관적 자료로 입증해야 합니다.",
+      "audience_situation_ko": "업무 중 다쳤지만 회사가 산재 처리를 거부하거나 확인서·근무자료를 주지 않는 경우",
+      "key_points_ko": [
+        "사업주의 동의와 산재 인정요건은 구분합니다.",
+        "사업주는 청구 조력과 필요한 증명·자료 제공 의무가 있습니다.",
+        "회사 자료가 없으면 대체 가능한 근무·임금·의료자료를 구조화합니다."
+      ],
+      "action_steps_ko": [
+        "사고 일시·장소·작업내용을 즉시 기록합니다.",
+        "진료기록에 업무 중 발생 경위를 구체적으로 남깁니다.",
+        "근로계약서·급여내역·출퇴근·작업지시 자료를 보존합니다.",
+        "동료 목격자와 현장 영상·메신저 자료를 확보합니다.",
+        "사업주에게 필요한 증명과 자료를 서면으로 요청합니다."
+      ],
+      "facts_to_check_ko": [
+        "실제 지휘·감독 관계",
+        "임금 지급 방식",
+        "사업장과 업무 내용",
+        "사고 발생 경위",
+        "사업주 자료요청 기록",
+        "목격자·영상",
+        "초진기록"
+      ],
+      "caution_ko": "회사 동의가 필요 없다는 말이 업무관련성 입증까지 면제한다는 뜻은 아닙니다. 도급·프리랜서 명칭을 사용했더라도 실제 근로자성은 별도로 판단합니다.",
+      "search_intents_ko": [
+        "회사 산재 거부",
+        "사업주 확인 없는 산재 신청",
+        "산재 신청 회사 불이익"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "동의가 아니라 법정 요건을 봅니다",
+          "paragraphs_ko": [
+            "산재보험 적용 여부와 업무상 재해 인정은 사업주의 찬반만으로 정하지 않습니다. 사업의 적용범위, 실제 근로자성, 업무와 재해 사이의 관련성을 자료로 판단합니다.",
+            "산재보험법은 사업주에게 청구 절차 조력과 필요한 증명·자료 제공 의무를 두고, 행방불명 등으로 자료 제공이 불가능한 경우에는 생략할 수 있도록 합니다."
+          ]
+        },
+        {
+          "heading_ko": "회사가 주지 않는 자료를 대체합니다",
+          "paragraphs_ko": [
+            "근로계약서가 없더라도 급여 입금, 출퇴근, 작업지시, 업무용 대화, 동료 진술, 현장 영상은 실제 근무와 재해경위를 보여줄 수 있습니다.",
+            "병원에는 처음부터 업무 중 언제 어떤 동작과 사고로 증상이 생겼는지 일관되게 설명하고 진료기록을 보존합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.industrial-accident.workplace-scope",
+        "rule.industrial-accident.employer-assistance"
+      ],
+      "scenario_ids": [
+        "scenario.industrial-accident.employer-refusal"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0005",
+        "coord.industrial-accident.act-0006",
+        "coord.industrial-accident.act-0116"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.industrial-accident-recognition",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T13:00:00+00:00",
+      "expires_at": "2026-10-22T13:00:00+00:00",
+      "slug": "industrial-accident-recognition",
+      "title_ko": "어떤 사고와 질병이 업무상 재해가 되나요?",
+      "one_line_answer_ko": "업무상 사고·질병·출퇴근 재해 유형에 해당하고 업무와 재해 사이 상당인과관계가 있어야 하며, 발생 장소 하나만으로 결정하지 않습니다.",
+      "audience_situation_ko": "회사 밖 사고, 과로·근골격계·정신질환 등도 산재가 될 수 있는지 확인하려는 경우",
+      "key_points_ko": [
+        "업무상 사고·질병·출퇴근 재해를 먼저 분류합니다.",
+        "업무와 재해 사이 상당인과관계를 자료로 설명합니다.",
+        "기왕증이나 개인 요인이 있다는 이유만으로 곧바로 배제하지 않습니다."
+      ],
+      "action_steps_ko": [
+        "증상과 사고의 발생 전후를 시간순으로 정리합니다.",
+        "담당업무·작업강도·근무시간·유해요인을 기록합니다.",
+        "건강검진과 과거 진료기록을 함께 확보합니다.",
+        "업무변화와 증상 악화의 시점을 대조합니다.",
+        "사고·질병 유형에 맞는 의학적 소견을 준비합니다."
+      ],
+      "facts_to_check_ko": [
+        "재해 발생 일시·장소",
+        "구체적 업무행위",
+        "근무시간·휴게",
+        "물리·화학·정신적 유해요인",
+        "진단명과 발병시점",
+        "기왕증",
+        "업무변화"
+      ],
+      "caution_ko": "업무 중 발생했다는 사실만으로 모든 질병이 인정되는 것은 아니고, 반대로 사업장 밖에서 발생했다는 이유만으로 모두 제외되는 것도 아닙니다.",
+      "search_intents_ko": [
+        "업무상 재해 인정 기준",
+        "직업병 산재 기준",
+        "회사 밖 사고 산재"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "먼저 법정 유형을 정합니다",
+          "paragraphs_ko": [
+            "법은 업무상 사고, 업무상 질병, 출퇴근 재해를 업무상 재해의 큰 유형으로 둡니다. 행사·휴게시간 사고, 직장 내 괴롭힘이나 고객 폭언으로 인한 정신적 질병도 법정 기준에 따라 검토할 수 있습니다.",
+            "같은 진단명이라도 실제 작업, 노출 정도, 근무시간, 발병 경과에 따라 결론이 달라질 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "업무와 의학자료를 연결합니다",
+          "paragraphs_ko": [
+            "업무표만 따로 제출하거나 진단서만 따로 제출하기보다 업무의 강도·기간·변화와 증상·진단의 시간적 흐름을 연결해야 합니다.",
+            "기왕증이 있다면 재해 전 상태와 업무 후 악화 정도를 비교할 자료를 확보합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.industrial-accident.recognition"
+      ],
+      "scenario_ids": [
+        "scenario.industrial-accident.accident-disease"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0037"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "related_content_ids": [
+        "content.industrial-accident-benefits-vs-civil-damages"
+      ]
+    },
+    {
+      "content_id": "content.industrial-accident-commute-detour",
+      "content_type": "fact_branch_guide",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T13:00:00+00:00",
+      "expires_at": "2026-10-22T13:00:00+00:00",
+      "slug": "industrial-accident-commute-detour",
+      "title_ko": "출퇴근길에 개인 용무를 보면 산재가 안 되나요?",
+      "one_line_answer_ko": "경로 일탈·중단 중과 그 뒤 이동은 원칙적으로 제외되지만, 일상생활에 필요한 법정 사유라면 출퇴근 재해로 인정될 여지가 있습니다.",
+      "audience_situation_ko": "출퇴근 중 장보기·병원·자녀 등하원 같은 개인 용무를 거치다 사고가 난 경우",
+      "key_points_ko": [
+        "평소 통상 경로와 방법을 먼저 확정합니다.",
+        "일탈·중단의 목적과 사고가 난 구간을 구분합니다.",
+        "일상생활에 필요한 법정 예외인지는 구체적 사실로 판단합니다."
+      ],
+      "action_steps_ko": [
+        "평소 출퇴근 경로를 지도에 표시합니다.",
+        "사고 당일 이동기록과 교통수단을 보존합니다.",
+        "일탈·중단 목적을 입증할 영수증·예약·등하원 자료를 모읍니다.",
+        "사고가 일탈 중인지 정상 경로 복귀 뒤인지 표시합니다.",
+        "출퇴근 시각과 근무기록을 대조합니다."
+      ],
+      "facts_to_check_ko": [
+        "주거지와 사업장",
+        "평소 경로",
+        "사고 지점",
+        "일탈·중단 목적",
+        "중단 시간",
+        "정상 경로 복귀 여부",
+        "교통·위치기록"
+      ],
+      "caution_ko": "개인 용무가 있었다는 이유만으로 전 구간이 자동 제외되거나, 정상 경로에 다시 들어왔다는 이유만으로 언제나 인정되는 것은 아닙니다.",
+      "search_intents_ko": [
+        "출퇴근 산재 경로 이탈",
+        "장보기 출퇴근 산재",
+        "자녀 등하원 산재"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "사고 구간을 잘라서 봅니다",
+          "paragraphs_ko": [
+            "출퇴근 경로를 벗어나거나 이동을 중단했다면 일탈·중단의 시작과 종료, 사고 위치를 구분해야 합니다.",
+            "평소 경로, 내비게이션·교통카드·위치기록, 근무시각은 통상적인 출퇴근이었는지 보여주는 핵심 자료입니다."
+          ]
+        },
+        {
+          "heading_ko": "예외 사유의 목적을 입증합니다",
+          "paragraphs_ko": [
+            "일상생활에 필요한 행위에 해당하는지는 단순한 주장보다 병원 예약, 생필품 구입, 자녀 돌봄 등 목적을 보여주는 자료가 중요합니다.",
+            "우회가 필요했던 거리와 시간, 용무가 끝난 뒤 정상 경로로 돌아왔는지도 함께 표시합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.industrial-accident.commute-route"
+      ],
+      "scenario_ids": [
+        "scenario.industrial-accident.commute-detour"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0037"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.industrial-accident-benefit-map",
+      "content_type": "procedure_guide",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T13:00:00+00:00",
+      "expires_at": "2026-10-22T13:00:00+00:00",
+      "slug": "industrial-accident-benefit-map",
+      "title_ko": "산재 승인을 받으면 어떤 급여를 받을 수 있나요?",
+      "one_line_answer_ko": "치료·취업불능·장해·간병·사망·장기요양·직업복귀 상태에 따라 여덟 가지 기본 급여 중 해당 항목을 각각 검토합니다.",
+      "audience_situation_ko": "산재 승인 뒤 치료비 외에 휴업급여·장해급여 등 무엇을 추가로 청구할지 모르는 경우",
+      "key_points_ko": [
+        "산재 승인은 모든 급여의 자동 지급을 뜻하지 않습니다.",
+        "재해의 현재 단계에 따라 급여 종류가 달라집니다.",
+        "같은 재해도 치료에서 장해·직업복귀 단계로 이어질 수 있습니다."
+      ],
+      "action_steps_ko": [
+        "현재 치료 중인지 치유된 상태인지 구분합니다.",
+        "취업하지 못한 기간과 임금자료를 정리합니다.",
+        "치유 뒤 남은 장해와 간병 필요성을 확인합니다.",
+        "사망 사건이면 유족 자격과 장례 집행자를 나눕니다.",
+        "직업복귀·재활 필요성을 함께 점검합니다."
+      ],
+      "facts_to_check_ko": [
+        "요양 상태",
+        "취업불능 기간",
+        "평균임금",
+        "치유일",
+        "장해 상태",
+        "간병 필요",
+        "유족·장례",
+        "직업복귀 가능성"
+      ],
+      "caution_ko": "각 급여는 별도의 법정 요건과 청구권 발생시점이 있으므로 산재 승인일만 기준으로 기다리지 말아야 합니다.",
+      "search_intents_ko": [
+        "산재보험 급여 종류",
+        "산재 승인 후 받을 돈",
+        "요양 휴업 장해급여 차이"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "상태별 급여를 연결합니다",
+          "paragraphs_ko": [
+            "치료에는 요양급여, 치료 때문에 일하지 못한 기간에는 휴업급여, 치유 뒤 장해가 남으면 장해급여를 검토합니다.",
+            "간병, 장기요양, 사망, 직업복귀가 문제되면 간병급여·상병보상연금·유족급여·장례비·직업재활급여의 요건을 각각 봅니다."
+          ]
+        },
+        {
+          "heading_ko": "청구 일정표를 만듭니다",
+          "paragraphs_ko": [
+            "진단·요양·취업불능·치유·장해판정의 날짜를 한 표에 놓으면 각 급여의 발생시점과 필요한 자료를 놓치기 어렵습니다.",
+            "보험급여와 회사·제3자에 대한 민사배상은 요건이 다르고 같은 손해의 조정이 문제될 수 있으므로 별도 계산합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.industrial-accident.benefit-types"
+      ],
+      "scenario_ids": [
+        "scenario.industrial-accident.benefit-map"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0036"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "related_content_ids": [
+        "content.industrial-accident-benefits-vs-civil-damages"
+      ]
+    },
+    {
+      "content_id": "content.industrial-accident-medical-benefit",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T13:00:00+00:00",
+      "expires_at": "2026-10-22T13:00:00+00:00",
+      "slug": "industrial-accident-medical-benefit",
+      "title_ko": "산재 치료비는 며칠 치료해야 받을 수 있나요?",
+      "one_line_answer_ko": "업무상 부상·질병이 3일 이내 요양으로 치유될 수 있으면 요양급여가 지급되지 않으므로 통상 4일 이상의 요양 필요 여부를 확인합니다.",
+      "audience_situation_ko": "업무 중 다쳐 병원 치료를 받았지만 치료기간이 짧거나 어떤 비용까지 산재 처리되는지 궁금한 경우",
+      "key_points_ko": [
+        "치료일수가 아니라 필요한 요양기간과 업무관련성을 봅니다.",
+        "3일 이내 요양으로 치유될 수 있는 재해는 법정 제한이 있습니다.",
+        "진찰·검사·수술·재활·입원·간병·이송 등이 요양 범위에 포함될 수 있습니다."
+      ],
+      "action_steps_ko": [
+        "초진기록과 진단서를 확보합니다.",
+        "의사가 판단한 치료 필요기간을 확인합니다.",
+        "업무상 발생 경위를 진료기록과 일치시킵니다.",
+        "산재보험 의료기관 여부를 확인합니다.",
+        "비급여·보조기·이송비 등 항목별 자료를 보존합니다."
+      ],
+      "facts_to_check_ko": [
+        "진단명",
+        "치료 필요기간",
+        "실제 진료일",
+        "업무관련성",
+        "의료기관 종류",
+        "치료비 항목",
+        "응급·부득이한 사유"
+      ],
+      "caution_ko": "단순히 병원에 네 번 방문했다는 횟수만으로 판단하지 않으며, 상급종합병원 치료나 요양비 지급에는 별도 요건이 적용될 수 있습니다.",
+      "search_intents_ko": [
+        "산재 4일 이상 치료",
+        "산재 요양급여 범위",
+        "업무상 사고 치료비"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "요양 필요기간을 확인합니다",
+          "paragraphs_ko": [
+            "법은 부상이나 질병이 3일 이내의 요양으로 치유될 수 있으면 요양급여를 지급하지 않는다고 정합니다. 진단과 치료계획에 나타난 필요한 요양기간이 중요합니다.",
+            "업무상 재해 인정과 요양 필요성은 함께 입증해야 하므로 사고경위와 의료자료를 연결합니다."
+          ]
+        },
+        {
+          "heading_ko": "치료 항목을 빠짐없이 모읍니다",
+          "paragraphs_ko": [
+            "요양급여에는 진찰·검사, 약제·진료재료, 수술과 치료, 재활, 입원, 간호·간병, 이송 등이 포함될 수 있습니다.",
+            "산재보험 의료기관 이용이 원칙이고 부득이한 경우 요양비 방식이 가능하므로 임의로 지출하기 전에 적용방식을 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.industrial-accident.medical-benefit"
+      ],
+      "scenario_ids": [
+        "scenario.industrial-accident.medical-days"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0040"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.industrial-accident-temporary-disability",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T13:00:00+00:00",
+      "expires_at": "2026-10-22T13:00:00+00:00",
+      "slug": "industrial-accident-temporary-disability",
+      "title_ko": "산재 치료로 쉬면 임금의 70퍼센트를 받나요?",
+      "one_line_answer_ko": "요양 때문에 실제로 취업하지 못한 기간이 3일을 초과하면 원칙적으로 해당 날마다 평균임금의 70퍼센트에 상당하는 휴업급여를 검토합니다.",
+      "audience_situation_ko": "산재 치료로 출근하지 못했거나 일부만 근무해 휴업급여 지급일수와 금액이 궁금한 경우",
+      "key_points_ko": [
+        "요양기간과 취업하지 못한 기간을 구분합니다.",
+        "의학적으로 일할 수 없었던 사정과 실제 근무·임금 지급을 확인합니다.",
+        "지급기준은 통상임금이 아니라 원칙적으로 평균임금입니다."
+      ],
+      "action_steps_ko": [
+        "의사의 취업불능 소견을 확보합니다.",
+        "결근·휴직·부분근무 일자를 달력으로 정리합니다.",
+        "임금명세서와 평균임금 산정자료를 모읍니다.",
+        "회사에서 지급한 임금·휴업수당을 구분합니다.",
+        "요양 승인기간과 실제 취업불능기간을 대조합니다."
+      ],
+      "facts_to_check_ko": [
+        "요양 승인기간",
+        "취업불능 소견",
+        "실제 근무일",
+        "임금 지급내역",
+        "평균임금",
+        "부분취업",
+        "3일 이하 기간"
+      ],
+      "caution_ko": "요양 승인을 받았다는 이유만으로 그 전 기간의 휴업급여가 자동 인정되는 것은 아니며, 실제 취업 여부와 임금 지급 상태에 따라 달라질 수 있습니다.",
+      "search_intents_ko": [
+        "산재 휴업급여 70퍼센트",
+        "산재 쉬는 동안 월급",
+        "산재 휴업급여 계산"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "치료와 취업불능을 연결합니다",
+          "paragraphs_ko": [
+            "휴업급여는 업무상 부상·질병으로 요양하면서 그 때문에 취업하지 못한 기간을 보전합니다. 치료를 받았어도 실제로 정상 근무했다면 같은 방식으로 보지 않습니다.",
+            "취업하지 못한 기간이 3일 이내이면 지급하지 않는다는 법정 제한도 확인합니다."
+          ]
+        },
+        {
+          "heading_ko": "날짜와 평균임금을 검증합니다",
+          "paragraphs_ko": [
+            "병원 소견, 요양 승인기간, 출근부, 급여명세서를 한 날짜표로 맞추면 지급대상 일수를 확인하기 쉽습니다.",
+            "원칙적 1일 지급액은 평균임금의 70퍼센트이므로 평균임금 산정에 포함된 임금과 산정기간도 함께 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.industrial-accident.temporary-disability"
+      ],
+      "scenario_ids": [
+        "scenario.industrial-accident.no-work"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0052"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.industrial-accident-disability-benefit",
+      "content_type": "procedure_guide",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T13:00:00+00:00",
+      "expires_at": "2026-10-22T13:00:00+00:00",
+      "slug": "industrial-accident-disability-benefit",
+      "title_ko": "산재 치료가 끝난 뒤 후유장해가 남으면 어떻게 하나요?",
+      "one_line_answer_ko": "업무상 부상·질병이 치유된 뒤 장해가 남으면 상태를 객관화해 장해등급에 따른 장해보상연금 또는 일시금을 청구합니다.",
+      "audience_situation_ko": "산재 치료 종결을 앞두었거나 종결 뒤 통증·운동제한·신경·정신 기능장해가 남은 경우",
+      "key_points_ko": [
+        "치료 중 증상과 치유 뒤 고정된 장해를 구분합니다.",
+        "진단명만 아니라 실제 기능장해와 검사결과를 정리합니다.",
+        "장해등급에 따라 연금·일시금과 선택 가능 여부가 달라집니다."
+      ],
+      "action_steps_ko": [
+        "치유일과 치료종결 근거를 확인합니다.",
+        "장해 부위별 객관적 검사결과를 확보합니다.",
+        "수술·재활 경과와 잔존 증상을 정리합니다.",
+        "직업·일상 기능 제한을 구체적으로 기록합니다.",
+        "해당 장해등급 기준과 지급방식을 확인합니다."
+      ],
+      "facts_to_check_ko": [
+        "치유일",
+        "장해 부위",
+        "객관적 검사",
+        "관절가동범위·기능제한",
+        "기존 장해",
+        "복합 장해",
+        "직업·일상 영향"
+      ],
+      "caution_ko": "통증이 계속된다는 진술만으로 등급이 정해지는 것은 아니며, 아직 치료효과를 기대할 수 있는 상태라면 치유 여부부터 다툼이 생길 수 있습니다.",
+      "search_intents_ko": [
+        "산재 후유장해",
+        "산재 장해급여 등급",
+        "장해연금 일시금 차이"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "치유 시점부터 확정합니다",
+          "paragraphs_ko": [
+            "장해급여는 업무상 부상·질병이 치유된 뒤 신체 등에 장해가 남은 경우의 급여입니다. 치료 중인 상태와 장해평가 단계는 구분해야 합니다.",
+            "치유는 증상이 완전히 사라졌다는 뜻과 항상 같지 않으므로 치료 경과와 더 이상의 치료효과 가능성을 확인합니다."
+          ]
+        },
+        {
+          "heading_ko": "장해를 측정 가능한 자료로 만듭니다",
+          "paragraphs_ko": [
+            "영상·신경검사, 관절가동범위, 감각·운동 기능, 정신기능 평가 등 장해 부위에 맞는 객관적 자료를 준비합니다.",
+            "장해등급에 따라 연금 또는 일시금으로 지급되고 일부 등급은 선택이 제한되므로 예상 등급과 지급방식을 함께 검토합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.industrial-accident.disability-benefit"
+      ],
+      "scenario_ids": [
+        "scenario.industrial-accident.remaining-disability"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0057"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.industrial-accident-survivor-funeral",
+      "content_type": "procedure_guide",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T13:00:00+00:00",
+      "expires_at": "2026-10-22T13:00:00+00:00",
+      "slug": "industrial-accident-survivor-funeral",
+      "title_ko": "업무상 사망이면 유족급여와 장례비는 누가 받나요?",
+      "one_line_answer_ko": "유족급여는 법정 수급자격을 갖춘 유족에게, 장례비는 원칙적으로 실제 장례를 지낸 유족에게 지급하므로 두 수령인을 나누어 확인합니다.",
+      "audience_situation_ko": "사고·과로·직업병으로 근로자가 사망해 가족이 산재 유족급여와 장례비를 준비하는 경우",
+      "key_points_ko": [
+        "사망과 업무 사이 상당인과관계를 먼저 입증합니다.",
+        "민법상 상속순위와 산재 유족급여 수급자격을 동일하게 보지 않습니다.",
+        "유족급여와 장례비는 지급 목적과 수령인이 다릅니다."
+      ],
+      "action_steps_ko": [
+        "사망진단서·부검·응급·과거 진료기록을 확보합니다.",
+        "사망 전 업무시간·부담·노출·사고 자료를 정리합니다.",
+        "가족관계와 생계유지 관계를 확인합니다.",
+        "실제 장례비 지출과 장례 집행자를 기록합니다.",
+        "유족별 수급자격과 지급방식을 검토합니다."
+      ],
+      "facts_to_check_ko": [
+        "사망원인",
+        "업무상 사고·질병",
+        "사망 전 업무부담",
+        "법정 유족관계",
+        "생계유지 관계",
+        "장례 집행자",
+        "장례비 지출"
+      ],
+      "caution_ko": "상속인이 곧바로 산재 유족보상연금 수급권자가 되는 것은 아니며, 민법의 상속재산 분할과 산재 유족급여는 별도 기준을 적용합니다.",
+      "search_intents_ko": [
+        "산재 사망 유족급여",
+        "산재 장례비 누가 받나",
+        "과로사 산재 유족"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "업무상 사망을 먼저 입증합니다",
+          "paragraphs_ko": [
+            "사고사라면 작업과 사고 경위, 질병사라면 업무부담·유해요인과 의학적 경과를 연결해 사망의 업무관련성을 설명합니다.",
+            "사망진단서의 사인만으로 업무관련성이 완성되지 않으므로 근무·노출·진료자료를 시간순으로 결합합니다."
+          ]
+        },
+        {
+          "heading_ko": "유족급여와 장례비를 나눕니다",
+          "paragraphs_ko": [
+            "유족급여는 법정 수급자격에 따라 연금 또는 요건에 따른 일시금으로 지급합니다. 민법상 상속순위와는 구분해야 합니다.",
+            "장례비는 원칙적으로 장례를 지낸 유족에게 지급하고, 유족이 아닌 사람이 부득이하게 장례를 지낸 경우에는 법정 범위에서 실제 비용을 기준으로 할 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.industrial-accident.survivor-funeral"
+      ],
+      "scenario_ids": [
+        "scenario.industrial-accident.death"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0062",
+        "coord.industrial-accident.act-0071"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.industrial-accident-special-coverage",
+      "content_type": "fact_branch_guide",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T13:00:00+00:00",
+      "expires_at": "2026-10-22T13:00:00+00:00",
+      "slug": "industrial-accident-special-coverage",
+      "title_ko": "현장실습생·학생연구자·사업주도 산재보험이 되나요?",
+      "one_line_answer_ko": "법정 현장실습생과 학생연구자는 특례로 적용될 수 있고, 중소기업 사업주 등은 요건을 갖춰 신청·승인을 받은 경우 적용될 수 있습니다.",
+      "audience_situation_ko": "근로계약이 없는 실습생·대학원생·학생연구자·자영업자·가족종사자가 작업 중 다친 경우",
+      "key_points_ko": [
+        "신분 명칭보다 각 특례의 법정 대상을 확인합니다.",
+        "현장실습생·학생연구자와 사업주의 적용방식은 다릅니다.",
+        "사업주 특례는 신청·공단 승인과 보험관계 시점이 중요합니다."
+      ],
+      "action_steps_ko": [
+        "사고 당시 신분과 소속을 확인합니다.",
+        "실습협약·연구과제·노무제공 내용을 확보합니다.",
+        "사업장과 과제의 법정 요건을 확인합니다.",
+        "보험가입 신청·승인·보험료 자료를 조회합니다.",
+        "사고가 실습·연구·사업 수행과 관련됐는지 정리합니다."
+      ],
+      "facts_to_check_ko": [
+        "현장실습생 지정 여부",
+        "학생연구자 요건",
+        "연구개발과제 참여",
+        "중소기업 사업주 요건",
+        "가족종사자 관계",
+        "가입신청·승인일",
+        "사고일과 업무내용"
+      ],
+      "caution_ko": "학생·사업주·가족이라는 명칭만으로 자동 가입되는 것은 아니며, 각 특례의 하위법령상 범위와 보험관계 성립시점을 확인해야 합니다.",
+      "search_intents_ko": [
+        "현장실습생 산재",
+        "대학원생 학생연구자 산재",
+        "자영업자 사업주 산재보험"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "특례별 적용방식이 다릅니다",
+          "paragraphs_ko": [
+            "법정 현장실습생은 적용사업에서 실습과 관련해 입은 재해를 업무상 재해로 볼 수 있고, 법정 학생연구자도 일정한 대학·연구기관과 연구개발과제 범위에서 적용될 수 있습니다.",
+            "중소기업 사업주와 일정한 가족종사자는 일반 근로자와 달리 신청과 공단 승인을 거치는 특례가 적용됩니다."
+          ]
+        },
+        {
+          "heading_ko": "사고일의 보험관계를 확인합니다",
+          "paragraphs_ko": [
+            "실습·연구·사업주 가입 관련 서류와 보험관계 성립일을 사고일과 대조합니다.",
+            "특례 대상이 아니라면 곧바로 끝내지 말고 실제 지휘·감독과 보수 관계에 따라 일반 근로자성이 성립하는지도 별도로 봅니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.industrial-accident.workplace-scope",
+        "rule.industrial-accident.special-coverage"
+      ],
+      "scenario_ids": [
+        "scenario.industrial-accident.special-person"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0005",
+        "coord.industrial-accident.act-0006",
+        "coord.industrial-accident.act-0123",
+        "coord.industrial-accident.act-0123-2",
+        "coord.industrial-accident.act-0124"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.industrial-accident-limitation-period",
+      "content_type": "deadline_guide",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T13:00:00+00:00",
+      "expires_at": "2026-10-22T13:00:00+00:00",
+      "slug": "industrial-accident-limitation-period",
+      "title_ko": "오래된 산재도 지금 보험급여를 청구할 수 있나요?",
+      "one_line_answer_ko": "보험급여 청구권은 원칙적으로 3년, 장해·유족·장례비와 법정 진폐연금은 5년이므로 급여별 발생시점과 과거 청구 여부를 따로 계산합니다.",
+      "audience_situation_ko": "사고·질병 발생 후 시간이 지났거나 뒤늦게 직업병·장해·업무상 사망 가능성을 알게 된 경우",
+      "key_points_ko": [
+        "재해일 하나로 모든 급여의 시효를 계산하지 않습니다.",
+        "급여 종류에 따라 3년과 5년을 구분합니다.",
+        "과거 청구와 시효중단 자료를 급여별로 확인합니다."
+      ],
+      "action_steps_ko": [
+        "청구하려는 급여 종류를 먼저 적습니다.",
+        "치료·취업불능·치유·장해·사망 날짜를 정리합니다.",
+        "과거 신청서·접수증·결정서를 확보합니다.",
+        "각 급여의 청구권 발생시점을 확인합니다.",
+        "불승인 결정에 대한 불복기간과 소멸시효를 별도로 관리합니다."
+      ],
+      "facts_to_check_ko": [
+        "재해·발병일",
+        "요양일",
+        "취업불능 기간",
+        "치유·장해 발생시점",
+        "사망일",
+        "급여 종류",
+        "과거 청구·접수",
+        "공단 결정 통지일"
+      ],
+      "caution_ko": "보험급여 청구권의 소멸시효와 불승인 등 공단 결정에 대한 심사·재심사 청구기간은 서로 다른 제도이므로 하나가 남았다고 다른 하나도 남는 것은 아닙니다.",
+      "search_intents_ko": [
+        "산재 소멸시효 3년 5년",
+        "오래된 산재 신청",
+        "산재 장해급여 청구기간"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "급여별 기간을 나눕니다",
+          "paragraphs_ko": [
+            "산재보험급여 청구권은 원칙적으로 3년간 행사하지 않으면 소멸합니다. 장해급여, 유족급여, 장례비, 진폐보상연금과 진폐유족연금은 5년 기준을 적용합니다.",
+            "같은 재해에서도 요양급여·휴업급여·장해급여의 청구권이 발생하는 시점은 같지 않을 수 있으므로 날짜표를 만듭니다."
+          ]
+        },
+        {
+          "heading_ko": "시효와 불복기간을 분리합니다",
+          "paragraphs_ko": [
+            "과거 청구가 있었다면 접수일, 청구 범위, 공단 결정일을 확인해 어떤 권리에 어떤 영향이 있었는지 검토합니다.",
+            "공단의 불승인이나 급여결정에 불복하는 심사·재심사 기간은 보험급여 청구권의 소멸시효와 별도이므로 결정 통지일부터 따로 관리합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.industrial-accident.limitation"
+      ],
+      "scenario_ids": [
+        "scenario.industrial-accident.claim-time"
+      ],
+      "source_coordinate_ids": [
+        "coord.industrial-accident.act-0112"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "related_content_ids": []
+    }
+  ]
+}
