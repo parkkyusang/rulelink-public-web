@@ -254,7 +254,7 @@
       "norm": {
         "actor_ko": "피상속인의 법정상속인이 될 수 있는 친족",
         "conditions_ko": "피상속인의 사망으로 상속이 개시되고 선순위 친족의 존재와 촌수를 확인하는 경우",
-        "legal_effect_ko": "법정상속인은 직계비속, 직계존속, 형제자매, 4촌 이내 방계혈족 순이며 동순위에서는 최근친이 선순위다."
+        "legal_effect_ko": "선순위 상속인이 있으면 후순위 혈족은 상속인이 되지 않고, 같은 순위·같은 촌수의 사람이 여럿이면 공동상속인이 된다."
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1000"
@@ -267,7 +267,7 @@
       "norm": {
         "actor_ko": "피상속인의 법률상 배우자",
         "conditions_ko": "법률상 배우자가 있고 직계비속·직계존속의 존재 여부를 확인하는 경우",
-        "legal_effect_ko": "배우자는 직계비속 또는 직계존속과 동순위 공동상속인이 되고 그들이 없으면 단독상속인이 된다."
+        "legal_effect_ko": "직계비속이나 직계존속이 있으면 배우자와 함께 공동상속하고, 둘 다 없으면 배우자가 단독상속한다."
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1003"
@@ -280,7 +280,7 @@
       "norm": {
         "actor_ko": "피상속인의 배우자와 공동상속인이던 자녀 전원",
         "conditions_ko": "법률상 배우자가 존재하고 공동상속인인 자녀가 모두 적법하게 상속을 포기한 경우",
-        "legal_effect_ko": "배우자와 자녀가 공동상속인인 상황에서 자녀 전부가 상속을 포기하면 배우자가 단독상속인이 되고 손자녀가 배우자와 공동상속인이 되지 않는다는 전원합의체 결정이 있다."
+        "legal_effect_ko": "자녀 전원이 상속을 포기한 경우 배우자가 단독상속하며, 손자녀는 포기한 자녀를 대신해 배우자와 공동상속하지 않는다."
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.src-supreme-2020geu42"
@@ -293,7 +293,7 @@
       "norm": {
         "actor_ko": "상속개시 사실을 안 상속인",
         "conditions_ko": "상속개시 있음을 안 날부터 3개월 안에 승인·한정승인·포기를 선택하는 경우",
-        "legal_effect_ko": "상속인은 상속개시 있음을 안 날부터 3개월 안에 단순승인·한정승인·포기를 선택할 수 있고 가정법원이 기간을 연장할 수 있다."
+        "legal_effect_ko": "상속인은 정해진 기간 안에 승인 또는 포기를 결정해야 하고, 가정법원이 기간을 연장한 경우에는 연장된 기간까지 선택할 수 있다."
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1019"
@@ -306,7 +306,7 @@
       "norm": {
         "actor_ko": "상속을 포기하려는 상속인",
         "conditions_ko": "상속개시 있음을 안 날부터 3개월 안에 가정법원에 상속포기를 신고하는 경우",
-        "legal_effect_ko": "상속포기는 3개월 기간 내 가정법원에 신고해야 하고 상속개시 때로 소급해 효력이 생긴다."
+        "legal_effect_ko": "가정법원이 신고를 수리하면 포기자는 상속이 시작된 때부터 상속인이 아니었던 것으로 취급된다."
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1041",
@@ -321,7 +321,7 @@
       "norm": {
         "actor_ko": "상속채무를 상속재산 한도에서 변제하려는 상속인",
         "conditions_ko": "상속인이 재산목록을 붙여 한정승인을 신고하고 법원이 이를 수리한 경우",
-        "legal_effect_ko": "한정승인은 상속으로 취득할 재산 한도에서 피상속인의 채무와 유증을 변제하는 조건의 승인이다."
+        "legal_effect_ko": "상속인은 자기 고유재산이 아니라 상속재산의 범위에서 피상속인의 채무와 유증을 변제할 책임을 진다."
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1028"
@@ -334,7 +334,7 @@
       "norm": {
         "actor_ko": "한정승인을 수리받은 상속인과 상속채권자·수증자",
         "conditions_ko": "한정승인 수리 후 상속채권자와 수증자에게 공고·최고하고 상속재산으로 변제하는 경우",
-        "legal_effect_ko": "한정승인은 재산목록을 붙여 법원에 신고하고 수리 후 공고·최고와 채권자별 변제 절차를 따라야 한다."
+        "legal_effect_ko": "신고가 수리된 뒤에는 상속채권자와 수증자에게 공고·최고하고 법정 순서에 따라 상속재산으로 변제해야 한다."
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1030",
@@ -356,7 +356,7 @@
       "norm": {
         "actor_ko": "상속채무 초과 사실을 뒤늦게 안 상속인",
         "conditions_ko": "중대한 과실 없이 채무초과를 알지 못한 채 단순승인한 뒤 그 사실을 안 경우",
-        "legal_effect_ko": "중대한 과실 없이 채무초과 사실을 3개월 내 알지 못하고 단순승인한 경우 그 사실을 안 날부터 3개월 내 특별한정승인이 가능할 수 있다."
+        "legal_effect_ko": "요건을 충족하면 채무초과 사실을 안 날부터 3개월 안에 한정승인을 신고해 책임을 상속재산 범위로 제한할 수 있다."
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1019"
@@ -369,7 +369,7 @@
       "norm": {
         "actor_ko": "상속재산을 처분하려는 상속인",
         "conditions_ko": "상속포기·한정승인 전후에 상속재산을 처분하거나 은닉·부정소비해 법정단순승인 사유가 문제되는 경우",
-        "legal_effect_ko": "상속재산 처분, 기간 내 포기·한정승인 미실시, 포기·한정승인 후 은닉·부정소비 등은 법정단순승인 사유가 될 수 있다."
+        "legal_effect_ko": "법정단순승인 사유가 인정되면 상속인은 단순승인한 것으로 보아 상속채무를 제한 없이 승계할 수 있다."
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1026",
@@ -383,7 +383,7 @@
       "norm": {
         "actor_ko": "상속권 상실선고를 받은 사람이 있는 상속관계의 직계비속·배우자",
         "conditions_ko": "2026년 3월 17일 시행 개정 민법에 따라 상속권 상실과 대습상속의 연결을 판단하는 경우",
-        "legal_effect_ko": "2026년 3월 17일 개정 민법은 상속권 상실선고 제도와 연결해 제1001조 대습상속 사유에 제1004조의2를 반영했다."
+        "legal_effect_ko": "상속권 상실선고를 받은 사람이 있으면 그 직계비속과 배우자에게 대습상속이 성립하는지 추가로 판단해야 한다."
       },
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1001",
