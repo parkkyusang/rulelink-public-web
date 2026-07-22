@@ -1,0 +1,133 @@
+.header {
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 28px 24px;
+  position: relative;
+  width: 100%;
+  z-index: 40;
+}
+
+.headerRow {
+  align-items: baseline;
+  display: flex;
+  gap: 12px;
+  min-width: 0;
+}
+
+.brand {
+  flex: 0 0 auto;
+  font-family: var(--font-display);
+  font-size: 29px;
+  font-weight: 700;
+  letter-spacing: -.04em;
+  white-space: nowrap;
+}
+
+.desktopNav {
+  display: flex;
+  gap: 24px;
+  margin-left: auto;
+}
+
+.desktopNav a {
+  border-radius: 7px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 3px;
+  transition: color .18s ease;
+  white-space: nowrap;
+}
+
+.desktopNav a:hover {
+  color: var(--green);
+}
+
+.mobileActions,
+.mobilePanel {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .header {
+    max-width: none;
+    padding: 14px 18px;
+  }
+
+  .headerRow {
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .brand {
+    font-size: 27px;
+    min-width: 0;
+  }
+
+  .desktopNav {
+    display: none;
+  }
+
+  .mobileActions {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 6px;
+  }
+
+  .mobileAction {
+    align-items: center;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: var(--muted-strong);
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: column;
+    font-size: 10px;
+    font-weight: 750;
+    gap: 1px;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 48px;
+    padding: 3px 6px;
+    white-space: nowrap;
+  }
+
+  .mobileAction:hover,
+  .mobileAction[aria-expanded='true'] {
+    background: var(--mint);
+    border-color: var(--line);
+    color: var(--green);
+  }
+
+  .mobilePanel {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: var(--shadow-card);
+    display: grid;
+    gap: 3px;
+    left: 18px;
+    padding: 8px;
+    position: absolute;
+    right: 18px;
+    top: calc(100% - 6px);
+  }
+
+  .mobilePanel a {
+    border-radius: 10px;
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 750;
+    padding: 13px 14px;
+    white-space: nowrap;
+  }
+
+  .mobilePanel a:hover,
+  .mobilePanel a:focus-visible {
+    background: var(--mint);
+    color: var(--green);
+  }
+}
