@@ -22,6 +22,7 @@ export function normalizeChangedPath(value) {
 export function isPublicationGovernedPath(filePath) {
   const value = normalizeChangedPath(filePath);
   return value === 'README.md'
+    || value === '.github/workflows/public-web-checks.yml'
     || value === 'docs/CONTENT_HANDOFF_CONTRACT_KO.md'
     || value === 'docs/PUBLICATION_SEMANTIC_OVERLAP_CONTRACT_KO.md'
     || value === 'artifacts/publication/production-queue.json'
@@ -67,7 +68,8 @@ export function allowedForRole(role, filePath) {
   }
   if (role === 'release') return value === 'web/rulelink_public_next/deploy/release.json';
   if (role === 'governance') {
-    return value === 'docs/CONTENT_HANDOFF_CONTRACT_KO.md'
+    return value === '.github/workflows/public-web-checks.yml'
+      || value === 'docs/CONTENT_HANDOFF_CONTRACT_KO.md'
       || value === 'docs/PUBLICATION_SEMANTIC_OVERLAP_CONTRACT_KO.md'
       || value === 'artifacts/publication/production-queue.json'
       || value === 'web/rulelink_public_next/package.json'
