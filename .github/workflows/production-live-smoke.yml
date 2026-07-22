@@ -6,6 +6,9 @@ on:
       - main
     paths:
       - web/rulelink_public_next/deploy/release.json
+      - web/rulelink_public_next/scripts/smoke-live-publication.mjs
+      - web/rulelink_public_next/scripts/smoke-live-publication.test.mjs
+      - .github/workflows/production-live-smoke.yml
   workflow_dispatch:
 
 permissions:
