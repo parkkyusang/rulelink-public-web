@@ -253,7 +253,7 @@ export function validateProductionQueue(queue) {
   if (summary.official_source_references_checked !== sourceTotal) {
     errors.push('감사한 공식 근거 참조 수와 대기열 근거 합계가 다릅니다.');
   }
-  const statusSummaryKeys = ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked'];
+  const statusSummaryKeys = ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated'];
   for (const status of statusSummaryKeys) {
     const actual = queue.items.filter(item => item.status === status).length;
     if (summary[status] !== actual) {
