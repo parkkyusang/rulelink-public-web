@@ -1,0 +1,1098 @@
+{
+  "schema": "rulelink_public_knowledge_topic_v1",
+  "topic_id": "hub.neighbor-leak-noise",
+  "sources": [
+    {
+      "coordinate_id": "coord.neighbor-leak-noise.civil-0214",
+      "source_id": "civil_act_ko_0214",
+      "law_name_ko": "민법",
+      "article_no": "제214조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C214%EC%A1%B0",
+      "source_snapshot_id": "snapshot:7f6091e41efd1c2b5adb6f12d6d8aad7",
+      "last_verified_at": "2026-07-23T06:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.neighbor-leak-noise.civil-0217",
+      "source_id": "civil_act_ko_0217",
+      "law_name_ko": "민법",
+      "article_no": "제217조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C217%EC%A1%B0",
+      "source_snapshot_id": "snapshot:7feaf7436d1b7522c275d623fde1ca45",
+      "last_verified_at": "2026-07-23T06:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.neighbor-leak-noise.civil-0623",
+      "source_id": "civil_act_ko_0623",
+      "law_name_ko": "민법",
+      "article_no": "제623조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C623%EC%A1%B0",
+      "source_snapshot_id": "snapshot:d53633aafa631d5b1fa9cf28e8cac6e9",
+      "last_verified_at": "2026-07-23T06:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.neighbor-leak-noise.civil-0626",
+      "source_id": "civil_act_ko_0626",
+      "law_name_ko": "민법",
+      "article_no": "제626조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C626%EC%A1%B0",
+      "source_snapshot_id": "snapshot:272fa1038442160c56a6343cb6daf914",
+      "last_verified_at": "2026-07-23T06:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.neighbor-leak-noise.civil-0750",
+      "source_id": "civil_act_ko_0750",
+      "law_name_ko": "민법",
+      "article_no": "제750조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C750%EC%A1%B0",
+      "source_snapshot_id": "snapshot:cdf125767ab6640e07d557f6c73a0c53",
+      "last_verified_at": "2026-07-23T06:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.neighbor-leak-noise.civil-0758",
+      "source_id": "civil_act_ko_0758",
+      "law_name_ko": "민법",
+      "article_no": "제758조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C758%EC%A1%B0",
+      "source_snapshot_id": "snapshot:3e889ba204742d5b6bead0009d0e244b",
+      "last_verified_at": "2026-07-23T06:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.neighbor-leak-noise.aggregate-0005",
+      "source_id": "aggregate_buildings_ko_0005",
+      "law_name_ko": "집합건물의 소유 및 관리에 관한 법률",
+      "article_no": "제5조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A7%91%ED%95%A9%EA%B1%B4%EB%AC%BC%EC%9D%98%20%EC%86%8C%EC%9C%A0%20%EB%B0%8F%20%EA%B4%80%EB%A6%AC%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C5%EC%A1%B0",
+      "source_snapshot_id": "snapshot:ba0b06aad5b4edc9b9673ab8c2cdb83b",
+      "last_verified_at": "2026-07-23T06:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.neighbor-leak-noise.aggregate-0006",
+      "source_id": "aggregate_buildings_ko_0006",
+      "law_name_ko": "집합건물의 소유 및 관리에 관한 법률",
+      "article_no": "제6조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A7%91%ED%95%A9%EA%B1%B4%EB%AC%BC%EC%9D%98%20%EC%86%8C%EC%9C%A0%20%EB%B0%8F%20%EA%B4%80%EB%A6%AC%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C6%EC%A1%B0",
+      "source_snapshot_id": "snapshot:e2743432ae2da484402e50c9fe576f13",
+      "last_verified_at": "2026-07-23T06:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.neighbor-leak-noise.aggregate-0016",
+      "source_id": "aggregate_buildings_ko_0016",
+      "law_name_ko": "집합건물의 소유 및 관리에 관한 법률",
+      "article_no": "제16조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A7%91%ED%95%A9%EA%B1%B4%EB%AC%BC%EC%9D%98%20%EC%86%8C%EC%9C%A0%20%EB%B0%8F%20%EA%B4%80%EB%A6%AC%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C16%EC%A1%B0",
+      "source_snapshot_id": "snapshot:5efc0ec9301b5c8de1beba0aacdb5c3",
+      "last_verified_at": "2026-07-23T06:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.neighbor-leak-noise.aggregate-0025",
+      "source_id": "aggregate_buildings_ko_0025",
+      "law_name_ko": "집합건물의 소유 및 관리에 관한 법률",
+      "article_no": "제25조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A7%91%ED%95%A9%EA%B1%B4%EB%AC%BC%EC%9D%98%20%EC%86%8C%EC%9C%A0%20%EB%B0%8F%20%EA%B4%80%EB%A6%AC%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C25%EC%A1%B0",
+      "source_snapshot_id": "snapshot:0673814d538b9d1e1ed90911a4759e6",
+      "last_verified_at": "2026-07-23T06:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.neighbor-leak-noise.apartment-0020",
+      "source_id": "law_012345_ko_0020",
+      "law_name_ko": "공동주택관리법",
+      "article_no": "제20조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B3%B5%EB%8F%99%EC%A3%BC%ED%83%9D%EA%B4%80%EB%A6%AC%EB%B2%95/%EC%A0%9C20%EC%A1%B0",
+      "source_snapshot_id": "snapshot:d3f67100994e64661c28706d9e05db8b",
+      "last_verified_at": "2026-07-23T06:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.neighbor-leak-noise.apartment-0071",
+      "source_id": "law_012345_ko_0071",
+      "law_name_ko": "공동주택관리법",
+      "article_no": "제71조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B3%B5%EB%8F%99%EC%A3%BC%ED%83%9D%EA%B4%80%EB%A6%AC%EB%B2%95/%EC%A0%9C71%EC%A1%B0",
+      "source_snapshot_id": "snapshot:b7170b9712f31c225f71396d3a51f672",
+      "last_verified_at": "2026-07-23T06:00:00+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.neighbor-leak-noise",
+      "slug": "neighbor-leak-noise",
+      "title_ko": "누수·층간소음·공용부분 분쟁",
+      "description_ko": "누수 원인과 증거, 임대인의 수선·비용상환, 점유자·소유자·관리단 책임, 전유·공용부분, 층간소음 관리·조정, 이웃방해 중단과 손해배상을 단계별로 찾습니다.",
+      "content_ids": [
+        "content.neighbor-leak-noise-leak-origin-evidence",
+        "content.neighbor-leak-noise-rental-repair-duty",
+        "content.neighbor-leak-noise-urgent-repair-reimbursement",
+        "content.neighbor-leak-noise-occupant-owner-liability",
+        "content.neighbor-leak-noise-exclusive-common-area",
+        "content.neighbor-leak-noise-inspection-access",
+        "content.neighbor-leak-noise-floor-noise-management-route",
+        "content.neighbor-leak-noise-floor-noise-mediation",
+        "content.neighbor-leak-noise-neighbor-interference-limit",
+        "content.neighbor-leak-noise-injunction-vs-damages"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.neighbor-leak-noise.leak-origin-evidence",
+      "title_ko": "누수가 생기면 수리부터 해야 하나, 원인 증거부터 남겨야 하나",
+      "proposition_ko": "누수 책임은 물이 보인 위치만으로 정하지 않고 설치·보존상의 하자, 실제 관리주체, 원인과 손해의 인과관계를 자료로 확인합니다.",
+      "norm": {
+        "actor_ko": "누수 피해자와 건물의 점유자·소유자·관리주체",
+        "conditions_ko": "누수 원인과 관리영역, 손해 확대 경위를 확인할 수 있는 경우",
+        "legal_effect_ko": "긴급 방수와 별개로 원인 조사 전후 자료를 보존해 책임주체와 손해 범위를 판단합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.aggregate-0006",
+        "coord.neighbor-leak-noise.civil-0758"
+      ]
+    },
+    {
+      "rule_id": "rule.neighbor-leak-noise.rental-repair-duty",
+      "title_ko": "임차한 집의 누수는 임대인이 반드시 고쳐야 하나",
+      "proposition_ko": "임대인은 계약 존속 중 임차목적물을 사용·수익에 필요한 상태로 유지할 의무를 부담합니다.",
+      "norm": {
+        "actor_ko": "임대인과 임차인",
+        "conditions_ko": "하자가 임차목적물의 정상적인 사용·수익을 방해하고 수선 필요가 있는 경우",
+        "legal_effect_ko": "임차인은 하자와 수선 필요를 알리고 상당한 수선 조치를 요구할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.civil-0623"
+      ]
+    },
+    {
+      "rule_id": "rule.neighbor-leak-noise.urgent-repair-reimbursement",
+      "title_ko": "임차인이 급히 누수를 고친 비용을 임대인에게 청구할 수 있나",
+      "proposition_ko": "임차인이 임차물 보존에 필요한 비용을 지출한 때에는 임대인에게 그 상환을 청구할 수 있습니다.",
+      "norm": {
+        "actor_ko": "필요비를 지출한 임차인과 임대인",
+        "conditions_ko": "누수 확산 방지 등 임차물 보존에 필요한 비용을 실제 지출한 경우",
+        "legal_effect_ko": "임차인은 필요비의 성격과 합리적인 금액을 자료로 제시해 상환을 청구할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.civil-0626"
+      ]
+    },
+    {
+      "rule_id": "rule.neighbor-leak-noise.occupant-owner-liability",
+      "title_ko": "윗집 누수면 거주자와 집주인 중 누가 배상하나",
+      "proposition_ko": "고의·과실의 위법행위 책임과 공작물의 설치·보존 하자에 관한 점유자·소유자 책임은 성립요건과 책임 순서가 다릅니다.",
+      "norm": {
+        "actor_ko": "누수 원인 공간의 점유자·소유자와 피해자",
+        "conditions_ko": "사용상 과실 또는 설비의 설치·보존 하자가 손해를 일으킨 경우",
+        "legal_effect_ko": "사용자 과실, 점유자의 관리주의, 소유자 책임과 구상관계를 원인별로 판단합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.civil-0750",
+        "coord.neighbor-leak-noise.civil-0758"
+      ]
+    },
+    {
+      "rule_id": "rule.neighbor-leak-noise.exclusive-common-area",
+      "title_ko": "누수 원인이 전유부분인지 공용부분인지 어떻게 가르나",
+      "proposition_ko": "1동 건물의 설치·보존 흠으로 타인에게 손해가 생기면 공용부분의 흠으로 추정되며 공용부분 보존·관리에는 관리단과 관리인의 권한·의무가 문제됩니다.",
+      "norm": {
+        "actor_ko": "구분소유자·점유자·관리단·관리인",
+        "conditions_ko": "누수 원인이 전유설비인지 공용배관·외벽·옥상 등 공용부분인지 다투는 경우",
+        "legal_effect_ko": "공용부분 추정, 관리규약, 보존행위와 실제 관리주체를 대조해 조치·비용 부담 주체를 정합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.aggregate-0006",
+        "coord.neighbor-leak-noise.aggregate-0016",
+        "coord.neighbor-leak-noise.aggregate-0025"
+      ]
+    },
+    {
+      "rule_id": "rule.neighbor-leak-noise.inspection-access",
+      "title_ko": "누수 확인을 위해 다른 세대에 들어가거나 벽을 열 수 있나",
+      "proposition_ko": "구분소유자·점유자는 전유부분이나 공용부분의 보존·개량에 필요한 범위에서 다른 전유부분 등의 사용을 청구할 수 있으며 상대방 손해는 보상해야 합니다.",
+      "norm": {
+        "actor_ko": "점검·보수를 요구하는 구분소유자·점유자와 협조 대상 세대",
+        "conditions_ko": "누수 원인 확인과 보존공사에 다른 세대 공간 사용이 필요한 경우",
+        "legal_effect_ko": "범위·일정·복구·보상을 협의해 필요한 사용을 청구하되 임의 진입은 피해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.aggregate-0005"
+      ]
+    },
+    {
+      "rule_id": "rule.neighbor-leak-noise.floor-noise-management-route",
+      "title_ko": "층간소음은 관리사무소에 무엇을 요청할 수 있나",
+      "proposition_ko": "층간소음 피해자는 관리주체에 발생 사실을 알리고 중단·차단 조치 권고를 요청할 수 있으며 관리주체는 필요한 사실조사를 할 수 있습니다.",
+      "norm": {
+        "actor_ko": "층간소음 피해 입주자, 발생 입주자와 관리주체",
+        "conditions_ko": "공동주택의 뛰기·걷기·음향기기 등 활동 소음으로 피해가 발생한 경우",
+        "legal_effect_ko": "관리주체 통지·사실확인·권고 절차를 거치고 상대 입주자는 조치와 권고에 협조해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.apartment-0020"
+      ]
+    },
+    {
+      "rule_id": "rule.neighbor-leak-noise.floor-noise-mediation",
+      "title_ko": "관리사무소 권고 뒤에도 층간소음이 계속되면 어디에 신청하나",
+      "proposition_ko": "관리주체 조치 뒤에도 층간소음이 계속되면 층간소음관리위원회 조정을 신청할 수 있고, 계속될 경우 법정 분쟁조정위원회에 조정을 신청할 수 있습니다.",
+      "norm": {
+        "actor_ko": "층간소음 피해·발생 입주자와 각 조정기관",
+        "conditions_ko": "관리주체 또는 단지 위원회 조치에도 반복 소음이 계속되는 경우",
+        "legal_effect_ko": "사전 처리 기록과 소음 자료를 갖추어 해당 단지·지역에서 이용 가능한 조정절차를 선택합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.apartment-0020",
+        "coord.neighbor-leak-noise.apartment-0071"
+      ]
+    },
+    {
+      "rule_id": "rule.neighbor-leak-noise.neighbor-interference-limit",
+      "title_ko": "이웃의 소음·진동·연기·물이 불편하면 모두 막아달라고 할 수 있나",
+      "proposition_ko": "토지소유자는 소음·진동·연기·액체 등으로 이웃 생활에 고통을 주지 않도록 적당한 조치를 해야 하지만 통상 용도에 적당한 방해는 인용 문제가 생깁니다.",
+      "norm": {
+        "actor_ko": "방해를 일으키는 토지소유자·점유자와 이웃 거주자",
+        "conditions_ko": "소음·진동·연기·액체 등이 이웃 토지 사용이나 생활을 방해하는 경우",
+        "legal_effect_ko": "지역·용도·시간·강도·반복성과 저감 가능성을 종합해 중지·저감 요구의 범위를 정합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.civil-0217"
+      ]
+    },
+    {
+      "rule_id": "rule.neighbor-leak-noise.injunction-vs-damages",
+      "title_ko": "누수·소음은 중단 청구와 손해배상 중 무엇을 해야 하나",
+      "proposition_ko": "소유권 방해의 제거·예방청구와 고의·과실의 위법행위에 대한 손해배상은 구제 목적과 입증대상이 다릅니다.",
+      "norm": {
+        "actor_ko": "현재·장래 방해를 받는 소유자와 이미 손해를 입은 피해자",
+        "conditions_ko": "방해가 계속되거나 재발 우려가 있고 과거 손해도 발생한 경우",
+        "legal_effect_ko": "방해 원인과 제거 방법을 특정하고, 손해 항목·금액·인과관계를 별도로 입증합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.civil-0214",
+        "coord.neighbor-leak-noise.civil-0750"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.neighbor-leak-noise.leak-origin-evidence",
+      "question_ko": "보수 전 누수 지점·수분측정·배관점검과 피해 목록을 남겼나요?",
+      "decision_fact_ko": "최초 발견 시각, 물이 나온 위치, 날씨·사용 상황, 수분측정, 점검보고서, 보수 전후 사진",
+      "when_true_ko": "원인과 피해를 분리해 점유자·소유자·관리단·임대인 책임 분기로 이동합니다.",
+      "when_false_ko": "긴급조치 뒤라도 작업자 소견, 철거 사진, 영수증과 재발 기록을 보완합니다.",
+      "rule_ids": [
+        "rule.neighbor-leak-noise.leak-origin-evidence"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.aggregate-0006",
+        "coord.neighbor-leak-noise.civil-0758"
+      ]
+    },
+    {
+      "scenario_id": "scenario.neighbor-leak-noise.rental-repair-duty",
+      "question_ko": "누수가 정상적인 거주를 방해하고 임대인에게 구체적으로 통지됐나요?",
+      "decision_fact_ko": "임대차계약, 하자 위치, 사용 방해 정도, 발생 원인, 통지일·방법, 임대인 답변",
+      "when_true_ko": "수선 범위와 일정, 임시조치, 손해 확대 방지를 서면으로 협의합니다.",
+      "when_false_ko": "하자 상태와 사용 방해를 객관화해 임대인에게 먼저 통지합니다.",
+      "rule_ids": [
+        "rule.neighbor-leak-noise.rental-repair-duty"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.civil-0623"
+      ]
+    },
+    {
+      "scenario_id": "scenario.neighbor-leak-noise.urgent-repair-reimbursement",
+      "question_ko": "긴급 보수의 필요성과 실제 지급액, 임대인 통지 경위를 입증할 수 있나요?",
+      "decision_fact_ko": "누수 긴급성, 임대인 연락 기록, 견적, 작업내역, 결제증빙, 교체 부품·사진",
+      "when_true_ko": "필요비 항목과 임의 개선비를 나누어 상환을 서면 청구합니다.",
+      "when_false_ko": "작업업체 확인서와 계좌·카드 내역, 당시 연락 기록을 보완합니다.",
+      "rule_ids": [
+        "rule.neighbor-leak-noise.urgent-repair-reimbursement"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.civil-0626"
+      ]
+    },
+    {
+      "scenario_id": "scenario.neighbor-leak-noise.occupant-owner-liability",
+      "question_ko": "사람의 사용상 과실인가, 배관·방수층 등 공작물 하자인가?",
+      "decision_fact_ko": "점유 형태, 소유관계, 누수 원인, 과거 수리, 관리 주의, 피해와 인과관계",
+      "when_true_ko": "사용행위와 관리영역에 따라 불법행위 또는 공작물 책임을 검토합니다.",
+      "when_false_ko": "공용배관·외벽·옥상 등 다른 원인과 관리단 책임을 확인합니다.",
+      "rule_ids": [
+        "rule.neighbor-leak-noise.occupant-owner-liability"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.civil-0750",
+        "coord.neighbor-leak-noise.civil-0758"
+      ]
+    },
+    {
+      "scenario_id": "scenario.neighbor-leak-noise.exclusive-common-area",
+      "question_ko": "원인 설비가 한 세대만을 위한 것인가, 여러 세대·건물 전체를 위한 것인가?",
+      "decision_fact_ko": "배관 계통도, 설비 위치·기능, 공동 사용 여부, 관리규약, 점검보고서, 과거 관리비 지출",
+      "when_true_ko": "전유부분이면 해당 소유자·점유자의 사용·관리 책임을 중심으로 봅니다.",
+      "when_false_ko": "공용부분 추정과 관리단·관리인의 보존·집행 권한을 검토합니다.",
+      "rule_ids": [
+        "rule.neighbor-leak-noise.exclusive-common-area"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.aggregate-0006",
+        "coord.neighbor-leak-noise.aggregate-0016",
+        "coord.neighbor-leak-noise.aggregate-0025"
+      ]
+    },
+    {
+      "scenario_id": "scenario.neighbor-leak-noise.inspection-access",
+      "question_ko": "점검 범위와 필요성, 복구·보상 방안을 상대 세대에 구체적으로 제시했나요?",
+      "decision_fact_ko": "점검 필요성, 대상 공간, 작업 시간, 철거 범위, 복구 방법, 예상 손해·보험",
+      "when_true_ko": "관리주체 입회와 작업계획을 정해 서면 동의를 받습니다.",
+      "when_false_ko": "전문업체 소견과 최소침해 작업안을 마련해 협조를 다시 요청합니다.",
+      "rule_ids": [
+        "rule.neighbor-leak-noise.inspection-access"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.aggregate-0005"
+      ]
+    },
+    {
+      "scenario_id": "scenario.neighbor-leak-noise.floor-noise-management-route",
+      "question_ko": "소음 일지와 녹음, 발생 세대·시간대 자료를 관리주체에 제출했나요?",
+      "decision_fact_ko": "발생 날짜·시간, 소음 유형, 지속시간, 녹음·측정, 관리주체 접수, 상대방 협조·재발",
+      "when_true_ko": "접수번호와 조사·권고 결과를 보존하고 재발 여부를 기록합니다.",
+      "when_false_ko": "추정만 적지 말고 반복 패턴과 생활 피해를 일정 기간 기록합니다.",
+      "rule_ids": [
+        "rule.neighbor-leak-noise.floor-noise-management-route"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.apartment-0020"
+      ]
+    },
+    {
+      "scenario_id": "scenario.neighbor-leak-noise.floor-noise-mediation",
+      "question_ko": "관리주체 조치와 단지 위원회 조정 뒤에도 같은 소음이 계속됐나요?",
+      "decision_fact_ko": "관리주체 접수, 권고 내용, 위원회 구성 여부, 조정 결과, 재발 일지, 공동주택 소재지",
+      "when_true_ko": "공동주택관리 또는 환경분쟁 조정기관의 관할·신청서류를 확인합니다.",
+      "when_false_ko": "먼저 관리주체 통지와 단지 내부 조정 가능성을 확인합니다.",
+      "rule_ids": [
+        "rule.neighbor-leak-noise.floor-noise-mediation"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.apartment-0020",
+        "coord.neighbor-leak-noise.apartment-0071"
+      ]
+    },
+    {
+      "scenario_id": "scenario.neighbor-leak-noise.neighbor-interference-limit",
+      "question_ko": "방해가 지역의 통상적인 사용 범위를 넘는다는 객관 자료가 있나요?",
+      "decision_fact_ko": "방해 유형, 강도·측정값, 시간대, 반복기간, 지역 용도, 건강·재산 피해",
+      "when_true_ko": "구체적인 저감조치와 중지 범위를 특정해 통지·조정·청구를 검토합니다.",
+      "when_false_ko": "감정 표현보다 일지·측정·제3자 확인으로 생활방해 정도를 객관화합니다.",
+      "rule_ids": [
+        "rule.neighbor-leak-noise.neighbor-interference-limit"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.civil-0217"
+      ]
+    },
+    {
+      "scenario_id": "scenario.neighbor-leak-noise.injunction-vs-damages",
+      "question_ko": "지금도 계속되는 방해인가, 이미 끝났지만 손해만 남은 상태인가?",
+      "decision_fact_ko": "현재 방해 여부, 재발 가능성, 제거 방법, 고의·과실, 손해 항목·금액, 인과관계",
+      "when_true_ko": "중단·수리·예방 범위와 손해배상 항목을 나누어 청구합니다.",
+      "when_false_ko": "과거 손해만 남았다면 수리비·재산손해 등 배상 자료에 집중합니다.",
+      "rule_ids": [
+        "rule.neighbor-leak-noise.injunction-vs-damages"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.civil-0214",
+        "coord.neighbor-leak-noise.civil-0750"
+      ]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.neighbor-leak-noise-leak-origin-evidence",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "neighbor-leak-noise-leak-origin-evidence",
+      "title_ko": "누수가 생기면 수리부터 해야 하나, 원인 증거부터 남겨야 하나",
+      "one_line_answer_ko": "추가 피해를 막는 긴급조치는 하되, 철거·보수 전에 발생 지점·시간·수분 상태와 전문 점검 결과를 남겨야 원인과 책임주체를 가를 수 있습니다.",
+      "audience_situation_ko": "천장·벽·배관에서 물이 새어 윗집·관리사무소·임대인 중 누구에게 연락할지 모르는 사람",
+      "key_points_ko": [
+        "누수 책임은 물이 보인 위치만으로 정하지 않고 설치·보존상의 하자, 실제 관리주체, 원인과 손해의 인과관계를 자료로 확인합니다.",
+        "긴급 방수와 별개로 원인 조사 전후 자료를 보존해 책임주체와 손해 범위를 판단합니다.",
+        "책임을 단정하기 전에 원인·관리영역·절차 기록을 분리합니다."
+      ],
+      "action_steps_ko": [
+        "발생 시각과 상태를 사진·영상·일지로 남긴다.",
+        "소유·점유·관리 관계와 계약·관리규약을 확인한다.",
+        "상대방과 관리주체에 사실과 요구사항을 서면 통지한다.",
+        "조사·수선·조정 결과와 비용 증빙을 계속 보존한다."
+      ],
+      "facts_to_check_ko": [
+        "최초 발견 시각",
+        "물이 나온 위치",
+        "날씨·사용 상황",
+        "수분측정",
+        "점검보고서",
+        "보수 전후 사진"
+      ],
+      "caution_ko": "보이는 위치나 감정적 추정만으로 책임자를 단정하지 말고 원인 조사와 법적 관리영역을 먼저 확인해야 합니다.",
+      "search_intents_ko": [
+        "누수가 생기면 수리부터 해야 하나, 원인 증거부터 남겨야 하나",
+        "누수 이웃 분쟁",
+        "분쟁 증거 절차"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "판단 기준",
+          "paragraphs_ko": [
+            "누수 책임은 물이 보인 위치만으로 정하지 않고 설치·보존상의 하자, 실제 관리주체, 원인과 손해의 인과관계를 자료로 확인합니다.",
+            "긴급 방수와 별개로 원인 조사 전후 자료를 보존해 책임주체와 손해 범위를 판단합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "최초 발견 시각, 물이 나온 위치, 날씨·사용 상황, 수분측정, 점검보고서, 보수 전후 사진",
+            "원인과 피해를 분리해 점유자·소유자·관리단·임대인 책임 분기로 이동합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.neighbor-leak-noise.leak-origin-evidence"
+      ],
+      "scenario_ids": [
+        "scenario.neighbor-leak-noise.leak-origin-evidence"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.aggregate-0006",
+        "coord.neighbor-leak-noise.civil-0758"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "related_content_ids": [
+        "content.accident-evidence-and-tort-limitation",
+        "content.hidden-defect-after-purchase"
+      ]
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-rental-repair-duty",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "neighbor-leak-noise-rental-repair-duty",
+      "title_ko": "임차한 집의 누수는 임대인이 반드시 고쳐야 하나",
+      "one_line_answer_ko": "계약 중 사용·수익에 필요한 상태를 유지할 수선은 원칙적으로 임대인의 의무지만, 원인·경미성·임차인 과실·특약의 효력을 따로 확인해야 합니다.",
+      "audience_situation_ko": "전월세 집 누수·곰팡이·배관 고장으로 임대인에게 수선을 요구하려는 임차인",
+      "key_points_ko": [
+        "임대인은 계약 존속 중 임차목적물을 사용·수익에 필요한 상태로 유지할 의무를 부담합니다.",
+        "임차인은 하자와 수선 필요를 알리고 상당한 수선 조치를 요구할 수 있습니다.",
+        "책임을 단정하기 전에 원인·관리영역·절차 기록을 분리합니다."
+      ],
+      "action_steps_ko": [
+        "발생 시각과 상태를 사진·영상·일지로 남긴다.",
+        "소유·점유·관리 관계와 계약·관리규약을 확인한다.",
+        "상대방과 관리주체에 사실과 요구사항을 서면 통지한다.",
+        "조사·수선·조정 결과와 비용 증빙을 계속 보존한다."
+      ],
+      "facts_to_check_ko": [
+        "임대차계약",
+        "하자 위치",
+        "사용 방해 정도",
+        "발생 원인",
+        "통지일·방법",
+        "임대인 답변"
+      ],
+      "caution_ko": "보이는 위치나 감정적 추정만으로 책임자를 단정하지 말고 원인 조사와 법적 관리영역을 먼저 확인해야 합니다.",
+      "search_intents_ko": [
+        "임차한 집의 누수는 임대인이 반드시 고쳐야 하나",
+        "누수 이웃 분쟁",
+        "책임 주체 판단"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "판단 기준",
+          "paragraphs_ko": [
+            "임대인은 계약 존속 중 임차목적물을 사용·수익에 필요한 상태로 유지할 의무를 부담합니다.",
+            "임차인은 하자와 수선 필요를 알리고 상당한 수선 조치를 요구할 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "임대차계약, 하자 위치, 사용 방해 정도, 발생 원인, 통지일·방법, 임대인 답변",
+            "수선 범위와 일정, 임시조치, 손해 확대 방지를 서면으로 협의합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.neighbor-leak-noise.rental-repair-duty"
+      ],
+      "scenario_ids": [
+        "scenario.neighbor-leak-noise.rental-repair-duty"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.civil-0623"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "related_content_ids": [
+        "content.housing-lease-living-repair-duty",
+        "content.neighbor-leak-noise-leak-origin-evidence"
+      ]
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-urgent-repair-reimbursement",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "neighbor-leak-noise-urgent-repair-reimbursement",
+      "title_ko": "임차인이 급히 누수를 고친 비용을 임대인에게 청구할 수 있나",
+      "one_line_answer_ko": "임차물 보존에 필요한 비용을 지출했다면 상환을 청구할 수 있지만, 필요성·긴급성·금액·통지와 실제 지출을 입증해야 합니다.",
+      "audience_situation_ko": "임대인 연락이 늦어 긴급 누수 보수를 먼저 결제한 임차인",
+      "key_points_ko": [
+        "임차인이 임차물 보존에 필요한 비용을 지출한 때에는 임대인에게 그 상환을 청구할 수 있습니다.",
+        "임차인은 필요비의 성격과 합리적인 금액을 자료로 제시해 상환을 청구할 수 있습니다.",
+        "책임을 단정하기 전에 원인·관리영역·절차 기록을 분리합니다."
+      ],
+      "action_steps_ko": [
+        "발생 시각과 상태를 사진·영상·일지로 남긴다.",
+        "소유·점유·관리 관계와 계약·관리규약을 확인한다.",
+        "상대방과 관리주체에 사실과 요구사항을 서면 통지한다.",
+        "조사·수선·조정 결과와 비용 증빙을 계속 보존한다."
+      ],
+      "facts_to_check_ko": [
+        "누수 긴급성",
+        "임대인 연락 기록",
+        "견적",
+        "작업내역",
+        "결제증빙",
+        "교체 부품·사진"
+      ],
+      "caution_ko": "보이는 위치나 감정적 추정만으로 책임자를 단정하지 말고 원인 조사와 법적 관리영역을 먼저 확인해야 합니다.",
+      "search_intents_ko": [
+        "임차인이 급히 누수를 고친 비용을 임대인에게 청구할 수 있나",
+        "누수 이웃 분쟁",
+        "분쟁 증거 절차"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "판단 기준",
+          "paragraphs_ko": [
+            "임차인이 임차물 보존에 필요한 비용을 지출한 때에는 임대인에게 그 상환을 청구할 수 있습니다.",
+            "임차인은 필요비의 성격과 합리적인 금액을 자료로 제시해 상환을 청구할 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "누수 긴급성, 임대인 연락 기록, 견적, 작업내역, 결제증빙, 교체 부품·사진",
+            "필요비 항목과 임의 개선비를 나누어 상환을 서면 청구합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.neighbor-leak-noise.urgent-repair-reimbursement"
+      ],
+      "scenario_ids": [
+        "scenario.neighbor-leak-noise.urgent-repair-reimbursement"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.civil-0626"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "related_content_ids": [
+        "content.housing-lease-living-repair-reimbursement",
+        "content.neighbor-leak-noise-rental-repair-duty"
+      ]
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-occupant-owner-liability",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "neighbor-leak-noise-occupant-owner-liability",
+      "title_ko": "윗집 누수면 거주자와 집주인 중 누가 배상하나",
+      "one_line_answer_ko": "윗집이라는 이유만으로 한 사람을 정할 수 없습니다. 고의·과실, 공작물 하자, 실제 점유·관리와 필요한 주의 여부를 나눠 봅니다.",
+      "audience_situation_ko": "윗집이나 옆집에서 시작된 것으로 보이는 누수 피해를 입은 사람",
+      "key_points_ko": [
+        "고의·과실의 위법행위 책임과 공작물의 설치·보존 하자에 관한 점유자·소유자 책임은 성립요건과 책임 순서가 다릅니다.",
+        "사용자 과실, 점유자의 관리주의, 소유자 책임과 구상관계를 원인별로 판단합니다.",
+        "책임을 단정하기 전에 원인·관리영역·절차 기록을 분리합니다."
+      ],
+      "action_steps_ko": [
+        "발생 시각과 상태를 사진·영상·일지로 남긴다.",
+        "소유·점유·관리 관계와 계약·관리규약을 확인한다.",
+        "상대방과 관리주체에 사실과 요구사항을 서면 통지한다.",
+        "조사·수선·조정 결과와 비용 증빙을 계속 보존한다."
+      ],
+      "facts_to_check_ko": [
+        "점유 형태",
+        "소유관계",
+        "누수 원인",
+        "과거 수리",
+        "관리 주의",
+        "피해와 인과관계"
+      ],
+      "caution_ko": "보이는 위치나 감정적 추정만으로 책임자를 단정하지 말고 원인 조사와 법적 관리영역을 먼저 확인해야 합니다.",
+      "search_intents_ko": [
+        "윗집 누수면 거주자와 집주인 중 누가 배상하나",
+        "누수 이웃 분쟁",
+        "책임 주체 판단"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "판단 기준",
+          "paragraphs_ko": [
+            "고의·과실의 위법행위 책임과 공작물의 설치·보존 하자에 관한 점유자·소유자 책임은 성립요건과 책임 순서가 다릅니다.",
+            "사용자 과실, 점유자의 관리주의, 소유자 책임과 구상관계를 원인별로 판단합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "점유 형태, 소유관계, 누수 원인, 과거 수리, 관리 주의, 피해와 인과관계",
+            "사용행위와 관리영역에 따라 불법행위 또는 공작물 책임을 검토합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.neighbor-leak-noise.occupant-owner-liability"
+      ],
+      "scenario_ids": [
+        "scenario.neighbor-leak-noise.occupant-owner-liability"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.civil-0750",
+        "coord.neighbor-leak-noise.civil-0758"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "related_content_ids": [
+        "content.slip-fall-and-unsafe-facility-liability",
+        "content.accident-evidence-and-tort-limitation"
+      ]
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-exclusive-common-area",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "neighbor-leak-noise-exclusive-common-area",
+      "title_ko": "누수 원인이 전유부분인지 공용부분인지 어떻게 가르나",
+      "one_line_answer_ko": "세대 안에 보인다는 이유만으로 전유부분은 아닙니다. 배관의 기능·위치·공동 사용, 관리규약과 전문 점검을 함께 봅니다.",
+      "audience_situation_ko": "누수 원인을 두고 세대 소유자와 관리단·관리사무소가 서로 책임을 미루는 경우",
+      "key_points_ko": [
+        "1동 건물의 설치·보존 흠으로 타인에게 손해가 생기면 공용부분의 흠으로 추정되며 공용부분 보존·관리에는 관리단과 관리인의 권한·의무가 문제됩니다.",
+        "공용부분 추정, 관리규약, 보존행위와 실제 관리주체를 대조해 조치·비용 부담 주체를 정합니다.",
+        "책임을 단정하기 전에 원인·관리영역·절차 기록을 분리합니다."
+      ],
+      "action_steps_ko": [
+        "발생 시각과 상태를 사진·영상·일지로 남긴다.",
+        "소유·점유·관리 관계와 계약·관리규약을 확인한다.",
+        "상대방과 관리주체에 사실과 요구사항을 서면 통지한다.",
+        "조사·수선·조정 결과와 비용 증빙을 계속 보존한다."
+      ],
+      "facts_to_check_ko": [
+        "배관 계통도",
+        "설비 위치·기능",
+        "공동 사용 여부",
+        "관리규약",
+        "점검보고서",
+        "과거 관리비 지출"
+      ],
+      "caution_ko": "보이는 위치나 감정적 추정만으로 책임자를 단정하지 말고 원인 조사와 법적 관리영역을 먼저 확인해야 합니다.",
+      "search_intents_ko": [
+        "누수 원인이 전유부분인지 공용부분인지 어떻게 가르나",
+        "누수 이웃 분쟁",
+        "책임 주체 판단"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "판단 기준",
+          "paragraphs_ko": [
+            "1동 건물의 설치·보존 흠으로 타인에게 손해가 생기면 공용부분의 흠으로 추정되며 공용부분 보존·관리에는 관리단과 관리인의 권한·의무가 문제됩니다.",
+            "공용부분 추정, 관리규약, 보존행위와 실제 관리주체를 대조해 조치·비용 부담 주체를 정합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "배관 계통도, 설비 위치·기능, 공동 사용 여부, 관리규약, 점검보고서, 과거 관리비 지출",
+            "전유부분이면 해당 소유자·점유자의 사용·관리 책임을 중심으로 봅니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.neighbor-leak-noise.exclusive-common-area"
+      ],
+      "scenario_ids": [
+        "scenario.neighbor-leak-noise.exclusive-common-area"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.aggregate-0006",
+        "coord.neighbor-leak-noise.aggregate-0016",
+        "coord.neighbor-leak-noise.aggregate-0025"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "related_content_ids": [
+        "content.hidden-defect-after-purchase",
+        "content.neighbor-leak-noise-occupant-owner-liability"
+      ]
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-inspection-access",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "neighbor-leak-noise-inspection-access",
+      "title_ko": "누수 확인을 위해 다른 세대에 들어가거나 벽을 열 수 있나",
+      "one_line_answer_ko": "필요하다는 이유로 임의 진입·철거할 수는 없지만, 전유·공용부분 보존이나 개량에 필요한 범위에서 사용을 청구할 수 있고 손해가 생기면 보상해야 합니다.",
+      "audience_situation_ko": "누수 원인 확인을 위해 윗집·옆집의 출입이나 점검 협조가 필요한 사람",
+      "key_points_ko": [
+        "구분소유자·점유자는 전유부분이나 공용부분의 보존·개량에 필요한 범위에서 다른 전유부분 등의 사용을 청구할 수 있으며 상대방 손해는 보상해야 합니다.",
+        "범위·일정·복구·보상을 협의해 필요한 사용을 청구하되 임의 진입은 피해야 합니다.",
+        "책임을 단정하기 전에 원인·관리영역·절차 기록을 분리합니다."
+      ],
+      "action_steps_ko": [
+        "발생 시각과 상태를 사진·영상·일지로 남긴다.",
+        "소유·점유·관리 관계와 계약·관리규약을 확인한다.",
+        "상대방과 관리주체에 사실과 요구사항을 서면 통지한다.",
+        "조사·수선·조정 결과와 비용 증빙을 계속 보존한다."
+      ],
+      "facts_to_check_ko": [
+        "점검 필요성",
+        "대상 공간",
+        "작업 시간",
+        "철거 범위",
+        "복구 방법",
+        "예상 손해·보험"
+      ],
+      "caution_ko": "보이는 위치나 감정적 추정만으로 책임자를 단정하지 말고 원인 조사와 법적 관리영역을 먼저 확인해야 합니다.",
+      "search_intents_ko": [
+        "누수 확인을 위해 다른 세대에 들어가거나 벽을 열 수 있나",
+        "누수 이웃 분쟁",
+        "책임 주체 판단"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "판단 기준",
+          "paragraphs_ko": [
+            "구분소유자·점유자는 전유부분이나 공용부분의 보존·개량에 필요한 범위에서 다른 전유부분 등의 사용을 청구할 수 있으며 상대방 손해는 보상해야 합니다.",
+            "범위·일정·복구·보상을 협의해 필요한 사용을 청구하되 임의 진입은 피해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "점검 필요성, 대상 공간, 작업 시간, 철거 범위, 복구 방법, 예상 손해·보험",
+            "관리주체 입회와 작업계획을 정해 서면 동의를 받습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.neighbor-leak-noise.inspection-access"
+      ],
+      "scenario_ids": [
+        "scenario.neighbor-leak-noise.inspection-access"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.aggregate-0005"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "related_content_ids": [
+        "content.neighbor-leak-noise-leak-origin-evidence",
+        "content.neighbor-leak-noise-exclusive-common-area"
+      ]
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-floor-noise-management-route",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "neighbor-leak-noise-floor-noise-management-route",
+      "title_ko": "층간소음은 관리사무소에 무엇을 요청할 수 있나",
+      "one_line_answer_ko": "피해 사실을 알리고 발생 중단이나 차단 조치의 권고를 요청할 수 있습니다. 관리주체는 사실 확인을 위한 조사를 할 수 있습니다.",
+      "audience_situation_ko": "반복되는 발걸음·뛰는 소리·음향기기 소음으로 관리사무소 대응을 요청하려는 공동주택 입주자",
+      "key_points_ko": [
+        "층간소음 피해자는 관리주체에 발생 사실을 알리고 중단·차단 조치 권고를 요청할 수 있으며 관리주체는 필요한 사실조사를 할 수 있습니다.",
+        "관리주체 통지·사실확인·권고 절차를 거치고 상대 입주자는 조치와 권고에 협조해야 합니다.",
+        "책임을 단정하기 전에 원인·관리영역·절차 기록을 분리합니다."
+      ],
+      "action_steps_ko": [
+        "발생 시각과 상태를 사진·영상·일지로 남긴다.",
+        "소유·점유·관리 관계와 계약·관리규약을 확인한다.",
+        "상대방과 관리주체에 사실과 요구사항을 서면 통지한다.",
+        "조사·수선·조정 결과와 비용 증빙을 계속 보존한다."
+      ],
+      "facts_to_check_ko": [
+        "발생 날짜·시간",
+        "소음 유형",
+        "지속시간",
+        "녹음·측정",
+        "관리주체 접수",
+        "상대방 협조·재발"
+      ],
+      "caution_ko": "보이는 위치나 감정적 추정만으로 책임자를 단정하지 말고 원인 조사와 법적 관리영역을 먼저 확인해야 합니다.",
+      "search_intents_ko": [
+        "층간소음은 관리사무소에 무엇을 요청할 수 있나",
+        "층간소음 대응",
+        "분쟁 증거 절차"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "판단 기준",
+          "paragraphs_ko": [
+            "층간소음 피해자는 관리주체에 발생 사실을 알리고 중단·차단 조치 권고를 요청할 수 있으며 관리주체는 필요한 사실조사를 할 수 있습니다.",
+            "관리주체 통지·사실확인·권고 절차를 거치고 상대 입주자는 조치와 권고에 협조해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "발생 날짜·시간, 소음 유형, 지속시간, 녹음·측정, 관리주체 접수, 상대방 협조·재발",
+            "접수번호와 조사·권고 결과를 보존하고 재발 여부를 기록합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.neighbor-leak-noise.floor-noise-management-route"
+      ],
+      "scenario_ids": [
+        "scenario.neighbor-leak-noise.floor-noise-management-route"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.apartment-0020"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "related_content_ids": [
+        "content.neighbor-leak-noise-floor-noise-mediation",
+        "content.accident-evidence-and-tort-limitation"
+      ]
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-floor-noise-mediation",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "neighbor-leak-noise-floor-noise-mediation",
+      "title_ko": "관리사무소 권고 뒤에도 층간소음이 계속되면 어디에 신청하나",
+      "one_line_answer_ko": "단지의 층간소음관리위원회 조정, 공동주택관리 분쟁조정위원회 또는 환경분쟁조정 절차를 단계적으로 검토할 수 있습니다.",
+      "audience_situation_ko": "관리사무소의 중단·차단 권고 뒤에도 층간소음이 계속되는 입주자",
+      "key_points_ko": [
+        "관리주체 조치 뒤에도 층간소음이 계속되면 층간소음관리위원회 조정을 신청할 수 있고, 계속될 경우 법정 분쟁조정위원회에 조정을 신청할 수 있습니다.",
+        "사전 처리 기록과 소음 자료를 갖추어 해당 단지·지역에서 이용 가능한 조정절차를 선택합니다.",
+        "책임을 단정하기 전에 원인·관리영역·절차 기록을 분리합니다."
+      ],
+      "action_steps_ko": [
+        "발생 시각과 상태를 사진·영상·일지로 남긴다.",
+        "소유·점유·관리 관계와 계약·관리규약을 확인한다.",
+        "상대방과 관리주체에 사실과 요구사항을 서면 통지한다.",
+        "조사·수선·조정 결과와 비용 증빙을 계속 보존한다."
+      ],
+      "facts_to_check_ko": [
+        "관리주체 접수",
+        "권고 내용",
+        "위원회 구성 여부",
+        "조정 결과",
+        "재발 일지",
+        "공동주택 소재지"
+      ],
+      "caution_ko": "보이는 위치나 감정적 추정만으로 책임자를 단정하지 말고 원인 조사와 법적 관리영역을 먼저 확인해야 합니다.",
+      "search_intents_ko": [
+        "관리사무소 권고 뒤에도 층간소음이 계속되면 어디에 신청하나",
+        "층간소음 대응",
+        "분쟁 증거 절차"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "판단 기준",
+          "paragraphs_ko": [
+            "관리주체 조치 뒤에도 층간소음이 계속되면 층간소음관리위원회 조정을 신청할 수 있고, 계속될 경우 법정 분쟁조정위원회에 조정을 신청할 수 있습니다.",
+            "사전 처리 기록과 소음 자료를 갖추어 해당 단지·지역에서 이용 가능한 조정절차를 선택합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "관리주체 접수, 권고 내용, 위원회 구성 여부, 조정 결과, 재발 일지, 공동주택 소재지",
+            "공동주택관리 또는 환경분쟁 조정기관의 관할·신청서류를 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.neighbor-leak-noise.floor-noise-mediation"
+      ],
+      "scenario_ids": [
+        "scenario.neighbor-leak-noise.floor-noise-mediation"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.apartment-0020",
+        "coord.neighbor-leak-noise.apartment-0071"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "related_content_ids": [
+        "content.neighbor-leak-noise-floor-noise-management-route",
+        "content.civil-small-claims-filing-method"
+      ]
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-neighbor-interference-limit",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "neighbor-leak-noise-neighbor-interference-limit",
+      "title_ko": "이웃의 소음·진동·연기·물이 불편하면 모두 막아달라고 할 수 있나",
+      "one_line_answer_ko": "모든 불편이 곧 위법한 것은 아닙니다. 방해의 종류·강도·시간·지역의 통상 용도와 피해 정도를 함께 봅니다.",
+      "audience_situation_ko": "이웃의 소음·진동·연기·악취·물 유입 때문에 생활 고통을 겪는 사람",
+      "key_points_ko": [
+        "토지소유자는 소음·진동·연기·액체 등으로 이웃 생활에 고통을 주지 않도록 적당한 조치를 해야 하지만 통상 용도에 적당한 방해는 인용 문제가 생깁니다.",
+        "지역·용도·시간·강도·반복성과 저감 가능성을 종합해 중지·저감 요구의 범위를 정합니다.",
+        "책임을 단정하기 전에 원인·관리영역·절차 기록을 분리합니다."
+      ],
+      "action_steps_ko": [
+        "발생 시각과 상태를 사진·영상·일지로 남긴다.",
+        "소유·점유·관리 관계와 계약·관리규약을 확인한다.",
+        "상대방과 관리주체에 사실과 요구사항을 서면 통지한다.",
+        "조사·수선·조정 결과와 비용 증빙을 계속 보존한다."
+      ],
+      "facts_to_check_ko": [
+        "방해 유형",
+        "강도·측정값",
+        "시간대",
+        "반복기간",
+        "지역 용도",
+        "건강·재산 피해"
+      ],
+      "caution_ko": "보이는 위치나 감정적 추정만으로 책임자를 단정하지 말고 원인 조사와 법적 관리영역을 먼저 확인해야 합니다.",
+      "search_intents_ko": [
+        "이웃의 소음·진동·연기·물이 불편하면 모두 막아달라고 할 수 있나",
+        "누수 이웃 분쟁",
+        "책임 주체 판단"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "판단 기준",
+          "paragraphs_ko": [
+            "토지소유자는 소음·진동·연기·액체 등으로 이웃 생활에 고통을 주지 않도록 적당한 조치를 해야 하지만 통상 용도에 적당한 방해는 인용 문제가 생깁니다.",
+            "지역·용도·시간·강도·반복성과 저감 가능성을 종합해 중지·저감 요구의 범위를 정합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "방해 유형, 강도·측정값, 시간대, 반복기간, 지역 용도, 건강·재산 피해",
+            "구체적인 저감조치와 중지 범위를 특정해 통지·조정·청구를 검토합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.neighbor-leak-noise.neighbor-interference-limit"
+      ],
+      "scenario_ids": [
+        "scenario.neighbor-leak-noise.neighbor-interference-limit"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.civil-0217"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "related_content_ids": [
+        "content.accident-evidence-and-tort-limitation",
+        "content.neighbor-leak-noise-floor-noise-management-route"
+      ]
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-injunction-vs-damages",
+      "content_type": "similar_case_comparison",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "neighbor-leak-noise-injunction-vs-damages",
+      "title_ko": "누수·소음은 중단 청구와 손해배상 중 무엇을 해야 하나",
+      "one_line_answer_ko": "현재 방해를 멈추거나 재발을 막는 청구와 이미 발생한 손해의 배상은 목적과 요건이 다르므로 함께 또는 나누어 검토합니다.",
+      "audience_situation_ko": "반복 누수·소음의 중단과 수리비·재산피해 배상을 함께 요구하려는 사람",
+      "key_points_ko": [
+        "소유권 방해의 제거·예방청구와 고의·과실의 위법행위에 대한 손해배상은 구제 목적과 입증대상이 다릅니다.",
+        "방해 원인과 제거 방법을 특정하고, 손해 항목·금액·인과관계를 별도로 입증합니다.",
+        "책임을 단정하기 전에 원인·관리영역·절차 기록을 분리합니다."
+      ],
+      "action_steps_ko": [
+        "발생 시각과 상태를 사진·영상·일지로 남긴다.",
+        "소유·점유·관리 관계와 계약·관리규약을 확인한다.",
+        "상대방과 관리주체에 사실과 요구사항을 서면 통지한다.",
+        "조사·수선·조정 결과와 비용 증빙을 계속 보존한다."
+      ],
+      "facts_to_check_ko": [
+        "현재 방해 여부",
+        "재발 가능성",
+        "제거 방법",
+        "고의·과실",
+        "손해 항목·금액",
+        "인과관계"
+      ],
+      "caution_ko": "보이는 위치나 감정적 추정만으로 책임자를 단정하지 말고 원인 조사와 법적 관리영역을 먼저 확인해야 합니다.",
+      "search_intents_ko": [
+        "누수·소음은 중단 청구와 손해배상 중 무엇을 해야 하나",
+        "누수 이웃 분쟁",
+        "책임 주체 판단"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "판단 기준",
+          "paragraphs_ko": [
+            "소유권 방해의 제거·예방청구와 고의·과실의 위법행위에 대한 손해배상은 구제 목적과 입증대상이 다릅니다.",
+            "방해 원인과 제거 방법을 특정하고, 손해 항목·금액·인과관계를 별도로 입증합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "현재 방해 여부, 재발 가능성, 제거 방법, 고의·과실, 손해 항목·금액, 인과관계",
+            "중단·수리·예방 범위와 손해배상 항목을 나누어 청구합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.neighbor-leak-noise.injunction-vs-damages"
+      ],
+      "scenario_ids": [
+        "scenario.neighbor-leak-noise.injunction-vs-damages"
+      ],
+      "source_coordinate_ids": [
+        "coord.neighbor-leak-noise.civil-0214",
+        "coord.neighbor-leak-noise.civil-0750"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "related_content_ids": [
+        "content.civil-small-claims-evidence-hearing",
+        "content.neighbor-leak-noise-neighbor-interference-limit"
+      ]
+    }
+  ]
+}
