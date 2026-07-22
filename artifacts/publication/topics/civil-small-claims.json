@@ -1,0 +1,1202 @@
+{
+  "schema": "rulelink_public_knowledge_topic_v1",
+  "topic_id": "hub.civil-small-claims",
+  "sources": [
+    {
+      "coordinate_id": "coord.civil-small-claims.civil-0002",
+      "source_id": "civil_procedure_ko_0002",
+      "law_name_ko": "민사소송법",
+      "article_no": "제2조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C2%EC%A1%B0",
+      "source_snapshot_id": "snapshot:969be7b51c16c23d167b18ff35cb459",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.civil-0008",
+      "source_id": "civil_procedure_ko_0008",
+      "law_name_ko": "민사소송법",
+      "article_no": "제8조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C8%EC%A1%B0",
+      "source_snapshot_id": "snapshot:22b6333e3c581e1dc12897235705fbe0",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.civil-0098",
+      "source_id": "civil_procedure_ko_0098",
+      "law_name_ko": "민사소송법",
+      "article_no": "제98조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C98%EC%A1%B0",
+      "source_snapshot_id": "snapshot:8b7151452ab30b6414b8da919a054679",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.civil-0202",
+      "source_id": "civil_procedure_ko_0202",
+      "law_name_ko": "민사소송법",
+      "article_no": "제202조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C202%EC%A1%B0",
+      "source_snapshot_id": "snapshot:8f7dc9abe7d4b880719ea17f80ae6772",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.civil-0213",
+      "source_id": "civil_procedure_ko_0213",
+      "law_name_ko": "민사소송법",
+      "article_no": "제213조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C213%EC%A1%B0",
+      "source_snapshot_id": "snapshot:788a76ae5522ff0eee2c3ab2825a8e0",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.civil-0248",
+      "source_id": "civil_procedure_ko_0248",
+      "law_name_ko": "민사소송법",
+      "article_no": "제248조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C248%EC%A1%B0",
+      "source_snapshot_id": "snapshot:2d1d8302cd09563aba0e9b66c5edc1ad",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.civil-0249",
+      "source_id": "civil_procedure_ko_0249",
+      "law_name_ko": "민사소송법",
+      "article_no": "제249조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C249%EC%A1%B0",
+      "source_snapshot_id": "snapshot:56cc66bdcfbeb07c8edc013125ecc45ce",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.civil-0256",
+      "source_id": "civil_procedure_ko_0256",
+      "law_name_ko": "민사소송법",
+      "article_no": "제256조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C256%EC%A1%B0",
+      "source_snapshot_id": "snapshot:b81d9209b2834410a310e9af60e171a0",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.civil-0257",
+      "source_id": "civil_procedure_ko_0257",
+      "law_name_ko": "민사소송법",
+      "article_no": "제257조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C257%EC%A1%B0",
+      "source_snapshot_id": "snapshot:7aa30b0312c82a6781170eca965121fd1",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.civil-0396",
+      "source_id": "civil_procedure_ko_0396",
+      "law_name_ko": "민사소송법",
+      "article_no": "제396조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C396%EC%A1%B0",
+      "source_snapshot_id": "snapshot:e94632c5b41d6a854849fb5a3374e74d",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.rule-0001-2",
+      "source_id": "law_005899_ko_0001_02",
+      "law_name_ko": "소액사건심판규칙",
+      "article_no": "제1조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%95%A1%EC%82%AC%EA%B1%B4%EC%8B%AC%ED%8C%90%EA%B7%9C%EC%B9%99/%EC%A0%9C1%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:bed671e0a17edbe9064bdb5a4afdf24b",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.small-0004",
+      "source_id": "small_claims_trial_ko_0004",
+      "law_name_ko": "소액사건심판법",
+      "article_no": "제4조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%95%A1%EC%82%AC%EA%B1%B4%EC%8B%AC%ED%8C%90%EB%B2%95/%EC%A0%9C4%EC%A1%B0",
+      "source_snapshot_id": "snapshot:5569e2a604056a00105372998cb7df76",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.small-0005-2",
+      "source_id": "small_claims_trial_ko_0005_02",
+      "law_name_ko": "소액사건심판법",
+      "article_no": "제5조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%95%A1%EC%82%AC%EA%B1%B4%EC%8B%AC%ED%8C%90%EB%B2%95/%EC%A0%9C5%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:60c8b6750fda606a1e9bd79d143deac4",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.small-0005-3",
+      "source_id": "small_claims_trial_ko_0005_03",
+      "law_name_ko": "소액사건심판법",
+      "article_no": "제5조의3",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%95%A1%EC%82%AC%EA%B1%B4%EC%8B%AC%ED%8C%90%EB%B2%95/%EC%A0%9C5%EC%A1%B0%EC%9D%983",
+      "source_snapshot_id": "snapshot:d412b7de1e29c416045f75d6021e6e48",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.small-0005-4",
+      "source_id": "small_claims_trial_ko_0005_04",
+      "law_name_ko": "소액사건심판법",
+      "article_no": "제5조의4",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%95%A1%EC%82%AC%EA%B1%B4%EC%8B%AC%ED%8C%90%EB%B2%95/%EC%A0%9C5%EC%A1%B0%EC%9D%984",
+      "source_snapshot_id": "snapshot:d3e67c24b901bfc9e724ed8cc86bff10",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.small-0005-7",
+      "source_id": "small_claims_trial_ko_0005_07",
+      "law_name_ko": "소액사건심판법",
+      "article_no": "제5조의7",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%95%A1%EC%82%AC%EA%B1%B4%EC%8B%AC%ED%8C%90%EB%B2%95/%EC%A0%9C5%EC%A1%B0%EC%9D%987",
+      "source_snapshot_id": "snapshot:f9d22ee0c5f86476a141b53d063ab72f",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.small-0005-8",
+      "source_id": "small_claims_trial_ko_0005_08",
+      "law_name_ko": "소액사건심판법",
+      "article_no": "제5조의8",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%95%A1%EC%82%AC%EA%B1%B4%EC%8B%AC%ED%8C%90%EB%B2%95/%EC%A0%9C5%EC%A1%B0%EC%9D%988",
+      "source_snapshot_id": "snapshot:b7d1887798292fb566c57c1ea19af9b7",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.small-0007",
+      "source_id": "small_claims_trial_ko_0007",
+      "law_name_ko": "소액사건심판법",
+      "article_no": "제7조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%95%A1%EC%82%AC%EA%B1%B4%EC%8B%AC%ED%8C%90%EB%B2%95/%EC%A0%9C7%EC%A1%B0",
+      "source_snapshot_id": "snapshot:7a6dcbcc269b66ee0f8700b8938cec55",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.small-0008",
+      "source_id": "small_claims_trial_ko_0008",
+      "law_name_ko": "소액사건심판법",
+      "article_no": "제8조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%95%A1%EC%82%AC%EA%B1%B4%EC%8B%AC%ED%8C%90%EB%B2%95/%EC%A0%9C8%EC%A1%B0",
+      "source_snapshot_id": "snapshot:c95ec81683d1d1c52e40eed3cd05e3d8",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.civil-small-claims.small-0011-2",
+      "source_id": "small_claims_trial_ko_0011_02",
+      "law_name_ko": "소액사건심판법",
+      "article_no": "제11조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%95%A1%EC%82%AC%EA%B1%B4%EC%8B%AC%ED%8C%90%EB%B2%95/%EC%A0%9C11%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:5d0d3b5b9d96dab4cf7a7f53ebfda9e",
+      "last_verified_at": "2026-07-23T02:00:00+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.civil-small-claims",
+      "slug": "civil-small-claims",
+      "title_ko": "민사소송·소액재판",
+      "description_ko": "어느 법원에 소를 내는지부터 3천만원 소액사건 범위, 소장·답변서, 첫 기일 증거, 이행권고, 가족 대리, 판결 집행, 항소까지 민사재판의 앞뒤 절차를 생활질문으로 찾습니다.",
+      "content_ids": [
+        "content.civil-small-claims-jurisdiction",
+        "content.civil-small-claims-small-claim-scope",
+        "content.civil-small-claims-filing-method",
+        "content.civil-small-claims-complaint-content",
+        "content.civil-small-claims-answer-default",
+        "content.civil-small-claims-evidence-hearing",
+        "content.civil-small-claims-performance-recommendation",
+        "content.civil-small-claims-family-representation",
+        "content.civil-small-claims-judgment-enforcement",
+        "content.civil-small-claims-costs-appeal"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.civil-small-claims.jurisdiction",
+      "title_ko": "어느 법원에 민사소송을 내는가",
+      "proposition_ko": "민사소송은 원칙적으로 피고의 보통재판적이 있는 법원에 내지만, 재산권 청구는 의무이행지 법원에도 제기할 수 있습니다.",
+      "norm": {
+        "actor_ko": "돈이나 물건을 청구하려는 원고와 그 상대방",
+        "conditions_ko": "피고의 주소지와 약속한 의무이행지가 서로 다르거나 관할을 선택해야 하는 경우",
+        "legal_effect_ko": "피고의 보통재판적 법원과 의무이행지 법원 가운데 사건에 적용되는 관할을 확인해 소를 제기할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0002",
+        "coord.civil-small-claims.civil-0008"
+      ]
+    },
+    {
+      "rule_id": "rule.civil-small-claims.small-claim-scope",
+      "title_ko": "3천만원 이하라고 모두 소액사건인가",
+      "proposition_ko": "제소 당시 소송목적의 값이 3천만원 이하인 금전·대체물·유가증권 지급청구의 제1심 사건이 소액사건이며, 일부만 떼어 소액사건으로 만드는 것은 제한됩니다.",
+      "norm": {
+        "actor_ko": "금전이나 대체물의 지급을 청구하려는 사람",
+        "conditions_ko": "제1심 청구가 금전 등의 지급이고 소송목적의 값이 3천만원 이하인지, 청구를 인위적으로 분할한 것은 아닌지 확인되는 경우",
+        "legal_effect_ko": "요건을 충족하면 소액사건 특례절차가 적용되지만, 적용을 받기 위한 일부청구는 각하될 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.rule-0001-2",
+        "coord.civil-small-claims.small-0005-2"
+      ]
+    },
+    {
+      "rule_id": "rule.civil-small-claims.filing-method",
+      "title_ko": "일반소송과 소액사건의 제기 방식",
+      "proposition_ko": "일반 민사소송은 법원에 소장을 제출해 제기하고, 소액사건은 법원사무관 등 앞에서 구술로도 제기할 수 있습니다.",
+      "norm": {
+        "actor_ko": "민사청구를 시작하려는 원고",
+        "conditions_ko": "일반 민사소송인지 소액사건인지와 서면 작성 가능 여부를 확인한 경우",
+        "legal_effect_ko": "일반소송은 소장을 제출하고, 소액사건은 서면 소장 또는 법정 구술제소 절차를 선택할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0248",
+        "coord.civil-small-claims.small-0004"
+      ]
+    },
+    {
+      "rule_id": "rule.civil-small-claims.complaint-content",
+      "title_ko": "소장에 반드시 적어야 하는 내용",
+      "proposition_ko": "소장에는 당사자와 법정대리인, 법원에 구하는 결론인 청구취지, 그 결론을 뒷받침하는 청구원인을 적어야 합니다.",
+      "norm": {
+        "actor_ko": "민사소장을 작성하는 원고",
+        "conditions_ko": "상대방의 특정, 원하는 판결 내용, 이를 뒷받침하는 사실관계를 정리할 수 있는 경우",
+        "legal_effect_ko": "필수 기재사항이 빠지지 않도록 당사자·청구취지·청구원인을 구분해 소장을 작성해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0249"
+      ]
+    },
+    {
+      "rule_id": "rule.civil-small-claims.answer-default",
+      "title_ko": "소장을 받고 답변하지 않으면 생기는 일",
+      "proposition_ko": "피고가 청구를 다투려면 소장 부본을 송달받은 날부터 30일 이내 답변서를 제출해야 하고, 내지 않으면 법원이 청구원인 사실을 자백한 것으로 보아 변론 없이 판결할 수 있습니다.",
+      "norm": {
+        "actor_ko": "민사소장을 송달받은 피고",
+        "conditions_ko": "원고 청구의 전부 또는 일부를 다투지만 공시송달이 아닌 방법으로 소장 부본을 송달받은 경우",
+        "legal_effect_ko": "30일 안에 구체적인 인정·부인과 항변을 담은 답변서를 내야 하며, 무대응은 변론 없는 판결 위험을 키웁니다."
+      },
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0256",
+        "coord.civil-small-claims.civil-0257"
+      ]
+    },
+    {
+      "rule_id": "rule.civil-small-claims.evidence-hearing",
+      "title_ko": "첫 기일에 무엇을 준비해야 하는가",
+      "proposition_ko": "법원은 변론 전체와 증거조사 결과를 논리와 경험법칙에 따라 평가하며, 소액사건은 되도록 한 차례 변론기일로 심리를 마치므로 핵심 주장과 증거를 일찍 모아야 합니다.",
+      "norm": {
+        "actor_ko": "원고와 피고 모두",
+        "conditions_ko": "사실관계가 다투어지고 문서·사진·메시지·증인 등 증거를 제출해야 하는 경우",
+        "legal_effect_ko": "각 쟁점별 주장과 증거의 연결표를 만들고 소액사건 첫 기일 전에 가능한 증거를 집중 제출해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0202",
+        "coord.civil-small-claims.small-0007"
+      ]
+    },
+    {
+      "rule_id": "rule.civil-small-claims.performance-recommendation",
+      "title_ko": "이행권고결정과 판결의 차이",
+      "proposition_ko": "소액사건 법원은 피고에게 청구취지대로 이행할 것을 권고할 수 있고, 피고는 송달받은 날부터 2주 안에 서면으로 이의할 수 있습니다.",
+      "norm": {
+        "actor_ko": "소액사건의 원고와 피고",
+        "conditions_ko": "법원이 이행권고결정을 내렸고 피고에게 결정서 등본이 송달된 경우",
+        "legal_effect_ko": "피고가 적법하게 이의하면 소송절차가 계속되고, 이의 없이 확정되면 확정판결과 같은 효력이 생깁니다."
+      },
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.small-0005-3",
+        "coord.civil-small-claims.small-0005-4",
+        "coord.civil-small-claims.small-0005-7"
+      ]
+    },
+    {
+      "rule_id": "rule.civil-small-claims.family-representation",
+      "title_ko": "가족이 소액재판에 대신 나갈 수 있는가",
+      "proposition_ko": "소액사건에서는 당사자의 배우자·직계혈족·형제자매가 법원 허가 없이 소송대리인이 될 수 있지만, 신분관계와 수권관계를 증명해야 합니다.",
+      "norm": {
+        "actor_ko": "직접 출석이 어렵거나 가족의 도움을 받으려는 소액사건 당사자",
+        "conditions_ko": "대리인이 배우자·직계혈족·형제자매이고 대리 권한을 서면 또는 법정 진술로 증명할 수 있는 경우",
+        "legal_effect_ko": "법정 가족 범위와 위임 증명을 갖추면 소액사건 특례에 따라 대리할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.small-0008"
+      ]
+    },
+    {
+      "rule_id": "rule.civil-small-claims.judgment-enforcement",
+      "title_ko": "소액판결 뒤 바로 강제집행할 수 있는가",
+      "proposition_ko": "소액사건 판결은 이유를 적지 않을 수 있고 즉시 선고될 수 있으며, 재산권 판결에는 원칙적으로 가집행 선고가 붙을 수 있습니다. 확정 이행권고결정은 집행문 없이 정본으로 집행할 수 있습니다.",
+      "norm": {
+        "actor_ko": "승소 후 실제 지급을 받으려는 원고와 집행 위험을 확인하려는 피고",
+        "conditions_ko": "판결에 가집행 선고가 있거나 이행권고결정이 확정되어 집행권원이 된 경우",
+        "legal_effect_ko": "판결 주문·가집행 문구 또는 확정 이행권고결정 정본을 확인한 뒤 별도의 강제집행 단계로 진행합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0213",
+        "coord.civil-small-claims.small-0005-8",
+        "coord.civil-small-claims.small-0011-2"
+      ]
+    },
+    {
+      "rule_id": "rule.civil-small-claims.costs-appeal",
+      "title_ko": "패소 비용과 항소기간",
+      "proposition_ko": "소송비용은 원칙적으로 패소자가 부담하고, 제1심 판결에 대한 항소는 판결서가 송달된 날부터 2주 안에 해야 합니다.",
+      "norm": {
+        "actor_ko": "제1심 판결을 송달받은 원고 또는 피고",
+        "conditions_ko": "전부 또는 일부 패소했고 판결에 불복하거나 비용부담을 확인해야 하는 경우",
+        "legal_effect_ko": "판결서 송달일을 기준으로 불변기간 2주를 계산하고, 주문의 비용부담과 항소 실익을 함께 검토해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0098",
+        "coord.civil-small-claims.civil-0396"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.civil-small-claims.jurisdiction",
+      "question_ko": "피고 주소지와 돈을 갚기로 한 장소가 다르면 어느 법원에 내야 하나요?",
+      "decision_fact_ko": "피고 주소·거소, 계약상 지급장소, 청구 성격, 관할합의 유무",
+      "when_true_ko": "피고의 보통재판적 또는 의무이행지 관할을 확인해 선택합니다.",
+      "when_false_ko": "전속관할이나 합의관할 등 다른 관할 근거가 있는지 추가 확인합니다.",
+      "rule_ids": [
+        "rule.civil-small-claims.jurisdiction"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0002",
+        "coord.civil-small-claims.civil-0008"
+      ]
+    },
+    {
+      "scenario_id": "scenario.civil-small-claims.small-claim-scope",
+      "question_ko": "청구액이 3천만원 이하면 자동으로 소액재판인가요?",
+      "decision_fact_ko": "제소 당시 청구가액, 금전·대체물 청구 여부, 제1심 여부, 일부청구 여부",
+      "when_true_ko": "법정 범위에 들면 소액사건 특례가 적용됩니다.",
+      "when_false_ko": "청구 유형·가액 또는 병합 때문에 일반 민사절차가 적용될 수 있습니다.",
+      "rule_ids": [
+        "rule.civil-small-claims.small-claim-scope"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.rule-0001-2",
+        "coord.civil-small-claims.small-0005-2"
+      ]
+    },
+    {
+      "scenario_id": "scenario.civil-small-claims.filing-method",
+      "question_ko": "소액재판도 반드시 소장을 직접 써야 하나요?",
+      "decision_fact_ko": "소액사건 여부, 서면 작성 가능성, 법원 출석 가능성",
+      "when_true_ko": "소장을 제출하거나 법원사무관 등 앞에서 구술제소를 검토합니다.",
+      "when_false_ko": "일반 민사소송이라면 법정 소장 제출 방식을 따릅니다.",
+      "rule_ids": [
+        "rule.civil-small-claims.filing-method"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0248",
+        "coord.civil-small-claims.small-0004"
+      ]
+    },
+    {
+      "scenario_id": "scenario.civil-small-claims.complaint-content",
+      "question_ko": "소장에 돈을 달라는 말만 쓰면 되나요?",
+      "decision_fact_ko": "당사자 특정, 청구 금액·이자, 청구 원인 사실, 증거",
+      "when_true_ko": "청구취지와 청구원인을 나눠 필수사항을 채웁니다.",
+      "when_false_ko": "상대방·요구결론·원인사실이 불명확하면 보정 위험을 먼저 해결합니다.",
+      "rule_ids": [
+        "rule.civil-small-claims.complaint-content"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0249"
+      ]
+    },
+    {
+      "scenario_id": "scenario.civil-small-claims.answer-default",
+      "question_ko": "법원 소장을 받고 가만히 있으면 바로 지나요?",
+      "decision_fact_ko": "송달일, 답변서 제출 여부, 다투는 범위, 공시송달 여부",
+      "when_true_ko": "30일 안에 구체적 답변서를 제출해 다투는 뜻을 밝힙니다.",
+      "when_false_ko": "무대응이면 자백간주와 무변론 판결 위험을 즉시 점검합니다.",
+      "rule_ids": [
+        "rule.civil-small-claims.answer-default"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0256",
+        "coord.civil-small-claims.civil-0257"
+      ]
+    },
+    {
+      "scenario_id": "scenario.civil-small-claims.evidence-hearing",
+      "question_ko": "소액재판 첫날에 증거를 나중에 내겠다고 해도 되나요?",
+      "decision_fact_ko": "첫 기일, 쟁점, 보유 증거, 증인 필요성, 추가 확보 일정",
+      "when_true_ko": "첫 기일 전에 쟁점별 증거를 최대한 모아 제출합니다.",
+      "when_false_ko": "증거 확보가 어렵다면 이유와 확보계획을 정리해 절차 대응을 준비합니다.",
+      "rule_ids": [
+        "rule.civil-small-claims.evidence-hearing"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0202",
+        "coord.civil-small-claims.small-0007"
+      ]
+    },
+    {
+      "scenario_id": "scenario.civil-small-claims.performance-recommendation",
+      "question_ko": "이행권고결정서를 받으면 판결이 확정된 건가요?",
+      "decision_fact_ko": "송달일, 이의 여부, 결정 확정 여부, 청구 내용",
+      "when_true_ko": "피고는 송달일부터 2주 안에 서면 이의를 검토합니다.",
+      "when_false_ko": "이의 없이 확정되면 확정판결과 같은 효력과 집행 가능성을 확인합니다.",
+      "rule_ids": [
+        "rule.civil-small-claims.performance-recommendation"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.small-0005-3",
+        "coord.civil-small-claims.small-0005-4",
+        "coord.civil-small-claims.small-0005-7"
+      ]
+    },
+    {
+      "scenario_id": "scenario.civil-small-claims.family-representation",
+      "question_ko": "소액재판에 가족이 대신 출석할 수 있나요?",
+      "decision_fact_ko": "가족관계, 위임 여부, 사건의 소액사건 해당성, 증명서류",
+      "when_true_ko": "배우자·직계혈족·형제자매인지와 수권 증명을 준비합니다.",
+      "when_false_ko": "법정 가족 범위 밖이면 일반 소송대리 규정을 별도로 확인합니다.",
+      "rule_ids": [
+        "rule.civil-small-claims.family-representation"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.small-0008"
+      ]
+    },
+    {
+      "scenario_id": "scenario.civil-small-claims.judgment-enforcement",
+      "question_ko": "소액재판에서 이기면 상대방 통장을 바로 압류할 수 있나요?",
+      "decision_fact_ko": "판결 주문, 가집행 선고, 확정 여부, 이행권고결정 정본, 채무자 재산",
+      "when_true_ko": "집행권원과 가집행·확정 상태를 확인한 뒤 강제집행을 신청합니다.",
+      "when_false_ko": "승소 사실만 있고 집행 가능한 문서가 없으면 필요한 정본·집행문을 먼저 갖춥니다.",
+      "rule_ids": [
+        "rule.civil-small-claims.judgment-enforcement"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0213",
+        "coord.civil-small-claims.small-0005-8",
+        "coord.civil-small-claims.small-0011-2"
+      ]
+    },
+    {
+      "scenario_id": "scenario.civil-small-claims.costs-appeal",
+      "question_ko": "판결에 불복하면 언제까지 항소해야 하나요?",
+      "decision_fact_ko": "판결서 송달일, 패소 범위, 항소이유, 비용부담, 가집행 여부",
+      "when_true_ko": "송달일부터 2주 안에 항소장을 제출할지 결정합니다.",
+      "when_false_ko": "기간이 지났다면 추후보완 등 예외 가능성을 별도로 확인합니다.",
+      "rule_ids": [
+        "rule.civil-small-claims.costs-appeal"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0098",
+        "coord.civil-small-claims.civil-0396"
+      ]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.civil-small-claims-jurisdiction",
+      "content_type": "procedure_guide",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T02:00:00+00:00",
+      "expires_at": "2026-10-23T02:00:00+00:00",
+      "slug": "civil-small-claims-jurisdiction",
+      "title_ko": "민사소송은 어느 법원에 내야 하나요?",
+      "one_line_answer_ko": "원칙은 피고의 보통재판적 법원이지만, 돈을 지급하기로 한 장소 등 의무이행지 법원에도 제기할 수 있어 관할 근거를 먼저 비교해야 합니다.",
+      "audience_situation_ko": "돈을 받거나 계약상 의무 이행을 청구하려는데 상대방 주소와 거래 장소가 다른 경우",
+      "key_points_ko": [
+        "피고 주소지는 기본 관할 출발점입니다.",
+        "재산권 청구는 의무이행지도 특별재판적이 될 수 있습니다.",
+        "관할은 편의가 아니라 법정 근거별로 확인합니다."
+      ],
+      "action_steps_ko": [
+        "피고의 정확한 주소·법인 본점을 확인합니다.",
+        "계약서에서 지급장소와 관할합의를 찾습니다.",
+        "청구가 재산권에 관한 소인지 구분합니다.",
+        "후보 법원의 관할구역을 확인합니다.",
+        "소장 첫머리에 선택한 관할 근거를 적습니다."
+      ],
+      "facts_to_check_ko": [
+        "피고 주소",
+        "피고 법인 본점",
+        "계약 체결지",
+        "의무이행지",
+        "관할합의",
+        "청구 유형",
+        "부동산 관련 여부",
+        "전속관할 가능성",
+        "청구 금액"
+      ],
+      "caution_ko": "가까운 법원을 임의로 고르는 것이 아니며, 관할을 잘못 선택하면 이송되어 시간과 비용이 늘 수 있습니다.",
+      "search_intents_ko": [
+        "민사소송 어느 법원",
+        "돈 받을 소송 관할",
+        "피고 주소 모를 때 법원"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "기본은 피고의 보통재판적입니다.",
+          "paragraphs_ko": [
+            "자연인은 주소, 법인은 주된 사무소 등 보통재판적의 기초를 확인합니다.",
+            "상대방 표시와 송달 가능한 주소도 함께 정리합니다."
+          ]
+        },
+        {
+          "heading_ko": "의무이행지 관할도 비교합니다.",
+          "paragraphs_ko": [
+            "돈을 지급하기로 한 장소 등 의무이행지가 별도 관할 근거가 될 수 있습니다.",
+            "합의관할·전속관할이 문제되는 사건은 별도 검토가 필요합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.civil-small-claims.jurisdiction"
+      ],
+      "scenario_ids": [
+        "scenario.civil-small-claims.jurisdiction"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0002",
+        "coord.civil-small-claims.civil-0008"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.civil-small-claims-small-claim-scope",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T02:00:00+00:00",
+      "expires_at": "2026-10-23T02:00:00+00:00",
+      "slug": "civil-small-claims-small-claim-scope",
+      "title_ko": "3천만원 이하 청구는 모두 소액사건인가요?",
+      "one_line_answer_ko": "제소 당시 3천만원 이하인 금전·대체물·유가증권 지급청구의 제1심 사건이어야 하며, 소액절차를 쓰려고 큰 채권 일부만 떼어 청구할 수는 없습니다.",
+      "audience_situation_ko": "대여금·물품대금·손해배상금 등 3천만원 안팎의 금전청구를 준비하는 경우",
+      "key_points_ko": [
+        "기준시점은 소를 제기한 때입니다.",
+        "금전 등의 지급을 구하는 제1심이어야 합니다.",
+        "법 적용만을 위한 청구 분할은 제한됩니다."
+      ],
+      "action_steps_ko": [
+        "원금과 부대청구를 나눠 소송목적 값을 계산합니다.",
+        "청구가 금전·대체물 지급인지 확인합니다.",
+        "다른 청구와 병합되는지 확인합니다.",
+        "전체 채권 중 일부청구인지 이유를 적습니다.",
+        "지급명령과 일반소송도 함께 비교합니다."
+      ],
+      "facts_to_check_ko": [
+        "원금",
+        "이자",
+        "지연손해금",
+        "청구 전체액",
+        "일부청구 여부",
+        "제1심 여부",
+        "청구 대상",
+        "반소 가능성",
+        "병합 사건"
+      ],
+      "caution_ko": "3천만원이라는 숫자만 보고 소액사건으로 단정하지 말고 청구의 종류·전체 채권·병합 여부까지 확인해야 합니다.",
+      "search_intents_ko": [
+        "소액재판 3천만원",
+        "소액사건 일부청구",
+        "소액사건 지급명령 차이"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "금액과 청구 유형을 함께 봅니다.",
+          "paragraphs_ko": [
+            "소액사건은 단순히 원고가 원하는 절차가 아니라 규칙이 정한 범위의 사건입니다.",
+            "제소 시점의 소송목적 값을 근거자료와 함께 계산합니다."
+          ]
+        },
+        {
+          "heading_ko": "청구를 인위적으로 쪼개지 않습니다.",
+          "paragraphs_ko": [
+            "큰 채권을 소액사건으로 만들기 위해 일부만 청구하면 법이 정한 제한에 걸릴 수 있습니다.",
+            "신속성과 송달 가능성을 기준으로 지급명령·소액소송을 비교합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.civil-small-claims.small-claim-scope"
+      ],
+      "scenario_ids": [
+        "scenario.civil-small-claims.small-claim-scope"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.rule-0001-2",
+        "coord.civil-small-claims.small-0005-2"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "related_content_ids": [
+        "content.payment-order-vs-civil-lawsuit",
+        "content.when-payment-order-fits"
+      ]
+    },
+    {
+      "content_id": "content.civil-small-claims-filing-method",
+      "content_type": "procedure_guide",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T02:00:00+00:00",
+      "expires_at": "2026-10-23T02:00:00+00:00",
+      "slug": "civil-small-claims-filing-method",
+      "title_ko": "소액재판도 반드시 소장을 작성해야 하나요?",
+      "one_line_answer_ko": "일반 민사소송은 소장을 제출해야 하지만 소액사건은 서면 소장 외에 법원사무관 등 앞에서 구술로도 소를 제기할 수 있습니다.",
+      "audience_situation_ko": "소액청구를 직접 진행하려는데 소장 작성이 어려운 경우",
+      "key_points_ko": [
+        "일반소송의 원칙은 소장 제출입니다.",
+        "소액사건에는 구술제소 특례가 있습니다.",
+        "구술제소도 청구내용과 근거자료 준비가 필요합니다."
+      ],
+      "action_steps_ko": [
+        "소액사건 해당 여부를 먼저 확인합니다.",
+        "상대방 인적사항과 송달주소를 정리합니다.",
+        "청구 금액·이유·증거목록을 메모합니다.",
+        "관할 법원 민원실의 구술제소 절차를 확인합니다.",
+        "접수일과 사건번호를 보관합니다."
+      ],
+      "facts_to_check_ko": [
+        "청구 금액",
+        "청구 원인",
+        "상대방 이름",
+        "상대방 주소",
+        "관할 법원",
+        "계약서",
+        "송금내역",
+        "독촉내역",
+        "인지·송달료"
+      ],
+      "caution_ko": "구술제소는 증거 없이 말만 하면 된다는 뜻이 아니며, 법원이 청구와 상대방을 특정할 자료는 준비해야 합니다.",
+      "search_intents_ko": [
+        "소액재판 소장 쓰는 법",
+        "소액사건 말로 접수",
+        "민사소송 구술제소"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "두 제기 방식을 구분합니다.",
+          "paragraphs_ko": [
+            "일반 민사소송은 소장 제출이 원칙이고 접수되면 제출한 때 소가 제기된 것으로 봅니다.",
+            "소액사건에는 법원사무관 등 앞에서 진술하는 별도 특례가 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "구술 전에도 사건을 구조화합니다.",
+          "paragraphs_ko": [
+            "원하는 결론과 그 이유, 상대방 주소, 핵심 증거를 짧은 목록으로 준비합니다.",
+            "접수 뒤 작성된 조서와 사건번호가 의도한 청구와 일치하는지 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.civil-small-claims.filing-method"
+      ],
+      "scenario_ids": [
+        "scenario.civil-small-claims.filing-method"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0248",
+        "coord.civil-small-claims.small-0004"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.civil-small-claims-complaint-content",
+      "content_type": "procedure_guide",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T02:00:00+00:00",
+      "expires_at": "2026-10-23T02:00:00+00:00",
+      "slug": "civil-small-claims-complaint-content",
+      "title_ko": "민사소장에는 무엇을 반드시 적어야 하나요?",
+      "one_line_answer_ko": "당사자와 법정대리인, 법원에 구하는 결론인 청구취지, 그 결론을 뒷받침하는 청구원인을 구분해 적어야 합니다.",
+      "audience_situation_ko": "직접 민사소장을 작성하면서 요구사항과 사실관계를 어떻게 나눌지 막막한 경우",
+      "key_points_ko": [
+        "청구취지는 판결 주문의 형태로 구체화합니다.",
+        "청구원인은 권리를 발생시킨 핵심 사실입니다.",
+        "당사자와 송달주소가 정확해야 절차가 진행됩니다."
+      ],
+      "action_steps_ko": [
+        "원고·피고의 이름과 주소를 확인합니다.",
+        "원금·이자·기산일을 계산합니다.",
+        "원하는 판결 내용을 청구취지로 씁니다.",
+        "계약·이행·불이행 사실을 시간순으로 적습니다.",
+        "각 사실 옆에 증거를 대응시킵니다."
+      ],
+      "facts_to_check_ko": [
+        "원고 인적사항",
+        "피고 인적사항",
+        "법정대리인",
+        "원금",
+        "이자율",
+        "지연손해금 기산일",
+        "계약일",
+        "이행기",
+        "증거번호"
+      ],
+      "caution_ko": "억울한 사정을 길게 쓰는 것만으로는 청구취지와 권리발생 사실이 특정되지 않으므로, 결론과 원인을 분리해야 합니다.",
+      "search_intents_ko": [
+        "민사소장 필수사항",
+        "청구취지 청구원인 차이",
+        "돈 받는 소장 작성"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "청구취지는 원하는 주문입니다.",
+          "paragraphs_ko": [
+            "누가 누구에게 얼마를 언제부터의 이자와 함께 지급하라는 것인지 구체적으로 적습니다.",
+            "비용과 가집행 청구 여부도 사건에 맞게 정리합니다."
+          ]
+        },
+        {
+          "heading_ko": "청구원인은 결론의 근거입니다.",
+          "paragraphs_ko": [
+            "계약 체결, 돈의 지급, 변제기 도래, 미지급처럼 법률효과를 만드는 사실을 시간순으로 씁니다.",
+            "주장마다 계약서·송금내역·메시지 등 증거를 연결합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.civil-small-claims.complaint-content"
+      ],
+      "scenario_ids": [
+        "scenario.civil-small-claims.complaint-content"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0249"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.civil-small-claims-answer-default",
+      "content_type": "remedy_guide",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T02:00:00+00:00",
+      "expires_at": "2026-10-23T02:00:00+00:00",
+      "slug": "civil-small-claims-answer-default",
+      "title_ko": "법원에서 온 소장에 답변하지 않으면 어떻게 되나요?",
+      "one_line_answer_ko": "청구를 다투는 피고는 소장 부본 송달일부터 30일 안에 답변서를 제출해야 하며, 무대응이면 법원이 청구원인 사실을 자백한 것으로 보아 변론 없이 판결할 수 있습니다.",
+      "audience_situation_ko": "민사소장과 안내서를 송달받았지만 원고 주장이 틀리거나 금액이 다른 경우",
+      "key_points_ko": [
+        "송달받은 날짜부터 30일을 계산합니다.",
+        "인정할 사실과 부인할 사실을 나눕니다.",
+        "답변서 미제출은 무변론 판결 위험이 있습니다."
+      ],
+      "action_steps_ko": [
+        "봉투와 송달일 표시를 보관합니다.",
+        "청구취지와 청구원인을 항목별로 읽습니다.",
+        "인정·부인·모름을 구분합니다.",
+        "항변과 증거를 답변서에 붙입니다.",
+        "기한 안에 법원에 제출하고 접수증을 보관합니다."
+      ],
+      "facts_to_check_ko": [
+        "실제 송달일",
+        "공시송달 여부",
+        "청구 금액",
+        "인정 사실",
+        "부인 사실",
+        "변제 내역",
+        "상계 주장",
+        "소멸시효",
+        "보유 증거"
+      ],
+      "caution_ko": "법원 문서를 무시하면 자동으로 사건이 사라지지 않으며, 뒤늦은 전화 설명만으로 적법한 답변서 제출을 대신할 수 없습니다.",
+      "search_intents_ko": [
+        "민사소송 답변서 30일",
+        "소장 무시하면",
+        "무변론 판결 대응"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "30일은 송달일부터 계산합니다.",
+          "paragraphs_ko": [
+            "청구 전부를 인정하지 않는다면 기한 안에 다투는 취지를 서면으로 밝혀야 합니다.",
+            "공시송달 등 예외는 별도로 확인합니다."
+          ]
+        },
+        {
+          "heading_ko": "주장과 증거를 짝지어 답합니다.",
+          "paragraphs_ko": [
+            "단순히 부인한다고 쓰기보다 지급·상계·시효 등 구체적 항변 사실을 적습니다.",
+            "답변서를 내지 않으면 청구원인 사실에 대한 자백간주와 무변론 판결 가능성이 생깁니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.civil-small-claims.answer-default"
+      ],
+      "scenario_ids": [
+        "scenario.civil-small-claims.answer-default"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0256",
+        "coord.civil-small-claims.civil-0257"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.civil-small-claims-evidence-hearing",
+      "content_type": "procedure_guide",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T02:00:00+00:00",
+      "expires_at": "2026-10-23T02:00:00+00:00",
+      "slug": "civil-small-claims-evidence-hearing",
+      "title_ko": "소액재판 첫 기일에는 어떤 증거를 준비해야 하나요?",
+      "one_line_answer_ko": "소액사건은 되도록 한 번의 변론기일에 심리를 마치므로 계약서·송금내역·메시지·사진·증인 등 핵심 증거를 쟁점별로 미리 정리해야 합니다.",
+      "audience_situation_ko": "소액재판 기일통지를 받고 주장과 증거를 처음 준비하는 경우",
+      "key_points_ko": [
+        "법원은 전체 변론과 증거조사 결과를 평가합니다.",
+        "소액사건은 첫 기일 집중심리가 원칙입니다.",
+        "증거는 무엇을 입증하는지 설명해야 합니다."
+      ],
+      "action_steps_ko": [
+        "청구와 항변의 쟁점을 한 줄씩 적습니다.",
+        "각 쟁점에 필요한 사실을 나눕니다.",
+        "문서·사진·메시지를 날짜순으로 정리합니다.",
+        "증인이 필요한 사실과 연락처를 정리합니다.",
+        "증거목록과 상대방 제출용 사본을 준비합니다."
+      ],
+      "facts_to_check_ko": [
+        "계약서",
+        "송금내역",
+        "영수증",
+        "문자·메신저",
+        "녹음 적법성",
+        "사진 원본",
+        "증인 인적사항",
+        "증거 작성일",
+        "상대방 주장"
+      ],
+      "caution_ko": "자료를 많이 내는 것보다 각 자료가 어떤 쟁점을 증명하는지 명확히 연결하는 것이 중요하며, 원본 훼손이나 임의 편집은 피해야 합니다.",
+      "search_intents_ko": [
+        "소액재판 증거 준비",
+        "민사재판 첫 기일",
+        "소액소송 증인 신청"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "쟁점과 증거를 연결합니다.",
+          "paragraphs_ko": [
+            "계약 성립, 돈 지급, 변제기, 미지급처럼 결론에 필요한 사실을 나누고 증거번호를 붙입니다.",
+            "상대방 주장에 대한 반박자료도 같은 방식으로 정리합니다."
+          ]
+        },
+        {
+          "heading_ko": "첫 기일에 집중해 준비합니다.",
+          "paragraphs_ko": [
+            "소액사건은 한 차례 기일로 심리를 마치도록 운영될 수 있으므로 나중에 내겠다는 전제는 위험합니다.",
+            "새 증거가 늦어지는 이유와 확보계획도 미리 설명할 수 있게 준비합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.civil-small-claims.evidence-hearing"
+      ],
+      "scenario_ids": [
+        "scenario.civil-small-claims.evidence-hearing"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0202",
+        "coord.civil-small-claims.small-0007"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.civil-small-claims-performance-recommendation",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T02:00:00+00:00",
+      "expires_at": "2026-10-23T02:00:00+00:00",
+      "slug": "civil-small-claims-performance-recommendation",
+      "title_ko": "이행권고결정서를 받으면 바로 확정판결인가요?",
+      "one_line_answer_ko": "피고가 결정서 등본을 송달받은 날부터 2주 안에 서면으로 이의하면 소송이 계속되고, 적법한 이의 없이 확정된 때에 확정판결과 같은 효력이 생깁니다.",
+      "audience_situation_ko": "소액사건에서 법원의 이행권고결정서를 받은 원고 또는 피고",
+      "key_points_ko": [
+        "이행권고는 소액사건의 간이절차입니다.",
+        "피고의 이의기간은 송달일부터 2주입니다.",
+        "확정 여부에 따라 집행 가능성이 달라집니다."
+      ],
+      "action_steps_ko": [
+        "결정서 등본의 실제 송달일을 확인합니다.",
+        "청구취지와 결정 내용을 대조합니다.",
+        "피고는 이의할 이유와 증거를 정리합니다.",
+        "2주 안에 서면 이의신청을 제출합니다.",
+        "원고는 확정증명과 정본 발급 여부를 확인합니다."
+      ],
+      "facts_to_check_ko": [
+        "결정서 송달일",
+        "이의신청일",
+        "청구취지",
+        "피고 주소",
+        "송달 성공 여부",
+        "확정 여부",
+        "결정서 정본",
+        "변제 내역",
+        "강제집행 필요성"
+      ],
+      "caution_ko": "이행권고결정은 지급명령과 이름이 비슷하지만 소액사건법상 별도 제도이므로 사건번호와 문서 제목을 정확히 확인해야 합니다.",
+      "search_intents_ko": [
+        "이행권고결정 이의 2주",
+        "소액재판 이행권고",
+        "이행권고 확정 효력"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "송달과 이의를 기준으로 나눕니다.",
+          "paragraphs_ko": [
+            "법원은 소액사건에서 청구취지대로 이행하라는 결정을 할 수 있습니다.",
+            "피고가 송달일부터 2주 안에 적법하게 이의하면 통상의 소액소송 심리가 이어집니다."
+          ]
+        },
+        {
+          "heading_ko": "확정 뒤에는 집행권원이 됩니다.",
+          "paragraphs_ko": [
+            "이의 없이 법정 요건에 따라 확정되면 확정판결과 같은 효력이 생깁니다.",
+            "원고는 확정 여부와 정본을 확인한 뒤 집행 단계로 넘어갑니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.civil-small-claims.performance-recommendation"
+      ],
+      "scenario_ids": [
+        "scenario.civil-small-claims.performance-recommendation"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.small-0005-3",
+        "coord.civil-small-claims.small-0005-4",
+        "coord.civil-small-claims.small-0005-7"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "related_content_ids": [
+        "content.documents-that-allow-compulsory-enforcement",
+        "content.payment-order-objection-two-weeks"
+      ]
+    },
+    {
+      "content_id": "content.civil-small-claims-family-representation",
+      "content_type": "procedure_guide",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T02:00:00+00:00",
+      "expires_at": "2026-10-23T02:00:00+00:00",
+      "slug": "civil-small-claims-family-representation",
+      "title_ko": "소액재판에는 가족이 대신 출석할 수 있나요?",
+      "one_line_answer_ko": "배우자·직계혈족·형제자매는 소액사건에서 법원 허가 없이 대리할 수 있지만, 가족관계와 위임받았다는 사실을 증명해야 합니다.",
+      "audience_situation_ko": "고령·질병·직장 사정 등으로 소액재판에 직접 출석하기 어려운 경우",
+      "key_points_ko": [
+        "법이 허용한 가족 범위가 정해져 있습니다.",
+        "가족관계와 수권관계를 모두 증명합니다.",
+        "이 특례는 소액사건에 한정됩니다."
+      ],
+      "action_steps_ko": [
+        "사건이 소액사건인지 확인합니다.",
+        "대리인과의 가족관계를 확인합니다.",
+        "가족관계증명서 등 서류를 준비합니다.",
+        "위임장을 작성해 대리 범위를 정합니다.",
+        "기일 전 법원에 제출방법을 확인합니다."
+      ],
+      "facts_to_check_ko": [
+        "사건 종류",
+        "청구 금액",
+        "대리인 관계",
+        "가족관계증명서",
+        "위임장",
+        "본인 신분증",
+        "대리인 신분증",
+        "대리 범위",
+        "기일 날짜"
+      ],
+      "caution_ko": "친한 지인이나 동거인이라는 이유만으로 이 특례가 적용되는 것은 아니며, 소송행위의 결과는 본인에게 귀속됩니다.",
+      "search_intents_ko": [
+        "소액재판 가족 대리",
+        "소액소송 배우자 출석",
+        "소액사건 위임장"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "허용되는 가족 범위를 확인합니다.",
+          "paragraphs_ko": [
+            "배우자·직계혈족·형제자매가 법정 특례의 대상입니다.",
+            "그 밖의 관계라면 일반 소송대리 규정을 따라야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "두 관계를 서류로 증명합니다.",
+          "paragraphs_ko": [
+            "가족관계뿐 아니라 그 사건의 소송행위를 맡겼다는 수권관계도 필요합니다.",
+            "위임 범위와 화해·취하 권한을 명확히 정합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.civil-small-claims.family-representation"
+      ],
+      "scenario_ids": [
+        "scenario.civil-small-claims.family-representation"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.small-0008"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.civil-small-claims-judgment-enforcement",
+      "content_type": "remedy_guide",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T02:00:00+00:00",
+      "expires_at": "2026-10-23T02:00:00+00:00",
+      "slug": "civil-small-claims-judgment-enforcement",
+      "title_ko": "소액재판에서 승소하면 바로 압류할 수 있나요?",
+      "one_line_answer_ko": "승소판결의 가집행 선고나 확정 여부, 또는 확정 이행권고결정 정본 등 집행 가능한 문서를 확인한 뒤 별도의 압류·추심 절차를 신청해야 합니다.",
+      "audience_situation_ko": "소액사건에서 이겼지만 상대방이 자발적으로 지급하지 않는 경우",
+      "key_points_ko": [
+        "승소와 실제 회수는 별도 단계입니다.",
+        "가집행 선고가 있으면 확정 전 집행 가능성이 있습니다.",
+        "확정 이행권고결정은 집행문 없이 정본으로 집행할 수 있습니다."
+      ],
+      "action_steps_ko": [
+        "판결서 주문의 가집행 문구를 확인합니다.",
+        "판결 확정 여부와 송달증명을 확인합니다.",
+        "이행권고결정이면 확정 정본을 준비합니다.",
+        "채무자의 은행·급여·재산 단서를 정리합니다.",
+        "압류·추심 등 맞는 집행절차를 선택합니다."
+      ],
+      "facts_to_check_ko": [
+        "판결 주문",
+        "가집행 선고",
+        "판결 송달일",
+        "항소 여부",
+        "확정증명",
+        "이행권고결정 정본",
+        "채무자 주소",
+        "은행 정보",
+        "급여·재산"
+      ],
+      "caution_ko": "가집행은 판결이 최종 확정됐다는 뜻이 아니며, 상급심에서 결과가 바뀔 가능성과 담보·원상회복 위험을 함께 검토해야 합니다.",
+      "search_intents_ko": [
+        "소액재판 승소 압류",
+        "가집행 선고 뜻",
+        "이행권고결정 강제집행"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "집행 가능한 문서를 먼저 확인합니다.",
+          "paragraphs_ko": [
+            "판결 주문에 가집행 선고가 있는지, 판결이 확정됐는지, 이행권고결정이 확정됐는지를 구분합니다.",
+            "문서 종류에 따라 집행문·확정증명 등 필요한 서류가 달라집니다."
+          ]
+        },
+        {
+          "heading_ko": "회수 대상에 맞는 집행을 선택합니다.",
+          "paragraphs_ko": [
+            "예금은 채권압류·추심, 급여와 다른 재산은 각 집행절차와 보호범위를 따릅니다.",
+            "채무자 재산을 모르면 재산명시 등 후속 경로를 검토합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.civil-small-claims.judgment-enforcement"
+      ],
+      "scenario_ids": [
+        "scenario.civil-small-claims.judgment-enforcement"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0213",
+        "coord.civil-small-claims.small-0005-8",
+        "coord.civil-small-claims.small-0011-2"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "related_content_ids": [
+        "content.documents-that-allow-compulsory-enforcement",
+        "content.bank-account-seizure-and-collection-order",
+        "content.property-disclosure-when-assets-unknown"
+      ]
+    },
+    {
+      "content_id": "content.civil-small-claims-costs-appeal",
+      "content_type": "remedy_guide",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T02:00:00+00:00",
+      "expires_at": "2026-10-23T02:00:00+00:00",
+      "slug": "civil-small-claims-costs-appeal",
+      "title_ko": "민사판결에 불복하면 언제까지 항소해야 하나요?",
+      "one_line_answer_ko": "판결서가 송달된 날부터 2주 안에 항소해야 하며, 소송비용은 원칙적으로 패소자가 부담하므로 불복 범위와 비용·가집행 위험을 함께 검토해야 합니다.",
+      "audience_situation_ko": "제1심 판결의 사실판단이나 법률판단에 동의하지 않는 원고 또는 피고",
+      "key_points_ko": [
+        "항소기간은 판결 선고일이 아니라 송달일 기준입니다.",
+        "2주는 불변기간입니다.",
+        "일부 승패이면 비용부담도 주문에서 확인합니다."
+      ],
+      "action_steps_ko": [
+        "판결서와 송달봉투를 보관합니다.",
+        "송달일 다음 날부터 기간을 계산합니다.",
+        "불복할 주문과 이유를 특정합니다.",
+        "항소장을 원심법원에 기한 안에 제출합니다.",
+        "가집행 정지와 비용 위험을 함께 검토합니다."
+      ],
+      "facts_to_check_ko": [
+        "판결서 송달일",
+        "선고일",
+        "항소장 제출일",
+        "불복 범위",
+        "사실오인 주장",
+        "법리오해 주장",
+        "추가 증거",
+        "소송비용 주문",
+        "가집행 선고"
+      ],
+      "caution_ko": "상대방과 협의 중이거나 판결 이유를 더 검토한다는 사정만으로 2주 기간이 멈추지 않으며, 소액사건의 상고는 제한된 사유만 허용됩니다.",
+      "search_intents_ko": [
+        "민사 항소 2주",
+        "소액재판 항소기간",
+        "패소 소송비용"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "송달일을 즉시 고정합니다.",
+          "paragraphs_ko": [
+            "항소기간은 판결서가 실제로 송달된 날을 기준으로 하며 선고일과 혼동하지 않습니다.",
+            "전자송달이면 열람·송달 간주 시점도 기록합니다."
+          ]
+        },
+        {
+          "heading_ko": "불복의 실익을 구조화합니다.",
+          "paragraphs_ko": [
+            "판결 주문별 승패, 사실·법률 오류, 추가 증거, 비용과 가집행 위험을 함께 봅니다.",
+            "항소장 제출 뒤 요구되는 후속 서면과 인지·송달료도 준비합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.civil-small-claims.costs-appeal"
+      ],
+      "scenario_ids": [
+        "scenario.civil-small-claims.costs-appeal"
+      ],
+      "source_coordinate_ids": [
+        "coord.civil-small-claims.civil-0098",
+        "coord.civil-small-claims.civil-0396"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "related_content_ids": []
+    }
+  ]
+}
