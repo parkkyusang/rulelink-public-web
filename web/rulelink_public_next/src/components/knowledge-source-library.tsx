@@ -5,6 +5,12 @@ import {useEffect, useMemo, useState} from 'react';
 import {buildCollectionSearchHref, parseCollectionSearchState, sanitizeCollectionQuery} from '@/lib/collection-search-state';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import type {PublicKnowledgeSourceDocument} from '@/lib/knowledge-search';
+import {
+  filterAndRankKnowledgeSourceDocuments,
+  knowledgeSourceKind,
+  normalizeKnowledgeSourceSearchText,
+  type KnowledgeSourceFilter,
+} from '@/lib/knowledge-source-ranking';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {
   DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE,
@@ -15,13 +21,11 @@ import {
 import styles from './knowledge-source-library.module.css';
 import {ProgressiveResultFooter} from './progressive-result-footer';
 
-type SourceFilter = 'all' | 'statute' | 'precedent' | 'official_document';
-
-const SOURCE_FILTERS = ['all', 'statute', 'precedent', 'official_document'] as const satisfies readonly SourceFilter[];
+const SOURCE_FILTERS = ['all', 'statute', 'precedent', 'official_document'] as const satisfies readonly KnowledgeSourceFilter[];
 
 export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeSourceDocument[]}) {
   const [query, setQuery] = useState('');
-  const [filter, setFilter] = useState<SourceFilter>('all');
+  const [filter, setFilter] = useState<KnowledgeSourceFilter>('all');
   const [visibleLimit, setVisibleLimit] = useState(() => initialProgressiveResultLimit(documents.length));
 
   useEffect(() => {
@@ -43,39 +47,21 @@ export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeS
     replaceSourceUrl(nextQuery, filter);
   }
 
-  function updateFilter(nextFilter: SourceFilter) {
+  function updateFilter(nextFilter: KnowledgeSourceFilter) {
     setFilter(nextFilter);
     setVisibleLimit(DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE);
     replaceSourceUrl(query, nextFilter);
   }
 
-  const normalizedQuery = normalize(query);
+  const normalizedQuery = normalizeKnowledgeSourceSearchText(query);
   const counts = useMemo(() => ({
     all: documents.length,
-    statute: documents.filter(document => sourceKind(document) === 'statute').length,
-    precedent: documents.filter(document => sourceKind(document) === 'precedent').length,
-    official_document: documents.filter(document => sourceKind(document) === 'official_document').length,
+    statute: documents.filter(document => knowledgeSourceKind(document) === 'statute').length,
+    precedent: documents.filter(document => knowledgeSourceKind(document) === 'precedent').length,
+    official_document: documents.filter(document => knowledgeSourceKind(document) === 'official_document').length,
   }), [documents]);
   const visibleDocuments = useMemo(() => {
-    const tokens = normalizedQuery.split(' ').filter(Boolean);
-    return documents
-      .filter(document => filter === 'all' || sourceKind(document) === filter)
-      .filter(document => {
-        if (!tokens.length) return true;
-        const searchText = normalize([document.label_ko, ...document.search_terms_ko].join(' '));
-        return tokens.every(token => searchText.includes(token));
-      })
-      .sort((left, right) => {
-        const leftKind = sourceKind(left);
-        const rightKind = sourceKind(right);
-        if (leftKind !== rightKind) {
-          const order = {precedent: 0, official_document: 1, statute: 2};
-          return order[leftKind] - order[rightKind];
-        }
-        const leftLinks = left.entries.length + left.concepts.length;
-        const rightLinks = right.entries.length + right.concepts.length;
-        return rightLinks - leftLinks || left.label_ko.localeCompare(right.label_ko, 'ko');
-      });
+    return filterAndRankKnowledgeSourceDocuments(documents, {filter, query: normalizedQuery});
   }, [documents, filter, normalizedQuery]);
   const displayedDocuments = visibleDocuments.slice(0, visibleLimit);
   const hiddenResultCount = visibleDocuments.length - displayedDocuments.length;
@@ -121,10 +107,10 @@ export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeS
               return (
                 <article className={styles.card} key={source.coordinate_id}>
                 <div className={styles.meta}>
-                  <span className={sourceKind(document) === 'precedent' ? styles.precedent : styles.statute}>
-                    {sourceKind(document) === 'precedent'
+                  <span className={knowledgeSourceKind(document) === 'precedent' ? styles.precedent : styles.statute}>
+                    {knowledgeSourceKind(document) === 'precedent'
                       ? '판례'
-                      : sourceKind(document) === 'official_document'
+                      : knowledgeSourceKind(document) === 'official_document'
                         ? '개정·시행 문서'
                         : '법령 조문'}
                   </span>
@@ -179,7 +165,7 @@ export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeS
   );
 }
 
-function replaceSourceUrl(query: string, filter: SourceFilter) {
+function replaceSourceUrl(query: string, filter: KnowledgeSourceFilter) {
   window.history.replaceState(null, '', buildCollectionSearchHref({
     defaultFilter: 'all',
     filter,
@@ -190,21 +176,12 @@ function replaceSourceUrl(query: string, filter: SourceFilter) {
   }));
 }
 
-function sourceKind(document: PublicKnowledgeSourceDocument): Exclude<SourceFilter, 'all'> {
-  const kind = document.source.source_kind;
-  return kind === 'precedent' || kind === 'official_document' ? kind : 'statute';
-}
-
 function FilterButton({active, count, label, onClick}: {active: boolean; count: number; label: string; onClick: () => void}) {
   return (
     <button aria-pressed={active} className={active ? styles.active : ''} onClick={onClick} type="button">
       {label}<span>{count}</span>
     </button>
   );
-}
-
-function normalize(value: string): string {
-  return value.normalize('NFKC').toLocaleLowerCase('ko-KR').replace(/\s+/g, ' ').trim();
 }
 
 function formatDate(value: string): string {

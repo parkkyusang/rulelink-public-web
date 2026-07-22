@@ -6,9 +6,10 @@ import {fileURLToPath} from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repositoryRoot = path.resolve(root, '..', '..');
-const [bundle, projectionSource, pageSource, componentSource, layoutSource, sitemapSource, localSmoke, liveSmoke] = await Promise.all([
+const [bundle, projectionSource, rankingSource, pageSource, componentSource, layoutSource, sitemapSource, localSmoke, liveSmoke] = await Promise.all([
   readFile(path.join(repositoryRoot, 'artifacts/publication/current/bundle.json'), 'utf8').then(JSON.parse),
   readFile(path.join(root, 'src/lib/knowledge-search.ts'), 'utf8'),
+  readFile(path.join(root, 'src/lib/knowledge-source-ranking.ts'), 'utf8'),
   readFile(path.join(root, 'app/ko/sources/page.tsx'), 'utf8'),
   readFile(path.join(root, 'src/components/knowledge-source-library.tsx'), 'utf8'),
   readFile(path.join(root, 'app/layout.tsx'), 'utf8'),
@@ -21,8 +22,9 @@ test('공식 근거 역색인은 동일한 참조 해석기로 공개 콘텐츠�
   assert.match(projectionSource, /buildKnowledgeSourceDocuments/);
   assert.match(projectionSource, /createKnowledgeEntryResolver/);
   assert.match(projectionSource, /graph\.sources\.some/);
-  assert.match(projectionSource, /relatedEntries\.map\(\(\{entry\}\) => entry\)/);
-  assert.match(projectionSource, /return \{document: makeKnowledgeSearchDocument\(entry, graph\), entry, graph\}/);
+  assert.match(projectionSource, /sourceRelatedEntryTerms/);
+  assert.match(projectionSource, /entries: relatedEntries\.map/);
+  assert.match(projectionSource, /content_id: entry\.content_id/);
   assert.match(projectionSource, /conceptReferencesSource/);
 });
 
@@ -57,7 +59,8 @@ test('현재 공개본의 법령과 판례는 연결 콘텐츠를 가진다', ()
 
 test('공식 근거 보관함은 검색·원문·연결 안내와 전체 공개 경로에 포함된다', () => {
   assert.match(pageSource, /공식 근거 보관함/);
-  assert.match(componentSource, /document\.search_terms_ko/);
+  assert.match(rankingSource, /document\.search_terms_ko/);
+  assert.match(componentSource, /filterAndRankKnowledgeSourceDocuments/);
   assert.match(componentSource, /browserOfficialSourceUrl/);
   assert.match(componentSource, /document\.entries/);
   assert.match(componentSource, /document\.concepts/);
