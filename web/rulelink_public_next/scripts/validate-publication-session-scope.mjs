@@ -36,6 +36,12 @@ export function isPublicationGovernedPath(filePath) {
     || value === 'web/rulelink_public_next/scripts/validate-publication-production-queue.test.mjs'
     || value === 'web/rulelink_public_next/scripts/audit-publication-semantic-overlap.mjs'
     || value === 'web/rulelink_public_next/scripts/audit-publication-semantic-overlap.test.mjs'
+    || value === 'web/rulelink_public_next/scripts/audit-publication-topic-queue.mjs'
+    || value === 'web/rulelink_public_next/scripts/audit-publication-topic-queue.test.mjs'
+    || value === 'web/rulelink_public_next/scripts/knowledge-content-type-contract.test.mjs'
+    || value === 'web/rulelink_public_next/src/lib/knowledge-content-types.json'
+    || value === 'web/rulelink_public_next/src/lib/content-labels.ts'
+    || value === 'web/rulelink_public_next/src/types/publication.ts'
     || value === 'web/rulelink_public_next/deploy/release.json';
 }
 
@@ -70,7 +76,13 @@ export function allowedForRole(role, filePath) {
       || value === 'web/rulelink_public_next/scripts/validate-publication-production-queue.mjs'
       || value === 'web/rulelink_public_next/scripts/validate-publication-production-queue.test.mjs'
       || value === 'web/rulelink_public_next/scripts/audit-publication-semantic-overlap.mjs'
-      || value === 'web/rulelink_public_next/scripts/audit-publication-semantic-overlap.test.mjs';
+      || value === 'web/rulelink_public_next/scripts/audit-publication-semantic-overlap.test.mjs'
+      || value === 'web/rulelink_public_next/scripts/audit-publication-topic-queue.mjs'
+      || value === 'web/rulelink_public_next/scripts/audit-publication-topic-queue.test.mjs'
+      || value === 'web/rulelink_public_next/scripts/knowledge-content-type-contract.test.mjs'
+      || value === 'web/rulelink_public_next/src/lib/knowledge-content-types.json'
+      || value === 'web/rulelink_public_next/src/lib/content-labels.ts'
+      || value === 'web/rulelink_public_next/src/types/publication.ts';
   }
   return false;
 }
