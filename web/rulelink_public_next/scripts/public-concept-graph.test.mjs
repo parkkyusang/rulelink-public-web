@@ -3,6 +3,7 @@ import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 
+import {inlineTermsForConcept, validateConceptTermRelations} from '../src/lib/concept-terms.ts';
 import {resolveKnowledgeEntryGraph} from '../src/lib/knowledge-search.ts';
 
 const root = process.cwd();
@@ -11,12 +12,84 @@ test('본문 법률용어가 쉬운 뜻 팝오버와 독립 개념 페이지를 
   const component = await read('src/components/legal-concept-text.tsx');
   const detail = await read('app/ko/knowledge/[slug]/page.tsx');
   assert.match(component, /plain_definition_ko/);
+  assert.match(component, /inlineTermsForConcept/);
+  assert.doesNotMatch(component, /\.\.\.concept\.aliases_ko/);
   assert.match(component, /\/ko\/concepts\/\$\{concept\.slug\}/);
   assert.match(component, /aria-expanded=\{isOpen\}/);
   assert.match(component, /role="group"/);
   assert.match(component, /개념 페이지에서 근거와 요건 보기/);
   assert.match(detail, /LegalConceptText/);
   assert.match(detail, /본문 용어 해설/);
+});
+
+test('검색 관련어는 근거 있는 완전 동의어·약어·표기변형만 같은 본문 해설을 쓴다', () => {
+  const terms = inlineTermsForConcept({
+    preferred_term_ko: '상속인',
+    term_relations: [
+      {term_ko: '법정상속인', relation: 'narrower', source_coordinate_ids: ['source.1000']},
+      {term_ko: '공동상속인', relation: 'related', source_coordinate_ids: ['source.1003']},
+      {term_ko: '상속권자', relation: 'exact_synonym', source_coordinate_ids: ['source.1005']},
+      {term_ko: '상속자', relation: 'exact_synonym', source_coordinate_ids: []},
+    ],
+  });
+
+  assert.deepEqual(terms, ['상속인', '상속권자']);
+});
+
+test('용어 관계 계약은 관계 미분류·근거 누락·본문 자동 해설 중복을 차단한다', () => {
+  const sources = [
+    {coordinate_id: 'source.1000'},
+    {coordinate_id: 'source.1003'},
+    {coordinate_id: 'source.1005'},
+  ];
+  const valid = {
+    concept_id: 'concept.heir',
+    preferred_term_ko: '상속인',
+    aliases_ko: ['법정상속인', '공동상속인', '상속권자'],
+    term_relations: [
+      {term_ko: '법정상속인', relation: 'narrower', source_coordinate_ids: ['source.1000']},
+      {term_ko: '공동상속인', relation: 'related', source_coordinate_ids: ['source.1003']},
+      {term_ko: '상속권자', relation: 'exact_synonym', source_coordinate_ids: ['source.1005']},
+    ],
+  };
+
+  assert.doesNotThrow(() => validateConceptTermRelations([valid], sources));
+  assert.throws(
+    () => validateConceptTermRelations([{...valid, term_relations: valid.term_relations.slice(0, 2)}], sources),
+    /관계 분류가 없습니다/,
+  );
+  assert.throws(
+    () => validateConceptTermRelations([
+      valid,
+      {
+        concept_id: 'concept.second',
+        preferred_term_ko: '다른 개념',
+        aliases_ko: ['상속권자'],
+        term_relations: [
+          {term_ko: '상속권자', relation: 'exact_synonym', source_coordinate_ids: ['source.1005']},
+        ],
+      },
+    ], sources),
+    /여러 개념에 중복되었습니다/,
+  );
+});
+
+test('법리의 누가·어떤 때·결과 칸은 용어 팝오버를 자르지 않는다', async () => {
+  const [globals, popover] = await Promise.all([
+    read('app/globals.css'),
+    read('src/components/legal-concept-text.module.css'),
+  ]);
+  assert.match(globals, /\.normSlots \{[^}]*overflow: visible;/);
+  assert.doesNotMatch(globals, /\.normSlots \{[^}]*overflow: hidden;/);
+  assert.match(globals, /\.normSlots div:hover, \.normSlots div:focus-within \{z-index: 1;\}/);
+  assert.match(popover, /\.popover \{[^}]*z-index: 30;/s);
+});
+
+test('개념 생산 계약은 후보 수집부터 근거·관계 검증과 축적 우선순위를 고정한다', async () => {
+  const contract = await read('../../docs/PUBLIC_CONCEPT_TERM_RELATION_CONTRACT_KO.md');
+  for (const phrase of ['검색 표현과 본문 자동 해설의 분리', '생산 절차', '축적 우선순위', '잘못된 설명보다 미표시가 우선']) {
+    assert.match(contract, new RegExp(phrase));
+  }
 });
 
 test('개념카드가 지정한 관련 콘텐츠는 역방향 필드가 없어도 같은 개념 그래프로 해석된다', async () => {
