@@ -45,10 +45,12 @@ test('운영 공개 표식과 실주소 점검은 같은 공개 커밋에서만 
   assert.match(workflow, /paths:\s*\n\s*- web\/rulelink_public_next\/deploy\/release\.json/);
 });
 
-test('검색 공개는 운영 배포에서만 자동 허용하고 명시값을 우선한다', () => {
+test('운영 배포는 남아 있는 명시값과 무관하게 검색 공개하고 비운영은 명시 허용만 따른다', () => {
   assert.equal(resolveSiteIndexing({VERCEL_ENV: 'production'}), true);
+  assert.equal(resolveSiteIndexing({VERCEL_ENV: 'production', NEXT_PUBLIC_RULELINK_INDEXING: 'false'}), true);
+  assert.equal(resolveSiteIndexing({VERCEL_ENV: 'production', NEXT_PUBLIC_RULELINK_INDEXING: 'true'}), true);
   assert.equal(resolveSiteIndexing({VERCEL_ENV: 'preview'}), false);
   assert.equal(resolveSiteIndexing({VERCEL_ENV: 'development'}), false);
-  assert.equal(resolveSiteIndexing({VERCEL_ENV: 'production', NEXT_PUBLIC_RULELINK_INDEXING: 'false'}), false);
   assert.equal(resolveSiteIndexing({VERCEL_ENV: 'preview', NEXT_PUBLIC_RULELINK_INDEXING: 'true'}), true);
+  assert.equal(resolveSiteIndexing({VERCEL_ENV: 'preview', NEXT_PUBLIC_RULELINK_INDEXING: 'false'}), false);
 });

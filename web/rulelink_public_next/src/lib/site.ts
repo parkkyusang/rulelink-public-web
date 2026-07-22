@@ -7,10 +7,8 @@ export function resolveSiteIndexing(env: SiteIndexingEnv = {
   NEXT_PUBLIC_RULELINK_INDEXING: process.env.NEXT_PUBLIC_RULELINK_INDEXING,
   VERCEL_ENV: process.env.VERCEL_ENV,
 }): boolean {
-  if (env.NEXT_PUBLIC_RULELINK_INDEXING !== undefined && env.NEXT_PUBLIC_RULELINK_INDEXING !== '') {
-    return env.NEXT_PUBLIC_RULELINK_INDEXING === 'true';
-  }
-  return env.VERCEL_ENV === 'production';
+  if (env.VERCEL_ENV === 'production') return true;
+  return env.NEXT_PUBLIC_RULELINK_INDEXING === 'true';
 }
 
 export const site = {
