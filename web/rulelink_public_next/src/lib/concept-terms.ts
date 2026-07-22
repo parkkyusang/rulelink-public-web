@@ -4,6 +4,8 @@ import type {
   PublicKnowledgeSource,
 } from '@/types/publication';
 
+const wordPrefixPattern = /[\p{L}\p{N}_]/u;
+
 const inlineRelationKinds = new Set<PublicConceptTermRelation['relation']>([
   'exact_synonym',
   'abbreviation',
@@ -26,6 +28,36 @@ export function inlineTermsForConcept(
   return candidates
     .map(term => term.trim())
     .filter(term => term.length > 0 && !seen.has(term) && Boolean(seen.add(term)));
+}
+
+export function splitTextByConceptTerms(text: string, terms: readonly string[]): string[] {
+  const normalizedTerms = [...new Set(terms.map(term => term.trim()).filter(Boolean))]
+    .sort((left, right) => right.length - left.length);
+  if (!normalizedTerms.length) return [text];
+
+  const candidatePattern = new RegExp(
+    `(?:${normalizedTerms.map(escapeRegExp).join('|')})`,
+    'gu',
+  );
+  const parts: string[] = [];
+  let cursor = 0;
+
+  for (const match of text.matchAll(candidatePattern)) {
+    const start = match.index;
+    const term = match[0];
+    const prefix = start > 0 ? text.slice(0, start).at(-1) ?? '' : '';
+
+    // 상속인이 법정상속인·공동상속인·피상속인의 뒷부분으로 잡히는 것을 막는다.
+    // 뒤쪽 조사는 허용해야 하므로 앞쪽 문자 경계만 제한한다.
+    if (prefix && wordPrefixPattern.test(prefix)) continue;
+
+    if (start > cursor) parts.push(text.slice(cursor, start));
+    parts.push(term);
+    cursor = start + term.length;
+  }
+
+  if (cursor < text.length) parts.push(text.slice(cursor));
+  return parts.length ? parts : [text];
 }
 
 export function validateConceptTermRelations(
@@ -86,4 +118,8 @@ function claimInlineTerm(owners: Map<string, string>, term: string, conceptId: s
     throw new Error(`본문 자동 해설 용어가 여러 개념에 중복되었습니다: ${term} -> ${owner}, ${conceptId}`);
   }
   owners.set(term, conceptId);
+}
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
