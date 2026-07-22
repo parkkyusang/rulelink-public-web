@@ -3,6 +3,7 @@ import {access, readFile} from 'node:fs/promises';
 import path from 'node:path';
 
 import {samePublicRuleCopy} from '../src/lib/public-rule-presentation.ts';
+import {projectKnowledgeEntryCompatibility} from '../src/lib/knowledge-relations.ts';
 
 const bundlePath = process.env.RULELINK_WEB_BUNDLE_PATH
   ? path.resolve(process.env.RULELINK_WEB_BUNDLE_PATH)
@@ -128,6 +129,7 @@ function validateKnowledge(value, now, fileHashes, errors) {
   const sourceIds = uniqueIds(sources, 'coordinate_id', '공식 근거', errors);
   const ruleIds = uniqueIds(rules, 'rule_id', '법리카드', errors);
   const scenarioIds = uniqueIds(scenarios, 'scenario_id', '사실분기', errors);
+  const scenarioById = new Map(scenarios.filter(isRecord).map(scenario => [scenario.scenario_id, scenario]));
   const entryIds = uniqueIds(entries, 'content_id', '지식 콘텐츠', errors);
   const hubIds = uniqueIds(hubs, 'hub_id', '주제 허브', errors);
   const conceptIds = uniqueIds(concepts, 'concept_id', '법률개념', errors);
@@ -213,6 +215,12 @@ function validateKnowledge(value, now, fileHashes, errors) {
 
   for (const entry of entries) {
     if (!isRecord(entry)) continue;
+    let compatibleEntry = entry;
+    try {
+      compatibleEntry = projectKnowledgeEntryCompatibility(entry, scenarioById);
+    } catch (error) {
+      errors.push(`지식 콘텐츠 ${label(entry, 'content_id')}의 선택적 관계·제품 역할 계약이 올바르지 않습니다: ${error instanceof Error ? error.message : String(error)}`);
+    }
     if (entry.editorial_status !== 'approved') {
       errors.push(`지식 콘텐츠 ${label(entry, 'content_id')}가 승인 상태가 아닙니다.`);
     }
@@ -221,8 +229,13 @@ function validateKnowledge(value, now, fileHashes, errors) {
     checkReferences(entry.scenario_ids, scenarioIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 scenario_ids`, errors);
     checkReferences(entry.source_coordinate_ids, sourceIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 source_coordinate_ids`, errors);
     checkReferences(entry.hub_ids, hubIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 hub_ids`, errors);
-    checkReferences(entry.related_content_ids, entryIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 related_content_ids`, errors);
-    checkReferences(entry.concept_ids ?? [], conceptIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 concept_ids`, errors);
+    checkReferences(compatibleEntry.related_content_ids, entryIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 related_content_ids`, errors);
+    checkReferences(compatibleEntry.concept_ids ?? [], conceptIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 concept_ids`, errors);
+    for (const relation of Array.isArray(entry.related_edges) ? entry.related_edges : []) {
+      if (!isRecord(relation)) continue;
+      const allowed = relation.target_kind === 'concept' ? conceptIds : entryIds;
+      checkReferences([relation.target_id], allowed, `지식 콘텐츠 ${label(entry, 'content_id')}의 related_edges`, errors);
+    }
     const entryName = `지식 콘텐츠 ${label(entry, 'content_id')}`;
     requireNonEmptyStringArray(entry, 'key_points_ko', 2, entryName, errors);
     requireNonEmptyStringArray(entry, 'action_steps_ko', 2, entryName, errors);
@@ -242,9 +255,6 @@ function validateKnowledge(value, now, fileHashes, errors) {
     }
     if (entry.concierge_entry !== undefined) {
       errors.push(`지식 콘텐츠 ${label(entry, 'content_id')}에 금지된 concierge_entry가 있습니다.`);
-    }
-    if (entry.lawyer_workspace_entry !== undefined && !isLawyerWorkspaceEntry(entry.lawyer_workspace_entry)) {
-      errors.push(`지식 콘텐츠 ${label(entry, 'content_id')}의 lawyer_workspace_entry가 변호사 전용 게이트 계약과 다릅니다.`);
     }
   }
 
@@ -563,17 +573,6 @@ function isOfficialHttpsUrl(value) {
   } catch {
     return false;
   }
-}
-
-function isLawyerWorkspaceEntry(value) {
-  return isRecord(value)
-    && value.href === '/ko/lawyer-workspace'
-    && value.audience === 'verified_attorney'
-    && typeof value.question_ko === 'string'
-    && value.question_ko.trim().length > 0
-    && Array.isArray(value.decision_facts_ko)
-    && value.decision_facts_ko.length > 0
-    && value.decision_facts_ko.every(item => typeof item === 'string' && item.trim().length > 0);
 }
 
 function requireArray(value, key, errors, prefix = '') {

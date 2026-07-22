@@ -72,6 +72,16 @@ export function summarizeContentTypes(entries) {
   return {canonical_counts: canonicalCounts, aliases, unknown};
 }
 
+export function summarizeKnowledgeRelations(entries) {
+  const typedEntries = entries.filter(entry => Array.isArray(entry.related_edges));
+  return {
+    typed_entries: typedEntries.length,
+    typed_edges: typedEntries.reduce((total, entry) => total + entry.related_edges.length, 0),
+    legacy_only_entries: entries.length - typedEntries.length,
+    concierge_entries: entries.filter(entry => entry.product_roles?.includes('concierge_entry')).length,
+  };
+}
+
 export function auditPublicationTopicQueue({manifest, topicFiles, conceptGroups = []}) {
   const nextManifest = structuredClone(manifest);
   const listedFiles = new Set((nextManifest.topics ?? []).map(item => item.file));
@@ -95,6 +105,7 @@ export function auditPublicationTopicQueue({manifest, topicFiles, conceptGroups 
   const knowledge = assembleKnowledge(nextManifest, projectedTopics, conceptGroups);
   const errors = validateKnowledgeGraph(knowledge);
   const contentTypes = summarizeContentTypes(knowledge.content_entries);
+  const relations = summarizeKnowledgeRelations(knowledge.content_entries);
   for (const unknown of contentTypes.unknown) {
     errors.push(`${unknown.content_id} -> 지원하지 않는 콘텐츠 유형: ${unknown.content_type}`);
   }
@@ -106,6 +117,7 @@ export function auditPublicationTopicQueue({manifest, topicFiles, conceptGroups 
     queued_files: queuedFiles,
     knowledge,
     content_types: contentTypes,
+    relations,
     counts: {
       topics: nextManifest.topics.length,
       sources: knowledge.sources.length,
@@ -209,6 +221,7 @@ async function main() {
   console.log(`합성 예상본 검증 통과: manifest 밖 주제 ${result.queued_files.length}개 (${queued})`);
   console.log(`예상 정본: 허브 ${result.counts.hubs} / 콘텐츠 ${result.counts.content} / 법리 ${result.counts.rules} / 사실분기 ${result.counts.scenarios} / 근거 ${result.counts.sources}`);
   console.log(`콘텐츠 유형: 과거 별칭 ${result.content_types.aliases.length}건 / 미지원 ${result.content_types.unknown.length}건`);
+  console.log(`관계 계약: 타입 간선 ${result.relations.typed_edges}건 / 기존 무타입 항목 ${result.relations.legacy_only_entries}건 / 컨시어지 진입 역할 ${result.relations.concierge_entries}건`);
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === scriptPath) {

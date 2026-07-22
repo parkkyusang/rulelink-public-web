@@ -6,6 +6,7 @@ import {
   loadAndAuditPublicationTopicQueue,
   projectQueuedTopic,
   summarizeContentTypes,
+  summarizeKnowledgeRelations,
 } from './audit-publication-topic-queue.mjs';
 
 function topic({
@@ -157,6 +158,18 @@ test('과거 유형 별칭은 표준 유형으로 집계하고 알 수 없는 �
     manifest: manifest(),
     topicFiles: new Map([['listed.json', topic({topicId: 'hub.listed', contentId: 'content.listed', contentType: 'invented_type'})]]),
   }), /지원하지 않는 콘텐츠 유형/u);
+});
+
+test('타입 관계와 컨시어지 제품 역할의 이관 현황을 집계한다', () => {
+  assert.deepEqual(summarizeKnowledgeRelations([
+    {content_id: 'content.typed', related_edges: [{relation_type: 'procedure'}], product_roles: ['concierge_entry']},
+    {content_id: 'content.legacy', related_content_ids: []},
+  ]), {
+    typed_entries: 1,
+    typed_edges: 1,
+    legacy_only_entries: 1,
+    concierge_entries: 1,
+  });
 });
 
 test('현재 저장소의 manifest와 모든 주제 원본을 함께 감사한다', async () => {

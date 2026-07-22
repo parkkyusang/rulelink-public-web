@@ -3,10 +3,12 @@ import path from 'node:path';
 
 import {buildKnowledgeSearchDocuments, buildKnowledgeSourceDocuments, resolveKnowledgeEntryGraph} from '@/lib/knowledge-search';
 import {buildKnowledgeHubConnections} from '@/lib/knowledge-hub-connections';
+import {buildKnowledgeRelatedPresentation} from '@/lib/knowledge-relations';
 import {changeLifecycleOrder} from '@/lib/change-lifecycle';
 import {filterFreshPublications} from '@/lib/publication-freshness';
 
 import type {KnowledgeHubConnection} from '@/lib/knowledge-hub-connections';
+import type {KnowledgeRelatedSection} from '@/lib/knowledge-relations';
 
 import type {
   EditorialOperationsQueue,
@@ -235,9 +237,10 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
   sources: PublicKnowledgeSource[];
   hubs: PublicKnowledgeHub[];
   related: PublicKnowledgeEntry[];
+  relatedSections: KnowledgeRelatedSection[];
 }> {
   const knowledge = (await loadPublishedBundle())?.knowledge;
-  if (!knowledge) return {concepts: [], rules: [], scenarios: [], scenarioRules: {}, sources: [], hubs: [], related: []};
+  if (!knowledge) return {concepts: [], rules: [], scenarios: [], scenarioRules: {}, sources: [], hubs: [], related: [], relatedSections: []};
   const graph = resolveKnowledgeEntryGraph(knowledge, entry);
   const directRuleIds = new Set(entry.rule_ids);
   const ruleById = new Map(graph.rules.map(rule => [rule.rule_id, rule]));
@@ -250,20 +253,11 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
     ]),
   );
   const entryById = new Map(filterFreshPublications(knowledge.content_entries).map(candidate => [candidate.content_id, candidate]));
-  const relatedIds = [
-    ...entry.related_content_ids,
-    ...graph.hubs.flatMap(hub => hub.content_ids),
-  ];
-  const seenRelatedIds = new Set<string>();
-  const related = relatedIds
-    .filter(contentId => {
-      if (contentId === entry.content_id || seenRelatedIds.has(contentId)) return false;
-      seenRelatedIds.add(contentId);
-      return true;
-    })
-    .map(contentId => entryById.get(contentId))
-    .filter((candidate): candidate is PublicKnowledgeEntry => Boolean(candidate))
-    .slice(0, 6);
+  const {related, sections: relatedSections} = buildKnowledgeRelatedPresentation(
+    entry,
+    [...entryById.values()],
+    graph.hubs.flatMap(hub => hub.content_ids),
+  );
   return {
     concepts: graph.concepts,
     rules: graph.rules.filter(rule => directRuleIds.has(rule.rule_id)),
@@ -272,6 +266,7 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
     sources: graph.sources,
     hubs: graph.hubs,
     related,
+    relatedSections,
   };
 }
 
