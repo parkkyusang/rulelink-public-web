@@ -179,7 +179,8 @@
         "content.commercial-lease-key-money-recovery",
         "content.commercial-lease-rent-increase-and-conversion",
         "content.commercial-lease-management-fee-breakdown",
-        "content.commercial-lease-dispute-conciliation"
+        "content.commercial-lease-dispute-conciliation",
+        "content.commercial-lease-closure-termination"
       ]
     }
   ],
@@ -344,6 +345,19 @@
       "source_coordinate_ids": [
         "coord.commercial-lease.commercial-lease-ko-0020"
       ]
+    },
+    {
+      "rule_id": "rule.commercial-lease.closure-termination",
+      "title_ko": "집합제한·금지로 폐업한 임차인의 해지권",
+      "proposition_ko": "상가 임차인이 법정 집합제한·금지 또는 운영시간 제한 조치를 총 3개월 이상 받아 경제사정이 중대하게 변동해 폐업한 경우 임대차계약을 해지할 수 있습니다.",
+      "norm": {
+        "actor_ko": "집합제한·금지 등으로 폐업한 상가 임차인과 임대인",
+        "conditions_ko": "법정 조치를 총 3개월 이상 받고 그로 인한 경제사정의 중대한 변동으로 폐업한 경우",
+        "legal_effect_ko": "임대인이 해지 통고를 받은 날부터 3개월이 지나면 임대차 해지의 효력이 발생합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0011-02"
+      ]
     }
   ],
   "scenario_branches": [
@@ -485,6 +499,19 @@
       "source_coordinate_ids": [
         "coord.commercial-lease.commercial-lease-ko-0020"
       ]
+    },
+    {
+      "scenario_id": "scenario.commercial-lease.closure-termination",
+      "question_ko": "법정 집합제한·금지 또는 운영시간 제한을 합계 3개월 이상 받고 경제사정의 중대한 변동으로 폐업했나요?",
+      "decision_fact_ko": "조치 근거·기간, 운영시간 제한, 매출·비용 변화, 폐업일, 해지통고 도달일",
+      "when_true_ko": "폐업과 조치·경제사정 사이 인과관계를 자료로 정리해 임대인에게 해지 통고를 하고 도달일부터 3개월을 계산합니다.",
+      "when_false_ko": "단순 매출감소나 자진폐업만으로 특별 해지권을 단정하지 않고 약정·합의해지 등 다른 근거를 확인합니다.",
+      "rule_ids": [
+        "rule.commercial-lease.closure-termination"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0011-02"
+      ]
     }
   ],
   "content_entries": [
@@ -616,7 +643,8 @@
       ],
       "related_content_ids": [
         "content.commercial-lease-priority-repayment",
-        "content.commercial-lease-move-before-deposit-refund"
+        "content.commercial-lease-move-before-deposit-refund",
+        "content.housing-lease-opposability-basics"
       ]
     },
     {
@@ -684,7 +712,8 @@
       ],
       "related_content_ids": [
         "content.commercial-lease-opposability-and-registration",
-        "content.commercial-lease-move-before-deposit-refund"
+        "content.commercial-lease-move-before-deposit-refund",
+        "content.housing-lease-priority-repayment-basics"
       ]
     },
     {
@@ -749,7 +778,9 @@
       ],
       "related_content_ids": [
         "content.commercial-lease-priority-repayment",
-        "content.commercial-lease-dispute-conciliation"
+        "content.commercial-lease-dispute-conciliation",
+        "content.move-before-deposit-refund",
+        "content.lease-registration-application-is-not-completion"
       ]
     },
     {
@@ -1152,7 +1183,77 @@
       "related_content_ids": [
         "content.commercial-lease-rent-arrears",
         "content.commercial-lease-key-money-recovery",
-        "content.commercial-lease-management-fee-breakdown"
+        "content.commercial-lease-management-fee-breakdown",
+        "content.civil-mediation-vs-civil-lawsuit"
+      ]
+    },
+    {
+      "content_id": "content.commercial-lease-closure-termination",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T08:30:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "commercial-lease-closure-termination",
+      "title_ko": "집합제한·금지로 폐업하면 상가 임대차를 해지할 수 있나요?",
+      "one_line_answer_ko": "법정 집합제한·금지나 운영시간 제한을 총 3개월 이상 받아 경제사정이 중대하게 변동해 폐업한 경우 해지할 수 있고, 임대인이 통고를 받은 날부터 3개월 뒤 효력이 생깁니다.",
+      "audience_situation_ko": "감염병 관련 집합제한·금지 또는 운영시간 제한으로 폐업한 뒤 남은 상가 임대차를 종료하려는 임차인",
+      "key_points_ko": [
+        "법에서 정한 집합제한·금지 또는 운영시간 제한 조치여야 합니다.",
+        "조치기간 합계 3개월 이상과 경제사정의 중대한 변동으로 인한 폐업을 확인합니다.",
+        "해지는 임대인이 통고를 받은 날부터 3개월 뒤 효력이 생깁니다."
+      ],
+      "action_steps_ko": [
+        "행정조치의 근거·기간·대상 사업장을 확인한다.",
+        "매출·비용 변화와 폐업신고 자료를 확보한다.",
+        "해지 사유와 폐업 경위를 적어 임대인에게 통고한다.",
+        "통고 도달일과 3개월 경과일을 증명할 자료를 보존한다."
+      ],
+      "facts_to_check_ko": [
+        "집합제한·금지 조치",
+        "운영시간 제한 조치",
+        "조치기간 합계",
+        "경제사정의 중대한 변동",
+        "폐업일·폐업신고",
+        "해지통고 도달일"
+      ],
+      "caution_ko": "일반적인 매출감소나 임차인의 임의 폐업만으로 특별 해지권이 생기는 것은 아니므로 법정 조치·기간·인과관계를 함께 확인해야 합니다.",
+      "search_intents_ko": [
+        "상가 폐업 임대차 해지",
+        "집합금지 상가 계약해지",
+        "상가임대차보호법 제11조의2"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "특별 해지권의 요건",
+          "paragraphs_ko": [
+            "법정 집합제한·금지 또는 운영시간 제한을 총 3개월 이상 받고, 그 조치로 경제사정이 중대하게 변동해 폐업한 경우여야 합니다.",
+            "조치 문서, 매출·비용 변화와 폐업 자료로 요건 사이의 연결을 설명해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "효력 발생 시점",
+          "paragraphs_ko": [
+            "요건을 충족하더라도 통고 즉시 끝나는 것이 아니라 임대인이 해지 통고를 받은 날부터 3개월이 지나야 효력이 발생합니다.",
+            "내용증명·전자문서 등 도달일을 확인할 수 있는 방식으로 통고하고 차임·보증금 정산 시점을 구분합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.commercial-lease.closure-termination"
+      ],
+      "scenario_ids": [
+        "scenario.commercial-lease.closure-termination"
+      ],
+      "source_coordinate_ids": [
+        "coord.commercial-lease.commercial-lease-ko-0011-02"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "related_content_ids": [
+        "content.commercial-lease-rent-arrears",
+        "content.commercial-lease-dispute-conciliation",
+        "content.civil-mediation-vs-civil-lawsuit"
       ]
     }
   ]
