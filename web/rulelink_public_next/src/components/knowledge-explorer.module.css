@@ -83,6 +83,11 @@
   margin: -5px 0 0;
 }
 
+.resultCount span {
+  color: var(--green);
+  font-weight: 750;
+}
+
 .grid {
   display: grid;
   gap: 16px;
