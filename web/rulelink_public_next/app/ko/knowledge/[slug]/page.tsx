@@ -202,7 +202,7 @@ export default async function KnowledgePage({params}: Props) {
             <section className={styles.conceptPanel} id="concepts">
               <p className="eyebrow">본문 용어 해설</p>
               <h2>모르는 말은 여기서 이어집니다</h2>
-              <p>본문의 점선 용어에 마우스를 올리거나 선택하면 쉬운 뜻이 나타납니다.</p>
+              <p>본문의 점선 용어를 누르거나 키보드로 선택하면 쉬운 뜻이 나타나고, 개념 페이지에서 공식 근거까지 이어집니다.</p>
               {concepts.map(concept => (
                 <a href={`/ko/concepts/${concept.slug}`} key={concept.concept_id}>
                   <strong>{concept.preferred_term_ko}</strong>

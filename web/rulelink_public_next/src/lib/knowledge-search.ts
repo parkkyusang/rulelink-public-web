@@ -131,7 +131,13 @@ function createKnowledgeEntryResolver(knowledge: PublicKnowledgeIndex) {
     const rules = [...referencedRuleIds]
       .map(ruleId => ruleById.get(ruleId))
       .filter((rule): rule is PublicRuleCard => Boolean(rule));
-    const concepts = (entry.concept_ids ?? [])
+    const conceptIds = [
+      ...(entry.concept_ids ?? []),
+      ...(knowledge.concept_cards ?? [])
+        .filter(concept => concept.related_content_ids.includes(entry.content_id))
+        .map(concept => concept.concept_id),
+    ].filter((conceptId, index, ids) => ids.indexOf(conceptId) === index);
+    const concepts = conceptIds
       .map(conceptId => conceptById.get(conceptId))
       .filter((concept): concept is PublicConceptCard => Boolean(concept));
     const referencedSourceIds = new Set([
