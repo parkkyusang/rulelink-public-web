@@ -14,7 +14,8 @@ const rules = new Map(topic.rule_cards.map(rule => [rule.rule_id, rule]));
 const scenarios = new Map(topic.scenario_branches.map(scenario => [scenario.scenario_id, scenario]));
 const entries = new Map(topic.content_entries.map(entry => [entry.content_id, entry]));
 const currentEntries = new Map(current.knowledge.content_entries.map(entry => [entry.content_id, entry]));
-const relatedUniverse = new Set([...entries.keys(), ...currentEntries.keys()]);
+const pendingQueueEntries = new Set(['content.industrial-accident-recognition']);
+const relatedUniverse = new Set([...entries.keys(), ...currentEntries.keys(), ...pendingQueueEntries]);
 
 test('직장 내 괴롭힘·성희롱 10개 생활질문의 근거·법리·사실분기를 닫는다', () => {
   assert.equal(topic.schema, 'rulelink_public_knowledge_topic_v1');
@@ -115,6 +116,12 @@ test('괴롭힘·성희롱의 서로 다른 요건과 조사·보호·구제 분
   assert.match(entries.get('content.workplace-harassment-vs-sexual-harassment').one_line_answer_ko, /서로 다른 법정 요건.*함께 적용/);
   assert.match(entries.get('content.sexual-harassment-labor-commission-remedy').caution_ko, /성희롱 사실확인.*시정신청 대상을 혼동하지/);
   assert.match(entries.get('content.harassment-mental-illness-industrial-accident').caution_ko, /자동 인정.*사라지는 것도 아닙니다/);
+  assert.deepEqual(
+    entries.get('content.harassment-mental-illness-industrial-accident').related_content_ids,
+    ['content.industrial-accident-recognition'],
+  );
+  assert.ok(pendingQueueEntries.has('content.industrial-accident-recognition'));
+  assert.ok(!currentEntries.has('content.industrial-accident-recognition'), '산재 주제 선행 통합 상태가 바뀌면 이 인계 계약을 갱신하세요.');
 });
 
 test('새 식별자는 현재 정본과 충돌하지 않고 인적 표기·잘린 제목을 막는다', () => {
