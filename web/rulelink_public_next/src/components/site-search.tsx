@@ -207,9 +207,6 @@ function buildResults(
       terms: [
         entry.audience_situation_ko,
         knowledgeContentTypeLabel(entry.content_type),
-        ...entry.search_intents_ko,
-        ...entry.key_points_ko,
-        ...entry.facts_to_check_ko,
         ...document.search_terms_ko,
       ],
       evidenceLabels: document.evidence_labels_ko,
