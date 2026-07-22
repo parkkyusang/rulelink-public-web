@@ -1,4 +1,5 @@
 import {IssueExplorer} from '@/components/issue-explorer';
+import {KnowledgeHubDirectory} from '@/components/knowledge-hub-directory';
 import {changeLifecycleLabel} from '@/lib/change-lifecycle';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {selectHomepageKnowledge} from '@/lib/homepage-knowledge-selection';
@@ -99,23 +100,7 @@ export default async function HomePage() {
               <br /><a className="cardLink" href="/ko/knowledge">{knowledgeEntries.length}개 전체 지식에서 검색하기 →</a>
             </p>
           </div>
-          {knowledgeHubs.length ? (
-            <div className="hubDirectory">
-              <div className="hubDirectoryHeading">
-                <h3 id="knowledge-hub-heading">주제별로 전체 보기</h3>
-                <span>{knowledgeHubs.length}개 주제</span>
-              </div>
-              <nav aria-labelledby="knowledge-hub-heading" className="hubGrid">
-                {knowledgeHubs.map(hub => (
-                  <a href={`/ko/hubs/${hub.slug}`} key={hub.hub_id}>
-                    <span className="hubCardMeta"><b>주제 허브</b><small>{hub.content_ids.length}개 안내</small></span>
-                    <strong>{hub.title_ko}</strong>
-                    <p>{hub.description_ko}</p>
-                  </a>
-                ))}
-              </nav>
-            </div>
-          ) : null}
+          <KnowledgeHubDirectory hubs={knowledgeHubs} />
           <div className="knowledgeGrid">
             {homepageKnowledgeEntries.map(entry => (
               <a className="knowledgeCard" href={`/ko/knowledge/${entry.slug}`} key={entry.content_id}>

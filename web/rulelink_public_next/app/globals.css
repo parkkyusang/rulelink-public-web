@@ -75,18 +75,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .changeCard strong {color: #173f7a; font-size: 13px; margin-top: auto; padding-top: 28px;}
 .contentSection {margin: 0 auto 100px; max-width: 1180px; padding: 0 24px;}
 .knowledgeHome {margin: 0 auto 82px; max-width: 1180px; padding: 0 24px;}
-.hubDirectory {margin-bottom: 30px;}
-.hubDirectoryHeading {align-items: end; display: flex; justify-content: space-between; margin-bottom: 15px;}
-.hubDirectoryHeading h3 {font-size: 21px; letter-spacing: -.03em; margin: 0;}
-.hubDirectoryHeading > span {color: var(--muted); font-size: 12px;}
-.hubGrid {display: grid; gap: 11px; grid-template-columns: repeat(auto-fit,minmax(min(100%,230px),1fr));}
-.hubGrid a {background: var(--green-dark); border: 1px solid transparent; border-radius: 15px; color: white; display: flex; flex-direction: column; min-width: 0; padding: 19px; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;}
-.hubGrid a:hover {border-color: #8fd2af; box-shadow: var(--shadow-card); transform: translateY(-2px);}
-.hubCardMeta {align-items: center; display: flex; justify-content: space-between; margin-bottom: 18px;}
-.hubCardMeta b {color: #8fd2af; font-size: 11px; letter-spacing: .02em;}
-.hubCardMeta small {color: #d9ebe1; font-size: 10px;}
-.hubGrid strong {font-size: 18px; line-height: 1.4;}
-.hubGrid p {color: #d9ebe1; display: -webkit-box; font-size: 11px; line-height: 1.55; margin: 8px 0 0; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2;}
 .hubDecisionSection {border-bottom: 1px solid var(--line); margin-bottom: 46px; padding-bottom: 52px;}
 .hubDecisionIntro {align-items: end; display: grid; gap: 42px; grid-template-columns: 1fr 1fr; margin-bottom: 24px;}
 .hubDecisionIntro h2 {font-size: 31px; letter-spacing: -.04em; line-height: 1.35; margin: 0;}
@@ -330,8 +318,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   .trustRail {align-items: flex-start; flex-direction: column; gap: 12px;}
   .cardGrid, .issueLayout, .relatedGrid, .entryGrid, .knowledgeGrid, .knowledgeLayout {grid-template-columns: 1fr;}
   .methodGrid, .methodSection {grid-template-columns: 1fr;}
-  .hubGrid {grid-template-columns: 1fr;}
-  .hubDirectoryHeading {align-items: start; flex-direction: column; gap: 7px;}
   .changeIntro, .changeGrid, .changeBody, .changeAssertionGrid, .lifeImpact, .hubDecisionIntro, .hubDecisionGrid, .hubConnectionsIntro, .hubConnectionGrid {grid-template-columns: 1fr;}
   .effectivePanel {grid-template-columns: 1fr;}
   .normDeltaRow {grid-template-columns: 1fr;}
