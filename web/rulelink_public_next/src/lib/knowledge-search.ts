@@ -19,9 +19,17 @@ export type PublicKnowledgeSourceDocument = {
   source_coordinate_ids: string[];
   label_ko: string;
   search_terms_ko: string[];
-  entries: PublicKnowledgeEntry[];
-  concepts: PublicConceptCard[];
+  entries: PublicKnowledgeSourceEntry[];
+  concepts: PublicKnowledgeSourceConcept[];
 };
+
+export type PublicKnowledgeSourceEntry = Pick<PublicKnowledgeEntry,
+  'content_id' | 'content_type' | 'slug' | 'title_ko'
+>;
+
+export type PublicKnowledgeSourceConcept = Pick<PublicConceptCard,
+  'concept_id' | 'slug' | 'preferred_term_ko'
+>;
 
 export type PublicKnowledgeSourceGroup = {
   source: PublicKnowledgeSource;
@@ -65,7 +73,7 @@ export function buildKnowledgeSourceDocuments(
     .filter(entry => !visibleContentIds || visibleContentIds.has(entry.content_id))
     .map(entry => {
       const graph = resolveEntry(entry);
-      return {document: makeKnowledgeSearchDocument(entry, graph), graph};
+      return {entry, graph};
     });
   const visibleConcepts = (knowledge.concept_cards ?? [])
     .filter(concept => !visibleConceptIds || visibleConceptIds.has(concept.concept_id));
@@ -74,9 +82,8 @@ export function buildKnowledgeSourceDocuments(
     .map(group => {
       const source = group.source;
       const coordinateIds = new Set(group.source_coordinate_ids);
-      const relatedDocuments = resolvedEntries
-        .filter(({graph}) => graph.sources.some(candidate => coordinateIds.has(candidate.coordinate_id)))
-        .map(({document}) => document);
+      const relatedEntries = resolvedEntries
+        .filter(({graph}) => graph.sources.some(candidate => coordinateIds.has(candidate.coordinate_id)));
       const relatedConcepts = visibleConcepts.filter(concept => (
         group.source_coordinate_ids.some(coordinateId => conceptReferencesSource(concept, coordinateId))
       ));
@@ -87,11 +94,20 @@ export function buildKnowledgeSourceDocuments(
         search_terms_ko: uniqueTerms([
           ...group.sources.flatMap(sourceTerms),
           group.version_label_ko,
-          ...relatedDocuments.flatMap(document => document.search_terms_ko),
-          ...relatedConcepts.flatMap(conceptTerms),
+          ...relatedEntries.flatMap(({entry, graph}) => sourceRelatedEntryTerms(entry, graph)),
+          ...relatedConcepts.flatMap(sourceRelatedConceptTerms),
         ]),
-        entries: relatedDocuments.map(document => document.entry),
-        concepts: relatedConcepts,
+        entries: relatedEntries.map(({entry}) => ({
+          content_id: entry.content_id,
+          content_type: entry.content_type,
+          slug: entry.slug,
+          title_ko: entry.title_ko,
+        })),
+        concepts: relatedConcepts.map(concept => ({
+          concept_id: concept.concept_id,
+          slug: concept.slug,
+          preferred_term_ko: concept.preferred_term_ko,
+        })),
       };
     })
     .filter(document => document.entries.length > 0 || document.concepts.length > 0);
@@ -217,6 +233,27 @@ function conceptTerms(concept: PublicConceptCard): string[] {
     ...concept.confused_with_ko,
     ...concept.examples_ko,
     ...concept.assertions.map(assertion => assertion.text_ko),
+  ];
+}
+
+function sourceRelatedEntryTerms(entry: PublicKnowledgeEntry, graph: ResolvedKnowledgeEntryGraph): string[] {
+  return [
+    entry.title_ko,
+    entry.one_line_answer_ko,
+    entry.audience_situation_ko,
+    ...entry.search_intents_ko,
+    ...entry.key_points_ko,
+    ...entry.facts_to_check_ko,
+    ...graph.hubs.flatMap(hub => [hub.title_ko, hub.description_ko]),
+  ];
+}
+
+function sourceRelatedConceptTerms(concept: PublicConceptCard): string[] {
+  return [
+    concept.preferred_term_ko,
+    ...concept.aliases_ko,
+    concept.plain_definition_ko,
+    concept.legal_definition_ko,
   ];
 }
 
