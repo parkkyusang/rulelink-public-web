@@ -4,6 +4,11 @@ import {useEffect, useMemo, useState} from 'react';
 
 import {buildCollectionSearchHref, parseCollectionSearchState, sanitizeCollectionQuery} from '@/lib/collection-search-state';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
+import {
+  initialProgressiveResultLimit,
+  KNOWLEDGE_RESULT_BATCH_SIZE,
+  nextProgressiveResultLimit,
+} from '@/lib/progressive-results';
 
 import type {PublicKnowledgeSearchDocument} from '@/lib/knowledge-search';
 
@@ -19,6 +24,7 @@ type Props = {
 export function KnowledgeExplorer({documents, hubs}: Props) {
   const [query, setQuery] = useState('');
   const [hubId, setHubId] = useState('all');
+  const [visibleLimit, setVisibleLimit] = useState(() => initialProgressiveResultLimit(documents.length));
   const hubFilters = useMemo(() => ['all', ...hubs.map(hub => hub.hub_id)], [hubs]);
 
   useEffect(() => {
@@ -30,16 +36,19 @@ export function KnowledgeExplorer({documents, hubs}: Props) {
     });
     setQuery(initial.query);
     setHubId(initial.filter);
+    setVisibleLimit(KNOWLEDGE_RESULT_BATCH_SIZE);
   }, [hubFilters]);
 
   function updateQuery(value: string) {
     const nextQuery = sanitizeCollectionQuery(value);
     setQuery(nextQuery);
+    setVisibleLimit(KNOWLEDGE_RESULT_BATCH_SIZE);
     replaceKnowledgeUrl(nextQuery, hubId);
   }
 
   function updateHub(nextHubId: string) {
     setHubId(nextHubId);
+    setVisibleLimit(KNOWLEDGE_RESULT_BATCH_SIZE);
     replaceKnowledgeUrl(query, nextHubId);
   }
 
@@ -60,6 +69,8 @@ export function KnowledgeExplorer({documents, hubs}: Props) {
       .sort((left, right) => right.entry.reviewed_at.localeCompare(left.entry.reviewed_at)
         || left.entry.title_ko.localeCompare(right.entry.title_ko, 'ko'));
   }, [documents, hubId, normalizedQuery]);
+  const displayedDocuments = visibleDocuments.slice(0, visibleLimit);
+  const hiddenResultCount = visibleDocuments.length - displayedDocuments.length;
 
   return (
     <section aria-labelledby="knowledge-library-heading" className={styles.explorer}>
@@ -94,32 +105,49 @@ export function KnowledgeExplorer({documents, hubs}: Props) {
         </div>
       ) : null}
 
-      <p aria-live="polite" className={styles.resultCount}>확인할 수 있는 지식 {visibleDocuments.length}개</p>
+      <p aria-live="polite" className={styles.resultCount}>
+        확인할 수 있는 지식 {visibleDocuments.length}개
+        {hiddenResultCount > 0 ? <span> · {displayedDocuments.length}개 표시 중</span> : null}
+      </p>
 
       {visibleDocuments.length ? (
-        <div className={styles.grid}>
-          {visibleDocuments.map(document => {
-            const entry = document.entry;
-            return (
-            <a className={styles.card} href={`/ko/knowledge/${entry.slug}`} key={entry.content_id}>
-              <div className={styles.meta}>
-                <span>{knowledgeContentTypeLabel(entry.content_type)}</span>
-                <time dateTime={entry.reviewed_at}>기준 확인 {formatDate(entry.reviewed_at)}</time>
-              </div>
-              <h2>{entry.title_ko}</h2>
-              <p>{entry.one_line_answer_ko}</p>
-              <small>{entry.audience_situation_ko}</small>
-              {document.evidence_labels_ko.length ? (
-                <div aria-label="연결된 공식 근거" className={styles.evidence}>
-                  <b>연결 근거</b>
-                  {evidenceLabelsForDocument(document.evidence_labels_ko, normalizedQuery).map(label => <span key={label}>{label}</span>)}
+        <>
+          <div className={styles.grid} id="knowledge-result-grid">
+            {displayedDocuments.map(document => {
+              const entry = document.entry;
+              return (
+              <a className={styles.card} href={`/ko/knowledge/${entry.slug}`} key={entry.content_id}>
+                <div className={styles.meta}>
+                  <span>{knowledgeContentTypeLabel(entry.content_type)}</span>
+                  <time dateTime={entry.reviewed_at}>기준 확인 {formatDate(entry.reviewed_at)}</time>
                 </div>
-              ) : null}
-              <strong>법리와 사실분기 보기 <span aria-hidden="true">→</span></strong>
-            </a>
-            );
-          })}
-        </div>
+                <h2>{entry.title_ko}</h2>
+                <p>{entry.one_line_answer_ko}</p>
+                <small>{entry.audience_situation_ko}</small>
+                {document.evidence_labels_ko.length ? (
+                  <div aria-label="연결된 공식 근거" className={styles.evidence}>
+                    <b>연결 근거</b>
+                    {evidenceLabelsForDocument(document.evidence_labels_ko, normalizedQuery).map(label => <span key={label}>{label}</span>)}
+                  </div>
+                ) : null}
+                <strong>법리와 사실분기 보기 <span aria-hidden="true">→</span></strong>
+              </a>
+              );
+            })}
+          </div>
+          {hiddenResultCount > 0 ? (
+            <div className={styles.loadMore}>
+              <button
+                aria-controls="knowledge-result-grid"
+                onClick={() => setVisibleLimit(current => nextProgressiveResultLimit(visibleDocuments.length, current))}
+                type="button"
+              >
+                지식 더 보기 <span>({hiddenResultCount}개 남음)</span>
+              </button>
+              <p>검색과 주제 필터는 아직 펼치지 않은 지식에도 똑같이 적용됩니다.</p>
+            </div>
+          ) : null}
+        </>
       ) : (
         <div className={styles.empty}>
           <strong>맞는 지식을 찾지 못했습니다.</strong>
