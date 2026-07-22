@@ -113,7 +113,7 @@ test('괴롭힘·성희롱의 서로 다른 요건과 조사·보호·구제 분
   assert.match(rules.get('rule.workplace-harassment.mental-illness-industrial-accident').norm.legal_effect_ko, /업무상 질병.*산재보험급여/);
 
   assert.match(entries.get('content.workplace-harassment-vs-sexual-harassment').one_line_answer_ko, /서로 다른 법정 요건.*함께 적용/);
-  assert.match(entries.get('content.sexual-harassment-labor-commission-remedy').caution_ko, /모든 쟁점.*혼동하지/);
+  assert.match(entries.get('content.sexual-harassment-labor-commission-remedy').caution_ko, /성희롱 사실확인.*시정신청 대상을 혼동하지/);
   assert.match(entries.get('content.harassment-mental-illness-industrial-accident').caution_ko, /자동 인정.*사라지는 것도 아닙니다/);
 });
 
