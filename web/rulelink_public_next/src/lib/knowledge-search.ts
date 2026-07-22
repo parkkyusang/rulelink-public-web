@@ -9,17 +9,44 @@ import type {
 } from '@/types/publication';
 
 export type PublicKnowledgeSearchDocument = {
-  entry: PublicKnowledgeEntry;
+  entry: PublicKnowledgeSearchEntry;
   search_terms_ko: string[];
   evidence_labels_ko: string[];
 };
 
+export type PublicKnowledgeSearchEntry = Pick<PublicKnowledgeEntry,
+  | 'content_id'
+  | 'content_type'
+  | 'slug'
+  | 'title_ko'
+  | 'one_line_answer_ko'
+  | 'audience_situation_ko'
+  | 'reviewed_at'
+  | 'hub_ids'
+>;
+
 export type PublicKnowledgeSourceDocument = {
   source: PublicKnowledgeSource;
+  source_coordinate_ids: string[];
   label_ko: string;
   search_terms_ko: string[];
-  entries: PublicKnowledgeEntry[];
-  concepts: PublicConceptCard[];
+  entries: PublicKnowledgeSourceEntry[];
+  concepts: PublicKnowledgeSourceConcept[];
+};
+
+export type PublicKnowledgeSourceEntry = Pick<PublicKnowledgeEntry,
+  'content_id' | 'content_type' | 'slug' | 'title_ko'
+>;
+
+export type PublicKnowledgeSourceConcept = Pick<PublicConceptCard,
+  'concept_id' | 'slug' | 'preferred_term_ko'
+>;
+
+export type PublicKnowledgeSourceGroup = {
+  source: PublicKnowledgeSource;
+  sources: PublicKnowledgeSource[];
+  source_coordinate_ids: string[];
+  version_label_ko: string | null;
 };
 
 export type ResolvedKnowledgeEntryGraph = {
@@ -57,30 +84,85 @@ export function buildKnowledgeSourceDocuments(
     .filter(entry => !visibleContentIds || visibleContentIds.has(entry.content_id))
     .map(entry => {
       const graph = resolveEntry(entry);
-      return {document: makeKnowledgeSearchDocument(entry, graph), graph};
+      return {entry, graph};
     });
   const visibleConcepts = (knowledge.concept_cards ?? [])
     .filter(concept => !visibleConceptIds || visibleConceptIds.has(concept.concept_id));
 
-  return knowledge.sources
-    .map(source => {
-      const relatedDocuments = resolvedEntries
-        .filter(({graph}) => graph.sources.some(candidate => candidate.coordinate_id === source.coordinate_id))
-        .map(({document}) => document);
-      const relatedConcepts = visibleConcepts.filter(concept => conceptReferencesSource(concept, source.coordinate_id));
+  return groupKnowledgeSources(knowledge.sources)
+    .map(group => {
+      const source = group.source;
+      const coordinateIds = new Set(group.source_coordinate_ids);
+      const relatedEntries = resolvedEntries
+        .filter(({graph}) => graph.sources.some(candidate => coordinateIds.has(candidate.coordinate_id)));
+      const relatedConcepts = visibleConcepts.filter(concept => (
+        group.source_coordinate_ids.some(coordinateId => conceptReferencesSource(concept, coordinateId))
+      ));
       return {
         source,
-        label_ko: sourceLabel(source),
+        source_coordinate_ids: group.source_coordinate_ids,
+        label_ko: [sourceLabel(source), group.version_label_ko].filter(Boolean).join(' · '),
         search_terms_ko: uniqueTerms([
-          ...sourceTerms(source),
-          ...relatedDocuments.flatMap(document => document.search_terms_ko),
-          ...relatedConcepts.flatMap(conceptTerms),
+          ...group.sources.flatMap(sourceTerms),
+          group.version_label_ko,
+          ...relatedEntries.flatMap(({entry, graph}) => sourceRelatedEntryTerms(entry, graph)),
+          ...relatedConcepts.flatMap(sourceRelatedConceptTerms),
         ]),
-        entries: relatedDocuments.map(document => document.entry),
-        concepts: relatedConcepts,
+        entries: relatedEntries.map(({entry}) => ({
+          content_id: entry.content_id,
+          content_type: entry.content_type,
+          slug: entry.slug,
+          title_ko: entry.title_ko,
+        })),
+        concepts: relatedConcepts.map(concept => ({
+          concept_id: concept.concept_id,
+          slug: concept.slug,
+          preferred_term_ko: concept.preferred_term_ko,
+        })),
       };
     })
     .filter(document => document.entries.length > 0 || document.concepts.length > 0);
+}
+
+export function groupKnowledgeSources(sources: PublicKnowledgeSource[]): PublicKnowledgeSourceGroup[] {
+  // 같은 현행 조문도 주제별 과거 해시 산식 때문에 snapshot 식별자가 다를 수 있다.
+  // source_id와 공식 주소를 공개 원천의 기준으로 삼고, 명시된 시간축 좌표만 별도 보존한다.
+  const groups = new Map<string, PublicKnowledgeSourceGroup>();
+  for (const source of sources) {
+    const version = sourceProjectionVersion(source);
+    const key = [
+      source.source_id,
+      source.source_kind ?? 'statute',
+      sourceLabel(source),
+      source.official_url,
+      version?.scope ?? '',
+      version?.date ?? '',
+    ].join('|');
+    const existing = groups.get(key);
+    if (existing) {
+      existing.sources.push(source);
+      existing.source_coordinate_ids.push(source.coordinate_id);
+      continue;
+    }
+    groups.set(key, {
+      source,
+      sources: [source],
+      source_coordinate_ids: [source.coordinate_id],
+      version_label_ko: version ? sourceVersionLabel(version.scope, version.date) : null,
+    });
+  }
+  return [...groups.values()];
+}
+
+function sourceProjectionVersion(source: PublicKnowledgeSource): {scope: 'historical' | 'current' | 'future'; date: string} | null {
+  const match = source.coordinate_id.match(/(?:^|\.)(historical|current|future)-(\d{4}-\d{2}-\d{2})(?:\.|$)/u);
+  if (!match) return null;
+  return {scope: match[1] as 'historical' | 'current' | 'future', date: match[2]};
+}
+
+function sourceVersionLabel(scope: 'historical' | 'current' | 'future', date: string): string {
+  const labels = {historical: '종전 기준', current: '현행 기준', future: '시행 예정'} as const;
+  return `${labels[scope]} ${date}`;
 }
 
 function conceptReferencesSource(concept: PublicConceptCard, sourceId: string): boolean {
@@ -93,11 +175,19 @@ function makeKnowledgeSearchDocument(
   graph: ResolvedKnowledgeEntryGraph,
 ): PublicKnowledgeSearchDocument {
   return {
-    entry,
+    // 목록과 통합검색에는 카드 표시 필드만 전달한다. 본문 전체는 상세 정적 페이지에만 둔다.
+    entry: {
+      content_id: entry.content_id,
+      content_type: entry.content_type,
+      slug: entry.slug,
+      title_ko: entry.title_ko,
+      one_line_answer_ko: entry.one_line_answer_ko,
+      audience_situation_ko: entry.audience_situation_ko,
+      reviewed_at: entry.reviewed_at,
+      hub_ids: entry.hub_ids,
+    },
     search_terms_ko: uniqueTerms([
-      entry.title_ko,
-      entry.one_line_answer_ko,
-      entry.audience_situation_ko,
+      // 제목ㆍ한 문장 답변ㆍ대상 상황은 위 카드 필드로 이미 전달되므로 중복 직렬화하지 않는다.
       ...entry.search_intents_ko,
       ...entry.key_points_ko,
       ...entry.action_steps_ko,
@@ -131,7 +221,13 @@ function createKnowledgeEntryResolver(knowledge: PublicKnowledgeIndex) {
     const rules = [...referencedRuleIds]
       .map(ruleId => ruleById.get(ruleId))
       .filter((rule): rule is PublicRuleCard => Boolean(rule));
-    const concepts = (entry.concept_ids ?? [])
+    const conceptIds = [
+      ...(entry.concept_ids ?? []),
+      ...(knowledge.concept_cards ?? [])
+        .filter(concept => concept.related_content_ids.includes(entry.content_id))
+        .map(concept => concept.concept_id),
+    ].filter((conceptId, index, ids) => ids.indexOf(conceptId) === index);
+    const concepts = conceptIds
       .map(conceptId => conceptById.get(conceptId))
       .filter((concept): concept is PublicConceptCard => Boolean(concept));
     const referencedSourceIds = new Set([
@@ -162,6 +258,27 @@ function conceptTerms(concept: PublicConceptCard): string[] {
     ...concept.confused_with_ko,
     ...concept.examples_ko,
     ...concept.assertions.map(assertion => assertion.text_ko),
+  ];
+}
+
+function sourceRelatedEntryTerms(entry: PublicKnowledgeEntry, graph: ResolvedKnowledgeEntryGraph): string[] {
+  return [
+    entry.title_ko,
+    entry.one_line_answer_ko,
+    entry.audience_situation_ko,
+    ...entry.search_intents_ko,
+    ...entry.key_points_ko,
+    ...entry.facts_to_check_ko,
+    ...graph.hubs.flatMap(hub => [hub.title_ko, hub.description_ko]),
+  ];
+}
+
+function sourceRelatedConceptTerms(concept: PublicConceptCard): string[] {
+  return [
+    concept.preferred_term_ko,
+    ...concept.aliases_ko,
+    concept.plain_definition_ko,
+    concept.legal_definition_ko,
   ];
 }
 

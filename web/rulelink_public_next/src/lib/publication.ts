@@ -2,8 +2,11 @@ import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 
 import {buildKnowledgeSearchDocuments, buildKnowledgeSourceDocuments, resolveKnowledgeEntryGraph} from '@/lib/knowledge-search';
+import {buildKnowledgeHubConnections} from '@/lib/knowledge-hub-connections';
 import {changeLifecycleOrder} from '@/lib/change-lifecycle';
 import {filterFreshPublications} from '@/lib/publication-freshness';
+
+import type {KnowledgeHubConnection} from '@/lib/knowledge-hub-connections';
 
 import type {
   EditorialOperationsQueue,
@@ -217,6 +220,11 @@ export async function decisionPathsForKnowledgeHub(hub: PublicKnowledgeHub): Pro
   return knowledge.scenario_branches
     .map(scenario => ({scenario, entries: entriesByScenarioId.get(scenario.scenario_id) ?? []}))
     .filter(path => path.entries.length > 0);
+}
+
+export async function connectedKnowledgeHubs(hub: PublicKnowledgeHub, limit = 4): Promise<KnowledgeHubConnection[]> {
+  const [entries, hubs] = await Promise.all([listKnowledgeEntries(), listKnowledgeHubs()]);
+  return buildKnowledgeHubConnections(entries, hubs, hub, limit);
 }
 
 export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{

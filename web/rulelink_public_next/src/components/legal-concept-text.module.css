@@ -3,16 +3,27 @@
   position: relative;
 }
 
-.termLink {
+.text {
+  display: inline;
+}
+
+.termButton {
+  background: transparent;
+  border: 0;
   border-bottom: 1px dotted #397d5d;
   color: inherit;
+  cursor: help;
+  font: inherit;
   font-weight: 700;
+  margin: 0;
+  padding: 0;
   text-decoration: none;
   text-underline-offset: 3px;
 }
 
-.termLink:hover,
-.termLink:focus-visible {
+.termButton:hover,
+.termButton:focus-visible,
+.term[data-open='true'] .termButton {
   background: #e8f4ed;
   border-bottom-style: solid;
   border-radius: 3px;
@@ -41,7 +52,7 @@
 
 .popover strong,
 .popover span,
-.popover em {
+.popover a {
   display: block;
 }
 
@@ -55,24 +66,30 @@
   font-size: 12px;
 }
 
-.popover em {
+.popover a {
   color: #8fd2af;
   font-size: 11px;
-  font-style: normal;
   font-weight: 750;
   margin-top: 9px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .term:hover .popover,
-.term:focus-within .popover {
+.term[data-open='true'] .popover {
   display: block;
 }
 
 @media (max-width: 800px) {
   .popover {
-    bottom: auto;
-    left: 0;
-    top: calc(100% + 8px);
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    left: 16px;
+    max-width: none;
+    min-width: 0;
+    position: fixed;
+    right: 16px;
+    top: auto;
     transform: none;
+    width: auto;
   }
 }

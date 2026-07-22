@@ -80,11 +80,18 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .changeCard strong {color: #173f7a; font-size: 13px; margin-top: auto; padding-top: 28px;}
 .contentSection {margin: 0 auto 100px; max-width: 1180px; padding: 0 24px;}
 .knowledgeHome {margin: 0 auto 82px; max-width: 1180px; padding: 0 24px;}
-.hubRail {display: flex; gap: 12px; margin-bottom: 18px; overflow-x: auto; padding-bottom: 4px;}
-.hubRail a {background: var(--green-dark); border-radius: 15px; color: white; display: grid; flex: 0 0 310px; gap: 8px; padding: 20px;}
-.hubRail span {color: #8fd2af; font-size: 11px; font-weight: 750;}
-.hubRail strong {font-size: 19px;}
-.hubRail small {color: #d9ebe1; line-height: 1.5;}
+.hubDirectory {margin-bottom: 30px;}
+.hubDirectoryHeading {align-items: end; display: flex; justify-content: space-between; margin-bottom: 15px;}
+.hubDirectoryHeading h3 {font-size: 21px; letter-spacing: -.03em; margin: 0;}
+.hubDirectoryHeading > span {color: var(--muted); font-size: 12px;}
+.hubGrid {display: grid; gap: 11px; grid-template-columns: repeat(auto-fit,minmax(min(100%,230px),1fr));}
+.hubGrid a {background: var(--green-dark); border: 1px solid transparent; border-radius: 15px; color: white; display: flex; flex-direction: column; min-width: 0; padding: 19px; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;}
+.hubGrid a:hover {border-color: #8fd2af; box-shadow: var(--shadow-card); transform: translateY(-2px);}
+.hubCardMeta {align-items: center; display: flex; justify-content: space-between; margin-bottom: 18px;}
+.hubCardMeta b {color: #8fd2af; font-size: 11px; letter-spacing: .02em;}
+.hubCardMeta small {color: #d9ebe1; font-size: 10px;}
+.hubGrid strong {font-size: 18px; line-height: 1.4;}
+.hubGrid p {color: #d9ebe1; display: -webkit-box; font-size: 11px; line-height: 1.55; margin: 8px 0 0; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2;}
 .hubDecisionSection {border-bottom: 1px solid var(--line); margin-bottom: 46px; padding-bottom: 52px;}
 .hubDecisionIntro {align-items: end; display: grid; gap: 42px; grid-template-columns: 1fr 1fr; margin-bottom: 24px;}
 .hubDecisionIntro h2 {font-size: 31px; letter-spacing: -.04em; line-height: 1.35; margin: 0;}
@@ -100,6 +107,19 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .hubDecisionLinks a:hover {background: var(--mint);}
 .hubDecisionLinks a span {line-height: 1.45;}
 .hubAllEntries {margin-bottom: 20px;}
+.hubConnections {border-top: 1px solid var(--line); margin-top: 58px; padding-top: 48px;}
+.hubConnectionsIntro {align-items: end; display: grid; gap: 42px; grid-template-columns: 1fr 1fr; margin-bottom: 24px;}
+.hubConnectionsIntro h2 {font-size: 31px; letter-spacing: -.04em; line-height: 1.35; margin: 0;}
+.hubConnectionsIntro > p {color: var(--muted); line-height: 1.7; margin: 0;}
+.hubConnectionGrid {display: grid; gap: 14px; grid-template-columns: repeat(2,minmax(0,1fr));}
+.hubConnectionCard {background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-card); display: flex; flex-direction: column; min-width: 0; padding: 25px; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;}
+.hubConnectionCard:hover {border-color: #9bb8a8; box-shadow: var(--shadow-card); transform: translateY(-2px);}
+.hubConnectionMeta {color: var(--green); font-size: 11px; font-weight: 800; letter-spacing: .04em;}
+.hubConnectionCard h3 {font-size: 22px; letter-spacing: -.03em; line-height: 1.4; margin: 18px 0 10px;}
+.hubConnectionCard > p {color: var(--muted); line-height: 1.65; margin: 0;}
+.hubConnectionBridge {border-top: 1px solid var(--line); color: var(--muted); display: grid; font-size: 12px; gap: 6px; line-height: 1.55; margin-top: 22px; padding-top: 16px;}
+.hubConnectionBridge b {color: var(--ink); font-size: 10px; letter-spacing: .03em;}
+.hubConnectionCard > strong {color: var(--green); font-size: 13px; margin-top: auto; padding-top: 22px;}
 .knowledgeGrid {display: grid; gap: 16px; grid-template-columns: repeat(3,1fr);}
 .knowledgeCard {background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-card); display: flex; flex-direction: column; min-height: 260px; padding: 25px; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;}
 .knowledgeCard:hover {border-color: #9bb8a8; box-shadow: var(--shadow-card); transform: translateY(-2px);}
@@ -179,7 +199,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .knowledgeHero h1 {font-size: clamp(38px,6vw,61px); letter-spacing: -.055em; line-height: 1.16; margin: 0 0 24px;}
 .knowledgeHero > p:not(.eyebrow) {color: var(--muted); font-size: 20px; line-height: 1.7; max-width: 820px;}
 .audienceBadge {background: var(--mint); border-radius: 999px; color: var(--green); display: inline-flex; font-size: 12px; font-weight: 750; margin-top: 18px; padding: 8px 12px;}
-.knowledgeSectionNav {align-items: center; backdrop-filter: blur(14px); background: rgba(255,255,255,.9); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 10px 30px rgba(20,55,40,.07); display: flex; gap: 5px; margin-top: 18px; overflow-x: auto; padding: 7px; position: sticky; scrollbar-width: thin; top: 10px; z-index: 5;}
+.knowledgeSectionNav {align-items: center; backdrop-filter: blur(14px); background: rgba(255,255,255,.9); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 10px 30px rgba(20,55,40,.07); display: flex; flex-wrap: wrap; gap: 5px; margin-top: 18px; padding: 7px; position: sticky; top: 10px; z-index: 5;}
 .knowledgeSectionNav > span {color: var(--muted); flex: 0 0 auto; font-size: 11px; font-weight: 800; letter-spacing: .04em; padding: 9px 10px;}
 .knowledgeSectionNav a, .knowledgeSectionNav button {background: transparent; border: 0; border-radius: 9px; color: var(--muted); cursor: pointer; flex: 0 0 auto; font: inherit; font-size: 12px; font-weight: 750; padding: 9px 11px;}
 .knowledgeSectionNav a:hover, .knowledgeSectionNav button:hover {background: var(--mint); color: var(--green);}
@@ -317,16 +337,20 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   .trustRail {align-items: flex-start; flex-direction: column; gap: 12px;}
   .cardGrid, .issueLayout, .relatedGrid, .entryGrid, .knowledgeGrid, .knowledgeLayout {grid-template-columns: 1fr;}
   .methodGrid, .methodSection {grid-template-columns: 1fr;}
-  .changeIntro, .changeGrid, .changeBody, .changeAssertionGrid, .lifeImpact, .hubDecisionIntro, .hubDecisionGrid {grid-template-columns: 1fr;}
+  .hubGrid {grid-template-columns: 1fr;}
+  .hubDirectoryHeading {align-items: start; flex-direction: column; gap: 7px;}
+  .changeIntro, .changeGrid, .changeBody, .changeAssertionGrid, .lifeImpact, .hubDecisionIntro, .hubDecisionGrid, .hubConnectionsIntro, .hubConnectionGrid {grid-template-columns: 1fr;}
   .effectivePanel {grid-template-columns: 1fr;}
   .normDeltaRow {grid-template-columns: 1fr;}
   .normVersion {border-left: 0; border-top: 1px solid var(--line);}
   .normSlots, .branchOutcomes {grid-template-columns: 1fr;}
-  .knowledgeSectionNav {border-left: 0; border-radius: 0; border-right: 0; margin-left: -18px; margin-right: -18px; padding-left: 12px; padding-right: 12px; top: 0;}
+  .knowledgeSectionNav {border-left: 0; border-radius: 0; border-right: 0; margin-left: -18px; margin-right: -18px; padding: 10px 12px; position: static;}
+  .knowledgeSectionNav > span {flex-basis: 100%; padding-bottom: 2px;}
+  .knowledgeSectionNav a, .knowledgeSectionNav button {flex: 1 1 calc(33.333% - 5px); min-width: 0; text-align: center;}
   .knowledgeAside {position: static;}
   .sectionHeading {align-items: start; flex-direction: column; gap: 12px;}
-  .sectionNav {overflow-x: auto; position: static;}
-  .sectionNav a {flex: 0 0 auto;}
+  .sectionNav {flex-wrap: wrap; position: static;}
+  .sectionNav a {flex: 1 1 calc(50% - 6px);}
   .siteFooter {flex-direction: column;}
   .changePage, .issuePage, .methodPage, .topicPage, .knowledgePage {max-width: 100%; min-width: 0; overflow-x: clip; padding-left: 18px; padding-right: 18px; width: 100%;}
   .editorialPage {max-width: 100%; padding-left: 18px; padding-right: 18px;}

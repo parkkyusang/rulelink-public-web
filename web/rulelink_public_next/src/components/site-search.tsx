@@ -5,12 +5,18 @@ import {useEffect, useMemo, useState} from 'react';
 import {buildCollectionSearchHref, parseCollectionSearchState, sanitizeCollectionQuery} from '@/lib/collection-search-state';
 import {changeLifecycleLabel} from '@/lib/change-lifecycle';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
+import {
+  DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE,
+  initialProgressiveResultLimit,
+  nextProgressiveResultLimit,
+} from '@/lib/progressive-results';
 
 import type {PublicKnowledgeSearchDocument} from '@/lib/knowledge-search';
 
 import type {LegalChangeBrief, LegalIssueCard, PublicTopic} from '@/types/publication';
 
 import styles from './site-search.module.css';
+import {ProgressiveResultFooter} from './progressive-result-footer';
 
 type Props = {
   cards: LegalIssueCard[];
@@ -39,6 +45,9 @@ type SearchResult = {
 export function SiteSearch({cards, changeBriefs, knowledgeDocuments, topics}: Props) {
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<ResultFilter>('all');
+  const [visibleLimit, setVisibleLimit] = useState(() => initialProgressiveResultLimit(
+    cards.length + changeBriefs.length + knowledgeDocuments.length,
+  ));
 
   useEffect(() => {
     const initial = parseCollectionSearchState({
@@ -49,16 +58,19 @@ export function SiteSearch({cards, changeBriefs, knowledgeDocuments, topics}: Pr
     });
     setQuery(initial.query);
     setFilter(initial.filter);
+    setVisibleLimit(DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE);
   }, []);
 
   function updateQuery(value: string) {
     const nextQuery = sanitizeCollectionQuery(value);
     setQuery(nextQuery);
+    setVisibleLimit(DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE);
     replaceSearchUrl(nextQuery, filter);
   }
 
   function updateFilter(nextFilter: ResultFilter) {
     setFilter(nextFilter);
+    setVisibleLimit(DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE);
     replaceSearchUrl(query, nextFilter);
   }
 
@@ -80,6 +92,8 @@ export function SiteSearch({cards, changeBriefs, knowledgeDocuments, topics}: Pr
       return !tokens.length || tokens.every(token => result.searchText.includes(token));
     });
   }, [filter, normalizedQuery, results]);
+  const displayedResults = visibleResults.slice(0, visibleLimit);
+  const hiddenResultCount = visibleResults.length - displayedResults.length;
 
   return (
     <section aria-labelledby="site-search-heading" className={styles.search}>
@@ -106,29 +120,41 @@ export function SiteSearch({cards, changeBriefs, knowledgeDocuments, topics}: Pr
         <FilterButton active={filter === 'change'} count={counts.change} label="법령 변화" onClick={() => updateFilter('change')} />
       </div>
 
-      <p aria-live="polite" className={styles.resultCount}>찾은 법률정보 {visibleResults.length}개</p>
+      <p aria-live="polite" className={styles.resultCount}>
+        찾은 법률정보 {visibleResults.length}개
+        {hiddenResultCount > 0 ? <span> · {displayedResults.length}개 표시 중</span> : null}
+      </p>
 
       {visibleResults.length ? (
-        <div className={styles.results}>
-          {visibleResults.map(result => (
-            <a className={styles.result} href={result.href} key={`${result.kind}-${result.id}`}>
-              <div className={styles.resultMeta}>
-                <span className={styles[result.kind]}>{kindLabel(result.kind)}</span>
-                <time dateTime={result.reviewedAt}>기준 확인 {formatDate(result.reviewedAt)}</time>
-              </div>
-              <h2>{result.title}</h2>
-              <p>{result.summary}</p>
-              <small>{result.context}</small>
-              {result.evidenceLabels?.length ? (
-                <div aria-label="연결된 공식 근거" className={styles.evidence}>
-                  <b>연결 근거</b>
-                  {evidenceLabelsForResult(result.evidenceLabels, normalizedQuery).map(label => <span key={label}>{label}</span>)}
+        <>
+          <div className={styles.results} id="site-search-result-grid">
+            {displayedResults.map(result => (
+              <a className={styles.result} href={result.href} key={`${result.kind}-${result.id}`}>
+                <div className={styles.resultMeta}>
+                  <span className={styles[result.kind]}>{kindLabel(result.kind)}</span>
+                  <time dateTime={result.reviewedAt}>기준 확인 {formatDate(result.reviewedAt)}</time>
                 </div>
-              ) : null}
-              <strong>내용 확인하기 <span aria-hidden="true">→</span></strong>
-            </a>
-          ))}
-        </div>
+                <h2>{result.title}</h2>
+                <p>{result.summary}</p>
+                <small>{result.context}</small>
+                {result.evidenceLabels?.length ? (
+                  <div aria-label="연결된 공식 근거" className={styles.evidence}>
+                    <b>연결 근거</b>
+                    {evidenceLabelsForResult(result.evidenceLabels, normalizedQuery).map(label => <span key={label}>{label}</span>)}
+                  </div>
+                ) : null}
+                <strong>내용 확인하기 <span aria-hidden="true">→</span></strong>
+              </a>
+            ))}
+          </div>
+          <ProgressiveResultFooter
+            controlsId="site-search-result-grid"
+            description="검색어와 유형 필터는 아직 펼치지 않은 법률정보에도 똑같이 적용됩니다."
+            hiddenCount={hiddenResultCount}
+            label="검색 결과 더 보기"
+            onLoadMore={() => setVisibleLimit(current => nextProgressiveResultLimit(visibleResults.length, current))}
+          />
+        </>
       ) : (
         <div className={styles.empty}>
           <strong>조건에 맞는 법률정보를 찾지 못했습니다.</strong>
@@ -181,9 +207,6 @@ function buildResults(
       terms: [
         entry.audience_situation_ko,
         knowledgeContentTypeLabel(entry.content_type),
-        ...entry.search_intents_ko,
-        ...entry.key_points_ko,
-        ...entry.facts_to_check_ko,
         ...document.search_terms_ko,
       ],
       evidenceLabels: document.evidence_labels_ko,

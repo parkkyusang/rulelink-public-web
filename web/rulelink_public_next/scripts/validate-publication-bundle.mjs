@@ -2,6 +2,8 @@ import {createHash} from 'node:crypto';
 import {access, readFile} from 'node:fs/promises';
 import path from 'node:path';
 
+import {samePublicRuleCopy} from '../src/lib/public-rule-presentation.ts';
+
 const bundlePath = process.env.RULELINK_WEB_BUNDLE_PATH
   ? path.resolve(process.env.RULELINK_WEB_BUNDLE_PATH)
   : path.join(process.cwd(), 'content', 'bundle.json');
@@ -169,12 +171,16 @@ function validateKnowledge(value, now, fileHashes, errors) {
     if (!proposition) errors.push(`${ruleName}의 proposition_ko가 비어 있습니다.`);
     if (/…$|\.\.\.$/u.test(ruleTitle)) errors.push(`${ruleName}의 제목이 말줄임표로 잘려 있습니다.`);
     if (ruleTitle.length > 45) errors.push(`${ruleName}의 제목은 45자 이하의 쟁점명이어야 합니다.`);
-    if (sameDisplayText(ruleTitle, proposition)) errors.push(`${ruleName}의 제목과 법리 문장이 중복됩니다.`);
+    if (samePublicRuleCopy(ruleTitle, proposition)) errors.push(`${ruleName}의 제목과 법리 문장이 중복됩니다.`);
     if (!isRecord(rule.norm)) {
       errors.push(`${ruleName}의 norm이 객체가 아닙니다.`);
     } else {
       for (const field of ['actor_ko', 'conditions_ko', 'legal_effect_ko']) {
         if (typeof rule.norm[field] !== 'string' || !rule.norm[field].trim()) errors.push(`${ruleName}의 norm.${field}가 비어 있습니다.`);
+      }
+      const legalEffect = typeof rule.norm.legal_effect_ko === 'string' ? rule.norm.legal_effect_ko.trim() : '';
+      if (ruleTitle && legalEffect && samePublicRuleCopy(ruleTitle, legalEffect)) {
+        errors.push(`${ruleName}의 제목과 결과 문장이 중복됩니다.`);
       }
       if (['해당 법률관계의 당사자', '당사자'].includes(rule.norm.actor_ko?.trim())) {
         errors.push(`${ruleName}의 norm.actor_ko가 적용 주체를 구체화하지 않은 자리표시자입니다.`);
@@ -568,13 +574,6 @@ function isLawyerWorkspaceEntry(value) {
     && Array.isArray(value.decision_facts_ko)
     && value.decision_facts_ko.length > 0
     && value.decision_facts_ko.every(item => typeof item === 'string' && item.trim().length > 0);
-}
-
-function sameDisplayText(left, right) {
-  const normalize = value => String(value || '')
-    .replace(/[\s.…"'“”‘’(),·-]/gu, '')
-    .replace(/(?:이다|입니다|한다|합니다|된다|됩니다)$/u, '');
-  return normalize(left) === normalize(right);
 }
 
 function requireArray(value, key, errors, prefix = '') {
