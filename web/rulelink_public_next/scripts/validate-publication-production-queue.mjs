@@ -52,6 +52,7 @@ const existingTopicRevisionStatuses = new Set([
 const existingTopicPublishedStatuses = new Set(['integrated', 'superseded']);
 const integrationModes = new Set(['exact', 'absorbed']);
 const freshnessStatuses = new Set([
+  'pending',
   'current',
   'rebind_before_integration',
   'rework_required',
@@ -187,6 +188,7 @@ const verifiedEvidenceBrand = Symbol('rulelink-production-evidence-v1');
 
 export const PRODUCTION_WORK_CONTRACTS = {
   'reader-backfill-crime-victim-wave1': {
+    title_ko: '배상명령 대상손해·신청기한 조문 읽기 정본 백필',
     topic_id: 'hub.crime-victim-response',
     topic_file: 'artifacts/publication/topics/crime-victim-response.json',
     test_file: 'web/rulelink_public_next/scripts/crime-victim-response-topic-reader-backfill.test.mjs',
@@ -223,6 +225,12 @@ export const PRODUCTION_WORK_CONTRACTS = {
     },
     prerequisite_gates: wave1GateContract,
     depends_on_work_ids: [],
+    integration_checks: [
+      'snapshot 023 운영 배포와 authority 스키마·런타임을 포함한 모든 선행 게이트가 충족된 뒤 생산한다.',
+      '기존 콘텐츠 13건과 허브 1개를 유지하고 법리 13→16, 사실분기 12→17, 근거 21→24, 조문 읽기 정본 0→5만 반영한다.',
+      'RuleCard 중복 2→0, audience 공란 2→0, 복사 검색어 2→0, typed relation 10개와 legacy 투영 일치를 검증한다.',
+      '주제만 직접 병합하지 않고 Wave2 완료 뒤 current bundle과 새 불변 snapshot을 한 번의 publication migration으로 합성한다.',
+    ],
     release_check_ids: [
       'current-equals-snapshot-024',
       'canonical-urls-unchanged',
@@ -233,6 +241,7 @@ export const PRODUCTION_WORK_CONTRACTS = {
     ],
   },
   'reader-backfill-debt-enforcement-wave2': {
+    title_ko: '채권추심·강제집행 13건 독자 품질·조문 읽기 정본 백필',
     topic_id: 'hub.debt-enforcement',
     topic_file: 'artifacts/publication/topics/debt-enforcement.json',
     test_file: 'web/rulelink_public_next/scripts/debt-enforcement-topic-backfill.test.mjs',
@@ -299,6 +308,12 @@ export const PRODUCTION_WORK_CONTRACTS = {
       },
     },
     depends_on_work_ids: ['reader-backfill-crime-victim-wave1'],
+    integration_checks: [
+      'Wave1이 migration_required 또는 integrated 상태가 되고 authority 16개 정확표가 승인된 뒤 생산한다.',
+      '기존 콘텐츠·법리·사실분기·근거·허브 수와 모든 ID·slug·canonical URL을 유지하고 조문 읽기 정본 0→16만 추가한다.',
+      'RuleCard 중복 13→0, audience 공란 13→0, 복사 검색어 13→0, 비표준 content_type 8→0, typed relation 39개를 검증한다.',
+      '주제만 직접 병합하지 않고 Wave1과 함께 current bundle과 새 불변 snapshot을 한 번의 publication migration으로 합성한다.',
+    ],
     release_check_ids: [
       'current-equals-snapshot-024',
       'canonical-urls-unchanged',
@@ -1714,6 +1729,22 @@ function isPositiveInteger(value) {
   return Number.isInteger(value) && value > 0;
 }
 
+function hasVerifiedSourceGateReceipts(item, itemRegistry) {
+  if (!nonEmpty(item?.work_id) || !itemRegistry || typeof itemRegistry !== 'object') return false;
+  const contract = PRODUCTION_WORK_CONTRACTS[item.work_id];
+  if (!contract) return false;
+  const requiredGateIds = Object.entries(contract.prerequisite_gates)
+    .filter(([, gate]) => gate.owner_role === 'source_maintenance')
+    .map(([gateId]) => gateId);
+  if (requiredGateIds.length === 0) return false;
+  const receipts = new Set(
+    (itemRegistry.prerequisite_gate_receipts || [])
+      .filter(receipt => receipt.work_id === item.work_id)
+      .map(receipt => receipt.gate_id),
+  );
+  return requiredGateIds.every(gateId => receipts.has(gateId));
+}
+
 export function validateProductionQueue(
   queue,
   {
@@ -1902,6 +1933,9 @@ export function validateProductionQueue(
       if (!workContract) {
         errors.push(`${label}.work_id에 승인된 생산계약이 없습니다: ${item.work_id}`);
       } else {
+        if (item.title_ko !== workContract.title_ko) {
+          errors.push(`${label}.title_ko가 승인된 생산계약과 다릅니다: ${item.work_id}`);
+        }
         for (const field of ['topic_id', 'topic_file', 'test_file', 'change_mode']) {
           if (item[field] !== workContract[field]) {
             errors.push(`${label}.${field}가 승인된 생산계약과 다릅니다: ${item.work_id}`);
@@ -1921,6 +1955,9 @@ export function validateProductionQueue(
           canonicalJson(workContract.depends_on_work_ids)
         ) {
           errors.push(`${label}.depends_on_work_ids가 승인된 생산계약과 다릅니다: ${item.work_id}`);
+        }
+        if (canonicalJson(item.integration_checks) !== canonicalJson(workContract.integration_checks)) {
+          errors.push(`${label}.integration_checks가 승인된 생산계약과 다릅니다: ${item.work_id}`);
         }
         if (completedMeasurementStatuses.has(item.status)) {
           const measurement = workTopicMeasurements?.get?.(item.work_id);
@@ -2198,7 +2235,26 @@ export function validateProductionQueue(
       if (item.direct_merge !== undefined) errors.push(`${label}의 merged_pending_publication에는 direct_merge를 사용하지 않습니다.`);
     }
 
-    if (!item.official_url_check || item.official_url_check.status !== 'passed') {
+    const sourceGateReceiptsVerified = hasVerifiedSourceGateReceipts(item, itemRegistry);
+    const sourceChecksCompleted = item.official_url_check?.status === 'passed'
+      && item.source_freshness?.status === 'current';
+    if (hasWorkId) {
+      if (!['pending', 'passed'].includes(item.official_url_check?.status)) {
+        errors.push(`${label}.official_url_check는 pending 또는 passed여야 합니다.`);
+      } else if (item.official_url_check.status === 'pending') {
+        if (item.official_url_check.referenced_count !== 0) {
+          errors.push(`${label}의 pending 공식 URL 검사 수는 0이어야 합니다.`);
+        }
+      } else if (counts && item.official_url_check.referenced_count !== counts.sources) {
+        errors.push(`${label}의 공식 URL 검사 수와 근거 수가 다릅니다.`);
+      }
+      if (sourceChecksCompleted && !sourceGateReceiptsVerified) {
+        errors.push(`${label}는 source_maintenance 영수증 없이 공식 URL·근거 최신성을 완료로 표시할 수 없습니다.`);
+      }
+      if (completedMeasurementStatuses.has(item.status) && !sourceChecksCompleted) {
+        errors.push(`${label}의 완료 상태에는 passed 공식 URL과 current 근거가 필요합니다.`);
+      }
+    } else if (!item.official_url_check || item.official_url_check.status !== 'passed') {
       errors.push(`${label}.official_url_check는 passed여야 합니다.`);
     } else if (counts && item.official_url_check.referenced_count !== counts.sources) {
       errors.push(`${label}의 공식 URL 검사 수와 근거 수가 다릅니다.`);
@@ -2206,6 +2262,14 @@ export function validateProductionQueue(
 
     if (!item.source_freshness || !freshnessStatuses.has(item.source_freshness.status)) {
       errors.push(`${label}.source_freshness.status가 올바르지 않습니다.`);
+    } else if (!hasWorkId && item.source_freshness.status === 'pending') {
+      errors.push(`${label}.source_freshness.pending은 PR 전 work_id 작업에만 사용할 수 있습니다.`);
+    } else if (hasWorkId && item.source_freshness.status === 'pending') {
+      if (item.source_freshness.mismatch_count !== 0) {
+        errors.push(`${label}의 pending 근거 최신성 mismatch_count는 0이어야 합니다.`);
+      }
+    } else if (hasWorkId && item.source_freshness.status === 'current' && !sourceGateReceiptsVerified) {
+      errors.push(`${label}는 source_maintenance 영수증 없이 source_freshness를 current로 표시할 수 없습니다.`);
     } else if ('mismatch_count' in item.source_freshness) {
       const mismatch = item.source_freshness.mismatch_count;
       if (!Number.isInteger(mismatch) || mismatch < 0 || (counts && mismatch > counts.sources)) {
@@ -2401,7 +2465,14 @@ export function validateProductionQueue(
   const summary = queue.audit_summary || {};
   const openContentPrs = queue.items.filter(item => openPrStatuses.has(item.status)).length;
   if (summary.open_content_prs !== openContentPrs) errors.push(`audit_summary.open_content_prs와 실제 열린 상태 수가 다릅니다: expected=${openContentPrs}, actual=${String(summary.open_content_prs)}`);
-  const sourceTotal = queue.items.reduce((sum, item) => sum + (item.counts?.sources || 0), 0);
+  const sourceTotal = queue.items.reduce(
+    (sum, item) => sum + (
+      item.official_url_check?.status === 'passed'
+        ? item.official_url_check.referenced_count || 0
+        : 0
+    ),
+    0,
+  );
   if (summary.official_source_references_checked !== sourceTotal) {
     errors.push('audit_summary.official_source_references_checked와 대기열 근거 합계가 다릅니다.');
   }

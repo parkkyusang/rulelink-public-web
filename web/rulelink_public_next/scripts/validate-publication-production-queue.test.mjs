@@ -63,7 +63,14 @@ function refreshSummary(value) {
     value.audit_summary[status] = value.items.filter(item => item.status === status).length;
   }
   value.audit_summary.official_source_references_checked =
-    value.items.reduce((sum, item) => sum + (item.counts?.sources || 0), 0);
+    value.items.reduce(
+      (sum, item) => sum + (
+        item.official_url_check?.status === 'passed'
+          ? item.official_url_check.referenced_count || 0
+          : 0
+      ),
+      0,
+    );
   value.audit_summary.semantic_overlap_decisions =
     value.items.reduce((sum, item) => sum + (item.overlap_decisions?.length || 0), 0);
   return value;
@@ -86,7 +93,7 @@ function plannedAuthorityWork({
   value.items.push({
     queue_id: `publication-work-${workId}`,
     work_id: workId,
-    title_ko: '조문 읽기 정본 백필 회귀시험',
+    title_ko: contract.title_ko,
     owner_role: 'content_production',
     topic_id: contract.topic_id,
     topic_file: contract.topic_file,
@@ -115,9 +122,9 @@ function plannedAuthorityWork({
       'new_immutable_snapshot',
       'migrate_publication',
     ],
-    official_url_check: {status: 'passed', referenced_count: contract.counts.sources},
-    source_freshness: {status: 'current', mismatch_count: 0},
-    integration_checks: ['선행 정본 게이트가 모두 충족된 뒤 생산한다.'],
+    official_url_check: {status: 'pending', referenced_count: 0},
+    source_freshness: {status: 'pending', mismatch_count: 0},
+    integration_checks: clone(contract.integration_checks),
   });
   return refreshSummary(value);
 }
@@ -169,6 +176,18 @@ function satisfyWorkGates(item) {
     gate.status = 'satisfied';
     gate.evidence_ref = evidenceByGate[gate.gate_id];
   }
+}
+
+function completeWorkSourceChecks(item) {
+  const contract = PRODUCTION_WORK_CONTRACTS[item.work_id];
+  item.official_url_check = {
+    status: 'passed',
+    referenced_count: contract.counts.sources,
+  };
+  item.source_freshness = {
+    status: 'current',
+    mismatch_count: 0,
+  };
 }
 
 async function verifiedEvidenceFor(value, itemRegistry = null) {
@@ -1268,6 +1287,20 @@ test('PR 전 planned 작업은 불변 work_id로 등록하고 PR 번호·head를
   assert.equal(registration.queue_id, 'publication-work-reader-backfill-crime-victim-wave1');
 });
 
+test('planned 작업은 source-maintenance 영수증 없이 근거 검증 완료를 자기신고할 수 없다', () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  item.official_url_check = {
+    status: 'passed',
+    referenced_count: PRODUCTION_WORK_CONTRACTS[item.work_id].counts.sources,
+  };
+  item.source_freshness = {status: 'current', mismatch_count: 0};
+  refreshSummary(value);
+  const workRegistry = appendQueueItemRegistrations(registry, value);
+  const errors = validateWorkQueue(value, workRegistry);
+  assert.ok(errors.filter(error => error.includes('source_maintenance')).length >= 2);
+});
+
 test('planned 이후에는 모든 구조화 선행 게이트가 증거와 함께 충족되어야 한다', async () => {
   const value = plannedAuthorityWork();
   const item = value.items.at(-1);
@@ -1433,6 +1466,7 @@ test('품질 목표는 개선 방향이어야 하고 release 완료에는 전부
 
   item.quality_targets.duplicate_rule_after = 0;
   satisfyWorkGates(item);
+  completeWorkSourceChecks(item);
   item.status = 'integrated';
   item.pr_number = 999;
   item.branch = 'codex/content-crime-victim-reader-backfill-20260723';
@@ -1515,6 +1549,7 @@ test('완료 상태의 quality target은 실제 topic 측정값과 일치해야 
   const value = plannedAuthorityWork();
   const item = value.items.at(-1);
   satisfyWorkGates(item);
+  completeWorkSourceChecks(item);
   item.status = 'migration_required';
   item.pr_number = 999;
   item.branch = PRODUCTION_WORK_CONTRACTS[item.work_id].branch;
