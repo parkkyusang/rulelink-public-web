@@ -86,6 +86,24 @@ const expectedRelations = new Map([
   ]],
 ]);
 
+const expectedScenarios = [
+  ['scenario.money-guarantee.sc-transfer-gift-dispute', '송금 당시 반환 합의와 변제기·이자 약정이 있었는지'],
+  ['scenario.money-guarantee.sc-no-note', '차용증 대신 메신저·송금내역에 반환 합의가 나타나는지'],
+  ['scenario.money-guarantee.sc-no-due-date', '반환시기를 정한 합의가 있는지'],
+  ['scenario.money-guarantee.sc-partial-payment', '일부 변제 당시 어느 채무에 충당할지 합의하거나 지정했는지'],
+  ['scenario.money-guarantee.sc-message-guarantee', '보증인의 기명날인 또는 서명이 있는 서면이 존재하는지'],
+  ['scenario.money-guarantee.sc-continuing-guarantee', '불확정한 다수 채무를 보증하면서 최고액을 서면으로 특정했는지'],
+  ['scenario.money-guarantee.sc-content-certified-demand', '채권의 시효 만료일, 최고가 채무자에게 도달한 날과 6개월 안의 후속조치 여부'],
+];
+
+test('후속 typed CTA 이관 전 기존 사실분기 ID와 판단사실을 보존한다', () => {
+  assert.deepEqual(
+    topic.scenario_branches.map(scenario => [scenario.scenario_id, scenario.decision_fact_ko]),
+    expectedScenarios,
+  );
+});
+
+
 test('판단규칙과 법률효과가 9개 RuleCard에서 분리된다', () => {
   assert.equal(rules.size, 9);
   for (const rule of rules.values()) {
