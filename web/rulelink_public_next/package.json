@@ -27,7 +27,6 @@
     "validate:publication-composition": "node scripts/compose-publication-knowledge.mjs --check",
     "validate:publication-scope": "node scripts/validate-publication-session-scope.mjs",
     "validate:concept-identity": "node scripts/validate-publication-concept-identity.mjs",
-    "validate:publication-scope": "node scripts/validate-publication-session-scope.mjs",
     "validate:production-queue": "node scripts/validate-publication-production-queue.mjs",
     "audit:semantic-overlap": "node scripts/audit-publication-semantic-overlap.mjs",
     "validate:publication-topic-queue": "node scripts/audit-publication-topic-queue.mjs",

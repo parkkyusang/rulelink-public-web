@@ -3,6 +3,7 @@ import type {
   PublicConceptTermRelation,
   PublicKnowledgeSource,
 } from '@/types/publication';
+import conceptIdentityPolicyRegistryJson from './concept-identity-policy.v1.json' with {type: 'json'};
 
 const wordCharacterPattern = /[\p{L}\p{N}_]/u;
 const koreanTermBoundarySuffixes = [
@@ -36,27 +37,35 @@ const semanticRelationKinds = new Set<PublicConceptTermRelation['relation']>([
   'related',
 ]);
 
-// 적용 주체·요건·효과가 달라 별도 개념카드가 필요한 용어는 다른 개념의 검색 별칭으로 흡수하지 않는다.
-const protectedCanonicalIdentityTerms = new Set([
-  '상속인',
-  '법정상속인',
-  '공동상속인',
-  '피상속인',
-  '임금',
-  '급여',
-  '보수',
-  '퇴직금',
-  '통상임금',
-  '평균임금',
-  '근로자성',
-  '3.3%',
-  '사업자등록',
-].map(normalizeConceptTermKey));
+export type ConceptIdentityPolicyKind =
+  | 'protected_canonical_identity'
+  | 'ambiguous_global_alias';
 
-// 문서·사진의 원본과 채무의 원본처럼 법역에 따라 뜻이 달라지는 짧은 표현은 전역 별칭이 될 수 없다.
-const ambiguousGlobalAliasTerms = new Set([
-  '원본',
-].map(normalizeConceptTermKey));
+export type ConceptIdentityPolicyTerm = {
+  term_ko: string;
+  policy_kind: ConceptIdentityPolicyKind;
+  meaning_domain: string;
+  reason_ko: string;
+};
+
+export type ConceptIdentityPolicyRegistry = {
+  schema: 'rulelink_public_concept_identity_policy_v1';
+  policy_version: string;
+  policy_receipt: string;
+  terms: ConceptIdentityPolicyTerm[];
+};
+
+export const conceptIdentityPolicyRegistry = (
+  conceptIdentityPolicyRegistryJson as unknown as ConceptIdentityPolicyRegistry
+);
+
+const policyRegistryErrors = auditConceptIdentityPolicyRegistry(conceptIdentityPolicyRegistry);
+if (policyRegistryErrors.length) {
+  throw new Error(policyRegistryErrors.join('\n'));
+}
+
+const protectedCanonicalIdentityTerms = policyTerms('protected_canonical_identity');
+const ambiguousGlobalAliasTerms = policyTerms('ambiguous_global_alias');
 
 export type ConceptTermValidationIssueCode =
   | 'empty-preferred-term'
@@ -332,6 +341,81 @@ export function auditConceptTermRelations(
 
 export function normalizeConceptTermKey(value: string): string {
   return value.normalize('NFKC').toLocaleLowerCase('ko-KR').replace(/\s+/gu, ' ').trim();
+}
+
+export function auditConceptIdentityPolicyRegistry(
+  registry: ConceptIdentityPolicyRegistry,
+): string[] {
+  const errors: string[] = [];
+  if (registry.schema !== 'rulelink_public_concept_identity_policy_v1') {
+    errors.push('개념 정체성 정책 레지스트리 스키마가 올바르지 않습니다.');
+  }
+  if (!/^\d+\.\d+\.\d+$/u.test(registry.policy_version)) {
+    errors.push('개념 정체성 정책 버전은 의미 버전 형식이어야 합니다.');
+  }
+  if (!/^[a-f0-9]{64}$/u.test(registry.policy_receipt)) {
+    errors.push('개념 정체성 정책 영수증은 SHA-256 형식이어야 합니다.');
+  }
+  if (!Array.isArray(registry.terms) || !registry.terms.length) {
+    errors.push('개념 정체성 정책 용어가 비어 있습니다.');
+    return errors;
+  }
+
+  const allowedKinds = new Set<ConceptIdentityPolicyKind>([
+    'protected_canonical_identity',
+    'ambiguous_global_alias',
+  ]);
+  const seenTerms = new Map<string, string>();
+  for (const [index, item] of registry.terms.entries()) {
+    const term = item?.term_ko?.trim() ?? '';
+    const termKey = normalizeConceptTermKey(term);
+    if (!term) errors.push(`개념 정체성 정책 terms[${index}]의 term_ko가 비어 있습니다.`);
+    if (!allowedKinds.has(item?.policy_kind)) {
+      errors.push(`개념 정체성 정책 terms[${index}]의 policy_kind가 올바르지 않습니다.`);
+    }
+    if (!item?.meaning_domain?.trim()) {
+      errors.push(`개념 정체성 정책 terms[${index}]의 meaning_domain이 비어 있습니다.`);
+    }
+    if (!item?.reason_ko?.trim()) {
+      errors.push(`개념 정체성 정책 terms[${index}]의 reason_ko가 비어 있습니다.`);
+    }
+    const owner = seenTerms.get(termKey);
+    if (termKey && owner) {
+      errors.push(`개념 정체성 정책 용어가 정규화 기준으로 중복되었습니다: ${term} (${owner})`);
+    } else if (termKey) {
+      seenTerms.set(termKey, item.policy_kind);
+    }
+  }
+  return errors;
+}
+
+export function conceptIdentityPolicyReceiptInput(
+  registry: ConceptIdentityPolicyRegistry,
+): string {
+  return canonicalPolicyJson({
+    schema: registry.schema,
+    policy_version: registry.policy_version,
+    terms: registry.terms,
+  });
+}
+
+function policyTerms(kind: ConceptIdentityPolicyKind): Set<string> {
+  return new Set(
+    conceptIdentityPolicyRegistry.terms
+      .filter(item => item.policy_kind === kind)
+      .map(item => normalizeConceptTermKey(item.term_ko)),
+  );
+}
+
+function canonicalPolicyJson(value: unknown): string {
+  if (Array.isArray(value)) return `[${value.map(canonicalPolicyJson).join(',')}]`;
+  if (value && typeof value === 'object') {
+    const record = value as Record<string, unknown>;
+    return `{${Object.keys(record).sort().map(key => (
+      `${JSON.stringify(key)}:${canonicalPolicyJson(record[key])}`
+    )).join(',')}}`;
+  }
+  return JSON.stringify(value);
 }
 
 function claimConceptTerm(

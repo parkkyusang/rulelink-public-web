@@ -1,10 +1,14 @@
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 
 import {
+  auditConceptIdentityPolicyRegistry,
   auditConceptTermRelations,
+  conceptIdentityPolicyReceiptInput,
+  conceptIdentityPolicyRegistry,
   validateConceptTermRelations,
 } from '../src/lib/concept-terms.ts';
 import {
@@ -16,6 +20,29 @@ const root = process.cwd();
 const fixture = JSON.parse(await read('scripts/fixtures/concept-identity-quality.json'));
 const matcherFixture = JSON.parse(await read('scripts/fixtures/concept-term-matcher.json'));
 const currentBundle = JSON.parse(await read('../../artifacts/publication/current/bundle.json'));
+
+test('개념 정체성 편집 정책은 버전형 레지스트리와 결정론적 영수증으로 고정한다', () => {
+  assert.deepEqual(auditConceptIdentityPolicyRegistry(conceptIdentityPolicyRegistry), []);
+  assert.equal(
+    createHash('sha256')
+      .update(conceptIdentityPolicyReceiptInput(conceptIdentityPolicyRegistry))
+      .digest('hex'),
+    conceptIdentityPolicyRegistry.policy_receipt,
+  );
+  assert.ok(conceptIdentityPolicyRegistry.terms.every(item => (
+    item.meaning_domain.length > 0 && item.reason_ko.length > 0
+  )));
+
+  const duplicate = structuredClone(conceptIdentityPolicyRegistry);
+  duplicate.terms.push({
+    ...duplicate.terms[0],
+    term_ko: ` ${duplicate.terms[0].term_ko} `,
+  });
+  assert.match(
+    auditConceptIdentityPolicyRegistry(duplicate).join('\n'),
+    /정규화 기준으로 중복/,
+  );
+});
 
 test('상속인·법정상속인·공동상속인·피상속인은 네 canonical concept 정체성으로 검증한다', () => {
   assert.deepEqual(
@@ -44,6 +71,14 @@ test('snapshot 022의 잘못 합쳐진 상속인 별칭은 정확한 legacy debt
     sources,
     legacyConceptValidationOptions(concepts, currentBundle.snapshot_id),
   ));
+  assert.throws(
+    () => validateConceptTermRelations(
+      concepts,
+      sources,
+      legacyConceptValidationOptions(concepts),
+    ),
+    /별도 canonical concept 정체성/,
+  );
 
   const modified = structuredClone(concepts);
   modified.find(concept => concept.concept_id === 'concept.kr.inheritance.legal_heir').version = '1.0.1';

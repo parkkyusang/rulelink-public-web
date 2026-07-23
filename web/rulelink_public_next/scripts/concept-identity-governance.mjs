@@ -11,7 +11,7 @@ const baseline = JSON.parse(await readFile(
 export function legacyConceptValidationOptions(concepts, snapshotId = '') {
   const conceptsById = new Map(concepts.map(concept => [concept.concept_id, concept]));
   const legacyDebt = new Map();
-  if (snapshotId && snapshotId !== baseline.snapshot_id) return {legacyDebt};
+  if (snapshotId !== baseline.snapshot_id) return {legacyDebt};
 
   for (const debt of baseline.concepts) {
     const concept = conceptsById.get(debt.concept_id);
@@ -27,7 +27,7 @@ export function auditLegacyConceptDebt(concepts, sources, snapshotId = '') {
   const acknowledged = [];
   const baselineErrors = [];
 
-  if (snapshotId && snapshotId !== baseline.snapshot_id) {
+  if (snapshotId !== baseline.snapshot_id) {
     return {acknowledged, baselineErrors, issues};
   }
 

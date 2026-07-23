@@ -6,6 +6,7 @@ import {
   assembleChangeBriefSets,
   assembleKnowledge,
   contentReceipt,
+  loadComposition,
 } from './compose-publication-knowledge.mjs';
 
 function descriptor(topicId, file) { return {topic_id: topicId, file}; }
@@ -31,6 +32,20 @@ function manifest(topics, contentEntryOrder = null) {
     ...(contentEntryOrder ? {content_entry_topic_order: contentEntryOrder} : {}),
   };
 }
+
+test('레거시 개념 정체성 예외는 명시적인 snapshot 022 합성에만 적용한다', async () => {
+  await assert.rejects(
+    () => loadComposition(),
+    /별도 canonical concept 정체성/,
+  );
+  await assert.doesNotReject(
+    () => loadComposition(undefined, {snapshotId: 'kr-knowledge-core-20260723-022'}),
+  );
+  await assert.rejects(
+    () => loadComposition(undefined, {snapshotId: 'kr-knowledge-core-20260724-023'}),
+    /별도 canonical concept 정체성/,
+  );
+});
 
 test('독립 법령변화 묶음을 공개 콘텐츠 참조와 함께 결정론적으로 합친다', () => {
   const baseManifest = manifest([descriptor('hub.first', 'first.json')]);
