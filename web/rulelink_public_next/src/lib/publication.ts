@@ -242,7 +242,6 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
   const knowledge = (await loadPublishedBundle())?.knowledge;
   if (!knowledge) return {concepts: [], rules: [], scenarios: [], scenarioRules: {}, sources: [], hubs: [], related: [], relatedSections: []};
   const graph = resolveKnowledgeEntryGraph(knowledge, entry);
-  const directRuleIds = new Set(entry.rule_ids);
   const ruleById = new Map(graph.rules.map(rule => [rule.rule_id, rule]));
   const scenarioRules = Object.fromEntries(
     graph.scenarios.map(scenario => [
@@ -260,7 +259,7 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
   );
   return {
     concepts: graph.concepts,
-    rules: graph.rules.filter(rule => directRuleIds.has(rule.rule_id)),
+    rules: graph.rules,
     scenarios: graph.scenarios,
     scenarioRules,
     sources: graph.sources,
