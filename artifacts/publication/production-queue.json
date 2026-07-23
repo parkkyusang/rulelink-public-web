@@ -24,7 +24,7 @@
     "official_url_failures": 0,
     "exact_cross_pr_content_id_collisions": 0,
     "broken_related_content_ids": 0,
-    "semantic_overlap_decisions": 2,
+    "semantic_overlap_decisions": 8,
     "ready_for_integration": 2,
     "needs_rework": 6,
     "migration_required": 2,
@@ -346,6 +346,23 @@
         "#147 병합본의 현행 근거 11개와 조문별 공식 URL을 유지한다.",
         "표준 콘텐츠 유형과 미래 검토시각 차단 계약을 유지한다."
       ],
+      "overlap_decisions": [
+        {
+          "target_content_id": "content.auto-accident-insurance-police-report",
+          "relationship": "distinct",
+          "rationale_ko": "사고 직후 정차·구호·인적사항 제공과 경찰 신고 의무·예외는 이어지는 별도 절차 단계이므로 각각 유지한다."
+        },
+        {
+          "target_content_id": "content.auto-accident-insurance-evidence-and-treatment",
+          "relationship": "distinct",
+          "rationale_ko": "책임 주체·직접청구 경로를 정하는 문제와 치료·손해 입증 자료를 확보하는 문제는 판단 대상과 행동이 다르므로 각각 유지한다."
+        },
+        {
+          "target_content_id": "content.auto-accident-insurance-direct-insurance-claim",
+          "relationship": "distinct",
+          "rationale_ko": "차주·운전자 책임 주체를 정하는 문제와 피해자가 보험회사에 직접 청구하는 경로는 서로 다른 책임·절차 축이다."
+        }
+      ],
       "supersedes_prs": [
         97
       ]
@@ -421,6 +438,13 @@
       "integration_checks": [
         "#148 병합본의 현행 근거 14개와 조문별 공식 URL을 유지한다.",
         "#101이 참조하는 산업재해 인정 콘텐츠 식별자를 유지한다."
+      ],
+      "overlap_decisions": [
+        {
+          "target_content_id": "content.industrial-accident-special-coverage",
+          "relationship": "distinct",
+          "rationale_ko": "사업주가 협조하지 않을 때 근로자가 직접 신청하는 절차와 특수형태 종사자·학생연구자 등의 적용 대상 여부는 서로 다른 쟁점이다."
+        }
       ],
       "supersedes_prs": [
         100
@@ -677,6 +701,18 @@
       "integration_checks": [
         "#131 병합본에서 #111의 수선의무·비용상환 중복 제거를 유지한다.",
         "이미 병합된 #141·#143 정본과 관련 콘텐츠 참조가 닫히는지 유지한다."
+      ],
+      "overlap_decisions": [
+        {
+          "target_content_id": "content.neighbor-leak-noise-floor-noise-mediation",
+          "relationship": "distinct",
+          "rationale_ko": "관리주체의 사실확인·권고 경로와 외부 분쟁조정 신청은 선후로 이어지는 서로 다른 해결 단계다."
+        },
+        {
+          "target_content_id": "content.neighbor-leak-noise-occupant-owner-liability",
+          "relationship": "distinct",
+          "rationale_ko": "누수 원인이 전유·공용·윗집 중 어디인지 가리는 문제와 점유자·소유자 중 책임 주체를 가리는 문제는 별도 판단축이다."
+        }
       ],
       "supersedes_prs": [
         111

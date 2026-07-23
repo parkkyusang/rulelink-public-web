@@ -146,7 +146,8 @@ test('표준 콘텐츠 유형과 새 식별자·표시 품질을 고정한다', 
     ...topic.topic_hubs.map(item => item.hub_id),
   ];
   assert.equal(new Set(newIds).size, newIds.length);
-  for (const id of newIds) assert.ok(!currentIds.has(id), `현재 정본과 식별자 충돌: ${id}`);
+  const integrated = current.knowledge.topic_hubs.some(item => item.hub_id === topic.topic_hubs[0].hub_id);
+  for (const id of newIds) assert.equal(currentIds.has(id), integrated, `정본 통합 상태 불일치: ${id}`);
   for (const title of [
     topic.topic_hubs[0].title_ko,
     ...topic.rule_cards.map(item => item.title_ko),
