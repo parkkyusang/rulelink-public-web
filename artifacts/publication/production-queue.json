@@ -66,7 +66,7 @@
         "assignment": "topic_handoff",
         "owned_paths": [
           "artifacts/publication/topics/<topic>.json",
-          "web/rulelink_public_next/scripts/<topic>-topic-handoff.test.mjs"
+          "web/rulelink_public_next/scripts/<topic>-topic-*.test.mjs"
         ],
         "forbidden_paths": [
           "artifacts/publication/current/**",
@@ -125,7 +125,8 @@
     "needs_rework": 6,
     "migration_required": 3,
     "blocked": 1,
-    "integrated": 10
+    "integrated": 9,
+    "merged_pending_publication": 1
   },
   "items": [
     {
@@ -608,7 +609,7 @@
       "topic_file": "artifacts/publication/topics/school-violence.json",
       "test_file": "web/rulelink_public_next/scripts/school-violence-topic-handoff.test.mjs",
       "change_mode": "new_topic",
-      "status": "integrated",
+      "status": "merged_pending_publication",
       "counts": {
         "sources": 12,
         "rule_cards": 10,
@@ -632,6 +633,11 @@
       ],
       "supersedes_prs": [
         103
+      ],
+      "integrate_requires": [
+        "current_bundle",
+        "new_immutable_snapshot",
+        "migrate_publication"
       ]
     },
     {
