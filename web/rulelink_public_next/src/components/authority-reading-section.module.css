@@ -1,0 +1,458 @@
+.root {
+  border-top: 1px solid #c8d3e6;
+  margin-top: 72px;
+  padding-top: 48px;
+  scroll-margin-top: 82px;
+}
+
+.sectionHeader {
+  align-items: end;
+  display: grid;
+  gap: 48px;
+  grid-template-columns: minmax(0, 1.35fr) minmax(220px, .65fr);
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  margin: 0 0 12px;
+}
+
+.sectionHeader h2 {
+  font-size: 31px;
+  letter-spacing: -.04em;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.sectionHeader > div > p:last-child {
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 12px 0 0;
+}
+
+.asOf {
+  background: var(--blue-surface);
+  border: 1px solid #c8d3e6;
+  border-radius: var(--radius-control);
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 16px 18px;
+}
+
+.asOf span {
+  color: #48628d;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.asOf time {
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
+  background: #f8faff;
+  border: 1px solid #c8d3e6;
+  border-radius: var(--radius-card);
+  min-width: 0;
+}
+
+.card[data-primary='true'],
+.card:has(.cardDisclosure[open]) {
+  grid-column: 1 / -1;
+}
+
+.cardDisclosure {
+  min-width: 0;
+}
+
+.cardDisclosure > summary {
+  align-items: start;
+  cursor: pointer;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  list-style: none;
+  min-height: 72px;
+  padding: 22px;
+  scroll-margin-top: 96px;
+}
+
+.cardDisclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
+.cardDisclosure > summary:focus-visible,
+.clauseDisclosure > summary:focus-visible,
+.plainMap a:focus-visible,
+.officialAction:focus-visible,
+.clauseTarget:focus-visible {
+  box-shadow: var(--focus-field);
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.cardDisclosure > summary::after {
+  color: var(--blue);
+  content: "펼치기";
+  font-size: 11px;
+  font-weight: 800;
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: end;
+}
+
+.cardDisclosure[open] > summary::after {
+  content: "접기";
+}
+
+.cardHeading {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+.sourceLabel {
+  color: #48628d;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.cardHeading > h3 {
+  font-size: 22px;
+  letter-spacing: -.03em;
+  line-height: 1.4;
+  margin: 0;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+.cardSummary {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+.timeBadge {
+  align-items: center;
+  background: #e5ecfb;
+  border-radius: var(--radius-pill);
+  color: var(--blue);
+  display: inline-flex;
+  font-size: 11px;
+  font-weight: 800;
+  min-height: 32px;
+  padding: 7px 10px;
+  white-space: nowrap;
+}
+
+.timeBadge[data-time-state='future_effective'] {
+  background: var(--amber-surface);
+  color: #6a4b13;
+}
+
+.timeBadge[data-time-state='historical'] {
+  background: #ececec;
+  color: #525252;
+}
+
+.cardBody {
+  border-top: 1px solid #d7deec;
+  display: grid;
+  gap: 28px;
+  min-width: 0;
+  padding: 24px;
+}
+
+.plainMap h4,
+.rawClauses h4 {
+  font-size: 18px;
+  margin: 0 0 14px;
+}
+
+.plainMap > ol,
+.clauseTree,
+.clauseTree ol {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.plainMap > ol > li {
+  background: var(--white);
+  border: 1px solid #d7deec;
+  border-radius: var(--radius-control);
+  min-width: 0;
+  padding: 18px;
+}
+
+.plainMap header {
+  display: grid;
+  gap: 5px;
+}
+
+.plainMap header > span {
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.plainMap header > span[data-operator='all']::before {
+  content: "✓ ";
+}
+
+.plainMap header > span[data-operator='any']::before {
+  content: "◇ ";
+}
+
+.plainMap header > span[data-operator='sequence']::before {
+  content: "→ ";
+}
+
+.plainMap header > span[data-operator='none']::before {
+  content: "• ";
+}
+
+.plainMap header strong {
+  font-size: 16px;
+}
+
+.plainMap p {
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 11px 0 0;
+}
+
+.plainMap ul {
+  display: grid;
+  gap: 7px;
+  list-style: none;
+  margin: 15px 0 0;
+  padding: 0;
+}
+
+.plainMap a {
+  align-items: center;
+  background: var(--blue-surface);
+  border-radius: 9px;
+  color: var(--blue);
+  display: flex;
+  font-size: 13px;
+  font-weight: 750;
+  justify-content: space-between;
+  min-height: 44px;
+  overflow-wrap: anywhere;
+  padding: 10px 12px;
+}
+
+.plainMap a span {
+  background: var(--white);
+  border-radius: var(--radius-pill);
+  font-size: 10px;
+  margin-left: 10px;
+  padding: 4px 7px;
+  white-space: nowrap;
+}
+
+.rawClauses > p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+  margin: -5px 0 16px;
+}
+
+.clauseTree ol {
+  border-left: 2px solid #d7deec;
+  margin: 10px 0 0 14px;
+  padding-left: 14px;
+}
+
+.clauseDisclosure {
+  min-width: 0;
+}
+
+.clauseDisclosure > summary {
+  align-items: center;
+  background: var(--white);
+  border: 1px solid #d7deec;
+  border-radius: 10px;
+  cursor: pointer;
+  display: grid;
+  gap: 9px;
+  grid-template-columns: 28px minmax(0, 1fr);
+  list-style: none;
+  min-height: 48px;
+  padding: 9px 12px;
+}
+
+.clauseDisclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
+.clauseDisclosure > summary > span {
+  align-items: center;
+  background: #e5ecfb;
+  border-radius: 50%;
+  color: var(--blue);
+  display: inline-flex;
+  font-size: 10px;
+  font-weight: 800;
+  height: 28px;
+  justify-content: center;
+  width: 28px;
+}
+
+.clauseDisclosure > summary strong {
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+.clauseTarget {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  padding: 13px 5px 3px;
+  scroll-margin-top: 96px;
+}
+
+.clauseTarget[data-bound='true'] {
+  border-left: 3px solid var(--blue);
+  padding-left: 13px;
+}
+
+.plainExplanation,
+.officialQuote {
+  border-radius: 10px;
+  line-height: 1.75;
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  padding: 15px;
+  white-space: normal;
+  word-break: keep-all;
+}
+
+.plainExplanation {
+  background: var(--blue-surface);
+  color: #30425f;
+}
+
+.officialQuote {
+  background: var(--white);
+  border: 1px solid #d7deec;
+  color: #28333f;
+  font-family: var(--font-body);
+}
+
+.plainExplanation > span,
+.officialQuote > span {
+  color: #48628d;
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.officialAction {
+  align-items: center;
+  border-top: 1px solid #d7deec;
+  color: var(--blue);
+  display: flex;
+  font-size: 13px;
+  font-weight: 800;
+  justify-content: space-between;
+  min-height: 48px;
+  padding-top: 17px;
+}
+
+.newTabNote {
+  font-size: 11px;
+  font-weight: 650;
+}
+
+@media (max-width: 767px) {
+  .root {
+    margin-top: 54px;
+    padding-top: 38px;
+  }
+
+  .sectionHeader {
+    align-items: stretch;
+    gap: 18px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sectionHeader h2 {
+    font-size: 27px;
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card,
+  .card[data-primary='true'],
+  .card:has(.cardDisclosure[open]) {
+    grid-column: auto;
+  }
+
+  .cardDisclosure > summary {
+    gap: 12px;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 18px;
+  }
+
+  .cardDisclosure > summary::after {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+  }
+
+  .timeBadge {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+  }
+
+  .cardBody {
+    padding: 18px;
+  }
+
+  .plainMap > ol > li {
+    padding: 15px;
+  }
+
+  .plainMap a {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .plainMap a span {
+    margin: 5px 0 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .card[data-primary='true'] {
+    grid-column: 1 / -1;
+  }
+}

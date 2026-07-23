@@ -1,0 +1,60 @@
+.root {
+  align-items: stretch;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 28px 0;
+  padding: 8px;
+  position: sticky;
+  top: 12px;
+  z-index: 4;
+}
+
+.root > span {
+  align-items: center;
+  color: var(--blue);
+  display: inline-flex;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 10px 12px;
+}
+
+.root a {
+  align-items: center;
+  border-radius: 9px;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 750;
+  min-height: 44px;
+  padding: 9px 12px;
+}
+
+.root a:hover,
+.root a[aria-current='location'] {
+  background: var(--blue-surface);
+  color: var(--blue);
+}
+
+.root a:focus-visible {
+  box-shadow: var(--focus-field);
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .root {
+    position: static;
+  }
+
+  .root > span {
+    flex: 1 0 100%;
+  }
+
+  .root a {
+    flex: 1 1 calc(50% - 6px);
+    min-width: 0;
+  }
+}

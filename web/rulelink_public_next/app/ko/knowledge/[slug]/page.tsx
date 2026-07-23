@@ -1,7 +1,9 @@
 import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
+import {AuthorityReadingSection} from '@/components/authority-reading-section';
 import {KnowledgeActionWorkspace} from '@/components/knowledge-action-workspace';
+import {KnowledgeReadingDepthNav} from '@/components/knowledge-reading-depth-nav';
 import {KnowledgeReadingPath} from '@/components/knowledge-reading-path';
 import {LegalConceptLayer, LegalConceptText} from '@/components/legal-concept-text';
 import {OfficialSourceJump} from '@/components/official-source-jump';
@@ -47,7 +49,17 @@ export default async function KnowledgePage({params}: Props) {
   const {slug} = await params;
   const entry = await findKnowledgeEntry(slug);
   if (!entry) notFound();
-  const {concepts, rules, scenarios, scenarioRules, sources, hubs, readingPathSections} = await knowledgeDetail(entry);
+  const {
+    authorityAsOf,
+    authorityReadingUnits,
+    concepts,
+    rules,
+    scenarios,
+    scenarioRules,
+    sources,
+    hubs,
+    readingPathSections,
+  } = await knowledgeDetail(entry);
   const canonicalUrl = `${site.url}/ko/knowledge/${entry.slug}`;
   const officialSources = sources.flatMap(source => {
     const url = browserOfficialSourceUrl(source) ?? source.official_url;
@@ -106,16 +118,23 @@ export default async function KnowledgePage({params}: Props) {
         ) : null}
       </header>
 
-      <nav aria-label="이 글 안에서 이동" className="knowledgeSectionNav">
-        <span>이 글에서</span>
-        <a href="#summary">핵심 정리</a>
-        {concepts.length ? <a href="#concepts">용어 해설</a> : null}
-        <a href="#rules">적용 법리</a>
-        {scenarios.length ? <a href="#scenarios">결론 사실</a> : null}
-        <a href="#actions">할 일과 자료</a>
-        {readingPathSections.length ? <a href="#reading-path">다음 읽기</a> : null}
-        <OfficialSourceJump targetId="sources" />
-      </nav>
+      {authorityReadingUnits.length ? (
+        <KnowledgeReadingDepthNav
+          hasCasePractice={false}
+          hasScenarios={Boolean(scenarios.length)}
+        />
+      ) : (
+        <nav aria-label="이 글 안에서 이동" className="knowledgeSectionNav">
+          <span>이 글에서</span>
+          <a href="#summary">핵심 정리</a>
+          {concepts.length ? <a href="#concepts">용어 해설</a> : null}
+          <a href="#rules">적용 법리</a>
+          {scenarios.length ? <a href="#scenarios">결론 사실</a> : null}
+          <a href="#actions">할 일과 자료</a>
+          {readingPathSections.length ? <a href="#reading-path">다음 읽기</a> : null}
+          <OfficialSourceJump targetId="sources" />
+        </nav>
+      )}
 
       <section className="knowledgeLayout">
         <div>
@@ -239,6 +258,11 @@ export default async function KnowledgePage({params}: Props) {
         </aside>
       </section>
 
+      <AuthorityReadingSection
+        asOf={authorityAsOf}
+        concepts={concepts}
+        views={authorityReadingUnits}
+      />
       <KnowledgeReadingPath currentTitle={entry.title_ko} sections={readingPathSections} />
       </main>
     </LegalConceptLayer>
