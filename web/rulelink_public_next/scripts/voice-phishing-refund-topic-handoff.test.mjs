@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
@@ -87,6 +88,17 @@ test('2026년 7월 23일 현재 효력 근거 12개와 스냅샷을 고정한다
     assert.ok(!source.official_url.includes('lawView.do'));
   }
   assert.ok(!JSON.stringify(topic).includes('electronic_financial_transactions_ko_'), '2026-12-17 미래 시행 전자금융거래법 판을 현행 근거로 혼입');
+});
+
+test('12개 근거와 10개 콘텐츠의 실제 감사시각 및 만료 순서를 고정한다', () => {
+  assertAuditTimes(topic, '2026-07-23T01:04:00+00:00');
+});
+
+test('감사시각 외 법률·근거·관계·편집값과 만료시각은 불변이다', () => {
+  assert.equal(
+    digestWithoutAuditTimes(topic),
+    '1997b49a44d55eeb749e1ada613edc6836642d4293f326f8a0602cb54040d025',
+  );
 });
 
 test('적용범위·지급정지·공고기한·비례환급·민사잔액을 고정한다', () => {
@@ -214,6 +226,28 @@ function collectKeys(value, keys = new Set()) {
     collectKeys(item, keys);
   }
   return keys;
+}
+function assertAuditTimes(value, expectedAuditTime) {
+  const now = Date.now();
+  for (const source of value.sources) {
+    assert.equal(source.last_verified_at, expectedAuditTime, source.coordinate_id);
+    assert.ok(Date.parse(source.last_verified_at) <= now, `${source.coordinate_id}: 미래 근거 검증시각`);
+  }
+  for (const entry of value.content_entries) {
+    assert.equal(entry.reviewed_at, expectedAuditTime, entry.content_id);
+    assert.ok(Date.parse(entry.reviewed_at) <= now, `${entry.content_id}: 미래 콘텐츠 검토시각`);
+    assert.ok(Date.parse(entry.expires_at) > Date.parse(entry.reviewed_at), `${entry.content_id}: 만료시각이 검토시각보다 뒤여야 합니다.`);
+  }
+}
+function digestWithoutAuditTimes(value) {
+  const strip = item => Array.isArray(item)
+    ? item.map(strip)
+    : item && typeof item === 'object'
+      ? Object.fromEntries(Object.entries(item)
+        .filter(([key]) => !['last_verified_at', 'reviewed_at'].includes(key))
+        .map(([key, child]) => [key, strip(child)]))
+      : item;
+  return createHash('sha256').update(JSON.stringify(strip(value))).digest('hex');
 }
 function normalize(value) { return value.replace(/\s+/g, ' ').trim(); }
 async function readJson(filePath) { return JSON.parse(await readFile(filePath, 'utf8')); }
