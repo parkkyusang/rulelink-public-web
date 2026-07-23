@@ -1,4 +1,4 @@
-import {readFile} from 'node:fs/promises';
+import {readFile, rename, unlink, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
@@ -6,6 +6,7 @@ const scriptPath = fileURLToPath(import.meta.url);
 const appRoot = path.resolve(path.dirname(scriptPath), '..');
 const repoRoot = path.resolve(appRoot, '..', '..');
 const defaultQueuePath = path.join(repoRoot, 'artifacts', 'publication', 'production-queue.json');
+const defaultPublishedBundlePath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
 
 const statuses = new Set([
   'planned',
@@ -21,7 +22,7 @@ const statuses = new Set([
   'withdrawn',
 ]);
 const modes = new Set(['new_topic', 'existing_topic_revision']);
-const activeWipStatuses = new Set(['claimed', 'in_progress']);
+const activeWipStatuses = new Set(['claimed', 'in_progress', 'pr_open']);
 const terminalStatuses = new Set(['integrated', 'superseded', 'withdrawn']);
 const freshnessStatuses = new Set([
   'current',
@@ -38,6 +39,76 @@ const overlapRelationships = new Set([
   'superseded_by',
 ]);
 
+
+export const OWNER_ROLE_CONTRACTS = {
+  orchestration: {assignment: 'coordination_only', owned_paths: ['artifacts/publication/production-queue.json'], forbidden_paths: ['artifacts/publication/topics/*.json', 'artifacts/publication/current/**', 'artifacts/publication/snapshots/**']},
+  reader_research: {assignment: 'read_only', owned_paths: [], forbidden_paths: ['**/*']},
+  quality_governance: {assignment: 'governance_contracts', owned_paths: ['artifacts/publication/production-queue.json', 'web/rulelink_public_next/scripts/*publication*.mjs', 'web/rulelink_public_next/scripts/*publication*.test.mjs'], forbidden_paths: ['artifacts/publication/topics/*.json', 'artifacts/publication/current/**', 'artifacts/publication/snapshots/**', 'artifacts/publication/release.json']},
+  runtime_design: {assignment: 'runtime_design', owned_paths: ['web/rulelink_public_next/src/**', 'web/rulelink_public_next/scripts/*runtime*.test.mjs', 'web/rulelink_public_next/scripts/*knowledge*.test.mjs'], forbidden_paths: ['artifacts/publication/topics/*.json', 'artifacts/publication/current/**', 'artifacts/publication/snapshots/**']},
+  content_production: {assignment: 'topic_handoff', owned_paths: ['artifacts/publication/topics/<topic>.json', 'web/rulelink_public_next/scripts/<topic>-topic-handoff.test.mjs'], forbidden_paths: ['artifacts/publication/current/**', 'artifacts/publication/snapshots/**', 'artifacts/publication/manifest.json', 'artifacts/publication/release.json']},
+  migrate_publication: {assignment: 'publication_migration', owned_paths: ['artifacts/publication/topics/*.json', 'artifacts/publication/current/**', 'artifacts/publication/snapshots/**', 'artifacts/publication/manifest.json'], forbidden_paths: ['artifacts/publication/release.json']},
+  release: {assignment: 'release', owned_paths: ['artifacts/publication/release.json', 'web/rulelink_public_next/publication.json'], forbidden_paths: ['artifacts/publication/topics/*.json']},
+  source_maintenance: {assignment: 'external_repository', owned_paths: [], forbidden_paths: ['**/*']},
+  product_policy: {assignment: 'read_only', owned_paths: [], forbidden_paths: ['**/*']},
+};
+
+function canonicalJson(value) {
+  if (Array.isArray(value)) return JSON.stringify(value.map(item => JSON.parse(canonicalJson(item))));
+  if (!value || typeof value !== 'object') return JSON.stringify(value);
+  return JSON.stringify(Object.fromEntries(Object.keys(value).sort().map(key => [key, JSON.parse(canonicalJson(value[key]))])));
+}
+
+function publicationArray(bundle, key) {
+  const knowledge = bundle?.knowledge && typeof bundle.knowledge === 'object' ? bundle.knowledge : bundle;
+  const value = knowledge?.[key] ?? bundle?.[key];
+  if (!Array.isArray(value)) throw new Error(`current bundle의 ${key} 배열을 찾을 수 없습니다.`);
+  return value;
+}
+
+export function deriveCurrentPublication(bundle) {
+  if (!nonEmpty(bundle?.snapshot_id)) throw new Error('current bundle의 snapshot_id가 필요합니다.');
+  return {
+    snapshot_id: bundle.snapshot_id,
+    topic_hubs: publicationArray(bundle, 'topic_hubs').length,
+    content_entries: publicationArray(bundle, 'content_entries').length,
+    rule_cards: publicationArray(bundle, 'rule_cards').length,
+    scenario_branches: publicationArray(bundle, 'scenario_branches').length,
+    sources: publicationArray(bundle, 'sources').length,
+  };
+}
+
+export function updateQueueCurrentPublication(queue, bundle) {
+  return {...queue, current_publication: {...(queue.current_publication || {}), ...deriveCurrentPublication(bundle)}};
+}
+
+export function compareQueueCurrentPublication(queue, bundle) {
+  let expected;
+  try { expected = deriveCurrentPublication(bundle); } catch (error) { return [error instanceof Error ? error.message : String(error)]; }
+  const actual = queue?.current_publication || {};
+  return Object.entries(expected).filter(([key, value]) => actual[key] !== value)
+    .map(([key, value]) => `current_publication.${key}가 current bundle과 다릅니다: expected=${value}, actual=${String(actual[key])}`);
+}
+
+export async function synchronizeCurrentPublicationFile(queuePath, publishedBundle, io = {}) {
+  const read = io.readFile || readFile;
+  const write = io.writeFile || writeFile;
+  const move = io.rename || rename;
+  const remove = io.unlink || unlink;
+  const loadedQueue = JSON.parse(await read(queuePath, 'utf8'));
+  const updatedQueue = updateQueueCurrentPublication(loadedQueue, publishedBundle);
+  const errors = validateProductionQueue(updatedQueue, {publishedBundle});
+  if (errors.length) throw new Error(`공개 콘텐츠 생산 대기열 검증 실패: ${errors.join(' | ')}`);
+  const tempPath = `${queuePath}.${Date.now()}-${Math.random().toString(16).slice(2)}.tmp`;
+  try {
+    await write(tempPath, `${JSON.stringify(updatedQueue, null, 2)}\\n`, 'utf8');
+    await move(tempPath, queuePath);
+  } catch (error) {
+    await remove(tempPath).catch(() => {});
+    throw error;
+  }
+  return updatedQueue;
+}
+
 function nonEmpty(value) {
   return typeof value === 'string' && value.trim().length > 0;
 }
@@ -46,7 +117,7 @@ function isPositiveInteger(value) {
   return Number.isInteger(value) && value > 0;
 }
 
-export function validateProductionQueue(queue) {
+export function validateProductionQueue(queue, {publishedBundle = null} = {}) {
   const errors = [];
   if (!queue || typeof queue !== 'object') return ['대기열은 JSON 객체여야 합니다.'];
   if (queue.schema !== 'rulelink_publication_production_queue_v1') {
@@ -58,6 +129,37 @@ export function validateProductionQueue(queue) {
   if (!Array.isArray(queue.items)) {
     errors.push('items 배열이 필요합니다.');
     return errors;
+  }
+
+  if (canonicalJson(queue.policy?.owner_role_contracts) !== canonicalJson(OWNER_ROLE_CONTRACTS)) {
+    errors.push('policy.owner_role_contracts가 표준 역할별 소유·금지 파일 경계와 다릅니다.');
+  }
+  if (publishedBundle) errors.push(...compareQueueCurrentPublication(queue, publishedBundle));
+  if (!Array.isArray(queue.quality_backlog)) {
+    errors.push('quality_backlog 배열이 필요합니다.');
+  } else {
+    const backlogIds = new Set();
+    for (const [index, backlog] of queue.quality_backlog.entries()) {
+      const label = `quality_backlog[${index}]`;
+      if (!nonEmpty(backlog?.backlog_id)) errors.push(`${label}.backlog_id가 필요합니다.`);
+      else if (backlogIds.has(backlog.backlog_id)) errors.push(`중복 quality backlog 식별자: ${backlog.backlog_id}`);
+      else backlogIds.add(backlog.backlog_id);
+      if (!Object.hasOwn(OWNER_ROLE_CONTRACTS, backlog?.owner_role)) errors.push(`${label}.owner_role이 올바르지 않습니다.`);
+      if (!['planned', 'in_progress', 'complete'].includes(backlog?.status)) errors.push(`${label}.status가 올바르지 않습니다.`);
+      if (!nonEmpty(backlog?.scope)) errors.push(`${label}.scope가 필요합니다.`);
+      for (const field of ['typed_cta_requirements', 'deployment_smoke', 'forbidden_phrases', 'revenue_separation_checks']) {
+        if (!Array.isArray(backlog?.[field]) || backlog[field].length === 0 || backlog[field].some(value => !nonEmpty(value))) errors.push(`${label}.${field}에는 하나 이상의 수락 기준이 필요합니다.`);
+      }
+      for (const field of ['legacy_policy_ko', 'public_private_boundary_ko']) if (!nonEmpty(backlog?.[field])) errors.push(`${label}.${field}가 필요합니다.`);
+      if (backlog?.migration_plan !== undefined) {
+        const plan = backlog.migration_plan;
+        if (!nonEmpty(plan?.work_name) || plan.status !== 'migration_required') errors.push(`${label}.migration_plan의 작업명과 상태가 올바르지 않습니다.`);
+        if (!Array.isArray(plan?.depends_on) || plan.depends_on.length === 0 || plan.depends_on.some(value => !nonEmpty(value))) errors.push(`${label}.migration_plan.depends_on이 필요합니다.`);
+        for (const field of ['keep_typed', 'needs_scenario_hidden', 'remove_cta']) if (!Number.isInteger(plan?.first_pass?.[field]) || plan.first_pass[field] < 0) errors.push(`${label}.migration_plan.first_pass.${field}가 올바르지 않습니다.`);
+        if (!nonEmpty(plan?.first_pass?.action_ko) || !nonEmpty(plan?.second_pass_ko)) errors.push(`${label}.migration_plan의 이관 행동이 필요합니다.`);
+        if (!Array.isArray(plan?.hard_fail_checks) || plan.hard_fail_checks.length === 0 || plan.hard_fail_checks.some(value => !nonEmpty(value))) errors.push(`${label}.migration_plan.hard_fail_checks가 필요합니다.`);
+      }
+    }
   }
 
   const byPr = new Map();
@@ -97,6 +199,8 @@ export function validateProductionQueue(queue) {
     }
     if (!modes.has(item.change_mode)) errors.push(`${label}.change_mode가 올바르지 않습니다.`);
     if (!statuses.has(item.status)) errors.push(`${label}.status가 올바르지 않습니다.`);
+    if (!Object.hasOwn(OWNER_ROLE_CONTRACTS, item.owner_role)) errors.push(`${label}.owner_role이 올바르지 않습니다.`);
+    else if (OWNER_ROLE_CONTRACTS[item.owner_role].assignment !== 'topic_handoff') errors.push(`${label}.owner_role ${item.owner_role}은 콘텐츠 handoff 항목을 소유할 수 없습니다.`);
 
     if (nonEmpty(item.topic_id) && !terminalStatuses.has(item.status)) {
       const prior = topicClaims.get(item.topic_id);
@@ -132,8 +236,10 @@ export function validateProductionQueue(queue) {
     if (item.status === 'migration_required' && item.change_mode !== 'existing_topic_revision') {
       errors.push(`${label}의 migration_required는 기존 주제 개정에만 사용할 수 있습니다.`);
     }
-    if (item.change_mode === 'existing_topic_revision' && item.status === 'ready_for_integration') {
-      errors.push(`${label}의 기존 주제 개정은 topic-only 직접 통합 상태가 될 수 없습니다.`);
+    if (item.change_mode === 'existing_topic_revision' && item.status !== 'migration_required') errors.push(`${label}의 기존 주제 개정은 migration_required 상태만 사용할 수 있습니다.`);
+    if (item.status === 'integrated') {
+      if (item.source_freshness?.status !== 'current') errors.push(`${label}의 integrated 상태에는 current 근거가 필요합니다.`);
+      if (item.integration_order !== null) errors.push(`${label}의 integrated 상태에는 integration_order가 null이어야 합니다.`);
     }
 
     if (!item.official_url_check || item.official_url_check.status !== 'passed') {
@@ -178,6 +284,7 @@ export function validateProductionQueue(queue) {
       if (!Array.isArray(item.supersedes_prs)) {
         errors.push(`${label}.supersedes_prs는 배열이어야 합니다.`);
       } else {
+        if (item.status !== 'integrated') errors.push(`${label}.supersedes_prs는 integrated 항목에만 사용할 수 있습니다.`);
         const seenSuperseded = new Set();
         for (const supersededPr of item.supersedes_prs) {
           if (!isPositiveInteger(supersededPr)) {
@@ -210,9 +317,9 @@ export function validateProductionQueue(queue) {
       if (!target) errors.push(`#${item.pr_number}의 의존 PR #${dependency}가 대기열에 없습니다.`);
       else if (terminalStatuses.has(target.status) && target.status !== 'integrated') {
         errors.push(`#${item.pr_number}가 사용할 수 없는 #${dependency}(${target.status})에 의존합니다.`);
-      } else if (isPositiveInteger(item.integration_order) && isPositiveInteger(target.integration_order)
-        && target.integration_order >= item.integration_order) {
-        errors.push(`#${item.pr_number}의 통합 순서가 선행 PR #${dependency}보다 앞서거나 같습니다.`);
+      } else {
+        if (['ready_for_integration', 'integrated'].includes(item.status) && target.status !== 'integrated') errors.push(`#${item.pr_number}의 ${item.status} 상태에는 통합되지 않은 의존 PR #${dependency}가 남을 수 없습니다.`);
+        if (isPositiveInteger(item.integration_order) && isPositiveInteger(target.integration_order) && target.integration_order >= item.integration_order) errors.push(`#${item.pr_number}의 통합 순서가 선행 PR #${dependency}보다 앞서거나 같습니다.`);
       }
     }
     for (const decision of item.overlap_decisions || []) {
@@ -227,6 +334,16 @@ export function validateProductionQueue(queue) {
       if (byPr.has(supersededPr)) {
         errors.push(`#${item.pr_number}가 대체한 #${supersededPr}은 활성 대기열에 함께 남을 수 없습니다.`);
       }
+    }
+  }
+
+  if (publishedBundle) {
+    let publishedHubIds = new Set();
+    try { publishedHubIds = new Set(publicationArray(publishedBundle, 'topic_hubs').map(hub => hub?.hub_id).filter(nonEmpty)); }
+    catch (error) { errors.push(error instanceof Error ? error.message : String(error)); }
+    for (const item of queue.items) {
+      if (item.status === 'integrated' && !publishedHubIds.has(item.topic_id)) errors.push(`#${item.pr_number}의 integrated 주제가 current bundle에 없습니다: ${item.topic_id}`);
+      if (item.status === 'migration_required' && !publishedHubIds.has(item.topic_id)) errors.push(`#${item.pr_number}의 기존 개정 대상 주제가 current bundle에 없습니다: ${item.topic_id}`);
     }
   }
 
@@ -246,9 +363,8 @@ export function validateProductionQueue(queue) {
   for (const pr of byPr.keys()) visit(pr);
 
   const summary = queue.audit_summary || {};
-  if (summary.open_content_prs !== queue.items.length) {
-    errors.push('audit_summary.open_content_prs와 items 수가 다릅니다.');
-  }
+  const openContentPrs = queue.items.filter(item => !terminalStatuses.has(item.status)).length;
+  if (summary.open_content_prs !== openContentPrs) errors.push(`audit_summary.open_content_prs와 실제 열린 상태 수가 다릅니다: expected=${openContentPrs}, actual=${String(summary.open_content_prs)}`);
   const sourceTotal = queue.items.reduce((sum, item) => sum + (item.counts?.sources || 0), 0);
   if (summary.official_source_references_checked !== sourceTotal) {
     errors.push('감사한 공식 근거 참조 수와 대기열 근거 합계가 다릅니다.');
@@ -260,6 +376,8 @@ export function validateProductionQueue(queue) {
       errors.push(`audit_summary.${status}와 실제 상태 수가 다릅니다: expected=${actual}, actual=${String(summary[status])}`);
     }
   }
+  const overlapTotal = queue.items.reduce((sum, item) => sum + (item.overlap_decisions?.length || 0), 0);
+  if (summary.semantic_overlap_decisions !== overlapTotal) errors.push('audit_summary.semantic_overlap_decisions와 실제 판정 수가 다릅니다.');
   if (summary.official_url_failures !== 0) errors.push('공식 URL 실패가 남아 있습니다.');
   if (summary.exact_cross_pr_content_id_collisions !== 0) errors.push('대기 PR 사이 content_id 충돌이 남아 있습니다.');
   if (summary.broken_related_content_ids !== 0) errors.push('깨진 관련 콘텐츠 참조가 남아 있습니다.');
@@ -268,22 +386,27 @@ export function validateProductionQueue(queue) {
 }
 
 async function main() {
-  const queuePath = process.argv[2] ? path.resolve(process.argv[2]) : defaultQueuePath;
-  const queue = JSON.parse(await readFile(queuePath, 'utf8'));
-  const errors = validateProductionQueue(queue);
+  const args = process.argv.slice(2);
+  const queueArgument = args.find(value => !value.startsWith('--'));
+  const queuePath = queueArgument ? path.resolve(queueArgument) : defaultQueuePath;
+  const publishedBundle = JSON.parse(await readFile(defaultPublishedBundlePath, 'utf8'));
+  const queue = args.includes('--write-current-publication')
+    ? await synchronizeCurrentPublicationFile(queuePath, publishedBundle)
+    : JSON.parse(await readFile(queuePath, 'utf8'));
+  const errors = validateProductionQueue(queue, {publishedBundle});
   if (errors.length) {
     console.error(`공개 콘텐츠 생산 대기열 검증 실패: ${errors.length}건`);
     for (const error of errors) console.error(`- ${error}`);
     process.exitCode = 1;
     return;
   }
+  if (args.includes('--write-current-publication')) console.log(`생산 대기열 공개본 표지 원자적 동기화: ${queue.current_publication.snapshot_id}`);
   const ready = queue.items.filter(item => item.status === 'ready_for_integration').length;
   const rework = queue.items.filter(item => item.status === 'needs_rework').length;
   const migration = queue.items.filter(item => item.status === 'migration_required').length;
   const blocked = queue.items.filter(item => item.status === 'blocked').length;
   console.log(`공개 콘텐츠 생산 대기열 검증 통과: 전체 ${queue.items.length}개 / 통합 준비 ${ready}개 / 재작업 ${rework}개 / 이관 필요 ${migration}개 / 의존 차단 ${blocked}개`);
 }
-
 if (process.argv[1] && path.resolve(process.argv[1]) === scriptPath) {
   main().catch(error => {
     console.error(`공개 콘텐츠 생산 대기열 검증 실패: ${error instanceof Error ? error.message : String(error)}`);
