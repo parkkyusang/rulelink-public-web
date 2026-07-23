@@ -194,6 +194,78 @@ test('표준 유형·식별자·인적표기·잘린 제목을 고정한다', ()
   }
 });
 
+
+test("렌더 순서에서 핵심요약·본문 중복과 복제된 편집문구를 차단한다", () => {
+  const revisedIds = [
+    "content.neighbor-leak-noise-leak-origin-evidence",
+    "content.neighbor-leak-noise-occupant-owner-liability",
+    "content.neighbor-leak-noise-exclusive-common-area",
+    "content.neighbor-leak-noise-inspection-access",
+    "content.neighbor-leak-noise-floor-noise-management-route",
+    "content.neighbor-leak-noise-floor-noise-mediation",
+    "content.neighbor-leak-noise-neighbor-interference-limit",
+    "content.neighbor-leak-noise-injunction-vs-damages",
+  ];
+
+  for (const entry of entries.values()) {
+    assertEditorialCopyQuality(entry);
+  }
+
+  const revisedCautions = revisedIds.map((contentId) =>
+    normalizeRenderedCopy(entries.get(contentId).caution_ko),
+  );
+  assert.equal(
+    new Set(revisedCautions).size,
+    revisedCautions.length,
+    "보강한 8개 글의 주의문은 각 쟁점의 예외·후속절차·증거위험에 맞게 달라야 합니다.",
+  );
+});
+
+
+function normalizeRenderedCopy(value) {
+  return value
+    .normalize("NFKC")
+    .toLowerCase()
+    .replace(/[\s.…"'“”‘’(),·:;!?\-]/gu, "");
+}
+
+function normalizeSearchCopy(value) {
+  return value.normalize("NFKC").toLowerCase().replace(/\s+/gu, " ").trim();
+}
+
+function assertEditorialCopyQuality(entry) {
+  const keyPoints = new Set(entry.key_points_ko.map(normalizeRenderedCopy));
+  const paragraphs = entry.body_sections.flatMap((section) => section.paragraphs_ko);
+
+  for (const paragraph of paragraphs) {
+    assert.ok(
+      !keyPoints.has(normalizeRenderedCopy(paragraph)),
+      `${entry.content_id}: 핵심요약과 이어지는 본문에 같은 문장을 반복하면 안 됩니다.`,
+    );
+  }
+
+  assert.ok(
+    entry.search_intents_ko.length >= 3,
+    `${entry.content_id}: 실제 한국어 검색질의를 3개 이상 제공해야 합니다.`,
+  );
+
+  const copiedFields = new Set(
+    [entry.title_ko, entry.slug, entry.audience_situation_ko].map(normalizeSearchCopy),
+  );
+  for (const intent of entry.search_intents_ko) {
+    const normalizedIntent = normalizeSearchCopy(intent);
+    assert.match(intent, /[가-힣]/u, `${entry.content_id}: 검색질의는 실제 한국어 표현이어야 합니다.`);
+    assert.ok(
+      !copiedFields.has(normalizedIntent),
+      `${entry.content_id}: 제목·슬러그·독자상황을 검색질의로 그대로 복사하면 안 됩니다.`,
+    );
+    assert.ok(
+      !normalizedIntent.includes(normalizeSearchCopy(entry.slug)),
+      `${entry.content_id}: 영문 슬러그를 검색질의에 포함하면 안 됩니다.`,
+    );
+  }
+}
+
 function collectKeys(value, keys = new Set()) {
   if (Array.isArray(value)) for (const item of value) collectKeys(item, keys);
   else if (value && typeof value === 'object') for (const [key, item] of Object.entries(value)) {
