@@ -178,6 +178,91 @@ export type PublicKnowledgeProductRole =
   | 'knowledge_reuse'
   | 'freshness_capture';
 
+export type PublicSourcePinpoint = {
+  source_coordinate_id: string;
+  paragraph_no?: string;
+  item_no?: string;
+  subitem_no?: string;
+  authority_role: 'rule' | 'exception' | 'procedure' | 'effect' | 'deadline' | 'interpretation';
+  note_ko?: string;
+};
+
+export type PublicComparisonKind =
+  | 'concept_boundary'
+  | 'remedy_path'
+  | 'deadline_timing'
+  | 'procedure_choice'
+  | 'legal_effect';
+
+export type PublicComparisonSubject = {
+  subject_id: string;
+  label_ko: string;
+  short_label_ko?: string;
+};
+
+export type PublicComparisonCell = {
+  subject_id: string;
+  value_ko: string;
+  source_pinpoints: PublicSourcePinpoint[];
+};
+
+export type PublicComparisonAxis = {
+  axis_key: string;
+  title_ko: string;
+  cells: PublicComparisonCell[];
+  source_pinpoints?: PublicSourcePinpoint[];
+};
+
+export type PublicComparisonSelectionPath = {
+  path_id: string;
+  question_ko: string;
+  decision_facts_ko: string[];
+  outcome: {
+    type: 'subject_only' | 'both' | 'sequential' | 'other_path';
+    subject_ids: string[];
+    explanation_ko: string;
+    next_content_ids?: string[];
+  };
+  source_pinpoints: PublicSourcePinpoint[];
+};
+
+export type PublicComparisonMatrix = {
+  matrix_id: string;
+  kind: PublicComparisonKind;
+  title_ko: string;
+  subjects: PublicComparisonSubject[];
+  axes: PublicComparisonAxis[];
+  selection_paths: PublicComparisonSelectionPath[];
+  source_pinpoints: PublicSourcePinpoint[];
+};
+
+export type PublicProvisionReadingSectionRole =
+  | 'eligibility'
+  | 'procedure_stage'
+  | 'scope'
+  | 'agreement'
+  | 'prohibitions'
+  | 'evidence'
+  | 'next_action'
+  | 'authority';
+
+export type PublicProvisionReadingSection = {
+  section_id: string;
+  role: PublicProvisionReadingSectionRole;
+  title_ko: string;
+  explanation_ko: string;
+  source_pinpoints: PublicSourcePinpoint[];
+};
+
+export type PublicProvisionReadingCard = {
+  reading_card_id: string;
+  title_ko: string;
+  question_ko: string;
+  summary_ko: string;
+  sections: PublicProvisionReadingSection[];
+  source_pinpoints: PublicSourcePinpoint[];
+};
+
 export type PublicKnowledgeEntry = {
   content_id: string;
   content_type: PublicKnowledgeContentType | PublicKnowledgeContentTypeAlias;
@@ -193,6 +278,9 @@ export type PublicKnowledgeEntry = {
   facts_to_check_ko: string[];
   caution_ko: string;
   search_intents_ko: string[];
+  comparison_matrix?: PublicComparisonMatrix;
+  provision_reading_card?: PublicProvisionReadingCard;
+  provision_reading_card_refs?: string[];
   body_sections: Array<{
     heading_ko: string;
     paragraphs_ko: string[];
@@ -231,6 +319,7 @@ export type PublicKnowledgeIndex = {
   content_entries: PublicKnowledgeEntry[];
   topic_hubs: PublicKnowledgeHub[];
   concept_cards?: PublicConceptCard[];
+  provision_reading_cards?: PublicProvisionReadingCard[];
 };
 
 export type NormSlot = 'actor' | 'object' | 'trigger' | 'conditions' | 'exception' | 'operation' | 'legal_effect' | 'temporal_rule' | 'transition_rule';
