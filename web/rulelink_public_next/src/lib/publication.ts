@@ -3,12 +3,12 @@ import path from 'node:path';
 
 import {buildKnowledgeSearchDocuments, buildKnowledgeSourceDocuments, resolveKnowledgeEntryGraph} from '@/lib/knowledge-search';
 import {buildKnowledgeHubConnections} from '@/lib/knowledge-hub-connections';
-import {buildKnowledgeRelatedPresentation} from '@/lib/knowledge-relations';
+import {buildKnowledgeReadingPath, buildKnowledgeRelatedPresentation} from '@/lib/knowledge-relations';
 import {changeLifecycleOrder} from '@/lib/change-lifecycle';
 import {filterFreshPublications} from '@/lib/publication-freshness';
 
 import type {KnowledgeHubConnection} from '@/lib/knowledge-hub-connections';
-import type {KnowledgeRelatedSection} from '@/lib/knowledge-relations';
+import type {KnowledgeReadingPathSection, KnowledgeRelatedSection} from '@/lib/knowledge-relations';
 
 import type {
   EditorialOperationsQueue,
@@ -238,9 +238,10 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
   hubs: PublicKnowledgeHub[];
   related: PublicKnowledgeEntry[];
   relatedSections: KnowledgeRelatedSection[];
+  readingPathSections: KnowledgeReadingPathSection[];
 }> {
   const knowledge = (await loadPublishedBundle())?.knowledge;
-  if (!knowledge) return {concepts: [], rules: [], scenarios: [], scenarioRules: {}, sources: [], hubs: [], related: [], relatedSections: []};
+  if (!knowledge) return {concepts: [], rules: [], scenarios: [], scenarioRules: {}, sources: [], hubs: [], related: [], relatedSections: [], readingPathSections: []};
   const graph = resolveKnowledgeEntryGraph(knowledge, entry);
   const ruleById = new Map(graph.rules.map(rule => [rule.rule_id, rule]));
   const scenarioRules = Object.fromEntries(
@@ -257,6 +258,12 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
     [...entryById.values()],
     graph.hubs.flatMap(hub => hub.content_ids),
   );
+  const readingPathSections = buildKnowledgeReadingPath(
+    entry,
+    [...entryById.values()],
+    graph.concepts,
+    graph.hubs.flatMap(hub => hub.content_ids),
+  );
   return {
     concepts: graph.concepts,
     rules: graph.rules,
@@ -266,6 +273,7 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
     hubs: graph.hubs,
     related,
     relatedSections,
+    readingPathSections,
   };
 }
 
