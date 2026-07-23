@@ -55,8 +55,13 @@ try {
     assert(homeHtml.includes(`href="/ko/knowledge/${entry.slug}"`), `홈에서 공개 지식이 노출되지 않습니다: ${entry.slug}`);
   }
   for (const hub of bundle.knowledge?.topic_hubs ?? []) {
-    assert(homeHtml.includes(`href="/ko/hubs/${hub.slug}"`), `홈에서 공개 지식 허브가 노출되지 않습니다: ${hub.slug}`);
+    const hubHref = `href="/ko/hubs/${hub.slug}"`;
+    const hrefIndex = homeHtml.indexOf(hubHref);
+    assert(hrefIndex >= 0, `홈에서 공개 지식 허브가 노출되지 않습니다: ${hub.slug}`);
+    const openingTag = homeHtml.slice(homeHtml.lastIndexOf('<a', hrefIndex), homeHtml.indexOf('>', hrefIndex) + 1);
+    assert(!/\shidden(?:=|\s|>)/.test(openingTag), `자바스크립트 없는 초기 HTML에서 지식 허브 링크가 숨겨졌습니다: ${hub.slug}`);
   }
+  assert(homeHtml.includes('data-enhanced="false"'), '주제 디렉터리의 무자바스크립트 기본 상태가 전체 링크 공개가 아닙니다.');
   if ((bundle.cards?.length ?? 0) === 0 && (bundle.knowledge?.content_entries?.length ?? 0) > 0) {
     assert(!homeHtml.includes('검토된 법률정보를 준비하고 있습니다.'), '공개 지식이 있는데 준비 중 빈 화면을 표시합니다.');
   }
