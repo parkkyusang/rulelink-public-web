@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict';
-import {mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
+import {execFile} from 'node:child_process';
+import {mkdir, mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
+import {promisify} from 'node:util';
 import test from 'node:test';
 
 import {
@@ -9,6 +11,8 @@ import {
   appendQueueItemRegistrations,
   compareQueueCurrentPublication,
   deriveCurrentPublication,
+  inspectMigrationCommit,
+  inspectQueueItemRegistryHistory,
   loadQueuePublicationEvidence,
   synchronizeCurrentPublicationFile,
   synchronizeQueueItemRegistryFile,
@@ -31,6 +35,7 @@ const [queue, registry, bundle, workflow] = await Promise.all([
 ]);
 const publicationEvidence = await loadQueuePublicationEvidence(queue, bundle, {itemRegistry: registry});
 const testMigrationCommitSha = 'a'.repeat(40);
+const execFileAsync = promisify(execFile);
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -65,6 +70,10 @@ function migrationEvidence(value, overrides = {}) {
       'artifacts/publication/current/bundle.json',
       'artifacts/publication/topics/manifest.json',
       `artifacts/publication/snapshots/${item.integrated_snapshot_id}/bundle.json`,
+    ],
+    evidence_changed_files: [
+      'artifacts/publication/production-queue.json',
+      'artifacts/publication/production-queue-registry.json',
     ],
     ...overrides,
   };
@@ -156,6 +165,40 @@ test('registry 동기화는 기존 이력을 바꾸거나 지우지 않고 새 �
   assert.equal(updated.registrations.at(-1).queue_id, 'publication-pr-999');
   assert.equal(updated.registrations.at(-1).previous_receipt, registry.registry_receipt);
   assert.deepEqual(validateQueueItemRegistry(updated, value), []);
+});
+
+test('registry Git 이력 조회는 첫 도입만 명시 허용하고 rev-list·show 실패를 hard fail한다', async () => {
+  const introductionCommit = '1'.repeat(40);
+  const firstIntroduction = await inspectQueueItemRegistryHistory(registry, {
+    runGit: async args => {
+      if (args[0] === 'rev-list') return {stdout: `${introductionCommit}\n`};
+      if (args[0] === 'rev-parse') return {stdout: `${introductionCommit}\n`};
+      if (args[0] === 'show') return {stdout: JSON.stringify(registry)};
+      throw new Error(`unexpected git command: ${args.join(' ')}`);
+    },
+  });
+  assert.deepEqual(firstIntroduction, {previous_registry: null, first_introduction: true});
+
+  await assert.rejects(
+    () => inspectQueueItemRegistryHistory(registry, {
+      runGit: async () => {
+        throw new Error('rev-list unavailable');
+      },
+    }),
+    /Git 이력 조회에 실패/u,
+  );
+
+  await assert.rejects(
+    () => inspectQueueItemRegistryHistory(registry, {
+      runGit: async args => {
+        if (args[0] === 'rev-list') return {stdout: `${introductionCommit}\n`};
+        if (args[0] === 'rev-parse') return {stdout: `${introductionCommit}\n`};
+        if (args[0] === 'show') throw new Error('show unavailable');
+        throw new Error(`unexpected git command: ${args.join(' ')}`);
+      },
+    }),
+    /Git 이력 본문을 읽지 못했습니다/u,
+  );
 });
 
 test('학교폭력 #153은 main 병합 후 공개 승격 대기 상태로 고정한다', () => {
@@ -449,6 +492,10 @@ test('기존 주제 개정 terminal 상태는 출판 snapshot·migration·PR hea
 
 test('migration_commit_sha는 현재 이력의 선행 데이터 커밋이며 이관 소유 파일을 실제 변경해야 한다', () => {
   const value = completeExistingRevision();
+  assert.deepEqual(validateProductionQueue(
+    value,
+    {publishedBundle: bundle, ...completedPublicationEvidence(value)},
+  ), []);
 
   assert.ok(validateProductionQueue(
     value,
@@ -509,7 +556,115 @@ test('migration_commit_sha는 현재 이력의 선행 데이터 커밋이며 이
     },
   ).some(error => error.includes('queue 증거 후속 커밋과 분리')));
 
+  assert.ok(validateProductionQueue(
+    value,
+    {
+      publishedBundle: bundle,
+      ...completedPublicationEvidence(value, {evidence_changed_files: []}),
+    },
+  ).some(error => error.includes('production-queue.json을 변경해야 합니다')));
+
+  const forbiddenEvidenceFiles = [
+    value.items.find(item => item.pr_number === 166).topic_file,
+    'artifacts/publication/current/bundle.json',
+    'artifacts/publication/topics/manifest.json',
+    `artifacts/publication/snapshots/${bundle.snapshot_id}/bundle.json`,
+    'docs/CONTENT_HANDOFF_CONTRACT_KO.md',
+  ];
+  for (const forbiddenFile of forbiddenEvidenceFiles) {
+    assert.ok(validateProductionQueue(
+      value,
+      {
+        publishedBundle: bundle,
+        ...completedPublicationEvidence(value, {
+          evidence_changed_files: [
+            'artifacts/publication/production-queue.json',
+            'artifacts/publication/production-queue-registry.json',
+            forbiddenFile,
+          ],
+        }),
+      },
+    ).some(error => error.includes(`queue 증거 구간에서 허용되지 않은 파일을 다시 변경했습니다: ${forbiddenFile}`)));
+  }
+
   assert.match(workflow, /uses:\s*actions\/checkout@v4[\s\S]*?fetch-depth:\s*0/u);
+  assert.equal(
+    workflow.match(/artifacts\/publication\/production-queue-registry\.json/gu)?.length,
+    2,
+    'registry-only 변경도 pull_request와 main push 검증 workflow를 실행해야 합니다.',
+  );
+});
+
+test('실제 Git의 데이터 커밋→queue 증거 커밋만 통과하고 이후 topic 재변경은 차단한다', async () => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'rulelink-migration-evidence-'));
+  const value = completeExistingRevision();
+  const item = value.items.find(entry => entry.pr_number === 166);
+  const git = args => execFileAsync('git', args, {cwd: directory, encoding: 'utf8'});
+  const writeRepoFile = async (filePath, contents) => {
+    const absolutePath = path.join(directory, filePath);
+    await mkdir(path.dirname(absolutePath), {recursive: true});
+    await writeFile(absolutePath, contents, 'utf8');
+  };
+  try {
+    await git(['init']);
+    await git(['config', 'user.name', 'RuleLink Test']);
+    await git(['config', 'user.email', 'rulelink-test@example.com']);
+    await writeRepoFile('README.md', 'fixture\n');
+    await git(['add', 'README.md']);
+    await git(['commit', '-m', 'fixture baseline']);
+
+    const snapshotFile = `artifacts/publication/snapshots/${bundle.snapshot_id}/bundle.json`;
+    await writeRepoFile(item.topic_file, '{"revision":1}\n');
+    await writeRepoFile('artifacts/publication/current/bundle.json', '{"revision":1}\n');
+    await writeRepoFile('artifacts/publication/topics/manifest.json', '{"revision":1}\n');
+    await writeRepoFile(snapshotFile, '{"revision":1}\n');
+    await git(['add', '--', item.topic_file, 'artifacts/publication/current/bundle.json', 'artifacts/publication/topics/manifest.json', snapshotFile]);
+    await git(['commit', '-m', 'data migration']);
+    const dataCommit = String((await git(['rev-parse', 'HEAD'])).stdout).trim();
+    item.migration_commit_sha = dataCommit;
+
+    await writeRepoFile('artifacts/publication/production-queue.json', '{"evidence":1}\n');
+    await writeRepoFile('artifacts/publication/production-queue-registry.json', '{"evidence":1}\n');
+    await git(['add', '--', 'artifacts/publication/production-queue.json', 'artifacts/publication/production-queue-registry.json']);
+    await git(['commit', '-m', 'queue evidence']);
+
+    const validEvidence = await inspectMigrationCommit(dataCommit, {runGit: git});
+    assert.equal(validEvidence.exists, true);
+    assert.equal(validEvidence.is_ancestor, true);
+    assert.equal(validEvidence.is_head, false);
+    assert.deepEqual(new Set(validEvidence.evidence_changed_files), new Set([
+      'artifacts/publication/production-queue.json',
+      'artifacts/publication/production-queue-registry.json',
+    ]));
+    assert.deepEqual(validateProductionQueue(
+      value,
+      {publishedBundle: bundle, ...completedPublicationEvidence(value, validEvidence)},
+    ), []);
+
+    await writeRepoFile(item.topic_file, '{"revision":2}\n');
+    await git(['add', '--', item.topic_file]);
+    await git(['commit', '-m', 'forbidden topic rewrite']);
+    const bypassEvidence = await inspectMigrationCommit(dataCommit, {runGit: git});
+    assert.ok(validateProductionQueue(
+      value,
+      {publishedBundle: bundle, ...completedPublicationEvidence(value, bypassEvidence)},
+    ).some(error => error.includes(`queue 증거 구간에서 허용되지 않은 파일을 다시 변경했습니다: ${item.topic_file}`)));
+
+    await writeRepoFile(item.topic_file, '{"revision":1}\n');
+    await git(['add', '--', item.topic_file]);
+    await git(['commit', '-m', 'attempted topic rewrite rollback']);
+    const revertedBypassEvidence = await inspectMigrationCommit(dataCommit, {runGit: git});
+    assert.ok(
+      revertedBypassEvidence.evidence_changed_files.includes(item.topic_file),
+      '최종 내용이 데이터 커밋과 같아도 증거 구간에서 topic을 건드린 이력을 보존해야 합니다.',
+    );
+    assert.ok(validateProductionQueue(
+      value,
+      {publishedBundle: bundle, ...completedPublicationEvidence(value, revertedBypassEvidence)},
+    ).some(error => error.includes(`queue 증거 구간에서 허용되지 않은 파일을 다시 변경했습니다: ${item.topic_file}`)));
+  } finally {
+    await rm(directory, {recursive: true, force: true});
+  }
 });
 
 test('기존 주제 개정의 integrated 증거는 current와 immutable snapshot의 동일 합성을 요구한다', () => {

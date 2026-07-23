@@ -268,7 +268,7 @@ async function runGitCommand(args, io = {}) {
   return runGit(args);
 }
 
-async function inspectQueueItemRegistryHistory(currentRegistry, io = {}) {
+export async function inspectQueueItemRegistryHistory(currentRegistry, io = {}) {
   let commits = [];
   try {
     const result = await runGitCommand([
@@ -279,27 +279,45 @@ async function inspectQueueItemRegistryHistory(currentRegistry, io = {}) {
       'artifacts/publication/production-queue-registry.json',
     ], io);
     commits = String(result.stdout || '').split(/\r?\n/u).filter(Boolean);
-  } catch {
-    return {previous_registry: null};
+  } catch (error) {
+    throw new Error('append-only registry의 Git 이력 조회에 실패했습니다.', {cause: error});
+  }
+  if (commits.length === 0) {
+    if (currentRegistry === null) return {previous_registry: null, first_introduction: true};
+    throw new Error('현재 registry가 존재하지만 Git 이력에서 최초 도입 커밋을 확인할 수 없습니다.');
+  }
+  let headSha = '';
+  try {
+    const result = await runGitCommand(['rev-parse', 'HEAD'], io);
+    headSha = String(result.stdout || '').trim();
+  } catch (error) {
+    throw new Error('append-only registry의 현재 Git HEAD 조회에 실패했습니다.', {cause: error});
   }
   for (const commit of commits) {
+    let candidate;
     try {
       const result = await runGitCommand([
         'show',
         `${commit}:artifacts/publication/production-queue-registry.json`,
       ], io);
-      const candidate = JSON.parse(String(result.stdout || ''));
-      if (canonicalJson(candidate) !== canonicalJson(currentRegistry)) {
-        return {previous_registry: candidate};
-      }
-    } catch {
-      // registry가 처음 도입되기 전 커밋은 건너뛴다.
+      candidate = JSON.parse(String(result.stdout || ''));
+    } catch (error) {
+      throw new Error(`append-only registry의 Git 이력 본문을 읽지 못했습니다: ${commit}`, {cause: error});
+    }
+    if (canonicalJson(candidate) !== canonicalJson(currentRegistry)) {
+      return {previous_registry: candidate, first_introduction: false};
+    }
+    if (commit !== headSha) {
+      return {previous_registry: candidate, first_introduction: false};
     }
   }
-  return {previous_registry: null};
+  if (commits.length === 1 && commits[0] === headSha) {
+    return {previous_registry: null, first_introduction: true};
+  }
+  throw new Error('append-only registry의 직전 불변 이력을 확인할 수 없습니다.');
 }
 
-async function inspectMigrationCommit(commitSha, io = {}) {
+export async function inspectMigrationCommit(commitSha, io = {}) {
   let shallow = false;
   try {
     const result = await runGitCommand(['rev-parse', '--is-shallow-repository'], io);
@@ -318,9 +336,10 @@ async function inspectMigrationCommit(commitSha, io = {}) {
   } catch {
     isAncestor = false;
   }
-  const [headResult, changedResult] = await Promise.all([
+  const [headResult, changedResult, evidenceChangedResult] = await Promise.all([
     runGitCommand(['rev-parse', 'HEAD'], io),
     runGitCommand(['diff-tree', '--root', '--no-commit-id', '--name-only', '-r', commitSha], io),
+    runGitCommand(['log', '--format=', '--name-only', `${commitSha}..HEAD`], io),
   ]);
   return {
     exists: true,
@@ -328,6 +347,7 @@ async function inspectMigrationCommit(commitSha, io = {}) {
     is_head: String(headResult.stdout || '').trim() === commitSha,
     shallow,
     changed_files: String(changedResult.stdout || '').split(/\r?\n/u).filter(Boolean),
+    evidence_changed_files: String(evidenceChangedResult.stdout || '').split(/\r?\n/u).filter(Boolean),
   };
 }
 
@@ -632,6 +652,19 @@ export function validateProductionQueue(
           if (changedFiles.has('artifacts/publication/production-queue.json')
             || changedFiles.has('artifacts/publication/production-queue-registry.json')) {
             errors.push(`${label}.migration_commit_sha는 queue 증거 후속 커밋과 분리된 데이터 이관 커밋이어야 합니다.`);
+          }
+          const evidenceChangedFiles = new Set(commitEvidence.evidence_changed_files || []);
+          const allowedEvidenceFiles = new Set([
+            'artifacts/publication/production-queue.json',
+            'artifacts/publication/production-queue-registry.json',
+          ]);
+          if (!evidenceChangedFiles.has('artifacts/publication/production-queue.json')) {
+            errors.push(`${label}.migration_commit_sha 이후에는 queue 증거 커밋이 production-queue.json을 변경해야 합니다.`);
+          }
+          for (const changedFile of evidenceChangedFiles) {
+            if (!allowedEvidenceFiles.has(changedFile)) {
+              errors.push(`${label}.migration_commit_sha 이후 queue 증거 구간에서 허용되지 않은 파일을 다시 변경했습니다: ${changedFile}`);
+            }
           }
         }
       }

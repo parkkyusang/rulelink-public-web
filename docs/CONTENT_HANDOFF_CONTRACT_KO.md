@@ -31,6 +31,8 @@ artifacts/publication/production-queue-registry.json
 
 항목 레지스트리는 `queue_id`와 PR 번호, 변경 방식, 주제 식별자와 주제 파일을 순서가 있는 SHA-256 영수증 체인으로 한 번만 등록한다. 동기화 명령은 새 항목만 뒤에 추가하며 기존 등록을 수정하거나 제거하지 않는다. 검증기는 저장소 이력의 직전 레지스트리를 불변 기준으로 읽어 기존 접두부가 그대로 보존됐는지도 확인한다. 따라서 항목이 `integrated`, `superseded`, `withdrawn`으로 끝나도 대기열에서 행을 삭제하지 않고 그 상태와 완료·철회 증거를 보존한다.
 
+레지스트리가 현재 존재하면 `git rev-list`와 `git show`로 직전 불변 이력을 읽지 못하는 상태를 이력 없음으로 취급하지 않고 검증 실패로 막는다. 예외는 레지스트리 파일이 현재 HEAD에서 처음 도입되어 이전 커밋 자체가 없는 경우뿐이다. 공개 웹 검증 작업은 레지스트리 파일 하나만 바뀐 병합 요청과 main push에도 반드시 실행된다.
+
 허용 상태는 다음과 같다.
 
 - `planned`: 범위만 합의됨
@@ -109,7 +111,7 @@ web/rulelink_public_next/scripts/<topic>-topic-handoff.test.mjs
 1. 데이터 이관 커밋: 해당 주제 원본과 전용 시험, 주제 manifest, current, 새 불변 snapshot을 함께 바꾼다.
 2. 대기열 증거 커밋: 앞 데이터 이관 커밋의 실제 SHA를 `migration_commit_sha`에 기록하고 대기열 상태와 append-only 레지스트리를 갱신한다.
 
-검증기는 `migration_commit_sha`가 실제 Git 커밋이고 현재 HEAD의 조상인지, 해당 주제·current·manifest·지정 snapshot을 실제로 바꿨는지, release 등 이관 역할 밖 파일을 건드리지 않았는지 확인한다. 자기 SHA를 자기 내용에 넣는 순환 구조를 피하기 위해 데이터 이관 커밋은 대기열·레지스트리를 바꾸지 않는다. 두 커밋의 이력을 보존해야 하므로 이관 병합 요청은 squash 병합하지 않는다. CI checkout은 이 조상 커밋을 검사할 수 있도록 `fetch-depth: 0`을 유지한다.
+검증기는 `migration_commit_sha`가 실제 Git 커밋이고 현재 HEAD의 조상인지, 해당 주제·current·manifest·지정 snapshot을 실제로 바꿨는지, release 등 이관 역할 밖 파일을 건드리지 않았는지 확인한다. 또한 `migration_commit_sha..HEAD` 구간은 대기열 증거 커밋 구간이므로 `production-queue.json`과 `production-queue-registry.json` 외 파일 변경을 허용하지 않는다. 이 구간에서 주제·current·manifest·snapshot을 다시 고치거나 다른 파일을 함께 바꾸면 데이터 이관 커밋의 증거가 더 이상 최종 출판 내용을 증명하지 못하므로 즉시 실패한다. 자기 SHA를 자기 내용에 넣는 순환 구조를 피하기 위해 데이터 이관 커밋은 대기열·레지스트리를 바꾸지 않는다. 두 커밋의 이력을 보존해야 하므로 이관 병합 요청은 squash 병합하지 않는다. CI checkout은 이 조상 커밋을 검사할 수 있도록 `fetch-depth: 0`을 유지한다.
 
 ## 6. 근거 최신성과 공식 원문
 
