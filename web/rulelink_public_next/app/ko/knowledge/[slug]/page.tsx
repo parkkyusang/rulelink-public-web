@@ -2,7 +2,7 @@ import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
 import {KnowledgeActionWorkspace} from '@/components/knowledge-action-workspace';
-import {LegalConceptText} from '@/components/legal-concept-text';
+import {LegalConceptLayer, LegalConceptText} from '@/components/legal-concept-text';
 import {OfficialSourceJump} from '@/components/official-source-jump';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
@@ -53,7 +53,8 @@ export default async function KnowledgePage({params}: Props) {
     return url ? [{name: sourceLabel(source), url}] : [];
   });
   return (
-    <main className="knowledgePage">
+    <LegalConceptLayer>
+      <main className="knowledgePage">
       <script
         dangerouslySetInnerHTML={{__html: serializeStructuredData(buildKnowledgePageStructuredData({
           audience: entry.audience_situation_ko,
@@ -249,7 +250,8 @@ export default async function KnowledgePage({params}: Props) {
           </div>
         </section>
       ) : null}
-    </main>
+      </main>
+    </LegalConceptLayer>
   );
 }
 
