@@ -273,7 +273,6 @@ export async function inspectQueueItemRegistryHistory(currentRegistry, io = {}) 
   try {
     const result = await runGitCommand([
       'rev-list',
-      '--max-count=2',
       'HEAD',
       '--',
       'artifacts/publication/production-queue-registry.json',
@@ -285,13 +284,6 @@ export async function inspectQueueItemRegistryHistory(currentRegistry, io = {}) 
   if (commits.length === 0) {
     if (currentRegistry === null) return {previous_registry: null, first_introduction: true};
     throw new Error('현재 registry가 존재하지만 Git 이력에서 최초 도입 커밋을 확인할 수 없습니다.');
-  }
-  let headSha = '';
-  try {
-    const result = await runGitCommand(['rev-parse', 'HEAD'], io);
-    headSha = String(result.stdout || '').trim();
-  } catch (error) {
-    throw new Error('append-only registry의 현재 Git HEAD 조회에 실패했습니다.', {cause: error});
   }
   for (const commit of commits) {
     let candidate;
@@ -307,14 +299,8 @@ export async function inspectQueueItemRegistryHistory(currentRegistry, io = {}) 
     if (canonicalJson(candidate) !== canonicalJson(currentRegistry)) {
       return {previous_registry: candidate, first_introduction: false};
     }
-    if (commit !== headSha) {
-      return {previous_registry: candidate, first_introduction: false};
-    }
   }
-  if (commits.length === 1 && commits[0] === headSha) {
-    return {previous_registry: null, first_introduction: true};
-  }
-  throw new Error('append-only registry의 직전 불변 이력을 확인할 수 없습니다.');
+  return {previous_registry: null, first_introduction: true};
 }
 
 export async function inspectMigrationCommit(commitSha, io = {}) {
@@ -336,10 +322,18 @@ export async function inspectMigrationCommit(commitSha, io = {}) {
   } catch {
     isAncestor = false;
   }
-  const [headResult, changedResult, evidenceChangedResult] = await Promise.all([
+  const [
+    headResult,
+    changedResult,
+    evidenceChangedResult,
+    evidenceMergeResult,
+    evidenceCommitCountResult,
+  ] = await Promise.all([
     runGitCommand(['rev-parse', 'HEAD'], io),
     runGitCommand(['diff-tree', '--root', '--no-commit-id', '--name-only', '-r', commitSha], io),
     runGitCommand(['log', '--format=', '--name-only', `${commitSha}..HEAD`], io),
+    runGitCommand(['rev-list', '--merges', `${commitSha}..HEAD`], io),
+    runGitCommand(['rev-list', '--count', `${commitSha}..HEAD`], io),
   ]);
   return {
     exists: true,
@@ -348,6 +342,8 @@ export async function inspectMigrationCommit(commitSha, io = {}) {
     shallow,
     changed_files: String(changedResult.stdout || '').split(/\r?\n/u).filter(Boolean),
     evidence_changed_files: String(evidenceChangedResult.stdout || '').split(/\r?\n/u).filter(Boolean),
+    evidence_merge_commits: String(evidenceMergeResult.stdout || '').split(/\r?\n/u).filter(Boolean),
+    evidence_commit_count: Number.parseInt(String(evidenceCommitCountResult.stdout || '').trim(), 10),
   };
 }
 
@@ -660,6 +656,12 @@ export function validateProductionQueue(
           ]);
           if (!evidenceChangedFiles.has('artifacts/publication/production-queue.json')) {
             errors.push(`${label}.migration_commit_sha 이후에는 queue 증거 커밋이 production-queue.json을 변경해야 합니다.`);
+          }
+          if (commitEvidence.evidence_commit_count !== 1) {
+            errors.push(`${label}.migration_commit_sha 이후에는 정확히 1개의 queue 증거 커밋만 허용됩니다.`);
+          }
+          if ((commitEvidence.evidence_merge_commits || []).length > 0) {
+            errors.push(`${label}.migration_commit_sha 이후 queue 증거 구간에는 merge 커밋을 둘 수 없습니다.`);
           }
           for (const changedFile of evidenceChangedFiles) {
             if (!allowedEvidenceFiles.has(changedFile)) {

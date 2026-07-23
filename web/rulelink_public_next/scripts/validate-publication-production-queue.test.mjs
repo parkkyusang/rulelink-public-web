@@ -75,6 +75,8 @@ function migrationEvidence(value, overrides = {}) {
       'artifacts/publication/production-queue.json',
       'artifacts/publication/production-queue-registry.json',
     ],
+    evidence_merge_commits: [],
+    evidence_commit_count: 1,
     ...overrides,
   };
 }
@@ -199,6 +201,69 @@ test('registry Git 이력 조회는 첫 도입만 명시 허용하고 rev-list·
     }),
     /Git 이력 본문을 읽지 못했습니다/u,
   );
+});
+
+test('registry 이력은 unrelated HEAD를 건너뛰고 실제 직전 다른 blob으로 과거 row rewrite를 잡는다', async () => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'rulelink-registry-history-'));
+  const git = args => execFileAsync('git', args, {cwd: directory, encoding: 'utf8'});
+  const registryFile = 'artifacts/publication/production-queue-registry.json';
+  const writeRepoFile = async (filePath, contents) => {
+    const absolutePath = path.join(directory, filePath);
+    await mkdir(path.dirname(absolutePath), {recursive: true});
+    await writeFile(absolutePath, contents, 'utf8');
+  };
+  const augmentedQueue = clone(queue);
+  const newItem = clone(augmentedQueue.items.find(item => item.pr_number === 171));
+  newItem.queue_id = 'publication-pr-997';
+  newItem.pr_number = 997;
+  newItem.topic_id = 'hub.registry-history-fixture';
+  newItem.topic_file = 'artifacts/publication/topics/registry-history-fixture.json';
+  augmentedQueue.items.push(newItem);
+  const appendedRegistry = appendQueueItemRegistrations(registry, augmentedQueue);
+  const rewrittenRegistry = clone(appendedRegistry);
+  rewrittenRegistry.registrations[0].registered_on = '2099-01-01';
+
+  try {
+    await git(['init']);
+    await git(['config', 'user.name', 'RuleLink Test']);
+    await git(['config', 'user.email', 'rulelink-test@example.com']);
+    await writeRepoFile('README.md', 'baseline\n');
+    await git(['add', 'README.md']);
+    await git(['commit', '-m', 'baseline']);
+
+    await writeRepoFile(registryFile, `${JSON.stringify(registry, null, 2)}\n`);
+    await git(['add', '--', registryFile]);
+    await git(['commit', '-m', 'registry introduction']);
+    await writeRepoFile('README.md', 'unrelated after introduction\n');
+    await git(['add', 'README.md']);
+    await git(['commit', '-m', 'unrelated head']);
+    const introductionHistory = await inspectQueueItemRegistryHistory(registry, {runGit: git});
+    assert.deepEqual(introductionHistory, {previous_registry: null, first_introduction: true});
+
+    await writeRepoFile(registryFile, `${JSON.stringify(appendedRegistry, null, 2)}\n`);
+    await git(['add', '--', registryFile]);
+    await git(['commit', '-m', 'append registry item']);
+    await writeRepoFile('README.md', 'unrelated after append\n');
+    await git(['add', 'README.md']);
+    await git(['commit', '-m', 'another unrelated head']);
+    const appendedHistory = await inspectQueueItemRegistryHistory(appendedRegistry, {runGit: git});
+    assert.deepEqual(appendedHistory, {previous_registry: registry, first_introduction: false});
+
+    await writeRepoFile(registryFile, `${JSON.stringify(rewrittenRegistry, null, 2)}\n`);
+    await git(['add', '--', registryFile]);
+    await git(['commit', '-m', 'rewrite past registry row']);
+    await writeRepoFile('README.md', 'unrelated after rewrite\n');
+    await git(['add', 'README.md']);
+    await git(['commit', '-m', 'unrelated after rewrite']);
+    const rewrittenHistory = await inspectQueueItemRegistryHistory(rewrittenRegistry, {runGit: git});
+    assert.deepEqual(rewrittenHistory, {previous_registry: appendedRegistry, first_introduction: false});
+    assert.ok(
+      validateQueueItemRegistry(rewrittenRegistry, augmentedQueue, {previousRegistry: rewrittenHistory.previous_registry})
+        .some(error => error.includes('직전 불변 등록을 바꿀 수 없습니다')),
+    );
+  } finally {
+    await rm(directory, {recursive: true, force: true});
+  }
 });
 
 test('학교폭력 #153은 main 병합 후 공개 승격 대기 상태로 고정한다', () => {
@@ -564,6 +629,22 @@ test('migration_commit_sha는 현재 이력의 선행 데이터 커밋이며 이
     },
   ).some(error => error.includes('production-queue.json을 변경해야 합니다')));
 
+  assert.ok(validateProductionQueue(
+    value,
+    {
+      publishedBundle: bundle,
+      ...completedPublicationEvidence(value, {evidence_commit_count: 2}),
+    },
+  ).some(error => error.includes('정확히 1개의 queue 증거 커밋만 허용됩니다')));
+
+  assert.ok(validateProductionQueue(
+    value,
+    {
+      publishedBundle: bundle,
+      ...completedPublicationEvidence(value, {evidence_merge_commits: ['c'.repeat(40)]}),
+    },
+  ).some(error => error.includes('queue 증거 구간에는 merge 커밋을 둘 수 없습니다')));
+
   const forbiddenEvidenceFiles = [
     value.items.find(item => item.pr_number === 166).topic_file,
     'artifacts/publication/current/bundle.json',
@@ -640,6 +721,22 @@ test('실제 Git의 데이터 커밋→queue 증거 커밋만 통과하고 이�
       value,
       {publishedBundle: bundle, ...completedPublicationEvidence(value, validEvidence)},
     ), []);
+
+    const evidenceBranch = String((await git(['branch', '--show-current'])).stdout).trim();
+    await git(['checkout', '-b', 'merge-forbidden-fixture', dataCommit]);
+    await writeRepoFile('docs/merge-only-forbidden.md', 'forbidden\n');
+    await git(['add', '--', 'docs/merge-only-forbidden.md']);
+    await git(['commit', '-m', 'forbidden side commit']);
+    await git(['checkout', evidenceBranch]);
+    await git(['merge', '--no-ff', 'merge-forbidden-fixture', '-m', 'forbidden evidence merge']);
+    const mergeEvidence = await inspectMigrationCommit(dataCommit, {runGit: git});
+    assert.ok(mergeEvidence.evidence_merge_commits.length > 0);
+    const mergeErrors = validateProductionQueue(
+      value,
+      {publishedBundle: bundle, ...completedPublicationEvidence(value, mergeEvidence)},
+    );
+    assert.ok(mergeErrors.some(error => error.includes('queue 증거 구간에는 merge 커밋을 둘 수 없습니다')));
+    assert.ok(mergeErrors.some(error => error.includes('docs/merge-only-forbidden.md')));
 
     await writeRepoFile(item.topic_file, '{"revision":2}\n');
     await git(['add', '--', item.topic_file]);
