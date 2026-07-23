@@ -5,6 +5,7 @@ import {KnowledgeActionWorkspace} from '@/components/knowledge-action-workspace'
 import {KnowledgeReadingPath} from '@/components/knowledge-reading-path';
 import {LegalConceptLayer, LegalConceptText} from '@/components/legal-concept-text';
 import {OfficialSourceJump} from '@/components/official-source-jump';
+import {ScenarioRuleLinks} from '@/components/scenario-rule-links';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {findKnowledgeEntry, knowledgeDetail, listKnowledgeEntries} from '@/lib/publication';
@@ -160,7 +161,7 @@ export default async function KnowledgePage({params}: Props) {
               <p className="eyebrow">결론을 가르는 사실</p>
               <h2>내 상황은 어느 쪽입니까?</h2>
               <div className="branchStack">
-                {scenarios.map(branch => {
+                {scenarios.map((branch, scenarioIndex) => {
                   const linkedRules = scenarioRules[branch.scenario_id] ?? [];
                   return (
                     <article className="branchCard" key={branch.scenario_id}>
@@ -170,16 +171,18 @@ export default async function KnowledgePage({params}: Props) {
                         <p><b>해당하면</b><LegalConceptText concepts={concepts} text={branch.when_true_ko} /></p>
                         <p><b>해당하지 않으면</b><LegalConceptText concepts={concepts} text={branch.when_false_ko} /></p>
                       </div>
-                      {linkedRules.length ? (
-                        <div aria-label="이 사실분기에 연결된 법리" className={styles.branchRules}>
-                          <span className={styles.branchRulesLabel}>연결 법리</span>
-                          {linkedRules.map(rule => (
-                            <a href={`#${rule.rule_id}`} key={rule.rule_id}>
-                              {rule.title_ko} <span aria-hidden="true">↑</span>
-                            </a>
-                          ))}
-                        </div>
-                      ) : null}
+                      <ScenarioRuleLinks
+                        classes={{
+                          item: styles.branchRulesItem,
+                          label: styles.branchRulesLabel,
+                          link: styles.branchRulesLink,
+                          list: styles.branchRulesList,
+                          root: styles.branchRules,
+                        }}
+                        rules={linkedRules}
+                        scenarioNumber={scenarioIndex + 1}
+                        scenarioTitle={branch.question_ko}
+                      />
                     </article>
                   );
                 })}
