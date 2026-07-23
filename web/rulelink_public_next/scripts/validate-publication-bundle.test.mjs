@@ -80,6 +80,35 @@ test('공개 지식의 끊어진 참조를 거부한다', async () => {
   assert.match(result.stderr, /존재하지 않는 참조/);
 });
 
+test('주 검증 경로가 완전한 authority 네 계층과 객체별 영수증을 승인한다', async () => {
+  const bundle = authorityKnowledgeBundle();
+  const result = await validate(bundle);
+  assert.equal(result.status, 0, result.stderr);
+});
+
+test('주 검증 경로가 authority 별칭·고아 binding·객체 영수증 변조를 거부한다', async () => {
+  const alias = authorityKnowledgeBundle();
+  alias.knowledge.authority_explainers = [];
+  let result = await validate(alias);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /금지된 authority 호환 별칭/);
+
+  const orphan = authorityKnowledgeBundle();
+  orphan.knowledge.content_entries[0].authority_binding_ids = [];
+  refreshAuthorityReceipts(orphan);
+  result = await validate(orphan);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /authority binding 역투영 불일치/);
+
+  const tampered = authorityKnowledgeBundle();
+  tampered.knowledge.authority_reading_units[0].summary_ko = '영수증 이후 변경';
+  tampered.file_hashes[`knowledge-index:${tampered.knowledge.schema}`] =
+    contentReceipt(tampered.knowledge);
+  result = await validate(tampered);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /knowledge-authority-reading-unit.*내용 해시 영수증/);
+});
+
 test('주제 허브는 정식 설명과 실제 콘텐츠 참조를 가져야 한다', async () => {
   const missingDescription = knowledgeBundle();
   missingDescription.knowledge.topic_hubs[0].summary_ko = missingDescription.knowledge.topic_hubs[0].description_ko;
@@ -665,6 +694,117 @@ function knowledgeBundle() {
   return bundle;
 }
 
+function authorityKnowledgeBundle() {
+  const bundle = knowledgeBundle();
+  const source = bundle.knowledge.sources[0];
+  source.source_kind = 'statute';
+  source.law_key = 'test-law';
+  source.source_snapshot_id = '0123456789abcdef0123456789abcdef';
+  source.source_version_key = 'test-law@2026-01-01';
+  source.official_url_http_status = 200;
+  const articleText = '제1조(목적)';
+  const paragraphText = '① 이 법은 검증을 목적으로 한다.';
+  const articleHash = createHash('sha256').update(articleText, 'utf8').digest('hex');
+  const paragraphHash = createHash('sha256').update(paragraphText, 'utf8').digest('hex');
+  bundle.knowledge.source_version_bridges = [{
+    bridge_id: 'bridge.test-law.1',
+    source_coordinate_id: source.coordinate_id,
+    source_snapshot_id: source.source_snapshot_id,
+    source_version_key: source.source_version_key,
+    validation_status: 'verified',
+  }];
+  bundle.knowledge.source_authority_units = [
+    {
+      source_authority_unit_id: 'unit.test-law.1.article',
+      version_bridge_id: 'bridge.test-law.1',
+      source_coordinate_id: source.coordinate_id,
+      source_snapshot_id: source.source_snapshot_id,
+      source_version_key: source.source_version_key,
+      unit_kind: 'article',
+      locator: {article_no: '0001'},
+      locator_key: 'a1',
+      ordinal: 0,
+      official_text_ko: articleText,
+      official_text_hash: articleHash,
+      validation_status: 'verified',
+    },
+    {
+      source_authority_unit_id: 'unit.test-law.1.p1',
+      parent_source_authority_unit_id: 'unit.test-law.1.article',
+      version_bridge_id: 'bridge.test-law.1',
+      source_coordinate_id: source.coordinate_id,
+      source_snapshot_id: source.source_snapshot_id,
+      source_version_key: source.source_version_key,
+      unit_kind: 'paragraph',
+      locator: {article_no: '0001', paragraph_no: '1'},
+      locator_key: 'a1-p1',
+      ordinal: 0,
+      official_text_ko: paragraphText,
+      official_text_hash: paragraphHash,
+      validation_status: 'verified',
+    },
+  ];
+  bundle.knowledge.authority_reading_units = [{
+    authority_reading_unit_id: 'authority.test-law.1',
+    title_ko: '이 조문이 답하는 질문',
+    route_key: {law_key: 'test-law', article_no: '0001'},
+    source_coordinate_id: source.coordinate_id,
+    source_snapshot_id: source.source_snapshot_id,
+    source_version_key: source.source_version_key,
+    time_state: 'current_as_of_review',
+    effective_from: '2026-01-01T00:00:00.000Z',
+    summary_ko: '검증 조문의 요건과 효과를 읽습니다.',
+    anchors: [
+      {
+        anchor_id: 'anchor.test-law.1.article',
+        source_authority_unit_id: 'unit.test-law.1.article',
+        locator_key: 'a1',
+        official_text_hash: articleHash,
+        plain_heading_ko: '조문의 목적',
+        explanation_ko: '전체 조문 구조를 먼저 확인합니다.',
+      },
+      {
+        anchor_id: 'anchor.test-law.1.p1',
+        parent_anchor_id: 'anchor.test-law.1.article',
+        source_authority_unit_id: 'unit.test-law.1.p1',
+        locator_key: 'a1-p1',
+        official_text_hash: paragraphHash,
+        plain_heading_ko: '적용 목적',
+        explanation_ko: '검증할 사실과 조문을 대조합니다.',
+      },
+    ],
+    logical_groups: [{
+      logical_group_id: 'group.test-law.1.requirement',
+      role: 'requirement',
+      operator: 'all',
+      title_ko: '모두 확인할 요건',
+      ordinal: 0,
+      anchor_ids: ['anchor.test-law.1.article', 'anchor.test-law.1.p1'],
+    }],
+    explanation_paragraphs: [{
+      explanation_paragraph_id: 'paragraph.test-law.1.requirement',
+      text_ko: '사실과 조문을 순서대로 확인합니다.',
+      logical_group_id: 'group.test-law.1.requirement',
+      anchor_ids: ['anchor.test-law.1.p1'],
+    }],
+    citation_edges: [],
+    editorial_status: 'approved',
+  }];
+  bundle.knowledge.authority_bindings = [{
+    binding_id: 'binding.content-one.test-law.1',
+    from_kind: 'content',
+    from_id: 'content.one',
+    to_kind: 'authority_reading_unit',
+    to_authority_reading_unit_id: 'authority.test-law.1',
+    anchor_ids: ['anchor.test-law.1.p1'],
+  }];
+  bundle.knowledge.content_entries[0].authority_binding_ids = [
+    'binding.content-one.test-law.1',
+  ];
+  refreshAuthorityReceipts(bundle);
+  return bundle;
+}
+
 function addConcept(bundle) {
   const concept = {
     concept_id: 'concept.one',
@@ -716,6 +856,38 @@ function refreshConceptReceipts(bundle) {
     bundle.file_hashes[`knowledge-concept:${concept.concept_id}`] = contentReceipt(concept);
   }
   bundle.file_hashes[`knowledge-index:${bundle.knowledge.schema}`] = contentReceipt(bundle.knowledge);
+}
+
+function refreshAuthorityReceipts(bundle) {
+  for (const key of Object.keys(bundle.file_hashes)) {
+    if (
+      key.startsWith('knowledge-source-authority-unit:') ||
+      key.startsWith('knowledge-source-version-bridge:') ||
+      key.startsWith('knowledge-authority-reading-unit:') ||
+      key.startsWith('knowledge-authority-binding:')
+    ) delete bundle.file_hashes[key];
+  }
+  for (const entry of bundle.knowledge.content_entries) {
+    bundle.file_hashes[`knowledge:${entry.content_id}`] = contentReceipt(entry);
+  }
+  for (const unit of bundle.knowledge.source_authority_units ?? []) {
+    bundle.file_hashes[`knowledge-source-authority-unit:${unit.source_authority_unit_id}`] =
+      contentReceipt(unit);
+  }
+  for (const bridge of bundle.knowledge.source_version_bridges ?? []) {
+    bundle.file_hashes[`knowledge-source-version-bridge:${bridge.bridge_id}`] =
+      contentReceipt(bridge);
+  }
+  for (const unit of bundle.knowledge.authority_reading_units ?? []) {
+    bundle.file_hashes[`knowledge-authority-reading-unit:${unit.authority_reading_unit_id}`] =
+      contentReceipt(unit);
+  }
+  for (const binding of bundle.knowledge.authority_bindings ?? []) {
+    bundle.file_hashes[`knowledge-authority-binding:${binding.binding_id}`] =
+      contentReceipt(binding);
+  }
+  bundle.file_hashes[`knowledge-index:${bundle.knowledge.schema}`] =
+    contentReceipt(bundle.knowledge);
 }
 
 function contentReceipt(value) {

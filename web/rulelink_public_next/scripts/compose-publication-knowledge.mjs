@@ -20,6 +20,14 @@ const collections = [
   ['scenario_branches', 'scenario_id'],
   ['content_entries', 'content_id'],
 ];
+const authorityCollections = [
+  ['source_authority_units', 'source_authority_unit_id'],
+  ['source_version_bridges', 'bridge_id'],
+  ['authority_reading_units', 'authority_reading_unit_id'],
+  ['authority_bindings', 'binding_id'],
+];
+const forbiddenTopicAuthorityKeys = ['authority_explainers'];
+const forbiddenAuthorityObjectKeys = ['authority_id', 'explainer_id', 'version_scope'];
 
 export function canonicalJson(value) {
   if (Array.isArray(value)) return `[${value.map(canonicalJson).join(',')}]`;
@@ -33,7 +41,12 @@ export function contentReceipt(value) {
   return createHash('sha256').update(canonicalJson(value)).digest('hex');
 }
 
-export function assembleKnowledge(manifest, loadedTopics, loadedConceptGroups = [], {snapshotId = ''} = {}) {
+export function assembleKnowledge(
+  manifest,
+  loadedTopics,
+  loadedConceptGroups = [],
+  {snapshotId = ''} = {},
+) {
   if (manifest?.schema !== 'rulelink_public_knowledge_manifest_v1') throw new Error('주제 조립 manifest 스키마가 올바르지 않습니다.');
   if (manifest.knowledge_schema !== 'rulelink_public_knowledge_index_v1') throw new Error('공개 지식 스키마가 올바르지 않습니다.');
   if (!Array.isArray(manifest.topics) || !manifest.topics.length) throw new Error('조립할 주제가 없습니다.');
@@ -63,6 +76,52 @@ export function assembleKnowledge(manifest, loadedTopics, loadedConceptGroups = 
     if (topic.topic_id !== descriptor.topic_id) throw new Error(`${descriptor.file}의 topic_id가 manifest와 다릅니다.`);
     for (const [collection] of collections) {
       if (!Array.isArray(topic[collection])) throw new Error(`${descriptor.file}의 ${collection}가 배열이 아닙니다.`);
+    }
+    for (const key of forbiddenTopicAuthorityKeys) {
+      if (Object.hasOwn(topic, key)) {
+        throw new Error(`${descriptor.file}에 금지된 authority 호환 별칭 ${key}가 있습니다.`);
+      }
+    }
+    const authorityPresence = authorityCollections.map(
+      ([collection]) => Object.hasOwn(topic, collection),
+    );
+    if (authorityPresence.some(Boolean) && !authorityPresence.every(Boolean)) {
+      throw new Error(
+        `${descriptor.file}의 조문 읽기 정본은 네 authority 배열을 모두 가져야 합니다.`,
+      );
+    }
+    if (authorityPresence.every(Boolean)) {
+      for (const [collection] of authorityCollections) {
+        if (!Array.isArray(topic[collection])) {
+          throw new Error(
+            `${descriptor.file}의 조문 읽기 정본 ${collection}는 배열이어야 합니다.`,
+          );
+        }
+      }
+      const authorityCount = authorityCollections.reduce(
+        (total, [collection]) => total + topic[collection].length,
+        0,
+      );
+      if (authorityCount > 0) {
+        for (const [collection] of authorityCollections) {
+          if (topic[collection].length === 0) {
+            throw new Error(
+              `${descriptor.file}의 조문 읽기 정본 ${collection}는 비어 있지 않은 배열이어야 합니다.`,
+            );
+          }
+        }
+      }
+      for (const [collection] of authorityCollections) {
+        for (const row of topic[collection]) {
+          for (const key of forbiddenAuthorityObjectKeys) {
+            if (Object.hasOwn(row, key)) {
+              throw new Error(
+                `${descriptor.file}의 ${collection} 객체에 금지된 호환 별칭 ${key}가 있습니다.`,
+              );
+            }
+          }
+        }
+      }
     }
     for (const [entryIndex, entry] of topic.content_entries.entries()) {
       if (entry?.concierge_entry !== undefined) {
@@ -123,6 +182,22 @@ export function assembleKnowledge(manifest, loadedTopics, loadedConceptGroups = 
       assembled.sources,
       legacyConceptValidationOptions(assembled.concept_cards, snapshotId),
     );
+  }
+  for (const topicId of defaultOrder) {
+    const topic = topicsById.get(topicId);
+    if (!Array.isArray(topic.authority_reading_units) || topic.authority_reading_units.length === 0) {
+      continue;
+    }
+    for (const [collection] of authorityCollections) {
+      if (!assembled[collection]) assembled[collection] = [];
+      assembled[collection].push(...topic[collection]);
+    }
+  }
+
+  for (const [collection, idKey] of authorityCollections) {
+    if (assembled[collection]) {
+      uniqueCompositionIds(assembled[collection], idKey, `조문 읽기 정본 ${collection}`);
+    }
   }
 
   for (const [collection, idKey] of collections) {
@@ -206,6 +281,26 @@ function uniqueCompositionIds(items, idKey, label) {
 }
 
 export function applyKnowledgeComposition(bundle, knowledge, changeComposition = null) {
+  for (const [collection, idKey] of authorityCollections) {
+    const currentIds = new Set(
+      (Array.isArray(bundle?.knowledge?.[collection])
+        ? bundle.knowledge[collection]
+        : [])
+        .map(value => value?.[idKey])
+        .filter(value => typeof value === 'string' && value),
+    );
+    const nextIds = new Set(
+      (Array.isArray(knowledge?.[collection]) ? knowledge[collection] : [])
+        .map(value => value?.[idKey])
+        .filter(value => typeof value === 'string' && value),
+    );
+    const removedIds = [...currentIds].filter(id => !nextIds.has(id));
+    if (removedIds.length > 0) {
+      throw new Error(
+        `기존 authority 정본 ID를 명시적 폐기 영수증 없이 제거할 수 없습니다: ${collection}=${removedIds.join(', ')}`,
+      );
+    }
+  }
   const next = JSON.parse(JSON.stringify(bundle));
   next.knowledge = knowledge;
   if (changeComposition) {
@@ -214,10 +309,30 @@ export function applyKnowledgeComposition(bundle, knowledge, changeComposition =
   }
   const hashes = {...(next.file_hashes ?? {})};
   for (const key of Object.keys(hashes)) {
-    if (key.startsWith('knowledge:content.') || key.startsWith('knowledge-concept:') || key.startsWith('knowledge-index:')) delete hashes[key];
+    if (
+      key.startsWith('knowledge:content.') ||
+      key.startsWith('knowledge-concept:') ||
+      key.startsWith('knowledge-source-authority-unit:') ||
+      key.startsWith('knowledge-source-version-bridge:') ||
+      key.startsWith('knowledge-authority-reading-unit:') ||
+      key.startsWith('knowledge-authority-binding:') ||
+      key.startsWith('knowledge-index:')
+    ) delete hashes[key];
   }
   for (const entry of knowledge.content_entries) hashes[`knowledge:${entry.content_id}`] = contentReceipt(entry);
   for (const concept of knowledge.concept_cards ?? []) hashes[`knowledge-concept:${concept.concept_id}`] = contentReceipt(concept);
+  for (const unit of knowledge.source_authority_units ?? []) {
+    hashes[`knowledge-source-authority-unit:${unit.source_authority_unit_id}`] = contentReceipt(unit);
+  }
+  for (const bridge of knowledge.source_version_bridges ?? []) {
+    hashes[`knowledge-source-version-bridge:${bridge.bridge_id}`] = contentReceipt(bridge);
+  }
+  for (const unit of knowledge.authority_reading_units ?? []) {
+    hashes[`knowledge-authority-reading-unit:${unit.authority_reading_unit_id}`] = contentReceipt(unit);
+  }
+  for (const binding of knowledge.authority_bindings ?? []) {
+    hashes[`knowledge-authority-binding:${binding.binding_id}`] = contentReceipt(binding);
+  }
   hashes[`knowledge-index:${knowledge.schema}`] = contentReceipt(knowledge);
   if (changeComposition) {
     for (const key of Object.keys(hashes)) {

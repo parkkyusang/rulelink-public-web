@@ -59,6 +59,23 @@ function manifest(topics, contentEntryOrder = null) {
   };
 }
 
+function authorityFields() {
+  return {
+    source_authority_units: [{
+      source_authority_unit_id: 'source-unit.compensation-order.25',
+    }],
+    source_version_bridges: [{
+      bridge_id: 'bridge.compensation-order.25',
+    }],
+    authority_reading_units: [{
+      authority_reading_unit_id: 'authority.compensation-order.25',
+    }],
+    authority_bindings: [{
+      binding_id: 'binding.compensation-order.25',
+    }],
+  };
+}
+
 test('현재 원본은 strict 개념 정체성을 통과하고 레거시 예외는 snapshot 022 자료에만 적용한다', async () => {
   await assert.doesNotReject(() => loadComposition(undefined, {snapshotId: currentBundle.snapshot_id}));
   const currentUsesLegacyDebt = currentBundle.knowledge.concept_cards.some(concept => (
@@ -274,6 +291,233 @@ test('독립 개념 묶음을 지식 그래프에 합치고 영수증을 만든�
 
   const bundle = applyKnowledgeComposition({file_hashes: {}}, knowledge);
   assert.equal(bundle.file_hashes['knowledge-concept:concept.one'], contentReceipt(concept));
+});
+
+test('authority 원본이 없으면 023 지식 구조에 빈 배열조차 추가하지 않는다', () => {
+  const knowledge = assembleKnowledge(
+    manifest([descriptor('hub.first', 'first.json')]),
+    [topic('hub.first', 'first')],
+  );
+  for (const key of [
+    'source_authority_units',
+    'source_version_bridges',
+    'authority_reading_units',
+    'authority_bindings',
+  ]) {
+    assert.equal(Object.hasOwn(knowledge, key), false);
+  }
+});
+
+test('주제 원본의 authority 네 계층을 결정론적으로 합치고 객체별 영수증을 만든다', () => {
+  const authorityTopic = {
+    ...topic('hub.first', 'first'),
+    ...authorityFields(),
+  };
+  const knowledge = assembleKnowledge(
+    manifest([descriptor('hub.first', 'first.json')]),
+    [authorityTopic],
+  );
+  assert.deepEqual(
+    knowledge.source_authority_units.map(value => value.source_authority_unit_id),
+    ['source-unit.compensation-order.25'],
+  );
+  assert.deepEqual(
+    knowledge.source_version_bridges.map(value => value.bridge_id),
+    ['bridge.compensation-order.25'],
+  );
+  assert.deepEqual(
+    knowledge.authority_reading_units.map(value => value.authority_reading_unit_id),
+    ['authority.compensation-order.25'],
+  );
+  assert.deepEqual(
+    knowledge.authority_bindings.map(value => value.binding_id),
+    ['binding.compensation-order.25'],
+  );
+
+  const bundle = applyKnowledgeComposition({
+    file_hashes: {
+      'knowledge-authority-reading-unit:stale': 'stale',
+      'approval:kept': 'kept',
+    },
+  }, knowledge);
+  assert.equal(bundle.file_hashes['approval:kept'], 'kept');
+  assert.equal(bundle.file_hashes['knowledge-authority-reading-unit:stale'], undefined);
+  assert.equal(
+    bundle.file_hashes['knowledge-source-authority-unit:source-unit.compensation-order.25'],
+    contentReceipt(knowledge.source_authority_units[0]),
+  );
+  assert.equal(
+    bundle.file_hashes['knowledge-source-version-bridge:bridge.compensation-order.25'],
+    contentReceipt(knowledge.source_version_bridges[0]),
+  );
+  assert.equal(
+    bundle.file_hashes['knowledge-authority-reading-unit:authority.compensation-order.25'],
+    contentReceipt(knowledge.authority_reading_units[0]),
+  );
+  assert.equal(
+    bundle.file_hashes['knowledge-authority-binding:binding.compensation-order.25'],
+    contentReceipt(knowledge.authority_bindings[0]),
+  );
+});
+
+test('주제 원본의 authority 네 계층 일부 누락과 활성 계층의 빈 배열을 조립 단계에서 거부한다', () => {
+  const partial = {
+    ...topic('hub.first', 'first'),
+    source_authority_units: authorityFields().source_authority_units,
+  };
+  assert.throws(
+    () => assembleKnowledge(
+      manifest([descriptor('hub.first', 'first.json')]),
+      [partial],
+    ),
+    /네 authority 배열을 모두/,
+  );
+
+  const emptyBindings = {
+    ...topic('hub.first', 'first'),
+    ...authorityFields(),
+  };
+  emptyBindings.authority_bindings = [];
+  assert.throws(
+    () => assembleKnowledge(
+      manifest([descriptor('hub.first', 'first.json')]),
+      [emptyBindings],
+    ),
+    /authority_bindings는 비어 있지 않은 배열/,
+  );
+});
+
+test('주제의 authority 네 배열이 모두 비어 있으면 0건으로 정규화해 출력하지 않는다', () => {
+  const emptyAuthority = {
+    ...topic('hub.first', 'first'),
+    source_authority_units: [],
+    source_version_bridges: [],
+    authority_reading_units: [],
+    authority_bindings: [],
+  };
+  const knowledge = assembleKnowledge(
+    manifest([descriptor('hub.first', 'first.json')]),
+    [emptyAuthority],
+  );
+  for (const [collection] of [
+    ['source_authority_units'],
+    ['source_version_bridges'],
+    ['authority_reading_units'],
+    ['authority_bindings'],
+  ]) {
+    assert.equal(Object.hasOwn(knowledge, collection), false);
+  }
+});
+
+test('raw topic의 authority 호환 별칭을 합성 전에 거부한다', () => {
+  const rootAlias = {
+    ...topic('hub.first', 'first'),
+    authority_explainers: [],
+  };
+  assert.throws(
+    () => assembleKnowledge(
+      manifest([descriptor('hub.first', 'first.json')]),
+      [rootAlias],
+    ),
+    /금지된 authority 호환 별칭 authority_explainers/,
+  );
+
+  const readingAlias = {
+    ...topic('hub.first', 'first'),
+    ...authorityFields(),
+  };
+  readingAlias.authority_reading_units[0].authority_id = 'legacy';
+  assert.throws(
+    () => assembleKnowledge(
+      manifest([descriptor('hub.first', 'first.json')]),
+      [readingAlias],
+    ),
+    /authority_reading_units 객체에 금지된 호환 별칭 authority_id/,
+  );
+
+  const bindingAlias = {
+    ...topic('hub.first', 'first'),
+    ...authorityFields(),
+  };
+  bindingAlias.authority_bindings[0].explainer_id = 'legacy';
+  assert.throws(
+    () => assembleKnowledge(
+      manifest([descriptor('hub.first', 'first.json')]),
+      [bindingAlias],
+    ),
+    /authority_bindings 객체에 금지된 호환 별칭 explainer_id/,
+  );
+});
+
+test('이미 출판된 authority 정본의 전체 또는 일부를 조용히 삭제하지 않는다', () => {
+  const current = {
+    knowledge: {
+      authority_reading_units: [{
+        authority_reading_unit_id: 'authority.existing',
+      }],
+    },
+    file_hashes: {},
+  };
+  const nextKnowledge = assembleKnowledge(
+    manifest([descriptor('hub.first', 'first.json')]),
+    [topic('hub.first', 'first')],
+  );
+  assert.throws(
+    () => applyKnowledgeComposition(current, nextKnowledge),
+    /명시적 폐기 영수증 없이 제거할 수 없습니다/,
+  );
+
+  const partialCurrent = {
+    knowledge: {
+      authority_reading_units: [{
+        authority_reading_unit_id: 'authority.a',
+      }, {
+        authority_reading_unit_id: 'authority.b',
+      }],
+    },
+    file_hashes: {},
+  };
+  const partialNext = {
+    ...nextKnowledge,
+    authority_reading_units: [{
+      authority_reading_unit_id: 'authority.b',
+    }],
+  };
+  assert.throws(
+    () => applyKnowledgeComposition(partialCurrent, partialNext),
+    /authority_reading_units=authority.a/,
+  );
+});
+
+test('loadComposition은 주제 파일에 결박된 authority 네 계층을 함께 읽는다', async () => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'rulelink-authority-composition-'));
+  const topicDirectory = path.join(directory, 'topics');
+  await mkdir(topicDirectory, {recursive: true});
+  await writeFile(
+    path.join(topicDirectory, 'first.json'),
+    `${JSON.stringify({
+      ...topic('hub.first', 'first'),
+      ...authorityFields(),
+    }, null, 2)}\n`,
+    'utf8',
+  );
+  const manifestPath = path.join(topicDirectory, 'manifest.json');
+  await writeFile(
+    manifestPath,
+    `${JSON.stringify(manifest([descriptor('hub.first', 'first.json')]), null, 2)}\n`,
+    'utf8',
+  );
+
+  try {
+    const loaded = await loadComposition(manifestPath);
+    assert.equal(loaded.knowledge.authority_reading_units.length, 1);
+    assert.equal(
+      loaded.knowledge.authority_reading_units[0].authority_reading_unit_id,
+      'authority.compensation-order.25',
+    );
+  } finally {
+    await rm(directory, {recursive: true, force: true});
+  }
 });
 
 test('신규 개념 묶음은 별도 정체성 용어를 검색 별칭으로 합칠 수 없다', () => {
