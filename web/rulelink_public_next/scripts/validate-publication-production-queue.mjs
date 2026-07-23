@@ -100,7 +100,7 @@ export async function synchronizeCurrentPublicationFile(queuePath, publishedBund
   if (errors.length) throw new Error(`공개 콘텐츠 생산 대기열 검증 실패: ${errors.join(' | ')}`);
   const tempPath = `${queuePath}.${Date.now()}-${Math.random().toString(16).slice(2)}.tmp`;
   try {
-    await write(tempPath, `${JSON.stringify(updatedQueue, null, 2)}\\n`, 'utf8');
+    await write(tempPath, `${JSON.stringify(updatedQueue, null, 2)}\n`, 'utf8');
     await move(tempPath, queuePath);
   } catch (error) {
     await remove(tempPath).catch(() => {});
