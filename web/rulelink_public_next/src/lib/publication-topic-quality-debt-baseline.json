@@ -1,0 +1,258 @@
+{
+  "schema": "rulelink_publication_topic_quality_debt_baseline_v1",
+  "generated_from_main_sha": "461e09ee4bbae5d5dd3205904fe1a085d0855d2e",
+  "operating_snapshot_021_audit": {
+    "rule_cards": 160,
+    "content_entries": 173,
+    "duplicate_rule_copy": 119,
+    "empty_audience_situation": 71,
+    "empty_related_content_ids": 42,
+    "nonstandard_content_type": 8,
+    "duplicate_key_point_body": 0,
+    "copied_title_or_slug_search_intent": 71
+  },
+  "totals": {
+    "duplicate_rule_copy": 119,
+    "empty_audience_situation": 71,
+    "empty_related_content_ids": 74,
+    "nonstandard_content_type": 8,
+    "duplicate_key_point_body": 18,
+    "copied_title_or_slug_search_intent": 99
+  },
+  "topics": {
+    "administrative-appeals.json": {
+      "topic_id": "hub.administrative-appeals",
+      "duplicate_rule_copy": 0,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 0,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 0
+    },
+    "auto-accident-insurance.json": {
+      "topic_id": "hub.auto-accident-insurance",
+      "duplicate_rule_copy": 0,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 0,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 0
+    },
+    "civil-small-claims.json": {
+      "topic_id": "hub.civil-small-claims",
+      "duplicate_rule_copy": 0,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 7,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 0
+    },
+    "commercial-lease.json": {
+      "topic_id": "hub.commercial-lease",
+      "duplicate_rule_copy": 0,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 0,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 10
+    },
+    "consumer-online-contracts.json": {
+      "topic_id": "hub.consumer-online-contracts",
+      "duplicate_rule_copy": 9,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 10,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 0
+    },
+    "crime-victim-response.json": {
+      "topic_id": "hub.crime-victim-response",
+      "duplicate_rule_copy": 13,
+      "empty_audience_situation": 13,
+      "empty_related_content_ids": 0,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 13
+    },
+    "deadline-and-timing-comparisons.json": {
+      "topic_id": "hub.deadline-and-timing-comparisons",
+      "duplicate_rule_copy": 0,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 0,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 0
+    },
+    "debt-enforcement.json": {
+      "topic_id": "hub.debt-enforcement",
+      "duplicate_rule_copy": 13,
+      "empty_audience_situation": 13,
+      "empty_related_content_ids": 0,
+      "nonstandard_content_type": 8,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 13
+    },
+    "divorce-parenting.json": {
+      "topic_id": "hub.divorce-parenting",
+      "duplicate_rule_copy": 10,
+      "empty_audience_situation": 10,
+      "empty_related_content_ids": 0,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 10
+    },
+    "employment-exit.json": {
+      "topic_id": "hub.employment-exit",
+      "duplicate_rule_copy": 0,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 0,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 0
+    },
+    "everyday-damages.json": {
+      "topic_id": "hub.everyday-damages",
+      "duplicate_rule_copy": 9,
+      "empty_audience_situation": 10,
+      "empty_related_content_ids": 0,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 10
+    },
+    "family-inheritance.json": {
+      "topic_id": "hub.family-inheritance",
+      "duplicate_rule_copy": 10,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 10,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 0
+    },
+    "housing-lease-deposit.json": {
+      "topic_id": "hub.housing-lease-deposit",
+      "duplicate_rule_copy": 7,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 0,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 0
+    },
+    "housing-lease-living.json": {
+      "topic_id": "hub.housing-lease-living",
+      "duplicate_rule_copy": 0,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 8,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 0
+    },
+    "industrial-accident.json": {
+      "topic_id": "hub.industrial-accident",
+      "duplicate_rule_copy": 0,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 8,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 0
+    },
+    "labor-wages.json": {
+      "topic_id": "hub.labor-wages",
+      "duplicate_rule_copy": 7,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 10,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 0
+    },
+    "legal-concept-comparisons-02.json": {
+      "topic_id": "hub.legal-concept-comparisons-02",
+      "duplicate_rule_copy": 0,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 0,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 0
+    },
+    "legal-concept-comparisons.json": {
+      "topic_id": "hub.legal-concept-comparisons",
+      "duplicate_rule_copy": 13,
+      "empty_audience_situation": 13,
+      "empty_related_content_ids": 0,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 13
+    },
+    "legal-service-boundaries.json": {
+      "topic_id": "hub.legal-service-boundaries",
+      "duplicate_rule_copy": 0,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 0,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 0
+    },
+    "money-guarantee.json": {
+      "topic_id": "hub.money-guarantee",
+      "duplicate_rule_copy": 9,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 10,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 0
+    },
+    "neighbor-leak-noise.json": {
+      "topic_id": "hub.neighbor-leak-noise",
+      "duplicate_rule_copy": 0,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 0,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 8,
+      "copied_title_or_slug_search_intent": 8
+    },
+    "real-estate-sale.json": {
+      "topic_id": "hub.real-estate-sale",
+      "duplicate_rule_copy": 12,
+      "empty_audience_situation": 12,
+      "empty_related_content_ids": 0,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 12
+    },
+    "remedy-path-comparisons.json": {
+      "topic_id": "hub.remedy-path-comparisons",
+      "duplicate_rule_copy": 0,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 2,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 0
+    },
+    "shared-mobility-accident.json": {
+      "topic_id": "hub.shared-mobility-accident",
+      "duplicate_rule_copy": 7,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 0,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 0
+    },
+    "voice-phishing-refund.json": {
+      "topic_id": "hub.voice-phishing-refund",
+      "duplicate_rule_copy": 0,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 0,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 10,
+      "copied_title_or_slug_search_intent": 10
+    },
+    "workplace-harassment.json": {
+      "topic_id": "hub.workplace-harassment",
+      "duplicate_rule_copy": 0,
+      "empty_audience_situation": 0,
+      "empty_related_content_ids": 9,
+      "nonstandard_content_type": 0,
+      "duplicate_key_point_body": 0,
+      "copied_title_or_slug_search_intent": 0
+    }
+  }
+}
