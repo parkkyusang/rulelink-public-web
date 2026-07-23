@@ -1,0 +1,61 @@
+{
+  "schema": "rulelink_concept_term_matcher_fixture_v1",
+  "sources": [
+    {"coordinate_id": "source.inheritance.term"}
+  ],
+  "concepts": [
+    {
+      "concept_id": "concept.fixture.heir",
+      "preferred_term_ko": "상속인",
+      "aliases_ko": ["상속권자"],
+      "term_relations": [
+        {
+          "term_ko": "상속권자",
+          "relation": "exact_synonym",
+          "source_coordinate_ids": ["source.inheritance.term"]
+        }
+      ]
+    },
+    {
+      "concept_id": "concept.fixture.legal-heir",
+      "preferred_term_ko": "법정상속인",
+      "aliases_ko": []
+    },
+    {
+      "concept_id": "concept.fixture.co-heir",
+      "preferred_term_ko": "공동상속인",
+      "aliases_ko": []
+    },
+    {
+      "concept_id": "concept.fixture.decedent",
+      "preferred_term_ko": "피상속인",
+      "aliases_ko": []
+    }
+  ],
+  "matcher_cases": [
+    {
+      "name": "일반 개념어는 복합어 내부에서 일치하지 않음",
+      "text": "법정상속인과 공동상속인은 피상속인의 재산을 승계하고 상속인은 신고할 수 있다.",
+      "terms": ["상속인"],
+      "expected_matches": ["상속인"]
+    },
+    {
+      "name": "명시된 긴 개념어가 우선함",
+      "text": "법정상속인과 공동상속인은 피상속인의 재산을 승계한다.",
+      "terms": ["상속인", "법정상속인", "공동상속인", "피상속인"],
+      "expected_matches": ["법정상속인", "공동상속인", "피상속인"]
+    },
+    {
+      "name": "한국어 조사가 붙어도 인식함",
+      "text": "상속인은 상속인이 제출한 상속인의 서류를 확인한다.",
+      "terms": ["상속인"],
+      "expected_matches": ["상속인", "상속인", "상속인"]
+    },
+    {
+      "name": "같은 시작점에서는 최장 일치함",
+      "text": "상속인은 권리와 의무를 승계한다.",
+      "terms": ["상속", "상속인"],
+      "expected_matches": ["상속인"]
+    }
+  ]
+}
