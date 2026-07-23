@@ -509,8 +509,8 @@
     "generator_source_commit_sha": "cccccccccccccccccccccccccccccccccccccccc",
     "generator_source_state": "working_tree_uncommitted",
     "producer_contract_path": "tests/fixtures/authority_public_evidence_contract_v1.json",
-    "producer_contract_sha256": "a6c66ed4f7c8372e6fe3a0c44872512e27e4da8fd1709531a6f899b7aeb39ee0",
-    "producer_source_commit_sha": "cccccccccccccccccccccccccccccccccccccccc",
+    "producer_contract_sha256": "5783e67b83e3dfef98800c8427150ee98b600725db157a5801fd905e95bebf80",
+    "producer_source_commit_sha": "ae5070f1a3bac3790deca97b5b5beabd671e5b23",
     "recommended_repository_directory": "data/validation_reports/authority_024",
     "regeneration_run_id": "authority-024-test-run"
   },
@@ -526,8 +526,9 @@
     ],
     "check_name": "rulelink-authority-024-evidence-attestation",
     "contract": "rulelink_authority_024_source_ci_attestation_v1",
-    "details_url_verification": "actions_job_runner_labels_exact",
-    "head_sha_binding": "evidence_pull_request_head",
+    "active_input_root_binding": "vars.RULELINK_SOURCE_MAINTENANCE_ROOT",
+    "details_url_verification": "actions_run_pull_request_head_and_job_runner_labels_exact",
+    "head_sha_binding": "custom_check_run.head_sha=github.event.pull_request.head.sha",
     "required_ancestor_fields": [
       "upstream.pr4_sha",
       "upstream.pr3_p2_sha",
@@ -535,6 +536,9 @@
     ],
     "required_app_slug": "github-actions",
     "required_conclusion": "success",
+    "required_environment": "rulelink-source-maintenance-attestation",
+    "required_event": "pull_request_target",
+    "required_head_repository_binding": "github.event.pull_request.head.repo.full_name=github.repository",
     "required_status": "completed",
     "runner_labels": [
       "self-hosted",
@@ -542,9 +546,9 @@
       "X64",
       "rulelink-source-maintenance"
     ],
-    "verification_mode": "rebuild_candidate_verify_active_inputs_and_compare_exact_five",
+    "verification_mode": "trusted_base_tooling_rebuild_candidate_verify_active_inputs_and_compare_exact_five",
     "workflow_path": ".github/workflows/authority-024-evidence-attestation.yml",
-    "workflow_sha256": "682f761c464a414c4109cd3937d0757f295b6912d6b3923980a63a1e5c629ce3"
+    "workflow_sha256": "a1648927f4222fd92ef9bc91006e295cf91119964a398033a494ec20b5c267d0"
   },
   "source_repository": "parkkyusang/liale-rulelink-ir",
   "upstream": {

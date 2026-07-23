@@ -10,6 +10,7 @@ import {
   AUTHORITY_EVIDENCE_REQUIRED_REPOSITORY_PATHS,
   AUTHORITY_EVIDENCE_PRODUCER_CONTRACT_SHA256,
   AUTHORITY_EVIDENCE_SOURCE_FILENAMES,
+  AUTHORITY_EVIDENCE_TRUSTED_PRODUCER_COMMIT_SHA,
   AUTHORITY_EVIDENCE_VERIFICATION_CONTRACT,
   AUTHORITY_PUBLIC_EVIDENCE_CONTRACT_V1,
   authorityEvidenceSiblingPath,
@@ -96,6 +97,10 @@ const prerequisiteGateKinds = new Set([
 ]);
 const prerequisiteGateStatuses = new Set(['pending', 'satisfied']);
 const releaseCheckStatuses = new Set(['pending', 'passed']);
+const legacyAuthorityEvidenceVerificationContracts = new Set([
+  'rulelink_authority_evidence_verification_v1',
+  'rulelink_authority_evidence_verification_v2',
+]);
 const gateProtectedStatuses = new Set([
   'claimed',
   'in_progress',
@@ -119,6 +124,20 @@ const completedMeasurementStatuses = new Set([
   'integrated',
   'merged_pending_publication',
 ]);
+
+function acceptsHistoricalVerificationContract(contractGate, receiptContract) {
+  if (!contractGate?.verification_contract) return receiptContract === undefined;
+  if (
+    receiptContract === undefined ||
+    receiptContract === contractGate.verification_contract
+  ) {
+    return true;
+  }
+  return (
+    contractGate.verification_contract === AUTHORITY_EVIDENCE_VERIFICATION_CONTRACT &&
+    legacyAuthorityEvidenceVerificationContracts.has(receiptContract)
+  );
+}
 
 const wave1GateContract = {
   'publication.snapshot-023-released': {
@@ -486,6 +505,7 @@ export function buildPublicationStatusFromBundle(bundle, now = publicationStatus
 
 async function verifyAuthoritySourceCiAttestation({
   repository,
+  prNumber,
   headSha,
   evidence,
   fetchJson,
@@ -494,13 +514,22 @@ async function verifyAuthoritySourceCiAttestation({
 }) {
   const attestation = evidence.source_ci_attestation;
   const provenance = evidence.provenance;
-  const cacheKey = `${repository}@${headSha}:${attestation.contract}`;
+  const cacheKey = `${repository}#${prNumber}@${headSha}:${attestation.contract}`;
   if (attestationCache?.has(cacheKey)) return attestationCache.get(cacheKey);
+
+  if (
+    provenance.producer_source_commit_sha !==
+      AUTHORITY_EVIDENCE_TRUSTED_PRODUCER_COMMIT_SHA
+  ) {
+    throw new Error(
+      'authority producer source commit이 공개 소비자가 승인한 신뢰 기준과 다릅니다.',
+    );
+  }
 
   const workflowPayload = await loadGithubFileAtCommit({
     repository,
     repositoryPath: attestation.workflow_path,
-    commitSha: headSha,
+    commitSha: provenance.producer_source_commit_sha,
     fetchJson,
     cache: sourceCache,
   });
@@ -555,35 +584,58 @@ async function verifyAuthoritySourceCiAttestation({
   ) {
     throw new Error('authority source CI의 최신 GitHub Actions check가 완료·성공 상태가 아닙니다.');
   }
-  const detailsMatch = /\/actions\/runs\/(\d+)\/job\/(\d+)(?:[/?#]|$)/u.exec(
-    checkRun.details_url || '',
-  );
+  const escapedRepository = repository.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&');
+  const detailsMatch = new RegExp(
+    `^https://github\\.com/${escapedRepository}/actions/runs/(\\d+)$`,
+    'u',
+  ).exec(checkRun.details_url || '');
   if (!detailsMatch) {
     throw new Error('authority source CI check의 details_url에서 Actions run/job을 확인할 수 없습니다.');
   }
-  const [, runId, jobId] = detailsMatch;
+  const [, runId] = detailsMatch;
   const workflowRun = await fetchJson(
     `https://api.github.com/repos/${repository}/actions/runs/${runId}`,
   );
   const workflowId = String(workflowRun?.workflow_id || '');
   const workflowRunPath = String(workflowRun?.path || '').split('@', 1)[0];
+  const boundPullRequest = (
+    Array.isArray(workflowRun?.pull_requests) ? workflowRun.pull_requests : []
+  ).find(candidate =>
+    String(candidate?.number) === String(prNumber) &&
+    candidate?.head?.sha === headSha);
   if (
     String(workflowRun?.id) !== runId ||
-    workflowRun?.head_sha !== headSha ||
+    !/^[0-9a-f]{40}$/u.test(workflowRun?.head_sha || '') ||
     workflowRun?.status !== attestation.required_status ||
     workflowRun?.conclusion !== attestation.required_conclusion ||
-    workflowRun?.event !== 'pull_request' ||
+    workflowRun?.event !== attestation.required_event ||
     workflowRunPath !== attestation.workflow_path ||
-    !/^\d+$/u.test(workflowId)
+    !/^\d+$/u.test(workflowId) ||
+    !boundPullRequest
   ) {
-    throw new Error('authority source CI run이 고정 workflow의 evidence PR 실행과 일치하지 않습니다.');
+    throw new Error(
+      'authority source CI run이 고정 workflow의 pull_request_target 실행·evidence PR head와 일치하지 않습니다.',
+    );
   }
-  const [workflow, job] = await Promise.all([
+  const workflowRunPayload = await loadGithubFileAtCommit({
+    repository,
+    repositoryPath: attestation.workflow_path,
+    commitSha: workflowRun.head_sha,
+    fetchJson,
+    cache: sourceCache,
+  });
+  const workflowRunSha256 = sha256(workflowRunPayload);
+  if (workflowRunSha256 !== workflowSha256) {
+    throw new Error(
+      'authority source CI run이 실행한 workflow 원문이 신뢰된 producer 정본과 다릅니다.',
+    );
+  }
+  const [workflow, jobsPayload] = await Promise.all([
     fetchJson(
       `https://api.github.com/repos/${repository}/actions/workflows/${workflowId}`,
     ),
     fetchJson(
-      `https://api.github.com/repos/${repository}/actions/jobs/${jobId}`,
+      `https://api.github.com/repos/${repository}/actions/runs/${runId}/jobs?per_page=100`,
     ),
   ]);
   if (
@@ -593,13 +645,17 @@ async function verifyAuthoritySourceCiAttestation({
   ) {
     throw new Error('authority source CI run의 workflow ID·경로가 고정 workflow와 다릅니다.');
   }
+  const matchingJobs = (Array.isArray(jobsPayload?.jobs) ? jobsPayload.jobs : [])
+    .filter(candidate =>
+      String(candidate?.run_id) === runId &&
+      candidate?.name === `${attestation.check_name}-runner`);
+  const job = matchingJobs[0];
   const actualLabels = Array.isArray(job?.labels) ? [...job.labels].sort() : [];
   const expectedLabels = [...attestation.runner_labels].sort();
   if (
-    String(job?.id) !== jobId ||
+    matchingJobs.length !== 1 ||
     String(job?.run_id) !== runId ||
-    job?.head_sha !== headSha ||
-    job?.name !== attestation.check_name ||
+    job?.head_sha !== workflowRun?.head_sha ||
     job?.status !== attestation.required_status ||
     job?.conclusion !== attestation.required_conclusion ||
     canonicalJson(actualLabels) !== canonicalJson(expectedLabels)
@@ -609,11 +665,17 @@ async function verifyAuthoritySourceCiAttestation({
   const verified = {
     checkRunId: checkRun.id,
     runId: Number(runId),
-    jobId: Number(jobId),
+    jobId: Number(job.id),
     workflowId: Number(workflowId),
     workflowPath: workflow.path,
+    workflowRunHeadSha: workflowRun.head_sha,
+    workflowRunSha256,
+    evidencePullRequestNumber: Number(prNumber),
+    evidencePullRequestHeadSha: headSha,
+    requiredEnvironment: attestation.required_environment,
     workflowSha256,
     producerContractSha256,
+    trustedProducerCommitSha: provenance.producer_source_commit_sha,
     runnerLabels: actualLabels,
   };
   attestationCache?.set(cacheKey, verified);
@@ -711,7 +773,10 @@ async function verifyEvidenceReference({
         `병합되지 않은 source-maintenance 증거 PR은 authority gate가 될 수 없습니다: ${reference.repository}#${reference.prNumber}`,
       );
     }
-    if (pull.head?.sha !== reference.headSha) {
+    if (
+      pull.head?.sha !== reference.headSha ||
+      pull.head?.repo?.full_name !== reference.repository
+    ) {
       throw new Error(
         `authority evidence PR head가 증거 SHA와 다릅니다: ${reference.repository}#${reference.prNumber}`,
       );
@@ -832,6 +897,7 @@ async function verifyEvidenceReference({
     });
     const sourceCiAttestation = await verifyAuthoritySourceCiAttestation({
       repository: reference.repository,
+      prNumber: reference.prNumber,
       headSha: reference.headSha,
       evidence: semantic.value,
       fetchJson,
@@ -1428,10 +1494,9 @@ export function validateQueueItemRegistry(
         !contractGate ||
         gateReceipt.verified_by_role !== contractGate.owner_role ||
         gateReceipt.verification_method !== contractGate.verification_method ||
-        (
-          contractGate.verification_contract &&
-          gateReceipt.verification_contract !== undefined &&
-          gateReceipt.verification_contract !== contractGate.verification_contract
+        !acceptsHistoricalVerificationContract(
+          contractGate,
+          gateReceipt.verification_contract,
         ) ||
         !contractGate.evidence_pattern.test(gateReceipt.evidence_ref || '') ||
         !/^[0-9a-f]{64}$/u.test(gateReceipt.verification_proof || '')

@@ -10,8 +10,10 @@ const RUN_ID = /^[A-Za-z0-9][A-Za-z0-9._-]{2,127}$/u;
 const SAFE_FILENAME = /^[A-Za-z0-9][A-Za-z0-9._-]*$/u;
 
 export const AUTHORITY_EVIDENCE_VERIFICATION_CONTRACT =
-  'rulelink_authority_evidence_verification_v2';
+  'rulelink_authority_evidence_verification_v3';
 export const AUTHORITY_EVIDENCE_SOURCE_REPOSITORY = 'parkkyusang/liale-rulelink-ir';
+export const AUTHORITY_EVIDENCE_TRUSTED_PRODUCER_COMMIT_SHA =
+  'ae5070f1a3bac3790deca97b5b5beabd671e5b23';
 export const AUTHORITY_EVIDENCE_REPOSITORY_DIRECTORY =
   'data/validation_reports/authority_024';
 export const AUTHORITY_EVIDENCE_SOURCE_FILENAMES = Object.freeze({
@@ -33,7 +35,7 @@ const EXACT_TABLE_SCHEMA = 'rulelink_authority_wave_exact_table_v1';
 const FULL_CITATION_AUDIT_SCHEMA = 'rulelink_authority_citation_full_audit_v2';
 const PRODUCER_CONTRACT = 'rulelink_authority_public_evidence_contract_v1';
 export const AUTHORITY_EVIDENCE_PRODUCER_CONTRACT_SHA256 =
-  'a6c66ed4f7c8372e6fe3a0c44872512e27e4da8fd1709531a6f899b7aeb39ee0';
+  '5783e67b83e3dfef98800c8427150ee98b600725db157a5801fd905e95bebf80';
 
 const TARGET_INVENTORY_STATUS_VALUES = Object.freeze([
   'resolved_target_verified',
@@ -292,12 +294,18 @@ export const AUTHORITY_PUBLIC_EVIDENCE_CONTRACT_V1 = Object.freeze({
     contract: 'rulelink_authority_024_source_ci_attestation_v1',
     check_name: 'rulelink-authority-024-evidence-attestation',
     workflow_path: '.github/workflows/authority-024-evidence-attestation.yml',
-    workflow_sha256: '682f761c464a414c4109cd3937d0757f295b6912d6b3923980a63a1e5c629ce3',
-    head_sha_binding: 'evidence_pull_request_head',
+    workflow_sha256: 'a1648927f4222fd92ef9bc91006e295cf91119964a398033a494ec20b5c267d0',
+    required_event: 'pull_request_target',
+    required_environment: 'rulelink-source-maintenance-attestation',
+    head_sha_binding: 'custom_check_run.head_sha=github.event.pull_request.head.sha',
+    active_input_root_binding: 'vars.RULELINK_SOURCE_MAINTENANCE_ROOT',
+    required_head_repository_binding:
+      'github.event.pull_request.head.repo.full_name=github.repository',
     required_status: 'completed',
     required_conclusion: 'success',
     required_app_slug: 'github-actions',
-    details_url_verification: 'actions_job_runner_labels_exact',
+    details_url_verification:
+      'actions_run_pull_request_head_and_job_runner_labels_exact',
     runner_labels: Object.freeze([
       'self-hosted',
       'Windows',
@@ -305,7 +313,8 @@ export const AUTHORITY_PUBLIC_EVIDENCE_CONTRACT_V1 = Object.freeze({
       'rulelink-source-maintenance',
     ]),
     allowed_repository_paths: AUTHORITY_EVIDENCE_REQUIRED_REPOSITORY_PATHS,
-    verification_mode: 'rebuild_candidate_verify_active_inputs_and_compare_exact_five',
+    verification_mode:
+      'trusted_base_tooling_rebuild_candidate_verify_active_inputs_and_compare_exact_five',
     required_ancestor_fields: Object.freeze([
       'upstream.pr4_sha',
       'upstream.pr3_p2_sha',
@@ -343,7 +352,11 @@ export const AUTHORITY_PUBLIC_EVIDENCE_CONTRACT_V1 = Object.freeze({
       'check_name',
       'workflow_path',
       'workflow_sha256',
+      'required_event',
+      'required_environment',
       'head_sha_binding',
+      'active_input_root_binding',
+      'required_head_repository_binding',
       'required_status',
       'required_conclusion',
       'required_app_slug',

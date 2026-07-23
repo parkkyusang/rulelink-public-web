@@ -17,6 +17,7 @@ import {
   AUTHORITY_EVIDENCE_REPOSITORY_DIRECTORY,
   AUTHORITY_EVIDENCE_REQUIRED_REPOSITORY_PATHS,
   AUTHORITY_EVIDENCE_SOURCE_FILENAMES,
+  AUTHORITY_EVIDENCE_TRUSTED_PRODUCER_COMMIT_SHA,
   AUTHORITY_EVIDENCE_VERIFICATION_CONTRACT,
 } from './validate-authority-evidence-artifacts.mjs';
 import {
@@ -160,6 +161,7 @@ const sourceCiWorkflowId = 2400;
 const sourceCiCheckRunId = 2401;
 const sourceCiRunId = 2402;
 const sourceCiJobId = 2403;
+const sourceCiRunHead = '6'.repeat(40);
 
 function authoritySourceCiApiFixture(url) {
   const attestation = authorityEvidenceFixtures.authorityDbValue.source_ci_attestation;
@@ -178,7 +180,7 @@ function authoritySourceCiApiFixture(url) {
         completed_at: '2026-07-23T18:30:00Z',
         app: {slug: attestation.required_app_slug},
         details_url:
-          `https://github.com/${sourceEvidenceRepository}/actions/runs/${sourceCiRunId}/job/${sourceCiJobId}`,
+          `https://github.com/${sourceEvidenceRepository}/actions/runs/${sourceCiRunId}`,
       }],
     };
   }
@@ -186,11 +188,15 @@ function authoritySourceCiApiFixture(url) {
     return {
       id: sourceCiRunId,
       workflow_id: sourceCiWorkflowId,
-      head_sha: sourceEvidenceHead,
+      head_sha: sourceCiRunHead,
       status: attestation.required_status,
       conclusion: attestation.required_conclusion,
-      event: 'pull_request',
+      event: attestation.required_event,
       path: attestation.workflow_path,
+      pull_requests: [{
+        number: Number(sourceEvidencePrNumber),
+        head: {sha: sourceEvidenceHead},
+      }],
     };
   }
   if (url.endsWith(`/actions/workflows/${sourceCiWorkflowId}`)) {
@@ -200,15 +206,17 @@ function authoritySourceCiApiFixture(url) {
       state: 'active',
     };
   }
-  if (url.endsWith(`/actions/jobs/${sourceCiJobId}`)) {
+  if (url.endsWith(`/actions/runs/${sourceCiRunId}/jobs?per_page=100`)) {
     return {
-      id: sourceCiJobId,
-      run_id: sourceCiRunId,
-      head_sha: sourceEvidenceHead,
-      name: attestation.check_name,
-      status: attestation.required_status,
-      conclusion: attestation.required_conclusion,
-      labels: attestation.runner_labels,
+      jobs: [{
+        id: sourceCiJobId,
+        run_id: sourceCiRunId,
+        head_sha: sourceCiRunHead,
+        name: `${attestation.check_name}-runner`,
+        status: attestation.required_status,
+        conclusion: attestation.required_conclusion,
+        labels: attestation.runner_labels,
+      }],
     };
   }
   return null;
@@ -217,20 +225,35 @@ function authoritySourceCiApiFixture(url) {
 function authoritySourceContentsPayload(repositoryPath, commitSha, fileOverrides = new Map()) {
   const attestation = authorityEvidenceFixtures.authorityDbValue.source_ci_attestation;
   const provenance = authorityEvidenceFixtures.authorityDbValue.provenance;
-  if (repositoryPath === attestation.workflow_path && commitSha === sourceEvidenceHead) {
-    return fileOverrides.get(repositoryPath) || sourceCiWorkflowPayload;
+  if (
+    repositoryPath === attestation.workflow_path &&
+    [
+      AUTHORITY_EVIDENCE_TRUSTED_PRODUCER_COMMIT_SHA,
+      sourceCiRunHead,
+    ].includes(commitSha)
+  ) {
+    return fileOverrides.get(`${commitSha}:${repositoryPath}`) ||
+      fileOverrides.get(repositoryPath) ||
+      sourceCiWorkflowPayload;
   }
   if (
     repositoryPath === provenance.producer_contract_path &&
     commitSha === provenance.producer_source_commit_sha
   ) {
-    return fileOverrides.get(repositoryPath) || producerContractPayload;
+    return fileOverrides.get(`${commitSha}:${repositoryPath}`) ||
+      fileOverrides.get(repositoryPath) ||
+      producerContractPayload;
   }
   assert.ok(
-    [sourceEvidenceHead, sourceEvidenceMergeCommit].includes(commitSha),
+    [
+      sourceEvidenceHead,
+      sourceEvidenceMergeCommit,
+      AUTHORITY_EVIDENCE_TRUSTED_PRODUCER_COMMIT_SHA,
+    ].includes(commitSha),
     `authority source artifact는 승인 PR head·병합 commit 또는 결박된 생산자 commit에서만 읽습니다: ${commitSha}`,
   );
-  return fileOverrides.get(repositoryPath) ||
+  return fileOverrides.get(`${commitSha}:${repositoryPath}`) ||
+    fileOverrides.get(repositoryPath) ||
     authorityEvidenceFixtures.approvedFiles.get(repositoryPath);
 }
 
@@ -256,7 +279,10 @@ async function sourceMaintenancePullFixture(url) {
   };
   return {
     merged_at: '2026-07-23T00:00:00Z',
-    head: {sha: headByPr[matched[1]]},
+    head: {
+      sha: headByPr[matched[1]],
+      repo: {full_name: sourceEvidenceRepository},
+    },
     changed_files: matched[1] === sourceEvidencePrNumber
       ? AUTHORITY_EVIDENCE_REQUIRED_REPOSITORY_PATHS.length
       : 1,
@@ -444,7 +470,10 @@ async function verifiedEvidenceFor(value, itemRegistry = null) {
       assert.ok(fixture, `알 수 없는 PR fixture: ${repository}#${prNumber}`);
       return {
         merged_at: '2026-07-23T00:00:00Z',
-        head: {sha: fixture.head},
+        head: {
+          sha: fixture.head,
+          repo: {full_name: repository},
+        },
         merge_commit_sha: fixture.merge,
         changed_files:
           repository === sourceEvidenceRepository &&
@@ -1623,7 +1652,9 @@ test('authority 의미계약 버전이 없는 구 영수증은 재검증하고 �
     'authority-db.citation-audit-approved',
   ]);
   for (const receipt of legacy.prerequisite_gate_receipts) {
-    if (authorityGateIds.has(receipt.gate_id)) delete receipt.verification_contract;
+    if (authorityGateIds.has(receipt.gate_id)) {
+      receipt.verification_contract = 'rulelink_authority_evidence_verification_v2';
+    }
   }
   let previousReceipt = legacy.prerequisite_gate_receipts[0].previous_receipt;
   for (const receipt of legacy.prerequisite_gate_receipts) {
@@ -1638,7 +1669,7 @@ test('authority 의미계약 버전이 없는 구 영수증은 재검증하고 �
     legacy.prerequisite_gate_receipts.filter(
       receipt =>
         authorityGateIds.has(receipt.gate_id) &&
-        receipt.verification_contract === undefined,
+        receipt.verification_contract === 'rulelink_authority_evidence_verification_v2',
     ).length,
     2,
   );
@@ -2138,9 +2169,15 @@ test('authority evidence는 evidence head에 결박된 최신 GitHub Actions 성
     verifyProductionQueueExternalEvidence(value, {
       registry,
       fetchJson: async url => {
-        if (url.endsWith(`/actions/jobs/${sourceCiJobId}`)) {
+        if (url.endsWith(`/actions/runs/${sourceCiRunId}/jobs?per_page=100`)) {
           const response = await sourceFetch(url);
-          return {...response, labels: ['self-hosted', 'Windows']};
+          return {
+            ...response,
+            jobs: response.jobs.map(job => ({
+              ...job,
+              labels: ['self-hosted', 'Windows'],
+            })),
+          };
         }
         return sourceFetch(url);
       },
@@ -2170,7 +2207,7 @@ test('authority evidence는 evidence head에 결박된 최신 GitHub Actions 성
         return sourceFetch(url);
       },
     }),
-    /고정 workflow의 evidence PR 실행과 일치하지 않습니다/u,
+    /고정 workflow의 pull_request_target 실행·evidence PR head/u,
   );
 });
 
@@ -2451,4 +2488,174 @@ test('운영 상태 투영은 라우트와 같은 기준시각 환경값을 사�
     if (previous === undefined) delete process.env.RULELINK_PUBLICATION_NOW;
     else process.env.RULELINK_PUBLICATION_NOW = previous;
   }
+});
+
+function authorityDbWorkForTrustBoundary(payload = authorityEvidenceFixtures.authorityDbPayload) {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  for (const [gateId, prNumber, head] of [
+    ['source-maintenance.db-pr-4', 4, sourcePr4Head],
+    ['source-maintenance.db-pr-3-p2', 3, sourcePr3P2Head],
+  ]) {
+    const gate = item.prerequisite_gates.find(candidate => candidate.gate_id === gateId);
+    gate.status = 'satisfied';
+    gate.evidence_ref = `parkkyusang/liale-rulelink-ir#${prNumber}@${head}`;
+  }
+  const dbGate = item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'authority-db.regenerated',
+  );
+  dbGate.status = 'satisfied';
+  dbGate.evidence_ref = authorityEvidenceRef(
+    AUTHORITY_EVIDENCE_SOURCE_FILENAMES.db,
+    payload,
+  );
+  return value;
+}
+
+test('pull_request_target attestation은 custom check·run·PR head를 서로 독립적으로 결박한다', async () => {
+  const value = authorityDbWorkForTrustBoundary();
+  const sourceFetch = authoritySourceFetchFixture();
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: async url => {
+        if (url.includes(`/commits/${sourceEvidenceHead}/check-runs?`)) {
+          const response = await sourceFetch(url);
+          response.check_runs[0].head_sha = 'd'.repeat(40);
+          return response;
+        }
+        return sourceFetch(url);
+      },
+    }),
+    /check가 완료·성공/u,
+  );
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: async url => {
+        if (url.endsWith(`/actions/runs/${sourceCiRunId}`)) {
+          const response = await sourceFetch(url);
+          return {...response, event: 'pull_request'};
+        }
+        return sourceFetch(url);
+      },
+    }),
+    /pull_request_target/u,
+  );
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: async url => {
+        if (url.endsWith(`/actions/runs/${sourceCiRunId}`)) {
+          const response = await sourceFetch(url);
+          return {
+            ...response,
+            pull_requests: [{
+              number: Number(sourceEvidencePrNumber),
+              head: {sha: 'd'.repeat(40)},
+            }],
+          };
+        }
+        return sourceFetch(url);
+      },
+    }),
+    /evidence PR head/u,
+  );
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: async url => {
+        if (url.includes(`/commits/${sourceEvidenceHead}/check-runs?`)) {
+          const response = await sourceFetch(url);
+          response.check_runs[0].details_url =
+            `https://github.com/${sourceEvidenceRepository}/actions/runs/9999`;
+          return response;
+        }
+        if (url.endsWith('/actions/runs/9999')) {
+          const response = await sourceFetch(
+            `https://api.github.com/repos/${sourceEvidenceRepository}/actions/runs/${sourceCiRunId}`,
+          );
+          return {...response, id: 9999, pull_requests: []};
+        }
+        return sourceFetch(url);
+      },
+    }),
+    /evidence PR head/u,
+  );
+});
+
+test('고정 producer commit의 workflow·environment·contract 원문이 바뀌면 attestation을 거부한다', async () => {
+  const value = authorityDbWorkForTrustBoundary();
+  const attestation = authorityEvidenceFixtures.authorityDbValue.source_ci_attestation;
+  const provenance = authorityEvidenceFixtures.authorityDbValue.provenance;
+  const untrustedEnvironmentWorkflow = Buffer.from(
+    sourceCiWorkflowPayload
+      .toString('utf8')
+      .replace(
+        `environment: ${attestation.required_environment}`,
+        'environment: untrusted-authority-environment',
+      ),
+    'utf8',
+  );
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: authoritySourceFetchFixture({
+        fileOverrides: new Map([[
+          attestation.workflow_path,
+          untrustedEnvironmentWorkflow,
+        ]]),
+      }),
+    }),
+    /workflow 원문 해시/u,
+  );
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: authoritySourceFetchFixture({
+        fileOverrides: new Map([[
+          `${sourceCiRunHead}:${attestation.workflow_path}`,
+          untrustedEnvironmentWorkflow,
+        ]]),
+      }),
+    }),
+    /실행한 workflow 원문/u,
+  );
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: authoritySourceFetchFixture({
+        fileOverrides: new Map([[
+          provenance.producer_contract_path,
+          Buffer.from('{"contract":"lookalike-v1"}\n', 'utf8'),
+        ]]),
+      }),
+    }),
+    /producer contract 원문 해시/u,
+  );
+
+  const forgedDb = clone(authorityEvidenceFixtures.authorityDbValue);
+  forgedDb.provenance.producer_source_commit_sha = 'd'.repeat(40);
+  const forgedPayload = Buffer.from(`${JSON.stringify(forgedDb, null, 2)}\n`, 'utf8');
+  const dbRepositoryPath =
+    `${AUTHORITY_EVIDENCE_REPOSITORY_DIRECTORY}/${AUTHORITY_EVIDENCE_SOURCE_FILENAMES.db}`;
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(
+      authorityDbWorkForTrustBoundary(forgedPayload),
+      {
+        registry,
+        fetchJson: authoritySourceFetchFixture({
+          fileOverrides: new Map([[dbRepositoryPath, forgedPayload]]),
+        }),
+      },
+    ),
+    /producer source commit/u,
+  );
 });
