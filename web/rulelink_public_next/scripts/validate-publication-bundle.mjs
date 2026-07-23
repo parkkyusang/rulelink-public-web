@@ -5,6 +5,7 @@ import path from 'node:path';
 import {samePublicRuleCopy} from '../src/lib/public-rule-presentation.ts';
 import {projectKnowledgeEntryCompatibility} from '../src/lib/knowledge-relations.ts';
 import {validateConceptTermRelations} from '../src/lib/concept-terms.ts';
+import {validateComparisonReadingContract, validateProvisionReadingCard} from './publication-comparison-reading-contract.mjs';
 
 const bundlePath = process.env.RULELINK_WEB_BUNDLE_PATH
   ? path.resolve(process.env.RULELINK_WEB_BUNDLE_PATH)
@@ -126,6 +127,7 @@ function validateKnowledge(value, now, fileHashes, errors) {
   const entries = requireArray(value, 'content_entries', errors, 'knowledge');
   const hubs = requireArray(value, 'topic_hubs', errors, 'knowledge');
   const concepts = optionalArray(value, 'concept_cards', errors, 'knowledge');
+  const provisionReadingCards = optionalArray(value, 'provision_reading_cards', errors, 'knowledge');
 
   const sourceIds = uniqueIds(sources, 'coordinate_id', '공식 근거', errors);
   const ruleIds = uniqueIds(rules, 'rule_id', '법리카드', errors);
@@ -134,6 +136,10 @@ function validateKnowledge(value, now, fileHashes, errors) {
   const entryIds = uniqueIds(entries, 'content_id', '지식 콘텐츠', errors);
   const hubIds = uniqueIds(hubs, 'hub_id', '주제 허브', errors);
   const conceptIds = uniqueIds(concepts, 'concept_id', '법률개념', errors);
+  uniqueIds(provisionReadingCards, 'reading_card_id', '공유 조문 읽기 카드', errors);
+  for (const card of provisionReadingCards) {
+    errors.push(...validateProvisionReadingCard(card, sourceIds, `공유 조문 읽기 카드 ${label(card, 'reading_card_id')}`));
+  }
   for (const entry of entries) validateKnowledgeObjectReceipt(entry, 'content_id', 'knowledge', fileHashes, errors);
   for (const concept of concepts) validateKnowledgeObjectReceipt(concept, 'concept_id', 'knowledge-concept', fileHashes, errors);
   validateKnowledgeIndexReceipt(value, fileHashes, errors);
@@ -246,6 +252,7 @@ function validateKnowledge(value, now, fileHashes, errors) {
       const allowed = relation.target_kind === 'concept' ? conceptIds : entryIds;
       checkReferences([relation.target_id], allowed, `지식 콘텐츠 ${label(entry, 'content_id')}의 related_edges`, errors);
     }
+    errors.push(...validateComparisonReadingContract(entry, value).map(error => `지식 콘텐츠 ${label(entry, 'content_id')}: ${error}`));
     const entryName = `지식 콘텐츠 ${label(entry, 'content_id')}`;
     requireNonEmptyStringArray(entry, 'key_points_ko', 2, entryName, errors);
     requireNonEmptyStringArray(entry, 'action_steps_ko', 2, entryName, errors);
