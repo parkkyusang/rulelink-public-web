@@ -13,25 +13,23 @@ type ScenarioRuleLinkClasses = {
 type ScenarioRuleLinksProps = {
   classes: ScenarioRuleLinkClasses;
   rules: Array<Pick<PublicRuleCard, 'rule_id' | 'title_ko'>>;
-  scenarioId: string;
+  scenarioNumber: number;
+  scenarioTitle: string;
 };
 
-export function ScenarioRuleLinks({classes, rules, scenarioId}: ScenarioRuleLinksProps) {
+export function ScenarioRuleLinks({classes, rules, scenarioNumber, scenarioTitle}: ScenarioRuleLinksProps) {
   if (!rules.length) return null;
-
-  const labelId = `scenario-rule-links-${scenarioId.replaceAll(/[^a-zA-Z0-9_-]/gu, '-')}`;
 
   return createElement(
     'nav',
     {
-      'aria-labelledby': labelId,
+      'aria-label': `사실분기 ${scenarioNumber}의 연결 법리: ${scenarioTitle}`,
       className: classes.root,
     },
     createElement(
       'span',
       {
         className: classes.label,
-        id: labelId,
       },
       '연결 법리',
     ),

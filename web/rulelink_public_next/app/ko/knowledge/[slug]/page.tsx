@@ -159,7 +159,7 @@ export default async function KnowledgePage({params}: Props) {
               <p className="eyebrow">결론을 가르는 사실</p>
               <h2>내 상황은 어느 쪽입니까?</h2>
               <div className="branchStack">
-                {scenarios.map(branch => {
+                {scenarios.map((branch, scenarioIndex) => {
                   const linkedRules = scenarioRules[branch.scenario_id] ?? [];
                   return (
                     <article className="branchCard" key={branch.scenario_id}>
@@ -178,7 +178,8 @@ export default async function KnowledgePage({params}: Props) {
                           root: styles.branchRules,
                         }}
                         rules={linkedRules}
-                        scenarioId={branch.scenario_id}
+                        scenarioNumber={scenarioIndex + 1}
+                        scenarioTitle={branch.question_ko}
                       />
                     </article>
                   );
