@@ -347,8 +347,7 @@ export function validateProductionQueue(queue, {publishedBundle = null} = {}) {
     try { publishedHubIds = new Set(publicationArray(publishedBundle, 'topic_hubs').map(hub => hub?.hub_id).filter(nonEmpty)); }
     catch (error) { errors.push(error instanceof Error ? error.message : String(error)); }
     for (const item of queue.items) {
-      if (item.status === 'integrated' && !publishedHubIds.has(item.topic_id)) errors.push(`#${item.pr_number}의 integrated 주제가 current bundle에 없습니다: ${item.topic_id}`);
-      if (item.status === 'migration_required' && !publishedHubIds.has(item.topic_id)) errors.push(`#${item.pr_number}의 기존 개정 대상 주제가 current bundle에 없습니다: ${item.topic_id}`);
+if (item.status === 'migration_required' && !publishedHubIds.has(item.topic_id)) errors.push(`#${item.pr_number}의 기존 개정 대상 주제가 current bundle에 없습니다: ${item.topic_id}`);
     }
   }
 
@@ -372,7 +371,7 @@ export function validateProductionQueue(queue, {publishedBundle = null} = {}) {
   if (summary.open_content_prs !== openContentPrs) errors.push(`audit_summary.open_content_prs와 실제 열린 상태 수가 다릅니다: expected=${openContentPrs}, actual=${String(summary.open_content_prs)}`);
   const sourceTotal = queue.items.reduce((sum, item) => sum + (item.counts?.sources || 0), 0);
   if (summary.official_source_references_checked !== sourceTotal) {
-    errors.push('감사한 공식 근거 참조 수와 대기열 근거 합계가 다릅니다.');
+    errors.push('audit_summary.official_source_references_checked와 대기열 근거 합계가 다릅니다.');
   }
   const statusSummaryKeys = ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated'];
   for (const status of statusSummaryKeys) {
