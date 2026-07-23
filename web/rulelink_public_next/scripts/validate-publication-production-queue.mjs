@@ -356,7 +356,9 @@ export function validateProductionQueue(queue, {publishedBundle = null} = {}) {
     try { publishedHubIds = new Set(publicationArray(publishedBundle, 'topic_hubs').map(hub => hub?.hub_id).filter(nonEmpty)); }
     catch (error) { errors.push(error instanceof Error ? error.message : String(error)); }
     for (const item of queue.items) {
-if (item.status === 'migration_required' && !publishedHubIds.has(item.topic_id)) errors.push(`#${item.pr_number}의 기존 개정 대상 주제가 current bundle에 없습니다: ${item.topic_id}`);
+      if (item.status === 'integrated' && !publishedHubIds.has(item.topic_id)) errors.push(`#${item.pr_number}의 integrated 주제가 current bundle에 없습니다: ${item.topic_id}`);
+      if (item.status === 'merged_pending_publication' && publishedHubIds.has(item.topic_id)) errors.push(`#${item.pr_number}의 pending 주제가 이미 current bundle에 있으므로 integrated로 전환해야 합니다: ${item.topic_id}`);
+      if (item.status === 'migration_required' && !publishedHubIds.has(item.topic_id)) errors.push(`#${item.pr_number}의 기존 개정 대상 주제가 current bundle에 없습니다: ${item.topic_id}`);
     }
   }
 
