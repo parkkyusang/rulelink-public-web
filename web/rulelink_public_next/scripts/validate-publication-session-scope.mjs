@@ -27,6 +27,7 @@ export function isPublicationGovernedPath(filePath) {
     || value === 'docs/CONTENT_HANDOFF_CONTRACT_KO.md'
     || value === 'docs/PUBLICATION_SEMANTIC_OVERLAP_CONTRACT_KO.md'
     || value === 'artifacts/publication/production-queue.json'
+    || value === 'artifacts/publication/production-queue-registry.json'
     || value === 'artifacts/publication/current/bundle.json'
     || value === 'artifacts/publication/topics/manifest.json'
     || value === 'artifacts/publication/concepts/manifest.json'
@@ -62,6 +63,7 @@ export function allowedForRole(role, filePath) {
   if (role === 'integrator') {
     return value === 'README.md'
       || value === 'artifacts/publication/production-queue.json'
+      || value === 'artifacts/publication/production-queue-registry.json'
       || value === 'artifacts/publication/current/bundle.json'
       || value === 'artifacts/publication/topics/manifest.json'
       || value === 'artifacts/publication/concepts/manifest.json'
@@ -76,6 +78,7 @@ export function allowedForRole(role, filePath) {
       || value === 'docs/CONTENT_HANDOFF_CONTRACT_KO.md'
       || value === 'docs/PUBLICATION_SEMANTIC_OVERLAP_CONTRACT_KO.md'
       || value === 'artifacts/publication/production-queue.json'
+      || value === 'artifacts/publication/production-queue-registry.json'
       || value === 'web/rulelink_public_next/package.json'
       || value === 'web/rulelink_public_next/scripts/validate-publication-session-scope.mjs'
       || value === 'web/rulelink_public_next/scripts/validate-publication-session-scope.test.mjs'
