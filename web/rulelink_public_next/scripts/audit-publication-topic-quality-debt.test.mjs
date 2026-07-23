@@ -9,6 +9,7 @@ import {
   loadPublicationTopics,
   measureTopicQualityDebt,
   normalizeExactContentText,
+  sumQualityDebt,
 } from './audit-publication-topic-quality-debt.mjs';
 
 const appRoot = process.cwd();
@@ -44,19 +45,8 @@ function cleanTopic(topicId = 'hub.quality-clean') {
   };
 }
 
-test('최신 main의 26개 주제 품질부채를 기준선과 정확히 고정한다', async () => {
-  const topics = await loadPublicationTopics();
-  const result = auditTopicQualityDebt({topics, baseline});
-  assert.deepEqual(result.errors, []);
-  assert.equal(Object.keys(topics).length, 26);
-  assert.deepEqual(result.totals, {
-    duplicate_rule_copy: 119,
-    empty_audience_situation: 71,
-    empty_related_content_ids: 74,
-    nonstandard_content_type: 8,
-    duplicate_key_point_body: 18,
-    copied_title_or_slug_search_intent: 99,
-  });
+test('정적 기준선 합계는 주제별 상한의 합과 정확히 일치한다', () => {
+  assert.deepEqual(sumQualityDebt(baseline.topics), baseline.totals);
   assert.deepEqual(baseline.operating_snapshot_021_audit, {
     rule_cards: 160,
     content_entries: 173,
@@ -67,6 +57,20 @@ test('최신 main의 26개 주제 품질부채를 기준선과 정확히 고정�
     duplicate_key_point_body: 0,
     copied_title_or_slug_search_intent: 71,
   });
+});
+
+test('기준선 밖 신규 주제 fixture가 추가돼도 0부채면 main 감사와 함께 통과하고 부채가 생기면 실패한다', async () => {
+  const workingTopics = await loadPublicationTopics();
+  const newTopic = cleanTopic('hub.new-zero-debt');
+  const withNewTopic = {...workingTopics, 'new-zero-debt.json': newTopic};
+  const result = auditTopicQualityDebt({topics: withNewTopic, baseline});
+
+  assert.deepEqual(result.errors, []);
+  for (const metric of QUALITY_DEBT_METRICS) assert.ok(result.totals[metric] <= baseline.totals[metric], metric);
+
+  newTopic.content_entries[0].related_content_ids = [];
+  const regressed = auditTopicQualityDebt({topics: withNewTopic, baseline});
+  assert.ok(regressed.errors.some(error => error.includes('new-zero-debt.json.empty_related_content_ids=1')));
 });
 
 test('새 주제는 여섯 품질부채 지표가 모두 0이어야 한다', () => {
