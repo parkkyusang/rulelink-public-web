@@ -471,7 +471,9 @@
       "hub_ids": [
         "hub.school-violence"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.school-violence-report"
+      ]
     },
     {
       "content_id": "content.school-violence-report",
@@ -543,7 +545,9 @@
       "hub_ids": [
         "hub.school-violence"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.school-violence-investigation-committee"
+      ]
     },
     {
       "content_id": "content.school-violence-investigation-committee",
@@ -613,7 +617,10 @@
       "hub_ids": [
         "hub.school-violence"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.school-violence-school-resolution",
+        "content.school-violence-victim-protection"
+      ]
     },
     {
       "content_id": "content.school-violence-school-resolution",
@@ -683,7 +690,9 @@
       "hub_ids": [
         "hub.school-violence"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.school-violence-investigation-committee"
+      ]
     },
     {
       "content_id": "content.school-violence-victim-protection",
@@ -752,7 +761,9 @@
       "hub_ids": [
         "hub.school-violence"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.school-violence-stay-separation"
+      ]
     },
     {
       "content_id": "content.school-violence-cyber-deletion",
@@ -822,7 +833,9 @@
       "hub_ids": [
         "hub.school-violence"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.school-violence-victim-protection"
+      ]
     },
     {
       "content_id": "content.school-violence-offender-measures",
@@ -891,7 +904,9 @@
       "hub_ids": [
         "hub.school-violence"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.school-violence-appeal-lawsuit"
+      ]
     },
     {
       "content_id": "content.school-violence-appeal-lawsuit",
@@ -1103,7 +1118,9 @@
       "hub_ids": [
         "hub.school-violence"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.school-violence-investigation-committee"
+      ]
     }
   ]
 }

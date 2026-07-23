@@ -174,6 +174,28 @@ test('행정불복 상세 정본으로 실제 외부 연결을 닫는다', () =>
   assert.deepEqual(entries.get('content.school-violence-stay-separation').related_content_ids, [stayId]);
 });
 
+test('학교폭력 범위·신고·조사·보호·불복의 내부 절차사슬을 명시적으로 닫는다', () => {
+  const expected = new Map([
+    ['content.school-violence-scope', ['content.school-violence-report']],
+    ['content.school-violence-report', ['content.school-violence-investigation-committee']],
+    ['content.school-violence-investigation-committee', [
+      'content.school-violence-school-resolution',
+      'content.school-violence-victim-protection',
+    ]],
+    ['content.school-violence-school-resolution', ['content.school-violence-investigation-committee']],
+    ['content.school-violence-victim-protection', ['content.school-violence-stay-separation']],
+    ['content.school-violence-cyber-deletion', ['content.school-violence-victim-protection']],
+    ['content.school-violence-offender-measures', ['content.school-violence-appeal-lawsuit']],
+    ['content.school-violence-confidentiality-records', ['content.school-violence-investigation-committee']],
+  ]);
+  for (const [contentId, relatedIds] of expected) {
+    assert.deepEqual(entries.get(contentId).related_content_ids, relatedIds, contentId);
+  }
+  for (const entry of entries.values()) {
+    assert.ok(entry.related_content_ids.length > 0, `${entry.content_id}: 명시 관련 경로가 없습니다.`);
+  }
+});
+
 test('새 식별자는 현재 정본과 충돌하지 않고 인적 표기·잘린 제목을 막는다', () => {
   const currentIds = new Set([
     ...current.knowledge.sources.map(item => item.coordinate_id),
