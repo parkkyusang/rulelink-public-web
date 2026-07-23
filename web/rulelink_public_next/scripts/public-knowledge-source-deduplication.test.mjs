@@ -66,13 +66,15 @@ test('통합된 공개 근거는 모든 좌표의 관련 콘텐츠를 잃지 않
   assert.ok(documents[0].search_terms_ko.includes('두 번째 손해배상 안내'));
 });
 
-test('snapshot 021의 266개 좌표는 183개 공개 근거로 정리되며 좌표는 모두 보존된다', () => {
+test('현재 승인 정본의 중복 근거를 묶어도 모든 공개 좌표가 보존된다', () => {
   const groups = groupKnowledgeSources(bundle.knowledge.sources);
-  assert.equal(bundle.knowledge.sources.length, 266);
-  assert.equal(groups.length, 183);
-  assert.equal(groups.reduce((count, group) => count + group.source_coordinate_ids.length, 0), 266);
-  assert.equal(new Set(groups.flatMap(group => group.source_coordinate_ids)).size, 266);
-  assert.equal(groups.filter(group => group.version_label_ko).length, 2);
+  const sourceCoordinateIds = bundle.knowledge.sources.map(source => source.coordinate_id);
+  const groupedCoordinateIds = groups.flatMap(group => group.source_coordinate_ids);
+  assert.ok(groups.length > 0);
+  assert.ok(groups.length <= bundle.knowledge.sources.length);
+  assert.equal(groupedCoordinateIds.length, bundle.knowledge.sources.length);
+  assert.equal(new Set(groupedCoordinateIds).size, bundle.knowledge.sources.length);
+  assert.deepEqual(new Set(groupedCoordinateIds), new Set(sourceCoordinateIds));
 });
 
 function statute(coordinateId, sourceId) {

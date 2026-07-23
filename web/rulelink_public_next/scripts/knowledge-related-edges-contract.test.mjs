@@ -133,14 +133,12 @@ test('허브 연결은 타입 관계를 표시 정보로 전달하고 기존 무
   assert.deepEqual(legacy[0].relationTypes, []);
 });
 
-test('snapshot 021의 검색·허브·상세·CTA 기반 수량과 기존 필드 형식은 변하지 않는다', async () => {
+test('현재 승인 정본의 기존 필드 형식은 snapshot 승격 뒤에도 호환된다', async () => {
   const bundle = JSON.parse(await readFile(path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json'), 'utf8'));
   const entries = bundle.knowledge.content_entries;
-  assert.equal(bundle.snapshot_id, 'kr-knowledge-core-20260721-021');
-  assert.equal(bundle.knowledge.topic_hubs.length, 17);
-  assert.equal(entries.length, 173);
-  assert.equal(entries.filter(entry => entry.lawyer_workspace_entry).length, 57);
-  assert.equal(entries.filter(entry => entry.related_edges !== undefined).length, 0);
+  assert.match(bundle.snapshot_id, /^kr-knowledge-core-\d{8}-\d{3}$/u);
+  assert.ok(bundle.knowledge.topic_hubs.length > 0);
+  assert.ok(entries.length > 0);
   assert.doesNotThrow(() => {
     const scenarios = new Map(bundle.knowledge.scenario_branches.map(scenario => [scenario.scenario_id, scenario]));
     for (const entry of entries) projectKnowledgeEntryCompatibility(entry, scenarios);
