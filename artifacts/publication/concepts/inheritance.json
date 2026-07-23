@@ -4,6 +4,15 @@
   "generated_at": "2026-07-21T14:30:00+00:00",
   "sources": [
     {
+      "coordinate_id": "coord.concepts.inheritance.civil-act-ko-0997",
+      "source_id": "civil_act_ko_0997",
+      "law_name_ko": "민법",
+      "article_no": "제997조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C997%EC%A1%B0",
+      "source_snapshot_id": "snapshot:83ddd44efbd2426681361d4e65484683",
+      "last_verified_at": "2026-07-23T00:00:00+00:00"
+    },
+    {
       "coordinate_id": "coord.concepts.inheritance.civil-act-ko-1005",
       "source_id": "civil_act_ko_1005",
       "law_name_ko": "민법",
@@ -11,6 +20,15 @@
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1005%EC%A1%B0",
       "source_snapshot_id": "snapshot:65acc1ebd49682acb96d642441b89a95",
       "last_verified_at": "2026-07-21T14:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.concepts.inheritance.civil-act-ko-1006",
+      "source_id": "civil_act_ko_1006",
+      "law_name_ko": "민법",
+      "article_no": "제1006조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1006%EC%A1%B0",
+      "source_snapshot_id": "snapshot:69efee1e29973ca7f416f0cb654fc6eb",
+      "last_verified_at": "2026-07-23T00:00:00+00:00"
     },
     {
       "coordinate_id": "coord.concepts.inheritance.precedent-2003da30517",
@@ -38,25 +56,23 @@
   "concept_cards": [
     {
       "concept_id": "concept.kr.inheritance.legal_heir",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "slug": "legal-heir",
       "preferred_term_ko": "상속인",
-      "aliases_ko": [
-        "법정상속인",
-        "공동상속인"
-      ],
-      "plain_definition_ko": "사람이 사망했을 때 법이 정한 순위와 지위에 따라 그 사람의 재산상 권리와 의무를 이어받는 사람입니다.",
-      "legal_definition_ko": "민법 제1000조 또는 제1003조에 따라 상속순위에 들고, 제1005조에 따라 상속개시 때 피상속인의 재산에 관한 포괄적 권리와 의무를 승계하는 사람입니다.",
+      "aliases_ko": [],
+      "plain_definition_ko": "상속이 개시되면 피상속인이 남긴 재산상 권리와 의무를 포괄적으로 이어받는 사람입니다.",
+      "legal_definition_ko": "민법 제997조에 따라 상속이 개시되고, 제1005조에 따라 상속개시 때부터 피상속인의 재산에 관한 포괄적 권리와 의무를 승계하는 사람입니다. 다만 피상속인의 일신에 전속한 것은 승계하지 않습니다.",
       "elements_ko": [
         "피상속인의 사망으로 상속이 개시되어야 합니다.",
-        "민법이 정한 친족 순위 또는 배우자 지위에 해당해야 합니다.",
-        "선순위 상속인의 존재와 같은 순위 공동상속인의 범위를 함께 확인해야 합니다."
+        "민법이 정한 지위에 따라 상속인이 되어야 합니다.",
+        "상속인이 여러 명이면 공동상속 관계도 함께 확인해야 합니다."
       ],
       "legal_effects_ko": [
-        "피상속인의 재산에 관한 포괄적 권리와 의무를 승계합니다.",
+        "상속개시 때부터 피상속인의 재산에 관한 포괄적 권리와 의무를 승계합니다.",
         "여러 명이면 공동상속 관계가 생길 수 있습니다."
       ],
       "judgment_factors_ko": [
+        "상속개시 여부와 시점",
         "피상속인과의 친족관계",
         "배우자 여부",
         "선순위·동순위 상속인의 존재"
@@ -76,20 +92,18 @@
         {
           "assertion_id": "concept.kr.inheritance.legal_heir.plain-definition",
           "role": "plain_definition",
-          "text_ko": "상속인은 사람이 사망했을 때 법이 정한 순위와 지위에 따라 재산상 권리와 의무를 이어받는 사람입니다.",
+          "text_ko": "상속인은 상속이 개시되면 피상속인이 남긴 재산상 권리와 의무를 포괄적으로 이어받는 사람입니다.",
           "source_coordinate_ids": [
-            "coord.family-inheritance.civil-act-ko-1000",
-            "coord.family-inheritance.civil-act-ko-1003",
+            "coord.concepts.inheritance.civil-act-ko-0997",
             "coord.concepts.inheritance.civil-act-ko-1005"
           ]
         },
         {
           "assertion_id": "concept.kr.inheritance.legal_heir.legal-definition",
           "role": "legal_definition",
-          "text_ko": "민법 제1000조 또는 제1003조에 따라 상속순위에 들고 제1005조에 따라 포괄승계하는 사람입니다.",
+          "text_ko": "민법 제997조에 따라 상속이 개시되고 제1005조에 따라 피상속인의 재산에 관한 포괄적 권리와 의무를 승계하는 사람입니다.",
           "source_coordinate_ids": [
-            "coord.family-inheritance.civil-act-ko-1000",
-            "coord.family-inheritance.civil-act-ko-1003",
+            "coord.concepts.inheritance.civil-act-ko-0997",
             "coord.concepts.inheritance.civil-act-ko-1005"
           ]
         },
@@ -120,25 +134,375 @@
         }
       ],
       "source_coordinate_ids": [
+        "coord.concepts.inheritance.civil-act-ko-0997",
         "coord.family-inheritance.civil-act-ko-1000",
         "coord.family-inheritance.civil-act-ko-1003",
-        "coord.concepts.inheritance.civil-act-ko-1005"
+        "coord.concepts.inheritance.civil-act-ko-1005",
+        "coord.concepts.inheritance.civil-act-ko-1006"
+      ],
+      "term_relations": [
+        {
+          "term_ko": "법정상속인",
+          "relation": "narrower",
+          "target_concept_id": "concept.kr.inheritance.statutory_heir",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1000",
+            "coord.family-inheritance.civil-act-ko-1003"
+          ]
+        },
+        {
+          "term_ko": "공동상속인",
+          "relation": "narrower",
+          "target_concept_id": "concept.kr.inheritance.co_heir",
+          "source_coordinate_ids": [
+            "coord.concepts.inheritance.civil-act-ko-1006"
+          ]
+        },
+        {
+          "term_ko": "피상속인",
+          "relation": "related",
+          "target_concept_id": "concept.kr.inheritance.decedent",
+          "source_coordinate_ids": [
+            "coord.concepts.inheritance.civil-act-ko-0997",
+            "coord.concepts.inheritance.civil-act-ko-1005"
+          ]
+        }
       ],
       "related_rule_ids": [
         "rule.family-inheritance.rule-inheritance-order",
         "rule.family-inheritance.rule-spouse-order"
       ],
       "related_concept_ids": [
+        "concept.kr.inheritance.statutory_heir",
+        "concept.kr.inheritance.co_heir",
+        "concept.kr.inheritance.decedent",
         "concept.kr.inheritance.debt_exceeds_assets",
         "concept.kr.inheritance.special_limited_acceptance"
       ],
       "related_content_ids": [
         "content.legal-heir-order-and-spouse",
+        "content.spouse-when-all-children-renounce",
         "content.three-month-inheritance-decision-period",
-        "content.inheritance-assets-and-debts-checklist"
+        "content.inheritance-renunciation-procedure",
+        "content.limited-acceptance-effect",
+        "content.estate-disposal-before-renunciation",
+        "content.inheritance-assets-and-debts-checklist",
+        "content.2026-loss-of-inheritance-right-and-representation"
       ],
-      "reviewed_at": "2026-07-21T14:00:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-07-23T00:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "editorial_status": "approved"
+    },
+    {
+      "concept_id": "concept.kr.inheritance.statutory_heir",
+      "version": "1.0.0",
+      "slug": "statutory-heir",
+      "preferred_term_ko": "법정상속인",
+      "aliases_ko": [],
+      "plain_definition_ko": "민법이 정한 친족 순위 또는 배우자 지위에 따라 상속인이 되는 사람입니다.",
+      "legal_definition_ko": "민법 제1000조의 친족 순위 또는 제1003조의 배우자 상속순위에 따라 상속인이 되는 사람입니다.",
+      "elements_ko": [
+        "민법이 정한 친족 범위 또는 배우자 지위에 해당해야 합니다.",
+        "선순위 법정상속인이 있는지 확인해야 합니다.",
+        "같은 순위 사람이 여러 명인지 확인해야 합니다."
+      ],
+      "legal_effects_ko": [
+        "법이 정한 순위에 따라 상속인 지위를 얻습니다.",
+        "같은 순위 사람이 여러 명이면 공동상속인이 될 수 있습니다."
+      ],
+      "judgment_factors_ko": [
+        "피상속인과의 친족관계",
+        "배우자 여부",
+        "선순위·동순위 사람의 존재"
+      ],
+      "limits_and_counterexamples_ko": [
+        "가족이라고 해서 모두 같은 순위의 법정상속인이 되는 것은 아닙니다."
+      ],
+      "confused_with_ko": [
+        "상속인",
+        "공동상속인"
+      ],
+      "examples_ko": [
+        "자녀와 배우자가 함께 있으면 민법이 정한 순위에 따라 함께 법정상속인이 될 수 있습니다."
+      ],
+      "assertions": [
+        {
+          "assertion_id": "concept.kr.inheritance.statutory_heir.plain-definition",
+          "role": "plain_definition",
+          "text_ko": "법정상속인은 민법이 정한 친족 순위 또는 배우자 지위에 따라 상속인이 되는 사람입니다.",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1000",
+            "coord.family-inheritance.civil-act-ko-1003"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.statutory_heir.legal-definition",
+          "role": "legal_definition",
+          "text_ko": "민법 제1000조 또는 제1003조가 정한 순위에 따라 상속인이 되는 사람입니다.",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1000",
+            "coord.family-inheritance.civil-act-ko-1003"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.statutory_heir.effects",
+          "role": "legal_effects",
+          "text_ko": "법이 정한 순위에 따라 상속인 지위를 얻고 동순위 사람이 여러 명이면 공동상속 관계가 생길 수 있습니다.",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1000",
+            "coord.family-inheritance.civil-act-ko-1003",
+            "coord.concepts.inheritance.civil-act-ko-1006"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.statutory_heir.limits",
+          "role": "limits",
+          "text_ko": "가족 전원이 자동으로 같은 순위의 법정상속인이 되는 것은 아닙니다.",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1000",
+            "coord.family-inheritance.civil-act-ko-1003"
+          ]
+        }
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1000",
+        "coord.family-inheritance.civil-act-ko-1003",
+        "coord.concepts.inheritance.civil-act-ko-1006"
+      ],
+      "term_relations": [
+        {
+          "term_ko": "상속인",
+          "relation": "broader",
+          "target_concept_id": "concept.kr.inheritance.legal_heir",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1000",
+            "coord.family-inheritance.civil-act-ko-1003"
+          ]
+        },
+        {
+          "term_ko": "공동상속인",
+          "relation": "related",
+          "target_concept_id": "concept.kr.inheritance.co_heir",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1000",
+            "coord.family-inheritance.civil-act-ko-1003",
+            "coord.concepts.inheritance.civil-act-ko-1006"
+          ]
+        }
+      ],
+      "related_rule_ids": [
+        "rule.family-inheritance.rule-inheritance-order",
+        "rule.family-inheritance.rule-spouse-order"
+      ],
+      "related_concept_ids": [
+        "concept.kr.inheritance.legal_heir",
+        "concept.kr.inheritance.co_heir"
+      ],
+      "related_content_ids": [
+        "content.legal-heir-order-and-spouse"
+      ],
+      "reviewed_at": "2026-07-23T00:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "editorial_status": "approved"
+    },
+    {
+      "concept_id": "concept.kr.inheritance.co_heir",
+      "version": "1.0.0",
+      "slug": "co-heir",
+      "preferred_term_ko": "공동상속인",
+      "aliases_ko": [],
+      "plain_definition_ko": "같은 상속에서 상속인이 두 명 이상일 때 그 각 상속인을 말합니다.",
+      "legal_definition_ko": "민법 제1006조에 따라 상속인이 수인인 경우 상속재산을 공유하게 되는 각 상속인입니다.",
+      "elements_ko": [
+        "같은 상속에서 상속인이 두 명 이상이어야 합니다.",
+        "각 상속인이 상속재산을 함께 공유하는 관계여야 합니다."
+      ],
+      "legal_effects_ko": [
+        "공동상속재산을 다른 공동상속인과 함께 공유합니다."
+      ],
+      "judgment_factors_ko": [
+        "같은 순위 상속인의 수",
+        "배우자의 공동상속 여부"
+      ],
+      "limits_and_counterexamples_ko": [
+        "상속인이 한 명뿐인 단독상속에서는 공동상속인이 아닙니다."
+      ],
+      "confused_with_ko": [
+        "상속인",
+        "법정상속인"
+      ],
+      "examples_ko": [
+        "자녀 두 명이 함께 상속인이 되면 두 사람은 각각 공동상속인입니다."
+      ],
+      "assertions": [
+        {
+          "assertion_id": "concept.kr.inheritance.co_heir.plain-definition",
+          "role": "plain_definition",
+          "text_ko": "공동상속인은 같은 상속에서 상속인이 두 명 이상일 때 그 각 상속인을 말합니다.",
+          "source_coordinate_ids": [
+            "coord.concepts.inheritance.civil-act-ko-1006"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.co_heir.legal-definition",
+          "role": "legal_definition",
+          "text_ko": "민법 제1006조에 따라 상속인이 수인인 경우 상속재산을 공유하게 되는 각 상속인입니다.",
+          "source_coordinate_ids": [
+            "coord.concepts.inheritance.civil-act-ko-1006"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.co_heir.effects",
+          "role": "legal_effects",
+          "text_ko": "공동상속재산을 다른 공동상속인과 함께 공유합니다.",
+          "source_coordinate_ids": [
+            "coord.concepts.inheritance.civil-act-ko-1006"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.co_heir.limits",
+          "role": "limits",
+          "text_ko": "상속인이 한 명뿐인 단독상속에서는 공동상속인이 아닙니다.",
+          "source_coordinate_ids": [
+            "coord.concepts.inheritance.civil-act-ko-1006"
+          ]
+        }
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1000",
+        "coord.family-inheritance.civil-act-ko-1003",
+        "coord.concepts.inheritance.civil-act-ko-1006"
+      ],
+      "term_relations": [
+        {
+          "term_ko": "상속인",
+          "relation": "broader",
+          "target_concept_id": "concept.kr.inheritance.legal_heir",
+          "source_coordinate_ids": [
+            "coord.concepts.inheritance.civil-act-ko-1006"
+          ]
+        },
+        {
+          "term_ko": "법정상속인",
+          "relation": "related",
+          "target_concept_id": "concept.kr.inheritance.statutory_heir",
+          "source_coordinate_ids": [
+            "coord.family-inheritance.civil-act-ko-1000",
+            "coord.family-inheritance.civil-act-ko-1003",
+            "coord.concepts.inheritance.civil-act-ko-1006"
+          ]
+        }
+      ],
+      "related_rule_ids": [
+        "rule.family-inheritance.rule-inheritance-order",
+        "rule.family-inheritance.rule-spouse-order"
+      ],
+      "related_concept_ids": [
+        "concept.kr.inheritance.legal_heir",
+        "concept.kr.inheritance.statutory_heir"
+      ],
+      "related_content_ids": [
+        "content.legal-heir-order-and-spouse",
+        "content.spouse-when-all-children-renounce",
+        "content.inheritance-renunciation-procedure"
+      ],
+      "reviewed_at": "2026-07-23T00:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "editorial_status": "approved"
+    },
+    {
+      "concept_id": "concept.kr.inheritance.decedent",
+      "version": "1.0.0",
+      "slug": "decedent",
+      "preferred_term_ko": "피상속인",
+      "aliases_ko": [],
+      "plain_definition_ko": "사망으로 상속이 개시되어 자신의 재산상 권리와 의무가 상속인에게 이어지는 사람입니다.",
+      "legal_definition_ko": "민법 제997조에 따라 사망으로 상속이 개시되고, 제1005조에 따라 자신의 재산에 관한 포괄적 권리와 의무가 상속인에게 승계되는 사람입니다.",
+      "elements_ko": [
+        "그 사람의 사망으로 상속이 개시되어야 합니다.",
+        "재산상 권리와 의무를 이어받을 상속인이 있어야 합니다."
+      ],
+      "legal_effects_ko": [
+        "일신전속적인 것을 제외한 재산상 권리와 의무가 상속인에게 승계됩니다."
+      ],
+      "judgment_factors_ko": [
+        "사망과 상속개시 시점",
+        "승계되는 재산상 권리와 의무의 범위"
+      ],
+      "limits_and_counterexamples_ko": [
+        "피상속인은 권리와 의무를 이어받는 상속인과 반대 지위입니다."
+      ],
+      "confused_with_ko": [
+        "상속인"
+      ],
+      "examples_ko": [
+        "부모가 사망하여 자녀에게 상속이 개시되면 사망한 부모가 피상속인입니다."
+      ],
+      "assertions": [
+        {
+          "assertion_id": "concept.kr.inheritance.decedent.plain-definition",
+          "role": "plain_definition",
+          "text_ko": "피상속인은 사망으로 상속이 개시되어 자신의 재산상 권리와 의무가 상속인에게 이어지는 사람입니다.",
+          "source_coordinate_ids": [
+            "coord.concepts.inheritance.civil-act-ko-0997",
+            "coord.concepts.inheritance.civil-act-ko-1005"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.decedent.legal-definition",
+          "role": "legal_definition",
+          "text_ko": "민법 제997조와 제1005조에 따라 사망으로 상속이 개시되고 자신의 재산상 권리와 의무가 상속인에게 승계되는 사람입니다.",
+          "source_coordinate_ids": [
+            "coord.concepts.inheritance.civil-act-ko-0997",
+            "coord.concepts.inheritance.civil-act-ko-1005"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.decedent.effects",
+          "role": "legal_effects",
+          "text_ko": "일신전속적인 것을 제외한 재산상 권리와 의무가 상속인에게 승계됩니다.",
+          "source_coordinate_ids": [
+            "coord.concepts.inheritance.civil-act-ko-1005"
+          ]
+        },
+        {
+          "assertion_id": "concept.kr.inheritance.decedent.limits",
+          "role": "limits",
+          "text_ko": "피상속인은 권리와 의무를 이어받는 상속인과 반대 지위입니다.",
+          "source_coordinate_ids": [
+            "coord.concepts.inheritance.civil-act-ko-0997",
+            "coord.concepts.inheritance.civil-act-ko-1005"
+          ]
+        }
+      ],
+      "source_coordinate_ids": [
+        "coord.concepts.inheritance.civil-act-ko-0997",
+        "coord.concepts.inheritance.civil-act-ko-1005"
+      ],
+      "term_relations": [
+        {
+          "term_ko": "상속인",
+          "relation": "related",
+          "target_concept_id": "concept.kr.inheritance.legal_heir",
+          "source_coordinate_ids": [
+            "coord.concepts.inheritance.civil-act-ko-0997",
+            "coord.concepts.inheritance.civil-act-ko-1005"
+          ]
+        }
+      ],
+      "related_rule_ids": [
+        "rule.family-inheritance.rule-inheritance-order"
+      ],
+      "related_concept_ids": [
+        "concept.kr.inheritance.legal_heir"
+      ],
+      "related_content_ids": [
+        "content.legal-heir-order-and-spouse",
+        "content.limited-acceptance-effect",
+        "content.estate-disposal-before-renunciation"
+      ],
+      "reviewed_at": "2026-07-23T00:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
       "editorial_status": "approved"
     },
     {

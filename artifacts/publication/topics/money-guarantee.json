@@ -9,7 +9,7 @@
       "article_no": "제598조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C598%EC%A1%B0",
       "source_snapshot_id": "snapshot:62c9abd62ae2907181f1bf7197dc2e43",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "last_verified_at": "2026-07-23T02:20:00+00:00"
     },
     {
       "coordinate_id": "coord.money-guarantee.civil-act-ko-0603",
@@ -18,34 +18,34 @@
       "article_no": "제603조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C603%EC%A1%B0",
       "source_snapshot_id": "snapshot:620a0f688ebec421544fd799c874c735",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "last_verified_at": "2026-07-23T02:20:00+00:00"
     },
     {
       "coordinate_id": "coord.money-guarantee.interest-limit-ko-0002",
-      "source_id": "interest_limit_ko_0002",
+      "source_id": "interest_limitation_ko_0002",
       "law_name_ko": "이자제한법",
       "article_no": "제2조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%B4%EC%9E%90%EC%A0%9C%ED%95%9C%EB%B2%95/%EC%A0%9C2%EC%A1%B0",
-      "source_snapshot_id": "snapshot:d0100e8dc52367aa4a59040729a635cd",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:9ff9730a11f34c6ca21633fb86237a57",
+      "last_verified_at": "2026-07-23T02:20:00+00:00"
     },
     {
       "coordinate_id": "coord.money-guarantee.interest-limit-ko-0003",
-      "source_id": "interest_limit_ko_0003",
+      "source_id": "interest_limitation_ko_0003",
       "law_name_ko": "이자제한법",
       "article_no": "제3조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%B4%EC%9E%90%EC%A0%9C%ED%95%9C%EB%B2%95/%EC%A0%9C3%EC%A1%B0",
-      "source_snapshot_id": "snapshot:8865c051d58cbc890ad6e72575c7f75d",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:e51609fd4c496a51ed23769a2e33f7d3",
+      "last_verified_at": "2026-07-23T02:20:00+00:00"
     },
     {
       "coordinate_id": "coord.money-guarantee.interest-limit-ko-0004",
-      "source_id": "interest_limit_ko_0004",
+      "source_id": "interest_limitation_ko_0004",
       "law_name_ko": "이자제한법",
       "article_no": "제4조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%B4%EC%9E%90%EC%A0%9C%ED%95%9C%EB%B2%95/%EC%A0%9C4%EC%A1%B0",
-      "source_snapshot_id": "snapshot:be9e09237ebd49ab3f14808b95eedf2f",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:a924783deb9b6831282e34c61666f382",
+      "last_verified_at": "2026-07-23T02:20:00+00:00"
     },
     {
       "coordinate_id": "coord.money-guarantee.src-interest-rate-20",
@@ -57,7 +57,7 @@
       "promulgation_number": "대통령령 제31593호",
       "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20210707&lsiSeq=230727&urlMode=lsInfoP",
       "source_snapshot_id": "snapshot:0bda91fb0a7a72f90a5814354657f781",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "last_verified_at": "2026-07-23T02:20:00+00:00"
     },
     {
       "coordinate_id": "coord.money-guarantee.civil-act-ko-0476",
@@ -66,7 +66,7 @@
       "article_no": "제476조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C476%EC%A1%B0",
       "source_snapshot_id": "snapshot:17508bd1f1cc8b784be868019fd90482",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "last_verified_at": "2026-07-23T02:20:00+00:00"
     },
     {
       "coordinate_id": "coord.money-guarantee.civil-act-ko-0477",
@@ -75,7 +75,7 @@
       "article_no": "제477조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C477%EC%A1%B0",
       "source_snapshot_id": "snapshot:8d4552e491f504df2b872e4798b13da7",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "last_verified_at": "2026-07-23T02:20:00+00:00"
     },
     {
       "coordinate_id": "coord.money-guarantee.civil-act-ko-0478",
@@ -84,7 +84,7 @@
       "article_no": "제478조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C478%EC%A1%B0",
       "source_snapshot_id": "snapshot:0b076a247338119c3dd9802b24b51ae9",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "last_verified_at": "2026-07-23T02:20:00+00:00"
     },
     {
       "coordinate_id": "coord.money-guarantee.civil-act-ko-0479",
@@ -93,7 +93,7 @@
       "article_no": "제479조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C479%EC%A1%B0",
       "source_snapshot_id": "snapshot:1ae84c4c6865a278b8cdfdbee34a15fb",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "last_verified_at": "2026-07-23T02:20:00+00:00"
     },
     {
       "coordinate_id": "coord.money-guarantee.civil-act-ko-0428-02",
@@ -102,7 +102,7 @@
       "article_no": "제428조의2",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C428%EC%A1%B0%EC%9D%982",
       "source_snapshot_id": "snapshot:73bd081839cacee21b7b1b32d357749d",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "last_verified_at": "2026-07-23T02:20:00+00:00"
     },
     {
       "coordinate_id": "coord.money-guarantee.civil-act-ko-0428-03",
@@ -111,7 +111,7 @@
       "article_no": "제428조의3",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C428%EC%A1%B0%EC%9D%983",
       "source_snapshot_id": "snapshot:c5073f9edbc623b7e80ccad062d5fbcd",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "last_verified_at": "2026-07-23T02:20:00+00:00"
     },
     {
       "coordinate_id": "coord.money-guarantee.civil-act-ko-0429",
@@ -120,7 +120,7 @@
       "article_no": "제429조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C429%EC%A1%B0",
       "source_snapshot_id": "snapshot:6942ac509b9968cd14a4746cb2688113",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "last_verified_at": "2026-07-23T02:20:00+00:00"
     },
     {
       "coordinate_id": "coord.money-guarantee.civil-act-ko-0428",
@@ -129,7 +129,7 @@
       "article_no": "제428조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C428%EC%A1%B0",
       "source_snapshot_id": "snapshot:490368327e149e4e150b07272609641e",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "last_verified_at": "2026-07-23T02:20:00+00:00"
     },
     {
       "coordinate_id": "coord.money-guarantee.civil-act-ko-0430",
@@ -138,7 +138,7 @@
       "article_no": "제430조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C430%EC%A1%B0",
       "source_snapshot_id": "snapshot:084379d3974c5260edbde413397e9d11",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "last_verified_at": "2026-07-23T02:20:00+00:00"
     },
     {
       "coordinate_id": "coord.money-guarantee.civil-act-ko-0162",
@@ -147,7 +147,7 @@
       "article_no": "제162조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C162%EC%A1%B0",
       "source_snapshot_id": "snapshot:b2bc0405fc2a3ab85fa85df111d7e986",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "last_verified_at": "2026-07-23T02:20:00+00:00"
     },
     {
       "coordinate_id": "coord.money-guarantee.civil-act-ko-0174",
@@ -156,7 +156,7 @@
       "article_no": "제174조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C174%EC%A1%B0",
       "source_snapshot_id": "snapshot:118310dcf6076c4e98ed4a792541fb83",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "last_verified_at": "2026-07-23T02:20:00+00:00"
     }
   ],
   "topic_hubs": [
@@ -183,11 +183,11 @@
     {
       "rule_id": "rule.money-guarantee.rule-loan-agreement",
       "title_ko": "금전소비대차의 성립",
-      "proposition_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어야 성립한다.",
+      "proposition_ko": "송금 사실만이 아니라 돈의 소유권을 이전하기로 한 약정과 같은 종류·품질·수량의 돈을 반환하기로 한 약정이 함께 있었는지로 금전소비대차 성립을 판단한다.",
       "norm": {
         "actor_ko": "금전을 빌려준 사람과 빌린 사람",
         "conditions_ko": "금전을 이전하고 같은 종류·품질·수량의 금전을 반환하기로 합의한 경우",
-        "legal_effect_ko": "금전소비대차는 돈을 이전하고 같은 종류·수량으로 반환하기로 하는 합의가 있어야 성립한다."
+        "legal_effect_ko": "두 약정이 인정되면 금전소비대차의 효력이 생겨 차주는 약정에 따라 같은 종류·품질·수량의 돈을 반환할 의무를 진다."
       },
       "source_coordinate_ids": [
         "coord.money-guarantee.civil-act-ko-0598"
@@ -196,11 +196,11 @@
     {
       "rule_id": "rule.money-guarantee.rule-no-due-date",
       "title_ko": "변제기 약정 없는 대여금",
-      "proposition_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다.",
+      "proposition_ko": "반환시기 약정이 없으면 대주가 상당한 기간을 정해 반환을 최고했는지와 그 기간이 지났는지로 반환의무의 이행시기를 판단한다.",
       "norm": {
         "actor_ko": "반환시기를 정하지 않은 금전소비대차의 대주와 차주",
         "conditions_ko": "금전소비대차는 성립했지만 반환시기를 약정하지 않은 경우",
-        "legal_effect_ko": "반환시기 약정이 없으면 대주는 상당한 기간을 정해 반환을 최고해야 한다."
+        "legal_effect_ko": "대주가 정한 상당한 기간이 지나면 차주는 반환해야 하고, 차주는 그 전이라도 언제든 반환할 수 있다."
       },
       "source_coordinate_ids": [
         "coord.money-guarantee.civil-act-ko-0603"
@@ -209,11 +209,11 @@
     {
       "rule_id": "rule.money-guarantee.rule-interest-cap",
       "title_ko": "계약상 최고이자율",
-      "proposition_ko": "금전대차의 계약상 최고이자율은 현재 연 20퍼센트이며 계약 체결·갱신 시점에 따른 적용례를 확인해야 한다.",
+      "proposition_ko": "명칭과 관계없이 이자·수수료 등 실질 이자를 합산해 약정 당시 최고이자율을 넘는지 판단하고, 원본이 10만원 미만인지도 확인한다.",
       "norm": {
         "actor_ko": "금전대차의 채권자와 채무자",
         "conditions_ko": "약정이자와 수수료 등 실질 이자의 합계가 계약 체결·갱신 당시 최고이자율을 넘는지 판단하는 경우",
-        "legal_effect_ko": "금전대차의 계약상 최고이자율은 현재 연 20퍼센트이며 계약 체결·갱신 시점에 따른 적용례를 확인해야 한다."
+        "legal_effect_ko": "현재 최고이자율인 연 20퍼센트를 초과하는 약정 부분은 무효이고, 이미 지급한 초과이자는 원본에 충당되며 원본이 소멸한 뒤에는 반환을 청구할 수 있다."
       },
       "source_coordinate_ids": [
         "coord.money-guarantee.interest-limit-ko-0002",
@@ -225,11 +225,11 @@
     {
       "rule_id": "rule.money-guarantee.rule-payment-allocation",
       "title_ko": "일부 변제의 충당 순서",
-      "proposition_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에 따라 어느 채무가 소멸하는지가 달라진다.",
+      "proposition_ko": "변제액이 부족하면 먼저 유효한 충당 지정이 있는지 확인하고, 지정이 없으면 법정충당 순서와 비용·이자·원본 순서를 적용한다.",
       "norm": {
         "actor_ko": "일부 변제를 하는 채무자와 이를 받는 채권자",
         "conditions_ko": "여러 채무 또는 비용·이자·원본 전부를 소멸시키기에 부족한 금액을 변제하는 경우",
-        "legal_effect_ko": "여러 채무나 비용·이자·원본 중 일부만 갚는 경우 당사자 지정과 법정 순서에 따라 어느 채무가 소멸하는지가 달라진다."
+        "legal_effect_ko": "충당된 금액만 해당 채무 항목에서 소멸하고, 충당되지 않은 비용·이자·원본과 다른 채무는 잔액으로 남는다."
       },
       "source_coordinate_ids": [
         "coord.money-guarantee.civil-act-ko-0476",
@@ -241,11 +241,11 @@
     {
       "rule_id": "rule.money-guarantee.rule-guarantee-writing",
       "title_ko": "보증계약의 서면요건",
-      "proposition_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발생하고 전자적 형태 표시는 원칙적으로 효력이 없다.",
+      "proposition_ko": "보증의사가 보증인의 기명날인 또는 서명이 있는 서면에 표시되었는지와 보증인에게 불리한 변경도 같은 형식을 갖췄는지 판단한다.",
       "norm": {
         "actor_ko": "보증의사를 표시하는 보증인과 채권자",
         "conditions_ko": "보증인이 주채무를 보증하기로 하고 기명날인 또는 서명이 있는 서면으로 의사를 표시하는 경우",
-        "legal_effect_ko": "보증의사는 보증인의 기명날인 또는 서명이 있는 서면으로 표시되어야 효력이 발생하고 전자적 형태 표시는 원칙적으로 효력이 없다."
+        "legal_effect_ko": "서면요건을 갖추면 보증의 효력이 생기지만 전자적 형태만으로 표시하면 효력이 없고, 보증인이 이행한 범위에서는 형식 흠결을 이유로 무효를 주장할 수 없다."
       },
       "source_coordinate_ids": [
         "coord.money-guarantee.civil-act-ko-0428-02"
@@ -254,11 +254,11 @@
     {
       "rule_id": "rule.money-guarantee.rule-continuing-guarantee-cap",
       "title_ko": "근보증 최고액의 특정",
-      "proposition_ko": "불확정한 다수 채무를 보증하는 근보증은 최고액을 서면으로 특정하지 않으면 효력이 없다.",
+      "proposition_ko": "계속적 거래에서 생길 불확정한 다수 채무를 보증한다면 최고액이 서면으로 특정되었는지 판단한다.",
       "norm": {
         "actor_ko": "불확정한 다수 채무를 보증하는 근보증인과 채권자",
         "conditions_ko": "계속적 거래에서 생길 불확정한 다수 채무를 보증하면서 최고액을 정하는 경우",
-        "legal_effect_ko": "불확정한 다수 채무를 보증하는 근보증은 최고액을 서면으로 특정하지 않으면 효력이 없다."
+        "legal_effect_ko": "최고액을 서면으로 특정하지 않은 근보증은 효력이 없고, 특정했다면 약정한 최고액 범위에서 보증책임이 정해진다."
       },
       "source_coordinate_ids": [
         "coord.money-guarantee.civil-act-ko-0428-03"
@@ -267,11 +267,11 @@
     {
       "rule_id": "rule.money-guarantee.rule-guarantee-scope",
       "title_ko": "보증채무의 범위",
-      "proposition_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지만 주채무보다 무거운 부담은 주채무 한도로 감축된다.",
+      "proposition_ko": "먼저 주채무와 그에 딸린 이자·위약금·손해배상의 범위를 확정하고, 보증인의 부담이 주채무보다 무거운지 비교한다.",
       "norm": {
         "actor_ko": "주채무를 보증한 보증인과 채권자",
         "conditions_ko": "보증 책임에 주채무의 이자·위약금·손해배상 등 종속 채무가 포함되는지 정하는 경우",
-        "legal_effect_ko": "보증채무는 원칙적으로 주채무의 이자·위약금·손해배상 등 종속 채무를 포함하지만 주채무보다 무거운 부담은 주채무 한도로 감축된다."
+        "legal_effect_ko": "보증책임에는 원칙적으로 주채무의 종속 채무가 포함되지만, 보증인의 부담이 주채무보다 무거우면 주채무의 한도로 줄어든다."
       },
       "source_coordinate_ids": [
         "coord.money-guarantee.civil-act-ko-0428",
@@ -282,11 +282,11 @@
     {
       "rule_id": "rule.money-guarantee.rule-general-prescription",
       "title_ko": "채권의 일반 소멸시효",
-      "proposition_ko": "민법상 채권의 일반 소멸시효는 10년이지만 채권 성질에 따른 단기시효·상사시효와 기산점을 별도로 확인해야 한다.",
+      "proposition_ko": "권리를 행사할 수 있었던 때를 특정한 뒤 해당 채권에 민법상 일반기간과 단기·상사 등 특별기간 중 무엇이 적용되는지 판단한다.",
       "norm": {
         "actor_ko": "민법상 채권을 행사하려는 채권자와 그 채무자",
         "conditions_ko": "권리를 행사할 수 있는 때부터 채권의 성질에 맞는 소멸시효기간을 계산하는 경우",
-        "legal_effect_ko": "민법상 채권의 일반 소멸시효는 10년이지만 채권 성질에 따른 단기시효·상사시효와 기산점을 별도로 확인해야 한다."
+        "legal_effect_ko": "민법상 채권은 특별한 기간이 적용되지 않는 한 10년간 행사하지 않으면 소멸시효가 완성한다."
       },
       "source_coordinate_ids": [
         "coord.money-guarantee.civil-act-ko-0162"
@@ -295,11 +295,11 @@
     {
       "rule_id": "rule.money-guarantee.rule-demand-six-months",
       "title_ko": "최고 후 6개월 내 후속조치",
-      "proposition_ko": "채무 이행을 요구하는 최고만으로 시효중단 효과가 영구히 유지되는 것은 아니고 6개월 안에 재판상 청구 등 후속 조치가 필요하다.",
+      "proposition_ko": "최고가 도달한 날부터 6개월 안에 재판상 청구·파산절차참가·화해를 위한 소환·임의출석·압류·가압류·가처분 중 하나가 이어졌는지 판단한다.",
       "norm": {
         "actor_ko": "시효 완성 전에 채무 이행을 최고한 채권자",
         "conditions_ko": "채무자에게 이행을 요구한 뒤 6개월 안에 재판상 청구·압류·가압류·가처분 등 후속조치를 하는지 판단하는 경우",
-        "legal_effect_ko": "채무 이행을 요구하는 최고만으로 시효중단 효과가 영구히 유지되는 것은 아니고 6개월 안에 재판상 청구 등 후속 조치가 필요하다."
+        "legal_effect_ko": "6개월 안에 법정 후속조치가 없으면 최고만으로는 시효중단의 효력이 없고, 적시에 후속조치를 하면 그 절차에 따른 중단효과를 확보할 수 있다."
       },
       "source_coordinate_ids": [
         "coord.money-guarantee.civil-act-ko-0174"
@@ -413,7 +413,7 @@
       "content_id": "content.bank-transfer-loan-or-gift",
       "content_type": "fact_branch",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "reviewed_at": "2026-07-23T02:20:00+00:00",
       "expires_at": "2026-10-21T00:00:00+00:00",
       "slug": "bank-transfer-loan-or-gift",
       "title_ko": "돈을 송금하면 자동으로 대여금이 되나",
@@ -474,7 +474,11 @@
       "hub_ids": [
         "hub.money-guarantee"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.loan-proof-vs-enforceable-title",
+        "content.loan-and-guarantee-evidence-checklist",
+        "content.when-payment-order-fits"
+      ],
       "lawyer_workspace_entry": {
         "question_ko": "돈을 송금하면 자동으로 대여금이 되나",
         "decision_facts_ko": [
@@ -489,13 +493,34 @@
         ],
         "href": "/ko/lawyer-workspace",
         "audience": "verified_attorney"
-      }
+      },
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.loan-proof-vs-enforceable-title",
+          "relation_type": "comparison",
+          "label_ko": "차용 증거와 집행권원 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.loan-and-guarantee-evidence-checklist",
+          "relation_type": "procedure",
+          "label_ko": "대여·보증 증거 점검"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.when-payment-order-fits",
+          "relation_type": "remedy",
+          "label_ko": "지급명령 선택 기준"
+        }
+      ],
+      "concept_ids": []
     },
     {
       "content_id": "content.loan-without-written-note",
       "content_type": "misconception_correction",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "reviewed_at": "2026-07-23T02:20:00+00:00",
       "expires_at": "2026-10-21T00:00:00+00:00",
       "slug": "loan-without-written-note",
       "title_ko": "차용증이 없으면 빌려준 돈을 받을 수 없나",
@@ -556,13 +581,38 @@
       "hub_ids": [
         "hub.money-guarantee"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.bank-transfer-loan-or-gift",
+        "content.loan-proof-vs-enforceable-title",
+        "content.loan-and-guarantee-evidence-checklist"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.bank-transfer-loan-or-gift",
+          "relation_type": "prerequisite",
+          "label_ko": "대여인지 증여인지 선행 판단"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.loan-proof-vs-enforceable-title",
+          "relation_type": "comparison",
+          "label_ko": "차용 증거와 집행권원 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.loan-and-guarantee-evidence-checklist",
+          "relation_type": "procedure",
+          "label_ko": "대여·보증 증거 점검"
+        }
+      ],
+      "concept_ids": []
     },
     {
       "content_id": "content.loan-without-repayment-date",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "reviewed_at": "2026-07-23T02:20:00+00:00",
       "expires_at": "2026-10-21T00:00:00+00:00",
       "slug": "loan-without-repayment-date",
       "title_ko": "갚는 날짜를 정하지 않고 빌려준 돈은 언제 청구하나",
@@ -622,13 +672,38 @@
       "hub_ids": [
         "hub.money-guarantee"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.bank-transfer-loan-or-gift",
+        "content.when-default-interest-starts",
+        "content.content-certified-demand-needs-followup"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.bank-transfer-loan-or-gift",
+          "relation_type": "prerequisite",
+          "label_ko": "대여 성립 선행 판단"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.when-default-interest-starts",
+          "relation_type": "deadline",
+          "label_ko": "지연손해금 기산점"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.content-certified-demand-needs-followup",
+          "relation_type": "remedy",
+          "label_ko": "최고 후 후속조치"
+        }
+      ],
+      "concept_ids": []
     },
     {
       "content_id": "content.private-loan-interest-limit",
       "content_type": "law_change",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "reviewed_at": "2026-07-23T02:20:00+00:00",
       "expires_at": "2026-10-21T00:00:00+00:00",
       "slug": "private-loan-interest-limit",
       "title_ko": "지인 간 돈거래 이자는 얼마까지 약정할 수 있나",
@@ -690,13 +765,38 @@
       "hub_ids": [
         "hub.money-guarantee"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.contractual-interest-vs-default-damages",
+        "content.when-default-interest-starts",
+        "content.partial-repayment-allocation"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.contractual-interest-vs-default-damages",
+          "relation_type": "comparison",
+          "label_ko": "약정이자와 지연손해금 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.when-default-interest-starts",
+          "relation_type": "deadline",
+          "label_ko": "지연손해금 기산점"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.partial-repayment-allocation",
+          "relation_type": "procedure",
+          "label_ko": "초과이자와 변제충당 계산"
+        }
+      ],
+      "concept_ids": []
     },
     {
       "content_id": "content.partial-repayment-allocation",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "reviewed_at": "2026-07-23T02:20:00+00:00",
       "expires_at": "2026-10-21T00:00:00+00:00",
       "slug": "partial-repayment-allocation",
       "title_ko": "일부만 갚았을 때 원금이 얼마나 남았나",
@@ -743,6 +843,14 @@
             "한 채무 안에 비용과 이자·원본이 함께 남아 있고 지급액이 전부를 없애지 못하면 원칙적으로 비용, 이자, 원본 순서로 충당합니다. 입금액을 원금에서 바로 빼면 잔액이 달라질 수 있습니다.",
             "당사자의 특별한 합의가 있는지, 일방 지정에 상대방이 지체 없이 이의하지 않아 묵시적 합의가 되었는지도 확인하고 시점별 계산표를 만듭니다."
           ]
+        },
+        {
+          "heading_ko": "숫자로 검산하는 세 가지 충당",
+          "paragraphs_ko": [
+            "비용 1만원, 이자 9만원, 원본 100만원이 남은 한 채무에 30만원을 갚으면 민법 제479조에 따라 비용 1만원, 이자 9만원, 원본 20만원에 차례로 충당되어 원본 80만원이 남습니다. 지급 전 합계 110만원에서 30만원을 빼면 총잔액도 80만원입니다.",
+            "같은 채권자에 대한 A채무 60만원과 B채무 40만원 중 채무자가 30만원을 갚으면서 B채무에 유효하게 지정하면 B채무는 10만원, A채무는 60만원이 남아 총잔액은 70만원입니다.",
+            "A채무 60만원과 B채무 40만원이 같은 날 이행기에 도달하고 변제이익도 같으며 어느 쪽도 지정하지 않은 채 30만원을 갚으면 민법 제477조에 따라 6대4 비율로 A에 18만원, B에 12만원이 충당되어 각각 42만원과 28만원, 합계 70만원이 남습니다."
+          ]
         }
       ],
       "rule_ids": [
@@ -760,7 +868,10 @@
       "hub_ids": [
         "hub.money-guarantee"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.contractual-interest-vs-default-damages",
+        "content.loan-and-guarantee-evidence-checklist"
+      ],
       "lawyer_workspace_entry": {
         "question_ko": "일부만 갚았을 때 원금이 얼마나 남았나",
         "decision_facts_ko": [
@@ -775,13 +886,28 @@
         ],
         "href": "/ko/lawyer-workspace",
         "audience": "verified_attorney"
-      }
+      },
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.contractual-interest-vs-default-damages",
+          "relation_type": "prerequisite",
+          "label_ko": "이자 항목의 법적 성격"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.loan-and-guarantee-evidence-checklist",
+          "relation_type": "procedure",
+          "label_ko": "입금·충당 증거 점검"
+        }
+      ],
+      "concept_ids": []
     },
     {
       "content_id": "content.guarantee-by-message-validity",
       "content_type": "misconception_correction",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "reviewed_at": "2026-07-23T02:20:00+00:00",
       "expires_at": "2026-10-21T00:00:00+00:00",
       "slug": "guarantee-by-message-validity",
       "title_ko": "메신저로 대신 갚겠다고 하면 보증이 성립하나",
@@ -841,13 +967,31 @@
       "hub_ids": [
         "hub.money-guarantee"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.loan-obligation-vs-guarantee-obligation",
+        "content.loan-and-guarantee-evidence-checklist"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.loan-obligation-vs-guarantee-obligation",
+          "relation_type": "comparison",
+          "label_ko": "주채무와 보증채무 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.loan-and-guarantee-evidence-checklist",
+          "relation_type": "procedure",
+          "label_ko": "보증 서면과 증거 점검"
+        }
+      ],
+      "concept_ids": []
     },
     {
       "content_id": "content.continuing-guarantee-maximum-amount",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "reviewed_at": "2026-07-23T02:20:00+00:00",
       "expires_at": "2026-10-21T00:00:00+00:00",
       "slug": "continuing-guarantee-maximum-amount",
       "title_ko": "앞으로 생길 모든 빚을 보증한다는 약정은 유효한가",
@@ -911,13 +1055,38 @@
       "hub_ids": [
         "hub.money-guarantee"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.guarantee-by-message-validity",
+        "content.loan-obligation-vs-guarantee-obligation",
+        "content.loan-and-guarantee-evidence-checklist"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.guarantee-by-message-validity",
+          "relation_type": "prerequisite",
+          "label_ko": "보증 서면요건 선행 판단"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.loan-obligation-vs-guarantee-obligation",
+          "relation_type": "comparison",
+          "label_ko": "주채무와 보증채무 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.loan-and-guarantee-evidence-checklist",
+          "relation_type": "procedure",
+          "label_ko": "근보증 문서 점검"
+        }
+      ],
+      "concept_ids": []
     },
     {
       "content_id": "content.scope-of-guarantee-debt",
       "content_type": "fact_branch",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "reviewed_at": "2026-07-23T02:20:00+00:00",
       "expires_at": "2026-10-21T00:00:00+00:00",
       "slug": "scope-of-guarantee-debt",
       "title_ko": "보증인은 원금만 갚으면 되는가",
@@ -982,7 +1151,11 @@
       "hub_ids": [
         "hub.money-guarantee"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.continuing-guarantee-maximum-amount",
+        "content.loan-obligation-vs-guarantee-obligation",
+        "content.loan-and-guarantee-evidence-checklist"
+      ],
       "lawyer_workspace_entry": {
         "question_ko": "보증인은 원금만 갚으면 되는가",
         "decision_facts_ko": [
@@ -997,13 +1170,34 @@
         ],
         "href": "/ko/lawyer-workspace",
         "audience": "verified_attorney"
-      }
+      },
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.continuing-guarantee-maximum-amount",
+          "relation_type": "prerequisite",
+          "label_ko": "근보증 최고액 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.loan-obligation-vs-guarantee-obligation",
+          "relation_type": "comparison",
+          "label_ko": "주채무와 보증채무 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.loan-and-guarantee-evidence-checklist",
+          "relation_type": "procedure",
+          "label_ko": "보증 범위 증거 점검"
+        }
+      ],
+      "concept_ids": []
     },
     {
       "content_id": "content.content-certified-letter-prescription",
       "content_type": "misconception_correction",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "reviewed_at": "2026-07-23T02:20:00+00:00",
       "expires_at": "2026-10-21T00:00:00+00:00",
       "slug": "content-certified-letter-prescription",
       "title_ko": "내용증명을 보내면 소멸시효가 자동으로 다시 시작하나",
@@ -1066,13 +1260,38 @@
       "hub_ids": [
         "hub.money-guarantee"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.certified-demand-vs-judicial-claim",
+        "content.content-certified-demand-needs-followup",
+        "content.when-payment-order-fits"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.certified-demand-vs-judicial-claim",
+          "relation_type": "comparison",
+          "label_ko": "최고와 재판상 청구 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.content-certified-demand-needs-followup",
+          "relation_type": "deadline",
+          "label_ko": "6개월 후속조치 기한"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.when-payment-order-fits",
+          "relation_type": "remedy",
+          "label_ko": "지급명령 선택 기준"
+        }
+      ],
+      "concept_ids": []
     },
     {
       "content_id": "content.loan-and-guarantee-evidence-checklist",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
+      "reviewed_at": "2026-07-23T02:20:00+00:00",
       "expires_at": "2026-10-21T00:00:00+00:00",
       "slug": "loan-and-guarantee-evidence-checklist",
       "title_ko": "대여금·보증 분쟁 증거 체크리스트",
@@ -1157,7 +1376,12 @@
       "hub_ids": [
         "hub.money-guarantee"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.bank-transfer-loan-or-gift",
+        "content.loan-proof-vs-enforceable-title",
+        "content.when-payment-order-fits",
+        "content.provisional-attachment-before-judgment"
+      ],
       "lawyer_workspace_entry": {
         "question_ko": "대여금·보증 분쟁 증거 체크리스트",
         "decision_facts_ko": [
@@ -1175,7 +1399,53 @@
         ],
         "href": "/ko/lawyer-workspace",
         "audience": "verified_attorney"
-      }
+      },
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.bank-transfer-loan-or-gift",
+          "relation_type": "prerequisite",
+          "label_ko": "대여 성립 자료 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.loan-proof-vs-enforceable-title",
+          "relation_type": "comparison",
+          "label_ko": "증거와 집행권원 구분"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.when-payment-order-fits",
+          "relation_type": "remedy",
+          "label_ko": "지급명령 선택 기준"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.provisional-attachment-before-judgment",
+          "relation_type": "remedy",
+          "label_ko": "판결 전 보전처분"
+        }
+      ],
+      "concept_ids": []
+    }
+  ],
+  "concept_link_candidates": [
+    {
+      "candidate_id": "candidate.money-guarantee.legal-principal",
+      "preferred_term_ko": "법률상 원본(원금)",
+      "proposed_concept_id": "concept.kr.obligations.principal",
+      "status": "quality_review_requested",
+      "target_content_ids": [
+        "content.partial-repayment-allocation",
+        "content.private-loan-interest-limit",
+        "content.scope-of-guarantee-debt"
+      ],
+      "source_coordinate_ids": [
+        "coord.money-guarantee.civil-act-ko-0479",
+        "coord.money-guarantee.interest-limit-ko-0002",
+        "coord.money-guarantee.interest-limit-ko-0003"
+      ],
+      "note_ko": "민법과 이자제한법이 사용하는 원본은 일상어 원금과 구별해 설명할 개념 정본이 필요하다. 품질 검토와 개념 식별자 승인이 끝나기 전에는 ConceptCard나 concept 관계를 이 주제에서 임의 생성하지 않는다."
     }
   ]
 }

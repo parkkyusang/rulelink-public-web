@@ -105,6 +105,14 @@
     {
       "topic_id": "hub.workplace-harassment",
       "file": "workplace-harassment.json"
+    },
+    {
+      "topic_id": "hub.school-violence",
+      "file": "school-violence.json"
+    },
+    {
+      "topic_id": "hub.domestic-violence-stalking",
+      "file": "domestic-violence-stalking.json"
     }
   ],
   "concepts": [
@@ -153,6 +161,8 @@
     "hub.auto-accident-insurance",
     "hub.employment-exit",
     "hub.industrial-accident",
-    "hub.workplace-harassment"
+    "hub.workplace-harassment",
+    "hub.school-violence",
+    "hub.domestic-violence-stalking"
   ]
 }
