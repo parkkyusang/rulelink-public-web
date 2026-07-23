@@ -18,12 +18,14 @@ const statuses = new Set([
   'needs_rework',
   'blocked',
   'integrated',
+  'merged_pending_publication',
   'superseded',
   'withdrawn',
 ]);
 const modes = new Set(['new_topic', 'existing_topic_revision']);
 const activeWipStatuses = new Set(['claimed', 'in_progress', 'pr_open']);
-const terminalStatuses = new Set(['integrated', 'superseded', 'withdrawn']);
+const terminalStatuses = new Set(['integrated', 'merged_pending_publication', 'superseded', 'withdrawn']);
+const openPrStatuses = new Set(['pr_open', 'ready_for_integration', 'needs_rework', 'migration_required', 'blocked']);
 const freshnessStatuses = new Set([
   'current',
   'rebind_before_integration',
@@ -45,7 +47,7 @@ export const OWNER_ROLE_CONTRACTS = {
   reader_research: {assignment: 'read_only', owned_paths: [], forbidden_paths: ['**/*']},
   quality_governance: {assignment: 'governance_contracts', owned_paths: ['artifacts/publication/production-queue.json', 'web/rulelink_public_next/scripts/*publication*.mjs', 'web/rulelink_public_next/scripts/*publication*.test.mjs'], forbidden_paths: ['artifacts/publication/topics/*.json', 'artifacts/publication/current/**', 'artifacts/publication/snapshots/**', 'artifacts/publication/release.json']},
   runtime_design: {assignment: 'runtime_design', owned_paths: ['web/rulelink_public_next/src/**', 'web/rulelink_public_next/scripts/*runtime*.test.mjs', 'web/rulelink_public_next/scripts/*knowledge*.test.mjs'], forbidden_paths: ['artifacts/publication/topics/*.json', 'artifacts/publication/current/**', 'artifacts/publication/snapshots/**']},
-  content_production: {assignment: 'topic_handoff', owned_paths: ['artifacts/publication/topics/<topic>.json', 'web/rulelink_public_next/scripts/<topic>-topic-handoff.test.mjs'], forbidden_paths: ['artifacts/publication/current/**', 'artifacts/publication/snapshots/**', 'artifacts/publication/manifest.json', 'artifacts/publication/release.json']},
+  content_production: {assignment: 'topic_handoff', owned_paths: ['artifacts/publication/topics/<topic>.json', 'web/rulelink_public_next/scripts/<topic>-topic-*.test.mjs'], forbidden_paths: ['artifacts/publication/current/**', 'artifacts/publication/snapshots/**', 'artifacts/publication/manifest.json', 'artifacts/publication/release.json']},
   migrate_publication: {assignment: 'publication_migration', owned_paths: ['artifacts/publication/topics/*.json', 'artifacts/publication/current/**', 'artifacts/publication/snapshots/**', 'artifacts/publication/manifest.json'], forbidden_paths: ['artifacts/publication/release.json']},
   release: {assignment: 'release', owned_paths: ['artifacts/publication/release.json', 'web/rulelink_public_next/publication.json'], forbidden_paths: ['artifacts/publication/topics/*.json']},
   source_maintenance: {assignment: 'external_repository', owned_paths: [], forbidden_paths: ['**/*']},
@@ -246,6 +248,13 @@ export function validateProductionQueue(queue, {publishedBundle = null} = {}) {
       if (item.source_freshness?.status !== 'current') errors.push(`${label}의 integrated 상태에는 current 근거가 필요합니다.`);
       if (item.integration_order !== null) errors.push(`${label}의 integrated 상태에는 integration_order가 null이어야 합니다.`);
     }
+    if (item.status === 'merged_pending_publication') {
+      const required = ['current_bundle', 'new_immutable_snapshot', 'migrate_publication'];
+      if (item.source_freshness?.status !== 'current') errors.push(`${label}의 merged_pending_publication 상태에는 current 근거가 필요합니다.`);
+      if (item.integration_order !== null) errors.push(`${label}의 merged_pending_publication 상태에는 integration_order가 null이어야 합니다.`);
+      if (JSON.stringify(item.integrate_requires) !== JSON.stringify(required)) errors.push(`${label}.integrate_requires는 공개 승격 요건 3개를 요구해야 합니다.`);
+      if (item.direct_merge !== undefined) errors.push(`${label}의 merged_pending_publication에는 direct_merge를 사용하지 않습니다.`);
+    }
 
     if (!item.official_url_check || item.official_url_check.status !== 'passed') {
       errors.push(`${label}.official_url_check는 passed여야 합니다.`);
@@ -289,7 +298,7 @@ export function validateProductionQueue(queue, {publishedBundle = null} = {}) {
       if (!Array.isArray(item.supersedes_prs)) {
         errors.push(`${label}.supersedes_prs는 배열이어야 합니다.`);
       } else {
-        if (item.status !== 'integrated') errors.push(`${label}.supersedes_prs는 integrated 항목에만 사용할 수 있습니다.`);
+        if (!['integrated', 'merged_pending_publication'].includes(item.status)) errors.push(`${label}.supersedes_prs는 integrated 또는 merged_pending_publication 항목에만 사용할 수 있습니다.`);
         const seenSuperseded = new Set();
         for (const supersededPr of item.supersedes_prs) {
           if (!isPositiveInteger(supersededPr)) {
@@ -367,13 +376,13 @@ if (item.status === 'migration_required' && !publishedHubIds.has(item.topic_id))
   for (const pr of byPr.keys()) visit(pr);
 
   const summary = queue.audit_summary || {};
-  const openContentPrs = queue.items.filter(item => !terminalStatuses.has(item.status)).length;
+  const openContentPrs = queue.items.filter(item => openPrStatuses.has(item.status)).length;
   if (summary.open_content_prs !== openContentPrs) errors.push(`audit_summary.open_content_prs와 실제 열린 상태 수가 다릅니다: expected=${openContentPrs}, actual=${String(summary.open_content_prs)}`);
   const sourceTotal = queue.items.reduce((sum, item) => sum + (item.counts?.sources || 0), 0);
   if (summary.official_source_references_checked !== sourceTotal) {
     errors.push('audit_summary.official_source_references_checked와 대기열 근거 합계가 다릅니다.');
   }
-  const statusSummaryKeys = ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated'];
+  const statusSummaryKeys = ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated', 'merged_pending_publication'];
   for (const status of statusSummaryKeys) {
     const actual = queue.items.filter(item => item.status === status).length;
     if (summary[status] !== actual) {
