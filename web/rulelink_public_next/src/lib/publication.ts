@@ -6,6 +6,7 @@ import {buildKnowledgeHubConnections} from '@/lib/knowledge-hub-connections';
 import {buildKnowledgeRelatedPresentation} from '@/lib/knowledge-relations';
 import {changeLifecycleOrder} from '@/lib/change-lifecycle';
 import {filterFreshPublications} from '@/lib/publication-freshness';
+import {resolveProvisionReadingCards} from '@/lib/publication-reading';
 
 import type {KnowledgeHubConnection} from '@/lib/knowledge-hub-connections';
 import type {KnowledgeRelatedSection} from '@/lib/knowledge-relations';
@@ -21,6 +22,7 @@ import type {
   PublicKnowledgeSource,
   PublicRuleCard,
   PublicScenarioBranch,
+  PublicProvisionReadingCard,
   PublicTopic,
   PublishedBundle,
   SourceAssertion,
@@ -238,10 +240,20 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
   hubs: PublicKnowledgeHub[];
   related: PublicKnowledgeEntry[];
   relatedSections: KnowledgeRelatedSection[];
+  provisionReadingCards: PublicProvisionReadingCard[];
 }> {
   const knowledge = (await loadPublishedBundle())?.knowledge;
-  if (!knowledge) return {concepts: [], rules: [], scenarios: [], scenarioRules: {}, sources: [], hubs: [], related: [], relatedSections: []};
+  if (!knowledge) return {concepts: [], rules: [], scenarios: [], scenarioRules: {}, sources: [], hubs: [], related: [], relatedSections: [], provisionReadingCards: []};
   const graph = resolveKnowledgeEntryGraph(knowledge, entry);
+  const provisionReadingCards = resolveProvisionReadingCards(entry, knowledge.provision_reading_cards ?? []);
+  const readingSourceIds = new Set(provisionReadingCards.flatMap(card => [
+    ...card.source_pinpoints.map(pinpoint => pinpoint.source_coordinate_id),
+    ...card.sections.flatMap(section => section.source_pinpoints.map(pinpoint => pinpoint.source_coordinate_id)),
+  ]));
+  const resolvedSources = [
+    ...graph.sources,
+    ...knowledge.sources.filter(source => readingSourceIds.has(source.coordinate_id)),
+  ].filter((source, index, items) => items.findIndex(candidate => candidate.coordinate_id === source.coordinate_id) === index);
   const ruleById = new Map(graph.rules.map(rule => [rule.rule_id, rule]));
   const scenarioRules = Object.fromEntries(
     graph.scenarios.map(scenario => [
@@ -262,10 +274,11 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
     rules: graph.rules,
     scenarios: graph.scenarios,
     scenarioRules,
-    sources: graph.sources,
+    sources: resolvedSources,
     hubs: graph.hubs,
     related,
     relatedSections,
+    provisionReadingCards,
   };
 }
 
