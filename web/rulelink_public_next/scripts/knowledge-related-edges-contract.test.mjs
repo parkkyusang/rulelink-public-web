@@ -145,14 +145,15 @@ test('현재 승인 정본의 기존 필드 형식은 snapshot 승격 뒤에도 
   });
 });
 
-test('상세·허브 화면은 타입 구획을 사용하되 기존 무타입 문구를 보존한다', async () => {
+test('상세 화면은 연결 독해 컴포넌트를 사용하고 허브는 타입 관계를 표시한다', async () => {
   const [detailPage, hubPage] = await Promise.all([
     readFile(path.join(appRoot, 'app', 'ko', 'knowledge', '[slug]', 'page.tsx'), 'utf8'),
     readFile(path.join(appRoot, 'app', 'ko', 'hubs', '[slug]', 'page.tsx'), 'utf8'),
   ]);
-  assert.match(detailPage, /relatedSections\.length/u);
-  assert.match(detailPage, /section\.label_ko/u);
-  assert.match(detailPage, /같이 확인할 내용/u);
+  assert.match(detailPage, /KnowledgeReadingPath/u);
+  assert.match(detailPage, /readingPathSections/u);
+  assert.match(detailPage, /href="#reading-path">다음 읽기/u);
+  assert.doesNotMatch(detailPage, /같이 확인할 내용/u);
   assert.match(hubPage, /connection\.relationTypes\.map\(knowledgeRelationTypeLabelKo\)/u);
   assert.match(hubPage, /함께 확인할 주제/u);
 });

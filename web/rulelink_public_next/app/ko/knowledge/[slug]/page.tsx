@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
 import {KnowledgeActionWorkspace} from '@/components/knowledge-action-workspace';
+import {KnowledgeReadingPath} from '@/components/knowledge-reading-path';
 import {LegalConceptLayer, LegalConceptText} from '@/components/legal-concept-text';
 import {OfficialSourceJump} from '@/components/official-source-jump';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
@@ -45,7 +46,7 @@ export default async function KnowledgePage({params}: Props) {
   const {slug} = await params;
   const entry = await findKnowledgeEntry(slug);
   if (!entry) notFound();
-  const {concepts, rules, scenarios, scenarioRules, sources, hubs, related, relatedSections} = await knowledgeDetail(entry);
+  const {concepts, rules, scenarios, scenarioRules, sources, hubs, readingPathSections} = await knowledgeDetail(entry);
   const canonicalUrl = `${site.url}/ko/knowledge/${entry.slug}`;
   const officialSources = sources.flatMap(source => {
     const url = browserOfficialSourceUrl(source) ?? source.official_url;
@@ -111,6 +112,7 @@ export default async function KnowledgePage({params}: Props) {
         <a href="#rules">적용 법리</a>
         {scenarios.length ? <a href="#scenarios">결론 사실</a> : null}
         <a href="#actions">할 일과 자료</a>
+        {readingPathSections.length ? <a href="#reading-path">다음 읽기</a> : null}
         <OfficialSourceJump targetId="sources" />
       </nav>
 
@@ -234,21 +236,7 @@ export default async function KnowledgePage({params}: Props) {
         </aside>
       </section>
 
-      {relatedSections.length ? relatedSections.map(section => (
-        <section className="relatedSection" key={section.key}>
-          <h2>{section.label_ko}</h2>
-          <div className="relatedGrid">
-            {section.entries.map(item => <a href={`/ko/knowledge/${item.slug}`} key={item.content_id}><strong>{item.title_ko}</strong><span>내용 보기 →</span></a>)}
-          </div>
-        </section>
-      )) : related.length ? (
-        <section className="relatedSection">
-          <h2>같이 확인할 내용</h2>
-          <div className="relatedGrid">
-            {related.map(item => <a href={`/ko/knowledge/${item.slug}`} key={item.content_id}><strong>{item.title_ko}</strong><span>내용 보기 →</span></a>)}
-          </div>
-        </section>
-      ) : null}
+      <KnowledgeReadingPath currentTitle={entry.title_ko} sections={readingPathSections} />
       </main>
     </LegalConceptLayer>
   );
