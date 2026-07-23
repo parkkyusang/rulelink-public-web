@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {execFile} from 'node:child_process';
 import {mkdir, mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
@@ -8,7 +9,13 @@ import test from 'node:test';
 
 import {
   OWNER_ROLE_CONTRACTS,
+  PRODUCTION_WORK_CONTRACTS,
+  buildPublicationStatusFromBundle,
+  appendPrerequisiteGateReceipts,
+  appendReleaseCheckReceipts,
+  appendQueueHeadReceipts,
   appendQueueItemRegistrations,
+  appendQueuePrBindings,
   compareQueueCurrentPublication,
   deriveCurrentPublication,
   inspectMigrationCommit,
@@ -18,6 +25,7 @@ import {
   synchronizeQueueItemRegistryFile,
   topicReceipt,
   updateQueueCurrentPublication,
+  verifyProductionQueueExternalEvidence,
   validateProductionQueue as validateProductionQueueRaw,
   validateQueueItemRegistry,
 } from './validate-publication-production-queue.mjs';
@@ -63,6 +71,154 @@ function refreshSummary(value) {
 
 function validateProductionQueue(value, options = {}) {
   return validateProductionQueueRaw(value, {itemRegistry: registry, ...options});
+}
+
+function validateWorkQueue(value, itemRegistry) {
+  return validateProductionQueueRaw(value, {...publicationEvidence, itemRegistry});
+}
+
+function plannedAuthorityWork({
+  workId = 'reader-backfill-crime-victim-wave1',
+} = {}) {
+  const contract = PRODUCTION_WORK_CONTRACTS[workId];
+  assert.ok(contract, `회귀시험 production work contract 누락: ${workId}`);
+  const value = clone(queue);
+  value.items.push({
+    queue_id: `publication-work-${workId}`,
+    work_id: workId,
+    title_ko: '조문 읽기 정본 백필 회귀시험',
+    owner_role: 'content_production',
+    topic_id: contract.topic_id,
+    topic_file: contract.topic_file,
+    test_file: contract.test_file,
+    change_mode: contract.change_mode,
+    status: 'planned',
+    counts: clone(contract.counts),
+    quality_targets: clone(contract.quality_targets),
+    prerequisite_gates: Object.entries(contract.prerequisite_gates).map(
+      ([gateId, gate]) => ({
+        gate_id: gateId,
+        gate_kind: gate.gate_kind,
+        owner_role: gate.owner_role,
+        status: 'pending',
+      }),
+    ),
+    release_checks: contract.release_check_ids.map(
+      checkId => ({check_id: checkId, status: 'pending'}),
+    ),
+    depends_on_prs: [],
+    depends_on_work_ids: clone(contract.depends_on_work_ids),
+    integration_order: null,
+    direct_merge: false,
+    integrate_requires: [
+      'current_bundle',
+      'new_immutable_snapshot',
+      'migrate_publication',
+    ],
+    official_url_check: {status: 'passed', referenced_count: contract.counts.sources},
+    source_freshness: {status: 'current', mismatch_count: 0},
+    integration_checks: ['선행 정본 게이트가 모두 충족된 뒤 생산한다.'],
+  });
+  return refreshSummary(value);
+}
+
+const evidenceArtifactFixtures = new Map([
+  ['authority-db-regenerated', Buffer.from('authority db regenerated fixture', 'utf8')],
+  ['authority-citation-audit-approved', Buffer.from('authority citation audit fixture', 'utf8')],
+  ['canonical-url-regression', Buffer.from('canonical url regression fixture', 'utf8')],
+  ['official-url-check', Buffer.from('official url check fixture', 'utf8')],
+  ['responsive-smoke', Buffer.from('responsive smoke fixture', 'utf8')],
+  ['keyboard-reading-path', Buffer.from('keyboard reading path fixture', 'utf8')],
+  ['fragment-state-restore', Buffer.from('fragment state restore fixture', 'utf8')],
+  ['search-hub-sitemap-200', Buffer.from('search hub sitemap fixture', 'utf8')],
+]);
+
+function rawSha256(value) {
+  return createHash('sha256').update(value).digest('hex');
+}
+
+function publicationEvidenceRef(snapshotId = bundle.snapshot_id) {
+  const status = buildPublicationStatusFromBundle(bundle);
+  return [
+    `publication:${snapshotId}`,
+    `status-sha256:${topicReceipt(status)}`,
+    `bundle-sha256:${topicReceipt(bundle)}`,
+  ].join('@');
+}
+
+function satisfyWorkGates(item) {
+  const evidenceByGate = {
+    'publication.snapshot-023-released':
+      publicationEvidenceRef(),
+    'source-maintenance.db-pr-4':
+      `parkkyusang/liale-rulelink-ir#4@${'2'.repeat(40)}`,
+    'source-maintenance.db-pr-3-p2':
+      `parkkyusang/liale-rulelink-ir#3@${'3'.repeat(40)}`,
+    'authority-db.regenerated':
+      `artifact:authority-db-regenerated@sha256:${rawSha256(evidenceArtifactFixtures.get('authority-db-regenerated'))}`,
+    'authority-db.citation-audit-approved':
+      `artifact:authority-citation-audit-approved@sha256:${rawSha256(evidenceArtifactFixtures.get('authority-citation-audit-approved'))}`,
+    'quality.authority-reading-unit-schema':
+      `parkkyusang/rulelink-public-web#901@${'6'.repeat(40)}`,
+    'runtime.statute-reading-ui':
+      `parkkyusang/rulelink-public-web#902@${'7'.repeat(40)}`,
+    'wave1.crime-victim-complete':
+      `work:reader-backfill-crime-victim-wave1@migration_required:${'8'.repeat(64)}`,
+  };
+  for (const gate of item.prerequisite_gates) {
+    gate.status = 'satisfied';
+    gate.evidence_ref = evidenceByGate[gate.gate_id];
+  }
+}
+
+async function verifiedEvidenceFor(value, itemRegistry = null) {
+  return verifyProductionQueueExternalEvidence(value, {
+    registry: itemRegistry,
+    fetchJson: async url => {
+      if (url.endsWith('/publication.json')) return buildPublicationStatusFromBundle(bundle);
+      const match = /repos\/([^/]+\/[^/]+)\/pulls\/(\d+)$/u.exec(url);
+      assert.ok(match, `알 수 없는 외부 조회 fixture: ${url}`);
+      const [, repository, prNumber] = match;
+      const byPull = {
+        'parkkyusang/liale-rulelink-ir#4': {
+          head: '2'.repeat(40),
+          merge: 'a'.repeat(40),
+        },
+        'parkkyusang/liale-rulelink-ir#3': {
+          head: '3'.repeat(40),
+          merge: 'b'.repeat(40),
+        },
+        'parkkyusang/rulelink-public-web#901': {
+          head: 'c'.repeat(40),
+          merge: '6'.repeat(40),
+        },
+        'parkkyusang/rulelink-public-web#902': {
+          head: 'd'.repeat(40),
+          merge: '7'.repeat(40),
+        },
+      };
+      const fixture = byPull[`${repository}#${prNumber}`];
+      assert.ok(fixture, `알 수 없는 PR fixture: ${repository}#${prNumber}`);
+      return {
+        merged_at: '2026-07-23T00:00:00Z',
+        head: {sha: fixture.head},
+        merge_commit_sha: fixture.merge,
+      };
+    },
+    readFile: async (filePath, ...args) => {
+      const normalized = String(filePath).replaceAll('\\', '/');
+      for (const [artifactId, payload] of evidenceArtifactFixtures) {
+        if (normalized.endsWith(`/${artifactId}.json`)) return payload;
+      }
+      return readFile(filePath, ...args);
+    },
+    execFile: async () => ({stdout: '', stderr: ''}),
+  });
+}
+
+async function appendVerifiedGates(itemRegistry, value) {
+  const verifiedEvidence = await verifiedEvidenceFor(value, itemRegistry);
+  return appendPrerequisiteGateReceipts(itemRegistry, value, {verifiedEvidence});
 }
 
 function migrationEvidence(value, overrides = {}) {
@@ -971,4 +1127,429 @@ test('변호사 작업공간 제품 게이트는 이번 구현이 아닌 후속 
     typed_cta_candidate_count: 4,
     depends_on: 'attorney-workspace-typed-migration',
   }]);
+});
+
+test('PR 전 planned 작업은 불변 work_id로 등록하고 PR 번호·head를 요구하지 않는다', () => {
+  const value = plannedAuthorityWork();
+  const workRegistry = appendQueueItemRegistrations(registry, value);
+  assert.deepEqual(
+    validateWorkQueue(value, workRegistry),
+    [],
+  );
+  const registration = workRegistry.registrations.at(-1);
+  assert.equal(registration.work_id, 'reader-backfill-crime-victim-wave1');
+  assert.equal(registration.pr_number, undefined);
+  assert.equal(registration.queue_id, 'publication-work-reader-backfill-crime-victim-wave1');
+});
+
+test('planned 이후에는 모든 구조화 선행 게이트가 증거와 함께 충족되어야 한다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  item.status = 'claimed';
+  refreshSummary(value);
+  const workRegistry = appendQueueItemRegistrations(registry, value);
+  assert.ok(
+    validateWorkQueue(value, workRegistry)
+      .some(error => error.includes('모든 선행 게이트가 충족되기 전 claimed')),
+  );
+
+  satisfyWorkGates(item);
+  const gatedRegistry = await appendVerifiedGates(workRegistry, value);
+  assert.deepEqual(
+    validateWorkQueue(value, gatedRegistry),
+    [],
+  );
+});
+
+test('pending gate는 blocked·needs_rework 기록을 허용하지만 claimed·pr_open 진입은 차단한다', () => {
+  for (const status of ['blocked', 'needs_rework']) {
+    const value = plannedAuthorityWork();
+    const item = value.items.at(-1);
+    item.status = status;
+    item.blocking_reason_ko = 'authority 선행 게이트 미완료';
+    refreshSummary(value);
+    const workRegistry = appendQueueItemRegistrations(registry, value);
+    assert.deepEqual(validateWorkQueue(value, workRegistry), []);
+  }
+
+  const claimed = plannedAuthorityWork();
+  claimed.items.at(-1).status = 'claimed';
+  refreshSummary(claimed);
+  const claimedRegistry = appendQueueItemRegistrations(registry, claimed);
+  assert.ok(
+    validateWorkQueue(claimed, claimedRegistry)
+      .some(error => error.includes('모든 선행 게이트가 충족되기 전 claimed')),
+  );
+});
+
+test('외부 PR 게이트는 저장소·PR·감사 head가 모두 있는 증거만 수락한다', () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  satisfyWorkGates(item);
+  item.prerequisite_gates.find(gate => gate.gate_kind === 'external_pr').evidence_ref =
+    'https://github.com/parkkyusang/liale-rulelink-ir/pull/4';
+  const workRegistry = appendQueueItemRegistrations(registry, value);
+  assert.ok(
+    validateWorkQueue(value, workRegistry)
+      .some(error => error.includes('owner/repo#PR@40SHA')),
+  );
+});
+
+test('형식상 맞는 satisfied gate도 owner 역할의 append-only 영수증 없이는 통과하지 않는다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  satisfyWorkGates(item);
+  item.status = 'claimed';
+  refreshSummary(value);
+  const registered = appendQueueItemRegistrations(registry, value);
+  assert.ok(
+    validateWorkQueue(value, registered)
+      .some(error => error.includes('소유자 영수증이 없습니다')),
+  );
+  assert.throws(
+    () => appendPrerequisiteGateReceipts(registered, value),
+    /실제 외부 사실 검증 없이/u,
+  );
+  const gated = await appendVerifiedGates(registered, value);
+  assert.deepEqual(validateWorkQueue(value, gated), []);
+
+  const missingFinalReceipt = clone(gated);
+  delete missingFinalReceipt.prerequisite_gate_receipt;
+  assert.ok(
+    validateQueueItemRegistry(missingFinalReceipt, value)
+      .some(error => error.includes('선행 게이트 최종 영수증이 필요합니다')),
+  );
+});
+
+test('실제 PR identity는 한 번만 결박하고 정상 추가 head는 append-only 감사 이력으로 보존한다', async () => {
+  const planned = plannedAuthorityWork();
+  const registered = appendQueueItemRegistrations(registry, planned);
+  const opened = clone(planned);
+  const item = opened.items.at(-1);
+  satisfyWorkGates(item);
+  item.status = 'pr_open';
+  item.pr_number = 999;
+  item.branch = 'codex/content-crime-victim-reader-backfill-20260723';
+  item.head_sha = 'a'.repeat(40);
+  refreshSummary(opened);
+
+  assert.ok(
+    validateWorkQueue(opened, registered)
+      .some(error => error.includes('PR 결박이 registry에 없습니다')),
+  );
+  const gated = await appendVerifiedGates(registered, opened);
+  const bound = appendQueuePrBindings(gated, opened);
+  assert.ok(
+    validateWorkQueue(opened, bound)
+      .some(error => error.includes('현재 head 감사 영수증이 없습니다')),
+  );
+  const audited = appendQueueHeadReceipts(bound, opened);
+  assert.deepEqual(validateWorkQueue(opened, audited), []);
+  assert.equal(bound.pr_bindings.length, 1);
+  assert.equal(bound.pr_bindings[0].work_id, item.work_id);
+  assert.equal(bound.pr_bindings[0].pr_number, 999);
+  assert.equal(audited.head_receipts.length, 1);
+
+  const updated = clone(opened);
+  updated.items.at(-1).head_sha = 'b'.repeat(40);
+  const updatedRegistry = appendQueueHeadReceipts(audited, updated, {previousRegistry: audited});
+  assert.deepEqual(validateWorkQueue(updated, updatedRegistry), []);
+  assert.equal(updatedRegistry.head_receipts.length, 2);
+  assert.equal(updatedRegistry.head_receipts[0].head_sha, 'a'.repeat(40));
+  assert.equal(updatedRegistry.head_receipts[1].head_sha, 'b'.repeat(40));
+
+  const rewrittenHistory = clone(updatedRegistry);
+  rewrittenHistory.head_receipts[0].head_sha = 'c'.repeat(40);
+  assert.ok(
+    validateQueueItemRegistry(rewrittenHistory, updated, {previousRegistry: updatedRegistry})
+      .some(error => error.includes('직전 head 영수증을 바꿀 수 없습니다')),
+  );
+});
+
+test('PR 결박과 head 이력이 있으면 각 최종 영수증 필드는 필수다', async () => {
+  const planned = plannedAuthorityWork();
+  const opened = clone(planned);
+  const item = opened.items.at(-1);
+  satisfyWorkGates(item);
+  item.status = 'pr_open';
+  item.pr_number = 999;
+  item.branch = PRODUCTION_WORK_CONTRACTS[item.work_id].branch;
+  item.head_sha = 'a'.repeat(40);
+  refreshSummary(opened);
+  const registered = appendQueueItemRegistrations(registry, planned);
+  const gated = await appendVerifiedGates(registered, opened);
+  const bound = appendQueuePrBindings(gated, opened);
+  const audited = appendQueueHeadReceipts(bound, opened);
+
+  const missingBindingReceipt = clone(audited);
+  delete missingBindingReceipt.pr_binding_receipt;
+  assert.ok(
+    validateQueueItemRegistry(missingBindingReceipt, opened)
+      .some(error => error.includes('PR 결박 최종 영수증이 필요합니다')),
+  );
+  const missingHeadReceipt = clone(audited);
+  delete missingHeadReceipt.head_receipt;
+  assert.ok(
+    validateQueueItemRegistry(missingHeadReceipt, opened)
+      .some(error => error.includes('head 최종 영수증이 필요합니다')),
+  );
+});
+
+test('품질 목표는 개선 방향이어야 하고 release 완료에는 전부 통과한 증거가 필요하다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  item.quality_targets.duplicate_rule_after = 3;
+  let workRegistry = appendQueueItemRegistrations(registry, value);
+  assert.ok(
+    validateWorkQueue(value, workRegistry)
+      .some(error => error.includes('duplicate_rule_after가 duplicate_rule_before보다 커질 수 없습니다')),
+  );
+
+  item.quality_targets.duplicate_rule_after = 0;
+  satisfyWorkGates(item);
+  item.status = 'integrated';
+  item.pr_number = 999;
+  item.branch = 'codex/content-crime-victim-reader-backfill-20260723';
+  item.head_sha = 'a'.repeat(40);
+  item.source_freshness.status = 'current';
+  refreshSummary(value);
+  workRegistry = await appendVerifiedGates(workRegistry, value);
+  workRegistry = appendQueuePrBindings(workRegistry, value);
+  assert.ok(
+    validateWorkQueue(value, workRegistry)
+      .some(error => error.includes('모든 release check 증거가 통과되기 전 integrated')),
+  );
+});
+
+test('work_id 의존 대상 누락과 순환을 차단한다', () => {
+  const value = plannedAuthorityWork();
+  value.items.at(-1).depends_on_work_ids = ['missing-wave'];
+  let workRegistry = appendQueueItemRegistrations(registry, value);
+  assert.ok(
+    validateWorkQueue(value, workRegistry)
+      .some(error => error.includes('선행 work_id가 대기열에 없습니다')),
+  );
+
+  const second = plannedAuthorityWork({
+    workId: 'reader-backfill-debt-enforcement-wave2',
+  }).items.at(-1);
+  value.items.at(-1).depends_on_work_ids = [second.work_id];
+  second.depends_on_work_ids = [value.items.at(-1).work_id];
+  value.items.push(second);
+  refreshSummary(value);
+  workRegistry = appendQueueItemRegistrations(registry, value);
+  assert.ok(
+    validateWorkQueue(value, workRegistry)
+      .some(error => error.includes('work_id 의존성 순환')),
+  );
+});
+
+test('Wave2는 Wave1 완료 전 claimed·in_progress·pr_open으로 진행할 수 없다', () => {
+  for (const status of ['claimed', 'in_progress', 'pr_open']) {
+    const value = plannedAuthorityWork();
+    const wave1 = value.items.at(-1);
+    const wave2 = plannedAuthorityWork({
+      workId: 'reader-backfill-debt-enforcement-wave2',
+    }).items.at(-1);
+    satisfyWorkGates(wave2);
+    wave2.status = status;
+    if (status === 'pr_open') {
+      wave2.pr_number = 1000;
+      wave2.branch = PRODUCTION_WORK_CONTRACTS[wave2.work_id].branch;
+      wave2.head_sha = 'd'.repeat(40);
+    }
+    value.items.push(wave2);
+    refreshSummary(value);
+    const workRegistry = appendQueueItemRegistrations(registry, value);
+    assert.ok(
+      validateWorkQueue(value, workRegistry)
+        .some(error => error.includes('완료되지 않은 선행 작업')),
+      `${status}에서 Wave1 미완료를 차단해야 합니다.`,
+    );
+    assert.equal(wave1.status, 'planned');
+  }
+});
+
+test('024 work contract는 필수 gate·품질 수치·release check 집합을 exact 고정한다', () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  item.prerequisite_gates.pop();
+  item.quality_targets.typed_relation_after = 0;
+  item.counts.authority_units = 0;
+  item.release_checks.pop();
+  const workRegistry = appendQueueItemRegistrations(registry, value);
+  const errors = validateWorkQueue(value, workRegistry);
+  assert.ok(errors.some(error => error.includes('필수 게이트 집합')));
+  assert.ok(errors.some(error => error.includes('quality_targets가 승인된 생산계약과 다릅니다')));
+  assert.ok(errors.some(error => error.includes('counts가 승인된 생산계약과 다릅니다')));
+  assert.ok(errors.some(error => error.includes('필수 운영검증 집합')));
+});
+
+test('완료 상태의 quality target은 실제 topic 측정값과 일치해야 한다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  satisfyWorkGates(item);
+  item.status = 'migration_required';
+  item.pr_number = 999;
+  item.branch = PRODUCTION_WORK_CONTRACTS[item.work_id].branch;
+  item.head_sha = 'a'.repeat(40);
+  refreshSummary(value);
+  let workRegistry = appendQueueItemRegistrations(registry, value);
+  workRegistry = await appendVerifiedGates(workRegistry, value);
+  workRegistry = appendQueuePrBindings(workRegistry, value);
+  workRegistry = appendQueueHeadReceipts(workRegistry, value);
+  const wrongMeasurements = new Map([[item.work_id, {
+    counts: clone(item.counts),
+    quality: {
+      duplicate_rule: 0,
+      blank_audience: 0,
+      copied_search: 0,
+      nonstandard_content_type: 0,
+      typed_relation: 0,
+    },
+  }]]);
+  assert.ok(
+    validateProductionQueueRaw(value, {
+      ...publicationEvidence,
+      itemRegistry: workRegistry,
+      workTopicMeasurements: wrongMeasurements,
+    }).some(error => error.includes('실제 topic 품질 수치')),
+  );
+});
+
+test('40·64자리 모양만 맞춘 외부 증거는 실제 조회 결과가 없으면 영수증으로 바뀌지 않는다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  const gate = item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'source-maintenance.db-pr-4',
+  );
+  gate.status = 'satisfied';
+  gate.evidence_ref = `parkkyusang/liale-rulelink-ir#4@${'2'.repeat(40)}`;
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      verifyReference: async () => 'f'.repeat(64),
+      fetchJson: async () => ({
+        merged_at: null,
+        head: {sha: '2'.repeat(40)},
+        merge_commit_sha: '3'.repeat(40),
+      }),
+    }),
+    /병합되지 않은 PR/u,
+  );
+});
+
+test('운영검증도 실제 산출물 검증 뒤 별도 append-only 영수증을 가져야 한다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  const check = item.release_checks.find(
+    candidate => candidate.check_id === 'official-urls-pass',
+  );
+  check.status = 'passed';
+  check.evidence_ref =
+    `artifact:official-url-check@sha256:${rawSha256(evidenceArtifactFixtures.get('official-url-check'))}`;
+  const registered = appendQueueItemRegistrations(registry, value);
+  assert.throws(
+    () => appendReleaseCheckReceipts(registered, value),
+    /실제 산출물 검증 없이/u,
+  );
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry: registered,
+      readFile: async () => Buffer.from('실제 해시가 다른 운영검증 산출물', 'utf8'),
+    }),
+    /증거 산출물 해시 불일치/u,
+  );
+
+  const verifiedEvidence = await verifiedEvidenceFor(value, registered);
+  const released = appendReleaseCheckReceipts(registered, value, {verifiedEvidence});
+  assert.deepEqual(validateWorkQueue(value, released), []);
+  assert.equal(released.release_check_receipts.length, 1);
+
+  const missingFinalReceipt = clone(released);
+  delete missingFinalReceipt.release_check_receipt;
+  assert.ok(
+    validateQueueItemRegistry(missingFinalReceipt, value)
+      .some(error => error.includes('운영검증 최종 영수증이 필요합니다')),
+  );
+});
+
+test('운영 출판 상태표와 전체 번들의 서로 다른 해시를 함께 검증한다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  const gate = item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'publication.snapshot-023-released',
+  );
+  gate.status = 'satisfied';
+  gate.evidence_ref = publicationEvidenceRef();
+
+  const verifiedEvidence = await verifyProductionQueueExternalEvidence(value, {
+    registry,
+    fetchJson: async url => {
+      assert.ok(url.endsWith('/publication.json'));
+      return buildPublicationStatusFromBundle(bundle);
+    },
+  });
+
+  assert.equal(verifiedEvidence.gateProofs.size, 1);
+  assert.match([...verifiedEvidence.gateProofs.values()][0], /^[0-9a-f]{64}$/u);
+});
+
+test('운영 출판 상태표가 현재 번들의 공개 투영과 다르면 검증을 거부한다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  const gate = item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'publication.snapshot-023-released',
+  );
+  gate.status = 'satisfied';
+  gate.evidence_ref = publicationEvidenceRef();
+  const mismatchedStatus = buildPublicationStatusFromBundle(bundle);
+  mismatchedStatus.counts.knowledge_entries += 1;
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: async () => mismatchedStatus,
+    }),
+    /운영 출판 표지가 현재 정본의 공개 상태와 다릅니다/u,
+  );
+});
+
+test('새 외부 증거가 없으면 네트워크·파일·Git 검증을 실행하지 않는다', async () => {
+  const value = plannedAuthorityWork();
+  const calls = {fetchJson: 0, readFile: 0, execFile: 0};
+  const verifiedEvidence = await verifyProductionQueueExternalEvidence(value, {
+    registry,
+    fetchJson: async () => {
+      calls.fetchJson += 1;
+      throw new Error('호출되면 안 되는 네트워크 검증');
+    },
+    readFile: async () => {
+      calls.readFile += 1;
+      throw new Error('호출되면 안 되는 파일 검증');
+    },
+    execFile: async () => {
+      calls.execFile += 1;
+      throw new Error('호출되면 안 되는 Git 검증');
+    },
+  });
+
+  assert.equal(verifiedEvidence.gateProofs.size, 0);
+  assert.equal(verifiedEvidence.releaseProofs.size, 0);
+  assert.deepEqual(calls, {fetchJson: 0, readFile: 0, execFile: 0});
+});
+
+test('운영 상태 투영은 라우트와 같은 기준시각 환경값을 사용한다', () => {
+  const previous = process.env.RULELINK_PUBLICATION_NOW;
+  const overriddenNow = '2027-01-01T00:00:00.000Z';
+  process.env.RULELINK_PUBLICATION_NOW = overriddenNow;
+  try {
+    assert.deepEqual(
+      buildPublicationStatusFromBundle(bundle),
+      buildPublicationStatusFromBundle(bundle, new Date(overriddenNow)),
+    );
+  } finally {
+    if (previous === undefined) delete process.env.RULELINK_PUBLICATION_NOW;
+    else process.env.RULELINK_PUBLICATION_NOW = previous;
+  }
 });
