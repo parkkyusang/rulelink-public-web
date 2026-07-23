@@ -266,7 +266,29 @@
       "registered_on": "2026-07-23",
       "previous_receipt": "b106154e15899a3dae90b690beb9b43099f33eb78c2d6c69a6bc9050022ff2a9",
       "receipt": "f9110d9a9672b55009ae582a100b60efd7e548c580710f448c19800d1d24fc95"
+    },
+    {
+      "sequence": 25,
+      "queue_id": "publication-work-reader-backfill-crime-victim-wave1",
+      "change_mode": "existing_topic_revision",
+      "topic_id": "hub.crime-victim-response",
+      "topic_file": "artifacts/publication/topics/crime-victim-response.json",
+      "work_id": "reader-backfill-crime-victim-wave1",
+      "registered_on": "2026-07-23",
+      "previous_receipt": "f9110d9a9672b55009ae582a100b60efd7e548c580710f448c19800d1d24fc95",
+      "receipt": "b0bcb1a42bb37a97c228fb1d459007773c21479a0287dd5806ec8720b1a1563e"
+    },
+    {
+      "sequence": 26,
+      "queue_id": "publication-work-reader-backfill-debt-enforcement-wave2",
+      "change_mode": "existing_topic_revision",
+      "topic_id": "hub.debt-enforcement",
+      "topic_file": "artifacts/publication/topics/debt-enforcement.json",
+      "work_id": "reader-backfill-debt-enforcement-wave2",
+      "registered_on": "2026-07-23",
+      "previous_receipt": "b0bcb1a42bb37a97c228fb1d459007773c21479a0287dd5806ec8720b1a1563e",
+      "receipt": "fd7aeb9ad518558b24fc4cbf7a172e8dbf3dd8fed07fae361521ff64800a3c68"
     }
   ],
-  "registry_receipt": "f9110d9a9672b55009ae582a100b60efd7e548c580710f448c19800d1d24fc95"
+  "registry_receipt": "fd7aeb9ad518558b24fc4cbf7a172e8dbf3dd8fed07fae361521ff64800a3c68"
 }

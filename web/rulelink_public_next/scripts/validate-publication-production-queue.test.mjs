@@ -89,6 +89,28 @@ function refreshSummary(value) {
   return value;
 }
 
+const productionWorkIds = new Set(Object.keys(PRODUCTION_WORK_CONTRACTS));
+const workQueueBaseline = refreshSummary({
+  ...clone(queue),
+  items: queue.items.filter(item => !productionWorkIds.has(item.work_id)),
+});
+const firstWorkRegistration = registry.registrations.findIndex(
+  item => productionWorkIds.has(item.work_id),
+);
+const workBaselineRegistrations = firstWorkRegistration < 0
+  ? registry.registrations
+  : registry.registrations.slice(0, firstWorkRegistration);
+assert.ok(
+  registry.registrations.slice(workBaselineRegistrations.length)
+    .every(item => productionWorkIds.has(item.work_id)),
+  '024 생산 work registration은 append-only registry의 마지막 연속 구간이어야 합니다.',
+);
+const workRegistryBaseline = {
+  ...clone(registry),
+  registrations: clone(workBaselineRegistrations),
+  registry_receipt: workBaselineRegistrations.at(-1)?.receipt ?? null,
+};
+
 function validateProductionQueue(value, options = {}) {
   return validateProductionQueueRaw(value, {itemRegistry: registry, ...options});
 }
@@ -102,7 +124,7 @@ function plannedAuthorityWork({
 } = {}) {
   const contract = PRODUCTION_WORK_CONTRACTS[workId];
   assert.ok(contract, `회귀시험 production work contract 누락: ${workId}`);
-  const value = clone(queue);
+  const value = clone(workQueueBaseline);
   value.items.push({
     queue_id: `publication-work-${workId}`,
     work_id: workId,
@@ -140,6 +162,10 @@ function plannedAuthorityWork({
     integration_checks: clone(contract.integration_checks),
   });
   return refreshSummary(value);
+}
+
+function appendWorkRegistrations(value) {
+  return appendQueueItemRegistrations(workRegistryBaseline, value);
 }
 
 const authorityEvidenceFixtures = createAuthorityEvidenceFixtures();
@@ -1002,11 +1028,20 @@ test('#105 정체성을 보존한 종료 이력과 #174 신규 대체 항목을 
   assert.equal(replacement.source_freshness.follow_up_owner_role, 'source_maintenance');
   assert.match(replacement.integration_checks.join(' '), /023 publication migration/u);
 
-  const registration = registry.registrations.at(-1);
+  const registration = registry.registrations.find(
+    entry => entry.queue_id === 'publication-pr-174',
+  );
   assert.equal(registration.sequence, 24);
   assert.equal(registration.queue_id, 'publication-pr-174');
-  assert.equal(registration.previous_receipt, registry.registrations.at(-2).receipt);
-  assert.equal(registration.receipt, registry.registry_receipt);
+  assert.equal(
+    registration.previous_receipt,
+    registry.registrations[registration.sequence - 2].receipt,
+  );
+  assert.equal(
+    registry.registrations[registration.sequence].previous_receipt,
+    registration.receipt,
+  );
+  assert.equal(registry.registrations.at(-1).receipt, registry.registry_receipt);
 
   const missingReason = clone(queue);
   delete missingReason.items.find(entry => entry.pr_number === 105).terminal_reason_ko;
@@ -1534,7 +1569,7 @@ test('변호사 작업공간 제품 게이트는 이번 구현이 아닌 후속 
 
 test('PR 전 planned 작업은 불변 work_id로 등록하고 PR 번호·head를 요구하지 않는다', () => {
   const value = plannedAuthorityWork();
-  const workRegistry = appendQueueItemRegistrations(registry, value);
+  const workRegistry = appendWorkRegistrations(value);
   assert.deepEqual(
     validateWorkQueue(value, workRegistry),
     [],
@@ -1554,7 +1589,7 @@ test('planned 작업은 source-maintenance 영수증 없이 근거 검증 완료
   };
   item.source_freshness = {status: 'current', mismatch_count: 0};
   refreshSummary(value);
-  const workRegistry = appendQueueItemRegistrations(registry, value);
+  const workRegistry = appendWorkRegistrations(value);
   const errors = validateWorkQueue(value, workRegistry);
   assert.ok(errors.filter(error => error.includes('source_maintenance')).length >= 2);
 });
@@ -1564,7 +1599,7 @@ test('planned 이후에는 모든 구조화 선행 게이트가 증거와 함께
   const item = value.items.at(-1);
   item.status = 'claimed';
   refreshSummary(value);
-  const workRegistry = appendQueueItemRegistrations(registry, value);
+  const workRegistry = appendWorkRegistrations(value);
   assert.ok(
     validateWorkQueue(value, workRegistry)
       .some(error => error.includes('모든 선행 게이트가 충족되기 전 claimed')),
@@ -1585,14 +1620,14 @@ test('pending gate는 blocked·needs_rework 기록을 허용하지만 claimed·p
     item.status = status;
     item.blocking_reason_ko = 'authority 선행 게이트 미완료';
     refreshSummary(value);
-    const workRegistry = appendQueueItemRegistrations(registry, value);
+    const workRegistry = appendWorkRegistrations(value);
     assert.deepEqual(validateWorkQueue(value, workRegistry), []);
   }
 
   const claimed = plannedAuthorityWork();
   claimed.items.at(-1).status = 'claimed';
   refreshSummary(claimed);
-  const claimedRegistry = appendQueueItemRegistrations(registry, claimed);
+  const claimedRegistry = appendWorkRegistrations(claimed);
   assert.ok(
     validateWorkQueue(claimed, claimedRegistry)
       .some(error => error.includes('모든 선행 게이트가 충족되기 전 claimed')),
@@ -1605,7 +1640,7 @@ test('외부 PR 게이트는 저장소·PR·감사 head가 모두 있는 증거�
   satisfyWorkGates(item);
   item.prerequisite_gates.find(gate => gate.gate_kind === 'external_pr').evidence_ref =
     'https://github.com/parkkyusang/liale-rulelink-ir/pull/4';
-  const workRegistry = appendQueueItemRegistrations(registry, value);
+  const workRegistry = appendWorkRegistrations(value);
   assert.ok(
     validateWorkQueue(value, workRegistry)
       .some(error => error.includes('owner/repo#PR@40SHA')),
@@ -1618,7 +1653,7 @@ test('형식상 맞는 satisfied gate도 owner 역할의 append-only 영수증 �
   satisfyWorkGates(item);
   item.status = 'claimed';
   refreshSummary(value);
-  const registered = appendQueueItemRegistrations(registry, value);
+  const registered = appendWorkRegistrations(value);
   assert.ok(
     validateWorkQueue(value, registered)
       .some(error => error.includes('소유자 영수증이 없습니다')),
@@ -1644,7 +1679,7 @@ test('authority 의미계약 버전이 없는 구 영수증은 재검증하고 �
   satisfyWorkGates(item);
   item.status = 'claimed';
   refreshSummary(value);
-  const registered = appendQueueItemRegistrations(registry, value);
+  const registered = appendWorkRegistrations(value);
   const current = await appendVerifiedGates(registered, value);
   const legacy = clone(current);
   const authorityGateIds = new Set([
@@ -1712,7 +1747,7 @@ test('authority 의미계약 버전이 없는 구 영수증은 재검증하고 �
 
 test('실제 PR identity는 한 번만 결박하고 정상 추가 head는 append-only 감사 이력으로 보존한다', async () => {
   const planned = plannedAuthorityWork();
-  const registered = appendQueueItemRegistrations(registry, planned);
+  const registered = appendWorkRegistrations(planned);
   const opened = clone(planned);
   const item = opened.items.at(-1);
   satisfyWorkGates(item);
@@ -1765,7 +1800,7 @@ test('PR 결박과 head 이력이 있으면 각 최종 영수증 필드는 필�
   item.branch = PRODUCTION_WORK_CONTRACTS[item.work_id].branch;
   item.head_sha = 'a'.repeat(40);
   refreshSummary(opened);
-  const registered = appendQueueItemRegistrations(registry, planned);
+  const registered = appendWorkRegistrations(planned);
   const gated = await appendVerifiedGates(registered, opened);
   const bound = appendQueuePrBindings(gated, opened);
   const audited = appendQueueHeadReceipts(bound, opened);
@@ -1788,7 +1823,7 @@ test('품질 목표는 개선 방향이어야 하고 release 완료에는 전부
   const value = plannedAuthorityWork();
   const item = value.items.at(-1);
   item.quality_targets.duplicate_rule_after = 3;
-  let workRegistry = appendQueueItemRegistrations(registry, value);
+  let workRegistry = appendWorkRegistrations(value);
   assert.ok(
     validateWorkQueue(value, workRegistry)
       .some(error => error.includes('duplicate_rule_after가 duplicate_rule_before보다 커질 수 없습니다')),
@@ -1814,7 +1849,7 @@ test('품질 목표는 개선 방향이어야 하고 release 완료에는 전부
 test('work_id 의존 대상 누락과 순환을 차단한다', () => {
   const value = plannedAuthorityWork();
   value.items.at(-1).depends_on_work_ids = ['missing-wave'];
-  let workRegistry = appendQueueItemRegistrations(registry, value);
+  let workRegistry = appendWorkRegistrations(value);
   assert.ok(
     validateWorkQueue(value, workRegistry)
       .some(error => error.includes('선행 work_id가 대기열에 없습니다')),
@@ -1827,7 +1862,7 @@ test('work_id 의존 대상 누락과 순환을 차단한다', () => {
   second.depends_on_work_ids = [value.items.at(-1).work_id];
   value.items.push(second);
   refreshSummary(value);
-  workRegistry = appendQueueItemRegistrations(registry, value);
+  workRegistry = appendWorkRegistrations(value);
   assert.ok(
     validateWorkQueue(value, workRegistry)
       .some(error => error.includes('work_id 의존성 순환')),
@@ -1850,7 +1885,7 @@ test('Wave2는 Wave1 완료 전 claimed·in_progress·pr_open으로 진행할 �
     }
     value.items.push(wave2);
     refreshSummary(value);
-    const workRegistry = appendQueueItemRegistrations(registry, value);
+    const workRegistry = appendWorkRegistrations(value);
     assert.ok(
       validateWorkQueue(value, workRegistry)
         .some(error => error.includes('완료되지 않은 선행 작업')),
@@ -1867,7 +1902,7 @@ test('024 work contract는 필수 gate·품질 수치·release check 집합을 e
   item.quality_targets.typed_relation_after = 0;
   item.counts.authority_units = 0;
   item.release_checks.pop();
-  const workRegistry = appendQueueItemRegistrations(registry, value);
+  const workRegistry = appendWorkRegistrations(value);
   const errors = validateWorkQueue(value, workRegistry);
   assert.ok(errors.some(error => error.includes('필수 게이트 집합')));
   assert.ok(errors.some(error => error.includes('quality_targets가 승인된 생산계약과 다릅니다')));
@@ -1885,7 +1920,7 @@ test('완료 상태의 quality target은 실제 topic 측정값과 일치해야 
   item.branch = PRODUCTION_WORK_CONTRACTS[item.work_id].branch;
   item.head_sha = 'a'.repeat(40);
   refreshSummary(value);
-  let workRegistry = appendQueueItemRegistrations(registry, value);
+  let workRegistry = appendWorkRegistrations(value);
   workRegistry = await appendVerifiedGates(workRegistry, value);
   workRegistry = appendQueuePrBindings(workRegistry, value);
   workRegistry = appendQueueHeadReceipts(workRegistry, value);
@@ -2384,7 +2419,7 @@ test('운영검증도 실제 산출물 검증 뒤 별도 append-only 영수증�
   check.status = 'passed';
   check.evidence_ref =
     `artifact:official-url-check@sha256:${rawSha256(evidenceArtifactFixtures.get('official-url-check'))}`;
-  const registered = appendQueueItemRegistrations(registry, value);
+  const registered = appendWorkRegistrations(value);
   assert.throws(
     () => appendReleaseCheckReceipts(registered, value),
     /실제 산출물 검증 없이/u,

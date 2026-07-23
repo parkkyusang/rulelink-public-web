@@ -1123,6 +1123,264 @@
       "supersedes_prs": [
         105
       ]
+    },
+    {
+      "queue_id": "publication-work-reader-backfill-crime-victim-wave1",
+      "work_id": "reader-backfill-crime-victim-wave1",
+      "title_ko": "배상명령 대상손해·신청기한 조문 읽기 정본 백필",
+      "owner_role": "content_production",
+      "topic_id": "hub.crime-victim-response",
+      "topic_file": "artifacts/publication/topics/crime-victim-response.json",
+      "test_file": "web/rulelink_public_next/scripts/crime-victim-response-topic-reader-backfill.test.mjs",
+      "change_mode": "existing_topic_revision",
+      "status": "planned",
+      "counts": {
+        "sources": 24,
+        "rule_cards": 16,
+        "scenario_branches": 17,
+        "content_entries": 13,
+        "topic_hubs": 1,
+        "authority_units": 5
+      },
+      "quality_targets": {
+        "duplicate_rule_before": 2,
+        "duplicate_rule_after": 0,
+        "blank_audience_before": 2,
+        "blank_audience_after": 0,
+        "copied_search_before": 2,
+        "copied_search_after": 0,
+        "nonstandard_content_type_before": 0,
+        "nonstandard_content_type_after": 0,
+        "typed_relation_after": 10
+      },
+      "prerequisite_gates": [
+        {
+          "gate_id": "publication.snapshot-023-released",
+          "gate_kind": "publication",
+          "owner_role": "release",
+          "status": "pending"
+        },
+        {
+          "gate_id": "source-maintenance.db-pr-4",
+          "gate_kind": "external_pr",
+          "owner_role": "source_maintenance",
+          "status": "pending"
+        },
+        {
+          "gate_id": "source-maintenance.db-pr-3-p2",
+          "gate_kind": "external_pr",
+          "owner_role": "source_maintenance",
+          "status": "pending"
+        },
+        {
+          "gate_id": "authority-db.regenerated",
+          "gate_kind": "artifact",
+          "owner_role": "source_maintenance",
+          "status": "pending"
+        },
+        {
+          "gate_id": "authority-db.citation-audit-approved",
+          "gate_kind": "artifact",
+          "owner_role": "source_maintenance",
+          "status": "pending"
+        },
+        {
+          "gate_id": "quality.authority-reading-unit-schema",
+          "gate_kind": "quality_schema",
+          "owner_role": "quality_governance",
+          "status": "pending"
+        },
+        {
+          "gate_id": "runtime.statute-reading-ui",
+          "gate_kind": "runtime",
+          "owner_role": "runtime_design",
+          "status": "pending"
+        }
+      ],
+      "release_checks": [
+        {
+          "check_id": "current-equals-snapshot-024",
+          "status": "pending"
+        },
+        {
+          "check_id": "canonical-urls-unchanged",
+          "status": "pending"
+        },
+        {
+          "check_id": "official-urls-pass",
+          "status": "pending"
+        },
+        {
+          "check_id": "runtime-responsive-no-overflow",
+          "status": "pending"
+        },
+        {
+          "check_id": "runtime-keyboard-reading-path",
+          "status": "pending"
+        },
+        {
+          "check_id": "runtime-fragment-state-restore",
+          "status": "pending"
+        }
+      ],
+      "depends_on_prs": [],
+      "depends_on_work_ids": [],
+      "integration_order": null,
+      "direct_merge": false,
+      "integrate_requires": [
+        "current_bundle",
+        "new_immutable_snapshot",
+        "migrate_publication"
+      ],
+      "official_url_check": {
+        "status": "pending",
+        "referenced_count": 0
+      },
+      "source_freshness": {
+        "status": "pending",
+        "mismatch_count": 0
+      },
+      "integration_checks": [
+        "snapshot 023 운영 배포와 authority 스키마·런타임을 포함한 모든 선행 게이트가 충족된 뒤 생산한다.",
+        "기존 콘텐츠 13건과 허브 1개를 유지하고 법리 13→16, 사실분기 12→17, 근거 21→24, 조문 읽기 정본 0→5만 반영한다.",
+        "RuleCard 중복 2→0, audience 공란 2→0, 복사 검색어 2→0, typed relation 10개와 legacy 투영 일치를 검증한다.",
+        "주제만 직접 병합하지 않고 Wave2 완료 뒤 current bundle과 새 불변 snapshot을 한 번의 publication migration으로 합성한다."
+      ]
+    },
+    {
+      "queue_id": "publication-work-reader-backfill-debt-enforcement-wave2",
+      "work_id": "reader-backfill-debt-enforcement-wave2",
+      "title_ko": "채권추심·강제집행 13건 독자 품질·조문 읽기 정본 백필",
+      "owner_role": "content_production",
+      "topic_id": "hub.debt-enforcement",
+      "topic_file": "artifacts/publication/topics/debt-enforcement.json",
+      "test_file": "web/rulelink_public_next/scripts/debt-enforcement-topic-backfill.test.mjs",
+      "change_mode": "existing_topic_revision",
+      "status": "planned",
+      "counts": {
+        "sources": 16,
+        "rule_cards": 13,
+        "scenario_branches": 12,
+        "content_entries": 13,
+        "topic_hubs": 1,
+        "authority_units": 16
+      },
+      "quality_targets": {
+        "duplicate_rule_before": 13,
+        "duplicate_rule_after": 0,
+        "blank_audience_before": 13,
+        "blank_audience_after": 0,
+        "copied_search_before": 13,
+        "copied_search_after": 0,
+        "nonstandard_content_type_before": 8,
+        "nonstandard_content_type_after": 0,
+        "typed_relation_after": 39
+      },
+      "prerequisite_gates": [
+        {
+          "gate_id": "publication.snapshot-023-released",
+          "gate_kind": "publication",
+          "owner_role": "release",
+          "status": "pending"
+        },
+        {
+          "gate_id": "source-maintenance.db-pr-4",
+          "gate_kind": "external_pr",
+          "owner_role": "source_maintenance",
+          "status": "pending"
+        },
+        {
+          "gate_id": "source-maintenance.db-pr-3-p2",
+          "gate_kind": "external_pr",
+          "owner_role": "source_maintenance",
+          "status": "pending"
+        },
+        {
+          "gate_id": "authority-db.regenerated",
+          "gate_kind": "artifact",
+          "owner_role": "source_maintenance",
+          "status": "pending"
+        },
+        {
+          "gate_id": "authority-db.citation-audit-approved",
+          "gate_kind": "artifact",
+          "owner_role": "source_maintenance",
+          "status": "pending"
+        },
+        {
+          "gate_id": "quality.authority-reading-unit-schema",
+          "gate_kind": "quality_schema",
+          "owner_role": "quality_governance",
+          "status": "pending"
+        },
+        {
+          "gate_id": "runtime.statute-reading-ui",
+          "gate_kind": "runtime",
+          "owner_role": "runtime_design",
+          "status": "pending"
+        },
+        {
+          "gate_id": "wave1.crime-victim-complete",
+          "gate_kind": "artifact",
+          "owner_role": "content_production",
+          "status": "pending"
+        }
+      ],
+      "release_checks": [
+        {
+          "check_id": "current-equals-snapshot-024",
+          "status": "pending"
+        },
+        {
+          "check_id": "canonical-urls-unchanged",
+          "status": "pending"
+        },
+        {
+          "check_id": "official-urls-pass",
+          "status": "pending"
+        },
+        {
+          "check_id": "runtime-responsive-no-overflow",
+          "status": "pending"
+        },
+        {
+          "check_id": "runtime-keyboard-reading-path",
+          "status": "pending"
+        },
+        {
+          "check_id": "runtime-fragment-state-restore",
+          "status": "pending"
+        },
+        {
+          "check_id": "search-hub-sitemap-200",
+          "status": "pending"
+        }
+      ],
+      "depends_on_prs": [],
+      "depends_on_work_ids": [
+        "reader-backfill-crime-victim-wave1"
+      ],
+      "integration_order": null,
+      "direct_merge": false,
+      "integrate_requires": [
+        "current_bundle",
+        "new_immutable_snapshot",
+        "migrate_publication"
+      ],
+      "official_url_check": {
+        "status": "pending",
+        "referenced_count": 0
+      },
+      "source_freshness": {
+        "status": "pending",
+        "mismatch_count": 0
+      },
+      "integration_checks": [
+        "Wave1이 migration_required 또는 integrated 상태가 되고 authority 16개 정확표가 승인된 뒤 생산한다.",
+        "기존 콘텐츠·법리·사실분기·근거·허브 수와 모든 ID·slug·canonical URL을 유지하고 조문 읽기 정본 0→16만 추가한다.",
+        "RuleCard 중복 13→0, audience 공란 13→0, 복사 검색어 13→0, 비표준 content_type 8→0, typed relation 39개를 검증한다.",
+        "주제만 직접 병합하지 않고 Wave1과 함께 current bundle과 새 불변 snapshot을 한 번의 publication migration으로 합성한다."
+      ]
     }
   ],
   "quality_backlog": [

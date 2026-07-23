@@ -44,6 +44,41 @@ function valueHash(value) {
   return createHash('sha256').update(value).digest('hex');
 }
 
+const productionWorkIds = new Set([
+  'reader-backfill-crime-victim-wave1',
+  'reader-backfill-debt-enforcement-wave2',
+]);
+
+function registrationBaseline(queue, registry) {
+  const items = queue.items.filter(item => !productionWorkIds.has(item.work_id));
+  const firstWorkRegistration = registry.registrations.findIndex(
+    item => productionWorkIds.has(item.work_id),
+  );
+  const registrations = firstWorkRegistration < 0
+    ? registry.registrations
+    : registry.registrations.slice(0, firstWorkRegistration);
+  assert.ok(
+    registry.registrations.slice(registrations.length)
+      .every(item => productionWorkIds.has(item.work_id)),
+    '생산 work registration은 append-only registry의 마지막 연속 구간이어야 합니다.',
+  );
+  return {
+    queue: {...queue, items},
+    registry: {
+      ...registry,
+      registrations,
+      registry_receipt: registrations.at(-1)?.receipt ?? null,
+    },
+  };
+}
+
+async function readRegistrationBaseline() {
+  return registrationBaseline(
+    await readJson(queuePath),
+    await readJson(registryPath),
+  );
+}
+
 async function withTemporaryProductionFiles(callback) {
   const directory = await mkdtemp(path.join(os.tmpdir(), 'rulelink-production-work-'));
   const paths = {
@@ -52,9 +87,10 @@ async function withTemporaryProductionFiles(callback) {
     registry: path.join(directory, 'production-queue-registry.json'),
     bundle: path.join(directory, 'bundle.json'),
   };
+  const baseline = await readRegistrationBaseline();
   await Promise.all([
-    cp(queuePath, paths.queue),
-    cp(registryPath, paths.registry),
+    writeFile(paths.queue, `${JSON.stringify(baseline.queue, null, 2)}\n`, 'utf8'),
+    writeFile(paths.registry, `${JSON.stringify(baseline.registry, null, 2)}\n`, 'utf8'),
     cp(bundlePath, paths.bundle),
   ]);
   try {
@@ -88,8 +124,7 @@ test('Wave1 planned 항목을 승인 계약에서 결정론적으로 만든다',
 });
 
 test('Wave1과 Wave2를 순서대로 등록하고 queue와 append-only registry를 함께 갱신한다', async () => {
-  const queue = await readJson(queuePath);
-  const registry = await readJson(registryPath);
+  const {queue, registry} = await readRegistrationBaseline();
   const prepared = prepareProductionWorkRegistration(queue, registry, [
     'reader-backfill-crime-victim-wave1',
     'reader-backfill-debt-enforcement-wave2',
@@ -125,8 +160,7 @@ test('Wave1과 Wave2를 순서대로 등록하고 queue와 append-only registry�
 });
 
 test('Wave2 단독 등록과 unknown·중복 work_id를 명시적으로 거부한다', async () => {
-  const queue = await readJson(queuePath);
-  const registry = await readJson(registryPath);
+  const {queue, registry} = await readRegistrationBaseline();
   assert.throws(
     () => prepareProductionWorkRegistration(queue, registry, [
       'reader-backfill-debt-enforcement-wave2',
@@ -158,20 +192,48 @@ test('사전검증은 전체 생산 대기열 검증을 통과하고 두 정본 
     queue: await fileHash(queuePath),
     registry: await fileHash(registryPath),
   };
-  const prepared = await registerProductionWorkFiles({
-    workIds: ['reader-backfill-crime-victim-wave1'],
-    write: false,
+  await withTemporaryProductionFiles(async paths => {
+    const prepared = await registerProductionWorkFiles({
+      workIds: ['reader-backfill-crime-victim-wave1'],
+      queuePath: paths.queue,
+      registryPath: paths.registry,
+      bundlePath: paths.bundle,
+      write: false,
+    });
+    assert.equal(
+      prepared.queue.items.at(-1).work_id,
+      'reader-backfill-crime-victim-wave1',
+    );
   });
-  assert.equal(
-    prepared.queue.items.at(-1).work_id,
-    'reader-backfill-crime-victim-wave1',
-  );
   assert.deepEqual(
     {
       queue: await fileHash(queuePath),
       registry: await fileHash(registryPath),
     },
     before,
+  );
+});
+
+test('실제 정본은 Wave1·Wave2를 한 번만 등록하고 같은 요청의 재실행을 거부한다', async () => {
+  const [queue, registry] = await Promise.all([
+    readJson(queuePath),
+    readJson(registryPath),
+  ]);
+  assert.deepEqual(
+    queue.items.filter(item => productionWorkIds.has(item.work_id))
+      .map(item => item.work_id),
+    [...productionWorkIds],
+  );
+  assert.deepEqual(
+    registry.registrations.filter(item => productionWorkIds.has(item.work_id))
+      .map(item => item.work_id),
+    [...productionWorkIds],
+  );
+  assert.throws(
+    () => prepareProductionWorkRegistration(queue, registry, [
+      'reader-backfill-crime-victim-wave1',
+    ]),
+    /이미 생산 대기열에 등록된 work_id/u,
   );
 });
 
