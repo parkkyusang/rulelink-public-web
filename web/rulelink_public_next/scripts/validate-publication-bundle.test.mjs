@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {mkdtemp, rm, writeFile} from 'node:fs/promises';
+import {mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -8,6 +8,15 @@ import {spawnSync} from 'node:child_process';
 import test from 'node:test';
 
 const validatorPath = fileURLToPath(new URL('./validate-publication-bundle.mjs', import.meta.url));
+const currentBundlePath = path.resolve(
+  process.cwd(),
+  '..',
+  '..',
+  'artifacts',
+  'publication',
+  'current',
+  'bundle.json',
+);
 
 test('최소 승인 출판본을 허용한다', async () => {
   const result = await validate(baseBundle());
@@ -152,6 +161,49 @@ test('공개 번들도 서로 다른 개념의 대표 용어와 별칭 충돌을
   const result = await validate(bundle);
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /대표 용어·별칭이 여러 개념에 중복되었습니다/);
+});
+
+test('신규 공개 번들은 임금 정체성을 급여·퇴직금 별칭으로 합치면 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  const concept = addConcept(bundle);
+  concept.preferred_term_ko = '임금';
+  concept.aliases_ko = ['급여', '퇴직금'];
+  refreshConceptReceipts(bundle);
+
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /같은 정본 개념의 검색 별칭으로 합칠 수 없습니다/);
+});
+
+test('대상 개념 밖의 사업자등록 제도 별칭은 공개 번들 직접 검증에서도 허용한다', async () => {
+  const bundle = knowledgeBundle();
+  const concept = addConcept(bundle);
+  concept.preferred_term_ko = '사업자등록 제도';
+  concept.aliases_ko = ['사업자등록'];
+  concept.term_relations = [{
+    term_ko: '사업자등록',
+    relation: 'plain_language',
+    source_coordinate_ids: ['source.one'],
+  }];
+  refreshConceptReceipts(bundle);
+
+  const result = await validate(bundle);
+  assert.equal(result.status, 0, result.stderr);
+});
+
+test('snapshot 022 legacy 예외는 공개 번들 직접 검증에서도 code와 term이 모두 같아야 한다', async () => {
+  const current = JSON.parse(await readFile(currentBundlePath, 'utf8'));
+  const valid = await validate(current, {now: '2026-07-23T12:00:00+09:00'});
+  assert.equal(valid.status, 0, valid.stderr);
+
+  const concept = current.knowledge.concept_cards.find(
+    item => item.concept_id === 'concept.kr.inheritance.legal_heir',
+  );
+  concept.aliases_ko = ['법정상속인', '피상속인'];
+  refreshConceptReceipts(current);
+  const invalid = await validate(current, {now: '2026-07-23T12:00:00+09:00'});
+  assert.notEqual(invalid.status, 0);
+  assert.match(invalid.stderr, /피상속인/);
 });
 
 test('공개 번들의 concierge_entry는 렌더링할 결정사실을 실제 필드로 가져야 한다', async () => {
@@ -469,7 +521,7 @@ test('법령변화 합성 영수증 이후 내용 변경을 거부한다', async
   assert.match(invalid.stderr, /내용 해시 영수증|전체 연결구조/);
 });
 
-async function validate(payload) {
+async function validate(payload, {now = '2026-07-21T12:00:00+09:00'} = {}) {
   const taskTemp = await mkdtemp(path.join(tmpdir(), 'rulelink-publication-guard-'));
   const bundlePath = path.join(taskTemp, 'bundle.json');
   await writeFile(bundlePath, JSON.stringify(payload), 'utf8');
@@ -480,7 +532,7 @@ async function validate(payload) {
       env: {
         ...process.env,
         RULELINK_WEB_BUNDLE_PATH: bundlePath,
-        RULELINK_VALIDATION_NOW: '2026-07-21T12:00:00+09:00',
+        RULELINK_VALIDATION_NOW: now,
       },
     });
   } finally {

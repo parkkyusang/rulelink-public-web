@@ -5,6 +5,7 @@ import path from 'node:path';
 import {samePublicRuleCopy} from '../src/lib/public-rule-presentation.ts';
 import {projectKnowledgeEntryCompatibility} from '../src/lib/knowledge-relations.ts';
 import {validateConceptTermRelations} from '../src/lib/concept-terms.ts';
+import {legacyConceptValidationOptions} from './concept-identity-governance.mjs';
 
 const bundlePath = process.env.RULELINK_WEB_BUNDLE_PATH
   ? path.resolve(process.env.RULELINK_WEB_BUNDLE_PATH)
@@ -88,7 +89,7 @@ export function validatePublishedBundle(value, options = {}) {
   }
 
   if (value.catalog !== undefined) validateCatalog(value.catalog, cardIds, errors);
-  if (value.knowledge !== undefined) validateKnowledge(value.knowledge, now, value.file_hashes, errors);
+  if (value.knowledge !== undefined) validateKnowledge(value.knowledge, now, value.file_hashes, errors, value.snapshot_id);
   validateChangeCompositionReceipts(value, value.file_hashes, errors);
   scanForInternalData(value, 'root', errors);
   return [...new Set(errors)];
@@ -112,7 +113,7 @@ function validateCatalog(value, cardIds, errors) {
   }
 }
 
-function validateKnowledge(value, now, fileHashes, errors) {
+function validateKnowledge(value, now, fileHashes, errors, snapshotId) {
   if (!isRecord(value)) {
     errors.push('knowledge는 객체여야 합니다.');
     return;
@@ -323,7 +324,11 @@ function validateKnowledge(value, now, fileHashes, errors) {
   }
 
   try {
-    validateConceptTermRelations(concepts.filter(isRecord), sources.filter(isRecord));
+    validateConceptTermRelations(
+      concepts.filter(isRecord),
+      sources.filter(isRecord),
+      legacyConceptValidationOptions(concepts.filter(isRecord), snapshotId),
+    );
   } catch (error) {
     errors.push(`법률개념 대표 용어·별칭 계약이 올바르지 않습니다: ${error instanceof Error ? error.message : String(error)}`);
   }

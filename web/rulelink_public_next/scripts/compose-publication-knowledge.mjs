@@ -5,12 +5,14 @@ import {fileURLToPath} from 'node:url';
 
 import {validateConceptTermRelations} from '../src/lib/concept-terms.ts';
 import {projectKnowledgeEntryCompatibility} from '../src/lib/knowledge-relations.ts';
+import {legacyConceptValidationOptions} from './concept-identity-governance.mjs';
 
 const scriptPath = fileURLToPath(import.meta.url);
 const appRoot = path.resolve(path.dirname(scriptPath), '..');
 const repoRoot = path.resolve(appRoot, '..', '..');
 const defaultManifestPath = path.join(repoRoot, 'artifacts', 'publication', 'topics', 'manifest.json');
 const defaultCurrentPath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
+const defaultSnapshotRoot = path.join(repoRoot, 'artifacts', 'publication', 'snapshots');
 const collections = [
   ['sources', 'coordinate_id'],
   ['topic_hubs', 'hub_id'],
@@ -31,7 +33,7 @@ export function contentReceipt(value) {
   return createHash('sha256').update(canonicalJson(value)).digest('hex');
 }
 
-export function assembleKnowledge(manifest, loadedTopics, loadedConceptGroups = []) {
+export function assembleKnowledge(manifest, loadedTopics, loadedConceptGroups = [], {snapshotId = ''} = {}) {
   if (manifest?.schema !== 'rulelink_public_knowledge_manifest_v1') throw new Error('주제 조립 manifest 스키마가 올바르지 않습니다.');
   if (manifest.knowledge_schema !== 'rulelink_public_knowledge_index_v1') throw new Error('공개 지식 스키마가 올바르지 않습니다.');
   if (!Array.isArray(manifest.topics) || !manifest.topics.length) throw new Error('조립할 주제가 없습니다.');
@@ -116,7 +118,11 @@ export function assembleKnowledge(manifest, loadedTopics, loadedConceptGroups = 
       if (conceptIds.has(concept.concept_id)) throw new Error(`개념 묶음 사이에 중복된 concept_id: ${concept.concept_id}`);
       conceptIds.add(concept.concept_id);
     }
-    validateConceptTermRelations(assembled.concept_cards, assembled.sources);
+    validateConceptTermRelations(
+      assembled.concept_cards,
+      assembled.sources,
+      legacyConceptValidationOptions(assembled.concept_cards, snapshotId),
+    );
   }
 
   for (const [collection, idKey] of collections) {
@@ -225,7 +231,7 @@ export function applyKnowledgeComposition(bundle, knowledge, changeComposition =
   return next;
 }
 
-export async function loadComposition(manifestPath = defaultManifestPath) {
+export async function loadComposition(manifestPath = defaultManifestPath, {snapshotId = ''} = {}) {
   const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
   const manifestDirectory = path.dirname(manifestPath);
   const loadedTopics = [];
@@ -244,7 +250,7 @@ export async function loadComposition(manifestPath = defaultManifestPath) {
     if (!/^[a-z0-9-]+\.json$/.test(descriptor.file)) throw new Error(`개념 파일명이 안전하지 않습니다: ${descriptor.file}`);
     loadedConceptGroups.push(JSON.parse(await readFile(path.join(conceptDirectory, descriptor.file), 'utf8')));
   }
-  const knowledge = assembleKnowledge(manifest, loadedTopics, loadedConceptGroups);
+  const knowledge = assembleKnowledge(manifest, loadedTopics, loadedConceptGroups, {snapshotId});
   return {
     manifest,
     knowledge,
@@ -257,10 +263,23 @@ async function main() {
   const writeMode = args.includes('--write');
   const manifestValue = option(args, '--manifest');
   const currentValue = option(args, '--current');
+  const snapshotRootValue = option(args, '--snapshot-root');
   const manifestPath = manifestValue ? path.resolve(manifestValue) : defaultManifestPath;
   const currentPath = currentValue ? path.resolve(currentValue) : defaultCurrentPath;
+  const snapshotRoot = snapshotRootValue ? path.resolve(snapshotRootValue) : defaultSnapshotRoot;
   const current = JSON.parse(await readFile(currentPath, 'utf8'));
-  const {knowledge, changeComposition} = await loadComposition(manifestPath);
+  const snapshotId = writeMode ? option(args, '--snapshot-id') : current.snapshot_id;
+  const builtAt = option(args, '--built-at');
+  const sourceSnapshotId = option(args, '--source-snapshot-id');
+  if (writeMode && (!snapshotId || !/^[a-z0-9][a-z0-9._-]*$/.test(snapshotId))) {
+    throw new Error('--write에는 안전한 --snapshot-id가 필요합니다.');
+  }
+  if (writeMode && (!builtAt || Number.isNaN(Date.parse(builtAt)))) {
+    throw new Error('--write에는 ISO 날짜 형식의 --built-at이 필요합니다.');
+  }
+  if (writeMode && !sourceSnapshotId) throw new Error('--write에는 --source-snapshot-id가 필요합니다.');
+
+  const {knowledge, changeComposition} = await loadComposition(manifestPath, {snapshotId});
   let expected = applyKnowledgeComposition(current, knowledge, changeComposition);
 
   if (!writeMode) {
@@ -274,20 +293,13 @@ async function main() {
     return;
   }
 
-  const snapshotId = option(args, '--snapshot-id');
-  const builtAt = option(args, '--built-at');
-  const sourceSnapshotId = option(args, '--source-snapshot-id');
-  if (!snapshotId || !/^[a-z0-9][a-z0-9._-]*$/.test(snapshotId)) throw new Error('--write에는 안전한 --snapshot-id가 필요합니다.');
-  if (!builtAt || Number.isNaN(Date.parse(builtAt))) throw new Error('--write에는 ISO 날짜형식의 --built-at이 필요합니다.');
-  if (!sourceSnapshotId) throw new Error('--write에는 --source-snapshot-id가 필요합니다.');
-
   expected = applyKnowledgeComposition(
     {...current, snapshot_id: snapshotId, built_at: builtAt, source_snapshot_id: sourceSnapshotId},
     knowledge,
     changeComposition,
   );
   const text = `${JSON.stringify(expected, null, 2)}\n`;
-  const snapshotPath = path.join(repoRoot, 'artifacts', 'publication', 'snapshots', snapshotId, 'bundle.json');
+  const snapshotPath = path.join(snapshotRoot, snapshotId, 'bundle.json');
   try {
     const existing = await readFile(snapshotPath, 'utf8');
     if (existing !== text) throw new Error(`불변 스냅샷을 덮어쓸 수 없습니다: ${snapshotId}`);

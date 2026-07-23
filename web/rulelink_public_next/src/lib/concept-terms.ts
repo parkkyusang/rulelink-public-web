@@ -3,6 +3,7 @@ import type {
   PublicConceptTermRelation,
   PublicKnowledgeSource,
 } from '@/types/publication';
+import conceptIdentityPolicyRegistryJson from './concept-identity-policy.v1.json' with {type: 'json'};
 
 const wordCharacterPattern = /[\p{L}\p{N}_]/u;
 const koreanTermBoundarySuffixes = [
@@ -24,6 +25,88 @@ const inlineRelationKinds = new Set<PublicConceptTermRelation['relation']>([
   'abbreviation',
   'spelling_variant',
 ]);
+
+const aliasRelationKinds = new Set<PublicConceptTermRelation['relation']>([
+  ...inlineRelationKinds,
+  'plain_language',
+]);
+
+const semanticRelationKinds = new Set<PublicConceptTermRelation['relation']>([
+  'narrower',
+  'broader',
+  'related',
+]);
+
+export type ConceptIdentityPolicyKind =
+  | 'protected_canonical_identity'
+  | 'ambiguous_global_alias'
+  | 'forbidden_alias_pair'
+  | 'decision_fact_not_alias';
+
+export type ConceptIdentityPolicyTerm = {
+  term_ko: string;
+  policy_kind: ConceptIdentityPolicyKind;
+  meaning_domain: string;
+  reason_ko: string;
+  target_preferred_term_ko?: string;
+};
+
+export type ConceptIdentityPolicyRegistry = {
+  schema: 'rulelink_public_concept_identity_policy_v1';
+  policy_version: string;
+  policy_receipt: string;
+  terms: ConceptIdentityPolicyTerm[];
+};
+
+export const conceptIdentityPolicyRegistry = (
+  conceptIdentityPolicyRegistryJson as unknown as ConceptIdentityPolicyRegistry
+);
+
+const policyRegistryErrors = auditConceptIdentityPolicyRegistry(conceptIdentityPolicyRegistry);
+if (policyRegistryErrors.length) {
+  throw new Error(policyRegistryErrors.join('\n'));
+}
+
+const protectedCanonicalIdentityTerms = policyTerms('protected_canonical_identity');
+const ambiguousGlobalAliasTerms = policyTerms('ambiguous_global_alias');
+const scopedAliasPolicies = conceptIdentityPolicyRegistry.terms.filter(item => (
+  item.policy_kind === 'forbidden_alias_pair'
+  || item.policy_kind === 'decision_fact_not_alias'
+));
+
+export type ConceptTermValidationIssueCode =
+  | 'empty-preferred-term'
+  | 'empty-alias'
+  | 'preferred-alias-duplicate'
+  | 'duplicate-alias'
+  | 'global-term-conflict'
+  | 'protected-canonical-term-as-alias'
+  | 'ambiguous-global-alias'
+  | 'forbidden-alias-pair'
+  | 'decision-fact-not-alias'
+  | 'empty-relation-term'
+  | 'duplicate-term-relation'
+  | 'missing-relation-source'
+  | 'missing-relation-source-target'
+  | 'alias-relation-without-alias'
+  | 'alias-without-relation'
+  | 'semantic-relation-missing-target'
+  | 'semantic-relation-target-not-found'
+  | 'semantic-relation-self-reference'
+  | 'semantic-relation-term-mismatch'
+  | 'semantic-relation-missing-inverse'
+  | 'semantic-relation-cycle';
+
+export type ConceptTermValidationIssue = {
+  code: ConceptTermValidationIssueCode;
+  conceptIds: string[];
+  message: string;
+  term?: string;
+};
+
+export type ConceptTermValidationOptions = {
+  legacyDebt?: ReadonlyMap<string, ReadonlySet<string>>;
+};
 
 export function inlineTermsForConcept(
   concept: Pick<PublicConceptCard, 'preferred_term_ko' | 'term_relations'>,
@@ -78,30 +161,101 @@ export function splitTextByConceptTerms(text: string, terms: readonly string[]):
 export function validateConceptTermRelations(
   concepts: readonly PublicConceptCard[],
   sources: readonly PublicKnowledgeSource[],
+  options: ConceptTermValidationOptions = {},
 ): void {
+  const issues = auditConceptTermRelations(concepts, sources)
+    .filter(issue => !isAllowedLegacyIssue(issue, options.legacyDebt));
+  if (issues.length) throw new Error(issues.map(issue => issue.message).join('\n'));
+}
+
+export function auditConceptTermRelations(
+  concepts: readonly PublicConceptCard[],
+  sources: readonly PublicKnowledgeSource[],
+): ConceptTermValidationIssue[] {
+  const issues: ConceptTermValidationIssue[] = [];
   const sourceIds = new Set(sources.map(source => source.coordinate_id));
   const ownerByTerm = new Map<string, {conceptId: string; term: string}>();
+  const conceptById = new Map(concepts.map(concept => [concept.concept_id, concept]));
+  const semanticRelations: Array<{
+    conceptId: string;
+    relation: PublicConceptTermRelation;
+    targetConceptId: string;
+  }> = [];
 
   for (const concept of concepts) {
     const preferred = concept.preferred_term_ko.trim();
-    if (!preferred) throw new Error(`${concept.concept_id}의 대표 용어가 비어 있습니다.`);
-    claimConceptTerm(ownerByTerm, preferred, concept.concept_id);
+    if (!preferred) {
+      issues.push(issue('empty-preferred-term', [concept.concept_id], `${concept.concept_id}의 대표 용어가 비어 있습니다.`));
+      continue;
+    }
+    claimConceptTerm(ownerByTerm, preferred, concept.concept_id, issues);
 
     const declaredAliases = concept.aliases_ko ?? [];
     const preferredKey = normalizeConceptTermKey(preferred);
     const aliasKeys = new Set<string>();
     for (const aliasValue of declaredAliases) {
       const alias = aliasValue.trim();
-      if (!alias) throw new Error(`${concept.concept_id}의 검색 별칭이 비어 있습니다.`);
+      if (!alias) {
+        issues.push(issue('empty-alias', [concept.concept_id], `${concept.concept_id}의 검색 별칭이 비어 있습니다.`));
+        continue;
+      }
       const aliasKey = normalizeConceptTermKey(alias);
       if (aliasKey === preferredKey) {
-        throw new Error(`${concept.concept_id}의 대표 용어가 검색 별칭과 중복되어 있습니다: ${preferred}`);
+        issues.push(issue(
+          'preferred-alias-duplicate',
+          [concept.concept_id],
+          `${concept.concept_id}의 대표 용어가 검색 별칭과 중복되어 있습니다: ${preferred}`,
+          alias,
+        ));
       }
       if (aliasKeys.has(aliasKey)) {
-        throw new Error(`${concept.concept_id}의 검색 별칭이 중복되어 있습니다: ${alias}`);
+        issues.push(issue(
+          'duplicate-alias',
+          [concept.concept_id],
+          `${concept.concept_id}의 검색 별칭이 중복되어 있습니다: ${alias}`,
+          alias,
+        ));
       }
       aliasKeys.add(aliasKey);
-      claimConceptTerm(ownerByTerm, alias, concept.concept_id);
+      if (ambiguousGlobalAliasTerms.has(aliasKey)) {
+        issues.push(issue(
+          'ambiguous-global-alias',
+          [concept.concept_id],
+          `${concept.concept_id}의 검색 별칭은 법역에 따라 뜻이 달라 전역 별칭으로 사용할 수 없습니다: ${alias}`,
+          alias,
+        ));
+      }
+      if (protectedCanonicalIdentityTerms.has(aliasKey) && aliasKey !== preferredKey) {
+        issues.push(issue(
+          'protected-canonical-term-as-alias',
+          [concept.concept_id],
+          `${concept.concept_id}의 검색 별칭은 별도 canonical concept 정체성으로 관리해야 합니다: ${alias}`,
+          alias,
+        ));
+      }
+      for (const policy of scopedAliasPolicies) {
+        const policyTermKey = normalizeConceptTermKey(policy.term_ko);
+        const targetTermKey = normalizeConceptTermKey(policy.target_preferred_term_ko ?? '');
+        const appliesToPair = (
+          aliasKey === policyTermKey && preferredKey === targetTermKey
+        ) || (
+          aliasKey === targetTermKey && preferredKey === policyTermKey
+        );
+        if (!appliesToPair) continue;
+        const code = policy.policy_kind === 'decision_fact_not_alias'
+          ? 'decision-fact-not-alias'
+          : 'forbidden-alias-pair';
+        const boundary = policy.policy_kind === 'decision_fact_not_alias'
+          ? '결론을 바꾸는 판단자료이지 개념의 검색 별칭이 아닙니다'
+          : '서로 관련되더라도 같은 정본 개념의 검색 별칭으로 합칠 수 없습니다';
+        issues.push(issue(
+          code,
+          [concept.concept_id],
+          `${concept.concept_id}의 ${policy.meaning_domain} 용어 ${preferred}·${alias}은 ${boundary}: ${policy.reason_ko}`,
+          alias,
+        ));
+      }
+      claimConceptTerm(ownerByTerm, alias, concept.concept_id, issues);
     }
 
     if (concept.term_relations === undefined) continue;
@@ -109,49 +263,350 @@ export function validateConceptTermRelations(
 
     for (const relation of concept.term_relations) {
       const term = relation.term_ko.trim();
-      if (!term) throw new Error(`${concept.concept_id}의 용어 관계에 빈 표현이 있습니다.`);
+      if (!term) {
+        issues.push(issue('empty-relation-term', [concept.concept_id], `${concept.concept_id}의 용어 관계에 빈 표현이 있습니다.`));
+        continue;
+      }
       const termKey = normalizeConceptTermKey(term);
-      if (!aliasKeys.has(termKey)) {
-        throw new Error(`${concept.concept_id}의 용어 관계가 aliases_ko에 없는 표현을 사용합니다: ${term}`);
+      const targetConceptId = 'target_concept_id' in relation ? relation.target_concept_id : undefined;
+      const relationKey = `${relation.relation}:${targetConceptId ?? termKey}`;
+      if (relatedTermKeys.has(relationKey)) {
+        issues.push(issue(
+          'duplicate-term-relation',
+          [concept.concept_id],
+          `${concept.concept_id}의 용어 관계가 중복되었습니다: ${relation.relation} ${term}`,
+          term,
+        ));
       }
-      if (relatedTermKeys.has(termKey)) {
-        throw new Error(`${concept.concept_id}의 용어 관계가 중복되었습니다: ${term}`);
-      }
-      relatedTermKeys.add(termKey);
+      relatedTermKeys.add(relationKey);
       if (!relation.source_coordinate_ids.length) {
-        throw new Error(`${concept.concept_id}의 용어 관계에 공식 근거가 없습니다: ${term}`);
+        issues.push(issue(
+          'missing-relation-source',
+          [concept.concept_id],
+          `${concept.concept_id}의 용어 관계에 공식 근거가 없습니다: ${term}`,
+          term,
+        ));
       }
       for (const sourceId of relation.source_coordinate_ids) {
         if (!sourceIds.has(sourceId)) {
-          throw new Error(`${concept.concept_id}의 용어 관계 근거가 존재하지 않습니다: ${term} -> ${sourceId}`);
+          issues.push(issue(
+            'missing-relation-source-target',
+            [concept.concept_id],
+            `${concept.concept_id}의 용어 관계 근거가 존재하지 않습니다: ${term} -> ${sourceId}`,
+            term,
+          ));
         }
       }
+
+      if (aliasRelationKinds.has(relation.relation)) {
+        if (!aliasKeys.has(termKey)) {
+          issues.push(issue(
+            'alias-relation-without-alias',
+            [concept.concept_id],
+            `${concept.concept_id}의 동의·표기 관계가 aliases_ko에 없는 표현을 사용합니다: ${term}`,
+            term,
+          ));
+        }
+        continue;
+      }
+      if (!semanticRelationKinds.has(relation.relation)) continue;
+      if (!targetConceptId) {
+        issues.push(issue(
+          'semantic-relation-missing-target',
+          [concept.concept_id],
+          `${concept.concept_id}의 ${relation.relation} 관계에 target_concept_id가 없습니다: ${term}`,
+          term,
+        ));
+        continue;
+      }
+      const target = conceptById.get(targetConceptId);
+      if (!target) {
+        issues.push(issue(
+          'semantic-relation-target-not-found',
+          [concept.concept_id, targetConceptId],
+          `${concept.concept_id}의 ${relation.relation} 관계 대상이 존재하지 않습니다: ${targetConceptId}`,
+          term,
+        ));
+        continue;
+      }
+      if (targetConceptId === concept.concept_id) {
+        issues.push(issue(
+          'semantic-relation-self-reference',
+          [concept.concept_id],
+          `${concept.concept_id}의 ${relation.relation} 관계가 자기 자신을 가리킵니다.`,
+          term,
+        ));
+        continue;
+      }
+      if (termKey !== normalizeConceptTermKey(target.preferred_term_ko)) {
+        issues.push(issue(
+          'semantic-relation-term-mismatch',
+          [concept.concept_id, targetConceptId],
+          `${concept.concept_id}의 ${relation.relation} 관계 용어가 대상 개념의 대표 용어와 다릅니다: ${term} != ${target.preferred_term_ko}`,
+          term,
+        ));
+      }
+      semanticRelations.push({conceptId: concept.concept_id, relation, targetConceptId});
     }
 
     for (const aliasKey of aliasKeys) {
-      if (!relatedTermKeys.has(aliasKey)) {
+      const classified = concept.term_relations.some(relation => (
+        aliasRelationKinds.has(relation.relation)
+        && normalizeConceptTermKey(relation.term_ko) === aliasKey
+      ));
+      if (!classified) {
         const alias = declaredAliases.find(value => normalizeConceptTermKey(value) === aliasKey) ?? aliasKey;
-        throw new Error(`${concept.concept_id}의 검색 별칭에 관계 분류가 없습니다: ${alias}`);
+        issues.push(issue(
+          'alias-without-relation',
+          [concept.concept_id],
+          `${concept.concept_id}의 검색 별칭에 동의·표기 관계 분류가 없습니다: ${alias}`,
+          alias,
+        ));
       }
     }
   }
+
+  validateSemanticRelationGraph(semanticRelations, issues);
+  return deduplicateIssues(issues);
 }
 
 export function normalizeConceptTermKey(value: string): string {
   return value.normalize('NFKC').toLocaleLowerCase('ko-KR').replace(/\s+/gu, ' ').trim();
 }
 
+export function conceptTermValidationIssueKey(
+  code: ConceptTermValidationIssueCode,
+  term = '',
+): string {
+  return JSON.stringify([code, normalizeConceptTermKey(term)]);
+}
+
+export function auditConceptIdentityPolicyRegistry(
+  registry: ConceptIdentityPolicyRegistry,
+): string[] {
+  const errors: string[] = [];
+  if (registry.schema !== 'rulelink_public_concept_identity_policy_v1') {
+    errors.push('개념 정체성 정책 레지스트리 스키마가 올바르지 않습니다.');
+  }
+  if (!/^\d+\.\d+\.\d+$/u.test(registry.policy_version)) {
+    errors.push('개념 정체성 정책 버전은 의미 버전 형식이어야 합니다.');
+  }
+  if (!/^[a-f0-9]{64}$/u.test(registry.policy_receipt)) {
+    errors.push('개념 정체성 정책 영수증은 SHA-256 형식이어야 합니다.');
+  }
+  if (!Array.isArray(registry.terms) || !registry.terms.length) {
+    errors.push('개념 정체성 정책 용어가 비어 있습니다.');
+    return errors;
+  }
+
+  const allowedKinds = new Set<ConceptIdentityPolicyKind>([
+    'protected_canonical_identity',
+    'ambiguous_global_alias',
+    'forbidden_alias_pair',
+    'decision_fact_not_alias',
+  ]);
+  const seenPolicies = new Set<string>();
+  const seenGlobalTerms = new Map<string, string>();
+  for (const [index, item] of registry.terms.entries()) {
+    const term = item?.term_ko?.trim() ?? '';
+    const termKey = normalizeConceptTermKey(term);
+    if (!term) errors.push(`개념 정체성 정책 terms[${index}]의 term_ko가 비어 있습니다.`);
+    if (!allowedKinds.has(item?.policy_kind)) {
+      errors.push(`개념 정체성 정책 terms[${index}]의 policy_kind가 올바르지 않습니다.`);
+    }
+    if (!item?.meaning_domain?.trim()) {
+      errors.push(`개념 정체성 정책 terms[${index}]의 meaning_domain이 비어 있습니다.`);
+    }
+    if (!item?.reason_ko?.trim()) {
+      errors.push(`개념 정체성 정책 terms[${index}]의 reason_ko가 비어 있습니다.`);
+    }
+    const isScopedPolicy = (
+      item?.policy_kind === 'forbidden_alias_pair'
+      || item?.policy_kind === 'decision_fact_not_alias'
+    );
+    const target = item?.target_preferred_term_ko?.trim() ?? '';
+    const targetKey = normalizeConceptTermKey(target);
+    if (isScopedPolicy && !target) {
+      errors.push(`개념 정체성 정책 terms[${index}]의 target_preferred_term_ko가 비어 있습니다.`);
+    }
+    if (!isScopedPolicy && item?.target_preferred_term_ko !== undefined) {
+      errors.push(`개념 정체성 정책 terms[${index}]의 전역 정책에는 target_preferred_term_ko를 사용할 수 없습니다.`);
+    }
+    if (isScopedPolicy && termKey && targetKey && termKey === targetKey) {
+      errors.push(`개념 정체성 정책 terms[${index}]의 별칭 쌍이 같은 용어를 가리킵니다: ${term}`);
+    }
+
+    const policyKey = `${item?.policy_kind}:${[termKey, targetKey].filter(Boolean).sort().join(':')}`;
+    if (termKey && seenPolicies.has(policyKey)) {
+      errors.push(`개념 정체성 정책 용어가 정규화 기준으로 중복되었습니다: ${term} (${item.policy_kind})`);
+    } else if (termKey) {
+      seenPolicies.add(policyKey);
+    }
+
+    if (!isScopedPolicy) {
+      const owner = seenGlobalTerms.get(termKey);
+      if (termKey && owner) {
+        errors.push(`개념 정체성 전역 정책 용어가 중복되었습니다: ${term} (${owner})`);
+      } else if (termKey) {
+        seenGlobalTerms.set(termKey, item.policy_kind);
+      }
+    }
+  }
+  return errors;
+}
+
+export function conceptIdentityPolicyReceiptInput(
+  registry: ConceptIdentityPolicyRegistry,
+): string {
+  return canonicalPolicyJson({
+    schema: registry.schema,
+    policy_version: registry.policy_version,
+    terms: registry.terms,
+  });
+}
+
+function policyTerms(kind: ConceptIdentityPolicyKind): Set<string> {
+  return new Set(
+    conceptIdentityPolicyRegistry.terms
+      .filter(item => item.policy_kind === kind)
+      .map(item => normalizeConceptTermKey(item.term_ko)),
+  );
+}
+
+function canonicalPolicyJson(value: unknown): string {
+  if (Array.isArray(value)) return `[${value.map(canonicalPolicyJson).join(',')}]`;
+  if (value && typeof value === 'object') {
+    const record = value as Record<string, unknown>;
+    return `{${Object.keys(record).sort().map(key => (
+      `${JSON.stringify(key)}:${canonicalPolicyJson(record[key])}`
+    )).join(',')}}`;
+  }
+  return JSON.stringify(value);
+}
+
 function claimConceptTerm(
   owners: Map<string, {conceptId: string; term: string}>,
   term: string,
   conceptId: string,
+  issues: ConceptTermValidationIssue[],
 ) {
   const key = normalizeConceptTermKey(term);
   const owner = owners.get(key);
   if (owner && owner.conceptId !== conceptId) {
-    throw new Error(`법률개념 대표 용어·별칭이 여러 개념에 중복되었습니다: ${term} -> ${owner.conceptId}, ${conceptId}`);
+    issues.push(issue(
+      'global-term-conflict',
+      [owner.conceptId, conceptId],
+      `법률개념 대표 용어·별칭이 여러 개념에 중복되었습니다: ${term} -> ${owner.conceptId}, ${conceptId}`,
+      term,
+    ));
   }
   if (!owner) owners.set(key, {conceptId, term});
+}
+
+function validateSemanticRelationGraph(
+  semanticRelations: Array<{
+    conceptId: string;
+    relation: PublicConceptTermRelation;
+    targetConceptId: string;
+  }>,
+  issues: ConceptTermValidationIssue[],
+) {
+  const relationKeys = new Set(semanticRelations.map(({conceptId, relation, targetConceptId}) => (
+    `${conceptId}:${relation.relation}:${targetConceptId}`
+  )));
+  const narrowerGraph = new Map<string, Set<string>>();
+
+  for (const {conceptId, relation, targetConceptId} of semanticRelations) {
+    const inverse = relation.relation === 'narrower'
+      ? 'broader'
+      : relation.relation === 'broader'
+        ? 'narrower'
+        : 'related';
+    if (!relationKeys.has(`${targetConceptId}:${inverse}:${conceptId}`)) {
+      issues.push(issue(
+        'semantic-relation-missing-inverse',
+        [conceptId, targetConceptId],
+        `${conceptId}의 ${relation.relation} 관계에 역방향 ${inverse} 관계가 없습니다: ${targetConceptId}`,
+        relation.term_ko,
+      ));
+    }
+    if (relation.relation === 'narrower') {
+      addGraphEdge(narrowerGraph, conceptId, targetConceptId);
+    } else if (relation.relation === 'broader') {
+      addGraphEdge(narrowerGraph, targetConceptId, conceptId);
+    }
+  }
+
+  for (const cycle of findDirectedCycles(narrowerGraph)) {
+    issues.push(issue(
+      'semantic-relation-cycle',
+      cycle,
+      `법률개념 narrower/broader 계층에 순환이 있습니다: ${cycle.join(' -> ')} -> ${cycle[0]}`,
+    ));
+  }
+}
+
+function addGraphEdge(graph: Map<string, Set<string>>, source: string, target: string) {
+  const targets = graph.get(source) ?? new Set<string>();
+  targets.add(target);
+  graph.set(source, targets);
+}
+
+function findDirectedCycles(graph: Map<string, Set<string>>): string[][] {
+  const cycles = new Map<string, string[]>();
+  const visited = new Set<string>();
+  const stack: string[] = [];
+  const inStack = new Set<string>();
+
+  const visit = (node: string) => {
+    if (inStack.has(node)) {
+      const start = stack.indexOf(node);
+      const cycle = stack.slice(start);
+      const rotations = cycle.map((_, index) => [...cycle.slice(index), ...cycle.slice(0, index)]);
+      rotations.sort((left, right) => left.join('\u0000').localeCompare(right.join('\u0000')));
+      cycles.set(rotations[0].join('\u0000'), rotations[0]);
+      return;
+    }
+    if (visited.has(node)) return;
+    inStack.add(node);
+    stack.push(node);
+    for (const target of graph.get(node) ?? []) visit(target);
+    stack.pop();
+    inStack.delete(node);
+    visited.add(node);
+  };
+
+  for (const node of graph.keys()) visit(node);
+  return [...cycles.values()];
+}
+
+function isAllowedLegacyIssue(
+  issueValue: ConceptTermValidationIssue,
+  legacyDebt: ConceptTermValidationOptions['legacyDebt'],
+) {
+  if (!legacyDebt || issueValue.conceptIds.length !== 1) return false;
+  return legacyDebt.get(issueValue.conceptIds[0])?.has(
+    conceptTermValidationIssueKey(issueValue.code, issueValue.term ?? ''),
+  ) ?? false;
+}
+
+function issue(
+  code: ConceptTermValidationIssueCode,
+  conceptIds: string[],
+  message: string,
+  term?: string,
+): ConceptTermValidationIssue {
+  return {code, conceptIds, message, ...(term ? {term} : {})};
+}
+
+function deduplicateIssues(issues: ConceptTermValidationIssue[]): ConceptTermValidationIssue[] {
+  const seen = new Set<string>();
+  return issues.filter(item => {
+    const key = `${item.code}:${item.conceptIds.join(',')}:${item.term ?? ''}:${item.message}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
 function hasConceptTermSuffixBoundary(text: string, end: number): boolean {

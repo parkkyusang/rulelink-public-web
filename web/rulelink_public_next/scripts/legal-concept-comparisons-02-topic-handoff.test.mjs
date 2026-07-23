@@ -8,6 +8,7 @@ import {assembleKnowledge} from './compose-publication-knowledge.mjs';
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.resolve(scriptDirectory, '..', '..', '..');
 const topicDirectory = path.join(repositoryRoot, 'artifacts', 'publication', 'topics');
+const currentBundlePath = path.join(repositoryRoot, 'artifacts', 'publication', 'current', 'bundle.json');
 const handoffFile = 'legal-concept-comparisons-02.json';
 const handoffPath = path.join(topicDirectory, handoffFile);
 
@@ -104,7 +105,7 @@ test('두 번째 비교 인계본은 인적 표기와 운영 통합을 요구하
   const descriptor = manifest.topics.find((item) => item.file === handoffFile);
   if (descriptor) {
     assert.equal(descriptor.topic_id, topic.topic_id);
-    const current = await readJson(path.join(repositoryRoot, 'artifacts', 'publication', 'current', 'bundle.json'));
+    const current = await readJson(currentBundlePath);
     const published = new Set(current.knowledge.content_entries.map((item) => item.content_id));
     for (const entry of topic.content_entries) assert.ok(published.has(entry.content_id));
   }
@@ -139,6 +140,12 @@ test('현재 공개 주제들과 합성해도 식별자 충돌 없이 10건이 �
   for (const conceptDescriptor of nextManifest.concepts ?? []) {
     conceptGroups.push(await readJson(path.join(conceptDirectory, conceptDescriptor.file)));
   }
-  const knowledge = assembleKnowledge(nextManifest, nextTopics, conceptGroups);
+  const current = await readJson(currentBundlePath);
+  const knowledge = assembleKnowledge(
+    nextManifest,
+    nextTopics,
+    conceptGroups,
+    {snapshotId: current.snapshot_id},
+  );
   assert.equal(knowledge.content_entries.length, beforeCount + (descriptor ? 0 : 10));
 });
