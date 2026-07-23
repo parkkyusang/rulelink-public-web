@@ -20,15 +20,16 @@
   "audit_summary": {
     "open_content_prs": 20,
     "official_source_references_checked": 328,
-    "unique_official_urls_checked": 274,
+    "unique_official_urls_checked": 308,
     "official_url_failures": 0,
     "exact_cross_pr_content_id_collisions": 0,
     "broken_related_content_ids": 0,
-    "semantic_overlap_decisions": 3,
-    "ready_for_integration": 10,
-    "needs_rework": 7,
+    "semantic_overlap_decisions": 2,
+    "ready_for_integration": 2,
+    "needs_rework": 6,
     "migration_required": 2,
-    "blocked": 1
+    "blocked": 1,
+    "integrated": 9
   },
   "items": [
     {
@@ -241,17 +242,17 @@
       ]
     },
     {
-      "queue_id": "publication-pr-95",
-      "pr_number": 95,
-      "title_ko": "상가건물 임대차 공개 콘텐츠 11건",
-      "branch": "codex/content-commercial-lease-20260722",
-      "head_sha": "0e993fa6708a6114fc298e59995d500db17b510c",
+      "queue_id": "publication-pr-142",
+      "pr_number": 142,
+      "title_ko": "상가건물 임대차 현행 근거 재결박",
+      "branch": "codex/content-commercial-lease-rebind-20260723",
+      "head_sha": "9d50227816a590d576205b361e74057ec24fceb3",
       "owner_role": "content_production",
       "topic_id": "hub.commercial-lease",
       "topic_file": "artifacts/publication/topics/commercial-lease.json",
       "test_file": "web/rulelink_public_next/scripts/commercial-lease-topic-handoff.test.mjs",
       "change_mode": "new_topic",
-      "status": "ready_for_integration",
+      "status": "integrated",
       "counts": {
         "sources": 16,
         "rule_cards": 13,
@@ -260,18 +261,21 @@
         "topic_hubs": 1
       },
       "depends_on_prs": [],
-      "integration_order": 30,
+      "integration_order": null,
       "official_url_check": {
         "status": "passed",
         "referenced_count": 16
       },
       "source_freshness": {
-        "status": "rebind_before_integration",
-        "mismatch_count": 3
+        "status": "current",
+        "mismatch_count": 0
       },
       "integration_checks": [
-        "합성 직전 드리프트 좌표 3개를 활성 DB 기준으로 재검증한다.",
-        "비표준 콘텐츠 유형이 있으면 표준 8종으로 정규화한다."
+        "#142 병합본의 현행 근거 재결박과 표준 유형 정규화를 유지한다.",
+        "후속 교정 #145가 반영한 조문별 공식 URL과 실제 검증시각을 main 정본에서 유지한다."
+      ],
+      "supersedes_prs": [
+        95
       ]
     },
     {
@@ -310,17 +314,17 @@
       "blocking_reason_ko": "13개 근거를 Source Maintenance 또는 검증된 공개 근거 계보에 편입한다."
     },
     {
-      "queue_id": "publication-pr-97",
-      "pr_number": 97,
-      "title_ko": "자동차 교통사고·보험 대응 10건",
-      "branch": "codex/content-auto-accident-insurance-20260722",
-      "head_sha": "90bd2a5a026aa655a02de5c4371cbb30817aa552",
+      "queue_id": "publication-pr-147",
+      "pr_number": 147,
+      "title_ko": "자동차 교통사고·보험 현행 근거 재결박",
+      "branch": "codex/content-auto-accident-insurance-rebind-20260723",
+      "head_sha": "83cca31e3e2b05001140683eadc67d0f01aa4a19",
       "owner_role": "content_production",
       "topic_id": "hub.auto-accident-insurance",
       "topic_file": "artifacts/publication/topics/auto-accident-insurance.json",
       "test_file": "web/rulelink_public_next/scripts/auto-accident-insurance-topic-handoff.test.mjs",
       "change_mode": "new_topic",
-      "status": "ready_for_integration",
+      "status": "integrated",
       "counts": {
         "sources": 11,
         "rule_cards": 12,
@@ -329,32 +333,35 @@
         "topic_hubs": 1
       },
       "depends_on_prs": [],
-      "integration_order": 40,
+      "integration_order": null,
       "official_url_check": {
         "status": "passed",
         "referenced_count": 11
       },
       "source_freshness": {
-        "status": "rebind_before_integration",
-        "mismatch_count": 5
+        "status": "current",
+        "mismatch_count": 0
       },
       "integration_checks": [
-        "드리프트 좌표 5개를 활성 DB 기준으로 재검증한다.",
-        "비표준 콘텐츠 유형이 있으면 표준 8종으로 정규화한다."
+        "#147 병합본의 현행 근거 11개와 조문별 공식 URL을 유지한다.",
+        "표준 콘텐츠 유형과 미래 검토시각 차단 계약을 유지한다."
+      ],
+      "supersedes_prs": [
+        97
       ]
     },
     {
-      "queue_id": "publication-pr-127",
-      "pr_number": 127,
-      "title_ko": "해고·퇴직·실업 대응 10건 재작업",
-      "branch": "codex/content-employment-exit-rework-20260723",
-      "head_sha": "d101aa7eae09dc4c655aff514b20d1d10a01b4f1",
+      "queue_id": "publication-pr-144",
+      "pr_number": 144,
+      "title_ko": "해고·퇴직·실업 대응 최신 main 재검증",
+      "branch": "codex/content-employment-exit-rebase-v2-20260723",
+      "head_sha": "e7cbb16050d099c5c121cf9a56653d11cc1c94d8",
       "owner_role": "content_production",
       "topic_id": "hub.employment-exit",
       "topic_file": "artifacts/publication/topics/employment-exit.json",
       "test_file": "web/rulelink_public_next/scripts/employment-exit-topic-handoff.test.mjs",
       "change_mode": "new_topic",
-      "status": "ready_for_integration",
+      "status": "integrated",
       "counts": {
         "sources": 13,
         "rule_cards": 12,
@@ -363,7 +370,7 @@
         "topic_hubs": 1
       },
       "depends_on_prs": [],
-      "integration_order": 20,
+      "integration_order": null,
       "official_url_check": {
         "status": "passed",
         "referenced_count": 13
@@ -373,26 +380,27 @@
         "mismatch_count": 0
       },
       "integration_checks": [
-        "현재 정본과 중복되던 노동위원회 재심·소송 제기기간 문항이 제거되었는지 통합 시 재확인한다.",
-        "대체 문항의 근로기준법 제25조 재고용 요건과 활성 DB snapshot 일치를 유지한다.",
-        "표준 콘텐츠 유형만 사용하는지 통합 시 재확인한다."
+        "현재 정본과 중복되던 노동위원회 재심·소송 제기기간 문항 제거를 유지한다.",
+        "13개 현행 근거의 조문별 공식 URL과 활성 DB snapshot 일치를 유지한다."
       ],
       "supersedes_prs": [
-        98
+        98,
+        127,
+        140
       ]
     },
     {
-      "queue_id": "publication-pr-100",
-      "pr_number": 100,
-      "title_ko": "산업재해·산재보험 생활법률 콘텐츠 10건",
-      "branch": "codex/content-industrial-accident-20260722",
-      "head_sha": "b2890780c5db576fa77a1cb808fb9b6be4c98024",
+      "queue_id": "publication-pr-148",
+      "pr_number": 148,
+      "title_ko": "산업재해·산재보험 현행 근거 재결박",
+      "branch": "codex/content-industrial-accident-rebind-20260723",
+      "head_sha": "247431a867ed79a284b4feb6a31b31903886dfd8",
       "owner_role": "content_production",
       "topic_id": "hub.industrial-accident",
       "topic_file": "artifacts/publication/topics/industrial-accident.json",
       "test_file": "web/rulelink_public_next/scripts/industrial-accident-topic-handoff.test.mjs",
       "change_mode": "new_topic",
-      "status": "ready_for_integration",
+      "status": "integrated",
       "counts": {
         "sources": 14,
         "rule_cards": 11,
@@ -401,32 +409,35 @@
         "topic_hubs": 1
       },
       "depends_on_prs": [],
-      "integration_order": 50,
+      "integration_order": null,
       "official_url_check": {
         "status": "passed",
         "referenced_count": 14
       },
       "source_freshness": {
-        "status": "rebind_before_integration",
-        "mismatch_count": 4
+        "status": "current",
+        "mismatch_count": 0
       },
       "integration_checks": [
-        "드리프트 좌표 4개를 활성 DB 기준으로 재검증한다.",
-        "비표준 콘텐츠 유형이 있으면 표준 8종으로 정규화한다."
+        "#148 병합본의 현행 근거 14개와 조문별 공식 URL을 유지한다.",
+        "#101이 참조하는 산업재해 인정 콘텐츠 식별자를 유지한다."
+      ],
+      "supersedes_prs": [
+        100
       ]
     },
     {
-      "queue_id": "publication-pr-101",
-      "pr_number": 101,
-      "title_ko": "직장 내 괴롭힘·성희롱 대응 콘텐츠 10건",
-      "branch": "codex/content-workplace-harassment-20260722",
-      "head_sha": "e026e84e35e0ff7e454e119860908f5cb1d754d8",
+      "queue_id": "publication-pr-152",
+      "pr_number": 152,
+      "title_ko": "직장 내 괴롭힘·성희롱 현행 근거 재결박",
+      "branch": "codex/content-workplace-harassment-rebind-20260723",
+      "head_sha": "d7fda7a18da2b7058d95d4dacfa126dc5ccf05fd",
       "owner_role": "content_production",
       "topic_id": "hub.workplace-harassment",
       "topic_file": "artifacts/publication/topics/workplace-harassment.json",
       "test_file": "web/rulelink_public_next/scripts/workplace-harassment-topic-handoff.test.mjs",
       "change_mode": "new_topic",
-      "status": "ready_for_integration",
+      "status": "integrated",
       "counts": {
         "sources": 12,
         "rule_cards": 10,
@@ -435,20 +446,23 @@
         "topic_hubs": 1
       },
       "depends_on_prs": [
-        100
+        148
       ],
-      "integration_order": 100,
+      "integration_order": null,
       "official_url_check": {
         "status": "passed",
         "referenced_count": 12
       },
       "source_freshness": {
-        "status": "rebind_before_integration",
-        "mismatch_count": 6
+        "status": "current",
+        "mismatch_count": 0
       },
       "integration_checks": [
-        "#100 통합 뒤 관련 콘텐츠 참조가 닫히는지 검사한다.",
-        "드리프트 좌표 6개를 활성 DB 기준으로 재검증하고 유형을 정규화한다."
+        "#152 병합본의 현행 근거 12개와 조문별 공식 URL을 유지한다.",
+        "이미 병합된 #148 산업재해 정본과 관련 콘텐츠 참조가 닫힌 상태를 유지한다."
+      ],
+      "supersedes_prs": [
+        101
       ]
     },
     {
@@ -471,7 +485,7 @@
         "topic_hubs": 1
       },
       "depends_on_prs": [],
-      "integration_order": 60,
+      "integration_order": 10,
       "official_url_check": {
         "status": "passed",
         "referenced_count": 12
@@ -485,17 +499,17 @@
       ]
     },
     {
-      "queue_id": "publication-pr-104",
-      "pr_number": 104,
-      "title_ko": "민사소송·소액재판 생활법률 콘텐츠 10건",
-      "branch": "codex/content-civil-small-claims-20260723",
-      "head_sha": "935c0d086d9f5a050057dbe20b01d56a6238d11f",
+      "queue_id": "publication-pr-143",
+      "pr_number": 143,
+      "title_ko": "민사소송·소액재판 현행 근거 재결박",
+      "branch": "codex/content-civil-small-claims-rebind-20260723",
+      "head_sha": "5b85f91e2d18c0a904a9b1cea3ecbdb50cd6bdde",
       "owner_role": "content_production",
       "topic_id": "hub.civil-small-claims",
       "topic_file": "artifacts/publication/topics/civil-small-claims.json",
       "test_file": "web/rulelink_public_next/scripts/civil-small-claims-topic-handoff.test.mjs",
       "change_mode": "new_topic",
-      "status": "ready_for_integration",
+      "status": "integrated",
       "counts": {
         "sources": 20,
         "rule_cards": 10,
@@ -504,17 +518,21 @@
         "topic_hubs": 1
       },
       "depends_on_prs": [],
-      "integration_order": 70,
+      "integration_order": null,
       "official_url_check": {
         "status": "passed",
         "referenced_count": 20
       },
       "source_freshness": {
-        "status": "rebind_before_integration",
-        "mismatch_count": 5
+        "status": "current",
+        "mismatch_count": 0
       },
       "integration_checks": [
-        "드리프트 좌표 5개를 활성 DB 기준으로 재검증한다."
+        "#143 병합본의 활성 DB 근거 20개와 역참조 계약을 유지한다.",
+        "조문별 공식 URL과 실제 검증시각을 유지한다."
+      ],
+      "supersedes_prs": [
+        104
       ]
     },
     {
@@ -537,7 +555,7 @@
         "topic_hubs": 1
       },
       "depends_on_prs": [],
-      "integration_order": 80,
+      "integration_order": 20,
       "official_url_check": {
         "status": "passed",
         "referenced_count": 22
@@ -551,17 +569,17 @@
       ]
     },
     {
-      "queue_id": "publication-pr-107",
-      "pr_number": 107,
-      "title_ko": "주택임대차 갱신·수선·차임 생활법률 콘텐츠 10건",
-      "branch": "codex/content-housing-lease-living-20260723",
-      "head_sha": "9c268213b0b8b2c37dae43816e0e9b9606e64cec",
+      "queue_id": "publication-pr-141",
+      "pr_number": 141,
+      "title_ko": "주택임대차 생활분쟁 현행 근거 재결박",
+      "branch": "codex/content-housing-lease-living-rebind-20260723",
+      "head_sha": "7c6f7139bf31c8de36e3c807db0a2b0e74ba4849",
       "owner_role": "content_production",
       "topic_id": "hub.housing-lease-living",
       "topic_file": "artifacts/publication/topics/housing-lease-living.json",
       "test_file": "web/rulelink_public_next/scripts/housing-lease-living-topic-handoff.test.mjs",
       "change_mode": "new_topic",
-      "status": "ready_for_integration",
+      "status": "integrated",
       "counts": {
         "sources": 13,
         "rule_cards": 10,
@@ -570,17 +588,20 @@
         "topic_hubs": 1
       },
       "depends_on_prs": [],
-      "integration_order": 90,
+      "integration_order": null,
       "official_url_check": {
         "status": "passed",
         "referenced_count": 13
       },
       "source_freshness": {
-        "status": "rebind_before_integration",
-        "mismatch_count": 1
+        "status": "current",
+        "mismatch_count": 0
       },
       "integration_checks": [
-        "드리프트 좌표 1개를 활성 DB 기준으로 재검증한다."
+        "#141 병합본의 현행 근거 13개와 32자리 snapshot 계약을 유지한다."
+      ],
+      "supersedes_prs": [
+        107
       ]
     },
     {
@@ -604,7 +625,7 @@
       },
       "depends_on_prs": [
         89,
-        97
+        147
       ],
       "integration_order": null,
       "official_url_check": {
@@ -616,23 +637,23 @@
         "mismatch_count": 8
       },
       "integration_checks": [
-        "#89 재작업과 #97 통합 뒤에만 통합한다.",
+        "#89 재작업과 이미 병합된 #147 정본을 기준으로 통합한다.",
         "드리프트 좌표 8개를 활성 DB 기준으로 재검증한다."
       ],
-      "blocking_reason_ko": "#89 재작업과 #97 통합 뒤에만 통합한다."
+      "blocking_reason_ko": "#89 재작업이 완료된 뒤 이미 병합된 #147 정본을 기준으로 통합한다."
     },
     {
-      "queue_id": "publication-pr-111",
-      "pr_number": 111,
-      "title_ko": "누수·층간소음·공용부분 생활분쟁 콘텐츠 10건",
-      "branch": "codex/content-neighbor-leak-noise-20260723",
-      "head_sha": "a9fd9016c2961e5b329f161bb9de1f694c3328bf",
+      "queue_id": "publication-pr-131",
+      "pr_number": 131,
+      "title_ko": "누수·층간소음 의미중복 재작업",
+      "branch": "codex/content-neighbor-leak-noise-rework-20260723",
+      "head_sha": "ffe8386933b5f3b058e2a13355baa1a774d82c4e",
       "owner_role": "content_production",
       "topic_id": "hub.neighbor-leak-noise",
       "topic_file": "artifacts/publication/topics/neighbor-leak-noise.json",
       "test_file": "web/rulelink_public_next/scripts/neighbor-leak-noise-topic-handoff.test.mjs",
       "change_mode": "new_topic",
-      "status": "needs_rework",
+      "status": "integrated",
       "counts": {
         "sources": 12,
         "rule_cards": 10,
@@ -641,53 +662,10 @@
         "topic_hubs": 1
       },
       "depends_on_prs": [
-        104,
-        107
+        141,
+        143
       ],
       "integration_order": null,
-      "official_url_check": {
-        "status": "passed",
-        "referenced_count": 12
-      },
-      "source_freshness": {
-        "status": "rebind_before_integration",
-        "mismatch_count": 2
-      },
-      "integration_checks": [
-        "#107과 겹치는 수선의무·수리비 질문을 제거하거나 윗집·공용부분·임대목적물 등 누수 원인별 결론변경 사실이 다른 질문으로 재구성한다.",
-        "#104와 #107 뒤 관련 콘텐츠 참조가 닫히는지 검사한다.",
-        "드리프트 좌표 2개를 활성 DB 기준으로 재검증한다."
-      ],
-      "blocking_reason_ko": "#107과 임대인의 수선의무 및 임차인의 수리비 상환 질문 2건이 같은 조문과 법률효과를 반복합니다.",
-      "overlap_decisions": [
-        {
-          "target_pr": 107,
-          "relationship": "split_required",
-          "rationale_ko": "민법 제623조 수선의무와 제626조 비용상환을 같은 법률효과로 반복하므로 #111은 누수 원인·점유자·공용부분 책임 축만 남겨야 합니다."
-        }
-      ]
-    },
-    {
-      "queue_id": "publication-pr-113",
-      "pr_number": 113,
-      "title_ko": "보이스피싱 지급정지·피해환급 콘텐츠 10건",
-      "branch": "codex/content-voice-phishing-refund-20260723",
-      "head_sha": "3be1d8132fe775c94c2e4ec2884e165dc7d4a385",
-      "owner_role": "content_production",
-      "topic_id": "hub.voice-phishing-refund",
-      "topic_file": "artifacts/publication/topics/voice-phishing-refund.json",
-      "test_file": "web/rulelink_public_next/scripts/voice-phishing-refund-topic-handoff.test.mjs",
-      "change_mode": "new_topic",
-      "status": "ready_for_integration",
-      "counts": {
-        "sources": 12,
-        "rule_cards": 10,
-        "scenario_branches": 10,
-        "content_entries": 10,
-        "topic_hubs": 1
-      },
-      "depends_on_prs": [],
-      "integration_order": 10,
       "official_url_check": {
         "status": "passed",
         "referenced_count": 12
@@ -697,7 +675,47 @@
         "mismatch_count": 0
       },
       "integration_checks": [
-        "2026-12-17 미래 시행 전자금융거래법 판의 혼입 차단 시험을 유지한다."
+        "#131 병합본에서 #111의 수선의무·비용상환 중복 제거를 유지한다.",
+        "이미 병합된 #141·#143 정본과 관련 콘텐츠 참조가 닫히는지 유지한다."
+      ],
+      "supersedes_prs": [
+        111
+      ]
+    },
+    {
+      "queue_id": "publication-pr-139",
+      "pr_number": 139,
+      "title_ko": "보이스피싱 지급정지·피해환급 최신 main 재검증",
+      "branch": "codex/content-voice-phishing-rebase-20260723",
+      "head_sha": "04a49462d8577c880b5788b298fa4c15dd5ca63d",
+      "owner_role": "content_production",
+      "topic_id": "hub.voice-phishing-refund",
+      "topic_file": "artifacts/publication/topics/voice-phishing-refund.json",
+      "test_file": "web/rulelink_public_next/scripts/voice-phishing-refund-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "integrated",
+      "counts": {
+        "sources": 12,
+        "rule_cards": 10,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": null,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 12
+      },
+      "source_freshness": {
+        "status": "current",
+        "mismatch_count": 0
+      },
+      "integration_checks": [
+        "#139 병합본에서 2026-12-17 미래 시행 전자금융거래법 판의 혼입 차단 시험을 유지한다."
+      ],
+      "supersedes_prs": [
+        113
       ]
     },
     {
