@@ -144,6 +144,22 @@ test('검증 실패 시 --write 대상 원본 바이트는 변하지 않는다',
   }
 });
 
+
+test('기존 정본 백필 #166은 직접 병합이 아닌 publication migration으로만 등록한다', () => {
+  const item = queue.items.find(value => value.pr_number === 166);
+  assert.ok(item);
+  assert.equal(item.status, 'migration_required');
+  assert.equal(item.owner_role, 'content_production');
+  assert.equal(item.change_mode, 'existing_topic_revision');
+  assert.equal(item.direct_merge, false);
+  assert.deepEqual(item.integrate_requires, ['current_bundle', 'new_immutable_snapshot', 'migrate_publication']);
+  assert.equal(item.head_sha, '237bff8a1a8c58ad3961f215236bc3f3df0d3197');
+
+  const invalid = clone(queue);
+  invalid.items.find(value => value.pr_number === 166).direct_merge = true;
+  assert.ok(validateProductionQueue(invalid).some(error => error.includes('direct_merge=false')));
+});
+
 test('변호사 작업공간 제품 게이트는 이번 구현이 아닌 후속 품질 backlog로만 고정한다', () => {
   const item = queue.quality_backlog.find(value => value.backlog_id === 'quality.attorney-workspace-product-gate-v1');
   assert.ok(item);
@@ -163,4 +179,10 @@ test('변호사 작업공간 제품 게이트는 이번 구현이 아닌 후속 
     action_ko: 'keep 31은 typed 필드를 이관하고 needs 21과 remove 5는 legacy lawyer_workspace_entry를 제거해 CTA를 숨긴다.',
   });
   assert.equal(item.migration_plan.hard_fail_checks.length, 3);
+  assert.deepEqual(item.migration_plan.dependent_topic_backfills, [{
+    pr_number: 166,
+    topic_id: 'hub.money-guarantee',
+    typed_cta_candidate_count: 4,
+    depends_on: 'attorney-workspace-typed-migration',
+  }]);
 });
