@@ -4,6 +4,7 @@ import {notFound} from 'next/navigation';
 import {KnowledgeActionWorkspace} from '@/components/knowledge-action-workspace';
 import {LegalConceptLayer, LegalConceptText} from '@/components/legal-concept-text';
 import {OfficialSourceJump} from '@/components/official-source-jump';
+import {ScenarioRuleLinks} from '@/components/scenario-rule-links';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {findKnowledgeEntry, knowledgeDetail, listKnowledgeEntries} from '@/lib/publication';
@@ -168,16 +169,17 @@ export default async function KnowledgePage({params}: Props) {
                         <p><b>해당하면</b><LegalConceptText concepts={concepts} text={branch.when_true_ko} /></p>
                         <p><b>해당하지 않으면</b><LegalConceptText concepts={concepts} text={branch.when_false_ko} /></p>
                       </div>
-                      {linkedRules.length ? (
-                        <div aria-label="이 사실분기에 연결된 법리" className={styles.branchRules}>
-                          <span className={styles.branchRulesLabel}>연결 법리</span>
-                          {linkedRules.map(rule => (
-                            <a href={`#${rule.rule_id}`} key={rule.rule_id}>
-                              {rule.title_ko} <span aria-hidden="true">↑</span>
-                            </a>
-                          ))}
-                        </div>
-                      ) : null}
+                      <ScenarioRuleLinks
+                        classes={{
+                          item: styles.branchRulesItem,
+                          label: styles.branchRulesLabel,
+                          link: styles.branchRulesLink,
+                          list: styles.branchRulesList,
+                          root: styles.branchRules,
+                        }}
+                        rules={linkedRules}
+                        scenarioId={branch.scenario_id}
+                      />
                     </article>
                   );
                 })}

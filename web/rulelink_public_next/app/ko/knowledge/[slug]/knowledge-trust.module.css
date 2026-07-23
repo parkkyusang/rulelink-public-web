@@ -88,51 +88,66 @@
 }
 
 .branchRules {
-  align-items: center;
   border-top: 1px solid #dce5df;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  display: grid;
+  gap: 10px;
   margin-top: 16px;
   padding-top: 14px;
 }
 
 .branchRulesLabel {
   color: #5b6b63;
+  display: block;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.03em;
-  margin-right: 2px;
+  line-height: 1.4;
 }
 
-.branchRules a,
-.branchRuleChip {
+.branchRulesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.branchRulesItem {
+  display: flex;
+}
+
+.branchRulesLink {
+  align-items: center;
   background: #edf7f1;
   border: 1px solid #cfe3d7;
   border-radius: 999px;
   color: #145c3f;
+  display: inline-flex;
   font-size: 12px;
   font-weight: 750;
+  gap: 4px;
   line-height: 1.35;
   padding: 7px 10px;
+  text-decoration: none;
 }
 
-.branchRules a:hover {
+.branchRulesLink:hover {
   background: #dcefe4;
   border-color: #a9cdb8;
 }
 
+.branchRulesLink:focus-visible {
+  outline: 3px solid rgba(20, 92, 63, 0.3);
+  outline-offset: 2px;
+}
+
 @media (max-width: 800px) {
-  .branchRules {
+  .branchRulesList {
     align-items: stretch;
   }
 
-  .branchRulesLabel {
-    flex-basis: 100%;
-  }
-
-  .branchRules a,
-  .branchRuleChip {
+  .branchRulesLink {
     border-radius: 10px;
   }
 }
