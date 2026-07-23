@@ -150,7 +150,7 @@ test('기존 임금 주제의 중복을 피하고 퇴직 전후의 빈 경로를
   );
 });
 
-test('새 식별자는 현재 공개 정본과 충돌하지 않고 인적 표기를 요구하지 않는다', () => {
+test('식별자는 독립 인계와 정본 통합 단계 모두에서 같은 계약을 지킨다', () => {
   const currentIds = new Set([
     ...current.knowledge.sources.map(item => item.coordinate_id),
     ...current.knowledge.rule_cards.map(item => item.rule_id),
@@ -166,7 +166,8 @@ test('새 식별자는 현재 공개 정본과 충돌하지 않고 인적 표기
     ...topic.topic_hubs.map(item => item.hub_id),
   ];
   assert.equal(new Set(newIds).size, newIds.length);
-  for (const id of newIds) assert.ok(!currentIds.has(id), `현재 정본과 식별자 충돌: ${id}`);
+  const integrated = current.knowledge.topic_hubs.some(item => item.hub_id === topic.topic_hubs[0].hub_id);
+  for (const id of newIds) assert.equal(currentIds.has(id), integrated, `정본 통합 상태 불일치: ${id}`);
 
   const serialized = JSON.stringify(topic);
   for (const forbidden of ['author', 'byline', 'reviewer_name', '박규상', '동순…']) {

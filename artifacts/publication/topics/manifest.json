@@ -69,6 +69,42 @@
     {
       "topic_id": "hub.legal-service-boundaries",
       "file": "legal-service-boundaries.json"
+    },
+    {
+      "topic_id": "hub.voice-phishing-refund",
+      "file": "voice-phishing-refund.json"
+    },
+    {
+      "topic_id": "hub.housing-lease-living",
+      "file": "housing-lease-living.json"
+    },
+    {
+      "topic_id": "hub.civil-small-claims",
+      "file": "civil-small-claims.json"
+    },
+    {
+      "topic_id": "hub.commercial-lease",
+      "file": "commercial-lease.json"
+    },
+    {
+      "topic_id": "hub.neighbor-leak-noise",
+      "file": "neighbor-leak-noise.json"
+    },
+    {
+      "topic_id": "hub.auto-accident-insurance",
+      "file": "auto-accident-insurance.json"
+    },
+    {
+      "topic_id": "hub.employment-exit",
+      "file": "employment-exit.json"
+    },
+    {
+      "topic_id": "hub.industrial-accident",
+      "file": "industrial-accident.json"
+    },
+    {
+      "topic_id": "hub.workplace-harassment",
+      "file": "workplace-harassment.json"
     }
   ],
   "concepts": [
@@ -108,6 +144,15 @@
     "hub.legal-concept-comparisons-02",
     "hub.remedy-path-comparisons",
     "hub.deadline-and-timing-comparisons",
-    "hub.legal-service-boundaries"
+    "hub.legal-service-boundaries",
+    "hub.voice-phishing-refund",
+    "hub.housing-lease-living",
+    "hub.civil-small-claims",
+    "hub.commercial-lease",
+    "hub.neighbor-leak-noise",
+    "hub.auto-accident-insurance",
+    "hub.employment-exit",
+    "hub.industrial-accident",
+    "hub.workplace-harassment"
   ]
 }
