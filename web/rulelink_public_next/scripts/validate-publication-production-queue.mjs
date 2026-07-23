@@ -1,3 +1,4 @@
+import {createHash} from 'node:crypto';
 import {readFile, rename, unlink, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -26,6 +27,20 @@ const modes = new Set(['new_topic', 'existing_topic_revision']);
 const activeWipStatuses = new Set(['claimed', 'in_progress', 'pr_open']);
 const terminalStatuses = new Set(['integrated', 'merged_pending_publication', 'superseded', 'withdrawn']);
 const openPrStatuses = new Set(['pr_open', 'ready_for_integration', 'needs_rework', 'migration_required', 'blocked']);
+const existingTopicRevisionStatuses = new Set([
+  'planned',
+  'claimed',
+  'in_progress',
+  'pr_open',
+  'needs_rework',
+  'blocked',
+  'migration_required',
+  'integrated',
+  'superseded',
+  'withdrawn',
+]);
+const existingTopicPublishedStatuses = new Set(['integrated', 'superseded']);
+const integrationModes = new Set(['exact', 'absorbed']);
 const freshnessStatuses = new Set([
   'current',
   'rebind_before_integration',
@@ -58,6 +73,28 @@ function canonicalJson(value) {
   if (Array.isArray(value)) return JSON.stringify(value.map(item => JSON.parse(canonicalJson(item))));
   if (!value || typeof value !== 'object') return JSON.stringify(value);
   return JSON.stringify(Object.fromEntries(Object.keys(value).sort().map(key => [key, JSON.parse(canonicalJson(value[key]))])));
+}
+
+export function topicReceipt(value) {
+  return createHash('sha256').update(canonicalJson(value)).digest('hex');
+}
+
+export async function loadQueuePublicationEvidence(queue, bundle, io = {}) {
+  const read = io.readFile || readFile;
+  const snapshotId = bundle?.snapshot_id;
+  if (!nonEmpty(snapshotId)) throw new Error('current bundle의 snapshot_id가 필요합니다.');
+  const snapshotPath = path.join(repoRoot, 'artifacts', 'publication', 'snapshots', snapshotId, 'bundle.json');
+  const publishedSnapshot = JSON.parse(await read(snapshotPath, 'utf8'));
+  const topicReceipts = new Map();
+  const existingRevisionTopicFiles = queue.items
+    .filter(item => item?.change_mode === 'existing_topic_revision')
+    .map(item => item?.topic_file)
+    .filter(nonEmpty);
+  for (const topicFile of new Set(existingRevisionTopicFiles)) {
+    const topic = JSON.parse(await read(path.join(repoRoot, topicFile), 'utf8'));
+    topicReceipts.set(topicFile, topicReceipt(topic));
+  }
+  return {publishedSnapshot, topicReceipts};
 }
 
 function publicationArray(bundle, key) {
@@ -98,7 +135,8 @@ export async function synchronizeCurrentPublicationFile(queuePath, publishedBund
   const remove = io.unlink || unlink;
   const loadedQueue = JSON.parse(await read(queuePath, 'utf8'));
   const updatedQueue = updateQueueCurrentPublication(loadedQueue, publishedBundle);
-  const errors = validateProductionQueue(updatedQueue, {publishedBundle});
+  const evidence = await loadQueuePublicationEvidence(updatedQueue, publishedBundle, {readFile: read});
+  const errors = validateProductionQueue(updatedQueue, {publishedBundle, ...evidence});
   if (errors.length) throw new Error(`공개 콘텐츠 생산 대기열 검증 실패: ${errors.join(' | ')}`);
   const tempPath = `${queuePath}.${Date.now()}-${Math.random().toString(16).slice(2)}.tmp`;
   try {
@@ -119,7 +157,10 @@ function isPositiveInteger(value) {
   return Number.isInteger(value) && value > 0;
 }
 
-export function validateProductionQueue(queue, {publishedBundle = null} = {}) {
+export function validateProductionQueue(
+  queue,
+  {publishedBundle = null, publishedSnapshot = null, topicReceipts = null} = {},
+) {
   const errors = [];
   if (!queue || typeof queue !== 'object') return ['대기열은 JSON 객체여야 합니다.'];
   if (queue.schema !== 'rulelink_publication_production_queue_v1') {
@@ -243,7 +284,39 @@ export function validateProductionQueue(queue, {publishedBundle = null} = {}) {
       if (item.direct_merge !== false) errors.push(`${label}의 migration_required는 direct_merge=false여야 합니다.`);
       if (JSON.stringify(item.integrate_requires) !== JSON.stringify(required)) errors.push(`${label}.integrate_requires는 current bundle·새 불변 snapshot·migrate_publication을 요구해야 합니다.`);
     }
-    if (item.change_mode === 'existing_topic_revision' && item.status !== 'migration_required') errors.push(`${label}의 기존 주제 개정은 migration_required 상태만 사용할 수 있습니다.`);
+    if (item.change_mode === 'existing_topic_revision' && !existingTopicRevisionStatuses.has(item.status)) {
+      errors.push(`${label}의 기존 주제 개정에는 허용되지 않은 lifecycle 상태입니다: ${item.status}`);
+    }
+    if (item.change_mode === 'existing_topic_revision' && ['ready_for_integration', 'merged_pending_publication'].includes(item.status)) {
+      errors.push(`${label}의 기존 주제 개정은 topic-only 공개 승격 상태를 사용할 수 없습니다: ${item.status}`);
+    }
+    if (item.change_mode === 'existing_topic_revision' && existingTopicPublishedStatuses.has(item.status)) {
+      for (const field of ['integrated_snapshot_id', 'migration_commit_sha', 'absorbed_head_sha', 'topic_receipt', 'integration_mode']) {
+        if (!nonEmpty(item[field])) errors.push(`${label}.${field}는 기존 주제 개정의 완료 이력에 필요합니다.`);
+      }
+      if (nonEmpty(item.integrated_snapshot_id) && !/^[a-z0-9][a-z0-9._-]*$/u.test(item.integrated_snapshot_id)) {
+        errors.push(`${label}.integrated_snapshot_id가 올바르지 않습니다.`);
+      }
+      for (const field of ['migration_commit_sha', 'absorbed_head_sha']) {
+        if (nonEmpty(item[field]) && !/^[0-9a-f]{40}$/u.test(item[field])) errors.push(`${label}.${field}는 40자리 커밋 SHA여야 합니다.`);
+      }
+      if (nonEmpty(item.absorbed_head_sha) && item.absorbed_head_sha !== item.head_sha) {
+        errors.push(`${label}.absorbed_head_sha는 감사한 PR head_sha와 같아야 합니다.`);
+      }
+      if (nonEmpty(item.topic_receipt) && !/^[0-9a-f]{64}$/u.test(item.topic_receipt)) {
+        errors.push(`${label}.topic_receipt는 64자리 SHA-256이어야 합니다.`);
+      }
+      if (nonEmpty(item.integration_mode) && !integrationModes.has(item.integration_mode)) {
+        errors.push(`${label}.integration_mode는 exact 또는 absorbed여야 합니다.`);
+      }
+      if (item.integration_order !== null) errors.push(`${label}의 완료된 기존 주제 개정에는 integration_order가 null이어야 합니다.`);
+    }
+    if (item.change_mode === 'existing_topic_revision' && item.status === 'withdrawn') {
+      if (!nonEmpty(item.terminal_reason_ko)) errors.push(`${label}.terminal_reason_ko는 철회 이력에 필요합니다.`);
+      for (const field of ['integrated_snapshot_id', 'migration_commit_sha', 'absorbed_head_sha', 'topic_receipt', 'integration_mode']) {
+        if (item[field] !== undefined) errors.push(`${label}.${field}는 출판되지 않은 withdrawn 이력에 사용할 수 없습니다.`);
+      }
+    }
     if (item.status === 'integrated') {
       if (item.source_freshness?.status !== 'current') errors.push(`${label}의 integrated 상태에는 current 근거가 필요합니다.`);
       if (item.integration_order !== null) errors.push(`${label}의 integrated 상태에는 integration_order가 null이어야 합니다.`);
@@ -355,10 +428,30 @@ export function validateProductionQueue(queue, {publishedBundle = null} = {}) {
     let publishedHubIds = new Set();
     try { publishedHubIds = new Set(publicationArray(publishedBundle, 'topic_hubs').map(hub => hub?.hub_id).filter(nonEmpty)); }
     catch (error) { errors.push(error instanceof Error ? error.message : String(error)); }
+    if (publishedSnapshot) {
+      if (publishedSnapshot.snapshot_id !== publishedBundle.snapshot_id) {
+        errors.push('immutable snapshot의 snapshot_id가 current bundle과 다릅니다.');
+      }
+      if (canonicalJson(publishedSnapshot) !== canonicalJson(publishedBundle)) {
+        errors.push('immutable snapshot과 current bundle의 합성 결과가 다릅니다.');
+      }
+    }
     for (const item of queue.items) {
       if (item.status === 'integrated' && !publishedHubIds.has(item.topic_id)) errors.push(`#${item.pr_number}의 integrated 주제가 current bundle에 없습니다: ${item.topic_id}`);
       if (item.status === 'merged_pending_publication' && publishedHubIds.has(item.topic_id)) errors.push(`#${item.pr_number}의 pending 주제가 이미 current bundle에 있으므로 integrated로 전환해야 합니다: ${item.topic_id}`);
       if (item.status === 'migration_required' && !publishedHubIds.has(item.topic_id)) errors.push(`#${item.pr_number}의 기존 개정 대상 주제가 current bundle에 없습니다: ${item.topic_id}`);
+      if (item.change_mode === 'existing_topic_revision' && existingTopicPublishedStatuses.has(item.status)) {
+        if (!publishedHubIds.has(item.topic_id)) errors.push(`#${item.pr_number}의 완료된 기존 주제가 current bundle에 없습니다: ${item.topic_id}`);
+        if (item.integrated_snapshot_id !== publishedBundle.snapshot_id) {
+          errors.push(`#${item.pr_number}.integrated_snapshot_id가 current bundle과 다릅니다.`);
+        }
+        if (!publishedSnapshot) errors.push(`#${item.pr_number}의 immutable snapshot 증거가 필요합니다.`);
+        if (!(topicReceipts instanceof Map)) {
+          errors.push(`#${item.pr_number}의 topic receipt 검증 입력이 필요합니다.`);
+        } else if (topicReceipts.get(item.topic_file) !== item.topic_receipt) {
+          errors.push(`#${item.pr_number}.topic_receipt가 현재 주제 원본과 다릅니다.`);
+        }
+      }
     }
   }
 
@@ -408,7 +501,8 @@ async function main() {
   const queue = args.includes('--write-current-publication')
     ? await synchronizeCurrentPublicationFile(queuePath, publishedBundle)
     : JSON.parse(await readFile(queuePath, 'utf8'));
-  const errors = validateProductionQueue(queue, {publishedBundle});
+  const evidence = await loadQueuePublicationEvidence(queue, publishedBundle);
+  const errors = validateProductionQueue(queue, {publishedBundle, ...evidence});
   if (errors.length) {
     console.error(`공개 콘텐츠 생산 대기열 검증 실패: ${errors.length}건`);
     for (const error of errors) console.error(`- ${error}`);
