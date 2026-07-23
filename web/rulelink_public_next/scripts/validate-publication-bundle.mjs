@@ -564,7 +564,8 @@ function checkStableKnowledgeSource(source, name, errors) {
     errors.push(`${name}의 article_no가 유효한 조문 표기가 아닙니다.`);
     return;
   }
-  const expected = new URL(`https://www.law.go.kr/${['법령', source.law_name_ko.trim(), source.article_no.trim()].map(encodeURIComponent).join('/')}`).href;
+  const canonicalLawPathName = source.law_name_ko.replace(/\s+/gu, '');
+  const expected = new URL(`https://www.law.go.kr/${['법령', canonicalLawPathName, source.article_no.trim()].map(encodeURIComponent).join('/')}`).href;
   try {
     if (new URL(source.official_url).href !== expected) {
       errors.push(`${name}의 공식 URL이 법령명·조문번호와 일치하는 안정 주소가 아닙니다.`);
