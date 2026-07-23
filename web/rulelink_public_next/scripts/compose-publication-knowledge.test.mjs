@@ -1,4 +1,8 @@
 import assert from 'node:assert/strict';
+import {spawn} from 'node:child_process';
+import {mkdtemp, readFile, readdir, rm, writeFile} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import path from 'node:path';
 import test from 'node:test';
 
 import {
@@ -8,6 +12,17 @@ import {
   contentReceipt,
   loadComposition,
 } from './compose-publication-knowledge.mjs';
+
+const currentBundlePath = path.resolve(
+  process.cwd(),
+  '..',
+  '..',
+  'artifacts',
+  'publication',
+  'current',
+  'bundle.json',
+);
+const currentBundle = JSON.parse(await readFile(currentBundlePath, 'utf8'));
 
 function descriptor(topicId, file) { return {topic_id: topicId, file}; }
 
@@ -45,6 +60,76 @@ test('레거시 개념 정체성 예외는 명시적인 snapshot 022 합성에�
     () => loadComposition(undefined, {snapshotId: 'kr-knowledge-core-20260724-023'}),
     /별도 canonical concept 정체성/,
   );
+});
+
+test('snapshot 022 legacy 예외는 같은 오류 코드의 다른 용어를 조립기 직접 호출에서도 허용하지 않는다', () => {
+  const descriptorValue = descriptor('hub.first', 'first.json');
+  const conceptDescriptor = {concept_group_id: 'concept-group.legacy', file: 'legacy.json'};
+  const legacyConcept = structuredClone(
+    currentBundle.knowledge.concept_cards.find(
+      concept => concept.concept_id === 'concept.kr.inheritance.legal_heir',
+    ),
+  );
+  const group = {
+    schema: 'rulelink_public_concept_group_v1',
+    concept_group_id: conceptDescriptor.concept_group_id,
+    sources: [],
+    concept_cards: [legacyConcept],
+  };
+  const manifestValue = {
+    ...manifest([descriptorValue]),
+    concepts: [conceptDescriptor],
+  };
+
+  assert.doesNotThrow(() => assembleKnowledge(
+    manifestValue,
+    [topic('hub.first', 'first')],
+    [group],
+    {snapshotId: currentBundle.snapshot_id},
+  ));
+
+  const wrongTermGroup = structuredClone(group);
+  wrongTermGroup.concept_cards[0].aliases_ko = ['법정상속인', '피상속인'];
+  assert.throws(
+    () => assembleKnowledge(
+      manifestValue,
+      [topic('hub.first', 'first')],
+      [wrongTermGroup],
+      {snapshotId: currentBundle.snapshot_id},
+    ),
+    /피상속인/,
+  );
+});
+
+test('실제 CLI의 023 strict 실패는 임시 current와 snapshot 경로를 전혀 쓰지 않는다', async () => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'rulelink-concept-strict-'));
+  const currentPath = path.join(directory, 'current.json');
+  const snapshotRoot = path.join(directory, 'snapshots');
+  const originalCurrent = await readFile(currentBundlePath, 'utf8');
+  await writeFile(currentPath, originalCurrent, 'utf8');
+
+  try {
+    const result = await runNode([
+      path.resolve(process.cwd(), 'scripts', 'compose-publication-knowledge.mjs'),
+      '--write',
+      '--current',
+      currentPath,
+      '--snapshot-root',
+      snapshotRoot,
+      '--snapshot-id',
+      'kr-knowledge-core-20260724-023',
+      '--built-at',
+      '2026-07-23T06:00:00+00:00',
+      '--source-snapshot-id',
+      'source-maintenance-20260723',
+    ]);
+    assert.notEqual(result.code, 0);
+    assert.match(result.stderr, /별도 canonical concept 정체성/);
+    assert.equal(await readFile(currentPath, 'utf8'), originalCurrent);
+    assert.deepEqual(await listFiles(snapshotRoot), []);
+  } finally {
+    await rm(directory, {recursive: true, force: true});
+  }
 });
 
 test('독립 법령변화 묶음을 공개 콘텐츠 참조와 함께 결정론적으로 합친다', () => {
@@ -137,7 +222,7 @@ test('신규 개념 묶음은 별도 정체성 용어를 검색 별칭으로 합
         }],
       }],
     ),
-    /별도 canonical concept 정체성/,
+    /같은 정본 개념의 검색 별칭으로 합칠 수 없습니다/,
   );
 });
 
@@ -212,3 +297,37 @@ test('변호사 작업공간 연결은 내부 설명 게이트와 확인 대상�
     /변호사 전용 게이트 계약/,
   );
 });
+
+function runNode(args) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, args, {
+      cwd: process.cwd(),
+      env: process.env,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+    child.stdout.setEncoding('utf8');
+    child.stderr.setEncoding('utf8');
+    child.stdout.on('data', chunk => { stdout += chunk; });
+    child.stderr.on('data', chunk => { stderr += chunk; });
+    child.on('error', reject);
+    child.on('close', code => resolve({code, stdout, stderr}));
+  });
+}
+
+async function listFiles(root) {
+  try {
+    const entries = await readdir(root, {withFileTypes: true});
+    const files = [];
+    for (const entry of entries) {
+      const target = path.join(root, entry.name);
+      if (entry.isDirectory()) files.push(...await listFiles(target));
+      else files.push(target);
+    }
+    return files;
+  } catch (error) {
+    if (error?.code === 'ENOENT') return [];
+    throw error;
+  }
+}

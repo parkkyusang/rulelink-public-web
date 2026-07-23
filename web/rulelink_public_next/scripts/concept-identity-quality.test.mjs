@@ -7,6 +7,7 @@ import {
   auditConceptIdentityPolicyRegistry,
   auditConceptTermRelations,
   conceptIdentityPolicyRegistry,
+  conceptTermValidationIssueKey,
   validateConceptTermRelations,
 } from '../src/lib/concept-terms.ts';
 import {
@@ -33,6 +34,9 @@ test('개념 정체성 편집 정책은 버전형 레지스트리와 결정론�
   assert.ok(conceptIdentityPolicyRegistry.terms.every(item => (
     item.meaning_domain.length > 0 && item.reason_ko.length > 0
   )));
+  assert.ok(conceptIdentityPolicyRegistry.terms
+    .filter(item => ['forbidden_alias_pair', 'decision_fact_not_alias'].includes(item.policy_kind))
+    .every(item => item.target_preferred_term_ko?.length > 0));
 
   const duplicate = structuredClone(conceptIdentityPolicyRegistry);
   duplicate.terms.push({
@@ -84,6 +88,7 @@ test('snapshot 022의 잘못 합쳐진 상속인 별칭은 정확한 legacy debt
   const concepts = currentBundle.knowledge.concept_cards;
   const sources = currentBundle.knowledge.sources;
   const audit = auditLegacyConceptDebt(concepts, sources, currentBundle.snapshot_id);
+  const legacyOptions = legacyConceptValidationOptions(concepts, currentBundle.snapshot_id);
 
   assert.deepEqual(audit.baselineErrors, []);
   assert.deepEqual(
@@ -96,8 +101,26 @@ test('snapshot 022의 잘못 합쳐진 상속인 별칭은 정확한 legacy debt
   assert.doesNotThrow(() => validateConceptTermRelations(
     concepts,
     sources,
-    legacyConceptValidationOptions(concepts, currentBundle.snapshot_id),
+    legacyOptions,
   ));
+  const allowedKeys = legacyOptions.legacyDebt.get('concept.kr.inheritance.legal_heir');
+  assert.deepEqual(
+    [...allowedKeys].sort(),
+    [
+      conceptTermValidationIssueKey('protected-canonical-term-as-alias', '공동상속인'),
+      conceptTermValidationIssueKey('protected-canonical-term-as-alias', '법정상속인'),
+    ].sort(),
+  );
+  assert.equal(allowedKeys.has('protected-canonical-term-as-alias'), false);
+
+  const wrongTerm = structuredClone(
+    concepts.find(concept => concept.concept_id === 'concept.kr.inheritance.legal_heir'),
+  );
+  wrongTerm.aliases_ko = ['피상속인'];
+  assert.throws(
+    () => validateConceptTermRelations([wrongTerm], sources, legacyOptions),
+    /피상속인/,
+  );
   assert.throws(
     () => validateConceptTermRelations(
       concepts,
@@ -172,9 +195,16 @@ test('원본은 전역 별칭으로 금지하고 법역을 한정한 채무 원�
 test('노동 후속 개념은 임금 정체성과 근로자성 판단자료를 별칭으로 합치지 않는다', () => {
   for (const item of fixture.labor_alias_boundaries) {
     const issues = auditConceptTermRelations([item.concept], [])
-      .filter(issue => issue.code === 'protected-canonical-term-as-alias');
+      .filter(issue => issue.code === item.expected_code);
     assert.deepEqual(issues.map(issue => issue.term), item.expected_terms, item.name);
   }
+});
+
+test('노동 별칭 경계는 대상 개념 쌍에만 적용하고 정상적인 제도 개념 별칭은 허용한다', () => {
+  assert.doesNotThrow(() => validateConceptTermRelations(
+    fixture.allowed_scoped_aliases.concepts,
+    fixture.allowed_scoped_aliases.sources,
+  ));
 });
 
 function issueCodes(concepts, sources) {

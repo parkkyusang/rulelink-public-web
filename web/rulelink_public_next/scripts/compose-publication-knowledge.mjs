@@ -12,6 +12,7 @@ const appRoot = path.resolve(path.dirname(scriptPath), '..');
 const repoRoot = path.resolve(appRoot, '..', '..');
 const defaultManifestPath = path.join(repoRoot, 'artifacts', 'publication', 'topics', 'manifest.json');
 const defaultCurrentPath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
+const defaultSnapshotRoot = path.join(repoRoot, 'artifacts', 'publication', 'snapshots');
 const collections = [
   ['sources', 'coordinate_id'],
   ['topic_hubs', 'hub_id'],
@@ -262,8 +263,10 @@ async function main() {
   const writeMode = args.includes('--write');
   const manifestValue = option(args, '--manifest');
   const currentValue = option(args, '--current');
+  const snapshotRootValue = option(args, '--snapshot-root');
   const manifestPath = manifestValue ? path.resolve(manifestValue) : defaultManifestPath;
   const currentPath = currentValue ? path.resolve(currentValue) : defaultCurrentPath;
+  const snapshotRoot = snapshotRootValue ? path.resolve(snapshotRootValue) : defaultSnapshotRoot;
   const current = JSON.parse(await readFile(currentPath, 'utf8'));
   const snapshotId = writeMode ? option(args, '--snapshot-id') : current.snapshot_id;
   const builtAt = option(args, '--built-at');
@@ -296,7 +299,7 @@ async function main() {
     changeComposition,
   );
   const text = `${JSON.stringify(expected, null, 2)}\n`;
-  const snapshotPath = path.join(repoRoot, 'artifacts', 'publication', 'snapshots', snapshotId, 'bundle.json');
+  const snapshotPath = path.join(snapshotRoot, snapshotId, 'bundle.json');
   try {
     const existing = await readFile(snapshotPath, 'utf8');
     if (existing !== text) throw new Error(`불변 스냅샷을 덮어쓸 수 없습니다: ${snapshotId}`);

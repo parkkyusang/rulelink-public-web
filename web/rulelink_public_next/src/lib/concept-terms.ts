@@ -39,13 +39,16 @@ const semanticRelationKinds = new Set<PublicConceptTermRelation['relation']>([
 
 export type ConceptIdentityPolicyKind =
   | 'protected_canonical_identity'
-  | 'ambiguous_global_alias';
+  | 'ambiguous_global_alias'
+  | 'forbidden_alias_pair'
+  | 'decision_fact_not_alias';
 
 export type ConceptIdentityPolicyTerm = {
   term_ko: string;
   policy_kind: ConceptIdentityPolicyKind;
   meaning_domain: string;
   reason_ko: string;
+  target_preferred_term_ko?: string;
 };
 
 export type ConceptIdentityPolicyRegistry = {
@@ -66,6 +69,10 @@ if (policyRegistryErrors.length) {
 
 const protectedCanonicalIdentityTerms = policyTerms('protected_canonical_identity');
 const ambiguousGlobalAliasTerms = policyTerms('ambiguous_global_alias');
+const scopedAliasPolicies = conceptIdentityPolicyRegistry.terms.filter(item => (
+  item.policy_kind === 'forbidden_alias_pair'
+  || item.policy_kind === 'decision_fact_not_alias'
+));
 
 export type ConceptTermValidationIssueCode =
   | 'empty-preferred-term'
@@ -75,6 +82,8 @@ export type ConceptTermValidationIssueCode =
   | 'global-term-conflict'
   | 'protected-canonical-term-as-alias'
   | 'ambiguous-global-alias'
+  | 'forbidden-alias-pair'
+  | 'decision-fact-not-alias'
   | 'empty-relation-term'
   | 'duplicate-term-relation'
   | 'missing-relation-source'
@@ -96,7 +105,7 @@ export type ConceptTermValidationIssue = {
 };
 
 export type ConceptTermValidationOptions = {
-  legacyDebt?: ReadonlyMap<string, ReadonlySet<ConceptTermValidationIssueCode>>;
+  legacyDebt?: ReadonlyMap<string, ReadonlySet<string>>;
 };
 
 export function inlineTermsForConcept(
@@ -224,6 +233,28 @@ export function auditConceptTermRelations(
           alias,
         ));
       }
+      for (const policy of scopedAliasPolicies) {
+        const policyTermKey = normalizeConceptTermKey(policy.term_ko);
+        const targetTermKey = normalizeConceptTermKey(policy.target_preferred_term_ko ?? '');
+        const appliesToPair = (
+          aliasKey === policyTermKey && preferredKey === targetTermKey
+        ) || (
+          aliasKey === targetTermKey && preferredKey === policyTermKey
+        );
+        if (!appliesToPair) continue;
+        const code = policy.policy_kind === 'decision_fact_not_alias'
+          ? 'decision-fact-not-alias'
+          : 'forbidden-alias-pair';
+        const boundary = policy.policy_kind === 'decision_fact_not_alias'
+          ? '결론을 바꾸는 판단자료이지 개념의 검색 별칭이 아닙니다'
+          : '서로 관련되더라도 같은 정본 개념의 검색 별칭으로 합칠 수 없습니다';
+        issues.push(issue(
+          code,
+          [concept.concept_id],
+          `${concept.concept_id}의 ${policy.meaning_domain} 용어 ${preferred}·${alias}은 ${boundary}: ${policy.reason_ko}`,
+          alias,
+        ));
+      }
       claimConceptTerm(ownerByTerm, alias, concept.concept_id, issues);
     }
 
@@ -343,6 +374,13 @@ export function normalizeConceptTermKey(value: string): string {
   return value.normalize('NFKC').toLocaleLowerCase('ko-KR').replace(/\s+/gu, ' ').trim();
 }
 
+export function conceptTermValidationIssueKey(
+  code: ConceptTermValidationIssueCode,
+  term = '',
+): string {
+  return JSON.stringify([code, normalizeConceptTermKey(term)]);
+}
+
 export function auditConceptIdentityPolicyRegistry(
   registry: ConceptIdentityPolicyRegistry,
 ): string[] {
@@ -364,8 +402,11 @@ export function auditConceptIdentityPolicyRegistry(
   const allowedKinds = new Set<ConceptIdentityPolicyKind>([
     'protected_canonical_identity',
     'ambiguous_global_alias',
+    'forbidden_alias_pair',
+    'decision_fact_not_alias',
   ]);
-  const seenTerms = new Map<string, string>();
+  const seenPolicies = new Set<string>();
+  const seenGlobalTerms = new Map<string, string>();
   for (const [index, item] of registry.terms.entries()) {
     const term = item?.term_ko?.trim() ?? '';
     const termKey = normalizeConceptTermKey(term);
@@ -379,11 +420,36 @@ export function auditConceptIdentityPolicyRegistry(
     if (!item?.reason_ko?.trim()) {
       errors.push(`개념 정체성 정책 terms[${index}]의 reason_ko가 비어 있습니다.`);
     }
-    const owner = seenTerms.get(termKey);
-    if (termKey && owner) {
-      errors.push(`개념 정체성 정책 용어가 정규화 기준으로 중복되었습니다: ${term} (${owner})`);
+    const isScopedPolicy = (
+      item?.policy_kind === 'forbidden_alias_pair'
+      || item?.policy_kind === 'decision_fact_not_alias'
+    );
+    const target = item?.target_preferred_term_ko?.trim() ?? '';
+    const targetKey = normalizeConceptTermKey(target);
+    if (isScopedPolicy && !target) {
+      errors.push(`개념 정체성 정책 terms[${index}]의 target_preferred_term_ko가 비어 있습니다.`);
+    }
+    if (!isScopedPolicy && item?.target_preferred_term_ko !== undefined) {
+      errors.push(`개념 정체성 정책 terms[${index}]의 전역 정책에는 target_preferred_term_ko를 사용할 수 없습니다.`);
+    }
+    if (isScopedPolicy && termKey && targetKey && termKey === targetKey) {
+      errors.push(`개념 정체성 정책 terms[${index}]의 별칭 쌍이 같은 용어를 가리킵니다: ${term}`);
+    }
+
+    const policyKey = `${item?.policy_kind}:${[termKey, targetKey].filter(Boolean).sort().join(':')}`;
+    if (termKey && seenPolicies.has(policyKey)) {
+      errors.push(`개념 정체성 정책 용어가 정규화 기준으로 중복되었습니다: ${term} (${item.policy_kind})`);
     } else if (termKey) {
-      seenTerms.set(termKey, item.policy_kind);
+      seenPolicies.add(policyKey);
+    }
+
+    if (!isScopedPolicy) {
+      const owner = seenGlobalTerms.get(termKey);
+      if (termKey && owner) {
+        errors.push(`개념 정체성 전역 정책 용어가 중복되었습니다: ${term} (${owner})`);
+      } else if (termKey) {
+        seenGlobalTerms.set(termKey, item.policy_kind);
+      }
     }
   }
   return errors;
@@ -519,7 +585,9 @@ function isAllowedLegacyIssue(
   legacyDebt: ConceptTermValidationOptions['legacyDebt'],
 ) {
   if (!legacyDebt || issueValue.conceptIds.length !== 1) return false;
-  return legacyDebt.get(issueValue.conceptIds[0])?.has(issueValue.code) ?? false;
+  return legacyDebt.get(issueValue.conceptIds[0])?.has(
+    conceptTermValidationIssueKey(issueValue.code, issueValue.term ?? ''),
+  ) ?? false;
 }
 
 function issue(

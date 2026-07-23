@@ -20,6 +20,7 @@
         "preferred_term_ko": "임금",
         "aliases_ko": ["급여", "보수", "퇴직금"]
       },
+      "expected_code": "forbidden-alias-pair",
       "expected_terms": ["급여", "보수", "퇴직금"]
     },
     {
@@ -29,6 +30,7 @@
         "preferred_term_ko": "통상임금",
         "aliases_ko": ["평균임금"]
       },
+      "expected_code": "forbidden-alias-pair",
       "expected_terms": ["평균임금"]
     },
     {
@@ -38,11 +40,48 @@
         "preferred_term_ko": "근로자성",
         "aliases_ko": ["3.3%", "사업자등록"]
       },
+      "expected_code": "decision-fact-not-alias",
       "expected_terms": ["3.3%", "사업자등록"]
     }
   ],
+  "allowed_scoped_aliases": {
+    "sources": [
+      {
+        "coordinate_id": "source.fixture.business-registration"
+      },
+      {
+        "coordinate_id": "source.fixture.compensation-system"
+      }
+    ],
+    "concepts": [
+      {
+        "concept_id": "concept.fixture.business-registration-system",
+        "preferred_term_ko": "사업자등록 제도",
+        "aliases_ko": ["사업자등록"],
+        "term_relations": [
+          {
+            "term_ko": "사업자등록",
+            "relation": "plain_language",
+            "source_coordinate_ids": ["source.fixture.business-registration"]
+          }
+        ]
+      },
+      {
+        "concept_id": "concept.fixture.compensation-system",
+        "preferred_term_ko": "보수 지급 제도",
+        "aliases_ko": ["보수"],
+        "term_relations": [
+          {
+            "term_ko": "보수",
+            "relation": "plain_language",
+            "source_coordinate_ids": ["source.fixture.compensation-system"]
+          }
+        ]
+      }
+    ]
+  },
   "stale_policy_receipt": {
-    "next_policy_version": "1.0.1",
+    "next_policy_version": "1.1.1",
     "added_term": {
       "term_ko": "테스트용 독립 법률개념",
       "policy_kind": "protected_canonical_identity",

@@ -5,6 +5,7 @@ import {
   auditConceptIdentityPolicyRegistry,
   auditConceptTermRelations,
   conceptIdentityPolicyReceiptInput,
+  conceptTermValidationIssueKey,
 } from '../src/lib/concept-terms.ts';
 
 const baseline = JSON.parse(await readFile(
@@ -20,7 +21,9 @@ export function legacyConceptValidationOptions(concepts, snapshotId = '') {
   for (const debt of baseline.concepts) {
     const concept = conceptsById.get(debt.concept_id);
     if (!concept || conceptReceipt(concept) !== debt.concept_receipt) continue;
-    legacyDebt.set(debt.concept_id, new Set(debt.expected_issues.map(item => item.code)));
+    legacyDebt.set(debt.concept_id, new Set(debt.expected_issues.map(item => (
+      conceptTermValidationIssueKey(item.code, item.term ?? '')
+    ))));
   }
   return {legacyDebt};
 }
