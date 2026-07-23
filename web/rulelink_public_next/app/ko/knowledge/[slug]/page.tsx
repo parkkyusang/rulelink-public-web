@@ -46,7 +46,6 @@ export default async function KnowledgePage({params}: Props) {
   const entry = await findKnowledgeEntry(slug);
   if (!entry) notFound();
   const {concepts, rules, scenarios, scenarioRules, sources, hubs, related, relatedSections} = await knowledgeDetail(entry);
-  const directRuleIds = new Set(rules.map(rule => rule.rule_id));
   const canonicalUrl = `${site.url}/ko/knowledge/${entry.slug}`;
   const officialSources = sources.flatMap(source => {
     const url = browserOfficialSourceUrl(source) ?? source.official_url;
@@ -172,10 +171,10 @@ export default async function KnowledgePage({params}: Props) {
                       {linkedRules.length ? (
                         <div aria-label="이 사실분기에 연결된 법리" className={styles.branchRules}>
                           <span className={styles.branchRulesLabel}>연결 법리</span>
-                          {linkedRules.map(rule => directRuleIds.has(rule.rule_id) ? (
-                            <a href={`#${rule.rule_id}`} key={rule.rule_id}>{rule.title_ko} ↓</a>
-                          ) : (
-                            <span className={styles.branchRuleChip} key={rule.rule_id}>{rule.title_ko}</span>
+                          {linkedRules.map(rule => (
+                            <a href={`#${rule.rule_id}`} key={rule.rule_id}>
+                              {rule.title_ko} <span aria-hidden="true">↑</span>
+                            </a>
                           ))}
                         </div>
                       ) : null}
