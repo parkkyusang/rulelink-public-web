@@ -81,9 +81,12 @@
       "migrate_publication": {
         "assignment": "publication_migration",
         "owned_paths": [
+          "README.md",
           "artifacts/publication/topics/*.json",
           "web/rulelink_public_next/scripts/*topic*.test.mjs",
           "web/rulelink_public_next/scripts/*handoff*.test.mjs",
+          "artifacts/publication/concepts/*.json",
+          "artifacts/publication/concepts/manifest.json",
           "artifacts/publication/current/**",
           "artifacts/publication/snapshots/**",
           "artifacts/publication/topics/manifest.json",

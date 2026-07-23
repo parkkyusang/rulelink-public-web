@@ -293,6 +293,9 @@ test('역할 정본은 허용 역할과 실제 runtime 지식 시험 경계를 �
   assert.ok(OWNER_ROLE_CONTRACTS.runtime_design.owned_paths.includes('web/rulelink_public_next/scripts/*knowledge*.test.mjs'));
   assert.ok(OWNER_ROLE_CONTRACTS.content_production.owned_paths.includes('web/rulelink_public_next/scripts/<topic>-topic-*.test.mjs'));
   assert.ok(OWNER_ROLE_CONTRACTS.migrate_publication.owned_paths.includes('web/rulelink_public_next/scripts/*topic*.test.mjs'));
+  assert.ok(OWNER_ROLE_CONTRACTS.migrate_publication.owned_paths.includes('README.md'));
+  assert.ok(OWNER_ROLE_CONTRACTS.migrate_publication.owned_paths.includes('artifacts/publication/concepts/*.json'));
+  assert.ok(OWNER_ROLE_CONTRACTS.migrate_publication.owned_paths.includes('artifacts/publication/concepts/manifest.json'));
   assert.ok(OWNER_ROLE_CONTRACTS.migrate_publication.owned_paths.includes('artifacts/publication/production-queue.json'));
   assert.ok(OWNER_ROLE_CONTRACTS.migrate_publication.owned_paths.includes('artifacts/publication/production-queue-registry.json'));
   assert.equal(queue.items.find(item => item.pr_number === 166).test_file, 'web/rulelink_public_next/scripts/money-guarantee-topic-backfill.test.mjs');
@@ -685,6 +688,21 @@ test('migration_commit_sha는 현재 이력의 선행 데이터 커밋이며 이
     },
   ).some(error => error.includes('queue 증거 후속 커밋과 분리')));
 
+  assert.deepEqual(validateProductionQueue(
+    value,
+    {
+      publishedBundle: bundle,
+      ...completedPublicationEvidence(value, {
+        changed_files: [
+          ...migrationEvidence(value).changed_files,
+          'README.md',
+          'artifacts/publication/concepts/inheritance.json',
+          'artifacts/publication/concepts/manifest.json',
+        ],
+      }),
+    },
+  ), []);
+
   assert.ok(validateProductionQueue(
     value,
     {
@@ -711,8 +729,11 @@ test('migration_commit_sha는 현재 이력의 선행 데이터 커밋이며 이
 
   const forbiddenEvidenceFiles = [
     value.items.find(item => item.pr_number === 166).topic_file,
+    'README.md',
     'artifacts/publication/current/bundle.json',
     'artifacts/publication/topics/manifest.json',
+    'artifacts/publication/concepts/inheritance.json',
+    'artifacts/publication/concepts/manifest.json',
     `artifacts/publication/snapshots/${bundle.snapshot_id}/bundle.json`,
     'docs/CONTENT_HANDOFF_CONTRACT_KO.md',
   ];
@@ -762,8 +783,10 @@ test('실제 Git의 데이터 커밋→queue 증거 커밋만 통과하고 이�
     await writeRepoFile(item.topic_file, '{"revision":1}\n');
     await writeRepoFile('artifacts/publication/current/bundle.json', '{"revision":1}\n');
     await writeRepoFile('artifacts/publication/topics/manifest.json', '{"revision":1}\n');
+    await writeRepoFile('artifacts/publication/concepts/inheritance.json', '{"revision":1}\n');
+    await writeRepoFile('artifacts/publication/concepts/manifest.json', '{"revision":1}\n');
     await writeRepoFile(snapshotFile, '{"revision":1}\n');
-    await git(['add', '--', item.topic_file, 'artifacts/publication/current/bundle.json', 'artifacts/publication/topics/manifest.json', snapshotFile]);
+    await git(['add', '--', item.topic_file, 'artifacts/publication/current/bundle.json', 'artifacts/publication/topics/manifest.json', 'artifacts/publication/concepts/inheritance.json', 'artifacts/publication/concepts/manifest.json', snapshotFile]);
     await git(['commit', '-m', 'data migration']);
     const dataCommit = String((await git(['rev-parse', 'HEAD'])).stdout).trim();
     item.migration_commit_sha = dataCommit;

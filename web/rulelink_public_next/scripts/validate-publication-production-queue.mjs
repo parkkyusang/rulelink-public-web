@@ -70,7 +70,7 @@ export const OWNER_ROLE_CONTRACTS = {
   quality_governance: {assignment: 'governance_contracts', owned_paths: ['artifacts/publication/production-queue.json', 'artifacts/publication/production-queue-registry.json', 'web/rulelink_public_next/scripts/*publication*.mjs', 'web/rulelink_public_next/scripts/*publication*.test.mjs'], forbidden_paths: ['artifacts/publication/topics/*.json', 'artifacts/publication/current/**', 'artifacts/publication/snapshots/**', 'artifacts/publication/release.json']},
   runtime_design: {assignment: 'runtime_design', owned_paths: ['web/rulelink_public_next/src/**', 'web/rulelink_public_next/scripts/*runtime*.test.mjs', 'web/rulelink_public_next/scripts/*knowledge*.test.mjs'], forbidden_paths: ['artifacts/publication/topics/*.json', 'artifacts/publication/current/**', 'artifacts/publication/snapshots/**']},
   content_production: {assignment: 'topic_handoff', owned_paths: ['artifacts/publication/topics/<topic>.json', 'web/rulelink_public_next/scripts/<topic>-topic-*.test.mjs'], forbidden_paths: ['artifacts/publication/current/**', 'artifacts/publication/snapshots/**', 'artifacts/publication/manifest.json', 'artifacts/publication/release.json']},
-  migrate_publication: {assignment: 'publication_migration', owned_paths: ['artifacts/publication/topics/*.json', 'web/rulelink_public_next/scripts/*topic*.test.mjs', 'web/rulelink_public_next/scripts/*handoff*.test.mjs', 'artifacts/publication/current/**', 'artifacts/publication/snapshots/**', 'artifacts/publication/topics/manifest.json', 'artifacts/publication/production-queue.json', 'artifacts/publication/production-queue-registry.json'], forbidden_paths: ['artifacts/publication/release.json']},
+  migrate_publication: {assignment: 'publication_migration', owned_paths: ['README.md', 'artifacts/publication/topics/*.json', 'web/rulelink_public_next/scripts/*topic*.test.mjs', 'web/rulelink_public_next/scripts/*handoff*.test.mjs', 'artifacts/publication/concepts/*.json', 'artifacts/publication/concepts/manifest.json', 'artifacts/publication/current/**', 'artifacts/publication/snapshots/**', 'artifacts/publication/topics/manifest.json', 'artifacts/publication/production-queue.json', 'artifacts/publication/production-queue-registry.json'], forbidden_paths: ['artifacts/publication/release.json']},
   release: {assignment: 'release', owned_paths: ['artifacts/publication/release.json', 'web/rulelink_public_next/publication.json'], forbidden_paths: ['artifacts/publication/topics/*.json']},
   source_maintenance: {assignment: 'external_repository', owned_paths: [], forbidden_paths: ['**/*']},
   product_policy: {assignment: 'read_only', owned_paths: [], forbidden_paths: ['**/*']},
@@ -250,10 +250,13 @@ export async function synchronizeQueueItemRegistryFile(registryPath, queue, io =
 
 function isMigrationOwnedPath(filePath) {
   const value = String(filePath || '').replaceAll('\\', '/');
-  return value === 'artifacts/publication/production-queue.json'
+  return value === 'README.md'
+    || value === 'artifacts/publication/production-queue.json'
     || value === 'artifacts/publication/production-queue-registry.json'
     || value === 'artifacts/publication/topics/manifest.json'
+    || value === 'artifacts/publication/concepts/manifest.json'
     || /^artifacts\/publication\/topics\/[a-z0-9-]+\.json$/u.test(value)
+    || /^artifacts\/publication\/concepts\/[a-z0-9-]+\.json$/u.test(value)
     || /^web\/rulelink_public_next\/scripts\/[a-z0-9-]*(?:topic|handoff)[a-z0-9-]*\.test\.mjs$/u.test(value)
     || /^artifacts\/publication\/current\//u.test(value)
     || /^artifacts\/publication\/snapshots\/[a-z0-9._-]+\//u.test(value);
