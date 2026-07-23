@@ -11,6 +11,47 @@ import {
 import {resolveKnowledgeEntryGraph} from '../src/lib/knowledge-search.ts';
 
 const root = process.cwd();
+const matcherFixture = JSON.parse(await read('scripts/fixtures/concept-term-matcher.json'));
+
+test('상속 개념 fixture는 서로 다른 네 개념과 근거 있는 동의어를 충돌 없이 등록한다', () => {
+  assert.doesNotThrow(() => validateConceptTermRelations(matcherFixture.concepts, matcherFixture.sources));
+});
+
+test('개념어 matcher는 복합어 내부 오인 없이 최장 일치와 한국어 조사를 함께 처리한다', () => {
+  for (const fixture of matcherFixture.matcher_cases) {
+    const parts = splitTextByConceptTerms(fixture.text, fixture.terms);
+    const termSet = new Set(fixture.terms);
+    assert.equal(parts.join(''), fixture.text, fixture.name);
+    assert.deepEqual(parts.filter(part => termSet.has(part)), fixture.expected_matches, fixture.name);
+  }
+});
+
+test('대표 용어와 모든 별칭은 정규화 기준으로 전역에서 한 개념만 소유한다', () => {
+  const sources = matcherFixture.sources;
+  const base = matcherFixture.concepts[0];
+  const conflicts = [
+    {concept_id: 'concept.conflict.canonical', preferred_term_ko: '상속인', aliases_ko: []},
+    {concept_id: 'concept.conflict.canonical-alias', preferred_term_ko: '상속권자', aliases_ko: []},
+    {concept_id: 'concept.conflict.alias', preferred_term_ko: '승계인', aliases_ko: ['상속권자']},
+    {concept_id: 'concept.conflict.normalized', preferred_term_ko: '상속 권리자', aliases_ko: ['  상속권자  ']},
+  ];
+  for (const conflict of conflicts) {
+    assert.throws(
+      () => validateConceptTermRelations([base, conflict], sources),
+      /대표 용어·별칭이 여러 개념에 중복되었습니다/,
+      conflict.concept_id,
+    );
+  }
+
+  assert.throws(
+    () => validateConceptTermRelations([{...base, aliases_ko: ['상속권자', '  상속권자  ']}], sources),
+    /검색 별칭이 중복되어 있습니다/,
+  );
+  assert.throws(
+    () => validateConceptTermRelations([{...base, aliases_ko: [' 상속인 ']}], sources),
+    /대표 용어가 검색 별칭과 중복되어 있습니다/,
+  );
+});
 
 test('본문 법률용어가 쉬운 뜻 팝오버와 독립 개념 페이지를 함께 제공한다', async () => {
   const component = await read('src/components/legal-concept-text.tsx');
