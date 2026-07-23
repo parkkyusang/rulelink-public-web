@@ -32,6 +32,7 @@ import {
 import {inlineTermsForConcept, splitTextByConceptTerms} from '@/lib/concept-terms';
 import type {PublicConceptCard} from '@/types/publication';
 
+import {createConceptPopoverFocusRestoreGuard} from './concept-popover-focus-guard';
 import styles from './legal-concept-text.module.css';
 
 type ConceptTerm = Pick<
@@ -126,8 +127,18 @@ function ConceptPopover({
   const titleId = `${popoverId}-title`;
   const descriptionId = `${popoverId}-description`;
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const focusRestoreGuardRef = useRef<ReturnType<typeof createConceptPopoverFocusRestoreGuard> | null>(null);
+  if (!focusRestoreGuardRef.current) {
+    focusRestoreGuardRef.current = createConceptPopoverFocusRestoreGuard();
+  }
   const restoreTriggerFocus = useCallback(() => {
-    window.requestAnimationFrame(() => triggerRef.current?.focus());
+    window.requestAnimationFrame(() => {
+      const trigger = triggerRef.current;
+      if (!trigger) return;
+      focusRestoreGuardRef.current?.arm();
+      trigger.focus({preventScroll: true});
+      window.requestAnimationFrame(() => focusRestoreGuardRef.current?.release());
+    });
   }, []);
   const closeAndRestoreFocus = useCallback(() => {
     closePopover(popoverId);
@@ -135,6 +146,7 @@ function ConceptPopover({
   }, [closePopover, popoverId, restoreTriggerFocus]);
   const handleOpenChange = useCallback((nextOpen: boolean, _event?: Event, reason?: OpenChangeReason) => {
     if (nextOpen) {
+      if (focusRestoreGuardRef.current?.shouldIgnoreOpen(reason)) return;
       openPopover(popoverId);
       return;
     }
