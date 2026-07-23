@@ -1,0 +1,469 @@
+{
+  "schema": "rulelink_authority_browser_fixture_bundle_v1",
+  "base_snapshot_id": "kr-knowledge-core-20260723-023",
+  "fixture_snapshot_id": "kr-knowledge-core-20260723-023-authority-browser-fixture",
+  "knowledge": {
+    "sources": [
+      {
+        "coordinate_id": "coord.authority-e2e.0025.current",
+        "source_id": "authority_e2e_test_law_0025_current",
+        "source_kind": "statute",
+        "law_key": "test-law",
+        "law_name_ko": "브라우저 수락시험법",
+        "article_no": "제25조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%8B%9C%ED%97%98%EB%B2%95/%EC%A0%9C25%EC%A1%B0",
+        "official_url_http_status": 200,
+        "source_snapshot_id": "snapshot:authority-e2e-current-0025",
+        "source_version_key": "2026-current",
+        "last_verified_at": "2026-07-24T00:00:00+09:00"
+      },
+      {
+        "coordinate_id": "coord.authority-e2e.0025.historical",
+        "source_id": "authority_e2e_test_law_0025_historical",
+        "source_kind": "statute",
+        "law_key": "test-law",
+        "law_name_ko": "브라우저 수락시험법",
+        "article_no": "제25조",
+        "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%8B%9C%ED%97%98%EB%B2%95/%EC%A0%9C25%EC%A1%B0",
+        "official_url_http_status": 200,
+        "source_snapshot_id": "snapshot:authority-e2e-historical-0025",
+        "source_version_key": "2024-historical",
+        "last_verified_at": "2026-07-24T00:00:00+09:00"
+      }
+    ],
+    "source_version_bridges": [
+      {
+        "bridge_id": "bridge.authority-e2e.current",
+        "source_coordinate_id": "coord.authority-e2e.0025.current",
+        "source_snapshot_id": "snapshot:authority-e2e-current-0025",
+        "source_version_key": "2026-current",
+        "validation_status": "verified"
+      },
+      {
+        "bridge_id": "bridge.authority-e2e.historical",
+        "source_coordinate_id": "coord.authority-e2e.0025.historical",
+        "source_snapshot_id": "snapshot:authority-e2e-historical-0025",
+        "source_version_key": "2024-historical",
+        "validation_status": "verified"
+      }
+    ],
+    "source_authority_units": [
+      {
+        "source_authority_unit_id": "source-unit.authority-e2e.current.article",
+        "version_bridge_id": "bridge.authority-e2e.current",
+        "source_coordinate_id": "coord.authority-e2e.0025.current",
+        "source_snapshot_id": "snapshot:authority-e2e-current-0025",
+        "source_version_key": "2026-current",
+        "unit_kind": "article",
+        "locator": {"article_no": "0025"},
+        "locator_key": "article-0025",
+        "ordinal": 0,
+        "official_text_ko": "제25조(브라우저 수락시험을 위한 매우 긴 조문 제목과 적용범위) 이 조문은 화면 폭이 좁은 장치에서도 원문 전체가 잘리지 않고 읽혀야 하며 다음 각 항의 요건을 모두 확인하여야 한다.",
+        "official_text_hash": "sha256:authority-e2e-current-article",
+        "validation_status": "verified"
+      },
+      {
+        "source_authority_unit_id": "source-unit.authority-e2e.current.paragraph-1",
+        "parent_source_authority_unit_id": "source-unit.authority-e2e.current.article",
+        "version_bridge_id": "bridge.authority-e2e.current",
+        "source_coordinate_id": "coord.authority-e2e.0025.current",
+        "source_snapshot_id": "snapshot:authority-e2e-current-0025",
+        "source_version_key": "2026-current",
+        "unit_kind": "paragraph",
+        "locator": {"article_no": "0025", "paragraph_no": "1"},
+        "locator_key": "article-0025-paragraph-1",
+        "ordinal": 1,
+        "official_text_ko": "① 신청인은 결정사실과 확인자료를 함께 제시하고 모든 요건이 충족되는지 순서대로 확인하여야 한다.",
+        "official_text_hash": "sha256:authority-e2e-current-paragraph-1",
+        "validation_status": "verified"
+      },
+      {
+        "source_authority_unit_id": "source-unit.authority-e2e.current.item-1",
+        "parent_source_authority_unit_id": "source-unit.authority-e2e.current.paragraph-1",
+        "version_bridge_id": "bridge.authority-e2e.current",
+        "source_coordinate_id": "coord.authority-e2e.0025.current",
+        "source_snapshot_id": "snapshot:authority-e2e-current-0025",
+        "source_version_key": "2026-current",
+        "unit_kind": "item",
+        "locator": {"article_no": "0025", "paragraph_no": "1", "item_no": "1"},
+        "locator_key": "article-0025-paragraph-1-item-1",
+        "ordinal": 1,
+        "official_text_ko": "1. 화면 가장자리에서도 이 호의 전체 문언과 쉬운 설명이 가로 스크롤 없이 표시될 것",
+        "official_text_hash": "sha256:authority-e2e-current-item-1",
+        "validation_status": "verified"
+      },
+      {
+        "source_authority_unit_id": "source-unit.authority-e2e.current.subitem-ga",
+        "parent_source_authority_unit_id": "source-unit.authority-e2e.current.item-1",
+        "version_bridge_id": "bridge.authority-e2e.current",
+        "source_coordinate_id": "coord.authority-e2e.0025.current",
+        "source_snapshot_id": "snapshot:authority-e2e-current-0025",
+        "source_version_key": "2026-current",
+        "unit_kind": "subitem",
+        "locator": {"article_no": "0025", "paragraph_no": "1", "item_no": "1", "subitem_no": "가"},
+        "locator_key": "article-0025-paragraph-1-item-1-subitem-ga",
+        "ordinal": 1,
+        "official_text_ko": "가. 직접 단편 링크로 들어온 경우 상위 조·항·호가 모두 펼쳐지고 이 목에 정확히 초점이 놓일 것",
+        "official_text_hash": "sha256:authority-e2e-current-subitem-ga",
+        "validation_status": "verified"
+      },
+      {
+        "source_authority_unit_id": "source-unit.authority-e2e.historical.article",
+        "version_bridge_id": "bridge.authority-e2e.historical",
+        "source_coordinate_id": "coord.authority-e2e.0025.historical",
+        "source_snapshot_id": "snapshot:authority-e2e-historical-0025",
+        "source_version_key": "2024-historical",
+        "unit_kind": "article",
+        "locator": {"article_no": "0025"},
+        "locator_key": "article-0025",
+        "ordinal": 0,
+        "official_text_ko": "제25조(구법 브라우저 수락시험) 이 조문은 구법 적용 가능성을 표시하고 현행 조문과 동일한 위치를 별개의 안정된 단편 링크로 제공한다.",
+        "official_text_hash": "sha256:authority-e2e-historical-article",
+        "validation_status": "verified"
+      },
+      {
+        "source_authority_unit_id": "source-unit.authority-e2e.historical.paragraph-1",
+        "parent_source_authority_unit_id": "source-unit.authority-e2e.historical.article",
+        "version_bridge_id": "bridge.authority-e2e.historical",
+        "source_coordinate_id": "coord.authority-e2e.0025.historical",
+        "source_snapshot_id": "snapshot:authority-e2e-historical-0025",
+        "source_version_key": "2024-historical",
+        "unit_kind": "paragraph",
+        "locator": {"article_no": "0025", "paragraph_no": "1"},
+        "locator_key": "article-0025-paragraph-1",
+        "ordinal": 1,
+        "official_text_ko": "① 구법의 적용시점과 사실관계를 먼저 확인한다.",
+        "official_text_hash": "sha256:authority-e2e-historical-paragraph-1",
+        "validation_status": "verified"
+      },
+      {
+        "source_authority_unit_id": "source-unit.authority-e2e.historical.item-1",
+        "parent_source_authority_unit_id": "source-unit.authority-e2e.historical.paragraph-1",
+        "version_bridge_id": "bridge.authority-e2e.historical",
+        "source_coordinate_id": "coord.authority-e2e.0025.historical",
+        "source_snapshot_id": "snapshot:authority-e2e-historical-0025",
+        "source_version_key": "2024-historical",
+        "unit_kind": "item",
+        "locator": {"article_no": "0025", "paragraph_no": "1", "item_no": "1"},
+        "locator_key": "article-0025-paragraph-1-item-1",
+        "ordinal": 1,
+        "official_text_ko": "1. 구법 문언과 현행 문언을 같은 DOM 식별자로 합치지 아니할 것",
+        "official_text_hash": "sha256:authority-e2e-historical-item-1",
+        "validation_status": "verified"
+      },
+      {
+        "source_authority_unit_id": "source-unit.authority-e2e.historical.subitem-ga",
+        "parent_source_authority_unit_id": "source-unit.authority-e2e.historical.item-1",
+        "version_bridge_id": "bridge.authority-e2e.historical",
+        "source_coordinate_id": "coord.authority-e2e.0025.historical",
+        "source_snapshot_id": "snapshot:authority-e2e-historical-0025",
+        "source_version_key": "2024-historical",
+        "unit_kind": "subitem",
+        "locator": {"article_no": "0025", "paragraph_no": "1", "item_no": "1", "subitem_no": "가"},
+        "locator_key": "article-0025-paragraph-1-item-1-subitem-ga",
+        "ordinal": 1,
+        "official_text_ko": "가. 구법 카드의 단편 링크는 구법 카드 내부 대상에만 초점을 둘 것",
+        "official_text_hash": "sha256:authority-e2e-historical-subitem-ga",
+        "validation_status": "verified"
+      }
+    ],
+    "authority_reading_units": [
+      {
+        "authority_reading_unit_id": "authority.authority-e2e.0025.current",
+        "title_ko": "브라우저 수락시험법 제25조의 현행 요건·효과·예외를 화면 크기와 입력방식에 관계없이 읽는 방법",
+        "route_key": {"law_key": "test-law", "article_no": "0025"},
+        "source_coordinate_id": "coord.authority-e2e.0025.current",
+        "source_snapshot_id": "snapshot:authority-e2e-current-0025",
+        "source_version_key": "2026-current",
+        "time_state": "current_as_of_review",
+        "effective_from": "2026-01-01T00:00:00+09:00",
+        "summary_ko": "현행 조문은 요건을 모두 확인한 뒤 효과와 예외를 구분하며, 긴 원문도 모바일 화면에서 잘리지 않아야 합니다.",
+        "anchors": [
+          {
+            "anchor_id": "anchor.authority-e2e.current.article",
+            "source_authority_unit_id": "source-unit.authority-e2e.current.article",
+            "locator_key": "article-0025",
+            "official_text_hash": "sha256:authority-e2e-current-article",
+            "plain_heading_ko": "제25조 전체",
+            "explanation_ko": "제25조가 다루는 전체 범위를 먼저 확인합니다."
+          },
+          {
+            "anchor_id": "anchor.authority-e2e.current.paragraph-1",
+            "parent_anchor_id": "anchor.authority-e2e.current.article",
+            "source_authority_unit_id": "source-unit.authority-e2e.current.paragraph-1",
+            "locator_key": "article-0025-paragraph-1",
+            "official_text_hash": "sha256:authority-e2e-current-paragraph-1",
+            "plain_heading_ko": "제1항 신청 요건",
+            "explanation_ko": "결정사실과 확인자료를 함께 준비해야 합니다."
+          },
+          {
+            "anchor_id": "anchor.authority-e2e.current.item-1",
+            "parent_anchor_id": "anchor.authority-e2e.current.paragraph-1",
+            "source_authority_unit_id": "source-unit.authority-e2e.current.item-1",
+            "locator_key": "article-0025-paragraph-1-item-1",
+            "official_text_hash": "sha256:authority-e2e-current-item-1",
+            "plain_heading_ko": "제1호 화면 표시 요건",
+            "explanation_ko": "원문과 설명 모두 가로 스크롤 없이 표시되어야 합니다."
+          },
+          {
+            "anchor_id": "anchor.authority-e2e.current.subitem-ga",
+            "parent_anchor_id": "anchor.authority-e2e.current.item-1",
+            "source_authority_unit_id": "source-unit.authority-e2e.current.subitem-ga",
+            "locator_key": "article-0025-paragraph-1-item-1-subitem-ga",
+            "official_text_hash": "sha256:authority-e2e-current-subitem-ga",
+            "plain_heading_ko": "가목 직접 링크 요건",
+            "explanation_ko": "직접 링크는 모든 상위 조문을 열고 이 목에 정확히 초점을 둡니다."
+          }
+        ],
+        "logical_groups": [
+          {
+            "logical_group_id": "group.authority-e2e.current.requirement",
+            "role": "requirement",
+            "operator": "all",
+            "title_ko": "직접 링크와 화면 표시 요건을 모두 확인합니다",
+            "ordinal": 1,
+            "anchor_ids": [
+              "anchor.authority-e2e.current.paragraph-1",
+              "anchor.authority-e2e.current.item-1",
+              "anchor.authority-e2e.current.subitem-ga"
+            ]
+          },
+          {
+            "logical_group_id": "group.authority-e2e.current.effect",
+            "role": "effect",
+            "operator": "none",
+            "title_ko": "요건을 충족하면 같은 문맥에서 원문까지 추적할 수 있습니다",
+            "ordinal": 2,
+            "anchor_ids": ["anchor.authority-e2e.current.article"]
+          }
+        ],
+        "explanation_paragraphs": [
+          {
+            "explanation_paragraph_id": "paragraph.authority-e2e.current.requirement",
+            "text_ko": "좁은 화면, 키보드, 직접 단편 링크에서 같은 조문 구조를 읽을 수 있어야 합니다.",
+            "logical_group_id": "group.authority-e2e.current.requirement",
+            "anchor_ids": ["anchor.authority-e2e.current.subitem-ga"]
+          },
+          {
+            "explanation_paragraph_id": "paragraph.authority-e2e.current.effect",
+            "text_ko": "공식원문을 새 탭으로 열어도 룰링크의 정확한 조문 위치를 잃지 않습니다.",
+            "logical_group_id": "group.authority-e2e.current.effect",
+            "anchor_ids": ["anchor.authority-e2e.current.article"]
+          }
+        ],
+        "citation_edges": [],
+        "editorial_status": "approved"
+      },
+      {
+        "authority_reading_unit_id": "authority.authority-e2e.0025.historical",
+        "title_ko": "브라우저 수락시험법 제25조 구법의 적용시점과 동일 조문 다중버전 구별",
+        "route_key": {"law_key": "test-law", "article_no": "0025"},
+        "source_coordinate_id": "coord.authority-e2e.0025.historical",
+        "source_snapshot_id": "snapshot:authority-e2e-historical-0025",
+        "source_version_key": "2024-historical",
+        "time_state": "historical",
+        "effective_from": "2024-01-01T00:00:00+09:00",
+        "effective_to": "2025-12-31T23:59:59+09:00",
+        "summary_ko": "구법 카드는 같은 조문번호라도 현행 카드와 다른 안정된 DOM 식별자와 초점 경로를 사용합니다.",
+        "anchors": [
+          {
+            "anchor_id": "anchor.authority-e2e.historical.article",
+            "source_authority_unit_id": "source-unit.authority-e2e.historical.article",
+            "locator_key": "article-0025",
+            "official_text_hash": "sha256:authority-e2e-historical-article",
+            "plain_heading_ko": "구법 제25조 전체",
+            "explanation_ko": "구법 적용 가능성을 먼저 확인합니다."
+          },
+          {
+            "anchor_id": "anchor.authority-e2e.historical.paragraph-1",
+            "parent_anchor_id": "anchor.authority-e2e.historical.article",
+            "source_authority_unit_id": "source-unit.authority-e2e.historical.paragraph-1",
+            "locator_key": "article-0025-paragraph-1",
+            "official_text_hash": "sha256:authority-e2e-historical-paragraph-1",
+            "plain_heading_ko": "구법 제1항",
+            "explanation_ko": "구법 적용시점을 확인합니다."
+          },
+          {
+            "anchor_id": "anchor.authority-e2e.historical.item-1",
+            "parent_anchor_id": "anchor.authority-e2e.historical.paragraph-1",
+            "source_authority_unit_id": "source-unit.authority-e2e.historical.item-1",
+            "locator_key": "article-0025-paragraph-1-item-1",
+            "official_text_hash": "sha256:authority-e2e-historical-item-1",
+            "plain_heading_ko": "구법 제1호",
+            "explanation_ko": "현행 조문의 같은 호와 DOM 식별자를 공유하지 않습니다."
+          },
+          {
+            "anchor_id": "anchor.authority-e2e.historical.subitem-ga",
+            "parent_anchor_id": "anchor.authority-e2e.historical.item-1",
+            "source_authority_unit_id": "source-unit.authority-e2e.historical.subitem-ga",
+            "locator_key": "article-0025-paragraph-1-item-1-subitem-ga",
+            "official_text_hash": "sha256:authority-e2e-historical-subitem-ga",
+            "plain_heading_ko": "구법 가목",
+            "explanation_ko": "구법 카드 안의 정확한 가목으로 초점이 이동합니다."
+          }
+        ],
+        "logical_groups": [
+          {
+            "logical_group_id": "group.authority-e2e.historical.requirement",
+            "role": "requirement",
+            "operator": "all",
+            "title_ko": "구법 적용시점과 버전 식별자를 함께 확인합니다",
+            "ordinal": 1,
+            "anchor_ids": [
+              "anchor.authority-e2e.historical.article",
+              "anchor.authority-e2e.historical.subitem-ga"
+            ]
+          }
+        ],
+        "explanation_paragraphs": [
+          {
+            "explanation_paragraph_id": "paragraph.authority-e2e.historical.requirement",
+            "text_ko": "같은 조문번호의 현행판과 구법판은 서로 다른 카드와 단편 링크로 읽습니다.",
+            "logical_group_id": "group.authority-e2e.historical.requirement",
+            "anchor_ids": ["anchor.authority-e2e.historical.subitem-ga"]
+          }
+        ],
+        "citation_edges": [],
+        "editorial_status": "approved"
+      }
+    ],
+    "authority_bindings": [
+      {
+        "binding_id": "binding.authority-e2e.current",
+        "from_kind": "content",
+        "from_id": "content.authority-e2e-multi-version",
+        "to_kind": "authority_reading_unit",
+        "to_authority_reading_unit_id": "authority.authority-e2e.0025.current",
+        "anchor_ids": [
+          "anchor.authority-e2e.current.paragraph-1",
+          "anchor.authority-e2e.current.subitem-ga"
+        ]
+      },
+      {
+        "binding_id": "binding.authority-e2e.historical",
+        "from_kind": "content",
+        "from_id": "content.authority-e2e-multi-version",
+        "to_kind": "authority_reading_unit",
+        "to_authority_reading_unit_id": "authority.authority-e2e.0025.historical",
+        "anchor_ids": ["anchor.authority-e2e.historical.subitem-ga"]
+      }
+    ],
+    "rule_cards": [
+      {
+        "rule_id": "rule.authority-e2e",
+        "title_ko": "조문 읽기 브라우저 수락",
+        "proposition_ko": "조문 구조와 직접 링크는 화면 크기와 입력방식이 달라도 같은 법적 위치를 가리켜야 한다.",
+        "norm": {
+          "actor_ko": "조문 읽기 이용자",
+          "conditions_ko": "authority 정본과 콘텐츠 binding이 존재하고 직접 단편 링크로 접근한 경우",
+          "legal_effect_ko": "상위 조문이 열리고 정확한 원문 위치에 초점이 놓인다."
+        },
+        "source_coordinate_ids": ["coord.authority-e2e.0025.current"]
+      }
+    ],
+    "scenario_branches": [
+      {
+        "scenario_id": "scenario.authority-e2e",
+        "question_ko": "같은 조문의 현행판과 구법판이 함께 연결되어 있는가?",
+        "decision_fact_ko": "두 버전의 source_version_key와 적용시점",
+        "when_true_ko": "각 버전을 별도 카드와 단편 링크로 구분한다.",
+        "when_false_ko": "현행판 하나의 정본 경로를 제공한다.",
+        "rule_ids": ["rule.authority-e2e"],
+        "source_coordinate_ids": ["coord.authority-e2e.0025.current"]
+      }
+    ],
+    "content_entries": [
+      {
+        "content_id": "content.authority-e2e-multi-version",
+        "content_type": "doctrine_explainer",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-24T00:00:00+09:00",
+        "expires_at": "2027-07-24T00:00:00+09:00",
+        "slug": "authority-e2e-multi-version",
+        "title_ko": "같은 조문의 현행판과 구법판을 정확한 위치까지 읽는 브라우저 수락시험",
+        "one_line_answer_ko": "조문번호가 같아도 적용시점이 다른 버전은 별도 카드와 단편 링크로 구분하고 공식원문을 연 뒤에도 읽던 위치를 보존합니다.",
+        "audience_situation_ko": "현행 조문과 구법 조문을 모바일·키보드로 비교하고 싶은 경우",
+        "key_points_ko": [
+          "현행과 구법의 시간상태를 먼저 구분한다.",
+          "조·항·호·목의 상위 구조를 순서대로 펼친다.",
+          "공식원문을 열어도 룰링크의 읽던 위치를 유지한다."
+        ],
+        "action_steps_ko": [
+          "조문 읽기 구획에서 현행 배지를 확인한다.",
+          "쉬운 조문 지도에서 필요한 목을 선택한다.",
+          "법령 원문을 확인한 뒤 연결 독해로 이동한다."
+        ],
+        "facts_to_check_ko": ["적용시점", "조문 버전", "직접 단편 링크", "공식원문 주소"],
+        "caution_ko": "시험용 콘텐츠이며 실제 법률판단에 사용하지 않습니다.",
+        "search_intents_ko": ["조문 읽기 브라우저 시험", "같은 조문 구법 현행"],
+        "body_sections": [
+          {
+            "heading_ko": "같은 조문번호라도 적용시점에 따라 분리합니다",
+            "paragraphs_ko": [
+              "현행판과 구법판의 경로 식별자는 서로 달라야 하며 긴 한국어 문장과 원문이 좁은 화면에서도 잘리지 않아야 합니다."
+            ]
+          }
+        ],
+        "rule_ids": ["rule.authority-e2e"],
+        "scenario_ids": ["scenario.authority-e2e"],
+        "source_coordinate_ids": ["coord.authority-e2e.0025.current"],
+        "hub_ids": ["hub.authority-e2e"],
+        "related_content_ids": ["content.authority-e2e-related"],
+        "related_edges": [
+          {
+            "target_kind": "content",
+            "target_id": "content.authority-e2e-related",
+            "relation_type": "procedure",
+            "label_ko": "다음 읽기 구획 분리 확인"
+          }
+        ],
+        "concept_ids": [],
+        "authority_binding_ids": [
+          "binding.authority-e2e.current",
+          "binding.authority-e2e.historical"
+        ]
+      },
+      {
+        "content_id": "content.authority-e2e-related",
+        "content_type": "procedure_guide",
+        "editorial_status": "approved",
+        "reviewed_at": "2026-07-24T00:00:00+09:00",
+        "expires_at": "2027-07-24T00:00:00+09:00",
+        "slug": "authority-e2e-related",
+        "title_ko": "조문 근거와 구분되는 다음 읽기 시험",
+        "one_line_answer_ko": "이 글은 조문 근거가 아니라 의미가 확인된 다음 읽기 링크입니다.",
+        "audience_situation_ko": "authority와 typed relation의 화면 경계를 확인하는 경우",
+        "key_points_ko": ["조문 근거 구획 밖에 표시한다."],
+        "action_steps_ko": ["연결 독해 구획을 확인한다."],
+        "facts_to_check_ko": ["구획 제목"],
+        "caution_ko": "시험용 콘텐츠입니다.",
+        "search_intents_ko": ["연결 독해 시험"],
+        "body_sections": [
+          {
+            "heading_ko": "관련 읽기는 법적 근거와 다릅니다",
+            "paragraphs_ko": ["typed relation은 공식 조문 원문을 대신하지 않습니다."]
+          }
+        ],
+        "rule_ids": [],
+        "scenario_ids": [],
+        "source_coordinate_ids": ["coord.authority-e2e.0025.current"],
+        "hub_ids": ["hub.authority-e2e"],
+        "related_content_ids": [],
+        "related_edges": [],
+        "concept_ids": []
+      }
+    ],
+    "topic_hubs": [
+      {
+        "hub_id": "hub.authority-e2e",
+        "slug": "authority-e2e",
+        "title_ko": "조문 읽기 브라우저 수락시험",
+        "description_ko": "실제 Next 경로에서 조문 읽기의 화면·키보드·단편 링크를 검증합니다.",
+        "content_ids": [
+          "content.authority-e2e-multi-version",
+          "content.authority-e2e-related"
+        ]
+      }
+    ]
+  }
+}

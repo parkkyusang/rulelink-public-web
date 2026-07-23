@@ -1,0 +1,255 @@
+{
+  "schema": "rulelink_authority_zero_state_semantic_v1",
+  "baseline_release": "023",
+  "route": "/ko/knowledge/legal-heir-order-and-spouse",
+  "signature": {
+    "headings": [
+      {
+        "level": 1,
+        "text": "누가 법정상속인이 되는가"
+      },
+      {
+        "level": 2,
+        "text": "무엇부터 확인해야 하나요?"
+      },
+      {
+        "level": 3,
+        "text": "혈족의 순위와 배우자 지위를 함께 본다"
+      },
+      {
+        "level": 3,
+        "text": "가족관계도에 예외 사유를 표시한다"
+      },
+      {
+        "level": 2,
+        "text": "먼저 기준을 확인합니다."
+      },
+      {
+        "level": 3,
+        "text": "법정상속인의 순위"
+      },
+      {
+        "level": 3,
+        "text": "배우자의 상속순위"
+      },
+      {
+        "level": 2,
+        "text": "내 상황은 어느 쪽입니까?"
+      },
+      {
+        "level": 3,
+        "text": "배우자와 자녀가 있는 일반적인 상속"
+      },
+      {
+        "level": 2,
+        "text": "다음 순서로 준비합니다."
+      },
+      {
+        "level": 3,
+        "text": "확인한 사실과 준비한 행동을 표시하세요."
+      },
+      {
+        "level": 4,
+        "text": "확인하고 보관할 사실"
+      },
+      {
+        "level": 4,
+        "text": "행동 순서"
+      },
+      {
+        "level": 2,
+        "text": "모르는 말은 여기서 이어집니다"
+      },
+      {
+        "level": 2,
+        "text": "공식 근거"
+      },
+      {
+        "level": 2,
+        "text": "지금 확인한 기준에서 어디로 이어질까요?"
+      },
+      {
+        "level": 3,
+        "text": "먼저 이해할 개념"
+      },
+      {
+        "level": 3,
+        "text": "같은 주제 더 보기"
+      }
+    ],
+    "landmarks": {
+      "main": 1,
+      "nav": 4,
+      "section": 12
+    },
+    "links": [
+      {
+        "href": "/",
+        "text": "홈"
+      },
+      {
+        "href": "/ko/knowledge",
+        "text": "생활법률 지식"
+      },
+      {
+        "href": "/ko/hubs/family-inheritance",
+        "text": "가족·상속"
+      },
+      {
+        "href": "/ko/hubs/family-inheritance",
+        "text": "가족·상속 →"
+      },
+      {
+        "href": "#summary",
+        "text": "핵심 정리"
+      },
+      {
+        "href": "#concepts",
+        "text": "용어 해설"
+      },
+      {
+        "href": "#rules",
+        "text": "적용 법리"
+      },
+      {
+        "href": "#scenarios",
+        "text": "결론 사실"
+      },
+      {
+        "href": "#actions",
+        "text": "할 일과 자료"
+      },
+      {
+        "href": "#reading-path",
+        "text": "다음 읽기"
+      },
+      {
+        "href": "#rule.family-inheritance.rule-inheritance-order",
+        "text": "법정상속인의 순위 ↑"
+      },
+      {
+        "href": "#rule.family-inheritance.rule-spouse-order",
+        "text": "배우자의 상속순위 ↑"
+      },
+      {
+        "href": "/ko/concepts/legal-heir",
+        "text": "상속인상속이 개시되면 피상속인이 남긴 재산상 권리와 의무를 포괄적으로 이어받는 사람입니다."
+      },
+      {
+        "href": "/ko/concepts/statutory-heir",
+        "text": "법정상속인민법이 정한 친족 순위 또는 배우자 지위에 따라 상속인이 되는 사람입니다."
+      },
+      {
+        "href": "/ko/concepts/co-heir",
+        "text": "공동상속인같은 상속에서 상속인이 두 명 이상일 때 그 각 상속인을 말합니다."
+      },
+      {
+        "href": "/ko/concepts/decedent",
+        "text": "피상속인사망으로 상속이 개시되어 자신의 재산상 권리와 의무가 상속인에게 이어지는 사람입니다."
+      },
+      {
+        "href": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1000%EC%A1%B0",
+        "text": "민법 제1000조 원문 ↗원문 확인 2026. 7. 21."
+      },
+      {
+        "href": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1003%EC%A1%B0",
+        "text": "민법 제1003조 원문 ↗원문 확인 2026. 7. 21."
+      },
+      {
+        "href": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C997%EC%A1%B0",
+        "text": "민법 제997조 원문 ↗원문 확인 2026. 7. 23."
+      },
+      {
+        "href": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1005%EC%A1%B0",
+        "text": "민법 제1005조 원문 ↗원문 확인 2026. 7. 21."
+      },
+      {
+        "href": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1006%EC%A1%B0",
+        "text": "민법 제1006조 원문 ↗원문 확인 2026. 7. 23."
+      },
+      {
+        "href": "/ko/concepts/legal-heir",
+        "text": "법률개념상속인상속이 개시되면 피상속인이 남긴 재산상 권리와 의무를 포괄적으로 이어받는 사람입니다.왜 연결되나요?현재 글의 법리를 구성하는 핵심 용어의 정확한 뜻을 확인합니다.개념부터 확인 →"
+      },
+      {
+        "href": "/ko/concepts/statutory-heir",
+        "text": "법률개념법정상속인민법이 정한 친족 순위 또는 배우자 지위에 따라 상속인이 되는 사람입니다.왜 연결되나요?현재 글의 법리를 구성하는 핵심 용어의 정확한 뜻을 확인합니다.개념부터 확인 →"
+      },
+      {
+        "href": "/ko/concepts/co-heir",
+        "text": "법률개념공동상속인같은 상속에서 상속인이 두 명 이상일 때 그 각 상속인을 말합니다.왜 연결되나요?현재 글의 법리를 구성하는 핵심 용어의 정확한 뜻을 확인합니다.개념부터 확인 →"
+      },
+      {
+        "href": "/ko/concepts/decedent",
+        "text": "법률개념피상속인사망으로 상속이 개시되어 자신의 재산상 권리와 의무가 상속인에게 이어지는 사람입니다.왜 연결되나요?현재 글의 법리를 구성하는 핵심 용어의 정확한 뜻을 확인합니다.개념부터 확인 →"
+      },
+      {
+        "href": "/ko/knowledge/spouse-when-all-children-renounce",
+        "text": "같은 주제자녀 전원이 상속을 포기하면 손자녀에게 내려가나대법원 전원합의체는 배우자와 자녀 중 자녀 전부가 포기한 경우 배우자가 단독상속인이 되고 손자녀가 공동상속인이 되지 않는다고 판례를 변경했다.왜 연결되나요?현재 글과 같은 주제 묶음에 있는 참고 글이며, 구체적인 연결 유형은 아직 분류되지 않았습니다.같은 주제에서 보기 →"
+      },
+      {
+        "href": "/ko/knowledge/three-month-inheritance-decision-period",
+        "text": "같은 주제상속포기·한정승인 3개월은 언제부터 계산하나법은 상속개시 있음을 안 날부터 3개월을 기준으로 하므로 사망일만이 아니라 자신이 상속인이 되었음을 안 시점을 구체적으로 확인해야 한다.왜 연결되나요?현재 글과 같은 주제 묶음에 있는 참고 글이며, 구체적인 연결 유형은 아직 분류되지 않았습니다.같은 주제에서 보기 →"
+      },
+      {
+        "href": "/ko/knowledge/inheritance-renunciation-procedure",
+        "text": "같은 주제상속포기는 가족끼리 말하면 끝나는가민법상 상속포기는 3개월 기간 안에 가정법원에 신고해야 하며 가족 사이의 말이나 상속재산분할 합의만으로 같은 효력이 생기지 않는다.왜 연결되나요?현재 글과 같은 주제 묶음에 있는 참고 글이며, 구체적인 연결 유형은 아직 분류되지 않았습니다.같은 주제에서 보기 →"
+      },
+      {
+        "href": "/ko/knowledge/limited-acceptance-effect",
+        "text": "같은 주제한정승인은 빚을 전혀 갚지 않는 제도인가한정승인은 채무를 없애는 것이 아니라 상속으로 취득한 재산의 한도에서 피상속인의 채무와 유증을 변제하는 조건으로 상속을 승인하는 제도다.왜 연결되나요?현재 글과 같은 주제 묶음에 있는 참고 글이며, 구체적인 연결 유형은 아직 분류되지 않았습니다.같은 주제에서 보기 →"
+      },
+      {
+        "href": "/ko/knowledge/special-limited-acceptance-late-debt",
+        "text": "같은 주제3개월 뒤 숨은 빚을 알게 되면 방법이 없나중대한 과실 없이 채무초과 사실을 3개월 안에 몰랐다면 그 사실을 안 날부터 3개월 내 특별한정승인을 검토할 수 있다.왜 연결되나요?현재 글과 같은 주제 묶음에 있는 참고 글이며, 구체적인 연결 유형은 아직 분류되지 않았습니다.같은 주제에서 보기 →"
+      },
+      {
+        "href": "/ko/knowledge/estate-disposal-before-renunciation",
+        "text": "같은 주제상속포기 신고 후 재산을 써도 되는가포기 신고를 했더라도 수리심판 고지 전 상속재산을 처분하면 법정단순승인으로 볼 수 있다는 판례가 있으므로 임의 인출·매각을 피해야 한다.왜 연결되나요?현재 글과 같은 주제 묶음에 있는 참고 글이며, 구체적인 연결 유형은 아직 분류되지 않았습니다.같은 주제에서 보기 →"
+      }
+    ],
+    "navigations": [
+      {
+        "ariaLabel": null,
+        "hrefs": [
+          "/",
+          "/ko/knowledge",
+          "/ko/hubs/family-inheritance"
+        ]
+      },
+      {
+        "ariaLabel": "소속 주제",
+        "hrefs": [
+          "/ko/hubs/family-inheritance"
+        ]
+      },
+      {
+        "ariaLabel": "이 글 안에서 이동",
+        "hrefs": [
+          "#summary",
+          "#concepts",
+          "#rules",
+          "#scenarios",
+          "#actions",
+          "#reading-path"
+        ]
+      },
+      {
+        "ariaLabel": "사실분기 1의 연결 법리: 배우자와 자녀가 있는 일반적인 상속",
+        "hrefs": [
+          "#rule.family-inheritance.rule-inheritance-order",
+          "#rule.family-inheritance.rule-spouse-order"
+        ]
+      }
+    ],
+    "sectionIds": [
+      "summary",
+      "rules",
+      "scenarios",
+      "actions",
+      "concepts",
+      "sources",
+      "reading-path"
+    ]
+  }
+}
