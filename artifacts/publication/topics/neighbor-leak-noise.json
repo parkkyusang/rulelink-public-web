@@ -9,7 +9,7 @@
       "article_no": "제214조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C214%EC%A1%B0",
       "source_snapshot_id": "snapshot:7f6091e41efd1c2b5adb6f12d6d8aad7",
-      "last_verified_at": "2026-07-23T08:00:00+00:00"
+      "last_verified_at": "2026-07-23T00:50:00+00:00"
     },
     {
       "coordinate_id": "coord.neighbor-leak-noise.civil-0217",
@@ -18,7 +18,7 @@
       "article_no": "제217조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C217%EC%A1%B0",
       "source_snapshot_id": "snapshot:7feaf7436d1b7522c275d623fde1ca45",
-      "last_verified_at": "2026-07-23T08:00:00+00:00"
+      "last_verified_at": "2026-07-23T00:50:00+00:00"
     },
     {
       "coordinate_id": "coord.neighbor-leak-noise.civil-procedure-0375",
@@ -27,7 +27,7 @@
       "article_no": "제375조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C375%EC%A1%B0",
       "source_snapshot_id": "snapshot:4bb11cb112435dd0544d2718f01bf06e",
-      "last_verified_at": "2026-07-23T08:00:00+00:00"
+      "last_verified_at": "2026-07-23T00:50:00+00:00"
     },
     {
       "coordinate_id": "coord.neighbor-leak-noise.civil-procedure-0376",
@@ -35,8 +35,8 @@
       "law_name_ko": "민사소송법",
       "article_no": "제376조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C376%EC%A1%B0",
-      "source_snapshot_id": "snapshot:b20085997d0047c270a71a3f352c50b",
-      "last_verified_at": "2026-07-23T08:00:00+00:00"
+      "source_snapshot_id": "snapshot:b20085997d0047c270a71a3f352c50b9",
+      "last_verified_at": "2026-07-23T00:50:00+00:00"
     },
     {
       "coordinate_id": "coord.neighbor-leak-noise.civil-0750",
@@ -45,7 +45,7 @@
       "article_no": "제750조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C750%EC%A1%B0",
       "source_snapshot_id": "snapshot:cdf125767ab6640e07d557f6c73a0c53",
-      "last_verified_at": "2026-07-23T08:00:00+00:00"
+      "last_verified_at": "2026-07-23T00:50:00+00:00"
     },
     {
       "coordinate_id": "coord.neighbor-leak-noise.civil-0758",
@@ -54,7 +54,7 @@
       "article_no": "제758조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C758%EC%A1%B0",
       "source_snapshot_id": "snapshot:3e889ba204742d5b6bead0009d0e244b",
-      "last_verified_at": "2026-07-23T08:00:00+00:00"
+      "last_verified_at": "2026-07-23T00:50:00+00:00"
     },
     {
       "coordinate_id": "coord.neighbor-leak-noise.aggregate-0005",
@@ -63,7 +63,7 @@
       "article_no": "제5조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A7%91%ED%95%A9%EA%B1%B4%EB%AC%BC%EC%9D%98%20%EC%86%8C%EC%9C%A0%20%EB%B0%8F%20%EA%B4%80%EB%A6%AC%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C5%EC%A1%B0",
       "source_snapshot_id": "snapshot:ba0b06aad5b4edc9b9673ab8c2cdb83b",
-      "last_verified_at": "2026-07-23T08:00:00+00:00"
+      "last_verified_at": "2026-07-23T00:50:00+00:00"
     },
     {
       "coordinate_id": "coord.neighbor-leak-noise.aggregate-0006",
@@ -72,7 +72,7 @@
       "article_no": "제6조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A7%91%ED%95%A9%EA%B1%B4%EB%AC%BC%EC%9D%98%20%EC%86%8C%EC%9C%A0%20%EB%B0%8F%20%EA%B4%80%EB%A6%AC%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C6%EC%A1%B0",
       "source_snapshot_id": "snapshot:e2743432ae2da484402e50c9fe576f13",
-      "last_verified_at": "2026-07-23T08:00:00+00:00"
+      "last_verified_at": "2026-07-23T00:50:00+00:00"
     },
     {
       "coordinate_id": "coord.neighbor-leak-noise.aggregate-0016",
@@ -80,8 +80,8 @@
       "law_name_ko": "집합건물의 소유 및 관리에 관한 법률",
       "article_no": "제16조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A7%91%ED%95%A9%EA%B1%B4%EB%AC%BC%EC%9D%98%20%EC%86%8C%EC%9C%A0%20%EB%B0%8F%20%EA%B4%80%EB%A6%AC%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C16%EC%A1%B0",
-      "source_snapshot_id": "snapshot:5efc0ec9301b5c8de1beba0aacdb5c3",
-      "last_verified_at": "2026-07-23T08:00:00+00:00"
+      "source_snapshot_id": "snapshot:5efc0ec9301b5c8de1beba0aacdb5c38",
+      "last_verified_at": "2026-07-23T00:50:00+00:00"
     },
     {
       "coordinate_id": "coord.neighbor-leak-noise.aggregate-0025",
@@ -89,8 +89,8 @@
       "law_name_ko": "집합건물의 소유 및 관리에 관한 법률",
       "article_no": "제25조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A7%91%ED%95%A9%EA%B1%B4%EB%AC%BC%EC%9D%98%20%EC%86%8C%EC%9C%A0%20%EB%B0%8F%20%EA%B4%80%EB%A6%AC%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C25%EC%A1%B0",
-      "source_snapshot_id": "snapshot:0673814d538b9d1e1ed90911a4759e6",
-      "last_verified_at": "2026-07-23T08:00:00+00:00"
+      "source_snapshot_id": "snapshot:0673814d538b9d1e1ed90911a4759e6c",
+      "last_verified_at": "2026-07-23T00:50:00+00:00"
     },
     {
       "coordinate_id": "coord.neighbor-leak-noise.apartment-0020",
@@ -99,7 +99,7 @@
       "article_no": "제20조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B3%B5%EB%8F%99%EC%A3%BC%ED%83%9D%EA%B4%80%EB%A6%AC%EB%B2%95/%EC%A0%9C20%EC%A1%B0",
       "source_snapshot_id": "snapshot:d3f67100994e64661c28706d9e05db8b",
-      "last_verified_at": "2026-07-23T08:00:00+00:00"
+      "last_verified_at": "2026-07-23T00:50:00+00:00"
     },
     {
       "coordinate_id": "coord.neighbor-leak-noise.apartment-0071",
@@ -108,7 +108,7 @@
       "article_no": "제71조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B3%B5%EB%8F%99%EC%A3%BC%ED%83%9D%EA%B4%80%EB%A6%AC%EB%B2%95/%EC%A0%9C71%EC%A1%B0",
       "source_snapshot_id": "snapshot:b7170b9712f31c225f71396d3a51f672",
-      "last_verified_at": "2026-07-23T08:00:00+00:00"
+      "last_verified_at": "2026-07-23T00:50:00+00:00"
     }
   ],
   "topic_hubs": [
@@ -426,7 +426,7 @@
       "content_id": "content.neighbor-leak-noise-leak-origin-evidence",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "reviewed_at": "2026-07-23T00:50:00+00:00",
       "expires_at": "2026-10-23T00:00:00+00:00",
       "slug": "neighbor-leak-noise-leak-origin-evidence",
       "title_ko": "누수가 생기면 수리부터 해야 하나, 원인 증거부터 남겨야 하나",
@@ -497,7 +497,7 @@
       "content_id": "content.neighbor-leak-noise-cause-location-liability",
       "content_type": "fact_branch",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T08:00:00+00:00",
+      "reviewed_at": "2026-07-23T00:50:00+00:00",
       "expires_at": "2026-10-23T00:00:00+00:00",
       "slug": "neighbor-leak-noise-cause-location-liability",
       "title_ko": "누수 원인이 내 집·공용부분·윗집 중 어디냐에 따라 누구 책임인가",
@@ -574,7 +574,7 @@
       "content_id": "content.neighbor-leak-noise-inspection-refusal-evidence-preservation",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T08:00:00+00:00",
+      "reviewed_at": "2026-07-23T00:50:00+00:00",
       "expires_at": "2026-10-23T00:00:00+00:00",
       "slug": "neighbor-leak-noise-inspection-refusal-evidence-preservation",
       "title_ko": "윗집이 누수 점검을 거부하면 증거보전과 방해제거를 어떻게 나누나",
@@ -650,7 +650,7 @@
       "content_id": "content.neighbor-leak-noise-occupant-owner-liability",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "reviewed_at": "2026-07-23T00:50:00+00:00",
       "expires_at": "2026-10-23T00:00:00+00:00",
       "slug": "neighbor-leak-noise-occupant-owner-liability",
       "title_ko": "윗집 누수면 거주자와 집주인 중 누가 배상하나",
@@ -720,7 +720,7 @@
       "content_id": "content.neighbor-leak-noise-exclusive-common-area",
       "content_type": "fact_branch",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "reviewed_at": "2026-07-23T00:50:00+00:00",
       "expires_at": "2026-10-23T00:00:00+00:00",
       "slug": "neighbor-leak-noise-exclusive-common-area",
       "title_ko": "누수 원인이 전유부분인지 공용부분인지 어떻게 가르나",
@@ -791,7 +791,7 @@
       "content_id": "content.neighbor-leak-noise-inspection-access",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "reviewed_at": "2026-07-23T00:50:00+00:00",
       "expires_at": "2026-10-23T00:00:00+00:00",
       "slug": "neighbor-leak-noise-inspection-access",
       "title_ko": "누수 확인을 위해 다른 세대에 들어가거나 벽을 열 수 있나",
@@ -860,7 +860,7 @@
       "content_id": "content.neighbor-leak-noise-floor-noise-management-route",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "reviewed_at": "2026-07-23T00:50:00+00:00",
       "expires_at": "2026-10-23T00:00:00+00:00",
       "slug": "neighbor-leak-noise-floor-noise-management-route",
       "title_ko": "층간소음은 관리사무소에 무엇을 요청할 수 있나",
@@ -928,7 +928,7 @@
       "content_id": "content.neighbor-leak-noise-floor-noise-mediation",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "reviewed_at": "2026-07-23T00:50:00+00:00",
       "expires_at": "2026-10-23T00:00:00+00:00",
       "slug": "neighbor-leak-noise-floor-noise-mediation",
       "title_ko": "관리사무소 권고 뒤에도 층간소음이 계속되면 어디에 신청하나",
@@ -997,7 +997,7 @@
       "content_id": "content.neighbor-leak-noise-neighbor-interference-limit",
       "content_type": "fact_branch",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "reviewed_at": "2026-07-23T00:50:00+00:00",
       "expires_at": "2026-10-23T00:00:00+00:00",
       "slug": "neighbor-leak-noise-neighbor-interference-limit",
       "title_ko": "이웃의 소음·진동·연기·물이 불편하면 모두 막아달라고 할 수 있나",
@@ -1065,7 +1065,7 @@
       "content_id": "content.neighbor-leak-noise-injunction-vs-damages",
       "content_type": "similar_case_comparison",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T06:00:00+00:00",
+      "reviewed_at": "2026-07-23T00:50:00+00:00",
       "expires_at": "2026-10-23T00:00:00+00:00",
       "slug": "neighbor-leak-noise-injunction-vs-damages",
       "title_ko": "누수·소음은 중단 청구와 손해배상 중 무엇을 해야 하나",
