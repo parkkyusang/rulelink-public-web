@@ -722,7 +722,24 @@
       "hub_ids": [
         "hub.domestic-violence-stalking"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.domestic-violence-stalking-domestic-emergency",
+        "content.domestic-violence-stalking-domestic-protection-order"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.domestic-violence-stalking-domestic-emergency",
+          "relation_type": "procedure",
+          "label_ko": "현장 응급조치 뒤 긴급임시·법원 임시조치 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.domestic-violence-stalking-domestic-protection-order",
+          "relation_type": "comparison",
+          "label_ko": "수사기관 임시조치와 피해자 직접 청구 보호명령 비교"
+        }
+      ]
     },
     {
       "content_id": "content.domestic-violence-stalking-domestic-protection-order",
@@ -1086,7 +1103,24 @@
       "hub_ids": [
         "hub.domestic-violence-stalking"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.domestic-violence-stalking-stalking-emergency",
+        "content.domestic-violence-stalking-stalking-support"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.domestic-violence-stalking-stalking-emergency",
+          "relation_type": "procedure",
+          "label_ko": "경찰 긴급응급조치 뒤 법원 잠정조치 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.domestic-violence-stalking-stalking-support",
+          "relation_type": "remedy",
+          "label_ko": "잠정조치와 임시거소·법률지원 병행"
+        }
+      ]
     },
     {
       "content_id": "content.domestic-violence-stalking-stalking-support",
