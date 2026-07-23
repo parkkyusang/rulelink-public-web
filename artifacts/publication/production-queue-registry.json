@@ -255,7 +255,18 @@
       "registered_on": "2026-07-23",
       "previous_receipt": "6044a5aa7802a6ad2334ae78a6f2efac20b0e7874950998e85556028fdcb5754",
       "receipt": "b106154e15899a3dae90b690beb9b43099f33eb78c2d6c69a6bc9050022ff2a9"
+    },
+    {
+      "sequence": 24,
+      "queue_id": "publication-pr-174",
+      "pr_number": 174,
+      "change_mode": "new_topic",
+      "topic_id": "hub.domestic-violence-stalking",
+      "topic_file": "artifacts/publication/topics/domestic-violence-stalking.json",
+      "registered_on": "2026-07-23",
+      "previous_receipt": "b106154e15899a3dae90b690beb9b43099f33eb78c2d6c69a6bc9050022ff2a9",
+      "receipt": "f9110d9a9672b55009ae582a100b60efd7e548c580710f448c19800d1d24fc95"
     }
   ],
-  "registry_receipt": "b106154e15899a3dae90b690beb9b43099f33eb78c2d6c69a6bc9050022ff2a9"
+  "registry_receipt": "f9110d9a9672b55009ae582a100b60efd7e548c580710f448c19800d1d24fc95"
 }

@@ -122,7 +122,7 @@
   },
   "audit_summary": {
     "open_content_prs": 13,
-    "official_source_references_checked": 374,
+    "official_source_references_checked": 396,
     "unique_official_urls_checked": 345,
     "official_url_failures": 0,
     "exact_cross_pr_content_id_collisions": 0,
@@ -133,7 +133,9 @@
     "migration_required": 5,
     "blocked": 1,
     "integrated": 9,
-    "merged_pending_publication": 1
+    "merged_pending_publication": 1,
+    "superseded": 1,
+    "withdrawn": 0
   },
   "items": [
     {
@@ -695,7 +697,7 @@
       "topic_file": "artifacts/publication/topics/domestic-violence-stalking.json",
       "test_file": "web/rulelink_public_next/scripts/domestic-violence-stalking-topic-handoff.test.mjs",
       "change_mode": "new_topic",
-      "status": "ready_for_integration",
+      "status": "superseded",
       "counts": {
         "sources": 22,
         "rule_cards": 10,
@@ -704,7 +706,7 @@
         "topic_hubs": 1
       },
       "depends_on_prs": [],
-      "integration_order": 20,
+      "integration_order": null,
       "official_url_check": {
         "status": "passed",
         "referenced_count": 22
@@ -715,7 +717,12 @@
       },
       "integration_checks": [
         "드리프트 좌표 2개를 활성 DB 기준으로 재검증한다."
-      ]
+      ],
+      "terminal_reason_ko": "미출판 신규 주제 원본을 최신 main에서 현행 근거로 재결박한 PR #174가 이 작업을 대체한다.",
+      "superseded_by": {
+        "pr_number": 174,
+        "head_sha": "b8644f515388315143b6dbe1fdbdf742a6454c6e"
+      }
     },
     {
       "queue_id": "publication-pr-141",
@@ -1042,6 +1049,49 @@
       "integration_checks": [
         "구제절차·기한 비교의 3개 typed relation과 legacy 투영을 보존한다.",
         "current bundle과 새 불변 snapshot을 migrate_publication 역할이 함께 재합성한다."
+      ]
+    },
+    {
+      "queue_id": "publication-pr-174",
+      "pr_number": 174,
+      "title_ko": "가정폭력·스토킹 현행 근거 재결박",
+      "branch": "codex/content-domestic-violence-stalking-rebind-20260723",
+      "head_sha": "b8644f515388315143b6dbe1fdbdf742a6454c6e",
+      "owner_role": "content_production",
+      "topic_id": "hub.domestic-violence-stalking",
+      "topic_file": "artifacts/publication/topics/domestic-violence-stalking.json",
+      "test_file": "web/rulelink_public_next/scripts/domestic-violence-stalking-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "ready_for_integration",
+      "counts": {
+        "sources": 22,
+        "rule_cards": 10,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": 20,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 22
+      },
+      "source_freshness": {
+        "status": "current",
+        "mismatch_count": 0,
+        "timeline_missing_source_ids": [
+          "law_014392_ko_0006",
+          "law_014392_ko_0009",
+          "law_014392_ko_0013"
+        ],
+        "follow_up_owner_role": "source_maintenance"
+      },
+      "integration_checks": [
+        "PR #174의 현행 snapshot 22개와 승인된 절차 관계 4건을 023 publication migration에 포함한다.",
+        "Source Timeline 미적재 3건은 공개 근거 일치로 가장하지 않고 Source Maintenance 후속 결손으로 유지한다."
+      ],
+      "supersedes_prs": [
+        105
       ]
     }
   ],

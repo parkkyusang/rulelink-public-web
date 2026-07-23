@@ -48,6 +48,8 @@ artifacts/publication/production-queue-registry.json
 - `superseded`: 다른 이관 또는 새 병합 요청으로 대체됨
 - `withdrawn`: 공개 대상에서 철회됨
 
+아직 공개되지 않은 `new_topic` 항목을 새 병합 요청이 대체할 때는 기존 행과 레지스트리 정체성을 삭제하거나 고치지 않는다. 기존 행은 `superseded`로 전환하고 한글 종료 사유와 `superseded_by.pr_number`, 독립 검토를 통과한 `superseded_by.head_sha`를 보존한다. 대체 항목은 별도 `queue_id`로 레지스트리 끝에 추가하고 `supersedes_prs`로 기존 PR을 역참조한다. 두 항목은 같은 `topic_id`와 `topic_file`이어야 하며, 대체 관계의 PR 번호와 head가 양방향으로 일치해야 한다. 미출판 대체이므로 기존 행에 snapshot이나 migration 완료 증거를 붙여 출판된 것처럼 표시하지 않는다.
+
 콘텐츠 생산자는 대기열을 직접 수정하지 않는다. 구축·통합 담당이 배정과 상태를 기록한다. 한 생산자의 `claimed` 또는 `in_progress` 항목은 동시에 1개만 허용한다. 기존 항목이 끝나기 전에는 다음 주제를 만들지 않는다.
 
 ## 3. 생산 시작 전 중복·범위 판정

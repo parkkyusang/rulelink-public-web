@@ -44,7 +44,7 @@ function clone(value) {
 function refreshSummary(value) {
   const openStatuses = new Set(['pr_open', 'ready_for_integration', 'needs_rework', 'migration_required', 'blocked']);
   value.audit_summary.open_content_prs = value.items.filter(item => openStatuses.has(item.status)).length;
-  for (const status of ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated', 'merged_pending_publication']) {
+  for (const status of ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated', 'merged_pending_publication', 'superseded', 'withdrawn']) {
     value.audit_summary[status] = value.items.filter(item => item.status === status).length;
   }
   value.audit_summary.official_source_references_checked =
@@ -115,7 +115,7 @@ test('현재 생산 대기열은 022 공개 정본·역할·의존성 계약을 
   });
   assert.equal(queue.current_publication.live_parity, 'verified');
   assert.equal(queue.audit_summary.open_content_prs, queue.items.filter(item => ['pr_open', 'ready_for_integration', 'needs_rework', 'migration_required', 'blocked'].includes(item.status)).length);
-  for (const status of ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated']) {
+  for (const status of ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated', 'superseded', 'withdrawn']) {
     assert.equal(queue.audit_summary[status], queue.items.filter(item => item.status === status).length);
   }
 });
@@ -338,7 +338,7 @@ test('handoff 필수 필드와 기존 주제의 migration_required 상태를 강
 
 test('ready와 integrated 항목은 통합되지 않은 의존 PR을 남길 수 없다', () => {
   const value = clone(queue);
-  value.items.find(item => item.pr_number === 105).depends_on_prs = [87];
+  value.items.find(item => item.pr_number === 174).depends_on_prs = [87];
   assert.ok(validateProductionQueue(value).some(error => error.includes('통합되지 않은 의존 PR #87')));
 });
 
@@ -473,6 +473,70 @@ test('#169와 #171도 기존 정본 직접 병합 없이 같은 publication migr
     assert.deepEqual(item.integrate_requires, ['current_bundle', 'new_immutable_snapshot', 'migrate_publication']);
   }
   assert.deepEqual(queue.items.find(entry => entry.pr_number === 169).platform_prerequisite_prs, [168]);
+});
+
+test('#105 정체성을 보존한 종료 이력과 #174 신규 대체 항목을 양방향·append-only로 고정한다', () => {
+  const original = queue.items.find(entry => entry.pr_number === 105);
+  const replacement = queue.items.find(entry => entry.pr_number === 174);
+  assert.ok(original);
+  assert.ok(replacement);
+  assert.deepEqual(
+    {
+      queue_id: original.queue_id,
+      pr_number: original.pr_number,
+      change_mode: original.change_mode,
+      topic_id: original.topic_id,
+      topic_file: original.topic_file,
+    },
+    {
+      queue_id: 'publication-pr-105',
+      pr_number: 105,
+      change_mode: 'new_topic',
+      topic_id: 'hub.domestic-violence-stalking',
+      topic_file: 'artifacts/publication/topics/domestic-violence-stalking.json',
+    },
+  );
+  assert.equal(original.status, 'superseded');
+  assert.equal(original.integration_order, null);
+  assert.match(original.terminal_reason_ko, /미출판.*#174.*대체/u);
+  assert.deepEqual(original.superseded_by, {
+    pr_number: 174,
+    head_sha: 'b8644f515388315143b6dbe1fdbdf742a6454c6e',
+  });
+
+  assert.equal(replacement.queue_id, 'publication-pr-174');
+  assert.equal(replacement.status, 'ready_for_integration');
+  assert.equal(replacement.change_mode, 'new_topic');
+  assert.equal(replacement.head_sha, 'b8644f515388315143b6dbe1fdbdf742a6454c6e');
+  assert.equal(replacement.topic_id, original.topic_id);
+  assert.equal(replacement.topic_file, original.topic_file);
+  assert.equal(replacement.test_file, 'web/rulelink_public_next/scripts/domestic-violence-stalking-topic-handoff.test.mjs');
+  assert.deepEqual(replacement.supersedes_prs, [105]);
+  assert.deepEqual(replacement.source_freshness.timeline_missing_source_ids, [
+    'law_014392_ko_0006',
+    'law_014392_ko_0009',
+    'law_014392_ko_0013',
+  ]);
+  assert.equal(replacement.source_freshness.follow_up_owner_role, 'source_maintenance');
+  assert.match(replacement.integration_checks.join(' '), /023 publication migration/u);
+
+  const registration = registry.registrations.at(-1);
+  assert.equal(registration.sequence, 24);
+  assert.equal(registration.queue_id, 'publication-pr-174');
+  assert.equal(registration.previous_receipt, registry.registrations.at(-2).receipt);
+  assert.equal(registration.receipt, registry.registry_receipt);
+
+  const missingReason = clone(queue);
+  delete missingReason.items.find(entry => entry.pr_number === 105).terminal_reason_ko;
+  assert.ok(validateProductionQueue(missingReason).some(error => error.includes('대체 종료 이력에 필요합니다')));
+
+  const wrongHead = clone(queue);
+  wrongHead.items.find(entry => entry.pr_number === 105).superseded_by.head_sha = 'a'.repeat(40);
+  assert.ok(validateProductionQueue(wrongHead).some(error => error.includes('감사 head와 일치해야 합니다')));
+
+  const missingReverse = clone(queue);
+  delete missingReverse.items.find(entry => entry.pr_number === 174).supersedes_prs;
+  assert.ok(validateProductionQueue(missingReverse).some(error => error.includes('양방향으로 기록되지 않았습니다')));
 });
 
 test('기존 주제 개정은 migration_required에서 integrated 또는 superseded로 이력을 보존한다', () => {

@@ -678,6 +678,23 @@ export function validateProductionQueue(
         if (item[field] !== undefined) errors.push(`${label}.${field}는 출판되지 않은 withdrawn 이력에 사용할 수 없습니다.`);
       }
     }
+    if (item.change_mode === 'new_topic' && item.status === 'superseded') {
+      if (!nonEmpty(item.terminal_reason_ko)) errors.push(`${label}.terminal_reason_ko는 미출판 신규 주제의 대체 종료 이력에 필요합니다.`);
+      if (!item.superseded_by || typeof item.superseded_by !== 'object') {
+        errors.push(`${label}.superseded_by는 대체 PR과 감사 head를 보존해야 합니다.`);
+      } else {
+        if (!isPositiveInteger(item.superseded_by.pr_number) || item.superseded_by.pr_number === item.pr_number) {
+          errors.push(`${label}.superseded_by.pr_number가 올바르지 않습니다.`);
+        }
+        if (!/^[0-9a-f]{40}$/u.test(item.superseded_by.head_sha || '')) {
+          errors.push(`${label}.superseded_by.head_sha는 40자리 커밋 SHA여야 합니다.`);
+        }
+      }
+      if (item.integration_order !== null) errors.push(`${label}의 superseded 상태에는 integration_order가 null이어야 합니다.`);
+      for (const field of ['integrated_snapshot_id', 'migration_commit_sha', 'absorbed_head_sha', 'topic_receipt', 'integration_mode']) {
+        if (item[field] !== undefined) errors.push(`${label}.${field}는 출판되지 않은 신규 주제의 superseded 이력에 사용할 수 없습니다.`);
+      }
+    }
     if (item.status === 'integrated') {
       if (item.source_freshness?.status !== 'current') errors.push(`${label}의 integrated 상태에는 current 근거가 필요합니다.`);
       if (item.integration_order !== null) errors.push(`${label}의 integrated 상태에는 integration_order가 null이어야 합니다.`);
@@ -702,6 +719,17 @@ export function validateProductionQueue(
       const mismatch = item.source_freshness.mismatch_count;
       if (!Number.isInteger(mismatch) || mismatch < 0 || (counts && mismatch > counts.sources)) {
         errors.push(`${label}.source_freshness.mismatch_count가 올바르지 않습니다.`);
+      }
+    }
+    if (item.source_freshness?.timeline_missing_source_ids !== undefined) {
+      const missingIds = item.source_freshness.timeline_missing_source_ids;
+      if (!Array.isArray(missingIds) || missingIds.length === 0 || missingIds.some(value => !nonEmpty(value))) {
+        errors.push(`${label}.source_freshness.timeline_missing_source_ids는 비어 있지 않은 source_id 배열이어야 합니다.`);
+      } else if (new Set(missingIds).size !== missingIds.length) {
+        errors.push(`${label}.source_freshness.timeline_missing_source_ids에 중복이 있습니다.`);
+      }
+      if (item.source_freshness.follow_up_owner_role !== 'source_maintenance') {
+        errors.push(`${label}.source_freshness.follow_up_owner_role은 source_maintenance여야 합니다.`);
       }
     }
 
@@ -732,7 +760,7 @@ export function validateProductionQueue(
       if (!Array.isArray(item.supersedes_prs)) {
         errors.push(`${label}.supersedes_prs는 배열이어야 합니다.`);
       } else {
-        if (!['integrated', 'merged_pending_publication'].includes(item.status)) errors.push(`${label}.supersedes_prs는 integrated 또는 merged_pending_publication 항목에만 사용할 수 있습니다.`);
+        if (!['ready_for_integration', 'integrated', 'merged_pending_publication'].includes(item.status)) errors.push(`${label}.supersedes_prs는 ready_for_integration, integrated 또는 merged_pending_publication 항목에만 사용할 수 있습니다.`);
         const seenSuperseded = new Set();
         for (const supersededPr of item.supersedes_prs) {
           if (!isPositiveInteger(supersededPr)) {
@@ -782,7 +810,25 @@ export function validateProductionQueue(
       const supersededItem = byPr.get(supersededPr);
       if (supersededItem && supersededItem.status !== 'superseded') {
         errors.push(`#${item.pr_number}가 대체한 #${supersededPr}은 삭제하지 않고 superseded 이력으로 보존해야 합니다.`);
+      } else if (supersededItem) {
+        if (supersededItem.superseded_by?.pr_number !== item.pr_number) {
+          errors.push(`#${supersededPr}.superseded_by.pr_number는 대체 PR #${item.pr_number}와 일치해야 합니다.`);
+        }
+        if (supersededItem.superseded_by?.head_sha !== item.head_sha) {
+          errors.push(`#${supersededPr}.superseded_by.head_sha는 대체 PR #${item.pr_number}의 감사 head와 일치해야 합니다.`);
+        }
+        if (supersededItem.topic_id !== item.topic_id || supersededItem.topic_file !== item.topic_file) {
+          errors.push(`#${item.pr_number}와 대체 대상 #${supersededPr}의 topic 정체성이 다릅니다.`);
+        }
       }
+    }
+  }
+  for (const item of queue.items.filter(value => value.change_mode === 'new_topic' && value.status === 'superseded')) {
+    const replacement = byPr.get(item.superseded_by?.pr_number);
+    if (!replacement) {
+      errors.push(`#${item.pr_number}.superseded_by가 가리키는 대체 PR이 대기열에 없습니다.`);
+    } else if (!(replacement.supersedes_prs || []).includes(item.pr_number)) {
+      errors.push(`#${item.pr_number}의 대체 관계가 #${replacement.pr_number}.supersedes_prs에 양방향으로 기록되지 않았습니다.`);
     }
   }
 
@@ -839,7 +885,7 @@ export function validateProductionQueue(
   if (summary.official_source_references_checked !== sourceTotal) {
     errors.push('audit_summary.official_source_references_checked와 대기열 근거 합계가 다릅니다.');
   }
-  const statusSummaryKeys = ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated', 'merged_pending_publication'];
+  const statusSummaryKeys = ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated', 'merged_pending_publication', 'superseded', 'withdrawn'];
   for (const status of statusSummaryKeys) {
     const actual = queue.items.filter(item => item.status === status).length;
     if (summary[status] !== actual) {
