@@ -154,6 +154,18 @@ test('공개 번들도 서로 다른 개념의 대표 용어와 별칭 충돌을
   assert.match(result.stderr, /대표 용어·별칭이 여러 개념에 중복되었습니다/);
 });
 
+test('신규 공개 번들은 임금 정체성을 급여·퇴직금 별칭으로 합치면 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  const concept = addConcept(bundle);
+  concept.preferred_term_ko = '임금';
+  concept.aliases_ko = ['급여', '퇴직금'];
+  refreshConceptReceipts(bundle);
+
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /별도 canonical concept 정체성/);
+});
+
 test('공개 번들의 concierge_entry는 렌더링할 결정사실을 실제 필드로 가져야 한다', async () => {
   for (const decisionFacts of [undefined, []]) {
     const bundle = knowledgeBundle();

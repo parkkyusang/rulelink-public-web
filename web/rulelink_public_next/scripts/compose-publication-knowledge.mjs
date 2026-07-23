@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 
 import {validateConceptTermRelations} from '../src/lib/concept-terms.ts';
 import {projectKnowledgeEntryCompatibility} from '../src/lib/knowledge-relations.ts';
+import {legacyConceptValidationOptions} from './concept-identity-governance.mjs';
 
 const scriptPath = fileURLToPath(import.meta.url);
 const appRoot = path.resolve(path.dirname(scriptPath), '..');
@@ -116,7 +117,11 @@ export function assembleKnowledge(manifest, loadedTopics, loadedConceptGroups = 
       if (conceptIds.has(concept.concept_id)) throw new Error(`개념 묶음 사이에 중복된 concept_id: ${concept.concept_id}`);
       conceptIds.add(concept.concept_id);
     }
-    validateConceptTermRelations(assembled.concept_cards, assembled.sources);
+    validateConceptTermRelations(
+      assembled.concept_cards,
+      assembled.sources,
+      legacyConceptValidationOptions(assembled.concept_cards),
+    );
   }
 
   for (const [collection, idKey] of collections) {

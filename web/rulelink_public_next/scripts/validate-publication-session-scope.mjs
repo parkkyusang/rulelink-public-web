@@ -12,6 +12,7 @@ export function inferPublicationRole(headRef = '') {
   if (/^codex\/migrate-publication-[a-z0-9._/-]+$/u.test(headRef)) return 'migration';
   if (/^codex\/release-[a-z0-9._/-]+$/u.test(headRef)) return 'release';
   if (/^codex\/govern-publication-[a-z0-9._/-]+$/u.test(headRef)) return 'governance';
+  if (/^codex\/quality-[a-z0-9._/-]+$/u.test(headRef)) return 'quality_governance';
   if (/^codex\/runtime-publication-[a-z0-9._/-]+$/u.test(headRef)) return 'runtime';
   return null;
 }
@@ -26,6 +27,7 @@ export function isPublicationGovernedPath(filePath) {
     || value === '.github/workflows/public-web-checks.yml'
     || value === 'docs/CONTENT_HANDOFF_CONTRACT_KO.md'
     || value === 'docs/PUBLICATION_SEMANTIC_OVERLAP_CONTRACT_KO.md'
+    || value === 'docs/PUBLIC_CONCEPT_TERM_RELATION_CONTRACT_KO.md'
     || value === 'artifacts/publication/production-queue.json'
     || value === 'artifacts/publication/current/bundle.json'
     || value === 'artifacts/publication/topics/manifest.json'
@@ -46,7 +48,18 @@ export function isPublicationGovernedPath(filePath) {
     || value === 'web/rulelink_public_next/scripts/knowledge-content-type-contract.test.mjs'
     || value === 'web/rulelink_public_next/src/lib/knowledge-content-types.json'
     || value === 'web/rulelink_public_next/src/lib/content-labels.ts'
+    || value === 'web/rulelink_public_next/src/lib/concept-terms.ts'
+    || value === 'web/rulelink_public_next/src/lib/publication-concept-identity-debt-baseline.json'
     || value === 'web/rulelink_public_next/src/types/publication.ts'
+    || value === 'web/rulelink_public_next/scripts/concept-identity-governance.mjs'
+    || value === 'web/rulelink_public_next/scripts/concept-identity-quality.test.mjs'
+    || value === 'web/rulelink_public_next/scripts/validate-publication-concept-identity.mjs'
+    || value === 'web/rulelink_public_next/scripts/public-concept-graph.test.mjs'
+    || value === 'web/rulelink_public_next/scripts/validate-publication-bundle.mjs'
+    || value === 'web/rulelink_public_next/scripts/validate-publication-bundle.test.mjs'
+    || value === 'web/rulelink_public_next/scripts/compose-publication-knowledge.mjs'
+    || value === 'web/rulelink_public_next/scripts/compose-publication-knowledge.test.mjs'
+    || /^web\/rulelink_public_next\/scripts\/fixtures\/concept-[a-z0-9-]+\.json$/u.test(value)
     || value === 'web/rulelink_public_next/deploy/release.json';
 }
 
@@ -92,6 +105,24 @@ export function allowedForRole(role, filePath) {
       || value === 'web/rulelink_public_next/src/lib/knowledge-content-types.json'
       || value === 'web/rulelink_public_next/src/lib/content-labels.ts'
       || value === 'web/rulelink_public_next/src/types/publication.ts';
+  }
+  if (role === 'quality_governance') {
+    return value === 'docs/PUBLIC_CONCEPT_TERM_RELATION_CONTRACT_KO.md'
+      || value === 'web/rulelink_public_next/package.json'
+      || value === 'web/rulelink_public_next/src/types/publication.ts'
+      || value === 'web/rulelink_public_next/src/lib/concept-terms.ts'
+      || value === 'web/rulelink_public_next/src/lib/publication-concept-identity-debt-baseline.json'
+      || value === 'web/rulelink_public_next/scripts/concept-identity-governance.mjs'
+      || value === 'web/rulelink_public_next/scripts/concept-identity-quality.test.mjs'
+      || value === 'web/rulelink_public_next/scripts/validate-publication-concept-identity.mjs'
+      || value === 'web/rulelink_public_next/scripts/public-concept-graph.test.mjs'
+      || value === 'web/rulelink_public_next/scripts/validate-publication-bundle.mjs'
+      || value === 'web/rulelink_public_next/scripts/validate-publication-bundle.test.mjs'
+      || value === 'web/rulelink_public_next/scripts/compose-publication-knowledge.mjs'
+      || value === 'web/rulelink_public_next/scripts/compose-publication-knowledge.test.mjs'
+      || value === 'web/rulelink_public_next/scripts/validate-publication-session-scope.mjs'
+      || value === 'web/rulelink_public_next/scripts/validate-publication-session-scope.test.mjs'
+      || /^web\/rulelink_public_next\/scripts\/fixtures\/concept-[a-z0-9-]+\.json$/u.test(value);
   }
   if (role === 'runtime') {
     return value === 'web/rulelink_public_next/package.json'

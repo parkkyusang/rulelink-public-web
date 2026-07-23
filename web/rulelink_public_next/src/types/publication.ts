@@ -123,11 +123,21 @@ export type PublicConceptAssertion = {
   source_coordinate_ids: string[];
 };
 
-export type PublicConceptTermRelation = {
+export type PublicConceptAliasRelation = {
   term_ko: string;
-  relation: 'exact_synonym' | 'abbreviation' | 'spelling_variant' | 'plain_language' | 'narrower' | 'broader' | 'related';
+  relation: 'exact_synonym' | 'abbreviation' | 'spelling_variant' | 'plain_language';
+  target_concept_id?: never;
   source_coordinate_ids: string[];
 };
+
+export type PublicConceptSemanticRelation = {
+  term_ko: string;
+  relation: 'narrower' | 'broader' | 'related';
+  target_concept_id: string;
+  source_coordinate_ids: string[];
+};
+
+export type PublicConceptTermRelation = PublicConceptAliasRelation | PublicConceptSemanticRelation;
 
 export type PublicConceptCard = {
   concept_id: string;

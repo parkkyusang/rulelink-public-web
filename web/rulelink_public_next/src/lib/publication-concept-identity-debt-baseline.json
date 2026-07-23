@@ -1,0 +1,20 @@
+{
+  "schema": "rulelink_public_concept_identity_debt_baseline_v1",
+  "snapshot_id": "kr-knowledge-core-20260723-022",
+  "concepts": [
+    {
+      "concept_id": "concept.kr.inheritance.legal_heir",
+      "concept_receipt": "0bf1434ec861f7f8e3ed7b405a8ca14404c126c425d78f5221341a0f45a29b9b",
+      "expected_issues": [
+        {
+          "code": "protected-canonical-term-as-alias",
+          "term": "법정상속인"
+        },
+        {
+          "code": "protected-canonical-term-as-alias",
+          "term": "공동상속인"
+        }
+      ]
+    }
+  ]
+}
