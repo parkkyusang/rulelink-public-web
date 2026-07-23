@@ -1,0 +1,215 @@
+{
+  "schema": "rulelink_publication_comparison_reading_contract_v1",
+  "required_axes": {
+    "concept_boundary": [
+      [
+        "purpose_definition",
+        "목적과 개념"
+      ],
+      [
+        "subject_scope",
+        "적용 대상"
+      ],
+      [
+        "requirements",
+        "성립 요건"
+      ],
+      [
+        "procedure_forum",
+        "절차와 담당 기관"
+      ],
+      [
+        "deadline_trigger",
+        "기한과 기산점"
+      ],
+      [
+        "legal_effect",
+        "법률효과"
+      ],
+      [
+        "evidence_burden",
+        "입증자료와 증명책임"
+      ],
+      [
+        "interaction_remedy",
+        "병행·배제와 다음 구제"
+      ]
+    ],
+    "remedy_path": [
+      [
+        "remedy_objective",
+        "구제 목적"
+      ],
+      [
+        "standing_scope",
+        "신청·청구할 수 있는 사람"
+      ],
+      [
+        "admissibility_requirements",
+        "개시 요건"
+      ],
+      [
+        "forum_procedure",
+        "기관과 절차"
+      ],
+      [
+        "deadline_trigger",
+        "기한과 기산점"
+      ],
+      [
+        "decision_effect",
+        "결정의 효력"
+      ],
+      [
+        "evidence_burden",
+        "입증자료와 증명책임"
+      ],
+      [
+        "interaction_next_remedy",
+        "병행·배제와 다음 구제"
+      ]
+    ],
+    "deadline_timing": [
+      [
+        "protected_right",
+        "보호되는 권리"
+      ],
+      [
+        "trigger_event",
+        "기산 사실"
+      ],
+      [
+        "duration_limit",
+        "기간과 장기 제한"
+      ],
+      [
+        "calculation_rule",
+        "기간 계산"
+      ],
+      [
+        "filing_destination",
+        "제출 대상과 도달 기준"
+      ],
+      [
+        "lapse_effect",
+        "기간 도과 효과"
+      ],
+      [
+        "exception_recovery",
+        "예외와 기간 회복"
+      ],
+      [
+        "parallel_deadlines",
+        "함께 확인할 기한"
+      ]
+    ],
+    "procedure_choice": [
+      [
+        "procedure_objective",
+        "절차 목적"
+      ],
+      [
+        "participant_scope",
+        "신청인·상대방"
+      ],
+      [
+        "prerequisites",
+        "선행 요건"
+      ],
+      [
+        "filing_method",
+        "제출 방법과 기관"
+      ],
+      [
+        "deadline_trigger",
+        "기한과 기산점"
+      ],
+      [
+        "review_hearing",
+        "심리와 판단 방식"
+      ],
+      [
+        "decision_effect",
+        "결정의 효력"
+      ],
+      [
+        "appeal_enforcement",
+        "불복과 집행"
+      ]
+    ],
+    "legal_effect": [
+      [
+        "effect_trigger",
+        "효력 발생 요건"
+      ],
+      [
+        "beneficiary_obligor",
+        "권리자와 의무자"
+      ],
+      [
+        "effect_scope",
+        "효력의 범위"
+      ],
+      [
+        "commencement",
+        "효력 발생 시점"
+      ],
+      [
+        "duration_termination",
+        "존속과 종료"
+      ],
+      [
+        "exceptions_limits",
+        "예외와 한계"
+      ],
+      [
+        "evidence_burden",
+        "입증자료와 증명책임"
+      ],
+      [
+        "enforcement_interaction",
+        "집행과 다른 제도의 관계"
+      ]
+    ]
+  },
+  "selection_outcomes": [
+    "subject_only",
+    "both",
+    "sequential",
+    "other_path"
+  ],
+  "provision_sections": [
+    [
+      "eligibility",
+      "대상"
+    ],
+    [
+      "procedure_stage",
+      "절차 단계"
+    ],
+    [
+      "scope",
+      "권리·손해 범위"
+    ],
+    [
+      "agreement",
+      "합의·별도 경로"
+    ],
+    [
+      "prohibitions",
+      "금지·배제 사유"
+    ],
+    [
+      "evidence",
+      "확인 자료"
+    ],
+    [
+      "next_action",
+      "다음 행동"
+    ],
+    [
+      "authority",
+      "근거 추적"
+    ]
+  ]
+}
