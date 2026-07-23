@@ -5,6 +5,17 @@ import path from 'node:path';
 import {promisify} from 'node:util';
 import {fileURLToPath} from 'node:url';
 
+import {
+  AUTHORITY_EVIDENCE_REPOSITORY_DIRECTORY,
+  AUTHORITY_EVIDENCE_REQUIRED_REPOSITORY_PATHS,
+  AUTHORITY_EVIDENCE_PRODUCER_CONTRACT_SHA256,
+  AUTHORITY_EVIDENCE_SOURCE_FILENAMES,
+  AUTHORITY_EVIDENCE_VERIFICATION_CONTRACT,
+  AUTHORITY_PUBLIC_EVIDENCE_CONTRACT_V1,
+  authorityEvidenceSiblingPath,
+  validateAuthorityEvidenceArtifact,
+} from './validate-authority-evidence-artifacts.mjs';
+
 const scriptPath = fileURLToPath(import.meta.url);
 const appRoot = path.resolve(path.dirname(scriptPath), '..');
 const repoRoot = path.resolve(appRoot, '..', '..');
@@ -131,14 +142,16 @@ const wave1GateContract = {
   'authority-db.regenerated': {
     gate_kind: 'artifact',
     owner_role: 'source_maintenance',
-    verification_method: 'artifact_sha256',
-    evidence_pattern: /^artifact:authority-db-regenerated@sha256:[0-9a-f]{64}$/u,
+    verification_method: 'github_authority_evidence',
+    verification_contract: AUTHORITY_EVIDENCE_VERIFICATION_CONTRACT,
+    evidence_pattern: /^github-artifact:parkkyusang\/liale-rulelink-ir#\d+@[0-9a-f]{40}:data\/validation_reports\/authority_024\/authority-db-regenerated\.json@sha256:[0-9a-f]{64}$/u,
   },
   'authority-db.citation-audit-approved': {
     gate_kind: 'artifact',
     owner_role: 'source_maintenance',
-    verification_method: 'artifact_sha256',
-    evidence_pattern: /^artifact:authority-citation-audit-approved@sha256:[0-9a-f]{64}$/u,
+    verification_method: 'github_authority_evidence',
+    verification_contract: AUTHORITY_EVIDENCE_VERIFICATION_CONTRACT,
+    evidence_pattern: /^github-artifact:parkkyusang\/liale-rulelink-ir#\d+@[0-9a-f]{40}:data\/validation_reports\/authority_024\/authority-citation-audit-approved\.json@sha256:[0-9a-f]{64}$/u,
   },
   'quality.authority-reading-unit-schema': {
     gate_kind: 'quality_schema',
@@ -163,20 +176,6 @@ const releaseCheckEvidencePatterns = {
   'search-hub-sitemap-200': /^artifact:search-hub-sitemap-200@sha256:[0-9a-f]{64}$/u,
 };
 const evidenceArtifactPaths = {
-  'authority-db-regenerated': path.join(
-    repoRoot,
-    'artifacts',
-    'publication',
-    'evidence',
-    'authority-db-regenerated.json',
-  ),
-  'authority-citation-audit-approved': path.join(
-    repoRoot,
-    'artifacts',
-    'publication',
-    'evidence',
-    'authority-citation-audit-approved.json',
-  ),
   'canonical-url-regression': path.join(repoRoot, 'artifacts', 'publication', 'evidence', 'releases', '024', 'canonical-url-regression.json'),
   'official-url-check': path.join(repoRoot, 'artifacts', 'publication', 'evidence', 'releases', '024', 'official-url-check.json'),
   'responsive-smoke': path.join(repoRoot, 'artifacts', 'publication', 'evidence', 'releases', '024', 'responsive-smoke.json'),
@@ -349,6 +348,67 @@ function sha256(value) {
   return createHash('sha256').update(value).digest('hex');
 }
 
+function gitBlobSha1(value) {
+  const body = Buffer.isBuffer(value) ? value : Buffer.from(value);
+  return createHash('sha1')
+    .update(Buffer.from(`blob ${body.length}\0`, 'utf8'))
+    .update(body)
+    .digest('hex');
+}
+
+function githubContentsUrl(repository, repositoryPath, commitSha) {
+  const encodedPath = repositoryPath.split('/').map(encodeURIComponent).join('/');
+  return `https://api.github.com/repos/${repository}/contents/${encodedPath}?ref=${commitSha}`;
+}
+
+async function loadGithubFileAtCommit({
+  repository,
+  repositoryPath,
+  commitSha,
+  fetchJson,
+  cache,
+}) {
+  const cacheKey = `${repository}@${commitSha}:${repositoryPath}`;
+  if (cache?.has(cacheKey)) return cache.get(cacheKey);
+  const response = await fetchJson(githubContentsUrl(repository, repositoryPath, commitSha));
+  if (
+    response?.type !== 'file' ||
+    response.path !== repositoryPath ||
+    response.encoding !== 'base64' ||
+    typeof response.content !== 'string'
+  ) {
+    throw new Error(`GitHub source artifact 응답이 파일 정본이 아닙니다: ${repositoryPath}`);
+  }
+  const payload = Buffer.from(response.content.replace(/\s+/gu, ''), 'base64');
+  if (response.size !== payload.length || response.sha !== gitBlobSha1(payload)) {
+    throw new Error(`GitHub source artifact blob metadata가 실제 바이트와 다릅니다: ${repositoryPath}`);
+  }
+  cache?.set(cacheKey, payload);
+  return payload;
+}
+
+function parseGithubAuthorityEvidenceRef(evidenceRef) {
+  const matched = /^github-artifact:([^/]+\/[^#]+)#(\d+)@([0-9a-f]{40}):([^@]+)@sha256:([0-9a-f]{64})$/u.exec(
+    evidenceRef,
+  );
+  if (!matched) throw new Error(`GitHub authority 증거 형식 오류: ${evidenceRef}`);
+  const [, repository, prNumber, headSha, repositoryPath, expectedHash] = matched;
+  if (
+    repository !== 'parkkyusang/liale-rulelink-ir' ||
+    path.posix.dirname(repositoryPath) !== AUTHORITY_EVIDENCE_REPOSITORY_DIRECTORY
+  ) {
+    throw new Error(`GitHub authority 증거가 승인된 source 저장소·경로 밖입니다: ${evidenceRef}`);
+  }
+  const filename = path.posix.basename(repositoryPath);
+  const artifactId = filename === AUTHORITY_EVIDENCE_SOURCE_FILENAMES.db
+    ? 'authority-db-regenerated'
+    : filename === AUTHORITY_EVIDENCE_SOURCE_FILENAMES.citation
+      ? 'authority-citation-audit-approved'
+      : null;
+  if (!artifactId) throw new Error(`승인되지 않은 authority evidence 파일입니다: ${repositoryPath}`);
+  return {repository, prNumber, headSha, repositoryPath, expectedHash, artifactId};
+}
+
 async function defaultFetchJson(url) {
   const headers = {
     Accept: 'application/vnd.github+json, application/json',
@@ -424,7 +484,144 @@ export function buildPublicationStatusFromBundle(bundle, now = publicationStatus
   };
 }
 
+async function verifyAuthoritySourceCiAttestation({
+  repository,
+  headSha,
+  evidence,
+  fetchJson,
+  sourceCache,
+  attestationCache,
+}) {
+  const attestation = evidence.source_ci_attestation;
+  const provenance = evidence.provenance;
+  const cacheKey = `${repository}@${headSha}:${attestation.contract}`;
+  if (attestationCache?.has(cacheKey)) return attestationCache.get(cacheKey);
+
+  const workflowPayload = await loadGithubFileAtCommit({
+    repository,
+    repositoryPath: attestation.workflow_path,
+    commitSha: headSha,
+    fetchJson,
+    cache: sourceCache,
+  });
+  const workflowSha256 = sha256(workflowPayload);
+  if (
+    workflowSha256 !== attestation.workflow_sha256 ||
+    workflowSha256 !== AUTHORITY_PUBLIC_EVIDENCE_CONTRACT_V1.source_ci_attestation.workflow_sha256
+  ) {
+    throw new Error('authority source CI workflow 원문 해시가 producer v1 정본과 다릅니다.');
+  }
+
+  const producerContractPayload = await loadGithubFileAtCommit({
+    repository,
+    repositoryPath: provenance.producer_contract_path,
+    commitSha: provenance.producer_source_commit_sha,
+    fetchJson,
+    cache: sourceCache,
+  });
+  const producerContractSha256 = sha256(producerContractPayload);
+  if (
+    producerContractSha256 !== provenance.producer_contract_sha256 ||
+    producerContractSha256 !== AUTHORITY_EVIDENCE_PRODUCER_CONTRACT_SHA256
+  ) {
+    throw new Error('authority producer contract 원문 해시가 증거·공개 소비자 정본과 다릅니다.');
+  }
+  let producerContract;
+  try {
+    producerContract = JSON.parse(producerContractPayload.toString('utf8'));
+  } catch {
+    throw new Error('authority producer contract 원문이 유효한 UTF-8 JSON이 아닙니다.');
+  }
+  if (canonicalJson(producerContract) !== canonicalJson(AUTHORITY_PUBLIC_EVIDENCE_CONTRACT_V1)) {
+    throw new Error('authority producer contract 원문 내용이 공개 소비자 v1 계약과 다릅니다.');
+  }
+
+  const checkRuns = await fetchJson(
+    `https://api.github.com/repos/${repository}/commits/${headSha}/check-runs?check_name=${encodeURIComponent(attestation.check_name)}&filter=latest&per_page=100`,
+  );
+  const matchingRuns = (Array.isArray(checkRuns?.check_runs) ? checkRuns.check_runs : [])
+    .filter(run =>
+      run?.name === attestation.check_name &&
+      run?.head_sha === headSha &&
+      run?.app?.slug === attestation.required_app_slug)
+    .sort((left, right) =>
+      Date.parse(right.completed_at || right.started_at || 0) -
+      Date.parse(left.completed_at || left.started_at || 0));
+  const checkRun = matchingRuns[0];
+  if (
+    !checkRun ||
+    checkRun.status !== attestation.required_status ||
+    checkRun.conclusion !== attestation.required_conclusion
+  ) {
+    throw new Error('authority source CI의 최신 GitHub Actions check가 완료·성공 상태가 아닙니다.');
+  }
+  const detailsMatch = /\/actions\/runs\/(\d+)\/job\/(\d+)(?:[/?#]|$)/u.exec(
+    checkRun.details_url || '',
+  );
+  if (!detailsMatch) {
+    throw new Error('authority source CI check의 details_url에서 Actions run/job을 확인할 수 없습니다.');
+  }
+  const [, runId, jobId] = detailsMatch;
+  const workflowRun = await fetchJson(
+    `https://api.github.com/repos/${repository}/actions/runs/${runId}`,
+  );
+  const workflowId = String(workflowRun?.workflow_id || '');
+  const workflowRunPath = String(workflowRun?.path || '').split('@', 1)[0];
+  if (
+    String(workflowRun?.id) !== runId ||
+    workflowRun?.head_sha !== headSha ||
+    workflowRun?.status !== attestation.required_status ||
+    workflowRun?.conclusion !== attestation.required_conclusion ||
+    workflowRun?.event !== 'pull_request' ||
+    workflowRunPath !== attestation.workflow_path ||
+    !/^\d+$/u.test(workflowId)
+  ) {
+    throw new Error('authority source CI run이 고정 workflow의 evidence PR 실행과 일치하지 않습니다.');
+  }
+  const [workflow, job] = await Promise.all([
+    fetchJson(
+      `https://api.github.com/repos/${repository}/actions/workflows/${workflowId}`,
+    ),
+    fetchJson(
+      `https://api.github.com/repos/${repository}/actions/jobs/${jobId}`,
+    ),
+  ]);
+  if (
+    String(workflow?.id) !== workflowId ||
+    workflow?.path !== attestation.workflow_path ||
+    workflow?.state !== 'active'
+  ) {
+    throw new Error('authority source CI run의 workflow ID·경로가 고정 workflow와 다릅니다.');
+  }
+  const actualLabels = Array.isArray(job?.labels) ? [...job.labels].sort() : [];
+  const expectedLabels = [...attestation.runner_labels].sort();
+  if (
+    String(job?.id) !== jobId ||
+    String(job?.run_id) !== runId ||
+    job?.head_sha !== headSha ||
+    job?.name !== attestation.check_name ||
+    job?.status !== attestation.required_status ||
+    job?.conclusion !== attestation.required_conclusion ||
+    canonicalJson(actualLabels) !== canonicalJson(expectedLabels)
+  ) {
+    throw new Error('authority source CI job의 head·결론·전용 runner labels가 정본과 다릅니다.');
+  }
+  const verified = {
+    checkRunId: checkRun.id,
+    runId: Number(runId),
+    jobId: Number(jobId),
+    workflowId: Number(workflowId),
+    workflowPath: workflow.path,
+    workflowSha256,
+    producerContractSha256,
+    runnerLabels: actualLabels,
+  };
+  attestationCache?.set(cacheKey, verified);
+  return verified;
+}
+
 async function verifyEvidenceReference({
+  workId,
   evidenceRef,
   verificationMethod,
   queue,
@@ -504,6 +701,212 @@ async function verifyEvidenceReference({
       merge_commit_sha: pull.merge_commit_sha,
     }));
   }
+  if (verificationMethod === 'github_authority_evidence') {
+    const reference = parseGithubAuthorityEvidenceRef(evidenceRef);
+    const pull = await fetchJson(
+      `https://api.github.com/repos/${reference.repository}/pulls/${reference.prNumber}`,
+    );
+    if (!pull.merged_at) {
+      throw new Error(
+        `병합되지 않은 source-maintenance 증거 PR은 authority gate가 될 수 없습니다: ${reference.repository}#${reference.prNumber}`,
+      );
+    }
+    if (pull.head?.sha !== reference.headSha) {
+      throw new Error(
+        `authority evidence PR head가 증거 SHA와 다릅니다: ${reference.repository}#${reference.prNumber}`,
+      );
+    }
+    if (!/^[0-9a-f]{40}$/u.test(pull.merge_commit_sha || '')) {
+      throw new Error(
+        `authority evidence PR의 병합 commit SHA를 확인할 수 없습니다: ${reference.repository}#${reference.prNumber}`,
+      );
+    }
+    const changedFiles = await fetchJson(
+      `https://api.github.com/repos/${reference.repository}/pulls/${reference.prNumber}/files?per_page=100`,
+    );
+    const expectedChangedPaths = [...AUTHORITY_EVIDENCE_REQUIRED_REPOSITORY_PATHS].sort();
+    const changedFileRows = Array.isArray(changedFiles) ? changedFiles : [];
+    const actualChangedPaths = Array.isArray(changedFiles)
+      ? [...new Set(changedFiles.map(file => file?.filename).filter(Boolean))].sort()
+      : [];
+    const invalidChangedFileRows = changedFileRows.filter(file =>
+      !['added', 'modified'].includes(file?.status) ||
+      Boolean(file?.previous_filename));
+    if (
+      pull.changed_files !== expectedChangedPaths.length ||
+      changedFileRows.length !== expectedChangedPaths.length ||
+      invalidChangedFileRows.length > 0 ||
+      canonicalJson(actualChangedPaths) !== canonicalJson(expectedChangedPaths)
+    ) {
+      throw new Error(
+        `authority evidence PR은 승인 산출물 5개만 변경해야 합니다: ${actualChangedPaths.join(', ')}`,
+      );
+    }
+    const sourceCache = io.authoritySourceCache || new Map();
+    const loadMergedEvidenceFile = async repositoryPath => {
+      const [headArtifact, mergedArtifact] = await Promise.all([
+        loadGithubFileAtCommit({
+          repository: reference.repository,
+          repositoryPath,
+          commitSha: reference.headSha,
+          fetchJson,
+          cache: sourceCache,
+        }),
+        loadGithubFileAtCommit({
+          repository: reference.repository,
+          repositoryPath,
+          commitSha: pull.merge_commit_sha,
+          fetchJson,
+          cache: sourceCache,
+        }),
+      ]);
+      if (!headArtifact.equals(mergedArtifact)) {
+        throw new Error(
+          `authority evidence PR head와 실제 병합 commit의 산출물 바이트가 다릅니다: ${repositoryPath}`,
+        );
+      }
+      return mergedArtifact;
+    };
+    const mergedEvidenceFiles = new Map(await Promise.all(
+      AUTHORITY_EVIDENCE_REQUIRED_REPOSITORY_PATHS.map(async repositoryPath => [
+        repositoryPath,
+        await loadMergedEvidenceFile(repositoryPath),
+      ]),
+    ));
+    const artifact = mergedEvidenceFiles.get(reference.repositoryPath);
+    const actualHash = sha256(artifact);
+    if (actualHash !== reference.expectedHash) {
+      throw new Error(`authority evidence 실제 바이트 SHA-256이 evidence_ref와 다릅니다: ${reference.repositoryPath}`);
+    }
+    const item = (queue.items || []).find(candidate => candidate.work_id === workId);
+    if (!item) throw new Error(`authority 증거를 결박할 production work가 없습니다: ${workId}`);
+    const upstreamPrHeads = {};
+    const upstreamMergeCommits = {};
+    const upstreamAncestry = {};
+    for (const gateId of ['source-maintenance.db-pr-4', 'source-maintenance.db-pr-3-p2']) {
+      const gate = (item.prerequisite_gates || []).find(candidate => candidate.gate_id === gateId);
+      const matchedHead = /^([^/]+\/[^#]+)#(\d+)@([0-9a-f]{40})$/u.exec(
+        gate?.evidence_ref || '',
+      );
+      if (gate?.status !== 'satisfied' || !matchedHead) {
+        throw new Error(`authority 증거보다 먼저 외부 source-maintenance PR 게이트가 충족되어야 합니다: ${gateId}`);
+      }
+      const [, upstreamRepository, upstreamPrNumber, upstreamHeadSha] = matchedHead;
+      if (upstreamRepository !== reference.repository) {
+        throw new Error(`authority upstream PR 저장소가 증거 저장소와 다릅니다: ${gateId}`);
+      }
+      const upstreamPull = await fetchJson(
+        `https://api.github.com/repos/${upstreamRepository}/pulls/${upstreamPrNumber}`,
+      );
+      if (
+        !upstreamPull?.merged_at ||
+        upstreamPull.head?.sha !== upstreamHeadSha ||
+        !/^[0-9a-f]{40}$/u.test(upstreamPull.merge_commit_sha || '')
+      ) {
+        throw new Error(`authority upstream PR의 실제 병합 head를 확인할 수 없습니다: ${gateId}`);
+      }
+      const upstreamComparison = await fetchJson(
+        `https://api.github.com/repos/${upstreamRepository}/compare/${upstreamPull.merge_commit_sha}...${reference.headSha}`,
+      );
+      if (
+        !['ahead', 'identical'].includes(upstreamComparison?.status) ||
+        !Number.isInteger(upstreamComparison.ahead_by) ||
+        upstreamComparison.ahead_by < 0
+      ) {
+        throw new Error(`authority evidence head가 upstream 병합 commit의 후손이 아닙니다: ${gateId}`);
+      }
+      upstreamPrHeads[gateId] = upstreamHeadSha;
+      upstreamMergeCommits[gateId] = upstreamPull.merge_commit_sha;
+      upstreamAncestry[gateId] = {
+        status: upstreamComparison.status,
+        aheadBy: upstreamComparison.ahead_by,
+      };
+    }
+    const semantic = await validateAuthorityEvidenceArtifact({
+      artifactId: reference.artifactId,
+      payload: artifact,
+      context: {upstreamPrHeads, sourceHeadSha: reference.headSha},
+      loadSiblingArtifact: async siblingFilename => mergedEvidenceFiles.get(
+        authorityEvidenceSiblingPath(reference.repositoryPath, siblingFilename),
+      ),
+    });
+    const sourceCiAttestation = await verifyAuthoritySourceCiAttestation({
+      repository: reference.repository,
+      headSha: reference.headSha,
+      evidence: semantic.value,
+      fetchJson,
+      sourceCache,
+      attestationCache: io.authorityAttestationCache,
+    });
+    if (reference.artifactId === 'authority-citation-audit-approved') {
+      const dbGate = (item.prerequisite_gates || []).find(
+        candidate => candidate.gate_id === 'authority-db.regenerated',
+      );
+      const dbReference = dbGate?.status === 'satisfied'
+        ? parseGithubAuthorityEvidenceRef(dbGate.evidence_ref)
+        : null;
+      if (
+        !dbReference ||
+        dbReference.artifactId !== 'authority-db-regenerated' ||
+        dbReference.repository !== reference.repository ||
+        dbReference.prNumber !== reference.prNumber ||
+        dbReference.headSha !== reference.headSha ||
+        dbReference.expectedHash !==
+          semantic.referenced_artifacts[AUTHORITY_EVIDENCE_SOURCE_FILENAMES.db]
+      ) {
+        throw new Error(
+          'authority citation 감사는 같은 merged source PR head의 검증된 DB 재생성 gate와 결박되어야 합니다.',
+        );
+      }
+    }
+    const generatorCommit = semantic.value.provenance.generator_source_commit_sha;
+    const comparison = await fetchJson(
+      `https://api.github.com/repos/${reference.repository}/compare/${generatorCommit}...${reference.headSha}`,
+    );
+    if (
+      comparison?.status !== 'ahead' ||
+      !Number.isInteger(comparison.ahead_by) ||
+      comparison.ahead_by < 1
+    ) {
+      throw new Error(
+        `authority evidence 생성기 commit이 증거 PR head의 검증된 조상이 아닙니다: ${generatorCommit}`,
+      );
+    }
+    const producerCommit = semantic.value.provenance.producer_source_commit_sha;
+    const producerComparison = producerCommit === generatorCommit
+      ? comparison
+      : await fetchJson(
+        `https://api.github.com/repos/${reference.repository}/compare/${producerCommit}...${reference.headSha}`,
+      );
+    if (
+      !['ahead', 'identical'].includes(producerComparison?.status) ||
+      !Number.isInteger(producerComparison.ahead_by) ||
+      producerComparison.ahead_by < 0
+    ) {
+      throw new Error(
+        `authority producer contract commit이 증거 PR head의 검증된 조상이 아닙니다: ${producerCommit}`,
+      );
+    }
+    return sha256(canonicalJson({
+      verificationMethod,
+      verificationContract: AUTHORITY_EVIDENCE_VERIFICATION_CONTRACT,
+      evidenceRef,
+      repository: reference.repository,
+      prNumber: reference.prNumber,
+      headSha: reference.headSha,
+      mergeCommitSha: pull.merge_commit_sha,
+      mergedAt: pull.merged_at,
+      artifactSha256: actualHash,
+      generatorCommit,
+      generatorAheadBy: comparison.ahead_by,
+      producerCommit,
+      producerAheadBy: producerComparison.ahead_by,
+      sourceCiAttestation,
+      upstreamMergeCommits,
+      upstreamAncestry,
+      referencedArtifacts: semantic.referenced_artifacts,
+    }));
+  }
   if (verificationMethod === 'artifact_sha256') {
     const matched = /^artifact:([a-z0-9-]+)@sha256:([0-9a-f]{64})$/u.exec(evidenceRef);
     if (!matched) throw new Error(`산출물 증거 형식 오류: ${evidenceRef}`);
@@ -513,7 +916,12 @@ async function verifyEvidenceReference({
     const artifact = await read(artifactPath);
     const actualHash = sha256(artifact);
     if (actualHash !== expectedHash) throw new Error(`증거 산출물 해시 불일치: ${artifactId}`);
-    return sha256(canonicalJson({verificationMethod, evidenceRef, artifactPath, actualHash}));
+    return sha256(canonicalJson({
+      verificationMethod,
+      evidenceRef,
+      artifactPath,
+      actualHash,
+    }));
   }
   if (verificationMethod === 'work_status_receipt') {
     const matched = /^work:([^@]+)@(migration_required|integrated):([0-9a-f]{64})$/u.exec(evidenceRef);
@@ -542,7 +950,12 @@ export async function verifyProductionQueueExternalEvidence(queue, {
 } = {}) {
   const existingGateKeys = new Set(
     (registry?.prerequisite_gate_receipts || [])
-      .map(receipt => `${receipt.work_id}|${receipt.gate_id}|${receipt.evidence_ref}`),
+      .map(receipt => [
+        receipt.work_id,
+        receipt.gate_id,
+        receipt.evidence_ref,
+        receipt.verification_contract || '',
+      ].join('|')),
   );
   const existingReleaseKeys = new Set(
     (registry?.release_check_receipts || [])
@@ -550,21 +963,28 @@ export async function verifyProductionQueueExternalEvidence(queue, {
   );
   const gateProofs = new Map();
   const releaseProofs = new Map();
+  const authoritySourceCache = new Map();
+  const authorityAttestationCache = new Map();
   for (const item of queue.items || []) {
     const contract = PRODUCTION_WORK_CONTRACTS[item.work_id];
     if (!contract) continue;
     for (const gate of item.prerequisite_gates || []) {
       if (gate.status !== 'satisfied') continue;
-      const key = `${item.work_id}|${gate.gate_id}|${gate.evidence_ref}`;
-      if (existingGateKeys.has(key)) continue;
       const contractGate = contract.prerequisite_gates[gate.gate_id];
+      const key = [
+        item.work_id,
+        gate.gate_id,
+        gate.evidence_ref,
+        contractGate.verification_contract || '',
+      ].join('|');
+      if (existingGateKeys.has(key)) continue;
       const proof = await verifyEvidenceReference({
         kind: 'prerequisite_gate',
         workId: item.work_id,
         evidenceRef: gate.evidence_ref,
         verificationMethod: contractGate.verification_method,
         queue,
-        io,
+        io: {...io, authoritySourceCache, authorityAttestationCache},
       });
       if (!/^[0-9a-f]{64}$/u.test(proof || '')) {
         throw new Error(`외부 검증기가 유효한 증거 해시를 반환하지 않았습니다: ${key}`);
@@ -1008,12 +1428,21 @@ export function validateQueueItemRegistry(
         !contractGate ||
         gateReceipt.verified_by_role !== contractGate.owner_role ||
         gateReceipt.verification_method !== contractGate.verification_method ||
+        (
+          contractGate.verification_contract &&
+          gateReceipt.verification_contract !== undefined &&
+          gateReceipt.verification_contract !== contractGate.verification_contract
+        ) ||
         !contractGate.evidence_pattern.test(gateReceipt.evidence_ref || '') ||
         !/^[0-9a-f]{64}$/u.test(gateReceipt.verification_proof || '')
       ) {
         errors.push(`${label}의 소유자·검증방법·증거가 승인된 생산계약과 다릅니다.`);
       }
-      const gateKey = `${gateReceipt.work_id}|${gateReceipt.gate_id}`;
+      const gateKey = [
+        gateReceipt.work_id,
+        gateReceipt.gate_id,
+        gateReceipt.verification_contract || '',
+      ].join('|');
       if (receivedGateKeys.has(gateKey)) {
         errors.push(`같은 선행 게이트 영수증을 중복 발급할 수 없습니다: ${gateKey}`);
       }
@@ -1035,7 +1464,13 @@ export function validateQueueItemRegistry(
     for (const item of queue?.items || []) {
       if (!nonEmpty(item.work_id)) continue;
       for (const gate of item.prerequisite_gates || []) {
-        const gateKey = `${item.work_id}|${gate.gate_id}`;
+        const contractGate = PRODUCTION_WORK_CONTRACTS[item.work_id]
+          ?.prerequisite_gates?.[gate.gate_id];
+        const gateKey = [
+          item.work_id,
+          gate.gate_id,
+          contractGate?.verification_contract || '',
+        ].join('|');
         if (
           gate.status === 'satisfied' &&
           !receivedGateKeys.has(gateKey) &&
@@ -1210,7 +1645,11 @@ export function appendPrerequisiteGateReceipts(
     throw new Error(`production queue 선행 게이트 영수증 준비 실패: ${preparationErrors.join(' | ')}`);
   }
   const receivedGateKeys = new Set(
-    next.prerequisite_gate_receipts.map(receipt => `${receipt.work_id}|${receipt.gate_id}`),
+    next.prerequisite_gate_receipts.map(receipt => [
+      receipt.work_id,
+      receipt.gate_id,
+      receipt.verification_contract || '',
+    ].join('|')),
   );
   let previousReceipt = next.prerequisite_gate_receipt;
   for (const item of queue.items) {
@@ -1218,9 +1657,13 @@ export function appendPrerequisiteGateReceipts(
     const contract = PRODUCTION_WORK_CONTRACTS[item.work_id];
     for (const gate of item.prerequisite_gates || []) {
       if (gate.status !== 'satisfied') continue;
-      const gateKey = `${item.work_id}|${gate.gate_id}`;
-      if (receivedGateKeys.has(gateKey)) continue;
       const contractGate = contract?.prerequisite_gates?.[gate.gate_id];
+      const gateKey = [
+        item.work_id,
+        gate.gate_id,
+        contractGate?.verification_contract || '',
+      ].join('|');
+      if (receivedGateKeys.has(gateKey)) continue;
       if (
         !contractGate ||
         gate.owner_role !== contractGate.owner_role ||
@@ -1229,7 +1672,12 @@ export function appendPrerequisiteGateReceipts(
       ) {
         throw new Error(`승인된 생산계약과 일치하지 않는 선행 게이트는 영수증을 발급할 수 없습니다: ${gateKey}`);
       }
-      const evidenceKey = `${item.work_id}|${gate.gate_id}|${gate.evidence_ref}`;
+      const evidenceKey = [
+        item.work_id,
+        gate.gate_id,
+        gate.evidence_ref,
+        contractGate.verification_contract || '',
+      ].join('|');
       if (
         verifiedEvidence?.[verifiedEvidenceBrand] !== true ||
         !verifiedEvidence.gateProofs.has(evidenceKey)
@@ -1247,6 +1695,9 @@ export function appendPrerequisiteGateReceipts(
         verified_on: queue.audited_on,
         previous_receipt: previousReceipt,
       };
+      if (contractGate.verification_contract) {
+        receipt.verification_contract = contractGate.verification_contract;
+      }
       receipt.receipt = prerequisiteGateReceiptReceipt(receipt);
       next.prerequisite_gate_receipts.push(receipt);
       receivedGateKeys.add(gateKey);
@@ -1740,9 +2191,15 @@ function hasVerifiedSourceGateReceipts(item, itemRegistry) {
   const receipts = new Set(
     (itemRegistry.prerequisite_gate_receipts || [])
       .filter(receipt => receipt.work_id === item.work_id)
-      .map(receipt => receipt.gate_id),
+      .map(receipt => [
+        receipt.gate_id,
+        receipt.verification_contract || '',
+      ].join('|')),
   );
-  return requiredGateIds.every(gateId => receipts.has(gateId));
+  return requiredGateIds.every(gateId => {
+    const gate = contract.prerequisite_gates[gateId];
+    return receipts.has([gateId, gate.verification_contract || ''].join('|'));
+  });
 }
 
 export function validateProductionQueue(

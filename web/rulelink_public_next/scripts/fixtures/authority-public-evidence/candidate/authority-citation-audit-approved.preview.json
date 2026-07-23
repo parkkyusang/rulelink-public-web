@@ -1,0 +1,102 @@
+{
+  "allowed_empty_units": [
+    {
+      "content_role": "structural_container",
+      "source_unit_id": "unit:civil_execution:0056:article:p1",
+      "text_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_ko": ""
+    }
+  ],
+  "approval": {
+    "approved": false,
+    "owner": "source_maintenance",
+    "status": "candidate_unapproved"
+  },
+  "authority_db_regeneration_evidence": {
+    "path": "authority-db-regenerated.preview.json",
+    "sha256": "de6cf691883428f36a7f5e7286784fe3cd5ec66c1f6a2ed2306b89a0ea2f3a12"
+  },
+  "checks": {
+    "article_25_range_endpoint_duplicate_count": 0,
+    "duplicate_edge_id_count": 0,
+    "empty_text_unit_count": 1,
+    "invalid_active_edge_count": 0,
+    "invalid_empty_text_unit_count": 0,
+    "target_inventory_mismatch_count": 0,
+    "target_missing_or_unit_missing_count": 0,
+    "wrong_litigation_promotion_article_304_count": 0
+  },
+  "citation_full_audit": {
+    "path": "citation_full_audit.json",
+    "sha256": "32fac8441f8defc4e0d4e5e3d3a38123f271534fcc231fd8c130690538e48db5"
+  },
+  "counts": {
+    "article_count": 21,
+    "authority_reading_unit_count": 21,
+    "citation_count": 63,
+    "source_authority_unit_count": 110,
+    "source_version_bridge_count": 21
+  },
+  "evidence_status": "candidate_unapproved",
+  "generated_at": "2026-07-23T23:59:00+09:00",
+  "passed": true,
+  "provenance": {
+    "generator_source_commit_sha": "cccccccccccccccccccccccccccccccccccccccc",
+    "generator_source_state": "working_tree_uncommitted",
+    "producer_contract_path": "tests/fixtures/authority_public_evidence_contract_v1.json",
+    "producer_contract_sha256": "a6c66ed4f7c8372e6fe3a0c44872512e27e4da8fd1709531a6f899b7aeb39ee0",
+    "producer_source_commit_sha": "cccccccccccccccccccccccccccccccccccccccc",
+    "recommended_repository_directory": "data/validation_reports/authority_024",
+    "regeneration_run_id": "authority-024-test-run"
+  },
+  "regression": {
+    "failure_count": 0,
+    "passed": 56,
+    "total": 56
+  },
+  "release_id": "024",
+  "schema": "rulelink_authority_citation_audit_evidence_v1",
+  "source_ci_attestation": {
+    "allowed_repository_paths": [
+      "data/validation_reports/authority_024/authority-db-regenerated.json",
+      "data/validation_reports/authority_024/authority-citation-audit-approved.json",
+      "data/validation_reports/authority_024/wave1_exact_table.json",
+      "data/validation_reports/authority_024/wave2_exact_table.json",
+      "data/validation_reports/authority_024/citation_full_audit.json"
+    ],
+    "check_name": "rulelink-authority-024-evidence-attestation",
+    "contract": "rulelink_authority_024_source_ci_attestation_v1",
+    "details_url_verification": "actions_job_runner_labels_exact",
+    "head_sha_binding": "evidence_pull_request_head",
+    "required_ancestor_fields": [
+      "upstream.pr4_sha",
+      "upstream.pr3_p2_sha",
+      "provenance.producer_source_commit_sha"
+    ],
+    "required_app_slug": "github-actions",
+    "required_conclusion": "success",
+    "required_status": "completed",
+    "runner_labels": [
+      "self-hosted",
+      "Windows",
+      "X64",
+      "rulelink-source-maintenance"
+    ],
+    "verification_mode": "rebuild_candidate_verify_active_inputs_and_compare_exact_five",
+    "workflow_path": ".github/workflows/authority-024-evidence-attestation.yml",
+    "workflow_sha256": "682f761c464a414c4109cd3937d0757f295b6912d6b3923980a63a1e5c629ce3"
+  },
+  "source_repository": "parkkyusang/liale-rulelink-ir",
+  "wave_exact_tables": [
+    {
+      "path": "wave1_exact_table.json",
+      "sha256": "d18397329f07922ef8e51d586a93e317a43aba358a9e33827a567f2f1a5f87dc",
+      "wave": "wave1"
+    },
+    {
+      "path": "wave2_exact_table.json",
+      "sha256": "f40a23f95fd5dabf9f73eb1bacb4b244c3100885e34776c8e17e2e7f8886e253",
+      "wave": "wave2"
+    }
+  ]
+}

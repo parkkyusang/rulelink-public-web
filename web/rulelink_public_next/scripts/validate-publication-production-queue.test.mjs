@@ -8,6 +8,18 @@ import {promisify} from 'node:util';
 import test from 'node:test';
 
 import {
+  createAuthorityEvidenceFixtures,
+  githubContentsFixture,
+  producerContractPayload,
+  sourceCiWorkflowPayload,
+} from './authority-evidence-test-fixtures.mjs';
+import {
+  AUTHORITY_EVIDENCE_REPOSITORY_DIRECTORY,
+  AUTHORITY_EVIDENCE_REQUIRED_REPOSITORY_PATHS,
+  AUTHORITY_EVIDENCE_SOURCE_FILENAMES,
+  AUTHORITY_EVIDENCE_VERIFICATION_CONTRACT,
+} from './validate-authority-evidence-artifacts.mjs';
+import {
   OWNER_ROLE_CONTRACTS,
   PRODUCTION_WORK_CONTRACTS,
   buildPublicationStatusFromBundle,
@@ -129,9 +141,8 @@ function plannedAuthorityWork({
   return refreshSummary(value);
 }
 
+const authorityEvidenceFixtures = createAuthorityEvidenceFixtures();
 const evidenceArtifactFixtures = new Map([
-  ['authority-db-regenerated', Buffer.from('authority db regenerated fixture', 'utf8')],
-  ['authority-citation-audit-approved', Buffer.from('authority citation audit fixture', 'utf8')],
   ['canonical-url-regression', Buffer.from('canonical url regression fixture', 'utf8')],
   ['official-url-check', Buffer.from('official url check fixture', 'utf8')],
   ['responsive-smoke', Buffer.from('responsive smoke fixture', 'utf8')],
@@ -139,9 +150,177 @@ const evidenceArtifactFixtures = new Map([
   ['fragment-state-restore', Buffer.from('fragment state restore fixture', 'utf8')],
   ['search-hub-sitemap-200', Buffer.from('search hub sitemap fixture', 'utf8')],
 ]);
+const sourceEvidencePrNumber = '903';
+const sourceEvidenceHead = 'e'.repeat(40);
+const sourceEvidenceMergeCommit = '5'.repeat(40);
+const sourceEvidenceRepository = 'parkkyusang/liale-rulelink-ir';
+const sourcePr4Head = authorityEvidenceFixtures.authorityDbValue.upstream.pr4_sha;
+const sourcePr3P2Head = authorityEvidenceFixtures.authorityDbValue.upstream.pr3_p2_sha;
+const sourceCiWorkflowId = 2400;
+const sourceCiCheckRunId = 2401;
+const sourceCiRunId = 2402;
+const sourceCiJobId = 2403;
+
+function authoritySourceCiApiFixture(url) {
+  const attestation = authorityEvidenceFixtures.authorityDbValue.source_ci_attestation;
+  if (
+    url.includes(`/commits/${sourceEvidenceHead}/check-runs?`) &&
+    url.includes(`check_name=${encodeURIComponent(attestation.check_name)}`)
+  ) {
+    return {
+      total_count: 1,
+      check_runs: [{
+        id: sourceCiCheckRunId,
+        name: attestation.check_name,
+        head_sha: sourceEvidenceHead,
+        status: attestation.required_status,
+        conclusion: attestation.required_conclusion,
+        completed_at: '2026-07-23T18:30:00Z',
+        app: {slug: attestation.required_app_slug},
+        details_url:
+          `https://github.com/${sourceEvidenceRepository}/actions/runs/${sourceCiRunId}/job/${sourceCiJobId}`,
+      }],
+    };
+  }
+  if (url.endsWith(`/actions/runs/${sourceCiRunId}`)) {
+    return {
+      id: sourceCiRunId,
+      workflow_id: sourceCiWorkflowId,
+      head_sha: sourceEvidenceHead,
+      status: attestation.required_status,
+      conclusion: attestation.required_conclusion,
+      event: 'pull_request',
+      path: attestation.workflow_path,
+    };
+  }
+  if (url.endsWith(`/actions/workflows/${sourceCiWorkflowId}`)) {
+    return {
+      id: sourceCiWorkflowId,
+      path: attestation.workflow_path,
+      state: 'active',
+    };
+  }
+  if (url.endsWith(`/actions/jobs/${sourceCiJobId}`)) {
+    return {
+      id: sourceCiJobId,
+      run_id: sourceCiRunId,
+      head_sha: sourceEvidenceHead,
+      name: attestation.check_name,
+      status: attestation.required_status,
+      conclusion: attestation.required_conclusion,
+      labels: attestation.runner_labels,
+    };
+  }
+  return null;
+}
+
+function authoritySourceContentsPayload(repositoryPath, commitSha, fileOverrides = new Map()) {
+  const attestation = authorityEvidenceFixtures.authorityDbValue.source_ci_attestation;
+  const provenance = authorityEvidenceFixtures.authorityDbValue.provenance;
+  if (repositoryPath === attestation.workflow_path && commitSha === sourceEvidenceHead) {
+    return fileOverrides.get(repositoryPath) || sourceCiWorkflowPayload;
+  }
+  if (
+    repositoryPath === provenance.producer_contract_path &&
+    commitSha === provenance.producer_source_commit_sha
+  ) {
+    return fileOverrides.get(repositoryPath) || producerContractPayload;
+  }
+  assert.ok(
+    [sourceEvidenceHead, sourceEvidenceMergeCommit].includes(commitSha),
+    `authority source artifact는 승인 PR head·병합 commit 또는 결박된 생산자 commit에서만 읽습니다: ${commitSha}`,
+  );
+  return fileOverrides.get(repositoryPath) ||
+    authorityEvidenceFixtures.approvedFiles.get(repositoryPath);
+}
+
+function authorityEvidenceRef(filename, payload) {
+  return [
+    `github-artifact:${sourceEvidenceRepository}#${sourceEvidencePrNumber}@${sourceEvidenceHead}:`,
+    `${AUTHORITY_EVIDENCE_REPOSITORY_DIRECTORY}/${filename}`,
+    `@sha256:${rawSha256(payload)}`,
+  ].join('');
+}
 
 function rawSha256(value) {
   return createHash('sha256').update(value).digest('hex');
+}
+
+async function sourceMaintenancePullFixture(url) {
+  const matched = /\/pulls\/(3|4|903)$/u.exec(url);
+  assert.ok(matched, `알 수 없는 source-maintenance PR fixture: ${url}`);
+  const headByPr = {
+    3: sourcePr3P2Head,
+    4: sourcePr4Head,
+    903: sourceEvidenceHead,
+  };
+  return {
+    merged_at: '2026-07-23T00:00:00Z',
+    head: {sha: headByPr[matched[1]]},
+    changed_files: matched[1] === sourceEvidencePrNumber
+      ? AUTHORITY_EVIDENCE_REQUIRED_REPOSITORY_PATHS.length
+      : 1,
+    merge_commit_sha:
+      matched[1] === '4'
+        ? '1'.repeat(40)
+        : matched[1] === sourceEvidencePrNumber
+          ? sourceEvidenceMergeCommit
+          : '2'.repeat(40),
+  };
+}
+
+function authoritySourceFetchFixture({
+  fileOverrides = new Map(),
+  sourceMerged = true,
+  comparison = {status: 'ahead', ahead_by: 1},
+  upstreamComparisons = new Map(),
+} = {}) {
+  return async url => {
+    const sourceCiResponse = authoritySourceCiApiFixture(url);
+    if (sourceCiResponse) return sourceCiResponse;
+    if (url.endsWith(`/pulls/${sourceEvidencePrNumber}/files?per_page=100`)) {
+      return AUTHORITY_EVIDENCE_REQUIRED_REPOSITORY_PATHS.map(
+        filename => ({filename, status: 'added'}),
+      );
+    }
+    const contentsMatch =
+      /repos\/parkkyusang\/liale-rulelink-ir\/contents\/([^?]+)\?ref=([0-9a-f]{40})$/u.exec(url);
+    if (contentsMatch) {
+      const repositoryPath = contentsMatch[1]
+        .split('/')
+        .map(decodeURIComponent)
+        .join('/');
+      const payload = authoritySourceContentsPayload(
+        repositoryPath,
+        contentsMatch[2],
+        fileOverrides,
+      );
+      assert.ok(payload, `지원하지 않는 authority source artifact fixture: ${repositoryPath}`);
+      return githubContentsFixture(repositoryPath, payload);
+    }
+    const compareMatch =
+      /repos\/parkkyusang\/liale-rulelink-ir\/compare\/([0-9a-f]{40})\.\.\.([0-9a-f]{40})$/u.exec(
+        url,
+      );
+    if (compareMatch) {
+      assert.equal(compareMatch[2], sourceEvidenceHead);
+      if (
+        compareMatch[1] ===
+        authorityEvidenceFixtures.authorityDbValue.provenance.generator_source_commit_sha
+      ) {
+        return comparison;
+      }
+      if (['1'.repeat(40), '2'.repeat(40)].includes(compareMatch[1])) {
+        return upstreamComparisons.get(compareMatch[1]) || {status: 'ahead', ahead_by: 2};
+      }
+      assert.fail(`지원하지 않는 authority source compare fixture: ${url}`);
+    }
+    const pull = await sourceMaintenancePullFixture(url);
+    if (url.endsWith(`/pulls/${sourceEvidencePrNumber}`) && !sourceMerged) {
+      return {...pull, merged_at: null};
+    }
+    return pull;
+  };
 }
 
 function publicationEvidenceRef(snapshotId = bundle.snapshot_id) {
@@ -158,13 +337,19 @@ function satisfyWorkGates(item) {
     'publication.snapshot-023-released':
       publicationEvidenceRef(),
     'source-maintenance.db-pr-4':
-      `parkkyusang/liale-rulelink-ir#4@${'2'.repeat(40)}`,
+      `parkkyusang/liale-rulelink-ir#4@${sourcePr4Head}`,
     'source-maintenance.db-pr-3-p2':
-      `parkkyusang/liale-rulelink-ir#3@${'3'.repeat(40)}`,
+      `parkkyusang/liale-rulelink-ir#3@${sourcePr3P2Head}`,
     'authority-db.regenerated':
-      `artifact:authority-db-regenerated@sha256:${rawSha256(evidenceArtifactFixtures.get('authority-db-regenerated'))}`,
+      authorityEvidenceRef(
+        AUTHORITY_EVIDENCE_SOURCE_FILENAMES.db,
+        authorityEvidenceFixtures.authorityDbPayload,
+      ),
     'authority-db.citation-audit-approved':
-      `artifact:authority-citation-audit-approved@sha256:${rawSha256(evidenceArtifactFixtures.get('authority-citation-audit-approved'))}`,
+      authorityEvidenceRef(
+        AUTHORITY_EVIDENCE_SOURCE_FILENAMES.citation,
+        authorityEvidenceFixtures.citationPayload,
+      ),
     'quality.authority-reading-unit-schema':
       `parkkyusang/rulelink-public-web#901@${'6'.repeat(40)}`,
     'runtime.statute-reading-ui':
@@ -195,17 +380,56 @@ async function verifiedEvidenceFor(value, itemRegistry = null) {
     registry: itemRegistry,
     fetchJson: async url => {
       if (url.endsWith('/publication.json')) return buildPublicationStatusFromBundle(bundle);
+      const sourceCiResponse = authoritySourceCiApiFixture(url);
+      if (sourceCiResponse) return sourceCiResponse;
+      if (url.endsWith(`/pulls/${sourceEvidencePrNumber}/files?per_page=100`)) {
+        return AUTHORITY_EVIDENCE_REQUIRED_REPOSITORY_PATHS.map(
+          filename => ({filename, status: 'added'}),
+        );
+      }
+      const contentsMatch =
+        /repos\/parkkyusang\/liale-rulelink-ir\/contents\/([^?]+)\?ref=([0-9a-f]{40})$/u.exec(url);
+      if (contentsMatch) {
+        const repositoryPath = contentsMatch[1]
+          .split('/')
+          .map(decodeURIComponent)
+          .join('/');
+        const payload = authoritySourceContentsPayload(repositoryPath, contentsMatch[2]);
+        assert.ok(payload, `지원하지 않는 authority source artifact fixture: ${repositoryPath}`);
+        return githubContentsFixture(repositoryPath, payload);
+      }
+      const compareMatch =
+        /repos\/parkkyusang\/liale-rulelink-ir\/compare\/([0-9a-f]{40})\.\.\.([0-9a-f]{40})$/u.exec(
+          url,
+        );
+      if (compareMatch) {
+        assert.equal(compareMatch[2], sourceEvidenceHead);
+        if (
+          compareMatch[1] ===
+          authorityEvidenceFixtures.authorityDbValue.provenance.generator_source_commit_sha
+        ) {
+          return {status: 'ahead', ahead_by: 1};
+        }
+        if (['a'.repeat(40), 'b'.repeat(40)].includes(compareMatch[1])) {
+          return {status: 'ahead', ahead_by: 2};
+        }
+        assert.fail(`지원하지 않는 source ancestry fixture: ${url}`);
+      }
       const match = /repos\/([^/]+\/[^/]+)\/pulls\/(\d+)$/u.exec(url);
       assert.ok(match, `알 수 없는 외부 조회 fixture: ${url}`);
       const [, repository, prNumber] = match;
       const byPull = {
         'parkkyusang/liale-rulelink-ir#4': {
-          head: '2'.repeat(40),
+          head: sourcePr4Head,
           merge: 'a'.repeat(40),
         },
         'parkkyusang/liale-rulelink-ir#3': {
-          head: '3'.repeat(40),
+          head: sourcePr3P2Head,
           merge: 'b'.repeat(40),
+        },
+        [`parkkyusang/liale-rulelink-ir#${sourceEvidencePrNumber}`]: {
+          head: sourceEvidenceHead,
+          merge: '5'.repeat(40),
         },
         'parkkyusang/rulelink-public-web#901': {
           head: 'c'.repeat(40),
@@ -222,6 +446,11 @@ async function verifiedEvidenceFor(value, itemRegistry = null) {
         merged_at: '2026-07-23T00:00:00Z',
         head: {sha: fixture.head},
         merge_commit_sha: fixture.merge,
+        changed_files:
+          repository === sourceEvidenceRepository &&
+          prNumber === sourceEvidencePrNumber
+            ? AUTHORITY_EVIDENCE_REQUIRED_REPOSITORY_PATHS.length
+            : 1,
       };
     },
     readFile: async (filePath, ...args) => {
@@ -1380,6 +1609,76 @@ test('형식상 맞는 satisfied gate도 owner 역할의 append-only 영수증 �
   );
 });
 
+test('authority 의미계약 버전이 없는 구 영수증은 재검증하고 새 버전 영수증을 append한다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  satisfyWorkGates(item);
+  item.status = 'claimed';
+  refreshSummary(value);
+  const registered = appendQueueItemRegistrations(registry, value);
+  const current = await appendVerifiedGates(registered, value);
+  const legacy = clone(current);
+  const authorityGateIds = new Set([
+    'authority-db.regenerated',
+    'authority-db.citation-audit-approved',
+  ]);
+  for (const receipt of legacy.prerequisite_gate_receipts) {
+    if (authorityGateIds.has(receipt.gate_id)) delete receipt.verification_contract;
+  }
+  let previousReceipt = legacy.prerequisite_gate_receipts[0].previous_receipt;
+  for (const receipt of legacy.prerequisite_gate_receipts) {
+    receipt.previous_receipt = previousReceipt;
+    const {receipt: _discarded, ...payload} = receipt;
+    receipt.receipt = topicReceipt(payload);
+    previousReceipt = receipt.receipt;
+  }
+  legacy.prerequisite_gate_receipt = previousReceipt;
+
+  assert.equal(
+    legacy.prerequisite_gate_receipts.filter(
+      receipt =>
+        authorityGateIds.has(receipt.gate_id) &&
+        receipt.verification_contract === undefined,
+    ).length,
+    2,
+  );
+  const verifiedEvidence = await verifiedEvidenceFor(value, legacy);
+  assert.equal(verifiedEvidence.gateProofs.size, 2);
+  const upgraded = appendPrerequisiteGateReceipts(legacy, value, {
+    previousRegistry: legacy,
+    verifiedEvidence,
+  });
+  assert.equal(upgraded.prerequisite_gate_receipts.length, legacy.prerequisite_gate_receipts.length + 2);
+  assert.equal(
+    upgraded.prerequisite_gate_receipts.filter(
+      receipt =>
+        authorityGateIds.has(receipt.gate_id) &&
+        receipt.verification_contract === AUTHORITY_EVIDENCE_VERIFICATION_CONTRACT,
+    ).length,
+    2,
+  );
+  assert.deepEqual(validateWorkQueue(value, upgraded), []);
+
+  const calls = {fetchJson: 0, readFile: 0, execFile: 0};
+  const noNewEvidence = await verifyProductionQueueExternalEvidence(value, {
+    registry: upgraded,
+    fetchJson: async () => {
+      calls.fetchJson += 1;
+      throw new Error('현재 의미계약 영수증은 다시 네트워크 조회하면 안 됩니다.');
+    },
+    readFile: async () => {
+      calls.readFile += 1;
+      throw new Error('현재 의미계약 영수증은 다시 파일을 읽으면 안 됩니다.');
+    },
+    execFile: async () => {
+      calls.execFile += 1;
+      throw new Error('현재 의미계약 영수증은 다시 Git을 실행하면 안 됩니다.');
+    },
+  });
+  assert.equal(noNewEvidence.gateProofs.size, 0);
+  assert.deepEqual(calls, {fetchJson: 0, readFile: 0, execFile: 0});
+});
+
 test('실제 PR identity는 한 번만 결박하고 정상 추가 head는 append-only 감사 이력으로 보존한다', async () => {
   const planned = plannedAuthorityWork();
   const registered = appendQueueItemRegistrations(registry, planned);
@@ -1597,6 +1896,445 @@ test('40·64자리 모양만 맞춘 외부 증거는 실제 조회 결과가 없
       }),
     }),
     /병합되지 않은 PR/u,
+  );
+});
+
+test('authority DB 증거는 PR4와 PR3-P2의 실제 충족 head보다 먼저 영수증을 발급할 수 없다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  const dbGate = item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'authority-db.regenerated',
+  );
+  dbGate.status = 'satisfied';
+  dbGate.evidence_ref = authorityEvidenceRef(
+    AUTHORITY_EVIDENCE_SOURCE_FILENAMES.db,
+    authorityEvidenceFixtures.authorityDbPayload,
+  );
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: authoritySourceFetchFixture(),
+    }),
+    /먼저 외부 source-maintenance PR 게이트가 충족/u,
+  );
+});
+
+test('authority evidence head는 PR4와 PR3-P2의 실제 병합 commit을 모두 조상으로 가져야 한다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  for (const [gateId, prNumber, head] of [
+    ['source-maintenance.db-pr-4', 4, sourcePr4Head],
+    ['source-maintenance.db-pr-3-p2', 3, sourcePr3P2Head],
+  ]) {
+    const gate = item.prerequisite_gates.find(candidate => candidate.gate_id === gateId);
+    gate.status = 'satisfied';
+    gate.evidence_ref = `parkkyusang/liale-rulelink-ir#${prNumber}@${head}`;
+  }
+  const dbGate = item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'authority-db.regenerated',
+  );
+  dbGate.status = 'satisfied';
+  dbGate.evidence_ref = authorityEvidenceRef(
+    AUTHORITY_EVIDENCE_SOURCE_FILENAMES.db,
+    authorityEvidenceFixtures.authorityDbPayload,
+  );
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: authoritySourceFetchFixture({
+        upstreamComparisons: new Map([
+          ['1'.repeat(40), {status: 'diverged', ahead_by: 0}],
+        ]),
+      }),
+    }),
+    /upstream 병합 commit의 후손이 아닙니다/u,
+  );
+});
+
+test('authority evidence는 PR head가 아니라 실제 병합 commit의 같은 blob까지 일치해야 한다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  for (const [gateId, prNumber, head] of [
+    ['source-maintenance.db-pr-4', 4, sourcePr4Head],
+    ['source-maintenance.db-pr-3-p2', 3, sourcePr3P2Head],
+  ]) {
+    const gate = item.prerequisite_gates.find(candidate => candidate.gate_id === gateId);
+    gate.status = 'satisfied';
+    gate.evidence_ref = `parkkyusang/liale-rulelink-ir#${prNumber}@${head}`;
+  }
+  const dbGate = item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'authority-db.regenerated',
+  );
+  dbGate.status = 'satisfied';
+  dbGate.evidence_ref = authorityEvidenceRef(
+    AUTHORITY_EVIDENCE_SOURCE_FILENAMES.db,
+    authorityEvidenceFixtures.authorityDbPayload,
+  );
+  const sourceFetch = authoritySourceFetchFixture();
+  const dbRepositoryPath =
+    `${AUTHORITY_EVIDENCE_REPOSITORY_DIRECTORY}/${AUTHORITY_EVIDENCE_SOURCE_FILENAMES.db}`;
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: async url => {
+        if (
+          url.includes(`/contents/${dbRepositoryPath}`) &&
+          url.endsWith(`?ref=${sourceEvidenceMergeCommit}`)
+        ) {
+          return githubContentsFixture(
+            dbRepositoryPath,
+            Buffer.from('{"schema":"forged-merge"}\n', 'utf8'),
+          );
+        }
+        return sourceFetch(url);
+      },
+    }),
+    /PR head와 실제 병합 commit의 산출물 바이트가 다릅니다/u,
+  );
+});
+
+test('authority evidence PR의 sibling 4개도 head와 병합 commit이 모두 같아야 한다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  for (const [gateId, prNumber, head] of [
+    ['source-maintenance.db-pr-4', 4, sourcePr4Head],
+    ['source-maintenance.db-pr-3-p2', 3, sourcePr3P2Head],
+  ]) {
+    const gate = item.prerequisite_gates.find(candidate => candidate.gate_id === gateId);
+    gate.status = 'satisfied';
+    gate.evidence_ref = `parkkyusang/liale-rulelink-ir#${prNumber}@${head}`;
+  }
+  const dbGate = item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'authority-db.regenerated',
+  );
+  dbGate.status = 'satisfied';
+  dbGate.evidence_ref = authorityEvidenceRef(
+    AUTHORITY_EVIDENCE_SOURCE_FILENAMES.db,
+    authorityEvidenceFixtures.authorityDbPayload,
+  );
+  const sourceFetch = authoritySourceFetchFixture();
+  const citationRepositoryPath =
+    `${AUTHORITY_EVIDENCE_REPOSITORY_DIRECTORY}/${AUTHORITY_EVIDENCE_SOURCE_FILENAMES.citation}`;
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: async url => {
+        if (
+          url.includes(`/contents/${citationRepositoryPath}`) &&
+          url.endsWith(`?ref=${sourceEvidenceMergeCommit}`)
+        ) {
+          return githubContentsFixture(
+            citationRepositoryPath,
+            Buffer.from('{"schema":"forged-citation-merge"}\n', 'utf8'),
+          );
+        }
+        return sourceFetch(url);
+      },
+    }),
+    /PR head와 실제 병합 commit의 산출물 바이트가 다릅니다/u,
+  );
+});
+
+test('authority evidence PR은 승인 산출물 5개 밖의 파일을 함께 변경할 수 없다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  for (const [gateId, prNumber, head] of [
+    ['source-maintenance.db-pr-4', 4, sourcePr4Head],
+    ['source-maintenance.db-pr-3-p2', 3, sourcePr3P2Head],
+  ]) {
+    const gate = item.prerequisite_gates.find(candidate => candidate.gate_id === gateId);
+    gate.status = 'satisfied';
+    gate.evidence_ref = `parkkyusang/liale-rulelink-ir#${prNumber}@${head}`;
+  }
+  const dbGate = item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'authority-db.regenerated',
+  );
+  dbGate.status = 'satisfied';
+  dbGate.evidence_ref = authorityEvidenceRef(
+    AUTHORITY_EVIDENCE_SOURCE_FILENAMES.db,
+    authorityEvidenceFixtures.authorityDbPayload,
+  );
+  const sourceFetch = authoritySourceFetchFixture();
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: async url => (
+        url.endsWith(`/pulls/${sourceEvidencePrNumber}/files?per_page=100`)
+          ? [
+              ...AUTHORITY_EVIDENCE_REQUIRED_REPOSITORY_PATHS.map(
+                filename => ({filename, status: 'added'}),
+              ),
+              {filename: 'src/manual-bypass.py', status: 'added'},
+            ]
+          : sourceFetch(url)
+      ),
+    }),
+    /승인 산출물 5개만 변경/u,
+  );
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: async url => (
+        url.endsWith(`/pulls/${sourceEvidencePrNumber}/files?per_page=100`)
+          ? AUTHORITY_EVIDENCE_REQUIRED_REPOSITORY_PATHS.map(
+              (filename, index) => index === 0
+                ? {
+                    filename,
+                    status: 'renamed',
+                    previous_filename: 'data/validation_reports/out-of-scope.json',
+                  }
+                : {filename, status: 'added'},
+            )
+          : sourceFetch(url)
+      ),
+    }),
+    /승인 산출물 5개만 변경/u,
+  );
+});
+
+test('authority evidence는 evidence head에 결박된 최신 GitHub Actions 성공 check와 전용 runner를 요구한다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  for (const [gateId, prNumber, head] of [
+    ['source-maintenance.db-pr-4', 4, sourcePr4Head],
+    ['source-maintenance.db-pr-3-p2', 3, sourcePr3P2Head],
+  ]) {
+    const gate = item.prerequisite_gates.find(candidate => candidate.gate_id === gateId);
+    gate.status = 'satisfied';
+    gate.evidence_ref = `parkkyusang/liale-rulelink-ir#${prNumber}@${head}`;
+  }
+  const dbGate = item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'authority-db.regenerated',
+  );
+  dbGate.status = 'satisfied';
+  dbGate.evidence_ref = authorityEvidenceRef(
+    AUTHORITY_EVIDENCE_SOURCE_FILENAMES.db,
+    authorityEvidenceFixtures.authorityDbPayload,
+  );
+  const sourceFetch = authoritySourceFetchFixture();
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: async url => {
+        if (url.includes(`/commits/${sourceEvidenceHead}/check-runs?`)) {
+          const response = await sourceFetch(url);
+          response.check_runs[0].conclusion = 'failure';
+          return response;
+        }
+        return sourceFetch(url);
+      },
+    }),
+    /최신 GitHub Actions check가 완료·성공 상태가 아닙니다/u,
+  );
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: async url => {
+        if (url.endsWith(`/actions/jobs/${sourceCiJobId}`)) {
+          const response = await sourceFetch(url);
+          return {...response, labels: ['self-hosted', 'Windows']};
+        }
+        return sourceFetch(url);
+      },
+    }),
+    /전용 runner labels가 정본과 다릅니다/u,
+  );
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: async url => {
+        if (url.endsWith(`/actions/runs/${sourceCiRunId}`)) {
+          const response = await sourceFetch(url);
+          return {
+            ...response,
+            workflow_id: 9999,
+            path: '.github/workflows/lookalike-authority-check.yml',
+          };
+        }
+        if (url.endsWith('/actions/workflows/9999')) {
+          return {
+            id: 9999,
+            path: '.github/workflows/lookalike-authority-check.yml',
+            state: 'active',
+          };
+        }
+        return sourceFetch(url);
+      },
+    }),
+    /고정 workflow의 evidence PR 실행과 일치하지 않습니다/u,
+  );
+});
+
+test('authority evidence는 producer commit의 계약 원문과 evidence head의 고정 workflow 원문에 결박된다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  for (const [gateId, prNumber, head] of [
+    ['source-maintenance.db-pr-4', 4, sourcePr4Head],
+    ['source-maintenance.db-pr-3-p2', 3, sourcePr3P2Head],
+  ]) {
+    const gate = item.prerequisite_gates.find(candidate => candidate.gate_id === gateId);
+    gate.status = 'satisfied';
+    gate.evidence_ref = `parkkyusang/liale-rulelink-ir#${prNumber}@${head}`;
+  }
+  const dbGate = item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'authority-db.regenerated',
+  );
+  dbGate.status = 'satisfied';
+  dbGate.evidence_ref = authorityEvidenceRef(
+    AUTHORITY_EVIDENCE_SOURCE_FILENAMES.db,
+    authorityEvidenceFixtures.authorityDbPayload,
+  );
+  const attestation = authorityEvidenceFixtures.authorityDbValue.source_ci_attestation;
+  const provenance = authorityEvidenceFixtures.authorityDbValue.provenance;
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: authoritySourceFetchFixture({
+        fileOverrides: new Map([[
+          attestation.workflow_path,
+          Buffer.from('name: forged-authority-workflow\n', 'utf8'),
+        ]]),
+      }),
+    }),
+    /source CI workflow 원문 해시/u,
+  );
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: authoritySourceFetchFixture({
+        fileOverrides: new Map([[
+          provenance.producer_contract_path,
+          Buffer.from('{"contract":"forged"}\n', 'utf8'),
+        ]]),
+      }),
+    }),
+    /producer contract 원문 해시/u,
+  );
+});
+
+test('citation 감사 증거는 같은 authority DB 파일의 재생성 게이트보다 먼저 발급할 수 없다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  for (const [gateId, prNumber, head] of [
+    ['source-maintenance.db-pr-4', 4, sourcePr4Head],
+    ['source-maintenance.db-pr-3-p2', 3, sourcePr3P2Head],
+  ]) {
+    const gate = item.prerequisite_gates.find(candidate => candidate.gate_id === gateId);
+    gate.status = 'satisfied';
+    gate.evidence_ref = `parkkyusang/liale-rulelink-ir#${prNumber}@${head}`;
+  }
+  const citationGate = item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'authority-db.citation-audit-approved',
+  );
+  citationGate.status = 'satisfied';
+  citationGate.evidence_ref = authorityEvidenceRef(
+    AUTHORITY_EVIDENCE_SOURCE_FILENAMES.citation,
+    authorityEvidenceFixtures.citationPayload,
+  );
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: authoritySourceFetchFixture(),
+    }),
+    /같은 merged source PR head의 검증된 DB 재생성 gate/u,
+  );
+});
+
+test('authority DB artifact는 바이트 해시가 맞아도 승인된 21조문 의미 계약이 아니면 거부한다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  const dbGate = item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'authority-db.regenerated',
+  );
+  item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'source-maintenance.db-pr-4',
+  ).status = 'satisfied';
+  item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'source-maintenance.db-pr-4',
+  ).evidence_ref = `parkkyusang/liale-rulelink-ir#4@${sourcePr4Head}`;
+  item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'source-maintenance.db-pr-3-p2',
+  ).status = 'satisfied';
+  item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'source-maintenance.db-pr-3-p2',
+  ).evidence_ref = `parkkyusang/liale-rulelink-ir#3@${sourcePr3P2Head}`;
+  const invalidPayload = authorityEvidenceFixtures.candidateDbPayload;
+  dbGate.status = 'satisfied';
+  dbGate.evidence_ref = authorityEvidenceRef(
+    AUTHORITY_EVIDENCE_SOURCE_FILENAMES.db,
+    invalidPayload,
+  );
+  const dbRepositoryPath =
+    `${AUTHORITY_EVIDENCE_REPOSITORY_DIRECTORY}/${AUTHORITY_EVIDENCE_SOURCE_FILENAMES.db}`;
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: authoritySourceFetchFixture({
+        fileOverrides: new Map([[dbRepositoryPath, invalidPayload]]),
+      }),
+    }),
+    /의미 검증 실패[\s\S]*approved여야[\s\S]*integrity_check/u,
+  );
+});
+
+test('citation 감사 artifact는 현재 authority DB artifact 해시에 결박되어야 한다', async () => {
+  const value = plannedAuthorityWork();
+  const item = value.items.at(-1);
+  const citationGate = item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'authority-db.citation-audit-approved',
+  );
+  const invalidValue = clone(authorityEvidenceFixtures.citationValue);
+  invalidValue.authority_db_regeneration_evidence.sha256 = 'f'.repeat(64);
+  const invalidPayload = Buffer.from(`${JSON.stringify(invalidValue)}\n`, 'utf8');
+  citationGate.status = 'satisfied';
+  citationGate.evidence_ref = authorityEvidenceRef(
+    AUTHORITY_EVIDENCE_SOURCE_FILENAMES.citation,
+    invalidPayload,
+  );
+  item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'source-maintenance.db-pr-4',
+  ).status = 'satisfied';
+  item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'source-maintenance.db-pr-4',
+  ).evidence_ref = `parkkyusang/liale-rulelink-ir#4@${sourcePr4Head}`;
+  item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'source-maintenance.db-pr-3-p2',
+  ).status = 'satisfied';
+  item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'source-maintenance.db-pr-3-p2',
+  ).evidence_ref = `parkkyusang/liale-rulelink-ir#3@${sourcePr3P2Head}`;
+  const dbGate = item.prerequisite_gates.find(
+    candidate => candidate.gate_id === 'authority-db.regenerated',
+  );
+  dbGate.status = 'satisfied';
+  dbGate.evidence_ref = authorityEvidenceRef(
+    AUTHORITY_EVIDENCE_SOURCE_FILENAMES.db,
+    authorityEvidenceFixtures.authorityDbPayload,
+  );
+  const citationRepositoryPath =
+    `${AUTHORITY_EVIDENCE_REPOSITORY_DIRECTORY}/${AUTHORITY_EVIDENCE_SOURCE_FILENAMES.citation}`;
+
+  await assert.rejects(
+    verifyProductionQueueExternalEvidence(value, {
+      registry,
+      fetchJson: authoritySourceFetchFixture({
+        fileOverrides: new Map([[citationRepositoryPath, invalidPayload]]),
+      }),
+    }),
+    /DB 증거 SHA-256이 실제 sibling 파일/u,
   );
 });
 

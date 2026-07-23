@@ -1,0 +1,50 @@
+name: rulelink-authority-024-evidence-attestation
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/authority-024-evidence-attestation.yml"
+      - "scripts/attest_authority_024_evidence.py"
+      - "scripts/build_authority_candidate_db.py"
+      - "scripts/export_authority_public_evidence.py"
+      - "scripts/verify_authority_public_evidence.py"
+      - "src/rulelink_ir/source_maintenance_authority_evidence.py"
+      - "tests/fixtures/authority_024_targets.json"
+      - "tests/fixtures/authority_public_evidence_contract_v1.json"
+      - "tests/test_source_maintenance_authority_evidence.py"
+      - "data/validation_reports/authority_024/**"
+  workflow_dispatch:
+
+jobs:
+  authority-evidence-attestation:
+    name: rulelink-authority-024-evidence-attestation
+    runs-on:
+      - self-hosted
+      - Windows
+      - X64
+      - rulelink-source-maintenance
+    timeout-minutes: 60
+    steps:
+      - name: Checkout full source history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify tooling or exact-five evidence
+        shell: pwsh
+        env:
+          PYTHONPATH: ${{ github.workspace }}\src
+          EVIDENCE_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          $ErrorActionPreference = "Stop"
+          $evidenceDir = "data/validation_reports/authority_024"
+          $approved = Join-Path $evidenceDir "authority-db-regenerated.json"
+          if (Test-Path -LiteralPath $approved) {
+            python scripts/attest_authority_024_evidence.py `
+              --evidence-dir $evidenceDir `
+              --base-ref $env:EVIDENCE_BASE_SHA
+          } else {
+            python -m pytest `
+              tests/test_source_maintenance_authority_evidence.py `
+              -q --tb=short
+          }
