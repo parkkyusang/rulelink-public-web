@@ -48,6 +48,7 @@ type ConceptLayerContextValue = {
 
 const ConceptLayerContext = createContext<ConceptLayerContextValue | null>(null);
 const conceptLayerId = 'rulelink-concept-layer';
+const conceptContentGroupProps = {role: 'group'} as const;
 
 export function LegalConceptLayer({children}: {children: ReactNode}) {
   const [activePopoverId, setActivePopoverId] = useState<string | null>(null);
@@ -122,10 +123,16 @@ function ConceptPopover({
 
   const {activePopoverId, closePopover, isMobile, openPopover} = layer;
   const isOpen = activePopoverId === popoverId;
+  const titleId = `${popoverId}-title`;
+  const descriptionId = `${popoverId}-description`;
   const triggerRef = useRef<HTMLButtonElement>(null);
   const restoreTriggerFocus = useCallback(() => {
     window.requestAnimationFrame(() => triggerRef.current?.focus());
   }, []);
+  const closeAndRestoreFocus = useCallback(() => {
+    closePopover(popoverId);
+    restoreTriggerFocus();
+  }, [closePopover, popoverId, restoreTriggerFocus]);
   const handleOpenChange = useCallback((nextOpen: boolean, _event?: Event, reason?: OpenChangeReason) => {
     if (nextOpen) {
       openPopover(popoverId);
@@ -174,7 +181,8 @@ function ConceptPopover({
         {...getReferenceProps({
           'aria-controls': popoverId,
           'aria-expanded': isOpen,
-          'aria-label': `${concept.preferred_term_ko} 뜻 ${isOpen ? '닫기' : '열기'}`,
+          'aria-haspopup': 'dialog',
+          'aria-label': `${concept.preferred_term_ko} 뜻 보기`,
         })}
         className={styles.termButton}
         ref={node => {
@@ -190,9 +198,11 @@ function ConceptPopover({
           <FloatingFocusManager context={context} initialFocus={-1} modal={false} returnFocus={false}>
             <span
               {...getFloatingProps({
-                'aria-label': `${concept.preferred_term_ko} 용어 해설`,
+                'aria-describedby': descriptionId,
+                'aria-labelledby': titleId,
+                'aria-modal': false,
                 id: popoverId,
-                role: 'group',
+                role: 'dialog',
                 tabIndex: -1,
               })}
               className={styles.popover}
@@ -201,9 +211,23 @@ function ConceptPopover({
               ref={refs.setFloating}
               style={isMobile ? undefined : floatingStyles}
             >
-              <strong>{concept.preferred_term_ko}</strong>
-              <span>{concept.plain_definition_ko}</span>
-              <a href={`/ko/concepts/${concept.slug}`}>개념 페이지에서 근거와 요건 보기 →</a>
+              <span
+                {...conceptContentGroupProps}
+                aria-label={`${concept.preferred_term_ko} 용어 해설 내용`}
+                className={styles.content}
+              >
+                <button
+                  aria-label={`${concept.preferred_term_ko} 뜻 해설 닫기`}
+                  className={styles.closeButton}
+                  onClick={closeAndRestoreFocus}
+                  type="button"
+                >
+                  닫기
+                </button>
+                <strong id={titleId}>{concept.preferred_term_ko}</strong>
+                <span id={descriptionId}>{concept.plain_definition_ko}</span>
+                <a href={`/ko/concepts/${concept.slug}`}>개념 페이지에서 근거와 요건 보기 →</a>
+              </span>
             </span>
           </FloatingFocusManager>
         </FloatingPortal>
