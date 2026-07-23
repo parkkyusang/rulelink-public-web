@@ -62,6 +62,27 @@ test('타입 연결 8종을 독해 순서 7구획으로 묶고 이유와 다음 
   assert.ok(sections.flatMap(section => section.items).every(item => item.reason_ko && item.action_ko));
 });
 
+test('concept_ids가 없는 typed concept 간선도 전체 공개 개념 색인에서 링크를 찾는다', async () => {
+  const source = {
+    ...entry('content.concept-compatibility'),
+    related_edges: [{target_kind: 'concept', target_id: 'concept.compatibility', relation_type: 'concept'}],
+  };
+  assert.equal('concept_ids' in source, false);
+  const concepts = [{
+    concept_id: 'concept.compatibility',
+    slug: 'compatibility-concept',
+    preferred_term_ko: '호환 개념',
+    plain_definition_ko: '기존 concept_ids 없이 typed edge로만 연결된 공개 개념입니다.',
+  }];
+  const sections = buildKnowledgeReadingPath(source, [source], concepts, []);
+  assert.equal(sections[0].key, 'foundation');
+  assert.equal(sections[0].items[0].href, '/ko/concepts/compatibility-concept');
+
+  const publication = await readFile(path.join(appRoot, 'src', 'lib', 'publication.ts'), 'utf8');
+  assert.match(publication, /const visibleConcepts = filterFreshPublications\(knowledge\.concept_cards \?\? \[\]\);/u);
+  assert.match(publication, /buildKnowledgeReadingPath\(\s*entry,\s*visibleEntries,\s*visibleConcepts,/su);
+});
+
 test('무타입 기존 연결과 같은 허브 연결은 의미를 추정하지 않고 같은 주제 구획에만 둔다', () => {
   const source = {...entry('content.legacy'), related_content_ids: ['content.related']};
   const sections = buildKnowledgeReadingPath(

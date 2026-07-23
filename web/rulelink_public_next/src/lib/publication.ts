@@ -252,16 +252,17 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
         .filter((rule): rule is PublicRuleCard => Boolean(rule)),
     ]),
   );
-  const entryById = new Map(filterFreshPublications(knowledge.content_entries).map(candidate => [candidate.content_id, candidate]));
+  const visibleEntries = filterFreshPublications(knowledge.content_entries);
+  const visibleConcepts = filterFreshPublications(knowledge.concept_cards ?? []);
   const {related, sections: relatedSections} = buildKnowledgeRelatedPresentation(
     entry,
-    [...entryById.values()],
+    visibleEntries,
     graph.hubs.flatMap(hub => hub.content_ids),
   );
   const readingPathSections = buildKnowledgeReadingPath(
     entry,
-    [...entryById.values()],
-    graph.concepts,
+    visibleEntries,
+    visibleConcepts,
     graph.hubs.flatMap(hub => hub.content_ids),
   );
   return {
