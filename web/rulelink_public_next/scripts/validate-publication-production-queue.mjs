@@ -236,6 +236,11 @@ export function validateProductionQueue(queue, {publishedBundle = null} = {}) {
     if (item.status === 'migration_required' && item.change_mode !== 'existing_topic_revision') {
       errors.push(`${label}의 migration_required는 기존 주제 개정에만 사용할 수 있습니다.`);
     }
+    if (item.status === 'migration_required') {
+      const required = ['current_bundle', 'new_immutable_snapshot', 'migrate_publication'];
+      if (item.direct_merge !== false) errors.push(`${label}의 migration_required는 direct_merge=false여야 합니다.`);
+      if (JSON.stringify(item.integrate_requires) !== JSON.stringify(required)) errors.push(`${label}.integrate_requires는 current bundle·새 불변 snapshot·migrate_publication을 요구해야 합니다.`);
+    }
     if (item.change_mode === 'existing_topic_revision' && item.status !== 'migration_required') errors.push(`${label}의 기존 주제 개정은 migration_required 상태만 사용할 수 있습니다.`);
     if (item.status === 'integrated') {
       if (item.source_freshness?.status !== 'current') errors.push(`${label}의 integrated 상태에는 current 근거가 필요합니다.`);
