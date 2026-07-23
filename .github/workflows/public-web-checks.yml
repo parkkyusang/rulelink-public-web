@@ -63,6 +63,11 @@ jobs:
       - name: 고정 의존성 설치
         run: npm ci
 
+      - name: 주제 품질부채 래칫
+        env:
+          RULELINK_QUALITY_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: npm run validate:publication-quality-debt -- --base "$RULELINK_QUALITY_BASE"
+
       - name: 공개 번들 차단 규칙 테스트
         run: npm run test:publication
 
