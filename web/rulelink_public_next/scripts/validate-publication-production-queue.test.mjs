@@ -6,23 +6,31 @@ import test from 'node:test';
 
 import {
   OWNER_ROLE_CONTRACTS,
+  appendQueueItemRegistrations,
   compareQueueCurrentPublication,
   deriveCurrentPublication,
   loadQueuePublicationEvidence,
   synchronizeCurrentPublicationFile,
+  synchronizeQueueItemRegistryFile,
   topicReceipt,
   updateQueueCurrentPublication,
-  validateProductionQueue,
+  validateProductionQueue as validateProductionQueueRaw,
+  validateQueueItemRegistry,
 } from './validate-publication-production-queue.mjs';
 
 const repoRoot = path.resolve(process.cwd(), '..', '..');
 const queuePath = path.join(repoRoot, 'artifacts', 'publication', 'production-queue.json');
+const registryPath = path.join(repoRoot, 'artifacts', 'publication', 'production-queue-registry.json');
 const bundlePath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
-const [queue, bundle] = await Promise.all([
+const workflowPath = path.join(repoRoot, '.github', 'workflows', 'public-web-checks.yml');
+const [queue, registry, bundle, workflow] = await Promise.all([
   readFile(queuePath, 'utf8').then(JSON.parse),
+  readFile(registryPath, 'utf8').then(JSON.parse),
   readFile(bundlePath, 'utf8').then(JSON.parse),
+  readFile(workflowPath, 'utf8'),
 ]);
-const publicationEvidence = await loadQueuePublicationEvidence(queue, bundle);
+const publicationEvidence = await loadQueuePublicationEvidence(queue, bundle, {itemRegistry: registry});
+const testMigrationCommitSha = 'a'.repeat(40);
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -34,7 +42,40 @@ function refreshSummary(value) {
   for (const status of ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated', 'merged_pending_publication']) {
     value.audit_summary[status] = value.items.filter(item => item.status === status).length;
   }
+  value.audit_summary.official_source_references_checked =
+    value.items.reduce((sum, item) => sum + (item.counts?.sources || 0), 0);
+  value.audit_summary.semantic_overlap_decisions =
+    value.items.reduce((sum, item) => sum + (item.overlap_decisions?.length || 0), 0);
   return value;
+}
+
+function validateProductionQueue(value, options = {}) {
+  return validateProductionQueueRaw(value, {itemRegistry: registry, ...options});
+}
+
+function migrationEvidence(value, overrides = {}) {
+  const item = value.items.find(entry => entry.pr_number === 166);
+  return {
+    exists: true,
+    is_ancestor: true,
+    is_head: false,
+    shallow: false,
+    changed_files: [
+      item.topic_file,
+      'artifacts/publication/current/bundle.json',
+      'artifacts/publication/topics/manifest.json',
+      `artifacts/publication/snapshots/${item.integrated_snapshot_id}/bundle.json`,
+    ],
+    ...overrides,
+  };
+}
+
+function completedPublicationEvidence(value, overrides = {}) {
+  const item = value.items.find(entry => entry.pr_number === 166);
+  return {
+    ...publicationEvidence,
+    migrationCommits: new Map([[item.migration_commit_sha, migrationEvidence(value, overrides)]]),
+  };
 }
 
 function completeExistingRevision(status = 'integrated', integrationMode = 'exact') {
@@ -43,7 +84,7 @@ function completeExistingRevision(status = 'integrated', integrationMode = 'exac
   item.status = status;
   item.integration_order = null;
   item.integrated_snapshot_id = bundle.snapshot_id;
-  item.migration_commit_sha = 'a'.repeat(40);
+  item.migration_commit_sha = testMigrationCommitSha;
   item.absorbed_head_sha = item.head_sha;
   item.topic_receipt = publicationEvidence.topicReceipts.get(item.topic_file);
   item.integration_mode = integrationMode;
@@ -68,6 +109,55 @@ test('현재 생산 대기열은 022 공개 정본·역할·의존성 계약을 
   }
 });
 
+test('append-only item registry는 모든 queue_id·PR을 영수증 체인으로 보존한다', () => {
+  assert.deepEqual(validateQueueItemRegistry(registry, queue), []);
+  assert.equal(registry.append_only, true);
+  assert.equal(registry.registrations.length, queue.items.length);
+  assert.equal(registry.registrations.at(-1).receipt, registry.registry_receipt);
+
+  const deletedQueue = clone(queue);
+  deletedQueue.items = deletedQueue.items.filter(item => item.pr_number !== 166);
+  refreshSummary(deletedQueue);
+  assert.ok(
+    validateProductionQueueRaw(deletedQueue, {itemRegistry: registry})
+      .some(error => error.includes('등록된 queue item을 삭제할 수 없습니다')),
+  );
+
+  const truncatedRegistry = clone(registry);
+  const removed = truncatedRegistry.registrations.pop();
+  truncatedRegistry.registry_receipt = removed.previous_receipt;
+  assert.ok(
+    validateQueueItemRegistry(truncatedRegistry, queue)
+      .some(error => error.includes('append-only registry에 등록되지 않았습니다')),
+  );
+  assert.ok(
+    validateQueueItemRegistry(truncatedRegistry, queue, {previousRegistry: registry})
+      .some(error => error.includes('직전 불변 이력을 삭제할 수 없습니다')),
+  );
+
+  const rewrittenRegistry = clone(registry);
+  rewrittenRegistry.registrations[0].registered_on = '2026-07-22';
+  assert.ok(
+    validateQueueItemRegistry(rewrittenRegistry, queue, {previousRegistry: registry})
+      .some(error => error.includes('직전 불변 등록을 바꿀 수 없습니다')),
+  );
+});
+
+test('registry 동기화는 기존 이력을 바꾸거나 지우지 않고 새 항목만 뒤에 추가한다', () => {
+  const value = clone(queue);
+  const newItem = clone(value.items.find(item => item.pr_number === 169));
+  newItem.queue_id = 'publication-pr-999';
+  newItem.pr_number = 999;
+  newItem.topic_id = 'hub.registry-append-fixture';
+  newItem.topic_file = 'artifacts/publication/topics/registry-append-fixture.json';
+  value.items.push(newItem);
+  const updated = appendQueueItemRegistrations(registry, value);
+  assert.deepEqual(updated.registrations.slice(0, registry.registrations.length), registry.registrations);
+  assert.equal(updated.registrations.at(-1).queue_id, 'publication-pr-999');
+  assert.equal(updated.registrations.at(-1).previous_receipt, registry.registry_receipt);
+  assert.deepEqual(validateQueueItemRegistry(updated, value), []);
+});
+
 test('학교폭력 #153은 main 병합 후 공개 승격 대기 상태로 고정한다', () => {
   assert.equal(queue.items.some(item => item.pr_number === 103), false);
   const item = queue.items.find(value => value.pr_number === 153);
@@ -84,12 +174,19 @@ test('학교폭력 #153은 main 병합 후 공개 승격 대기 상태로 고정
 
 test('역할 정본은 허용 역할과 실제 runtime 지식 시험 경계를 고정한다', () => {
   assert.deepEqual(queue.policy.owner_role_contracts, OWNER_ROLE_CONTRACTS);
+  assert.equal(
+    queue.policy.existing_topic_migration_commit_protocol,
+    'data_commit_then_queue_evidence_commit_merge_without_squash',
+  );
   assert.deepEqual(Object.keys(OWNER_ROLE_CONTRACTS).sort(), [
     'content_production', 'migrate_publication', 'orchestration', 'product_policy',
     'quality_governance', 'reader_research', 'release', 'runtime_design', 'source_maintenance',
   ]);
   assert.ok(OWNER_ROLE_CONTRACTS.runtime_design.owned_paths.includes('web/rulelink_public_next/scripts/*knowledge*.test.mjs'));
   assert.ok(OWNER_ROLE_CONTRACTS.content_production.owned_paths.includes('web/rulelink_public_next/scripts/<topic>-topic-*.test.mjs'));
+  assert.ok(OWNER_ROLE_CONTRACTS.migrate_publication.owned_paths.includes('web/rulelink_public_next/scripts/*topic*.test.mjs'));
+  assert.ok(OWNER_ROLE_CONTRACTS.migrate_publication.owned_paths.includes('artifacts/publication/production-queue.json'));
+  assert.ok(OWNER_ROLE_CONTRACTS.migrate_publication.owned_paths.includes('artifacts/publication/production-queue-registry.json'));
   assert.equal(queue.items.find(item => item.pr_number === 166).test_file, 'web/rulelink_public_next/scripts/money-guarantee-topic-backfill.test.mjs');
   const invalid = clone(queue);
   invalid.items[0].owner_role = 'unknown_role';
@@ -106,6 +203,14 @@ test('역할별 WIP 1과 같은 topic_file의 활성 중복 소유를 차단한�
   duplicate.items.find(item => item.pr_number === 87).topic_file =
     duplicate.items.find(item => item.pr_number === 105).topic_file;
   assert.ok(validateProductionQueue(duplicate).some(error => error.includes('활성 topic_file 중복')));
+
+  const pendingClaim = clone(queue);
+  const pending = pendingClaim.items.find(item => item.pr_number === 153);
+  const competing = pendingClaim.items.find(item => item.pr_number === 169);
+  competing.topic_id = pending.topic_id;
+  competing.topic_file = pending.topic_file;
+  assert.ok(validateProductionQueue(pendingClaim).some(error => error.includes('활성 topic_id 중복')));
+  assert.ok(validateProductionQueue(pendingClaim).some(error => error.includes('활성 topic_file 중복')));
 });
 
 test('handoff 필수 필드와 기존 주제의 migration_required 상태를 강제한다', () => {
@@ -162,6 +267,33 @@ test('원자적 동기화는 전체 검증 성공 뒤에만 파일을 교체한�
   }
 });
 
+test('item registry 파일 동기화도 검증 뒤 원자적으로 append한다', async () => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'rulelink-queue-registry-sync-'));
+  const target = path.join(directory, 'production-queue-registry.json');
+  try {
+    await writeFile(target, JSON.stringify(registry, null, 2) + '\n', 'utf8');
+    const value = clone(queue);
+    const newItem = clone(value.items.find(item => item.pr_number === 171));
+    newItem.queue_id = 'publication-pr-998';
+    newItem.pr_number = 998;
+    newItem.topic_id = 'hub.registry-file-fixture';
+    newItem.topic_file = 'artifacts/publication/topics/registry-file-fixture.json';
+    value.items.push(newItem);
+    const updated = await synchronizeQueueItemRegistryFile(target, value);
+    assert.equal(updated.registrations.at(-1).queue_id, 'publication-pr-998');
+    assert.deepEqual(JSON.parse(await readFile(target, 'utf8')), updated);
+
+    const invalid = clone(registry);
+    invalid.registrations[0].topic_id = 'hub.tampered';
+    const original = JSON.stringify(invalid, null, 4) + '\n';
+    await writeFile(target, original, 'utf8');
+    await assert.rejects(() => synchronizeQueueItemRegistryFile(target, queue), /registry 갱신 실패/u);
+    assert.equal(await readFile(target, 'utf8'), original);
+  } finally {
+    await rm(directory, {recursive: true, force: true});
+  }
+});
+
 test('검증 실패 시 --write 대상 원본 바이트는 변하지 않는다', async () => {
   const directory = await mkdtemp(path.join(tmpdir(), 'rulelink-queue-fail-'));
   const target = path.join(directory, 'production-queue.json');
@@ -206,6 +338,35 @@ test('기존 정본 백필 #166은 직접 병합이 아닌 publication migration
   assert.ok(validateProductionQueue(invalid).some(error => error.includes('direct_merge=false')));
 });
 
+test('#169와 #171도 기존 정본 직접 병합 없이 같은 publication migration 게이트를 사용한다', () => {
+  const expected = [
+    {
+      pr: 169,
+      head: 'c8167f563975f6ba26f1df6697443fa67016bb39',
+      topic: 'hub.consumer-online-contracts',
+      testFile: 'web/rulelink_public_next/scripts/consumer-online-contracts-topic-handoff.test.mjs',
+    },
+    {
+      pr: 171,
+      head: '0d100fcd315de4d99e9fe80e51b56312e0402f53',
+      topic: 'hub.remedy-path-comparisons',
+      testFile: 'web/rulelink_public_next/scripts/remedy-path-comparisons-topic-handoff.test.mjs',
+    },
+  ];
+  for (const fixture of expected) {
+    const item = queue.items.find(entry => entry.pr_number === fixture.pr);
+    assert.ok(item);
+    assert.equal(item.status, 'migration_required');
+    assert.equal(item.change_mode, 'existing_topic_revision');
+    assert.equal(item.direct_merge, false);
+    assert.equal(item.head_sha, fixture.head);
+    assert.equal(item.topic_id, fixture.topic);
+    assert.equal(item.test_file, fixture.testFile);
+    assert.deepEqual(item.integrate_requires, ['current_bundle', 'new_immutable_snapshot', 'migrate_publication']);
+  }
+  assert.deepEqual(queue.items.find(entry => entry.pr_number === 169).platform_prerequisite_prs, [168]);
+});
+
 test('기존 주제 개정은 migration_required에서 integrated 또는 superseded로 이력을 보존한다', () => {
   for (const [status, integrationMode] of [['integrated', 'exact'], ['superseded', 'absorbed']]) {
     const value = completeExistingRevision(status, integrationMode);
@@ -215,7 +376,7 @@ test('기존 주제 개정은 migration_required에서 integrated 또는 superse
     assert.equal(item.absorbed_head_sha, item.head_sha);
     assert.equal(item.topic_receipt, publicationEvidence.topicReceipts.get(item.topic_file));
     assert.deepEqual(
-      validateProductionQueue(value, {publishedBundle: bundle, ...publicationEvidence}),
+      validateProductionQueue(value, {publishedBundle: bundle, ...completedPublicationEvidence(value)}),
       [],
       status,
     );
@@ -282,8 +443,73 @@ test('기존 주제 개정 terminal 상태는 출판 snapshot·migration·PR hea
   wrongReceipt.items.find(entry => entry.pr_number === 166).topic_receipt = 'b'.repeat(64);
   assert.ok(validateProductionQueue(
     wrongReceipt,
-    {publishedBundle: bundle, ...publicationEvidence},
+    {publishedBundle: bundle, ...completedPublicationEvidence(wrongReceipt)},
   ).some(error => error.includes('topic_receipt가 현재 주제 원본과 다릅니다')));
+});
+
+test('migration_commit_sha는 현재 이력의 선행 데이터 커밋이며 이관 소유 파일을 실제 변경해야 한다', () => {
+  const value = completeExistingRevision();
+
+  assert.ok(validateProductionQueue(
+    value,
+    {publishedBundle: bundle, ...publicationEvidence, migrationCommits: null},
+  ).some(error => error.includes('실제 Git 증거가 필요합니다')));
+
+  assert.ok(validateProductionQueue(
+    value,
+    {
+      publishedBundle: bundle,
+      ...completedPublicationEvidence(value, {exists: false, shallow: true}),
+    },
+  ).some(error => error.includes('fetch-depth: 0')));
+
+  assert.ok(validateProductionQueue(
+    value,
+    {
+      publishedBundle: bundle,
+      ...completedPublicationEvidence(value, {is_ancestor: false}),
+    },
+  ).some(error => error.includes('현재 HEAD 이력에 없습니다')));
+
+  assert.ok(validateProductionQueue(
+    value,
+    {
+      publishedBundle: bundle,
+      ...completedPublicationEvidence(value, {is_head: true}),
+    },
+  ).some(error => error.includes('후속 커밋보다 앞선 데이터 이관 커밋')));
+
+  const missingTopic = migrationEvidence(value);
+  missingTopic.changed_files = missingTopic.changed_files.filter(file => file !== value.items.find(item => item.pr_number === 166).topic_file);
+  assert.ok(validateProductionQueue(
+    value,
+    {
+      publishedBundle: bundle,
+      ...completedPublicationEvidence(value, {changed_files: missingTopic.changed_files}),
+    },
+  ).some(error => error.includes('필수 이관 파일을 변경하지 않았습니다')));
+
+  assert.ok(validateProductionQueue(
+    value,
+    {
+      publishedBundle: bundle,
+      ...completedPublicationEvidence(value, {
+        changed_files: [...migrationEvidence(value).changed_files, 'artifacts/publication/release.json'],
+      }),
+    },
+  ).some(error => error.includes('migrate_publication 소유 밖 파일')));
+
+  assert.ok(validateProductionQueue(
+    value,
+    {
+      publishedBundle: bundle,
+      ...completedPublicationEvidence(value, {
+        changed_files: [...migrationEvidence(value).changed_files, 'artifacts/publication/production-queue.json'],
+      }),
+    },
+  ).some(error => error.includes('queue 증거 후속 커밋과 분리')));
+
+  assert.match(workflow, /uses:\s*actions\/checkout@v4[\s\S]*?fetch-depth:\s*0/u);
 });
 
 test('기존 주제 개정의 integrated 증거는 current와 immutable snapshot의 동일 합성을 요구한다', () => {
@@ -292,12 +518,16 @@ test('기존 주제 개정의 integrated 증거는 current와 immutable snapshot
   wrongSnapshotId.items.find(entry => entry.pr_number === 166).integrated_snapshot_id = 'kr-knowledge-core-20260723-023';
   assert.ok(validateProductionQueue(
     wrongSnapshotId,
-    {publishedBundle: bundle, ...publicationEvidence},
+    {publishedBundle: bundle, ...completedPublicationEvidence(wrongSnapshotId)},
   ).some(error => error.includes('integrated_snapshot_id가 current bundle과 다릅니다')));
 
   assert.ok(validateProductionQueue(
     value,
-    {publishedBundle: bundle, topicReceipts: publicationEvidence.topicReceipts},
+    {
+      publishedBundle: bundle,
+      topicReceipts: publicationEvidence.topicReceipts,
+      migrationCommits: completedPublicationEvidence(value).migrationCommits,
+    },
   ).some(error => error.includes('immutable snapshot 증거가 필요합니다')));
 
   const differentSnapshot = clone(bundle);
@@ -308,6 +538,7 @@ test('기존 주제 개정의 integrated 증거는 current와 immutable snapshot
       publishedBundle: bundle,
       publishedSnapshot: differentSnapshot,
       topicReceipts: publicationEvidence.topicReceipts,
+      migrationCommits: completedPublicationEvidence(value).migrationCommits,
     },
   ).some(error => error.includes('immutable snapshot과 current bundle의 합성 결과가 다릅니다')));
 });

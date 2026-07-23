@@ -16,15 +16,20 @@
 
 역할 이름은 담당 범위를 뜻한다. 같은 작업이 여러 역할을 겸하지 않는다. 역할 변경이 필요하면 먼저 이 표와 생산 대기열의 소유자를 바꾼다.
 
+저장소 역할 계약에서는 `migrate_publication`이 주제 원본·manifest·current·새 snapshot과 함께 생산 대기열 및 항목 레지스트리를 갱신할 수 있다. 다만 release 파일은 수정할 수 없다. release는 통합이 끝난 뒤 `release` 역할의 별도 병합 요청에서만 바꾼다.
+
 ## 2. 공식 생산 대기열
 
-병렬 작업의 단일 정본은 다음 파일이다.
+병렬 작업의 현재 상태 정본과 삭제 방지 이력 정본은 다음 두 파일이다.
 
 ```text
 artifacts/publication/production-queue.json
+artifacts/publication/production-queue-registry.json
 ```
 
 대기열은 열린 콘텐츠 병합 요청(PR), 주제 파일, 정확한 머리 커밋, 변경 방식, 중복 판정, 선행 의존성, 근거 최신성, 통합 전 검사와 상태를 기록한다.
+
+항목 레지스트리는 `queue_id`와 PR 번호, 변경 방식, 주제 식별자와 주제 파일을 순서가 있는 SHA-256 영수증 체인으로 한 번만 등록한다. 동기화 명령은 새 항목만 뒤에 추가하며 기존 등록을 수정하거나 제거하지 않는다. 검증기는 저장소 이력의 직전 레지스트리를 불변 기준으로 읽어 기존 접두부가 그대로 보존됐는지도 확인한다. 따라서 항목이 `integrated`, `superseded`, `withdrawn`으로 끝나도 대기열에서 행을 삭제하지 않고 그 상태와 완료·철회 증거를 보존한다.
 
 허용 상태는 다음과 같다.
 
@@ -36,6 +41,7 @@ artifacts/publication/production-queue.json
 - `migration_required`: 이미 current에 들어간 주제를 바꾸므로 주제 원본·current·새 snapshot을 함께 이관해야 함
 - `needs_rework`: 중복, 근거 계보, 유형 또는 연결 문제를 고쳐야 함
 - `blocked`: 선행 주제나 외부 상태가 닫히지 않음
+- `merged_pending_publication`: 주제 원본은 main에 병합됐지만 current와 새 snapshot에는 아직 포함되지 않아 주제·파일 점유를 계속 유지함
 - `integrated`: 새 불변 snapshot에 포함됨
 - `superseded`: 다른 이관 또는 새 병합 요청으로 대체됨
 - `withdrawn`: 공개 대상에서 철회됨
@@ -98,6 +104,13 @@ web/rulelink_public_next/scripts/<topic>-topic-handoff.test.mjs
 
 같은 snapshot 식별자의 내용을 덮어쓰지 않는다.
 
+기존 주제 개정의 완료는 반드시 두 커밋으로 나눈다.
+
+1. 데이터 이관 커밋: 해당 주제 원본과 전용 시험, 주제 manifest, current, 새 불변 snapshot을 함께 바꾼다.
+2. 대기열 증거 커밋: 앞 데이터 이관 커밋의 실제 SHA를 `migration_commit_sha`에 기록하고 대기열 상태와 append-only 레지스트리를 갱신한다.
+
+검증기는 `migration_commit_sha`가 실제 Git 커밋이고 현재 HEAD의 조상인지, 해당 주제·current·manifest·지정 snapshot을 실제로 바꿨는지, release 등 이관 역할 밖 파일을 건드리지 않았는지 확인한다. 자기 SHA를 자기 내용에 넣는 순환 구조를 피하기 위해 데이터 이관 커밋은 대기열·레지스트리를 바꾸지 않는다. 두 커밋의 이력을 보존해야 하므로 이관 병합 요청은 squash 병합하지 않는다. CI checkout은 이 조상 커밋을 검사할 수 있도록 `fetch-depth: 0`을 유지한다.
+
 ## 6. 근거 최신성과 공식 원문
 
 공식 주소가 HTTP 200으로 열리는 것과 현재 활성 DB의 정확한 시행판·본문 해시가 일치하는 것은 별개의 검사다.
@@ -125,8 +138,10 @@ web/rulelink_public_next/scripts/<topic>-topic-handoff.test.mjs
 7. 전체 topic 원본으로 current 재합성
 8. 새 불변 snapshot 생성
 9. current와 snapshot의 내용 동일성 확인
-10. 생산 대기열을 `integrated`, `superseded` 또는 잔여 상태로 갱신
-11. 통합 병합 요청의 전체 시험과 정적 빌드 확인
+10. 6~9의 주제·manifest·current·snapshot만 데이터 이관 커밋으로 기록
+11. 생산 대기열을 `integrated`, `superseded` 또는 잔여 상태로 갱신하고 `migration_commit_sha`와 item registry 영수증을 후속 커밋으로 기록
+12. 통합 병합 요청의 전체 시험과 정적 빌드 확인
+13. 두 커밋을 보존하는 방식으로 병합
 
 서로 의존하는 주제를 임의 순서로 병합하지 않는다. 중복 판정이 끝나지 않은 `needs_rework` 항목과 선행 항목이 닫히지 않은 `blocked` 항목은 합성에서 제외한다.
 
@@ -149,6 +164,7 @@ web/rulelink_public_next/scripts/<topic>-topic-handoff.test.mjs
 ```powershell
 Set-Location web\rulelink_public_next
 npm run validate:production-queue
+npm run sync:production-queue-publication
 npm run test:publication-topics
 npm run test:publication
 npm run typecheck
@@ -156,7 +172,7 @@ npm run build
 npm run smoke:public-build
 ```
 
-`predev`와 `prebuild`도 생산 대기열을 먼저 검증한다. 대기열에 없는 의존 PR, 중복 topic 식별자, 역할별 동시 진행량 초과, 기존 주제의 topic-only 직접 통합, 공식 URL 실패 잔존, 통합 순서 역전은 실패로 처리한다.
+`sync:production-queue-publication`은 current 표지와 append-only item registry를 각각 원자적으로 갱신한 뒤 전체 대기열을 검사한다. `predev`와 `prebuild`도 생산 대기열을 먼저 검증한다. 등록된 항목 삭제, 레지스트리 영수증 변조, `merged_pending_publication` 주제·파일의 중복 점유, 대기열에 없는 의존 PR, 중복 topic 식별자, 역할별 동시 진행량 초과, 기존 주제의 topic-only 직접 통합, 실제 이관 커밋이 아닌 완료 증거, 공식 URL 실패 잔존, 통합 순서 역전은 실패로 처리한다.
 
 ## 10. 보고 규칙
 

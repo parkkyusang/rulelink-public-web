@@ -30,7 +30,7 @@
     "audit:semantic-overlap": "node scripts/audit-publication-semantic-overlap.mjs",
     "validate:publication-topic-queue": "node scripts/audit-publication-topic-queue.mjs",
     "validate:publication-quality-debt": "node scripts/audit-publication-topic-quality-debt.mjs",
-    "sync:production-queue-publication": "node scripts/validate-publication-production-queue.mjs --write-current-publication"
+    "sync:production-queue-publication": "node scripts/validate-publication-production-queue.mjs --write-item-registry --write-current-publication"
   },
   "dependencies": {
     "@floating-ui/react": "0.27.20",
