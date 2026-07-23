@@ -40,5 +40,14 @@
       },
       "expected_terms": ["3.3%", "사업자등록"]
     }
-  ]
+  ],
+  "stale_policy_receipt": {
+    "next_policy_version": "1.0.1",
+    "added_term": {
+      "term_ko": "테스트용 독립 법률개념",
+      "policy_kind": "protected_canonical_identity",
+      "meaning_domain": "검증",
+      "reason_ko": "정책 내용이 바뀌면 영수증도 반드시 다시 계산되어야 합니다."
+    }
+  }
 }

@@ -1,17 +1,31 @@
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
+import {pathToFileURL} from 'node:url';
 
-import {validateConceptTermRelations} from '../src/lib/concept-terms.ts';
+import {
+  conceptIdentityPolicyRegistry,
+  validateConceptTermRelations,
+} from '../src/lib/concept-terms.ts';
 import {
   auditLegacyConceptDebt,
   legacyConceptValidationOptions,
+  validateConceptIdentityPolicyReceipt,
 } from './concept-identity-governance.mjs';
 
-const bundlePath = process.argv[2]
-  ? path.resolve(process.argv[2])
-  : path.resolve(process.cwd(), '..', '..', 'artifacts', 'publication', 'current', 'bundle.json');
+export async function validatePublicationConceptIdentity({
+  bundlePath = path.resolve(
+    process.cwd(),
+    '..',
+    '..',
+    'artifacts',
+    'publication',
+    'current',
+    'bundle.json',
+  ),
+  policyRegistry = conceptIdentityPolicyRegistry,
+} = {}) {
+  validateConceptIdentityPolicyReceipt(policyRegistry);
 
-try {
   const bundle = JSON.parse(await readFile(bundlePath, 'utf8'));
   const concepts = bundle.knowledge?.concept_cards ?? [];
   const sources = bundle.knowledge?.sources ?? [];
@@ -28,7 +42,16 @@ try {
     console.log(`legacy concept debt 확인: ${debt.concept_id} / ${debt.code} / ${debt.term}`);
   }
   console.log(`법률개념 정체성 감사 통과: ${bundle.snapshot_id}, ${concepts.length}개 개념`);
-} catch (error) {
-  console.error(`법률개념 정체성 감사 실패: ${error instanceof Error ? error.message : String(error)}`);
-  process.exitCode = 1;
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const bundlePath = process.argv[2]
+    ? path.resolve(process.argv[2])
+    : undefined;
+  try {
+    await validatePublicationConceptIdentity({bundlePath});
+  } catch (error) {
+    console.error(`법률개념 정체성 감사 실패: ${error instanceof Error ? error.message : String(error)}`);
+    process.exitCode = 1;
+  }
 }

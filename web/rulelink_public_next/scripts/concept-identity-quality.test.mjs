@@ -1,5 +1,4 @@
 import assert from 'node:assert/strict';
-import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
@@ -7,14 +6,18 @@ import test from 'node:test';
 import {
   auditConceptIdentityPolicyRegistry,
   auditConceptTermRelations,
-  conceptIdentityPolicyReceiptInput,
   conceptIdentityPolicyRegistry,
   validateConceptTermRelations,
 } from '../src/lib/concept-terms.ts';
 import {
   auditLegacyConceptDebt,
+  conceptIdentityPolicyReceipt,
   legacyConceptValidationOptions,
+  validateConceptIdentityPolicyReceipt,
 } from './concept-identity-governance.mjs';
+import {
+  validatePublicationConceptIdentity,
+} from './validate-publication-concept-identity.mjs';
 
 const root = process.cwd();
 const fixture = JSON.parse(await read('scripts/fixtures/concept-identity-quality.json'));
@@ -24,9 +27,7 @@ const currentBundle = JSON.parse(await read('../../artifacts/publication/current
 test('개념 정체성 편집 정책은 버전형 레지스트리와 결정론적 영수증으로 고정한다', () => {
   assert.deepEqual(auditConceptIdentityPolicyRegistry(conceptIdentityPolicyRegistry), []);
   assert.equal(
-    createHash('sha256')
-      .update(conceptIdentityPolicyReceiptInput(conceptIdentityPolicyRegistry))
-      .digest('hex'),
+    conceptIdentityPolicyReceipt(conceptIdentityPolicyRegistry),
     conceptIdentityPolicyRegistry.policy_receipt,
   );
   assert.ok(conceptIdentityPolicyRegistry.terms.every(item => (
@@ -42,6 +43,32 @@ test('개념 정체성 편집 정책은 버전형 레지스트리와 결정론�
     auditConceptIdentityPolicyRegistry(duplicate).join('\n'),
     /정규화 기준으로 중복/,
   );
+});
+
+test('정책 내용이나 버전이 바뀌고 영수증이 그대로면 명령 검증 경로가 실패한다', async () => {
+  const staleVersion = structuredClone(conceptIdentityPolicyRegistry);
+  staleVersion.policy_version = fixture.stale_policy_receipt.next_policy_version;
+
+  const staleTerms = structuredClone(conceptIdentityPolicyRegistry);
+  staleTerms.terms.push(fixture.stale_policy_receipt.added_term);
+
+  for (const staleRegistry of [staleVersion, staleTerms]) {
+    assert.notEqual(
+      conceptIdentityPolicyReceipt(staleRegistry),
+      staleRegistry.policy_receipt,
+    );
+    assert.throws(
+      () => validateConceptIdentityPolicyReceipt(staleRegistry),
+      /정책 영수증이 실제 정책 내용과 다릅니다/,
+    );
+    await assert.rejects(
+      validatePublicationConceptIdentity({
+        bundlePath: path.join(root, '../../artifacts/publication/current/bundle.json'),
+        policyRegistry: staleRegistry,
+      }),
+      /정책 영수증이 실제 정책 내용과 다릅니다/,
+    );
+  }
 });
 
 test('상속인·법정상속인·공동상속인·피상속인은 네 canonical concept 정체성으로 검증한다', () => {

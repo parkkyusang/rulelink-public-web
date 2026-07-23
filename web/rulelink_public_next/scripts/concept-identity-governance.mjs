@@ -1,7 +1,11 @@
 import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
 
-import {auditConceptTermRelations} from '../src/lib/concept-terms.ts';
+import {
+  auditConceptIdentityPolicyRegistry,
+  auditConceptTermRelations,
+  conceptIdentityPolicyReceiptInput,
+} from '../src/lib/concept-terms.ts';
 
 const baseline = JSON.parse(await readFile(
   new URL('../src/lib/publication-concept-identity-debt-baseline.json', import.meta.url),
@@ -61,6 +65,26 @@ export function auditLegacyConceptDebt(concepts, sources, snapshotId = '') {
 
 export function conceptReceipt(value) {
   return createHash('sha256').update(canonicalJson(value)).digest('hex');
+}
+
+export function conceptIdentityPolicyReceipt(registry) {
+  return createHash('sha256')
+    .update(conceptIdentityPolicyReceiptInput(registry))
+    .digest('hex');
+}
+
+export function validateConceptIdentityPolicyReceipt(registry) {
+  const errors = auditConceptIdentityPolicyRegistry(registry);
+  if (errors.length) throw new Error(errors.join('\n'));
+
+  const actualReceipt = conceptIdentityPolicyReceipt(registry);
+  if (actualReceipt !== registry.policy_receipt) {
+    throw new Error(
+      `개념 정체성 정책 영수증이 실제 정책 내용과 다릅니다: `
+      + `저장값 ${registry.policy_receipt}, 계산값 ${actualReceipt}`,
+    );
+  }
+  return actualReceipt;
 }
 
 export function conceptIdentityDebtBaseline() {
