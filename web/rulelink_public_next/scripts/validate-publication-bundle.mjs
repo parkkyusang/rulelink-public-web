@@ -4,6 +4,7 @@ import path from 'node:path';
 
 import {samePublicRuleCopy} from '../src/lib/public-rule-presentation.ts';
 import {projectKnowledgeEntryCompatibility} from '../src/lib/knowledge-relations.ts';
+import {validateConceptTermRelations} from '../src/lib/concept-terms.ts';
 
 const bundlePath = process.env.RULELINK_WEB_BUNDLE_PATH
   ? path.resolve(process.env.RULELINK_WEB_BUNDLE_PATH)
@@ -319,6 +320,12 @@ function validateKnowledge(value, now, fileHashes, errors) {
     for (const requiredRole of ['plain_definition', 'legal_definition']) {
       if (!roles.has(requiredRole)) errors.push(`${conceptName}에 ${requiredRole} 주장이 없습니다.`);
     }
+  }
+
+  try {
+    validateConceptTermRelations(concepts.filter(isRecord), sources.filter(isRecord));
+  } catch (error) {
+    errors.push(`법률개념 대표 용어·별칭 계약이 올바르지 않습니다: ${error instanceof Error ? error.message : String(error)}`);
   }
 }
 

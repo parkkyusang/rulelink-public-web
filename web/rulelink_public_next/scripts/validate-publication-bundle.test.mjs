@@ -138,6 +138,22 @@ test('타입 관계와 concierge_entry 역할의 기존 필드 투영 결과를 
   assert.equal(result.status, 0, result.stderr);
 });
 
+test('공개 번들도 서로 다른 개념의 대표 용어와 별칭 충돌을 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  const concept = addConcept(bundle);
+  const conflicting = structuredClone(concept);
+  conflicting.concept_id = 'concept.two';
+  conflicting.slug = 'concept-two';
+  conflicting.preferred_term_ko = '다른 검증개념';
+  conflicting.aliases_ko = ['개념별칭'];
+  bundle.knowledge.concept_cards.push(conflicting);
+  refreshConceptReceipts(bundle);
+
+  const result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /대표 용어·별칭이 여러 개념에 중복되었습니다/);
+});
+
 test('공개 번들의 concierge_entry는 렌더링할 결정사실을 실제 필드로 가져야 한다', async () => {
   for (const decisionFacts of [undefined, []]) {
     const bundle = knowledgeBundle();
