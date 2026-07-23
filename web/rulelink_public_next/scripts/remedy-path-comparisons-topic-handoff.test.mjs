@@ -15,12 +15,16 @@ async function readJson(filePath) {
 }
 
 async function allTopicContentIds() {
-  const ids = new Set();
+  return new Set((await allTopicEntries()).map((entry) => entry.content_id));
+}
+
+async function allTopicEntries() {
+  const entries = [];
   for (const file of (await readdir(topicDirectory)).filter((item) => item.endsWith('.json') && item !== 'manifest.json')) {
     const topic = await readJson(path.join(topicDirectory, file));
-    for (const entry of topic.content_entries ?? []) ids.add(entry.content_id);
+    entries.push(...(topic.content_entries ?? []));
   }
-  return ids;
+  return entries;
 }
 
 function stableStatuteUrl(source) {
@@ -76,6 +80,109 @@ test('구제절차 비교축은 관련 기존 상세 정본을 충분히 연결�
   const local = new Set(topic.content_entries.map((item) => item.content_id));
   const externalLinks = topic.content_entries.flatMap((entry) => entry.related_content_ids).filter((id) => !local.has(id));
   assert.ok(new Set(externalLinks).size >= 8);
+});
+
+test('빈 관계였던 약식명령·민사불복 두 글은 이유와 다음 행동이 있는 비순환 타입 경로를 가진다', async () => {
+  const topic = await readJson(handoffPath);
+  const allEntries = await allTopicEntries();
+  const allContentIds = new Set(allEntries.map((entry) => entry.content_id));
+  const byId = new Map(topic.content_entries.map((entry) => [entry.content_id, entry]));
+  const allowedRelations = new Set(['deadline', 'procedure', 'remedy', 'comparison']);
+  const expectedEdges = new Map([
+    ['content.summary-order-vs-formal-trial', [
+      {
+        target_kind: 'content',
+        target_id: 'content.summary-order-formal-trial-vs-criminal-appeal-deadline',
+        relation_type: 'deadline',
+        label_ko: '법원 고지일부터 7일 안에 어떤 불복서류를 낼지 확인합니다.',
+      },
+    ]],
+    ['content.civil-appeal-vs-supreme-appeal', [
+      {
+        target_kind: 'content',
+        target_id: 'content.civil-small-claims-costs-appeal',
+        relation_type: 'deadline',
+        label_ko: '판결문 송달일부터 2주인 항소기간과 비용·가집행 위험을 먼저 확인합니다.',
+      },
+      {
+        target_kind: 'content',
+        target_id: 'content.payment-order-objection-vs-civil-appeal-deadline',
+        relation_type: 'comparison',
+        label_ko: '받은 문서가 지급명령인지 제1심 판결인지 구분해 2주 불복 방식을 선택합니다.',
+      },
+    ]],
+  ]);
+
+  for (const [contentId, expected] of expectedEdges) {
+    const entry = byId.get(contentId);
+    assert.deepEqual(entry.related_edges, expected);
+    assert.deepEqual(
+      entry.related_content_ids,
+      expected.filter((edge) => edge.target_kind === 'content').map((edge) => edge.target_id),
+    );
+    const edgeKeys = new Set();
+    for (const edge of entry.related_edges) {
+      assert.ok(allowedRelations.has(edge.relation_type));
+      assert.ok(allContentIds.has(edge.target_id), `존재하지 않는 관련 콘텐츠입니다: ${edge.target_id}`);
+      assert.notEqual(edge.target_id, contentId);
+      assert.match(edge.label_ko, /(확인|선택)합니다\.$/u);
+      const edgeKey = `${edge.target_kind}:${edge.target_id}:${edge.relation_type}`;
+      assert.ok(!edgeKeys.has(edgeKey), `중복 관계입니다: ${edgeKey}`);
+      edgeKeys.add(edgeKey);
+    }
+  }
+
+  const typedAdjacency = new Map(allEntries.map((entry) => [
+    entry.content_id,
+    (entry.related_edges ?? [])
+      .filter((edge) => edge.target_kind === 'content')
+      .map((edge) => edge.target_id),
+  ]));
+  const visiting = new Set();
+  const visited = new Set();
+  const visit = (contentId) => {
+    if (visiting.has(contentId)) return false;
+    if (visited.has(contentId)) return true;
+    visiting.add(contentId);
+    for (const targetId of typedAdjacency.get(contentId) ?? []) {
+      if (!visit(targetId)) return false;
+    }
+    visiting.delete(contentId);
+    visited.add(contentId);
+    return true;
+  };
+  for (const contentId of typedAdjacency.keys()) {
+    assert.ok(visit(contentId), `타입 관련 콘텐츠 경로에 순환이 있습니다: ${contentId}`);
+  }
+});
+
+test('관계 백필은 대상 두 글의 법리·분기·근거·대상 상황·검토시점과 CTA 경계를 바꾸지 않는다', async () => {
+  const topic = await readJson(handoffPath);
+  const byId = new Map(topic.content_entries.map((entry) => [entry.content_id, entry]));
+  const summaryOrder = byId.get('content.summary-order-vs-formal-trial');
+  assert.equal(summaryOrder.reviewed_at, '2026-07-21T14:20:00+00:00');
+  assert.equal(summaryOrder.audience_situation_ko, '법원에서 벌금 약식명령을 받고 사실이나 양형을 다투려는 경우');
+  assert.deepEqual(summaryOrder.rule_ids, ['rule.remedy-path-comparisons.08']);
+  assert.deepEqual(summaryOrder.scenario_ids, ['scenario.remedy-path-comparisons.08']);
+  assert.deepEqual(summaryOrder.source_coordinate_ids, [
+    'coord.remedy-path-comparisons.criminal-procedure-ko-0448',
+    'coord.remedy-path-comparisons.criminal-procedure-ko-0453',
+  ]);
+
+  const civilAppeal = byId.get('content.civil-appeal-vs-supreme-appeal');
+  assert.equal(civilAppeal.reviewed_at, '2026-07-21T14:20:00+00:00');
+  assert.equal(civilAppeal.audience_situation_ko, '민사판결 결과에 불복해 다음 심급을 검토하는 경우');
+  assert.deepEqual(civilAppeal.rule_ids, ['rule.remedy-path-comparisons.09']);
+  assert.deepEqual(civilAppeal.scenario_ids, ['scenario.remedy-path-comparisons.09']);
+  assert.deepEqual(civilAppeal.source_coordinate_ids, [
+    'coord.remedy-path-comparisons.civil-procedure-ko-0390',
+    'coord.remedy-path-comparisons.civil-procedure-ko-0423',
+  ]);
+
+  for (const entry of [summaryOrder, civilAppeal]) {
+    assert.ok(!Object.hasOwn(entry, 'product_roles'));
+    assert.ok(!Object.hasOwn(entry, 'lawyer_workspace_entry'));
+  }
 });
 
 test('제소·정지·불복·중복보상의 핵심 선택 기준을 회귀검사로 고정한다', async () => {
