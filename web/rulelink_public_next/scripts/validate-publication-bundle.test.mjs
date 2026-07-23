@@ -17,6 +17,16 @@ const currentBundlePath = path.resolve(
   'current',
   'bundle.json',
 );
+const legacySnapshot022Path = path.resolve(
+  process.cwd(),
+  '..',
+  '..',
+  'artifacts',
+  'publication',
+  'snapshots',
+  'kr-knowledge-core-20260723-022',
+  'bundle.json',
+);
 
 test('최소 승인 출판본을 허용한다', async () => {
   const result = await validate(baseBundle());
@@ -192,8 +202,8 @@ test('대상 개념 밖의 사업자등록 제도 별칭은 공개 번들 직접
 });
 
 test('snapshot 022 legacy 예외는 공개 번들 직접 검증에서도 code와 term이 모두 같아야 한다', async () => {
-  const current = JSON.parse(await readFile(currentBundlePath, 'utf8'));
-  const valid = await validate(current, {now: '2026-07-23T12:00:00+09:00'});
+  const current = JSON.parse(await readFile(legacySnapshot022Path, 'utf8'));
+  const valid = await validate(current, {now: '2026-07-23T23:59:59+09:00'});
   assert.equal(valid.status, 0, valid.stderr);
 
   const concept = current.knowledge.concept_cards.find(
@@ -201,7 +211,7 @@ test('snapshot 022 legacy 예외는 공개 번들 직접 검증에서도 code와
   );
   concept.aliases_ko = ['법정상속인', '피상속인'];
   refreshConceptReceipts(current);
-  const invalid = await validate(current, {now: '2026-07-23T12:00:00+09:00'});
+  const invalid = await validate(current, {now: '2026-07-23T23:59:59+09:00'});
   assert.notEqual(invalid.status, 0);
   assert.match(invalid.stderr, /피상속인/);
 });

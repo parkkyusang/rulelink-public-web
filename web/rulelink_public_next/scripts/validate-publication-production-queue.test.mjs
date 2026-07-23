@@ -36,6 +36,13 @@ const [queue, registry, bundle, workflow] = await Promise.all([
 const publicationEvidence = await loadQueuePublicationEvidence(queue, bundle, {itemRegistry: registry});
 const testMigrationCommitSha = 'a'.repeat(40);
 const execFileAsync = promisify(execFile);
+const publicationCompletionFields = [
+  'integrated_snapshot_id',
+  'migration_commit_sha',
+  'absorbed_head_sha',
+  'topic_receipt',
+  'integration_mode',
+];
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -83,15 +90,18 @@ function migrationEvidence(value, overrides = {}) {
 
 function completedPublicationEvidence(value, overrides = {}) {
   const item = value.items.find(entry => entry.pr_number === 166);
+  const migrationCommits = new Map(publicationEvidence.migrationCommits ?? []);
+  migrationCommits.set(item.migration_commit_sha, migrationEvidence(value, overrides));
   return {
     ...publicationEvidence,
-    migrationCommits: new Map([[item.migration_commit_sha, migrationEvidence(value, overrides)]]),
+    migrationCommits,
   };
 }
 
 function completeExistingRevision(status = 'integrated', integrationMode = 'exact') {
   const value = clone(queue);
   const item = value.items.find(entry => entry.pr_number === 166);
+  clearPublicationCompletion(item);
   item.status = status;
   item.integration_order = null;
   item.integrated_snapshot_id = bundle.snapshot_id;
@@ -102,17 +112,17 @@ function completeExistingRevision(status = 'integrated', integrationMode = 'exac
   return refreshSummary(value);
 }
 
-test('현재 생산 대기열은 022 공개 정본·역할·의존성 계약을 만족한다', () => {
+function clearPublicationCompletion(item) {
+  for (const field of publicationCompletionFields) delete item[field];
+  delete item.terminal_reason_ko;
+  item.integration_order = null;
+}
+
+test('현재 생산 대기열은 실제 current 공개 정본·역할·의존성 계약을 만족한다', () => {
   assert.deepEqual(validateProductionQueue(queue, {publishedBundle: bundle, ...publicationEvidence}), []);
   assert.deepEqual(compareQueueCurrentPublication(queue, bundle), []);
-  assert.deepEqual(deriveCurrentPublication(bundle), {
-    snapshot_id: 'kr-knowledge-core-20260723-022',
-    topic_hubs: 26,
-    content_entries: 264,
-    rule_cards: 258,
-    scenario_branches: 227,
-    sources: 389,
-  });
+  const {live_parity: _liveParity, ...queuePublication} = queue.current_publication;
+  assert.deepEqual(deriveCurrentPublication(bundle), queuePublication);
   assert.equal(queue.current_publication.live_parity, 'verified');
   assert.equal(queue.audit_summary.open_content_prs, queue.items.filter(item => ['pr_open', 'ready_for_integration', 'needs_rework', 'migration_required', 'blocked'].includes(item.status)).length);
   for (const status of ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated', 'superseded', 'withdrawn']) {
@@ -266,18 +276,20 @@ test('registry 이력은 unrelated HEAD를 건너뛰고 실제 직전 다른 blo
   }
 });
 
-test('학교폭력 #153은 main 병합 후 공개 승격 대기 상태로 고정한다', () => {
+test('학교폭력 #153 상태는 current 공개 여부와 일치한다', () => {
   assert.equal(queue.items.some(item => item.pr_number === 103), false);
   const item = queue.items.find(value => value.pr_number === 153);
   assert.ok(item);
-  assert.equal(item.status, 'merged_pending_publication');
   assert.equal(item.head_sha, 'f78d4002ef9e223156dc92425c8d047bb82a5604');
   assert.deepEqual(item.supersedes_prs, [103]);
   assert.equal(item.source_freshness.status, 'current');
   assert.equal(item.integration_order, null);
   assert.deepEqual(item.integrate_requires, ['current_bundle', 'new_immutable_snapshot', 'migrate_publication']);
   const publishedHubIds = new Set((bundle.knowledge?.topic_hubs || bundle.topic_hubs).map(hub => hub.hub_id));
-  assert.equal(publishedHubIds.has('hub.school-violence'), false);
+  assert.equal(
+    item.status,
+    publishedHubIds.has('hub.school-violence') ? 'integrated' : 'merged_pending_publication',
+  );
 });
 
 test('역할 정본은 허용 역할과 실제 runtime 지식 시험 경계를 고정한다', () => {
@@ -305,19 +317,26 @@ test('역할 정본은 허용 역할과 실제 runtime 지식 시험 경계를 �
 });
 
 test('역할별 WIP 1과 같은 topic_file의 활성 중복 소유를 차단한다', () => {
+  const activeItems = queue.items.filter(item => (
+    ['pr_open', 'ready_for_integration', 'needs_rework', 'migration_required', 'blocked'].includes(item.status)
+  ));
+  assert.ok(activeItems.length >= 2, '활성 항목 회귀시험에 사용할 대기열 항목이 부족합니다.');
+
   const wip = clone(queue);
-  wip.items.find(item => item.pr_number === 87).status = 'in_progress';
-  wip.items.find(item => item.pr_number === 105).status = 'in_progress';
+  const sameOwner = activeItems.filter(item => item.owner_role === activeItems[0].owner_role);
+  assert.ok(sameOwner.length >= 2, '같은 역할의 WIP 회귀시험 항목이 부족합니다.');
+  wip.items.find(item => item.queue_id === sameOwner[0].queue_id).status = 'in_progress';
+  wip.items.find(item => item.queue_id === sameOwner[1].queue_id).status = 'in_progress';
   assert.ok(validateProductionQueue(wip).some(error => error.includes('동시 진행 항목 2개')));
 
   const duplicate = clone(queue);
-  duplicate.items.find(item => item.pr_number === 87).topic_file =
-    duplicate.items.find(item => item.pr_number === 105).topic_file;
+  duplicate.items.find(item => item.queue_id === activeItems[0].queue_id).topic_file =
+    duplicate.items.find(item => item.queue_id === activeItems[1].queue_id).topic_file;
   assert.ok(validateProductionQueue(duplicate).some(error => error.includes('활성 topic_file 중복')));
 
   const pendingClaim = clone(queue);
-  const pending = pendingClaim.items.find(item => item.pr_number === 153);
-  const competing = pendingClaim.items.find(item => item.pr_number === 169);
+  const pending = pendingClaim.items.find(item => item.queue_id === activeItems[0].queue_id);
+  const competing = pendingClaim.items.find(item => item.queue_id === activeItems[1].queue_id);
   competing.topic_id = pending.topic_id;
   competing.topic_file = pending.topic_file;
   assert.ok(validateProductionQueue(pendingClaim).some(error => error.includes('활성 topic_id 중복')));
@@ -359,7 +378,7 @@ test('공개 표지 갱신은 live_parity를 보존하고 입력 객체를 변�
   const before = clone(input);
   const updated = updateQueueCurrentPublication(input, bundle);
   assert.deepEqual(input, before);
-  assert.equal(updated.current_publication.snapshot_id, 'kr-knowledge-core-20260723-022');
+  assert.equal(updated.current_publication.snapshot_id, bundle.snapshot_id);
   assert.equal(updated.current_publication.live_parity, 'verified');
 });
 
@@ -371,7 +390,7 @@ test('원자적 동기화는 전체 검증 성공 뒤에만 파일을 교체한�
     stale.current_publication.snapshot_id = 'stale';
     await writeFile(target, JSON.stringify(stale, null, 2) + '\n', 'utf8');
     const result = await synchronizeCurrentPublicationFile(target, bundle);
-    assert.equal(result.current_publication.snapshot_id, 'kr-knowledge-core-20260723-022');
+    assert.equal(result.current_publication.snapshot_id, bundle.snapshot_id);
     assert.deepEqual(JSON.parse(await readFile(target, 'utf8')), result);
   } finally {
     await rm(directory, {recursive: true, force: true});
@@ -428,28 +447,43 @@ test('integrated는 current 존재를, merged_pending_publication은 current 부
   missingIntegrated.items.find(item => item.pr_number === 142).topic_id = 'hub.not-published';
   assert.ok(validateProductionQueue(missingIntegrated, {publishedBundle: bundle}).some(error => error.includes('integrated 주제가 current bundle에 없습니다')));
 
-  const prematurePublished = clone(bundle);
-  const hubs = prematurePublished.knowledge?.topic_hubs || prematurePublished.topic_hubs;
-  hubs.push({hub_id: 'hub.school-violence'});
-  assert.ok(validateProductionQueue(queue, {publishedBundle: prematurePublished}).some(error => error.includes('integrated로 전환해야 합니다')));
+  const staleQueue = clone(queue);
+  const publishedNewTopic = staleQueue.items.find(item => (
+    item.change_mode === 'new_topic'
+    && item.status === 'integrated'
+    && bundle.knowledge.topic_hubs.some(hub => hub.hub_id === item.topic_id)
+  ));
+  assert.ok(publishedNewTopic);
+  publishedNewTopic.status = 'merged_pending_publication';
+  refreshSummary(staleQueue);
+  assert.ok(validateProductionQueue(staleQueue, {publishedBundle: bundle}).some(error => error.includes('integrated로 전환해야 합니다')));
 });
 
 test('기존 정본 백필 #166은 직접 병합이 아닌 publication migration으로만 등록한다', () => {
   const item = queue.items.find(value => value.pr_number === 166);
   assert.ok(item);
-  assert.equal(item.status, 'migration_required');
+  assert.ok(['migration_required', 'integrated', 'superseded'].includes(item.status));
   assert.equal(item.owner_role, 'content_production');
   assert.equal(item.change_mode, 'existing_topic_revision');
   assert.equal(item.direct_merge, false);
   assert.deepEqual(item.integrate_requires, ['current_bundle', 'new_immutable_snapshot', 'migrate_publication']);
   assert.equal(item.head_sha, '237bff8a1a8c58ad3961f215236bc3f3df0d3197');
+  if (['integrated', 'superseded'].includes(item.status)) {
+    assert.equal(item.integrated_snapshot_id, bundle.snapshot_id);
+    assert.equal(item.absorbed_head_sha, item.head_sha);
+    assert.equal(item.topic_receipt, publicationEvidence.topicReceipts.get(item.topic_file));
+  }
 
   const invalid = clone(queue);
-  invalid.items.find(value => value.pr_number === 166).direct_merge = true;
+  const invalidItem = invalid.items.find(value => value.pr_number === 166);
+  clearPublicationCompletion(invalidItem);
+  invalidItem.status = 'migration_required';
+  invalidItem.direct_merge = true;
+  refreshSummary(invalid);
   assert.ok(validateProductionQueue(invalid).some(error => error.includes('direct_merge=false')));
 });
 
-test('#169와 #171도 기존 정본 직접 병합 없이 같은 publication migration 게이트를 사용한다', () => {
+test('#169와 #171도 기존 정본 직접 병합 없이 publication migration lifecycle을 사용한다', () => {
   const expected = [
     {
       pr: 169,
@@ -467,13 +501,18 @@ test('#169와 #171도 기존 정본 직접 병합 없이 같은 publication migr
   for (const fixture of expected) {
     const item = queue.items.find(entry => entry.pr_number === fixture.pr);
     assert.ok(item);
-    assert.equal(item.status, 'migration_required');
+    assert.ok(['migration_required', 'integrated', 'superseded'].includes(item.status));
     assert.equal(item.change_mode, 'existing_topic_revision');
     assert.equal(item.direct_merge, false);
     assert.equal(item.head_sha, fixture.head);
     assert.equal(item.topic_id, fixture.topic);
     assert.equal(item.test_file, fixture.testFile);
     assert.deepEqual(item.integrate_requires, ['current_bundle', 'new_immutable_snapshot', 'migrate_publication']);
+    if (['integrated', 'superseded'].includes(item.status)) {
+      assert.equal(item.integrated_snapshot_id, bundle.snapshot_id);
+      assert.equal(item.absorbed_head_sha, item.head_sha);
+      assert.equal(item.topic_receipt, publicationEvidence.topicReceipts.get(item.topic_file));
+    }
   }
   assert.deepEqual(queue.items.find(entry => entry.pr_number === 169).platform_prerequisite_prs, [168]);
 });
@@ -508,7 +547,11 @@ test('#105 정체성을 보존한 종료 이력과 #174 신규 대체 항목을 
   });
 
   assert.equal(replacement.queue_id, 'publication-pr-174');
-  assert.equal(replacement.status, 'ready_for_integration');
+  const publishedHubIds = new Set((bundle.knowledge?.topic_hubs || bundle.topic_hubs).map(hub => hub.hub_id));
+  assert.equal(
+    replacement.status,
+    publishedHubIds.has(replacement.topic_id) ? 'integrated' : 'ready_for_integration',
+  );
   assert.equal(replacement.change_mode, 'new_topic');
   assert.equal(replacement.head_sha, 'b8644f515388315143b6dbe1fdbdf742a6454c6e');
   assert.equal(replacement.topic_id, original.topic_id);
@@ -562,6 +605,7 @@ test('기존 주제 개정 lifecycle은 개발·감사·완료 상태를 허용�
   for (const status of ['planned', 'claimed', 'in_progress', 'pr_open', 'needs_rework', 'blocked', 'migration_required']) {
     const value = clone(queue);
     const item = value.items.find(entry => entry.pr_number === 166);
+    clearPublicationCompletion(item);
     item.status = status;
     if (['needs_rework', 'blocked'].includes(status)) item.blocking_reason_ko = '회귀시험용 차단 사유';
     refreshSummary(value);
@@ -575,6 +619,7 @@ test('기존 주제 개정 lifecycle은 개발·감사·완료 상태를 허용�
   for (const status of ['ready_for_integration', 'merged_pending_publication']) {
     const value = clone(queue);
     const item = value.items.find(entry => entry.pr_number === 166);
+    clearPublicationCompletion(item);
     item.status = status;
     if (status === 'ready_for_integration') item.integration_order = 1;
     refreshSummary(value);
@@ -583,10 +628,14 @@ test('기존 주제 개정 lifecycle은 개발·감사·완료 상태를 허용�
 
   const withdrawn = clone(queue);
   const item = withdrawn.items.find(entry => entry.pr_number === 166);
+  clearPublicationCompletion(item);
   item.status = 'withdrawn';
   item.terminal_reason_ko = '생산자가 개정을 철회했습니다.';
   refreshSummary(withdrawn);
-  assert.deepEqual(validateProductionQueue(withdrawn), []);
+  assert.deepEqual(validateProductionQueue(
+    withdrawn,
+    {publishedBundle: bundle, ...publicationEvidence},
+  ), []);
 });
 
 test('기존 주제 개정 terminal 상태는 출판 snapshot·migration·PR head·topic receipt 증거를 모두 요구한다', () => {
@@ -854,7 +903,7 @@ test('실제 Git의 데이터 커밋→queue 증거 커밋만 통과하고 이�
 test('기존 주제 개정의 integrated 증거는 current와 immutable snapshot의 동일 합성을 요구한다', () => {
   const value = completeExistingRevision();
   const wrongSnapshotId = completeExistingRevision();
-  wrongSnapshotId.items.find(entry => entry.pr_number === 166).integrated_snapshot_id = 'kr-knowledge-core-20260723-023';
+  wrongSnapshotId.items.find(entry => entry.pr_number === 166).integrated_snapshot_id = `${bundle.snapshot_id}-wrong`;
   assert.ok(validateProductionQueue(
     wrongSnapshotId,
     {publishedBundle: bundle, ...completedPublicationEvidence(wrongSnapshotId)},

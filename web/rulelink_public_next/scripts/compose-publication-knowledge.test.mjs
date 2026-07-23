@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {spawn} from 'node:child_process';
-import {mkdtemp, readFile, readdir, rm, writeFile} from 'node:fs/promises';
+import {mkdir, mkdtemp, readFile, readdir, rm, writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
@@ -23,6 +23,17 @@ const currentBundlePath = path.resolve(
   'bundle.json',
 );
 const currentBundle = JSON.parse(await readFile(currentBundlePath, 'utf8'));
+const legacySnapshot022Path = path.resolve(
+  process.cwd(),
+  '..',
+  '..',
+  'artifacts',
+  'publication',
+  'snapshots',
+  'kr-knowledge-core-20260723-022',
+  'bundle.json',
+);
+const legacySnapshot022 = JSON.parse(await readFile(legacySnapshot022Path, 'utf8'));
 
 function descriptor(topicId, file) { return {topic_id: topicId, file}; }
 
@@ -48,25 +59,23 @@ function manifest(topics, contentEntryOrder = null) {
   };
 }
 
-test('레거시 개념 정체성 예외는 명시적인 snapshot 022 합성에만 적용한다', async () => {
-  await assert.rejects(
-    () => loadComposition(),
-    /별도 canonical concept 정체성/,
-  );
-  await assert.doesNotReject(
-    () => loadComposition(undefined, {snapshotId: 'kr-knowledge-core-20260723-022'}),
-  );
-  await assert.rejects(
-    () => loadComposition(undefined, {snapshotId: 'kr-knowledge-core-20260724-023'}),
-    /별도 canonical concept 정체성/,
-  );
-});
+test('현재 원본은 strict 개념 정체성을 통과하고 레거시 예외는 snapshot 022 자료에만 적용한다', async () => {
+  await assert.doesNotReject(() => loadComposition(undefined, {snapshotId: currentBundle.snapshot_id}));
+  const currentUsesLegacyDebt = currentBundle.knowledge.concept_cards.some(concept => (
+    concept.concept_id === 'concept.kr.inheritance.legal_heir'
+    && concept.aliases_ko.includes('법정상속인')
+    && concept.aliases_ko.includes('공동상속인')
+  ));
+  if (currentUsesLegacyDebt) {
+    await assert.rejects(() => loadComposition(), /별도 canonical concept 정체성/);
+  } else {
+    await assert.doesNotReject(() => loadComposition());
+  }
 
-test('snapshot 022 legacy 예외는 같은 오류 코드의 다른 용어를 조립기 직접 호출에서도 허용하지 않는다', () => {
   const descriptorValue = descriptor('hub.first', 'first.json');
   const conceptDescriptor = {concept_group_id: 'concept-group.legacy', file: 'legacy.json'};
   const legacyConcept = structuredClone(
-    currentBundle.knowledge.concept_cards.find(
+    legacySnapshot022.knowledge.concept_cards.find(
       concept => concept.concept_id === 'concept.kr.inheritance.legal_heir',
     ),
   );
@@ -85,7 +94,46 @@ test('snapshot 022 legacy 예외는 같은 오류 코드의 다른 용어를 조
     manifestValue,
     [topic('hub.first', 'first')],
     [group],
-    {snapshotId: currentBundle.snapshot_id},
+    {snapshotId: legacySnapshot022.snapshot_id},
+  ));
+  const strictSnapshotId = currentBundle.snapshot_id === legacySnapshot022.snapshot_id
+    ? 'kr-knowledge-core-strict-concept-test'
+    : currentBundle.snapshot_id;
+  assert.throws(
+    () => assembleKnowledge(
+      manifestValue,
+      [topic('hub.first', 'first')],
+      [group],
+      {snapshotId: strictSnapshotId},
+    ),
+    /별도 canonical concept 정체성/,
+  );
+});
+
+test('snapshot 022 legacy 예외는 같은 오류 코드의 다른 용어를 조립기 직접 호출에서도 허용하지 않는다', () => {
+  const descriptorValue = descriptor('hub.first', 'first.json');
+  const conceptDescriptor = {concept_group_id: 'concept-group.legacy', file: 'legacy.json'};
+  const legacyConcept = structuredClone(
+    legacySnapshot022.knowledge.concept_cards.find(
+      concept => concept.concept_id === 'concept.kr.inheritance.legal_heir',
+    ),
+  );
+  const group = {
+    schema: 'rulelink_public_concept_group_v1',
+    concept_group_id: conceptDescriptor.concept_group_id,
+    sources: [],
+    concept_cards: [legacyConcept],
+  };
+  const manifestValue = {
+    ...manifest([descriptorValue]),
+    concepts: [conceptDescriptor],
+  };
+
+  assert.doesNotThrow(() => assembleKnowledge(
+    manifestValue,
+    [topic('hub.first', 'first')],
+    [group],
+    {snapshotId: legacySnapshot022.snapshot_id},
   ));
 
   const wrongTermGroup = structuredClone(group);
@@ -95,29 +143,52 @@ test('snapshot 022 legacy 예외는 같은 오류 코드의 다른 용어를 조
       manifestValue,
       [topic('hub.first', 'first')],
       [wrongTermGroup],
-      {snapshotId: currentBundle.snapshot_id},
+      {snapshotId: legacySnapshot022.snapshot_id},
     ),
     /피상속인/,
   );
 });
 
-test('실제 CLI의 023 strict 실패는 임시 current와 snapshot 경로를 전혀 쓰지 않는다', async () => {
+test('실제 CLI의 strict 실패는 임시 current와 snapshot 경로를 전혀 쓰지 않는다', async () => {
   const directory = await mkdtemp(path.join(tmpdir(), 'rulelink-concept-strict-'));
   const currentPath = path.join(directory, 'current.json');
   const snapshotRoot = path.join(directory, 'snapshots');
+  const topicDirectory = path.join(directory, 'topics');
+  const conceptDirectory = path.join(directory, 'concepts');
+  const manifestPath = path.join(topicDirectory, 'manifest.json');
   const originalCurrent = await readFile(currentBundlePath, 'utf8');
   await writeFile(currentPath, originalCurrent, 'utf8');
+  await mkdir(topicDirectory, {recursive: true});
+  await mkdir(conceptDirectory, {recursive: true});
+  await writeFile(path.join(topicDirectory, 'first.json'), `${JSON.stringify(topic('hub.first', 'first'), null, 2)}\n`, 'utf8');
+  const legacyConcept = structuredClone(
+    legacySnapshot022.knowledge.concept_cards.find(
+      concept => concept.concept_id === 'concept.kr.inheritance.legal_heir',
+    ),
+  );
+  await writeFile(path.join(conceptDirectory, 'legacy.json'), `${JSON.stringify({
+    schema: 'rulelink_public_concept_group_v1',
+    concept_group_id: 'concept-group.legacy',
+    sources: [],
+    concept_cards: [legacyConcept],
+  }, null, 2)}\n`, 'utf8');
+  await writeFile(manifestPath, `${JSON.stringify({
+    ...manifest([descriptor('hub.first', 'first.json')]),
+    concepts: [{concept_group_id: 'concept-group.legacy', file: 'legacy.json'}],
+  }, null, 2)}\n`, 'utf8');
 
   try {
     const result = await runNode([
       path.resolve(process.cwd(), 'scripts', 'compose-publication-knowledge.mjs'),
       '--write',
+      '--manifest',
+      manifestPath,
       '--current',
       currentPath,
       '--snapshot-root',
       snapshotRoot,
       '--snapshot-id',
-      'kr-knowledge-core-20260724-023',
+      'kr-knowledge-core-20260724-024',
       '--built-at',
       '2026-07-23T06:00:00+00:00',
       '--source-snapshot-id',

@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import path from 'node:path';
 import test from 'node:test';
 
 import {
@@ -173,8 +175,17 @@ test('타입 관계와 컨시어지 제품 역할의 이관 현황을 집계한�
 });
 
 test('현재 저장소의 manifest와 모든 주제 원본을 함께 감사한다', async () => {
+  const currentBundle = JSON.parse(await readFile(path.resolve(
+    process.cwd(),
+    '..',
+    '..',
+    'artifacts',
+    'publication',
+    'current',
+    'bundle.json',
+  ), 'utf8'));
   const result = await loadAndAuditPublicationTopicQueue();
-  assert.equal(result.snapshot_id, 'kr-knowledge-core-20260723-022');
+  assert.equal(result.snapshot_id, currentBundle.snapshot_id);
   assert.ok(result.counts.topics >= 17);
   assert.equal(result.counts.topics, result.counts.hubs);
   assert.equal(result.content_types.unknown.length, 0);

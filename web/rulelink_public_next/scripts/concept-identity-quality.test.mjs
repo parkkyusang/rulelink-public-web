@@ -24,6 +24,9 @@ const root = process.cwd();
 const fixture = JSON.parse(await read('scripts/fixtures/concept-identity-quality.json'));
 const matcherFixture = JSON.parse(await read('scripts/fixtures/concept-term-matcher.json'));
 const currentBundle = JSON.parse(await read('../../artifacts/publication/current/bundle.json'));
+const legacySnapshot022 = JSON.parse(await read(
+  '../../artifacts/publication/snapshots/kr-knowledge-core-20260723-022/bundle.json',
+));
 
 test('개념 정체성 편집 정책은 버전형 레지스트리와 결정론적 영수증으로 고정한다', () => {
   assert.deepEqual(auditConceptIdentityPolicyRegistry(conceptIdentityPolicyRegistry), []);
@@ -85,10 +88,10 @@ test('상속인·법정상속인·공동상속인·피상속인은 네 canonical
 });
 
 test('snapshot 022의 잘못 합쳐진 상속인 별칭은 정확한 legacy debt로만 허용한다', () => {
-  const concepts = currentBundle.knowledge.concept_cards;
-  const sources = currentBundle.knowledge.sources;
-  const audit = auditLegacyConceptDebt(concepts, sources, currentBundle.snapshot_id);
-  const legacyOptions = legacyConceptValidationOptions(concepts, currentBundle.snapshot_id);
+  const concepts = legacySnapshot022.knowledge.concept_cards;
+  const sources = legacySnapshot022.knowledge.sources;
+  const audit = auditLegacyConceptDebt(concepts, sources, legacySnapshot022.snapshot_id);
+  const legacyOptions = legacyConceptValidationOptions(concepts, legacySnapshot022.snapshot_id);
 
   assert.deepEqual(audit.baselineErrors, []);
   assert.deepEqual(
@@ -136,7 +139,7 @@ test('snapshot 022의 잘못 합쳐진 상속인 별칭은 정확한 legacy debt
     () => validateConceptTermRelations(
       modified,
       sources,
-      legacyConceptValidationOptions(modified, currentBundle.snapshot_id),
+      legacyConceptValidationOptions(modified, legacySnapshot022.snapshot_id),
     ),
     /별도 canonical concept 정체성/,
   );
