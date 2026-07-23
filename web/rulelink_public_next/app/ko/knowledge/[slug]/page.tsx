@@ -45,7 +45,7 @@ export default async function KnowledgePage({params}: Props) {
   const {slug} = await params;
   const entry = await findKnowledgeEntry(slug);
   if (!entry) notFound();
-  const {concepts, rules, scenarios, scenarioRules, sources, hubs, related} = await knowledgeDetail(entry);
+  const {concepts, rules, scenarios, scenarioRules, sources, hubs, related, relatedSections} = await knowledgeDetail(entry);
   const directRuleIds = new Set(rules.map(rule => rule.rule_id));
   const canonicalUrl = `${site.url}/ko/knowledge/${entry.slug}`;
   const officialSources = sources.flatMap(source => {
@@ -234,7 +234,14 @@ export default async function KnowledgePage({params}: Props) {
         </aside>
       </section>
 
-      {related.length ? (
+      {relatedSections.length ? relatedSections.map(section => (
+        <section className="relatedSection" key={section.key}>
+          <h2>{section.label_ko}</h2>
+          <div className="relatedGrid">
+            {section.entries.map(item => <a href={`/ko/knowledge/${item.slug}`} key={item.content_id}><strong>{item.title_ko}</strong><span>내용 보기 →</span></a>)}
+          </div>
+        </section>
+      )) : related.length ? (
         <section className="relatedSection">
           <h2>같이 확인할 내용</h2>
           <div className="relatedGrid">

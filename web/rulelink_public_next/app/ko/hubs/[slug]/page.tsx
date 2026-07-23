@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
+import {knowledgeRelationTypeLabelKo} from '@/lib/knowledge-relations';
 import {connectedKnowledgeHubs, decisionPathsForKnowledgeHub, entriesForKnowledgeHub, findKnowledgeHub, listKnowledgeHubs} from '@/lib/publication';
 import {site} from '@/lib/site';
 import {buildKnowledgeHubStructuredData} from '@/lib/public-structured-data';
@@ -131,7 +132,11 @@ export default async function KnowledgeHubPage({params}: Props) {
           <div className="hubConnectionGrid">
             {connections.map(connection => (
               <a className="hubConnectionCard" href={`/ko/hubs/${connection.hub.slug}`} key={connection.hub.hub_id}>
-                <span className="hubConnectionMeta">함께 확인할 주제</span>
+                <span className="hubConnectionMeta">
+                  {connection.relationTypes.length
+                    ? connection.relationTypes.map(knowledgeRelationTypeLabelKo).join(' · ')
+                    : '함께 확인할 주제'}
+                </span>
                 <h3>{connection.hub.title_ko}</h3>
                 <p>{connection.hub.description_ko}</p>
                 <span className="hubConnectionBridge">

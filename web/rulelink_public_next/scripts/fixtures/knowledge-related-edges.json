@@ -1,0 +1,104 @@
+{
+  "manifest": {
+    "schema": "rulelink_public_knowledge_manifest_v1",
+    "knowledge_schema": "rulelink_public_knowledge_index_v1",
+    "topics": [
+      {
+        "topic_id": "hub.typed-relations",
+        "file": "typed-relations.json"
+      }
+    ],
+    "concepts": [
+      {
+        "concept_group_id": "concept-group.typed-relations",
+        "file": "typed-relations-concepts.json"
+      }
+    ]
+  },
+  "topics": [
+    {
+      "schema": "rulelink_public_knowledge_topic_v1",
+      "topic_id": "hub.typed-relations",
+      "sources": [
+        {
+          "coordinate_id": "coord.typed-relations"
+        }
+      ],
+      "topic_hubs": [
+        {
+          "hub_id": "hub.typed-relations",
+          "slug": "typed-relations",
+          "title_ko": "타입 관계 검증",
+          "description_ko": "관계 유형과 호환 투영을 검증합니다.",
+          "content_ids": [
+            "content.typed-source",
+            "content.typed-prerequisite",
+            "content.typed-comparison",
+            "content.typed-deadline",
+            "content.typed-procedure",
+            "content.typed-remedy",
+            "content.typed-law-change",
+            "content.typed-boundary"
+          ]
+        }
+      ],
+      "rule_cards": [
+        {
+          "rule_id": "rule.typed-relations"
+        }
+      ],
+      "scenario_branches": [
+        {
+          "scenario_id": "scenario.typed-decision",
+          "decision_fact_ko": "사건의 적용시점"
+        }
+      ],
+      "content_entries": [
+        {
+          "content_id": "content.typed-source",
+          "hub_ids": ["hub.typed-relations"],
+          "scenario_ids": ["scenario.typed-decision"],
+          "related_edges": [
+            {"target_kind": "content", "target_id": "content.typed-prerequisite", "relation_type": "prerequisite"},
+            {"target_kind": "content", "target_id": "content.typed-comparison", "relation_type": "comparison"},
+            {"target_kind": "content", "target_id": "content.typed-deadline", "relation_type": "deadline"},
+            {"target_kind": "content", "target_id": "content.typed-procedure", "relation_type": "procedure"},
+            {"target_kind": "content", "target_id": "content.typed-remedy", "relation_type": "remedy"},
+            {"target_kind": "content", "target_id": "content.typed-law-change", "relation_type": "law_change"},
+            {"target_kind": "concept", "target_id": "concept.typed-relations", "relation_type": "concept"},
+            {"target_kind": "content", "target_id": "content.typed-boundary", "relation_type": "concierge_boundary"}
+          ],
+          "product_roles": ["user_orientation", "concierge_entry"],
+          "lawyer_workspace_entry": {
+            "question_ko": "사건별 적용을 변호사 작업공간에서 확인할까요?",
+            "decision_scenario_ids": ["scenario.typed-decision"],
+            "gate_id": "verified_attorney_v1",
+            "href": "/ko/lawyer-workspace",
+            "audience": "verified_attorney"
+          }
+        },
+        {"content_id": "content.typed-prerequisite", "hub_ids": ["hub.typed-relations"]},
+        {"content_id": "content.typed-comparison", "hub_ids": ["hub.typed-relations"]},
+        {"content_id": "content.typed-deadline", "hub_ids": ["hub.typed-relations"]},
+        {"content_id": "content.typed-procedure", "hub_ids": ["hub.typed-relations"]},
+        {"content_id": "content.typed-remedy", "hub_ids": ["hub.typed-relations"]},
+        {"content_id": "content.typed-law-change", "hub_ids": ["hub.typed-relations"]},
+        {"content_id": "content.typed-boundary", "hub_ids": ["hub.typed-relations"]}
+      ]
+    }
+  ],
+  "concept_groups": [
+    {
+      "schema": "rulelink_public_concept_group_v1",
+      "concept_group_id": "concept-group.typed-relations",
+      "sources": [],
+      "concept_cards": [
+        {
+          "concept_id": "concept.typed-relations",
+          "slug": "typed-relations-concept",
+          "preferred_term_ko": "타입 관계"
+        }
+      ]
+    }
+  ]
+}

@@ -154,6 +154,30 @@ export type PublicConceptCard = {
   editorial_status: 'source_verified' | 'legal_reviewed' | 'approved';
 };
 
+export type PublicKnowledgeRelationType =
+  | 'prerequisite'
+  | 'comparison'
+  | 'deadline'
+  | 'procedure'
+  | 'remedy'
+  | 'law_change'
+  | 'concept'
+  | 'concierge_boundary';
+
+export type PublicKnowledgeRelation = {
+  target_kind: 'content' | 'concept';
+  target_id: string;
+  relation_type: PublicKnowledgeRelationType;
+  label_ko?: string;
+};
+
+export type PublicKnowledgeProductRole =
+  | 'public_proof'
+  | 'user_orientation'
+  | 'concierge_entry'
+  | 'knowledge_reuse'
+  | 'freshness_capture';
+
 export type PublicKnowledgeEntry = {
   content_id: string;
   content_type: PublicKnowledgeContentType | PublicKnowledgeContentTypeAlias;
@@ -178,10 +202,14 @@ export type PublicKnowledgeEntry = {
   source_coordinate_ids: string[];
   hub_ids: string[];
   related_content_ids: string[];
+  related_edges?: PublicKnowledgeRelation[];
   concept_ids?: string[];
+  product_roles?: PublicKnowledgeProductRole[];
   lawyer_workspace_entry?: {
     question_ko: string;
     decision_facts_ko: string[];
+    decision_scenario_ids?: string[];
+    gate_id?: 'verified_attorney_v1';
     href: '/ko/lawyer-workspace';
     audience: 'verified_attorney';
   };

@@ -12,6 +12,7 @@ export function inferPublicationRole(headRef = '') {
   if (/^codex\/migrate-publication-[a-z0-9._/-]+$/u.test(headRef)) return 'migration';
   if (/^codex\/release-[a-z0-9._/-]+$/u.test(headRef)) return 'release';
   if (/^codex\/govern-publication-[a-z0-9._/-]+$/u.test(headRef)) return 'governance';
+  if (/^codex\/runtime-publication-[a-z0-9._/-]+$/u.test(headRef)) return 'runtime';
   return null;
 }
 
@@ -85,6 +86,10 @@ export function allowedForRole(role, filePath) {
       || value === 'web/rulelink_public_next/src/lib/knowledge-content-types.json'
       || value === 'web/rulelink_public_next/src/lib/content-labels.ts'
       || value === 'web/rulelink_public_next/src/types/publication.ts';
+  }
+  if (role === 'runtime') {
+    return value === 'web/rulelink_public_next/package.json'
+      || /^web\/rulelink_public_next\/(?:app|src|scripts)\//u.test(value);
   }
   return false;
 }

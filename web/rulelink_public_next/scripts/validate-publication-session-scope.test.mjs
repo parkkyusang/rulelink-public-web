@@ -7,13 +7,29 @@ import {
   validatePublicationScope,
 } from './validate-publication-session-scope.mjs';
 
-test('브랜치 접두사로 주제·통합·이관·배포·생산계약 역할을 구분한다', () => {
+test('브랜치 접두사로 주제·통합·이관·배포·생산계약·런타임 역할을 구분한다', () => {
   assert.equal(inferPublicationRole('codex/content-law-change-topic-20260721'), 'topic');
   assert.equal(inferPublicationRole('codex/integrate-publication-021'), 'integrator');
   assert.equal(inferPublicationRole('codex/migrate-publication-021'), 'migration');
   assert.equal(inferPublicationRole('codex/release-021'), 'release');
   assert.equal(inferPublicationRole('codex/govern-publication-production-control-20260723'), 'governance');
+  assert.equal(inferPublicationRole('codex/runtime-publication-related-edges-20260723'), 'runtime');
   assert.equal(inferPublicationRole('codex/concept-graph-web'), null);
+});
+
+test('출판 런타임 역할은 타입·검증·화면을 바꾸되 정본과 운영 표지는 건드리지 않는다', () => {
+  const result = validatePublicationScope('codex/runtime-publication-related-edges-20260723', [
+    'web/rulelink_public_next/package.json',
+    'web/rulelink_public_next/src/types/publication.ts',
+    'web/rulelink_public_next/src/lib/knowledge-relations.ts',
+    'web/rulelink_public_next/scripts/validate-publication-bundle.mjs',
+    'web/rulelink_public_next/app/ko/knowledge/[slug]/page.tsx',
+  ]);
+  assert.equal(result.ok, true);
+  assert.equal(allowedForRole('runtime', 'artifacts/publication/topics/manifest.json'), false);
+  assert.equal(allowedForRole('runtime', 'artifacts/publication/current/bundle.json'), false);
+  assert.equal(allowedForRole('runtime', 'artifacts/publication/production-queue.json'), false);
+  assert.equal(allowedForRole('runtime', 'web/rulelink_public_next/deploy/release.json'), false);
 });
 
 test('주제 생산자는 독립 주제·개념 조각과 전용 시험만 수정한다', () => {
