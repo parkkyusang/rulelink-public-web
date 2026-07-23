@@ -138,6 +138,27 @@ test('타입 관계와 concierge_entry 역할의 기존 필드 투영 결과를 
   assert.equal(result.status, 0, result.stderr);
 });
 
+test('공개 번들의 concierge_entry는 렌더링할 결정사실을 실제 필드로 가져야 한다', async () => {
+  for (const decisionFacts of [undefined, []]) {
+    const bundle = knowledgeBundle();
+    const entry = bundle.knowledge.content_entries[0];
+    entry.product_roles = ['concierge_entry'];
+    entry.lawyer_workspace_entry = {
+      question_ko: '변호사용 검토가 필요합니까?',
+      decision_scenario_ids: ['scenario.one'],
+      gate_id: 'verified_attorney_v1',
+      href: '/ko/lawyer-workspace',
+      audience: 'verified_attorney',
+      ...(decisionFacts === undefined ? {} : {decision_facts_ko: decisionFacts}),
+    };
+    refreshConceptReceipts(bundle);
+
+    const result = await validate(bundle);
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /공개 번들.*decision_facts_ko가 물질화/u);
+  }
+});
+
 test('출판 validator도 타입 관계와 기존 식별자 집합 불일치를 거부한다', async () => {
   const bundle = knowledgeBundle();
   bundle.knowledge.content_entries[0].related_edges = [{

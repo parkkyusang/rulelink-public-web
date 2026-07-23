@@ -221,6 +221,15 @@ function validateKnowledge(value, now, fileHashes, errors) {
     } catch (error) {
       errors.push(`지식 콘텐츠 ${label(entry, 'content_id')}의 선택적 관계·제품 역할 계약이 올바르지 않습니다: ${error instanceof Error ? error.message : String(error)}`);
     }
+    if (Array.isArray(entry.product_roles) && entry.product_roles.includes('concierge_entry')) {
+      const workspace = entry.lawyer_workspace_entry;
+      if (!isRecord(workspace)
+        || !Array.isArray(workspace.decision_facts_ko)
+        || workspace.decision_facts_ko.length === 0
+        || workspace.decision_facts_ko.some(value => typeof value !== 'string' || !value.trim())) {
+        errors.push(`지식 콘텐츠 ${label(entry, 'content_id')}의 공개 번들에는 lawyer_workspace_entry.decision_facts_ko가 물질화되어 있어야 합니다.`);
+      }
+    }
     if (entry.editorial_status !== 'approved') {
       errors.push(`지식 콘텐츠 ${label(entry, 'content_id')}가 승인 상태가 아닙니다.`);
     }
