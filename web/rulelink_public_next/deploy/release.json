@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20260723-016",
-  "snapshot_id": "kr-knowledge-core-20260723-022",
-  "requested_at": "2026-07-23T01:58:20.551Z",
-  "summary_ko": "공개 법률지식을 26개 주제 허브와 264개 상세 콘텐츠로 확장하고, 사실분기의 모든 연결 법리를 실제 법리카드 이동 경로로 제공한다."
+  "release_id": "production-20260724-017",
+  "snapshot_id": "kr-knowledge-core-20260723-023",
+  "requested_at": "2026-07-24T01:27:00.000Z",
+  "summary_ko": "공개 법률지식을 28개 주제 허브와 284개 상세 콘텐츠, 6개 법률개념으로 확장하고 조문 읽기 플랫폼의 무데이터 호환 기반을 배포한다."
 }
