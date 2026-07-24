@@ -1,9 +1,13 @@
 import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
-import {resolvePublicPrivacyConfig} from '@/lib/public-data-practices';
+import {
+  resolvePublicPrivacyConfig,
+  type PublicConditionalDisclosure,
+} from '@/lib/public-data-practices';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
+import {parsePublicContactHref} from '@/lib/public-trust';
 
 import styles from './privacy.module.css';
 
@@ -117,11 +121,49 @@ export default function PublicPrivacyPage() {
                 <div><dt>활성 조건</dt><dd>{activationLabel(item.activationMode)}</dd></div>
                 <div><dt>처리지역</dt><dd>{listOrNone(item.transfer.processingRegions)}</dd></div>
                 <div><dt>서버 전송</dt><dd>{item.transfer.serverTransmission ? '있음' : '없음'}</dd></div>
-                <div><dt>제3자 전송</dt><dd>{item.transfer.thirdPartyTransmission ? '있음' : '없음'}</dd></div>
-                <div className={styles.wide}><dt>수탁·이전 설명</dt><dd>{item.transfer.description}</dd></div>
+                <div><dt>제3자 제공</dt><dd>{item.transfer.thirdPartyProvision ? '있음' : '없음'}</dd></div>
+                <div><dt>처리위탁</dt><dd>{item.transfer.processingOutsourcing ? '있음' : '없음'}</dd></div>
+                <div><dt>국외이전</dt><dd>{item.transfer.internationalTransfer ? '있음' : '없음'}</dd></div>
+                <div className={styles.wide}><dt>전송·이전 설명</dt><dd>{item.transfer.description}</dd></div>
               </dl>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section aria-labelledby="legal-sections-heading" className={styles.inventory}>
+        <div className={styles.sectionHeading}>
+          <p className="eyebrow">법정 공개 구획</p>
+          <h2 id="legal-sections-heading">처리·파기·권리행사를 구분해 공개합니다.</h2>
+          <p>해당 없음도 검증된 운영 사실로 명시합니다.</p>
+        </div>
+        <div className={styles.cards}>
+          <LegalCard title="파기절차와 방법">
+            <dl>
+              <div><dt>파기절차</dt><dd>{config.destruction.procedure}</dd></div>
+              <div><dt>파기방법</dt><dd>{config.destruction.method}</dd></div>
+            </dl>
+          </LegalCard>
+          <LegalCard title="정보주체와 법정대리인의 권리">
+            <dl>
+              <div><dt>권리·의무</dt><dd>{config.rights.description}</dd></div>
+              <div><dt>행사방법</dt><dd>{config.rights.exerciseMethod}</dd></div>
+              <div><dt>법정대리인</dt><dd>{config.rights.legalRepresentativeRights}</dd></div>
+            </dl>
+          </LegalCard>
+          <LegalCard title="개인정보 보호·고충처리 담당">
+            <dl>
+              <div><dt>담당 역할</dt><dd>{config.privacyResponsibleRole}</dd></div>
+              <div><dt>연락처</dt><dd><a href={config.trust.contact.href}>{config.trust.contact.label}</a></dd></div>
+            </dl>
+          </LegalCard>
+          <LegalCard title="안전성 확보조치">
+            <p>{config.safeguards.join(' · ')}</p>
+          </LegalCard>
+          <DisclosureCard disclosure={config.thirdPartyProvision} title="제3자 제공" />
+          <DisclosureCard disclosure={config.processingOutsourcing} title="처리위탁" />
+          <DisclosureCard disclosure={config.internationalTransfer} title="국외이전" />
+          <DisclosureCard disclosure={config.automaticCollection} title="자동 수집 장치" />
         </div>
       </section>
 
@@ -161,11 +203,12 @@ function listOrNone(items: string[]) {
 }
 
 function contactPointFor(href: string) {
-  return href.startsWith('mailto:')
+  const contact = parsePublicContactHref(href);
+  return contact.kind === 'email'
     ? {
         '@type': 'ContactPoint',
         contactType: 'privacy inquiries',
-        email: href.slice('mailto:'.length),
+        email: contact.address,
         availableLanguage: 'ko',
       }
     : {
@@ -174,4 +217,65 @@ function contactPointFor(href: string) {
         url: href,
         availableLanguage: 'ko',
       };
+}
+
+function LegalCard({
+  children,
+  title,
+}: {
+  children: React.ReactNode;
+  title: string;
+}) {
+  return (
+    <article className={styles.card}>
+      <h3>{title}</h3>
+      {children}
+    </article>
+  );
+}
+
+function DisclosureCard<T extends object>({
+  disclosure,
+  title,
+}: {
+  disclosure: PublicConditionalDisclosure<T>;
+  title: string;
+}) {
+  return (
+    <article className={styles.card}>
+      <header>
+        <h3>{title}</h3>
+        <strong>{disclosure.enabled ? '해당' : '해당 없음'}</strong>
+      </header>
+      {disclosure.enabled ? (
+        <dl>
+          {Object.entries(
+            disclosure.details as Record<string, string | string[]>,
+          ).map(([key, value]) => (
+            <div key={key}>
+              <dt>{disclosureFieldLabel(key)}</dt>
+              <dd>{Array.isArray(value) ? value.join(' · ') : value}</dd>
+            </div>
+          ))}
+        </dl>
+      ) : <p>{disclosure.statement}</p>}
+    </article>
+  );
+}
+
+function disclosureFieldLabel(key: string) {
+  return {
+    country: '이전 국가',
+    dataTypes: '처리 항목',
+    description: '설명',
+    legalBasis: '법적 근거',
+    processor: '수탁자',
+    purpose: '목적',
+    purposeAndRetention: '목적·보유기간',
+    recipient: '제공·이전받는 자',
+    refusalMethodAndEffect: '거부 방법·효과',
+    retention: '보유기간',
+    safeguards: '관리·감독 조치',
+    timingAndMethod: '시기·방법',
+  }[key] ?? key;
 }

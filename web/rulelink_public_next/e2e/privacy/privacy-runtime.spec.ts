@@ -118,6 +118,18 @@ test.describe('privacy enabled fixture', () => {
       await expect(page.locator(
         '[data-practice-status="disabled"]',
       )).toHaveCount(2);
+      for (const heading of [
+        '파기절차와 방법',
+        '정보주체와 법정대리인의 권리',
+        '개인정보 보호·고충처리 담당',
+        '안전성 확보조치',
+        '제3자 제공',
+        '처리위탁',
+        '국외이전',
+        '자동 수집 장치',
+      ]) {
+        await expect(page.getByRole('heading', {name: heading})).toBeVisible();
+      }
       const axe = await new AxeBuilder({page})
         .withTags([
           'wcag2a',
@@ -160,7 +172,11 @@ test.describe('privacy enabled fixture', () => {
         JSON.parse(script.textContent ?? '{}')
       )));
     expect(JSON.stringify(graphs)).toContain('privacy@rulelink.kr');
+    expect(JSON.stringify(graphs)).not.toContain('?subject=privacy');
     expect(JSON.stringify(graphs)).toContain('2026-07-24');
+    await expect(page.locator(
+      'a[href="mailto:privacy@rulelink.kr?subject=privacy"]',
+    )).toHaveCount(2);
     await page.goto('/', {waitUntil: 'networkidle'});
     await expect(page.locator('footer a[href="/ko/privacy"]')).toHaveCount(1);
     const sitemap = await page.request.get('/sitemap.xml');

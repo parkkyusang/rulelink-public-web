@@ -1,7 +1,10 @@
 import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
-import {resolvePublicTrustConfig} from '@/lib/public-trust';
+import {
+  parsePublicContactHref,
+  resolvePublicTrustConfig,
+} from '@/lib/public-trust';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
 
@@ -185,11 +188,12 @@ export default function PublicTrustPage() {
 }
 
 function contactPointFor(href: string) {
-  return href.startsWith('mailto:')
+  const contact = parsePublicContactHref(href);
+  return contact.kind === 'email'
     ? {
         '@type': 'ContactPoint',
         contactType: 'content corrections',
-        email: href.slice('mailto:'.length),
+        email: contact.address,
         availableLanguage: 'ko',
       }
     : {

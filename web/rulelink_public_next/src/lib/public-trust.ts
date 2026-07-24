@@ -33,6 +33,10 @@ export type PublicTrustConfig = {
   reviewQualificationDisclosure: string;
 };
 
+export type ParsedPublicContactHref =
+  | {address: string; href: string; kind: 'email'}
+  | {href: string; kind: 'url'};
+
 export type ResolvedPublicEditorialAttribution = {
   author: PublicEditorialAttribution['author'];
   legal_reviewer: PublicEditorialAttribution['legal_reviewer'] & {
@@ -63,6 +67,16 @@ export function resolvePublicTrustConfig(
       environment.RULELINK_PUBLIC_OPERATOR_LEGAL_NAME!.trim(),
     reviewQualificationDisclosure:
       environment.RULELINK_PUBLIC_REVIEW_QUALIFICATION_DISCLOSURE!.trim(),
+  };
+}
+
+export function parsePublicContactHref(href: string): ParsedPublicContactHref {
+  const parsed = new URL(href);
+  if (parsed.protocol !== 'mailto:') return {href, kind: 'url'};
+  return {
+    address: decodeURIComponent(parsed.pathname),
+    href,
+    kind: 'email',
   };
 }
 

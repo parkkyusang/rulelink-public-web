@@ -145,7 +145,7 @@ function enabledEnvironment() {
     RULELINK_PUBLIC_APPROVED_REVIEWERS_JSON: '[]',
     RULELINK_PUBLIC_OPERATOR_LEGAL_NAME: '리알레 주식회사',
     RULELINK_PUBLIC_CONTACT_LABEL: '개인정보 문의',
-    RULELINK_PUBLIC_CONTACT_URL: 'mailto:privacy@rulelink.kr',
+    RULELINK_PUBLIC_CONTACT_URL: 'mailto:privacy@rulelink.kr?subject=privacy',
     RULELINK_PUBLIC_REVIEW_QUALIFICATION_DISCLOSURE:
       '법률 검토자의 승인 원장과 자격 근거를 콘텐츠별로 공개합니다.',
     RULELINK_PUBLIC_PRIVACY_ENABLED: 'true',
@@ -153,6 +153,20 @@ function enabledEnvironment() {
     RULELINK_PUBLIC_PRIVACY_EFFECTIVE_DATE: '2026-07-24',
     RULELINK_PUBLIC_PRIVACY_WITHDRAWAL:
       '각 상세 글의 표시 초기화 버튼으로 기기 저장 상태를 즉시 삭제할 수 있습니다.',
+    RULELINK_PUBLIC_DESTRUCTION_PROCEDURE:
+      '보유기간 종료 또는 목적 달성을 확인한 뒤 지체 없이 파기합니다.',
+    RULELINK_PUBLIC_DESTRUCTION_METHOD:
+      '전자 기록은 복구할 수 없는 방식으로 삭제합니다.',
+    RULELINK_PUBLIC_RIGHTS_DESCRIPTION:
+      '정보주체는 열람·정정·삭제·처리정지를 요구할 수 있습니다.',
+    RULELINK_PUBLIC_RIGHTS_EXERCISE_METHOD:
+      '공개 연락처로 본인 확인에 필요한 최소 정보와 요청 내용을 보냅니다.',
+    RULELINK_PUBLIC_LEGAL_REPRESENTATIVE_RIGHTS:
+      '법정대리인은 대리권을 확인한 뒤 같은 방법으로 권리를 행사할 수 있습니다.',
+    RULELINK_PUBLIC_PRIVACY_RESPONSIBLE_ROLE:
+      '개인정보 보호 및 고충처리 담당 부서',
+    RULELINK_PUBLIC_PRIVACY_SAFEGUARDS_JSON:
+      '["최소권한 접근통제","전송구간 암호화","보존기간 만료 삭제"]',
     RULELINK_PUBLIC_HOSTING_PROVIDER: 'Vercel Inc.',
     RULELINK_PUBLIC_HOSTING_PURPOSE:
       '웹사이트 제공, 보안 유지와 오류 진단을 위한 요청 로그 처리',
@@ -160,9 +174,14 @@ function enabledEnvironment() {
       '["IP 주소","요청 시각","요청 URL","사용자 에이전트"]',
     RULELINK_PUBLIC_HOSTING_RETENTION: '30일',
     RULELINK_PUBLIC_HOSTING_PROCESSING_REGIONS_JSON: '["대한민국","미국"]',
-    RULELINK_PUBLIC_HOSTING_TRANSFER_THIRD_PARTY: 'true',
-    RULELINK_PUBLIC_HOSTING_TRANSFER_DESCRIPTION:
-      '호스팅 제공자가 사이트 제공과 보안을 위해 위 항목을 대한민국과 미국에서 처리',
+    RULELINK_PUBLIC_THIRD_PARTY_PROVISION_JSON:
+      '{"enabled":false,"statement":"호스팅 요청 로그를 독립된 제3자에게 제공하지 않습니다."}',
+    RULELINK_PUBLIC_PROCESSING_OUTSOURCING_JSON:
+      '{"enabled":true,"details":{"processor":"Vercel Inc.","purpose":"사이트 제공과 보안 로그 처리","dataTypes":["IP 주소","요청 시각","요청 URL","사용자 에이전트"],"retention":"30일","safeguards":"계약과 접근통제로 처리 목적 밖 이용을 제한"}}',
+    RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON:
+      '{"enabled":true,"details":{"legalBasis":"서비스 제공 계약 이행에 필요한 처리 근거","recipient":"Vercel Inc.","country":"미국","dataTypes":["IP 주소","요청 시각","요청 URL","사용자 에이전트"],"timingAndMethod":"페이지 요청 시 암호화된 네트워크로 이전","purposeAndRetention":"사이트 제공과 보안 유지, 30일","refusalMethodAndEffect":"사이트 이용을 중단해 이전을 거부할 수 있으나 페이지 제공이 제한됩니다."}}',
+    RULELINK_PUBLIC_AUTOMATIC_COLLECTION_JSON:
+      '{"enabled":false,"statement":"쿠키·광고 식별자·분석 도구를 사용하지 않습니다."}',
     RULELINK_PUBLIC_ANALYTICS_ENABLED: 'false',
     RULELINK_PUBLIC_ADVERTISING_ENABLED: 'false',
     RULELINK_PUBLIC_AD_PLACEHOLDERS_ENABLED: 'false',

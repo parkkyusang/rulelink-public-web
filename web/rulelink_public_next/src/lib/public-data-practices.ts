@@ -20,9 +20,11 @@ export type PublicDataActivationMode =
 
 export type PublicDataTransfer = {
   description: string;
+  internationalTransfer: boolean;
   processingRegions: string[];
+  processingOutsourcing: boolean;
   serverTransmission: boolean;
-  thirdPartyTransmission: boolean;
+  thirdPartyProvision: boolean;
 };
 
 export type PublicDataPractice = {
@@ -47,17 +49,71 @@ export type PublicPrivacyEnvironment = PublicTrustEnvironment & {
   RULELINK_PUBLIC_HOSTING_PROVIDER?: string;
   RULELINK_PUBLIC_HOSTING_PURPOSE?: string;
   RULELINK_PUBLIC_HOSTING_RETENTION?: string;
-  RULELINK_PUBLIC_HOSTING_TRANSFER_DESCRIPTION?: string;
-  RULELINK_PUBLIC_HOSTING_TRANSFER_THIRD_PARTY?: string;
+  RULELINK_PUBLIC_AUTOMATIC_COLLECTION_JSON?: string;
+  RULELINK_PUBLIC_DESTRUCTION_METHOD?: string;
+  RULELINK_PUBLIC_DESTRUCTION_PROCEDURE?: string;
+  RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON?: string;
+  RULELINK_PUBLIC_LEGAL_REPRESENTATIVE_RIGHTS?: string;
+  RULELINK_PUBLIC_PRIVACY_RESPONSIBLE_ROLE?: string;
   RULELINK_PUBLIC_PRIVACY_EFFECTIVE_DATE?: string;
   RULELINK_PUBLIC_PRIVACY_ENABLED?: string;
+  RULELINK_PUBLIC_PRIVACY_SAFEGUARDS_JSON?: string;
   RULELINK_PUBLIC_PRIVACY_VERSION?: string;
   RULELINK_PUBLIC_PRIVACY_WITHDRAWAL?: string;
+  RULELINK_PUBLIC_PROCESSING_OUTSOURCING_JSON?: string;
+  RULELINK_PUBLIC_RIGHTS_DESCRIPTION?: string;
+  RULELINK_PUBLIC_RIGHTS_EXERCISE_METHOD?: string;
+  RULELINK_PUBLIC_THIRD_PARTY_PROVISION_JSON?: string;
+};
+
+export type PublicConditionalDisclosure<T> =
+  | {enabled: false; statement: string}
+  | {details: T; enabled: true};
+
+export type PublicInternationalTransferDetails = {
+  country: string;
+  dataTypes: string[];
+  legalBasis: string;
+  purposeAndRetention: string;
+  recipient: string;
+  refusalMethodAndEffect: string;
+  timingAndMethod: string;
+};
+
+export type PublicOutsourcingDetails = {
+  dataTypes: string[];
+  processor: string;
+  purpose: string;
+  retention: string;
+  safeguards: string;
+};
+
+export type PublicThirdPartyProvisionDetails = {
+  dataTypes: string[];
+  legalBasis: string;
+  purpose: string;
+  recipient: string;
+  retention: string;
 };
 
 export type PublicPrivacyConfig = {
+  automaticCollection: PublicConditionalDisclosure<{description: string}>;
+  destruction: {
+    method: string;
+    procedure: string;
+  };
   effectiveDate: string;
+  internationalTransfer: PublicConditionalDisclosure<PublicInternationalTransferDetails>;
   inventory: PublicDataPractice[];
+  privacyResponsibleRole: string;
+  processingOutsourcing: PublicConditionalDisclosure<PublicOutsourcingDetails>;
+  rights: {
+    description: string;
+    exerciseMethod: string;
+    legalRepresentativeRights: string;
+  };
+  safeguards: string[];
+  thirdPartyProvision: PublicConditionalDisclosure<PublicThirdPartyProvisionDetails>;
   trust: PublicTrustConfig;
   version: string;
   withdrawal: string;
@@ -75,9 +131,11 @@ const checklistPractice: PublicDataPractice = {
   storageKeys: ['rulelink-checklist-v1:{content_id}:{revision_key}'],
   transfer: {
     description: '서버 또는 제3자에게 전송하지 않고 현재 브라우저에만 저장',
+    internationalTransfer: false,
     processingRegions: ['사용자 기기'],
+    processingOutsourcing: false,
     serverTransmission: false,
-    thirdPartyTransmission: false,
+    thirdPartyProvision: false,
   },
 };
 
@@ -94,9 +152,11 @@ const deniedPractices: PublicDataPractice[] = [
     storageKeys: [],
     transfer: {
       description: '수집·저장·전송하지 않음',
+      internationalTransfer: false,
       processingRegions: [],
+      processingOutsourcing: false,
       serverTransmission: false,
-      thirdPartyTransmission: false,
+      thirdPartyProvision: false,
     },
   },
   {
@@ -111,9 +171,11 @@ const deniedPractices: PublicDataPractice[] = [
     storageKeys: [],
     transfer: {
       description: '수집·저장·전송하지 않음',
+      internationalTransfer: false,
       processingRegions: [],
+      processingOutsourcing: false,
       serverTransmission: false,
-      thirdPartyTransmission: false,
+      thirdPartyProvision: false,
     },
   },
 ];
@@ -142,8 +204,36 @@ export function resolvePublicPrivacyConfig(
   const processingRegions = parseStringArray(
     environment.RULELINK_PUBLIC_HOSTING_PROCESSING_REGIONS_JSON!,
   ).value;
-  const thirdPartyTransmission =
-    environment.RULELINK_PUBLIC_HOSTING_TRANSFER_THIRD_PARTY === 'true';
+  const automaticCollection = parseConditionalDisclosure<{description: string}>(
+    environment.RULELINK_PUBLIC_AUTOMATIC_COLLECTION_JSON!,
+    ['description'],
+  ).value!;
+  const internationalTransfer =
+    parseConditionalDisclosure<PublicInternationalTransferDetails>(
+      environment.RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON!,
+      [
+        'country',
+        'dataTypes',
+        'legalBasis',
+        'purposeAndRetention',
+        'recipient',
+        'refusalMethodAndEffect',
+        'timingAndMethod',
+      ],
+      ['dataTypes'],
+    ).value!;
+  const processingOutsourcing =
+    parseConditionalDisclosure<PublicOutsourcingDetails>(
+      environment.RULELINK_PUBLIC_PROCESSING_OUTSOURCING_JSON!,
+      ['dataTypes', 'processor', 'purpose', 'retention', 'safeguards'],
+      ['dataTypes'],
+    ).value!;
+  const thirdPartyProvision =
+    parseConditionalDisclosure<PublicThirdPartyProvisionDetails>(
+      environment.RULELINK_PUBLIC_THIRD_PARTY_PROVISION_JSON!,
+      ['dataTypes', 'legalBasis', 'purpose', 'recipient', 'retention'],
+      ['dataTypes'],
+    ).value!;
   const hostingPractice: PublicDataPractice = {
     activationMode: 'page-request',
     category: 'essential',
@@ -155,21 +245,46 @@ export function resolvePublicPrivacyConfig(
     status: 'active',
     storageKeys: [],
     transfer: {
-      description:
-        environment.RULELINK_PUBLIC_HOSTING_TRANSFER_DESCRIPTION!.trim(),
+      description: transferDescription(
+        thirdPartyProvision,
+        processingOutsourcing,
+        internationalTransfer,
+      ),
+      internationalTransfer: internationalTransfer.enabled,
       processingRegions,
+      processingOutsourcing: processingOutsourcing.enabled,
       serverTransmission: true,
-      thirdPartyTransmission,
+      thirdPartyProvision: thirdPartyProvision.enabled,
     },
   };
   return {
+    automaticCollection,
+    destruction: {
+      method: environment.RULELINK_PUBLIC_DESTRUCTION_METHOD!.trim(),
+      procedure: environment.RULELINK_PUBLIC_DESTRUCTION_PROCEDURE!.trim(),
+    },
     effectiveDate:
       environment.RULELINK_PUBLIC_PRIVACY_EFFECTIVE_DATE!.trim(),
+    internationalTransfer,
     inventory: [
       hostingPractice,
       checklistPractice,
       ...deniedPractices,
     ],
+    privacyResponsibleRole:
+      environment.RULELINK_PUBLIC_PRIVACY_RESPONSIBLE_ROLE!.trim(),
+    processingOutsourcing,
+    rights: {
+      description: environment.RULELINK_PUBLIC_RIGHTS_DESCRIPTION!.trim(),
+      exerciseMethod:
+        environment.RULELINK_PUBLIC_RIGHTS_EXERCISE_METHOD!.trim(),
+      legalRepresentativeRights:
+        environment.RULELINK_PUBLIC_LEGAL_REPRESENTATIVE_RIGHTS!.trim(),
+    },
+    safeguards: parseStringArray(
+      environment.RULELINK_PUBLIC_PRIVACY_SAFEGUARDS_JSON!,
+    ).value,
+    thirdPartyProvision,
     trust,
     version: environment.RULELINK_PUBLIC_PRIVACY_VERSION!.trim(),
     withdrawal:
@@ -218,7 +333,12 @@ export function validatePublicPrivacyConfiguration(
     ['RULELINK_PUBLIC_HOSTING_PROVIDER', environment.RULELINK_PUBLIC_HOSTING_PROVIDER],
     ['RULELINK_PUBLIC_HOSTING_PURPOSE', environment.RULELINK_PUBLIC_HOSTING_PURPOSE],
     ['RULELINK_PUBLIC_HOSTING_RETENTION', environment.RULELINK_PUBLIC_HOSTING_RETENTION],
-    ['RULELINK_PUBLIC_HOSTING_TRANSFER_DESCRIPTION', environment.RULELINK_PUBLIC_HOSTING_TRANSFER_DESCRIPTION],
+    ['RULELINK_PUBLIC_DESTRUCTION_PROCEDURE', environment.RULELINK_PUBLIC_DESTRUCTION_PROCEDURE],
+    ['RULELINK_PUBLIC_DESTRUCTION_METHOD', environment.RULELINK_PUBLIC_DESTRUCTION_METHOD],
+    ['RULELINK_PUBLIC_RIGHTS_DESCRIPTION', environment.RULELINK_PUBLIC_RIGHTS_DESCRIPTION],
+    ['RULELINK_PUBLIC_RIGHTS_EXERCISE_METHOD', environment.RULELINK_PUBLIC_RIGHTS_EXERCISE_METHOD],
+    ['RULELINK_PUBLIC_LEGAL_REPRESENTATIVE_RIGHTS', environment.RULELINK_PUBLIC_LEGAL_REPRESENTATIVE_RIGHTS],
+    ['RULELINK_PUBLIC_PRIVACY_RESPONSIBLE_ROLE', environment.RULELINK_PUBLIC_PRIVACY_RESPONSIBLE_ROLE],
     ['RULELINK_PUBLIC_PRIVACY_WITHDRAWAL', environment.RULELINK_PUBLIC_PRIVACY_WITHDRAWAL],
   ] as const) {
     const error = identityValueError(value);
@@ -237,16 +357,40 @@ export function validatePublicPrivacyConfiguration(
   for (const [field, value] of [
     ['RULELINK_PUBLIC_HOSTING_DATA_TYPES_JSON', environment.RULELINK_PUBLIC_HOSTING_DATA_TYPES_JSON],
     ['RULELINK_PUBLIC_HOSTING_PROCESSING_REGIONS_JSON', environment.RULELINK_PUBLIC_HOSTING_PROCESSING_REGIONS_JSON],
+    ['RULELINK_PUBLIC_PRIVACY_SAFEGUARDS_JSON', environment.RULELINK_PUBLIC_PRIVACY_SAFEGUARDS_JSON],
   ] as const) {
     const parsed = parseStringArray(value);
     if (parsed.error) errors.push(`${field}: ${parsed.error}`);
   }
-  validateBoolean(
-    environment.RULELINK_PUBLIC_HOSTING_TRANSFER_THIRD_PARTY,
-    'RULELINK_PUBLIC_HOSTING_TRANSFER_THIRD_PARTY',
-    errors,
-    true,
-  );
+  for (const [field, raw, keys, arrayKeys] of [
+    [
+      'RULELINK_PUBLIC_THIRD_PARTY_PROVISION_JSON',
+      environment.RULELINK_PUBLIC_THIRD_PARTY_PROVISION_JSON,
+      ['dataTypes', 'legalBasis', 'purpose', 'recipient', 'retention'],
+      ['dataTypes'],
+    ],
+    [
+      'RULELINK_PUBLIC_PROCESSING_OUTSOURCING_JSON',
+      environment.RULELINK_PUBLIC_PROCESSING_OUTSOURCING_JSON,
+      ['dataTypes', 'processor', 'purpose', 'retention', 'safeguards'],
+      ['dataTypes'],
+    ],
+    [
+      'RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON',
+      environment.RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON,
+      ['country', 'dataTypes', 'legalBasis', 'purposeAndRetention', 'recipient', 'refusalMethodAndEffect', 'timingAndMethod'],
+      ['dataTypes'],
+    ],
+    [
+      'RULELINK_PUBLIC_AUTOMATIC_COLLECTION_JSON',
+      environment.RULELINK_PUBLIC_AUTOMATIC_COLLECTION_JSON,
+      ['description'],
+      [],
+    ],
+  ] as const) {
+    const parsed = parseConditionalDisclosure(raw, keys, arrayKeys);
+    if (parsed.error) errors.push(`${field}: ${parsed.error}`);
+  }
   return errors;
 }
 
@@ -267,6 +411,97 @@ function parseStringArray(value: string | undefined): {
   } catch {
     return {error: '유효한 JSON 배열이어야 합니다.', value: []};
   }
+}
+
+function parseConditionalDisclosure<T>(
+  raw: string | undefined,
+  detailKeys: readonly string[],
+  arrayKeys: readonly string[] = [],
+): {error: string | null; value: PublicConditionalDisclosure<T> | null} {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw?.trim() ?? '');
+  } catch {
+    return {error: '유효한 JSON 객체여야 합니다.', value: null};
+  }
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    return {error: 'JSON 객체여야 합니다.', value: null};
+  }
+  const row = parsed as Record<string, unknown>;
+  if (row.enabled === false) {
+    if (
+      Object.keys(row).length !== 2
+      || typeof row.statement !== 'string'
+      || identityValueError(row.statement)
+    ) {
+      return {
+        error: '비활성 사실은 enabled=false와 구체적인 statement만 가져야 합니다.',
+        value: null,
+      };
+    }
+    return {
+      error: null,
+      value: {enabled: false, statement: row.statement.trim()},
+    };
+  }
+  if (row.enabled !== true || !row.details || typeof row.details !== 'object') {
+    return {
+      error: 'enabled=true/false와 상태에 맞는 details 또는 statement가 필요합니다.',
+      value: null,
+    };
+  }
+  if (Object.keys(row).length !== 2) {
+    return {error: '활성 사실은 enabled와 details만 가져야 합니다.', value: null};
+  }
+  const details = row.details as Record<string, unknown>;
+  if (
+    Object.keys(details).length !== detailKeys.length
+    || detailKeys.some(key => !(key in details))
+  ) {
+    return {error: '활성 details의 필드 구성이 올바르지 않습니다.', value: null};
+  }
+  for (const key of detailKeys) {
+    if (arrayKeys.includes(key)) {
+      if (
+        !Array.isArray(details[key])
+        || (details[key] as unknown[]).length === 0
+        || (details[key] as unknown[]).some(item => identityValueError(item))
+      ) {
+        return {error: `${key}는 실제 문자열 1개 이상의 배열이어야 합니다.`, value: null};
+      }
+    } else if (identityValueError(details[key])) {
+      return {error: `${key}에는 실제 운영 사실이 필요합니다.`, value: null};
+    }
+  }
+  return {
+    error: null,
+    value: {
+      details: Object.fromEntries(
+        Object.entries(details).map(([key, value]) => [
+          key,
+          Array.isArray(value)
+            ? value.map(item => (item as string).trim())
+            : (value as string).trim(),
+        ]),
+      ) as T,
+      enabled: true,
+    },
+  };
+}
+
+function transferDescription(
+  thirdPartyProvision: PublicPrivacyConfig['thirdPartyProvision'],
+  processingOutsourcing: PublicPrivacyConfig['processingOutsourcing'],
+  internationalTransfer: PublicPrivacyConfig['internationalTransfer'],
+) {
+  const labels = [
+    thirdPartyProvision.enabled && '제3자 제공',
+    processingOutsourcing.enabled && '처리위탁',
+    internationalTransfer.enabled && '국외이전',
+  ].filter(Boolean);
+  return labels.length
+    ? `${labels.join(' · ')} 사실은 아래 법정 구획에서 각각 공개`
+    : '제3자 제공·처리위탁·국외이전 없음';
 }
 
 function validateBoolean(

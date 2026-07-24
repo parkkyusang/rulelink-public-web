@@ -9,6 +9,7 @@ import {
   resolvePublicPrivacyConfig,
   validatePublicPrivacyConfiguration,
 } from '../src/lib/public-data-practices.ts';
+import {parsePublicContactHref} from '../src/lib/public-trust.ts';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const [layout, sitemap, privacyPage, workspace, envExample] = await Promise.all([
@@ -32,6 +33,23 @@ export const completePrivacyEnvironment = {
   RULELINK_PUBLIC_PRIVACY_EFFECTIVE_DATE: '2026-07-24',
   RULELINK_PUBLIC_PRIVACY_WITHDRAWAL:
     '각 상세 글의 표시 초기화 버튼으로 기기 저장 상태를 즉시 삭제할 수 있습니다.',
+  RULELINK_PUBLIC_DESTRUCTION_PROCEDURE:
+    '보유기간이 끝나거나 처리 목적이 달성된 항목을 확인한 뒤 지체 없이 파기합니다.',
+  RULELINK_PUBLIC_DESTRUCTION_METHOD:
+    '전자 기록은 복구할 수 없는 방식으로 삭제하고 종이 기록은 분쇄합니다.',
+  RULELINK_PUBLIC_RIGHTS_DESCRIPTION:
+    '정보주체는 열람·정정·삭제·처리정지를 요구할 수 있습니다.',
+  RULELINK_PUBLIC_RIGHTS_EXERCISE_METHOD:
+    '공개 연락처로 본인 확인에 필요한 최소 정보와 요청 내용을 보냅니다.',
+  RULELINK_PUBLIC_LEGAL_REPRESENTATIVE_RIGHTS:
+    '법정대리인은 적법한 대리권을 확인한 뒤 같은 방법으로 권리를 행사할 수 있습니다.',
+  RULELINK_PUBLIC_PRIVACY_RESPONSIBLE_ROLE:
+    '개인정보 보호 및 고충처리 담당 부서',
+  RULELINK_PUBLIC_PRIVACY_SAFEGUARDS_JSON: JSON.stringify([
+    '최소권한 접근통제',
+    '전송구간 암호화',
+    '보존기간 만료 자동 삭제',
+  ]),
   RULELINK_PUBLIC_HOSTING_PROVIDER: 'Vercel Inc.',
   RULELINK_PUBLIC_HOSTING_PURPOSE:
     '웹사이트 제공, 보안 유지와 오류 진단을 위한 요청 로그 처리',
@@ -46,9 +64,36 @@ export const completePrivacyEnvironment = {
     '대한민국',
     '미국',
   ]),
-  RULELINK_PUBLIC_HOSTING_TRANSFER_THIRD_PARTY: 'true',
-  RULELINK_PUBLIC_HOSTING_TRANSFER_DESCRIPTION:
-    '호스팅 제공자가 사이트 제공과 보안을 위해 위 항목을 대한민국과 미국에서 처리',
+  RULELINK_PUBLIC_THIRD_PARTY_PROVISION_JSON: JSON.stringify({
+    enabled: false,
+    statement: '호스팅 요청 로그를 독립된 제3자에게 제공하지 않습니다.',
+  }),
+  RULELINK_PUBLIC_PROCESSING_OUTSOURCING_JSON: JSON.stringify({
+    enabled: true,
+    details: {
+      processor: 'Vercel Inc.',
+      purpose: '사이트 제공과 보안 로그 처리',
+      dataTypes: ['IP 주소', '요청 시각', '요청 URL', '사용자 에이전트'],
+      retention: '30일',
+      safeguards: '계약과 접근통제로 처리 목적 밖 이용을 제한',
+    },
+  }),
+  RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON: JSON.stringify({
+    enabled: true,
+    details: {
+      legalBasis: '정보주체 동의가 아닌 서비스 제공 계약 이행에 필요한 처리 근거',
+      recipient: 'Vercel Inc.',
+      country: '미국',
+      dataTypes: ['IP 주소', '요청 시각', '요청 URL', '사용자 에이전트'],
+      timingAndMethod: '페이지 요청 시 암호화된 네트워크로 이전',
+      purposeAndRetention: '사이트 제공과 보안 유지, 30일',
+      refusalMethodAndEffect: '사이트 이용을 중단해 이전을 거부할 수 있으나 페이지 제공이 제한됩니다.',
+    },
+  }),
+  RULELINK_PUBLIC_AUTOMATIC_COLLECTION_JSON: JSON.stringify({
+    enabled: false,
+    statement: '쿠키·광고 식별자·분석 도구를 사용하지 않습니다.',
+  }),
   RULELINK_PUBLIC_ANALYTICS_ENABLED: 'false',
   RULELINK_PUBLIC_ADVERTISING_ENABLED: 'false',
 };
@@ -70,7 +115,7 @@ test('기본 데이터 처리 정본은 체크리스트만 활성이고 분석·
     'rulelink-checklist-v1:{content_id}:{revision_key}',
   ]);
   assert.equal(checklist.transfer.serverTransmission, false);
-  assert.equal(checklist.transfer.thirdPartyTransmission, false);
+  assert.equal(checklist.transfer.thirdPartyProvision, false);
   assert.match(workspace, /rulelink-checklist-v1/);
 });
 
@@ -126,7 +171,10 @@ test('완전한 운영 사실만 privacy와 hosting inventory를 연다', () => 
     '요청 URL',
     '사용자 에이전트',
   ]);
-  assert.equal(config.inventory[0].transfer.thirdPartyTransmission, true);
+  assert.equal(config.inventory[0].transfer.thirdPartyProvision, false);
+  assert.equal(config.inventory[0].transfer.processingOutsourcing, true);
+  assert.equal(config.inventory[0].transfer.internationalTransfer, true);
+  assert.equal(config.processingOutsourcing.enabled, true);
 });
 
 test('privacy 필수 사실·자리표시자·잘못된 날짜는 fail-closed다', () => {
@@ -139,8 +187,17 @@ test('privacy 필수 사실·자리표시자·잘못된 날짜는 fail-closed다
     'RULELINK_PUBLIC_HOSTING_DATA_TYPES_JSON',
     'RULELINK_PUBLIC_HOSTING_RETENTION',
     'RULELINK_PUBLIC_HOSTING_PROCESSING_REGIONS_JSON',
-    'RULELINK_PUBLIC_HOSTING_TRANSFER_THIRD_PARTY',
-    'RULELINK_PUBLIC_HOSTING_TRANSFER_DESCRIPTION',
+    'RULELINK_PUBLIC_DESTRUCTION_PROCEDURE',
+    'RULELINK_PUBLIC_DESTRUCTION_METHOD',
+    'RULELINK_PUBLIC_RIGHTS_DESCRIPTION',
+    'RULELINK_PUBLIC_RIGHTS_EXERCISE_METHOD',
+    'RULELINK_PUBLIC_LEGAL_REPRESENTATIVE_RIGHTS',
+    'RULELINK_PUBLIC_PRIVACY_RESPONSIBLE_ROLE',
+    'RULELINK_PUBLIC_PRIVACY_SAFEGUARDS_JSON',
+    'RULELINK_PUBLIC_THIRD_PARTY_PROVISION_JSON',
+    'RULELINK_PUBLIC_PROCESSING_OUTSOURCING_JSON',
+    'RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON',
+    'RULELINK_PUBLIC_AUTOMATIC_COLLECTION_JSON',
   ]) {
     const environment = {...completePrivacyEnvironment};
     delete environment[field];
@@ -160,6 +217,24 @@ test('privacy 필수 사실·자리표시자·잘못된 날짜는 fail-closed다
     ...completePrivacyEnvironment,
     RULELINK_PUBLIC_HOSTING_PROVIDER: 'TODO provider',
   }).some(error => error.includes('HOSTING_PROVIDER')));
+  assert.ok(validatePublicPrivacyConfiguration({
+    ...completePrivacyEnvironment,
+    RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON: JSON.stringify({
+      enabled: true,
+      details: {recipient: 'Vercel Inc.'},
+    }),
+  }).some(error => error.includes('INTERNATIONAL_TRANSFER')));
+});
+
+test('공용 연락처 파서는 mailto query를 링크에만 보존하고 주소와 분리한다', () => {
+  assert.deepEqual(
+    parsePublicContactHref('mailto:privacy@rulelink.kr?subject=privacy'),
+    {
+      address: 'privacy@rulelink.kr',
+      href: 'mailto:privacy@rulelink.kr?subject=privacy',
+      kind: 'email',
+    },
+  );
 });
 
 test('분석·광고 활성화는 검증된 CMP가 있어도 현재 구현에서 거부한다', () => {
@@ -191,8 +266,11 @@ test('화면·설정 예시는 단일 inventory와 필요한 운영 필드를 �
     'config.inventory.map',
     'data-practice-status',
     '서버 전송',
-    '제3자 전송',
-    '수탁·이전 설명',
+    '제3자 제공',
+    '처리위탁',
+    '국외이전',
+    '파기절차',
+    '안전성 확보조치',
   ]) assert.match(privacyPage, new RegExp(phrase));
   for (const field of [
     'RULELINK_PUBLIC_PRIVACY_ENABLED',
