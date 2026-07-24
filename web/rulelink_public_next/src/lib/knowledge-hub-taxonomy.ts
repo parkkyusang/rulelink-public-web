@@ -35,7 +35,6 @@ export const KNOWLEDGE_HUB_TAXONOMY = [
       'hub.money-guarantee',
       'hub.debt-enforcement',
       'hub.civil-small-claims',
-      'hub.voice-phishing-refund',
     ],
   },
   {
@@ -69,6 +68,7 @@ export const KNOWLEDGE_HUB_TAXONOMY = [
       'hub.everyday-damages',
       'hub.auto-accident-insurance',
       'hub.crime-victim-response',
+      'hub.voice-phishing-refund',
     ],
   },
   {

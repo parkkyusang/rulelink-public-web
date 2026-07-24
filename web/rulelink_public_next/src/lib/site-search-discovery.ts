@@ -138,13 +138,24 @@ const KOREAN_PARTICLES = [
 ] as const;
 
 const OPTIONAL_CONVERSATIONAL_TOKENS = new Set(['세', '번']);
+const CONTEXTUAL_NEGATION_TOKENS = new Set(['안', '미', '못', '않']);
+const NEGATION_ACTION_CONTEXT = new Set([
+  '줘요',
+  '지급',
+  '주지',
+  '돌려주지',
+  '돌려받기',
+  '환급',
+  '반환',
+  '회수',
+]);
+const DEBT_CONTEXT = new Set(['빚', '채무', '부채']);
 
 const CONVERSATIONAL_EQUIVALENCE_GROUPS = [
   ['계속', '지속', '반복'],
   ['집주인', '임대인'],
   ['사장님', '사용자', '사업주', '회사'],
   ['월급', '임금', '급여'],
-  ['안', '미', '못', '않'],
   ['줘요', '지급', '주지', '돌려주지'],
   ['당했어요', '피해', '당한', '발생'],
   ['인터넷', '온라인', '전자상거래'],
@@ -155,7 +166,6 @@ const CONVERSATIONAL_EQUIVALENCE_GROUPS = [
   ['맞았어요', '폭행', '학교폭력'],
   ['밀렸어요', '연체', '밀리', '누적'],
   ['빚', '채무'],
-  ['많아요', '많', '초과'],
 ] as const;
 
 const CONVERSATIONAL_EQUIVALENCES = new Map<string, string[]>();
@@ -265,6 +275,8 @@ export function rankSiteSearchDocuments(
 ): RankedSiteSearchResult[] {
   const normalizedQuery = normalizeSiteSearchText(query);
   const queryTokens = tokenizeSiteSearchQuery(query);
+  const hasQuery = query.trim().length > 0;
+  if (hasQuery && queryTokens.length === 0) return [];
 
   return documents
     .filter(document => filter === 'all' || document.kind === filter)
@@ -306,18 +318,21 @@ export function normalizeSiteSearchText(value: string): string {
 }
 
 export function tokenizeSiteSearchQuery(value: string): string[][] {
-  return normalizeSiteSearchText(value)
+  const baseTokens = normalizeSiteSearchText(value)
     .split(' ')
     .filter(Boolean)
     .filter(token => !OPTIONAL_CONVERSATIONAL_TOKENS.has(token))
     .map(token => {
       const stripped = stripKoreanParticle(token);
-      const bases = stripped === token ? [token] : [token, stripped];
-      return [...new Set(bases.flatMap(base => [
-        base,
-        ...(CONVERSATIONAL_EQUIVALENCES.get(base) ?? []),
-      ]))];
+      return stripped === token ? [token] : [token, stripped];
     });
+  const context = new Set(baseTokens.flat());
+
+  return baseTokens
+    .map(bases => [...new Set(bases.flatMap(base => (
+      contextualQueryVariants(base, context)
+    )))])
+    .filter(variants => variants.length > 0);
 }
 
 function siteSearchDocument(value: {
@@ -403,10 +418,13 @@ function scoreDocument(
     }
   }
 
+  const matchReasons = buildMatchReasons(scoringFields, queryTokens);
+  if (queryTokens.length > 0 && matchReasons.length === 0) return null;
+
   return {
     ...document,
     score,
-    matchReasons: buildMatchReasons(scoringFields, queryTokens),
+    matchReasons,
     freshnessState: isPublicationFresh(
       {expires_at: document.expiresAt},
       now,
@@ -501,6 +519,31 @@ function stripKoreanParticle(token: string): string {
     if (stem.length >= 2) return stem;
   }
   return token;
+}
+
+function contextualQueryVariants(
+  base: string,
+  context: ReadonlySet<string>,
+): string[] {
+  if (CONTEXTUAL_NEGATION_TOKENS.has(base)) {
+    const hasActionContext = [...NEGATION_ACTION_CONTEXT].some(
+      token => context.has(token),
+    );
+    return hasActionContext
+      ? ['미지급', '지급하지', '주지', '돌려주지', '못', '않']
+      : [];
+  }
+  if (base === '많아요') {
+    const hasDebtContext = [...context].some(token => (
+      DEBT_CONTEXT.has(token)
+      || /^(빚|채무|부채)(이|가|은|는|을|를)$/u.test(token)
+    ));
+    return hasDebtContext ? ['많아요', '많', '초과'] : ['많아요'];
+  }
+  return [
+    base,
+    ...(CONVERSATIONAL_EQUIVALENCES.get(base) ?? []),
+  ];
 }
 
 function uniqueNonEmpty(values: readonly string[]): string[] {

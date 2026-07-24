@@ -170,6 +170,56 @@ test('조사 제거는 원문을 보존한 보조 variant이고 짧은 말·법�
   );
 });
 
+test('비어 있지 않은 질의의 의미 토큰과 실제 매칭 이유가 없으면 결과를 닫는다', () => {
+  assert.deepEqual(tokenizeSiteSearchQuery('세 번'), []);
+  assert.deepEqual(
+    rankSiteSearchDocuments(documents, {now, query: '세 번'}),
+    [],
+  );
+  assert.deepEqual(
+    rankSiteSearchDocuments(documents, {now, query: '!!!'}),
+    [],
+  );
+
+  for (const result of rankSiteSearchDocuments(documents, {
+    now,
+    query: '보증금',
+  })) {
+    assert.ok(
+      result.matchReasons.length > 0,
+      `${result.id}: 비어 있지 않은 질의 결과에 표시할 근거가 없습니다.`,
+    );
+  }
+});
+
+test('짧은 부정어와 많다는 표현은 관련 문맥이 있을 때만 확장한다', () => {
+  const fixture = [
+    searchDocument('generic-guide', 'knowledge', '2026-07-20', '법률 안내'),
+    searchDocument('asset-heavy', 'knowledge', '2026-07-20', '상속 재산이 많아요'),
+    searchDocument('debt-heavy', 'knowledge', '2026-07-20', '상속 채무가 재산을 초과하는 경우'),
+  ];
+
+  assert.deepEqual(
+    rankSiteSearchDocuments(fixture, {now, query: '안'}),
+    [],
+  );
+  assert.deepEqual(
+    rankSiteSearchDocuments(fixture, {
+      now,
+      query: '상속 재산이 많아요',
+    }).map(result => result.id),
+    ['asset-heavy'],
+  );
+  assert.ok(
+    tokenizeSiteSearchQuery('집주인이 보증금을 안 줘요')
+      .some(variants => variants.includes('돌려주지')),
+  );
+  assert.ok(
+    tokenizeSiteSearchQuery('상속 빚이 많아요')
+      .some(variants => variants.includes('초과')),
+  );
+});
+
 test('공백·구두점과 부분 토큰을 정규화하고 모든 논리 토큰의 일치를 유지한다', () => {
   const spaced = rankSiteSearchDocuments(documents, {
     now,

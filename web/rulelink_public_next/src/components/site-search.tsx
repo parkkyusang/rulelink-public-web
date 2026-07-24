@@ -120,9 +120,13 @@ export function SiteSearch({
     [documents, filter, freshnessNow, query],
   );
   const displayedResults = visibleResults.slice(0, visibleLimit);
+  const hasQuery = query.trim().length > 0;
+  const isQueryIndexPending = hasQuery
+    && !fullDocuments
+    && (indexState === 'idle' || indexState === 'loading');
   const totalResultCount = fullDocuments
     ? visibleResults.length
-    : query
+    : hasQuery
       ? visibleResults.length
       : totalCounts[filter];
   const hiddenResultCount = Math.max(
@@ -164,7 +168,7 @@ export function SiteSearch({
       </div>
 
       <p aria-live="polite" className={styles.resultCount}>
-        {indexState === 'loading' && query
+        {isQueryIndexPending
           ? '전체 검색 인덱스를 불러오는 중입니다.'
           : indexState === 'error'
             ? `검색 인덱스를 불러오지 못해 먼저 표시된 ${displayedResults.length}개 안에서 찾았습니다.`
@@ -252,8 +256,8 @@ export function SiteSearch({
             }}
           />
         </>
-      ) : (
-        <div className={styles.empty}>
+      ) : isQueryIndexPending ? null : (
+        <div className={styles.empty} data-search-empty>
           <strong>조건에 맞는 법률정보를 찾지 못했습니다.</strong>
           <p>검색어를 더 짧게 바꾸거나 전체 유형에서 다시 확인해 주세요.</p>
         </div>

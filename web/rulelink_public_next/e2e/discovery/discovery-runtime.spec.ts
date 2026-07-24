@@ -82,10 +82,14 @@ test('자바스크립트가 없어도 홈의 28개 주제 링크는 초기 HTML�
   await context.close();
 });
 
-test('검색은 초기 24개만 렌더링하고 첫 상호작용 때 전체 인덱스를 지연 로드한다', async ({
+test('검색은 느린 전체 인덱스 중 0건을 확정하지 않고 준비 뒤 근거 있는 결과만 표시한다', async ({
   page,
 }) => {
   const indexResponses: Array<{bytes: number; status: number}> = [];
+  await page.route('**/search-index.json', async route => {
+    await new Promise(resolve => setTimeout(resolve, 1_000));
+    await route.continue();
+  });
   page.on('response', async response => {
     if (new URL(response.url()).pathname !== '/search-index.json') return;
     indexResponses.push({
@@ -109,6 +113,13 @@ test('검색은 초기 24개만 렌더링하고 첫 상호작용 때 전체 인�
     '상황, 법 이름, 조문이나 사건번호를 적어보세요',
   );
   await input.focus();
+  await input.fill('집주인이 보증금을 안 줘요');
+  await expect(page.locator('[data-site-search]')).toHaveAttribute(
+    'data-search-index-state',
+    'loading',
+  );
+  await expect(page.getByText('전체 검색 인덱스를 불러오는 중입니다.')).toBeVisible();
+  await expect(page.locator('[data-search-empty]')).toHaveCount(0);
   await expect(page.locator('[data-site-search]')).toHaveAttribute(
     'data-search-index-state',
     'ready',
@@ -124,6 +135,11 @@ test('검색은 초기 24개만 렌더링하고 첫 상호작용 때 전체 인�
     await expect(firstResult).toHaveAttribute('data-search-result-kind', 'knowledge');
     await expect(firstResult.locator('[data-match-reasons]')).toBeVisible();
   }
+
+  await input.fill('세 번');
+  await expect(page.locator('[data-search-result-id]')).toHaveCount(0);
+  await expect(page.locator('[data-search-empty]')).toBeVisible();
+  await expect(page.getByText('찾은 법률정보 0개')).toBeVisible();
 
   await input.fill('');
   await input.focus();

@@ -101,6 +101,14 @@ test('명시적 생활영역 taxonomy는 운영 허브 28개를 중복 없이 7�
     new Set(categories.flatMap(category => category.hubs.map(hub => hub.hub_id))).size,
     28,
   );
+  assert.ok(
+    categories.find(category => category.category_id === 'accident-crime-victim')
+      .hubs.some(hub => hub.hub_id === 'hub.voice-phishing-refund'),
+  );
+  assert.ok(
+    !categories.find(category => category.category_id === 'money-debt-litigation')
+      .hubs.some(hub => hub.hub_id === 'hub.voice-phishing-refund'),
+  );
   assert.throws(
     () => buildKnowledgeHubDirectoryCategories(hubs.slice(1)),
     /정본에 없는 매핑/u,
