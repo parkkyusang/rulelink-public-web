@@ -48,12 +48,38 @@ const queuePath = path.join(repoRoot, 'artifacts', 'publication', 'production-qu
 const registryPath = path.join(repoRoot, 'artifacts', 'publication', 'production-queue-registry.json');
 const bundlePath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
 const workflowPath = path.join(repoRoot, '.github', 'workflows', 'public-web-checks.yml');
-const [queue, registry, bundle, workflow] = await Promise.all([
+const [currentQueue, currentRegistry, bundle, workflow] = await Promise.all([
   readFile(queuePath, 'utf8').then(JSON.parse),
   readFile(registryPath, 'utf8').then(JSON.parse),
   readFile(bundlePath, 'utf8').then(JSON.parse),
   readFile(workflowPath, 'utf8'),
 ]);
+const productionWorkIds = new Set(Object.keys(PRODUCTION_WORK_CONTRACTS));
+
+function withoutRegisteredProductionWork(queueValue, registryValue) {
+  const queue = clone(queueValue);
+  queue.items = queue.items.filter(item => !productionWorkIds.has(item.work_id));
+  refreshSummary(queue);
+
+  const registry = clone(registryValue);
+  registry.registrations = registry.registrations.filter(
+    item => !productionWorkIds.has(item.work_id),
+  );
+  registry.registry_receipt = registry.registrations.at(-1)?.receipt || null;
+  registry.prerequisite_gate_receipts = registry.prerequisite_gate_receipts.filter(
+    item => !productionWorkIds.has(item.work_id),
+  );
+  if (registry.prerequisite_gate_receipts.length === 0) {
+    delete registry.prerequisite_gate_receipts;
+    delete registry.prerequisite_gate_receipt;
+  } else {
+    registry.prerequisite_gate_receipt =
+      registry.prerequisite_gate_receipts.at(-1).receipt;
+  }
+  return {queue, registry};
+}
+
+const {queue, registry} = withoutRegisteredProductionWork(currentQueue, currentRegistry);
 const publicationEvidence = await loadQueuePublicationEvidence(queue, bundle, {itemRegistry: registry});
 const testMigrationCommitSha = 'a'.repeat(40);
 const execFileAsync = promisify(execFile);
@@ -582,14 +608,18 @@ function clearPublicationCompletion(item) {
 }
 
 test('현재 생산 대기열은 실제 current 공개 정본·역할·의존성 계약을 만족한다', () => {
-  assert.deepEqual(validateProductionQueue(queue, {publishedBundle: bundle, ...publicationEvidence}), []);
-  assert.deepEqual(compareQueueCurrentPublication(queue, bundle), []);
-  const {live_parity: _liveParity, ...queuePublication} = queue.current_publication;
+  assert.deepEqual(validateProductionQueueRaw(currentQueue, {
+    publishedBundle: bundle,
+    ...publicationEvidence,
+    itemRegistry: currentRegistry,
+  }), []);
+  assert.deepEqual(compareQueueCurrentPublication(currentQueue, bundle), []);
+  const {live_parity: _liveParity, ...queuePublication} = currentQueue.current_publication;
   assert.deepEqual(deriveCurrentPublication(bundle), queuePublication);
-  assert.equal(queue.current_publication.live_parity, 'verified');
-  assert.equal(queue.audit_summary.open_content_prs, queue.items.filter(item => ['pr_open', 'ready_for_integration', 'needs_rework', 'migration_required', 'blocked'].includes(item.status)).length);
+  assert.equal(currentQueue.current_publication.live_parity, 'verified');
+  assert.equal(currentQueue.audit_summary.open_content_prs, currentQueue.items.filter(item => ['pr_open', 'ready_for_integration', 'needs_rework', 'migration_required', 'blocked'].includes(item.status)).length);
   for (const status of ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated', 'superseded', 'withdrawn']) {
-    assert.equal(queue.audit_summary[status], queue.items.filter(item => item.status === status).length);
+    assert.equal(currentQueue.audit_summary[status], currentQueue.items.filter(item => item.status === status).length);
   }
 });
 
@@ -852,7 +882,9 @@ test('원자적 동기화는 전체 검증 성공 뒤에만 파일을 교체한�
     const stale = clone(queue);
     stale.current_publication.snapshot_id = 'stale';
     await writeFile(target, JSON.stringify(stale, null, 2) + '\n', 'utf8');
-    const result = await synchronizeCurrentPublicationFile(target, bundle);
+    const result = await synchronizeCurrentPublicationFile(target, bundle, {
+      itemRegistry: registry,
+    });
     assert.equal(result.current_publication.snapshot_id, bundle.snapshot_id);
     assert.deepEqual(JSON.parse(await readFile(target, 'utf8')), result);
   } finally {
@@ -1029,7 +1061,9 @@ test('#105 정체성을 보존한 종료 이력과 #174 신규 대체 항목을 
   assert.equal(replacement.source_freshness.follow_up_owner_role, 'source_maintenance');
   assert.match(replacement.integration_checks.join(' '), /023 publication migration/u);
 
-  const registration = registry.registrations.at(-1);
+  const registration = registry.registrations.find(
+    item => item.queue_id === 'publication-pr-174',
+  );
   assert.equal(registration.sequence, 24);
   assert.equal(registration.queue_id, 'publication-pr-174');
   assert.equal(registration.previous_receipt, registry.registrations.at(-2).receipt);

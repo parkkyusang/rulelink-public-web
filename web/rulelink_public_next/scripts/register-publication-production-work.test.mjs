@@ -33,7 +33,63 @@ const registryPath = path.join(
 const bundlePath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
 
 async function readJson(filePath) {
-  return JSON.parse(await readFile(filePath, 'utf8'));
+  const value = JSON.parse(await readFile(filePath, 'utf8'));
+  const workIds = new Set([
+    'reader-backfill-crime-victim-wave1',
+    'reader-backfill-debt-enforcement-wave2',
+  ]);
+  if (filePath === queuePath) {
+    value.items = value.items.filter(item => !workIds.has(item.work_id));
+    const openStatuses = new Set([
+      'pr_open',
+      'ready_for_integration',
+      'needs_rework',
+      'migration_required',
+      'blocked',
+    ]);
+    value.audit_summary.open_content_prs =
+      value.items.filter(item => openStatuses.has(item.status)).length;
+    for (const status of [
+      'ready_for_integration',
+      'needs_rework',
+      'migration_required',
+      'blocked',
+      'integrated',
+      'merged_pending_publication',
+      'superseded',
+      'withdrawn',
+    ]) {
+      value.audit_summary[status] =
+        value.items.filter(item => item.status === status).length;
+    }
+  }
+  if (filePath === registryPath) {
+    value.registrations = value.registrations.filter(
+      item => !workIds.has(item.work_id),
+    );
+    value.registry_receipt = value.registrations.at(-1)?.receipt || null;
+    value.prerequisite_gate_receipts = value.prerequisite_gate_receipts.filter(
+      item => !workIds.has(item.work_id),
+    );
+    if (value.prerequisite_gate_receipts.length === 0) {
+      delete value.prerequisite_gate_receipts;
+      delete value.prerequisite_gate_receipt;
+    } else {
+      value.prerequisite_gate_receipt =
+        value.prerequisite_gate_receipts.at(-1).receipt;
+    }
+    for (const [entriesKey, receiptKey] of [
+      ['release_check_receipts', 'release_check_receipt'],
+      ['pr_bindings', 'pr_binding_receipt'],
+      ['head_receipts', 'head_receipt'],
+    ]) {
+      if (value[entriesKey]?.length === 0) {
+        delete value[entriesKey];
+        delete value[receiptKey];
+      }
+    }
+  }
+  return value;
 }
 
 async function fileHash(filePath) {
@@ -52,9 +108,13 @@ async function withTemporaryProductionFiles(callback) {
     registry: path.join(directory, 'production-queue-registry.json'),
     bundle: path.join(directory, 'bundle.json'),
   };
+  const [queue, registry] = await Promise.all([
+    readJson(queuePath),
+    readJson(registryPath),
+  ]);
   await Promise.all([
-    cp(queuePath, paths.queue),
-    cp(registryPath, paths.registry),
+    writeFile(paths.queue, `${JSON.stringify(queue, null, 2)}\n`, 'utf8'),
+    writeFile(paths.registry, `${JSON.stringify(registry, null, 2)}\n`, 'utf8'),
     cp(bundlePath, paths.bundle),
   ]);
   try {
@@ -158,14 +218,19 @@ test('사전검증은 전체 생산 대기열 검증을 통과하고 두 정본 
     queue: await fileHash(queuePath),
     registry: await fileHash(registryPath),
   };
-  const prepared = await registerProductionWorkFiles({
-    workIds: ['reader-backfill-crime-victim-wave1'],
-    write: false,
+  await withTemporaryProductionFiles(async paths => {
+    const prepared = await registerProductionWorkFiles({
+      workIds: ['reader-backfill-crime-victim-wave1'],
+      queuePath: paths.queue,
+      registryPath: paths.registry,
+      bundlePath: paths.bundle,
+      write: false,
+    });
+    assert.equal(
+      prepared.queue.items.at(-1).work_id,
+      'reader-backfill-crime-victim-wave1',
+    );
   });
-  assert.equal(
-    prepared.queue.items.at(-1).work_id,
-    'reader-backfill-crime-victim-wave1',
-  );
   assert.deepEqual(
     {
       queue: await fileHash(queuePath),
