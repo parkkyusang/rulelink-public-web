@@ -5,6 +5,13 @@
   "engines": {
     "node": ">=20.9.0"
   },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=20.9.0",
+      "onFail": "error"
+    }
+  },
   "scripts": {
     "sync-publication": "node scripts/sync-publication.mjs",
     "validate-publication": "node scripts/validate-publication-bundle.mjs",
