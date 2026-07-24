@@ -2,6 +2,8 @@ import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
 import {ChangeBriefContext} from '@/components/change-brief-context';
+import {buildChangeBriefStructuredData} from '@/lib/change-brief-structured-data';
+import {sourceVersionScopeLabelKo} from '@/lib/change-brief-projection';
 import {
   assertionsForChangeBrief,
   changeBriefProjection,
@@ -9,7 +11,6 @@ import {
   listChangeBriefs,
   relatedCardsForChangeBrief,
 } from '@/lib/publication';
-import {sourceVersionScopeLabelKo} from '@/lib/change-brief-projection';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
@@ -55,20 +56,20 @@ export default async function ChangeBriefPage({params}: Props) {
   return (
     <main className="changePage">
       <script
-        dangerouslySetInnerHTML={{__html: serializeStructuredData({
-          '@context': 'https://schema.org',
-          '@type': 'Article',
-          headline: brief.title_ko,
-          description: brief.summary_ko,
+        dangerouslySetInnerHTML={{__html: serializeStructuredData(buildChangeBriefStructuredData({
+          articleNo: brief.article_no,
           dateModified: brief.reviewed_at,
-          mainEntityOfPage: canonicalUrl,
-          inLanguage: 'ko-KR',
-          about: `${brief.law_name_ko} ${brief.article_no}`,
-          isBasedOn: officialSources,
-        })}}
+          description: brief.summary_ko,
+          lawNameKo: brief.law_name_ko,
+          officialSourceUrls: officialSources,
+          pageUrl: canonicalUrl,
+          siteName: site.name,
+          siteUrl: site.url,
+          title: brief.title_ko,
+        }))}}
         type="application/ld+json"
       />
-      <nav aria-label="현재 위치" className="breadcrumb"><a href="/">홈</a><span aria-hidden="true">/</span><a href="/ko/changes">법령 변화</a><span aria-hidden="true">/</span><span aria-current="page">현재 변화</span></nav>
+      <nav aria-label="현재 위치" className="breadcrumb"><a href="/">홈</a><span aria-hidden="true">/</span><a href="/ko/changes">법령 변화</a><span aria-hidden="true">/</span><span aria-current="page">{brief.title_ko}</span></nav>
       <header className="changeHero">
         <div className="changeHeroMeta">
           <span className={`lifecycle ${projection.status}`}>{projection.status_label_ko}</span>
