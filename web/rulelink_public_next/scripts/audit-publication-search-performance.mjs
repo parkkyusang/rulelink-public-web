@@ -3,6 +3,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 import {projectChangeBrief} from '../src/lib/change-brief-projection.ts';
+import {site} from '../src/lib/site.ts';
 
 const scriptPath = fileURLToPath(import.meta.url);
 const appRoot = path.resolve(path.dirname(scriptPath), '..');
@@ -748,7 +749,7 @@ export function auditPublicationSearchPerformance(bundle, options = {}) {
   if (bundle?.schema !== 'rulelink_published_bundle_v1') {
     throw new Error('지원하지 않는 공개 번들 스키마입니다.');
   }
-  const baseUrl = options.baseUrl ?? 'https://rulelink.lolphysical.xyz';
+  const baseUrl = options.baseUrl ?? site.url;
   const asOf = options.asOf ?? bundle.built_at;
   if (!Number.isFinite(Date.parse(asOf))) throw new Error('감사 기준시점이 유효하지 않습니다.');
   const gscRows = options.gscRows ?? [];
@@ -865,7 +866,7 @@ function percent(value) {
 export function renderSearchPerformanceMarkdown(report, options = {}) {
   const limit = options.limit ?? 20;
   const lines = [
-    '# 룰링크 검색 유입·콘텐츠 성과 감사',
+    `# ${site.name} 검색 유입·콘텐츠 성과 감사`,
     '',
     `- 스냅샷: \`${report.source.snapshot_id}\``,
     `- 감사 기준시점: ${report.source.audit_as_of}`,

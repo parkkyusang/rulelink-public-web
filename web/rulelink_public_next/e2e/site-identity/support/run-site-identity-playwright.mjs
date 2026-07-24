@@ -21,7 +21,14 @@ const modes = [
       NEXT_PUBLIC_RULELINK_OPERATOR_NAME: '교체검증운영자',
       NEXT_PUBLIC_RULELINK_SITE_ENGLISH_NAME: 'IdentitySwitch',
       NEXT_PUBLIC_RULELINK_SITE_NAME: '교체검증브랜드',
-      NEXT_PUBLIC_RULELINK_SITE_URL: 'https://identity-switch.invalid',
+      NEXT_PUBLIC_RULELINK_SITE_URL: 'https://identity-switch.lolphysical.xyz',
+      RULELINK_PUBLIC_APPROVED_REVIEWERS_JSON: '[]',
+      RULELINK_PUBLIC_CONTACT_LABEL: '정체성 시험 연락',
+      RULELINK_PUBLIC_CONTACT_URL: 'mailto:identity-check@lolphysical.xyz',
+      RULELINK_PUBLIC_OPERATOR_LEGAL_NAME: '교체검증 법적 운영자',
+      RULELINK_PUBLIC_REVIEW_QUALIFICATION_DISCLOSURE:
+        '실제 검토자 표지가 있는 경우 승인 근거를 공개합니다.',
+      RULELINK_PUBLIC_TRUST_ENABLED: 'true',
     },
   },
 ];

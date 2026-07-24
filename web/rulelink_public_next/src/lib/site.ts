@@ -91,7 +91,50 @@ function resolvedOrigin(candidate: string | undefined, fallback: string): string
       'NEXT_PUBLIC_RULELINK_SITE_URL: 경로·쿼리·fragment·포트가 없는 https 원점이어야 합니다.',
     );
   }
+  const hostError = deploymentHostError(parsed.hostname);
+  if (hostError) {
+    throw new Error(`NEXT_PUBLIC_RULELINK_SITE_URL: ${hostError}`);
+  }
   return parsed.origin;
+}
+
+function deploymentHostError(rawHostname: string): string | null {
+  const hostname = rawHostname.toLowerCase().replace(/^\[|\]$/gu, '');
+  if (
+    !hostname.includes('.')
+    || hostname === 'localhost'
+    || hostname.endsWith('.localhost')
+    || ['.invalid', '.test', '.example', '.local', '.internal', '.home', '.lan']
+      .some(suffix => hostname.endsWith(suffix))
+  ) {
+    return '공개 배포가 불가능한 예약·내부 호스트를 사용할 수 없습니다.';
+  }
+  if (privateIpv4(hostname) || privateIpv6(hostname)) {
+    return 'loopback·사설·링크 로컬 IP를 공개 원점으로 사용할 수 없습니다.';
+  }
+  return null;
+}
+
+function privateIpv4(hostname: string): boolean {
+  if (!/^\d{1,3}(?:\.\d{1,3}){3}$/u.test(hostname)) return false;
+  const octets = hostname.split('.').map(Number);
+  if (octets.some(octet => octet > 255)) return true;
+  const [first, second] = octets;
+  return first === 0
+    || first === 10
+    || first === 127
+    || (first === 100 && second >= 64 && second <= 127)
+    || (first === 169 && second === 254)
+    || (first === 172 && second >= 16 && second <= 31)
+    || (first === 192 && second === 168)
+    || (first === 198 && [18, 19].includes(second));
+}
+
+function privateIpv6(hostname: string): boolean {
+  return hostname === '::'
+    || hostname === '::1'
+    || /^f[cd]/u.test(hostname)
+    || /^fe[89ab]/u.test(hostname);
 }
 
 const identity = resolveSiteIdentity();

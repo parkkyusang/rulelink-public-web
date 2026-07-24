@@ -42,35 +42,9 @@ export default async function RootLayout({children}: {children: ReactNode}) {
       </head>
       <body>
         <script
-          dangerouslySetInnerHTML={{__html: serializeStructuredData({
-            '@context': 'https://schema.org',
-            '@graph': [
-              {
-                '@type': 'WebSite',
-                '@id': `${site.url}/#website`,
-                name: site.name,
-                alternateName: site.englishName,
-                url: site.url,
-                description: site.description,
-                inLanguage: 'ko-KR',
-                publisher: {'@id': `${site.url}/#organization`},
-                potentialAction: {
-                  '@type': 'SearchAction',
-                  target: {
-                    '@type': 'EntryPoint',
-                    urlTemplate: `${site.url}/ko/search?q={search_term_string}`,
-                  },
-                  'query-input': 'required name=search_term_string',
-                },
-              },
-              {
-                '@type': 'Organization',
-                '@id': `${site.url}/#organization`,
-                name: site.operatorName,
-                url: site.url,
-              },
-            ],
-          })}}
+          dangerouslySetInnerHTML={{
+            __html: serializeStructuredData(buildSiteStructuredData(trustConfig)),
+          }}
           type="application/ld+json"
         />
         {preview ? <div className="previewBanner">내부 편집 미리보기 · 외부 공개 및 법률정보 이용 금지</div> : null}
@@ -89,4 +63,46 @@ export default async function RootLayout({children}: {children: ReactNode}) {
       </body>
     </html>
   );
+}
+
+function buildSiteStructuredData(
+  trustConfig: ReturnType<typeof resolvePublicTrustConfig>,
+) {
+  const website = {
+    '@type': 'WebSite',
+    '@id': `${site.url}/#website`,
+    name: site.name,
+    ...(site.englishName !== site.name
+      ? {alternateName: site.englishName}
+      : {}),
+    url: site.url,
+    description: site.description,
+    inLanguage: 'ko-KR',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${site.url}/ko/search?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  };
+  if (!trustConfig) {
+    return {'@context': 'https://schema.org', ...website};
+  }
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        ...website,
+        publisher: {'@id': `${site.url}/#organization`},
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${site.url}/#organization`,
+        name: trustConfig.operatorLegalName,
+        url: site.url,
+      },
+    ],
+  };
 }

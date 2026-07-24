@@ -21,10 +21,10 @@ test('이름과 원점을 한 묶음으로 교체할 수 있다', () => {
     NEXT_PUBLIC_RULELINK_OPERATOR_NAME: '교체검증운영자',
     NEXT_PUBLIC_RULELINK_SITE_ENGLISH_NAME: 'IdentitySwitch',
     NEXT_PUBLIC_RULELINK_SITE_NAME: '교체검증브랜드',
-    NEXT_PUBLIC_RULELINK_SITE_URL: 'https://identity-switch.invalid/',
+    NEXT_PUBLIC_RULELINK_SITE_URL: 'https://identity-switch.lolphysical.xyz/',
   }), {
     englishName: 'IdentitySwitch', indexing: true, name: '교체검증브랜드',
-    operatorName: '교체검증운영자', url: 'https://identity-switch.invalid',
+    operatorName: '교체검증운영자', url: 'https://identity-switch.lolphysical.xyz',
   });
 });
 
@@ -44,14 +44,31 @@ test('제공된 정체성 값이 잘못되면 현재값으로 조용히 대체�
   assert.throws(() => resolveSiteIdentity({
     NEXT_PUBLIC_RULELINK_OPERATOR_NAME: '<b>운영자</b>',
   }), /HTML 제어문자/);
+  for (const origin of [
+    'https://identity.invalid',
+    'https://identity.test',
+    'https://localhost',
+    'https://127.0.0.1',
+    'https://10.0.0.1',
+    'https://service.internal',
+  ]) {
+    assert.throws(
+      () => resolveSiteIdentity({NEXT_PUBLIC_RULELINK_SITE_URL: origin}),
+      /시험·예시·미정|예약·내부 호스트|loopback·사설/,
+    );
+  }
 });
 
-test('공개 런타임의 브랜드와 공개 원점 하드코딩은 설정 기본값 한 곳에만 있다', async () => {
-  const files = await sourceFiles(['app', 'src']);
+test('공개 런타임과 운영 도구의 브랜드·원점 하드코딩은 설정 기본값 한 곳에만 있다', async () => {
+  const files = await sourceFiles(['app', 'src', 'scripts']);
   const findings = [];
   for (const file of files) {
     const source = await readFile(path.join(root, file), 'utf8');
-    if (file === 'src/lib/site.ts') continue;
+    if (
+      file === 'src/lib/site.ts'
+      || file.startsWith('scripts/fixtures/')
+      || file.endsWith('.test.mjs')
+    ) continue;
     for (const expression of [
       /['"`]RuleLink/gu,
       /룰링크/gu,
@@ -70,12 +87,20 @@ test('별도 변호사 작업공간 주소는 공개 사이트 원점 치환 대
   assert.match(source, /href="https:\/\/liale-review\.lolphysical\.xyz"/);
   assert.match(source, /\{site\.name\}/);
   assert.match(source, /\{site\.operatorName\}/);
+  const files = await sourceFiles(['app', 'src', 'scripts']);
+  const owners = [];
+  for (const file of files) {
+    if (file.endsWith('.test.mjs')) continue;
+    const text = await readFile(path.join(root, file), 'utf8');
+    if (text.includes('https://liale-review.lolphysical.xyz')) owners.push(file);
+  }
+  assert.deepEqual(owners, ['app/ko/lawyer-workspace/page.tsx']);
 });
 
 async function sourceFiles(directories) {
   const results = [];
   for (const directory of directories) await walk(directory, results);
-  return results.filter(file => /\.(?:ts|tsx)$/u.test(file));
+  return results.filter(file => /\.(?:ts|tsx|mjs)$/u.test(file));
 }
 
 async function walk(relative, results) {

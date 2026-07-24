@@ -2,6 +2,8 @@ import {readFile, readdir, writeFile, mkdir} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
+import {site} from '../src/lib/site.ts';
+
 const scriptPath = fileURLToPath(import.meta.url);
 const appRoot = path.resolve(path.dirname(scriptPath), '..');
 const repoRoot = path.resolve(appRoot, '..', '..');
@@ -417,7 +419,7 @@ export async function auditPublicationTechnicalSeo({
 
 export function renderTechnicalSeoMarkdown(report) {
   const lines = [
-    '# RuleLink 공개 페이지 기술 SEO 전수감사',
+    `# ${site.name} 공개 페이지 기술 SEO 전수감사`,
     '',
     `- 공개본: ${report.generated_from.snapshot_id}`,
     `- 범위: 지식 상세 ${report.coverage.knowledge} / 주제 허브 ${report.coverage.hub} / 법령변화 ${report.coverage.change} / 합계 ${report.coverage.total}`,

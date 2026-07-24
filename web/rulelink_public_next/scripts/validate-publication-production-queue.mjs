@@ -17,6 +17,7 @@ import {
   authorityEvidenceSiblingPath,
   validateAuthorityEvidenceArtifact,
 } from './validate-authority-evidence-artifacts.mjs';
+import {site} from '../src/lib/site.ts';
 
 const scriptPath = fileURLToPath(import.meta.url);
 const appRoot = path.resolve(path.dirname(scriptPath), '..');
@@ -24,7 +25,7 @@ const repoRoot = path.resolve(appRoot, '..', '..');
 const defaultQueuePath = path.join(repoRoot, 'artifacts', 'publication', 'production-queue.json');
 const defaultQueueRegistryPath = path.join(repoRoot, 'artifacts', 'publication', 'production-queue-registry.json');
 const defaultPublishedBundlePath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
-const defaultLivePublicationUrl = 'https://rulelink.lolphysical.xyz/publication.json';
+const defaultLivePublicationUrl = `${site.url}/publication.json`;
 const execFileAsync = promisify(execFile);
 const contentTypeContract = JSON.parse(
   await readFile(path.join(appRoot, 'src', 'lib', 'knowledge-content-types.json'), 'utf8'),
