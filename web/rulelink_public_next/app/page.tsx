@@ -3,6 +3,7 @@ import {KnowledgeHubDirectory} from '@/components/knowledge-hub-directory';
 import {changeLifecycleLabel} from '@/lib/change-lifecycle';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {selectHomepageKnowledge} from '@/lib/homepage-knowledge-selection';
+import {formatKoreanLegalDate} from '@/lib/legal-date';
 import {
   listChangeBriefs,
   listKnowledgeEntries,
@@ -78,7 +79,7 @@ export default async function HomePage() {
             {changeBriefs.slice(0, 3).map(brief => (
               <a className="changeCard" href={`/ko/changes/${brief.slug}`} key={brief.change_brief_id}>
                 <span className={`lifecycle ${brief.lifecycle}`}>{changeLifecycleLabel(brief.lifecycle)}</span>
-                <span className="changeDate">{formatLegalDate(brief.effective_date)}</span>
+                <span className="changeDate" data-effective-date={brief.effective_date}>{formatKoreanLegalDate(brief.effective_date)}</span>
                 <h3>{brief.title_ko}</h3>
                 <p>{brief.summary_ko}</p>
                 <strong>개정 전후와 확인사항 보기 <span aria-hidden="true">→</span></strong>
@@ -147,8 +148,4 @@ export default async function HomePage() {
 
 function formatReviewDate(value: string): string {
   return new Intl.DateTimeFormat('ko-KR', {dateStyle: 'medium'}).format(new Date(value));
-}
-
-function formatLegalDate(value: string): string {
-  return `${new Intl.DateTimeFormat('ko-KR', {dateStyle: 'long'}).format(new Date(`${value}T00:00:00+09:00`))} 시행`;
 }

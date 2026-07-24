@@ -51,10 +51,10 @@ test('디자인 계약은 화면 역할과 애셋 생성 조건을 함께 고정
 });
 
 test('홈 주제 디렉터리는 좁은 화면에서도 가로 스크롤 없는 유동 격자를 사용한다', () => {
-  assert.match(hubDirectory, /grid-template-columns: repeat\(auto-fit, minmax\(min\(100%, 280px\), 1fr\)\)/);
-  assert.match(hubDirectory, /\.grid \{[^}]*max-width: 100%;[^}]*min-width: 0;[^}]*width: 100%;/s);
-  assert.match(hubDirectory, /\.card \{[^}]*min-width: 0;/s);
-  assert.match(hubDirectory, /@media \(max-width: 640px\)[\s\S]*grid-template-columns: minmax\(0, 1fr\)/);
+  assert.match(hubDirectory, /grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.match(hubDirectory, /\.category \{[^}]*min-width: 0;/s);
+  assert.match(hubDirectory, /\.links > a \{[^}]*min-width: 0;/s);
+  assert.match(hubDirectory, /@media \(max-width: 720px\)[\s\S]*grid-template-columns: minmax\(0, 1fr\)/);
   assert.doesNotMatch(hubDirectory, /overflow-x:\s*(?:auto|scroll)/);
 });
 

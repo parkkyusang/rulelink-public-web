@@ -1,8 +1,14 @@
 import type {Metadata} from 'next';
 
 import {SiteSearch} from '@/components/site-search';
-import {listChangeBriefs, listKnowledgeSearchDocuments, listPublishedCards, listPublishedTopics} from '@/lib/publication';
+import {publicationNow} from '@/lib/publication-freshness';
+import {initialProgressiveResultLimit} from '@/lib/progressive-results';
 import {site} from '@/lib/site';
+import {
+  countSiteSearchDocuments,
+  rankSiteSearchDocuments,
+} from '@/lib/site-search-discovery';
+import {loadSiteSearchDocuments} from '@/lib/site-search-publication';
 import {serializeStructuredData} from '@/lib/structured-data';
 
 export const dynamic = 'force-static';
@@ -20,33 +26,26 @@ export const metadata: Metadata = {
 };
 
 export default async function SearchPage() {
-  const [cards, changeBriefs, knowledgeDocuments, topics] = await Promise.all([
-    listPublishedCards(),
-    listChangeBriefs(),
-    listKnowledgeSearchDocuments(),
-    listPublishedTopics(),
-  ]);
+  const documents = await loadSiteSearchDocuments();
+  const freshnessNow = publicationNow();
   const canonicalUrl = `${site.url}/ko/search`;
-  const parts = [
-    ...cards.map(card => ({
-      name: card.title_ko,
-      description: card.audience_situation_ko,
-      url: `${site.url}/ko/issues/${card.slug}`,
-      dateModified: card.reviewed_at,
-    })),
-    ...knowledgeDocuments.map(({entry}) => ({
-      name: entry.title_ko,
-      description: entry.one_line_answer_ko,
-      url: `${site.url}/ko/knowledge/${entry.slug}`,
-      dateModified: entry.reviewed_at,
-    })),
-    ...changeBriefs.map(brief => ({
-      name: brief.title_ko,
-      description: brief.summary_ko,
-      url: `${site.url}/ko/changes/${brief.slug}`,
-      dateModified: brief.reviewed_at,
-    })),
-  ];
+  const initialDocuments = rankSiteSearchDocuments(documents, {
+    now: freshnessNow,
+    query: '',
+  })
+    .slice(0, initialProgressiveResultLimit(documents.length))
+    .map(({
+      freshnessState: _freshnessState,
+      matchReasons: _matchReasons,
+      score: _score,
+      ...document
+    }) => document);
+  const initialParts = initialDocuments.map(document => ({
+    name: document.title,
+    description: document.summary,
+    url: `${site.url}${document.href}`,
+    dateModified: document.reviewedAt,
+  }));
   return (
     <main className="topicPage">
       <script
@@ -63,8 +62,8 @@ export default async function SearchPage() {
             name: site.name,
             url: site.url,
           },
-          numberOfItems: parts.length,
-          hasPart: parts.map(part => ({'@type': 'WebPage', ...part})),
+          numberOfItems: documents.length,
+          hasPart: initialParts.map(part => ({'@type': 'WebPage', ...part})),
         })}}
         type="application/ld+json"
       />
@@ -74,7 +73,12 @@ export default async function SearchPage() {
         <h1 id="site-search-heading">글의 종류를 몰라도 내 상황에서 찾습니다.</h1>
         <p>상황, 법리, 결론을 가르는 사실, 조문번호와 판례 사건번호를 하나의 검색면에서 확인할 수 있습니다.</p>
       </header>
-      <SiteSearch cards={cards} changeBriefs={changeBriefs} knowledgeDocuments={knowledgeDocuments} topics={topics} />
+      <SiteSearch
+        freshnessNow={freshnessNow.toISOString()}
+        indexHref="/search-index.json"
+        initialDocuments={initialDocuments}
+        totalCounts={countSiteSearchDocuments(documents)}
+      />
     </main>
   );
 }

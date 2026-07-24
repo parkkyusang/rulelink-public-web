@@ -1,7 +1,7 @@
 import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
-import {knowledgeContentTypeLabel} from '@/lib/content-labels';
+import {KnowledgeHubJourney} from '@/components/knowledge-hub-journey';
 import {knowledgeRelationTypeLabelKo} from '@/lib/knowledge-relations';
 import {connectedKnowledgeHubs, decisionPathsForKnowledgeHub, entriesForKnowledgeHub, findKnowledgeHub, listKnowledgeHubs} from '@/lib/publication';
 import {site} from '@/lib/site';
@@ -69,7 +69,7 @@ export default async function KnowledgeHubPage({params}: Props) {
       />
       <nav className="breadcrumb"><a href="/">홈</a><span>/</span><a href="/ko/knowledge">생활법률 지식</a><span>/</span><span>{hub.title_ko}</span></nav>
       <header className="topicHero">
-        <p className="eyebrow">주제 허브</p>
+        <p className="eyebrow">상황별 법률 주제</p>
         <h1>{hub.title_ko}</h1>
         <p>{hub.description_ko}</p>
         <span className="audienceBadge">연결된 지식 {entries.length}개</span>
@@ -101,25 +101,7 @@ export default async function KnowledgeHubPage({params}: Props) {
           </div>
         </section>
       ) : null}
-      <section aria-labelledby="hub-all-entries-heading" className="hubAllEntries">
-        <div className="sectionHeading">
-          <div>
-            <p className="eyebrow">전체 안내</p>
-            <h2 id="hub-all-entries-heading">이 주제의 검토된 글</h2>
-          </div>
-          <span className="snapshot">{entries.length}개</span>
-        </div>
-        <div className="knowledgeGrid">
-        {entries.map(entry => (
-          <a className="knowledgeCard" href={`/ko/knowledge/${entry.slug}`} key={entry.content_id}>
-            <span className="knowledgeMeta">{knowledgeContentTypeLabel(entry.content_type)} · 기준 확인 {formatDate(entry.reviewed_at)}</span>
-            <h2>{entry.title_ko}</h2>
-            <p>{entry.one_line_answer_ko}</p>
-            <strong>법리와 사실분기 보기 →</strong>
-          </a>
-        ))}
-        </div>
-      </section>
+      <KnowledgeHubJourney entries={entries} />
       {connections.length ? (
         <section aria-labelledby="hub-connections-heading" className="hubConnections">
           <div className="hubConnectionsIntro">
@@ -127,11 +109,16 @@ export default async function KnowledgeHubPage({params}: Props) {
               <p className="eyebrow">연결해서 보는 주제</p>
               <h2 id="hub-connections-heading">이 문제와 맞닿은 법률 경로</h2>
             </div>
-            <p>상세 글 사이에 실제로 연결된 비교·기한·구제절차를 따라 다음 주제를 골랐습니다.</p>
+            <p>명시된 관계는 연결 유형을 표시하고, 관계 유형이 없는 기존 연결은 ‘함께 확인할 주제’로만 구분합니다.</p>
           </div>
           <div className="hubConnectionGrid">
             {connections.map(connection => (
-              <a className="hubConnectionCard" href={`/ko/hubs/${connection.hub.slug}`} key={connection.hub.hub_id}>
+              <a
+                className="hubConnectionCard"
+                data-hub-connection={connection.relationTypes.length ? 'typed' : 'legacy'}
+                href={`/ko/hubs/${connection.hub.slug}`}
+                key={connection.hub.hub_id}
+              >
                 <span className="hubConnectionMeta">
                   {connection.relationTypes.length
                     ? connection.relationTypes.map(knowledgeRelationTypeLabelKo).join(' · ')
@@ -151,9 +138,5 @@ export default async function KnowledgeHubPage({params}: Props) {
       ) : null}
     </main>
   );
-}
-
-function formatDate(value: string): string {
-  return new Intl.DateTimeFormat('ko-KR', {dateStyle: 'medium'}).format(new Date(value));
 }
 

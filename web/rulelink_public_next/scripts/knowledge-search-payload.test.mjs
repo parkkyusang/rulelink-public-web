@@ -15,9 +15,11 @@ test('검색 목록에는 카드 표시 필드만 남기고 상세 본문 객체
     'audience_situation_ko',
     'content_id',
     'content_type',
+    'expires_at',
     'hub_ids',
     'one_line_answer_ko',
     'reviewed_at',
+    'search_intents_ko',
     'slug',
     'title_ko',
   ];
@@ -44,6 +46,16 @@ test('검색 투영 직렬화 크기는 전체 상세 객체를 중복 전달할
   const compactBytes = Buffer.byteLength(JSON.stringify(documents));
   const legacyBytes = Buffer.byteLength(JSON.stringify(legacyDocuments));
   assert.ok(compactBytes <= legacyBytes * 0.65, `${compactBytes} / ${legacyBytes}`);
+});
+
+test('운영 023 검색 payload는 본문·법리·사실분기를 제거한 350KB 예산 안에 있다', () => {
+  const compactBytes = Buffer.byteLength(JSON.stringify(documents));
+  const termCount = documents.reduce(
+    (total, document) => total + document.search_terms_ko.length,
+    0,
+  );
+  assert.ok(compactBytes <= 350_000, `${compactBytes} bytes`);
+  assert.ok(termCount <= 3_000, `${termCount} terms`);
 });
 
 test('모든 공개 지식은 검색 카드와 근거 역색인을 유지한다', () => {

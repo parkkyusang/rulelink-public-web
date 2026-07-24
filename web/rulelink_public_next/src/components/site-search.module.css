@@ -169,6 +169,16 @@
   color: #183f79;
 }
 
+.resultMeta > span.freshness {
+  background: var(--surface-soft);
+  color: var(--muted);
+}
+
+.resultMeta > span.freshness[data-freshness-state="review_due"] {
+  background: #fff0e6;
+  color: #8b3f14;
+}
+
 .result h2 {
   font-size: 24px;
   letter-spacing: -.035em;
@@ -188,6 +198,58 @@
   line-height: 1.55;
   margin-top: 20px;
   padding-top: 15px;
+}
+
+.reviewDates {
+  color: var(--muted-soft);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 11px;
+  gap: 7px 14px;
+  margin-top: 12px;
+}
+
+.matchReasons {
+  background: var(--surface-soft);
+  border-radius: 12px;
+  margin-top: 16px;
+  padding: 14px;
+}
+
+.matchReasons > b {
+  color: var(--green);
+  display: block;
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+
+.matchReasons ul {
+  display: grid;
+  gap: 9px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.matchReasons li {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.matchReasons li > span {
+  color: var(--muted-soft);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.matchReasons li > p {
+  color: var(--muted-strong);
+  font-size: 12px;
+  line-height: 1.55;
+  margin: 0;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
 }
 
 .evidence {
@@ -239,5 +301,10 @@
 
   .result {
     min-height: 285px;
+    padding: 21px 18px;
+  }
+
+  .result h2 {
+    font-size: 22px;
   }
 }

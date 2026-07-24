@@ -22,6 +22,8 @@ export type PublicKnowledgeSearchEntry = Pick<PublicKnowledgeEntry,
   | 'one_line_answer_ko'
   | 'audience_situation_ko'
   | 'reviewed_at'
+  | 'expires_at'
+  | 'search_intents_ko'
   | 'hub_ids'
 >;
 
@@ -184,21 +186,18 @@ function makeKnowledgeSearchDocument(
       one_line_answer_ko: entry.one_line_answer_ko,
       audience_situation_ko: entry.audience_situation_ko,
       reviewed_at: entry.reviewed_at,
+      expires_at: entry.expires_at,
+      search_intents_ko: entry.search_intents_ko,
       hub_ids: entry.hub_ids,
     },
     search_terms_ko: uniqueTerms([
-      // 제목ㆍ한 문장 답변ㆍ대상 상황은 위 카드 필드로 이미 전달되므로 중복 직렬화하지 않는다.
-      ...entry.search_intents_ko,
-      ...entry.key_points_ko,
-      ...entry.action_steps_ko,
-      ...entry.facts_to_check_ko,
-      entry.caution_ko,
-      ...entry.body_sections.flatMap(section => [section.heading_ko, ...section.paragraphs_ko]),
+      // 제목ㆍ검색의도ㆍ한 문장 답변ㆍ대상 상황은 위 카드 필드로 전달한다.
+      // 목록 검색에는 허브와 개념의 짧은 식별어만 더하고 본문ㆍ법리ㆍ사실분기는 직렬화하지 않는다.
       ...graph.hubs.flatMap(hub => [hub.title_ko, hub.description_ko]),
-      ...graph.concepts.flatMap(conceptTerms),
-      ...graph.rules.flatMap(ruleTerms),
-      ...graph.scenarios.flatMap(scenarioTerms),
-      ...graph.sources.flatMap(sourceTerms),
+      ...graph.concepts.flatMap(concept => [
+        concept.preferred_term_ko,
+        ...concept.aliases_ko,
+      ]),
     ]),
     evidence_labels_ko: uniqueTerms(graph.sources.map(sourceLabel)),
   };
@@ -279,25 +278,6 @@ function sourceRelatedConceptTerms(concept: PublicConceptCard): string[] {
     ...concept.aliases_ko,
     concept.plain_definition_ko,
     concept.legal_definition_ko,
-  ];
-}
-
-function ruleTerms(rule: PublicRuleCard): string[] {
-  return [
-    rule.title_ko,
-    rule.proposition_ko,
-    rule.norm.actor_ko,
-    rule.norm.conditions_ko,
-    rule.norm.legal_effect_ko,
-  ];
-}
-
-function scenarioTerms(scenario: PublicScenarioBranch): string[] {
-  return [
-    scenario.question_ko,
-    scenario.decision_fact_ko,
-    scenario.when_true_ko,
-    scenario.when_false_ko,
   ];
 }
 

@@ -5,24 +5,25 @@ import test from 'node:test';
 import {fileURLToPath} from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const [bundle, projectionSource, rankingSource, siteSearchSource, knowledgeExplorerSource] = await Promise.all([
+const [bundle, projectionSource, rankingSource, siteSearchSource, siteSearchPublicationSource, searchPageSource, searchRouteSource, knowledgeExplorerSource] = await Promise.all([
   readFile(path.resolve(root, '..', '..', 'artifacts', 'publication', 'current', 'bundle.json'), 'utf8').then(JSON.parse),
   readFile(path.join(root, 'src', 'lib', 'knowledge-search.ts'), 'utf8'),
   readFile(path.join(root, 'src', 'lib', 'knowledge-search-ranking.ts'), 'utf8'),
   readFile(path.join(root, 'src', 'components', 'site-search.tsx'), 'utf8'),
+  readFile(path.join(root, 'src', 'lib', 'site-search-publication.ts'), 'utf8'),
+  readFile(path.join(root, 'app', 'ko', 'search', 'page.tsx'), 'utf8'),
+  readFile(path.join(root, 'app', 'search-index.json', 'route.ts'), 'utf8'),
   readFile(path.join(root, 'src', 'components', 'knowledge-explorer.tsx'), 'utf8'),
 ]);
 
-test('공개 지식 검색 투영은 콘텐츠에서 사실분기·법리·공식 근거까지 연결한다', () => {
+test('공개 지식 검색 투영은 짧은 의미 필드와 공식 근거만 연결한다', () => {
   assert.match(projectionSource, /resolveKnowledgeEntryGraph/);
   assert.match(projectionSource, /createKnowledgeEntryResolver/);
-  assert.match(projectionSource, /entry\.scenario_ids/);
-  assert.match(projectionSource, /scenario\.rule_ids/);
-  assert.match(projectionSource, /rule\.source_coordinate_ids/);
-  assert.match(projectionSource, /scenario\.source_coordinate_ids/);
-  assert.match(projectionSource, /source\.case_number/);
-  assert.match(projectionSource, /source\.article_no/);
-  assert.match(projectionSource, /\.\.\.entry\.search_intents_ko/);
+  assert.match(projectionSource, /search_intents_ko: entry\.search_intents_ko/);
+  assert.match(projectionSource, /evidence_labels_ko/);
+  assert.doesNotMatch(projectionSource, /\.\.\.entry\.body_sections/u);
+  assert.doesNotMatch(projectionSource, /\.\.\.graph\.rules\.flatMap\(ruleTerms\)/u);
+  assert.doesNotMatch(projectionSource, /\.\.\.graph\.scenarios\.flatMap\(scenarioTerms\)/u);
 });
 
 test('사건번호와 조문번호 근거가 연결된 공개 콘텐츠가 실제 번들에 존재한다', () => {
@@ -37,10 +38,13 @@ test('사건번호와 조문번호 근거가 연결된 공개 콘텐츠가 실�
 });
 
 test('통합검색과 지식 보관함은 검색 투영과 연결 근거 표지를 사용한다', () => {
-  for (const source of [siteSearchSource, rankingSource]) {
-    assert.match(source, /document\.search_terms_ko/);
-    assert.match(source, /document\.evidence_labels_ko/);
-  }
+  assert.match(siteSearchPublicationSource, /buildSiteSearchDocuments/);
+  assert.match(siteSearchSource, /rankSiteSearchDocuments/);
+  assert.match(siteSearchSource, /fetch\(indexHref/);
+  assert.match(siteSearchSource, /rulelink_public_search_index_v1/);
+  assert.match(siteSearchSource, /matchReasons/);
+  for (const source of [siteSearchSource, rankingSource]) assert.match(source, /evidence_labels_ko|evidenceLabels/u);
+  assert.match(rankingSource, /document\.search_terms_ko/);
   for (const source of [siteSearchSource, knowledgeExplorerSource]) assert.match(source, /연결 근거/);
 });
 
@@ -57,5 +61,8 @@ test('통합검색은 전체 검색 투영을 유지하고 화면 카드만 점�
   assert.match(siteSearchSource, /const visibleResults = useMemo/);
   assert.match(siteSearchSource, /const displayedResults = visibleResults\.slice\(0, visibleLimit\)/);
   assert.match(siteSearchSource, /ProgressiveResultFooter/);
-  assert.match(siteSearchSource, /nextProgressiveResultLimit\(visibleResults\.length, current\)/);
+  assert.match(siteSearchSource, /nextProgressiveResultLimit\(total, current\)/);
+  assert.match(searchPageSource, /slice\(0, initialProgressiveResultLimit\(documents\.length\)\)/);
+  assert.match(searchPageSource, /hasPart: initialParts\.map/);
+  assert.match(searchRouteSource, /documents: await loadSiteSearchDocuments\(\)/);
 });

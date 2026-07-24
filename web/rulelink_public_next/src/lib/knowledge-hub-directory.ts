@@ -1,41 +1,35 @@
-export const DEFAULT_CORE_KNOWLEDGE_HUB_COUNT = 8;
+import type {KnowledgeHubDirectoryCategory} from './knowledge-hub-taxonomy';
 
-export type KnowledgeHubDirectoryItem = {
-  hub_id: string;
-  title_ko: string;
-  description_ko: string;
-};
-
-type KnowledgeHubDirectoryOptions = {
-  coreLimit?: number;
-  expanded: boolean;
-  query: string;
-};
-
-export function selectVisibleKnowledgeHubs<T extends KnowledgeHubDirectoryItem>(
-  hubs: readonly T[],
-  {
-    coreLimit = DEFAULT_CORE_KNOWLEDGE_HUB_COUNT,
-    expanded,
-    query,
-  }: KnowledgeHubDirectoryOptions,
-): T[] {
+export function filterKnowledgeHubDirectoryCategories(
+  categories: readonly KnowledgeHubDirectoryCategory[],
+  query: string,
+): KnowledgeHubDirectoryCategory[] {
   const normalizedQuery = normalizeKnowledgeHubQuery(query);
-  if (normalizedQuery) {
-    return hubs.filter(hub => normalizeKnowledgeHubQuery([
-      hub.title_ko,
-      hub.description_ko,
-    ].join(' ')).includes(normalizedQuery));
+  if (!normalizedQuery) {
+    return categories.map(category => ({
+      ...category,
+      hubs: [...category.hubs],
+    }));
   }
-  if (expanded) return [...hubs];
-  return hubs.slice(0, normalizeCoreLimit(coreLimit, hubs.length));
+  return categories
+    .map(category => ({
+      ...category,
+      hubs: category.hubs.filter(hub => (
+        normalizeKnowledgeHubQuery([
+          category.title_ko,
+          hub.title_ko,
+          hub.description_ko,
+        ].join(' ')).includes(normalizedQuery)
+      )),
+    }))
+    .filter(category => category.hubs.length > 0);
 }
 
 export function normalizeKnowledgeHubQuery(value: string): string {
-  return value.normalize('NFKC').toLocaleLowerCase('ko-KR').replace(/\s+/g, ' ').trim();
-}
-
-function normalizeCoreLimit(limit: number, total: number): number {
-  if (!Number.isInteger(limit) || limit <= 0) return 0;
-  return Math.min(limit, total);
+  return value
+    .normalize('NFKC')
+    .toLocaleLowerCase('ko-KR')
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
+    .replace(/\s+/gu, ' ')
+    .trim();
 }

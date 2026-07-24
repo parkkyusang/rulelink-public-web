@@ -6,11 +6,18 @@ import {fileURLToPath} from 'node:url';
 
 import {selectHomepageKnowledge} from '../src/lib/homepage-knowledge-selection.ts';
 import {
-  DEFAULT_CORE_KNOWLEDGE_HUB_COUNT,
-  selectVisibleKnowledgeHubs,
+  filterKnowledgeHubDirectoryCategories,
 } from '../src/lib/knowledge-hub-directory.ts';
+import {
+  buildKnowledgeHubDirectoryCategories,
+  KNOWLEDGE_HUB_TAXONOMY,
+} from '../src/lib/knowledge-hub-taxonomy.ts';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const bundle = JSON.parse(await readFile(
+  path.resolve(root, '..', '..', 'artifacts/publication/current/bundle.json'),
+  'utf8',
+));
 
 function entry(content_id, reviewed_at, hub_ids, title_ko = content_id) {
   return {content_id, reviewed_at, hub_ids, title_ko};
@@ -47,7 +54,7 @@ test('홈 대표 지식 선택은 원본 순서를 바꾸지 않고 제한값을
   assert.deepEqual(selectHomepageKnowledge(entries, 0), []);
 });
 
-test('홈 주제 허브는 초기 HTML 링크를 보존하는 점진적 향상 디렉터리다', async () => {
+test('홈 상황별 법률 주제는 초기 HTML의 28개 링크를 보존하는 디렉터리다', async () => {
   const [page, component, css] = await Promise.all([
     readFile(path.join(root, 'app', 'page.tsx'), 'utf8'),
     readFile(path.join(root, 'src', 'components', 'knowledge-hub-directory.tsx'), 'utf8'),
@@ -57,46 +64,72 @@ test('홈 주제 허브는 초기 HTML 링크를 보존하는 점진적 향상 �
   assert.match(page, /import \{KnowledgeHubDirectory\}/);
   assert.match(page, /<KnowledgeHubDirectory hubs=\{knowledgeHubs\} \/>/);
   assert.match(component, /^'use client';/);
-  assert.match(component, /주제별로 찾아보기/);
-  assert.match(component, /주제 검색·필터/);
-  assert.match(component, /전체 주제 보기/);
+  assert.match(component, /상황별 법률 주제/);
+  assert.match(component, /어떤 일로 찾아오셨나요/);
+  assert.match(component, /상황별 주제 검색/);
   assert.match(component, /hub\.content_ids\.length/);
-  assert.match(component, /aria-label="주제별 생활법률 지식"/);
-  assert.match(component, /aria-controls="knowledge-hub-grid"/);
-  assert.match(component, /aria-expanded=\{expanded\}/);
+  assert.match(component, /관련 안내/);
+  assert.match(component, /aria-label="상황별 법률 주제"/);
   assert.match(component, /aria-live="polite"/);
-  assert.match(component, /hubs\.map\(\(hub, index\) =>/);
+  assert.match(component, /categories\.map\(category =>/);
+  assert.match(component, /category\.hubs\.map\(hub =>/);
   assert.match(component, /hidden=\{enhanced && !visibleHubIds\.has\(hub\.hub_id\)\}/);
   assert.match(component, /<noscript>/);
-  assert.match(css, /\.grid\s*\{[^}]*display:\s*grid/);
-  assert.match(css, /grid-template-columns:\s*repeat\(auto-fit, minmax\(min\(100%, 280px\), 1fr\)\)/);
-  assert.match(css, /@media \(max-width: 640px\)[\s\S]*grid-template-columns:\s*minmax\(0, 1fr\)/);
-  assert.match(css, /\.title\s*\{[^}]*overflow-wrap:\s*anywhere[^}]*word-break:\s*keep-all/s);
-  assert.match(css, /\.description\s*\{[^}]*overflow-wrap:\s*anywhere[^}]*word-break:\s*keep-all/s);
+  assert.doesNotMatch(component, /핵심|자주 찾는|인기|주제 허브|data-core-topic|전체 주제 보기/u);
+  assert.match(css, /\.categories\s*\{[^}]*display:\s*grid/);
+  assert.match(css, /grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.match(css, /@media \(max-width: 720px\)[\s\S]*grid-template-columns:\s*minmax\(0, 1fr\)/);
+  assert.match(css, /\.links strong\s*\{[^}]*overflow-wrap:\s*anywhere[^}]*word-break:\s*keep-all/s);
+  assert.match(css, /\.links p\s*\{[^}]*overflow-wrap:\s*anywhere[^}]*word-break:\s*keep-all/s);
   assert.doesNotMatch(css, /overflow-x:\s*(auto|scroll)/);
   assert.doesNotMatch(css, /-webkit-line-clamp|text-overflow:\s*ellipsis/);
 });
 
-test('주제 디렉터리는 24개와 35개에서도 핵심·전체·검색·빈 결과 수가 고정된다', () => {
-  for (const total of [24, 35]) {
-    const hubs = Array.from({length: total}, (_, index) => ({
-      hub_id: `hub-${index + 1}`,
-      title_ko: index === total - 2 ? '오직 하나뿐인 특별 주제' : `생활법률 주제 ${index + 1}`,
-      description_ko: index === total - 1 ? '긴 한국어 제목과 설명의 검색 경계를 확인하는 고유 설명' : `생활사건 안내 ${index + 1}`,
-    }));
-    const originalIds = hubs.map(hub => hub.hub_id);
+test('명시적 생활영역 taxonomy는 운영 허브 28개를 중복 없이 7개 영역으로 닫는다', () => {
+  const hubs = bundle.knowledge.topic_hubs;
+  const categories = buildKnowledgeHubDirectoryCategories(hubs);
+  assert.equal(categories.length, 7);
+  assert.deepEqual(
+    categories.map(category => category.title_ko),
+    ['주거·부동산', '돈·채권·재판', '일·사업', '가족·상속·안전', '사고·범죄피해', '소비·행정', '법률 길잡이'],
+  );
+  assert.deepEqual(
+    categories.flatMap(category => category.hubs.map(hub => hub.hub_id)),
+    KNOWLEDGE_HUB_TAXONOMY.flatMap(category => [...category.hub_ids]),
+  );
+  assert.equal(
+    new Set(categories.flatMap(category => category.hubs.map(hub => hub.hub_id))).size,
+    28,
+  );
+  assert.throws(
+    () => buildKnowledgeHubDirectoryCategories(hubs.slice(1)),
+    /정본에 없는 매핑/u,
+  );
+  assert.throws(
+    () => buildKnowledgeHubDirectoryCategories([
+      ...hubs,
+      {...hubs[0], hub_id: 'hub.unclassified'},
+    ]),
+    /분류되지 않은 주제/u,
+  );
+});
 
-    assert.equal(selectVisibleKnowledgeHubs(hubs, {expanded: false, query: ''}).length, DEFAULT_CORE_KNOWLEDGE_HUB_COUNT);
-    assert.equal(selectVisibleKnowledgeHubs(hubs, {expanded: true, query: ''}).length, total);
-    assert.deepEqual(
-      selectVisibleKnowledgeHubs(hubs, {expanded: false, query: '  오직   하나뿐인  '}).map(hub => hub.hub_id),
-      [`hub-${total - 1}`],
-    );
-    assert.deepEqual(
-      selectVisibleKnowledgeHubs(hubs, {expanded: true, query: '고유 설명'}).map(hub => hub.hub_id),
-      [`hub-${total}`],
-    );
-    assert.equal(selectVisibleKnowledgeHubs(hubs, {expanded: true, query: '없는 검색어'}).length, 0);
-    assert.deepEqual(hubs.map(hub => hub.hub_id), originalIds);
-  }
+test('주제 검색은 영역·제목·설명의 실제 문구만 사용하고 원본 순서를 바꾸지 않는다', () => {
+  const hubs = bundle.knowledge.topic_hubs;
+  const originalIds = hubs.map(hub => hub.hub_id);
+  const categories = buildKnowledgeHubDirectoryCategories(hubs);
+  assert.deepEqual(
+    filterKnowledgeHubDirectoryCategories(categories, '  주거  ').map(category => category.title_ko),
+    ['주거·부동산'],
+  );
+  assert.deepEqual(
+    filterKnowledgeHubDirectoryCategories(categories, '보이스피싱')
+      .flatMap(category => category.hubs.map(hub => hub.hub_id)),
+    ['hub.voice-phishing-refund'],
+  );
+  assert.equal(
+    filterKnowledgeHubDirectoryCategories(categories, '없는 검색어').length,
+    0,
+  );
+  assert.deepEqual(hubs.map(hub => hub.hub_id), originalIds);
 });
