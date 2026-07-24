@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 
 import {SiteHeader} from '@/components/site-header';
+import {resolvePublicPrivacyConfig} from '@/lib/public-data-practices';
 import {site} from '@/lib/site';
 import {editorialPreviewEnabled, listConceptCards} from '@/lib/publication';
 import {resolvePublicTrustConfig} from '@/lib/public-trust';
@@ -35,6 +36,7 @@ export default async function RootLayout({children}: {children: ReactNode}) {
   const preview = editorialPreviewEnabled();
   const hasConcepts = (await listConceptCards()).length > 0;
   const trustConfig = resolvePublicTrustConfig();
+  const privacyConfig = resolvePublicPrivacyConfig();
   return (
     <html lang="ko">
       <head>
@@ -60,6 +62,7 @@ export default async function RootLayout({children}: {children: ReactNode}) {
           <strong>{site.name}</strong>
           <span>일반 법률정보만 제공합니다. 구체 사건의 결론·승소 가능성·대응전략·서면 방향은 변호사와 직접 상담해야 합니다.</span>
           {trustConfig ? <a href="/ko/trust">운영·신뢰 원칙</a> : null}
+          {privacyConfig ? <a href="/ko/privacy">개인정보 처리방침</a> : null}
         </footer>
       </body>
     </html>

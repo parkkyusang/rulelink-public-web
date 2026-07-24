@@ -2,6 +2,7 @@ import {access, readFile} from 'node:fs/promises';
 import path from 'node:path';
 
 import {validatePublicTrustConfiguration} from '../src/lib/public-trust.ts';
+import {validatePublicPrivacyConfiguration} from '../src/lib/public-data-practices.ts';
 
 const appRoot = process.cwd();
 const defaultBundlePath = path.resolve(
@@ -31,6 +32,7 @@ const errors = validatePublicTrustConfiguration(process.env, {
   editorialAttributions,
   hasEditorialAttribution,
 });
+errors.push(...validatePublicPrivacyConfiguration(process.env));
 
 if (errors.length) {
   for (const error of errors) {
@@ -43,7 +45,9 @@ const state = process.env.RULELINK_PUBLIC_TRUST_ENABLED === 'true'
   ? '공개 준비 완료'
   : '비활성화';
 process.stdout.write(
-  `공개 신뢰 설정 검증 통과: ${state}, 편집자 표지 ${hasEditorialAttribution ? '있음' : '0건'}\n`,
+  `공개 신뢰·데이터 처리 설정 검증 통과: ${state}, 개인정보 ${
+    process.env.RULELINK_PUBLIC_PRIVACY_ENABLED === 'true' ? '공개 준비 완료' : '비활성화'
+  }, 편집자 표지 ${hasEditorialAttribution ? '있음' : '0건'}\n`,
 );
 
 async function readJsonIfPresent(filename) {
