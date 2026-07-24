@@ -30,7 +30,9 @@ test.describe('default public build', () => {
 
   for (const routeCase of defaultRoutes) {
     for (const width of widths) {
-      test(`${routeCase.id} ${width}px WCAG A/AA`, async ({page}, testInfo) => {
+      test(`${routeCase.id} ${width}px WCAG A/AA moderate+ 자동회귀`, async ({
+        page,
+      }, testInfo) => {
         await page.setViewportSize({height: 1000, width});
         const response = await page.goto(
           routeCase.route,
@@ -61,7 +63,9 @@ test.describe('default public build', () => {
   }
 
   for (const width of widths) {
-    test(`search states ${width}px WCAG A/AA`, async ({page}, testInfo) => {
+    test(`search states ${width}px WCAG A/AA moderate+ 자동회귀`, async ({
+      page,
+    }, testInfo) => {
       await page.setViewportSize({height: 1000, width});
       let releaseIndex = () => {};
       const indexGate = new Promise<void>(resolve => {
@@ -152,39 +156,45 @@ test.describe('default public build', () => {
     await expect(allFilter).toHaveAttribute('aria-pressed', 'true');
   });
 
-  test('trust off는 공개 메뉴·정본 경로를 만들지 않고 404도 접근 가능하다', async ({
-    page,
-  }, testInfo) => {
-    await page.setViewportSize({height: 1000, width: 390});
-    await page.goto('/', {waitUntil: 'networkidle'});
-    await expect(page.getByRole('link', {name: '운영·신뢰'})).toHaveCount(0);
-    const response = await page.goto('/ko/trust', {waitUntil: 'networkidle'});
-    expect(response?.status()).toBe(404);
-    await auditWcag(page, testInfo, {
-      id: 'trust-off-404',
-      mode,
-      route: '/ko/trust',
-      state: 'disabled',
-      width: 390,
+  for (const width of widths) {
+    test(`trust off ${width}px은 공개 메뉴·정본 경로를 만들지 않는다`, async ({
+      page,
+    }, testInfo) => {
+      await page.setViewportSize({height: 1000, width});
+      await page.goto('/', {waitUntil: 'networkidle'});
+      await expect(page.getByRole('link', {name: '운영·신뢰'})).toHaveCount(0);
+      const response = await page.goto('/ko/trust', {waitUntil: 'networkidle'});
+      expect(response?.status()).toBe(404);
+      await assertNoHorizontalOverflow(page);
+      await auditWcag(page, testInfo, {
+        id: 'trust-off-404',
+        mode,
+        route: '/ko/trust',
+        state: 'disabled',
+        width,
+      });
     });
-  });
+  }
 
-  test('authority zero-state는 기존 상세 구조를 보존한다', async ({
-    page,
-  }, testInfo) => {
-    await page.setViewportSize({height: 1000, width: 390});
-    const route = '/ko/knowledge/legal-heir-order-and-spouse';
-    await page.goto(route, {waitUntil: 'networkidle'});
-    await expect(page.locator('[data-authority-reading-root]')).toHaveCount(0);
-    await expect(page.locator('a[href^="/ko/authorities/"]')).toHaveCount(0);
-    await auditWcag(page, testInfo, {
-      id: 'authority-zero-state',
-      mode,
-      route,
-      state: 'zero',
-      width: 390,
+  for (const width of widths) {
+    test(`authority zero-state ${width}px은 기존 상세 구조를 보존한다`, async ({
+      page,
+    }, testInfo) => {
+      await page.setViewportSize({height: 1000, width});
+      const route = '/ko/knowledge/legal-heir-order-and-spouse';
+      await page.goto(route, {waitUntil: 'networkidle'});
+      await expect(page.locator('[data-authority-reading-root]')).toHaveCount(0);
+      await expect(page.locator('a[href^="/ko/authorities/"]')).toHaveCount(0);
+      await assertNoHorizontalOverflow(page);
+      await auditWcag(page, testInfo, {
+        id: 'authority-zero-state',
+        mode,
+        route,
+        state: 'zero',
+        width,
+      });
     });
-  });
+  }
 });
 
 test.describe('trust on', () => {
@@ -197,7 +207,9 @@ test.describe('trust on', () => {
     },
   ] as const) {
     for (const width of widths) {
-      test(`${routeCase.id} ${width}px WCAG A/AA`, async ({page}, testInfo) => {
+      test(`${routeCase.id} ${width}px WCAG A/AA moderate+ 자동회귀`, async ({
+        page,
+      }, testInfo) => {
         await page.setViewportSize({height: 1000, width});
         await page.goto(routeCase.route, {waitUntil: 'networkidle'});
         await assertPageStructure(page);
@@ -217,7 +229,9 @@ test.describe('trust on', () => {
 test.describe('native authority details', () => {
   test.skip(mode !== 'authority', 'authority fixture build 전용');
   for (const width of widths) {
-    test(`authority details ${width}px WCAG A/AA`, async ({page}, testInfo) => {
+    test(`authority details ${width}px WCAG A/AA moderate+ 자동회귀`, async ({
+      page,
+    }, testInfo) => {
       const route = '/ko/authorities/test-law/0025';
       await page.setViewportSize({height: 1000, width});
       await page.goto(route, {waitUntil: 'networkidle'});

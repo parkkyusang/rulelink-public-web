@@ -13,7 +13,7 @@ export const wcagTags = [
   'wcag22aa',
 ] as const;
 
-const reportedImpacts = new Set(['moderate', 'serious', 'critical']);
+const failingImpacts = new Set(['moderate', 'serious', 'critical']);
 
 export async function auditWcag(
   page: Page,
@@ -30,7 +30,7 @@ export async function auditWcag(
     .withTags([...wcagTags])
     .analyze();
   const violations = result.violations
-    .filter(item => item.impact && reportedImpacts.has(item.impact))
+    .filter(item => item.impact)
     .map(item => ({
       description: item.description,
       help: item.help,
@@ -49,15 +49,19 @@ export async function auditWcag(
     schema: 'rulelink_wcag_browser_evidence_v1',
     generatedAt: new Date().toISOString(),
     axeVersion: result.testEngine.version,
+    failurePolicy: {
+      failingImpacts: [...failingImpacts],
+      preservedNonFailingImpacts: ['minor'],
+    },
+    runId: requiredEnvironment('RULELINK_ACCESSIBILITY_RUN_ID'),
     tags: wcagTags,
     ...context,
     violations,
   };
-  const evidenceRoot = path.resolve(
-    process.cwd(),
-    'test-results',
-    'accessibility',
-    'evidence',
+  const evidenceRoot = path.join(
+    requiredEnvironment('RULELINK_ACCESSIBILITY_EVIDENCE_ROOT'),
+    'runs',
+    requiredEnvironment('RULELINK_ACCESSIBILITY_RUN_ID'),
     context.mode,
   );
   await mkdir(evidenceRoot, {recursive: true});
@@ -70,9 +74,14 @@ export async function auditWcag(
     body: Buffer.from(JSON.stringify(evidence, null, 2)),
     contentType: 'application/json',
   });
+  const failingViolations = violations.filter(
+    item => item.impact && failingImpacts.has(item.impact),
+  );
   expect(
-    violations,
-    `WCAG moderate 이상 위반:\n${JSON.stringify(violations, null, 2)}`,
+    failingViolations,
+    `WCAG 자동검사 moderate 이상 위반:\n${
+      JSON.stringify(failingViolations, null, 2)
+    }`,
   ).toEqual([]);
 }
 
@@ -92,4 +101,10 @@ export async function assertNoHorizontalOverflow(page: Page) {
 
 function safe(value: string) {
   return value.replace(/[^a-z0-9_-]+/giu, '-').replace(/^-|-$/gu, '');
+}
+
+function requiredEnvironment(name: string) {
+  const value = process.env[name]?.trim();
+  if (!value) throw new Error(`${name} 환경값이 필요합니다.`);
+  return value;
 }
