@@ -101,8 +101,8 @@ export default async function ConceptPage({params}: Props) {
                   const source = sourceById.get(sourceId);
                   if (!source) return null;
                   return (
-                    <a href={browserOfficialSourceUrl(source) ?? source.official_url} key={sourceId} rel="noreferrer" target="_blank">
-                      {sourceLabel(source)} 원문 ↗
+                    <a href={browserOfficialSourceUrl(source) ?? source.official_url} key={sourceId} rel="noopener noreferrer" target="_blank">
+                      {sourceLabel(source)} 원문 (새 탭) ↗
                     </a>
                   );
                 })}
@@ -128,8 +128,8 @@ export default async function ConceptPage({params}: Props) {
           <section>
             <h2>공식 근거</h2>
             {sources.map(source => (
-              <a href={browserOfficialSourceUrl(source) ?? source.official_url} key={source.coordinate_id} rel="noreferrer" target="_blank">
-                {sourceLabel(source)} ↗
+              <a href={browserOfficialSourceUrl(source) ?? source.official_url} key={source.coordinate_id} rel="noopener noreferrer" target="_blank">
+                {sourceLabel(source)} (새 탭) ↗
               </a>
             ))}
           </section>

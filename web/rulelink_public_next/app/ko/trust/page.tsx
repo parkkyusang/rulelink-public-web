@@ -7,6 +7,7 @@ import {
 } from '@/lib/public-trust';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
+import {PublicExternalDestinationLink} from '@/components/public-external-destination-link';
 
 import styles from './trust.module.css';
 
@@ -105,7 +106,11 @@ export default function PublicTrustPage() {
           </div>
           <div>
             <dt>수정·이의제기 연락</dt>
-            <dd><a href={config.contact.href}>{config.contact.label}</a></dd>
+            <dd>
+              <PublicExternalDestinationLink
+                destination={config.contact.destination}
+              />
+            </dd>
           </div>
           <div>
             <dt>법률 검토 자격 공개</dt>

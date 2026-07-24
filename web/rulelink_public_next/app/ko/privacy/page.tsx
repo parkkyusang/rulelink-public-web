@@ -9,6 +9,7 @@ import {
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
 import {parsePublicContactHref} from '@/lib/public-trust';
+import {PublicExternalDestinationLink} from '@/components/public-external-destination-link';
 
 import styles from './privacy.module.css';
 
@@ -155,7 +156,14 @@ export default function PublicPrivacyPage() {
           <LegalCard title="개인정보 보호·고충처리 담당">
             <dl>
               <div><dt>담당 역할</dt><dd>{config.privacyResponsibleRole}</dd></div>
-              <div><dt>연락처</dt><dd><a href={config.trust.contact.href}>{config.trust.contact.label}</a></dd></div>
+              <div>
+                <dt>연락처</dt>
+                <dd>
+                  <PublicExternalDestinationLink
+                    destination={config.trust.contact.destination}
+                  />
+                </dd>
+              </div>
             </dl>
           </LegalCard>
           <LegalCard title="안전성 확보조치">
@@ -175,7 +183,10 @@ export default function PublicPrivacyPage() {
         </div>
         <p>{config.withdrawal}</p>
         <p>
-          문의·정정 요청: <a href={config.trust.contact.href}>{config.trust.contact.label}</a>
+          문의·정정 요청:{' '}
+          <PublicExternalDestinationLink
+            destination={config.trust.contact.destination}
+          />
         </p>
       </section>
     </main>
@@ -257,8 +268,10 @@ function DisclosureCard<T extends object>({
               <dt>참조 처리 항목</dt>
               <dd>
                 {practice.provider}
-                {practice.providerContact ? (
-                  <> (<a href={practice.providerContact}>연락처</a>)</>
+                {practice.providerDestination ? (
+                  <> (<PublicExternalDestinationLink
+                    destination={practice.providerDestination}
+                  />)</>
                 ) : null}
                 {' · '}{practice.purpose} · {practice.dataTypes.join(' · ')}
                 {' · '}{practice.retention}

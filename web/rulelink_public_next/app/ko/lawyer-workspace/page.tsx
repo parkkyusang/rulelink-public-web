@@ -1,6 +1,8 @@
 import type {Metadata} from 'next';
 
 import {site} from '@/lib/site';
+import {resolveOptionalWorkspaceDestination} from '@/lib/public-external-destinations';
+import {PublicExternalDestinationLink} from '@/components/public-external-destination-link';
 
 export const metadata: Metadata = {
   title: '변호사 전용 작업공간',
@@ -14,6 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default function LawyerWorkspaceGatePage() {
+  const workspaceDestination = resolveOptionalWorkspaceDestination();
   return (
     <main className="methodPage">
       <div className="breadcrumb"><a href="/">홈</a><span aria-hidden="true">/</span><span>변호사 전용 작업공간</span></div>
@@ -45,7 +48,12 @@ export default function LawyerWorkspaceGatePage() {
       <aside className="methodNotice">
         <strong>승인된 계정만 외부 작업공간으로 이동합니다</strong>
         <p>접속 뒤에도 서버가 변호사 또는 운영 담당자 역할을 다시 확인합니다. 공개 페이지의 체크 상태나 사건정보는 작업공간으로 자동 전달되지 않습니다.</p>
-        <a className="methodCta" href="https://liale-review.lolphysical.xyz" rel="noreferrer" target="_blank">승인된 계정으로 작업공간 열기 ↗</a>
+        {workspaceDestination ? (
+          <PublicExternalDestinationLink
+            className="methodCta"
+            destination={workspaceDestination}
+          />
+        ) : null}
       </aside>
     </main>
   );

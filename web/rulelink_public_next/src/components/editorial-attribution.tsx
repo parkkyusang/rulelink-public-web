@@ -1,4 +1,5 @@
 import type {ResolvedPublicEditorialAttribution} from '@/lib/public-trust';
+import {PublicExternalDestinationLink} from '@/components/public-external-destination-link';
 
 import styles from './editorial-attribution.module.css';
 
@@ -23,8 +24,12 @@ export function EditorialAttribution({
         <div>
           <dt>작성 주체</dt>
           <dd>
-            {attribution.author.url ? (
-              <a href={attribution.author.url}>{attribution.author.name_ko}</a>
+            {attribution.author.destination ? (
+              <PublicExternalDestinationLink
+                destination={attribution.author.destination}
+              >
+                {attribution.author.name_ko}
+              </PublicExternalDestinationLink>
             ) : attribution.author.name_ko}
             <span>{attribution.author.role_ko}</span>
           </dd>
@@ -34,7 +39,11 @@ export function EditorialAttribution({
           <dd>
             {attribution.legal_reviewer.name_ko}
             <span>{attribution.legal_reviewer.qualification_ko}</span>
-            <a href={attribution.legal_reviewer.evidence_url}>승인 근거 확인</a>
+            <PublicExternalDestinationLink
+              destination={attribution.legal_reviewer.evidence_destination}
+            >
+              승인 근거 확인
+            </PublicExternalDestinationLink>
           </dd>
         </div>
         <div>

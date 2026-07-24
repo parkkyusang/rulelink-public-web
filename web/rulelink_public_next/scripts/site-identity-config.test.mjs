@@ -116,11 +116,12 @@ test('공개 런타임과 운영 도구의 브랜드·원점 하드코딩은 설
   assert.deepEqual(findings, []);
 });
 
-test('별도 변호사 작업공간 주소는 공개 사이트 원점 치환 대상과 분리한다', async () => {
+test('별도 변호사 작업공간 주소는 공개 사이트 원점과 분리된 런타임 설정이다', async () => {
   const source = await readFile(
     path.join(root, 'app/ko/lawyer-workspace/page.tsx'), 'utf8',
   );
-  assert.match(source, /href="https:\/\/liale-review\.lolphysical\.xyz"/);
+  assert.match(source, /resolveOptionalWorkspaceDestination/);
+  assert.doesNotMatch(source, /https:\/\/liale-review\.lolphysical\.xyz/);
   assert.match(source, /\{site\.name\}/);
   assert.match(source, /\{site\.operatorName\}/);
   const files = await sourceFiles(['app', 'src', 'scripts']);
@@ -130,7 +131,7 @@ test('별도 변호사 작업공간 주소는 공개 사이트 원점 치환 대
     const text = await readFile(path.join(root, file), 'utf8');
     if (text.includes('https://liale-review.lolphysical.xyz')) owners.push(file);
   }
-  assert.deepEqual(owners, ['app/ko/lawyer-workspace/page.tsx']);
+  assert.deepEqual(owners, []);
 });
 
 async function sourceFiles(directories) {

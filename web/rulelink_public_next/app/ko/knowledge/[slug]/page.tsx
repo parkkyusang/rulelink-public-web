@@ -271,8 +271,8 @@ export default async function KnowledgePage({params}: Props) {
             <h2>공식 근거</h2>
             <p className={styles.sourcesIntro}>원문 주소와 마지막 확인일을 함께 표시합니다.</p>
             {sources.map(source => (
-              <a className={styles.sourceLink} href={browserOfficialSourceUrl(source) ?? source.official_url} key={source.coordinate_id} rel="noreferrer" target="_blank">
-                <span>{sourceLabel(source)} 원문 <span aria-hidden="true">↗</span></span>
+              <a className={styles.sourceLink} href={browserOfficialSourceUrl(source) ?? source.official_url} key={source.coordinate_id} rel="noopener noreferrer" target="_blank">
+                <span>{sourceLabel(source)} 원문 (새 탭) <span aria-hidden="true">↗</span></span>
                 <small>원문 확인 {formatDate(source.last_verified_at)}</small>
               </a>
             ))}

@@ -139,14 +139,16 @@ function resolvedOrigin(candidate: string | undefined, fallback: string): string
       'NEXT_PUBLIC_RULELINK_SITE_URL: 경로·쿼리·fragment·포트가 없는 https 원점이어야 합니다.',
     );
   }
-  const hostError = deploymentHostError(parsed.hostname);
+  const hostError = publicDeploymentHostError(parsed.hostname);
   if (hostError) {
     throw new Error(`NEXT_PUBLIC_RULELINK_SITE_URL: ${hostError}`);
   }
   return parsed.origin;
 }
 
-function deploymentHostError(rawHostname: string): string | null {
+export function publicDeploymentHostError(
+  rawHostname: string,
+): string | null {
   const hostname = rawHostname.toLowerCase().replace(/^\[|\]$/gu, '');
   const ipVersion = isIP(hostname);
   if (ipVersion) {

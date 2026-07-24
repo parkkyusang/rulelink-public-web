@@ -1,8 +1,14 @@
 import {
   identityValueError,
-  publicUrlError,
   registryReferenceError,
 } from './public-identity-validation.ts';
+import {
+  publicExternalDestinationError,
+  resolveEditorialAuthorDestination,
+  resolveOperatorContactDestination,
+  resolveReviewerEvidenceDestination,
+  type PublicExternalDestination,
+} from './public-external-destinations.ts';
 
 import type {PublicEditorialAttribution} from '@/types/publication';
 
@@ -17,6 +23,7 @@ export type PublicTrustEnvironment = {
 };
 
 export type PublicApprovedReviewer = {
+  evidenceDestination: PublicExternalDestination;
   evidenceUrl: string;
   nameKo: string;
   qualificationKo: string;
@@ -26,6 +33,7 @@ export type PublicApprovedReviewer = {
 export type PublicTrustConfig = {
   approvedReviewers: ReadonlyMap<string, PublicApprovedReviewer>;
   contact: {
+    destination: PublicExternalDestination;
     href: string;
     label: string;
   };
@@ -38,8 +46,11 @@ export type ParsedPublicContactHref =
   | {href: string; kind: 'url'};
 
 export type ResolvedPublicEditorialAttribution = {
-  author: PublicEditorialAttribution['author'];
+  author: PublicEditorialAttribution['author'] & {
+    destination: PublicExternalDestination | null;
+  };
   legal_reviewer: PublicEditorialAttribution['legal_reviewer'] & {
+    evidence_destination: PublicExternalDestination;
     evidence_url: string;
     name_ko: string;
     qualification_ko: string;
@@ -60,6 +71,10 @@ export function resolvePublicTrustConfig(
   return {
     approvedReviewers: reviewerRegistry(environment).reviewers,
     contact: {
+      destination: resolveOperatorContactDestination({
+        href: environment.RULELINK_PUBLIC_CONTACT_URL!.trim(),
+        label: environment.RULELINK_PUBLIC_CONTACT_LABEL!.trim(),
+      })!,
       href: environment.RULELINK_PUBLIC_CONTACT_URL!.trim(),
       label: environment.RULELINK_PUBLIC_CONTACT_LABEL!.trim(),
     },
@@ -90,9 +105,18 @@ export function resolveApprovedEditorialAttribution(
   );
   if (!reviewer) return null;
   return {
-    author: attribution.author,
+    author: {
+      ...attribution.author,
+      destination: attribution.author.url
+        ? resolveEditorialAuthorDestination({
+            href: attribution.author.url,
+            label: attribution.author.name_ko,
+          })
+        : null,
+    },
     legal_reviewer: {
       ...attribution.legal_reviewer,
+      evidence_destination: reviewer.evidenceDestination,
       evidence_url: reviewer.evidenceUrl,
       name_ko: reviewer.nameKo,
       qualification_ko: reviewer.qualificationKo,
@@ -159,7 +183,11 @@ export function validatePublicTrustConfiguration(
   );
 
   const contactUrl = environment.RULELINK_PUBLIC_CONTACT_URL?.trim() ?? '';
-  const contactError = publicUrlError(contactUrl, {allowMailto: true});
+  const contactError = publicExternalDestinationError(
+    'operator_contact',
+    contactUrl,
+    environment.RULELINK_PUBLIC_CONTACT_LABEL?.trim() ?? '',
+  );
   if (contactError) {
     errors.push(`RULELINK_PUBLIC_CONTACT_URL: ${contactError}`);
   }
@@ -221,7 +249,11 @@ function reviewerRegistry(environment: PublicTrustEnvironment): {
     const referenceError = registryReferenceError(row.reviewer_registry_id);
     const nameError = identityValueError(row.name_ko);
     const qualificationError = identityValueError(row.qualification_ko);
-    const evidenceError = publicUrlError(row.evidence_url);
+    const evidenceError = publicExternalDestinationError(
+      'reviewer_evidence',
+      typeof row.evidence_url === 'string' ? row.evidence_url : '',
+      typeof row.name_ko === 'string' ? row.name_ko : '',
+    );
     if (referenceError) errors.push(`승인 검토자 ${index + 1} ID: ${referenceError}`);
     if (nameError) errors.push(`승인 검토자 ${index + 1} 이름: ${nameError}`);
     if (qualificationError) errors.push(`승인 검토자 ${index + 1} 자격: ${qualificationError}`);
@@ -233,6 +265,10 @@ function reviewerRegistry(environment: PublicTrustEnvironment): {
       continue;
     }
     reviewers.set(reviewerRegistryId, {
+      evidenceDestination: resolveReviewerEvidenceDestination({
+        href: (row.evidence_url as string).trim(),
+        label: `${(row.name_ko as string).trim()} 승인 근거`,
+      })!,
       evidenceUrl: (row.evidence_url as string).trim(),
       nameKo: (row.name_ko as string).trim(),
       qualificationKo: (row.qualification_ko as string).trim(),

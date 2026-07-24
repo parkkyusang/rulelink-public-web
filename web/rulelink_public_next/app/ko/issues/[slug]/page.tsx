@@ -109,7 +109,7 @@ export default async function IssuePage({params}: PageProps) {
                 <div className="source" key={`${assertion.assertion_id}-${index}`}>
                   <span>{sourceLabel(source)}</span>
                   {source.article_no ? <span>{source.article_no}</span> : null}
-                  {browserOfficialSourceUrl(source) ? <a href={browserOfficialSourceUrl(source)} rel="noreferrer" target="_blank">공식 근거</a> : null}
+                  {browserOfficialSourceUrl(source) ? <a href={browserOfficialSourceUrl(source)} rel="noopener noreferrer" target="_blank">공식 근거 (새 탭)</a> : null}
                 </div>
               ))}
             </article>

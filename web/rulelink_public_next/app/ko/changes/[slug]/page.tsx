@@ -160,7 +160,7 @@ export default async function ChangeBriefPage({params}: Props) {
                   <span>{coordinate.article_no}</span>
                   {coordinate.effective_from ? <span>{formatDate(coordinate.effective_from)} 기준</span> : null}
                   {coordinate.validation_status === 'verified' && browserOfficialSourceUrl(coordinate, brief.law_name_ko) ? (
-                    <a href={browserOfficialSourceUrl(coordinate, brief.law_name_ko)} rel="noreferrer" target="_blank">공식 원문 ↗</a>
+                    <a href={browserOfficialSourceUrl(coordinate, brief.law_name_ko)} rel="noopener noreferrer" target="_blank">공식 원문 (국가법령정보센터, 새 탭) ↗</a>
                   ) : null}
                 </div>
               ))}

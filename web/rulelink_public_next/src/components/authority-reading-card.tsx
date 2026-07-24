@@ -80,7 +80,7 @@ export function AuthorityReadingCard({
               data-authority-official-link
               data-authority-return-fragment={view.cardDomId}
               href={view.officialUrl}
-              rel="noreferrer"
+              rel="noopener noreferrer"
               target="_blank"
             >
               국가법령정보센터에서 원문 전체 보기

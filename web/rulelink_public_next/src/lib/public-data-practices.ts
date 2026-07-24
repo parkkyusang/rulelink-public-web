@@ -1,7 +1,11 @@
 import {
   identityValueError,
-  publicUrlError,
 } from './public-identity-validation.ts';
+import {
+  publicExternalDestinationError,
+  resolveProcessorContactDestination,
+  type PublicExternalDestination,
+} from './public-external-destinations.ts';
 import {
   resolvePublicTrustConfig,
   type PublicTrustConfig,
@@ -34,7 +38,7 @@ export type PublicDataPractice = {
   dataTypes: string[];
   id: string;
   provider: string;
-  providerContact: string | null;
+  providerDestination: PublicExternalDestination | null;
   purpose: string;
   retention: string;
   status: 'active' | 'disabled';
@@ -120,7 +124,7 @@ const checklistPractice: PublicDataPractice = {
   dataTypes: ['사용자가 체크한 사실·행동 항목의 내부 식별자'],
   id: 'device-checklist',
   provider: '사용자의 현재 브라우저',
-  providerContact: null,
+  providerDestination: null,
   purpose: '상세 글의 확인자료와 다음 행동 진행 상태를 현재 기기에서 복원',
   retention: '사용자가 초기화하거나 브라우저 저장소를 삭제할 때까지',
   status: 'active',
@@ -142,7 +146,7 @@ const deniedPractices: PublicDataPractice[] = [
     dataTypes: [],
     id: 'analytics-disabled',
     provider: '없음',
-    providerContact: null,
+    providerDestination: null,
     purpose: '방문 분석을 사용하지 않음',
     retention: '저장하지 않음',
     status: 'disabled',
@@ -162,7 +166,7 @@ const deniedPractices: PublicDataPractice[] = [
     dataTypes: [],
     id: 'advertising-disabled',
     provider: '없음',
-    providerContact: null,
+    providerDestination: null,
     purpose: '맞춤형·행동기반 광고를 사용하지 않음',
     retention: '저장하지 않음',
     status: 'disabled',
@@ -236,8 +240,10 @@ export function resolvePublicPrivacyConfig(
     dataTypes,
     id: 'hosting-request-logs',
     provider: environment.RULELINK_PUBLIC_HOSTING_PROVIDER!.trim(),
-    providerContact:
-      environment.RULELINK_PUBLIC_HOSTING_PROVIDER_CONTACT!.trim(),
+    providerDestination: resolveProcessorContactDestination({
+      href: environment.RULELINK_PUBLIC_HOSTING_PROVIDER_CONTACT!.trim(),
+      label: `${environment.RULELINK_PUBLIC_HOSTING_PROVIDER!.trim()} 연락처`,
+    }),
     purpose: environment.RULELINK_PUBLIC_HOSTING_PURPOSE!.trim(),
     retention: environment.RULELINK_PUBLIC_HOSTING_RETENTION!.trim(),
     status: 'active',
@@ -345,9 +351,10 @@ export function validatePublicPrivacyConfiguration(
     const error = identityValueError(value);
     if (error) errors.push(`${field}: ${error}`);
   }
-  const providerContactError = publicUrlError(
+  const providerContactError = publicExternalDestinationError(
+    'processor_contact',
     environment.RULELINK_PUBLIC_HOSTING_PROVIDER_CONTACT?.trim() ?? '',
-    {allowMailto: true},
+    `${environment.RULELINK_PUBLIC_HOSTING_PROVIDER?.trim() ?? ''} 연락처`,
   );
   if (providerContactError) {
     errors.push(
