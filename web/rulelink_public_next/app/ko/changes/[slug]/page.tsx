@@ -112,7 +112,7 @@ export default async function ChangeBriefPage({params}: Props) {
       </div>
 
       <section className="normDelta">
-        <p className="eyebrow">RuleLink 연역 법리 비교</p>
+        <p className="eyebrow">{site.englishName} 연역 법리 비교</p>
         <h2>문구가 아니라 법이 작동하는 구조를 비교했습니다.</h2>
         <p className="normDeltaLead">{brief.norm_delta.legal_effect_delta_ko}</p>
         <div className="normDeltaRows">

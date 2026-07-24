@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {default: site.name, template: `%s | ${site.name}`},
   description: site.description,
+  manifest: '/manifest.webmanifest',
   robots: {index: site.indexing, follow: site.indexing},
   alternates: {
     canonical: '/',
@@ -43,20 +44,32 @@ export default async function RootLayout({children}: {children: ReactNode}) {
         <script
           dangerouslySetInnerHTML={{__html: serializeStructuredData({
             '@context': 'https://schema.org',
-            '@type': 'WebSite',
-            '@id': `${site.url}/#website`,
-            name: site.name,
-            url: site.url,
-            description: site.description,
-            inLanguage: 'ko-KR',
-            potentialAction: {
-              '@type': 'SearchAction',
-              target: {
-                '@type': 'EntryPoint',
-                urlTemplate: `${site.url}/ko/search?q={search_term_string}`,
+            '@graph': [
+              {
+                '@type': 'WebSite',
+                '@id': `${site.url}/#website`,
+                name: site.name,
+                alternateName: site.englishName,
+                url: site.url,
+                description: site.description,
+                inLanguage: 'ko-KR',
+                publisher: {'@id': `${site.url}/#organization`},
+                potentialAction: {
+                  '@type': 'SearchAction',
+                  target: {
+                    '@type': 'EntryPoint',
+                    urlTemplate: `${site.url}/ko/search?q={search_term_string}`,
+                  },
+                  'query-input': 'required name=search_term_string',
+                },
               },
-              'query-input': 'required name=search_term_string',
-            },
+              {
+                '@type': 'Organization',
+                '@id': `${site.url}/#organization`,
+                name: site.operatorName,
+                url: site.url,
+              },
+            ],
           })}}
           type="application/ld+json"
         />

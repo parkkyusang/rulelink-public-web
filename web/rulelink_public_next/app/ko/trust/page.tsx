@@ -12,10 +12,10 @@ export const dynamic = 'force-static';
 export const metadata: Metadata = {
   title: '운영·신뢰 원칙',
   description:
-    'RuleLink의 콘텐츠 제작, 자동화 사용, 출처·최신성, 수정 절차와 광고 독립성 원칙',
+    `${site.name}의 콘텐츠 제작, 자동화 사용, 출처·최신성, 수정 절차와 광고 독립성 원칙`,
   alternates: {canonical: '/ko/trust'},
   openGraph: {
-    title: 'RuleLink 운영·신뢰 원칙',
+    title: `${site.name} 운영·신뢰 원칙`,
     description:
       '공개 법률정보를 어떻게 만들고 검증하며 광고와 분리하는지 설명합니다.',
     url: '/ko/trust',
@@ -38,7 +38,7 @@ export default function PublicTrustPage() {
               '@type': 'WebPage',
               '@id': `${pageUrl}#webpage`,
               url: pageUrl,
-              name: 'RuleLink 운영·신뢰 원칙',
+              name: `${site.name} 운영·신뢰 원칙`,
               inLanguage: 'ko-KR',
               about: {'@id': organizationId},
               breadcrumb: {'@id': `${pageUrl}#breadcrumb`},
@@ -79,7 +79,7 @@ export default function PublicTrustPage() {
       </nav>
 
       <header className={styles.hero}>
-        <p className="eyebrow">RuleLink Trust</p>
+        <p className="eyebrow">{site.englishName} Trust</p>
         <h1>무엇을 근거로 만들고,<br />누가 책임지는지 공개합니다.</h1>
         <p>
           공개 법률정보의 출처와 검토시점을 숨기지 않고, 자동화 도구와 광고가
@@ -112,7 +112,7 @@ export default function PublicTrustPage() {
       </section>
 
       <section
-        aria-label="RuleLink 신뢰 원칙"
+        aria-label={`${site.name} 신뢰 원칙`}
         className={styles.principles}
       >
         <article>
@@ -174,7 +174,7 @@ export default function PublicTrustPage() {
       <aside className={styles.boundary}>
         <strong>이 사이트가 제공하는 범위</strong>
         <p>
-          RuleLink는 일반적인 법률정보와 확인 경로를 제공합니다. 구체적인 사건의
+          {site.name}는 일반적인 법률정보와 확인 경로를 제공합니다. 구체적인 사건의
           결론·전략·증거·서면 방향은 사실관계에 따라 달라질 수 있으며, 공개
           정보만으로 대신하지 않습니다.
         </p>

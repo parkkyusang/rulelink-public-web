@@ -32,7 +32,7 @@ export default async function HomePage() {
         <p className="eyebrow">근거가 연결되는 생활법률</p>
         <h1>법률용어가 아니라<br />내가 겪은 일에서 시작합니다.</h1>
         <p className="heroCopy">{site.description}</p>
-        <div className="trustRail" aria-label="RuleLink 정보 원칙">
+        <div className="trustRail" aria-label={`${site.name} 정보 원칙`}>
           <span><b>01</b> 상황별 탐색</span>
           <span><b>02</b> 공식 근거 연결</span>
           <span><b>03</b> 검토기한 관리</span>
