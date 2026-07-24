@@ -1,5 +1,5 @@
 import {spawn} from 'node:child_process';
-import {randomUUID} from 'node:crypto';
+import {createHash, randomUUID} from 'node:crypto';
 import {mkdir, readFile, readdir} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -47,6 +47,10 @@ const lhciCli = path.join(
   'src',
   'cli.js',
 );
+const gitStatus = await capture('git', ['status', '--porcelain']);
+if (gitStatus.trim()) {
+  throw new Error('성능 증거는 clean worktree의 커밋에서만 생성할 수 있습니다.');
+}
 
 if (process.env.RULELINK_PERFORMANCE_SKIP_BUILD !== '1') {
   await run(process.execPath, [nextCli, 'build'], process.env);
@@ -86,6 +90,7 @@ try {
     path.join(appRoot, 'content', 'bundle.json'),
     'utf8',
   ));
+  const provenance = await resolveProvenance(bundle);
   const lighthouse = await readLighthouseSummaries(lighthouseRoot);
   const baseline = label === 'before'
     ? null
@@ -99,6 +104,7 @@ try {
     evidenceRoot,
     label,
     lighthouse,
+    provenance,
     runId,
     runStartedAt,
   });
@@ -190,4 +196,65 @@ async function readOptionalJson(file) {
     if (error?.code === 'ENOENT') return null;
     throw error;
   }
+}
+
+async function resolveProvenance(bundle) {
+  const bundleBytes = await readFile(path.join(appRoot, 'content', 'bundle.json'));
+  const nextPackage = JSON.parse(await readFile(
+    path.join(appRoot, 'node_modules', 'next', 'package.json'),
+    'utf8',
+  ));
+  const producerFiles = [
+    'e2e/performance/performance-runtime.spec.ts',
+    'e2e/performance/support/performance-cases.mjs',
+    'e2e/performance/support/performance-evidence.mjs',
+    'e2e/performance/support/run-performance-acceptance.mjs',
+    'lighthouserc.performance.cjs',
+    'playwright.performance.config.ts',
+  ];
+  const producer = createHash('sha256');
+  for (const relativePath of producerFiles) {
+    producer.update(relativePath);
+    producer.update(await readFile(path.join(appRoot, relativePath)));
+  }
+  return {
+    commitSha: (await capture('git', ['rev-parse', 'HEAD'])).trim(),
+    publicationSnapshotId: bundle.snapshot_id,
+    publicationBundleSha256: sha256(bundleBytes),
+    nextVersion: nextPackage.version,
+    nodeVersion: process.version,
+    buildId: (await readFile(path.join(appRoot, '.next', 'BUILD_ID'), 'utf8')).trim(),
+    producerHash: producer.digest('hex'),
+  };
+}
+
+function capture(command, args) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(command, args, {
+      cwd: appRoot,
+      env: process.env,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+    child.stdout.setEncoding('utf8');
+    child.stderr.setEncoding('utf8');
+    child.stdout.on('data', chunk => {
+      stdout += chunk;
+    });
+    child.stderr.on('data', chunk => {
+      stderr += chunk;
+    });
+    child.once('error', reject);
+    child.once('exit', code => {
+      if (code === 0) resolve(stdout);
+      else reject(new Error(
+        `명령 실패(${code}): ${command} ${args.join(' ')}\n${stderr}`,
+      ));
+    });
+  });
+}
+
+function sha256(value) {
+  return createHash('sha256').update(value).digest('hex');
 }

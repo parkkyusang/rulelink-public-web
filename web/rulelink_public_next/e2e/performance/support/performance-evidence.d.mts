@@ -6,6 +6,9 @@ export const performanceBudgets: {
   lcpApproxMs: number;
   longTaskDurationMs: number;
   requestCount: number;
+  searchQueryReadyMs: number;
   searchIndexBytes: number;
   totalTransferredBytes: number;
 };
+
+export function extractBuildAssetPaths(html: string): string[];

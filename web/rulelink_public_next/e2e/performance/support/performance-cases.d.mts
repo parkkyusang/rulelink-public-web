@@ -8,6 +8,13 @@ export const performanceWidths: readonly [390, 1440];
 
 export function resolvePerformanceCases(bundle: unknown): {
   query: string;
+  workload: {
+    authorityZeroContentId: string;
+    changeBriefId: string;
+    hubId: string;
+    knowledgeContentId: string;
+    query: string;
+  };
   routes: PerformanceRouteCase[];
 };
 

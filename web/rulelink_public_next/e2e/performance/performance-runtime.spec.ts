@@ -7,7 +7,10 @@ import {
   performanceWidths,
   resolvePerformanceCases,
 } from './support/performance-cases.mjs';
-import {performanceBudgets} from './support/performance-evidence.mjs';
+import {
+  extractBuildAssetPaths,
+  performanceBudgets,
+} from './support/performance-evidence.mjs';
 
 const bundle = JSON.parse(readFileSync(
   path.resolve(process.cwd(), 'content', 'bundle.json'),
@@ -35,6 +38,8 @@ for (const width of performanceWidths) {
       await assertNoHorizontalOverflow(page);
       const evidence = await measurePage(page, response, {
         ...routeCase,
+        searchQuery: null,
+        searchQueryReadyMs: 0,
         width,
       });
       assertBudgets(evidence);
@@ -64,6 +69,8 @@ for (const width of performanceWidths) {
     const initialEvidence = await measurePage(page, response, {
       id: 'search-initial',
       route: '/ko/search',
+      searchQuery: null,
+      searchQueryReadyMs: 0,
       state: 'idle',
       width,
       searchIndex: {bytes: 0, requests: 0},
@@ -74,13 +81,22 @@ for (const width of performanceWidths) {
     const input = page.getByLabel(
       '상황, 법 이름, 조문이나 사건번호를 적어보세요',
     );
+    const queryStartedAt = await page.evaluate(() => performance.now());
+    const indexResponsePromise = page.waitForResponse(candidate => (
+      new URL(candidate.url()).pathname === '/search-index.json'
+    ));
     await input.focus();
     await input.fill(selection.query);
+    await indexResponsePromise;
     await expect(page.locator('[data-site-search]')).toHaveAttribute(
       'data-search-index-state',
       'ready',
     );
     await expect(page.locator('[data-search-result-id]').first()).toBeVisible();
+    const searchQueryReadyMs = await page.evaluate(
+      startedAt => performance.now() - startedAt,
+      queryStartedAt,
+    );
     expect(indexRequests).toBe(1);
     expect(indexBytes).toBeLessThanOrEqual(performanceBudgets.searchIndexBytes);
     await input.fill(`${selection.query} `);
@@ -90,6 +106,8 @@ for (const width of performanceWidths) {
     const queryEvidence = await measurePage(page, response, {
       id: 'search-query',
       route: '/ko/search',
+      searchQuery: selection.query,
+      searchQueryReadyMs,
       state: 'ready',
       width,
       searchIndex: {bytes: indexBytes, requests: indexRequests},
@@ -138,12 +156,15 @@ async function measurePage(
   context: {
     id: string;
     route: string;
+    searchQuery: string | null;
+    searchQueryReadyMs: number;
     searchIndex?: {bytes: number; requests: number};
     state: string;
     width: number;
   },
 ) {
   await page.waitForTimeout(150);
+  const html = response ? await response.body() : Buffer.alloc(0);
   const runtime = await page.evaluate(() => {
     const entries = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
     const navigation = performance.getEntriesByType('navigation')[0] as
@@ -186,8 +207,10 @@ async function measurePage(
     schema: 'rulelink_public_performance_case_v1',
     generatedAt: new Date().toISOString(),
     runId: requiredEnvironment('RULELINK_PERFORMANCE_RUN_ID'),
+    browserVersion: page.context().browser()?.version() ?? '',
     ...context,
-    initialHtmlBytes: response ? (await response.body()).byteLength : 0,
+    documentAssets: extractBuildAssetPaths(html.toString('utf8')),
+    initialHtmlBytes: html.byteLength,
     ...runtime,
   };
 }
@@ -217,6 +240,9 @@ function assertBudgets(evidence: Awaited<ReturnType<typeof measurePage>>) {
   expect(evidence.cls).toBeLessThanOrEqual(performanceBudgets.cls);
   expect(evidence.lcpApproxMs).toBeLessThanOrEqual(
     performanceBudgets.lcpApproxMs,
+  );
+  expect(evidence.searchQueryReadyMs).toBeLessThanOrEqual(
+    performanceBudgets.searchQueryReadyMs,
   );
 }
 

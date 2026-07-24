@@ -24,6 +24,9 @@ export function resolvePerformanceCases(bundle) {
   const authorityZero = entries.find(
     entry => !entry.authority_binding_ids?.length,
   );
+  if (!authorityZero) {
+    throw new Error('authority zero-state 성능 표본이 없습니다.');
+  }
   const change = selectRichest(
     changes,
     item => (
@@ -38,6 +41,13 @@ export function resolvePerformanceCases(bundle) {
 
   return {
     query,
+    workload: {
+      authorityZeroContentId: authorityZero.content_id,
+      changeBriefId: change.change_brief_id,
+      hubId: hub.hub_id,
+      knowledgeContentId: representativeKnowledge.content_id,
+      query,
+    },
     routes: [
       {id: 'home', route: '/', state: 'ready'},
       {id: 'search-initial', route: '/ko/search', state: 'idle'},
