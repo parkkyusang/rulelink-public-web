@@ -13,18 +13,24 @@ const PAGE_TYPES = Object.freeze({
     collection: bundle => bundle?.knowledge?.content_entries ?? [],
     id: item => item.content_id,
     route: item => `/ko/knowledge/${item.slug}`,
+    title: item => item.title_ko,
+    description: item => item.one_line_answer_ko,
     expectedJsonLd: ['WebPage', 'BreadcrumbList'],
   },
   hub: {
     collection: bundle => bundle?.knowledge?.topic_hubs ?? [],
     id: item => item.hub_id,
     route: item => `/ko/hubs/${item.slug}`,
+    title: item => item.title_ko,
+    description: item => item.description_ko,
     expectedJsonLd: ['CollectionPage', 'BreadcrumbList'],
   },
   change: {
     collection: bundle => bundle?.change_briefs ?? [],
     id: item => item.change_brief_id,
     route: item => `/ko/changes/${item.slug}`,
+    title: item => item.title_ko,
+    description: item => item.summary_ko,
     expectedJsonLd: ['Article', 'BreadcrumbList'],
   },
 });
@@ -150,6 +156,8 @@ function expectedPages(bundle) {
       page_type: pageType,
       id: contract.id(item),
       route: contract.route(item),
+      expected_title: contract.title(item),
+      expected_description: contract.description(item),
       expected_jsonld_types: contract.expectedJsonLd,
       raw: item,
     }))
@@ -255,7 +263,7 @@ export async function auditPublicationTechnicalSeo({
   bundle,
   buildRoot,
   baseUrl,
-  indexingMode = 'auto',
+  indexingMode = 'production',
 }) {
   if (bundle?.schema !== 'rulelink_published_bundle_v1') throw new Error('지원하지 않는 공개 번들 스키마입니다.');
   const pages = expectedPages(bundle);
@@ -282,12 +290,12 @@ export async function auditPublicationTechnicalSeo({
   for (const route of sitemapRoutes) sitemapCounts.set(route, (sitemapCounts.get(route) ?? 0) + 1);
   const robotsText = await readFile(path.join(buildRoot, 'robots.txt.body'), 'utf8');
   const robotsBlocksAll = /Disallow:\s*\/\s*$/imu.test(robotsText);
-  const resolvedIndexingMode = indexingMode === 'auto'
-    ? robotsBlocksAll && sitemapRoutes.length === 0 ? 'blocked-preview' : 'production'
-    : indexingMode;
+  const resolvedIndexingMode = indexingMode;
   if (!['production', 'blocked-preview'].includes(resolvedIndexingMode)) {
     throw new Error(`지원하지 않는 검색 공개 모드입니다: ${resolvedIndexingMode}`);
   }
+  const siteTitle = titleText(allHtml.get('/') ?? '');
+  if (!siteTitle) throw new Error('기술 SEO 감사에서 사이트 제목을 확인할 수 없습니다.');
 
   const audited = [];
   for (const page of pages) {
@@ -299,11 +307,32 @@ export async function auditPublicationTechnicalSeo({
     const h1 = headingText(html);
     const documents = jsonLdDocuments(html);
     const issues = [];
+    const expectedTitle = `${page.expected_title} | ${siteTitle}`;
     if (!html) issues.push(issue('html_missing', 'runtime', '정적 HTML이 없습니다.'));
     if (!title) issues.push(issue('title_missing', 'runtime', '문서 제목이 없습니다.'));
+    else if (normalizeText(title) !== normalizeText(expectedTitle)) {
+      issues.push(issue('title_source_mismatch', 'data', '문서 제목이 공개 정본 제목과 다릅니다.', {
+        expected: expectedTitle,
+        actual: title,
+      }));
+    }
     if (!description) issues.push(issue('description_missing', 'runtime', '메타 설명이 없습니다.'));
-    else if (normalizeText(description).length < 40) issues.push(issue('description_too_short', 'data', '메타 설명이 40자보다 짧습니다.', {length: normalizeText(description).length}));
-    else if (normalizeText(description).length > 160) issues.push(issue('description_too_long', 'data', '메타 설명이 160자를 초과합니다.', {length: normalizeText(description).length}));
+    else {
+      if (normalizeText(description) !== normalizeText(page.expected_description)) {
+        issues.push(issue('description_source_mismatch', 'data', '메타 설명이 공개 정본 설명과 다릅니다.', {
+          expected: page.expected_description,
+          actual: description,
+        }));
+      }
+      if (normalizeText(description).length < 40) issues.push(issue('description_too_short', 'data', '메타 설명이 40자보다 짧습니다.', {length: normalizeText(description).length}));
+      else if (normalizeText(description).length > 160) issues.push(issue('description_too_long', 'data', '메타 설명이 160자를 초과합니다.', {length: normalizeText(description).length}));
+    }
+    if (normalizeText(h1) !== normalizeText(page.expected_title)) {
+      issues.push(issue('h1_source_mismatch', 'data', '화면 제목이 공개 정본 제목과 다릅니다.', {
+        expected: page.expected_title,
+        actual: h1,
+      }));
+    }
     const expectedCanonical = new URL(page.route, baseUrl).href;
     if (canonical !== expectedCanonical) issues.push(issue('canonical_mismatch', 'runtime', 'canonical URL이 실제 공개 경로와 다릅니다.', {
       expected: expectedCanonical,
@@ -416,12 +445,36 @@ function option(args, name) {
   return index >= 0 ? args[index + 1] ?? '' : '';
 }
 
+export function resolveAuditBaseUrl({argument = '', environment = process.env} = {}) {
+  const value = argument || environment.NEXT_PUBLIC_RULELINK_SITE_URL || '';
+  if (!value) {
+    throw new Error('기술 SEO 감사 기준 URL이 없습니다. --base-url 또는 NEXT_PUBLIC_RULELINK_SITE_URL을 지정하세요.');
+  }
+  let parsed;
+  try {
+    parsed = new URL(value);
+  } catch {
+    throw new Error(`기술 SEO 감사 기준 URL이 유효하지 않습니다: ${value}`);
+  }
+  if (
+    parsed.protocol !== 'https:' ||
+    parsed.username ||
+    parsed.password ||
+    parsed.search ||
+    parsed.hash ||
+    parsed.pathname !== '/'
+  ) {
+    throw new Error(`기술 SEO 감사 기준 URL은 경로 없는 HTTPS origin이어야 합니다: ${value}`);
+  }
+  return parsed.origin;
+}
+
 async function main() {
   const args = process.argv.slice(2);
   const bundlePath = path.resolve(option(args, '--bundle') || defaultBundlePath);
   const buildRoot = path.resolve(option(args, '--build-root') || defaultBuildRoot);
-  const baseUrl = option(args, '--base-url') || process.env.NEXT_PUBLIC_SITE_URL || 'https://rulelink.lolphysical.xyz';
-  const indexingMode = option(args, '--indexing-mode') || 'auto';
+  const baseUrl = resolveAuditBaseUrl({argument: option(args, '--base-url')});
+  const indexingMode = option(args, '--indexing-mode') || 'production';
   const report = await auditPublicationTechnicalSeo({
     bundle: JSON.parse(await readFile(bundlePath, 'utf8')),
     buildRoot,

@@ -44,6 +44,11 @@ test('사이트 URL을 입력으로만 받아 새 운영 도메인을 하드코�
     siteUrl: 'https://new.example',
   });
   assert.equal(other['@graph'][1].itemListElement[0].item, 'https://new.example');
+  const trailingSlash = buildChangeBriefStructuredData({
+    ...input,
+    siteUrl: 'https://new.example/',
+  });
+  assert.equal(trailingSlash['@graph'][1].itemListElement[0].item, 'https://new.example');
 });
 
 test('법령변화 페이지는 공용 구조화 데이터 도우미를 사용한다', async () => {

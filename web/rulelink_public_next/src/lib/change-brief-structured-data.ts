@@ -11,6 +11,7 @@ export type ChangeBriefStructuredDataInput = {
 };
 
 export function buildChangeBriefStructuredData(input: ChangeBriefStructuredDataInput) {
+  const siteUrl = new URL(input.siteUrl).origin;
   const pageUrl = input.pageUrl;
   const breadcrumbId = `${pageUrl}#breadcrumb`;
   const officialSourceUrls = [...new Set(input.officialSourceUrls.filter(Boolean))];
@@ -30,17 +31,17 @@ export function buildChangeBriefStructuredData(input: ChangeBriefStructuredDataI
         breadcrumb: {'@id': breadcrumbId},
         isPartOf: {
           '@type': 'WebSite',
-          '@id': `${input.siteUrl.replace(/\/$/u, '')}/#website`,
+          '@id': `${siteUrl}/#website`,
           name: input.siteName,
-          url: input.siteUrl,
+          url: siteUrl,
         },
       },
       {
         '@type': 'BreadcrumbList',
         '@id': breadcrumbId,
         itemListElement: [
-          breadcrumbItem(1, '홈', input.siteUrl),
-          breadcrumbItem(2, '법령 변화', new URL('/ko/changes', input.siteUrl).href),
+          breadcrumbItem(1, '홈', siteUrl),
+          breadcrumbItem(2, '법령 변화', new URL('/ko/changes', siteUrl).href),
           breadcrumbItem(3, input.title, pageUrl),
         ],
       },
