@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20260724-018",
+  "release_id": "production-20260724-017",
   "snapshot_id": "kr-knowledge-core-20260723-023",
-  "requested_at": "2026-07-24T01:35:00.000Z",
+  "requested_at": "2026-07-24T01:27:00.000Z",
   "summary_ko": "공개 법률지식을 28개 주제 허브와 284개 상세 콘텐츠, 6개 법률개념으로 확장하고 조문 읽기 플랫폼의 무데이터 호환 기반을 배포한다."
 }
