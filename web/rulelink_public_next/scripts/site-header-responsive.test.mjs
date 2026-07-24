@@ -16,7 +16,7 @@ test('전역 헤더는 서버 레이아웃에서 독립된 반응형 컴포넌�
   ]);
 
   assert.match(layout, /import \{SiteHeader\} from '@\/components\/site-header';/);
-  assert.match(layout, /<SiteHeader hasConcepts=\{hasConcepts\} preview=\{preview\} siteName=\{site\.name\} \/>/);
+  assert.match(layout, /<SiteHeader[\s\S]*hasConcepts=\{hasConcepts\}[\s\S]*hasTrustPage=\{Boolean\(trustConfig\)\}[\s\S]*preview=\{preview\}[\s\S]*siteName=\{site\.name\}[\s\S]*\/>/);
   assert.match(component, /^'use client';/);
   assert.match(component, /aria-label="주요 메뉴" className=\{styles\.desktopNav\}/);
   assert.match(component, /aria-label="전체에서 찾기"[\s\S]*href="\/ko\/search"/);
@@ -24,6 +24,7 @@ test('전역 헤더는 서버 레이아웃에서 독립된 반응형 컴포넌�
   assert.match(component, /aria-expanded=\{menuOpen\}/);
   assert.match(component, /aria-label=\{menuOpen \? '주요 메뉴 닫기' : '주요 메뉴 열기'\}/);
   assert.match(component, /aria-label="모바일 주요 메뉴"/);
+  assert.match(component, /hasTrustPage \? <a href="\/ko\/trust">운영·신뢰<\/a> : null/);
 });
 
 test('모바일 메뉴는 Escape, 바깥 클릭과 데스크톱 전환에서 닫히며 Escape 후 초점을 복귀한다', async () => {

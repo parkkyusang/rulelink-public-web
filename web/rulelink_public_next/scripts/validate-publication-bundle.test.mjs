@@ -142,6 +142,44 @@ test('공개 지식의 완성 본문이 비어 있으면 거부한다', async ()
   assert.match(result.stderr, /paragraphs_ko는 1개 이상/);
 });
 
+test('편집자 표지는 실제 작성 주체와 법률 검토자·검토일·분야를 모두 요구한다', async () => {
+  const bundle = knowledgeBundle();
+  const entry = bundle.knowledge.content_entries[0];
+  entry.editorial_attribution = {
+    author: {
+      kind: 'organization',
+      name_ko: '검증용 편집 조직',
+      role_ko: '콘텐츠 작성',
+    },
+    legal_reviewer: {
+      name_ko: '검증용 법률 검토자',
+      qualification_ko: '검증용 자격',
+      reviewed_at: '2026-07-20T00:00:00+00:00',
+      review_areas_ko: ['검증 법률분야'],
+    },
+  };
+  refreshConceptReceipts(bundle);
+  let result = await validate(bundle);
+  assert.equal(result.status, 0, result.stderr);
+
+  entry.editorial_attribution.legal_reviewer.name_ko = '';
+  entry.editorial_attribution.legal_reviewer.review_areas_ko = [];
+  refreshConceptReceipts(bundle);
+  result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /법률 검토자 name_ko가 비어 있습니다/);
+  assert.match(result.stderr, /review_areas_ko는 1개 이상/);
+
+  entry.editorial_attribution.legal_reviewer.name_ko = '검증용 법률 검토자';
+  entry.editorial_attribution.legal_reviewer.review_areas_ko = ['검증 법률분야'];
+  entry.editorial_attribution.legal_reviewer.reviewed_at =
+    '2026-07-22T00:00:00+00:00';
+  refreshConceptReceipts(bundle);
+  result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /콘텐츠 검토일은 법률 검토일보다 빠를 수 없습니다/);
+});
+
 test('공개 지식에 예전 일반인 컨시어지 연결이 있으면 거부한다', async () => {
   const bundle = knowledgeBundle();
   bundle.knowledge.content_entries[0].concierge_entry = {

@@ -55,7 +55,63 @@ test('생활법률 상세 구조화 데이터는 기준일·공식 근거·법�
   assert.equal(page.isPartOf['@id'], 'https://rulelink.example/#website');
   assert.equal(breadcrumb['@type'], 'BreadcrumbList');
   assert.deepEqual(breadcrumb.itemListElement.map(item => item.position), [1, 2, 3]);
+  assert.equal(result['@graph'].length, 2);
+  assert.equal(result['@graph'].some(item => item['@type'] === 'Article'), false);
   assert.doesNotMatch(serializeStructuredData({...result, unsafe: '<script>'}), /<script>/);
+});
+
+test('실제 편집자 표지가 있으면 Article·Breadcrumb·Organization을 함께 투영한다', () => {
+  const result = buildKnowledgePageStructuredData({
+    audience: '법률정보를 확인하는 사람',
+    breadcrumbs: [
+      {name: '홈', url: 'https://rulelink.example'},
+      {name: '생활법률 지식', url: 'https://rulelink.example/ko/knowledge'},
+      {name: '검증 글', url: 'https://rulelink.example/ko/knowledge/test'},
+    ],
+    description: '검증 설명',
+    editorialAttribution: {
+      author: {
+        kind: 'organization',
+        name_ko: '검증용 편집 조직',
+        role_ko: '콘텐츠 작성',
+      },
+      legal_reviewer: {
+        name_ko: '검증용 법률 검토자',
+        qualification_ko: '검증용 자격',
+        reviewed_at: '2026-07-20T00:00:00Z',
+        review_areas_ko: ['상속'],
+      },
+    },
+    expiresAt: '2026-10-21T00:00:00Z',
+    officialSources: [],
+    pageUrl: 'https://rulelink.example/ko/knowledge/test',
+    publisher: {
+      name: '검증용 운영 법인',
+      url: 'https://rulelink.example',
+    },
+    reviewedAt: '2026-07-21T00:00:00Z',
+    rules: [],
+    scenarios: [],
+    searchIntents: ['검증'],
+    siteName: 'RuleLink',
+    siteUrl: 'https://rulelink.example',
+    title: '검증 글',
+  });
+  const page = result['@graph'].find(item => item['@type'] === 'WebPage');
+  const article = result['@graph'].find(item => item['@type'] === 'Article');
+  const organization = result['@graph'].find(
+    item => item['@type'] === 'Organization',
+  );
+  const breadcrumb = result['@graph'].find(
+    item => item['@type'] === 'BreadcrumbList',
+  );
+  assert.equal(page.mainEntity['@id'], article['@id']);
+  assert.equal(article.author.name, '검증용 편집 조직');
+  assert.equal(article.reviewedBy.name, '검증용 법률 검토자');
+  assert.deepEqual(article.reviewedBy.knowsAbout, ['상속']);
+  assert.equal(article.publisher['@id'], organization['@id']);
+  assert.equal(organization.name, '검증용 운영 법인');
+  assert.equal(breadcrumb.itemListElement.length, 3);
 });
 
 test('지식 허브 구조화 데이터는 순서 있는 글 목록과 최신 기준일을 제공한다', () => {

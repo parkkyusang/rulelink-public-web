@@ -255,6 +255,7 @@ function validateKnowledge(value, now, fileHashes, errors, snapshotId) {
 
   for (const entry of entries) {
     if (!isRecord(entry)) continue;
+    const entryName = `지식 콘텐츠 ${label(entry, 'content_id')}`;
     let compatibleEntry = entry;
     try {
       compatibleEntry = projectKnowledgeEntryCompatibility(entry, scenarioById);
@@ -274,6 +275,13 @@ function validateKnowledge(value, now, fileHashes, errors, snapshotId) {
       errors.push(`지식 콘텐츠 ${label(entry, 'content_id')}가 승인 상태가 아닙니다.`);
     }
     checkReviewWindow(entry, `지식 콘텐츠 ${label(entry, 'content_id')}`, now, errors);
+    validateEditorialAttribution(
+      entry.editorial_attribution,
+      entryName,
+      now,
+      entry.reviewed_at,
+      errors,
+    );
     checkReferences(entry.rule_ids, ruleIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 rule_ids`, errors);
     checkReferences(entry.scenario_ids, scenarioIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 scenario_ids`, errors);
     checkReferences(entry.source_coordinate_ids, sourceIds, `지식 콘텐츠 ${label(entry, 'content_id')}의 source_coordinate_ids`, errors);
@@ -285,7 +293,6 @@ function validateKnowledge(value, now, fileHashes, errors, snapshotId) {
       const allowed = relation.target_kind === 'concept' ? conceptIds : entryIds;
       checkReferences([relation.target_id], allowed, `지식 콘텐츠 ${label(entry, 'content_id')}의 related_edges`, errors);
     }
-    const entryName = `지식 콘텐츠 ${label(entry, 'content_id')}`;
     requireNonEmptyStringArray(entry, 'key_points_ko', 2, entryName, errors);
     requireNonEmptyStringArray(entry, 'action_steps_ko', 2, entryName, errors);
     requireNonEmptyStringArray(entry, 'facts_to_check_ko', 2, entryName, errors);
@@ -664,6 +671,88 @@ function requireNonEmptyStringArray(value, key, minimum, prefix, errors) {
     }
   }
   return items;
+}
+
+function validateEditorialAttribution(
+  value,
+  entryName,
+  now,
+  contentReviewedAt,
+  errors,
+) {
+  if (value === undefined) return;
+  if (!isRecord(value)) {
+    errors.push(`${entryName}의 editorial_attribution은 객체여야 합니다.`);
+    return;
+  }
+  if (!isRecord(value.author)) {
+    errors.push(`${entryName}의 editorial_attribution.author가 필요합니다.`);
+  } else {
+    if (!['organization', 'person'].includes(value.author.kind)) {
+      errors.push(
+        `${entryName}의 작성 주체 kind는 organization 또는 person이어야 합니다.`,
+      );
+    }
+    for (const field of ['name_ko', 'role_ko']) {
+      if (
+        typeof value.author[field] !== 'string'
+        || !value.author[field].trim()
+      ) {
+        errors.push(`${entryName}의 작성 주체 ${field}가 비어 있습니다.`);
+      }
+    }
+    if (
+      value.author.url !== undefined
+      && (
+        typeof value.author.url !== 'string'
+        || !/^(?:https:\/\/|\/)[^\s]+$/u.test(value.author.url)
+      )
+    ) {
+      errors.push(
+        `${entryName}의 작성 주체 URL은 https 또는 내부 절대경로여야 합니다.`,
+      );
+    }
+  }
+  if (!isRecord(value.legal_reviewer)) {
+    errors.push(`${entryName}의 editorial_attribution.legal_reviewer가 필요합니다.`);
+    return;
+  }
+  for (const field of ['name_ko', 'qualification_ko']) {
+    if (
+      typeof value.legal_reviewer[field] !== 'string'
+      || !value.legal_reviewer[field].trim()
+    ) {
+      errors.push(`${entryName}의 법률 검토자 ${field}가 비어 있습니다.`);
+    }
+  }
+  const areas = requireNonEmptyStringArray(
+    value.legal_reviewer,
+    'review_areas_ko',
+    1,
+    `${entryName}의 법률 검토자`,
+    errors,
+  );
+  if (areas.length !== new Set(areas).size) {
+    errors.push(`${entryName}의 법률 검토분야가 중복됩니다.`);
+  }
+  const reviewerTime = parseTimestamp(
+    value.legal_reviewer.reviewed_at,
+    `${entryName}의 법률 검토일`,
+    errors,
+  );
+  if (reviewerTime && now && reviewerTime > now) {
+    errors.push(`${entryName}의 법률 검토일은 미래일 수 없습니다.`);
+  }
+  const contentTime = Date.parse(contentReviewedAt);
+  if (
+    reviewerTime
+    && Number.isFinite(contentTime)
+    && reviewerTime.getTime() > contentTime
+  ) {
+    errors.push(
+      `${entryName}의 콘텐츠 검토일은 법률 검토일보다 빠를 수 없습니다.`,
+    );
+  }
 }
 
 function uniqueIds(items, key, labelName, errors) {

@@ -11,3 +11,4 @@ content/editorial-preview-bundle.json
 
 .vercel
 .env*
+!.env.example

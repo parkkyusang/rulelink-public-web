@@ -4,10 +4,12 @@ import {spawn} from 'node:child_process';
 import {once} from 'node:events';
 
 import {selectHomepageKnowledge} from '../src/lib/homepage-knowledge-selection.ts';
+import {resolvePublicTrustConfig} from '../src/lib/public-trust.ts';
 
 const appRoot = process.cwd();
 const port = Number(process.env.RULELINK_SMOKE_PORT || 18800);
 const baseUrl = `http://127.0.0.1:${port}`;
+const trustConfig = resolvePublicTrustConfig(process.env);
 const bundle = JSON.parse(await readFile(path.join(appRoot, 'content', 'bundle.json'), 'utf8'));
 const nextCli = path.join(appRoot, 'node_modules', 'next', 'dist', 'bin', 'next');
 const server = spawn(process.execPath, [nextCli, 'start', '-p', String(port), '-H', '127.0.0.1'], {
@@ -51,6 +53,11 @@ try {
     assert(homeHtml.includes('href="/ko/concepts">법률용어</a>'), '상단 메뉴가 공개 법률개념으로 연결되지 않습니다.');
   }
   assert(homeHtml.includes('href="/ko/sources">공식 근거</a>'), '상단 메뉴가 공식 근거 보관함으로 연결되지 않습니다.');
+  if (trustConfig) {
+    assert(homeHtml.includes('href="/ko/trust">운영·신뢰</a>'), '신뢰 설정을 켰지만 상단 메뉴에 신뢰 페이지가 없습니다.');
+  } else {
+    assert(!homeHtml.includes('href="/ko/trust"'), '신뢰 설정이 없는데 신뢰 페이지 링크가 노출됩니다.');
+  }
   for (const entry of selectHomepageKnowledge(bundle.knowledge?.content_entries ?? [], 6)) {
     assert(homeHtml.includes(`href="/ko/knowledge/${entry.slug}"`), `홈에서 공개 지식이 노출되지 않습니다: ${entry.slug}`);
   }
@@ -67,6 +74,7 @@ try {
   }
 
   const indexableRoutes = new Set(['/', '/ko/method', '/ko/search']);
+  if (trustConfig) indexableRoutes.add('/ko/trust');
   if ((bundle.knowledge?.sources?.length ?? 0) > 0) indexableRoutes.add('/ko/sources');
   for (const card of bundle.cards ?? []) indexableRoutes.add(`/ko/issues/${card.slug}`);
   for (const brief of bundle.change_briefs ?? []) indexableRoutes.add(`/ko/changes/${brief.slug}`);
@@ -105,6 +113,9 @@ try {
     const robotsResponse = await fetch(`${baseUrl}/robots.txt`, {cache: 'no-store'});
     assert(robotsResponse.ok, `robots.txt 응답 실패: ${robotsResponse.status}`);
     assert((await robotsResponse.text()).includes('sitemap.xml'), 'robots.txt가 사이트맵을 알리지 않습니다.');
+    if (!trustConfig) {
+      assert(!sitemapXml.includes('/ko/trust'), '023 zero-state 사이트맵에 비활성 신뢰 경로가 추가됐습니다.');
+    }
   }
 
   for (const route of routes) {

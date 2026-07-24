@@ -191,6 +191,21 @@ export type PublicKnowledgeProductRole =
   | 'knowledge_reuse'
   | 'freshness_capture';
 
+export type PublicEditorialAttribution = {
+  author: {
+    kind: 'organization' | 'person';
+    name_ko: string;
+    role_ko: string;
+    url?: string;
+  };
+  legal_reviewer: {
+    name_ko: string;
+    qualification_ko: string;
+    reviewed_at: string;
+    review_areas_ko: string[];
+  };
+};
+
 export type PublicAuthorityTimeState =
   | 'current_as_of_review'
   | 'future_effective'
@@ -354,6 +369,7 @@ export type PublicKnowledgeEntry = {
   concept_ids?: string[];
   authority_binding_ids?: string[];
   product_roles?: PublicKnowledgeProductRole[];
+  editorial_attribution?: PublicEditorialAttribution;
   lawyer_workspace_entry?: {
     question_ko: string;
     decision_facts_ko: string[];
