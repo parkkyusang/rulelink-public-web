@@ -131,6 +131,18 @@ test('현재 실행의 exact 사례만 허용하고 stale·누락·초과를 거
     runStartedAt,
   }), /다른 실행/u);
   assert.throws(() => validatePerformanceCases({
+    cases: [{...cases[0], generatedAt: undefined}, ...cases.slice(1)],
+    expected,
+    runId,
+    runStartedAt,
+  }), /실행 시작 전 성능 증거/u);
+  assert.throws(() => validatePerformanceCases({
+    cases,
+    expected,
+    runId,
+    runStartedAt: 'not-a-date',
+  }), /실행 시작 시각이 유효하지/u);
+  assert.throws(() => validatePerformanceCases({
     cases: [{...cases[0], totalTransferredBytes: Number.NaN}, ...cases.slice(1)],
     expected,
     runId,

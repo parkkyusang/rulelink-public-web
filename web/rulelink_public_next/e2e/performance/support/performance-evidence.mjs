@@ -176,11 +176,15 @@ export function validatePerformanceCases({
   const expectedKeys = new Set(expected.map(performanceCaseKey));
   const actualKeys = new Set();
   const startedAt = Date.parse(runStartedAt);
+  if (!Number.isFinite(startedAt)) {
+    throw new Error(`실행 시작 시각이 유효하지 않습니다: ${runStartedAt}`);
+  }
   for (const item of cases) {
     if (item.runId !== runId) {
       throw new Error(`다른 실행의 성능 증거입니다: ${item.runId}`);
     }
-    if (Date.parse(item.generatedAt) < startedAt) {
+    const generatedAt = Date.parse(item.generatedAt);
+    if (!Number.isFinite(generatedAt) || generatedAt < startedAt) {
       throw new Error(`실행 시작 전 성능 증거입니다: ${item.generatedAt}`);
     }
     validateCaseMetrics(item);
