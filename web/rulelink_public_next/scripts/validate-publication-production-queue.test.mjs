@@ -157,6 +157,7 @@ const sourceEvidenceMergeCommit = '5'.repeat(40);
 const sourceEvidenceRepository = 'parkkyusang/liale-rulelink-ir';
 const sourcePr4Head = authorityEvidenceFixtures.authorityDbValue.upstream.pr4_sha;
 const sourcePr3P2Head = authorityEvidenceFixtures.authorityDbValue.upstream.pr3_p2_sha;
+const sourcePr3FinalHead = 'f'.repeat(40);
 const sourceCiWorkflowId = 2400;
 const sourceCiCheckRunId = 2401;
 const sourceCiRunId = 2402;
@@ -273,7 +274,7 @@ async function sourceMaintenancePullFixture(url) {
   const matched = /\/pulls\/(3|4|903)$/u.exec(url);
   assert.ok(matched, `알 수 없는 source-maintenance PR fixture: ${url}`);
   const headByPr = {
-    3: sourcePr3P2Head,
+    3: sourcePr3FinalHead,
     4: sourcePr4Head,
     903: sourceEvidenceHead,
   };
@@ -300,6 +301,7 @@ function authoritySourceFetchFixture({
   sourceMerged = true,
   comparison = {status: 'ahead', ahead_by: 1},
   upstreamComparisons = new Map(),
+  trustedProducerComparisons = new Map(),
 } = {}) {
   return async url => {
     const sourceCiResponse = authoritySourceCiApiFixture(url);
@@ -329,6 +331,24 @@ function authoritySourceFetchFixture({
         url,
       );
     if (compareMatch) {
+      if (compareMatch[1] === AUTHORITY_EVIDENCE_TRUSTED_PRODUCER_COMMIT_SHA) {
+        if (compareMatch[2] === sourceEvidenceHead) {
+          return comparison;
+        }
+        const trustedComparison = trustedProducerComparisons.get(compareMatch[2]);
+        assert.ok(
+          trustedComparison,
+          `지원하지 않는 trusted producer ancestry fixture: ${url}`,
+        );
+        return trustedComparison;
+      }
+      if (
+        compareMatch[1] === sourcePr3P2Head &&
+        compareMatch[2] === sourcePr3FinalHead
+      ) {
+        return upstreamComparisons.get(sourcePr3P2Head) ||
+          {status: 'ahead', ahead_by: 4};
+      }
       assert.equal(compareMatch[2], sourceEvidenceHead);
       if (
         compareMatch[1] ===
@@ -2653,6 +2673,10 @@ test('고정 producer commit의 workflow·environment·contract 원문이 바뀌
         registry,
         fetchJson: authoritySourceFetchFixture({
           fileOverrides: new Map([[dbRepositoryPath, forgedPayload]]),
+          trustedProducerComparisons: new Map([[
+            'd'.repeat(40),
+            {status: 'diverged', ahead_by: 0},
+          ]]),
         }),
       },
     ),

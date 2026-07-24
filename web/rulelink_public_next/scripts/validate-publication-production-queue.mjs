@@ -10,6 +10,7 @@ import {
   AUTHORITY_EVIDENCE_REQUIRED_REPOSITORY_PATHS,
   AUTHORITY_EVIDENCE_PRODUCER_CONTRACT_SHA256,
   AUTHORITY_EVIDENCE_SOURCE_FILENAMES,
+  AUTHORITY_EVIDENCE_SOURCE_REPOSITORY,
   AUTHORITY_EVIDENCE_TRUSTED_PRODUCER_COMMIT_SHA,
   AUTHORITY_EVIDENCE_VERIFICATION_CONTRACT,
   AUTHORITY_PUBLIC_EVIDENCE_CONTRACT_V1,
@@ -516,16 +517,39 @@ async function verifyAuthoritySourceCiAttestation({
   const provenance = evidence.provenance;
   const cacheKey = `${repository}#${prNumber}@${headSha}:${attestation.contract}`;
   if (attestationCache?.has(cacheKey)) return attestationCache.get(cacheKey);
+  let trustedProducerAncestry = {
+    status: 'identical',
+    aheadBy: 0,
+  };
 
   if (
     provenance.producer_source_commit_sha !==
       AUTHORITY_EVIDENCE_TRUSTED_PRODUCER_COMMIT_SHA
   ) {
-    throw new Error(
-      'authority producer source commit이 공개 소비자가 승인한 신뢰 기준과 다릅니다.',
+    const trustedComparison = await fetchJson(
+      `https://api.github.com/repos/${repository}/compare/` +
+      `${AUTHORITY_EVIDENCE_TRUSTED_PRODUCER_COMMIT_SHA}...` +
+      `${provenance.producer_source_commit_sha}`,
     );
+    if (
+      !['ahead', 'identical'].includes(trustedComparison?.status) ||
+      !Number.isInteger(trustedComparison.ahead_by) ||
+      trustedComparison.ahead_by < 0
+    ) {
+      throw new Error(
+        'authority producer source commit은 공개 소비자가 신뢰하는 producer 기준 commit의 검증된 후손이어야 합니다.',
+      );
+    }
+    trustedProducerAncestry = {
+      status: trustedComparison.status,
+      aheadBy: trustedComparison.ahead_by,
+    };
+  } else {
+    trustedProducerAncestry = {
+      status: 'identical',
+      aheadBy: 0,
+    };
   }
-
   const workflowPayload = await loadGithubFileAtCommit({
     repository,
     repositoryPath: attestation.workflow_path,
@@ -675,7 +699,9 @@ async function verifyAuthoritySourceCiAttestation({
     requiredEnvironment: attestation.required_environment,
     workflowSha256,
     producerContractSha256,
-    trustedProducerCommitSha: provenance.producer_source_commit_sha,
+    trustedProducerRootCommitSha: AUTHORITY_EVIDENCE_TRUSTED_PRODUCER_COMMIT_SHA,
+    producerCommitSha: provenance.producer_source_commit_sha,
+    trustedProducerAncestry,
     runnerLabels: actualLabels,
   };
   attestationCache?.set(cacheKey, verified);
@@ -683,6 +709,7 @@ async function verifyAuthoritySourceCiAttestation({
 }
 
 async function verifyEvidenceReference({
+  gateId,
   workId,
   evidenceRef,
   verificationMethod,
@@ -745,7 +772,29 @@ async function verifyEvidenceReference({
     const pull = await fetchJson(`https://api.github.com/repos/${repository}/pulls/${prNumber}`);
     if (!pull.merged_at) throw new Error(`병합되지 않은 PR은 증거가 될 수 없습니다: ${repository}#${prNumber}`);
     if (verificationMethod === 'github_merged_head') {
-      if (pull.head?.sha !== expectedSha) {
+      if (gateId === 'source-maintenance.db-pr-3-p2') {
+        if (
+          repository !== AUTHORITY_EVIDENCE_SOURCE_REPOSITORY ||
+          prNumber !== '3' ||
+          !/^[0-9a-f]{40}$/u.test(pull.head?.sha || '')
+        ) {
+          throw new Error('source-maintenance PR3-P2 증거가 승인된 저장소·PR을 가리키지 않습니다.');
+        }
+        if (pull.head.sha !== expectedSha) {
+          const comparison = await fetchJson(
+            `https://api.github.com/repos/${repository}/compare/${expectedSha}...${pull.head.sha}`,
+          );
+          if (
+            !['ahead', 'identical'].includes(comparison?.status) ||
+            !Number.isInteger(comparison.ahead_by) ||
+            comparison.ahead_by < 0
+          ) {
+            throw new Error(
+              `PR3-P2 증거 SHA가 병합된 PR 최종 head의 검증된 조상이 아닙니다: ${repository}#${prNumber}`,
+            );
+          }
+        }
+      } else if (pull.head?.sha !== expectedSha) {
         throw new Error(`병합된 PR head가 증거 SHA와 다릅니다: ${repository}#${prNumber}`);
       }
     } else {
@@ -865,9 +914,30 @@ async function verifyEvidenceReference({
       );
       if (
         !upstreamPull?.merged_at ||
-        upstreamPull.head?.sha !== upstreamHeadSha ||
         !/^[0-9a-f]{40}$/u.test(upstreamPull.merge_commit_sha || '')
       ) {
+        throw new Error(`authority upstream PR의 실제 병합 head를 확인할 수 없습니다: ${gateId}`);
+      }
+      if (gateId === 'source-maintenance.db-pr-3-p2') {
+        if (!/^[0-9a-f]{40}$/u.test(upstreamPull.head?.sha || '')) {
+          throw new Error(`authority upstream PR의 최종 head를 확인할 수 없습니다: ${gateId}`);
+        }
+        if (upstreamPull.head.sha !== upstreamHeadSha) {
+          const p2Comparison = await fetchJson(
+            `https://api.github.com/repos/${upstreamRepository}/compare/` +
+            `${upstreamHeadSha}...${upstreamPull.head.sha}`,
+          );
+          if (
+            !['ahead', 'identical'].includes(p2Comparison?.status) ||
+            !Number.isInteger(p2Comparison.ahead_by) ||
+            p2Comparison.ahead_by < 0
+          ) {
+            throw new Error(
+              `authority PR3-P2 SHA가 병합된 최종 head의 검증된 조상이 아닙니다: ${gateId}`,
+            );
+          }
+        }
+      } else if (upstreamPull.head?.sha !== upstreamHeadSha) {
         throw new Error(`authority upstream PR의 실제 병합 head를 확인할 수 없습니다: ${gateId}`);
       }
       const upstreamComparison = await fetchJson(
@@ -1046,6 +1116,7 @@ export async function verifyProductionQueueExternalEvidence(queue, {
       if (existingGateKeys.has(key)) continue;
       const proof = await verifyEvidenceReference({
         kind: 'prerequisite_gate',
+        gateId: gate.gate_id,
         workId: item.work_id,
         evidenceRef: gate.evidence_ref,
         verificationMethod: contractGate.verification_method,
