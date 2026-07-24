@@ -143,6 +143,7 @@ export function allowedForRole(role, filePath) {
       || allowedForRole('governance', value)
       || allowedForRole('quality_governance', value)
       || allowedForRole('runtime', value)
+      || value === '.gitattributes'
       || value === '.github/workflows/authority-release-evidence.yml'
       || value === 'web/rulelink_public_next/.gitignore'
       || value === 'web/rulelink_public_next/package-lock.json'
