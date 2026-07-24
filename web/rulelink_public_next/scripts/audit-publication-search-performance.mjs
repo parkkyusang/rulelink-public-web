@@ -3,6 +3,15 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 import {projectChangeBrief} from '../src/lib/change-brief-projection.ts';
+import {buildKnowledgeHubConnections} from '../src/lib/knowledge-hub-connections.ts';
+import {buildKnowledgeHubJourneys} from '../src/lib/knowledge-hub-journey.ts';
+import {
+  buildKnowledgeReadingPath,
+  buildKnowledgeRelatedPresentation,
+  relatedContentRelations,
+} from '../src/lib/knowledge-relations.ts';
+import {browserOfficialSourceUrl} from '../src/lib/official-source-url.ts';
+import {filterFreshPublications} from '../src/lib/publication-freshness.ts';
 import {site} from '../src/lib/site.ts';
 
 const scriptPath = fileURLToPath(import.meta.url);
@@ -456,17 +465,87 @@ function declaredIntentCannibalization(records) {
   ));
 }
 
-function buildLinkIndex(bundle, records) {
-  const entryById = new Map((bundle?.knowledge?.content_entries ?? []).map(entry => [entry.content_id, entry]));
+function runtimePublicationProjection(bundle, asOf) {
+  const now = new Date(asOf);
+  const knowledge = bundle?.knowledge ?? {};
+  const allEntries = knowledge.content_entries ?? [];
+  const entries = filterFreshPublications(allEntries, now);
+  const concepts = filterFreshPublications(knowledge.concept_cards ?? [], now);
+  const entryById = new Map(entries.map(entry => [entry.content_id, entry]));
+  const hubs = (knowledge.topic_hubs ?? []).filter(hub => (
+    hub.content_ids.some(contentId => entryById.has(contentId))
+  ));
+  const allEntryById = new Map(allEntries.map(entry => [entry.content_id, entry]));
+  const outbound = new Map();
+  const broken = new Map();
+  const hidden = new Map();
+
+  for (const entry of entries) {
+    const sameHubContentIds = hubs
+      .filter(hub => (entry.hub_ids ?? []).includes(hub.hub_id))
+      .flatMap(hub => hub.content_ids);
+    const presentation = buildKnowledgeRelatedPresentation(
+      entry,
+      entries,
+      sameHubContentIds,
+    );
+    const readingPath = buildKnowledgeReadingPath(
+      entry,
+      entries,
+      concepts,
+      sameHubContentIds,
+    );
+    const renderedIds = new Set(presentation.related.map(target => target.content_id));
+    for (const section of readingPath) {
+      for (const item of section.items) {
+        if (item.target_kind === 'content') renderedIds.add(item.target_id);
+      }
+    }
+    outbound.set(entry.content_id, [...renderedIds]);
+
+    const declaredTargets = relatedContentRelations(entry).map(relation => relation.targetId);
+    broken.set(
+      entry.content_id,
+      declaredTargets.filter(targetId => !allEntryById.has(targetId)),
+    );
+    hidden.set(
+      entry.content_id,
+      declaredTargets.filter(targetId => (
+        allEntryById.has(targetId) && !entryById.has(targetId)
+      )),
+    );
+  }
+
+  return {
+    entries,
+    concepts,
+    hubs,
+    changes: filterFreshPublications(bundle?.change_briefs ?? [], now),
+    cards: filterFreshPublications(bundle?.cards ?? [], now),
+    entryById,
+    outbound,
+    broken,
+    hidden,
+  };
+}
+
+function buildLinkIndex(projection, records) {
+  const {entryById, outbound, broken, hidden} = projection;
   const inbound = new Map(records.map(record => [record.id, 0]));
-  const broken = new Map(records.map(record => [record.id, []]));
-  for (const entry of entryById.values()) {
-    for (const target of entry.related_content_ids ?? []) {
+  const hubInbound = new Map(records.map(record => [record.id, 0]));
+  for (const targets of outbound.values()) {
+    for (const target of targets) {
       if (entryById.has(target)) inbound.set(target, (inbound.get(target) ?? 0) + 1);
-      else broken.get(entry.content_id)?.push(target);
     }
   }
-  return {entryById, inbound, broken};
+  for (const hub of projection.hubs) {
+    for (const contentId of hub.content_ids) {
+      if (entryById.has(contentId)) {
+        hubInbound.set(contentId, (hubInbound.get(contentId) ?? 0) + 1);
+      }
+    }
+  }
+  return {entryById, inbound, hubInbound, outbound, broken, hidden};
 }
 
 function reason(code, message, evidence) {
@@ -533,22 +612,34 @@ function knowledgeScores(record, context) {
     }));
   }
 
-  const outbound = (page.related_content_ids ?? []).filter(target => context.linkIndex.entryById.has(target));
-  const inbound = context.linkIndex.inbound.get(record.id) ?? 0;
+  const outbound = context.linkIndex.outbound.get(record.id) ?? [];
+  const detailInbound = context.linkIndex.inbound.get(record.id) ?? 0;
+  const hubInbound = context.linkIndex.hubInbound.get(record.id) ?? 0;
+  const inbound = detailInbound + hubInbound;
   const broken = context.linkIndex.broken.get(record.id) ?? [];
-  let links = Math.min(outbound.length, 3) * 15 + Math.min(inbound, 3) * 15;
-  if ((page.hub_ids ?? []).length) links += 10;
+  const hidden = context.linkIndex.hidden.get(record.id) ?? [];
+  let links = Math.min(outbound.length, 3) * 15 + Math.min(detailInbound, 3) * 15;
+  if (hubInbound) links += 10;
   if (!broken.length) links += 10;
   links = clamp(links);
-  if (!outbound.length) reasons.push(reason('orphan_outbound', '명시적 다음 읽기 링크가 없습니다.', {related_content_ids: []}));
-  if (!inbound) reasons.push(reason('orphan_inbound', '다른 상세에서 이 페이지로 들어오는 명시적 링크가 없습니다.', {inbound_links: 0}));
-  if (outbound.length + inbound < 2) reasons.push(reason('weak_internal_link', '명시적 내부링크 연결도가 2보다 작습니다.', {outbound: outbound.length, inbound}));
+  if (!outbound.length) reasons.push(reason('orphan_outbound', '화면에 표시되는 다음 읽기 링크가 없습니다.', {rendered_related_content_ids: []}));
+  if (!inbound) reasons.push(reason('orphan_inbound', '다른 상세 화면에서 이 페이지로 들어오는 링크가 없습니다.', {rendered_inbound_links: 0}));
+  if (outbound.length + inbound < 2) reasons.push(reason('weak_internal_link', '화면에 표시되는 내부링크 연결도가 2보다 작습니다.', {outbound: outbound.length, inbound}));
   if (broken.length) reasons.push(reason('broken_internal_link', '존재하지 않는 관련 콘텐츠를 참조합니다.', {targets: broken}));
+  if (hidden.length) reasons.push(reason('hidden_internal_link_target', '관련 콘텐츠가 재검토 기한을 지나 화면에서 제외됩니다.', {targets: hidden}));
 
   const sourceById = context.sourceByCoordinate;
   const sourceIds = page.source_coordinate_ids ?? [];
   const sources = sourceIds.map(id => sourceById.get(id)).filter(Boolean);
-  const official = sources.filter(source => /^https:\/\/(?:www\.)?law\.go\.kr\//iu.test(source.official_url ?? ''));
+  const official = sources.filter(source => {
+    const url = browserOfficialSourceUrl(source);
+    if (!url) return false;
+    try {
+      return ['law.go.kr', 'www.law.go.kr'].includes(new URL(url).hostname.toLowerCase());
+    } catch {
+      return false;
+    }
+  });
   let trust = 0;
   if (page.editorial_status === 'approved') trust += 20;
   if (sourceIds.length) trust += 20;
@@ -575,7 +666,16 @@ function knowledgeScores(record, context) {
       freshness: freshness.score,
     },
     reasons,
-    linkEvidence: {outbound: outbound.length, inbound, broken},
+    linkEvidence: {
+      outbound: outbound.length,
+      inbound,
+      detail_inbound: detailInbound,
+      hub_inbound: hubInbound,
+      broken,
+      hidden,
+      verified_official_source_count: official.length,
+      projection: 'runtime_related_reading',
+    },
   };
 }
 
@@ -606,6 +706,15 @@ function hubScores(record, context) {
   }));
   const sourceCount = new Set(resolved.flatMap(entry => entry.source_coordinate_ids ?? [])).size;
   const approved = resolved.filter(entry => entry.editorial_status === 'approved').length;
+  const journeys = buildKnowledgeHubJourneys(resolved);
+  const scenarioIds = new Set(resolved.flatMap(entry => entry.scenario_ids ?? []));
+  const decisionPathCount = (context.bundle.knowledge?.scenario_branches ?? [])
+    .filter(scenario => scenarioIds.has(scenario.scenario_id)).length;
+  const connections = buildKnowledgeHubConnections(
+    context.runtime.entries,
+    context.runtime.hubs,
+    page,
+  );
   const trust = clamp(
     (resolved.length ? 30 : 0) +
     (sourceCount ? 40 : 0) +
@@ -627,7 +736,14 @@ function hubScores(record, context) {
       freshness: freshness.score,
     },
     reasons,
-    linkEvidence: {content_count: contentIds.length, resolved_content_count: resolved.length},
+    linkEvidence: {
+      content_count: contentIds.length,
+      resolved_content_count: resolved.length,
+      journey_count: journeys.length,
+      decision_path_count: decisionPathCount,
+      connected_hub_count: connections.length,
+      projection: 'runtime_hub_journey',
+    },
   };
 }
 
@@ -637,7 +753,7 @@ function changeScores(record, context) {
   const projection = projectChangeBrief({
     brief: {...page, effective_date: page.effective_date ?? context.asOf},
     assertions: (context.bundle.assertions ?? []).filter(assertion => assertionIds.has(assertion.assertion_id)),
-    entries: context.bundle.knowledge?.content_entries ?? [],
+    entries: context.runtime.entries,
     sources: context.bundle.knowledge?.sources ?? [],
     asOf: context.asOf,
   });
@@ -753,13 +869,32 @@ export function auditPublicationSearchPerformance(bundle, options = {}) {
   const asOf = options.asOf ?? bundle.built_at;
   if (!Number.isFinite(Date.parse(asOf))) throw new Error('감사 기준시점이 유효하지 않습니다.');
   const gscRows = options.gscRows ?? [];
-  const records = buildPageRecords(bundle, baseUrl);
+  const runtime = runtimePublicationProjection(bundle, asOf);
+  const runtimeBundle = {
+    ...bundle,
+    change_briefs: runtime.changes,
+    knowledge: {
+      ...bundle.knowledge,
+      content_entries: runtime.entries,
+      concept_cards: runtime.concepts,
+      topic_hubs: runtime.hubs,
+    },
+  };
+  const records = buildPageRecords(runtimeBundle, baseUrl);
   const nearest = nearestDuplicates(records);
-  const linkIndex = buildLinkIndex(bundle, records);
+  const linkIndex = buildLinkIndex(runtime, records);
   const sourceByCoordinate = new Map((bundle?.knowledge?.sources ?? []).map(source => [source.coordinate_id, source]));
-  const issueCardIds = new Set((bundle?.cards ?? []).map(card => card.issue_card_id ?? card.card_id).filter(Boolean));
+  const issueCardIds = new Set(runtime.cards.map(card => card.issue_card_id ?? card.card_id).filter(Boolean));
   const {metrics, unmatched} = aggregateGscRows(gscRows, records, baseUrl);
-  const context = {asOf, nearest, linkIndex, sourceByCoordinate, issueCardIds, bundle};
+  const context = {
+    asOf,
+    nearest,
+    linkIndex,
+    sourceByCoordinate,
+    issueCardIds,
+    bundle: runtimeBundle,
+    runtime,
+  };
 
   const pages = records.map(record => {
     const measured = record.pageType === 'knowledge'
@@ -836,6 +971,13 @@ export function auditPublicationSearchPerformance(bundle, options = {}) {
       orphan_outbound: pages.filter(page => page.exact_reasons.some(item => item.code === 'orphan_outbound')).length,
       orphan_inbound: pages.filter(page => page.exact_reasons.some(item => item.code === 'orphan_inbound')).length,
       weak_internal_link: pages.filter(page => page.exact_reasons.some(item => item.code === 'weak_internal_link')).length,
+      verified_official_source_pages: pages.filter(
+        page => (page.internal_link_evidence.verified_official_source_count ?? 0) > 0,
+      ).length,
+      verified_official_source_links: pages.reduce(
+        (total, page) => total + (page.internal_link_evidence.verified_official_source_count ?? 0),
+        0,
+      ),
       title_or_slug_search_intent_boilerplate: pages.filter(page => page.exact_reasons.some(item => item.code === 'search_intent_boilerplate')).length,
       declared_query_cannibalization: declaredCannibalization.length,
       measured_query_cannibalization: gscCannibalization.length,
@@ -882,8 +1024,9 @@ export function renderSearchPerformanceMarkdown(report, options = {}) {
     `- improve: ${report.summary.action_counts.improve}`,
     `- merge: ${report.summary.action_counts.merge}`,
     `- noindex-review: ${report.summary.action_counts['noindex-review']}`,
-    `- 명시적 나가는 링크 없음: ${report.summary.orphan_outbound}`,
-    `- 명시적 들어오는 링크 없음: ${report.summary.orphan_inbound}`,
+    `- 화면상 나가는 링크 없음: ${report.summary.orphan_outbound}`,
+    `- 상세·허브 화면에서 들어오는 링크 없음: ${report.summary.orphan_inbound}`,
+    `- 검증된 공식원문: ${report.summary.verified_official_source_pages}개 페이지 / ${report.summary.verified_official_source_links}개 링크`,
     `- 검색의도 충돌: 선언 ${report.summary.declared_query_cannibalization} / 실측 ${report.summary.measured_query_cannibalization}`,
     `- 저자·검수자 메타데이터 미선언: ${report.summary.author_metadata_not_declared} / ${report.summary.reviewer_metadata_not_declared}`,
     '',
