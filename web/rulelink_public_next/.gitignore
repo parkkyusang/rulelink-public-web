@@ -4,6 +4,7 @@ node_modules/
 out/
 playwright-report/
 test-results/
+.lighthouseci/
 *.log
 tsconfig.tsbuildinfo
 content/bundle.json
