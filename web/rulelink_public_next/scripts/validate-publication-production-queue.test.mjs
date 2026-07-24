@@ -5,7 +5,7 @@ import {mkdir, mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {promisify} from 'node:util';
-import test from 'node:test';
+import test, {after} from 'node:test';
 
 import {
   createAuthorityEvidenceFixtures,
@@ -48,6 +48,7 @@ const queuePath = path.join(repoRoot, 'artifacts', 'publication', 'production-qu
 const registryPath = path.join(repoRoot, 'artifacts', 'publication', 'production-queue-registry.json');
 const bundlePath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
 const workflowPath = path.join(repoRoot, '.github', 'workflows', 'public-web-checks.yml');
+const execFileAsync = promisify(execFile);
 const [currentQueue, currentRegistry, bundle, workflow] = await Promise.all([
   readFile(queuePath, 'utf8').then(JSON.parse),
   readFile(registryPath, 'utf8').then(JSON.parse),
@@ -76,13 +77,79 @@ function withoutRegisteredProductionWork(queueValue, registryValue) {
     registry.prerequisite_gate_receipt =
       registry.prerequisite_gate_receipts.at(-1).receipt;
   }
+  for (const [entriesKey, receiptKey] of [
+    ['release_check_receipts', 'release_check_receipt'],
+    ['pr_bindings', 'pr_binding_receipt'],
+    ['head_receipts', 'head_receipt'],
+  ]) {
+    if (registry[entriesKey]?.length === 0) {
+      delete registry[entriesKey];
+      delete registry[receiptKey];
+    }
+  }
   return {queue, registry};
 }
 
 const {queue, registry} = withoutRegisteredProductionWork(currentQueue, currentRegistry);
-const publicationEvidence = await loadQueuePublicationEvidence(queue, bundle, {itemRegistry: registry});
+const registryCommits = String((await execFileAsync(
+  'git',
+  ['rev-list', 'HEAD'],
+  {cwd: repoRoot, encoding: 'utf8'},
+)).stdout || '').split(/\r?\n/u).filter(Boolean);
+let preRegistrationHistoryCommit = '';
+for (const commit of registryCommits) {
+  let candidate;
+  try {
+    candidate = JSON.parse(String((await execFileAsync(
+      'git',
+      ['show', `${commit}:artifacts/publication/production-queue-registry.json`],
+      {cwd: repoRoot, encoding: 'utf8'},
+    )).stdout || ''));
+  } catch {
+    continue;
+  }
+  if (JSON.stringify(candidate) === JSON.stringify(registry)) {
+    preRegistrationHistoryCommit = commit;
+    break;
+  }
+}
+assert.ok(
+  preRegistrationHistoryCommit,
+  '등록 전 registry와 같은 실제 Git 이력 커밋이 필요합니다.',
+);
+const preRegistrationHistoryDirectory = await mkdtemp(
+  path.join(tmpdir(), 'rulelink-pre-registration-history-'),
+);
+const preRegistrationHistoryRepository = path.join(
+  preRegistrationHistoryDirectory,
+  'repository',
+);
+await execFileAsync(
+  'git',
+  ['clone', '--shared', '--no-checkout', repoRoot, preRegistrationHistoryRepository],
+  {cwd: preRegistrationHistoryDirectory, encoding: 'utf8'},
+);
+await execFileAsync(
+  'git',
+  ['checkout', '--detach', preRegistrationHistoryCommit],
+  {cwd: preRegistrationHistoryRepository, encoding: 'utf8'},
+);
+after(async () => {
+  await rm(preRegistrationHistoryDirectory, {recursive: true, force: true});
+});
+const preRegistrationRunGit = args => execFileAsync(
+  'git',
+  args,
+  {cwd: preRegistrationHistoryRepository, encoding: 'utf8'},
+);
+const [publicationEvidence, currentPublicationEvidence] = await Promise.all([
+  loadQueuePublicationEvidence(queue, bundle, {
+    itemRegistry: registry,
+    runGit: preRegistrationRunGit,
+  }),
+  loadQueuePublicationEvidence(currentQueue, bundle, {itemRegistry: currentRegistry}),
+]);
 const testMigrationCommitSha = 'a'.repeat(40);
-const execFileAsync = promisify(execFile);
 const publicationCompletionFields = [
   'integrated_snapshot_id',
   'migration_commit_sha',
@@ -610,7 +677,7 @@ function clearPublicationCompletion(item) {
 test('현재 생산 대기열은 실제 current 공개 정본·역할·의존성 계약을 만족한다', () => {
   assert.deepEqual(validateProductionQueueRaw(currentQueue, {
     publishedBundle: bundle,
-    ...publicationEvidence,
+    ...currentPublicationEvidence,
     itemRegistry: currentRegistry,
   }), []);
   assert.deepEqual(compareQueueCurrentPublication(currentQueue, bundle), []);
@@ -884,6 +951,7 @@ test('원자적 동기화는 전체 검증 성공 뒤에만 파일을 교체한�
     await writeFile(target, JSON.stringify(stale, null, 2) + '\n', 'utf8');
     const result = await synchronizeCurrentPublicationFile(target, bundle, {
       itemRegistry: registry,
+      runGit: preRegistrationRunGit,
     });
     assert.equal(result.current_publication.snapshot_id, bundle.snapshot_id);
     assert.deepEqual(JSON.parse(await readFile(target, 'utf8')), result);
@@ -904,7 +972,9 @@ test('item registry 파일 동기화도 검증 뒤 원자적으로 append한다'
     newItem.topic_id = 'hub.registry-file-fixture';
     newItem.topic_file = 'artifacts/publication/topics/registry-file-fixture.json';
     value.items.push(newItem);
-    const updated = await synchronizeQueueItemRegistryFile(target, value);
+    const updated = await synchronizeQueueItemRegistryFile(target, value, {
+      runGit: preRegistrationRunGit,
+    });
     assert.equal(updated.registrations.at(-1).queue_id, 'publication-pr-998');
     assert.deepEqual(JSON.parse(await readFile(target, 'utf8')), updated);
 

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {execFile} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {
   cp,
@@ -13,6 +14,7 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import {fileURLToPath} from 'node:url';
+import {promisify} from 'node:util';
 
 import {
   buildPlannedProductionWorkItem,
@@ -31,6 +33,7 @@ const registryPath = path.join(
   'production-queue-registry.json',
 );
 const bundlePath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
+const execFileAsync = promisify(execFile);
 
 async function readJson(filePath) {
   const value = JSON.parse(await readFile(filePath, 'utf8'));
@@ -112,14 +115,56 @@ async function withTemporaryProductionFiles(callback) {
     readJson(queuePath),
     readJson(registryPath),
   ]);
+  const registryCommits = String((await execFileAsync(
+    'git',
+    ['rev-list', 'HEAD'],
+    {cwd: repoRoot, encoding: 'utf8'},
+  )).stdout || '').split(/\r?\n/u).filter(Boolean);
+  let baselineCommit = '';
+  for (const commit of registryCommits) {
+    let candidate;
+    try {
+      candidate = JSON.parse(String((await execFileAsync(
+        'git',
+        ['show', `${commit}:artifacts/publication/production-queue-registry.json`],
+        {cwd: repoRoot, encoding: 'utf8'},
+      )).stdout || ''));
+    } catch {
+      continue;
+    }
+    if (JSON.stringify(candidate) === JSON.stringify(registry)) {
+      baselineCommit = commit;
+      break;
+    }
+  }
+  assert.ok(baselineCommit, '등록 전 registry와 같은 실제 Git 이력 커밋이 필요합니다.');
+  paths.historyRepository = path.join(directory, 'history-repository');
+  await execFileAsync(
+    'git',
+    ['clone', '--shared', '--no-checkout', repoRoot, paths.historyRepository],
+    {cwd: directory, encoding: 'utf8'},
+  );
+  await execFileAsync(
+    'git',
+    ['checkout', '--detach', baselineCommit],
+    {cwd: paths.historyRepository, encoding: 'utf8'},
+  );
   await Promise.all([
     writeFile(paths.queue, `${JSON.stringify(queue, null, 2)}\n`, 'utf8'),
     writeFile(paths.registry, `${JSON.stringify(registry, null, 2)}\n`, 'utf8'),
     cp(bundlePath, paths.bundle),
   ]);
+  const previousGitDir = process.env.GIT_DIR;
+  const previousGitWorkTree = process.env.GIT_WORK_TREE;
+  process.env.GIT_DIR = path.join(paths.historyRepository, '.git');
+  process.env.GIT_WORK_TREE = paths.historyRepository;
   try {
     return await callback(paths);
   } finally {
+    if (previousGitDir === undefined) delete process.env.GIT_DIR;
+    else process.env.GIT_DIR = previousGitDir;
+    if (previousGitWorkTree === undefined) delete process.env.GIT_WORK_TREE;
+    else process.env.GIT_WORK_TREE = previousGitWorkTree;
     await rm(directory, {recursive: true, force: true});
   }
 }
