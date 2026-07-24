@@ -4,7 +4,7 @@ import path from 'node:path';
 import test from 'node:test';
 import {fileURLToPath} from 'node:url';
 
-import {projectChangeBrief} from '../src/lib/change-brief-projection.ts';
+import {projectChangeBrief, sourceVersionScopeLabelKo} from '../src/lib/change-brief-projection.ts';
 
 const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const bundle = JSON.parse(await readFile(
@@ -94,6 +94,26 @@ test('시행 상태는 lifecycle 문구가 아니라 시행일과 기준시각�
   });
   assert.equal(current.status, 'currently_effective');
   assert.equal(current.lifecycle_consistent, false);
+});
+
+test('구법·현행·시행예정 source 좌표를 서로 다른 문언 상태로 표시한다', async () => {
+  assert.equal(sourceVersionScopeLabelKo('historical'), '종전 시행 문언');
+  assert.equal(sourceVersionScopeLabelKo('current_as_of_review'), '검토일 현재 시행 문언');
+  assert.equal(sourceVersionScopeLabelKo('future_effective'), '시행 예정 신문언');
+  assert.equal(sourceVersionScopeLabelKo(undefined), '검토 당시 문언');
+
+  const assertionById = new Map(bundle.assertions.map(assertion => [assertion.assertion_id, assertion]));
+  const scopesByBrief = bundle.change_briefs.map(brief => (
+    new Set(brief.assertion_ids.flatMap(assertionId => (
+      assertionById.get(assertionId)?.source_coordinates.map(coordinate => coordinate.version_scope) ?? []
+    )))
+  ));
+  assert.equal(scopesByBrief.filter(scopes => scopes.has('historical')).length, 11);
+  assert.equal(scopesByBrief.filter(scopes => scopes.has('current_as_of_review')).length, 11);
+
+  const pageSource = await readFile(path.join(appRoot, 'app', 'ko', 'changes', '[slug]', 'page.tsx'), 'utf8');
+  assert.match(pageSource, /sourceVersionScopeLabelKo\(coordinate\.version_scope\)/u);
+  assert.doesNotMatch(pageSource, /version_scope === 'future_effective' \?/u);
 });
 
 test('법령변화 상세와 공용 문맥 컴포넌트는 생활질문·공식근거 구역을 분리한다', async () => {

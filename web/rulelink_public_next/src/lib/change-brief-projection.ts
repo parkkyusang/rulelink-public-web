@@ -46,6 +46,13 @@ type ProjectionInput = {
   relatedLimit?: number;
 };
 
+export function sourceVersionScopeLabelKo(scope: SourceCoordinate['version_scope']): string {
+  if (scope === 'historical') return '종전 시행 문언';
+  if (scope === 'current_as_of_review') return '검토일 현재 시행 문언';
+  if (scope === 'future_effective') return '시행 예정 신문언';
+  return '검토 당시 문언';
+}
+
 function timestamp(value: string): number {
   const parsed = Date.parse(value.length === 10 ? `${value}T00:00:00+09:00` : value);
   if (!Number.isFinite(parsed)) throw new Error(`유효하지 않은 법령변화 기준시각입니다: ${value}`);

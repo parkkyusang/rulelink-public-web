@@ -9,6 +9,7 @@ import {
   listChangeBriefs,
   relatedCardsForChangeBrief,
 } from '@/lib/publication';
+import {sourceVersionScopeLabelKo} from '@/lib/change-brief-projection';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
@@ -154,7 +155,7 @@ export default async function ChangeBriefPage({params}: Props) {
               <p>{assertion.user_facing_text_ko}</p>
               {assertion.source_coordinates.map(coordinate => (
                 <div className="source" key={`${coordinate.source_snapshot_id}-${coordinate.source_hash}`}>
-                  <span>{coordinate.version_scope === 'future_effective' ? '시행 예정 신문언' : '검토일 현재 시행 문언'}</span>
+                  <span>{sourceVersionScopeLabelKo(coordinate.version_scope)}</span>
                   <span>{coordinate.article_no}</span>
                   {coordinate.effective_from ? <span>{formatDate(coordinate.effective_from)} 기준</span> : null}
                   {coordinate.validation_status === 'verified' && browserOfficialSourceUrl(coordinate, brief.law_name_ko) ? (
