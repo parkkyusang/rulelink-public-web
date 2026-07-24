@@ -509,7 +509,7 @@
     "generator_source_commit_sha": "cccccccccccccccccccccccccccccccccccccccc",
     "generator_source_state": "working_tree_uncommitted",
     "producer_contract_path": "tests/fixtures/authority_public_evidence_contract_v1.json",
-    "producer_contract_sha256": "5783e67b83e3dfef98800c8427150ee98b600725db157a5801fd905e95bebf80",
+    "producer_contract_sha256": "32aa220b915c6b61fce5a9d9f2c4f4ff553c5c99fa2a077c95369e9c034b686b",
     "producer_source_commit_sha": "ae5070f1a3bac3790deca97b5b5beabd671e5b23",
     "recommended_repository_directory": "data/validation_reports/authority_024",
     "regeneration_run_id": "authority-024-test-run"

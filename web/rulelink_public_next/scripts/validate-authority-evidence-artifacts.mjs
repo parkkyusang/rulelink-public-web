@@ -35,7 +35,7 @@ const EXACT_TABLE_SCHEMA = 'rulelink_authority_wave_exact_table_v1';
 const FULL_CITATION_AUDIT_SCHEMA = 'rulelink_authority_citation_full_audit_v2';
 const PRODUCER_CONTRACT = 'rulelink_authority_public_evidence_contract_v1';
 export const AUTHORITY_EVIDENCE_PRODUCER_CONTRACT_SHA256 =
-  '5783e67b83e3dfef98800c8427150ee98b600725db157a5801fd905e95bebf80';
+  '32aa220b915c6b61fce5a9d9f2c4f4ff553c5c99fa2a077c95369e9c034b686b';
 
 const TARGET_INVENTORY_STATUS_VALUES = Object.freeze([
   'resolved_target_verified',
