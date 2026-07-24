@@ -435,6 +435,7 @@ export type LegalChangeBrief = {
   transition_note_ko: string;
   norm_delta: NormDelta;
   related_issue_card_ids: string[];
+  related_content_ids?: string[];
   assertion_ids: string[];
   source_event_ids: string[];
   old_snapshot_ids: string[];

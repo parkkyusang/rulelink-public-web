@@ -11,11 +11,13 @@ import {
   selectAuthorityReadingForRoute,
 } from '@/lib/authority-reading';
 import {changeLifecycleOrder} from '@/lib/change-lifecycle';
-import {filterFreshPublications} from '@/lib/publication-freshness';
+import {projectChangeBrief} from '@/lib/change-brief-projection';
+import {filterFreshPublications, publicationNow} from '@/lib/publication-freshness';
 
 import type {AuthorityReadingView} from '@/lib/authority-reading';
 import type {KnowledgeHubConnection} from '@/lib/knowledge-hub-connections';
 import type {KnowledgeReadingPathSection, KnowledgeRelatedSection} from '@/lib/knowledge-relations';
+import type {ChangeBriefProjection} from '@/lib/change-brief-projection';
 
 import type {
   EditorialOperationsQueue,
@@ -106,6 +108,19 @@ export async function assertionsForChangeBrief(brief: LegalChangeBrief): Promise
   if (!bundle) return [];
   const allowed = new Set(brief.assertion_ids);
   return bundle.assertions.filter(assertion => allowed.has(assertion.assertion_id));
+}
+
+export async function changeBriefProjection(brief: LegalChangeBrief): Promise<ChangeBriefProjection | null> {
+  const bundle = await loadPublishedBundle();
+  if (!bundle) return null;
+  const assertionIds = new Set(brief.assertion_ids);
+  return projectChangeBrief({
+    brief,
+    assertions: bundle.assertions.filter(assertion => assertionIds.has(assertion.assertion_id)),
+    entries: filterFreshPublications(bundle.knowledge?.content_entries ?? []),
+    sources: bundle.knowledge?.sources ?? [],
+    asOf: publicationNow().toISOString(),
+  });
 }
 
 

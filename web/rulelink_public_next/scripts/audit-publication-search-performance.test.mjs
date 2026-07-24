@@ -116,6 +116,14 @@ test('운영 023의 상세·허브·법령변화 범위를 정확히 감사하�
   assert.ok(first.pages.every(page => page.search_console.status === 'not_provided'));
   assert.equal(first.summary.measured_pages, 0);
   assert.equal(first.summary.not_provided_pages, 323);
+  const changes = first.pages.filter(page => page.page_type === 'change');
+  assert.equal(changes.length, 11);
+  assert.ok(changes.every(page => page.recommendation === 'keep'));
+  assert.ok(changes.every(page => page.internal_link_evidence.related_knowledge_count > 0));
+  assert.ok(changes.every(page => page.internal_link_evidence.verified_official_source_count > 0));
+  assert.ok(changes.every(page => !page.exact_reasons.some(item => (
+    item.code === 'change_weak_internal_link' || item.code === 'change_verified_official_source_unavailable'
+  ))));
 });
 
 test('정규화·유사도는 문장부호 차이를 제거하고 서로 다른 질문은 구분한다', () => {

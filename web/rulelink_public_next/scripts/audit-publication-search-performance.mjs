@@ -2,6 +2,8 @@ import {readFile, writeFile, mkdir} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
+import {projectChangeBrief} from '../src/lib/change-brief-projection.ts';
+
 const scriptPath = fileURLToPath(import.meta.url);
 const appRoot = path.resolve(path.dirname(scriptPath), '..');
 const repoRoot = path.resolve(appRoot, '..', '..');
@@ -630,6 +632,14 @@ function hubScores(record, context) {
 
 function changeScores(record, context) {
   const page = record.raw;
+  const assertionIds = new Set(page.assertion_ids ?? []);
+  const projection = projectChangeBrief({
+    brief: {...page, effective_date: page.effective_date ?? context.asOf},
+    assertions: (context.bundle.assertions ?? []).filter(assertion => assertionIds.has(assertion.assertion_id)),
+    entries: context.bundle.knowledge?.content_entries ?? [],
+    sources: context.bundle.knowledge?.sources ?? [],
+    asOf: context.asOf,
+  });
   const nearest = context.nearest.get(record.id);
   const reasons = [];
   let independence = 100;
@@ -651,9 +661,17 @@ function changeScores(record, context) {
   const relatedIssues = page.related_issue_card_ids ?? [];
   const resolvedIssues = relatedIssues.filter(id => context.issueCardIds.has(id));
   const brokenIssues = relatedIssues.filter(id => !context.issueCardIds.has(id));
-  const links = resolvedIssues.length ? clamp(40 + resolvedIssues.length * 20) : 20;
-  if (!resolvedIssues.length) {
+  const relatedReadings = projection.related_readings;
+  const links = relatedReadings.length
+    ? clamp(
+      60 +
+      Math.min(Math.max(relatedReadings.length - 1, 0), 2) * 15 +
+      Math.min(resolvedIssues.length, 1) * 10,
+    )
+    : Math.min(resolvedIssues.length, 2) * 10;
+  if (!relatedReadings.length) {
     reasons.push(reason('change_weak_internal_link', '법령변화에서 관련 생활질문으로 이어지는 명시적 링크가 없습니다.', {
+      related_content_ids: page.related_content_ids ?? [],
       related_issue_card_ids: relatedIssues,
     }));
   }
@@ -668,8 +686,8 @@ function changeScores(record, context) {
   if ((page.source_event_ids ?? []).length) trust += 20;
   if ((page.old_snapshot_ids ?? []).length && (page.new_snapshot_ids ?? []).length) trust += 20;
   if (page.reviewed_at) trust += 20;
-  if (!page.official_url) {
-    reasons.push(reason('change_direct_official_url_unavailable', '법령변화 레코드에 사용자가 바로 여는 공식원문 URL 필드가 없습니다.', {
+  if (!projection.official_sources.length) {
+    reasons.push(reason('change_verified_official_source_unavailable', '검증된 법령변화 근거에서 사용자가 바로 여는 공식원문 URL을 만들 수 없습니다.', {
       law_name_ko: page.law_name_ko,
       article_no: page.article_no,
     }));
@@ -688,6 +706,9 @@ function changeScores(record, context) {
       related_issue_card_count: relatedIssues.length,
       resolved_issue_card_count: resolvedIssues.length,
       broken_issue_card_ids: brokenIssues,
+      related_knowledge_count: relatedReadings.length,
+      related_knowledge_basis: [...new Set(relatedReadings.map(reading => reading.basis))],
+      verified_official_source_count: projection.official_sources.length,
     },
   };
 }
@@ -737,7 +758,7 @@ export function auditPublicationSearchPerformance(bundle, options = {}) {
   const sourceByCoordinate = new Map((bundle?.knowledge?.sources ?? []).map(source => [source.coordinate_id, source]));
   const issueCardIds = new Set((bundle?.cards ?? []).map(card => card.issue_card_id ?? card.card_id).filter(Boolean));
   const {metrics, unmatched} = aggregateGscRows(gscRows, records, baseUrl);
-  const context = {asOf, nearest, linkIndex, sourceByCoordinate, issueCardIds};
+  const context = {asOf, nearest, linkIndex, sourceByCoordinate, issueCardIds, bundle};
 
   const pages = records.map(record => {
     const measured = record.pageType === 'knowledge'

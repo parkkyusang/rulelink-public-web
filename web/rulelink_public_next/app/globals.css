@@ -258,6 +258,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .changeBody li {line-height: 1.68; margin: 10px 0;}
 .changeSources {border-top: 1px solid var(--line); margin-top: 68px; padding-top: 52px;}
 .changeSources h2 {font-size: 30px; letter-spacing: -.04em; margin: 0 0 16px;}
+.changeTimeline {border-top: 1px solid var(--line); margin-top: 44px; padding-top: 36px;}
+.changeTimeline h2, .changeRelatedReading h2 {font-size: 28px; letter-spacing: -.035em; margin: 0 0 18px;}
+.changeTimelineGrid {align-items: stretch; display: grid; gap: 14px; grid-template-columns: minmax(190px, .65fr) minmax(0, 1.35fr);}
+.changeTimelineGrid > div, .changeTimelineGrid > p {border: 1px solid #d3dcef; border-radius: 15px; margin: 0; padding: 18px 20px;}
+.changeTimelineGrid > div {background: var(--blue-surface); display: flex; flex-direction: column; gap: 6px;}
+.changeTimelineGrid strong {font-size: 17px;}
+.changeTimelineGrid span, .changeTimelineGrid p {color: var(--muted); line-height: 1.65;}
+.changeRelatedReading .relatedGrid a {gap: 10px; min-width: 0;}
+.changeRelatedReading .relatedGrid span {color: var(--body); font-size: 14px; font-weight: 500; margin: 0; overflow-wrap: anywhere;}
+.changeRelatedReading .relatedGrid small {color: var(--green); font-size: 12px; font-weight: 750; margin-top: auto;}
 .changeAssertionGrid {display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr); margin-top: 26px;}
 .normDelta {border-top: 1px solid var(--line); margin-top: 68px; padding-top: 52px;}
 .normDelta > h2 {font-size: 32px; letter-spacing: -.045em; line-height: 1.3; margin: 0 0 14px;}
@@ -320,6 +330,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   .methodGrid, .methodSection {grid-template-columns: 1fr;}
   .changeIntro, .changeGrid, .changeBody, .changeAssertionGrid, .lifeImpact, .hubDecisionIntro, .hubDecisionGrid, .hubConnectionsIntro, .hubConnectionGrid {grid-template-columns: 1fr;}
   .effectivePanel {grid-template-columns: 1fr;}
+  .changeTimelineGrid {grid-template-columns: 1fr;}
   .normDeltaRow {grid-template-columns: 1fr;}
   .normVersion {border-left: 0; border-top: 1px solid var(--line);}
   .normSlots, .branchOutcomes {grid-template-columns: 1fr;}
