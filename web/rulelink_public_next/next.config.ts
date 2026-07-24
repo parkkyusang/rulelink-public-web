@@ -1,5 +1,7 @@
 import type {NextConfig} from 'next';
 
+import {publicSecurityHeaderRules} from './src/lib/public-security-headers';
+
 const nextConfig: NextConfig = {
   distDir: process.env.RULELINK_EDITORIAL_PREVIEW_MODE === 'true'
     ? '.next-editorial-preview'
@@ -8,6 +10,9 @@ const nextConfig: NextConfig = {
       : '.next',
   reactStrictMode: true,
   devIndicators: false,
+  async headers() {
+    return publicSecurityHeaderRules();
+  },
 };
 
 export default nextConfig;
