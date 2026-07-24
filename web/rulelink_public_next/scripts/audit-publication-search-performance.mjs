@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {projectChangeBrief} from '../src/lib/change-brief-projection.ts';
 import {buildKnowledgeHubConnections} from '../src/lib/knowledge-hub-connections.ts';
 import {buildKnowledgeHubJourneys} from '../src/lib/knowledge-hub-journey.ts';
+import {resolveKnowledgeEntryGraph} from '../src/lib/knowledge-search.ts';
 import {
   buildKnowledgeReadingPath,
   buildKnowledgeRelatedPresentation,
@@ -476,6 +477,10 @@ function runtimePublicationProjection(bundle, asOf) {
     hub.content_ids.some(contentId => entryById.has(contentId))
   ));
   const allEntryById = new Map(allEntries.map(entry => [entry.content_id, entry]));
+  const entryGraphById = new Map(entries.map(entry => [
+    entry.content_id,
+    resolveKnowledgeEntryGraph(knowledge, entry),
+  ]));
   const outbound = new Map();
   const broken = new Map();
   const hidden = new Map();
@@ -523,6 +528,7 @@ function runtimePublicationProjection(bundle, asOf) {
     changes: filterFreshPublications(bundle?.change_briefs ?? [], now),
     cards: filterFreshPublications(bundle?.cards ?? [], now),
     entryById,
+    entryGraphById,
     outbound,
     broken,
     hidden,
@@ -621,6 +627,7 @@ function knowledgeScores(record, context) {
   let links = Math.min(outbound.length, 3) * 15 + Math.min(detailInbound, 3) * 15;
   if (hubInbound) links += 10;
   if (!broken.length) links += 10;
+  links -= Math.min(hidden.length, 2) * 10;
   links = clamp(links);
   if (!outbound.length) reasons.push(reason('orphan_outbound', '화면에 표시되는 다음 읽기 링크가 없습니다.', {rendered_related_content_ids: []}));
   if (!inbound) reasons.push(reason('orphan_inbound', '다른 상세 화면에서 이 페이지로 들어오는 링크가 없습니다.', {rendered_inbound_links: 0}));
@@ -629,9 +636,19 @@ function knowledgeScores(record, context) {
   if (hidden.length) reasons.push(reason('hidden_internal_link_target', '관련 콘텐츠가 재검토 기한을 지나 화면에서 제외됩니다.', {targets: hidden}));
 
   const sourceById = context.sourceByCoordinate;
-  const sourceIds = page.source_coordinate_ids ?? [];
-  const sources = sourceIds.map(id => sourceById.get(id)).filter(Boolean);
+  const directSourceIds = page.source_coordinate_ids ?? [];
+  const directSources = directSourceIds.map(id => sourceById.get(id)).filter(Boolean);
+  const sources = context.runtime.entryGraphById.get(record.id)?.sources ?? [];
   const official = sources.filter(source => {
+    const url = browserOfficialSourceUrl(source);
+    if (!url) return false;
+    try {
+      return ['law.go.kr', 'www.law.go.kr'].includes(new URL(url).hostname.toLowerCase());
+    } catch {
+      return false;
+    }
+  });
+  const directOfficial = directSources.filter(source => {
     const url = browserOfficialSourceUrl(source);
     if (!url) return false;
     try {
@@ -642,14 +659,14 @@ function knowledgeScores(record, context) {
   });
   let trust = 0;
   if (page.editorial_status === 'approved') trust += 20;
-  if (sourceIds.length) trust += 20;
-  if (sources.length === sourceIds.length) trust += 20;
+  if (sources.length) trust += 20;
+  if (directSources.length === directSourceIds.length) trust += 20;
   if (official.length === sources.length && sources.length) trust += 20;
   if (page.reviewed_at) trust += 20;
-  if (!sourceIds.length) reasons.push(reason('authority_missing', '공식근거 좌표가 없습니다.', {source_coordinate_ids: []}));
-  if (sources.length !== sourceIds.length) reasons.push(reason('authority_unresolved', '공식근거 좌표 일부가 현재 번들에서 해석되지 않습니다.', {
-    declared: sourceIds.length,
-    resolved: sources.length,
+  if (!sources.length) reasons.push(reason('authority_missing', '상세 화면에 표시할 공식근거 좌표가 없습니다.', {source_coordinate_ids: []}));
+  if (directSources.length !== directSourceIds.length) reasons.push(reason('authority_unresolved', '콘텐츠가 직접 선언한 공식근거 좌표 일부가 현재 번들에서 해석되지 않습니다.', {
+    declared: directSourceIds.length,
+    resolved: directSources.length,
   }));
   if (official.length !== sources.length) reasons.push(reason('official_source_url_missing', '일부 근거가 국가법령정보센터 공식 URL로 확인되지 않습니다.', {
     resolved_sources: sources.length,
@@ -674,7 +691,11 @@ function knowledgeScores(record, context) {
       broken,
       hidden,
       verified_official_source_count: official.length,
-      projection: 'runtime_related_reading',
+      ui_visible_source_count: sources.length,
+      direct_source_count: directSources.length,
+      direct_verified_official_source_count: directOfficial.length,
+      graph_expanded_source_count: Math.max(0, sources.length - directSources.length),
+      projection: 'runtime_related_reading_and_knowledge_detail_graph',
     },
   };
 }
@@ -842,6 +863,7 @@ function recommendationFor({axes, nearest, reasons}) {
   const mergeDuplicate = nearest?.similarity >= 0.86 && axes.search_independence <= 60;
   const critical = reasons.some(item => [
     'broken_internal_link',
+    'hidden_internal_link_target',
     'authority_unresolved',
     'freshness_expired',
   ].includes(item.code));
@@ -978,6 +1000,28 @@ export function auditPublicationSearchPerformance(bundle, options = {}) {
         (total, page) => total + (page.internal_link_evidence.verified_official_source_count ?? 0),
         0,
       ),
+      knowledge_verified_official_source_links: pages
+        .filter(page => page.page_type === 'knowledge')
+        .reduce(
+          (total, page) => total + (page.internal_link_evidence.verified_official_source_count ?? 0),
+          0,
+        ),
+      change_verified_official_source_links: pages
+        .filter(page => page.page_type === 'change')
+        .reduce(
+          (total, page) => total + (page.internal_link_evidence.verified_official_source_count ?? 0),
+          0,
+        ),
+      direct_knowledge_verified_official_source_links: pages
+        .filter(page => page.page_type === 'knowledge')
+        .reduce(
+          (total, page) => total + (page.internal_link_evidence.direct_verified_official_source_count ?? 0),
+          0,
+        ),
+      knowledge_graph_expanded_source_pages: pages.filter(page => (
+        page.page_type === 'knowledge'
+        && (page.internal_link_evidence.graph_expanded_source_count ?? 0) > 0
+      )).length,
       title_or_slug_search_intent_boilerplate: pages.filter(page => page.exact_reasons.some(item => item.code === 'search_intent_boilerplate')).length,
       declared_query_cannibalization: declaredCannibalization.length,
       measured_query_cannibalization: gscCannibalization.length,

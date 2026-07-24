@@ -126,7 +126,11 @@ test('운영 023의 상세·허브·법령변화 범위를 정확히 감사하�
   assert.equal(first.summary.orphan_inbound, 0);
   assert.equal(first.summary.weak_internal_link, 0);
   assert.equal(first.summary.verified_official_source_pages, 295);
-  assert.equal(first.summary.verified_official_source_links, 676);
+  assert.equal(first.summary.verified_official_source_links, 740);
+  assert.equal(first.summary.knowledge_verified_official_source_links, 717);
+  assert.equal(first.summary.change_verified_official_source_links, 23);
+  assert.equal(first.summary.direct_knowledge_verified_official_source_links, 653);
+  assert.equal(first.summary.knowledge_graph_expanded_source_pages, 18);
   assert.deepEqual(
     first.pages
       .filter(page => page.recommendation === 'improve')
@@ -185,7 +189,9 @@ test('심각한 중복·검색어 복사를 판정하되 같은 허브의 실제
   assert.ok(duplicated.every(page => !page.exact_reasons.some(reason => reason.code === 'orphan_inbound')));
   assert.ok(duplicated.every(page => page.internal_link_evidence.outbound === 1));
   assert.ok(duplicated.every(page => page.internal_link_evidence.hub_inbound === 1));
-  assert.ok(duplicated.every(page => page.internal_link_evidence.projection === 'runtime_related_reading'));
+  assert.ok(duplicated.every(page => (
+    page.internal_link_evidence.projection === 'runtime_related_reading_and_knowledge_detail_graph'
+  )));
   assert.equal(report.summary.author_metadata_not_declared, 4);
   assert.equal(report.summary.reviewer_metadata_not_declared, 4);
   assert.equal(report.global_findings[0].code, 'author_reviewer_metadata_schema_gap');
@@ -235,26 +241,82 @@ test('typed relation과 교차 허브 연결은 런타임 다음 읽기와 같�
 test('재검토 기한이 지난 상세과 그 링크는 런타임처럼 공개 투영에서 제외한다', () => {
   const bundle = fixtureBundle();
   const [first, expired] = bundle.knowledge.content_entries;
+  const activeSecond = entry('content.test.active-two', 'active-two', '두 번째 손해 자료는 어떻게 준비하나요');
+  const activeThird = entry('content.test.active-three', 'active-three', '세 번째 손해 절차는 어떻게 진행하나요');
+  first.title_ko = '첫 번째 손해 절차는 무엇인가요';
+  first.search_intents_ko = ['첫 손해 절차 확인', '손해 자료 준비 순서', '배상 절차 시작 방법'];
+  activeSecond.search_intents_ko = ['두 번째 손해 자료', '손해 증거 정리법', '배상 자료 제출'];
+  activeThird.search_intents_ko = ['세 번째 손해 절차', '손해 절차 진행', '배상 후속 절차'];
   expired.expires_at = '2026-07-23T23:59:59Z';
-  first.related_content_ids = [expired.content_id];
+  first.related_content_ids = [expired.content_id, activeSecond.content_id, activeThird.content_id];
+  activeSecond.related_content_ids = [first.content_id];
+  activeThird.related_content_ids = [first.content_id];
+  bundle.knowledge.content_entries.push(activeSecond, activeThird);
+  bundle.knowledge.topic_hubs[0].content_ids.push(activeSecond.content_id, activeThird.content_id);
 
   const report = auditPublicationSearchPerformance(bundle);
-  assert.equal(report.coverage.knowledge, 1);
+  assert.equal(report.coverage.knowledge, 3);
   assert.ok(!report.pages.some(page => page.id === expired.content_id));
   const firstPage = report.pages.find(page => page.id === first.content_id);
   assert.deepEqual(firstPage.internal_link_evidence.hidden, [expired.content_id]);
   assert.ok(firstPage.exact_reasons.some(reason => reason.code === 'hidden_internal_link_target'));
+  assert.equal(firstPage.recommendation, 'improve');
+  assert.notEqual(firstPage.recommendation, 'merge');
+  assert.notEqual(firstPage.recommendation, 'noindex-review');
+
+  const cleanBundle = structuredClone(bundle);
+  cleanBundle.knowledge.content_entries.find(entry => entry.content_id === first.content_id)
+    .related_content_ids = [activeSecond.content_id, activeThird.content_id];
+  const cleanPage = auditPublicationSearchPerformance(cleanBundle).pages
+    .find(page => page.id === first.content_id);
+  assert.equal(
+    cleanPage.axis_scores.internal_links - firstPage.axis_scores.internal_links,
+    10,
+  );
+  assert.equal(cleanPage.recommendation, 'keep');
 });
 
-test('공식원문 수는 런타임 URL 투영으로 수집용 주소를 공개 조문 주소로 바꾼 뒤 계산한다', () => {
+test('공식원문 수는 상세 런타임 그래프와 URL 투영을 함께 재사용해 법리·사실분기·개념 근거까지 계산한다', () => {
   const bundle = fixtureBundle();
   bundle.knowledge.sources[0].official_url =
     'https://www.law.go.kr/LSW/lawView.do?lawId=001692';
+  const [first] = bundle.knowledge.content_entries;
+  first.rule_ids = ['rule.test'];
+  first.scenario_ids = ['scenario.test'];
+  bundle.knowledge.rule_cards = [{
+    rule_id: 'rule.test',
+    source_coordinate_ids: ['coord.test.rule'],
+  }];
+  bundle.knowledge.scenario_branches = [{
+    scenario_id: 'scenario.test',
+    rule_ids: ['rule.test'],
+    source_coordinate_ids: ['coord.test.scenario'],
+  }];
+  bundle.knowledge.concept_cards = [{
+    concept_id: 'concept.test',
+    related_content_ids: [first.content_id],
+    source_coordinate_ids: [],
+    assertions: [{
+      source_coordinate_ids: ['coord.test.concept-assertion'],
+    }],
+  }];
+  bundle.knowledge.sources.push(
+    source('coord.test.rule'),
+    source('coord.test.scenario'),
+    source('coord.test.concept-assertion'),
+  );
   const report = auditPublicationSearchPerformance(bundle);
   const knowledgePages = report.pages.filter(page => page.page_type === 'knowledge');
-  assert.ok(knowledgePages.every(page => (
-    page.internal_link_evidence.verified_official_source_count === 1
-  )));
+  const firstPage = knowledgePages.find(page => page.id === first.content_id);
+  assert.equal(firstPage.internal_link_evidence.direct_source_count, 1);
+  assert.equal(firstPage.internal_link_evidence.direct_verified_official_source_count, 1);
+  assert.equal(firstPage.internal_link_evidence.ui_visible_source_count, 4);
+  assert.equal(firstPage.internal_link_evidence.graph_expanded_source_count, 3);
+  assert.equal(firstPage.internal_link_evidence.verified_official_source_count, 4);
+  assert.equal(
+    firstPage.internal_link_evidence.projection,
+    'runtime_related_reading_and_knowledge_detail_graph',
+  );
   assert.ok(knowledgePages.every(page => !page.exact_reasons.some(
     reason => reason.code === 'official_source_url_missing',
   )));
