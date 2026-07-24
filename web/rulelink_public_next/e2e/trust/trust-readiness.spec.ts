@@ -43,15 +43,15 @@ test('신뢰 페이지가 실제 운영 필드와 다섯 운영 원칙을 노출
   await expect(page.getByRole('heading', {
     name: /광고는 법률정보·공식근거/,
   })).toBeVisible();
-  await expect(page.getByText('브라우저 시험용 운영 법인')).toBeVisible();
+  await expect(page.getByText('룰링크 정보서비스 운영 주체')).toBeVisible();
   const contact = page.getByRole('link', {
-    name: '브라우저 시험용 오류 제보',
+    name: '콘텐츠 오류 제보',
   });
   await contact.focus();
   await expect(contact).toBeFocused();
   await expect(contact).toHaveAttribute(
     'href',
-    'mailto:trust-fixture@example.test',
+    'mailto:corrections@rulelink.kr',
   );
 });
 
@@ -64,9 +64,9 @@ test('편집자 표지와 Article·Breadcrumb·Organization 투영이 일치한�
   );
   const attribution = page.locator('[data-editorial-attribution]');
   await expect(attribution).toHaveCount(1);
-  await expect(attribution).toContainText('브라우저 시험용 편집 조직');
-  await expect(attribution).toContainText('브라우저 시험용 법률 검토자');
-  await expect(attribution).toContainText('시험 fixture 자격');
+  await expect(attribution).toContainText('룰링크 콘텐츠 운영팀');
+  await expect(attribution).toContainText('김법률');
+  await expect(attribution).toContainText('대한민국 변호사');
   await expect(attribution).toContainText('상속');
   await expect(attribution.getByRole('link', {
     name: /콘텐츠 제작·검토 원칙/,
@@ -85,50 +85,63 @@ test('편집자 표지와 Article·Breadcrumb·Organization 투영이 일치한�
   expect(graphTypes).toContain('Organization');
 });
 
-test('광고 준비 영역은 행동 안내 뒤·관련 읽기 뒤에만 있고 상호작용을 위장하지 않는다', async ({
-  page,
-}) => {
-  await page.setViewportSize({height: 1000, width: 320});
-  await page.goto(
-    '/ko/knowledge/legal-heir-order-and-spouse',
-    {waitUntil: 'networkidle'},
-  );
-  const ads = page.locator('[data-ad-placeholder]');
-  await expect(ads).toHaveCount(2);
-  await expect(ads.nth(0)).toHaveAttribute(
-    'data-ad-placement',
-    'knowledge-after-actions',
-  );
-  await expect(ads.nth(1)).toHaveAttribute(
-    'data-ad-placement',
-    'knowledge-after-related-reading',
-  );
-  await expect(ads.nth(0)).toContainText('광고');
-  const boundary = await page.evaluate(() => {
-    const actions = document.querySelector<HTMLElement>('#actions')!;
-    const firstAd = document.querySelector<HTMLElement>(
-      '[data-ad-placeholder]',
-    )!;
-    return {
-      actionsBottom: actions.offsetTop + actions.offsetHeight,
-      adTop: firstAd.offsetTop,
-      firstViewportHeight: window.innerHeight,
-      forbiddenAncestors: [
-        '.knowledgeHero',
-        '#actions',
-        '#sources',
+for (const width of [320, 390]) {
+  test(`${width}px에서 첫 광고는 공식 근거·조문 읽기 뒤에만 있다`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({height: 1000, width});
+    await page.goto(
+      '/ko/knowledge/legal-heir-order-and-spouse',
+      {waitUntil: 'networkidle'},
+    );
+    const ads = page.locator('[data-ad-placeholder]');
+    await expect(ads).toHaveCount(2);
+    await expect(ads.nth(0)).toHaveAttribute(
+      'data-ad-placement',
+      'knowledge-after-sources-and-authority',
+    );
+    await expect(ads.nth(1)).toHaveAttribute(
+      'data-ad-placement',
+      'knowledge-after-related-reading',
+    );
+    const boundary = await page.evaluate(() => {
+      const sources = document.querySelector<HTMLElement>('#sources')!;
+      const authority = document.querySelector<HTMLElement>(
         '[data-authority-reading-root]',
-      ].filter(selector => firstAd.closest(selector)),
-      interactiveChildren: firstAd.querySelectorAll(
-        'a, button, input, iframe, script',
-      ).length,
-    };
+      );
+      const firstAd = document.querySelector<HTMLElement>(
+        '[data-ad-placeholder]',
+      )!;
+      const bottom = (element: HTMLElement) => {
+        const rect = element.getBoundingClientRect();
+        return rect.bottom + window.scrollY;
+      };
+      const adTop = firstAd.getBoundingClientRect().top + window.scrollY;
+      return {
+        adTop,
+        authorityBottom: authority ? bottom(authority) : null,
+        firstViewportHeight: window.innerHeight,
+        forbiddenAncestors: [
+          '.knowledgeHero',
+          '#actions',
+          '#sources',
+          '[data-authority-reading-root]',
+        ].filter(selector => firstAd.closest(selector)),
+        interactiveChildren: firstAd.querySelectorAll(
+          'a, button, input, iframe, script',
+        ).length,
+        sourcesBottom: bottom(sources),
+      };
+    });
+    expect(boundary.adTop).toBeGreaterThanOrEqual(boundary.sourcesBottom);
+    if (boundary.authorityBottom !== null) {
+      expect(boundary.adTop).toBeGreaterThanOrEqual(boundary.authorityBottom);
+    }
+    expect(boundary.adTop).toBeGreaterThan(boundary.firstViewportHeight);
+    expect(boundary.forbiddenAncestors).toEqual([]);
+    expect(boundary.interactiveChildren).toBe(0);
   });
-  expect(boundary.adTop).toBeGreaterThanOrEqual(boundary.actionsBottom);
-  expect(boundary.adTop).toBeGreaterThan(boundary.firstViewportHeight);
-  expect(boundary.forbiddenAncestors).toEqual([]);
-  expect(boundary.interactiveChildren).toBe(0);
-});
+}
 
 async function measureLayout(page: Page) {
   return page.evaluate(() => {

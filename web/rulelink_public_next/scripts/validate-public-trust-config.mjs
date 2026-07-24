@@ -23,10 +23,12 @@ const bundle = await readJsonIfPresent(bundlePath);
 const entries = Array.isArray(bundle?.knowledge?.content_entries)
   ? bundle.knowledge.content_entries
   : [];
-const hasEditorialAttribution = entries.some(
-  entry => entry?.editorial_attribution !== undefined,
-);
+const editorialAttributions = entries.flatMap(entry => (
+  entry?.editorial_attribution === undefined ? [] : [entry.editorial_attribution]
+));
+const hasEditorialAttribution = editorialAttributions.length > 0;
 const errors = validatePublicTrustConfiguration(process.env, {
+  editorialAttributions,
   hasEditorialAttribution,
 });
 

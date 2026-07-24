@@ -16,7 +16,10 @@ import {findKnowledgeEntry, knowledgeDetail, listKnowledgeEntries} from '@/lib/p
 import {shouldShowPublicRuleProposition} from '@/lib/public-rule-presentation';
 import {site} from '@/lib/site';
 import {buildKnowledgePageStructuredData} from '@/lib/public-structured-data';
-import {resolvePublicTrustConfig} from '@/lib/public-trust';
+import {
+  resolveApprovedEditorialAttribution,
+  resolvePublicTrustConfig,
+} from '@/lib/public-trust';
 import {serializeStructuredData} from '@/lib/structured-data';
 
 import styles from './knowledge-trust.module.css';
@@ -64,6 +67,10 @@ export default async function KnowledgePage({params}: Props) {
     readingPathSections,
   } = await knowledgeDetail(entry);
   const trustConfig = resolvePublicTrustConfig();
+  const editorialAttribution = resolveApprovedEditorialAttribution(
+    entry.editorial_attribution,
+    trustConfig,
+  );
   const canonicalUrl = `${site.url}/ko/knowledge/${entry.slug}`;
   const officialSources = sources.flatMap(source => {
     const url = browserOfficialSourceUrl(source) ?? source.official_url;
@@ -82,9 +89,7 @@ export default async function KnowledgePage({params}: Props) {
             {name: entry.title_ko, url: canonicalUrl},
           ],
           description: entry.one_line_answer_ko,
-          editorialAttribution: trustConfig
-            ? entry.editorial_attribution
-            : undefined,
+          editorialAttribution: editorialAttribution ?? undefined,
           expiresAt: entry.expires_at,
           officialSources,
           pageUrl: canonicalUrl,
@@ -121,9 +126,9 @@ export default async function KnowledgePage({params}: Props) {
           <span><b>다음 점검</b>{formatDate(entry.expires_at)}</span>
           <span><b>공식 근거</b>{sources.length}건 연결</span>
         </div>
-        {entry.editorial_attribution && trustConfig ? (
+        {editorialAttribution ? (
           <EditorialAttribution
-            attribution={entry.editorial_attribution}
+            attribution={editorialAttribution}
             trustHref="/ko/trust"
           />
         ) : null}
@@ -237,7 +242,6 @@ export default async function KnowledgePage({params}: Props) {
             />
             <p><b>주의할 점</b> · {entry.caution_ko}</p>
           </section>
-          <PublicAdvertisingPlaceholder placement="knowledge-after-actions" />
         </div>
 
         <aside className="knowledgeAside">
@@ -281,8 +285,11 @@ export default async function KnowledgePage({params}: Props) {
         concepts={concepts}
         views={authorityReadingUnits}
       />
+      <PublicAdvertisingPlaceholder placement="knowledge-after-sources-and-authority" />
       <KnowledgeReadingPath currentTitle={entry.title_ko} sections={readingPathSections} />
-      <PublicAdvertisingPlaceholder placement="knowledge-after-related-reading" />
+      {readingPathSections.length ? (
+        <PublicAdvertisingPlaceholder placement="knowledge-after-related-reading" />
+      ) : null}
       </main>
     </LegalConceptLayer>
   );

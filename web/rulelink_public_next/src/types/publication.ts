@@ -199,8 +199,7 @@ export type PublicEditorialAttribution = {
     url?: string;
   };
   legal_reviewer: {
-    name_ko: string;
-    qualification_ko: string;
+    reviewer_registry_id: string;
     reviewed_at: string;
     review_areas_ko: string[];
   };

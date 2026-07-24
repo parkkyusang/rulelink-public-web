@@ -1,4 +1,4 @@
-import type {PublicEditorialAttribution} from '@/types/publication';
+import type {ResolvedPublicEditorialAttribution} from '@/lib/public-trust';
 
 import styles from './editorial-attribution.module.css';
 
@@ -6,7 +6,7 @@ export function EditorialAttribution({
   attribution,
   trustHref,
 }: {
-  attribution: PublicEditorialAttribution;
+  attribution: ResolvedPublicEditorialAttribution;
   trustHref?: '/ko/trust';
 }) {
   return (
@@ -34,6 +34,7 @@ export function EditorialAttribution({
           <dd>
             {attribution.legal_reviewer.name_ko}
             <span>{attribution.legal_reviewer.qualification_ko}</span>
+            <a href={attribution.legal_reviewer.evidence_url}>승인 근거 확인</a>
           </dd>
         </div>
         <div>

@@ -1,7 +1,7 @@
 export const publicAdvertisingPlacements = {
-  'knowledge-after-actions': {
+  'knowledge-after-sources-and-authority': {
     description:
-      '확인자료와 다음 행동을 모두 읽은 뒤, 공식 근거 영역과 분리해 표시합니다.',
+      '확인자료·공식 근거·조문 읽기를 모두 마친 뒤 분리해 표시합니다.',
     label: '광고',
   },
   'knowledge-after-related-reading': {

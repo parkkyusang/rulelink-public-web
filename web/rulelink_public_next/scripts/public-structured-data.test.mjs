@@ -64,38 +64,40 @@ test('실제 편집자 표지가 있으면 Article·Breadcrumb·Organization을 
   const result = buildKnowledgePageStructuredData({
     audience: '법률정보를 확인하는 사람',
     breadcrumbs: [
-      {name: '홈', url: 'https://rulelink.example'},
-      {name: '생활법률 지식', url: 'https://rulelink.example/ko/knowledge'},
-      {name: '검증 글', url: 'https://rulelink.example/ko/knowledge/test'},
+      {name: '홈', url: 'https://rulelink.kr'},
+      {name: '생활법률 지식', url: 'https://rulelink.kr/ko/knowledge'},
+      {name: '법률정보 글', url: 'https://rulelink.kr/ko/knowledge/legal-information'},
     ],
     description: '검증 설명',
     editorialAttribution: {
       author: {
         kind: 'organization',
-        name_ko: '검증용 편집 조직',
-        role_ko: '콘텐츠 작성',
+        name_ko: '룰링크 콘텐츠 운영팀',
+        role_ko: '법률정보 작성·편집',
       },
       legal_reviewer: {
-        name_ko: '검증용 법률 검토자',
-        qualification_ko: '검증용 자격',
+        evidence_url: 'https://rulelink.kr/ko/trust/reviewers/kr-bar-2026-001',
+        name_ko: '김법률',
+        qualification_ko: '대한민국 변호사',
+        reviewer_registry_id: 'reviewer.kr-bar.2026-001',
         reviewed_at: '2026-07-20T00:00:00Z',
         review_areas_ko: ['상속'],
       },
     },
     expiresAt: '2026-10-21T00:00:00Z',
     officialSources: [],
-    pageUrl: 'https://rulelink.example/ko/knowledge/test',
+    pageUrl: 'https://rulelink.kr/ko/knowledge/legal-information',
     publisher: {
-      name: '검증용 운영 법인',
-      url: 'https://rulelink.example',
+      name: '룰링크 정보서비스 운영 주체',
+      url: 'https://rulelink.kr',
     },
     reviewedAt: '2026-07-21T00:00:00Z',
     rules: [],
     scenarios: [],
     searchIntents: ['검증'],
     siteName: 'RuleLink',
-    siteUrl: 'https://rulelink.example',
-    title: '검증 글',
+    siteUrl: 'https://rulelink.kr',
+    title: '법률정보 글',
   });
   const page = result['@graph'].find(item => item['@type'] === 'WebPage');
   const article = result['@graph'].find(item => item['@type'] === 'Article');
@@ -106,11 +108,15 @@ test('실제 편집자 표지가 있으면 Article·Breadcrumb·Organization을 
     item => item['@type'] === 'BreadcrumbList',
   );
   assert.equal(page.mainEntity['@id'], article['@id']);
-  assert.equal(article.author.name, '검증용 편집 조직');
-  assert.equal(article.reviewedBy.name, '검증용 법률 검토자');
+  assert.equal(article.author.name, '룰링크 콘텐츠 운영팀');
+  assert.equal(article.reviewedBy.name, '김법률');
+  assert.equal(
+    article.reviewedBy.url,
+    'https://rulelink.kr/ko/trust/reviewers/kr-bar-2026-001',
+  );
   assert.deepEqual(article.reviewedBy.knowsAbout, ['상속']);
   assert.equal(article.publisher['@id'], organization['@id']);
-  assert.equal(organization.name, '검증용 운영 법인');
+  assert.equal(organization.name, '룰링크 정보서비스 운영 주체');
   assert.equal(breadcrumb.itemListElement.length, 3);
 });
 

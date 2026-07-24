@@ -5,6 +5,11 @@ import path from 'node:path';
 import {samePublicRuleCopy} from '../src/lib/public-rule-presentation.ts';
 import {projectKnowledgeEntryCompatibility} from '../src/lib/knowledge-relations.ts';
 import {validateConceptTermRelations} from '../src/lib/concept-terms.ts';
+import {
+  identityValueError,
+  publicUrlError,
+  registryReferenceError,
+} from '../src/lib/public-identity-validation.ts';
 import {legacyConceptValidationOptions} from './concept-identity-governance.mjs';
 import {inspectPublicAuthorityReading} from './validate-public-authority-reading.mjs';
 
@@ -694,36 +699,23 @@ function validateEditorialAttribution(
       );
     }
     for (const field of ['name_ko', 'role_ko']) {
-      if (
-        typeof value.author[field] !== 'string'
-        || !value.author[field].trim()
-      ) {
-        errors.push(`${entryName}의 작성 주체 ${field}가 비어 있습니다.`);
-      }
+      const error = identityValueError(value.author[field]);
+      if (error) errors.push(`${entryName}의 작성 주체 ${field}: ${error}`);
     }
-    if (
-      value.author.url !== undefined
-      && (
-        typeof value.author.url !== 'string'
-        || !/^(?:https:\/\/|\/)[^\s]+$/u.test(value.author.url)
-      )
-    ) {
-      errors.push(
-        `${entryName}의 작성 주체 URL은 https 또는 내부 절대경로여야 합니다.`,
-      );
+    if (value.author.url !== undefined) {
+      const error = publicUrlError(value.author.url, {allowInternal: true});
+      if (error) errors.push(`${entryName}의 작성 주체 URL: ${error}`);
     }
   }
   if (!isRecord(value.legal_reviewer)) {
     errors.push(`${entryName}의 editorial_attribution.legal_reviewer가 필요합니다.`);
     return;
   }
-  for (const field of ['name_ko', 'qualification_ko']) {
-    if (
-      typeof value.legal_reviewer[field] !== 'string'
-      || !value.legal_reviewer[field].trim()
-    ) {
-      errors.push(`${entryName}의 법률 검토자 ${field}가 비어 있습니다.`);
-    }
+  const registryError = registryReferenceError(
+    value.legal_reviewer.reviewer_registry_id,
+  );
+  if (registryError) {
+    errors.push(`${entryName}의 법률 검토자 reviewer_registry_id: ${registryError}`);
   }
   const areas = requireNonEmptyStringArray(
     value.legal_reviewer,
@@ -734,6 +726,10 @@ function validateEditorialAttribution(
   );
   if (areas.length !== new Set(areas).size) {
     errors.push(`${entryName}의 법률 검토분야가 중복됩니다.`);
+  }
+  for (const area of areas) {
+    const error = identityValueError(area);
+    if (error) errors.push(`${entryName}의 법률 검토분야: ${error}`);
   }
   const reviewerTime = parseTimestamp(
     value.legal_reviewer.reviewed_at,

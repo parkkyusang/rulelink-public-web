@@ -1,4 +1,4 @@
-import type {PublicEditorialAttribution} from '@/types/publication';
+import type {ResolvedPublicEditorialAttribution} from '@/lib/public-trust';
 
 export type StructuredBreadcrumb = {
   name: string;
@@ -14,7 +14,7 @@ export type KnowledgePageStructuredDataInput = {
   audience: string;
   breadcrumbs: StructuredBreadcrumb[];
   description: string;
-  editorialAttribution?: PublicEditorialAttribution;
+  editorialAttribution?: ResolvedPublicEditorialAttribution;
   expiresAt: string;
   officialSources: StructuredOfficialSource[];
   pageUrl: string;
@@ -129,6 +129,7 @@ export function buildKnowledgePageStructuredData(input: KnowledgePageStructuredD
       reviewedBy: {
         '@type': 'Person',
         name: input.editorialAttribution.legal_reviewer.name_ko,
+        url: input.editorialAttribution.legal_reviewer.evidence_url,
         jobTitle:
           input.editorialAttribution.legal_reviewer.qualification_ko,
         knowsAbout:

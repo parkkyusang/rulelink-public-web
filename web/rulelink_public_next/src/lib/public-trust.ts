@@ -1,5 +1,14 @@
+import {
+  identityValueError,
+  publicUrlError,
+  registryReferenceError,
+} from './public-identity-validation.ts';
+
+import type {PublicEditorialAttribution} from '@/types/publication';
+
 export type PublicTrustEnvironment = {
   RULELINK_PUBLIC_AD_PLACEHOLDERS_ENABLED?: string;
+  RULELINK_PUBLIC_APPROVED_REVIEWERS_JSON?: string;
   RULELINK_PUBLIC_CONTACT_LABEL?: string;
   RULELINK_PUBLIC_CONTACT_URL?: string;
   RULELINK_PUBLIC_OPERATOR_LEGAL_NAME?: string;
@@ -7,7 +16,15 @@ export type PublicTrustEnvironment = {
   RULELINK_PUBLIC_TRUST_ENABLED?: string;
 };
 
+export type PublicApprovedReviewer = {
+  evidenceUrl: string;
+  nameKo: string;
+  qualificationKo: string;
+  reviewerRegistryId: string;
+};
+
 export type PublicTrustConfig = {
+  approvedReviewers: ReadonlyMap<string, PublicApprovedReviewer>;
   contact: {
     href: string;
     label: string;
@@ -16,11 +33,19 @@ export type PublicTrustConfig = {
   reviewQualificationDisclosure: string;
 };
 
-type PublicTrustValidationContext = {
-  hasEditorialAttribution?: boolean;
+export type ResolvedPublicEditorialAttribution = {
+  author: PublicEditorialAttribution['author'];
+  legal_reviewer: PublicEditorialAttribution['legal_reviewer'] & {
+    evidence_url: string;
+    name_ko: string;
+    qualification_ko: string;
+  };
 };
 
-const placeholderPattern = /(?:^|[\s._-])(todo|tbd|example|placeholder)(?:$|[\s._-])|미정|예시|입력\s*필요/iu;
+type PublicTrustValidationContext = {
+  editorialAttributions?: PublicEditorialAttribution[];
+  hasEditorialAttribution?: boolean;
+};
 
 export function resolvePublicTrustConfig(
   environment: PublicTrustEnvironment =
@@ -29,6 +54,7 @@ export function resolvePublicTrustConfig(
   if (environment.RULELINK_PUBLIC_TRUST_ENABLED !== 'true') return null;
   if (validatePublicTrustConfiguration(environment).length) return null;
   return {
+    approvedReviewers: reviewerRegistry(environment).reviewers,
     contact: {
       href: environment.RULELINK_PUBLIC_CONTACT_URL!.trim(),
       label: environment.RULELINK_PUBLIC_CONTACT_LABEL!.trim(),
@@ -37,6 +63,26 @@ export function resolvePublicTrustConfig(
       environment.RULELINK_PUBLIC_OPERATOR_LEGAL_NAME!.trim(),
     reviewQualificationDisclosure:
       environment.RULELINK_PUBLIC_REVIEW_QUALIFICATION_DISCLOSURE!.trim(),
+  };
+}
+
+export function resolveApprovedEditorialAttribution(
+  attribution: PublicEditorialAttribution | undefined,
+  trustConfig: PublicTrustConfig | null,
+): ResolvedPublicEditorialAttribution | null {
+  if (!attribution || !trustConfig) return null;
+  const reviewer = trustConfig.approvedReviewers.get(
+    attribution.legal_reviewer.reviewer_registry_id,
+  );
+  if (!reviewer) return null;
+  return {
+    author: attribution.author,
+    legal_reviewer: {
+      ...attribution.legal_reviewer,
+      evidence_url: reviewer.evidenceUrl,
+      name_ko: reviewer.nameKo,
+      qualification_ko: reviewer.qualificationKo,
+    },
   };
 }
 
@@ -64,6 +110,9 @@ export function validatePublicTrustConfiguration(
     );
   }
 
+  const attributions = context.editorialAttributions ?? [];
+  const hasEditorialAttribution =
+    context.hasEditorialAttribution || attributions.length > 0;
   const enabled = trustValue === 'true';
   if (!enabled) {
     if (adValue === 'true') {
@@ -71,7 +120,7 @@ export function validatePublicTrustConfiguration(
         '광고 준비 영역을 공개하려면 RULELINK_PUBLIC_TRUST_ENABLED=true가 먼저 필요합니다.',
       );
     }
-    if (context.hasEditorialAttribution) {
+    if (hasEditorialAttribution) {
       errors.push(
         '편집자 표지가 있는 콘텐츠를 공개하려면 공개 신뢰 설정을 먼저 활성화해야 합니다.',
       );
@@ -96,19 +145,87 @@ export function validatePublicTrustConfiguration(
   );
 
   const contactUrl = environment.RULELINK_PUBLIC_CONTACT_URL?.trim() ?? '';
-  if (!contactUrl) {
-    errors.push('RULELINK_PUBLIC_CONTACT_URL이 필요합니다.');
-  } else if (
-    !/^https:\/\/[^\s]+$/u.test(contactUrl)
-    && !/^mailto:[^@\s]+@[^@\s]+\.[^@\s]+$/u.test(contactUrl)
-  ) {
-    errors.push(
-      'RULELINK_PUBLIC_CONTACT_URL은 https 또는 유효한 mailto 주소여야 합니다.',
-    );
-  } else if (placeholderPattern.test(contactUrl)) {
-    errors.push('RULELINK_PUBLIC_CONTACT_URL에 예시·미정 값을 사용할 수 없습니다.');
+  const contactError = publicUrlError(contactUrl, {allowMailto: true});
+  if (contactError) {
+    errors.push(`RULELINK_PUBLIC_CONTACT_URL: ${contactError}`);
+  }
+
+  const registry = reviewerRegistry(environment);
+  errors.push(...registry.errors);
+  for (const attribution of attributions) {
+    const reference = attribution?.legal_reviewer?.reviewer_registry_id;
+    if (!registry.reviewers.has(reference)) {
+      errors.push(
+        `편집자 표지의 법률 검토자 승인 참조가 공개 reviewer registry에 없습니다: ${reference ?? '(없음)'}`,
+      );
+    }
   }
   return errors;
+}
+
+function reviewerRegistry(environment: PublicTrustEnvironment): {
+  errors: string[];
+  reviewers: Map<string, PublicApprovedReviewer>;
+} {
+  const errors: string[] = [];
+  const reviewers = new Map<string, PublicApprovedReviewer>();
+  const raw = environment.RULELINK_PUBLIC_APPROVED_REVIEWERS_JSON?.trim() || '[]';
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return {
+      errors: ['RULELINK_PUBLIC_APPROVED_REVIEWERS_JSON은 유효한 JSON 배열이어야 합니다.'],
+      reviewers,
+    };
+  }
+  if (!Array.isArray(parsed)) {
+    return {
+      errors: ['RULELINK_PUBLIC_APPROVED_REVIEWERS_JSON은 배열이어야 합니다.'],
+      reviewers,
+    };
+  }
+  for (const [index, value] of parsed.entries()) {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) {
+      errors.push(`승인 검토자 ${index + 1}은 객체여야 합니다.`);
+      continue;
+    }
+    const row = value as Record<string, unknown>;
+    const allowedKeys = [
+      'evidence_url',
+      'name_ko',
+      'qualification_ko',
+      'reviewer_registry_id',
+    ];
+    if (
+      Object.keys(row).length !== allowedKeys.length
+      || allowedKeys.some(key => !(key in row))
+    ) {
+      errors.push(`승인 검토자 ${index + 1}의 필드 구성이 올바르지 않습니다.`);
+      continue;
+    }
+    const referenceError = registryReferenceError(row.reviewer_registry_id);
+    const nameError = identityValueError(row.name_ko);
+    const qualificationError = identityValueError(row.qualification_ko);
+    const evidenceError = publicUrlError(row.evidence_url);
+    if (referenceError) errors.push(`승인 검토자 ${index + 1} ID: ${referenceError}`);
+    if (nameError) errors.push(`승인 검토자 ${index + 1} 이름: ${nameError}`);
+    if (qualificationError) errors.push(`승인 검토자 ${index + 1} 자격: ${qualificationError}`);
+    if (evidenceError) errors.push(`승인 검토자 ${index + 1} 증거 URL: ${evidenceError}`);
+    if (referenceError || nameError || qualificationError || evidenceError) continue;
+    const reviewerRegistryId = (row.reviewer_registry_id as string).trim();
+    if (reviewers.has(reviewerRegistryId)) {
+      errors.push(`승인 검토자 ID가 중복됩니다: ${reviewerRegistryId}`);
+      continue;
+    }
+    reviewers.set(reviewerRegistryId, {
+      evidenceUrl: (row.evidence_url as string).trim(),
+      nameKo: (row.name_ko as string).trim(),
+      qualificationKo: (row.qualification_ko as string).trim(),
+      reviewerRegistryId,
+    });
+  }
+  return {errors, reviewers};
 }
 
 function requireIdentityValue(
@@ -116,10 +233,6 @@ function requireIdentityValue(
   field: string,
   errors: string[],
 ): void {
-  const normalized = value?.trim() ?? '';
-  if (!normalized) {
-    errors.push(`${field}이 필요합니다.`);
-  } else if (placeholderPattern.test(normalized)) {
-    errors.push(`${field}에 예시·미정 값을 사용할 수 없습니다.`);
-  }
+  const error = identityValueError(value);
+  if (error) errors.push(`${field}: ${error}`);
 }

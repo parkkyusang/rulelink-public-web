@@ -21,11 +21,17 @@ const [trustPage, layout, header, sitemap, envExample] = await Promise.all([
 
 const validEnvironment = {
   RULELINK_PUBLIC_TRUST_ENABLED: 'true',
-  RULELINK_PUBLIC_OPERATOR_LEGAL_NAME: '검증용 운영 법인',
+  RULELINK_PUBLIC_APPROVED_REVIEWERS_JSON: JSON.stringify([{
+    evidence_url: 'https://rulelink.kr/ko/trust/reviewers/kr-bar-2026-001',
+    name_ko: '김법률',
+    qualification_ko: '대한민국 변호사',
+    reviewer_registry_id: 'reviewer.kr-bar.2026-001',
+  }]),
+  RULELINK_PUBLIC_OPERATOR_LEGAL_NAME: '룰링크 정보서비스 운영 주체',
   RULELINK_PUBLIC_CONTACT_LABEL: '오류 제보',
-  RULELINK_PUBLIC_CONTACT_URL: 'mailto:trust@example.test',
+  RULELINK_PUBLIC_CONTACT_URL: 'mailto:corrections@rulelink.kr',
   RULELINK_PUBLIC_REVIEW_QUALIFICATION_DISCLOSURE:
-    '검증용 법률 검토 자격을 콘텐츠별로 공개합니다.',
+    '법률 검토자의 승인 원장과 자격 근거를 콘텐츠별로 공개합니다.',
 };
 
 test('기본 023 환경에서는 신뢰 페이지·편집자 표지·광고 준비 영역을 공개하지 않는다', () => {
@@ -50,15 +56,76 @@ test('신뢰 페이지 활성화는 실제 법인·연락·자격 공개값을 �
 
   const placeholderErrors = validatePublicTrustConfiguration({
     ...validEnvironment,
-    RULELINK_PUBLIC_OPERATOR_LEGAL_NAME: 'TODO',
+    RULELINK_PUBLIC_OPERATOR_LEGAL_NAME: 'TODO 법인',
   });
-  assert.ok(placeholderErrors.some(error => /예시·미정/.test(error)));
+  assert.ok(placeholderErrors.some(error => /시험·예시·미정/.test(error)));
 
   assert.deepEqual(validatePublicTrustConfiguration(validEnvironment), []);
   assert.equal(
     resolvePublicTrustConfig(validEnvironment)?.operatorLegalName,
-    '검증용 운영 법인',
+    '룰링크 정보서비스 운영 주체',
   );
+});
+
+test('신원·https·내부경로·mailto 경계를 공용 검증기로 닫는다', () => {
+  for (const value of [
+    '테스트 운영사',
+    'sample reviewer',
+    'fixture 자격',
+    '가상 법인',
+    '예시 담당자',
+  ]) {
+    const errors = validatePublicTrustConfiguration({
+      ...validEnvironment,
+      RULELINK_PUBLIC_OPERATOR_LEGAL_NAME: value,
+    });
+    assert.ok(errors.some(error => /시험·예시·미정/.test(error)), value);
+  }
+  for (const url of [
+    'https://?',
+    'https://user:password@rulelink.kr/contact',
+    'mailto:not-an-address',
+    'mailto:corrections@rulelink.kr?redirect=https://evil.invalid',
+  ]) {
+    const errors = validatePublicTrustConfiguration({
+      ...validEnvironment,
+      RULELINK_PUBLIC_CONTACT_URL: url,
+    });
+    assert.ok(errors.some(error => /RULELINK_PUBLIC_CONTACT_URL/.test(error)), url);
+  }
+  assert.deepEqual(validatePublicTrustConfiguration({
+    ...validEnvironment,
+    RULELINK_PUBLIC_CONTACT_URL:
+      'mailto:corrections@rulelink.kr?subject=%EC%98%A4%EB%A5%98%20%EC%A0%9C%EB%B3%B4',
+  }), []);
+});
+
+test('편집자 표지는 승인 reviewer registry 참조가 없으면 공개할 수 없다', () => {
+  const attribution = {
+    author: {
+      kind: 'organization',
+      name_ko: '룰링크 콘텐츠 운영팀',
+      role_ko: '법률정보 작성·편집',
+    },
+    legal_reviewer: {
+      reviewer_registry_id: 'reviewer.kr-bar.2026-999',
+      reviewed_at: '2026-07-23T00:00:00+09:00',
+      review_areas_ko: ['상속'],
+    },
+  };
+  const errors = validatePublicTrustConfiguration(validEnvironment, {
+    editorialAttributions: [attribution],
+  });
+  assert.ok(errors.some(error => /승인 참조.*없습니다/.test(error)));
+  assert.deepEqual(validatePublicTrustConfiguration(validEnvironment, {
+    editorialAttributions: [{
+      ...attribution,
+      legal_reviewer: {
+        ...attribution.legal_reviewer,
+        reviewer_registry_id: 'reviewer.kr-bar.2026-001',
+      },
+    }],
+  }), []);
 });
 
 test('편집자 표지나 광고를 신뢰 공개정보보다 먼저 켤 수 없다', () => {
@@ -95,6 +162,7 @@ test('공개 신뢰 페이지는 저장소로 증명하는 운영 경계와 설�
     'RULELINK_PUBLIC_CONTACT_LABEL',
     'RULELINK_PUBLIC_CONTACT_URL',
     'RULELINK_PUBLIC_REVIEW_QUALIFICATION_DISCLOSURE',
+    'RULELINK_PUBLIC_APPROVED_REVIEWERS_JSON',
   ]) assert.match(envExample, new RegExp(field));
   assert.doesNotMatch(trustPage, /lolphysical\.xyz|liale-review/);
 });

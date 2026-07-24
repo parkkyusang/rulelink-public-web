@@ -17,11 +17,17 @@ const childEnvironment = {
   ...process.env,
   NEXT_TELEMETRY_DISABLED: '1',
   RULELINK_PUBLIC_AD_PLACEHOLDERS_ENABLED: 'true',
-  RULELINK_PUBLIC_CONTACT_LABEL: '브라우저 시험용 오류 제보',
-  RULELINK_PUBLIC_CONTACT_URL: 'mailto:trust-fixture@example.test',
-  RULELINK_PUBLIC_OPERATOR_LEGAL_NAME: '브라우저 시험용 운영 법인',
+  RULELINK_PUBLIC_APPROVED_REVIEWERS_JSON: JSON.stringify([{
+    evidence_url: 'https://rulelink.kr/ko/trust/reviewers/kr-bar-2026-001',
+    name_ko: '김법률',
+    qualification_ko: '대한민국 변호사',
+    reviewer_registry_id: 'reviewer.kr-bar.2026-001',
+  }]),
+  RULELINK_PUBLIC_CONTACT_LABEL: '콘텐츠 오류 제보',
+  RULELINK_PUBLIC_CONTACT_URL: 'mailto:corrections@rulelink.kr',
+  RULELINK_PUBLIC_OPERATOR_LEGAL_NAME: '룰링크 정보서비스 운영 주체',
   RULELINK_PUBLIC_REVIEW_QUALIFICATION_DISCLOSURE:
-    '브라우저 시험용 법률 검토 자격 공개',
+    '법률 검토자의 승인 원장과 자격 근거를 콘텐츠별로 공개합니다.',
   RULELINK_PUBLIC_TRUST_ENABLED: 'true',
   RULELINK_PUBLICATION_NOW: '2026-07-24T00:00:00+09:00',
 };
@@ -108,12 +114,11 @@ function withEditorialFixture(bundle) {
   entry.editorial_attribution = {
     author: {
       kind: 'organization',
-      name_ko: '브라우저 시험용 편집 조직',
-      role_ko: '시험 fixture 작성',
+      name_ko: '룰링크 콘텐츠 운영팀',
+      role_ko: '법률정보 작성·편집',
     },
     legal_reviewer: {
-      name_ko: '브라우저 시험용 법률 검토자',
-      qualification_ko: '시험 fixture 자격',
+      reviewer_registry_id: 'reviewer.kr-bar.2026-001',
       reviewed_at: entry.reviewed_at,
       review_areas_ko: ['상속', '가족법'],
     },

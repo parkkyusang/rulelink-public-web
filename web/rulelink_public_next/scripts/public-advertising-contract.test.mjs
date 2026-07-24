@@ -19,22 +19,29 @@ const [component, componentCss, knowledgePage] = await Promise.all([
   readFile(path.join(root, 'app/ko/knowledge/[slug]/page.tsx'), 'utf8'),
 ]);
 
-test('광고 준비 위치는 행동 안내 뒤와 관련 읽기 뒤 두 곳으로 닫혀 있다', () => {
+test('광고 준비 위치는 공식근거·조문 읽기 뒤와 실제 관련 읽기 뒤 두 곳으로 닫혀 있다', () => {
   assert.deepEqual(Object.keys(publicAdvertisingPlacements), [
-    'knowledge-after-actions',
+    'knowledge-after-sources-and-authority',
     'knowledge-after-related-reading',
   ]);
   const actions = knowledgePage.indexOf('id="actions"');
-  const afterActions = knowledgePage.indexOf(
-    'placement="knowledge-after-actions"',
+  const afterAuthority = knowledgePage.indexOf(
+    'placement="knowledge-after-sources-and-authority"',
   );
+  const sources = knowledgePage.indexOf('id="sources"');
+  const authority = knowledgePage.indexOf('<AuthorityReadingSection');
   const readingPath = knowledgePage.indexOf('<KnowledgeReadingPath');
   const afterReading = knowledgePage.indexOf(
     'placement="knowledge-after-related-reading"',
   );
-  assert.ok(actions >= 0 && afterActions > actions);
+  assert.ok(actions >= 0 && afterAuthority > actions);
+  assert.ok(sources >= 0 && afterAuthority > sources);
+  assert.ok(authority >= 0 && afterAuthority > authority);
   assert.ok(readingPath >= 0 && afterReading > readingPath);
-  assert.ok(afterActions > knowledgePage.indexOf('<KnowledgeActionWorkspace'));
+  assert.ok(
+    knowledgePage.indexOf('{readingPathSections.length ? (') >= 0,
+    '관련 읽기가 없으면 두 번째 광고를 렌더하지 않아야 합니다.',
+  );
   const renderStart = knowledgePage.indexOf('return (');
   assert.doesNotMatch(
     knowledgePage.slice(renderStart, knowledgePage.indexOf('id="summary"')),
