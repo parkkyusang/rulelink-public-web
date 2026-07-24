@@ -162,7 +162,7 @@ const sourceCiWorkflowId = 2400;
 const sourceCiCheckRunId = 2401;
 const sourceCiRunId = 2402;
 const sourceCiJobId = 2403;
-const sourceCiRunHead = '6'.repeat(40);
+const sourceCiRunHead = sourceEvidenceHead;
 
 function authoritySourceCiApiFixture(url) {
   const attestation = authorityEvidenceFixtures.authorityDbValue.source_ci_attestation;
@@ -204,10 +204,7 @@ function authoritySourceCiApiFixture(url) {
       conclusion: attestation.required_conclusion,
       event: attestation.required_event,
       path: attestation.workflow_path,
-      pull_requests: [{
-        number: Number(sourceEvidencePrNumber),
-        head: {sha: sourceEvidenceHead},
-      }],
+      pull_requests: [],
     };
   }
   if (url.endsWith(`/actions/workflows/${sourceCiWorkflowId}`)) {

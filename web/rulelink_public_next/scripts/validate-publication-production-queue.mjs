@@ -642,20 +642,23 @@ async function verifyAuthoritySourceCiAttestation({
   );
   const workflowId = String(workflowRun?.workflow_id || '');
   const workflowRunPath = String(workflowRun?.path || '').split('@', 1)[0];
-  const boundPullRequest = (
-    Array.isArray(workflowRun?.pull_requests) ? workflowRun.pull_requests : []
-  ).find(candidate =>
+  const workflowRunPullRequests =
+    Array.isArray(workflowRun?.pull_requests) ? workflowRun.pull_requests : [];
+  const boundPullRequest = workflowRunPullRequests.find(candidate =>
     String(candidate?.number) === String(prNumber) &&
     candidate?.head?.sha === headSha);
+  const pullRequestBindingValid =
+    Boolean(boundPullRequest) ||
+    (Boolean(jobDetailsMatch) && workflowRunPullRequests.length === 0);
   if (
     String(workflowRun?.id) !== runId ||
-    !/^[0-9a-f]{40}$/u.test(workflowRun?.head_sha || '') ||
+    workflowRun?.head_sha !== headSha ||
     workflowRun?.status !== attestation.required_status ||
     workflowRun?.conclusion !== attestation.required_conclusion ||
     workflowRun?.event !== attestation.required_event ||
     workflowRunPath !== attestation.workflow_path ||
     !/^\d+$/u.test(workflowId) ||
-    !boundPullRequest
+    !pullRequestBindingValid
   ) {
     throw new Error(
       'authority source CI run이 고정 workflow의 pull_request_target 실행·evidence PR head와 일치하지 않습니다.',
