@@ -609,14 +609,34 @@ async function verifyAuthoritySourceCiAttestation({
     throw new Error('authority source CI의 최신 GitHub Actions check가 완료·성공 상태가 아닙니다.');
   }
   const escapedRepository = repository.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&');
-  const detailsMatch = new RegExp(
+  const runDetailsMatch = new RegExp(
     `^https://github\\.com/${escapedRepository}/actions/runs/(\\d+)$`,
     'u',
   ).exec(checkRun.details_url || '');
-  if (!detailsMatch) {
+  const jobDetailsMatch = new RegExp(
+    `^https://github\\.com/${escapedRepository}/runs/(\\d+)$`,
+    'u',
+  ).exec(checkRun.details_url || '');
+  if (!runDetailsMatch && !jobDetailsMatch) {
     throw new Error('authority source CI check의 details_url에서 Actions run/job을 확인할 수 없습니다.');
   }
-  const [, runId] = detailsMatch;
+  let runId = runDetailsMatch?.[1] || '';
+  if (jobDetailsMatch) {
+    const checkJob = await fetchJson(
+      `https://api.github.com/repos/${repository}/actions/jobs/${jobDetailsMatch[1]}`,
+    );
+    if (
+      String(checkJob?.id) !== jobDetailsMatch[1] ||
+      checkJob?.name !== attestation.check_name ||
+      checkJob?.head_sha !== headSha ||
+      checkJob?.status !== attestation.required_status ||
+      checkJob?.conclusion !== attestation.required_conclusion ||
+      !Number.isInteger(checkJob?.run_id)
+    ) {
+      throw new Error('authority source CI custom check job이 증거 PR head·상태·Actions run과 일치하지 않습니다.');
+    }
+    runId = String(checkJob.run_id);
+  }
   const workflowRun = await fetchJson(
     `https://api.github.com/repos/${repository}/actions/runs/${runId}`,
   );

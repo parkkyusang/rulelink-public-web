@@ -181,8 +181,18 @@ function authoritySourceCiApiFixture(url) {
         completed_at: '2026-07-23T18:30:00Z',
         app: {slug: attestation.required_app_slug},
         details_url:
-          `https://github.com/${sourceEvidenceRepository}/actions/runs/${sourceCiRunId}`,
+          `https://github.com/${sourceEvidenceRepository}/runs/${sourceCiCheckRunId}`,
       }],
+    };
+  }
+  if (url.endsWith(`/actions/jobs/${sourceCiCheckRunId}`)) {
+    return {
+      id: sourceCiCheckRunId,
+      run_id: sourceCiRunId,
+      head_sha: sourceEvidenceHead,
+      name: attestation.check_name,
+      status: attestation.required_status,
+      conclusion: attestation.required_conclusion,
     };
   }
   if (url.endsWith(`/actions/runs/${sourceCiRunId}`)) {
