@@ -22,7 +22,7 @@ jobs:
   live-smoke:
     name: 운영 도메인 스냅샷 및 공개 경로 확인
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: web/rulelink_public_next
@@ -36,11 +36,19 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Vercel 운영 배포 요청
+        shell: bash
+        env:
+          VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          set -o pipefail
+          node scripts/request-vercel-deployment.mjs | tee -a "$GITHUB_STEP_SUMMARY"
+
       - name: Vercel 반영 대기 후 운영 실주소 확인
         shell: bash
         env:
           RULELINK_PUBLIC_BASE_URL: https://rulelink.lolphysical.xyz
-          RULELINK_LIVE_SMOKE_ATTEMPTS: "42"
+          RULELINK_LIVE_SMOKE_ATTEMPTS: "72"
           RULELINK_LIVE_SMOKE_DELAY_MS: "10000"
         run: |
           set -o pipefail
