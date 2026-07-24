@@ -10,6 +10,7 @@ export function inferPublicationRole(headRef = '') {
   if (/^codex\/content-[a-z0-9._/-]+$/u.test(headRef)) return 'topic';
   if (/^codex\/integrate-publication-[a-z0-9._/-]+$/u.test(headRef)) return 'integrator';
   if (/^codex\/migrate-publication-[a-z0-9._/-]+$/u.test(headRef)) return 'migration';
+  if (/^codex\/release-train-[a-z0-9._/-]+$/u.test(headRef)) return 'release_train';
   if (/^codex\/release-[a-z0-9._/-]+$/u.test(headRef)) return 'release';
   if (/^codex\/govern-publication-[a-z0-9._/-]+$/u.test(headRef)) return 'governance';
   if (/^codex\/quality-[a-z0-9._/-]+$/u.test(headRef)) return 'quality_governance';
@@ -135,6 +136,19 @@ export function allowedForRole(role, filePath) {
   if (role === 'runtime') {
     return value === 'web/rulelink_public_next/package.json'
       || /^web\/rulelink_public_next\/(?:app|src|scripts)\//u.test(value);
+  }
+  if (role === 'release_train') {
+    return allowedForRole('topic', value)
+      || allowedForRole('integrator', value)
+      || allowedForRole('governance', value)
+      || allowedForRole('quality_governance', value)
+      || allowedForRole('runtime', value)
+      || value === '.github/workflows/authority-release-evidence.yml'
+      || value === 'web/rulelink_public_next/.gitignore'
+      || value === 'web/rulelink_public_next/package-lock.json'
+      || value === 'web/rulelink_public_next/playwright.config.ts'
+      || value === 'web/rulelink_public_next/tsconfig.json'
+      || /^web\/rulelink_public_next\/e2e\/authority\//u.test(value);
   }
   return false;
 }
