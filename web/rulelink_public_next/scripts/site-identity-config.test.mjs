@@ -44,17 +44,49 @@ test('제공된 정체성 값이 잘못되면 현재값으로 조용히 대체�
   assert.throws(() => resolveSiteIdentity({
     NEXT_PUBLIC_RULELINK_OPERATOR_NAME: '<b>운영자</b>',
   }), /HTML 제어문자/);
+});
+
+test('공개 IPv4·IPv6는 허용하고 DNS 예약 호스트와 특수목적 IP는 차단한다', () => {
+  assert.equal(
+    resolveSiteIdentity({NEXT_PUBLIC_RULELINK_SITE_URL: 'https://8.8.8.8'}).url,
+    'https://8.8.8.8',
+  );
+  assert.equal(
+    resolveSiteIdentity({
+      NEXT_PUBLIC_RULELINK_SITE_URL: 'https://[2001:4860:4860::8888]',
+    }).url,
+    'https://[2001:4860:4860::8888]',
+  );
   for (const origin of [
     'https://identity.invalid',
     'https://identity.test',
     'https://localhost',
-    'https://127.0.0.1',
-    'https://10.0.0.1',
     'https://service.internal',
   ]) {
     assert.throws(
       () => resolveSiteIdentity({NEXT_PUBLIC_RULELINK_SITE_URL: origin}),
-      /시험·예시·미정|예약·내부 호스트|loopback·사설/,
+      /시험·예시·미정|예약·내부 호스트/,
+    );
+  }
+  for (const origin of [
+    'https://0.0.0.0',
+    'https://127.0.0.1',
+    'https://10.0.0.1',
+    'https://169.254.1.1',
+    'https://224.0.0.1',
+    'https://192.0.2.1',
+    'https://240.0.0.1',
+    'https://[::]',
+    'https://[::1]',
+    'https://[fc00::1]',
+    'https://[fe80::1]',
+    'https://[ff02::1]',
+    'https://[2001:db8::1]',
+    'https://[3fff::1]',
+  ]) {
+    assert.throws(
+      () => resolveSiteIdentity({NEXT_PUBLIC_RULELINK_SITE_URL: origin}),
+      /특수목적·예약 IP/,
     );
   }
 });

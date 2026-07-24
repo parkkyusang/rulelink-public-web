@@ -1,3 +1,5 @@
+import {BlockList, isIP} from 'node:net';
+
 import {identityValueError, publicUrlError} from './public-identity-validation.ts';
 
 type SiteIndexingEnv = {
@@ -18,6 +20,57 @@ const defaultIdentity = {
   operatorName: '리알레',
   url: 'https://rulelink.lolphysical.xyz',
 } as const;
+
+const specialPurposeIpv4Ranges = new BlockList();
+const specialPurposeIpv6Ranges = new BlockList();
+for (const [network, prefix] of [
+  ['0.0.0.0', 8],
+  ['10.0.0.0', 8],
+  ['100.64.0.0', 10],
+  ['127.0.0.0', 8],
+  ['169.254.0.0', 16],
+  ['172.16.0.0', 12],
+  ['192.0.0.0', 24],
+  ['192.0.2.0', 24],
+  ['192.31.196.0', 24],
+  ['192.52.193.0', 24],
+  ['192.88.99.0', 24],
+  ['192.168.0.0', 16],
+  ['192.175.48.0', 24],
+  ['198.18.0.0', 15],
+  ['198.51.100.0', 24],
+  ['203.0.113.0', 24],
+  ['224.0.0.0', 4],
+  ['240.0.0.0', 4],
+] as const) {
+  specialPurposeIpv4Ranges.addSubnet(network, prefix, 'ipv4');
+}
+for (const [network, prefix] of [
+  ['::', 128],
+  ['::1', 128],
+  ['::ffff:0:0', 96],
+  ['64:ff9b::', 96],
+  ['64:ff9b:1::', 48],
+  ['100::', 64],
+  ['2001::', 32],
+  ['2001:1::1', 128],
+  ['2001:1::2', 128],
+  ['2001:2::', 48],
+  ['2001:3::', 32],
+  ['2001:4:112::', 48],
+  ['2001:10::', 28],
+  ['2001:20::', 28],
+  ['2001:db8::', 32],
+  ['2002::', 16],
+  ['2620:4f:8000::', 48],
+  ['3fff::', 20],
+  ['5f00::', 16],
+  ['fc00::', 7],
+  ['fe80::', 10],
+  ['ff00::', 8],
+] as const) {
+  specialPurposeIpv6Ranges.addSubnet(network, prefix, 'ipv6');
+}
 
 export function resolveSiteIndexing(env: SiteIndexingEnv = {
   NEXT_PUBLIC_RULELINK_INDEXING: process.env.NEXT_PUBLIC_RULELINK_INDEXING,
@@ -100,6 +153,15 @@ function resolvedOrigin(candidate: string | undefined, fallback: string): string
 
 function deploymentHostError(rawHostname: string): string | null {
   const hostname = rawHostname.toLowerCase().replace(/^\[|\]$/gu, '');
+  const ipVersion = isIP(hostname);
+  if (ipVersion) {
+    const blocked = ipVersion === 4
+      ? specialPurposeIpv4Ranges.check(hostname, 'ipv4')
+      : specialPurposeIpv6Ranges.check(hostname, 'ipv6');
+    return blocked
+      ? '특수목적·예약 IP 주소를 공개 원점으로 사용할 수 없습니다.'
+      : null;
+  }
   if (
     !hostname.includes('.')
     || hostname === 'localhost'
@@ -109,32 +171,7 @@ function deploymentHostError(rawHostname: string): string | null {
   ) {
     return '공개 배포가 불가능한 예약·내부 호스트를 사용할 수 없습니다.';
   }
-  if (privateIpv4(hostname) || privateIpv6(hostname)) {
-    return 'loopback·사설·링크 로컬 IP를 공개 원점으로 사용할 수 없습니다.';
-  }
   return null;
-}
-
-function privateIpv4(hostname: string): boolean {
-  if (!/^\d{1,3}(?:\.\d{1,3}){3}$/u.test(hostname)) return false;
-  const octets = hostname.split('.').map(Number);
-  if (octets.some(octet => octet > 255)) return true;
-  const [first, second] = octets;
-  return first === 0
-    || first === 10
-    || first === 127
-    || (first === 100 && second >= 64 && second <= 127)
-    || (first === 169 && second === 254)
-    || (first === 172 && second >= 16 && second <= 31)
-    || (first === 192 && second === 168)
-    || (first === 198 && [18, 19].includes(second));
-}
-
-function privateIpv6(hostname: string): boolean {
-  return hostname === '::'
-    || hostname === '::1'
-    || /^f[cd]/u.test(hostname)
-    || /^fe[89ab]/u.test(hostname);
 }
 
 const identity = resolveSiteIdentity();
