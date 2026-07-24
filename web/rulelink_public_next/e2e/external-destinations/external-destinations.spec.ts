@@ -47,6 +47,32 @@ for (const width of widths) {
     await expect(official).toHaveAttribute('rel', 'noopener noreferrer');
 
     if (mode === 'configured') {
+      const author = page.locator(
+        '[data-external-destination-role="editorial_author"]',
+      );
+      await expect(author).toHaveAttribute(
+        'href',
+        'https://author-profile.rulelink.kr/team',
+      );
+      await expect(author).toHaveAccessibleName(/외부 사이트, 새 탭/u);
+      const articleAuthorUrl = await page.evaluate(() => {
+        const nodes = [...document.querySelectorAll(
+          'script[type="application/ld+json"]',
+        )].flatMap(node => {
+          try {
+            const value = JSON.parse(node.textContent ?? 'null');
+            return Array.isArray(value?.['@graph']) ? value['@graph'] : [value];
+          } catch {
+            return [];
+          }
+        });
+        return nodes.find(node => node?.['@type'] === 'Article')?.author?.url;
+      });
+      expect(articleAuthorUrl).toBe(
+        'https://author-profile.rulelink.kr/team',
+      );
+      await clickWithoutNavigation(page, author);
+
       const reviewer = page.locator(
         '[data-external-destination-role="reviewer_evidence"]',
       );

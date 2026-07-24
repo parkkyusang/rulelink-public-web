@@ -122,8 +122,13 @@ export function buildKnowledgePageStructuredData(input: KnowledgePageStructuredD
           : 'Person',
         name: input.editorialAttribution.author.name_ko,
         description: input.editorialAttribution.author.role_ko,
-        ...(input.editorialAttribution.author.url
-          ? {url: input.editorialAttribution.author.url}
+        ...(input.editorialAttribution.author.destination
+          ? {
+              url: new URL(
+                input.editorialAttribution.author.destination.href,
+                input.siteUrl,
+              ).href,
+            }
           : {}),
       },
       reviewedBy: {

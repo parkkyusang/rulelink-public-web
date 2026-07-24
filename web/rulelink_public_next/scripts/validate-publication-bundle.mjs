@@ -10,6 +10,7 @@ import {
   publicUrlError,
   registryReferenceError,
 } from '../src/lib/public-identity-validation.ts';
+import {publicExternalDestinationError} from '../src/lib/public-external-destinations.ts';
 import {legacyConceptValidationOptions} from './concept-identity-governance.mjs';
 import {inspectPublicAuthorityReading} from './validate-public-authority-reading.mjs';
 
@@ -703,7 +704,13 @@ function validateEditorialAttribution(
       if (error) errors.push(`${entryName}의 작성 주체 ${field}: ${error}`);
     }
     if (value.author.url !== undefined) {
-      const error = publicUrlError(value.author.url, {allowInternal: true});
+      const error = publicExternalDestinationError(
+        'editorial_author',
+        value.author.url,
+        identityValueError(value.author.name_ko)
+          ? '작성 주체'
+          : value.author.name_ko,
+      );
       if (error) errors.push(`${entryName}의 작성 주체 URL: ${error}`);
     }
   }

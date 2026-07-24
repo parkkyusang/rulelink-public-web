@@ -46,7 +46,7 @@ export type ParsedPublicContactHref =
   | {href: string; kind: 'url'};
 
 export type ResolvedPublicEditorialAttribution = {
-  author: PublicEditorialAttribution['author'] & {
+  author: Omit<PublicEditorialAttribution['author'], 'url'> & {
     destination: PublicExternalDestination | null;
   };
   legal_reviewer: PublicEditorialAttribution['legal_reviewer'] & {
@@ -104,12 +104,13 @@ export function resolveApprovedEditorialAttribution(
     attribution.legal_reviewer.reviewer_registry_id,
   );
   if (!reviewer) return null;
+  const {url: authorUrl, ...author} = attribution.author;
   return {
     author: {
-      ...attribution.author,
-      destination: attribution.author.url
+      ...author,
+      destination: authorUrl
         ? resolveEditorialAuthorDestination({
-            href: attribution.author.url,
+            href: authorUrl,
             label: attribution.author.name_ko,
           })
         : null,

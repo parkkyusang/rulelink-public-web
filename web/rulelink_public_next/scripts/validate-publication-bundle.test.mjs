@@ -208,6 +208,19 @@ test('편집자 표지의 placeholder와 안전하지 않은 작성자 URL을 �
   result = await validate(bundle);
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /작성 주체 URL/);
+
+  for (const unsafeUrl of [
+    'https://127.0.0.1/private',
+    'mailto:author@rulelink.kr',
+    'https://author:secret@author-profile.rulelink.kr/team',
+    'https://author-profile.rulelink.kr/%0aadmin',
+  ]) {
+    entry.editorial_attribution.author.url = unsafeUrl;
+    refreshConceptReceipts(bundle);
+    result = await validate(bundle);
+    assert.notEqual(result.status, 0, unsafeUrl);
+    assert.match(result.stderr, /작성 주체 URL/, unsafeUrl);
+  }
 });
 
 test('공개 지식에 예전 일반인 컨시어지 연결이 있으면 거부한다', async () => {

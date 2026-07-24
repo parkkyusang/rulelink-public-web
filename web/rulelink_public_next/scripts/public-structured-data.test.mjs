@@ -71,6 +71,12 @@ test('실제 편집자 표지가 있으면 Article·Breadcrumb·Organization을 
     description: '검증 설명',
     editorialAttribution: {
       author: {
+        destination: {
+          href: 'https://author-profile.rulelink.kr/team',
+          kind: 'external_https',
+          label: '룰링크 콘텐츠 운영팀',
+          role: 'editorial_author',
+        },
         kind: 'organization',
         name_ko: '룰링크 콘텐츠 운영팀',
         role_ko: '법률정보 작성·편집',
@@ -109,6 +115,10 @@ test('실제 편집자 표지가 있으면 Article·Breadcrumb·Organization을 
   );
   assert.equal(page.mainEntity['@id'], article['@id']);
   assert.equal(article.author.name, '룰링크 콘텐츠 운영팀');
+  assert.equal(
+    article.author.url,
+    'https://author-profile.rulelink.kr/team',
+  );
   assert.equal(article.reviewedBy.name, '김법률');
   assert.equal(
     article.reviewedBy.url,

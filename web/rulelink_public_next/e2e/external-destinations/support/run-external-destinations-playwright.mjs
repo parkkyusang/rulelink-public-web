@@ -147,6 +147,7 @@ function withEditorialFixture(bundle) {
       kind: 'organization',
       name_ko: '룰링크 콘텐츠 운영팀',
       role_ko: '법률정보 작성·편집',
+      url: 'https://author-profile.rulelink.kr/team',
     },
     legal_reviewer: {
       reviewed_at: entry.reviewed_at,
