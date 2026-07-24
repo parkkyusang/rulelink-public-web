@@ -256,7 +256,11 @@ function DisclosureCard<T extends object>({
             <div className={styles.wide} key={practice.id}>
               <dt>참조 처리 항목</dt>
               <dd>
-                {practice.provider} · {practice.purpose} · {practice.dataTypes.join(' · ')}
+                {practice.provider}
+                {practice.providerContact ? (
+                  <> (<a href={practice.providerContact}>연락처</a>)</>
+                ) : null}
+                {' · '}{practice.purpose} · {practice.dataTypes.join(' · ')}
                 {' · '}{practice.retention}
               </dd>
             </div>

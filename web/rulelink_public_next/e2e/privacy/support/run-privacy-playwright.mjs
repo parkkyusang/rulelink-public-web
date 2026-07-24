@@ -168,6 +168,7 @@ function enabledEnvironment() {
     RULELINK_PUBLIC_PRIVACY_SAFEGUARDS_JSON:
       '["최소권한 접근통제","전송구간 암호화","보존기간 만료 삭제"]',
     RULELINK_PUBLIC_HOSTING_PROVIDER: 'Vercel Inc.',
+    RULELINK_PUBLIC_HOSTING_PROVIDER_CONTACT: 'mailto:privacy@vercel.com',
     RULELINK_PUBLIC_HOSTING_PURPOSE:
       '웹사이트 제공, 보안 유지와 오류 진단을 위한 요청 로그 처리',
     RULELINK_PUBLIC_HOSTING_DATA_TYPES_JSON:

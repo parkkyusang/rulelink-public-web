@@ -51,6 +51,7 @@ export const completePrivacyEnvironment = {
     '보존기간 만료 자동 삭제',
   ]),
   RULELINK_PUBLIC_HOSTING_PROVIDER: 'Vercel Inc.',
+  RULELINK_PUBLIC_HOSTING_PROVIDER_CONTACT: 'mailto:privacy@vercel.com',
   RULELINK_PUBLIC_HOSTING_PURPOSE:
     '웹사이트 제공, 보안 유지와 오류 진단을 위한 요청 로그 처리',
   RULELINK_PUBLIC_HOSTING_DATA_TYPES_JSON: JSON.stringify([
@@ -178,6 +179,7 @@ test('privacy 필수 사실·자리표시자·잘못된 날짜는 fail-closed다
     'RULELINK_PUBLIC_PRIVACY_EFFECTIVE_DATE',
     'RULELINK_PUBLIC_PRIVACY_WITHDRAWAL',
     'RULELINK_PUBLIC_HOSTING_PROVIDER',
+    'RULELINK_PUBLIC_HOSTING_PROVIDER_CONTACT',
     'RULELINK_PUBLIC_HOSTING_PURPOSE',
     'RULELINK_PUBLIC_HOSTING_DATA_TYPES_JSON',
     'RULELINK_PUBLIC_HOSTING_RETENTION',
@@ -212,6 +214,10 @@ test('privacy 필수 사실·자리표시자·잘못된 날짜는 fail-closed다
     ...completePrivacyEnvironment,
     RULELINK_PUBLIC_HOSTING_PROVIDER: 'TODO provider',
   }).some(error => error.includes('HOSTING_PROVIDER')));
+  assert.ok(validatePublicPrivacyConfiguration({
+    ...completePrivacyEnvironment,
+    RULELINK_PUBLIC_HOSTING_PROVIDER_CONTACT: 'not-a-public-contact',
+  }).some(error => error.includes('HOSTING_PROVIDER_CONTACT')));
   assert.ok(validatePublicPrivacyConfiguration({
     ...completePrivacyEnvironment,
     RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON: JSON.stringify({

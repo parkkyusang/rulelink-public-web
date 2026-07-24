@@ -130,6 +130,9 @@ test.describe('privacy enabled fixture', () => {
       ]) {
         await expect(page.getByRole('heading', {name: heading})).toBeVisible();
       }
+      await expect(page.locator(
+        'a[href="mailto:privacy@vercel.com"]',
+      )).toHaveCount(2);
       const axe = await new AxeBuilder({page})
         .withTags([
           'wcag2a',
