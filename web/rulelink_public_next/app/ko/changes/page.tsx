@@ -54,7 +54,7 @@ export default async function ChangeLibraryPage() {
         })}}
         type="application/ld+json"
       />
-      <nav className="breadcrumb"><a href="/">홈</a><span>/</span><span>법령 변화</span></nav>
+      <nav aria-label="현재 위치" className="breadcrumb"><a href="/">홈</a><span aria-hidden="true">/</span><span aria-current="page">법령 변화</span></nav>
       <header className="topicHero">
         <p className="eyebrow">현행법과 구법 사이</p>
         <h1 id="change-library-heading">언제부터 무엇이 달라지는지 찾습니다.</h1>

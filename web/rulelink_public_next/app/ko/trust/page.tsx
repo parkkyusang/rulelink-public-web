@@ -72,10 +72,10 @@ export default function PublicTrustPage() {
         })}}
         type="application/ld+json"
       />
-      <nav className="breadcrumb">
+      <nav aria-label="현재 위치" className="breadcrumb">
         <a href="/">홈</a>
         <span aria-hidden="true">/</span>
-        <span>운영·신뢰 원칙</span>
+        <span aria-current="page">운영·신뢰 원칙</span>
       </nav>
 
       <header className={styles.hero}>

@@ -41,6 +41,7 @@ export default async function RootLayout({children}: {children: ReactNode}) {
         <link href={`${site.url}/feed.xml`} rel="alternate" title={`${site.name} 새로 바뀌는 법`} type="application/rss+xml" />
       </head>
       <body>
+        <a className="skipLink" href="#main-content">본문 바로가기</a>
         <script
           dangerouslySetInnerHTML={{
             __html: serializeStructuredData(buildSiteStructuredData(trustConfig)),
@@ -54,7 +55,7 @@ export default async function RootLayout({children}: {children: ReactNode}) {
           preview={preview}
           siteName={site.name}
         />
-        {children}
+        <div id="main-content" tabIndex={-1}>{children}</div>
         <footer className="siteFooter">
           <strong>{site.name}</strong>
           <span>일반 법률정보만 제공합니다. 구체 사건의 결론·승소 가능성·대응전략·서면 방향은 변호사와 직접 상담해야 합니다.</span>

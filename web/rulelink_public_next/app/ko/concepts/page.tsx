@@ -16,7 +16,7 @@ export default async function ConceptsPage() {
   const concepts = await listConceptCards();
   return (
     <main className={styles.page}>
-      <nav className="breadcrumb"><a href="/">홈</a><span>/</span><span>법률용어와 개념</span></nav>
+      <nav aria-label="현재 위치" className="breadcrumb"><a href="/">홈</a><span aria-hidden="true">/</span><span aria-current="page">법률용어와 개념</span></nav>
       <header className={styles.hero}>
         <p className="eyebrow">연결되는 법률개념</p>
         <h1>모르는 단어에서 멈추지 않도록</h1>

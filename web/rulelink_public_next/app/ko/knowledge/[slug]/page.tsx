@@ -112,9 +112,9 @@ export default async function KnowledgePage({params}: Props) {
         }))}}
         type="application/ld+json"
       />
-      <nav className="breadcrumb">
-        <a href="/">홈</a><span>/</span><a href="/ko/knowledge">생활법률 지식</a>
-        {hubs[0] ? <><span>/</span><a href={`/ko/hubs/${hubs[0].slug}`}>{hubs[0].title_ko}</a></> : null}
+      <nav aria-label="현재 위치" className="breadcrumb">
+        <a href="/">홈</a><span aria-hidden="true">/</span><a href="/ko/knowledge">생활법률 지식</a>
+        {hubs[0] ? <><span aria-hidden="true">/</span><a href={`/ko/hubs/${hubs[0].slug}`}>{hubs[0].title_ko}</a></> : null}
       </nav>
       <header className="knowledgeHero">
         <p className="eyebrow">{knowledgeContentTypeLabel(entry.content_type)}</p>

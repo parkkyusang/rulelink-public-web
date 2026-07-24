@@ -60,12 +60,12 @@ export default async function AuthorityPage({params}: Props) {
   return (
     <LegalConceptLayer>
       <main className={styles.page}>
-        <nav className="breadcrumb">
+        <nav aria-label="현재 위치" className="breadcrumb">
           <a href="/">홈</a>
-          <span>/</span>
+          <span aria-hidden="true">/</span>
           <a href="/ko/knowledge">생활법률 지식</a>
-          <span>/</span>
-          <span>조문 읽기</span>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">조문 읽기</span>
         </nav>
         <header className={styles.hero}>
           <p className="eyebrow">조문 읽기 정본</p>

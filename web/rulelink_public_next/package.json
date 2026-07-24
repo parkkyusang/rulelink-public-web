@@ -17,6 +17,7 @@
     "test:trust-browser": "node e2e/trust/support/run-trust-playwright.mjs",
     "test:site-identity-browser": "node e2e/site-identity/support/run-site-identity-playwright.mjs",
     "test:discovery-browser": "playwright test --config playwright.discovery.config.ts",
+    "test:accessibility-browser": "node e2e/accessibility/support/run-accessibility-playwright.mjs",
     "report:publication": "node scripts/report-publication-diff.mjs",
     "promote:publication": "node scripts/promote-publication.mjs",
     "predev": "npm run validate:concept-identity && npm run validate:publication-quality-debt && npm run validate:production-queue && npm run validate:publication-composition && npm run validate:publication-history && npm run validate:public-trust && npm run sync-publication && npm run validate-publication && npm run validate:public-authority-reading",
@@ -50,6 +51,7 @@
     "react-dom": "19.2.7"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.12.1",
     "@playwright/test": "^1.61.1",
     "@types/node": "25.9.3",
     "@types/react": "19.2.17",

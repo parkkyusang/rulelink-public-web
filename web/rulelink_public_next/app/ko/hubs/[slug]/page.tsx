@@ -67,7 +67,7 @@ export default async function KnowledgeHubPage({params}: Props) {
         }))}}
         type="application/ld+json"
       />
-      <nav className="breadcrumb"><a href="/">홈</a><span>/</span><a href="/ko/knowledge">생활법률 지식</a><span>/</span><span>{hub.title_ko}</span></nav>
+      <nav aria-label="현재 위치" className="breadcrumb"><a href="/">홈</a><span aria-hidden="true">/</span><a href="/ko/knowledge">생활법률 지식</a><span aria-hidden="true">/</span><span aria-current="page">{hub.title_ko}</span></nav>
       <header className="topicHero">
         <p className="eyebrow">상황별 법률 주제</p>
         <h1>{hub.title_ko}</h1>

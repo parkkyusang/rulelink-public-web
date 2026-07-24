@@ -52,7 +52,7 @@ export default async function KnowledgeLibraryPage() {
         })}}
         type="application/ld+json"
       />
-      <nav className="breadcrumb"><a href="/">홈</a><span>/</span><span>생활법률 지식</span></nav>
+      <nav aria-label="현재 위치" className="breadcrumb"><a href="/">홈</a><span aria-hidden="true">/</span><span aria-current="page">생활법률 지식</span></nav>
       <header className="topicHero">
         <p className="eyebrow">연결된 지식 보관함</p>
         <h1 id="knowledge-library-heading">내 상황에서 법리와 사실분기를 찾습니다.</h1>

@@ -57,8 +57,8 @@ export default async function ConceptPage({params}: Props) {
         }).replaceAll('<', '\\u003c')}}
         type="application/ld+json"
       />
-      <nav className="breadcrumb">
-        <a href="/">홈</a><span>/</span><a href="/ko/concepts">법률용어와 개념</a>
+      <nav aria-label="현재 위치" className="breadcrumb">
+        <a href="/">홈</a><span aria-hidden="true">/</span><a href="/ko/concepts">법률용어와 개념</a>
       </nav>
       <header className={styles.hero}>
         <p className="eyebrow">법률개념</p>

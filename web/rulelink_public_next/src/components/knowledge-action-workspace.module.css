@@ -134,7 +134,7 @@
 }
 
 .marker {
-  color: #6b7e74;
+  color: var(--muted);
   font-family: Georgia, serif;
   font-size: 10px;
   padding-top: 3px;

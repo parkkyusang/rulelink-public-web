@@ -210,7 +210,7 @@
     ],
     "navigations": [
       {
-        "ariaLabel": null,
+        "ariaLabel": "현재 위치",
         "hrefs": [
           "/",
           "/ko/knowledge",
