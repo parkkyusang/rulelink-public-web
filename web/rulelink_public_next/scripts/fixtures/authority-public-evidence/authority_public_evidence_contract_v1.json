@@ -1,0 +1,246 @@
+{
+  "contract": "rulelink_authority_public_evidence_contract_v1",
+  "release_id": "024",
+  "schemas": {
+    "db": "rulelink_authority_db_regeneration_evidence_v1",
+    "citation": "rulelink_authority_citation_audit_evidence_v1"
+  },
+  "filenames": {
+    "candidate_db": "authority-db-regenerated.preview.json",
+    "candidate_citation": "authority-citation-audit-approved.preview.json",
+    "approved_db": "authority-db-regenerated.json",
+    "approved_citation": "authority-citation-audit-approved.json"
+  },
+  "approved_repository_paths": [
+    "data/validation_reports/authority_024/authority-db-regenerated.json",
+    "data/validation_reports/authority_024/authority-citation-audit-approved.json",
+    "data/validation_reports/authority_024/wave1_exact_table.json",
+    "data/validation_reports/authority_024/wave2_exact_table.json",
+    "data/validation_reports/authority_024/citation_full_audit.json"
+  ],
+  "producer_contract": {
+    "path": "tests/fixtures/authority_public_evidence_contract_v1.json",
+    "hash_algorithm": "sha256"
+  },
+  "source_ci_attestation": {
+    "contract": "rulelink_authority_024_source_ci_attestation_v1",
+    "check_name": "rulelink-authority-024-evidence-attestation",
+    "workflow_path": ".github/workflows/authority-024-evidence-attestation.yml",
+    "workflow_sha256": "a1648927f4222fd92ef9bc91006e295cf91119964a398033a494ec20b5c267d0",
+    "required_event": "pull_request_target",
+    "required_environment": "rulelink-source-maintenance-attestation",
+    "head_sha_binding": "custom_check_run.head_sha=github.event.pull_request.head.sha",
+    "active_input_root_binding": "vars.RULELINK_SOURCE_MAINTENANCE_ROOT",
+    "required_head_repository_binding": "github.event.pull_request.head.repo.full_name=github.repository",
+    "required_status": "completed",
+    "required_conclusion": "success",
+    "required_app_slug": "github-actions",
+    "details_url_verification": "actions_run_pull_request_head_and_job_runner_labels_exact",
+    "runner_labels": [
+      "self-hosted",
+      "Windows",
+      "X64",
+      "rulelink-source-maintenance"
+    ],
+    "allowed_repository_paths": [
+      "data/validation_reports/authority_024/authority-db-regenerated.json",
+      "data/validation_reports/authority_024/authority-citation-audit-approved.json",
+      "data/validation_reports/authority_024/wave1_exact_table.json",
+      "data/validation_reports/authority_024/wave2_exact_table.json",
+      "data/validation_reports/authority_024/citation_full_audit.json"
+    ],
+    "verification_mode": "trusted_base_tooling_rebuild_candidate_verify_active_inputs_and_compare_exact_five",
+    "required_ancestor_fields": [
+      "upstream.pr4_sha",
+      "upstream.pr3_p2_sha",
+      "provenance.producer_source_commit_sha"
+    ]
+  },
+  "enums": {
+    "evidence_status": [
+      "candidate_unapproved",
+      "approved"
+    ],
+    "active_db_verification_status": [
+      "not_regenerated",
+      "verified_regenerated"
+    ],
+    "active_db_integrity_check_mode": [
+      "skipped_missing_required_tables",
+      "quick_check",
+      "integrity_check"
+    ],
+    "approval_owner": [
+      "source_maintenance"
+    ],
+    "generator_source_state": [
+      "working_tree_uncommitted",
+      "committed"
+    ]
+  },
+  "top_level_keys": {
+    "db": [
+      "schema",
+      "release_id",
+      "evidence_status",
+      "generated_at",
+      "source_repository",
+      "provenance",
+      "source_ci_attestation",
+      "upstream",
+      "approval_gates",
+      "active_inputs",
+      "waves",
+      "counts",
+      "articles",
+      "integrity",
+      "active_db_verification"
+    ],
+    "citation": [
+      "schema",
+      "release_id",
+      "evidence_status",
+      "generated_at",
+      "source_repository",
+      "provenance",
+      "source_ci_attestation",
+      "authority_db_regeneration_evidence",
+      "wave_exact_tables",
+      "citation_full_audit",
+      "counts",
+      "checks",
+      "allowed_empty_units",
+      "regression",
+      "approval",
+      "passed"
+    ]
+  },
+  "nested_keys": {
+    "upstream": [
+      "pr4_sha",
+      "pr3_p2_sha"
+    ],
+    "provenance": [
+      "generator_source_commit_sha",
+      "generator_source_state",
+      "producer_source_commit_sha",
+      "producer_contract_path",
+      "producer_contract_sha256",
+      "regeneration_run_id",
+      "recommended_repository_directory"
+    ],
+    "source_ci_attestation": [
+      "contract",
+      "check_name",
+      "workflow_path",
+      "workflow_sha256",
+      "required_event",
+      "required_environment",
+      "head_sha_binding",
+      "active_input_root_binding",
+      "required_head_repository_binding",
+      "required_status",
+      "required_conclusion",
+      "required_app_slug",
+      "details_url_verification",
+      "runner_labels",
+      "allowed_repository_paths",
+      "verification_mode",
+      "required_ancestor_fields"
+    ],
+    "approval_gates": [
+      "pr4_integrated",
+      "pr3_p2_integrated",
+      "active_db_regenerated",
+      "final_approval",
+      "all_satisfied"
+    ],
+    "active_input": [
+      "path",
+      "sha256"
+    ],
+    "wave": [
+      "wave",
+      "exact_table_path",
+      "exact_table_sha256",
+      "counts"
+    ],
+    "counts": [
+      "article_count",
+      "source_authority_unit_count",
+      "citation_count",
+      "source_version_bridge_count",
+      "authority_reading_unit_count"
+    ],
+    "article": [
+      "wave",
+      "article_key",
+      "source_id",
+      "source_snapshot_id",
+      "public_source_snapshot_id",
+      "timeline_snapshot_id",
+      "source_version_key",
+      "source_hash",
+      "timeline_normalized_hash",
+      "effective_date",
+      "timeline_official_effective_date",
+      "valid_from",
+      "valid_to",
+      "is_current",
+      "official_url",
+      "bridge_status",
+      "source_authority_unit_count",
+      "citation_count",
+      "broken_count"
+    ],
+    "integrity": [
+      "sqlite_integrity_failure_count",
+      "foreign_key_failure_count",
+      "source_version_bridge_failure_count",
+      "target_integrity_failure_count",
+      "article_coordinate_failure_count",
+      "broken_count"
+    ],
+    "active_db_verification": [
+      "status",
+      "verified",
+      "integrity_check_mode",
+      "counts",
+      "integrity",
+      "comparison",
+      "failure_codes"
+    ],
+    "active_db_integrity": [
+      "sqlite_integrity_failure_count",
+      "foreign_key_failure_count",
+      "broken_count"
+    ],
+    "active_db_comparison": [
+      "article_mismatch_count",
+      "unit_mismatch_count",
+      "citation_mismatch_count",
+      "bridge_mismatch_count",
+      "broken_count"
+    ],
+    "linked_evidence": [
+      "path",
+      "sha256"
+    ],
+    "allowed_empty_unit": [
+      "source_unit_id",
+      "content_role",
+      "text_ko",
+      "text_hash"
+    ],
+    "regression": [
+      "total",
+      "passed",
+      "failure_count"
+    ],
+    "approval": [
+      "owner",
+      "status",
+      "approved"
+    ]
+  }
+}

@@ -93,11 +93,11 @@
     {
       "rule_id": "rule.consumer-online-contracts.rule-withdrawal-7days",
       "title_ko": "통신판매 청약철회의 7일 기준",
-      "proposition_ko": "통신판매의 일반 청약철회 기간은 계약내용 서면을 받은 날부터 7일이고, 재화 공급이 더 늦으면 공급받거나 공급이 시작된 날부터 7일이다.",
+      "proposition_ko": "통신판매의 일반 청약철회 기간은 원칙적으로 계약내용 서면을 받은 날부터 계산하되, 재화 공급이 그보다 늦으면 공급받거나 공급이 시작된 날을 기산점으로 삼는다.",
       "norm": {
         "actor_ko": "통신판매업자와 온라인으로 재화·용역을 구매한 소비자",
         "conditions_ko": "계약내용 서면을 받았거나 그보다 늦게 재화 공급을 받은 뒤 일반 청약철회를 하는 경우",
-        "legal_effect_ko": "통신판매의 일반 청약철회 기간은 계약내용 서면을 받은 날부터 7일이고, 재화 공급이 더 늦으면 공급받거나 공급이 시작된 날부터 7일이다."
+        "legal_effect_ko": "그 기산점부터 7일 이내에는 법정 제한 사유가 없는 한 해당 계약의 청약을 철회할 수 있다."
       },
       "source_coordinate_ids": [
         "coord.consumer-online-contracts.ecommerce-consumer-ko-0017"
@@ -106,11 +106,11 @@
     {
       "rule_id": "rule.consumer-online-contracts.rule-nonconforming-3m30d",
       "title_ko": "계약과 다른 이행의 철회기한",
-      "proposition_ko": "표시·광고나 계약과 다르게 이행된 경우 공급받은 날부터 3개월 이내이면서 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내에 철회해야 한다.",
+      "proposition_ko": "표시·광고나 계약과 실제 이행이 다르면 단순변심 철회가 아니라 공급일과 불일치 인식일을 함께 보는 이중 기간 요건을 적용한다.",
       "norm": {
         "actor_ko": "표시·광고 또는 계약내용과 다른 재화·용역을 공급받은 소비자",
         "conditions_ko": "공급받은 날부터 3개월 이내이면서 불일치를 안 날 또는 알 수 있었던 날부터 30일 이내인 경우",
-        "legal_effect_ko": "표시·광고나 계약과 다르게 이행된 경우 공급받은 날부터 3개월 이내이면서 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내에 철회해야 한다."
+        "legal_effect_ko": "공급받은 날부터 3개월 이내이면서 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내에는 청약을 철회할 수 있다."
       },
       "source_coordinate_ids": [
         "coord.consumer-online-contracts.ecommerce-consumer-ko-0017"
@@ -119,11 +119,11 @@
     {
       "rule_id": "rule.consumer-online-contracts.rule-return-cost",
       "title_ko": "반품비용의 부담 주체",
-      "proposition_ko": "단순변심 철회의 반환비용과 표시·광고 또는 계약 불일치 철회의 반환비용은 부담 주체가 다르다.",
+      "proposition_ko": "반환비용의 부담 주체는 철회사유가 단순변심인지 표시·광고 또는 계약 불일치인지에 따라 구분한다.",
       "norm": {
         "actor_ko": "청약철회로 재화를 반환하는 소비자와 통신판매업자",
         "conditions_ko": "단순변심인지 표시·광고 또는 계약내용과 다른 이행인지에 따라 반환비용 부담을 정하는 경우",
-        "legal_effect_ko": "단순변심 철회의 반환비용과 표시·광고 또는 계약 불일치 철회의 반환비용은 부담 주체가 다르다."
+        "legal_effect_ko": "단순변심 철회는 소비자가 반환비용을 부담하고, 표시·광고 또는 계약 불일치 철회는 통신판매업자가 부담한다."
       },
       "source_coordinate_ids": [
         "coord.consumer-online-contracts.ecommerce-consumer-ko-0018"
@@ -132,11 +132,11 @@
     {
       "rule_id": "rule.consumer-online-contracts.rule-withdrawal-exceptions",
       "title_ko": "청약철회 제한 사유",
-      "proposition_ko": "소비자 책임의 훼손, 사용으로 인한 현저한 가치 감소, 시간 경과로 재판매 곤란, 복제가능 재화의 포장 훼손, 디지털콘텐츠 제공 개시 등에는 철회 제한이 문제될 수 있다.",
+      "proposition_ko": "청약철회 제한은 포장을 열었다는 사실만으로 정하지 않고, 소비자 책임의 훼손·사용에 따른 현저한 가치 감소·시간 경과·복제 가능 재화의 포장 훼손·디지털콘텐츠 제공 개시 등 법정 사유를 개별 판단한다.",
       "norm": {
         "actor_ko": "통신판매로 재화·용역 또는 디지털콘텐츠를 구매한 소비자와 통신판매업자",
         "conditions_ko": "재화 훼손·사용에 따른 가치 감소·시간 경과·복제가능 재화의 포장 훼손·디지털콘텐츠 제공 개시 등 법정 철회 제한 사유가 있는지 판단하는 경우",
-        "legal_effect_ko": "소비자 책임의 훼손, 사용으로 인한 현저한 가치 감소, 시간 경과로 재판매 곤란, 복제가능 재화의 포장 훼손, 디지털콘텐츠 제공 개시 등에는 철회 제한이 문제될 수 있다."
+        "legal_effect_ko": "법정 제한 사유가 인정되면 해당 재화·용역 또는 이미 제공이 개시된 디지털콘텐츠 부분의 청약철회가 제한된다."
       },
       "source_coordinate_ids": [
         "coord.consumer-online-contracts.ecommerce-consumer-ko-0017"
@@ -145,11 +145,11 @@
     {
       "rule_id": "rule.consumer-online-contracts.rule-exception-disclosure",
       "title_ko": "철회 제한의 고지의무",
-      "proposition_ko": "일부 철회 제한 사유는 판매자가 제한 사실을 명확히 표시하거나 시험 사용 상품 제공 등 필요한 조치를 하지 않으면 주장할 수 없다.",
+      "proposition_ko": "판매자가 일부 법정 철회 제한을 주장하려면 소비자가 쉽게 알 수 있게 제한 사실을 표시하고 시험 사용 상품 제공 등 필요한 사전 조치를 갖춰야 한다.",
       "norm": {
         "actor_ko": "청약철회 제한을 주장하려는 통신판매업자와 구매 소비자",
         "conditions_ko": "법이 정한 철회 제한 사유에 관하여 소비자가 쉽게 알 수 있는 표시나 시험 사용 등 필요한 사전 조치를 했는지 판단하는 경우",
-        "legal_effect_ko": "일부 철회 제한 사유는 판매자가 제한 사실을 명확히 표시하거나 시험 사용 상품 제공 등 필요한 조치를 하지 않으면 주장할 수 없다."
+        "legal_effect_ko": "필요한 표시·시험 사용 조치를 하지 않으면 해당 제한 사유를 들어 소비자의 청약철회를 막을 수 없다."
       },
       "source_coordinate_ids": [
         "coord.consumer-online-contracts.ecommerce-consumer-ko-0017"
@@ -158,11 +158,11 @@
     {
       "rule_id": "rule.consumer-online-contracts.rule-refund-3businessdays",
       "title_ko": "철회 후 환급기한",
-      "proposition_ko": "철회 후 환급 기준일은 거래유형에 따라 다르지만 통신판매업자는 해당 기준일부터 3영업일 이내 환급해야 한다.",
+      "proposition_ko": "철회 후 환급기한의 기산점은 재화 반환일, 용역·디지털콘텐츠 철회일, 미공급 거래의 철회일처럼 거래유형별 기준일로 정한다.",
       "norm": {
         "actor_ko": "청약철회 통지를 받고 반환 재화 또는 철회의사를 확인한 통신판매업자",
         "conditions_ko": "청약철회 후 법정 환급 기준일이 도래한 경우",
-        "legal_effect_ko": "철회 후 환급 기준일은 거래유형에 따라 다르지만 통신판매업자는 해당 기준일부터 3영업일 이내 환급해야 한다."
+        "legal_effect_ko": "통신판매업자는 해당 기준일부터 3영업일 이내 대금을 환급해야 하고, 늦으면 지연배상금을 지급해야 한다."
       },
       "source_coordinate_ids": [
         "coord.consumer-online-contracts.ecommerce-consumer-ko-0018"
@@ -171,11 +171,11 @@
     {
       "rule_id": "rule.consumer-online-contracts.rule-supply-timeline",
       "title_ko": "재화 공급기한",
-      "proposition_ko": "별도 공급시기 약정이 없다면 통신판매업자는 청약일부터 7일 이내, 선지급식 거래는 대금 지급일부터 3영업일 이내 공급에 필요한 조치를 해야 한다.",
+      "proposition_ko": "별도 공급시기 약정이 없을 때는 일반 통신판매인지 소비자가 대금을 먼저 지급한 선지급식 통신판매인지에 따라 공급조치 기한을 구분한다.",
       "norm": {
         "actor_ko": "온라인 주문을 받은 통신판매업자와 대금을 지급한 소비자",
         "conditions_ko": "별도 공급시기 약정 없이 소비자가 청약하거나 선지급식 통신판매의 대금을 지급한 경우",
-        "legal_effect_ko": "별도 공급시기 약정이 없다면 통신판매업자는 청약일부터 7일 이내, 선지급식 거래는 대금 지급일부터 3영업일 이내 공급에 필요한 조치를 해야 한다."
+        "legal_effect_ko": "통신판매업자는 청약일부터 7일 이내, 선지급식 거래는 대금 지급일부터 3영업일 이내 재화 등의 공급에 필요한 조치를 해야 한다."
       },
       "source_coordinate_ids": [
         "coord.consumer-online-contracts.ecommerce-consumer-ko-0013",
@@ -186,11 +186,11 @@
     {
       "rule_id": "rule.consumer-online-contracts.rule-recurring-payment-change",
       "title_ko": "정기결제 증액·유료전환 고지",
-      "proposition_ko": "정기결제 금액 증액이나 무료 제공 후 유료 전환 전에는 정해진 기간 내 가격·결제방법 등에 대한 동의와 해지 조건 고지가 필요하다.",
+      "proposition_ko": "정기결제 금액 증액이나 무료 제공 후 유료 전환은 기존 가입 동의만으로 처리하지 않고, 전환 전에 일시·변동 전후 가격·결제방법과 해지 조건을 다시 확인해야 한다.",
       "norm": {
         "actor_ko": "무료체험 또는 정기결제를 제공하는 사업자와 결제 전환 대상 소비자",
         "conditions_ko": "무료 제공이 유료 정기결제로 전환되거나 정기결제 금액·결제방법이 변경되는 경우",
-        "legal_effect_ko": "정기결제 금액 증액이나 무료 제공 후 유료 전환 전에는 정해진 기간 내 가격·결제방법 등에 대한 동의와 해지 조건 고지가 필요하다."
+        "legal_effect_ko": "통신판매업자는 정해진 기간 안에 증액·전환 사항에 대한 소비자 동의를 받고 취소·해지 조건과 방법 및 효과를 고지해야 한다."
       },
       "source_coordinate_ids": [
         "coord.consumer-online-contracts.ecommerce-consumer-ko-0013",
@@ -201,11 +201,11 @@
     {
       "rule_id": "rule.consumer-online-contracts.rule-platform-information",
       "title_ko": "통신판매중개자의 정보확인 의무",
-      "proposition_ko": "통신판매중개자는 자신이 거래 당사자가 아니라는 점을 고지하고 사업자 판매자의 신원정보를 확인·제공해야 한다. 2026년 7월 21일부터 개인 간 거래에서는 개인 판매자 신원정보를 확인하고, 분쟁 시 법이 정한 요청 주체에게 신원정보와 거래내역을 제공해 해결에 협조해야 한다.",
+      "proposition_ko": "플랫폼의 정보확인·제공 책임은 판매자가 사업자인지 개인인지, 거래일이 2026년 7월 21일 이후인지, 분쟁정보 요청자가 법이 정한 주체인지에 따라 나누어 판단한다.",
       "norm": {
         "actor_ko": "개인 간 거래를 중개하는 통신판매중개업자와 개인 판매자·거래 당사자",
         "conditions_ko": "2026년 7월 21일 이후 개인 판매자가 참여한 플랫폼 거래에서 신원정보 확인과 분쟁협조 의무가 문제되는 경우",
-        "legal_effect_ko": "통신판매중개자는 자신이 거래 당사자가 아니라는 점을 고지하고 사업자 판매자의 신원정보를 확인·제공해야 한다. 2026년 7월 21일부터 개인 간 거래에서는 개인 판매자 신원정보를 확인하고, 분쟁 시 법이 정한 요청 주체에게 신원정보와 거래내역을 제공해 해결에 협조해야 한다."
+        "legal_effect_ko": "통신판매중개자는 거래 당사자가 아니라는 점을 고지하고 사업자 판매자의 신원정보를 확인·제공해야 하며, 현행 제20조의4가 적용되는 개인 간 거래에서는 판매자 신원 확인과 법정 요청에 따른 신원정보·거래내역 제공 및 분쟁해결 협조 의무를 진다."
       },
       "source_coordinate_ids": [
         "coord.consumer-online-contracts.ecommerce-consumer-ko-0020-04",
@@ -385,7 +385,31 @@
       "hub_ids": [
         "hub.consumer-online-contracts"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.opened-package-return-right",
+        "content.digital-content-cancellation-exception",
+        "content.who-pays-return-shipping"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.opened-package-return-right",
+          "relation_type": "comparison",
+          "label_ko": "개봉·사용이 철회를 제한하는지 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.digital-content-cancellation-exception",
+          "relation_type": "comparison",
+          "label_ko": "디지털콘텐츠 제공 개시 예외 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.who-pays-return-shipping",
+          "relation_type": "procedure",
+          "label_ko": "철회가 가능하면 반품비 부담 확인"
+        }
+      ]
     },
     {
       "content_id": "content.goods-different-from-advertisement-deadline",
@@ -453,7 +477,17 @@
       "hub_ids": [
         "hub.consumer-online-contracts"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.who-pays-return-shipping"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.who-pays-return-shipping",
+          "relation_type": "procedure",
+          "label_ko": "계약 불일치 반품비 부담 확인"
+        }
+      ],
       "lawyer_workspace_entry": {
         "question_ko": "광고와 다른 상품을 받았을 때 반품 기간",
         "decision_facts_ko": [
@@ -534,7 +568,17 @@
       "hub_ids": [
         "hub.consumer-online-contracts"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.who-pays-return-shipping"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.who-pays-return-shipping",
+          "relation_type": "procedure",
+          "label_ko": "철회 가능 판단 뒤 반품비 부담 확인"
+        }
+      ]
     },
     {
       "content_id": "content.digital-content-cancellation-exception",
@@ -601,7 +645,17 @@
       "hub_ids": [
         "hub.consumer-online-contracts"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.refund-within-three-business-days"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.refund-within-three-business-days",
+          "relation_type": "procedure",
+          "label_ko": "철회 가능한 부분의 환급기한 확인"
+        }
+      ],
       "lawyer_workspace_entry": {
         "question_ko": "전자책·영상·게임 콘텐츠는 결제 후 바로 환불할 수 있나",
         "decision_facts_ko": [
@@ -683,7 +737,17 @@
       "hub_ids": [
         "hub.consumer-online-contracts"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.refund-within-three-business-days"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.refund-within-three-business-days",
+          "relation_type": "procedure",
+          "label_ko": "반송 뒤 환급 기준일과 기한 확인"
+        }
+      ]
     },
     {
       "content_id": "content.refund-within-three-business-days",
@@ -755,7 +819,31 @@
       "hub_ids": [
         "hub.consumer-online-contracts"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.civil-mediation-vs-civil-lawsuit",
+        "content.payment-order-vs-civil-mediation",
+        "content.small-claims-trial-vs-general-civil-lawsuit"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.civil-mediation-vs-civil-lawsuit",
+          "relation_type": "remedy",
+          "label_ko": "판매자 환급 거부 뒤 민사조정과 소송 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.payment-order-vs-civil-mediation",
+          "relation_type": "remedy",
+          "label_ko": "환급액 청구는 지급명령과 조정 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.small-claims-trial-vs-general-civil-lawsuit",
+          "relation_type": "remedy",
+          "label_ko": "청구액에 따라 소액사건과 일반소송 비교"
+        }
+      ],
       "lawyer_workspace_entry": {
         "question_ko": "반품한 뒤 환불은 언제까지 받아야 하나",
         "decision_facts_ko": [
@@ -840,7 +928,17 @@
       "hub_ids": [
         "hub.consumer-online-contracts"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.refund-within-three-business-days"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.refund-within-three-business-days",
+          "relation_type": "deadline",
+          "label_ko": "미공급 취소 뒤 환급기한 확인"
+        }
+      ],
       "lawyer_workspace_entry": {
         "question_ko": "결제했는데 배송되지 않을 때 확인할 순서",
         "decision_facts_ko": [
@@ -922,7 +1020,17 @@
       "hub_ids": [
         "hub.consumer-online-contracts"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.online-purchase-cancellation-seven-days"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.online-purchase-cancellation-seven-days",
+          "relation_type": "comparison",
+          "label_ko": "유료 전환 결제의 일반 철회기간 비교"
+        }
+      ]
     },
     {
       "content_id": "content.platform-seller-information-2026-change",
@@ -990,7 +1098,17 @@
       "hub_ids": [
         "hub.consumer-online-contracts"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.online-contract-evidence-checklist"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.online-contract-evidence-checklist",
+          "relation_type": "prerequisite",
+          "label_ko": "판매자·플랫폼·거래내역을 먼저 정리"
+        }
+      ]
     },
     {
       "content_id": "content.online-contract-evidence-checklist",
@@ -1068,7 +1186,59 @@
       "hub_ids": [
         "hub.consumer-online-contracts"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.online-purchase-cancellation-seven-days",
+        "content.goods-different-from-advertisement-deadline",
+        "content.paid-but-goods-not-supplied",
+        "content.free-trial-to-paid-subscription",
+        "content.civil-mediation-vs-civil-lawsuit",
+        "content.payment-order-vs-civil-mediation",
+        "content.small-claims-trial-vs-general-civil-lawsuit"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.online-purchase-cancellation-seven-days",
+          "relation_type": "comparison",
+          "label_ko": "단순변심이면 일반 철회기한 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.goods-different-from-advertisement-deadline",
+          "relation_type": "comparison",
+          "label_ko": "광고·계약 불일치면 특례기한 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.paid-but-goods-not-supplied",
+          "relation_type": "procedure",
+          "label_ko": "배송·공급이 없으면 미공급 절차 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.free-trial-to-paid-subscription",
+          "relation_type": "comparison",
+          "label_ko": "무료체험 유료 전환이면 동의 기록 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.civil-mediation-vs-civil-lawsuit",
+          "relation_type": "remedy",
+          "label_ko": "판매자 거부 뒤 민사조정과 소송 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.payment-order-vs-civil-mediation",
+          "relation_type": "remedy",
+          "label_ko": "정해진 금액은 지급명령과 조정 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.small-claims-trial-vs-general-civil-lawsuit",
+          "relation_type": "remedy",
+          "label_ko": "청구액에 따라 소액사건과 일반소송 비교"
+        }
+      ],
       "lawyer_workspace_entry": {
         "question_ko": "온라인 구매 분쟁 증거 체크리스트",
         "decision_facts_ko": [

@@ -5,12 +5,14 @@ import {fileURLToPath} from 'node:url';
 
 import {validateConceptTermRelations} from '../src/lib/concept-terms.ts';
 import {projectKnowledgeEntryCompatibility} from '../src/lib/knowledge-relations.ts';
+import {legacyConceptValidationOptions} from './concept-identity-governance.mjs';
 
 const scriptPath = fileURLToPath(import.meta.url);
 const appRoot = path.resolve(path.dirname(scriptPath), '..');
 const repoRoot = path.resolve(appRoot, '..', '..');
 const defaultManifestPath = path.join(repoRoot, 'artifacts', 'publication', 'topics', 'manifest.json');
 const defaultCurrentPath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
+const defaultSnapshotRoot = path.join(repoRoot, 'artifacts', 'publication', 'snapshots');
 const collections = [
   ['sources', 'coordinate_id'],
   ['topic_hubs', 'hub_id'],
@@ -18,6 +20,14 @@ const collections = [
   ['scenario_branches', 'scenario_id'],
   ['content_entries', 'content_id'],
 ];
+const authorityCollections = [
+  ['source_authority_units', 'source_authority_unit_id'],
+  ['source_version_bridges', 'bridge_id'],
+  ['authority_reading_units', 'authority_reading_unit_id'],
+  ['authority_bindings', 'binding_id'],
+];
+const forbiddenTopicAuthorityKeys = ['authority_explainers'];
+const forbiddenAuthorityObjectKeys = ['authority_id', 'explainer_id', 'version_scope'];
 
 export function canonicalJson(value) {
   if (Array.isArray(value)) return `[${value.map(canonicalJson).join(',')}]`;
@@ -31,7 +41,12 @@ export function contentReceipt(value) {
   return createHash('sha256').update(canonicalJson(value)).digest('hex');
 }
 
-export function assembleKnowledge(manifest, loadedTopics, loadedConceptGroups = []) {
+export function assembleKnowledge(
+  manifest,
+  loadedTopics,
+  loadedConceptGroups = [],
+  {snapshotId = ''} = {},
+) {
   if (manifest?.schema !== 'rulelink_public_knowledge_manifest_v1') throw new Error('주제 조립 manifest 스키마가 올바르지 않습니다.');
   if (manifest.knowledge_schema !== 'rulelink_public_knowledge_index_v1') throw new Error('공개 지식 스키마가 올바르지 않습니다.');
   if (!Array.isArray(manifest.topics) || !manifest.topics.length) throw new Error('조립할 주제가 없습니다.');
@@ -61,6 +76,52 @@ export function assembleKnowledge(manifest, loadedTopics, loadedConceptGroups = 
     if (topic.topic_id !== descriptor.topic_id) throw new Error(`${descriptor.file}의 topic_id가 manifest와 다릅니다.`);
     for (const [collection] of collections) {
       if (!Array.isArray(topic[collection])) throw new Error(`${descriptor.file}의 ${collection}가 배열이 아닙니다.`);
+    }
+    for (const key of forbiddenTopicAuthorityKeys) {
+      if (Object.hasOwn(topic, key)) {
+        throw new Error(`${descriptor.file}에 금지된 authority 호환 별칭 ${key}가 있습니다.`);
+      }
+    }
+    const authorityPresence = authorityCollections.map(
+      ([collection]) => Object.hasOwn(topic, collection),
+    );
+    if (authorityPresence.some(Boolean) && !authorityPresence.every(Boolean)) {
+      throw new Error(
+        `${descriptor.file}의 조문 읽기 정본은 네 authority 배열을 모두 가져야 합니다.`,
+      );
+    }
+    if (authorityPresence.every(Boolean)) {
+      for (const [collection] of authorityCollections) {
+        if (!Array.isArray(topic[collection])) {
+          throw new Error(
+            `${descriptor.file}의 조문 읽기 정본 ${collection}는 배열이어야 합니다.`,
+          );
+        }
+      }
+      const authorityCount = authorityCollections.reduce(
+        (total, [collection]) => total + topic[collection].length,
+        0,
+      );
+      if (authorityCount > 0) {
+        for (const [collection] of authorityCollections) {
+          if (topic[collection].length === 0) {
+            throw new Error(
+              `${descriptor.file}의 조문 읽기 정본 ${collection}는 비어 있지 않은 배열이어야 합니다.`,
+            );
+          }
+        }
+      }
+      for (const [collection] of authorityCollections) {
+        for (const row of topic[collection]) {
+          for (const key of forbiddenAuthorityObjectKeys) {
+            if (Object.hasOwn(row, key)) {
+              throw new Error(
+                `${descriptor.file}의 ${collection} 객체에 금지된 호환 별칭 ${key}가 있습니다.`,
+              );
+            }
+          }
+        }
+      }
     }
     for (const [entryIndex, entry] of topic.content_entries.entries()) {
       if (entry?.concierge_entry !== undefined) {
@@ -116,7 +177,27 @@ export function assembleKnowledge(manifest, loadedTopics, loadedConceptGroups = 
       if (conceptIds.has(concept.concept_id)) throw new Error(`개념 묶음 사이에 중복된 concept_id: ${concept.concept_id}`);
       conceptIds.add(concept.concept_id);
     }
-    validateConceptTermRelations(assembled.concept_cards, assembled.sources);
+    validateConceptTermRelations(
+      assembled.concept_cards,
+      assembled.sources,
+      legacyConceptValidationOptions(assembled.concept_cards, snapshotId),
+    );
+  }
+  for (const topicId of defaultOrder) {
+    const topic = topicsById.get(topicId);
+    if (!Array.isArray(topic.authority_reading_units) || topic.authority_reading_units.length === 0) {
+      continue;
+    }
+    for (const [collection] of authorityCollections) {
+      if (!assembled[collection]) assembled[collection] = [];
+      assembled[collection].push(...topic[collection]);
+    }
+  }
+
+  for (const [collection, idKey] of authorityCollections) {
+    if (assembled[collection]) {
+      uniqueCompositionIds(assembled[collection], idKey, `조문 읽기 정본 ${collection}`);
+    }
   }
 
   for (const [collection, idKey] of collections) {
@@ -200,6 +281,26 @@ function uniqueCompositionIds(items, idKey, label) {
 }
 
 export function applyKnowledgeComposition(bundle, knowledge, changeComposition = null) {
+  for (const [collection, idKey] of authorityCollections) {
+    const currentIds = new Set(
+      (Array.isArray(bundle?.knowledge?.[collection])
+        ? bundle.knowledge[collection]
+        : [])
+        .map(value => value?.[idKey])
+        .filter(value => typeof value === 'string' && value),
+    );
+    const nextIds = new Set(
+      (Array.isArray(knowledge?.[collection]) ? knowledge[collection] : [])
+        .map(value => value?.[idKey])
+        .filter(value => typeof value === 'string' && value),
+    );
+    const removedIds = [...currentIds].filter(id => !nextIds.has(id));
+    if (removedIds.length > 0) {
+      throw new Error(
+        `기존 authority 정본 ID를 명시적 폐기 영수증 없이 제거할 수 없습니다: ${collection}=${removedIds.join(', ')}`,
+      );
+    }
+  }
   const next = JSON.parse(JSON.stringify(bundle));
   next.knowledge = knowledge;
   if (changeComposition) {
@@ -208,10 +309,30 @@ export function applyKnowledgeComposition(bundle, knowledge, changeComposition =
   }
   const hashes = {...(next.file_hashes ?? {})};
   for (const key of Object.keys(hashes)) {
-    if (key.startsWith('knowledge:content.') || key.startsWith('knowledge-concept:') || key.startsWith('knowledge-index:')) delete hashes[key];
+    if (
+      key.startsWith('knowledge:content.') ||
+      key.startsWith('knowledge-concept:') ||
+      key.startsWith('knowledge-source-authority-unit:') ||
+      key.startsWith('knowledge-source-version-bridge:') ||
+      key.startsWith('knowledge-authority-reading-unit:') ||
+      key.startsWith('knowledge-authority-binding:') ||
+      key.startsWith('knowledge-index:')
+    ) delete hashes[key];
   }
   for (const entry of knowledge.content_entries) hashes[`knowledge:${entry.content_id}`] = contentReceipt(entry);
   for (const concept of knowledge.concept_cards ?? []) hashes[`knowledge-concept:${concept.concept_id}`] = contentReceipt(concept);
+  for (const unit of knowledge.source_authority_units ?? []) {
+    hashes[`knowledge-source-authority-unit:${unit.source_authority_unit_id}`] = contentReceipt(unit);
+  }
+  for (const bridge of knowledge.source_version_bridges ?? []) {
+    hashes[`knowledge-source-version-bridge:${bridge.bridge_id}`] = contentReceipt(bridge);
+  }
+  for (const unit of knowledge.authority_reading_units ?? []) {
+    hashes[`knowledge-authority-reading-unit:${unit.authority_reading_unit_id}`] = contentReceipt(unit);
+  }
+  for (const binding of knowledge.authority_bindings ?? []) {
+    hashes[`knowledge-authority-binding:${binding.binding_id}`] = contentReceipt(binding);
+  }
   hashes[`knowledge-index:${knowledge.schema}`] = contentReceipt(knowledge);
   if (changeComposition) {
     for (const key of Object.keys(hashes)) {
@@ -225,7 +346,7 @@ export function applyKnowledgeComposition(bundle, knowledge, changeComposition =
   return next;
 }
 
-export async function loadComposition(manifestPath = defaultManifestPath) {
+export async function loadComposition(manifestPath = defaultManifestPath, {snapshotId = ''} = {}) {
   const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
   const manifestDirectory = path.dirname(manifestPath);
   const loadedTopics = [];
@@ -244,7 +365,7 @@ export async function loadComposition(manifestPath = defaultManifestPath) {
     if (!/^[a-z0-9-]+\.json$/.test(descriptor.file)) throw new Error(`개념 파일명이 안전하지 않습니다: ${descriptor.file}`);
     loadedConceptGroups.push(JSON.parse(await readFile(path.join(conceptDirectory, descriptor.file), 'utf8')));
   }
-  const knowledge = assembleKnowledge(manifest, loadedTopics, loadedConceptGroups);
+  const knowledge = assembleKnowledge(manifest, loadedTopics, loadedConceptGroups, {snapshotId});
   return {
     manifest,
     knowledge,
@@ -257,10 +378,23 @@ async function main() {
   const writeMode = args.includes('--write');
   const manifestValue = option(args, '--manifest');
   const currentValue = option(args, '--current');
+  const snapshotRootValue = option(args, '--snapshot-root');
   const manifestPath = manifestValue ? path.resolve(manifestValue) : defaultManifestPath;
   const currentPath = currentValue ? path.resolve(currentValue) : defaultCurrentPath;
+  const snapshotRoot = snapshotRootValue ? path.resolve(snapshotRootValue) : defaultSnapshotRoot;
   const current = JSON.parse(await readFile(currentPath, 'utf8'));
-  const {knowledge, changeComposition} = await loadComposition(manifestPath);
+  const snapshotId = writeMode ? option(args, '--snapshot-id') : current.snapshot_id;
+  const builtAt = option(args, '--built-at');
+  const sourceSnapshotId = option(args, '--source-snapshot-id');
+  if (writeMode && (!snapshotId || !/^[a-z0-9][a-z0-9._-]*$/.test(snapshotId))) {
+    throw new Error('--write에는 안전한 --snapshot-id가 필요합니다.');
+  }
+  if (writeMode && (!builtAt || Number.isNaN(Date.parse(builtAt)))) {
+    throw new Error('--write에는 ISO 날짜 형식의 --built-at이 필요합니다.');
+  }
+  if (writeMode && !sourceSnapshotId) throw new Error('--write에는 --source-snapshot-id가 필요합니다.');
+
+  const {knowledge, changeComposition} = await loadComposition(manifestPath, {snapshotId});
   let expected = applyKnowledgeComposition(current, knowledge, changeComposition);
 
   if (!writeMode) {
@@ -274,20 +408,13 @@ async function main() {
     return;
   }
 
-  const snapshotId = option(args, '--snapshot-id');
-  const builtAt = option(args, '--built-at');
-  const sourceSnapshotId = option(args, '--source-snapshot-id');
-  if (!snapshotId || !/^[a-z0-9][a-z0-9._-]*$/.test(snapshotId)) throw new Error('--write에는 안전한 --snapshot-id가 필요합니다.');
-  if (!builtAt || Number.isNaN(Date.parse(builtAt))) throw new Error('--write에는 ISO 날짜형식의 --built-at이 필요합니다.');
-  if (!sourceSnapshotId) throw new Error('--write에는 --source-snapshot-id가 필요합니다.');
-
   expected = applyKnowledgeComposition(
     {...current, snapshot_id: snapshotId, built_at: builtAt, source_snapshot_id: sourceSnapshotId},
     knowledge,
     changeComposition,
   );
   const text = `${JSON.stringify(expected, null, 2)}\n`;
-  const snapshotPath = path.join(repoRoot, 'artifacts', 'publication', 'snapshots', snapshotId, 'bundle.json');
+  const snapshotPath = path.join(snapshotRoot, snapshotId, 'bundle.json');
   try {
     const existing = await readFile(snapshotPath, 'utf8');
     if (existing !== text) throw new Error(`불변 스냅샷을 덮어쓸 수 없습니다: ${snapshotId}`);

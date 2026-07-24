@@ -782,7 +782,7 @@
       "slug": "inheritance-renunciation-vs-limited-acceptance",
       "title_ko": "상속포기와 한정승인은 무엇이 다른가요?",
       "one_line_answer_ko": "상속포기는 처음부터 상속인이 아니었던 것으로 보는 선택이고, 한정승인은 상속재산 범위에서 채무를 정리하면서 상속인 지위는 유지하는 선택입니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "상속재산보다 빚이 많을 수 있어 상속포기와 한정승인 중 어떤 절차를 택할지 고민하는 상속인",
       "key_points_ko": [
         "다음 순위 상속인에게 영향이 넘어가는지 비교합니다.",
         "상속재산을 이미 처분했는지 확인합니다.",
@@ -855,7 +855,7 @@
       "slug": "earnest-money-cancellation-vs-default-rescission",
       "title_ko": "계약금 해제와 채무불이행 해제는 같은 절차인가요?",
       "one_line_answer_ko": "계약금 해제는 이행에 착수하기 전 해약금 약정에 따른 해제이고, 채무불이행 해제는 상대방의 이행지체와 상당한 기간의 최고가 중심이 되는 별도 경로입니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "부동산 등 계약을 끝내려는데 계약금 포기·배액상환이 가능한지, 상대방의 불이행을 이유로 해제해야 하는지 판단하려는 경우",
       "key_points_ko": [
         "계약금의 법적 성격을 확인합니다.",
         "어느 쪽이 이행에 착수했는지 봅니다.",
@@ -927,7 +927,7 @@
       "slug": "online-withdrawal-vs-contract-rescission",
       "title_ko": "온라인 청약철회와 계약해제는 무엇이 다른가요?",
       "one_line_answer_ko": "청약철회는 전자상거래법이 정한 기간·예외에 따라 행사하는 소비자 권리이고, 계약해제는 이행지체나 계약위반을 원인으로 하는 일반 계약법상 구제입니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "온라인 구매나 구독을 취소하려는데 전자상거래법상 청약철회와 계약 위반에 따른 해제 중 어떤 근거를 쓸지 모르는 소비자",
       "key_points_ko": [
         "단순 변심인지 표시·광고와 다른 이행인지 구분합니다.",
         "상품 훼손·사용과 철회 예외를 확인합니다.",
@@ -999,7 +999,7 @@
       "slug": "loan-proof-vs-enforceable-title",
       "title_ko": "차용증과 집행권원은 왜 구분해야 하나요?",
       "one_line_answer_ko": "차용증과 송금내역은 대여금 채권의 증거이고, 실제 강제집행에는 판결·확정 지급명령·집행승낙 공정증서 등 법이 정한 집행권원이 별도로 필요합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "차용증은 있지만 채무자의 통장·급여·재산에 바로 강제집행할 수 있는지 확인하려는 채권자",
       "key_points_ko": [
         "채권 존재의 증거와 집행 자격 문서를 구분합니다.",
         "보유 문서가 집행권원인지 확인합니다.",
@@ -1068,7 +1068,7 @@
       "slug": "payment-order-vs-civil-lawsuit",
       "title_ko": "지급명령과 민사소송 중 어느 절차가 맞나요?",
       "one_line_answer_ko": "지급명령은 금전 등의 지급청구를 서면 중심으로 신속하게 처리할 수 있지만, 채무자가 적법하게 이의하면 소송절차로 넘어가므로 주소와 다툼 가능성이 선택을 가릅니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "빌려준 돈이나 미지급 대금을 받기 위해 지급명령과 처음부터 민사소송 중 어느 절차가 맞는지 고르려는 경우",
       "key_points_ko": [
         "청구가 금전·대체물·유가증권 지급인지 봅니다.",
         "채무자 주소와 송달 가능성을 확인합니다.",
@@ -1138,7 +1138,7 @@
       "slug": "provisional-attachment-vs-claim-seizure",
       "title_ko": "가압류와 채권압류·추심명령은 어떻게 다른가요?",
       "one_line_answer_ko": "가압류는 집행권원을 얻기 전 장래 집행을 보전하는 절차이고, 채권압류·추심명령은 집행권원에 기초해 예금·급여 같은 채권을 실제 회수하는 본집행 절차입니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "판결 전 채무자 재산을 보전해야 하는지, 집행권원을 얻은 뒤 예금·급여채권을 압류해야 하는지 판단하려는 채권자",
       "key_points_ko": [
         "현재 집행권원 보유 여부를 확인합니다.",
         "재산이 사라질 위험과 보전 필요성을 봅니다.",
@@ -1209,7 +1209,7 @@
       "slug": "criminal-compensation-order-vs-civil-damages",
       "title_ko": "배상명령과 민사 손해배상청구는 무엇이 다른가요?",
       "one_line_answer_ko": "배상명령은 일정한 형사사건에서 유죄판결과 함께 직접 피해배상을 명하도록 신청하는 간이절차이고, 민사소송은 대상 손해와 당사자 범위를 더 넓게 주장할 수 있지만 별도 절차가 필요합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "범죄피해 손해를 형사재판의 배상명령으로 청구할지 별도 민사소송으로 청구할지 검토하는 피해자",
       "key_points_ko": [
         "범죄 유형이 배상명령 대상인지 확인합니다.",
         "직접 물적 피해·치료비·위자료 등 청구범위를 구분합니다.",
@@ -1281,7 +1281,7 @@
       "slug": "criminal-settlement-vs-complaint-withdrawal",
       "title_ko": "형사합의와 고소취소는 같은 뜻인가요?",
       "one_line_answer_ko": "합의는 피해회복과 처벌의견 등을 정하는 사적 약정이고, 고소취소는 수사기관이나 법원에 하는 절차행위이므로 서로 자동으로 대체되지 않습니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "가해자와 합의한 뒤 합의서 작성, 처벌불원 의사표시, 고소취소의 효과가 각각 어떻게 다른지 확인하려는 피해자",
       "key_points_ko": [
         "합의서의 지급조건과 처벌의견을 분리합니다.",
         "해당 범죄에서 고소취소의 법적 효과를 확인합니다.",
@@ -1351,7 +1351,7 @@
       "slug": "parental-authority-vs-custody",
       "title_ko": "친권자와 양육자는 반드시 같은 사람인가요?",
       "one_line_answer_ko": "친권은 자녀의 신분·재산에 관한 법정 권한과 의무이고, 양육은 일상적인 보호·교육과 비용 부담을 정하는 문제이므로 개념상 구분해 협의하거나 법원의 판단을 받을 수 있습니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "이혼하면서 자녀와 함께 살 사람, 친권을 행사할 사람, 양육비 부담을 나누어 정하려는 부모",
       "key_points_ko": [
         "자녀의 실제 생활과 돌봄 주체를 봅니다.",
         "중요 의사결정과 재산관리 필요를 구분합니다.",
@@ -1420,7 +1420,7 @@
       "slug": "property-division-vs-consolation-money",
       "title_ko": "이혼 재산분할과 위자료는 무엇이 다른가요?",
       "one_line_answer_ko": "재산분할은 혼인 중 공동으로 형성한 재산의 청산·부양을 중심으로 하고, 위자료는 혼인파탄에 책임 있는 위법행위로 인한 정신적 손해배상이라 목적과 판단요소가 다릅니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "이혼 과정에서 혼인 중 형성한 재산의 분할과 상대방 유책행위에 대한 위자료를 함께 청구하려는 경우",
       "key_points_ko": [
         "공동재산 형성과 유지 기여를 계산합니다.",
         "혼인파탄의 귀책행위와 손해를 별도로 정리합니다.",
@@ -1490,7 +1490,7 @@
       "slug": "worker-status-vs-contract-label",
       "title_ko": "프리랜서 계약서와 사업자등록이 있으면 근로자가 아닌가요?",
       "one_line_answer_ko": "근로자성은 계약 명칭이나 사업자등록만으로 정하지 않고, 업무내용·근무시간·장소의 구속과 지휘감독, 보수 성격, 독립사업 위험 등 실제 관계를 종합해 판단합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "프리랜서 계약서나 사업자등록이 있지만 실제 근무방식상 근로기준법상 근로자에 해당하는지 확인하려는 사람",
       "key_points_ko": [
         "계약 명칭보다 실제 업무통제를 봅니다.",
         "대체인력 사용과 독립 영업 가능성을 확인합니다.",
@@ -1560,7 +1560,7 @@
       "slug": "dismissal-notice-vs-unfair-dismissal-remedy",
       "title_ko": "해고 서면통지와 부당해고 구제신청은 별개인가요?",
       "one_line_answer_ko": "해고사유·시기의 서면통지는 해고 효력의 요건이고, 노동위원회 구제신청은 부당해고를 다투는 별도 절차이므로 신청기간을 따로 지켜야 합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "구두·문자·서면으로 해고 통보를 받고 해고 효력과 노동위원회 구제신청을 각각 검토해야 하는 근로자",
       "key_points_ko": [
         "해고 의사표시와 실제 근로종료일을 확정합니다.",
         "서면에 사유와 시기가 구체적으로 적혔는지 봅니다.",
@@ -1631,7 +1631,7 @@
       "slug": "lease-registration-vs-opposability-priority",
       "title_ko": "임차권등기와 대항력·우선변제권은 어떻게 다른가요?",
       "one_line_answer_ko": "대항력과 우선변제권은 점유·전입신고·확정일자 등 요건으로 생기고, 임차권등기는 보증금 미반환 상태에서 이사하더라도 기존 권리를 유지하거나 일정 요건 아래 취득하도록 돕는 절차이므로 신청과 등기 완료를 구분해야 합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "보증금을 받지 못한 채 이사해야 하여 임차권등기와 기존 대항력·우선변제권 유지 관계를 확인하려는 임차인",
       "key_points_ko": [
         "현재 점유·전입·확정일자를 확인합니다.",
         "임대차 종료와 보증금 미반환을 확인합니다.",

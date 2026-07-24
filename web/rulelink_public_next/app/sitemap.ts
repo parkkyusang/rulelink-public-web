@@ -3,6 +3,7 @@ import type {MetadataRoute} from 'next';
 export const revalidate = 3600;
 
 import {
+  listAuthorityReadingUnits,
   listChangeBriefs,
   listConceptCards,
   listKnowledgeEntries,
@@ -15,7 +16,16 @@ import {site} from '@/lib/site';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (!site.indexing) return [];
-  const [cards, topics, changeBriefs, concepts, knowledgeEntries, knowledgeHubs, knowledgeSources] = await Promise.all([
+  const [
+    cards,
+    topics,
+    changeBriefs,
+    concepts,
+    knowledgeEntries,
+    knowledgeHubs,
+    knowledgeSources,
+    authorityReadingUnits,
+  ] = await Promise.all([
     listPublishedCards(),
     listPublishedTopics(),
     listChangeBriefs(),
@@ -23,6 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     listKnowledgeEntries(),
     listKnowledgeHubs(),
     listKnowledgeSourceDocuments(),
+    listAuthorityReadingUnits(),
   ]);
   return [
     {url: site.url, changeFrequency: 'weekly', priority: 1},
@@ -58,6 +69,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...concepts.map(concept => ({
       url: `${site.url}/ko/concepts/${concept.slug}`,
       lastModified: new Date(concept.reviewed_at),
+      changeFrequency: 'monthly' as const,
+      priority: 0.82,
+    })),
+    ...authorityReadingUnits.map(unit => ({
+      url: `${site.url}${unit.routeHref}`,
+      lastModified: new Date(unit.source.last_verified_at),
       changeFrequency: 'monthly' as const,
       priority: 0.82,
     })),

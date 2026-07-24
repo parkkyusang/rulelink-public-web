@@ -1,0 +1,107 @@
+name: rulelink-authority-024-evidence-attestation
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "data/validation_reports/authority_024/authority-db-regenerated.json"
+      - "data/validation_reports/authority_024/authority-citation-audit-approved.json"
+      - "data/validation_reports/authority_024/wave1_exact_table.json"
+      - "data/validation_reports/authority_024/wave2_exact_table.json"
+      - "data/validation_reports/authority_024/citation_full_audit.json"
+
+permissions:
+  contents: read
+  pull-requests: read
+  checks: write
+
+jobs:
+  authority-evidence-attestation:
+    name: rulelink-authority-024-evidence-attestation-runner
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on:
+      - self-hosted
+      - Windows
+      - X64
+      - rulelink-source-maintenance
+    environment: rulelink-source-maintenance-attestation
+    timeout-minutes: 60
+    steps:
+      - name: Run trusted base tooling against exact-five evidence
+        id: attest
+        shell: pwsh
+        env:
+          EVIDENCE_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          EVIDENCE_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          SOURCE_REPOSITORY_URL: ${{ github.server_url }}/${{ github.repository }}.git
+          SOURCE_MAINTENANCE_ROOT: ${{ vars.RULELINK_SOURCE_MAINTENANCE_ROOT }}
+        run: |
+          $ErrorActionPreference = "Stop"
+          if (-not $env:SOURCE_MAINTENANCE_ROOT) {
+            throw "RULELINK_SOURCE_MAINTENANCE_ROOT repository/environment variable is required"
+          }
+          $activeRoot = (Resolve-Path -LiteralPath $env:SOURCE_MAINTENANCE_ROOT).Path
+          $trustedRoot = Join-Path $env:RUNNER_TEMP "authority-024-trusted-source"
+          $archive = Join-Path $env:RUNNER_TEMP "authority-024-evidence.zip"
+          $extract = Join-Path $env:RUNNER_TEMP "authority-024-evidence"
+          foreach ($path in @($trustedRoot, $extract)) {
+            if (Test-Path -LiteralPath $path) {
+              Remove-Item -Recurse -Force -LiteralPath $path
+            }
+          }
+          if (Test-Path -LiteralPath $archive) {
+            Remove-Item -Force -LiteralPath $archive
+          }
+          New-Item -ItemType Directory -Path $trustedRoot -Force | Out-Null
+          git -C $trustedRoot init
+          git -C $trustedRoot remote add origin $env:SOURCE_REPOSITORY_URL
+          git -C $trustedRoot fetch --no-tags --filter=blob:none origin $env:EVIDENCE_BASE_SHA $env:EVIDENCE_HEAD_SHA
+          git -C $trustedRoot checkout --detach $env:EVIDENCE_BASE_SHA
+          git -C $trustedRoot archive --format=zip --output=$archive $env:EVIDENCE_HEAD_SHA -- data/validation_reports/authority_024
+          Expand-Archive -LiteralPath $archive -DestinationPath $extract -Force
+          $evidenceDir = Join-Path $extract "data/validation_reports/authority_024"
+          python (Join-Path $trustedRoot "scripts/attest_authority_024_evidence.py") `
+            --evidence-dir $evidenceDir `
+            --base-ref $env:EVIDENCE_BASE_SHA `
+            --head-ref $env:EVIDENCE_HEAD_SHA `
+            --active-root $activeRoot
+
+      - name: Publish the PR-head-bound attestation check
+        if: always()
+        shell: pwsh
+        env:
+          ATTESTATION_OUTCOME: ${{ steps.attest.outcome }}
+          EVIDENCE_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          $ErrorActionPreference = "Stop"
+          $conclusion = if ($env:ATTESTATION_OUTCOME -eq "success") { "success" } else { "failure" }
+          $summary = if ($conclusion -eq "success") {
+            "Trusted base tooling verified the exact-five evidence against Source Maintenance inputs."
+          } else {
+            "Trusted base tooling did not approve the exact-five evidence."
+          }
+          $body = @{
+            name = "rulelink-authority-024-evidence-attestation"
+            head_sha = $env:EVIDENCE_HEAD_SHA
+            status = "completed"
+            conclusion = $conclusion
+            details_url = $env:RUN_URL
+            output = @{
+              title = "RuleLink authority 024 evidence attestation"
+              summary = $summary
+            }
+          } | ConvertTo-Json -Depth 5
+          $headers = @{
+            Accept = "application/vnd.github+json"
+            Authorization = "Bearer $env:GH_TOKEN"
+            "X-GitHub-Api-Version" = "2022-11-28"
+          }
+          Invoke-RestMethod `
+            -Method Post `
+            -Uri "https://api.github.com/repos/$env:REPOSITORY/check-runs" `
+            -Headers $headers `
+            -ContentType "application/json" `
+            -Body $body

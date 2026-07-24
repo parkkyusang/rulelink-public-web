@@ -70,12 +70,15 @@ type PublicKnowledgeSourceBase = {
   source_id: string;
   official_url: string;
   source_snapshot_id: string;
+  source_version_key?: string;
+  official_url_http_status?: number;
   last_verified_at: string;
 };
 
 export type PublicKnowledgeSource = PublicKnowledgeSourceBase & (
   | {
       source_kind?: 'statute';
+      law_key?: string;
       law_name_ko: string;
       article_no: string;
     }
@@ -123,11 +126,21 @@ export type PublicConceptAssertion = {
   source_coordinate_ids: string[];
 };
 
-export type PublicConceptTermRelation = {
+export type PublicConceptAliasRelation = {
   term_ko: string;
-  relation: 'exact_synonym' | 'abbreviation' | 'spelling_variant' | 'plain_language' | 'narrower' | 'broader' | 'related';
+  relation: 'exact_synonym' | 'abbreviation' | 'spelling_variant' | 'plain_language';
+  target_concept_id?: never;
   source_coordinate_ids: string[];
 };
+
+export type PublicConceptSemanticRelation = {
+  term_ko: string;
+  relation: 'narrower' | 'broader' | 'related';
+  target_concept_id: string;
+  source_coordinate_ids: string[];
+};
+
+export type PublicConceptTermRelation = PublicConceptAliasRelation | PublicConceptSemanticRelation;
 
 export type PublicConceptCard = {
   concept_id: string;
@@ -178,6 +191,141 @@ export type PublicKnowledgeProductRole =
   | 'knowledge_reuse'
   | 'freshness_capture';
 
+export type PublicAuthorityTimeState =
+  | 'current_as_of_review'
+  | 'future_effective'
+  | 'historical';
+
+export type PublicAuthorityRouteKey = {
+  law_key: string;
+  article_no: string;
+};
+
+export type PublicAuthorityLocator = {
+  article_no: string;
+  paragraph_no?: string;
+  item_no?: string;
+  subitem_no?: string;
+};
+
+export type PublicSourceVersionBridge = {
+  bridge_id: string;
+  source_coordinate_id: string;
+  source_snapshot_id: string;
+  source_version_key: string;
+  validation_status: 'verified';
+};
+
+export type PublicSourceAuthorityUnit = {
+  source_authority_unit_id: string;
+  parent_source_authority_unit_id?: string;
+  version_bridge_id: string;
+  source_coordinate_id: string;
+  source_snapshot_id: string;
+  source_version_key: string;
+  unit_kind: 'article' | 'paragraph' | 'item' | 'subitem';
+  locator: PublicAuthorityLocator;
+  locator_key: string;
+  ordinal: number;
+  official_text_ko: string;
+  official_text_hash: string;
+  validation_status: 'verified';
+};
+
+export type PublicAuthorityAnchor = {
+  anchor_id: string;
+  parent_anchor_id?: string;
+  source_authority_unit_id: string;
+  locator_key: string;
+  official_text_hash: string;
+  plain_heading_ko: string;
+  explanation_ko: string;
+};
+
+export type PublicAuthorityLogicalGroup = {
+  logical_group_id: string;
+  role:
+    | 'requirement'
+    | 'effect'
+    | 'exception'
+    | 'prohibition'
+    | 'procedure'
+    | 'citation_map';
+  operator: 'all' | 'any' | 'sequence' | 'none';
+  title_ko: string;
+  ordinal: number;
+  anchor_ids: string[];
+};
+
+export type PublicAuthorityExplanationParagraph = {
+  explanation_paragraph_id: string;
+  text_ko: string;
+  logical_group_id: string;
+  anchor_ids: string[];
+};
+
+type PublicAuthorityCitationEdgeBase = {
+  citation_edge_id: string;
+  source_anchor_id: string;
+  quoted_law_key: string;
+  resolution_status: 'resolved' | 'unresolved' | 'target_missing';
+  publication_status: 'inactive' | 'active';
+};
+
+export type PublicAuthorityCitationEdge = PublicAuthorityCitationEdgeBase & (
+  | {
+    target_kind: 'authority_reading_unit';
+    target_authority_reading_unit_id: string;
+    target_anchor_id: string;
+    target_source_authority_unit_id?: never;
+    target_attachment_id?: never;
+    attachment_status?: never;
+  }
+  | {
+    target_kind: 'source_authority_unit';
+    target_source_authority_unit_id: string;
+    target_authority_reading_unit_id?: never;
+    target_anchor_id?: never;
+    target_attachment_id?: never;
+    attachment_status?: never;
+  }
+  | {
+    target_kind: 'precedent';
+    target_attachment_id: string;
+    attachment_status: 'verified';
+    target_authority_reading_unit_id?: never;
+    target_anchor_id?: never;
+    target_source_authority_unit_id?: never;
+  }
+);
+
+export type PublicAuthorityReadingUnit = {
+  authority_reading_unit_id: string;
+  title_ko: string;
+  route_key: PublicAuthorityRouteKey;
+  source_coordinate_id: string;
+  source_snapshot_id: string;
+  source_version_key: string;
+  time_state: PublicAuthorityTimeState;
+  effective_from: string;
+  effective_to?: string;
+  summary_ko: string;
+  anchors: PublicAuthorityAnchor[];
+  logical_groups: PublicAuthorityLogicalGroup[];
+  explanation_paragraphs: PublicAuthorityExplanationParagraph[];
+  citation_edges: PublicAuthorityCitationEdge[];
+  editorial_status: 'source_verified' | 'legal_reviewed' | 'approved';
+};
+
+export type PublicAuthorityBinding = {
+  binding_id: string;
+  from_kind: 'content';
+  from_id: string;
+  to_kind: 'authority_reading_unit';
+  to_authority_reading_unit_id: string;
+  anchor_ids: string[];
+};
+
 export type PublicKnowledgeEntry = {
   content_id: string;
   content_type: PublicKnowledgeContentType | PublicKnowledgeContentTypeAlias;
@@ -204,6 +352,7 @@ export type PublicKnowledgeEntry = {
   related_content_ids: string[];
   related_edges?: PublicKnowledgeRelation[];
   concept_ids?: string[];
+  authority_binding_ids?: string[];
   product_roles?: PublicKnowledgeProductRole[];
   lawyer_workspace_entry?: {
     question_ko: string;
@@ -231,6 +380,10 @@ export type PublicKnowledgeIndex = {
   content_entries: PublicKnowledgeEntry[];
   topic_hubs: PublicKnowledgeHub[];
   concept_cards?: PublicConceptCard[];
+  source_authority_units?: PublicSourceAuthorityUnit[];
+  source_version_bridges?: PublicSourceVersionBridge[];
+  authority_reading_units?: PublicAuthorityReadingUnit[];
+  authority_bindings?: PublicAuthorityBinding[];
 };
 
 export type NormSlot = 'actor' | 'object' | 'trigger' | 'conditions' | 'exception' | 'operation' | 'legal_effect' | 'temporal_rule' | 'transition_rule';

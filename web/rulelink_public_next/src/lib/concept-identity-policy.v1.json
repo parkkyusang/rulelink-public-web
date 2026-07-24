@@ -1,0 +1,79 @@
+{
+  "schema": "rulelink_public_concept_identity_policy_v1",
+  "policy_version": "1.1.0",
+  "policy_receipt": "d2aec101baf89bfbec14e80af1c1800530e4272a46742deb69ff73ba27f50304",
+  "terms": [
+    {
+      "term_ko": "상속인",
+      "policy_kind": "protected_canonical_identity",
+      "meaning_domain": "상속",
+      "reason_ko": "상속관계의 기본 법률상 지위를 독립된 개념 정체성으로 유지해야 합니다."
+    },
+    {
+      "term_ko": "법정상속인",
+      "policy_kind": "protected_canonical_identity",
+      "meaning_domain": "상속",
+      "reason_ko": "법률이 정한 상속인 지위는 다른 상속 개념의 검색 별칭으로 흡수할 수 없습니다."
+    },
+    {
+      "term_ko": "공동상속인",
+      "policy_kind": "protected_canonical_identity",
+      "meaning_domain": "상속",
+      "reason_ko": "공동상속 관계의 주체와 법률효과가 달라 독립된 개념 정체성이 필요합니다."
+    },
+    {
+      "term_ko": "피상속인",
+      "policy_kind": "protected_canonical_identity",
+      "meaning_domain": "상속",
+      "reason_ko": "상속인과 피상속인은 법률관계의 주체가 달라 별칭으로 합칠 수 없습니다."
+    },
+    {
+      "term_ko": "급여",
+      "target_preferred_term_ko": "임금",
+      "policy_kind": "forbidden_alias_pair",
+      "meaning_domain": "노동·임금",
+      "reason_ko": "일상적 급여 표현의 범위와 근로기준법상 임금의 범위가 항상 같지는 않습니다."
+    },
+    {
+      "term_ko": "보수",
+      "target_preferred_term_ko": "임금",
+      "policy_kind": "forbidden_alias_pair",
+      "meaning_domain": "노동·임금",
+      "reason_ko": "보수는 법역과 계약관계에 따라 임금과 다른 의미를 가질 수 있습니다."
+    },
+    {
+      "term_ko": "퇴직금",
+      "target_preferred_term_ko": "임금",
+      "policy_kind": "forbidden_alias_pair",
+      "meaning_domain": "노동·임금",
+      "reason_ko": "퇴직금은 발생 요건과 산정 법리가 임금 일반과 달라 별도 개념으로 관리해야 합니다."
+    },
+    {
+      "term_ko": "평균임금",
+      "target_preferred_term_ko": "통상임금",
+      "policy_kind": "forbidden_alias_pair",
+      "meaning_domain": "노동·임금",
+      "reason_ko": "평균임금과 통상임금은 산정기간·요건·법률상 사용처가 다릅니다."
+    },
+    {
+      "term_ko": "3.3%",
+      "target_preferred_term_ko": "근로자성",
+      "policy_kind": "decision_fact_not_alias",
+      "meaning_domain": "노동·근로계약",
+      "reason_ko": "세무상 원천징수 표시는 근로자성 판단자료 중 하나일 뿐 그 개념 자체가 아닙니다."
+    },
+    {
+      "term_ko": "사업자등록",
+      "target_preferred_term_ko": "근로자성",
+      "policy_kind": "decision_fact_not_alias",
+      "meaning_domain": "노동·근로계약",
+      "reason_ko": "사업자등록 형식은 근로자성의 결정자료 중 하나이며 제도 자체의 정상적인 별칭 사용까지 막아서는 안 됩니다."
+    },
+    {
+      "term_ko": "원본",
+      "policy_kind": "ambiguous_global_alias",
+      "meaning_domain": "법역 공통",
+      "reason_ko": "문서·사진의 원본과 채무 원본처럼 법역에 따라 의미가 달라 전역 별칭으로 사용할 수 없습니다."
+    }
+  ]
+}

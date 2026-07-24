@@ -1,0 +1,275 @@
+.root {
+  border-top: 1px solid var(--line);
+  margin-top: 72px;
+  padding-top: 48px;
+  scroll-margin-top: 82px;
+}
+
+.header {
+  align-items: end;
+  display: grid;
+  gap: 48px;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
+  margin-bottom: 34px;
+}
+
+.eyebrow {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  margin: 0 0 12px;
+}
+
+.header h2 {
+  font-size: 31px;
+  letter-spacing: -.04em;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.intro {
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 12px 0 0;
+}
+
+.current {
+  background: var(--surface-evidence);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  min-width: 0;
+  padding: 17px 18px;
+}
+
+.current span {
+  color: var(--evidence-ink);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.current strong {
+  font-size: 14px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+.sections {
+  display: grid;
+  gap: 18px;
+}
+
+.section {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 24px;
+}
+
+.section[data-typed='false'] {
+  background: transparent;
+  border-style: dashed;
+}
+
+.sectionHeader {
+  align-items: start;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 34px minmax(0, 1fr);
+  margin-bottom: 18px;
+}
+
+.step {
+  align-items: center;
+  background: var(--surface-count);
+  border-radius: var(--radius-pill);
+  color: var(--green);
+  display: inline-flex;
+  font-size: 11px;
+  font-weight: 800;
+  height: 34px;
+  justify-content: center;
+  width: 34px;
+}
+
+.sectionHeader h3 {
+  font-size: 22px;
+  letter-spacing: -.03em;
+  margin: 0;
+}
+
+.sectionHeader p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+  margin: 5px 0 0;
+}
+
+.grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.grid > li {
+  display: flex;
+  min-width: 0;
+}
+
+.boundaryGuide {
+  background: var(--surface-evidence);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-control);
+  margin-bottom: 18px;
+  padding: 18px;
+}
+
+.boundaryIntro {
+  color: var(--muted-strong);
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.boundaryIntro strong {
+  color: var(--ink);
+}
+
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+  min-width: 0;
+  padding: 21px;
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+  width: 100%;
+}
+
+.card:hover {
+  border-color: var(--line-hover);
+  box-shadow: var(--shadow-card-soft);
+  transform: translateY(-2px);
+}
+
+.card:focus-visible {
+  border-color: var(--green);
+}
+
+.relation {
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+
+.card > strong {
+  font-size: 19px;
+  letter-spacing: -.02em;
+  line-height: 1.5;
+  margin-top: 15px;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+.summary {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+  margin: 10px 0 0;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+.reason {
+  border-top: 1px solid var(--line);
+  margin-top: 18px;
+  padding-top: 15px;
+}
+
+.reason > span {
+  color: var(--evidence-ink);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.reason p {
+  color: var(--muted-strong);
+  font-size: 12px;
+  line-height: 1.65;
+  margin: 6px 0 0;
+}
+
+.action {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+@media (max-width: 800px) {
+  .root {
+    margin-top: 54px;
+    padding-top: 38px;
+  }
+
+  .header {
+    align-items: stretch;
+    gap: 20px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .header h2 {
+    font-size: 27px;
+  }
+
+  .section {
+    padding: 18px;
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+
+  .card {
+    min-height: 0;
+    padding: 19px;
+  }
+}
+
+@media (max-width: 360px) {
+  .section {
+    padding: 15px;
+  }
+
+  .sectionHeader {
+    grid-template-columns: 30px minmax(0, 1fr);
+  }
+
+  .step {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}

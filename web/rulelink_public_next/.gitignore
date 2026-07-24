@@ -2,6 +2,8 @@ node_modules/
 .next/
 .next-*/
 out/
+playwright-report/
+test-results/
 *.log
 tsconfig.tsbuildinfo
 content/bundle.json

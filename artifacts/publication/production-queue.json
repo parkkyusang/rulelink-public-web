@@ -2,34 +2,143 @@
   "schema": "rulelink_publication_production_queue_v1",
   "audited_on": "2026-07-23",
   "current_publication": {
-    "snapshot_id": "kr-knowledge-core-20260721-021",
-    "topic_hubs": 17,
-    "content_entries": 173,
-    "rule_cards": 160,
-    "scenario_branches": 136,
-    "sources": 266,
+    "snapshot_id": "kr-knowledge-core-20260723-023",
+    "topic_hubs": 28,
+    "content_entries": 284,
+    "rule_cards": 278,
+    "scenario_branches": 247,
+    "sources": 425,
     "live_parity": "verified"
   },
   "policy": {
     "wip_limit_per_producer": 1,
     "content_pr_file_limit": 2,
     "direct_merge_for_existing_topic_revision": false,
+    "existing_topic_migration_commit_protocol": "data_commit_then_queue_evidence_commit_merge_without_squash",
     "require_explicit_overlap_decision": true,
-    "require_dependency_order": true
+    "require_dependency_order": true,
+    "owner_role_contracts": {
+      "orchestration": {
+        "assignment": "coordination_only",
+        "owned_paths": [
+          "artifacts/publication/production-queue.json",
+          "artifacts/publication/production-queue-registry.json"
+        ],
+        "forbidden_paths": [
+          "artifacts/publication/topics/*.json",
+          "artifacts/publication/current/**",
+          "artifacts/publication/snapshots/**"
+        ]
+      },
+      "reader_research": {
+        "assignment": "read_only",
+        "owned_paths": [],
+        "forbidden_paths": [
+          "**/*"
+        ]
+      },
+      "quality_governance": {
+        "assignment": "governance_contracts",
+        "owned_paths": [
+          "artifacts/publication/production-queue.json",
+          "artifacts/publication/production-queue-registry.json",
+          "web/rulelink_public_next/scripts/*publication*.mjs",
+          "web/rulelink_public_next/scripts/*publication*.test.mjs"
+        ],
+        "forbidden_paths": [
+          "artifacts/publication/topics/*.json",
+          "artifacts/publication/current/**",
+          "artifacts/publication/snapshots/**",
+          "artifacts/publication/release.json"
+        ]
+      },
+      "runtime_design": {
+        "assignment": "runtime_design",
+        "owned_paths": [
+          "web/rulelink_public_next/src/**",
+          "web/rulelink_public_next/scripts/*runtime*.test.mjs",
+          "web/rulelink_public_next/scripts/*knowledge*.test.mjs"
+        ],
+        "forbidden_paths": [
+          "artifacts/publication/topics/*.json",
+          "artifacts/publication/current/**",
+          "artifacts/publication/snapshots/**"
+        ]
+      },
+      "content_production": {
+        "assignment": "topic_handoff",
+        "owned_paths": [
+          "artifacts/publication/topics/<topic>.json",
+          "web/rulelink_public_next/scripts/<topic>-topic-*.test.mjs"
+        ],
+        "forbidden_paths": [
+          "artifacts/publication/current/**",
+          "artifacts/publication/snapshots/**",
+          "artifacts/publication/manifest.json",
+          "artifacts/publication/release.json"
+        ]
+      },
+      "migrate_publication": {
+        "assignment": "publication_migration",
+        "owned_paths": [
+          "README.md",
+          "artifacts/publication/topics/*.json",
+          "web/rulelink_public_next/scripts/*topic*.test.mjs",
+          "web/rulelink_public_next/scripts/*handoff*.test.mjs",
+          "artifacts/publication/concepts/*.json",
+          "artifacts/publication/concepts/manifest.json",
+          "artifacts/publication/current/**",
+          "artifacts/publication/snapshots/**",
+          "artifacts/publication/topics/manifest.json",
+          "artifacts/publication/production-queue.json",
+          "artifacts/publication/production-queue-registry.json"
+        ],
+        "forbidden_paths": [
+          "artifacts/publication/release.json"
+        ]
+      },
+      "release": {
+        "assignment": "release",
+        "owned_paths": [
+          "artifacts/publication/release.json",
+          "web/rulelink_public_next/publication.json"
+        ],
+        "forbidden_paths": [
+          "artifacts/publication/topics/*.json"
+        ]
+      },
+      "source_maintenance": {
+        "assignment": "external_repository",
+        "owned_paths": [],
+        "forbidden_paths": [
+          "**/*"
+        ]
+      },
+      "product_policy": {
+        "assignment": "read_only",
+        "owned_paths": [],
+        "forbidden_paths": [
+          "**/*"
+        ]
+      }
+    }
   },
   "audit_summary": {
-    "open_content_prs": 20,
-    "official_source_references_checked": 328,
-    "unique_official_urls_checked": 308,
+    "open_content_prs": 7,
+    "official_source_references_checked": 396,
+    "unique_official_urls_checked": 345,
     "official_url_failures": 0,
     "exact_cross_pr_content_id_collisions": 0,
     "broken_related_content_ids": 0,
     "semantic_overlap_decisions": 8,
-    "ready_for_integration": 2,
+    "ready_for_integration": 0,
     "needs_rework": 6,
-    "migration_required": 2,
+    "migration_required": 0,
     "blocked": 1,
-    "integrated": 9
+    "integrated": 16,
+    "merged_pending_publication": 0,
+    "superseded": 1,
+    "withdrawn": 0
   },
   "items": [
     {
@@ -43,7 +152,7 @@
       "topic_file": "artifacts/publication/topics/legal-concept-comparisons.json",
       "test_file": "web/rulelink_public_next/scripts/legal-concept-comparisons-topic-handoff.test.mjs",
       "change_mode": "existing_topic_revision",
-      "status": "migration_required",
+      "status": "integrated",
       "counts": {
         "sources": 38,
         "rule_cards": 13,
@@ -58,11 +167,23 @@
         "referenced_count": 38
       },
       "source_freshness": {
-        "status": "existing_topic_revision"
+        "status": "current",
+        "mismatch_count": 0
       },
       "integration_checks": [
         "원 PR을 직접 병합하지 않고 주제 원본·current·새 불변 snapshot을 같은 migration에서 이관한다."
-      ]
+      ],
+      "direct_merge": false,
+      "integrate_requires": [
+        "current_bundle",
+        "new_immutable_snapshot",
+        "migrate_publication"
+      ],
+      "integrated_snapshot_id": "kr-knowledge-core-20260723-023",
+      "migration_commit_sha": "bf31dc89c36326932e91d8eaefbc677b19758615",
+      "absorbed_head_sha": "e10ae17e67e02321f2057ba9213ef1d8d50dc7f9",
+      "topic_receipt": "709e265697937aa0b290e72e78f31272b795f127a76ced17fa81d2e974180b4b",
+      "integration_mode": "exact"
     },
     {
       "queue_id": "publication-pr-87",
@@ -220,7 +341,7 @@
       "topic_file": "artifacts/publication/topics/family-inheritance.json",
       "test_file": "web/rulelink_public_next/scripts/family-inheritance-rule-copy-topic-handoff.test.mjs",
       "change_mode": "existing_topic_revision",
-      "status": "migration_required",
+      "status": "integrated",
       "counts": {
         "sources": 24,
         "rule_cards": 10,
@@ -235,11 +356,23 @@
         "referenced_count": 24
       },
       "source_freshness": {
-        "status": "existing_topic_revision"
+        "status": "current",
+        "mismatch_count": 0
       },
       "integration_checks": [
         "원 PR을 직접 병합하지 않고 주제 원본·current·새 불변 snapshot을 같은 migration에서 이관한다."
-      ]
+      ],
+      "direct_merge": false,
+      "integrate_requires": [
+        "current_bundle",
+        "new_immutable_snapshot",
+        "migrate_publication"
+      ],
+      "integrated_snapshot_id": "kr-knowledge-core-20260723-023",
+      "migration_commit_sha": "bf31dc89c36326932e91d8eaefbc677b19758615",
+      "absorbed_head_sha": "4d37d92d5c775d554a95910f18dfc0156054bbde",
+      "topic_receipt": "bb88b070415ea853663e07a2b4d1fc8f387fd36f66c5cf39e3b2f96b463edf5d",
+      "integration_mode": "absorbed"
     },
     {
       "queue_id": "publication-pr-142",
@@ -490,17 +623,17 @@
       ]
     },
     {
-      "queue_id": "publication-pr-103",
-      "pr_number": 103,
-      "title_ko": "학교폭력 신고·보호·조치 생활법률 콘텐츠 10건",
-      "branch": "codex/content-school-violence-20260723",
-      "head_sha": "d07c1599ea7127bd5d35874e5ea6e184fa862b79",
+      "queue_id": "publication-pr-153",
+      "pr_number": 153,
+      "title_ko": "학교폭력 현행 근거 재결박",
+      "branch": "codex/content-school-violence-rebind-20260723",
+      "head_sha": "f78d4002ef9e223156dc92425c8d047bb82a5604",
       "owner_role": "content_production",
       "topic_id": "hub.school-violence",
       "topic_file": "artifacts/publication/topics/school-violence.json",
       "test_file": "web/rulelink_public_next/scripts/school-violence-topic-handoff.test.mjs",
       "change_mode": "new_topic",
-      "status": "ready_for_integration",
+      "status": "integrated",
       "counts": {
         "sources": 12,
         "rule_cards": 10,
@@ -509,17 +642,26 @@
         "topic_hubs": 1
       },
       "depends_on_prs": [],
-      "integration_order": 10,
+      "integration_order": null,
       "official_url_check": {
         "status": "passed",
         "referenced_count": 12
       },
       "source_freshness": {
-        "status": "rebind_before_integration",
-        "mismatch_count": 2
+        "status": "current",
+        "mismatch_count": 0
       },
       "integration_checks": [
-        "드리프트 좌표 2개를 활성 DB 기준으로 재검증하고 유형을 정규화한다."
+        "PR #153에서 활성 DB 현행판 12개 좌표와 조문별 공식 URL을 재검증했다.",
+        "32자리 snapshot 결박과 표준 content_type을 전용 시험으로 고정했다."
+      ],
+      "supersedes_prs": [
+        103
+      ],
+      "integrate_requires": [
+        "current_bundle",
+        "new_immutable_snapshot",
+        "migrate_publication"
       ]
     },
     {
@@ -570,7 +712,7 @@
       "topic_file": "artifacts/publication/topics/domestic-violence-stalking.json",
       "test_file": "web/rulelink_public_next/scripts/domestic-violence-stalking-topic-handoff.test.mjs",
       "change_mode": "new_topic",
-      "status": "ready_for_integration",
+      "status": "superseded",
       "counts": {
         "sources": 22,
         "rule_cards": 10,
@@ -579,7 +721,7 @@
         "topic_hubs": 1
       },
       "depends_on_prs": [],
-      "integration_order": 20,
+      "integration_order": null,
       "official_url_check": {
         "status": "passed",
         "referenced_count": 22
@@ -590,7 +732,12 @@
       },
       "integration_checks": [
         "드리프트 좌표 2개를 활성 DB 기준으로 재검증한다."
-      ]
+      ],
+      "terminal_reason_ko": "미출판 신규 주제 원본을 최신 main에서 현행 근거로 재결박한 PR #174가 이 작업을 대체한다.",
+      "superseded_by": {
+        "pr_number": 174,
+        "head_sha": "b8644f515388315143b6dbe1fdbdf742a6454c6e"
+      }
     },
     {
       "queue_id": "publication-pr-141",
@@ -795,6 +942,259 @@
           "rationale_ko": "개인회생 절차 공통 설명을 제거하고 절차진행·변제관리의 비중복 상세만 남긴다."
         }
       ]
+    },
+    {
+      "queue_id": "publication-pr-166",
+      "pr_number": 166,
+      "title_ko": "금전거래·보증 기존 정본 구조 백필",
+      "branch": "codex/content-money-guarantee-backfill-20260723",
+      "head_sha": "237bff8a1a8c58ad3961f215236bc3f3df0d3197",
+      "owner_role": "content_production",
+      "topic_id": "hub.money-guarantee",
+      "topic_file": "artifacts/publication/topics/money-guarantee.json",
+      "test_file": "web/rulelink_public_next/scripts/money-guarantee-topic-backfill.test.mjs",
+      "change_mode": "existing_topic_revision",
+      "status": "integrated",
+      "counts": {
+        "sources": 17,
+        "rule_cards": 9,
+        "scenario_branches": 7,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": null,
+      "direct_merge": false,
+      "integrate_requires": [
+        "current_bundle",
+        "new_immutable_snapshot",
+        "migrate_publication"
+      ],
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 17
+      },
+      "source_freshness": {
+        "status": "current",
+        "mismatch_count": 0
+      },
+      "integration_checks": [
+        "current bundle과 새 불변 snapshot을 migrate_publication 역할이 함께 재합성한다.",
+        "typed CTA 후보 4건은 attorney-workspace-typed-migration에서 별도 심사한다."
+      ],
+      "integrated_snapshot_id": "kr-knowledge-core-20260723-023",
+      "migration_commit_sha": "bf31dc89c36326932e91d8eaefbc677b19758615",
+      "absorbed_head_sha": "237bff8a1a8c58ad3961f215236bc3f3df0d3197",
+      "topic_receipt": "95389f3b98c14c10d899c1ebe9372d56e37895451498e11dbc8d21d45c9901f3",
+      "integration_mode": "exact"
+    },
+    {
+      "queue_id": "publication-pr-169",
+      "pr_number": 169,
+      "title_ko": "온라인 소비자 분쟁 기존 정본 독자 흐름 백필",
+      "branch": "codex/content-consumer-online-backfill-20260723",
+      "head_sha": "c8167f563975f6ba26f1df6697443fa67016bb39",
+      "owner_role": "content_production",
+      "topic_id": "hub.consumer-online-contracts",
+      "topic_file": "artifacts/publication/topics/consumer-online-contracts.json",
+      "test_file": "web/rulelink_public_next/scripts/consumer-online-contracts-topic-handoff.test.mjs",
+      "change_mode": "existing_topic_revision",
+      "status": "integrated",
+      "counts": {
+        "sources": 7,
+        "rule_cards": 9,
+        "scenario_branches": 7,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "platform_prerequisite_prs": [
+        168
+      ],
+      "integration_order": null,
+      "direct_merge": false,
+      "integrate_requires": [
+        "current_bundle",
+        "new_immutable_snapshot",
+        "migrate_publication"
+      ],
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 7
+      },
+      "source_freshness": {
+        "status": "current",
+        "mismatch_count": 0
+      },
+      "integration_checks": [
+        "런타임 연결 독해 PR #168을 먼저 병합한 뒤 typed relation을 공개한다.",
+        "current bundle과 새 불변 snapshot을 migrate_publication 역할이 함께 재합성한다."
+      ],
+      "integrated_snapshot_id": "kr-knowledge-core-20260723-023",
+      "migration_commit_sha": "bf31dc89c36326932e91d8eaefbc677b19758615",
+      "absorbed_head_sha": "c8167f563975f6ba26f1df6697443fa67016bb39",
+      "topic_receipt": "6ead674143e2f0937612a38e5fba763a1d104f6228fa8213e38c994005c2752c",
+      "integration_mode": "exact"
+    },
+    {
+      "queue_id": "publication-pr-171",
+      "pr_number": 171,
+      "title_ko": "구제절차 비교 기존 정본 관련 경로 백필",
+      "branch": "codex/content-remedy-path-related-backfill-20260723",
+      "head_sha": "0d100fcd315de4d99e9fe80e51b56312e0402f53",
+      "owner_role": "content_production",
+      "topic_id": "hub.remedy-path-comparisons",
+      "topic_file": "artifacts/publication/topics/remedy-path-comparisons.json",
+      "test_file": "web/rulelink_public_next/scripts/remedy-path-comparisons-topic-handoff.test.mjs",
+      "change_mode": "existing_topic_revision",
+      "status": "integrated",
+      "counts": {
+        "sources": 22,
+        "rule_cards": 10,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": null,
+      "direct_merge": false,
+      "integrate_requires": [
+        "current_bundle",
+        "new_immutable_snapshot",
+        "migrate_publication"
+      ],
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 22
+      },
+      "source_freshness": {
+        "status": "current",
+        "mismatch_count": 0
+      },
+      "integration_checks": [
+        "구제절차·기한 비교의 3개 typed relation과 legacy 투영을 보존한다.",
+        "current bundle과 새 불변 snapshot을 migrate_publication 역할이 함께 재합성한다."
+      ],
+      "integrated_snapshot_id": "kr-knowledge-core-20260723-023",
+      "migration_commit_sha": "bf31dc89c36326932e91d8eaefbc677b19758615",
+      "absorbed_head_sha": "0d100fcd315de4d99e9fe80e51b56312e0402f53",
+      "topic_receipt": "c6dfb0137c13f58dc0921ee68fea692f3d7837aa5b3bc0db5b255a0eb6753bbc",
+      "integration_mode": "exact"
+    },
+    {
+      "queue_id": "publication-pr-174",
+      "pr_number": 174,
+      "title_ko": "가정폭력·스토킹 현행 근거 재결박",
+      "branch": "codex/content-domestic-violence-stalking-rebind-20260723",
+      "head_sha": "b8644f515388315143b6dbe1fdbdf742a6454c6e",
+      "owner_role": "content_production",
+      "topic_id": "hub.domestic-violence-stalking",
+      "topic_file": "artifacts/publication/topics/domestic-violence-stalking.json",
+      "test_file": "web/rulelink_public_next/scripts/domestic-violence-stalking-topic-handoff.test.mjs",
+      "change_mode": "new_topic",
+      "status": "integrated",
+      "counts": {
+        "sources": 22,
+        "rule_cards": 10,
+        "scenario_branches": 10,
+        "content_entries": 10,
+        "topic_hubs": 1
+      },
+      "depends_on_prs": [],
+      "integration_order": null,
+      "official_url_check": {
+        "status": "passed",
+        "referenced_count": 22
+      },
+      "source_freshness": {
+        "status": "current",
+        "mismatch_count": 0,
+        "timeline_missing_source_ids": [
+          "law_014392_ko_0006",
+          "law_014392_ko_0009",
+          "law_014392_ko_0013"
+        ],
+        "follow_up_owner_role": "source_maintenance"
+      },
+      "integration_checks": [
+        "PR #174의 현행 snapshot 22개와 승인된 절차 관계 4건을 023 publication migration에 포함한다.",
+        "Source Timeline 미적재 3건은 공개 근거 일치로 가장하지 않고 Source Maintenance 후속 결손으로 유지한다."
+      ],
+      "supersedes_prs": [
+        105
+      ]
+    }
+  ],
+  "quality_backlog": [
+    {
+      "backlog_id": "quality.attorney-workspace-product-gate-v1",
+      "owner_role": "quality_governance",
+      "status": "planned",
+      "scope": "follow_up_quality_pr",
+      "typed_cta_requirements": [
+        "product_roles에 concierge_entry가 존재해야 한다.",
+        "lawyer_workspace_entry가 존재해야 한다.",
+        "gate_id는 verified_attorney_v1이어야 한다.",
+        "audience는 verified_attorney이어야 한다.",
+        "href는 /ko/lawyer-workspace이어야 한다.",
+        "decision_scenario_ids는 해당 콘텐츠의 실제 scenario_ids 부분집합이어야 한다.",
+        "decision_facts_ko는 선택된 시나리오의 decision_fact_ko 집합과 정확히 같아야 한다.",
+        "related_edges에 승인된 concierge_boundary 정본 연결이 있어야 한다."
+      ],
+      "legacy_policy_ko": "기존 lawyer_workspace_entry 57건은 UI 호환 데이터일 뿐 typed 승인으로 계산하지 않으며, 새·수정 콘텐츠는 모든 typed 조건을 만족하기 전 CTA를 추가할 수 없다.",
+      "public_private_boundary_ko": "공개 /ko/lawyer-workspace의 HTTP 200은 정상이며, 무자격 HTTP 200 금지는 비공개 origin과 API에 적용한다.",
+      "deployment_smoke": [
+        "비로그인 비공개 origin 요청은 302 Access 로그인 또는 401/403이며 앱 HTML과 사건 payload를 반환하지 않는다.",
+        "로그인했지만 승인되지 않은 계정은 403이다.",
+        "verified_attorney 헤더나 쿠키 위조는 403이다.",
+        "승인된 현행 변호사 계정은 서버 role 확인 뒤 200이다.",
+        "승인 취소 또는 자격 만료 계정은 새 요청부터 403이다.",
+        "기술 운영자 계정은 별도 사건본문 권한 없이는 403이다.",
+        "공개 CTA에서 사건정보·체크리스트·로컬 저장값 전송은 0이다.",
+        "게이트에서 비공개 origin으로 이동할 때 사건정보 파라미터는 0이다.",
+        "비공개 응답은 no-store·noindex이며 공개 빌드에 사건 데이터가 없다.",
+        "접근 로그에는 계정·시각·허용여부·역할만 기록하고 사건본문은 기록하지 않는다."
+      ],
+      "forbidden_phrases": [
+        "룰링크에서 결론 받기",
+        "AI 변호사에게 묻기",
+        "승소 가능성 확인",
+        "사건에 맞는 변호사 추천"
+      ],
+      "revenue_separation_checks": [
+        "공개정보 광고료는 사건 답변·상담 전환·특정 수임과 결합하지 않는다.",
+        "변호사 기술사용료는 좌석·기간·저장공간·전산자원 기준이며 사건·수임·성과와 연동하지 않는다.",
+        "사건 소개·알선 대가를 받지 않는다.",
+        "상담료·착수금·성공보수·회수액을 배분받지 않는다."
+      ],
+      "migration_plan": {
+        "work_name": "attorney-workspace-typed-migration",
+        "status": "migration_required",
+        "depends_on": [
+          "current_queue_governance_merge",
+          "runtime_typed_contract_pr_150"
+        ],
+        "first_pass": {
+          "keep_typed": 31,
+          "needs_scenario_hidden": 21,
+          "remove_cta": 5,
+          "action_ko": "keep 31은 typed 필드를 이관하고 needs 21과 remove 5는 legacy lawyer_workspace_entry를 제거해 CTA를 숨긴다."
+        },
+        "second_pass_ko": "needs_scenario 21건은 topic별 ScenarioBranch 보강 뒤 개별 재심사한다.",
+        "hard_fail_checks": [
+          "typed/legacy projection 불일치",
+          "scenario/gate/facts 누락",
+          "자기참조 CTA"
+        ],
+        "dependent_topic_backfills": [
+          {
+            "pr_number": 166,
+            "topic_id": "hub.money-guarantee",
+            "typed_cta_candidate_count": 4,
+            "depends_on": "attorney-workspace-typed-migration"
+          }
+        ]
+      }
     }
   ]
 }

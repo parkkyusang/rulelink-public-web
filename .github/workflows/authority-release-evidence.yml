@@ -1,0 +1,80 @@
+name: Authority browser evidence
+
+on:
+  pull_request:
+    paths:
+      - "web/rulelink_public_next/app/ko/authorities/**"
+      - "web/rulelink_public_next/app/ko/knowledge/**"
+      - "web/rulelink_public_next/src/components/authority-*"
+      - "web/rulelink_public_next/src/lib/authority-*"
+      - "web/rulelink_public_next/e2e/authority/**"
+      - "web/rulelink_public_next/playwright.config.ts"
+      - "web/rulelink_public_next/package*.json"
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: "024 preview or production base URL"
+        required: false
+        type: string
+      snapshot_id:
+        description: "Expected 024 publication snapshot_id"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  fixture-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: web/rulelink_public_next
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: web/rulelink_public_next/package-lock.json
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:authority-browser
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: authority-browser-fixture-evidence
+          path: web/rulelink_public_next/test-results/authority-024
+          if-no-files-found: error
+
+  release-browser:
+    if: >-
+      github.event_name == 'workflow_dispatch'
+      && inputs.base_url != ''
+      && inputs.snapshot_id != ''
+    needs: fixture-browser
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: web/rulelink_public_next
+    env:
+      RULELINK_AUTHORITY_RELEASE_BASE_URL: ${{ inputs.base_url }}
+      RULELINK_AUTHORITY_RELEASE_SNAPSHOT_ID: ${{ inputs.snapshot_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: web/rulelink_public_next/package-lock.json
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:authority-release
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: authority-release-evidence
+          path: web/rulelink_public_next/test-results/authority-024
+          if-no-files-found: error

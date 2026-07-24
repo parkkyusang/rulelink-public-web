@@ -43,15 +43,30 @@ ${END_MARKER}
 }
 
 export function replacePublicationStatusSection(readme, bundle) {
+  const lineEnding = publicationReadmeLineEnding(readme);
   assert(SECTION_PATTERN.test(readme), 'README에서 현재 공개본 구역을 찾을 수 없습니다.');
-  return readme.replace(SECTION_PATTERN, renderPublicationStatusSection(bundle));
+  const rendered = renderPublicationStatusSection(bundle).replace(/\n/gu, lineEnding);
+  return readme.replace(SECTION_PATTERN, rendered);
 }
 
 export function validatePublicationStatusSection(readme, bundle) {
+  const lineEnding = publicationReadmeLineEnding(readme);
   const match = readme.match(SECTION_PATTERN);
   assert(match, 'README에서 현재 공개본 구역을 찾을 수 없습니다.');
-  assert(match[0] === renderPublicationStatusSection(bundle), 'README의 현재 공개본 정보가 승인 번들과 다릅니다. 동기화 명령을 실행하세요.');
+  const actual = lineEnding === '\r\n' ? match[0].replace(/\r\n/gu, '\n') : match[0];
+  const expected = renderPublicationStatusSection(bundle);
+  assert(actual === expected, 'README의 현재 공개본 정보가 승인 번들과 다릅니다. 동기화 명령을 실행하세요.');
   assert(match[0].includes(START_MARKER) && match[0].includes(END_MARKER), 'README 자동생성 표식이 없습니다.');
+}
+
+function publicationReadmeLineEnding(readme) {
+  const withoutCrlf = readme.replace(/\r\n/gu, '');
+  const hasCrlf = readme.includes('\r\n');
+  const hasLf = withoutCrlf.includes('\n');
+  const hasBareCr = withoutCrlf.includes('\r');
+  assert(!hasBareCr, 'README의 단독 CR 줄바꿈은 지원하지 않습니다.');
+  assert(!(hasCrlf && hasLf), 'README에 LF와 CRLF 줄바꿈이 섞여 있습니다.');
+  return hasCrlf ? '\r\n' : '\n';
 }
 
 export async function main() {

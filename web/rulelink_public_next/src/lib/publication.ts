@@ -3,12 +3,19 @@ import path from 'node:path';
 
 import {buildKnowledgeSearchDocuments, buildKnowledgeSourceDocuments, resolveKnowledgeEntryGraph} from '@/lib/knowledge-search';
 import {buildKnowledgeHubConnections} from '@/lib/knowledge-hub-connections';
-import {buildKnowledgeRelatedPresentation} from '@/lib/knowledge-relations';
+import {buildKnowledgeReadingPath, buildKnowledgeRelatedPresentation} from '@/lib/knowledge-relations';
+import {
+  projectAuthorityReadingUnits,
+  resolveAuthorityReadingForEntry,
+  selectCanonicalAuthorityReadings,
+  selectAuthorityReadingForRoute,
+} from '@/lib/authority-reading';
 import {changeLifecycleOrder} from '@/lib/change-lifecycle';
 import {filterFreshPublications} from '@/lib/publication-freshness';
 
+import type {AuthorityReadingView} from '@/lib/authority-reading';
 import type {KnowledgeHubConnection} from '@/lib/knowledge-hub-connections';
-import type {KnowledgeRelatedSection} from '@/lib/knowledge-relations';
+import type {KnowledgeReadingPathSection, KnowledgeRelatedSection} from '@/lib/knowledge-relations';
 
 import type {
   EditorialOperationsQueue,
@@ -153,6 +160,32 @@ export async function findKnowledgeEntry(slug: string): Promise<PublicKnowledgeE
   return (await listKnowledgeEntries()).find(entry => entry.slug === slug) ?? null;
 }
 
+export async function listAuthorityReadingUnits(): Promise<AuthorityReadingView[]> {
+  const knowledge = (await loadPublishedBundle())?.knowledge;
+  return knowledge
+    ? selectCanonicalAuthorityReadings(projectAuthorityReadingUnits(knowledge))
+    : [];
+}
+
+export async function authorityPublicationAsOf(): Promise<string | null> {
+  const bundle = await loadPublishedBundle();
+  if (!bundle) return null;
+  return bundle.schema === 'rulelink_published_bundle_v1'
+    ? bundle.built_at
+    : bundle.generated_at;
+}
+
+export async function findAuthorityReadingUnit(
+  lawKey: string,
+  articleNo: string,
+): Promise<AuthorityReadingView | null> {
+  return selectAuthorityReadingForRoute(
+    await listAuthorityReadingUnits(),
+    lawKey,
+    articleNo,
+  );
+}
+
 export async function conceptDetail(concept: PublicConceptCard): Promise<{
   sources: PublicKnowledgeSource[];
   rules: PublicRuleCard[];
@@ -230,6 +263,8 @@ export async function connectedKnowledgeHubs(hub: PublicKnowledgeHub, limit = 4)
 }
 
 export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
+  authorityAsOf: string | null;
+  authorityReadingUnits: readonly AuthorityReadingView[];
   concepts: PublicConceptCard[];
   rules: PublicRuleCard[];
   scenarios: PublicScenarioBranch[];
@@ -238,9 +273,23 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
   hubs: PublicKnowledgeHub[];
   related: PublicKnowledgeEntry[];
   relatedSections: KnowledgeRelatedSection[];
+  readingPathSections: KnowledgeReadingPathSection[];
 }> {
-  const knowledge = (await loadPublishedBundle())?.knowledge;
-  if (!knowledge) return {concepts: [], rules: [], scenarios: [], scenarioRules: {}, sources: [], hubs: [], related: [], relatedSections: []};
+  const bundle = await loadPublishedBundle();
+  const knowledge = bundle?.knowledge;
+  if (!knowledge) return {
+    authorityAsOf: null,
+    authorityReadingUnits: [],
+    concepts: [],
+    rules: [],
+    scenarios: [],
+    scenarioRules: {},
+    sources: [],
+    hubs: [],
+    related: [],
+    relatedSections: [],
+    readingPathSections: [],
+  };
   const graph = resolveKnowledgeEntryGraph(knowledge, entry);
   const ruleById = new Map(graph.rules.map(rule => [rule.rule_id, rule]));
   const scenarioRules = Object.fromEntries(
@@ -251,13 +300,24 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
         .filter((rule): rule is PublicRuleCard => Boolean(rule)),
     ]),
   );
-  const entryById = new Map(filterFreshPublications(knowledge.content_entries).map(candidate => [candidate.content_id, candidate]));
+  const visibleEntries = filterFreshPublications(knowledge.content_entries);
+  const visibleConcepts = filterFreshPublications(knowledge.concept_cards ?? []);
   const {related, sections: relatedSections} = buildKnowledgeRelatedPresentation(
     entry,
-    [...entryById.values()],
+    visibleEntries,
+    graph.hubs.flatMap(hub => hub.content_ids),
+  );
+  const readingPathSections = buildKnowledgeReadingPath(
+    entry,
+    visibleEntries,
+    visibleConcepts,
     graph.hubs.flatMap(hub => hub.content_ids),
   );
   return {
+    authorityAsOf: bundle.schema === 'rulelink_published_bundle_v1'
+      ? bundle.built_at
+      : bundle.generated_at,
+    authorityReadingUnits: resolveAuthorityReadingForEntry(knowledge, entry),
     concepts: graph.concepts,
     rules: graph.rules,
     scenarios: graph.scenarios,
@@ -266,6 +326,7 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
     hubs: graph.hubs,
     related,
     relatedSections,
+    readingPathSections,
   };
 }
 

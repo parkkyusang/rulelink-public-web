@@ -10,6 +10,7 @@ const repoRoot = path.resolve(appRoot, '..', '..');
 const topicsDirectory = path.join(repoRoot, 'artifacts', 'publication', 'topics');
 const conceptsDirectory = path.join(repoRoot, 'artifacts', 'publication', 'concepts');
 const manifestPath = path.join(topicsDirectory, 'manifest.json');
+const currentPath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
 const contentTypeContractPath = path.join(appRoot, 'src', 'lib', 'knowledge-content-types.json');
 
 const contentTypeContract = JSON.parse(await readFile(contentTypeContractPath, 'utf8'));
@@ -82,7 +83,7 @@ export function summarizeKnowledgeRelations(entries) {
   };
 }
 
-export function auditPublicationTopicQueue({manifest, topicFiles, conceptGroups = []}) {
+export function auditPublicationTopicQueue({manifest, topicFiles, conceptGroups = [], snapshotId = ''}) {
   const nextManifest = structuredClone(manifest);
   const listedFiles = new Set((nextManifest.topics ?? []).map(item => item.file));
   const queuedFiles = [...topicFiles.keys()]
@@ -102,7 +103,7 @@ export function auditPublicationTopicQueue({manifest, topicFiles, conceptGroups 
     if (!topicFiles.has(descriptor.file)) throw new Error(`주제 파일을 찾을 수 없습니다: ${descriptor.file}`);
     return projectQueuedTopic(topicFiles.get(descriptor.file));
   });
-  const knowledge = assembleKnowledge(nextManifest, projectedTopics, conceptGroups);
+  const knowledge = assembleKnowledge(nextManifest, projectedTopics, conceptGroups, {snapshotId});
   const errors = validateKnowledgeGraph(knowledge);
   const contentTypes = summarizeContentTypes(knowledge.content_entries);
   const relations = summarizeKnowledgeRelations(knowledge.content_entries);
@@ -114,6 +115,7 @@ export function auditPublicationTopicQueue({manifest, topicFiles, conceptGroups 
   }
 
   return {
+    snapshot_id: snapshotId || null,
     queued_files: queuedFiles,
     knowledge,
     content_types: contentTypes,
@@ -132,6 +134,7 @@ export function auditPublicationTopicQueue({manifest, topicFiles, conceptGroups 
 
 export async function loadAndAuditPublicationTopicQueue() {
   const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
+  const current = JSON.parse(await readFile(currentPath, 'utf8'));
   const topicFiles = new Map();
   for (const file of await readdir(topicsDirectory)) {
     if (!/^[a-z0-9-]+\.json$/u.test(file) || file === 'manifest.json') continue;
@@ -142,7 +145,12 @@ export async function loadAndAuditPublicationTopicQueue() {
   const conceptGroups = await Promise.all((manifest.concepts ?? []).map(async descriptor => (
     JSON.parse(await readFile(path.join(conceptsDirectory, descriptor.file), 'utf8'))
   )));
-  return auditPublicationTopicQueue({manifest, topicFiles, conceptGroups});
+  return auditPublicationTopicQueue({
+    manifest,
+    topicFiles,
+    conceptGroups,
+    snapshotId: current.snapshot_id,
+  });
 }
 
 function validateKnowledgeGraph(knowledge) {

@@ -13,23 +13,65 @@
           "term_ko": "상속권자",
           "relation": "exact_synonym",
           "source_coordinate_ids": ["source.inheritance.term"]
+        },
+        {
+          "term_ko": "법정상속인",
+          "relation": "narrower",
+          "target_concept_id": "concept.fixture.legal-heir",
+          "source_coordinate_ids": ["source.inheritance.term"]
+        },
+        {
+          "term_ko": "공동상속인",
+          "relation": "narrower",
+          "target_concept_id": "concept.fixture.co-heir",
+          "source_coordinate_ids": ["source.inheritance.term"]
+        },
+        {
+          "term_ko": "피상속인",
+          "relation": "related",
+          "target_concept_id": "concept.fixture.decedent",
+          "source_coordinate_ids": ["source.inheritance.term"]
         }
       ]
     },
     {
       "concept_id": "concept.fixture.legal-heir",
       "preferred_term_ko": "법정상속인",
-      "aliases_ko": []
+      "aliases_ko": [],
+      "term_relations": [
+        {
+          "term_ko": "상속인",
+          "relation": "broader",
+          "target_concept_id": "concept.fixture.heir",
+          "source_coordinate_ids": ["source.inheritance.term"]
+        }
+      ]
     },
     {
       "concept_id": "concept.fixture.co-heir",
       "preferred_term_ko": "공동상속인",
-      "aliases_ko": []
+      "aliases_ko": [],
+      "term_relations": [
+        {
+          "term_ko": "상속인",
+          "relation": "broader",
+          "target_concept_id": "concept.fixture.heir",
+          "source_coordinate_ids": ["source.inheritance.term"]
+        }
+      ]
     },
     {
       "concept_id": "concept.fixture.decedent",
       "preferred_term_ko": "피상속인",
-      "aliases_ko": []
+      "aliases_ko": [],
+      "term_relations": [
+        {
+          "term_ko": "상속인",
+          "relation": "related",
+          "target_concept_id": "concept.fixture.heir",
+          "source_coordinate_ids": ["source.inheritance.term"]
+        }
+      ]
     }
   ],
   "matcher_cases": [

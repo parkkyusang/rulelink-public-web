@@ -23,6 +23,10 @@ test("첫 비교축 13건은 기존 상세 가이드로 이어진다", () => {
   assert.equal(topic.content_entries.length, 13);
 
   for (const entry of topic.content_entries) {
+    assert.ok(
+      entry.audience_situation_ko.length >= 25,
+      `${entry.content_id}에 구체적인 대상 상황이 필요합니다.`,
+    );
     const externalLinks = entry.related_content_ids.filter(
       (contentId) => !localContentIds.has(contentId),
     );
