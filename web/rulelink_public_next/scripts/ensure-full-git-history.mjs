@@ -3,6 +3,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 const webRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const publicRepositoryUrl = 'https://github.com/parkkyusang/rulelink-public-web.git';
 
 function defaultRunGit(args, options) {
   const repositoryRoot = path.resolve(options.cwd, '..', '..').replaceAll('\\', '/');
@@ -32,7 +33,7 @@ export function ensureFullGitHistory({cwd = webRoot, runGit = defaultRunGit} = {
     return {fetched: false};
   }
 
-  runGit(['fetch', '--unshallow', '--no-tags', 'origin'], {cwd, stdio: 'inherit'});
+  runGit(['fetch', '--unshallow', '--no-tags', publicRepositoryUrl], {cwd, stdio: 'inherit'});
 
   if (repositoryShallowState({cwd, runGit})) {
     throw new Error('Git 전체 이력을 가져온 뒤에도 저장소가 shallow 상태입니다.');
