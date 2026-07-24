@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {execFile} from 'node:child_process';
-import {mkdir, mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
+import {mkdir, mkdtemp, readFile, rm, stat, writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {promisify} from 'node:util';
@@ -117,26 +117,46 @@ assert.ok(
   preRegistrationHistoryCommit,
   '등록 전 registry와 같은 실제 Git 이력 커밋이 필요합니다.',
 );
-const preRegistrationHistoryDirectory = await mkdtemp(
-  path.join(tmpdir(), 'rulelink-pre-registration-history-'),
-);
-const preRegistrationHistoryRepository = path.join(
-  preRegistrationHistoryDirectory,
-  'repository',
-);
-await execFileAsync(
-  'git',
-  ['clone', '--shared', '--no-checkout', repoRoot, preRegistrationHistoryRepository],
-  {cwd: preRegistrationHistoryDirectory, encoding: 'utf8'},
-);
-await execFileAsync(
-  'git',
-  ['checkout', '--detach', preRegistrationHistoryCommit],
-  {cwd: preRegistrationHistoryRepository, encoding: 'utf8'},
-);
-after(async () => {
-  await rm(preRegistrationHistoryDirectory, {recursive: true, force: true});
-});
+async function createPreRegistrationHistoryFixture({
+  failSetupAt,
+  onDirectory = () => {},
+} = {}) {
+  const directory = await mkdtemp(
+    path.join(tmpdir(), 'rulelink-pre-registration-history-'),
+  );
+  onDirectory(directory);
+  const repository = path.join(directory, 'repository');
+  try {
+    if (failSetupAt === 'clone') {
+      throw new Error('injected clone setup failure');
+    }
+    await execFileAsync(
+      'git',
+      ['clone', '--shared', '--no-checkout', repoRoot, repository],
+      {cwd: directory, encoding: 'utf8'},
+    );
+    if (failSetupAt === 'checkout') {
+      throw new Error('injected checkout setup failure');
+    }
+    await execFileAsync(
+      'git',
+      ['checkout', '--detach', preRegistrationHistoryCommit],
+      {cwd: repository, encoding: 'utf8'},
+    );
+    return {
+      directory,
+      repository,
+      cleanup: () => rm(directory, {recursive: true, force: true}),
+    };
+  } catch (error) {
+    await rm(directory, {recursive: true, force: true});
+    throw error;
+  }
+}
+
+const preRegistrationHistory = await createPreRegistrationHistoryFixture();
+after(preRegistrationHistory.cleanup);
+const preRegistrationHistoryRepository = preRegistrationHistory.repository;
 const preRegistrationRunGit = args => execFileAsync(
   'git',
   args,
@@ -160,6 +180,30 @@ const publicationCompletionFields = [
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
+}
+
+async function assertTemporaryDirectoryRemoved(directory) {
+  await assert.rejects(
+    stat(directory),
+    error => error?.code === 'ENOENT',
+  );
+}
+
+for (const setupStep of ['clone', 'checkout']) {
+  test(`${setupStep} 준비 실패도 검증기 임시 Git 저장소를 남기지 않는다`, async () => {
+    let directory = '';
+    await assert.rejects(
+      createPreRegistrationHistoryFixture({
+        failSetupAt: setupStep,
+        onDirectory(value) {
+          directory = value;
+        },
+      }),
+      new RegExp(`injected ${setupStep} setup failure`, 'u'),
+    );
+    assert.ok(directory);
+    await assertTemporaryDirectoryRemoved(directory);
+  });
 }
 
 function refreshSummary(value) {

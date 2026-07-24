@@ -8,6 +8,7 @@ import {
   readFile,
   rename,
   rm,
+  stat,
   writeFile,
 } from 'node:fs/promises';
 import os from 'node:os';
@@ -103,70 +104,98 @@ function valueHash(value) {
   return createHash('sha256').update(value).digest('hex');
 }
 
-async function withTemporaryProductionFiles(callback) {
+async function withTemporaryProductionFiles(callback, options = {}) {
   const directory = await mkdtemp(path.join(os.tmpdir(), 'rulelink-production-work-'));
+  options.onDirectory?.(directory);
   const paths = {
     directory,
     queue: path.join(directory, 'production-queue.json'),
     registry: path.join(directory, 'production-queue-registry.json'),
     bundle: path.join(directory, 'bundle.json'),
   };
-  const [queue, registry] = await Promise.all([
-    readJson(queuePath),
-    readJson(registryPath),
-  ]);
-  const registryCommits = String((await execFileAsync(
-    'git',
-    ['rev-list', 'HEAD'],
-    {cwd: repoRoot, encoding: 'utf8'},
-  )).stdout || '').split(/\r?\n/u).filter(Boolean);
-  let baselineCommit = '';
-  for (const commit of registryCommits) {
-    let candidate;
-    try {
-      candidate = JSON.parse(String((await execFileAsync(
-        'git',
-        ['show', `${commit}:artifacts/publication/production-queue-registry.json`],
-        {cwd: repoRoot, encoding: 'utf8'},
-      )).stdout || ''));
-    } catch {
-      continue;
-    }
-    if (JSON.stringify(candidate) === JSON.stringify(registry)) {
-      baselineCommit = commit;
-      break;
-    }
-  }
-  assert.ok(baselineCommit, '등록 전 registry와 같은 실제 Git 이력 커밋이 필요합니다.');
-  paths.historyRepository = path.join(directory, 'history-repository');
-  await execFileAsync(
-    'git',
-    ['clone', '--shared', '--no-checkout', repoRoot, paths.historyRepository],
-    {cwd: directory, encoding: 'utf8'},
-  );
-  await execFileAsync(
-    'git',
-    ['checkout', '--detach', baselineCommit],
-    {cwd: paths.historyRepository, encoding: 'utf8'},
-  );
-  await Promise.all([
-    writeFile(paths.queue, `${JSON.stringify(queue, null, 2)}\n`, 'utf8'),
-    writeFile(paths.registry, `${JSON.stringify(registry, null, 2)}\n`, 'utf8'),
-    cp(bundlePath, paths.bundle),
-  ]);
   const previousGitDir = process.env.GIT_DIR;
   const previousGitWorkTree = process.env.GIT_WORK_TREE;
-  process.env.GIT_DIR = path.join(paths.historyRepository, '.git');
-  process.env.GIT_WORK_TREE = paths.historyRepository;
+  let gitEnvironmentChanged = false;
   try {
+    const [queue, registry] = await Promise.all([
+      readJson(queuePath),
+      readJson(registryPath),
+    ]);
+    const registryCommits = String((await execFileAsync(
+      'git',
+      ['rev-list', 'HEAD'],
+      {cwd: repoRoot, encoding: 'utf8'},
+    )).stdout || '').split(/\r?\n/u).filter(Boolean);
+    let baselineCommit = '';
+    for (const commit of registryCommits) {
+      let candidate;
+      try {
+        candidate = JSON.parse(String((await execFileAsync(
+          'git',
+          ['show', `${commit}:artifacts/publication/production-queue-registry.json`],
+          {cwd: repoRoot, encoding: 'utf8'},
+        )).stdout || ''));
+      } catch {
+        continue;
+      }
+      if (JSON.stringify(candidate) === JSON.stringify(registry)) {
+        baselineCommit = commit;
+        break;
+      }
+    }
+    assert.ok(baselineCommit, '등록 전 registry와 같은 실제 Git 이력 커밋이 필요합니다.');
+    paths.historyRepository = path.join(directory, 'history-repository');
+    if (options.failSetupAt === 'clone') throw new Error('injected clone setup failure');
+    await execFileAsync(
+      'git',
+      ['clone', '--shared', '--no-checkout', repoRoot, paths.historyRepository],
+      {cwd: directory, encoding: 'utf8'},
+    );
+    if (options.failSetupAt === 'checkout') throw new Error('injected checkout setup failure');
+    await execFileAsync(
+      'git',
+      ['checkout', '--detach', baselineCommit],
+      {cwd: paths.historyRepository, encoding: 'utf8'},
+    );
+    if (options.failSetupAt === 'write') throw new Error('injected write setup failure');
+    await Promise.all([
+      writeFile(paths.queue, `${JSON.stringify(queue, null, 2)}\n`, 'utf8'),
+      writeFile(paths.registry, `${JSON.stringify(registry, null, 2)}\n`, 'utf8'),
+      cp(bundlePath, paths.bundle),
+    ]);
+    process.env.GIT_DIR = path.join(paths.historyRepository, '.git');
+    process.env.GIT_WORK_TREE = paths.historyRepository;
+    gitEnvironmentChanged = true;
     return await callback(paths);
   } finally {
-    if (previousGitDir === undefined) delete process.env.GIT_DIR;
-    else process.env.GIT_DIR = previousGitDir;
-    if (previousGitWorkTree === undefined) delete process.env.GIT_WORK_TREE;
-    else process.env.GIT_WORK_TREE = previousGitWorkTree;
+    if (gitEnvironmentChanged) {
+      if (previousGitDir === undefined) delete process.env.GIT_DIR;
+      else process.env.GIT_DIR = previousGitDir;
+      if (previousGitWorkTree === undefined) delete process.env.GIT_WORK_TREE;
+      else process.env.GIT_WORK_TREE = previousGitWorkTree;
+    }
     await rm(directory, {recursive: true, force: true});
   }
+}
+
+for (const setupPhase of ['clone', 'checkout', 'write']) {
+  test(`${setupPhase} 준비 실패도 임시 Git 저장소를 남기지 않는다`, async () => {
+    let temporaryDirectory = '';
+    await assert.rejects(
+      withTemporaryProductionFiles(
+        async () => assert.fail('준비 실패 뒤 callback을 실행하면 안 됩니다.'),
+        {
+          failSetupAt: setupPhase,
+          onDirectory: directory => {
+            temporaryDirectory = directory;
+          },
+        },
+      ),
+      new RegExp(`injected ${setupPhase} setup failure`, 'u'),
+    );
+    assert.ok(temporaryDirectory);
+    await assert.rejects(stat(temporaryDirectory), error => error?.code === 'ENOENT');
+  });
 }
 
 async function registrationArtifacts(directory) {
