@@ -126,6 +126,11 @@
   padding: 20px;
 }
 
+.category[hidden],
+.links > a[hidden] {
+  display: none;
+}
+
 .category > header {
   border-bottom: 1px solid var(--line);
   margin-bottom: 5px;

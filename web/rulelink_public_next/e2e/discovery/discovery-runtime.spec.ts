@@ -9,6 +9,11 @@ const bundle = JSON.parse(readFileSync(
 ));
 const expectedHubCount = bundle.knowledge.topic_hubs.length;
 const widths = [320, 390, 768, 1440] as const;
+const directoryQueries = [
+  '보이스피싱',
+  '보증금 반환',
+  '직장 내 괴롭힘',
+] as const;
 const goldenQueries = [
   '집주인이 보증금을 안 줘요',
   '직장에서 괴롭힘 당했어요',
@@ -49,18 +54,45 @@ test('홈 상황별 디렉터리는 네 폭에서 7영역·전체 링크·검색
     expect(item.text).toBe(`${year}년 ${month}월 ${day}일 시행`);
   }
 
-  const input = page.getByLabel('상황별 주제 검색');
-  await focusByKeyboard(page, '#knowledge-hub-search');
-  await input.fill('보증금');
-  await expect(page.getByText(/검색 결과 \d+개 · 전체 \d+개/u)).toBeVisible();
-  const visibleLinks = page.locator('a[data-hub-id]:visible');
-  await expect(visibleLinks).not.toHaveCount(0);
-  expect(await visibleLinks.count()).toBeLessThan(expectedHubCount);
-  await page.getByRole('button', {name: '상황별 주제 검색어 지우기'}).focus();
-  await page.keyboard.press('Enter');
-  await expect(page.locator('a[data-hub-id]:visible')).toHaveCount(
-    expectedHubCount,
-  );
+  for (const width of widths) {
+    await page.setViewportSize({width, height: 1000});
+    await page.goto('/', {waitUntil: 'networkidle'});
+    const input = page.getByRole('searchbox', {
+      name: '상황별 주제 검색',
+      exact: true,
+    });
+    await focusByKeyboard(page, '#knowledge-hub-search');
+
+    for (const query of directoryQueries) {
+      await input.fill(query);
+      await assertDirectoryFilterState(page, expectedHubCount);
+      const clear = page.getByRole('button', {
+        name: '상황별 주제 검색어 지우기',
+      });
+      await clear.focus();
+      await page.keyboard.press('Tab');
+      const focusedLink = page.locator('a[data-hub-id]:focus');
+      await expect(focusedLink).toHaveCount(1);
+      await expect(focusedLink).not.toHaveAttribute('hidden', '');
+    }
+
+    await input.fill('결과가 존재하지 않는 임의 검색어');
+    await expect(page.getByText('맞는 주제를 찾지 못했습니다.')).toBeVisible();
+    await expect(page.locator('a[data-hub-id]:visible')).toHaveCount(0);
+    await expect(page.locator('[data-hub-category]:visible')).toHaveCount(0);
+    await assertHiddenDirectoryItemsHaveNoLayout(page);
+
+    const clear = page.getByRole('button', {
+      name: '상황별 주제 검색어 지우기',
+    });
+    await clear.focus();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('a[data-hub-id]:visible')).toHaveCount(
+      expectedHubCount,
+    );
+    await expect(page.locator('a[data-hub-id][hidden]')).toHaveCount(0);
+    await expect(page.locator('[data-hub-category]:visible')).toHaveCount(7);
+  }
 });
 
 test('자바스크립트가 없어도 홈의 28개 주제 링크는 초기 HTML에 남는다', async ({
@@ -214,6 +246,50 @@ async function assertDirectoryTextIsNotTruncated(
         || element.scrollHeight > element.clientHeight + 1
       );
       return clipped ? [element.textContent?.trim() ?? ''] : [];
+    }));
+  expect(violations).toEqual([]);
+}
+
+async function assertDirectoryFilterState(
+  page: import('@playwright/test').Page,
+  totalCount: number,
+) {
+  const resultCount = page.locator('[aria-live="polite"]');
+  await expect(resultCount).toContainText(
+    new RegExp(`검색 결과 \\d+개 · 전체 ${totalCount}개`, 'u'),
+  );
+  const reportedCount = Number(
+    (await resultCount.textContent())?.match(/검색 결과 (\d+)개/u)?.[1],
+  );
+  expect(reportedCount).toBeGreaterThan(0);
+  expect(reportedCount).toBeLessThan(totalCount);
+
+  const visibleLinks = page.locator('a[data-hub-id]:visible');
+  const unhiddenLinks = page.locator('a[data-hub-id]:not([hidden])');
+  await expect(visibleLinks).toHaveCount(reportedCount);
+  await expect(unhiddenLinks).toHaveCount(reportedCount);
+  await assertHiddenDirectoryItemsHaveNoLayout(page);
+}
+
+async function assertHiddenDirectoryItemsHaveNoLayout(
+  page: import('@playwright/test').Page,
+) {
+  const violations = await page
+    .locator('[data-hub-category][hidden], a[data-hub-id][hidden]')
+    .evaluateAll(elements => elements.flatMap(element => {
+      const rect = element.getBoundingClientRect();
+      const style = getComputedStyle(element);
+      return (
+        style.display !== 'none'
+        || rect.width !== 0
+        || rect.height !== 0
+      ) ? [{
+          display: style.display,
+          height: rect.height,
+          id: element.getAttribute('data-hub-category')
+            ?? element.getAttribute('data-hub-id'),
+          width: rect.width,
+        }] : [];
     }));
   expect(violations).toEqual([]);
 }
