@@ -114,6 +114,8 @@ test('운영 023의 상세·허브·법령변화 범위를 정확히 감사하�
   assert.equal(first.data_availability.advertising_rpm, 'not_available_and_not_estimated');
   assert.equal(first.pages.length, 323);
   assert.ok(first.pages.every(page => page.search_console.status === 'not_provided'));
+  assert.equal(first.summary.measured_pages, 0);
+  assert.equal(first.summary.not_provided_pages, 323);
 });
 
 test('정규화·유사도는 문장부호 차이를 제거하고 서로 다른 질문은 구분한다', () => {
@@ -157,7 +159,46 @@ test('Search Console CSV는 따옴표·퍼센트·쉼표 숫자를 읽고 URL별
   assert.equal(first.search_console.clicks, 1200);
   assert.equal(first.search_console.ctr, 0.1);
   assert.equal(report.summary.measured_query_cannibalization, 1);
+  assert.equal(report.summary.measured_pages, 2);
+  assert.equal(report.summary.not_provided_pages, 2);
   assert.equal(report.query_cannibalization.find(item => item.source === 'gsc').pages.length, 2);
+});
+
+test('Search Console 부분 coverage는 실제 URL 매칭 페이지 하나만 measured로 표시한다', () => {
+  const firstEntry = currentBundle.knowledge.content_entries[0];
+  const matchedUrl = `https://rulelink.lolphysical.xyz/ko/knowledge/${firstEntry.slug}`;
+  const report = auditPublicationSearchPerformance(currentBundle, {gscRows: [{
+    query: '부분 coverage 검색',
+    page: matchedUrl,
+    clicks: 0,
+    impressions: 0,
+    ctr: 0,
+    position: 0,
+  }]});
+  assert.equal(report.summary.measured_pages, 1);
+  assert.equal(report.summary.not_provided_pages, 322);
+  assert.equal(report.pages.filter(page => page.search_console.status === 'measured').length, 1);
+  const measured = report.pages.find(page => page.id === firstEntry.content_id);
+  assert.equal(measured.search_console.status, 'measured');
+  assert.equal(measured.search_console.matched_rows, 1);
+  assert.equal(measured.search_console.clicks, 0);
+  assert.equal(measured.search_console.impressions, 0);
+});
+
+test('전부 unmatched인 Search Console 입력은 페이지 실측값을 만들지 않고 unmatched만 남긴다', () => {
+  const report = auditPublicationSearchPerformance(currentBundle, {gscRows: [{
+    query: '없는 주소',
+    page: 'https://rulelink.lolphysical.xyz/not-in-publication',
+    clicks: 10,
+    impressions: 100,
+    ctr: 0.1,
+    position: 2,
+  }]});
+  assert.equal(report.data_availability.search_console, 'provided');
+  assert.equal(report.data_availability.unmatched_search_console_rows, 1);
+  assert.equal(report.summary.measured_pages, 0);
+  assert.equal(report.summary.not_provided_pages, 323);
+  assert.ok(report.pages.every(page => page.search_console.status === 'not_provided'));
 });
 
 test('Search Console API 응답의 query/page 차원 순서가 달라도 URL을 식별한다', () => {
@@ -185,6 +226,7 @@ test('한국어 Markdown은 실행 후보와 데이터 부재·비추정 원칙�
   const markdown = renderSearchPerformanceMarkdown(report, {limit: 2});
   assert.match(markdown, /우선 실행 대상 2개/u);
   assert.match(markdown, /검색콘솔: 입력 없음/u);
+  assert.match(markdown, /검색콘솔 URL 결합: 실측 0개 \/ 미입력 4개/u);
   assert.match(markdown, /검색량: 데이터 없음, 추정하지 않음/u);
   assert.match(markdown, /광고 RPM: 데이터 없음, 추정하지 않음/u);
   assert.match(markdown, /noindex-review.*자동 색인 제외가 아니라/u);

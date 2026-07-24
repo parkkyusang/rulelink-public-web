@@ -334,6 +334,7 @@ function nearestDuplicates(records) {
 function aggregateGscRows(rows, records, baseUrl) {
   const recordByPath = new Map(records.map(record => [record.path, record]));
   const metrics = new Map(records.map(record => [record.id, {
+    matched_rows: 0,
     clicks: 0,
     impressions: 0,
     weighted_position: 0,
@@ -348,6 +349,7 @@ function aggregateGscRows(rows, records, baseUrl) {
       continue;
     }
     const value = metrics.get(record.id);
+    value.matched_rows += 1;
     value.clicks += row.clicks;
     value.impressions += row.impressions;
     value.weighted_position += row.position * Math.max(row.impressions, 1);
@@ -380,7 +382,8 @@ function aggregateGscRows(rows, records, baseUrl) {
       left.query.localeCompare(right.query, 'ko')
     ));
     result.set(record.id, {
-      status: rows.length ? 'measured' : 'not_provided',
+      status: value.matched_rows > 0 ? 'measured' : 'not_provided',
+      matched_rows: value.matched_rows,
       clicks: value.clicks,
       impressions: value.impressions,
       ctr: value.impressions ? round(value.clicks / value.impressions, 4) : null,
@@ -786,6 +789,7 @@ export function auditPublicationSearchPerformance(bundle, options = {}) {
   const declaredCannibalization = declaredIntentCannibalization(records);
   const authorMissing = pages.filter(page => page.trust_metadata.author === 'not_declared').length;
   const reviewerMissing = pages.filter(page => page.trust_metadata.reviewer === 'not_declared').length;
+  const measuredPages = pages.filter(page => page.search_console.status === 'measured').length;
   return {
     schema: 'rulelink_publication_search_performance_audit_v1',
     source: {
@@ -813,6 +817,8 @@ export function auditPublicationSearchPerformance(bundle, options = {}) {
       title_or_slug_search_intent_boilerplate: pages.filter(page => page.exact_reasons.some(item => item.code === 'search_intent_boilerplate')).length,
       declared_query_cannibalization: declaredCannibalization.length,
       measured_query_cannibalization: gscCannibalization.length,
+      measured_pages: measuredPages,
+      not_provided_pages: pages.length - measuredPages,
       author_metadata_not_declared: authorMissing,
       reviewer_metadata_not_declared: reviewerMissing,
     },
@@ -844,6 +850,7 @@ export function renderSearchPerformanceMarkdown(report, options = {}) {
     `- 감사 기준시점: ${report.source.audit_as_of}`,
     `- 범위: 상세 ${report.coverage.knowledge} / 허브 ${report.coverage.hub} / 법령변화 ${report.coverage.change} / 합계 ${report.coverage.total}`,
     `- 검색콘솔: ${report.data_availability.search_console === 'provided' ? `${report.data_availability.search_console_rows}행 결합` : '입력 없음 — 정적 감사만 수행'}`,
+    `- 검색콘솔 URL 결합: 실측 ${report.summary.measured_pages}개 / 미입력 ${report.summary.not_provided_pages}개`,
     '- 검색량: 데이터 없음, 추정하지 않음',
     '- 광고 RPM: 데이터 없음, 추정하지 않음',
     '',
