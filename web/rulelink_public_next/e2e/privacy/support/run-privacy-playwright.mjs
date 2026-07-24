@@ -177,9 +177,9 @@ function enabledEnvironment() {
     RULELINK_PUBLIC_THIRD_PARTY_PROVISION_JSON:
       '{"enabled":false,"statement":"호스팅 요청 로그를 독립된 제3자에게 제공하지 않습니다."}',
     RULELINK_PUBLIC_PROCESSING_OUTSOURCING_JSON:
-      '{"enabled":true,"details":{"processor":"Vercel Inc.","purpose":"사이트 제공과 보안 로그 처리","dataTypes":["IP 주소","요청 시각","요청 URL","사용자 에이전트"],"retention":"30일","safeguards":"계약과 접근통제로 처리 목적 밖 이용을 제한"}}',
+      '{"enabled":true,"details":{"practiceIds":["hosting-request-logs"],"safeguards":"계약과 접근통제로 처리 목적 밖 이용을 제한"}}',
     RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON:
-      '{"enabled":true,"details":{"legalBasis":"서비스 제공 계약 이행에 필요한 처리 근거","recipient":"Vercel Inc.","country":"미국","dataTypes":["IP 주소","요청 시각","요청 URL","사용자 에이전트"],"timingAndMethod":"페이지 요청 시 암호화된 네트워크로 이전","purposeAndRetention":"사이트 제공과 보안 유지, 30일","refusalMethodAndEffect":"사이트 이용을 중단해 이전을 거부할 수 있으나 페이지 제공이 제한됩니다."}}',
+      '{"enabled":true,"details":{"legalBasis":"서비스 제공 계약 이행에 필요한 처리 근거","practiceIds":["hosting-request-logs"],"countries":["미국"],"timingAndMethod":"페이지 요청 시 암호화된 네트워크로 이전","refusalMethodAndEffect":"사이트 이용을 중단해 이전을 거부할 수 있으나 페이지 제공이 제한됩니다."}}',
     RULELINK_PUBLIC_AUTOMATIC_COLLECTION_JSON:
       '{"enabled":false,"statement":"쿠키·광고 식별자·분석 도구를 사용하지 않습니다."}',
     RULELINK_PUBLIC_ANALYTICS_ENABLED: 'false',

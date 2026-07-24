@@ -71,29 +71,21 @@ export type PublicConditionalDisclosure<T> =
   | {details: T; enabled: true};
 
 export type PublicInternationalTransferDetails = {
-  country: string;
-  dataTypes: string[];
+  countries: string[];
   legalBasis: string;
-  purposeAndRetention: string;
-  recipient: string;
+  practiceIds: string[];
   refusalMethodAndEffect: string;
   timingAndMethod: string;
 };
 
 export type PublicOutsourcingDetails = {
-  dataTypes: string[];
-  processor: string;
-  purpose: string;
-  retention: string;
+  practiceIds: string[];
   safeguards: string;
 };
 
 export type PublicThirdPartyProvisionDetails = {
-  dataTypes: string[];
   legalBasis: string;
-  purpose: string;
-  recipient: string;
-  retention: string;
+  practiceIds: string[];
 };
 
 export type PublicPrivacyConfig = {
@@ -212,27 +204,25 @@ export function resolvePublicPrivacyConfig(
     parseConditionalDisclosure<PublicInternationalTransferDetails>(
       environment.RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON!,
       [
-        'country',
-        'dataTypes',
+        'countries',
         'legalBasis',
-        'purposeAndRetention',
-        'recipient',
+        'practiceIds',
         'refusalMethodAndEffect',
         'timingAndMethod',
       ],
-      ['dataTypes'],
+      ['countries', 'practiceIds'],
     ).value!;
   const processingOutsourcing =
     parseConditionalDisclosure<PublicOutsourcingDetails>(
       environment.RULELINK_PUBLIC_PROCESSING_OUTSOURCING_JSON!,
-      ['dataTypes', 'processor', 'purpose', 'retention', 'safeguards'],
-      ['dataTypes'],
+      ['practiceIds', 'safeguards'],
+      ['practiceIds'],
     ).value!;
   const thirdPartyProvision =
     parseConditionalDisclosure<PublicThirdPartyProvisionDetails>(
       environment.RULELINK_PUBLIC_THIRD_PARTY_PROVISION_JSON!,
-      ['dataTypes', 'legalBasis', 'purpose', 'recipient', 'retention'],
-      ['dataTypes'],
+      ['legalBasis', 'practiceIds'],
+      ['practiceIds'],
     ).value!;
   const hostingPractice: PublicDataPractice = {
     activationMode: 'page-request',
@@ -250,11 +240,14 @@ export function resolvePublicPrivacyConfig(
         processingOutsourcing,
         internationalTransfer,
       ),
-      internationalTransfer: internationalTransfer.enabled,
+      internationalTransfer:
+        referencesPractice(internationalTransfer, 'hosting-request-logs'),
       processingRegions,
-      processingOutsourcing: processingOutsourcing.enabled,
+      processingOutsourcing:
+        referencesPractice(processingOutsourcing, 'hosting-request-logs'),
       serverTransmission: true,
-      thirdPartyProvision: thirdPartyProvision.enabled,
+      thirdPartyProvision:
+        referencesPractice(thirdPartyProvision, 'hosting-request-logs'),
     },
   };
   return {
@@ -366,20 +359,20 @@ export function validatePublicPrivacyConfiguration(
     [
       'RULELINK_PUBLIC_THIRD_PARTY_PROVISION_JSON',
       environment.RULELINK_PUBLIC_THIRD_PARTY_PROVISION_JSON,
-      ['dataTypes', 'legalBasis', 'purpose', 'recipient', 'retention'],
-      ['dataTypes'],
+      ['legalBasis', 'practiceIds'],
+      ['practiceIds'],
     ],
     [
       'RULELINK_PUBLIC_PROCESSING_OUTSOURCING_JSON',
       environment.RULELINK_PUBLIC_PROCESSING_OUTSOURCING_JSON,
-      ['dataTypes', 'processor', 'purpose', 'retention', 'safeguards'],
-      ['dataTypes'],
+      ['practiceIds', 'safeguards'],
+      ['practiceIds'],
     ],
     [
       'RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON',
       environment.RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON,
-      ['country', 'dataTypes', 'legalBasis', 'purposeAndRetention', 'recipient', 'refusalMethodAndEffect', 'timingAndMethod'],
-      ['dataTypes'],
+      ['countries', 'legalBasis', 'practiceIds', 'refusalMethodAndEffect', 'timingAndMethod'],
+      ['countries', 'practiceIds'],
     ],
     [
       'RULELINK_PUBLIC_AUTOMATIC_COLLECTION_JSON',
@@ -391,6 +384,7 @@ export function validatePublicPrivacyConfiguration(
     const parsed = parseConditionalDisclosure(raw, keys, arrayKeys);
     if (parsed.error) errors.push(`${field}: ${parsed.error}`);
   }
+  errors.push(...validateDisclosureReferences(environment));
   return errors;
 }
 
@@ -466,8 +460,10 @@ function parseConditionalDisclosure<T>(
         !Array.isArray(details[key])
         || (details[key] as unknown[]).length === 0
         || (details[key] as unknown[]).some(item => identityValueError(item))
+        || new Set(details[key] as unknown[]).size
+          !== (details[key] as unknown[]).length
       ) {
-        return {error: `${key}는 실제 문자열 1개 이상의 배열이어야 합니다.`, value: null};
+        return {error: `${key}는 중복 없는 실제 문자열 1개 이상의 배열이어야 합니다.`, value: null};
       }
     } else if (identityValueError(details[key])) {
       return {error: `${key}에는 실제 운영 사실이 필요합니다.`, value: null};
@@ -502,6 +498,71 @@ function transferDescription(
   return labels.length
     ? `${labels.join(' · ')} 사실은 아래 법정 구획에서 각각 공개`
     : '제3자 제공·처리위탁·국외이전 없음';
+}
+
+function referencesPractice<T extends {practiceIds: string[]}>(
+  disclosure: PublicConditionalDisclosure<T>,
+  practiceId: string,
+) {
+  return disclosure.enabled && disclosure.details.practiceIds.includes(practiceId);
+}
+
+function validateDisclosureReferences(
+  environment: PublicPrivacyEnvironment,
+): string[] {
+  const errors: string[] = [];
+  const disclosures = [
+    [
+      'RULELINK_PUBLIC_THIRD_PARTY_PROVISION_JSON',
+      parseConditionalDisclosure<PublicThirdPartyProvisionDetails>(
+        environment.RULELINK_PUBLIC_THIRD_PARTY_PROVISION_JSON,
+        ['legalBasis', 'practiceIds'],
+        ['practiceIds'],
+      ).value,
+    ],
+    [
+      'RULELINK_PUBLIC_PROCESSING_OUTSOURCING_JSON',
+      parseConditionalDisclosure<PublicOutsourcingDetails>(
+        environment.RULELINK_PUBLIC_PROCESSING_OUTSOURCING_JSON,
+        ['practiceIds', 'safeguards'],
+        ['practiceIds'],
+      ).value,
+    ],
+    [
+      'RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON',
+      parseConditionalDisclosure<PublicInternationalTransferDetails>(
+        environment.RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON,
+        ['countries', 'legalBasis', 'practiceIds', 'refusalMethodAndEffect', 'timingAndMethod'],
+        ['countries', 'practiceIds'],
+      ).value,
+    ],
+  ] as const;
+  const activePracticeIds = new Set(['hosting-request-logs', 'device-checklist']);
+  for (const [field, disclosure] of disclosures) {
+    if (!disclosure?.enabled) continue;
+    for (const practiceId of disclosure.details.practiceIds) {
+      if (!activePracticeIds.has(practiceId)) {
+        errors.push(`${field}: 알 수 없는 활성 처리 항목 참조입니다: ${practiceId}`);
+      }
+      if (practiceId === 'device-checklist') {
+        errors.push(`${field}: 기기 안에서만 저장되는 체크리스트는 외부 처리 구획을 참조할 수 없습니다.`);
+      }
+    }
+  }
+  const international = disclosures[2][1];
+  if (international?.enabled) {
+    const processingRegions = parseStringArray(
+      environment.RULELINK_PUBLIC_HOSTING_PROCESSING_REGIONS_JSON,
+    ).value;
+    for (const country of international.details.countries) {
+      if (!processingRegions.includes(country)) {
+        errors.push(
+          `RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON: 이전 국가가 참조 처리 항목의 처리지역에 없습니다: ${country}`,
+        );
+      }
+    }
+  }
+  return errors;
 }
 
 function validateBoolean(

@@ -4,6 +4,7 @@ import {notFound} from 'next/navigation';
 import {
   resolvePublicPrivacyConfig,
   type PublicConditionalDisclosure,
+  type PublicDataPractice,
 } from '@/lib/public-data-practices';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
@@ -160,9 +161,9 @@ export default function PublicPrivacyPage() {
           <LegalCard title="안전성 확보조치">
             <p>{config.safeguards.join(' · ')}</p>
           </LegalCard>
-          <DisclosureCard disclosure={config.thirdPartyProvision} title="제3자 제공" />
-          <DisclosureCard disclosure={config.processingOutsourcing} title="처리위탁" />
-          <DisclosureCard disclosure={config.internationalTransfer} title="국외이전" />
+          <DisclosureCard disclosure={config.thirdPartyProvision} practices={config.inventory} title="제3자 제공" />
+          <DisclosureCard disclosure={config.processingOutsourcing} practices={config.inventory} title="처리위탁" />
+          <DisclosureCard disclosure={config.internationalTransfer} practices={config.inventory} title="국외이전" />
           <DisclosureCard disclosure={config.automaticCollection} title="자동 수집 장치" />
         </div>
       </section>
@@ -236,9 +237,11 @@ function LegalCard({
 
 function DisclosureCard<T extends object>({
   disclosure,
+  practices = [],
   title,
 }: {
   disclosure: PublicConditionalDisclosure<T>;
+  practices?: PublicDataPractice[];
   title: string;
 }) {
   return (
@@ -249,9 +252,18 @@ function DisclosureCard<T extends object>({
       </header>
       {disclosure.enabled ? (
         <dl>
+          {referencedPractices(disclosure.details, practices).map(practice => (
+            <div className={styles.wide} key={practice.id}>
+              <dt>참조 처리 항목</dt>
+              <dd>
+                {practice.provider} · {practice.purpose} · {practice.dataTypes.join(' · ')}
+                {' · '}{practice.retention}
+              </dd>
+            </div>
+          ))}
           {Object.entries(
             disclosure.details as Record<string, string | string[]>,
-          ).map(([key, value]) => (
+          ).filter(([key]) => key !== 'practiceIds').map(([key, value]) => (
             <div key={key}>
               <dt>{disclosureFieldLabel(key)}</dt>
               <dd>{Array.isArray(value) ? value.join(' · ') : value}</dd>
@@ -263,10 +275,19 @@ function DisclosureCard<T extends object>({
   );
 }
 
+function referencedPractices(
+  details: object,
+  practices: PublicDataPractice[],
+) {
+  const practiceIds = (details as {practiceIds?: string[]}).practiceIds ?? [];
+  return practiceIds.map(
+    id => practices.find(practice => practice.id === id)!,
+  );
+}
+
 function disclosureFieldLabel(key: string) {
   return {
-    country: '이전 국가',
-    dataTypes: '처리 항목',
+    countries: '이전 국가',
     description: '설명',
     legalBasis: '법적 근거',
     processor: '수탁자',

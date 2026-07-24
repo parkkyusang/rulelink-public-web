@@ -71,10 +71,7 @@ export const completePrivacyEnvironment = {
   RULELINK_PUBLIC_PROCESSING_OUTSOURCING_JSON: JSON.stringify({
     enabled: true,
     details: {
-      processor: 'Vercel Inc.',
-      purpose: '사이트 제공과 보안 로그 처리',
-      dataTypes: ['IP 주소', '요청 시각', '요청 URL', '사용자 에이전트'],
-      retention: '30일',
+      practiceIds: ['hosting-request-logs'],
       safeguards: '계약과 접근통제로 처리 목적 밖 이용을 제한',
     },
   }),
@@ -82,11 +79,9 @@ export const completePrivacyEnvironment = {
     enabled: true,
     details: {
       legalBasis: '정보주체 동의가 아닌 서비스 제공 계약 이행에 필요한 처리 근거',
-      recipient: 'Vercel Inc.',
-      country: '미국',
-      dataTypes: ['IP 주소', '요청 시각', '요청 URL', '사용자 에이전트'],
+      practiceIds: ['hosting-request-logs'],
+      countries: ['미국'],
       timingAndMethod: '페이지 요청 시 암호화된 네트워크로 이전',
-      purposeAndRetention: '사이트 제공과 보안 유지, 30일',
       refusalMethodAndEffect: '사이트 이용을 중단해 이전을 거부할 수 있으나 페이지 제공이 제한됩니다.',
     },
   }),
@@ -221,9 +216,32 @@ test('privacy 필수 사실·자리표시자·잘못된 날짜는 fail-closed다
     ...completePrivacyEnvironment,
     RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON: JSON.stringify({
       enabled: true,
-      details: {recipient: 'Vercel Inc.'},
+      details: {practiceIds: ['hosting-request-logs']},
     }),
   }).some(error => error.includes('INTERNATIONAL_TRANSFER')));
+  assert.ok(validatePublicPrivacyConfiguration({
+    ...completePrivacyEnvironment,
+    RULELINK_PUBLIC_PROCESSING_OUTSOURCING_JSON: JSON.stringify({
+      enabled: true,
+      details: {
+        practiceIds: ['unregistered-biometric-store'],
+        safeguards: '접근 통제',
+      },
+    }),
+  }).some(error => error.includes('알 수 없는 활성 처리 항목')));
+  assert.ok(validatePublicPrivacyConfiguration({
+    ...completePrivacyEnvironment,
+    RULELINK_PUBLIC_INTERNATIONAL_TRANSFER_JSON: JSON.stringify({
+      enabled: true,
+      details: {
+        legalBasis: '서비스 제공 계약',
+        practiceIds: ['hosting-request-logs'],
+        countries: ['독일'],
+        timingAndMethod: '요청 시 전송',
+        refusalMethodAndEffect: '이용 중단 시 전송되지 않음',
+      },
+    }),
+  }).some(error => error.includes('처리지역에 없습니다')));
 });
 
 test('공용 연락처 파서는 mailto query를 링크에만 보존하고 주소와 분리한다', () => {
