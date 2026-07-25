@@ -434,12 +434,22 @@ const SUPPORTED_SCHEMA_KEYWORDS = new Set([
 
 function validateSupportedSchemaKeywords(rootSchema) {
   const unsupported = [];
-  const visit = (schema, location) => {
+  const invalid = [];
+  const schemaTypes = new Set(['object', 'array', 'string', 'integer']);
+  const isPlainObject = value =>
+    value !== null && typeof value === 'object' && !Array.isArray(value);
+  const requireStringArray = (value, location, unique = false) => {
     if (
-      schema === null ||
-      typeof schema !== 'object' ||
-      Array.isArray(schema)
+      !Array.isArray(value) ||
+      value.some(item => typeof item !== 'string') ||
+      (unique && new Set(value).size !== value.length)
     ) {
+      invalid.push(location);
+    }
+  };
+  const visit = (schema, location) => {
+    if (!isPlainObject(schema)) {
+      invalid.push(`${location}:schema_object`);
       return;
     }
     for (const [keyword, child] of Object.entries(schema)) {
@@ -447,7 +457,54 @@ function validateSupportedSchemaKeywords(rootSchema) {
         unsupported.push(`${location}:${keyword}`);
         continue;
       }
+      if (
+        ['$schema', '$id', 'title', 'description', 'pattern'].includes(
+          keyword,
+        ) &&
+        typeof child !== 'string'
+      ) {
+        invalid.push(`${location}.${keyword}:string`);
+      } else if (keyword === 'pattern') {
+        try {
+          new RegExp(child, 'u');
+        } catch {
+          invalid.push(`${location}.pattern:valid_regular_expression`);
+        }
+      } else if (
+        keyword === '$ref' &&
+        (typeof child !== 'string' || !child.startsWith('#/'))
+      ) {
+        invalid.push(`${location}.$ref:local_reference`);
+      } else if (keyword === 'type' && !schemaTypes.has(child)) {
+        invalid.push(`${location}.type:unsupported_value`);
+      } else if (keyword === 'enum' && !Array.isArray(child)) {
+        invalid.push(`${location}.enum:array`);
+      } else if (keyword === 'required') {
+        requireStringArray(child, `${location}.required:string_array`, true);
+      } else if (
+        keyword === 'additionalProperties' &&
+        typeof child !== 'boolean' &&
+        !isPlainObject(child)
+      ) {
+        invalid.push(`${location}.additionalProperties:boolean_or_schema`);
+      } else if (
+        ['minItems', 'minLength'].includes(keyword) &&
+        (!Number.isInteger(child) || child < 0)
+      ) {
+        invalid.push(`${location}.${keyword}:nonnegative_integer`);
+      } else if (
+        keyword === 'uniqueItems' &&
+        typeof child !== 'boolean'
+      ) {
+        invalid.push(`${location}.uniqueItems:boolean`);
+      } else if (keyword === 'minimum' && typeof child !== 'number') {
+        invalid.push(`${location}.minimum:number`);
+      }
       if (keyword === 'properties' || keyword === '$defs') {
+        if (!isPlainObject(child)) {
+          invalid.push(`${location}.${keyword}:object`);
+          continue;
+        }
         for (const [name, nestedSchema] of Object.entries(child ?? {})) {
           visit(nestedSchema, `${location}.${keyword}.${name}`);
         }
@@ -465,6 +522,11 @@ function validateSupportedSchemaKeywords(rootSchema) {
   if (unsupported.length > 0) {
     throw new Error(
       `publication expansion backlog schema uses unsupported keywords:\n${unsupported.join('\n')}`,
+    );
+  }
+  if (invalid.length > 0) {
+    throw new Error(
+      `publication expansion backlog schema has unsupported keyword values:\n${invalid.join('\n')}`,
     );
   }
 }

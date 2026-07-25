@@ -227,3 +227,26 @@ test('부분 스키마 검증기가 지원하지 않는 키워드는 조용히 �
     await rm(tempDirectory, { recursive: true, force: true });
   }
 });
+
+test('지원 키워드도 구현하지 않는 값이나 형태로 바뀌면 실패 폐쇄한다', async () => {
+  const tempDirectory = await mkdtemp(
+    path.join(os.tmpdir(), 'rulelink-expansion-schema-value-'),
+  );
+  try {
+    const schema = JSON.parse(
+      await readFile(DEFAULT_EXPANSION_BACKLOG_SCHEMA_PATH, 'utf8'),
+    );
+    schema.$defs.entry.properties.hub_ids.type = 'number';
+    const schemaPath = path.join(tempDirectory, 'schema.json');
+    await writeFile(schemaPath, `${JSON.stringify(schema, null, 2)}\n`);
+
+    await assert.rejects(
+      buildPublicationExpansionBacklog({
+        expansionBacklogSchemaPath: schemaPath,
+      }),
+      /unsupported keyword values:[\s\S]*type:unsupported_value/,
+    );
+  } finally {
+    await rm(tempDirectory, { recursive: true, force: true });
+  }
+});
