@@ -11,10 +11,12 @@ import {LegalConceptLayer, LegalConceptText} from '@/components/legal-concept-te
 import {OfficialSourceJump} from '@/components/official-source-jump';
 import {PublicAdvertisingPlaceholder} from '@/components/public-advertising-placeholder';
 import {ScenarioRuleLinks} from '@/components/scenario-rule-links';
+import {VerifiedLegalAnswerCard} from '@/components/verified-legal-answer-card';
 import {changeLifecycleLabel} from '@/lib/change-lifecycle';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {formatKoreanLegalDate} from '@/lib/legal-date';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
+import {loadPublicLegalAnswerForContent} from '@/lib/public-legal-answer-loader';
 import {
   findKnowledgeEntry,
   knowledgeDetail,
@@ -74,6 +76,7 @@ export default async function KnowledgePage({params}: Props) {
     hubs,
     readingPathSections,
   } = await knowledgeDetail(entry);
+  const verifiedAnswer = await loadPublicLegalAnswerForContent(entry.content_id);
   const relatedChangeBriefs = await relatedChangeBriefsForKnowledgeEntry(entry);
   const trustConfig = resolvePublicTrustConfig();
   const editorialAttribution = resolveApprovedEditorialAttribution(
@@ -146,6 +149,13 @@ export default async function KnowledgePage({params}: Props) {
             <span>이 글이 속한 주제</span>
             {hubs.map(hub => <a href={`/ko/hubs/${hub.slug}`} key={hub.hub_id}>{hub.title_ko} →</a>)}
           </nav>
+        ) : null}
+        {verifiedAnswer ? (
+          <VerifiedLegalAnswerCard
+            answer={verifiedAnswer}
+            hasAuthorityReading={Boolean(authorityReadingUnits.length)}
+            hasScenarios={Boolean(scenarios.length)}
+          />
         ) : null}
       </header>
 
