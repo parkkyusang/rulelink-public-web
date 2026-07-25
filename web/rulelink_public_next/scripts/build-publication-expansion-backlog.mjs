@@ -438,6 +438,17 @@ function validateSupportedSchemaKeywords(rootSchema) {
   const schemaTypes = new Set(['object', 'array', 'string', 'integer']);
   const isPlainObject = value =>
     value !== null && typeof value === 'object' && !Array.isArray(value);
+  const keywordTypes = new Map([
+    ['required', 'object'],
+    ['properties', 'object'],
+    ['additionalProperties', 'object'],
+    ['items', 'array'],
+    ['minItems', 'array'],
+    ['uniqueItems', 'array'],
+    ['minLength', 'string'],
+    ['pattern', 'string'],
+    ['minimum', 'integer'],
+  ]);
   const requireStringArray = (value, location, unique = false) => {
     if (
       !Array.isArray(value) ||
@@ -452,10 +463,19 @@ function validateSupportedSchemaKeywords(rootSchema) {
       invalid.push(`${location}:schema_object`);
       return;
     }
+    if ('$ref' in schema && Object.keys(schema).length !== 1) {
+      invalid.push(`${location}.$ref:sibling_keywords_unsupported`);
+    }
     for (const [keyword, child] of Object.entries(schema)) {
       if (!SUPPORTED_SCHEMA_KEYWORDS.has(keyword)) {
         unsupported.push(`${location}:${keyword}`);
         continue;
+      }
+      const requiredType = keywordTypes.get(keyword);
+      if (requiredType && schema.type !== requiredType) {
+        invalid.push(
+          `${location}.${keyword}:requires_type_${requiredType}`,
+        );
       }
       if (
         ['$schema', '$id', 'title', 'description', 'pattern'].includes(

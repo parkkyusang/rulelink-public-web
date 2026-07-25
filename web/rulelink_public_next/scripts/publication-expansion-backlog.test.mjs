@@ -250,3 +250,49 @@ test('지원 키워드도 구현하지 않는 값이나 형태로 바뀌면 실�
     await rm(tempDirectory, { recursive: true, force: true });
   }
 });
+
+test('$ref와 형제 제약을 함께 쓰는 미지원 조합은 실패 폐쇄한다', async () => {
+  const tempDirectory = await mkdtemp(
+    path.join(os.tmpdir(), 'rulelink-expansion-schema-ref-sibling-'),
+  );
+  try {
+    const schema = JSON.parse(
+      await readFile(DEFAULT_EXPANSION_BACKLOG_SCHEMA_PATH, 'utf8'),
+    );
+    schema.properties.base_bundle_sha256.minLength = 65;
+    const schemaPath = path.join(tempDirectory, 'schema.json');
+    await writeFile(schemaPath, `${JSON.stringify(schema, null, 2)}\n`);
+
+    await assert.rejects(
+      buildPublicationExpansionBacklog({
+        expansionBacklogSchemaPath: schemaPath,
+      }),
+      /sibling_keywords_unsupported/,
+    );
+  } finally {
+    await rm(tempDirectory, { recursive: true, force: true });
+  }
+});
+
+test('지원 키워드라도 다른 type에 붙어 무시되는 조합은 실패 폐쇄한다', async () => {
+  const tempDirectory = await mkdtemp(
+    path.join(os.tmpdir(), 'rulelink-expansion-schema-keyword-type-'),
+  );
+  try {
+    const schema = JSON.parse(
+      await readFile(DEFAULT_EXPANSION_BACKLOG_SCHEMA_PATH, 'utf8'),
+    );
+    schema.$defs.entry.properties.hub_ids.type = 'string';
+    const schemaPath = path.join(tempDirectory, 'schema.json');
+    await writeFile(schemaPath, `${JSON.stringify(schema, null, 2)}\n`);
+
+    await assert.rejects(
+      buildPublicationExpansionBacklog({
+        expansionBacklogSchemaPath: schemaPath,
+      }),
+      /minItems:requires_type_array/,
+    );
+  } finally {
+    await rm(tempDirectory, { recursive: true, force: true });
+  }
+});
