@@ -21,6 +21,7 @@ import {
   DEFAULT_LEGAL_DOMAIN_TAXONOMY_PATH,
   buildPublicationCoverageExpansionPlan,
   legalAnswerActivationForTopic,
+  publicationCoveragePlannerOptions,
   resolveNewDomainSeedAssignment,
   validatePublicationCoverageExpansionPlan,
 } from './build-publication-coverage-expansion-plan.mjs';
@@ -977,4 +978,44 @@ test('inactive 상태에서도 legal-answer vendored 계약 오류를 계획에�
   } finally {
     await rm(temporary, { recursive: true, force: true });
   }
+});
+
+test('coverage 계획과 legal-answer 게이트는 같은 정본 bundle 경로를 공유한다', () => {
+  assert.equal(
+    publicationCoveragePlannerOptions({}).bundlePath,
+    DEFAULT_PUBLICATION_BUNDLE_PATH,
+  );
+  assert.equal(
+    publicationCoveragePlannerOptions({}).productionQueueBundlePath,
+    DEFAULT_PUBLICATION_BUNDLE_PATH,
+  );
+  const explicitBundlePath = path.join(
+    os.tmpdir(),
+    'rulelink-explicit-publication-bundle.json',
+  );
+  assert.deepEqual(
+    publicationCoveragePlannerOptions({
+      bundlePath: explicitBundlePath,
+      marker: 'preserved',
+    }),
+    {
+      bundlePath: explicitBundlePath,
+      marker: 'preserved',
+      productionQueueBundlePath: explicitBundlePath,
+    },
+  );
+  const explicitQueueBundlePath = path.join(
+    os.tmpdir(),
+    'rulelink-explicit-queue-bundle.json',
+  );
+  assert.deepEqual(
+    publicationCoveragePlannerOptions({
+      bundlePath: explicitBundlePath,
+      productionQueueBundlePath: explicitQueueBundlePath,
+    }),
+    {
+      bundlePath: explicitBundlePath,
+      productionQueueBundlePath: explicitQueueBundlePath,
+    },
+  );
 });

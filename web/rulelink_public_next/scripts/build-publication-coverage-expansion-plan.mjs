@@ -20,6 +20,7 @@ import {
 import {
   canonicalJson,
   canonicalSha256,
+  DEFAULT_PUBLICATION_BUNDLE_PATH,
   loadCoverageDocuments,
   validateCoverageDocuments,
 } from './publication-coverage-core.mjs';
@@ -784,6 +785,8 @@ function validatePlanSemantics(plan, backlog) {
 }
 
 export async function buildPublicationCoverageExpansionPlan(options = {}) {
+  const sharedBundleOptions =
+    publicationCoveragePlannerOptions(options);
   const [
     documents,
     backlog,
@@ -794,8 +797,8 @@ export async function buildPublicationCoverageExpansionPlan(options = {}) {
     legalAnswerActivation,
     legalAnswerValidation,
   ] = await Promise.all([
-    loadCoverageDocuments(options),
-    buildPublicationExpansionBacklog(options),
+    loadCoverageDocuments(sharedBundleOptions),
+    buildPublicationExpansionBacklog(sharedBundleOptions),
     readFile(
       options.legalDomainTaxonomyPath ?? DEFAULT_LEGAL_DOMAIN_TAXONOMY_PATH,
       'utf8',
@@ -810,8 +813,8 @@ export async function buildPublicationCoverageExpansionPlan(options = {}) {
       'utf8',
     ).then(JSON.parse),
     readdir(SCRIPT_DIR).then((files) => new Set(files)),
-    loadLegalAnswerActivation(options),
-    validateLegalAnswerPacketFiles(options),
+    loadLegalAnswerActivation(sharedBundleOptions),
+    validateLegalAnswerPacketFiles(sharedBundleOptions),
   ]);
   assertNoDuplicateActiveTopicAssignments(documents.productionQueue);
   if (legalAnswerValidation.errors.length > 0) {
@@ -1356,6 +1359,17 @@ export async function buildPublicationCoverageExpansionPlan(options = {}) {
   validateJsonSchema(schema, plan);
   validatePlanSemantics(plan, backlog);
   return plan;
+}
+
+export function publicationCoveragePlannerOptions(options = {}) {
+  const bundlePath =
+    options.bundlePath ?? DEFAULT_PUBLICATION_BUNDLE_PATH;
+  return {
+    ...options,
+    bundlePath,
+    productionQueueBundlePath:
+      options.productionQueueBundlePath ?? bundlePath,
+  };
 }
 
 export async function validatePublicationCoverageExpansionPlan(options = {}) {
