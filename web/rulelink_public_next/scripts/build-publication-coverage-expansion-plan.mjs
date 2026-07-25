@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -22,6 +23,10 @@ import {
   loadCoverageDocuments,
   validateCoverageDocuments,
 } from './publication-coverage-core.mjs';
+import {
+  loadQueuePublicationEvidence,
+  validateProductionQueue,
+} from './validate-publication-production-queue.mjs';
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WEB_ROOT = path.resolve(SCRIPT_DIR, '..');
@@ -79,6 +84,8 @@ const STRUCTURAL_TARGET_GAPS = new Set([
   'search_intent_missing',
   'typed_relation_missing',
 ]);
+const TARGET_DOMAIN_ID_PATTERN =
+  /^target\.[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 const FORBIDDEN_PATHS = Object.freeze([
   'README.md',
   'artifacts/publication/current/**',
@@ -179,7 +186,12 @@ function validateTaxonomy(taxonomy, bundle, topicManifest) {
   const targetIds = horizon.map((domain) => domain.target_domain_id);
   if (
     horizon.length === 0 ||
-    new Set(targetIds).size !== targetIds.length
+    new Set(targetIds).size !== targetIds.length ||
+    targetIds.some(
+      targetId =>
+        typeof targetId !== 'string' ||
+        !TARGET_DOMAIN_ID_PATTERN.test(targetId),
+    )
   ) {
     throw new Error('target domain horizon identity invalid');
   }
@@ -361,6 +373,7 @@ function workAssignment({
   registry,
   selfTest,
   snapshotId,
+  proposedWorkId,
 }) {
   const active = activeQueueItems(queue).filter(
     (item) => item.topic_id === topic.topic_id,
@@ -370,7 +383,9 @@ function workAssignment({
   }
   if (active.length === 0) {
     return {
-      work_id: `coverage-expansion-${topic.topic_id.replace(/^hub\./u, '')}-${snapshotId}`,
+      work_id:
+        proposedWorkId ??
+        `coverage-expansion-${topic.topic_id.replace(/^hub\./u, '')}-${snapshotId}`,
       assignment_state: 'proposed_unregistered',
       start_allowed: false,
       blocking_reasons: ['production_queue_registration_required'],
@@ -439,6 +454,202 @@ function workAssignment({
         .filter((gate) => gate.status === 'satisfied')
         .map((gate) => `${item.work_id}:${gate.gate_id}`),
     ),
+  };
+}
+
+function sha256Bytes(value) {
+  return createHash('sha256').update(value).digest('hex');
+}
+
+function exactObjectKeys(value, keys) {
+  return (
+    value &&
+    typeof value === 'object' &&
+    !Array.isArray(value) &&
+    Object.keys(value).length === keys.length &&
+    keys.every((key) => Object.hasOwn(value, key))
+  );
+}
+
+async function loadNewDomainSourceSelection({
+  item,
+  registry,
+  topicId,
+  repositoryRoot,
+  builtAt,
+}) {
+  const selection = item?.source_locator_selection;
+  if (selection === undefined) {
+    return {
+      state: 'selection_required',
+      locators: [],
+      blockers: ['source_locator_selection_required'],
+    };
+  }
+  if (
+    !exactObjectKeys(selection, [
+      'gate_id',
+      'artifact_path',
+      'artifact_sha256',
+    ]) ||
+    selection.gate_id !== 'source-maintenance.source-locators-selected' ||
+    typeof selection.artifact_path !== 'string' ||
+    !/^artifacts\/publication\/coverage\/source-locator-selections\/[a-z0-9][a-z0-9._-]*\.json$/u.test(
+      selection.artifact_path,
+    ) ||
+    !/^[a-f0-9]{64}$/u.test(selection.artifact_sha256 ?? '')
+  ) {
+    throw new Error(`new domain source selection shape invalid:${topicId}`);
+  }
+  const selectionRoot = `${path.resolve(
+    repositoryRoot,
+    'artifacts',
+    'publication',
+    'coverage',
+    'source-locator-selections',
+  )}${path.sep}`;
+  const artifactPath = path.resolve(repositoryRoot, selection.artifact_path);
+  if (!artifactPath.startsWith(selectionRoot)) {
+    throw new Error(`new domain source selection path escaped:${topicId}`);
+  }
+  const artifactRaw = await readFile(artifactPath);
+  if (sha256Bytes(artifactRaw) !== selection.artifact_sha256) {
+    throw new Error(`new domain source selection hash mismatch:${topicId}`);
+  }
+  let artifact;
+  try {
+    artifact = JSON.parse(artifactRaw.toString('utf8'));
+  } catch {
+    throw new Error(`new domain source selection JSON invalid:${topicId}`);
+  }
+  if (
+    !exactObjectKeys(artifact, [
+      'schema',
+      'work_id',
+      'topic_id',
+      'locators',
+    ]) ||
+    artifact.schema !== 'rulelink_source_locator_selection_v1' ||
+    artifact.work_id !== item.work_id ||
+    artifact.topic_id !== topicId ||
+    !Array.isArray(artifact.locators) ||
+    artifact.locators.length === 0
+  ) {
+    throw new Error(`new domain source selection artifact invalid:${topicId}`);
+  }
+  const locatorKeys = [
+    'coordinate_id',
+    'source_id',
+    'source_snapshot_id',
+    'law_name_ko',
+    'article_no',
+    'official_url',
+    'last_verified_at',
+  ];
+  const coordinateIds = [];
+  for (const locator of artifact.locators) {
+    const verifiedAt = Date.parse(locator?.last_verified_at ?? '');
+    if (
+      !exactObjectKeys(locator, locatorKeys) ||
+      !locatorKeys.every(
+        (key) => typeof locator[key] === 'string' && locator[key].length > 0,
+      ) ||
+      !/^https:\/\//u.test(locator.official_url) ||
+      !Number.isFinite(verifiedAt) ||
+      verifiedAt > Date.parse(builtAt)
+    ) {
+      throw new Error(`new domain source locator invalid:${topicId}`);
+    }
+    coordinateIds.push(locator.coordinate_id);
+  }
+  if (new Set(coordinateIds).size !== coordinateIds.length) {
+    throw new Error(`new domain source locator duplicate:${topicId}`);
+  }
+  const gate = (item.prerequisite_gates ?? []).find(
+    candidate => candidate.gate_id === selection.gate_id,
+  );
+  const receipt = (registry.prerequisite_gate_receipts ?? []).find(
+    candidate =>
+      candidate.work_id === item.work_id &&
+      candidate.gate_id === selection.gate_id &&
+      candidate.evidence_ref === gate?.evidence_ref,
+  );
+  if (
+    gate?.status !== 'satisfied' ||
+    !gate.evidence_ref.endsWith(
+      `@sha256:${selection.artifact_sha256}`,
+    ) ||
+    !receipt
+  ) {
+    return {
+      state: 'selection_required',
+      locators: [],
+      blockers: ['source_locator_selection_receipt_required'],
+    };
+  }
+  return {
+    state: 'bound',
+    locators: [...artifact.locators].sort((left, right) =>
+      left.coordinate_id.localeCompare(right.coordinate_id, 'en'),
+    ),
+    blockers: [],
+  };
+}
+
+export async function resolveNewDomainSeedAssignment({
+  domain,
+  queue,
+  registry,
+  snapshotId,
+  builtAt,
+  repositoryRoot = REPOSITORY_ROOT,
+}) {
+  const stem = domain.target_domain_id.replace(/^target\./u, '');
+  const topicId = `hub.${stem}`;
+  const topicFile = `artifacts/publication/topics/${stem}.json`;
+  const selfTestFile =
+    `web/rulelink_public_next/scripts/${stem}-topic-handoff.test.mjs`;
+  const assignment = workAssignment({
+    topic: { topic_id: topicId, file: `${stem}.json` },
+    queue,
+    registry,
+    selfTest: { path: selfTestFile },
+    snapshotId,
+    proposedWorkId:
+      `coverage-expansion-new-domain-${stem}-${snapshotId}`,
+  });
+  const item = activeQueueItems(queue).find(
+    candidate => candidate.topic_id === topicId,
+  );
+  const selection = item
+    ? await loadNewDomainSourceSelection({
+        item,
+        registry,
+        topicId,
+        repositoryRoot,
+        builtAt,
+      })
+    : {
+        state: 'selection_required',
+        locators: [],
+        blockers: ['source_locator_selection_required'],
+      };
+  const blockingReasons = sorted([
+    ...assignment.blocking_reasons,
+    ...selection.blockers,
+  ]);
+  return {
+    stem,
+    topicId,
+    topicFile,
+    selfTestFile,
+    assignment: {
+      ...assignment,
+      start_allowed: blockingReasons.length === 0,
+      blocking_reasons: blockingReasons,
+    },
+    sourceLocatorState: selection.state,
+    requiredSourceLocators: selection.locators,
   };
 }
 
@@ -583,9 +794,14 @@ function validatePlanSemantics(plan, backlog) {
     }
     if (
       packet.work_kind === 'new_domain_seed' &&
-      (packet.source_locator_state !== 'selection_required' ||
-        packet.start_allowed ||
-        !packet.blocking_reasons.includes('source_locator_selection_required'))
+      ((packet.source_locator_state === 'selection_required' &&
+        (packet.required_source_locators.length !== 0 ||
+          packet.start_allowed)) ||
+        (packet.source_locator_state === 'bound' &&
+          packet.required_source_locators.length === 0) ||
+        (packet.start_allowed &&
+          (packet.assignment_state !== 'existing_queue_assignment' ||
+            packet.source_locator_state !== 'bound')))
     ) {
       errors.push(`new_domain_seed_not_fail_closed:${packet.topic_id}`);
     }
@@ -634,12 +850,9 @@ export async function buildPublicationCoverageExpansionPlan(options = {}) {
     validateLegalAnswerPacketFiles(options),
   ]);
   assertNoDuplicateActiveTopicAssignments(documents.productionQueue);
-  if (
-    legalAnswerActivation.state === 'active' &&
-    legalAnswerValidation.errors.length > 0
-  ) {
+  if (legalAnswerValidation.errors.length > 0) {
     throw new Error(
-      `activated legal answer packet gate invalid:\n${legalAnswerValidation.errors.join('\n')}`,
+      `legal answer packet gate invalid:\n${legalAnswerValidation.errors.join('\n')}`,
     );
   }
   if (
@@ -657,6 +870,32 @@ export async function buildPublicationCoverageExpansionPlan(options = {}) {
   }
   if (backlog.snapshot_id !== documents.bundle.snapshot_id) {
     throw new Error('coverage expansion backlog current snapshot mismatch');
+  }
+  let productionQueueEvidence;
+  try {
+    productionQueueEvidence = await loadQueuePublicationEvidence(
+      documents.productionQueue,
+      documents.bundle,
+      { itemRegistry: documents.productionRegistry },
+    );
+  } catch (error) {
+    throw new Error(
+      `production queue trust validation failed:${
+        error instanceof Error ? error.message : String(error)
+      }`,
+    );
+  }
+  const productionQueueErrors = validateProductionQueue(
+    documents.productionQueue,
+    {
+      publishedBundle: documents.bundle,
+      ...productionQueueEvidence,
+    },
+  );
+  if (productionQueueErrors.length > 0) {
+    throw new Error(
+      `production queue trust validation failed:\n${productionQueueErrors.join('\n')}`,
+    );
   }
   validateTaxonomy(taxonomy, documents.bundle, topicManifest);
   validateSupportedSchemaKeywords(schema);
@@ -973,25 +1212,50 @@ export async function buildPublicationCoverageExpansionPlan(options = {}) {
     .sort((left, right) =>
       left.target_domain_id.localeCompare(right.target_domain_id, 'en'),
     );
-  const newDomainSeedPackets = targetDomainHorizon
-    .filter((domain) => domain.coverage_state === 'not_started')
-    .map((domain) => {
-      const stem = domain.target_domain_id.replace(/^target\./u, '');
-      const topicId = `hub.${stem}`;
-      const topicFile = `artifacts/publication/topics/${stem}.json`;
-      const selfTestFile =
-        `web/rulelink_public_next/scripts/${stem}-topic-handoff.test.mjs`;
+  const newDomainSeedPackets = await Promise.all(
+    targetDomainHorizon
+      .filter((domain) => domain.coverage_state === 'not_started')
+      .map(async (domain) => {
+      const resolved = await resolveNewDomainSeedAssignment({
+        domain,
+        queue: documents.productionQueue,
+        registry: documents.productionRegistry,
+        snapshotId: documents.bundle.snapshot_id,
+        builtAt: documents.bundle.built_at,
+      });
+      const {
+        stem,
+        topicId,
+        topicFile,
+        selfTestFile,
+        assignment,
+        sourceLocatorState,
+        requiredSourceLocators,
+      } = resolved;
+      const resolvedTopicFile = path.resolve(REPOSITORY_ROOT, topicFile);
+      const resolvedSelfTestFile = path.resolve(REPOSITORY_ROOT, selfTestFile);
+      const topicRoot = `${path.resolve(
+        REPOSITORY_ROOT,
+        'artifacts',
+        'publication',
+        'topics',
+      )}${path.sep}`;
+      const scriptRoot = `${SCRIPT_DIR}${path.sep}`;
+      if (
+        !resolvedTopicFile.startsWith(topicRoot) ||
+        !resolvedSelfTestFile.startsWith(scriptRoot)
+      ) {
+        throw new Error(
+          `new domain task owned path escaped approved roots:${domain.target_domain_id}`,
+        );
+      }
       return {
         schema: 'rulelink_codex_task_packet_v1',
-        work_id:
-          `coverage-expansion-new-domain-${stem}-${documents.bundle.snapshot_id}`,
+        work_id: assignment.work_id,
         work_kind: 'new_domain_seed',
-        assignment_state: 'proposed_unregistered',
-        start_allowed: false,
-        blocking_reasons: [
-          'production_queue_registration_required',
-          'source_locator_selection_required',
-        ],
+        assignment_state: assignment.assignment_state,
+        start_allowed: assignment.start_allowed,
+        blocking_reasons: assignment.blocking_reasons,
         topic_id: topicId,
         planning_domain_id: domain.target_domain_id,
         target_content_ids: [],
@@ -1000,8 +1264,8 @@ export async function buildPublicationCoverageExpansionPlan(options = {}) {
         self_test_state: 'to_create',
         owned_paths: [topicFile, selfTestFile].sort(),
         forbidden_paths: [...FORBIDDEN_PATHS],
-        required_source_locators: [],
-        source_locator_state: 'selection_required',
+        required_source_locators: requiredSourceLocators,
+        source_locator_state: sourceLocatorState,
         expected_backlog_delta: {
           current_gap_counts: {
             target_domain_not_started: 1,
@@ -1016,13 +1280,14 @@ export async function buildPublicationCoverageExpansionPlan(options = {}) {
         },
         dependencies: {
           migration_required: true,
-          depends_on_work_ids: [],
-          prerequisite_gate_ids: [],
-          receipt_dependency_ids: [],
+          depends_on_work_ids: assignment.depends_on_work_ids,
+          prerequisite_gate_ids: assignment.prerequisite_gate_ids,
+          receipt_dependency_ids: assignment.receipt_dependency_ids,
           legal_answer_packet_gate: 'not_activated',
         },
       };
-    });
+    }),
+  );
   const taskPackets = [...currentTopicTaskPackets, ...newDomainSeedPackets].sort(
     (left, right) => left.topic_id.localeCompare(right.topic_id, 'en'),
   );

@@ -27,6 +27,8 @@ import {
 import {
   DEFAULT_LEGAL_ANSWER_PACKET_SET_PATH,
   DEFAULT_LEGAL_ANSWER_ACTIVATION_MANIFEST_PATH,
+  DEFAULT_PRODUCTION_QUEUE_PATH,
+  DEFAULT_PRODUCTION_REGISTRY_PATH,
   DEFAULT_LEGAL_ANSWER_RECEIPT_PATH,
   DEFAULT_LEGAL_ANSWER_SCHEMA_PATH,
   validateLegalAnswerPacketFiles,
@@ -136,6 +138,35 @@ test('inactive 023 선언은 publication snapshot이 전진하면 optional fallb
   }
 });
 
+test('inactive 선언도 publication bundle 없이 packet 0건으로 통과하지 않는다', async () => {
+  const directory = await mkdtemp(
+    path.join(os.tmpdir(), 'rulelink-answer-inactive-bundle-missing-'),
+  );
+  try {
+    const activationManifestPath = path.join(directory, 'activation.json');
+    await writeInactiveActivation(
+      activationManifestPath,
+      currentBundle.snapshot_id,
+    );
+    assert.deepEqual(
+      await validateLegalAnswerPacketFiles({
+        activationManifestPath,
+        bundlePath: path.join(directory, 'missing-bundle.json'),
+        packetSetPath: path.join(directory, 'missing-packets.json'),
+      }),
+      {
+        errors: [
+          'publication_bundle_required_for_inactive_legal_answer_activation',
+        ],
+        packetCount: 0,
+        state: 'bundle_missing',
+      },
+    );
+  } finally {
+    await rm(directory, {recursive: true, force: true});
+  }
+});
+
 test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue evidence를 모두 요구한다', async () => {
   await withActivationFixture(async paths => {
     assert.deepEqual(
@@ -218,7 +249,60 @@ test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue 
           canonicalBytes(registry),
         );
       },
-      expected: /queue_receipt_missing/u,
+      expected: /production_queue_invalid|queue_receipt_missing/u,
+    },
+    {
+      label: 'forged-queue-receipt-chain',
+      async mutate(paths) {
+        const [activation, queue, registry] = await Promise.all([
+          readFile(paths.activationManifestPath, 'utf8').then(JSON.parse),
+          readFile(paths.productionQueuePath, 'utf8').then(JSON.parse),
+          readFile(paths.productionRegistryPath, 'utf8').then(JSON.parse),
+        ]);
+        const item = queue.items.find(
+          candidate => candidate.work_id === activation.queue_work_id,
+        );
+        const gate = item.prerequisite_gates.find(
+          candidate => candidate.gate_id === activation.queue_gate_id,
+        );
+        const forgedEvidence = 'forged:unverified';
+        gate.evidence_ref = forgedEvidence;
+        activation.queue_gate_evidence_ref = forgedEvidence;
+        const receipt = registry.prerequisite_gate_receipts.find(
+          candidate =>
+            candidate.work_id === activation.queue_work_id &&
+            candidate.gate_id === activation.queue_gate_id,
+        );
+        receipt.evidence_ref = forgedEvidence;
+        receipt.previous_receipt = '0'.repeat(64);
+        receipt.receipt = '0'.repeat(64);
+        await Promise.all([
+          writeFile(
+            paths.activationManifestPath,
+            canonicalBytes(activation),
+          ),
+          writeFile(paths.productionQueuePath, canonicalBytes(queue)),
+          writeFile(
+            paths.productionRegistryPath,
+            canonicalBytes(registry),
+          ),
+        ]);
+      },
+      expected: /production_queue_invalid/u,
+    },
+    {
+      label: 'wrong-target-topic',
+      async mutate(paths) {
+        const activation = JSON.parse(
+          await readFile(paths.activationManifestPath, 'utf8'),
+        );
+        activation.target_topic_ids = ['hub.debt-enforcement'];
+        await writeFile(
+          paths.activationManifestPath,
+          canonicalBytes(activation),
+        );
+      },
+      expected: /target_topic_ids_mismatch/u,
     },
     {
       label: 'signed-receipt',
@@ -753,6 +837,20 @@ async function withActivationFixture(callback) {
   );
   try {
     const fixture = validFixture();
+    fixture.bundle.knowledge.topic_hubs = [
+      {
+        hub_id: 'hub.crime-victim-response',
+        content_ids: [
+          fixture.packetSet.packets[0].retrieval.canonical_content_ids[0],
+        ],
+      },
+    ];
+    fixture.bundleRaw = canonicalBytes(fixture.bundle);
+    rebindPacketSet(
+      fixture.packetSet,
+      fixture.bundle,
+      fixture.bundleRaw,
+    );
     const packetSetRaw = canonicalBytes(fixture.packetSet);
     const producerReceiptRaw = await readFile(
       DEFAULT_LEGAL_ANSWER_RECEIPT_PATH,
@@ -797,34 +895,22 @@ async function withActivationFixture(callback) {
       ],
     };
     const trustPolicyRaw = canonicalBytes(trustPolicy);
-    const queueWorkId = 'fixture-legal-answer-activation';
-    const queueGateId = 'legal-answer-packets.activated';
-    const evidenceRef = `legal-answer-activation:${fixture.bundle.snapshot_id}@${sha256(packetSetRaw)}`;
-    const queue = {
-      schema: 'rulelink_publication_production_queue_v1',
-      items: [
-        {
-          work_id: queueWorkId,
-          prerequisite_gates: [
-            {
-              gate_id: queueGateId,
-              status: 'satisfied',
-              evidence_ref: evidenceRef,
-            },
-          ],
-        },
-      ],
-    };
-    const registry = {
-      schema: 'rulelink_publication_queue_item_registry_v1',
-      prerequisite_gate_receipts: [
-        {
-          work_id: queueWorkId,
-          gate_id: queueGateId,
-          evidence_ref: evidenceRef,
-        },
-      ],
-    };
+    const queue = JSON.parse(
+      await readFile(DEFAULT_PRODUCTION_QUEUE_PATH, 'utf8'),
+    );
+    const registry = JSON.parse(
+      await readFile(DEFAULT_PRODUCTION_REGISTRY_PATH, 'utf8'),
+    );
+    const queueWorkId = 'reader-backfill-crime-victim-wave1';
+    const queueGateId = 'runtime.statute-reading-ui';
+    const queueItem = queue.items.find(
+      item => item.work_id === queueWorkId,
+    );
+    const queueGate = queueItem.prerequisite_gates.find(
+      gate => gate.gate_id === queueGateId,
+    );
+    assert.equal(queueGate.status, 'satisfied');
+    const evidenceRef = queueGate.evidence_ref;
     const activation = {
       schema: 'rulelink_legal_answer_packet_activation_v1',
       activation_state: 'active',

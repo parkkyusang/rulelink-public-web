@@ -8,6 +8,10 @@ import {
   validateVendoredLegalAnswerContract,
 } from '../src/lib/legal-answer-packet.ts';
 import {loadPublicLegalAnswerCatalog} from '../src/lib/public-legal-answer-loader.ts';
+import {
+  inspectQueueItemRegistryHistory,
+  validateQueueItemRegistry,
+} from './validate-publication-production-queue.mjs';
 
 const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const contractRoot = path.join(appRoot, 'contracts', 'legal-answer-packet');
@@ -164,6 +168,24 @@ export async function loadLegalAnswerActivation(options = {}) {
       'production registry',
     ),
   ]);
+  let registryHistory;
+  try {
+    registryHistory = await inspectQueueItemRegistryHistory(registry);
+  } catch (error) {
+    throw new Error(
+      `legal_answer_activation_production_queue_invalid:${
+        error instanceof Error ? error.message : String(error)
+      }`,
+    );
+  }
+  const productionQueueErrors = validateQueueItemRegistry(registry, queue, {
+    previousRegistry: registryHistory.previous_registry,
+  });
+  if (productionQueueErrors.length > 0) {
+    throw new Error(
+      `legal_answer_activation_production_queue_invalid:${productionQueueErrors.join('|')}`,
+    );
+  }
   const item = (queue.items ?? []).find(
     candidate => candidate.work_id === manifest.queue_work_id,
   );
@@ -220,7 +242,14 @@ export async function validateLegalAnswerPacketFiles(options = {}) {
   }
   const requirePackets =
     options.requirePackets === true || activation.state === 'active';
-  if (activation.state === 'inactive' && (await exists(bundlePath))) {
+  if (activation.state === 'inactive' && !(await exists(bundlePath))) {
+    return {
+      errors: ['publication_bundle_required_for_inactive_legal_answer_activation'],
+      packetCount: 0,
+      state: 'bundle_missing',
+    };
+  }
+  if (activation.state === 'inactive') {
     const inactiveBundle = await readJson(
       bundlePath,
       'publication bundle for inactive legal answer activation',
@@ -358,7 +387,7 @@ export async function validateLegalAnswerPacketFiles(options = {}) {
       };
     }
     try {
-      await loadPublicLegalAnswerCatalog({
+      const trustedCatalog = await loadPublicLegalAnswerCatalog({
         appRoot,
         bundlePath,
         packetReceiptPath,
@@ -367,6 +396,27 @@ export async function validateLegalAnswerPacketFiles(options = {}) {
         receiptPath,
         schemaPath,
       });
+      const actualTargetTopicIds = (bundle.knowledge?.topic_hubs ?? [])
+        .filter(hub =>
+          trustedCatalog.projections.some(projection =>
+            (hub.content_ids ?? []).includes(projection.targetContentId),
+          ),
+        )
+        .map(hub => hub.hub_id)
+        .sort();
+      const expectedTargetTopicIds = [
+        ...activation.manifest.target_topic_ids,
+      ].sort();
+      if (
+        JSON.stringify(actualTargetTopicIds) !==
+        JSON.stringify(expectedTargetTopicIds)
+      ) {
+        return {
+          errors: ['legal_answer_activation_target_topic_ids_mismatch'],
+          packetCount: 0,
+          state: 'activation_invalid',
+        };
+      }
     } catch (error) {
       return {
         errors: [
