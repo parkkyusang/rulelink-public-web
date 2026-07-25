@@ -209,6 +209,28 @@
   margin-top: 12px;
 }
 
+.decisionQuestion {
+  border-left: 3px solid var(--green);
+  display: grid;
+  gap: 5px;
+  margin-top: 15px;
+  padding: 4px 0 4px 12px;
+}
+
+.decisionQuestion b {
+  color: var(--green);
+  font-size: 10px;
+}
+
+.decisionQuestion p {
+  color: var(--muted-strong);
+  font-size: 12px;
+  line-height: 1.55;
+  margin: 0;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
 .matchReasons {
   background: var(--surface-soft);
   border-radius: 12px;

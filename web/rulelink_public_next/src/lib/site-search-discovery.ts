@@ -39,6 +39,7 @@ export type SiteSearchDocument = {
   fields: {
     searchIntent: string[];
     audience: string[];
+    decision?: string[];
     detail: string[];
   };
 };
@@ -47,6 +48,7 @@ type SiteSearchScoringFields = {
   title: string[];
   searchIntent: string[];
   audience: string[];
+  decision: string[];
   summary: string[];
   source: string[];
   detail: string[];
@@ -93,6 +95,7 @@ const FIELD_META: Record<
     tokenWeight: 24,
   },
   audience: {field: 'audience', label: '대상 상황', tokenWeight: 18},
+  decision: {field: 'detail', label: '판단 질문', tokenWeight: 20},
   summary: {field: 'summary', label: '핵심 답', tokenWeight: 14},
   source: {field: 'source', label: '공식 근거', tokenWeight: 11},
   detail: {field: 'detail', label: '확인 항목', tokenWeight: 4},
@@ -102,6 +105,7 @@ const PHRASE_WEIGHTS: Record<keyof SiteSearchScoringFields, number> = {
   title: 72,
   searchIntent: 62,
   audience: 46,
+  decision: 52,
   summary: 34,
   source: 28,
   detail: 8,
@@ -184,6 +188,7 @@ export function buildSiteSearchDocuments(
   knowledgeDocuments: readonly PublicKnowledgeSearchDocument[],
   topics: readonly PublicTopic[],
   labels: Labels,
+  knowledgeDecisionQuestions: ReadonlyMap<string, string> = new Map(),
 ): SiteSearchDocument[] {
   const topicByCardId = new Map<string, PublicTopic[]>();
   for (const topic of topics) {
@@ -239,6 +244,7 @@ export function buildSiteSearchDocuments(
         evidenceLabels: document.evidence_labels_ko,
         searchIntent: entry.search_intents_ko,
         audience: [entry.audience_situation_ko],
+        decision: [knowledgeDecisionQuestions.get(entry.content_id) ?? ''],
         detail: [contentType, ...document.search_terms_ko],
       });
     }),
@@ -347,8 +353,10 @@ function siteSearchDocument(value: {
   evidenceLabels?: string[];
   searchIntent?: string[];
   audience?: string[];
+  decision?: string[];
   detail?: string[];
 }): SiteSearchDocument {
+  const decision = uniqueNonEmpty(value.decision ?? []);
   return {
     id: value.id,
     kind: value.kind,
@@ -362,6 +370,9 @@ function siteSearchDocument(value: {
     fields: {
       searchIntent: uniqueNonEmpty(value.searchIntent ?? []),
       audience: uniqueNonEmpty(value.audience ?? []),
+      ...(decision.length ? {
+        decision,
+      } : {}),
       detail: uniqueNonEmpty(value.detail ?? []),
     },
   };
@@ -505,6 +516,7 @@ function siteSearchScoringFields(
     title: [document.title],
     searchIntent: document.fields.searchIntent,
     audience: document.fields.audience,
+    decision: document.fields.decision ?? [],
     summary: [document.summary],
     source: document.evidenceLabels,
     detail: uniqueNonEmpty([document.context, ...document.fields.detail]),

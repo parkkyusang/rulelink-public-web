@@ -1,0 +1,93 @@
+.root {
+  display: grid;
+  gap: 14px;
+}
+
+.root h3 {
+  font-size: 21px;
+  margin: 0;
+}
+
+.decisionFact {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.controls button {
+  background: var(--surface-soft);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 800;
+  min-height: 40px;
+  padding: 0 15px;
+}
+
+.controls button[aria-pressed="true"] {
+  background: var(--green);
+  border-color: var(--green);
+  color: white;
+}
+
+.controls .clear {
+  background: transparent;
+  border-color: transparent;
+  color: var(--muted);
+  margin-left: auto;
+}
+
+.outcome {
+  min-height: 72px;
+}
+
+.outcome > p,
+.fallbackOutcomes p {
+  background: var(--surface-soft);
+  border-radius: 11px;
+  line-height: 1.65;
+  margin: 0;
+  padding: 15px;
+}
+
+.outcome b,
+.fallbackOutcomes b {
+  color: var(--green);
+  display: block;
+  font-size: 11px;
+  margin-bottom: 7px;
+}
+
+.fallbackOutcomes {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.outcome .prompt {
+  color: var(--muted);
+}
+
+.privacy {
+  color: var(--muted);
+  font-size: 10px;
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .fallbackOutcomes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .controls .clear {
+    margin-left: 0;
+  }
+}

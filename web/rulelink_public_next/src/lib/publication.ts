@@ -138,6 +138,15 @@ export async function relatedChangeBriefsForCard(card: LegalIssueCard, limit = 6
     .slice(0, limit);
 }
 
+export async function relatedChangeBriefsForKnowledgeEntry(
+  entry: PublicKnowledgeEntry,
+  limit = 6,
+): Promise<LegalChangeBrief[]> {
+  return (await listChangeBriefs())
+    .filter(brief => brief.related_content_ids?.includes(entry.content_id))
+    .slice(0, limit);
+}
+
 export async function listKnowledgeEntries(): Promise<PublicKnowledgeEntry[]> {
   return filterFreshPublications((await loadPublishedBundle())?.knowledge?.content_entries ?? []);
 }
@@ -157,6 +166,24 @@ export async function listKnowledgeSearchDocuments() {
     filterFreshPublications(knowledge.content_entries).map(entry => entry.content_id),
   );
   return buildKnowledgeSearchDocuments(knowledge, visibleContentIds);
+}
+
+export async function listKnowledgeDecisionQuestions(): Promise<Map<string, string>> {
+  const knowledge = (await loadPublishedBundle())?.knowledge;
+  if (!knowledge) return new Map();
+  const scenarioById = new Map(
+    knowledge.scenario_branches.map(scenario => [scenario.scenario_id, scenario]),
+  );
+  return new Map(
+    filterFreshPublications(knowledge.content_entries)
+      .map(entry => {
+        const question = entry.scenario_ids
+          .map(scenarioId => scenarioById.get(scenarioId)?.question_ko)
+          .find((value): value is string => Boolean(value?.trim()));
+        return question ? [entry.content_id, question] as const : null;
+      })
+      .filter((value): value is readonly [string, string] => Boolean(value)),
+  );
 }
 
 export async function listKnowledgeSourceDocuments() {

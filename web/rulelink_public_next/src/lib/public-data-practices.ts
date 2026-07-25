@@ -139,6 +139,27 @@ const checklistPractice: PublicDataPractice = {
   },
 };
 
+const scenarioChoicePractice: PublicDataPractice = {
+  activationMode: 'after-user-action',
+  category: 'functional',
+  dataTypes: ['사용자가 선택한 사실분기 답변(예·아니오·모르겠음)'],
+  id: 'device-scenario-choice',
+  provider: '사용자의 현재 브라우저',
+  providerDestination: null,
+  purpose: '상세 글의 정본 사실분기 결과를 다시 방문했을 때 복원',
+  retention: '사용자가 선택을 지우거나 브라우저 저장소를 삭제할 때까지',
+  status: 'active',
+  storageKeys: ['rulelink-scenario-v1:{content_id}:{revision_key}:{scenario_id}'],
+  transfer: {
+    description: '서버 또는 제3자에게 전송하지 않고 현재 브라우저에만 저장',
+    internationalTransfer: false,
+    processingRegions: ['사용자 기기'],
+    processingOutsourcing: false,
+    serverTransmission: false,
+    thirdPartyProvision: false,
+  },
+};
+
 const deniedPractices: PublicDataPractice[] = [
   {
     activationMode: 'denied',
@@ -189,6 +210,7 @@ export function resolvePublicDataPractices(
   const privacy = resolvePublicPrivacyConfig(environment);
   return privacy?.inventory ?? [
     checklistPractice,
+    scenarioChoicePractice,
     ...deniedPractices,
   ];
 }
@@ -276,6 +298,7 @@ export function resolvePublicPrivacyConfig(
     inventory: [
       hostingPractice,
       checklistPractice,
+      scenarioChoicePractice,
       ...deniedPractices,
     ],
     privacyResponsibleRole:
@@ -561,15 +584,19 @@ function validateDisclosureReferences(
       ).value,
     ],
   ] as const;
-  const activePracticeIds = new Set(['hosting-request-logs', 'device-checklist']);
+  const activePracticeIds = new Set([
+    'hosting-request-logs',
+    'device-checklist',
+    'device-scenario-choice',
+  ]);
   for (const [field, disclosure] of disclosures) {
     if (!disclosure?.enabled) continue;
     for (const practiceId of disclosure.details.practiceIds) {
       if (!activePracticeIds.has(practiceId)) {
         errors.push(`${field}: 알 수 없는 활성 처리 항목 참조입니다: ${practiceId}`);
       }
-      if (practiceId === 'device-checklist') {
-        errors.push(`${field}: 기기 안에서만 저장되는 체크리스트는 외부 처리 구획을 참조할 수 없습니다.`);
+      if (practiceId === 'device-checklist' || practiceId === 'device-scenario-choice') {
+        errors.push(`${field}: 기기 안에서만 저장되는 선택 상태는 외부 처리 구획을 참조할 수 없습니다.`);
       }
     }
   }

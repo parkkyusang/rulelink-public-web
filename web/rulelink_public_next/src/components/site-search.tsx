@@ -200,6 +200,12 @@ export function SiteSearch({
                 <h2>{result.title}</h2>
                 <p>{result.summary}</p>
                 <small>{result.context}</small>
+                {result.kind === 'knowledge' && result.fields.decision?.[0] ? (
+                  <div className={styles.decisionQuestion} data-decision-question>
+                    <b>결론을 가르는 질문</b>
+                    <p>{result.fields.decision[0]}</p>
+                  </div>
+                ) : null}
                 <div aria-label="정보 현재성" className={styles.reviewDates}>
                   <time dateTime={result.reviewedAt}>
                     기준 확인 {formatDate(result.reviewedAt)}

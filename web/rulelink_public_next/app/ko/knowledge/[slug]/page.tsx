@@ -6,13 +6,21 @@ import {EditorialAttribution} from '@/components/editorial-attribution';
 import {KnowledgeActionWorkspace} from '@/components/knowledge-action-workspace';
 import {KnowledgeReadingDepthNav} from '@/components/knowledge-reading-depth-nav';
 import {KnowledgeReadingPath} from '@/components/knowledge-reading-path';
+import {KnowledgeScenarioDecision} from '@/components/knowledge-scenario-decision';
 import {LegalConceptLayer, LegalConceptText} from '@/components/legal-concept-text';
 import {OfficialSourceJump} from '@/components/official-source-jump';
 import {PublicAdvertisingPlaceholder} from '@/components/public-advertising-placeholder';
 import {ScenarioRuleLinks} from '@/components/scenario-rule-links';
+import {changeLifecycleLabel} from '@/lib/change-lifecycle';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
+import {formatKoreanLegalDate} from '@/lib/legal-date';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
-import {findKnowledgeEntry, knowledgeDetail, listKnowledgeEntries} from '@/lib/publication';
+import {
+  findKnowledgeEntry,
+  knowledgeDetail,
+  listKnowledgeEntries,
+  relatedChangeBriefsForKnowledgeEntry,
+} from '@/lib/publication';
 import {shouldShowPublicRuleProposition} from '@/lib/public-rule-presentation';
 import {site} from '@/lib/site';
 import {buildKnowledgePageStructuredData} from '@/lib/public-structured-data';
@@ -66,6 +74,7 @@ export default async function KnowledgePage({params}: Props) {
     hubs,
     readingPathSections,
   } = await knowledgeDetail(entry);
+  const relatedChangeBriefs = await relatedChangeBriefsForKnowledgeEntry(entry);
   const trustConfig = resolvePublicTrustConfig();
   const editorialAttribution = resolveApprovedEditorialAttribution(
     entry.editorial_attribution,
@@ -140,6 +149,25 @@ export default async function KnowledgePage({params}: Props) {
         ) : null}
       </header>
 
+      {relatedChangeBriefs.length ? (
+        <section aria-labelledby="knowledge-change-heading" className={styles.relatedChanges}>
+          <div>
+            <p className="eyebrow">이 질문과 관련된 법령 변화</p>
+            <h2 id="knowledge-change-heading">현재 적용 상태와 달라진 내용을 함께 확인하세요.</h2>
+          </div>
+          <div className={styles.relatedChangeList}>
+            {relatedChangeBriefs.map(brief => (
+              <a href={`/ko/changes/${brief.slug}`} key={brief.change_brief_id}>
+                <span className={`lifecycle ${brief.lifecycle}`}>{changeLifecycleLabel(brief.lifecycle)}</span>
+                <time dateTime={brief.effective_date}>{formatKoreanLegalDate(brief.effective_date)}</time>
+                <strong>{brief.title_ko}</strong>
+                <small>개정 전후와 적용 경계 보기 <span aria-hidden="true">→</span></small>
+              </a>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       {authorityReadingUnits.length ? (
         <KnowledgeReadingDepthNav
           hasCasePractice={false}
@@ -206,12 +234,16 @@ export default async function KnowledgePage({params}: Props) {
                   const linkedRules = scenarioRules[branch.scenario_id] ?? [];
                   return (
                     <article className="branchCard" key={branch.scenario_id}>
-                      <h3><LegalConceptText concepts={concepts} text={branch.question_ko} /></h3>
-                      <p className="decisionFact">확인할 사실 · <LegalConceptText concepts={concepts} text={branch.decision_fact_ko} /></p>
-                      <div className="branchOutcomes">
-                        <p><b>해당하면</b><LegalConceptText concepts={concepts} text={branch.when_true_ko} /></p>
-                        <p><b>해당하지 않으면</b><LegalConceptText concepts={concepts} text={branch.when_false_ko} /></p>
-                      </div>
+                      <KnowledgeScenarioDecision
+                        contentId={entry.content_id}
+                        concepts={concepts}
+                        decisionFact={branch.decision_fact_ko}
+                        falseOutcome={branch.when_false_ko}
+                        question={branch.question_ko}
+                        revisionKey={entry.reviewed_at}
+                        scenarioId={branch.scenario_id}
+                        trueOutcome={branch.when_true_ko}
+                      />
                       <ScenarioRuleLinks
                         classes={{
                           item: styles.branchRulesItem,

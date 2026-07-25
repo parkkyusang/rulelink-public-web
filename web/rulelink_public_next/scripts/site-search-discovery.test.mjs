@@ -18,6 +18,17 @@ const bundle = JSON.parse(await readFile(
   'utf8',
 ));
 const knowledgeDocuments = buildKnowledgeSearchDocuments(bundle.knowledge);
+const scenarioById = new Map(
+  bundle.knowledge.scenario_branches.map(scenario => [scenario.scenario_id, scenario]),
+);
+const decisionQuestions = new Map(
+  bundle.knowledge.content_entries.flatMap(entry => {
+    const question = entry.scenario_ids
+      .map(scenarioId => scenarioById.get(scenarioId)?.question_ko)
+      .find(Boolean);
+    return question ? [[entry.content_id, question]] : [];
+  }),
+);
 const documents = buildSiteSearchDocuments(
   bundle.cards,
   bundle.change_briefs,
@@ -27,6 +38,7 @@ const documents = buildSiteSearchDocuments(
     changeLifecycle: changeLifecycleLabel,
     knowledgeContentType: value => value || '법률정보',
   },
+  decisionQuestions,
 );
 const now = new Date('2026-07-24T00:00:00+09:00');
 
@@ -83,6 +95,18 @@ test('전체 검색 인덱스와 초기 24개 문서는 각각 절대 전송량 
     Buffer.byteLength(JSON.stringify(ranked)) <= 60_000,
     '초기 검색 문서 24개가 60KB 절대 예산을 넘었습니다.',
   );
+});
+
+test('지식 검색 카드는 정본 첫 사실분기 질문을 표시·검색 신호로만 투영한다', () => {
+  const entry = bundle.knowledge.content_entries.find(
+    candidate => decisionQuestions.has(candidate.content_id),
+  );
+  assert.ok(entry);
+  const question = decisionQuestions.get(entry.content_id);
+  const document = documents.find(candidate => candidate.id === entry.content_id);
+  assert.equal(document?.fields.decision?.[0], question);
+  assert.ok(document?.fields.decision?.length === 1);
+  assert.doesNotMatch(JSON.stringify(document), /when_true_ko|when_false_ko/u);
 });
 
 test('0-query 동률은 검토일·제목·ID로 결정되고 법령변화 종류가 선두를 고정하지 않는다', () => {

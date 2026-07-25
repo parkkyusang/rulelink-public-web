@@ -7,7 +7,33 @@ const bundle = JSON.parse(readFileSync(
   path.resolve(process.cwd(), 'content', 'bundle.json'),
   'utf8',
 ));
+type ScenarioFixture = {
+  scenario_id: string;
+  when_false_ko: string;
+  when_true_ko: string;
+};
+type ScenarioEntryFixture = {
+  scenario_ids: string[];
+  search_intents_ko: string[];
+  slug: string;
+};
 const expectedHubCount = bundle.knowledge.topic_hubs.length;
+const scenarioById = new Map<string, ScenarioFixture>(
+  bundle.knowledge.scenario_branches.map((scenario: ScenarioFixture) => [
+    scenario.scenario_id,
+    scenario,
+  ] as const),
+);
+const scenarioEntry = bundle.knowledge.content_entries.find(
+  (entry: ScenarioEntryFixture) => (
+    entry.scenario_ids.some(scenarioId => scenarioById.has(scenarioId))
+  ),
+) as ScenarioEntryFixture | undefined;
+const scenarioFixture = scenarioEntry
+  ? scenarioById.get(scenarioEntry.scenario_ids.find(
+    (scenarioId: string) => scenarioById.has(scenarioId),
+  ) ?? '')
+  : undefined;
 const widths = [320, 390, 768, 1440] as const;
 const directoryQueries = [
   '보이스피싱',
@@ -112,6 +138,62 @@ test('자바스크립트가 없어도 홈의 28개 주제 링크는 초기 HTML�
   );
   await assertNoHorizontalOverflow(page);
   await context.close();
+});
+
+test('홈 상황 검색과 상세 사실분기는 하나의 검증된 읽기 흐름으로 이어진다', async ({
+  browser,
+  page,
+}) => {
+  if (!scenarioEntry || !scenarioFixture) {
+    throw new Error('시나리오가 연결된 공개 지식 fixture가 필요합니다.');
+  }
+  const situationQuery = scenarioEntry.search_intents_ko[0];
+  if (!situationQuery) {
+    throw new Error('시나리오 지식의 상황 검색어 fixture가 필요합니다.');
+  }
+  await page.setViewportSize({width: 390, height: 1000});
+  await page.goto('/', {waitUntil: 'networkidle'});
+  await page.locator('#home-situation-search').fill(situationQuery);
+  await page.getByRole('button', {name: '관련 질문 찾기'}).click();
+  await expect(page).toHaveURL(/\/ko\/search\?q=/u);
+  await expect(page.getByLabel(
+    '상황, 법 이름, 조문이나 사건번호를 적어보세요',
+  )).toHaveValue(situationQuery);
+  await expect(page.locator('[data-search-result-id]').first()).toBeVisible();
+  await expect(page.locator('[data-match-reasons]').first()).toBeVisible();
+
+  await page.goto(`/ko/knowledge/${scenarioEntry.slug}`, {waitUntil: 'networkidle'});
+  const decision = page.locator(`[data-scenario-id="${scenarioFixture.scenario_id}"]`);
+  await expect(decision).toHaveAttribute('data-enhanced', 'true');
+  await decision.getByRole('button', {name: '예', exact: true}).click();
+  await expect(decision).toHaveAttribute('data-scenario-answer', 'yes');
+  await expect(decision.locator('[data-selected-outcome="true"]')).toContainText(
+    scenarioFixture.when_true_ko,
+  );
+  await page.reload({waitUntil: 'networkidle'});
+  await expect(decision).toHaveAttribute('data-scenario-answer', 'yes');
+  await decision.getByRole('button', {name: '모르겠음', exact: true}).click();
+  await expect(decision.locator('[data-selected-outcome="unknown"]')).toContainText(
+    '어느 결과가 적용되는지 단정할 수 없습니다',
+  );
+  await assertNoHorizontalOverflow(page);
+
+  const noScriptContext = await browser.newContext({
+    javaScriptEnabled: false,
+    locale: 'ko-KR',
+    viewport: {width: 390, height: 1000},
+  });
+  const noScriptPage = await noScriptContext.newPage();
+  await noScriptPage.goto(`/ko/knowledge/${scenarioEntry.slug}`, {
+    waitUntil: 'domcontentloaded',
+  });
+  const noScriptDecision = noScriptPage.locator(
+    `[data-scenario-id="${scenarioFixture.scenario_id}"]`,
+  );
+  await expect(noScriptDecision).toHaveAttribute('data-enhanced', 'false');
+  await expect(noScriptDecision).toContainText(scenarioFixture.when_true_ko);
+  await expect(noScriptDecision).toContainText(scenarioFixture.when_false_ko);
+  await noScriptContext.close();
 });
 
 test('검색은 느린 전체 인덱스 중 0건을 확정하지 않고 준비 뒤 근거 있는 결과만 표시한다', async ({

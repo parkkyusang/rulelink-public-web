@@ -15,6 +15,9 @@ const cssPath = path.join(root, 'app', 'globals.css');
 const sourceJumpPath = path.join(root, 'src', 'components', 'official-source-jump.tsx');
 const conceptTextPath = path.join(root, 'src', 'components', 'legal-concept-text.tsx');
 const conceptTextCssPath = path.join(root, 'src', 'components', 'legal-concept-text.module.css');
+const scenarioDecisionPath = path.join(root, 'src', 'components', 'knowledge-scenario-decision.tsx');
+const scenarioDecisionCssPath = path.join(root, 'src', 'components', 'knowledge-scenario-decision.module.css');
+const publicationPath = path.join(root, 'src', 'lib', 'publication.ts');
 
 test('긴 생활법률 상세 화면은 핵심 법리부터 공식 근거까지 바로 이동할 수 있다', async () => {
   const [page, css, sourceJump] = await Promise.all([
@@ -41,6 +44,39 @@ test('긴 생활법률 상세 화면은 핵심 법리부터 공식 근거까지 
   assert.match(css, /\.knowledgeAside[^}]*position:\s*sticky/);
   assert.match(css, /\.ruleCard\[id\][^}]*scroll-margin-top:/);
   assert.match(css, /@media \(max-width: 800px\)[\s\S]*\.knowledgeAside\s*\{position:\s*static;/);
+});
+
+test('사실분기는 정본 예·아니오 결과만 선택하고 모르겠음에는 결론을 만들지 않는다', async () => {
+  const [page, component, css] = await Promise.all([
+    readFile(pagePath, 'utf8'),
+    readFile(scenarioDecisionPath, 'utf8'),
+    readFile(scenarioDecisionCssPath, 'utf8'),
+  ]);
+  assert.match(page, /<KnowledgeScenarioDecision/);
+  for (const prop of ['scenarioId', 'question', 'decisionFact', 'trueOutcome', 'falseOutcome']) {
+    assert.match(page, new RegExp(`${prop}=\\{branch\\.`));
+  }
+  assert.match(component, /'yes' \| 'no' \| 'unknown'/);
+  assert.match(component, /예를 선택한 경우/);
+  assert.match(component, /아니오를 선택한 경우/);
+  assert.match(component, /아직 결론을 고르지 않습니다/);
+  assert.match(component, /어느 결과가 적용되는지 단정할 수 없습니다/);
+  assert.match(component, /window\.localStorage/);
+  assert.match(component, /서버로 전송되지 않고 현재 기기에만 저장/);
+  assert.match(component, /!enhanced[\s\S]*fallbackOutcomes/);
+  assert.match(css, /\.fallbackOutcomes/);
+});
+
+test('법령변화는 지식 ID의 정본 관계로만 상세 문맥에 연결된다', async () => {
+  const [page, publication] = await Promise.all([
+    readFile(pagePath, 'utf8'),
+    readFile(publicationPath, 'utf8'),
+  ]);
+  assert.match(publication, /relatedChangeBriefsForKnowledgeEntry/);
+  assert.match(publication, /brief\.related_content_ids\?\.includes\(entry\.content_id\)/);
+  assert.match(page, /relatedChangeBriefsForKnowledgeEntry\(entry\)/);
+  assert.match(page, /이 질문과 관련된 법령 변화/);
+  assert.doesNotMatch(page, /content\.[a-z0-9.-]+/u);
 });
 
 test('모바일 상세 목차는 가로 넘김 없이 모든 항목을 여러 줄로 보여준다', async () => {

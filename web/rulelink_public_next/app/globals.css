@@ -53,6 +53,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .entrySection {margin: 0 auto 76px; max-width: 1180px; padding: 0 24px;}
 .entryIntro {max-width: 760px;}
 .entryIntro h2 {font-size: 31px; letter-spacing: -.04em; line-height: 1.35; margin: 0 0 26px;}
+.entryIntro > p:not(.eyebrow) {color: var(--muted); line-height: 1.7; margin: -10px 0 24px;}
+.homeSituationSearch {background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-card); box-shadow: var(--shadow-card-soft); display: grid; gap: 12px; padding: 25px;}
+.homeSituationSearch > label {font-size: 13px; font-weight: 800;}
+.homeSituationSearch > div {display: grid; gap: 10px; grid-template-columns: minmax(0,1fr) auto;}
+.homeSituationSearch input {background: var(--surface-soft); border: 1px solid var(--line-strong); border-radius: var(--radius-control); color: var(--ink); min-height: 54px; padding: 0 16px; width: 100%;}
+.homeSituationSearch button {background: var(--green); border: 0; border-radius: var(--radius-control); color: var(--white); cursor: pointer; font-weight: 800; min-height: 54px; padding: 0 20px;}
+.homeSituationSearch button:hover {background: var(--green-dark);}
+.homeSituationSearch > p {color: var(--muted); font-size: 12px; margin: 0;}
+.homeSituationSearch a {color: var(--green); font-weight: 800;}
 .entryGrid {display: grid; gap: 14px; grid-template-columns: repeat(3,1fr);}
 .entryGrid a {background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-card); display: flex; flex-direction: column; min-height: 250px; padding: 25px; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;}
 .entryGrid a:hover {border-color: #9bb8a8; box-shadow: var(--shadow-card); transform: translateY(-2px);}
@@ -327,6 +336,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   .eyebrow, .cardLink, .knowledgeCard strong {text-decoration: underline;}
 }
 @media (max-width: 800px) {
+  .homeSituationSearch > div {grid-template-columns: minmax(0,1fr);}
   .hero {border-radius: 0; margin-top: 0; padding: 58px 24px;}
   .trustRail {align-items: flex-start; flex-direction: column; gap: 12px;}
   .cardGrid, .issueLayout, .relatedGrid, .entryGrid, .knowledgeGrid, .knowledgeLayout {grid-template-columns: 1fr;}
