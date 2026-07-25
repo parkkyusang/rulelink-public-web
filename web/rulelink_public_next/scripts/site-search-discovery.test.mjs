@@ -80,6 +80,11 @@ test('운영 정본의 모든 검색 대상을 종류 편향 없이 한 투영�
 
 test('전체 검색 인덱스와 초기 24개 문서는 각각 절대 전송량 예산 안에 있다', () => {
   const payload = encodeSiteSearchIndex(documents, now.toISOString());
+  const legacyPayload = {
+    schema: 'rulelink_public_search_index_v1',
+    generated_at: now.toISOString(),
+    documents,
+  };
   assert.deepEqual(decodeSiteSearchIndex(payload), {
     generatedAt: now.toISOString(),
     documents,
@@ -95,6 +100,10 @@ test('전체 검색 인덱스와 초기 24개 문서는 각각 절대 전송량 
   assert.ok(
     Buffer.byteLength(JSON.stringify(payload)) <= 390_000,
     'exact scenario handoff를 포함한 지연 검색 인덱스가 390KB 절대 예산을 넘었습니다.',
+  );
+  assert.ok(
+    Buffer.byteLength(JSON.stringify(legacyPayload)) <= 420_000,
+    '구 클라이언트 호환용 v1 검색 인덱스가 기존 실측 상한을 넘었습니다.',
   );
   assert.ok(
     Buffer.byteLength(JSON.stringify(ranked)) <= 60_000,

@@ -28,7 +28,7 @@ import {ProgressiveResultFooter} from './progressive-result-footer';
 
 type Props = {
   freshnessNow: string;
-  indexHref: '/search-index.json';
+  indexHref: '/search-index.v2.json';
   initialDocuments: SiteSearchDocument[];
   totalCounts: SiteSearchResultCounts;
 };
@@ -71,7 +71,6 @@ export function SiteSearch({
       })
       .catch(error => {
         setIndexState('error');
-        indexPromise.current = null;
         throw error;
       });
     return indexPromise.current;

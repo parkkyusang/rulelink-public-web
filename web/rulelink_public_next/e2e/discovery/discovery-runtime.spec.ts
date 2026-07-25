@@ -237,12 +237,12 @@ test('검색은 느린 전체 인덱스 중 0건을 확정하지 않고 준비 �
   page,
 }) => {
   const indexResponses: Array<{bytes: number; status: number}> = [];
-  await page.route('**/search-index.json', async route => {
+  await page.route('**/search-index.v2.json', async route => {
     await new Promise(resolve => setTimeout(resolve, 1_000));
     await route.continue();
   });
   page.on('response', async response => {
-    if (new URL(response.url()).pathname !== '/search-index.json') return;
+    if (new URL(response.url()).pathname !== '/search-index.v2.json') return;
     indexResponses.push({
       bytes: (await response.body()).byteLength,
       status: response.status(),
@@ -299,6 +299,69 @@ test('검색은 느린 전체 인덱스 중 0건을 확정하지 않고 준비 �
   await expect(allFilter).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(allFilter).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('버전별 검색 인덱스는 구·신 클라이언트의 교차 배포 캐시를 분리한다', async ({
+  page,
+  request,
+}) => {
+  const legacyResponse = await request.get('/search-index.json');
+  expect(legacyResponse.ok()).toBe(true);
+  const legacyPayload = await legacyResponse.json();
+  expect(legacyPayload.schema).toBe('rulelink_public_search_index_v1');
+  expect(Array.isArray(legacyPayload.documents)).toBe(true);
+
+  const v2Response = await request.get('/search-index.v2.json');
+  expect(v2Response.ok()).toBe(true);
+  const v2Payload = await v2Response.json();
+  expect(v2Payload.schema).toBe('rulelink_public_search_index_v2');
+
+  const requests = {legacy: 0, v2: 0};
+  page.on('request', requestEvent => {
+    const pathname = new URL(requestEvent.url()).pathname;
+    if (pathname === '/search-index.json') requests.legacy += 1;
+    if (pathname === '/search-index.v2.json') requests.v2 += 1;
+  });
+  await page.goto('/ko/search', {waitUntil: 'networkidle'});
+  await expect(page.locator('[data-search-result-id]')).toHaveCount(24);
+  expect(requests).toEqual({legacy: 0, v2: 0});
+
+  await page.getByLabel(
+    '상황, 법 이름, 조문이나 사건번호를 적어보세요',
+  ).fill('보증금 반환');
+  await expect(page.locator('[data-site-search]')).toHaveAttribute(
+    'data-search-index-state',
+    'ready',
+  );
+  expect(requests).toEqual({legacy: 0, v2: 1});
+});
+
+test('신 클라이언트는 v2 URL의 구 스키마를 한 번만 요청하고 fail-closed 한다', async ({
+  page,
+  request,
+}) => {
+  const legacyPayload = await (await request.get('/search-index.json')).json();
+  let requestCount = 0;
+  await page.route('**/search-index.v2.json', async route => {
+    requestCount += 1;
+    await route.fulfill({json: legacyPayload, status: 200});
+  });
+  await page.goto('/ko/search', {waitUntil: 'networkidle'});
+  const input = page.getByLabel(
+    '상황, 법 이름, 조문이나 사건번호를 적어보세요',
+  );
+  await input.fill('보증금 반환');
+  await expect(page.locator('[data-site-search]')).toHaveAttribute(
+    'data-search-index-state',
+    'error',
+  );
+  expect(requestCount).toBe(1);
+  await input.fill('보증금 반환 신청');
+  await expect(page.locator('[data-site-search]')).toHaveAttribute(
+    'data-search-index-state',
+    'error',
+  );
+  expect(requestCount).toBe(1);
 });
 
 test('검색·허브 세로 경로·상세 연결 독해는 네 폭에서 의미 경계와 무횡스크롤을 지킨다', async ({

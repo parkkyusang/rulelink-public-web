@@ -55,7 +55,7 @@ for (const width of widths) {
     activeRoute = '/ko/search';
     await page.goto('/ko/search');
     const searchResponse = page.waitForResponse(response => (
-      new URL(response.url()).pathname === '/search-index.json'
+      new URL(response.url()).pathname === '/search-index.v2.json'
     ));
     await page.getByLabel(
       '상황, 법 이름, 조문이나 사건번호를 적어보세요',
@@ -96,6 +96,7 @@ for (const width of widths) {
       '/sitemap.xml',
       '/manifest.webmanifest',
       '/search-index.json',
+      '/search-index.v2.json',
     ]) {
       const response = await request.get(route);
       expect(response.ok(), route).toBe(true);

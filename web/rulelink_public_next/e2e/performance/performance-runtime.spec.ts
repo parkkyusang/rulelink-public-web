@@ -54,7 +54,7 @@ for (const width of performanceWidths) {
     let indexRequests = 0;
     let indexBytes = 0;
     page.on('response', async response => {
-      if (new URL(response.url()).pathname !== '/search-index.json') return;
+      if (new URL(response.url()).pathname !== '/search-index.v2.json') return;
       indexRequests += 1;
       indexBytes = (await response.body()).byteLength;
     });
@@ -83,7 +83,7 @@ for (const width of performanceWidths) {
     );
     const queryStartedAt = await page.evaluate(() => performance.now());
     const indexResponsePromise = page.waitForResponse(candidate => (
-      new URL(candidate.url()).pathname === '/search-index.json'
+      new URL(candidate.url()).pathname === '/search-index.v2.json'
     ));
     await input.focus();
     await input.fill(selection.query);

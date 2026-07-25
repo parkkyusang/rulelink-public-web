@@ -5,6 +5,7 @@ import {once} from 'node:events';
 
 import {resolvePublicTrustConfig} from '../src/lib/public-trust.ts';
 import {resolvePublicPrivacyConfig} from '../src/lib/public-data-practices.ts';
+import {decodeSiteSearchIndex} from '../src/lib/site-search-index.ts';
 
 const appRoot = process.cwd();
 const port = Number(process.env.RULELINK_SMOKE_PORT || 18800);
@@ -30,6 +31,22 @@ try {
   assert(publication.schema === 'rulelink_publication_status_v1', 'publication.json 스키마가 다릅니다.');
   assert(publication.status === 'published', '운영 스모크 테스트는 승인 출판본 상태여야 합니다.');
   assert(publication.snapshot_id === bundle.snapshot_id, '운영 상태의 snapshot_id가 빌드 입력과 다릅니다.');
+
+  const legacySearchIndexResponse = await fetch(`${baseUrl}/search-index.json`, {cache: 'no-store'});
+  assert(legacySearchIndexResponse.ok, `v1 검색 인덱스 응답 실패: ${legacySearchIndexResponse.status}`);
+  const legacySearchIndexText = await legacySearchIndexResponse.text();
+  const legacySearchIndex = JSON.parse(legacySearchIndexText);
+  assert(legacySearchIndex.schema === 'rulelink_public_search_index_v1', '호환 검색 인덱스가 v1 스키마가 아닙니다.');
+  assert(Array.isArray(legacySearchIndex.documents), '호환 검색 인덱스 문서가 배열이 아닙니다.');
+  assert(Buffer.byteLength(legacySearchIndexText) <= 420_000, '호환 검색 인덱스가 기존 실측 상한을 넘었습니다.');
+
+  const searchIndexResponse = await fetch(`${baseUrl}/search-index.v2.json`, {cache: 'no-store'});
+  assert(searchIndexResponse.ok, `v2 검색 인덱스 응답 실패: ${searchIndexResponse.status}`);
+  const searchIndexText = await searchIndexResponse.text();
+  const searchIndex = decodeSiteSearchIndex(JSON.parse(searchIndexText));
+  assert(searchIndex, 'v2 검색 인덱스를 복원할 수 없습니다.');
+  assert(searchIndex.documents.length === legacySearchIndex.documents.length, 'v1·v2 검색 문서 수가 다릅니다.');
+  assert(Buffer.byteLength(searchIndexText) <= 390_000, 'v2 검색 인덱스가 절대 전송량 예산을 넘었습니다.');
 
   const expectedCounts = {
     issue_cards: bundle.cards?.length ?? 0,
