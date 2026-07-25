@@ -1,0 +1,46 @@
+{
+  "schema": "rulelink_publication_domain_coverage_v1",
+  "topic_id": "hub.debt-enforcement",
+  "coverage_version": 1,
+  "units": [
+    {
+      "coverage_unit_id": "coverage.kr.debt-enforcement.payment-order-objection.v1",
+      "question_family_id": "question.debt-enforcement.payment-order-objection",
+      "procedure_stage_id": "procedure.civil-enforcement.payment-order",
+      "jurisdiction": "KR",
+      "as_of_policy": "current_as_of_review",
+      "risk_level": "critical",
+      "target_authority_level": "L2_locator",
+      "branch_signature": [
+        "fact.payment-order-objected"
+      ],
+      "canonical_content_ids": [
+        "content.payment-order-objection-two-weeks"
+      ],
+      "required_rule_ids": [
+        "rule.debt-enforcement.payment-order-objection-finality"
+      ],
+      "required_scenario_ids": [
+        "scenario.debt-enforcement.payment-order-objected"
+      ],
+      "required_source_coordinate_ids": [
+        "coord.debt-enforcement.civil-procedure-ko-0470",
+        "coord.debt-enforcement.civil-procedure-ko-0474"
+      ],
+      "source_version_requirements": [
+        {
+          "coordinate_id": "coord.debt-enforcement.civil-procedure-ko-0470",
+          "source_snapshot_id": "snapshot:5eb1874d3a13d2373c84f05a11428539",
+          "last_verified_at": "2026-07-21T08:30:00+00:00"
+        },
+        {
+          "coordinate_id": "coord.debt-enforcement.civil-procedure-ko-0474",
+          "source_snapshot_id": "snapshot:e16ef04db903a2d2efd339de72260b6e",
+          "last_verified_at": "2026-07-21T08:30:00+00:00"
+        }
+      ],
+      "required_authority_binding_ids": [],
+      "evaluation_case_ids": []
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "rulelink_publication_domain_coverage_v1",
+  "topic_id": "hub.housing-lease-deposit",
+  "coverage_version": 1,
+  "units": [
+    {
+      "coverage_unit_id": "coverage.kr.housing-lease.deposit-return-before-move.v1",
+      "question_family_id": "question.housing-lease.deposit-return-before-move",
+      "procedure_stage_id": "procedure.housing-lease.after-end-before-refund",
+      "jurisdiction": "KR",
+      "as_of_policy": "current_as_of_review",
+      "risk_level": "critical",
+      "target_authority_level": "L2_locator",
+      "branch_signature": [
+        "fact.lease-ended",
+        "fact.registration-completed-before-move"
+      ],
+      "canonical_content_ids": [
+        "content.move-before-deposit-refund",
+        "content.lease-registration-application-is-not-completion"
+      ],
+      "required_rule_ids": [
+        "rule.housing-lease-deposit.housing-lease-registration-application",
+        "rule.housing-lease-deposit.housing-lease-registration-completion-effect"
+      ],
+      "required_scenario_ids": [
+        "scenario.housing-lease-deposit.housing-lease-lease-ended",
+        "scenario.housing-lease-deposit.housing-lease-registration-completed-before-move"
+      ],
+      "required_source_coordinate_ids": [
+        "coord.housing-lease-deposit.housing-lease-ko-0003-03"
+      ],
+      "source_version_requirements": [
+        {
+          "coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
+          "source_snapshot_id": "snapshot:1c35b925f8d04acba8a9a1b0c9796e07",
+          "last_verified_at": "2026-07-21T08:00:00+00:00"
+        }
+      ],
+      "required_authority_binding_ids": [],
+      "evaluation_case_ids": []
+    }
+  ]
+}

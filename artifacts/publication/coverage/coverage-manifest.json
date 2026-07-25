@@ -1,0 +1,13 @@
+{
+  "schema": "rulelink_publication_coverage_manifest_v1",
+  "base_snapshot_id": "kr-knowledge-core-20260723-023",
+  "base_bundle_sha256": "18209d6268b59e8e6bee3e1628234da9804e7b835b3e08d2eef70b91410fa581",
+  "question_family_catalog_file": "artifacts/publication/coverage/question-family-catalog.json",
+  "procedure_stage_catalog_file": "artifacts/publication/coverage/procedure-stage-catalog.json",
+  "authority_level_policy_file": "artifacts/publication/coverage/authority-level-policy.json",
+  "domain_files": [
+    "artifacts/publication/coverage/domains/crime-victim-response.coverage.json",
+    "artifacts/publication/coverage/domains/debt-enforcement.coverage.json",
+    "artifacts/publication/coverage/domains/housing-lease-deposit.coverage.json"
+  ]
+}

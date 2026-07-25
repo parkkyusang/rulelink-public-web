@@ -1,0 +1,232 @@
+{
+  "schema": "rulelink_publication_domain_coverage_v1",
+  "topic_id": "hub.crime-victim-response",
+  "coverage_version": 1,
+  "units": [
+    {
+      "coverage_unit_id": "coverage.kr.crime-victim.compensation-order.eligibility.v1",
+      "question_family_id": "question.crime-victim.compensation-order.eligibility",
+      "procedure_stage_id": "procedure.criminal-trial.compensation-order",
+      "jurisdiction": "KR",
+      "as_of_policy": "current_as_of_review",
+      "risk_level": "high",
+      "target_authority_level": "L2_locator",
+      "branch_signature": [
+        "fact.eligible-offense"
+      ],
+      "canonical_content_ids": [
+        "content.compensation-order-eligible-damages"
+      ],
+      "required_rule_ids": [
+        "rule.crime-victim-response.crime-victim-10"
+      ],
+      "required_scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-10"
+      ],
+      "required_source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0025"
+      ],
+      "source_version_requirements": [
+        {
+          "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+          "source_snapshot_id": "snapshot:50983dddba9cd06682339ba8c6b33d9a",
+          "last_verified_at": "2026-07-21T08:30:00+00:00"
+        }
+      ],
+      "required_authority_binding_ids": [],
+      "evaluation_case_ids": [
+        "eval.compensation-order.eligibility.A",
+        "eval.compensation-order.eligibility.B"
+      ]
+    },
+    {
+      "coverage_unit_id": "coverage.kr.crime-victim.compensation-order.agreed-amount.v1",
+      "question_family_id": "question.crime-victim.compensation-order.agreed-amount",
+      "procedure_stage_id": "procedure.criminal-trial.compensation-order",
+      "jurisdiction": "KR",
+      "as_of_policy": "current_as_of_review",
+      "risk_level": "high",
+      "target_authority_level": "L2_locator",
+      "branch_signature": [
+        "fact.agreed-amount"
+      ],
+      "canonical_content_ids": [
+        "content.compensation-order-eligible-damages"
+      ],
+      "required_rule_ids": [
+        "rule.crime-victim-response.crime-victim-10"
+      ],
+      "required_scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-10"
+      ],
+      "required_source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0025"
+      ],
+      "source_version_requirements": [
+        {
+          "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+          "source_snapshot_id": "snapshot:50983dddba9cd06682339ba8c6b33d9a",
+          "last_verified_at": "2026-07-21T08:30:00+00:00"
+        }
+      ],
+      "required_authority_binding_ids": [],
+      "evaluation_case_ids": [
+        "eval.compensation-order.agreed-amount.A",
+        "eval.compensation-order.agreed-amount.B"
+      ]
+    },
+    {
+      "coverage_unit_id": "coverage.kr.crime-victim.compensation-order.dismissal.v1",
+      "question_family_id": "question.crime-victim.compensation-order.dismissal",
+      "procedure_stage_id": "procedure.criminal-trial.compensation-order",
+      "jurisdiction": "KR",
+      "as_of_policy": "current_as_of_review",
+      "risk_level": "high",
+      "target_authority_level": "L2_locator",
+      "branch_signature": [
+        "fact.complex-determination"
+      ],
+      "canonical_content_ids": [
+        "content.compensation-order-eligible-damages"
+      ],
+      "required_rule_ids": [
+        "rule.crime-victim-response.crime-victim-10"
+      ],
+      "required_scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-10"
+      ],
+      "required_source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0025"
+      ],
+      "source_version_requirements": [
+        {
+          "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+          "source_snapshot_id": "snapshot:50983dddba9cd06682339ba8c6b33d9a",
+          "last_verified_at": "2026-07-21T08:30:00+00:00"
+        }
+      ],
+      "required_authority_binding_ids": [],
+      "evaluation_case_ids": [
+        "eval.compensation-order.dismissal.A",
+        "eval.compensation-order.dismissal.B"
+      ]
+    },
+    {
+      "coverage_unit_id": "coverage.kr.crime-victim.compensation-order.deadline.v1",
+      "question_family_id": "question.crime-victim.compensation-order.deadline",
+      "procedure_stage_id": "procedure.criminal-trial.compensation-order",
+      "jurisdiction": "KR",
+      "as_of_policy": "current_as_of_review",
+      "risk_level": "critical",
+      "target_authority_level": "L2_locator",
+      "branch_signature": [
+        "fact.before-closing"
+      ],
+      "canonical_content_ids": [
+        "content.compensation-order-application-deadline"
+      ],
+      "required_rule_ids": [
+        "rule.crime-victim-response.crime-victim-11"
+      ],
+      "required_scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-11"
+      ],
+      "required_source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0026"
+      ],
+      "source_version_requirements": [
+        {
+          "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
+          "source_snapshot_id": "snapshot:33b1a9b966387025275a6c4531a08027",
+          "last_verified_at": "2026-07-21T08:30:00+00:00"
+        }
+      ],
+      "required_authority_binding_ids": [],
+      "evaluation_case_ids": [
+        "eval.compensation-order.deadline.A",
+        "eval.compensation-order.deadline.B"
+      ]
+    },
+    {
+      "coverage_unit_id": "coverage.kr.crime-victim.compensation-order.copies.v1",
+      "question_family_id": "question.crime-victim.compensation-order.copies",
+      "procedure_stage_id": "procedure.criminal-trial.compensation-order",
+      "jurisdiction": "KR",
+      "as_of_policy": "current_as_of_review",
+      "risk_level": "high",
+      "target_authority_level": "L2_locator",
+      "branch_signature": [
+        "fact.copies-sufficient"
+      ],
+      "canonical_content_ids": [
+        "content.compensation-order-application-deadline"
+      ],
+      "required_rule_ids": [
+        "rule.crime-victim-response.crime-victim-11"
+      ],
+      "required_scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-11"
+      ],
+      "required_source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0026"
+      ],
+      "source_version_requirements": [
+        {
+          "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
+          "source_snapshot_id": "snapshot:33b1a9b966387025275a6c4531a08027",
+          "last_verified_at": "2026-07-21T08:30:00+00:00"
+        }
+      ],
+      "required_authority_binding_ids": [],
+      "evaluation_case_ids": [
+        "eval.compensation-order.copies.A",
+        "eval.compensation-order.copies.B"
+      ]
+    },
+    {
+      "coverage_unit_id": "coverage.kr.crime-victim.compensation-order.enforcement.v1",
+      "question_family_id": "question.crime-victim.compensation-order.enforcement",
+      "procedure_stage_id": "procedure.criminal-trial.compensation-order",
+      "jurisdiction": "KR",
+      "as_of_policy": "current_as_of_review",
+      "risk_level": "high",
+      "target_authority_level": "L2_locator",
+      "branch_signature": [
+        "fact.enforceable-order"
+      ],
+      "canonical_content_ids": [
+        "content.compensation-order-eligible-damages",
+        "content.compensation-order-application-deadline"
+      ],
+      "required_rule_ids": [
+        "rule.crime-victim-response.crime-victim-10",
+        "rule.crime-victim-response.crime-victim-11"
+      ],
+      "required_scenario_ids": [
+        "scenario.crime-victim-response.crime-victim-10",
+        "scenario.crime-victim-response.crime-victim-11"
+      ],
+      "required_source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0026"
+      ],
+      "source_version_requirements": [
+        {
+          "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+          "source_snapshot_id": "snapshot:50983dddba9cd06682339ba8c6b33d9a",
+          "last_verified_at": "2026-07-21T08:30:00+00:00"
+        },
+        {
+          "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
+          "source_snapshot_id": "snapshot:33b1a9b966387025275a6c4531a08027",
+          "last_verified_at": "2026-07-21T08:30:00+00:00"
+        }
+      ],
+      "required_authority_binding_ids": [],
+      "evaluation_case_ids": [
+        "eval.compensation-order.enforcement.A",
+        "eval.compensation-order.enforcement.B"
+      ]
+    }
+  ]
+}
