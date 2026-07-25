@@ -6,6 +6,7 @@
   "additionalProperties": false,
   "required": [
     "schema",
+    "schema_sha256",
     "snapshot_id",
     "base_bundle_sha256",
     "coverage_manifest_sha256",
@@ -19,6 +20,9 @@
   "properties": {
     "schema": {
       "const": "rulelink_publication_expansion_backlog_v1"
+    },
+    "schema_sha256": {
+      "$ref": "#/$defs/sha256"
     },
     "snapshot_id": {
       "type": "string",
