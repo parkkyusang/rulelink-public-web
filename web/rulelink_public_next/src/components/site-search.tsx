@@ -17,11 +17,11 @@ import {
 import {
   rankSiteSearchDocuments,
   type SiteSearchDocument,
-  type SiteSearchIndexPayload,
   type SiteSearchResultCounts,
   type SiteSearchResultFilter,
   type SiteSearchResultKind,
 } from '@/lib/site-search-discovery';
+import {decodeSiteSearchIndex} from '@/lib/site-search-index';
 
 import styles from './site-search.module.css';
 import {ProgressiveResultFooter} from './progressive-result-footer';
@@ -61,11 +61,8 @@ export function SiteSearch({
         if (!response.ok) {
           throw new Error(`검색 인덱스 응답 실패: ${response.status}`);
         }
-        const payload = await response.json() as SiteSearchIndexPayload;
-        if (
-          payload.schema !== 'rulelink_public_search_index_v1'
-          || !Array.isArray(payload.documents)
-        ) {
+        const payload = decodeSiteSearchIndex(await response.json());
+        if (!payload) {
           throw new Error('검색 인덱스 형식이 올바르지 않습니다.');
         }
         setFullDocuments(payload.documents);

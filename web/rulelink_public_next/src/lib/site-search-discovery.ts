@@ -69,12 +69,6 @@ export type SiteSearchResultCounts = Record<
   number
 >;
 
-export type SiteSearchIndexPayload = {
-  schema: 'rulelink_public_search_index_v1';
-  generated_at: string;
-  documents: SiteSearchDocument[];
-};
-
 type Labels = {
   changeLifecycle: (value: LegalChangeBrief['lifecycle']) => string;
   knowledgeContentType: (

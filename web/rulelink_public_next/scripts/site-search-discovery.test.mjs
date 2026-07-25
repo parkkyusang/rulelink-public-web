@@ -11,6 +11,10 @@ import {
   rankSiteSearchDocuments,
   tokenizeSiteSearchQuery,
 } from '../src/lib/site-search-discovery.ts';
+import {
+  decodeSiteSearchIndex,
+  encodeSiteSearchIndex,
+} from '../src/lib/site-search-index.ts';
 
 const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const bundle = JSON.parse(await readFile(
@@ -75,11 +79,11 @@ test('운영 정본의 모든 검색 대상을 종류 편향 없이 한 투영�
 });
 
 test('전체 검색 인덱스와 초기 24개 문서는 각각 절대 전송량 예산 안에 있다', () => {
-  const payload = {
-    schema: 'rulelink_public_search_index_v1',
-    generated_at: now.toISOString(),
+  const payload = encodeSiteSearchIndex(documents, now.toISOString());
+  assert.deepEqual(decodeSiteSearchIndex(payload), {
+    generatedAt: now.toISOString(),
     documents,
-  };
+  });
   const ranked = rankSiteSearchDocuments(documents, {now, query: ''})
     .slice(0, 24)
     .map(({
@@ -89,13 +93,41 @@ test('전체 검색 인덱스와 초기 24개 문서는 각각 절대 전송량 
       ...document
     }) => document);
   assert.ok(
-    Buffer.byteLength(JSON.stringify(payload)) <= 420_000,
-    'exact scenario handoff를 포함한 지연 검색 인덱스가 420KB 절대 예산을 넘었습니다.',
+    Buffer.byteLength(JSON.stringify(payload)) <= 390_000,
+    'exact scenario handoff를 포함한 지연 검색 인덱스가 390KB 절대 예산을 넘었습니다.',
   );
   assert.ok(
     Buffer.byteLength(JSON.stringify(ranked)) <= 60_000,
     '초기 검색 문서 24개가 60KB 절대 예산을 넘었습니다.',
   );
+});
+
+test('공용 문자열 사전은 잘못된 문서 tuple과 문자열 참조를 fail-closed 한다', () => {
+  const payload = encodeSiteSearchIndex(documents, now.toISOString());
+  const decisionDocumentIndex = payload.documents.findIndex(document => document[9].length > 0);
+  assert.notEqual(decisionDocumentIndex, -1);
+  assert.equal(decodeSiteSearchIndex({...payload, schema: 'unknown'}), null);
+  assert.equal(decodeSiteSearchIndex({...payload, documents: [[0]]}), null);
+  assert.equal(decodeSiteSearchIndex({
+    ...payload,
+    documents: payload.documents.map((document, index) => (
+      index === 0
+        ? document.map((value, position) => (
+            position === 0 ? payload.strings.length : value
+      ))
+        : document
+    )),
+  }), null);
+  assert.equal(decodeSiteSearchIndex({
+    ...payload,
+    documents: payload.documents.map((document, index) => (
+      index === decisionDocumentIndex
+        ? document.map((value, position) => (
+            position === 9 ? [] : value
+          ))
+        : document
+    )),
+  }), null);
 });
 
 test('지식 검색 카드는 연결된 모든 사실분기 질문을 순서대로 색인한다', () => {
