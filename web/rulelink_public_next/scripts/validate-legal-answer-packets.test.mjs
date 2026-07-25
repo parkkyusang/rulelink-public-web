@@ -9,6 +9,7 @@ import {
   inspectPublicLegalAnswerPacketSet,
   LEGAL_ANSWER_PACKET_PRODUCER_COMMIT,
   LEGAL_ANSWER_PACKET_SCHEMA_SHA256,
+  legalAnswerQueryFingerprint,
   projectCanonicalLegalAnswerPacket,
   sha256Bytes,
   validateJsonSchema,
@@ -138,6 +139,80 @@ test('canonical packet은 current snapshot/hash와 닫힌 ID·authority graph에
   );
 });
 
+test('검색 영수증은 producer query fingerprint와 candidate 재수화 집합을 그대로 검증한다', () => {
+  assert.equal(
+    legalAnswerQueryFingerprint('  Straße\tᎠ '),
+    '5f436ff28f1c27565bf65361a0331e484a9984fec71e9539885b42bf4d7ab346',
+    'Unicode casefold와 공백 정규화도 Python producer와 같아야 한다',
+  );
+  assert.equal(
+    legalAnswerQueryFingerprint(' A\u001cB\ufeffC '),
+    '39f70cd0057c59b94aab7cc4c7da8cc64046a0c437ac7521018f5ea2d53c7cbb',
+    'Python isspace와 JavaScript 정규식의 경계도 producer와 같아야 한다',
+  );
+  const ruleFixture = validFixture();
+  const ruleId = ruleFixture.packetSet.packets[0].retrieval.rule_ids[0];
+  const ruleReceipt = ruleFixture.packetSet.packets[0].retrieval.receipts[0];
+  ruleReceipt.candidate_ids = [ruleId];
+  ruleReceipt.rehydrated_ids = [ruleId];
+  assert.equal(
+    inspect(
+      ruleFixture.packetSet,
+      ruleFixture.bundle,
+      ruleFixture.bundleRaw,
+    ).ok,
+    true,
+    'content 외 rule ID도 producer의 전체 재수화 집합에 포함된다',
+  );
+
+  const attacks = [
+    {
+      mutate(receipt) {
+        receipt.rehydrated_ids = [];
+      },
+      expected: /retrieval_candidate_rehydration_mismatch/,
+    },
+    {
+      mutate(receipt) {
+        receipt.query_sha256 = 'f'.repeat(64);
+      },
+      expected: /retrieval_query_hash_mismatch/,
+    },
+    {
+      mutate(receipt) {
+        receipt.candidate_ids = ['rule.unknown'];
+        receipt.rehydrated_ids = ['rule.unknown'];
+      },
+      expected: /retrieval_rehydrated:0_missing:rule\.unknown/,
+    },
+  ];
+  for (const attack of attacks) {
+    const fixture = validFixture();
+    attack.mutate(fixture.packetSet.packets[0].retrieval.receipts[0]);
+    const result = inspect(
+      fixture.packetSet,
+      fixture.bundle,
+      fixture.bundleRaw,
+    );
+    assert.equal(result.ok, false);
+    assert.deepEqual(result.packets, []);
+    assert.match(result.errors.join('\n'), attack.expected);
+  }
+});
+
+test('packet 기준일과 request time_context 기준일은 정확히 같아야 한다', () => {
+  const fixture = validFixture();
+  fixture.packetSet.packets[0].request.time_context.as_of = '2026-07-23';
+  const result = inspect(
+    fixture.packetSet,
+    fixture.bundle,
+    fixture.bundleRaw,
+  );
+  assert.equal(result.ok, false);
+  assert.deepEqual(result.packets, []);
+  assert.match(result.errors.join('\n'), /request_time_context_as_of_mismatch/);
+});
+
 test('현재 023에 authority가 없는 상태에서 packet만 투입하면 fail-closed다', () => {
   const packetSet = {
     schema: 'rulelink_public_legal_answer_packet_set_v1',
@@ -261,6 +336,12 @@ test('authority anchor·locator·bridge·현재 법판 폐쇄를 우회할 수 �
         bundle.knowledge.source_version_bridges[0].source_snapshot_id = 'snapshot:forged';
       },
       expected: /authority_source_version_bridge_mismatch/,
+    },
+    {
+      mutate(_packet, bundle) {
+        bundle.knowledge.source_authority_units[0].official_text_hash = 'b'.repeat(64);
+      },
+      expected: /authority_anchor_source_unit_mismatch/,
     },
     {
       mutate(packet) {

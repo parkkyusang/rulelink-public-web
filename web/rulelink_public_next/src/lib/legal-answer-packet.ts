@@ -15,6 +15,7 @@ import type {
   PublicSourceVersionBridge,
   PublishedBundle,
 } from '@/types/publication';
+import {pythonCaseFold} from './python-casefold.ts';
 
 export const LEGAL_ANSWER_PACKET_PRODUCER_COMMIT =
   'c87cc9314f247b4be39c3ee96f1d49a332300ae0';
@@ -46,6 +47,8 @@ const REQUIRED_GATE_IDS: ReadonlySet<
   'rendering_faithful',
   'privacy_mode_valid',
 ]);
+const PYTHON_UNICODE_WHITESPACE =
+  /[\u0009-\u000d\u001c-\u001f\u0020\u0085\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000]+/u;
 
 type VendorReceipt = {
   schema: string;
@@ -98,6 +101,16 @@ const validatedPacketRegistry = new WeakSet<RuleLinkLegalAnswerPacket>();
 
 export function sha256Bytes(value: string | Uint8Array): string {
   return createHash('sha256').update(value).digest('hex');
+}
+
+export function legalAnswerQueryFingerprint(queryText: string): string {
+  const normalized = pythonCaseFold(
+    queryText
+      .split(PYTHON_UNICODE_WHITESPACE)
+      .filter(Boolean)
+      .join(' '),
+  );
+  return sha256Bytes(normalized);
 }
 
 export function validateVendoredLegalAnswerContract(
@@ -374,6 +387,9 @@ function validateCanonicalPacket(
   if (packet.provenance.schema_source_commit !== LEGAL_ANSWER_PACKET_SCHEMA_SOURCE_COMMIT) {
     errors.push('packet_schema_source_commit_mismatch');
   }
+  if (packet.as_of !== packet.request.time_context.as_of) {
+    errors.push('request_time_context_as_of_mismatch');
+  }
   validateRetrieval(packet, knowledge, bundle, bundleSha256, errors);
   validatePacketGraph(packet, knowledge, errors);
   validatePacketAuthority(packet, knowledge, errors);
@@ -400,14 +416,26 @@ function validateRetrieval(
     checkUnique(values, `retrieval_${label}`, errors);
     checkReferences(values, available, `retrieval_${label}`, errors);
   }
+  const rehydratableIds = new Set(
+    collections.flatMap(([, values]) => values),
+  );
+  const expectedQueryHash = legalAnswerQueryFingerprint(
+    packet.request.query_text,
+  );
   let currentReceiptCount = 0;
-  for (const receipt of packet.retrieval.receipts) {
+  for (const [index, receipt] of packet.retrieval.receipts.entries()) {
+    if (!sameStringSet(receipt.candidate_ids, receipt.rehydrated_ids)) {
+      errors.push(`retrieval_candidate_rehydration_mismatch:${index}`);
+    }
     checkReferences(
-      [...receipt.candidate_ids, ...receipt.rehydrated_ids],
-      collections[0][2],
-      `retrieval_receipt_${receipt.index_kind}`,
+      receipt.rehydrated_ids,
+      rehydratableIds,
+      `retrieval_rehydrated:${index}`,
       errors,
     );
+    if (receipt.query_sha256 !== expectedQueryHash) {
+      errors.push(`retrieval_query_hash_mismatch:${index}`);
+    }
     if (receipt.index_kind === 'current_public_bundle') {
       currentReceiptCount += 1;
       if (
@@ -605,7 +633,8 @@ function validatePacketAuthority(
           !sourceUnit ||
           sourceUnit.source_coordinate_id !== ref.source_coordinate_id ||
           sourceUnit.source_snapshot_id !== ref.source_snapshot_id ||
-          sourceUnit.locator_key !== anchor.locator_key
+          sourceUnit.locator_key !== anchor.locator_key ||
+          sourceUnit.official_text_hash !== anchor.official_text_hash
         ) {
           errors.push(`authority_anchor_source_unit_mismatch:${anchorId}`);
           continue;
@@ -893,6 +922,15 @@ function checkExactProjection(
   for (const value of declaredSet) {
     if (!referenced.has(value)) errors.push(`${label}_unused:${value}`);
   }
+}
+
+function sameStringSet(left: string[], right: string[]): boolean {
+  const leftSet = new Set(left);
+  const rightSet = new Set(right);
+  return (
+    leftSet.size === rightSet.size &&
+    [...leftSet].every(value => rightSet.has(value))
+  );
 }
 
 function datePrefix(value: string | undefined): string | undefined {
