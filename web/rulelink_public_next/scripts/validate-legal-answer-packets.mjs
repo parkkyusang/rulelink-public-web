@@ -32,7 +32,11 @@ export const DEFAULT_LEGAL_ANSWER_PACKET_SET_PATH = path.join(
 );
 export const DEFAULT_PUBLICATION_BUNDLE_PATH = path.join(
   appRoot,
-  'content',
+  '..',
+  '..',
+  'artifacts',
+  'publication',
+  'current',
   'bundle.json',
 );
 export const DEFAULT_LEGAL_ANSWER_ACTIVATION_MANIFEST_PATH = path.join(

@@ -27,8 +27,10 @@ import {
 import {
   DEFAULT_LEGAL_ANSWER_PACKET_SET_PATH,
   DEFAULT_LEGAL_ANSWER_ACTIVATION_MANIFEST_PATH,
+  DEFAULT_PRODUCTION_QUEUE_BUNDLE_PATH,
   DEFAULT_PRODUCTION_QUEUE_PATH,
   DEFAULT_PRODUCTION_REGISTRY_PATH,
+  DEFAULT_PUBLICATION_BUNDLE_PATH,
   DEFAULT_LEGAL_ANSWER_RECEIPT_PATH,
   DEFAULT_LEGAL_ANSWER_SCHEMA_PATH,
   validateLegalAnswerPacketFiles,
@@ -74,6 +76,11 @@ const activationSigningKey = generateKeyPairSync('ed25519');
 const activationPublicKeyPem = activationSigningKey.publicKey.export({
   type: 'spki',
   format: 'pem',
+});
+
+test('정본 bundle 기본 경로는 clean checkout의 current publication을 사용한다', () => {
+  assert.equal(DEFAULT_PUBLICATION_BUNDLE_PATH, currentBundlePath);
+  assert.equal(DEFAULT_PRODUCTION_QUEUE_BUNDLE_PATH, currentBundlePath);
 });
 
 test('vendored producer schema와 승인 영수증은 exact SHA 및 commit에 결박된다', () => {
