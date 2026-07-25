@@ -8,8 +8,8 @@
     "backlog_sha256": "bacbca80b9187c62c882d5fed8804827876b96dcf627e2f2fbe1d4a256ae77c3",
     "taxonomy_sha256": "4cb524d1d0479246c943a2fcacfce0807e4b13feddae2e8d70afc78d7e1b1e11",
     "topic_manifest_sha256": "8ec514941561b1660429e382f7021f9508eb4543c0b8286bc4c370579b7c8434",
-    "production_queue_sha256": "5b37e15e554ac3879de95cac4b1ac8e140a07b607ee9061c044fd904873f0e26",
-    "production_registry_sha256": "d8543e3761e5fa36697d251d19c8e96cd6dcf16bcdcaab49a4b44e8fa5e0bdd4"
+    "production_queue_sha256": "c701a208dd3b8edc7dca79520696eddea80fce50e3eeba14649f0738259414b0",
+    "production_registry_sha256": "4ee89994c39627cd9ddb3aa9eb12f5a12d49e90c2b183d77798ea432de80eab3"
   },
   "denominator": {
     "hub_count": 28,

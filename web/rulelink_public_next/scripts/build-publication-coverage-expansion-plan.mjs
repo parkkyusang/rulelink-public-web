@@ -1272,8 +1272,10 @@ export async function buildPublicationCoverageExpansionPlan(options = {}) {
       backlog_sha256: canonicalSha256(backlog),
       taxonomy_sha256: canonicalSha256(taxonomy),
       topic_manifest_sha256: canonicalSha256(topicManifest),
-      production_queue_sha256: documents.productionQueueSha256,
-      production_registry_sha256: documents.productionRegistrySha256,
+      production_queue_sha256: canonicalSha256(documents.productionQueue),
+      production_registry_sha256: canonicalSha256(
+        documents.productionRegistry,
+      ),
     },
     denominator: {
       hub_count: documents.bundle.knowledge.topic_hubs.length,

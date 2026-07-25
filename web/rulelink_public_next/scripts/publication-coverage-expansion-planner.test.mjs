@@ -29,6 +29,8 @@ import {
   DEFAULT_COVERAGE_MANIFEST_PATH,
   DEFAULT_PUBLICATION_BUNDLE_PATH,
   canonicalJson,
+  canonicalSha256,
+  loadCoverageDocuments,
 } from './publication-coverage-core.mjs';
 import {
   DEFAULT_LEGAL_ANSWER_SCHEMA_PATH,
@@ -1017,5 +1019,20 @@ test('coverage 계획과 legal-answer 게이트는 같은 정본 bundle 경로�
       bundlePath: explicitBundlePath,
       productionQueueBundlePath: explicitQueueBundlePath,
     },
+  );
+});
+
+test('coverage 계획의 queue·registry 출처 해시는 JSON 의미 정본에 결박된다', async () => {
+  const [plan, documents] = await Promise.all([
+    buildPublicationCoverageExpansionPlan(),
+    loadCoverageDocuments(),
+  ]);
+  assert.equal(
+    plan.generated_from.production_queue_sha256,
+    canonicalSha256(documents.productionQueue),
+  );
+  assert.equal(
+    plan.generated_from.production_registry_sha256,
+    canonicalSha256(documents.productionRegistry),
   );
 });
