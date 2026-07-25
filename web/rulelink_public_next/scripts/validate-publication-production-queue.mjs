@@ -922,7 +922,6 @@ async function verifySourceLocatorSelectionArtifact({
   workId,
   evidenceRef,
   queue,
-  io,
 }) {
   const matched =
     /^source-locator-selection:([^@]+)@sha256:([0-9a-f]{64})$/u.exec(
@@ -958,12 +957,11 @@ async function verifySourceLocatorSelectionArtifact({
   if (!artifactPath.startsWith(selectionRoot)) {
     throw new Error(`source locator 선택 경로 이탈: ${workId}`);
   }
-  const read = io.readFile || readFile;
   const trustPolicyPath =
     DEFAULT_SOURCE_MAINTENANCE_INVENTORY_TRUST_POLICY_PATH;
   const [artifactRaw, trustPolicyRaw] = await Promise.all([
-    read(artifactPath),
-    read(trustPolicyPath),
+    readFile(artifactPath),
+    readFile(trustPolicyPath),
   ]);
   if (sha256(artifactRaw) !== matched[2]) {
     throw new Error(`source locator 선택 산출물 해시 불일치: ${workId}`);
@@ -1084,8 +1082,8 @@ async function verifySourceLocatorSelectionArtifact({
   ) {
     throw new Error(`source maintenance inventory 서명 불일치: ${workId}`);
   }
-  const fetchJson = io.fetchJson || defaultFetchJson;
-  const fetchBytes = io.fetchBytes || defaultFetchBytes;
+  const fetchJson = defaultFetchJson;
+  const fetchBytes = defaultFetchBytes;
   if (manifest.source_commit_sha !== trustPolicy.trusted_root_commit_sha) {
     const comparison = await fetchJson(
       `https://api.github.com/repos/${trustPolicy.source_repository}/compare/` +
@@ -1661,14 +1659,14 @@ export async function verifyProductionQueueExternalEvidence(queue, {
   registry = null,
   ...io
 } = {}) {
-  const existingGateKeys = new Set(
+  const existingGateReceipts = new Map(
     (registry?.prerequisite_gate_receipts || [])
-      .map(receipt => [
-        receipt.work_id,
-        receipt.gate_id,
-        receipt.evidence_ref,
-        receipt.verification_contract || '',
-      ].join('|')),
+      .map(receipt => [[
+          receipt.work_id,
+          receipt.gate_id,
+          receipt.evidence_ref,
+          receipt.verification_contract || '',
+        ].join('|'), receipt]),
   );
   const existingReleaseKeys = new Set(
     (registry?.release_check_receipts || [])
@@ -1690,7 +1688,29 @@ export async function verifyProductionQueueExternalEvidence(queue, {
         gate.evidence_ref,
         contractGate.verification_contract || '',
       ].join('|');
-      if (existingGateKeys.has(key)) continue;
+      const existingReceipt = existingGateReceipts.get(key);
+      if (existingReceipt) {
+        if (
+          contractGate.verification_method ===
+          'source_locator_selection_v2'
+        ) {
+          const revalidatedProof = await verifyEvidenceReference({
+            kind: 'prerequisite_gate',
+            gateId: gate.gate_id,
+            workId: item.work_id,
+            evidenceRef: gate.evidence_ref,
+            verificationMethod: contractGate.verification_method,
+            queue,
+            io: {},
+          });
+          if (revalidatedProof !== existingReceipt.verification_proof) {
+            throw new Error(
+              `source maintenance 영수증이 canonical trust에서 재현되지 않습니다: ${key}`,
+            );
+          }
+        }
+        continue;
+      }
       const proof = await verifyEvidenceReference({
         kind: 'prerequisite_gate',
         gateId: gate.gate_id,

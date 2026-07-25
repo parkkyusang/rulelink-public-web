@@ -34,11 +34,10 @@ import {
 } from './validate-legal-answer-packets.mjs';
 import {
   DEFAULT_SOURCE_MAINTENANCE_INVENTORY_TRUST_POLICY_PATH,
-  appendPrerequisiteGateReceipts,
   buildCoverageSeedProductionContracts,
   loadQueuePublicationEvidence,
+  synchronizeQueueItemRegistryFile,
   topicReceipt,
-  validateProductionQueue,
   verifyProductionQueueExternalEvidence,
 } from './validate-publication-production-queue.mjs';
 import {
@@ -328,7 +327,6 @@ test('생산 대기열 gate와 registry 영수증을 함께 위조해도 착수�
       writeFile(queuePath, `${JSON.stringify(queue, null, 2)}\n`),
       writeFile(registryPath, `${JSON.stringify(registry, null, 2)}\n`),
     ]);
-
     await assert.rejects(
       buildPublicationCoverageExpansionPlan({
         productionQueuePath: queuePath,
@@ -341,7 +339,7 @@ test('생산 대기열 gate와 registry 영수증을 함께 위조해도 착수�
   }
 });
 
-test('신규 법영역은 정식 등록과 source locator artifact 영수증 뒤에만 착수한다', async () => {
+test('신규 법영역 source 신뢰경계는 호출자 주입으로 영수증을 발급하지 않는다', async () => {
   const temporary = await mkdtemp(
     path.join(os.tmpdir(), 'rulelink-coverage-new-domain-transition-'),
   );
@@ -525,42 +523,73 @@ test('신규 법영역은 정식 등록과 source locator artifact 영수증 뒤
       artifact_path: artifactRelative,
       artifact_sha256: artifactSha256,
     };
-    const verifiedEvidence =
-      await verifyProductionQueueExternalEvidence(queue, {
-        registry,
-        readFile: sourceMaintenanceReadFile,
-        fetchJson: sourceFetchJson,
-        fetchBytes: sourceFetchBytes,
-      });
-    registry = appendPrerequisiteGateReceipts(registry, queue, {
-      verifiedEvidence,
-    });
     const queuePath = path.join(temporary, 'queue.json');
     const registryPath = path.join(temporary, 'registry.json');
     await Promise.all([
       writeFile(queuePath, `${JSON.stringify(queue, null, 2)}\n`),
       writeFile(registryPath, `${JSON.stringify(registry, null, 2)}\n`),
     ]);
+    const selfIssuedRegistry = structuredClone(registry);
+    const selfIssuedReceipt = {
+      sequence:
+        selfIssuedRegistry.prerequisite_gate_receipts.length + 1,
+      work_id: workId,
+      gate_id: gateId,
+      evidence_ref: evidenceRef,
+      verified_by_role: 'source_maintenance',
+      verification_method: 'source_locator_selection_v2',
+      verification_proof: 'f'.repeat(64),
+      verified_on: queue.audited_on,
+      previous_receipt:
+        selfIssuedRegistry.prerequisite_gate_receipt,
+      verification_contract:
+        'rulelink_source_locator_selection_verification_v2',
+    };
+    selfIssuedReceipt.receipt = topicReceipt(selfIssuedReceipt);
+    selfIssuedRegistry.prerequisite_gate_receipts.push(
+      selfIssuedReceipt,
+    );
+    selfIssuedRegistry.prerequisite_gate_receipt =
+      selfIssuedReceipt.receipt;
+    await writeFile(
+      registryPath,
+      `${JSON.stringify(selfIssuedRegistry, null, 2)}\n`,
+    );
     const domain = {
       target_domain_id: targetDomainId,
       coverage_state: 'not_started',
     };
-    const queueEvidence = await loadQueuePublicationEvidence(
-      queue,
-      approvedBundle,
-      {
-        itemRegistry: registry,
+    await assert.rejects(
+      verifyProductionQueueExternalEvidence(queue, {
+        registry,
         readFile: sourceMaintenanceReadFile,
         fetchJson: sourceFetchJson,
         fetchBytes: sourceFetchBytes,
-      },
-    );
-    assert.deepEqual(
-      validateProductionQueue(queue, {
-        publishedBundle: approvedBundle,
-        ...queueEvidence,
       }),
-      [],
+      /trust policy가 활성 정본이 아닙니다/iu,
+      '영수증 발급기는 호출자 제공 policy·원격 응답을 신뢰하지 않는다',
+    );
+    await assert.rejects(
+      loadQueuePublicationEvidence(queue, approvedBundle, {
+        itemRegistry: selfIssuedRegistry,
+        readFile: sourceMaintenanceReadFile,
+        fetchJson: sourceFetchJson,
+        fetchBytes: sourceFetchBytes,
+      }),
+      /trust policy가 활성 정본이 아닙니다/iu,
+      '브랜드 발급기는 호출자 제공 policy·원격 응답을 신뢰하지 않는다',
+    );
+    await assert.rejects(
+      synchronizeQueueItemRegistryFile(registryPath, queue, {
+        previousRegistry: selfIssuedRegistry,
+        evidence: {
+          readFile: sourceMaintenanceReadFile,
+          fetchJson: sourceFetchJson,
+          fetchBytes: sourceFetchBytes,
+        },
+      }),
+      /trust policy가 활성 정본이 아닙니다/iu,
+      'registry 쓰기 API도 호출자 제공 source trust 입출력으로 영수증을 만들 수 없다',
     );
     const resolved = await resolveNewDomainSeedAssignment({
       domain,
@@ -569,63 +598,11 @@ test('신규 법영역은 정식 등록과 source locator artifact 영수증 뒤
       snapshotId,
       builtAt: '2026-07-25T00:00:00Z',
       repositoryRoot: REPOSITORY_ROOT,
-      revalidatedGateProofs:
-        queueEvidence.revalidatedGateProofs,
     });
     assert.equal(resolved.assignment.assignment_state, 'existing_queue_assignment');
-    assert.equal(resolved.assignment.start_allowed, true);
-    assert.equal(resolved.sourceLocatorState, 'bound');
-    assert.equal(resolved.requiredSourceLocators.length, 10);
-
-    await assert.rejects(
-      loadQueuePublicationEvidence(queue, approvedBundle, {
-        itemRegistry: registry,
-        readFile: sourceMaintenanceReadFile,
-        fetchJson: sourceFetchJson,
-        fetchBytes: async () => Buffer.from('forged-active-graph', 'utf8'),
-      }),
-      /active graph 원시 바이트 해시/iu,
-    );
-    const forgedRemoteManifest = structuredClone(manifest);
-    forgedRemoteManifest.sources[0].source_snapshot_id = 'forged-remote-row';
-    const forgedRemoteManifestRaw = Buffer.from(
-      `${JSON.stringify(forgedRemoteManifest, null, 2)}\n`,
-      'utf8',
-    );
-    await assert.rejects(
-      loadQueuePublicationEvidence(queue, approvedBundle, {
-        itemRegistry: registry,
-        readFile: sourceMaintenanceReadFile,
-        fetchJson: async url => {
-          if (url.includes('/compare/')) {
-            return {status: 'ahead', ahead_by: 1};
-          }
-          return {
-            type: 'file',
-            path: inventoryManifestPath,
-            encoding: 'base64',
-            content: forgedRemoteManifestRaw.toString('base64'),
-            size: forgedRemoteManifestRaw.length,
-            sha: gitBlobSha1(forgedRemoteManifestRaw),
-          };
-        },
-        fetchBytes: sourceFetchBytes,
-      }),
-      /승인 commit 원시 행과 다릅니다/iu,
-    );
-    await assert.rejects(
-      loadQueuePublicationEvidence(queue, approvedBundle, {
-        itemRegistry: registry,
-        readFile: sourceMaintenanceReadFile,
-        fetchJson: async url =>
-          url.includes('/compare/')
-            ? {status: 'diverged', ahead_by: 0}
-            : sourceFetchJson(url),
-        fetchBytes: sourceFetchBytes,
-      }),
-      /승인 root의 후손이 아닙니다/iu,
-    );
-
+    assert.equal(resolved.assignment.start_allowed, false);
+    assert.equal(resolved.sourceLocatorState, 'selection_required');
+    assert.equal(resolved.requiredSourceLocators.length, 0);
     await assert.rejects(
       buildPublicationCoverageExpansionPlan({
         productionQueuePath: queuePath,
@@ -635,101 +612,10 @@ test('신규 법영역은 정식 등록과 source locator artifact 영수증 뒤
       /trust policy가 활성 정본이 아닙니다|trust validation/iu,
       '공개 planner 호출자는 정본 policy 경로를 다른 키로 바꿀 수 없다',
     );
-
-    const forgedArtifact = structuredClone(artifact);
-    forgedArtifact.inventory_manifest.sources[0].law_name_ko =
-      '서명되지 않은 위조 법령';
-    const forgedArtifactRaw = Buffer.from(
-      `${JSON.stringify(forgedArtifact, null, 2)}\n`,
-    );
-    const forgedHash = createHash('sha256')
-      .update(forgedArtifactRaw)
-      .digest('hex');
-    await writeFile(artifactPath, forgedArtifactRaw);
-    item.source_locator_selection.artifact_sha256 = forgedHash;
-    gate.evidence_ref =
-      `source-locator-selection:${workId}@sha256:${forgedHash}`;
-    const forgedRegistry = structuredClone(registry);
-    const forgedReceipt =
-      forgedRegistry.prerequisite_gate_receipts.at(-1);
-    forgedReceipt.evidence_ref = gate.evidence_ref;
-    forgedReceipt.verification_proof = 'a'.repeat(64);
-    forgedReceipt.receipt = topicReceipt(forgedReceipt);
-    forgedRegistry.prerequisite_gate_receipt =
-      forgedReceipt.receipt;
-    await Promise.all([
-      writeFile(queuePath, `${JSON.stringify(queue, null, 2)}\n`),
-      writeFile(
-        registryPath,
-        `${JSON.stringify(forgedRegistry, null, 2)}\n`,
-      ),
-    ]);
-    await assert.rejects(
-      loadQueuePublicationEvidence(queue, approvedBundle, {
-        itemRegistry: forgedRegistry,
-        readFile: sourceMaintenanceReadFile,
-        fetchJson: sourceFetchJson,
-        fetchBytes: sourceFetchBytes,
-      }),
-      /inventory 서명 불일치|revalidated|trust validation/iu,
-    );
-    await writeFile(artifactPath, artifactRaw);
-    item.source_locator_selection.artifact_sha256 = artifactSha256;
-    gate.evidence_ref = evidenceRef;
-    await Promise.all([
-      writeFile(queuePath, `${JSON.stringify(queue, null, 2)}\n`),
-      writeFile(registryPath, `${JSON.stringify(registry, null, 2)}\n`),
-    ]);
-    const selfIssuedRegistry = structuredClone(registry);
-    const selfIssuedReceipt =
-      selfIssuedRegistry.prerequisite_gate_receipts.at(-1);
-    selfIssuedReceipt.verification_proof = 'f'.repeat(64);
-    selfIssuedReceipt.receipt = topicReceipt(selfIssuedReceipt);
-    selfIssuedRegistry.prerequisite_gate_receipt =
-      selfIssuedReceipt.receipt;
-    await writeFile(
-      registryPath,
-      `${JSON.stringify(selfIssuedRegistry, null, 2)}\n`,
-    );
-    const selfIssuedEvidence = await loadQueuePublicationEvidence(
-      queue,
-      approvedBundle,
-      {
-        itemRegistry: selfIssuedRegistry,
-        readFile: sourceMaintenanceReadFile,
-        fetchJson: sourceFetchJson,
-        fetchBytes: sourceFetchBytes,
-      },
-    );
-    assert.match(
-      validateProductionQueue(queue, {
-        publishedBundle: approvedBundle,
-        ...selfIssuedEvidence,
-      }).join('\n'),
-      /재계산되지 않은 선행 게이트 영수증/iu,
-    );
-    await writeFile(
-      registryPath,
-      `${JSON.stringify(registry, null, 2)}\n`,
-    );
-
-    const missingReceipt = await resolveNewDomainSeedAssignment({
-      domain,
-      queue,
-      registry: {
-        ...registry,
-        prerequisite_gate_receipts: [],
-      },
-      snapshotId,
-      builtAt: '2026-07-25T00:00:00Z',
-      repositoryRoot: REPOSITORY_ROOT,
-    });
-    assert.equal(missingReceipt.assignment.start_allowed, false);
-    assert.deepEqual(missingReceipt.assignment.blocking_reasons, [
+    assert.deepEqual(resolved.assignment.blocking_reasons, [
       `gate_receipt_missing:${gateId}`,
       'source_locator_selection_revalidation_required',
     ]);
-    assert.equal(missingReceipt.sourceLocatorState, 'selection_required');
   } finally {
     await rm(artifactPath, { force: true });
     await rm(temporary, { recursive: true, force: true });
