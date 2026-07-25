@@ -16,6 +16,7 @@ export type SiteSearchMatchField =
   | 'title'
   | 'search_intent'
   | 'audience'
+  | 'decision'
   | 'summary'
   | 'source'
   | 'detail';
@@ -55,6 +56,7 @@ type SiteSearchScoringFields = {
 };
 
 export type RankedSiteSearchResult = SiteSearchDocument & {
+  decisionQuestion?: string;
   score: number;
   matchReasons: SiteSearchMatchReason[];
   freshnessState: 'current' | 'review_due';
@@ -95,7 +97,7 @@ const FIELD_META: Record<
     tokenWeight: 24,
   },
   audience: {field: 'audience', label: '대상 상황', tokenWeight: 18},
-  decision: {field: 'detail', label: '판단 질문', tokenWeight: 20},
+  decision: {field: 'decision', label: '판단 질문', tokenWeight: 20},
   summary: {field: 'summary', label: '핵심 답', tokenWeight: 14},
   source: {field: 'source', label: '공식 근거', tokenWeight: 11},
   detail: {field: 'detail', label: '확인 항목', tokenWeight: 4},
@@ -188,7 +190,7 @@ export function buildSiteSearchDocuments(
   knowledgeDocuments: readonly PublicKnowledgeSearchDocument[],
   topics: readonly PublicTopic[],
   labels: Labels,
-  knowledgeDecisionQuestions: ReadonlyMap<string, string> = new Map(),
+  knowledgeDecisionQuestions: ReadonlyMap<string, readonly string[]> = new Map(),
 ): SiteSearchDocument[] {
   const topicByCardId = new Map<string, PublicTopic[]>();
   for (const topic of topics) {
@@ -244,7 +246,7 @@ export function buildSiteSearchDocuments(
         evidenceLabels: document.evidence_labels_ko,
         searchIntent: entry.search_intents_ko,
         audience: [entry.audience_situation_ko],
-        decision: [knowledgeDecisionQuestions.get(entry.content_id) ?? ''],
+        decision: [...(knowledgeDecisionQuestions.get(entry.content_id) ?? [])],
         detail: [contentType, ...document.search_terms_ko],
       });
     }),
@@ -431,9 +433,14 @@ function scoreDocument(
 
   const matchReasons = buildMatchReasons(scoringFields, queryTokens);
   if (queryTokens.length > 0 && matchReasons.length === 0) return null;
+  const decisionQuestion = bestMatchingValue(
+    scoringFields.decision,
+    queryTokens,
+  ) ?? scoringFields.decision[0];
 
   return {
     ...document,
+    ...(decisionQuestion ? {decisionQuestion} : {}),
     score,
     matchReasons,
     freshnessState: isPublicationFresh(
@@ -443,6 +450,29 @@ function scoreDocument(
       ? 'current'
       : 'review_due',
   };
+}
+
+function bestMatchingValue(
+  values: readonly string[],
+  queryTokens: readonly string[][],
+): string | undefined {
+  if (!queryTokens.length) return values[0];
+  const ranked = values
+    .map((value, index) => {
+      const normalized = normalizeSiteSearchText(value);
+      return {
+        index,
+        matches: queryTokens.filter(variants => (
+          variants.some(variant => normalized.includes(variant))
+        )).length,
+        value,
+      };
+    })
+    .filter(candidate => candidate.matches > 0)
+    .sort((left, right) => (
+      right.matches - left.matches || left.index - right.index
+    ));
+  return ranked[0]?.value;
 }
 
 function buildMatchReasons(

@@ -200,10 +200,10 @@ export function SiteSearch({
                 <h2>{result.title}</h2>
                 <p>{result.summary}</p>
                 <small>{result.context}</small>
-                {result.kind === 'knowledge' && result.fields.decision?.[0] ? (
+                {result.kind === 'knowledge' && result.decisionQuestion ? (
                   <div className={styles.decisionQuestion} data-decision-question>
                     <b>결론을 가르는 질문</b>
-                    <p>{result.fields.decision[0]}</p>
+                    <p>{result.decisionQuestion}</p>
                   </div>
                 ) : null}
                 <div aria-label="정보 현재성" className={styles.reviewDates}>

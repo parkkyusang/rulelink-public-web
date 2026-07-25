@@ -168,7 +168,7 @@ export async function listKnowledgeSearchDocuments() {
   return buildKnowledgeSearchDocuments(knowledge, visibleContentIds);
 }
 
-export async function listKnowledgeDecisionQuestions(): Promise<Map<string, string>> {
+export async function listKnowledgeDecisionQuestions(): Promise<Map<string, string[]>> {
   const knowledge = (await loadPublishedBundle())?.knowledge;
   if (!knowledge) return new Map();
   const scenarioById = new Map(
@@ -177,12 +177,13 @@ export async function listKnowledgeDecisionQuestions(): Promise<Map<string, stri
   return new Map(
     filterFreshPublications(knowledge.content_entries)
       .map(entry => {
-        const question = entry.scenario_ids
+        const questions = [...new Set(entry.scenario_ids
           .map(scenarioId => scenarioById.get(scenarioId)?.question_ko)
-          .find((value): value is string => Boolean(value?.trim()));
-        return question ? [entry.content_id, question] as const : null;
+          .filter((value): value is string => Boolean(value?.trim()))
+          .map(value => value.trim()))];
+        return questions.length ? [entry.content_id, questions] as const : null;
       })
-      .filter((value): value is readonly [string, string] => Boolean(value)),
+      .filter((value): value is readonly [string, string[]] => Boolean(value)),
   );
 }
 

@@ -8,11 +8,13 @@ const bundle = JSON.parse(readFileSync(
   'utf8',
 ));
 type ScenarioFixture = {
+  question_ko: string;
   scenario_id: string;
   when_false_ko: string;
   when_true_ko: string;
 };
 type ScenarioEntryFixture = {
+  content_id: string;
   scenario_ids: string[];
   search_intents_ko: string[];
   slug: string;
@@ -26,11 +28,11 @@ const scenarioById = new Map<string, ScenarioFixture>(
 );
 const scenarioEntry = bundle.knowledge.content_entries.find(
   (entry: ScenarioEntryFixture) => (
-    entry.scenario_ids.some(scenarioId => scenarioById.has(scenarioId))
+    entry.scenario_ids.filter(scenarioId => scenarioById.has(scenarioId)).length > 1
   ),
 ) as ScenarioEntryFixture | undefined;
 const scenarioFixture = scenarioEntry
-  ? scenarioById.get(scenarioEntry.scenario_ids.find(
+  ? scenarioById.get([...scenarioEntry.scenario_ids].reverse().find(
     (scenarioId: string) => scenarioById.has(scenarioId),
   ) ?? '')
   : undefined;
@@ -140,60 +142,77 @@ test('자바스크립트가 없어도 홈의 28개 주제 링크는 초기 HTML�
   await context.close();
 });
 
-test('홈 상황 검색과 상세 사실분기는 하나의 검증된 읽기 흐름으로 이어진다', async ({
+test('후속 상황 질문도 네 폭에서 검색 카드와 상세 사실분기로 이어진다', async ({
   browser,
   page,
 }) => {
   if (!scenarioEntry || !scenarioFixture) {
     throw new Error('시나리오가 연결된 공개 지식 fixture가 필요합니다.');
   }
-  const situationQuery = scenarioEntry.search_intents_ko[0];
-  if (!situationQuery) {
-    throw new Error('시나리오 지식의 상황 검색어 fixture가 필요합니다.');
+  const situationQuery = scenarioFixture.question_ko;
+  for (const width of widths) {
+    await page.setViewportSize({width, height: 1000});
+    await page.goto('/', {waitUntil: 'networkidle'});
+    await page.locator('#home-situation-search').fill(situationQuery);
+    await page.getByRole('button', {name: '관련 질문 찾기'}).click();
+    await expect(page).toHaveURL(/\/ko\/search\?q=/u);
+    await expect(page.locator('[data-site-search]')).toHaveAttribute(
+      'data-search-index-state',
+      'ready',
+    );
+    const targetResult = page.locator(
+      `[data-search-result-id="${scenarioEntry.content_id}"]`,
+    );
+    await expect(targetResult).toBeVisible();
+    await expect(targetResult.locator('[data-decision-question]')).toContainText(
+      situationQuery,
+    );
+    await expect(targetResult.locator('[data-match-reasons]')).toContainText(
+      '판단 질문',
+    );
+    await assertNoHorizontalOverflow(page);
+
+    await targetResult.click();
+    await expect(page).toHaveURL(
+      new RegExp(`/ko/knowledge/${scenarioEntry.slug}$`, 'u'),
+    );
+    const decision = page.locator(
+      `[data-scenario-id="${scenarioFixture.scenario_id}"]`,
+    );
+    await expect(decision).toHaveAttribute('data-enhanced', 'true');
+    await expect(decision).toContainText(situationQuery);
+    await decision.getByRole('button', {name: '예', exact: true}).click();
+    await expect(decision.locator('[data-selected-outcome="true"]')).toContainText(
+      scenarioFixture.when_true_ko,
+    );
+    await decision.getByRole('button', {name: '아니오', exact: true}).click();
+    await expect(decision.locator('[data-selected-outcome="false"]')).toContainText(
+      scenarioFixture.when_false_ko,
+    );
+    await decision.getByRole('button', {name: '모르겠음', exact: true}).click();
+    await expect(decision.locator('[data-selected-outcome="unknown"]')).toContainText(
+      '어느 결과가 적용되는지 단정할 수 없습니다',
+    );
+    await assertNoHorizontalOverflow(page);
+
+    const noScriptContext = await browser.newContext({
+      javaScriptEnabled: false,
+      locale: 'ko-KR',
+      viewport: {width, height: 1000},
+    });
+    const noScriptPage = await noScriptContext.newPage();
+    await noScriptPage.goto(`/ko/knowledge/${scenarioEntry.slug}`, {
+      waitUntil: 'domcontentloaded',
+    });
+    const noScriptDecision = noScriptPage.locator(
+      `[data-scenario-id="${scenarioFixture.scenario_id}"]`,
+    );
+    await expect(noScriptDecision).toHaveAttribute('data-enhanced', 'false');
+    await expect(noScriptDecision).toContainText(scenarioFixture.when_true_ko);
+    await expect(noScriptDecision).toContainText(scenarioFixture.when_false_ko);
+    await assertNoHorizontalOverflow(noScriptPage);
+    await noScriptContext.close();
   }
-  await page.setViewportSize({width: 390, height: 1000});
-  await page.goto('/', {waitUntil: 'networkidle'});
-  await page.locator('#home-situation-search').fill(situationQuery);
-  await page.getByRole('button', {name: '관련 질문 찾기'}).click();
-  await expect(page).toHaveURL(/\/ko\/search\?q=/u);
-  await expect(page.getByLabel(
-    '상황, 법 이름, 조문이나 사건번호를 적어보세요',
-  )).toHaveValue(situationQuery);
-  await expect(page.locator('[data-search-result-id]').first()).toBeVisible();
-  await expect(page.locator('[data-match-reasons]').first()).toBeVisible();
-
-  await page.goto(`/ko/knowledge/${scenarioEntry.slug}`, {waitUntil: 'networkidle'});
-  const decision = page.locator(`[data-scenario-id="${scenarioFixture.scenario_id}"]`);
-  await expect(decision).toHaveAttribute('data-enhanced', 'true');
-  await decision.getByRole('button', {name: '예', exact: true}).click();
-  await expect(decision).toHaveAttribute('data-scenario-answer', 'yes');
-  await expect(decision.locator('[data-selected-outcome="true"]')).toContainText(
-    scenarioFixture.when_true_ko,
-  );
-  await page.reload({waitUntil: 'networkidle'});
-  await expect(decision).toHaveAttribute('data-scenario-answer', 'yes');
-  await decision.getByRole('button', {name: '모르겠음', exact: true}).click();
-  await expect(decision.locator('[data-selected-outcome="unknown"]')).toContainText(
-    '어느 결과가 적용되는지 단정할 수 없습니다',
-  );
-  await assertNoHorizontalOverflow(page);
-
-  const noScriptContext = await browser.newContext({
-    javaScriptEnabled: false,
-    locale: 'ko-KR',
-    viewport: {width: 390, height: 1000},
-  });
-  const noScriptPage = await noScriptContext.newPage();
-  await noScriptPage.goto(`/ko/knowledge/${scenarioEntry.slug}`, {
-    waitUntil: 'domcontentloaded',
-  });
-  const noScriptDecision = noScriptPage.locator(
-    `[data-scenario-id="${scenarioFixture.scenario_id}"]`,
-  );
-  await expect(noScriptDecision).toHaveAttribute('data-enhanced', 'false');
-  await expect(noScriptDecision).toContainText(scenarioFixture.when_true_ko);
-  await expect(noScriptDecision).toContainText(scenarioFixture.when_false_ko);
-  await noScriptContext.close();
 });
 
 test('검색은 느린 전체 인덱스 중 0건을 확정하지 않고 준비 뒤 근거 있는 결과만 표시한다', async ({

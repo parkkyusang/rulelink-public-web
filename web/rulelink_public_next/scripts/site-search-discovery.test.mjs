@@ -23,10 +23,11 @@ const scenarioById = new Map(
 );
 const decisionQuestions = new Map(
   bundle.knowledge.content_entries.flatMap(entry => {
-    const question = entry.scenario_ids
+    const questions = [...new Set(entry.scenario_ids
       .map(scenarioId => scenarioById.get(scenarioId)?.question_ko)
-      .find(Boolean);
-    return question ? [[entry.content_id, question]] : [];
+      .filter(Boolean)
+      .map(question => question.trim()))];
+    return questions.length ? [[entry.content_id, questions]] : [];
   }),
 );
 const documents = buildSiteSearchDocuments(
@@ -97,16 +98,28 @@ test('전체 검색 인덱스와 초기 24개 문서는 각각 절대 전송량 
   );
 });
 
-test('지식 검색 카드는 정본 첫 사실분기 질문을 표시·검색 신호로만 투영한다', () => {
+test('지식 검색 카드는 연결된 모든 사실분기 질문을 순서대로 색인한다', () => {
   const entry = bundle.knowledge.content_entries.find(
-    candidate => decisionQuestions.has(candidate.content_id),
+    candidate => (decisionQuestions.get(candidate.content_id)?.length ?? 0) > 1,
   );
   assert.ok(entry);
-  const question = decisionQuestions.get(entry.content_id);
+  const questions = decisionQuestions.get(entry.content_id);
   const document = documents.find(candidate => candidate.id === entry.content_id);
-  assert.equal(document?.fields.decision?.[0], question);
-  assert.ok(document?.fields.decision?.length === 1);
+  assert.deepEqual(document?.fields.decision, questions);
   assert.doesNotMatch(JSON.stringify(document), /when_true_ko|when_false_ko/u);
+
+  const laterQuestion = questions.at(-1);
+  const ranked = rankSiteSearchDocuments(documents, {
+    now,
+    query: laterQuestion,
+  });
+  const result = ranked.find(candidate => candidate.id === entry.content_id);
+  assert.equal(result?.decisionQuestion, laterQuestion);
+  assert.ok(result?.matchReasons.some(reason => (
+    reason.field === 'decision'
+    && reason.text_ko === laterQuestion
+    && reason.label_ko === '판단 질문'
+  )));
 });
 
 test('0-query 동률은 검토일·제목·ID로 결정되고 법령변화 종류가 선두를 고정하지 않는다', () => {
