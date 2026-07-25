@@ -24,12 +24,13 @@ test('브랜치 접두사로 주제·통합·이관·배포·생산계약·런�
   assert.equal(inferPublicationRole('codex/concept-graph-web'), null);
 });
 
-test('릴리스 열차는 기존 역할의 합집합과 authority 브라우저 증거만 한 번에 통합한다', () => {
+test('릴리스 열차는 기존 역할의 합집합과 승인된 공개 코드 증거를 한 번에 통합한다', () => {
   const result = validatePublicationScope('codex/release-train-023-authority-20260724', [
     '.gitattributes',
     '.github/workflows/public-web-checks.yml',
     '.github/workflows/authority-release-evidence.yml',
     'README.md',
+    'artifacts/publication/coverage/coverage-manifest.json',
     'artifacts/publication/concepts/inheritance.json',
     'artifacts/publication/topics/family-inheritance.json',
     'artifacts/publication/topics/manifest.json',
@@ -39,6 +40,13 @@ test('릴리스 열차는 기존 역할의 합집합과 authority 브라우저 �
     'artifacts/publication/snapshots/kr-knowledge-core-20260723-023/bundle.json',
     'web/rulelink_public_next/package-lock.json',
     'web/rulelink_public_next/package.json',
+    'web/rulelink_public_next/.env.example',
+    'web/rulelink_public_next/contracts/legal-answer-packet/rulelink_legal_answer_packet_v1.schema.json',
+    'web/rulelink_public_next/e2e/accessibility/accessibility-runtime.spec.ts',
+    'web/rulelink_public_next/e2e/launch-pilot/fixture/app/page.tsx',
+    'web/rulelink_public_next/lighthouserc.performance.cjs',
+    'web/rulelink_public_next/next.config.ts',
+    'web/rulelink_public_next/playwright.accessibility.config.ts',
     'web/rulelink_public_next/playwright.config.ts',
     'web/rulelink_public_next/tsconfig.json',
     'web/rulelink_public_next/app/ko/knowledge/[slug]/page.tsx',
@@ -51,6 +59,9 @@ test('릴리스 열차는 기존 역할의 합집합과 authority 브라우저 �
   assert.equal(allowedForRole('release_train', 'web/rulelink_public_next/deploy/release.json'), false);
   assert.equal(allowedForRole('release_train', 'data/private-source.sqlite'), false);
   assert.equal(allowedForRole('release_train', '.github/workflows/unrelated.yml'), false);
+  assert.equal(allowedForRole('release_train', 'artifacts/publication/coverage/private.sqlite'), false);
+  assert.equal(allowedForRole('release_train', 'web/rulelink_public_next/contracts/private.exe'), false);
+  assert.equal(allowedForRole('release_train', 'web/rulelink_public_next/e2e/private.exe'), false);
 });
 
 test('PR 검증은 임시 병합 커밋이 아니라 실제 PR head의 전체 이력을 사용한다', async () => {
