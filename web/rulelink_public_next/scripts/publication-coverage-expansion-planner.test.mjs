@@ -34,6 +34,7 @@ import {
 } from './validate-legal-answer-packets.mjs';
 import {
   DEFAULT_SOURCE_MAINTENANCE_INVENTORY_TRUST_POLICY_PATH,
+  appendPrerequisiteGateReceipts,
   buildCoverageSeedProductionContracts,
   loadQueuePublicationEvidence,
   synchronizeQueueItemRegistryFile,
@@ -43,6 +44,9 @@ import {
 import {
   prepareProductionWorkRegistration,
 } from './register-publication-production-work.mjs';
+import {
+  validateSourceMaintenanceInventoryEvidenceCore,
+} from './source-maintenance-inventory-evidence-core.mjs';
 
 const REPOSITORY_ROOT = path.resolve(
   path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/u, '$1')),
@@ -499,6 +503,118 @@ test('신규 법영역 source 신뢰경계는 호출자 주입으로 영수증�
     const gateId = 'source-maintenance.source-locators-selected';
     const evidenceRef =
       `source-locator-selection:${workId}@sha256:${artifactSha256}`;
+    const coreInput = {
+      workId,
+      evidenceRef,
+      artifactRaw,
+      trustPolicyRaw: Buffer.from(
+        `${JSON.stringify(trustPolicy, null, 2)}\n`,
+        'utf8',
+      ),
+      remoteManifestRaw,
+      activeGraphRaw,
+      ancestryComparison: {status: 'ahead', ahead_by: 1},
+      auditedOn: '2026-07-23',
+      expectedTopicId: topicId,
+      expectedTargetDomainId: targetDomainId,
+      expectedSourceCount: 10,
+      expectedArtifactSha256: artifactSha256,
+    };
+    const coreVerified =
+      validateSourceMaintenanceInventoryEvidenceCore(coreInput);
+    assert.match(coreVerified.proof, /^[0-9a-f]{64}$/u);
+    assert.equal(coreVerified.selection.locators.length, 10);
+    assert.equal(
+      Object.getOwnPropertySymbols(coreVerified).length,
+      0,
+      '순수 코어 결과에는 queue 영수증 발급 브랜드가 없어야 한다',
+    );
+    assert.throws(
+      () =>
+        validateSourceMaintenanceInventoryEvidenceCore({
+          ...coreInput,
+          activeGraphRaw: Buffer.from('forged-active-graph', 'utf8'),
+        }),
+      /active graph 원시 바이트 해시가 다릅니다/iu,
+    );
+    const forgedRemoteManifest = structuredClone(manifest);
+    forgedRemoteManifest.sources[0].source_snapshot_id =
+      'forged-remote-row';
+    assert.throws(
+      () =>
+        validateSourceMaintenanceInventoryEvidenceCore({
+          ...coreInput,
+          remoteManifestRaw: Buffer.from(
+            `${JSON.stringify(forgedRemoteManifest, null, 2)}\n`,
+            'utf8',
+          ),
+        }),
+      /승인 commit 원시 행과 다릅니다/iu,
+    );
+    assert.throws(
+      () =>
+        validateSourceMaintenanceInventoryEvidenceCore({
+          ...coreInput,
+          ancestryComparison: {status: 'diverged', ahead_by: 0},
+        }),
+      /승인 root의 후손이 아닙니다/iu,
+    );
+
+    const signedCoreInputForManifest = nextManifest => {
+      const nextSignature = signBytes(
+        null,
+        Buffer.from(canonicalJson(nextManifest), 'utf8'),
+        signingKey.privateKey,
+      ).toString('base64');
+      const nextArtifact = {
+        ...structuredClone(artifact),
+        inventory_manifest: nextManifest,
+        inventory_signature: {
+          ...artifact.inventory_signature,
+          signature_base64: nextSignature,
+        },
+      };
+      const nextArtifactRaw = Buffer.from(
+        `${JSON.stringify(nextArtifact, null, 2)}\n`,
+        'utf8',
+      );
+      const nextArtifactSha256 = createHash('sha256')
+        .update(nextArtifactRaw)
+        .digest('hex');
+      return {
+        ...coreInput,
+        evidenceRef:
+          `source-locator-selection:${workId}` +
+          `@sha256:${nextArtifactSha256}`,
+        artifactRaw: nextArtifactRaw,
+        remoteManifestRaw: Buffer.from(
+          `${JSON.stringify(nextManifest, null, 2)}\n`,
+          'utf8',
+        ),
+        expectedArtifactSha256: nextArtifactSha256,
+      };
+    };
+    const nextDayManifest = structuredClone(manifest);
+    nextDayManifest.generated_at = '2026-07-24T00:00:00Z';
+    assert.throws(
+      () =>
+        validateSourceMaintenanceInventoryEvidenceCore(
+          signedCoreInputForManifest(nextDayManifest),
+        ),
+      /inventory 구조 오류/iu,
+      '감사일 다음 날 생성된 inventory는 거부해야 한다',
+    );
+    const nextDayLocatorManifest = structuredClone(manifest);
+    nextDayLocatorManifest.sources[0].last_verified_at =
+      '2026-07-24T00:00:00Z';
+    assert.throws(
+      () =>
+        validateSourceMaintenanceInventoryEvidenceCore(
+          signedCoreInputForManifest(nextDayLocatorManifest),
+        ),
+      /locator가 승인 범위를 벗어났습니다/iu,
+      '감사일 다음 날 확인한 locator는 거부해야 한다',
+    );
     const [baseQueue, baseRegistry] = await Promise.all([
       readFile(PRODUCTION_QUEUE_PATH, 'utf8').then(JSON.parse),
       readFile(PRODUCTION_REGISTRY_PATH, 'utf8').then(JSON.parse),
@@ -523,6 +639,14 @@ test('신규 법영역 source 신뢰경계는 호출자 주입으로 영수증�
       artifact_path: artifactRelative,
       artifact_sha256: artifactSha256,
     };
+    assert.throws(
+      () =>
+        appendPrerequisiteGateReceipts(registry, queue, {
+          verifiedEvidence: coreVerified,
+        }),
+      /실제 외부 사실 검증 없이/iu,
+      '순수 코어 결과는 production 영수증 브랜드를 대신할 수 없다',
+    );
     const queuePath = path.join(temporary, 'queue.json');
     const registryPath = path.join(temporary, 'registry.json');
     await Promise.all([
