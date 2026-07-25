@@ -204,3 +204,26 @@ test('스키마 정본 자체가 바뀌면 artifact hash와 검증도 함께 닫
     canonicalSha256(schema),
   );
 });
+
+test('부분 스키마 검증기가 지원하지 않는 키워드는 조용히 무시하지 않는다', async () => {
+  const tempDirectory = await mkdtemp(
+    path.join(os.tmpdir(), 'rulelink-expansion-schema-keyword-'),
+  );
+  try {
+    const schema = JSON.parse(
+      await readFile(DEFAULT_EXPANSION_BACKLOG_SCHEMA_PATH, 'utf8'),
+    );
+    schema.$defs.entry.properties.hub_ids.maxItems = 0;
+    const schemaPath = path.join(tempDirectory, 'schema.json');
+    await writeFile(schemaPath, `${JSON.stringify(schema, null, 2)}\n`);
+
+    await assert.rejects(
+      buildPublicationExpansionBacklog({
+        expansionBacklogSchemaPath: schemaPath,
+      }),
+      /unsupported keywords:[\s\S]*maxItems/,
+    );
+  } finally {
+    await rm(tempDirectory, { recursive: true, force: true });
+  }
+});

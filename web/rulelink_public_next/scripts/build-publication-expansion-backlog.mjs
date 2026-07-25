@@ -325,6 +325,7 @@ export async function buildPublicationExpansionBacklog(options = {}) {
     options.expansionBacklogSchemaPath ??
     DEFAULT_EXPANSION_BACKLOG_SCHEMA_PATH;
   const schema = JSON.parse(await readFile(schemaPath, 'utf8'));
+  validateSupportedSchemaKeywords(schema);
   if (
     schema?.$id !==
       'urn:rulelink:schema:publication-expansion-backlog:v1' ||
@@ -388,6 +389,7 @@ export async function validatePublicationExpansionBacklog(options = {}) {
     options.expansionBacklogSchemaPath ??
     DEFAULT_EXPANSION_BACKLOG_SCHEMA_PATH;
   const schema = JSON.parse(await readFile(schemaPath, 'utf8'));
+  validateSupportedSchemaKeywords(schema);
   validateJsonSchema(schema, actual);
   if (canonicalJson(actual) !== canonicalJson(expected)) {
     throw new Error('publication expansion backlog drift detected');
@@ -407,6 +409,64 @@ function resolveSchemaReference(rootSchema, reference) {
         current?.[segment.replaceAll('~1', '/').replaceAll('~0', '~')],
       rootSchema,
     );
+}
+
+const SUPPORTED_SCHEMA_KEYWORDS = new Set([
+  '$schema',
+  '$id',
+  '$ref',
+  '$defs',
+  'title',
+  'description',
+  'type',
+  'const',
+  'enum',
+  'required',
+  'properties',
+  'additionalProperties',
+  'items',
+  'minItems',
+  'uniqueItems',
+  'minLength',
+  'pattern',
+  'minimum',
+]);
+
+function validateSupportedSchemaKeywords(rootSchema) {
+  const unsupported = [];
+  const visit = (schema, location) => {
+    if (
+      schema === null ||
+      typeof schema !== 'object' ||
+      Array.isArray(schema)
+    ) {
+      return;
+    }
+    for (const [keyword, child] of Object.entries(schema)) {
+      if (!SUPPORTED_SCHEMA_KEYWORDS.has(keyword)) {
+        unsupported.push(`${location}:${keyword}`);
+        continue;
+      }
+      if (keyword === 'properties' || keyword === '$defs') {
+        for (const [name, nestedSchema] of Object.entries(child ?? {})) {
+          visit(nestedSchema, `${location}.${keyword}.${name}`);
+        }
+      } else if (
+        keyword === 'items' ||
+        (keyword === 'additionalProperties' &&
+          child !== null &&
+          typeof child === 'object')
+      ) {
+        visit(child, `${location}.${keyword}`);
+      }
+    }
+  };
+  visit(rootSchema, '$');
+  if (unsupported.length > 0) {
+    throw new Error(
+      `publication expansion backlog schema uses unsupported keywords:\n${unsupported.join('\n')}`,
+    );
+  }
 }
 
 function validateJsonSchema(rootSchema, value) {
