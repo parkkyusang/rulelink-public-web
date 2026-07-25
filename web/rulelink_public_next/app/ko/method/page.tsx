@@ -1,12 +1,14 @@
 import type {Metadata} from 'next';
 
+import {site} from '@/lib/site';
+
 export const metadata: Metadata = {
   title: '콘텐츠 원칙',
-  description: 'RuleLink가 공식 법령과 판례를 생활상황별 법률정보로 만드는 방법',
+  description: `${site.name}가 공식 법령과 판례를 생활상황별 법률정보로 만드는 방법`,
   alternates: {canonical: '/ko/method'},
   openGraph: {
-    title: 'RuleLink 콘텐츠 원칙',
-    description: '공식 근거에서 법리를 전개하고 생활상황으로 연결하는 RuleLink의 콘텐츠 제작 원칙',
+    title: `${site.name} 콘텐츠 원칙`,
+    description: `공식 근거에서 법리를 전개하고 생활상황으로 연결하는 ${site.name}의 콘텐츠 제작 원칙`,
     url: '/ko/method',
   },
 };
@@ -16,12 +18,12 @@ export default function MethodPage() {
     <main className="methodPage">
       <div className="breadcrumb"><a href="/">홈</a><span aria-hidden="true">/</span><span>콘텐츠 원칙</span></div>
       <header className="methodHero">
-        <p className="eyebrow">RuleLink Method</p>
+        <p className="eyebrow">{site.englishName} Method</p>
         <h1>많은 글을 모으기보다,<br />공식 근거에서 법리를 전개합니다.</h1>
-        <p>RuleLink는 법률문제를 생활상황에서 시작하되, 결론은 공식 법령·판례와 적용조건에 다시 연결합니다.</p>
+        <p>{site.name}는 법률문제를 생활상황에서 시작하되, 결론은 공식 법령·판례와 적용조건에 다시 연결합니다.</p>
       </header>
 
-      <section className="methodGrid" aria-label="RuleLink 콘텐츠 제작 원칙">
+      <section className="methodGrid" aria-label={`${site.name} 콘텐츠 제작 원칙`}>
         <article><span>01</span><h2>문언에서 시작</h2><p>조문의 주체, 요건, 예외, 법률효과와 기한을 나누어 읽습니다.</p></article>
         <article><span>02</span><h2>상황으로 연결</h2><p>법률용어를 그대로 나열하지 않고 누구의 어떤 사실에서 결과가 달라지는지 보여줍니다.</p></article>
         <article><span>03</span><h2>기준일을 구분</h2><p>최신 수집본과 오늘 시행 중인 법령을 구분하고, 시행 예정 법령은 시행 예정으로 표시합니다.</p></article>
@@ -40,7 +42,7 @@ export default function MethodPage() {
 
       <aside className="methodNotice">
         <strong>공개 정보사이트와 사건별 법률서비스를 기능으로 나눕니다</strong>
-        <p>공개 RuleLink는 법령·판례·일반 법리·생활상황별 체크리스트를 제공합니다. 사용자의 사건 전체를 받거나, 구체적인 결론·승소 가능성·대응전략·증거수집·서면 작성 방향을 회사 명의로 제공하지 않습니다.</p>
+        <p>공개 {site.name}는 법령·판례·일반 법리·생활상황별 체크리스트를 제공합니다. 사용자의 사건 전체를 받거나, 구체적인 결론·승소 가능성·대응전략·증거수집·서면 작성 방향을 회사 명의로 제공하지 않습니다.</p>
         <p>사건별 분석 도구는 자격이 확인된 변호사와 운영 담당자만 사용할 수 있습니다. 일반인이 개별 상담을 받을 때에는 변호사 또는 법무법인과 직접 계약하고, 보수·명의·책임의 주체도 해당 변호사 측이어야 합니다.</p>
         <a className="methodCta" href="/ko/hubs/legal-service-boundaries">법률정보와 변호사 이용 기준 보기 →</a>
       </aside>

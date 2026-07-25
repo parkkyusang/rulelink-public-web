@@ -1,0 +1,9 @@
+{
+  "schema": "rulelink_legal_answer_packet_vendor_receipt_v1",
+  "producer_repository": "https://github.com/parkkyusang/liale-rulelink-ir.git",
+  "producer_commit": "c87cc9314f247b4be39c3ee96f1d49a332300ae0",
+  "schema_source_commit": "d781dd30a7571eb25cb496b8d1d3ff5c0ad6c051",
+  "schema_path": "schemas/rulelink_legal_answer_packet_v1.schema.json",
+  "schema_id": "urn:rulelink:schema:legal-answer-packet:v1",
+  "schema_sha256": "71077ce5054255cf933d4bdaa3be2c6094aa9b8dc726b21159c654f579d49715"
+}

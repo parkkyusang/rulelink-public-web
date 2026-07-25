@@ -57,8 +57,8 @@ export default async function ConceptPage({params}: Props) {
         }).replaceAll('<', '\\u003c')}}
         type="application/ld+json"
       />
-      <nav className="breadcrumb">
-        <a href="/">홈</a><span>/</span><a href="/ko/concepts">법률용어와 개념</a>
+      <nav aria-label="현재 위치" className="breadcrumb">
+        <a href="/">홈</a><span aria-hidden="true">/</span><a href="/ko/concepts">법률용어와 개념</a>
       </nav>
       <header className={styles.hero}>
         <p className="eyebrow">법률개념</p>
@@ -101,8 +101,8 @@ export default async function ConceptPage({params}: Props) {
                   const source = sourceById.get(sourceId);
                   if (!source) return null;
                   return (
-                    <a href={browserOfficialSourceUrl(source) ?? source.official_url} key={sourceId} rel="noreferrer" target="_blank">
-                      {sourceLabel(source)} 원문 ↗
+                    <a href={browserOfficialSourceUrl(source) ?? source.official_url} key={sourceId} rel="noopener noreferrer" target="_blank">
+                      {sourceLabel(source)} 원문 (새 탭) ↗
                     </a>
                   );
                 })}
@@ -128,8 +128,8 @@ export default async function ConceptPage({params}: Props) {
           <section>
             <h2>공식 근거</h2>
             {sources.map(source => (
-              <a href={browserOfficialSourceUrl(source) ?? source.official_url} key={source.coordinate_id} rel="noreferrer" target="_blank">
-                {sourceLabel(source)} ↗
+              <a href={browserOfficialSourceUrl(source) ?? source.official_url} key={source.coordinate_id} rel="noopener noreferrer" target="_blank">
+                {sourceLabel(source)} (새 탭) ↗
               </a>
             ))}
           </section>

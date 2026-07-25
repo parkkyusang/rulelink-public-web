@@ -1,0 +1,32 @@
+.root {
+  background: var(--surface-soft);
+  border: 1px dashed var(--line-strong);
+  border-radius: 14px;
+  color: var(--muted);
+  display: grid;
+  gap: 8px;
+  margin: 26px 0;
+  min-width: 0;
+  padding: 17px 18px;
+}
+
+.label {
+  color: var(--muted-strong);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: .12em;
+}
+
+.root p {
+  font-size: 12px;
+  line-height: 1.65;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+  .root {
+    margin: 22px 0;
+    padding: 15px;
+  }
+}

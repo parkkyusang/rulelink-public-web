@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {execFile} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {
   cp,
@@ -7,12 +8,14 @@ import {
   readFile,
   rename,
   rm,
+  stat,
   writeFile,
 } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import {fileURLToPath} from 'node:url';
+import {promisify} from 'node:util';
 
 import {
   buildPlannedProductionWorkItem,
@@ -31,9 +34,66 @@ const registryPath = path.join(
   'production-queue-registry.json',
 );
 const bundlePath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
+const execFileAsync = promisify(execFile);
 
 async function readJson(filePath) {
-  return JSON.parse(await readFile(filePath, 'utf8'));
+  const value = JSON.parse(await readFile(filePath, 'utf8'));
+  const workIds = new Set([
+    'reader-backfill-crime-victim-wave1',
+    'reader-backfill-debt-enforcement-wave2',
+  ]);
+  if (filePath === queuePath) {
+    value.items = value.items.filter(item => !workIds.has(item.work_id));
+    const openStatuses = new Set([
+      'pr_open',
+      'ready_for_integration',
+      'needs_rework',
+      'migration_required',
+      'blocked',
+    ]);
+    value.audit_summary.open_content_prs =
+      value.items.filter(item => openStatuses.has(item.status)).length;
+    for (const status of [
+      'ready_for_integration',
+      'needs_rework',
+      'migration_required',
+      'blocked',
+      'integrated',
+      'merged_pending_publication',
+      'superseded',
+      'withdrawn',
+    ]) {
+      value.audit_summary[status] =
+        value.items.filter(item => item.status === status).length;
+    }
+  }
+  if (filePath === registryPath) {
+    value.registrations = value.registrations.filter(
+      item => !workIds.has(item.work_id),
+    );
+    value.registry_receipt = value.registrations.at(-1)?.receipt || null;
+    value.prerequisite_gate_receipts = value.prerequisite_gate_receipts.filter(
+      item => !workIds.has(item.work_id),
+    );
+    if (value.prerequisite_gate_receipts.length === 0) {
+      delete value.prerequisite_gate_receipts;
+      delete value.prerequisite_gate_receipt;
+    } else {
+      value.prerequisite_gate_receipt =
+        value.prerequisite_gate_receipts.at(-1).receipt;
+    }
+    for (const [entriesKey, receiptKey] of [
+      ['release_check_receipts', 'release_check_receipt'],
+      ['pr_bindings', 'pr_binding_receipt'],
+      ['head_receipts', 'head_receipt'],
+    ]) {
+      if (value[entriesKey]?.length === 0) {
+        delete value[entriesKey];
+        delete value[receiptKey];
+      }
+    }
+  }
+  return value;
 }
 
 async function fileHash(filePath) {
@@ -44,24 +104,98 @@ function valueHash(value) {
   return createHash('sha256').update(value).digest('hex');
 }
 
-async function withTemporaryProductionFiles(callback) {
+async function withTemporaryProductionFiles(callback, options = {}) {
   const directory = await mkdtemp(path.join(os.tmpdir(), 'rulelink-production-work-'));
+  options.onDirectory?.(directory);
   const paths = {
     directory,
     queue: path.join(directory, 'production-queue.json'),
     registry: path.join(directory, 'production-queue-registry.json'),
     bundle: path.join(directory, 'bundle.json'),
   };
-  await Promise.all([
-    cp(queuePath, paths.queue),
-    cp(registryPath, paths.registry),
-    cp(bundlePath, paths.bundle),
-  ]);
+  const previousGitDir = process.env.GIT_DIR;
+  const previousGitWorkTree = process.env.GIT_WORK_TREE;
+  let gitEnvironmentChanged = false;
   try {
+    const [queue, registry] = await Promise.all([
+      readJson(queuePath),
+      readJson(registryPath),
+    ]);
+    const registryCommits = String((await execFileAsync(
+      'git',
+      ['rev-list', 'HEAD'],
+      {cwd: repoRoot, encoding: 'utf8'},
+    )).stdout || '').split(/\r?\n/u).filter(Boolean);
+    let baselineCommit = '';
+    for (const commit of registryCommits) {
+      let candidate;
+      try {
+        candidate = JSON.parse(String((await execFileAsync(
+          'git',
+          ['show', `${commit}:artifacts/publication/production-queue-registry.json`],
+          {cwd: repoRoot, encoding: 'utf8'},
+        )).stdout || ''));
+      } catch {
+        continue;
+      }
+      if (JSON.stringify(candidate) === JSON.stringify(registry)) {
+        baselineCommit = commit;
+        break;
+      }
+    }
+    assert.ok(baselineCommit, '등록 전 registry와 같은 실제 Git 이력 커밋이 필요합니다.');
+    paths.historyRepository = path.join(directory, 'history-repository');
+    if (options.failSetupAt === 'clone') throw new Error('injected clone setup failure');
+    await execFileAsync(
+      'git',
+      ['clone', '--shared', '--no-checkout', repoRoot, paths.historyRepository],
+      {cwd: directory, encoding: 'utf8'},
+    );
+    if (options.failSetupAt === 'checkout') throw new Error('injected checkout setup failure');
+    await execFileAsync(
+      'git',
+      ['checkout', '--detach', baselineCommit],
+      {cwd: paths.historyRepository, encoding: 'utf8'},
+    );
+    if (options.failSetupAt === 'write') throw new Error('injected write setup failure');
+    await Promise.all([
+      writeFile(paths.queue, `${JSON.stringify(queue, null, 2)}\n`, 'utf8'),
+      writeFile(paths.registry, `${JSON.stringify(registry, null, 2)}\n`, 'utf8'),
+      cp(bundlePath, paths.bundle),
+    ]);
+    process.env.GIT_DIR = path.join(paths.historyRepository, '.git');
+    process.env.GIT_WORK_TREE = paths.historyRepository;
+    gitEnvironmentChanged = true;
     return await callback(paths);
   } finally {
+    if (gitEnvironmentChanged) {
+      if (previousGitDir === undefined) delete process.env.GIT_DIR;
+      else process.env.GIT_DIR = previousGitDir;
+      if (previousGitWorkTree === undefined) delete process.env.GIT_WORK_TREE;
+      else process.env.GIT_WORK_TREE = previousGitWorkTree;
+    }
     await rm(directory, {recursive: true, force: true});
   }
+}
+
+for (const setupPhase of ['clone', 'checkout', 'write']) {
+  test(`${setupPhase} 준비 실패도 임시 Git 저장소를 남기지 않는다`, async () => {
+    let temporaryDirectory = '';
+    await assert.rejects(
+      withTemporaryProductionFiles(
+        async () => assert.fail('준비 실패 뒤 callback을 실행하면 안 됩니다.'),
+        {
+          failSetupAt: setupPhase,
+          onDirectory: directory => {
+            temporaryDirectory = directory;
+          },
+        },
+      ),
+      new RegExp(`injected ${setupPhase} setup failure`, 'u'),
+    );
+    assert.ok(temporaryDirectory);
+    await assert.rejects(stat(temporaryDirectory), error => error?.code === 'ENOENT');
+  });
 }
 
 async function registrationArtifacts(directory) {
@@ -158,14 +292,19 @@ test('사전검증은 전체 생산 대기열 검증을 통과하고 두 정본 
     queue: await fileHash(queuePath),
     registry: await fileHash(registryPath),
   };
-  const prepared = await registerProductionWorkFiles({
-    workIds: ['reader-backfill-crime-victim-wave1'],
-    write: false,
+  await withTemporaryProductionFiles(async paths => {
+    const prepared = await registerProductionWorkFiles({
+      workIds: ['reader-backfill-crime-victim-wave1'],
+      queuePath: paths.queue,
+      registryPath: paths.registry,
+      bundlePath: paths.bundle,
+      write: false,
+    });
+    assert.equal(
+      prepared.queue.items.at(-1).work_id,
+      'reader-backfill-crime-victim-wave1',
+    );
   });
-  assert.equal(
-    prepared.queue.items.at(-1).work_id,
-    'reader-backfill-crime-victim-wave1',
-  );
   assert.deepEqual(
     {
       queue: await fileHash(queuePath),

@@ -178,6 +178,29 @@
   padding: 24px;
 }
 
+.claims {
+  background: var(--blue-surface);
+  border: 1px solid #d3dcef;
+  border-radius: 14px;
+  margin-bottom: 18px;
+  padding: 17px 19px;
+}
+
+.claims h4 {
+  font-size: 14px;
+  margin: 0 0 9px;
+}
+
+.claims ul {
+  margin: 0;
+  padding-left: 19px;
+}
+
+.claims li {
+  line-height: 1.65;
+  margin: 6px 0;
+}
+
 .plainMap h4,
 .rawClauses h4 {
   font-size: 18px;

@@ -3,15 +3,22 @@ import {AuthorityTimeBadge} from '@/components/authority-time-badge';
 import {LegalConceptText} from '@/components/legal-concept-text';
 
 import type {AuthorityReadingView} from '@/lib/authority-reading';
+import type {ClaimSelectionState} from '@/lib/legal-answer-journey-state';
+import type {LegalAnswerClaim} from '@/types/legal-answer-packet';
 import type {PublicConceptCard} from '@/types/publication';
 
 import styles from './authority-reading-section.module.css';
 
 export function AuthorityReadingCard({
+  claims = [],
   concepts,
   primary = false,
   view,
 }: {
+  claims?: ReadonlyArray<{
+    claim: LegalAnswerClaim;
+    state: ClaimSelectionState;
+  }>;
   concepts: PublicConceptCard[];
   primary?: boolean;
   view: AuthorityReadingView;
@@ -22,6 +29,7 @@ export function AuthorityReadingCard({
       data-authority-id={view.authorityReadingUnitId}
       data-primary={primary ? 'true' : undefined}
       data-source-kind="statute"
+      id={`authority-${view.authorityReadingUnitId}`}
     >
       <details
         className={styles.cardDisclosure}
@@ -37,6 +45,25 @@ export function AuthorityReadingCard({
           <AuthorityTimeBadge label={view.timeLabelKo} state={view.timeState} />
         </summary>
         <div className={styles.cardBody}>
+          {claims.length ? (
+            <section
+              aria-label={`${view.titleKo}가 뒷받침하는 답변`}
+              className={styles.claims}
+              data-authority-claims
+            >
+              <h4>이 근거가 뒷받침하는 내용</h4>
+              <ul>
+                {claims.map(({claim, state}) => (
+                  <li data-claim-state={state} key={claim.claim_id}>
+                    <span>
+                      {state === 'pending' ? '사실 확인 전 조건부' : '선택한 사실에 연결'}
+                    </span>
+                    {claim.statement_ko}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
           <section aria-label={`${view.titleKo} 쉬운 조문 지도`} className={styles.plainMap}>
             <h4>쉬운 조문 지도</h4>
             <ol>
@@ -80,7 +107,7 @@ export function AuthorityReadingCard({
               data-authority-official-link
               data-authority-return-fragment={view.cardDomId}
               href={view.officialUrl}
-              rel="noreferrer"
+              rel="noopener noreferrer"
               target="_blank"
             >
               국가법령정보센터에서 원문 전체 보기

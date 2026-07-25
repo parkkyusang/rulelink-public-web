@@ -129,7 +129,7 @@
 }
 
 .dateRail span {
-  color: #6f7f77;
+  color: var(--muted);
   font-size: 12px;
 }
 
@@ -150,7 +150,7 @@
 
 .meta {
   align-items: center;
-  color: #6f7f77;
+  color: var(--muted);
   display: flex;
   flex-wrap: wrap;
   font-size: 11px;

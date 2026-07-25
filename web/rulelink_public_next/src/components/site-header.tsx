@@ -6,11 +6,17 @@ import styles from './site-header.module.css';
 
 type Props = {
   hasConcepts: boolean;
+  hasTrustPage: boolean;
   preview: boolean;
   siteName: string;
 };
 
-export function SiteHeader({hasConcepts, preview, siteName}: Props) {
+export function SiteHeader({
+  hasConcepts,
+  hasTrustPage,
+  preview,
+  siteName,
+}: Props) {
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,7 +58,12 @@ export function SiteHeader({hasConcepts, preview, siteName}: Props) {
         <a className={styles.brand} href="/">{siteName}</a>
 
         <nav aria-label="주요 메뉴" className={styles.desktopNav}>
-          <NavigationLinks hasConcepts={hasConcepts} includeSearch preview={preview} />
+          <NavigationLinks
+            hasConcepts={hasConcepts}
+            hasTrustPage={hasTrustPage}
+            includeSearch
+            preview={preview}
+          />
         </nav>
 
         <div className={styles.mobileActions}>
@@ -77,15 +88,25 @@ export function SiteHeader({hasConcepts, preview, siteName}: Props) {
 
       {menuOpen ? (
         <nav aria-label="모바일 주요 메뉴" className={styles.mobilePanel} id={menuId}>
-          <NavigationLinks hasConcepts={hasConcepts} preview={preview} />
+          <NavigationLinks
+            hasConcepts={hasConcepts}
+            hasTrustPage={hasTrustPage}
+            preview={preview}
+          />
         </nav>
       ) : null}
     </header>
   );
 }
 
-function NavigationLinks({hasConcepts, includeSearch = false, preview}: {
+function NavigationLinks({
+  hasConcepts,
+  hasTrustPage,
+  includeSearch = false,
+  preview,
+}: {
   hasConcepts: boolean;
+  hasTrustPage: boolean;
   includeSearch?: boolean;
   preview: boolean;
 }) {
@@ -97,6 +118,7 @@ function NavigationLinks({hasConcepts, includeSearch = false, preview}: {
       <a href="/ko/knowledge">상황별 지식</a>
       <a href="/ko/sources">공식 근거</a>
       <a href="/ko/method">콘텐츠 원칙</a>
+      {hasTrustPage ? <a href="/ko/trust">운영·신뢰</a> : null}
     </>
   );
 }

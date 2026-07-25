@@ -3,11 +3,15 @@ import path from 'node:path';
 import {spawn} from 'node:child_process';
 import {once} from 'node:events';
 
-import {selectHomepageKnowledge} from '../src/lib/homepage-knowledge-selection.ts';
+import {resolvePublicTrustConfig} from '../src/lib/public-trust.ts';
+import {resolvePublicPrivacyConfig} from '../src/lib/public-data-practices.ts';
+import {decodeSiteSearchIndex} from '../src/lib/site-search-index.ts';
 
 const appRoot = process.cwd();
 const port = Number(process.env.RULELINK_SMOKE_PORT || 18800);
 const baseUrl = `http://127.0.0.1:${port}`;
+const trustConfig = resolvePublicTrustConfig(process.env);
+const privacyConfig = resolvePublicPrivacyConfig(process.env);
 const bundle = JSON.parse(await readFile(path.join(appRoot, 'content', 'bundle.json'), 'utf8'));
 const nextCli = path.join(appRoot, 'node_modules', 'next', 'dist', 'bin', 'next');
 const server = spawn(process.execPath, [nextCli, 'start', '-p', String(port), '-H', '127.0.0.1'], {
@@ -27,6 +31,22 @@ try {
   assert(publication.schema === 'rulelink_publication_status_v1', 'publication.json 스키마가 다릅니다.');
   assert(publication.status === 'published', '운영 스모크 테스트는 승인 출판본 상태여야 합니다.');
   assert(publication.snapshot_id === bundle.snapshot_id, '운영 상태의 snapshot_id가 빌드 입력과 다릅니다.');
+
+  const legacySearchIndexResponse = await fetch(`${baseUrl}/search-index.json`, {cache: 'no-store'});
+  assert(legacySearchIndexResponse.ok, `v1 검색 인덱스 응답 실패: ${legacySearchIndexResponse.status}`);
+  const legacySearchIndexText = await legacySearchIndexResponse.text();
+  const legacySearchIndex = JSON.parse(legacySearchIndexText);
+  assert(legacySearchIndex.schema === 'rulelink_public_search_index_v1', '호환 검색 인덱스가 v1 스키마가 아닙니다.');
+  assert(Array.isArray(legacySearchIndex.documents), '호환 검색 인덱스 문서가 배열이 아닙니다.');
+  assert(Buffer.byteLength(legacySearchIndexText) <= 420_000, '호환 검색 인덱스가 기존 실측 상한을 넘었습니다.');
+
+  const searchIndexResponse = await fetch(`${baseUrl}/search-index.v2.json`, {cache: 'no-store'});
+  assert(searchIndexResponse.ok, `v2 검색 인덱스 응답 실패: ${searchIndexResponse.status}`);
+  const searchIndexText = await searchIndexResponse.text();
+  const searchIndex = decodeSiteSearchIndex(JSON.parse(searchIndexText));
+  assert(searchIndex, 'v2 검색 인덱스를 복원할 수 없습니다.');
+  assert(searchIndex.documents.length === legacySearchIndex.documents.length, 'v1·v2 검색 문서 수가 다릅니다.');
+  assert(Buffer.byteLength(searchIndexText) <= 390_000, 'v2 검색 인덱스가 절대 전송량 예산을 넘었습니다.');
 
   const expectedCounts = {
     issue_cards: bundle.cards?.length ?? 0,
@@ -51,9 +71,22 @@ try {
     assert(homeHtml.includes('href="/ko/concepts">법률용어</a>'), '상단 메뉴가 공개 법률개념으로 연결되지 않습니다.');
   }
   assert(homeHtml.includes('href="/ko/sources">공식 근거</a>'), '상단 메뉴가 공식 근거 보관함으로 연결되지 않습니다.');
-  for (const entry of selectHomepageKnowledge(bundle.knowledge?.content_entries ?? [], 6)) {
-    assert(homeHtml.includes(`href="/ko/knowledge/${entry.slug}"`), `홈에서 공개 지식이 노출되지 않습니다: ${entry.slug}`);
+  if (trustConfig) {
+    assert(homeHtml.includes('href="/ko/trust">운영·신뢰</a>'), '신뢰 설정을 켰지만 상단 메뉴에 신뢰 페이지가 없습니다.');
+  } else {
+    assert(!homeHtml.includes('href="/ko/trust"'), '신뢰 설정이 없는데 신뢰 페이지 링크가 노출됩니다.');
   }
+  if (privacyConfig) {
+    assert(homeHtml.includes('href="/ko/privacy">개인정보 처리방침</a>'), '개인정보 설정을 켰지만 footer에 처리방침이 없습니다.');
+  } else {
+    assert(!homeHtml.includes('href="/ko/privacy"'), '개인정보 설정이 없는데 처리방침 링크가 노출됩니다.');
+    const privacyResponse = await fetch(`${baseUrl}/ko/privacy`, {redirect: 'manual'});
+    assert(privacyResponse.status === 404, `비활성 개인정보 처리방침은 404여야 합니다: ${privacyResponse.status}`);
+  }
+  assert(
+    homeHtml.includes('action="/ko/search"') && homeHtml.includes('name="q"'),
+    '홈의 주 입구가 상황 검색으로 연결되지 않습니다.',
+  );
   for (const hub of bundle.knowledge?.topic_hubs ?? []) {
     const hubHref = `href="/ko/hubs/${hub.slug}"`;
     const hrefIndex = homeHtml.indexOf(hubHref);
@@ -67,6 +100,8 @@ try {
   }
 
   const indexableRoutes = new Set(['/', '/ko/method', '/ko/search']);
+  if (trustConfig) indexableRoutes.add('/ko/trust');
+  if (privacyConfig) indexableRoutes.add('/ko/privacy');
   if ((bundle.knowledge?.sources?.length ?? 0) > 0) indexableRoutes.add('/ko/sources');
   for (const card of bundle.cards ?? []) indexableRoutes.add(`/ko/issues/${card.slug}`);
   for (const brief of bundle.change_briefs ?? []) indexableRoutes.add(`/ko/changes/${brief.slug}`);
@@ -105,6 +140,12 @@ try {
     const robotsResponse = await fetch(`${baseUrl}/robots.txt`, {cache: 'no-store'});
     assert(robotsResponse.ok, `robots.txt 응답 실패: ${robotsResponse.status}`);
     assert((await robotsResponse.text()).includes('sitemap.xml'), 'robots.txt가 사이트맵을 알리지 않습니다.');
+    if (!trustConfig) {
+      assert(!sitemapXml.includes('/ko/trust'), '023 zero-state 사이트맵에 비활성 신뢰 경로가 추가됐습니다.');
+    }
+    if (!privacyConfig) {
+      assert(!sitemapXml.includes('/ko/privacy'), 'zero-state 사이트맵에 비활성 개인정보 경로가 추가됐습니다.');
+    }
   }
 
   for (const route of routes) {

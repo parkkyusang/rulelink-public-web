@@ -7,20 +7,34 @@ import styles from './knowledge-reading-depth-nav.module.css';
 type Props = {
   hasCasePractice: boolean;
   hasScenarios: boolean;
+  hasVerifiedAnswer: boolean;
 };
 
 export function KnowledgeReadingDepthNav({
   hasCasePractice,
   hasScenarios,
+  hasVerifiedAnswer,
 }: Props) {
   const sections = [
-    {href: '#summary', id: 'summary', label: '30초 답'},
     {
-      href: hasScenarios ? '#scenarios' : '#actions',
-      id: hasScenarios ? 'scenarios' : 'actions',
-      label: '확인할 사실·자료',
+      href: hasVerifiedAnswer ? '#quick-answer' : '#summary',
+      id: hasVerifiedAnswer ? 'quick-answer' : 'summary',
+      label: '빠른 답',
     },
-    {href: '#statute-reading', id: 'statute-reading', label: '조문 구조'},
+    ...(hasVerifiedAnswer
+      ? [{href: '#summary', id: 'summary', label: '답 이해'}]
+      : []),
+    {
+      href: hasScenarios ? '#scenarios' : '#rules',
+      id: hasScenarios ? 'scenarios' : 'rules',
+      label: '결론 사실',
+    },
+    {href: '#rules', id: 'rules', label: '적용 결과'},
+    {href: '#statute-reading', id: 'statute-reading', label: '근거'},
+    {href: '#actions', id: 'actions', label: '증거·기한·행동'},
+    ...(hasScenarios
+      ? [{href: '#follow-up-questions', id: 'follow-up-questions', label: '추가 질문'}]
+      : []),
     ...(hasCasePractice
       ? [{href: '#case-practice', id: 'case-practice', label: '판례·실무'}]
       : []),
@@ -47,7 +61,7 @@ export function KnowledgeReadingDepthNav({
     });
     for (const target of targets) observer.observe(target);
     return () => observer.disconnect();
-  }, [hasCasePractice, hasScenarios]);
+  }, [hasCasePractice, hasScenarios, hasVerifiedAnswer]);
 
   return (
     <nav

@@ -1,0 +1,17 @@
+{
+  "schema": "rulelink_publication_procedure_stage_catalog_v1",
+  "procedure_stages": [
+    {
+      "procedure_stage_id": "procedure.criminal-trial.compensation-order",
+      "title_ko": "형사재판 중 배상명령"
+    },
+    {
+      "procedure_stage_id": "procedure.civil-enforcement.payment-order",
+      "title_ko": "지급명령 송달 후 이의·확정"
+    },
+    {
+      "procedure_stage_id": "procedure.housing-lease.after-end-before-refund",
+      "title_ko": "임대차 종료 후 보증금 반환 전"
+    }
+  ]
+}

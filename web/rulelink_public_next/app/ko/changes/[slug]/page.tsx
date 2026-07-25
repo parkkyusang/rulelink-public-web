@@ -1,8 +1,16 @@
 import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
-import {assertionsForChangeBrief, findChangeBrief, listChangeBriefs, relatedCardsForChangeBrief} from '@/lib/publication';
-import {changeLifecycleLabel} from '@/lib/change-lifecycle';
+import {ChangeBriefContext} from '@/components/change-brief-context';
+import {buildChangeBriefStructuredData} from '@/lib/change-brief-structured-data';
+import {sourceVersionScopeLabelKo} from '@/lib/change-brief-projection';
+import {
+  assertionsForChangeBrief,
+  changeBriefProjection,
+  findChangeBrief,
+  listChangeBriefs,
+  relatedCardsForChangeBrief,
+} from '@/lib/publication';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
@@ -35,36 +43,36 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
 export default async function ChangeBriefPage({params}: Props) {
   const brief = await findChangeBrief((await params).slug);
   if (!brief) notFound();
-  const [assertions, relatedCards] = await Promise.all([
+  const [assertions, projection, relatedCards] = await Promise.all([
     assertionsForChangeBrief(brief),
+    changeBriefProjection(brief),
     relatedCardsForChangeBrief(brief),
   ]);
-  const oldFrameLabel = brief.lifecycle === 'future_effective' ? '현재 시행 문언' : '종전 시행 문언';
-  const newFrameLabel = brief.lifecycle === 'future_effective' ? '시행 예정 문언' : '현재 시행 문언';
+  if (!projection) notFound();
+  const oldFrameLabel = projection.old_frame_label_ko;
+  const newFrameLabel = projection.new_frame_label_ko;
   const canonicalUrl = `${site.url}/ko/changes/${brief.slug}`;
-  const officialSources = [...new Set(assertions.flatMap(assertion => assertion.source_coordinates
-    .map(source => browserOfficialSourceUrl(source, brief.law_name_ko))
-    .filter((url): url is string => Boolean(url))))];
+  const officialSources = projection.official_sources.map(source => source.url);
   return (
     <main className="changePage">
       <script
-        dangerouslySetInnerHTML={{__html: serializeStructuredData({
-          '@context': 'https://schema.org',
-          '@type': 'Article',
-          headline: brief.title_ko,
-          description: brief.summary_ko,
+        dangerouslySetInnerHTML={{__html: serializeStructuredData(buildChangeBriefStructuredData({
+          articleNo: brief.article_no,
           dateModified: brief.reviewed_at,
-          mainEntityOfPage: canonicalUrl,
-          inLanguage: 'ko-KR',
-          about: `${brief.law_name_ko} ${brief.article_no}`,
-          isBasedOn: officialSources,
-        })}}
+          description: brief.summary_ko,
+          lawNameKo: brief.law_name_ko,
+          officialSourceUrls: officialSources,
+          pageUrl: canonicalUrl,
+          siteName: site.name,
+          siteUrl: site.url,
+          title: brief.title_ko,
+        }))}}
         type="application/ld+json"
       />
-      <nav aria-label="현재 위치" className="breadcrumb"><a href="/">홈</a><span aria-hidden="true">/</span><a href="/ko/changes">법령 변화</a><span aria-hidden="true">/</span><span aria-current="page">현재 변화</span></nav>
+      <nav aria-label="현재 위치" className="breadcrumb"><a href="/">홈</a><span aria-hidden="true">/</span><a href="/ko/changes">법령 변화</a><span aria-hidden="true">/</span><span aria-current="page">{brief.title_ko}</span></nav>
       <header className="changeHero">
         <div className="changeHeroMeta">
-          <span className={`lifecycle ${brief.lifecycle}`}>{changeLifecycleLabel(brief.lifecycle)}</span>
+          <span className={`lifecycle ${projection.status}`}>{projection.status_label_ko}</span>
           <span>{brief.law_name_ko} {brief.article_no}</span>
         </div>
         <h1>{brief.title_ko}</h1>
@@ -72,9 +80,11 @@ export default async function ChangeBriefPage({params}: Props) {
         <dl className="effectivePanel">
           <div><dt>시행일</dt><dd>{formatDate(brief.effective_date)}</dd></div>
           <div><dt>검토 기준일</dt><dd>{formatDate(brief.reviewed_at)}</dd></div>
-          <div><dt>상태</dt><dd>{brief.lifecycle === 'future_effective' ? '아직 시행 전' : '현재 시행 중'}</dd></div>
+          <div><dt>상태</dt><dd>{projection.status_label_ko}</dd></div>
         </dl>
       </header>
+
+      <ChangeBriefContext effectiveDateLabel={formatDate(brief.effective_date)} projection={projection} />
 
       {brief.transition_status === 'verification_needed' ? (
         <aside className="transitionWarning">
@@ -102,7 +112,7 @@ export default async function ChangeBriefPage({params}: Props) {
       </div>
 
       <section className="normDelta">
-        <p className="eyebrow">RuleLink 연역 법리 비교</p>
+        <p className="eyebrow">{site.englishName} 연역 법리 비교</p>
         <h2>문구가 아니라 법이 작동하는 구조를 비교했습니다.</h2>
         <p className="normDeltaLead">{brief.norm_delta.legal_effect_delta_ko}</p>
         <div className="normDeltaRows">
@@ -146,11 +156,11 @@ export default async function ChangeBriefPage({params}: Props) {
               <p>{assertion.user_facing_text_ko}</p>
               {assertion.source_coordinates.map(coordinate => (
                 <div className="source" key={`${coordinate.source_snapshot_id}-${coordinate.source_hash}`}>
-                  <span>{coordinate.version_scope === 'future_effective' ? '시행 예정 신문언' : '검토일 현재 시행 문언'}</span>
+                  <span>{sourceVersionScopeLabelKo(coordinate.version_scope)}</span>
                   <span>{coordinate.article_no}</span>
                   {coordinate.effective_from ? <span>{formatDate(coordinate.effective_from)} 기준</span> : null}
-                  {browserOfficialSourceUrl(coordinate, brief.law_name_ko) ? (
-                    <a href={browserOfficialSourceUrl(coordinate, brief.law_name_ko)} rel="noreferrer" target="_blank">공식 원문 ↗</a>
+                  {coordinate.validation_status === 'verified' && browserOfficialSourceUrl(coordinate, brief.law_name_ko) ? (
+                    <a href={browserOfficialSourceUrl(coordinate, brief.law_name_ko)} rel="noopener noreferrer" target="_blank">공식 원문 (국가법령정보센터, 새 탭) ↗</a>
                   ) : null}
                 </div>
               ))}

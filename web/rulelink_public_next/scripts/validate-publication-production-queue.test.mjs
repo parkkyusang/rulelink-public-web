@@ -1,11 +1,11 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {execFile} from 'node:child_process';
-import {mkdir, mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
+import {mkdir, mkdtemp, readFile, rm, stat, writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {promisify} from 'node:util';
-import test from 'node:test';
+import test, {after} from 'node:test';
 
 import {
   createAuthorityEvidenceFixtures,
@@ -48,15 +48,128 @@ const queuePath = path.join(repoRoot, 'artifacts', 'publication', 'production-qu
 const registryPath = path.join(repoRoot, 'artifacts', 'publication', 'production-queue-registry.json');
 const bundlePath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
 const workflowPath = path.join(repoRoot, '.github', 'workflows', 'public-web-checks.yml');
-const [queue, registry, bundle, workflow] = await Promise.all([
+const execFileAsync = promisify(execFile);
+const [currentQueue, currentRegistry, bundle, workflow] = await Promise.all([
   readFile(queuePath, 'utf8').then(JSON.parse),
   readFile(registryPath, 'utf8').then(JSON.parse),
   readFile(bundlePath, 'utf8').then(JSON.parse),
   readFile(workflowPath, 'utf8'),
 ]);
-const publicationEvidence = await loadQueuePublicationEvidence(queue, bundle, {itemRegistry: registry});
+const productionWorkIds = new Set(Object.keys(PRODUCTION_WORK_CONTRACTS));
+
+function withoutRegisteredProductionWork(queueValue, registryValue) {
+  const queue = clone(queueValue);
+  queue.items = queue.items.filter(item => !productionWorkIds.has(item.work_id));
+  refreshSummary(queue);
+
+  const registry = clone(registryValue);
+  registry.registrations = registry.registrations.filter(
+    item => !productionWorkIds.has(item.work_id),
+  );
+  registry.registry_receipt = registry.registrations.at(-1)?.receipt || null;
+  registry.prerequisite_gate_receipts = registry.prerequisite_gate_receipts.filter(
+    item => !productionWorkIds.has(item.work_id),
+  );
+  if (registry.prerequisite_gate_receipts.length === 0) {
+    delete registry.prerequisite_gate_receipts;
+    delete registry.prerequisite_gate_receipt;
+  } else {
+    registry.prerequisite_gate_receipt =
+      registry.prerequisite_gate_receipts.at(-1).receipt;
+  }
+  for (const [entriesKey, receiptKey] of [
+    ['release_check_receipts', 'release_check_receipt'],
+    ['pr_bindings', 'pr_binding_receipt'],
+    ['head_receipts', 'head_receipt'],
+  ]) {
+    if (registry[entriesKey]?.length === 0) {
+      delete registry[entriesKey];
+      delete registry[receiptKey];
+    }
+  }
+  return {queue, registry};
+}
+
+const {queue, registry} = withoutRegisteredProductionWork(currentQueue, currentRegistry);
+const registryCommits = String((await execFileAsync(
+  'git',
+  ['rev-list', 'HEAD'],
+  {cwd: repoRoot, encoding: 'utf8'},
+)).stdout || '').split(/\r?\n/u).filter(Boolean);
+let preRegistrationHistoryCommit = '';
+for (const commit of registryCommits) {
+  let candidate;
+  try {
+    candidate = JSON.parse(String((await execFileAsync(
+      'git',
+      ['show', `${commit}:artifacts/publication/production-queue-registry.json`],
+      {cwd: repoRoot, encoding: 'utf8'},
+    )).stdout || ''));
+  } catch {
+    continue;
+  }
+  if (JSON.stringify(candidate) === JSON.stringify(registry)) {
+    preRegistrationHistoryCommit = commit;
+    break;
+  }
+}
+assert.ok(
+  preRegistrationHistoryCommit,
+  '등록 전 registry와 같은 실제 Git 이력 커밋이 필요합니다.',
+);
+async function createPreRegistrationHistoryFixture({
+  failSetupAt,
+  onDirectory = () => {},
+} = {}) {
+  const directory = await mkdtemp(
+    path.join(tmpdir(), 'rulelink-pre-registration-history-'),
+  );
+  onDirectory(directory);
+  const repository = path.join(directory, 'repository');
+  try {
+    if (failSetupAt === 'clone') {
+      throw new Error('injected clone setup failure');
+    }
+    await execFileAsync(
+      'git',
+      ['clone', '--shared', '--no-checkout', repoRoot, repository],
+      {cwd: directory, encoding: 'utf8'},
+    );
+    if (failSetupAt === 'checkout') {
+      throw new Error('injected checkout setup failure');
+    }
+    await execFileAsync(
+      'git',
+      ['checkout', '--detach', preRegistrationHistoryCommit],
+      {cwd: repository, encoding: 'utf8'},
+    );
+    return {
+      directory,
+      repository,
+      cleanup: () => rm(directory, {recursive: true, force: true}),
+    };
+  } catch (error) {
+    await rm(directory, {recursive: true, force: true});
+    throw error;
+  }
+}
+
+const preRegistrationHistory = await createPreRegistrationHistoryFixture();
+after(preRegistrationHistory.cleanup);
+const preRegistrationHistoryRepository = preRegistrationHistory.repository;
+const preRegistrationRunGit = args => execFileAsync(
+  'git',
+  args,
+  {cwd: preRegistrationHistoryRepository, encoding: 'utf8'},
+);
+const [publicationEvidence, currentPublicationEvidence] = await Promise.all([
+  loadQueuePublicationEvidence(queue, bundle, {
+    itemRegistry: registry,
+    runGit: preRegistrationRunGit,
+  }),
+  loadQueuePublicationEvidence(currentQueue, bundle, {itemRegistry: currentRegistry}),
+]);
 const testMigrationCommitSha = 'a'.repeat(40);
-const execFileAsync = promisify(execFile);
 const publicationCompletionFields = [
   'integrated_snapshot_id',
   'migration_commit_sha',
@@ -67,6 +180,30 @@ const publicationCompletionFields = [
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
+}
+
+async function assertTemporaryDirectoryRemoved(directory) {
+  await assert.rejects(
+    stat(directory),
+    error => error?.code === 'ENOENT',
+  );
+}
+
+for (const setupStep of ['clone', 'checkout']) {
+  test(`${setupStep} 준비 실패도 검증기 임시 Git 저장소를 남기지 않는다`, async () => {
+    let directory = '';
+    await assert.rejects(
+      createPreRegistrationHistoryFixture({
+        failSetupAt: setupStep,
+        onDirectory(value) {
+          directory = value;
+        },
+      }),
+      new RegExp(`injected ${setupStep} setup failure`, 'u'),
+    );
+    assert.ok(directory);
+    await assertTemporaryDirectoryRemoved(directory);
+  });
 }
 
 function refreshSummary(value) {
@@ -157,11 +294,12 @@ const sourceEvidenceMergeCommit = '5'.repeat(40);
 const sourceEvidenceRepository = 'parkkyusang/liale-rulelink-ir';
 const sourcePr4Head = authorityEvidenceFixtures.authorityDbValue.upstream.pr4_sha;
 const sourcePr3P2Head = authorityEvidenceFixtures.authorityDbValue.upstream.pr3_p2_sha;
+const sourcePr3FinalHead = 'f'.repeat(40);
 const sourceCiWorkflowId = 2400;
 const sourceCiCheckRunId = 2401;
 const sourceCiRunId = 2402;
 const sourceCiJobId = 2403;
-const sourceCiRunHead = '6'.repeat(40);
+const sourceCiRunHead = sourceEvidenceHead;
 
 function authoritySourceCiApiFixture(url) {
   const attestation = authorityEvidenceFixtures.authorityDbValue.source_ci_attestation;
@@ -180,8 +318,18 @@ function authoritySourceCiApiFixture(url) {
         completed_at: '2026-07-23T18:30:00Z',
         app: {slug: attestation.required_app_slug},
         details_url:
-          `https://github.com/${sourceEvidenceRepository}/actions/runs/${sourceCiRunId}`,
+          `https://github.com/${sourceEvidenceRepository}/runs/${sourceCiCheckRunId}`,
       }],
+    };
+  }
+  if (url.endsWith(`/actions/jobs/${sourceCiCheckRunId}`)) {
+    return {
+      id: sourceCiCheckRunId,
+      run_id: sourceCiRunId,
+      head_sha: sourceEvidenceHead,
+      name: attestation.check_name,
+      status: attestation.required_status,
+      conclusion: attestation.required_conclusion,
     };
   }
   if (url.endsWith(`/actions/runs/${sourceCiRunId}`)) {
@@ -193,10 +341,7 @@ function authoritySourceCiApiFixture(url) {
       conclusion: attestation.required_conclusion,
       event: attestation.required_event,
       path: attestation.workflow_path,
-      pull_requests: [{
-        number: Number(sourceEvidencePrNumber),
-        head: {sha: sourceEvidenceHead},
-      }],
+      pull_requests: [],
     };
   }
   if (url.endsWith(`/actions/workflows/${sourceCiWorkflowId}`)) {
@@ -273,7 +418,7 @@ async function sourceMaintenancePullFixture(url) {
   const matched = /\/pulls\/(3|4|903)$/u.exec(url);
   assert.ok(matched, `알 수 없는 source-maintenance PR fixture: ${url}`);
   const headByPr = {
-    3: sourcePr3P2Head,
+    3: sourcePr3FinalHead,
     4: sourcePr4Head,
     903: sourceEvidenceHead,
   };
@@ -300,6 +445,7 @@ function authoritySourceFetchFixture({
   sourceMerged = true,
   comparison = {status: 'ahead', ahead_by: 1},
   upstreamComparisons = new Map(),
+  trustedProducerComparisons = new Map(),
 } = {}) {
   return async url => {
     const sourceCiResponse = authoritySourceCiApiFixture(url);
@@ -329,6 +475,24 @@ function authoritySourceFetchFixture({
         url,
       );
     if (compareMatch) {
+      if (compareMatch[1] === AUTHORITY_EVIDENCE_TRUSTED_PRODUCER_COMMIT_SHA) {
+        if (compareMatch[2] === sourceEvidenceHead) {
+          return comparison;
+        }
+        const trustedComparison = trustedProducerComparisons.get(compareMatch[2]);
+        assert.ok(
+          trustedComparison,
+          `지원하지 않는 trusted producer ancestry fixture: ${url}`,
+        );
+        return trustedComparison;
+      }
+      if (
+        compareMatch[1] === sourcePr3P2Head &&
+        compareMatch[2] === sourcePr3FinalHead
+      ) {
+        return upstreamComparisons.get(sourcePr3P2Head) ||
+          {status: 'ahead', ahead_by: 4};
+      }
       assert.equal(compareMatch[2], sourceEvidenceHead);
       if (
         compareMatch[1] ===
@@ -555,14 +719,18 @@ function clearPublicationCompletion(item) {
 }
 
 test('현재 생산 대기열은 실제 current 공개 정본·역할·의존성 계약을 만족한다', () => {
-  assert.deepEqual(validateProductionQueue(queue, {publishedBundle: bundle, ...publicationEvidence}), []);
-  assert.deepEqual(compareQueueCurrentPublication(queue, bundle), []);
-  const {live_parity: _liveParity, ...queuePublication} = queue.current_publication;
+  assert.deepEqual(validateProductionQueueRaw(currentQueue, {
+    publishedBundle: bundle,
+    ...currentPublicationEvidence,
+    itemRegistry: currentRegistry,
+  }), []);
+  assert.deepEqual(compareQueueCurrentPublication(currentQueue, bundle), []);
+  const {live_parity: _liveParity, ...queuePublication} = currentQueue.current_publication;
   assert.deepEqual(deriveCurrentPublication(bundle), queuePublication);
-  assert.equal(queue.current_publication.live_parity, 'verified');
-  assert.equal(queue.audit_summary.open_content_prs, queue.items.filter(item => ['pr_open', 'ready_for_integration', 'needs_rework', 'migration_required', 'blocked'].includes(item.status)).length);
+  assert.equal(currentQueue.current_publication.live_parity, 'verified');
+  assert.equal(currentQueue.audit_summary.open_content_prs, currentQueue.items.filter(item => ['pr_open', 'ready_for_integration', 'needs_rework', 'migration_required', 'blocked'].includes(item.status)).length);
   for (const status of ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated', 'superseded', 'withdrawn']) {
-    assert.equal(queue.audit_summary[status], queue.items.filter(item => item.status === status).length);
+    assert.equal(currentQueue.audit_summary[status], currentQueue.items.filter(item => item.status === status).length);
   }
 });
 
@@ -825,7 +993,10 @@ test('원자적 동기화는 전체 검증 성공 뒤에만 파일을 교체한�
     const stale = clone(queue);
     stale.current_publication.snapshot_id = 'stale';
     await writeFile(target, JSON.stringify(stale, null, 2) + '\n', 'utf8');
-    const result = await synchronizeCurrentPublicationFile(target, bundle);
+    const result = await synchronizeCurrentPublicationFile(target, bundle, {
+      itemRegistry: registry,
+      runGit: preRegistrationRunGit,
+    });
     assert.equal(result.current_publication.snapshot_id, bundle.snapshot_id);
     assert.deepEqual(JSON.parse(await readFile(target, 'utf8')), result);
   } finally {
@@ -845,7 +1016,9 @@ test('item registry 파일 동기화도 검증 뒤 원자적으로 append한다'
     newItem.topic_id = 'hub.registry-file-fixture';
     newItem.topic_file = 'artifacts/publication/topics/registry-file-fixture.json';
     value.items.push(newItem);
-    const updated = await synchronizeQueueItemRegistryFile(target, value);
+    const updated = await synchronizeQueueItemRegistryFile(target, value, {
+      runGit: preRegistrationRunGit,
+    });
     assert.equal(updated.registrations.at(-1).queue_id, 'publication-pr-998');
     assert.deepEqual(JSON.parse(await readFile(target, 'utf8')), updated);
 
@@ -1002,7 +1175,9 @@ test('#105 정체성을 보존한 종료 이력과 #174 신규 대체 항목을 
   assert.equal(replacement.source_freshness.follow_up_owner_role, 'source_maintenance');
   assert.match(replacement.integration_checks.join(' '), /023 publication migration/u);
 
-  const registration = registry.registrations.at(-1);
+  const registration = registry.registrations.find(
+    item => item.queue_id === 'publication-pr-174',
+  );
   assert.equal(registration.sequence, 24);
   assert.equal(registration.queue_id, 'publication-pr-174');
   assert.equal(registration.previous_receipt, registry.registrations.at(-2).receipt);
@@ -2653,6 +2828,10 @@ test('고정 producer commit의 workflow·environment·contract 원문이 바뀌
         registry,
         fetchJson: authoritySourceFetchFixture({
           fileOverrides: new Map([[dbRepositoryPath, forgedPayload]]),
+          trustedProducerComparisons: new Map([[
+            'd'.repeat(40),
+            {status: 'diverged', ahead_by: 0},
+          ]]),
         }),
       },
     ),

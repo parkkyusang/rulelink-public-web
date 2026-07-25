@@ -1,0 +1,45 @@
+{
+  "schema": "rulelink_publication_question_family_catalog_v1",
+  "question_families": [
+    {
+      "question_family_id": "question.crime-victim.compensation-order.eligibility",
+      "title_ko": "배상명령 대상 범죄와 손해 범위",
+      "goal_kind": "check_eligibility"
+    },
+    {
+      "question_family_id": "question.crime-victim.compensation-order.agreed-amount",
+      "title_ko": "합의된 손해배상액과 배상명령 범위",
+      "goal_kind": "check_eligibility"
+    },
+    {
+      "question_family_id": "question.crime-victim.compensation-order.dismissal",
+      "title_ko": "복잡한 책임·손해 산정과 배상신청 각하",
+      "goal_kind": "compare_options"
+    },
+    {
+      "question_family_id": "question.crime-victim.compensation-order.deadline",
+      "title_ko": "배상명령 신청 시점",
+      "goal_kind": "calculate_deadline"
+    },
+    {
+      "question_family_id": "question.crime-victim.compensation-order.copies",
+      "title_ko": "배상명령 신청서 부본 준비",
+      "goal_kind": "prepare_evidence"
+    },
+    {
+      "question_family_id": "question.crime-victim.compensation-order.enforcement",
+      "title_ko": "배상명령 집행과 민사절차 대안",
+      "goal_kind": "seek_remedy"
+    },
+    {
+      "question_family_id": "question.debt-enforcement.payment-order-objection",
+      "title_ko": "지급명령 이의기간과 후속절차",
+      "goal_kind": "take_action"
+    },
+    {
+      "question_family_id": "question.housing-lease.deposit-return-before-move",
+      "title_ko": "보증금 미반환 상태의 이사와 권리보전",
+      "goal_kind": "take_action"
+    }
+  ]
+}

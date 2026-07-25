@@ -1,0 +1,52 @@
+{
+  "schema": "rulelink_publication_domain_coverage_v1",
+  "topic_id": "hub.debt-enforcement",
+  "coverage_version": 1,
+  "units": [
+    {
+      "coverage_unit_id": "coverage.kr.debt-enforcement.payment-order-objection.v1",
+      "question_family_id": "question.debt-enforcement.payment-order-objection",
+      "procedure_stage_id": "procedure.civil-enforcement.payment-order",
+      "jurisdiction": "KR",
+      "as_of": "2026-07-24",
+      "as_of_policy": "current_as_of_review",
+      "risk_level": "critical",
+      "target_authority_level": "L2_locator",
+      "branch_signature": [
+        {
+          "scenario_id": "scenario.debt-enforcement.payment-order-objected",
+          "decision_fact_sha256": "822c03b31d63928d9931bb0748b5e3b86c1a414ce908c7a65024919c9eb40eb1",
+          "when_true_sha256": "bf1c0b7f277aae0ae1c32aa37585b5c6cde65a21442d6f0048da8551bf34b281",
+          "when_false_sha256": "e90f4fa4c8fc7dfe43159250c5bd12fd88e7c345f504340714b53eadd4946b16"
+        }
+      ],
+      "canonical_content_ids": [
+        "content.payment-order-objection-two-weeks"
+      ],
+      "required_rule_ids": [
+        "rule.debt-enforcement.payment-order-objection-finality"
+      ],
+      "required_scenario_ids": [
+        "scenario.debt-enforcement.payment-order-objected"
+      ],
+      "required_source_coordinate_ids": [
+        "coord.debt-enforcement.civil-procedure-ko-0470",
+        "coord.debt-enforcement.civil-procedure-ko-0474"
+      ],
+      "source_version_requirements": [
+        {
+          "coordinate_id": "coord.debt-enforcement.civil-procedure-ko-0470",
+          "source_snapshot_id": "snapshot:5eb1874d3a13d2373c84f05a11428539",
+          "last_verified_at": "2026-07-21T08:30:00+00:00"
+        },
+        {
+          "coordinate_id": "coord.debt-enforcement.civil-procedure-ko-0474",
+          "source_snapshot_id": "snapshot:e16ef04db903a2d2efd339de72260b6e",
+          "last_verified_at": "2026-07-21T08:30:00+00:00"
+        }
+      ],
+      "required_authority_binding_ids": [],
+      "evaluation_case_ids": []
+    }
+  ]
+}

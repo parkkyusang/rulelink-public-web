@@ -1,3 +1,5 @@
+import type {ResolvedPublicEditorialAttribution} from '@/lib/public-trust';
+
 export type StructuredBreadcrumb = {
   name: string;
   url: string;
@@ -12,9 +14,14 @@ export type KnowledgePageStructuredDataInput = {
   audience: string;
   breadcrumbs: StructuredBreadcrumb[];
   description: string;
+  editorialAttribution?: ResolvedPublicEditorialAttribution;
   expiresAt: string;
   officialSources: StructuredOfficialSource[];
   pageUrl: string;
+  publisher?: {
+    name: string;
+    url: string;
+  };
   reviewedAt: string;
   rules: Array<{description: string; name: string}>;
   scenarios: Array<{
@@ -46,6 +53,7 @@ export type KnowledgeHubStructuredDataInput = {
 
 export function buildKnowledgePageStructuredData(input: KnowledgePageStructuredDataInput) {
   const pageId = input.pageUrl + '#webpage';
+  const articleId = input.pageUrl + '#article';
   const breadcrumbId = input.pageUrl + '#breadcrumb';
   const officialSources = uniqueOfficialSources(input.officialSources);
   const page: Record<string, unknown> = {
@@ -95,12 +103,60 @@ export function buildKnowledgePageStructuredData(input: KnowledgePageStructuredD
       text: `해당하면: ${scenario.trueOutcome} 해당하지 않으면: ${scenario.falseOutcome}`,
     }));
   }
+  const graph: Array<Record<string, unknown>> = [page];
+  if (input.editorialAttribution && input.publisher) {
+    const organizationId = organizationIdFor(input.publisher.url);
+    page.mainEntity = {'@id': articleId};
+    graph.push({
+      '@type': 'Article',
+      '@id': articleId,
+      url: input.pageUrl,
+      headline: input.title,
+      description: input.description,
+      inLanguage: 'ko-KR',
+      dateModified: input.reviewedAt,
+      lastReviewed: input.editorialAttribution.legal_reviewer.reviewed_at,
+      author: {
+        '@type': input.editorialAttribution.author.kind === 'organization'
+          ? 'Organization'
+          : 'Person',
+        name: input.editorialAttribution.author.name_ko,
+        description: input.editorialAttribution.author.role_ko,
+        ...(input.editorialAttribution.author.destination
+          ? {
+              url: new URL(
+                input.editorialAttribution.author.destination.href,
+                input.siteUrl,
+              ).href,
+            }
+          : {}),
+      },
+      reviewedBy: {
+        '@type': 'Person',
+        name: input.editorialAttribution.legal_reviewer.name_ko,
+        url: input.editorialAttribution.legal_reviewer.evidence_url,
+        jobTitle:
+          input.editorialAttribution.legal_reviewer.qualification_ko,
+        knowsAbout:
+          input.editorialAttribution.legal_reviewer.review_areas_ko,
+      },
+      publisher: {'@id': organizationId},
+      isPartOf: {'@id': pageId},
+      mainEntityOfPage: {'@id': pageId},
+      articleSection:
+        input.editorialAttribution.legal_reviewer.review_areas_ko,
+    });
+    graph.push({
+      '@type': 'Organization',
+      '@id': organizationId,
+      name: input.publisher.name,
+      url: input.publisher.url,
+    });
+  }
+  graph.push(buildBreadcrumbList(breadcrumbId, input.breadcrumbs));
   return {
     '@context': 'https://schema.org',
-    '@graph': [
-      page,
-      buildBreadcrumbList(breadcrumbId, input.breadcrumbs),
-    ],
+    '@graph': graph,
   };
 }
 
@@ -181,4 +237,8 @@ function uniqueOfficialSources(sources: StructuredOfficialSource[]): StructuredO
 
 function websiteId(siteUrl: string): string {
   return siteUrl.replace(/\/$/, '') + '/#website';
+}
+
+function organizationIdFor(siteUrl: string): string {
+  return siteUrl.replace(/\/$/, '') + '/#organization';
 }

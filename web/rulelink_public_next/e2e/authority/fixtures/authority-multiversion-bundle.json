@@ -407,7 +407,7 @@
         "rule_ids": ["rule.authority-e2e"],
         "scenario_ids": ["scenario.authority-e2e"],
         "source_coordinate_ids": ["coord.authority-e2e.0025.current"],
-        "hub_ids": ["hub.authority-e2e"],
+        "hub_ids": [],
         "related_content_ids": ["content.authority-e2e-related"],
         "related_edges": [
           {
@@ -447,22 +447,10 @@
         "rule_ids": [],
         "scenario_ids": [],
         "source_coordinate_ids": ["coord.authority-e2e.0025.current"],
-        "hub_ids": ["hub.authority-e2e"],
+        "hub_ids": [],
         "related_content_ids": [],
         "related_edges": [],
         "concept_ids": []
-      }
-    ],
-    "topic_hubs": [
-      {
-        "hub_id": "hub.authority-e2e",
-        "slug": "authority-e2e",
-        "title_ko": "조문 읽기 브라우저 수락시험",
-        "description_ko": "실제 Next 경로에서 조문 읽기의 화면·키보드·단편 링크를 검증합니다.",
-        "content_ids": [
-          "content.authority-e2e-multi-version",
-          "content.authority-e2e-related"
-        ]
       }
     ]
   }

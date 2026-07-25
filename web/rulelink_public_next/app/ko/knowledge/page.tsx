@@ -10,12 +10,12 @@ export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
   title: '생활법률 지식',
-  description: '승인된 RuleLink 법률지식을 상황과 주제별로 찾아봅니다.',
+  description: `승인된 ${site.name} 법률지식을 상황과 주제별로 찾아봅니다.`,
   alternates: {canonical: '/ko/knowledge'},
   openGraph: {
     type: 'website',
     title: '생활법률 지식',
-    description: '승인된 RuleLink 법률지식을 상황과 주제별로 찾아봅니다.',
+    description: `승인된 ${site.name} 법률지식을 상황과 주제별로 찾아봅니다.`,
     url: '/ko/knowledge',
   },
 };
@@ -52,7 +52,7 @@ export default async function KnowledgeLibraryPage() {
         })}}
         type="application/ld+json"
       />
-      <nav className="breadcrumb"><a href="/">홈</a><span>/</span><span>생활법률 지식</span></nav>
+      <nav aria-label="현재 위치" className="breadcrumb"><a href="/">홈</a><span aria-hidden="true">/</span><span aria-current="page">생활법률 지식</span></nav>
       <header className="topicHero">
         <p className="eyebrow">연결된 지식 보관함</p>
         <h1 id="knowledge-library-heading">내 상황에서 법리와 사실분기를 찾습니다.</h1>

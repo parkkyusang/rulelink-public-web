@@ -3,8 +3,9 @@ import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 
 import {filterFreshPublications} from '../src/lib/publication-freshness.ts';
+import {site} from '../src/lib/site.ts';
 
-const DEFAULT_BASE_URL = 'https://rulelink.lolphysical.xyz';
+const DEFAULT_BASE_URL = site.url;
 const nonVisibleElementPattern = /<(script|style|template|noscript)\b[^>]*>[\s\S]*?<\/\1\s*>/giu;
 const textFlowBoundaryPattern = /<\/?(?:address|article|aside|blockquote|body|br|dd|div|dl|dt|fieldset|figcaption|figure|footer|form|h[1-6]|head|header|hgroup|hr|html|li|main|menu|nav|ol|p|pre|search|section|table|tbody|td|tfoot|th|thead|tr|ul)\b[^>]*>/giu;
 
@@ -188,7 +189,7 @@ async function fetchWithTimeout(url) {
     cache: 'no-store',
     redirect: 'follow',
     signal: AbortSignal.timeout(15000),
-    headers: {'user-agent': 'RuleLink-GitHub-Production-Smoke/1.0'},
+    headers: {'user-agent': `${site.englishName}-GitHub-Production-Smoke/1.0`},
   });
 }
 

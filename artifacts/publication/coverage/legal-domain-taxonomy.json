@@ -1,0 +1,335 @@
+{
+  "schema": "rulelink_publication_legal_domain_taxonomy_v1",
+  "new_domain_seed_contract": {
+    "counts": {
+      "sources": 10,
+      "rule_cards": 10,
+      "scenario_branches": 10,
+      "content_entries": 10,
+      "topic_hubs": 1,
+      "authority_units": 0
+    },
+    "quality_targets": {
+      "duplicate_rule_before": 0,
+      "duplicate_rule_after": 0,
+      "blank_audience_before": 0,
+      "blank_audience_after": 0,
+      "copied_search_before": 0,
+      "copied_search_after": 0,
+      "nonstandard_content_type_before": 0,
+      "nonstandard_content_type_after": 0,
+      "typed_relation_after": 10
+    }
+  },
+  "new_domain_seed_registry": [
+    {
+      "target_domain_id": "target.constitutional-public",
+      "work_id": "coverage-expansion-new-domain-constitutional-public"
+    },
+    {
+      "target_domain_id": "target.tax",
+      "work_id": "coverage-expansion-new-domain-tax"
+    },
+    {
+      "target_domain_id": "target.corporate-commercial",
+      "work_id": "coverage-expansion-new-domain-corporate-commercial"
+    },
+    {
+      "target_domain_id": "target.insolvency",
+      "work_id": "coverage-expansion-new-domain-insolvency"
+    },
+    {
+      "target_domain_id": "target.intellectual-property",
+      "work_id": "coverage-expansion-new-domain-intellectual-property"
+    },
+    {
+      "target_domain_id": "target.medical-health",
+      "work_id": "coverage-expansion-new-domain-medical-health"
+    },
+    {
+      "target_domain_id": "target.immigration",
+      "work_id": "coverage-expansion-new-domain-immigration"
+    },
+    {
+      "target_domain_id": "target.environment",
+      "work_id": "coverage-expansion-new-domain-environment"
+    }
+  ],
+  "domains": [
+    {
+      "domain_id": "domain.public-administrative",
+      "title_ko": "행정·공법 구제",
+      "hub_ids": [
+        "hub.administrative-appeals"
+      ],
+      "risk_dimensions": [
+        "appeal",
+        "deadline"
+      ]
+    },
+    {
+      "domain_id": "domain.consumer-digital",
+      "title_ko": "소비자·디지털 거래",
+      "hub_ids": [
+        "hub.consumer-online-contracts",
+        "hub.voice-phishing-refund"
+      ],
+      "risk_dimensions": [
+        "deadline"
+      ]
+    },
+    {
+      "domain_id": "domain.family-inheritance",
+      "title_ko": "가족·상속",
+      "hub_ids": [
+        "hub.divorce-parenting",
+        "hub.family-inheritance"
+      ],
+      "risk_dimensions": [
+        "deadline",
+        "safety"
+      ]
+    },
+    {
+      "domain_id": "domain.housing-real-estate",
+      "title_ko": "주거·임대차·부동산",
+      "hub_ids": [
+        "hub.commercial-lease",
+        "hub.housing-lease-deposit",
+        "hub.housing-lease-living",
+        "hub.neighbor-leak-noise",
+        "hub.real-estate-sale"
+      ],
+      "risk_dimensions": [
+        "deadline",
+        "safety"
+      ]
+    },
+    {
+      "domain_id": "domain.labor-social-protection",
+      "title_ko": "노동·사회보장",
+      "hub_ids": [
+        "hub.employment-exit",
+        "hub.industrial-accident",
+        "hub.labor-wages",
+        "hub.workplace-harassment"
+      ],
+      "risk_dimensions": [
+        "appeal",
+        "deadline",
+        "safety"
+      ]
+    },
+    {
+      "domain_id": "domain.civil-obligations-enforcement",
+      "title_ko": "민사채권·손해배상·집행",
+      "hub_ids": [
+        "hub.civil-small-claims",
+        "hub.debt-enforcement",
+        "hub.everyday-damages",
+        "hub.money-guarantee"
+      ],
+      "risk_dimensions": [
+        "appeal",
+        "deadline"
+      ]
+    },
+    {
+      "domain_id": "domain.mobility-insurance",
+      "title_ko": "교통·이동·보험",
+      "hub_ids": [
+        "hub.auto-accident-insurance",
+        "hub.shared-mobility-accident"
+      ],
+      "risk_dimensions": [
+        "deadline",
+        "safety"
+      ]
+    },
+    {
+      "domain_id": "domain.crime-victim-safety",
+      "title_ko": "범죄피해·안전",
+      "hub_ids": [
+        "hub.crime-victim-response",
+        "hub.domestic-violence-stalking",
+        "hub.school-violence"
+      ],
+      "risk_dimensions": [
+        "appeal",
+        "deadline",
+        "safety"
+      ]
+    },
+    {
+      "domain_id": "domain.legal-navigation",
+      "title_ko": "법률개념·절차 길잡이",
+      "hub_ids": [
+        "hub.deadline-and-timing-comparisons",
+        "hub.legal-concept-comparisons",
+        "hub.legal-concept-comparisons-02",
+        "hub.legal-service-boundaries",
+        "hub.remedy-path-comparisons"
+      ],
+      "risk_dimensions": [
+        "appeal",
+        "deadline"
+      ]
+    }
+  ],
+  "target_domain_horizon": [
+    {
+      "target_domain_id": "target.civil",
+      "title_ko": "민사",
+      "current_hub_ids": [
+        "hub.civil-small-claims",
+        "hub.debt-enforcement",
+        "hub.everyday-damages",
+        "hub.money-guarantee",
+        "hub.neighbor-leak-noise",
+        "hub.shared-mobility-accident"
+      ]
+    },
+    {
+      "target_domain_id": "target.criminal",
+      "title_ko": "형사",
+      "current_hub_ids": [
+        "hub.crime-victim-response",
+        "hub.domestic-violence-stalking",
+        "hub.voice-phishing-refund"
+      ]
+    },
+    {
+      "target_domain_id": "target.administrative",
+      "title_ko": "행정",
+      "current_hub_ids": [
+        "hub.administrative-appeals",
+        "hub.school-violence"
+      ]
+    },
+    {
+      "target_domain_id": "target.constitutional-public",
+      "title_ko": "헌법·공법",
+      "current_hub_ids": []
+    },
+    {
+      "target_domain_id": "target.family-inheritance",
+      "title_ko": "가사·상속",
+      "current_hub_ids": [
+        "hub.divorce-parenting",
+        "hub.family-inheritance"
+      ]
+    },
+    {
+      "target_domain_id": "target.labor-industrial-accident",
+      "title_ko": "노동·산재",
+      "current_hub_ids": [
+        "hub.employment-exit",
+        "hub.industrial-accident",
+        "hub.labor-wages",
+        "hub.workplace-harassment"
+      ]
+    },
+    {
+      "target_domain_id": "target.tax",
+      "title_ko": "조세",
+      "current_hub_ids": []
+    },
+    {
+      "target_domain_id": "target.corporate-commercial",
+      "title_ko": "회사·상사",
+      "current_hub_ids": []
+    },
+    {
+      "target_domain_id": "target.insolvency",
+      "title_ko": "도산",
+      "current_hub_ids": []
+    },
+    {
+      "target_domain_id": "target.finance-insurance",
+      "title_ko": "금융·보험",
+      "current_hub_ids": [
+        "hub.auto-accident-insurance",
+        "hub.voice-phishing-refund"
+      ]
+    },
+    {
+      "target_domain_id": "target.real-estate-construction",
+      "title_ko": "부동산·건설",
+      "current_hub_ids": [
+        "hub.commercial-lease",
+        "hub.housing-lease-deposit",
+        "hub.housing-lease-living",
+        "hub.neighbor-leak-noise",
+        "hub.real-estate-sale"
+      ]
+    },
+    {
+      "target_domain_id": "target.intellectual-property",
+      "title_ko": "지식재산",
+      "current_hub_ids": []
+    },
+    {
+      "target_domain_id": "target.information-privacy-platform",
+      "title_ko": "정보·개인정보·플랫폼",
+      "current_hub_ids": [
+        "hub.consumer-online-contracts"
+      ]
+    },
+    {
+      "target_domain_id": "target.consumer",
+      "title_ko": "소비자",
+      "current_hub_ids": [
+        "hub.consumer-online-contracts",
+        "hub.voice-phishing-refund"
+      ]
+    },
+    {
+      "target_domain_id": "target.medical-health",
+      "title_ko": "의료·보건",
+      "current_hub_ids": []
+    },
+    {
+      "target_domain_id": "target.social-security",
+      "title_ko": "사회보장",
+      "current_hub_ids": [
+        "hub.industrial-accident"
+      ]
+    },
+    {
+      "target_domain_id": "target.education",
+      "title_ko": "교육",
+      "current_hub_ids": [
+        "hub.school-violence"
+      ]
+    },
+    {
+      "target_domain_id": "target.immigration",
+      "title_ko": "출입국",
+      "current_hub_ids": []
+    },
+    {
+      "target_domain_id": "target.environment",
+      "title_ko": "환경",
+      "current_hub_ids": []
+    },
+    {
+      "target_domain_id": "target.transportation",
+      "title_ko": "교통",
+      "current_hub_ids": [
+        "hub.auto-accident-insurance",
+        "hub.shared-mobility-accident"
+      ]
+    },
+    {
+      "target_domain_id": "target.cross-domain-navigation",
+      "title_ko": "분야횡단 법률개념·절차",
+      "current_hub_ids": [
+        "hub.deadline-and-timing-comparisons",
+        "hub.legal-concept-comparisons",
+        "hub.legal-concept-comparisons-02",
+        "hub.legal-service-boundaries",
+        "hub.remedy-path-comparisons"
+      ]
+    }
+  ]
+}

@@ -11,11 +11,13 @@ import {
   selectAuthorityReadingForRoute,
 } from '@/lib/authority-reading';
 import {changeLifecycleOrder} from '@/lib/change-lifecycle';
-import {filterFreshPublications} from '@/lib/publication-freshness';
+import {projectChangeBrief} from '@/lib/change-brief-projection';
+import {filterFreshPublications, publicationNow} from '@/lib/publication-freshness';
 
 import type {AuthorityReadingView} from '@/lib/authority-reading';
 import type {KnowledgeHubConnection} from '@/lib/knowledge-hub-connections';
 import type {KnowledgeReadingPathSection, KnowledgeRelatedSection} from '@/lib/knowledge-relations';
+import type {ChangeBriefProjection} from '@/lib/change-brief-projection';
 
 import type {
   EditorialOperationsQueue,
@@ -108,6 +110,19 @@ export async function assertionsForChangeBrief(brief: LegalChangeBrief): Promise
   return bundle.assertions.filter(assertion => allowed.has(assertion.assertion_id));
 }
 
+export async function changeBriefProjection(brief: LegalChangeBrief): Promise<ChangeBriefProjection | null> {
+  const bundle = await loadPublishedBundle();
+  if (!bundle) return null;
+  const assertionIds = new Set(brief.assertion_ids);
+  return projectChangeBrief({
+    brief,
+    assertions: bundle.assertions.filter(assertion => assertionIds.has(assertion.assertion_id)),
+    entries: filterFreshPublications(bundle.knowledge?.content_entries ?? []),
+    sources: bundle.knowledge?.sources ?? [],
+    asOf: publicationNow().toISOString(),
+  });
+}
+
 
 export async function relatedCardsForChangeBrief(brief: LegalChangeBrief, limit = 6): Promise<LegalIssueCard[]> {
   const cardsById = new Map((await listPublishedCards()).map(card => [card.issue_card_id, card]));
@@ -120,6 +135,15 @@ export async function relatedCardsForChangeBrief(brief: LegalChangeBrief, limit 
 export async function relatedChangeBriefsForCard(card: LegalIssueCard, limit = 6): Promise<LegalChangeBrief[]> {
   return (await listChangeBriefs())
     .filter(brief => brief.related_issue_card_ids.includes(card.issue_card_id))
+    .slice(0, limit);
+}
+
+export async function relatedChangeBriefsForKnowledgeEntry(
+  entry: PublicKnowledgeEntry,
+  limit = 6,
+): Promise<LegalChangeBrief[]> {
+  return (await listChangeBriefs())
+    .filter(brief => brief.related_content_ids?.includes(entry.content_id))
     .slice(0, limit);
 }
 
@@ -142,6 +166,36 @@ export async function listKnowledgeSearchDocuments() {
     filterFreshPublications(knowledge.content_entries).map(entry => entry.content_id),
   );
   return buildKnowledgeSearchDocuments(knowledge, visibleContentIds);
+}
+
+export async function listKnowledgeDecisionQuestions(): Promise<Map<string, Array<{
+  question: string;
+  scenarioId: string;
+}>>> {
+  const knowledge = (await loadPublishedBundle())?.knowledge;
+  if (!knowledge) return new Map();
+  const scenarioById = new Map(
+    knowledge.scenario_branches.map(scenario => [scenario.scenario_id, scenario]),
+  );
+  return new Map(
+    filterFreshPublications(knowledge.content_entries)
+      .map(entry => {
+        const questions = entry.scenario_ids.flatMap(scenarioId => {
+          const question = scenarioById.get(scenarioId)?.question_ko.trim();
+          return question ? [{question, scenarioId}] : [];
+        }).filter((value, index, values) => (
+          values.findIndex(candidate => (
+            candidate.question === value.question
+            && candidate.scenarioId === value.scenarioId
+          )) === index
+        ));
+        return questions.length ? [entry.content_id, questions] as const : null;
+      })
+      .filter((value): value is readonly [string, Array<{
+        question: string;
+        scenarioId: string;
+      }>] => Boolean(value)),
+  );
 }
 
 export async function listKnowledgeSourceDocuments() {

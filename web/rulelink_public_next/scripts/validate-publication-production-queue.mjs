@@ -10,12 +10,17 @@ import {
   AUTHORITY_EVIDENCE_REQUIRED_REPOSITORY_PATHS,
   AUTHORITY_EVIDENCE_PRODUCER_CONTRACT_SHA256,
   AUTHORITY_EVIDENCE_SOURCE_FILENAMES,
+  AUTHORITY_EVIDENCE_SOURCE_REPOSITORY,
   AUTHORITY_EVIDENCE_TRUSTED_PRODUCER_COMMIT_SHA,
   AUTHORITY_EVIDENCE_VERIFICATION_CONTRACT,
   AUTHORITY_PUBLIC_EVIDENCE_CONTRACT_V1,
   authorityEvidenceSiblingPath,
   validateAuthorityEvidenceArtifact,
 } from './validate-authority-evidence-artifacts.mjs';
+import {
+  validateSourceMaintenanceInventoryEvidenceCore,
+} from './source-maintenance-inventory-evidence-core.mjs';
+import {site} from '../src/lib/site.ts';
 
 const scriptPath = fileURLToPath(import.meta.url);
 const appRoot = path.resolve(path.dirname(scriptPath), '..');
@@ -23,12 +28,36 @@ const repoRoot = path.resolve(appRoot, '..', '..');
 const defaultQueuePath = path.join(repoRoot, 'artifacts', 'publication', 'production-queue.json');
 const defaultQueueRegistryPath = path.join(repoRoot, 'artifacts', 'publication', 'production-queue-registry.json');
 const defaultPublishedBundlePath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
-const defaultLivePublicationUrl = 'https://rulelink.lolphysical.xyz/publication.json';
+export const DEFAULT_SOURCE_MAINTENANCE_INVENTORY_TRUST_POLICY_PATH =
+  path.join(
+    repoRoot,
+    'artifacts',
+    'publication',
+    'coverage',
+    'source-maintenance-inventory-trust-policy.json',
+  );
+const defaultLivePublicationUrl = `${site.url}/publication.json`;
 const execFileAsync = promisify(execFile);
 const contentTypeContract = JSON.parse(
   await readFile(path.join(appRoot, 'src', 'lib', 'knowledge-content-types.json'), 'utf8'),
 );
 const canonicalContentTypes = new Set(Object.keys(contentTypeContract.canonical));
+const legalDomainTaxonomy = JSON.parse(
+  await readFile(
+    path.join(
+      repoRoot,
+      'artifacts',
+      'publication',
+      'coverage',
+      'legal-domain-taxonomy.json',
+    ),
+    'utf8',
+  ),
+);
+const windowsReservedBasenames =
+  /^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])$/u;
+const coverageSeedStemPattern =
+  /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 
 const statuses = new Set([
   'planned',
@@ -203,8 +232,16 @@ const evidenceArtifactPaths = {
   'search-hub-sitemap-200': path.join(repoRoot, 'artifacts', 'publication', 'evidence', 'releases', '024', 'search-hub-sitemap-200.json'),
 };
 const verifiedEvidenceBrand = Symbol('rulelink-production-evidence-v1');
+const queuePublicationEvidenceBrand =
+  Symbol('rulelink-queue-publication-evidence-v1');
+const trustedRevalidatedGateProofMaps = new WeakSet();
+const sourceSelectionsByGateProofMap = new WeakMap();
+const locallyRevalidatedGateMethods = new Set([
+  'legal_answer_packet_activation_v1',
+  'source_locator_selection_v2',
+]);
 
-export const PRODUCTION_WORK_CONTRACTS = {
+const STATIC_PRODUCTION_WORK_CONTRACTS = {
   'reader-backfill-crime-victim-wave1': {
     title_ko: '배상명령 대상손해·신청기한 조문 읽기 정본 백필',
     topic_id: 'hub.crime-victim-response',
@@ -242,6 +279,17 @@ export const PRODUCTION_WORK_CONTRACTS = {
       ],
     },
     prerequisite_gates: wave1GateContract,
+    optional_prerequisite_gates: {
+      'legal-answer.packet-set-activation': {
+        gate_kind: 'artifact',
+        owner_role: 'quality_governance',
+        verification_method: 'legal_answer_packet_activation_v1',
+        verification_contract:
+          'rulelink_legal_answer_packet_activation_verification_v1',
+        evidence_pattern:
+          /^legal-answer-activation:[^@]+@packets-sha256:[0-9a-f]{64}@receipt-sha256:[0-9a-f]{64}@trust-sha256:[0-9a-f]{64}$/u,
+      },
+    },
     depends_on_work_ids: [],
     integration_checks: [
       'snapshot 023 운영 배포와 authority 스키마·런타임을 포함한 모든 선행 게이트가 충족된 뒤 생산한다.',
@@ -344,6 +392,128 @@ export const PRODUCTION_WORK_CONTRACTS = {
   },
 };
 
+export function buildCoverageSeedProductionContracts(taxonomy) {
+  const coverageSeedDefaults = taxonomy.new_domain_seed_contract;
+  const coverageSeedRegistry = taxonomy.new_domain_seed_registry;
+  if (
+    taxonomy.schema !==
+      'rulelink_publication_legal_domain_taxonomy_v1' ||
+    !coverageSeedDefaults?.counts ||
+    !coverageSeedDefaults?.quality_targets ||
+    !Array.isArray(coverageSeedRegistry) ||
+    coverageSeedRegistry.length === 0
+  ) {
+    throw new Error('법영역 확장 seed 생산계약 정본이 올바르지 않습니다.');
+  }
+  const targetDomainById = new Map(
+    taxonomy.target_domain_horizon.map(domain => [
+      domain.target_domain_id,
+      domain,
+    ]),
+  );
+  const registeredSeedTargetIds = coverageSeedRegistry.map(
+    seed => seed.target_domain_id,
+  );
+  const registeredSeedWorkIds = coverageSeedRegistry.map(
+    seed => seed.work_id,
+  );
+  const currentlyUnstartedTargetIds = taxonomy.target_domain_horizon
+    .filter(domain => (domain.current_hub_ids ?? []).length === 0)
+    .map(domain => domain.target_domain_id);
+  if (
+    new Set(registeredSeedTargetIds).size !== registeredSeedTargetIds.length ||
+    new Set(registeredSeedWorkIds).size !== registeredSeedWorkIds.length ||
+    currentlyUnstartedTargetIds.some(
+      targetDomainId => !registeredSeedTargetIds.includes(targetDomainId),
+    )
+  ) {
+    throw new Error('법영역 확장 seed 원장은 중복 없이 미개척 영역을 보존해야 합니다.');
+  }
+  return Object.fromEntries(
+    coverageSeedRegistry
+    .map(seed => {
+      const domain = targetDomainById.get(seed.target_domain_id);
+      const stem = String(domain?.target_domain_id ?? '').replace(
+        /^target\./u,
+        '',
+      );
+      const expectedWorkId = `coverage-expansion-new-domain-${stem}`;
+      if (
+        !domain ||
+        Object.keys(seed).length !== 2 ||
+        seed.work_id !== expectedWorkId ||
+        !coverageSeedStemPattern.test(stem) ||
+        windowsReservedBasenames.test(stem)
+      ) {
+        throw new Error(
+          `법영역 확장 seed 원장 식별자가 안전하지 않습니다: ${seed.target_domain_id ?? '?'}`,
+        );
+      }
+      const workId = seed.work_id;
+      return [
+        workId,
+        {
+          title_ko: `${domain.title_ko} 신규 공개 주제 정본 구축`,
+          topic_id: `hub.${stem}`,
+          topic_file: `artifacts/publication/topics/${stem}.json`,
+          test_file:
+            `web/rulelink_public_next/scripts/${stem}-topic-handoff.test.mjs`,
+          branch: `codex/content-${stem}-coverage-seed`,
+          change_mode: 'new_topic',
+          counts: structuredClone(coverageSeedDefaults.counts),
+          quality_targets: structuredClone(
+            coverageSeedDefaults.quality_targets,
+          ),
+          measurement_scope: 'all_topic',
+          prerequisite_gates: {
+            'source-maintenance.source-locators-selected': {
+              gate_kind: 'artifact',
+              owner_role: 'source_maintenance',
+              verification_method: 'source_locator_selection_v2',
+              verification_contract:
+                'rulelink_source_locator_selection_verification_v2',
+              evidence_pattern:
+                new RegExp(
+                  `^source-locator-selection:${workId}@sha256:[0-9a-f]{64}$`,
+                  'u',
+                ),
+            },
+          },
+          depends_on_work_ids: [],
+          integration_checks: [
+            '승인된 Source Maintenance 서명 인벤토리에서 선택한 좌표와 법영역 관련성을 exact 재결박한다.',
+            '새 주제는 표준 콘텐츠 유형·사실분기·typed relation·공식근거 역참조 계약을 모두 통과해야 한다.',
+            'topic과 자기시험만 생산하고 current·snapshot·release·production queue는 직접 수정하지 않는다.',
+            '검증 완료 뒤 migrate_publication이 current와 새 불변 snapshot에 함께 승격한다.',
+          ],
+          release_check_ids: [
+            'canonical-urls-unchanged',
+            'official-urls-pass',
+            'runtime-responsive-no-overflow',
+            'runtime-keyboard-reading-path',
+            'search-hub-sitemap-200',
+          ],
+        },
+      ];
+    }),
+  );
+}
+
+const coverageSeedContracts =
+  buildCoverageSeedProductionContracts(legalDomainTaxonomy);
+
+export const PRODUCTION_WORK_CONTRACTS = {
+  ...STATIC_PRODUCTION_WORK_CONTRACTS,
+  ...coverageSeedContracts,
+};
+
+function productionGateContract(contract, gateId) {
+  return (
+    contract?.prerequisite_gates?.[gateId] ??
+    contract?.optional_prerequisite_gates?.[gateId]
+  );
+}
+
 
 export const OWNER_ROLE_CONTRACTS = {
   orchestration: {assignment: 'coordination_only', owned_paths: ['artifacts/publication/production-queue.json', 'artifacts/publication/production-queue-registry.json'], forbidden_paths: ['artifacts/publication/topics/*.json', 'artifacts/publication/current/**', 'artifacts/publication/snapshots/**']},
@@ -439,6 +609,17 @@ async function defaultFetchJson(url) {
   return response.json();
 }
 
+async function defaultFetchBytes(url) {
+  const headers = {
+    Accept: 'application/octet-stream',
+    'User-Agent': 'rulelink-publication-evidence-verifier',
+  };
+  if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+  const response = await fetch(url, {headers});
+  if (!response.ok) throw new Error(`외부 증거 바이트 조회 실패: ${response.status} ${url}`);
+  return Buffer.from(await response.arrayBuffer());
+}
+
 function publicationStatusNow() {
   const override = process.env.RULELINK_PUBLICATION_NOW;
   if (!override) return new Date();
@@ -516,16 +697,39 @@ async function verifyAuthoritySourceCiAttestation({
   const provenance = evidence.provenance;
   const cacheKey = `${repository}#${prNumber}@${headSha}:${attestation.contract}`;
   if (attestationCache?.has(cacheKey)) return attestationCache.get(cacheKey);
+  let trustedProducerAncestry = {
+    status: 'identical',
+    aheadBy: 0,
+  };
 
   if (
     provenance.producer_source_commit_sha !==
       AUTHORITY_EVIDENCE_TRUSTED_PRODUCER_COMMIT_SHA
   ) {
-    throw new Error(
-      'authority producer source commit이 공개 소비자가 승인한 신뢰 기준과 다릅니다.',
+    const trustedComparison = await fetchJson(
+      `https://api.github.com/repos/${repository}/compare/` +
+      `${AUTHORITY_EVIDENCE_TRUSTED_PRODUCER_COMMIT_SHA}...` +
+      `${provenance.producer_source_commit_sha}`,
     );
+    if (
+      !['ahead', 'identical'].includes(trustedComparison?.status) ||
+      !Number.isInteger(trustedComparison.ahead_by) ||
+      trustedComparison.ahead_by < 0
+    ) {
+      throw new Error(
+        'authority producer source commit은 공개 소비자가 신뢰하는 producer 기준 commit의 검증된 후손이어야 합니다.',
+      );
+    }
+    trustedProducerAncestry = {
+      status: trustedComparison.status,
+      aheadBy: trustedComparison.ahead_by,
+    };
+  } else {
+    trustedProducerAncestry = {
+      status: 'identical',
+      aheadBy: 0,
+    };
   }
-
   const workflowPayload = await loadGithubFileAtCommit({
     repository,
     repositoryPath: attestation.workflow_path,
@@ -585,33 +789,56 @@ async function verifyAuthoritySourceCiAttestation({
     throw new Error('authority source CI의 최신 GitHub Actions check가 완료·성공 상태가 아닙니다.');
   }
   const escapedRepository = repository.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&');
-  const detailsMatch = new RegExp(
+  const runDetailsMatch = new RegExp(
     `^https://github\\.com/${escapedRepository}/actions/runs/(\\d+)$`,
     'u',
   ).exec(checkRun.details_url || '');
-  if (!detailsMatch) {
+  const jobDetailsMatch = new RegExp(
+    `^https://github\\.com/${escapedRepository}/runs/(\\d+)$`,
+    'u',
+  ).exec(checkRun.details_url || '');
+  if (!runDetailsMatch && !jobDetailsMatch) {
     throw new Error('authority source CI check의 details_url에서 Actions run/job을 확인할 수 없습니다.');
   }
-  const [, runId] = detailsMatch;
+  let runId = runDetailsMatch?.[1] || '';
+  if (jobDetailsMatch) {
+    const checkJob = await fetchJson(
+      `https://api.github.com/repos/${repository}/actions/jobs/${jobDetailsMatch[1]}`,
+    );
+    if (
+      String(checkJob?.id) !== jobDetailsMatch[1] ||
+      checkJob?.name !== attestation.check_name ||
+      checkJob?.head_sha !== headSha ||
+      checkJob?.status !== attestation.required_status ||
+      checkJob?.conclusion !== attestation.required_conclusion ||
+      !Number.isInteger(checkJob?.run_id)
+    ) {
+      throw new Error('authority source CI custom check job이 증거 PR head·상태·Actions run과 일치하지 않습니다.');
+    }
+    runId = String(checkJob.run_id);
+  }
   const workflowRun = await fetchJson(
     `https://api.github.com/repos/${repository}/actions/runs/${runId}`,
   );
   const workflowId = String(workflowRun?.workflow_id || '');
   const workflowRunPath = String(workflowRun?.path || '').split('@', 1)[0];
-  const boundPullRequest = (
-    Array.isArray(workflowRun?.pull_requests) ? workflowRun.pull_requests : []
-  ).find(candidate =>
+  const workflowRunPullRequests =
+    Array.isArray(workflowRun?.pull_requests) ? workflowRun.pull_requests : [];
+  const boundPullRequest = workflowRunPullRequests.find(candidate =>
     String(candidate?.number) === String(prNumber) &&
     candidate?.head?.sha === headSha);
+  const pullRequestBindingValid =
+    Boolean(boundPullRequest) ||
+    (Boolean(jobDetailsMatch) && workflowRunPullRequests.length === 0);
   if (
     String(workflowRun?.id) !== runId ||
-    !/^[0-9a-f]{40}$/u.test(workflowRun?.head_sha || '') ||
+    workflowRun?.head_sha !== headSha ||
     workflowRun?.status !== attestation.required_status ||
     workflowRun?.conclusion !== attestation.required_conclusion ||
     workflowRun?.event !== attestation.required_event ||
     workflowRunPath !== attestation.workflow_path ||
     !/^\d+$/u.test(workflowId) ||
-    !boundPullRequest
+    !pullRequestBindingValid
   ) {
     throw new Error(
       'authority source CI run이 고정 workflow의 pull_request_target 실행·evidence PR head와 일치하지 않습니다.',
@@ -675,14 +902,172 @@ async function verifyAuthoritySourceCiAttestation({
     requiredEnvironment: attestation.required_environment,
     workflowSha256,
     producerContractSha256,
-    trustedProducerCommitSha: provenance.producer_source_commit_sha,
+    trustedProducerRootCommitSha: AUTHORITY_EVIDENCE_TRUSTED_PRODUCER_COMMIT_SHA,
+    producerCommitSha: provenance.producer_source_commit_sha,
+    trustedProducerAncestry,
     runnerLabels: actualLabels,
   };
   attestationCache?.set(cacheKey, verified);
   return verified;
 }
 
+function hasExactKeys(value, keys) {
+  return (
+    value &&
+    typeof value === 'object' &&
+    !Array.isArray(value) &&
+    Object.keys(value).length === keys.length &&
+    keys.every(key => Object.hasOwn(value, key))
+  );
+}
+
+async function verifySourceLocatorSelectionArtifact({
+  workId,
+  evidenceRef,
+  queue,
+}) {
+  const matched =
+    /^source-locator-selection:([^@]+)@sha256:([0-9a-f]{64})$/u.exec(
+      evidenceRef,
+    );
+  if (!matched || matched[1] !== workId) {
+    throw new Error(`source locator 선택 증거 형식 오류: ${evidenceRef}`);
+  }
+  const item = (queue.items ?? []).find(
+    candidate => candidate.work_id === workId,
+  );
+  const contract = PRODUCTION_WORK_CONTRACTS[workId];
+  const selection = item?.source_locator_selection;
+  if (
+    selection?.gate_id !==
+      'source-maintenance.source-locators-selected' ||
+    selection?.artifact_sha256 !== matched[2] ||
+    typeof selection?.artifact_path !== 'string' ||
+    !/^artifacts\/publication\/coverage\/source-locator-selections\/[a-z0-9][a-z0-9._-]*\.json$/u.test(
+      selection.artifact_path,
+    )
+  ) {
+    throw new Error(`source locator 선택 계약 불일치: ${workId}`);
+  }
+  const artifactPath = path.resolve(repoRoot, selection.artifact_path);
+  const selectionRoot = `${path.resolve(
+    repoRoot,
+    'artifacts',
+    'publication',
+    'coverage',
+    'source-locator-selections',
+  )}${path.sep}`;
+  if (!artifactPath.startsWith(selectionRoot)) {
+    throw new Error(`source locator 선택 경로 이탈: ${workId}`);
+  }
+  const trustPolicyPath =
+    DEFAULT_SOURCE_MAINTENANCE_INVENTORY_TRUST_POLICY_PATH;
+  const [artifactRaw, trustPolicyRaw] = await Promise.all([
+    readFile(artifactPath),
+    readFile(trustPolicyPath),
+  ]);
+  if (sha256(artifactRaw) !== matched[2]) {
+    throw new Error(`source locator 선택 산출물 해시 불일치: ${workId}`);
+  }
+  let artifact;
+  let trustPolicy;
+  try {
+    artifact = JSON.parse(artifactRaw.toString('utf8'));
+    trustPolicy = JSON.parse(trustPolicyRaw.toString('utf8'));
+  } catch {
+    throw new Error(
+      `source maintenance inventory local JSON을 읽을 수 없습니다: ${workId}`,
+    );
+  }
+  if (
+    !hasExactKeys(trustPolicy, [
+      'schema',
+      'status',
+      'issuer',
+      'source_repository',
+      'trusted_root_commit_sha',
+      'inventory_manifest_path',
+      'active_graph_path',
+      'keys',
+    ]) ||
+    trustPolicy.schema !==
+      'rulelink_source_maintenance_inventory_trust_policy_v1' ||
+    trustPolicy.status !== 'active' ||
+    typeof trustPolicy.issuer !== 'string' ||
+    trustPolicy.issuer.length === 0 ||
+    typeof trustPolicy.source_repository !== 'string' ||
+    trustPolicy.source_repository.length === 0 ||
+    !/^[^/\s]+\/[^/\s]+$/u.test(trustPolicy.source_repository) ||
+    !/^[0-9a-f]{40}$/u.test(trustPolicy.trusted_root_commit_sha ?? '') ||
+    ![
+      trustPolicy.inventory_manifest_path,
+      trustPolicy.active_graph_path,
+    ].every(
+      repositoryPath =>
+        typeof repositoryPath === 'string' &&
+        repositoryPath.length > 0 &&
+        !path.posix.isAbsolute(repositoryPath) &&
+        !repositoryPath.split('/').includes('..'),
+    ) ||
+    !Array.isArray(trustPolicy.keys) ||
+    trustPolicy.keys.length === 0
+  ) {
+    throw new Error('source maintenance inventory trust policy가 활성 정본이 아닙니다.');
+  }
+  const manifest = artifact.inventory_manifest;
+  if (
+    !manifest ||
+    typeof manifest !== 'object' ||
+    Array.isArray(manifest) ||
+    !/^[0-9a-f]{40}$/u.test(manifest.source_commit_sha ?? '')
+  ) {
+    throw new Error(`source maintenance inventory 구조 오류: ${workId}`);
+  }
+  const fetchJson = defaultFetchJson;
+  const fetchBytes = defaultFetchBytes;
+  const ancestryComparison =
+    manifest.source_commit_sha === trustPolicy.trusted_root_commit_sha
+      ? {status: 'identical', ahead_by: 0}
+      : await fetchJson(
+      `https://api.github.com/repos/${trustPolicy.source_repository}/compare/` +
+        `${trustPolicy.trusted_root_commit_sha}...${manifest.source_commit_sha}`,
+      );
+  const sourceCache = new Map();
+  const [remoteManifestRaw, activeGraphRaw] = await Promise.all([
+    loadGithubFileAtCommit({
+      repository: trustPolicy.source_repository,
+      repositoryPath: trustPolicy.inventory_manifest_path,
+      commitSha: manifest.source_commit_sha,
+      fetchJson,
+      cache: sourceCache,
+    }),
+    fetchBytes(
+      `https://raw.githubusercontent.com/${trustPolicy.source_repository}/` +
+        `${manifest.source_commit_sha}/${trustPolicy.active_graph_path
+          .split('/')
+          .map(encodeURIComponent)
+          .join('/')}`,
+    ),
+  ]);
+  return validateSourceMaintenanceInventoryEvidenceCore({
+    workId,
+    evidenceRef,
+    artifactRaw,
+    trustPolicyRaw,
+    remoteManifestRaw,
+    activeGraphRaw,
+    ancestryComparison,
+    auditedOn: queue.audited_on,
+    expectedTopicId: item.topic_id,
+    expectedTargetDomainId:
+      `target.${item.topic_id.replace(/^hub\./u, '')}`,
+    expectedSourceCount: contract.counts.sources,
+    expectedArtifactSha256: matched[2],
+  });
+}
+
 async function verifyEvidenceReference({
+  gateId,
   workId,
   evidenceRef,
   verificationMethod,
@@ -745,7 +1130,29 @@ async function verifyEvidenceReference({
     const pull = await fetchJson(`https://api.github.com/repos/${repository}/pulls/${prNumber}`);
     if (!pull.merged_at) throw new Error(`병합되지 않은 PR은 증거가 될 수 없습니다: ${repository}#${prNumber}`);
     if (verificationMethod === 'github_merged_head') {
-      if (pull.head?.sha !== expectedSha) {
+      if (gateId === 'source-maintenance.db-pr-3-p2') {
+        if (
+          repository !== AUTHORITY_EVIDENCE_SOURCE_REPOSITORY ||
+          prNumber !== '3' ||
+          !/^[0-9a-f]{40}$/u.test(pull.head?.sha || '')
+        ) {
+          throw new Error('source-maintenance PR3-P2 증거가 승인된 저장소·PR을 가리키지 않습니다.');
+        }
+        if (pull.head.sha !== expectedSha) {
+          const comparison = await fetchJson(
+            `https://api.github.com/repos/${repository}/compare/${expectedSha}...${pull.head.sha}`,
+          );
+          if (
+            !['ahead', 'identical'].includes(comparison?.status) ||
+            !Number.isInteger(comparison.ahead_by) ||
+            comparison.ahead_by < 0
+          ) {
+            throw new Error(
+              `PR3-P2 증거 SHA가 병합된 PR 최종 head의 검증된 조상이 아닙니다: ${repository}#${prNumber}`,
+            );
+          }
+        }
+      } else if (pull.head?.sha !== expectedSha) {
         throw new Error(`병합된 PR head가 증거 SHA와 다릅니다: ${repository}#${prNumber}`);
       }
     } else {
@@ -865,9 +1272,30 @@ async function verifyEvidenceReference({
       );
       if (
         !upstreamPull?.merged_at ||
-        upstreamPull.head?.sha !== upstreamHeadSha ||
         !/^[0-9a-f]{40}$/u.test(upstreamPull.merge_commit_sha || '')
       ) {
+        throw new Error(`authority upstream PR의 실제 병합 head를 확인할 수 없습니다: ${gateId}`);
+      }
+      if (gateId === 'source-maintenance.db-pr-3-p2') {
+        if (!/^[0-9a-f]{40}$/u.test(upstreamPull.head?.sha || '')) {
+          throw new Error(`authority upstream PR의 최종 head를 확인할 수 없습니다: ${gateId}`);
+        }
+        if (upstreamPull.head.sha !== upstreamHeadSha) {
+          const p2Comparison = await fetchJson(
+            `https://api.github.com/repos/${upstreamRepository}/compare/` +
+            `${upstreamHeadSha}...${upstreamPull.head.sha}`,
+          );
+          if (
+            !['ahead', 'identical'].includes(p2Comparison?.status) ||
+            !Number.isInteger(p2Comparison.ahead_by) ||
+            p2Comparison.ahead_by < 0
+          ) {
+            throw new Error(
+              `authority PR3-P2 SHA가 병합된 최종 head의 검증된 조상이 아닙니다: ${gateId}`,
+            );
+          }
+        }
+      } else if (upstreamPull.head?.sha !== upstreamHeadSha) {
         throw new Error(`authority upstream PR의 실제 병합 head를 확인할 수 없습니다: ${gateId}`);
       }
       const upstreamComparison = await fetchJson(
@@ -973,6 +1401,76 @@ async function verifyEvidenceReference({
       referencedArtifacts: semantic.referenced_artifacts,
     }));
   }
+  if (verificationMethod === 'source_locator_selection_v2') {
+    return (
+      await verifySourceLocatorSelectionArtifact({
+        workId,
+        evidenceRef,
+        queue,
+        io: {...io, readFile: read},
+      })
+    ).proof;
+  }
+  if (verificationMethod === 'legal_answer_packet_activation_v1') {
+    const matched =
+      /^legal-answer-activation:([^@]+)@packets-sha256:([0-9a-f]{64})@receipt-sha256:([0-9a-f]{64})@trust-sha256:([0-9a-f]{64})$/u.exec(
+        evidenceRef,
+      );
+    if (!matched) {
+      throw new Error(`법률답변 활성화 증거 형식 오류: ${evidenceRef}`);
+    }
+    const [, snapshotId, packetHash, receiptHash, trustHash] = matched;
+    const [packetBytes, receiptBytes, trustBytes] = await Promise.all([
+      read(
+        io.legalAnswerPacketSetPath ??
+          path.join(appRoot, 'content', 'legal-answer-packets.json'),
+      ),
+      read(
+        io.legalAnswerPacketReceiptPath ??
+          path.join(
+            appRoot,
+            'contracts',
+            'legal-answer-packet',
+            'packet-set-verification-receipt.json',
+          ),
+      ),
+      read(
+        io.legalAnswerPacketTrustPolicyPath ??
+          path.join(
+            appRoot,
+            'contracts',
+            'legal-answer-packet',
+            'packet-set-trust-policy.json',
+          ),
+      ),
+    ]);
+    if (
+      sha256(packetBytes) !== packetHash ||
+      sha256(receiptBytes) !== receiptHash ||
+      sha256(trustBytes) !== trustHash
+    ) {
+      throw new Error('법률답변 활성화 산출물의 실제 바이트가 증거와 다릅니다.');
+    }
+    const packetSet = JSON.parse(packetBytes.toString('utf8'));
+    if (
+      !Array.isArray(packetSet.packets) ||
+      packetSet.packets.length === 0 ||
+      packetSet.packets.some(
+        packet =>
+          packet?.provenance?.publication_snapshot_id !== snapshotId,
+      )
+    ) {
+      throw new Error('법률답변 활성화 snapshot이 packet set과 다릅니다.');
+    }
+    return sha256(canonicalJson({
+      verificationMethod,
+      evidenceRef,
+      snapshotId,
+      packetHash,
+      receiptHash,
+      trustHash,
+    }));
+  }
   if (verificationMethod === 'artifact_sha256') {
     const matched = /^artifact:([a-z0-9-]+)@sha256:([0-9a-f]{64})$/u.exec(evidenceRef);
     if (!matched) throw new Error(`산출물 증거 형식 오류: ${evidenceRef}`);
@@ -1014,14 +1512,14 @@ export async function verifyProductionQueueExternalEvidence(queue, {
   registry = null,
   ...io
 } = {}) {
-  const existingGateKeys = new Set(
+  const existingGateReceipts = new Map(
     (registry?.prerequisite_gate_receipts || [])
-      .map(receipt => [
-        receipt.work_id,
-        receipt.gate_id,
-        receipt.evidence_ref,
-        receipt.verification_contract || '',
-      ].join('|')),
+      .map(receipt => [[
+          receipt.work_id,
+          receipt.gate_id,
+          receipt.evidence_ref,
+          receipt.verification_contract || '',
+        ].join('|'), receipt]),
   );
   const existingReleaseKeys = new Set(
     (registry?.release_check_receipts || [])
@@ -1036,16 +1534,39 @@ export async function verifyProductionQueueExternalEvidence(queue, {
     if (!contract) continue;
     for (const gate of item.prerequisite_gates || []) {
       if (gate.status !== 'satisfied') continue;
-      const contractGate = contract.prerequisite_gates[gate.gate_id];
+      const contractGate = productionGateContract(contract, gate.gate_id);
       const key = [
         item.work_id,
         gate.gate_id,
         gate.evidence_ref,
         contractGate.verification_contract || '',
       ].join('|');
-      if (existingGateKeys.has(key)) continue;
+      const existingReceipt = existingGateReceipts.get(key);
+      if (existingReceipt) {
+        if (
+          contractGate.verification_method ===
+          'source_locator_selection_v2'
+        ) {
+          const revalidatedProof = await verifyEvidenceReference({
+            kind: 'prerequisite_gate',
+            gateId: gate.gate_id,
+            workId: item.work_id,
+            evidenceRef: gate.evidence_ref,
+            verificationMethod: contractGate.verification_method,
+            queue,
+            io: {},
+          });
+          if (revalidatedProof !== existingReceipt.verification_proof) {
+            throw new Error(
+              `source maintenance 영수증이 canonical trust에서 재현되지 않습니다: ${key}`,
+            );
+          }
+        }
+        continue;
+      }
       const proof = await verifyEvidenceReference({
         kind: 'prerequisite_gate',
+        gateId: gate.gate_id,
         workId: item.work_id,
         evidenceRef: gate.evidence_ref,
         verificationMethod: contractGate.verification_method,
@@ -1093,10 +1614,15 @@ function normalizeExactText(value) {
 }
 
 function measureWorkTopic(topic, contract) {
-  const contentIds = new Set(contract.measurement_scope.content_ids);
-  const ruleIds = new Set(contract.measurement_scope.rule_ids);
-  const entries = (topic.content_entries || []).filter(entry => contentIds.has(entry.content_id));
-  const rules = (topic.rule_cards || []).filter(rule => ruleIds.has(rule.rule_id));
+  const allTopic = contract.measurement_scope === 'all_topic';
+  const contentIds = new Set(contract.measurement_scope?.content_ids ?? []);
+  const ruleIds = new Set(contract.measurement_scope?.rule_ids ?? []);
+  const entries = (topic.content_entries || []).filter(
+    entry => allTopic || contentIds.has(entry.content_id),
+  );
+  const rules = (topic.rule_cards || []).filter(
+    rule => allTopic || ruleIds.has(rule.rule_id),
+  );
   const copiedSearch = entries.filter(entry => {
     const copiedFrom = new Set(
       [entry.title_ko, entry.slug].map(normalizeExactText).filter(Boolean),
@@ -1480,8 +2006,10 @@ export function validateQueueItemRegistry(
       const gate = item?.prerequisite_gates?.find(
         candidate => candidate.gate_id === gateReceipt.gate_id,
       );
-      const contractGate = PRODUCTION_WORK_CONTRACTS[gateReceipt.work_id]
-        ?.prerequisite_gates?.[gateReceipt.gate_id];
+      const contractGate = productionGateContract(
+        PRODUCTION_WORK_CONTRACTS[gateReceipt.work_id],
+        gateReceipt.gate_id,
+      );
       if (
         !item ||
         !gate ||
@@ -1529,8 +2057,10 @@ export function validateQueueItemRegistry(
     for (const item of queue?.items || []) {
       if (!nonEmpty(item.work_id)) continue;
       for (const gate of item.prerequisite_gates || []) {
-        const contractGate = PRODUCTION_WORK_CONTRACTS[item.work_id]
-          ?.prerequisite_gates?.[gate.gate_id];
+        const contractGate = productionGateContract(
+          PRODUCTION_WORK_CONTRACTS[item.work_id],
+          gate.gate_id,
+        );
         const gateKey = [
           item.work_id,
           gate.gate_id,
@@ -1722,7 +2252,7 @@ export function appendPrerequisiteGateReceipts(
     const contract = PRODUCTION_WORK_CONTRACTS[item.work_id];
     for (const gate of item.prerequisite_gates || []) {
       if (gate.status !== 'satisfied') continue;
-      const contractGate = contract?.prerequisite_gates?.[gate.gate_id];
+      const contractGate = productionGateContract(contract, gate.gate_id);
       const gateKey = [
         item.work_id,
         gate.gate_id,
@@ -2170,14 +2700,87 @@ export async function loadQueuePublicationEvidence(queue, bundle, io = {}) {
   const registryPath = io.queueRegistryPath || defaultQueueRegistryPath;
   const itemRegistry = io.itemRegistry || JSON.parse(await read(registryPath, 'utf8'));
   const registryHistory = await inspectQueueItemRegistryHistory(itemRegistry, io);
+  const revalidatedGateProofs = new Map();
+  const verifiedSourceSelections = new Map();
+  for (const receipt of itemRegistry.prerequisite_gate_receipts ?? []) {
+    const item = queue.items.find(
+      candidate => candidate.work_id === receipt.work_id,
+    );
+    const gate = item?.prerequisite_gates?.find(
+      candidate =>
+        candidate.gate_id === receipt.gate_id &&
+        candidate.evidence_ref === receipt.evidence_ref &&
+        candidate.status === 'satisfied',
+    );
+    const gateContract = productionGateContract(
+      PRODUCTION_WORK_CONTRACTS[receipt.work_id],
+      receipt.gate_id,
+    );
+    if (
+      !item ||
+      !gate ||
+      !gateContract ||
+      !locallyRevalidatedGateMethods.has(gateContract.verification_method)
+    ) {
+      continue;
+    }
+    const key = [
+      receipt.work_id,
+      receipt.gate_id,
+      receipt.evidence_ref,
+      receipt.verification_contract || '',
+    ].join('|');
+    if (gateContract.verification_method === 'source_locator_selection_v2') {
+      const verified = await verifySourceLocatorSelectionArtifact({
+        workId: receipt.work_id,
+        evidenceRef: receipt.evidence_ref,
+        queue,
+        io: {...io, readFile: read},
+      });
+      revalidatedGateProofs.set(key, verified.proof);
+      verifiedSourceSelections.set(receipt.work_id, verified.selection);
+    } else {
+      revalidatedGateProofs.set(
+        key,
+        await verifyEvidenceReference({
+          kind: 'prerequisite_gate',
+          gateId: receipt.gate_id,
+          workId: receipt.work_id,
+          evidenceRef: receipt.evidence_ref,
+          verificationMethod: gateContract.verification_method,
+          queue,
+          io: {...io, readFile: read},
+        }),
+      );
+    }
+  }
+  trustedRevalidatedGateProofMaps.add(revalidatedGateProofs);
+  sourceSelectionsByGateProofMap.set(
+    revalidatedGateProofs,
+    verifiedSourceSelections,
+  );
   return {
+    [queuePublicationEvidenceBrand]: true,
     publishedSnapshot,
     topicReceipts,
     workTopicMeasurements,
     migrationCommits,
     itemRegistry,
     previousItemRegistry: registryHistory.previous_registry,
+    revalidatedGateProofs,
   };
+}
+
+export function verifiedSourceSelectionFromQueueEvidence(
+  revalidatedGateProofs,
+  workId,
+) {
+  if (!trustedRevalidatedGateProofMaps.has(revalidatedGateProofs)) {
+    return null;
+  }
+  const selection =
+    sourceSelectionsByGateProofMap.get(revalidatedGateProofs)?.get(workId);
+  return selection ? structuredClone(selection) : null;
 }
 
 function publicationArray(bundle, key) {
@@ -2277,6 +2880,7 @@ export function validateProductionQueue(
     migrationCommits = null,
     itemRegistry = null,
     previousItemRegistry = null,
+    revalidatedGateProofs = null,
   } = {},
 ) {
   const errors = [];
@@ -2292,6 +2896,30 @@ export function validateProductionQueue(
     return errors;
   }
   errors.push(...validateQueueItemRegistry(itemRegistry, queue, {previousRegistry: previousItemRegistry}));
+  for (const receipt of itemRegistry?.prerequisite_gate_receipts ?? []) {
+    const contract = PRODUCTION_WORK_CONTRACTS[receipt.work_id];
+    const gateContract = productionGateContract(contract, receipt.gate_id);
+    if (
+      !gateContract ||
+      !locallyRevalidatedGateMethods.has(gateContract.verification_method)
+    ) {
+      continue;
+    }
+    const key = [
+      receipt.work_id,
+      receipt.gate_id,
+      receipt.evidence_ref,
+      receipt.verification_contract || '',
+    ].join('|');
+    if (
+      !trustedRevalidatedGateProofMaps.has(revalidatedGateProofs) ||
+      revalidatedGateProofs.get(key) !== receipt.verification_proof
+    ) {
+      errors.push(
+        `로컬 정본에서 재계산되지 않은 선행 게이트 영수증입니다: ${receipt.work_id}/${receipt.gate_id}`,
+      );
+    }
+  }
 
   if (canonicalJson(queue.policy?.owner_role_contracts) !== canonicalJson(OWNER_ROLE_CONTRACTS)) {
     errors.push('policy.owner_role_contracts가 표준 역할별 소유·금지 파일 경계와 다릅니다.');
@@ -2530,7 +3158,10 @@ export function validateProductionQueue(
           ) {
             errors.push(`${label}의 외부 PR 게이트 evidence_ref는 owner/repo#PR@40SHA 형식이어야 합니다: ${gate?.gate_id || '?'}`);
           }
-          const expectedGate = workContract?.prerequisite_gates?.[gate?.gate_id];
+          const expectedGate = productionGateContract(
+            workContract,
+            gate?.gate_id,
+          );
           if (!expectedGate) {
             errors.push(`${label}의 승인되지 않은 선행 게이트입니다: ${gate?.gate_id || '?'}`);
           } else {
@@ -2548,9 +3179,25 @@ export function validateProductionQueue(
             }
           }
         }
-        const expectedGateIds = Object.keys(workContract?.prerequisite_gates ?? {}).sort();
+        const expectedGateIds = Object.keys(
+          workContract?.prerequisite_gates ?? {},
+        ).sort();
         const actualGateIds = [...gateIds].sort();
-        if (canonicalJson(actualGateIds) !== canonicalJson(expectedGateIds)) {
+        const optionalGateIds = new Set(
+          Object.keys(workContract?.optional_prerequisite_gates ?? {}),
+        );
+        const missingRequiredGateIds = expectedGateIds.filter(
+          gateId => !gateIds.has(gateId),
+        );
+        const unexpectedGateIds = actualGateIds.filter(
+          gateId =>
+            !expectedGateIds.includes(gateId) &&
+            !optionalGateIds.has(gateId),
+        );
+        if (
+          missingRequiredGateIds.length > 0 ||
+          unexpectedGateIds.length > 0
+        ) {
           errors.push(`${label}.prerequisite_gates가 승인된 필수 게이트 집합과 다릅니다: ${item.work_id}`);
         }
         if (

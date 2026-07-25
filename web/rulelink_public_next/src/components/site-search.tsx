@@ -1,53 +1,80 @@
 'use client';
 
-import {useEffect, useMemo, useState} from 'react';
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import {buildCollectionSearchHref, parseCollectionSearchState, sanitizeCollectionQuery} from '@/lib/collection-search-state';
-import {changeLifecycleLabel} from '@/lib/change-lifecycle';
-import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {
   DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE,
   initialProgressiveResultLimit,
   nextProgressiveResultLimit,
 } from '@/lib/progressive-results';
-
-import type {PublicKnowledgeSearchDocument} from '@/lib/knowledge-search';
-
-import type {LegalChangeBrief, LegalIssueCard, PublicTopic} from '@/types/publication';
+import {
+  rankSiteSearchDocuments,
+  type SiteSearchDocument,
+  type SiteSearchResultCounts,
+  type SiteSearchResultFilter,
+  type SiteSearchResultKind,
+} from '@/lib/site-search-discovery';
+import {decodeSiteSearchIndex} from '@/lib/site-search-index';
 
 import styles from './site-search.module.css';
 import {ProgressiveResultFooter} from './progressive-result-footer';
 
 type Props = {
-  cards: LegalIssueCard[];
-  changeBriefs: LegalChangeBrief[];
-  knowledgeDocuments: PublicKnowledgeSearchDocument[];
-  topics: PublicTopic[];
+  freshnessNow: string;
+  indexHref: '/search-index.v2.json';
+  initialDocuments: SiteSearchDocument[];
+  totalCounts: SiteSearchResultCounts;
 };
 
-type ResultKind = 'issue' | 'knowledge' | 'change';
-type ResultFilter = 'all' | ResultKind;
+const RESULT_FILTERS = ['all', 'issue', 'knowledge', 'change'] as const satisfies readonly SiteSearchResultFilter[];
 
-const RESULT_FILTERS = ['all', 'issue', 'knowledge', 'change'] as const satisfies readonly ResultFilter[];
-
-type SearchResult = {
-  id: string;
-  kind: ResultKind;
-  title: string;
-  summary: string;
-  context: string;
-  href: string;
-  reviewedAt: string;
-  searchText: string;
-  evidenceLabels?: string[];
-};
-
-export function SiteSearch({cards, changeBriefs, knowledgeDocuments, topics}: Props) {
+export function SiteSearch({
+  freshnessNow,
+  indexHref,
+  initialDocuments,
+  totalCounts,
+}: Props) {
   const [query, setQuery] = useState('');
-  const [filter, setFilter] = useState<ResultFilter>('all');
+  const [filter, setFilter] = useState<SiteSearchResultFilter>('all');
+  const [fullDocuments, setFullDocuments] = useState<SiteSearchDocument[] | null>(null);
+  const [indexState, setIndexState] = useState<'idle' | 'loading' | 'ready' | 'error'>('idle');
+  const indexPromise = useRef<Promise<SiteSearchDocument[]> | null>(null);
   const [visibleLimit, setVisibleLimit] = useState(() => initialProgressiveResultLimit(
-    cards.length + changeBriefs.length + knowledgeDocuments.length,
+    totalCounts.all,
   ));
+
+  const ensureFullIndex = useCallback((): Promise<SiteSearchDocument[]> => {
+    if (indexPromise.current) return indexPromise.current;
+    setIndexState('loading');
+    indexPromise.current = fetch(indexHref, {
+      cache: 'force-cache',
+      headers: {'Accept': 'application/json'},
+    })
+      .then(async response => {
+        if (!response.ok) {
+          throw new Error(`검색 인덱스 응답 실패: ${response.status}`);
+        }
+        const payload = decodeSiteSearchIndex(await response.json());
+        if (!payload) {
+          throw new Error('검색 인덱스 형식이 올바르지 않습니다.');
+        }
+        setFullDocuments(payload.documents);
+        setIndexState('ready');
+        return payload.documents;
+      })
+      .catch(error => {
+        setIndexState('error');
+        throw error;
+      });
+    return indexPromise.current;
+  }, [indexHref]);
 
   useEffect(() => {
     const initial = parseCollectionSearchState({
@@ -59,44 +86,57 @@ export function SiteSearch({cards, changeBriefs, knowledgeDocuments, topics}: Pr
     setQuery(initial.query);
     setFilter(initial.filter);
     setVisibleLimit(DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE);
-  }, []);
+    if (initial.query || initial.filter !== 'all') {
+      void ensureFullIndex().catch(() => undefined);
+    }
+  }, [ensureFullIndex]);
 
   function updateQuery(value: string) {
     const nextQuery = sanitizeCollectionQuery(value);
     setQuery(nextQuery);
     setVisibleLimit(DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE);
     replaceSearchUrl(nextQuery, filter);
+    void ensureFullIndex().catch(() => undefined);
   }
 
-  function updateFilter(nextFilter: ResultFilter) {
+  function updateFilter(nextFilter: SiteSearchResultFilter) {
     setFilter(nextFilter);
     setVisibleLimit(DEFAULT_PROGRESSIVE_RESULT_BATCH_SIZE);
     replaceSearchUrl(query, nextFilter);
+    void ensureFullIndex().catch(() => undefined);
   }
 
-  const results = useMemo(
-    () => buildResults(cards, changeBriefs, knowledgeDocuments, topics),
-    [cards, changeBriefs, knowledgeDocuments, topics],
+  const documents = fullDocuments ?? initialDocuments;
+  const visibleResults = useMemo(
+    () => rankSiteSearchDocuments(documents, {
+      filter,
+      now: new Date(freshnessNow),
+      query,
+    }),
+    [documents, filter, freshnessNow, query],
   );
-  const counts = useMemo(() => ({
-    all: results.length,
-    issue: results.filter(result => result.kind === 'issue').length,
-    knowledge: results.filter(result => result.kind === 'knowledge').length,
-    change: results.filter(result => result.kind === 'change').length,
-  }), [results]);
-  const normalizedQuery = normalize(query);
-  const visibleResults = useMemo(() => {
-    const tokens = normalizedQuery.split(' ').filter(Boolean);
-    return results.filter(result => {
-      if (filter !== 'all' && result.kind !== filter) return false;
-      return !tokens.length || tokens.every(token => result.searchText.includes(token));
-    });
-  }, [filter, normalizedQuery, results]);
   const displayedResults = visibleResults.slice(0, visibleLimit);
-  const hiddenResultCount = visibleResults.length - displayedResults.length;
+  const hasQuery = query.trim().length > 0;
+  const isQueryIndexPending = hasQuery
+    && !fullDocuments
+    && (indexState === 'idle' || indexState === 'loading');
+  const totalResultCount = fullDocuments
+    ? visibleResults.length
+    : hasQuery
+      ? visibleResults.length
+      : totalCounts[filter];
+  const hiddenResultCount = Math.max(
+    0,
+    totalResultCount - displayedResults.length,
+  );
 
   return (
-    <section aria-labelledby="site-search-heading" className={styles.search}>
+    <section
+      aria-labelledby="site-search-heading"
+      className={styles.search}
+      data-search-index-state={indexState}
+      data-site-search
+    >
       <div className={styles.searchBox}>
         <label htmlFor="site-search">상황, 법 이름, 조문이나 사건번호를 적어보세요</label>
         <div className={styles.searchInput}>
@@ -104,6 +144,9 @@ export function SiteSearch({cards, changeBriefs, knowledgeDocuments, topics}: Pr
           <input
             autoComplete="off"
             id="site-search"
+            onFocus={() => {
+              void ensureFullIndex().catch(() => undefined);
+            }}
             onChange={event => updateQuery(event.target.value)}
             placeholder="예: 보증금 반환, 민법 제1026조, 2013다73520"
             type="search"
@@ -114,14 +157,18 @@ export function SiteSearch({cards, changeBriefs, knowledgeDocuments, topics}: Pr
       </div>
 
       <div aria-label="법률정보 종류" className={styles.filters} role="group">
-        <FilterButton active={filter === 'all'} count={counts.all} label="전체" onClick={() => updateFilter('all')} />
-        <FilterButton active={filter === 'issue'} count={counts.issue} label="상황별 안내" onClick={() => updateFilter('issue')} />
-        <FilterButton active={filter === 'knowledge'} count={counts.knowledge} label="연결 지식" onClick={() => updateFilter('knowledge')} />
-        <FilterButton active={filter === 'change'} count={counts.change} label="법령 변화" onClick={() => updateFilter('change')} />
+        <FilterButton active={filter === 'all'} count={totalCounts.all} label="전체" onClick={() => updateFilter('all')} />
+        <FilterButton active={filter === 'issue'} count={totalCounts.issue} label="상황별 안내" onClick={() => updateFilter('issue')} />
+        <FilterButton active={filter === 'knowledge'} count={totalCounts.knowledge} label="연결 지식" onClick={() => updateFilter('knowledge')} />
+        <FilterButton active={filter === 'change'} count={totalCounts.change} label="법령 변화" onClick={() => updateFilter('change')} />
       </div>
 
       <p aria-live="polite" className={styles.resultCount}>
-        찾은 법률정보 {visibleResults.length}개
+        {isQueryIndexPending
+          ? '전체 검색 인덱스를 불러오는 중입니다.'
+          : indexState === 'error'
+            ? `검색 인덱스를 불러오지 못해 먼저 표시된 ${displayedResults.length}개 안에서 찾았습니다.`
+            : `찾은 법률정보 ${totalResultCount}개`}
         {hiddenResultCount > 0 ? <span> · {displayedResults.length}개 표시 중</span> : null}
       </p>
 
@@ -129,18 +176,63 @@ export function SiteSearch({cards, changeBriefs, knowledgeDocuments, topics}: Pr
         <>
           <div className={styles.results} id="site-search-result-grid">
             {displayedResults.map(result => (
-              <a className={styles.result} href={result.href} key={`${result.kind}-${result.id}`}>
+              <a
+                className={styles.result}
+                data-search-result-id={result.id}
+                data-search-result-kind={result.kind}
+                href={result.decisionScenarioId
+                  ? `${result.href}#scenario-${result.decisionScenarioId}`
+                  : result.href}
+                key={`${result.kind}-${result.id}`}
+              >
                 <div className={styles.resultMeta}>
                   <span className={styles[result.kind]}>{kindLabel(result.kind)}</span>
-                  <time dateTime={result.reviewedAt}>기준 확인 {formatDate(result.reviewedAt)}</time>
+                  <span
+                    aria-label={freshnessLabel(result.freshnessState)}
+                    className={styles.freshness}
+                    data-freshness-state={result.freshnessState}
+                  >
+                    {freshnessLabel(result.freshnessState)}
+                  </span>
                 </div>
                 <h2>{result.title}</h2>
                 <p>{result.summary}</p>
                 <small>{result.context}</small>
-                {result.evidenceLabels?.length ? (
+                {result.kind === 'knowledge' && result.decisionQuestion ? (
+                  <div className={styles.decisionQuestion} data-decision-question>
+                    <b>결론을 가르는 질문</b>
+                    <p>{result.decisionQuestion}</p>
+                  </div>
+                ) : null}
+                <div aria-label="정보 현재성" className={styles.reviewDates}>
+                  <time dateTime={result.reviewedAt}>
+                    기준 확인 {formatDate(result.reviewedAt)}
+                  </time>
+                  <time dateTime={result.expiresAt}>
+                    다음 점검 {formatDate(result.expiresAt)}
+                  </time>
+                </div>
+                {result.matchReasons.length ? (
+                  <div
+                    aria-label="검색 결과가 맞는 이유"
+                    className={styles.matchReasons}
+                    data-match-reasons
+                  >
+                    <b>왜 이 결과인가</b>
+                    <ul>
+                      {result.matchReasons.map(reason => (
+                        <li key={`${reason.field}:${reason.text_ko}`}>
+                          <span>{reason.label_ko}</span>
+                          <p>{reason.text_ko}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+                {result.evidenceLabels.length ? (
                   <div aria-label="연결된 공식 근거" className={styles.evidence}>
                     <b>연결 근거</b>
-                    {evidenceLabelsForResult(result.evidenceLabels, normalizedQuery).map(label => <span key={label}>{label}</span>)}
+                    {result.evidenceLabels.slice(0, 3).map(label => <span key={label}>{label}</span>)}
                   </div>
                 ) : null}
                 <strong>내용 확인하기 <span aria-hidden="true">→</span></strong>
@@ -152,99 +244,30 @@ export function SiteSearch({cards, changeBriefs, knowledgeDocuments, topics}: Pr
             description="검색어와 유형 필터는 아직 펼치지 않은 법률정보에도 똑같이 적용됩니다."
             hiddenCount={hiddenResultCount}
             label="검색 결과 더 보기"
-            onLoadMore={() => setVisibleLimit(current => nextProgressiveResultLimit(visibleResults.length, current))}
+            onLoadMore={() => {
+              void ensureFullIndex()
+                .then(allDocuments => {
+                  const total = rankSiteSearchDocuments(allDocuments, {
+                    filter,
+                    now: new Date(freshnessNow),
+                    query,
+                  }).length;
+                  setVisibleLimit(current => (
+                    nextProgressiveResultLimit(total, current)
+                  ));
+                })
+                .catch(() => undefined);
+            }}
           />
         </>
-      ) : (
-        <div className={styles.empty}>
+      ) : isQueryIndexPending ? null : (
+        <div className={styles.empty} data-search-empty>
           <strong>조건에 맞는 법률정보를 찾지 못했습니다.</strong>
           <p>검색어를 더 짧게 바꾸거나 전체 유형에서 다시 확인해 주세요.</p>
         </div>
       )}
     </section>
   );
-}
-
-function buildResults(
-  cards: LegalIssueCard[],
-  changeBriefs: LegalChangeBrief[],
-  knowledgeDocuments: PublicKnowledgeSearchDocument[],
-  topics: PublicTopic[],
-): SearchResult[] {
-  const topicByCardId = new Map<string, PublicTopic[]>();
-  for (const topic of topics) {
-    for (const cardId of topic.issue_card_ids) {
-      topicByCardId.set(cardId, [...(topicByCardId.get(cardId) ?? []), topic]);
-    }
-  }
-  return [
-    ...changeBriefs.map(brief => makeResult({
-      id: brief.change_brief_id,
-      kind: 'change',
-      title: brief.title_ko,
-      summary: brief.summary_ko,
-      context: `${changeLifecycleLabel(brief.lifecycle)} · ${brief.law_name_ko} ${brief.article_no}`,
-      href: `/ko/changes/${brief.slug}`,
-      reviewedAt: brief.reviewed_at,
-      terms: [
-        brief.law_name_ko,
-        brief.article_no,
-        ...brief.affected_audiences,
-        ...brief.changed_points,
-        ...brief.action_checklist,
-      ],
-    })),
-    ...knowledgeDocuments.map(document => {
-      const entry = document.entry;
-      return makeResult({
-      id: entry.content_id,
-      kind: 'knowledge',
-      title: entry.title_ko,
-      summary: entry.one_line_answer_ko,
-      context: `${knowledgeContentTypeLabel(entry.content_type)} · ${entry.audience_situation_ko}`,
-      href: `/ko/knowledge/${entry.slug}`,
-      reviewedAt: entry.reviewed_at,
-      terms: [
-        entry.audience_situation_ko,
-        knowledgeContentTypeLabel(entry.content_type),
-        ...document.search_terms_ko,
-      ],
-      evidenceLabels: document.evidence_labels_ko,
-    });
-    }),
-    ...cards.map(card => {
-      const cardTopics = topicByCardId.get(card.issue_card_id) ?? [];
-      return makeResult({
-        id: card.issue_card_id,
-        kind: 'issue',
-        title: card.title_ko,
-        summary: card.audience_situation_ko,
-        context: cardTopics.map(topic => topic.title_ko).join(' · ') || '생활법률',
-        href: `/ko/issues/${card.slug}`,
-        reviewedAt: card.reviewed_at,
-        terms: [
-          ...card.entry_signals,
-          ...card.urgency_signals,
-          ...card.branch_questions,
-          ...cardTopics.flatMap(topic => [topic.title_ko, ...topic.search_terms_ko]),
-        ],
-      });
-    }),
-  ];
-}
-
-function makeResult(value: Omit<SearchResult, 'searchText'> & {terms: string[]}): SearchResult {
-  const {terms, ...result} = value;
-  return {
-    ...result,
-    searchText: normalize([result.title, result.summary, result.context, ...terms].join(' ')),
-  };
-}
-
-function evidenceLabelsForResult(labels: string[], normalizedQuery: string): string[] {
-  const tokens = normalizedQuery.split(' ').filter(Boolean);
-  const matched = labels.filter(label => tokens.some(token => normalize(label).includes(token)));
-  return [...new Set([...matched, ...labels])].slice(0, 3);
 }
 
 function FilterButton({active, count, label, onClick}: {active: boolean; count: number; label: string; onClick: () => void}) {
@@ -256,7 +279,7 @@ function FilterButton({active, count, label, onClick}: {active: boolean; count: 
 }
 
 
-function replaceSearchUrl(query: string, filter: ResultFilter) {
+function replaceSearchUrl(query: string, filter: SiteSearchResultFilter) {
   window.history.replaceState(null, '', buildCollectionSearchHref({
     defaultFilter: 'all',
     filter,
@@ -267,15 +290,14 @@ function replaceSearchUrl(query: string, filter: ResultFilter) {
   }));
 }
 
-function normalize(value: string): string {
-  return value.normalize('NFKC').toLocaleLowerCase('ko-KR').replace(/\s+/g, ' ').trim();
-}
-
 function formatDate(value: string): string {
   return new Intl.DateTimeFormat('ko-KR', {dateStyle: 'medium'}).format(new Date(value));
 }
 
-function kindLabel(kind: ResultKind): string {
+function kindLabel(kind: SiteSearchResultKind): string {
   return {issue: '상황별 안내', knowledge: '연결 지식', change: '법령 변화'}[kind];
 }
 
+function freshnessLabel(state: 'current' | 'review_due'): string {
+  return state === 'current' ? '현재 공개 기준' : '재검토 시점 경과';
+}

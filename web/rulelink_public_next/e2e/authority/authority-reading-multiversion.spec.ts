@@ -183,13 +183,15 @@ test('키보드로 읽기 깊이·카드·조문·직접 링크를 완주한다'
   const evidence = baseEvidence('keyboard-reading-flow', knowledgeRoute);
   await page.goto(knowledgeRoute);
   const depthNav = page.locator('[data-authority-depth-nav]');
-  const summaryLink = depthNav.getByRole('link', {name: '30초 답'});
+  const summaryLink = depthNav.locator('a[href="#summary"]');
+  await expect(summaryLink).toHaveAccessibleName(/\S/u);
   await summaryLink.focus();
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/#summary$/);
   await expect(page.locator('#summary')).toBeInViewport();
 
-  const statuteLink = depthNav.getByRole('link', {name: '조문 구조'});
+  const statuteLink = depthNav.locator('a[href="#statute-reading"]');
+  await expect(statuteLink).toHaveAccessibleName(/\S/u);
   await statuteLink.focus();
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/#statute-reading$/);

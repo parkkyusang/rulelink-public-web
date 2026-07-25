@@ -2,11 +2,18 @@
 
 import {useEffect, useMemo, useState} from 'react';
 
+import type {
+  KnowledgeJourneyChecklistItem,
+  KnowledgeJourneyDeadline,
+} from '@/lib/knowledge-launch-journey';
+
 import styles from './knowledge-action-workspace.module.css';
 
 type Props = {
-  actionSteps: string[];
+  actionItems: KnowledgeJourneyChecklistItem[];
   contentId: string;
+  deadlines?: KnowledgeJourneyDeadline[];
+  evidenceItems?: KnowledgeJourneyChecklistItem[];
   factsToCheck: string[];
   revisionKey: string;
 };
@@ -14,8 +21,10 @@ type Props = {
 type CheckState = Record<string, true>;
 
 export function KnowledgeActionWorkspace({
-  actionSteps,
+  actionItems,
   contentId,
+  deadlines = [],
+  evidenceItems = [],
   factsToCheck,
   revisionKey,
 }: Props) {
@@ -27,8 +36,9 @@ export function KnowledgeActionWorkspace({
   const [loadedKey, setLoadedKey] = useState('');
   const validKeys = useMemo(() => new Set([
     ...factsToCheck.map((_, index) => 'fact:' + index),
-    ...actionSteps.map((_, index) => 'action:' + index),
-  ]), [actionSteps, factsToCheck]);
+    ...evidenceItems.map((_, index) => 'evidence:' + index),
+    ...actionItems.map((_, index) => 'action:' + index),
+  ]), [actionItems, evidenceItems, factsToCheck]);
   const total = validKeys.size;
   const completed = Object.keys(checked).filter(key => validKeys.has(key)).length;
   const progress = total ? Math.round((completed / total) * 100) : 0;
@@ -97,18 +107,45 @@ export function KnowledgeActionWorkspace({
         <ChecklistGroup
           checked={checked}
           group="fact"
-          items={factsToCheck}
+          items={factsToCheck.map(label => ({label}))}
           onToggle={toggle}
           title="확인하고 보관할 사실"
         />
+        {evidenceItems.length ? (
+          <ChecklistGroup
+            checked={checked}
+            group="evidence"
+            items={evidenceItems}
+            onToggle={toggle}
+            title="준비할 자료"
+          />
+        ) : null}
         <ChecklistGroup
           checked={checked}
           group="action"
-          items={actionSteps}
+          items={actionItems}
           onToggle={toggle}
           title="행동 순서"
         />
       </div>
+      {deadlines.length ? (
+        <section aria-labelledby="knowledge-deadline-heading" className={styles.deadlines}>
+          <h4 id="knowledge-deadline-heading">기한과 기준 시점</h4>
+          <div>
+            {deadlines.map(deadline => (
+              <article
+                id={`packet-deadline-${deadline.id}`}
+                key={deadline.id}
+                tabIndex={-1}
+              >
+                <strong>{deadline.label}</strong>
+                <span>{deadline.statusLabel}</span>
+                {deadline.date ? <time dateTime={deadline.date}>{formatDate(deadline.date)}</time> : null}
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <footer className={styles.footer}>
         <div className={styles.privacy}>
@@ -131,8 +168,8 @@ function ChecklistGroup({
   title,
 }: {
   checked: CheckState;
-  group: 'fact' | 'action';
-  items: string[];
+  group: 'fact' | 'evidence' | 'action';
+  items: KnowledgeJourneyChecklistItem[];
   onToggle: (key: string, selected: boolean) => void;
   title: string;
 }) {
@@ -144,8 +181,15 @@ function ChecklistGroup({
           const key = group + ':' + index;
           const inputId = 'rulelink-check-' + group + '-' + index;
           const className = [styles.item, checked[key] ? styles.checked : ''].filter(Boolean).join(' ');
+          const targetId = item.id ? `packet-${group}-${item.id}` : undefined;
           return (
-            <label className={className} htmlFor={inputId} key={key}>
+            <label
+              className={className}
+              htmlFor={inputId}
+              id={targetId}
+              key={item.id ?? key}
+              tabIndex={targetId ? -1 : undefined}
+            >
               <input
                 checked={Boolean(checked[key])}
                 id={inputId}
@@ -153,12 +197,18 @@ function ChecklistGroup({
                 type="checkbox"
               />
               <span aria-hidden="true" className={styles.marker}>{String(index + 1).padStart(2, '0')}</span>
-              <span className={styles.text}>{item}</span>
+              <span className={styles.text}>{item.label}</span>
             </label>
           );
         })}
       </div>
     </section>
+  );
+}
+
+function formatDate(value: string): string {
+  return new Intl.DateTimeFormat('ko-KR', {dateStyle: 'medium'}).format(
+    new Date(`${value}T00:00:00Z`),
   );
 }
 

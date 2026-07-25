@@ -11,12 +11,12 @@ export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
   title: '공식 근거 보관함',
-  description: 'RuleLink 생활법률 콘텐츠가 사용하는 법령 조문과 판례를 관련 안내와 함께 확인합니다.',
+  description: `${site.name} 생활법률 콘텐츠가 사용하는 법령 조문과 판례를 관련 안내와 함께 확인합니다.`,
   alternates: {canonical: '/ko/sources'},
   openGraph: {
     type: 'website',
     title: '공식 근거 보관함',
-    description: 'RuleLink 생활법률 콘텐츠가 사용하는 법령 조문과 판례를 관련 안내와 함께 확인합니다.',
+    description: `${site.name} 생활법률 콘텐츠가 사용하는 법령 조문과 판례를 관련 안내와 함께 확인합니다.`,
     url: '/ko/sources',
   },
 };

@@ -142,6 +142,87 @@ test('공개 지식의 완성 본문이 비어 있으면 거부한다', async ()
   assert.match(result.stderr, /paragraphs_ko는 1개 이상/);
 });
 
+test('편집자 표지는 실제 작성 주체와 승인 검토자 참조·검토일·분야를 모두 요구한다', async () => {
+  const bundle = knowledgeBundle();
+  const entry = bundle.knowledge.content_entries[0];
+  entry.editorial_attribution = {
+    author: {
+      kind: 'organization',
+      name_ko: '룰링크 콘텐츠 운영팀',
+      role_ko: '법률정보 작성·편집',
+    },
+    legal_reviewer: {
+      reviewer_registry_id: 'reviewer.kr-bar.2026-001',
+      reviewed_at: '2026-07-20T00:00:00+00:00',
+      review_areas_ko: ['상속'],
+    },
+  };
+  refreshConceptReceipts(bundle);
+  let result = await validate(bundle);
+  assert.equal(result.status, 0, result.stderr);
+
+  entry.editorial_attribution.legal_reviewer.reviewer_registry_id = '';
+  entry.editorial_attribution.legal_reviewer.review_areas_ko = [];
+  refreshConceptReceipts(bundle);
+  result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /reviewer_registry_id/);
+  assert.match(result.stderr, /review_areas_ko는 1개 이상/);
+
+  entry.editorial_attribution.legal_reviewer.reviewer_registry_id =
+    'reviewer.kr-bar.2026-001';
+  entry.editorial_attribution.legal_reviewer.review_areas_ko = ['상속'];
+  entry.editorial_attribution.legal_reviewer.reviewed_at =
+    '2026-07-22T00:00:00+00:00';
+  refreshConceptReceipts(bundle);
+  result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /콘텐츠 검토일은 법률 검토일보다 빠를 수 없습니다/);
+});
+
+test('편집자 표지의 placeholder와 안전하지 않은 작성자 URL을 거부한다', async () => {
+  const bundle = knowledgeBundle();
+  const entry = bundle.knowledge.content_entries[0];
+  entry.editorial_attribution = {
+    author: {
+      kind: 'organization',
+      name_ko: '샘플 편집 조직',
+      role_ko: '법률정보 작성·편집',
+      url: '//evil.invalid/profile',
+    },
+    legal_reviewer: {
+      reviewer_registry_id: 'reviewer.kr-bar.2026-001',
+      reviewed_at: '2026-07-20T00:00:00+00:00',
+      review_areas_ko: ['상속'],
+    },
+  };
+  refreshConceptReceipts(bundle);
+  let result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /시험·예시·미정/);
+  assert.match(result.stderr, /슬래시 하나/);
+
+  entry.editorial_attribution.author.name_ko = '룰링크 콘텐츠 운영팀';
+  entry.editorial_attribution.author.url = 'https://?';
+  refreshConceptReceipts(bundle);
+  result = await validate(bundle);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /작성 주체 URL/);
+
+  for (const unsafeUrl of [
+    'https://127.0.0.1/private',
+    'mailto:author@rulelink.kr',
+    'https://author:secret@author-profile.rulelink.kr/team',
+    'https://author-profile.rulelink.kr/%0aadmin',
+  ]) {
+    entry.editorial_attribution.author.url = unsafeUrl;
+    refreshConceptReceipts(bundle);
+    result = await validate(bundle);
+    assert.notEqual(result.status, 0, unsafeUrl);
+    assert.match(result.stderr, /작성 주체 URL/, unsafeUrl);
+  }
+});
+
 test('공개 지식에 예전 일반인 컨시어지 연결이 있으면 거부한다', async () => {
   const bundle = knowledgeBundle();
   bundle.knowledge.content_entries[0].concierge_entry = {

@@ -2,6 +2,8 @@ import {readFile, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 
+import {site} from '../src/lib/site.ts';
+
 const SECTION_PATTERN = /^## 현재 공개본[\s\S]*?(?=^## 최신성 일일 점검)/m;
 const START_MARKER = '<!-- RULELINK_PUBLICATION_STATUS:START -->';
 const END_MARKER = '<!-- RULELINK_PUBLICATION_STATUS:END -->';
@@ -36,7 +38,7 @@ ${START_MARKER}
 
 현재 주제는 ${hubTitles || '아직 없음'}이다. 각 글은 공식 근거, 핵심 법리, 결론을 가르는 사실, 행동 순서와 보관할 자료를 제공한다. 사건별 분석이 필요한 글은 공개 사건전송 기능 대신 변호사 전용 작업공간의 이용 이유와 자격 확인 절차를 연결한다.
 
-실제 운영 도메인의 반영 상태는 [\`publication.json\`](https://rulelink.lolphysical.xyz/publication.json)에서 확인한다.
+실제 운영 도메인의 반영 상태는 [\`publication.json\`](${site.url}/publication.json)에서 확인한다.
 ${END_MARKER}
 
 `;

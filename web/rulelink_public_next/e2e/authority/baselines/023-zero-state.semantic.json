@@ -22,7 +22,15 @@
       },
       {
         "level": 2,
-        "text": "먼저 기준을 확인합니다."
+        "text": "답을 바꿀 수 있는 사실을 먼저 확인하세요."
+      },
+      {
+        "level": 3,
+        "text": "배우자와 자녀가 있는 일반적인 상속"
+      },
+      {
+        "level": 2,
+        "text": "출판된 법리의 요건과 효과를 확인합니다."
       },
       {
         "level": 3,
@@ -34,15 +42,11 @@
       },
       {
         "level": 2,
-        "text": "내 상황은 어느 쪽입니까?"
-      },
-      {
-        "level": 3,
-        "text": "배우자와 자녀가 있는 일반적인 상속"
+        "text": "페이지 안에서 근거 좌표를 먼저 확인하세요."
       },
       {
         "level": 2,
-        "text": "다음 순서로 준비합니다."
+        "text": "확인할 자료와 다음 행동을 한 번에 정리합니다."
       },
       {
         "level": 3,
@@ -58,11 +62,15 @@
       },
       {
         "level": 2,
+        "text": "아직 확인하지 못한 사실이 있나요?"
+      },
+      {
+        "level": 2,
         "text": "모르는 말은 여기서 이어집니다"
       },
       {
         "level": 2,
-        "text": "공식 근거"
+        "text": "현재 적용 상태와 달라진 내용을 함께 확인하세요."
       },
       {
         "level": 2,
@@ -80,7 +88,7 @@
     "landmarks": {
       "main": 1,
       "nav": 4,
-      "section": 12
+      "section": 14
     },
     "links": [
       {
@@ -101,23 +109,27 @@
       },
       {
         "href": "#summary",
-        "text": "핵심 정리"
-      },
-      {
-        "href": "#concepts",
-        "text": "용어 해설"
-      },
-      {
-        "href": "#rules",
-        "text": "적용 법리"
+        "text": "빠른 답"
       },
       {
         "href": "#scenarios",
         "text": "결론 사실"
       },
       {
+        "href": "#rules",
+        "text": "적용 결과와 근거"
+      },
+      {
         "href": "#actions",
-        "text": "할 일과 자료"
+        "text": "증거·기한·행동"
+      },
+      {
+        "href": "#follow-up-questions",
+        "text": "추가 질문"
+      },
+      {
+        "href": "#concepts",
+        "text": "용어 해설"
       },
       {
         "href": "#reading-path",
@@ -130,6 +142,30 @@
       {
         "href": "#rule.family-inheritance.rule-spouse-order",
         "text": "배우자의 상속순위 ↑"
+      },
+      {
+        "href": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1000%EC%A1%B0",
+        "text": "공식 원문 전체 보기 (새 탭)"
+      },
+      {
+        "href": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1003%EC%A1%B0",
+        "text": "공식 원문 전체 보기 (새 탭)"
+      },
+      {
+        "href": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C997%EC%A1%B0",
+        "text": "공식 원문 전체 보기 (새 탭)"
+      },
+      {
+        "href": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1005%EC%A1%B0",
+        "text": "공식 원문 전체 보기 (새 탭)"
+      },
+      {
+        "href": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1006%EC%A1%B0",
+        "text": "공식 원문 전체 보기 (새 탭)"
+      },
+      {
+        "href": "#scenario-scenario.family-inheritance.sc-spouse-children",
+        "text": "배우자와 자녀가 있는 일반적인 상속"
       },
       {
         "href": "/ko/concepts/legal-heir",
@@ -148,24 +184,8 @@
         "text": "피상속인사망으로 상속이 개시되어 자신의 재산상 권리와 의무가 상속인에게 이어지는 사람입니다."
       },
       {
-        "href": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1000%EC%A1%B0",
-        "text": "민법 제1000조 원문 ↗원문 확인 2026. 7. 21."
-      },
-      {
-        "href": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1003%EC%A1%B0",
-        "text": "민법 제1003조 원문 ↗원문 확인 2026. 7. 21."
-      },
-      {
-        "href": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C997%EC%A1%B0",
-        "text": "민법 제997조 원문 ↗원문 확인 2026. 7. 23."
-      },
-      {
-        "href": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1005%EC%A1%B0",
-        "text": "민법 제1005조 원문 ↗원문 확인 2026. 7. 21."
-      },
-      {
-        "href": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1006%EC%A1%B0",
-        "text": "민법 제1006조 원문 ↗원문 확인 2026. 7. 23."
+        "href": "/ko/changes/inheritance-representation-link-2026",
+        "text": "최근 시행2026년 3월 17일 시행상속권을 잃은 사람의 자녀에게 대습상속이 연결될 수 있습니다개정 전후와 적용 경계 보기 →"
       },
       {
         "href": "/ko/concepts/legal-heir",
@@ -210,7 +230,7 @@
     ],
     "navigations": [
       {
-        "ariaLabel": null,
+        "ariaLabel": "현재 위치",
         "hrefs": [
           "/",
           "/ko/knowledge",
@@ -227,10 +247,11 @@
         "ariaLabel": "이 글 안에서 이동",
         "hrefs": [
           "#summary",
-          "#concepts",
-          "#rules",
           "#scenarios",
+          "#rules",
           "#actions",
+          "#follow-up-questions",
+          "#concepts",
           "#reading-path"
         ]
       },
@@ -244,11 +265,11 @@
     ],
     "sectionIds": [
       "summary",
-      "rules",
       "scenarios",
+      "rules",
       "actions",
+      "follow-up-questions",
       "concepts",
-      "sources",
       "reading-path"
     ]
   }

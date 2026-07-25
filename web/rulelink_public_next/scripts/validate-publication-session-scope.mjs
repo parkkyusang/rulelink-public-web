@@ -145,11 +145,17 @@ export function allowedForRole(role, filePath) {
       || allowedForRole('runtime', value)
       || value === '.gitattributes'
       || value === '.github/workflows/authority-release-evidence.yml'
+      || /^artifacts\/publication\/coverage\/[a-z0-9._/-]+\.json$/u.test(value)
+      || value === 'web/rulelink_public_next/.env.example'
       || value === 'web/rulelink_public_next/.gitignore'
       || value === 'web/rulelink_public_next/package-lock.json'
       || value === 'web/rulelink_public_next/playwright.config.ts'
       || value === 'web/rulelink_public_next/tsconfig.json'
-      || /^web\/rulelink_public_next\/e2e\/authority\//u.test(value);
+      || value === 'web/rulelink_public_next/next.config.ts'
+      || /^web\/rulelink_public_next\/lighthouserc\.[a-z0-9.-]+\.cjs$/u.test(value)
+      || /^web\/rulelink_public_next\/playwright\.[a-z0-9.-]+\.config\.ts$/u.test(value)
+      || /^web\/rulelink_public_next\/contracts\/[a-z0-9._/-]+\.json$/u.test(value)
+      || /^web\/rulelink_public_next\/e2e\/[a-z0-9._/-]+\.(?:json|mjs|mts|ts|tsx)$/u.test(value);
   }
   return false;
 }

@@ -1,0 +1,28 @@
+{
+  "schema": "rulelink_publication_authority_level_policy_v1",
+  "levels": [
+    {
+      "authority_level": "L0_structure",
+      "title_ko": "콘텐츠·법리·분기 구조",
+      "requirements": [
+        "canonical_content_ids",
+        "required_rule_ids",
+        "required_scenario_ids"
+      ]
+    },
+    {
+      "authority_level": "L1_coordinate",
+      "title_ko": "공식 근거 좌표",
+      "requirements": [
+        "required_source_coordinate_ids"
+      ]
+    },
+    {
+      "authority_level": "L2_locator",
+      "title_ko": "조·항·호·예외 결박",
+      "requirements": [
+        "required_authority_binding_ids"
+      ]
+    }
+  ]
+}

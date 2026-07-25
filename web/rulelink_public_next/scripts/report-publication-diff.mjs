@@ -4,6 +4,8 @@ import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 
+import {site} from '../src/lib/site.ts';
+
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const validatorPath = path.join(scriptDir, 'validate-publication-bundle.mjs');
 const options = parseArguments(process.argv.slice(2));
@@ -180,7 +182,7 @@ function lifecycleCounts(items) {
 
 function renderMarkdown(report) {
   const lines = [
-    '# RuleLink 공개 출판 변경 보고',
+    `# ${site.name} 공개 출판 변경 보고`,
     '',
     `- 현재 출판본: ${report.from_snapshot_id || '없음'}`,
     `- 후보 출판본: ${report.to_snapshot_id}`,

@@ -1,6 +1,8 @@
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 
+import {site} from '../src/lib/site.ts';
+
 const options = parseArguments(process.argv.slice(2));
 const repoRoot = options.repoRoot
   ? path.resolve(options.repoRoot)
@@ -96,7 +98,7 @@ function publicationItem(type, id, title, value, 기준시각) {
 
 function renderMarkdown(report) {
   const lines = [
-    '# RuleLink 공개본 최신성 일일 점검',
+    `# ${site.name} 공개본 최신성 일일 점검`,
     '',
     `- 출판본: ${report.snapshot_id}`,
     `- 점검시각: ${report.checked_at}`,
