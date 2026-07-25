@@ -606,6 +606,17 @@ async function defaultFetchJson(url) {
   return response.json();
 }
 
+async function defaultFetchBytes(url) {
+  const headers = {
+    Accept: 'application/octet-stream',
+    'User-Agent': 'rulelink-publication-evidence-verifier',
+  };
+  if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+  const response = await fetch(url, {headers});
+  if (!response.ok) throw new Error(`외부 증거 바이트 조회 실패: ${response.status} ${url}`);
+  return Buffer.from(await response.arrayBuffer());
+}
+
 function publicationStatusNow() {
   const override = process.env.RULELINK_PUBLICATION_NOW;
   if (!override) return new Date();
@@ -948,10 +959,8 @@ async function verifySourceLocatorSelectionArtifact({
     throw new Error(`source locator 선택 경로 이탈: ${workId}`);
   }
   const read = io.readFile || readFile;
-  const trustPolicyPath = path.resolve(
-    io.sourceMaintenanceTrustPolicyPath ??
-      DEFAULT_SOURCE_MAINTENANCE_INVENTORY_TRUST_POLICY_PATH,
-  );
+  const trustPolicyPath =
+    DEFAULT_SOURCE_MAINTENANCE_INVENTORY_TRUST_POLICY_PATH;
   const [artifactRaw, trustPolicyRaw] = await Promise.all([
     read(artifactPath),
     read(trustPolicyPath),
@@ -967,6 +976,9 @@ async function verifySourceLocatorSelectionArtifact({
       'status',
       'issuer',
       'source_repository',
+      'trusted_root_commit_sha',
+      'inventory_manifest_path',
+      'active_graph_path',
       'keys',
     ]) ||
     trustPolicy.schema !==
@@ -976,6 +988,18 @@ async function verifySourceLocatorSelectionArtifact({
     trustPolicy.issuer.length === 0 ||
     typeof trustPolicy.source_repository !== 'string' ||
     trustPolicy.source_repository.length === 0 ||
+    !/^[^/\s]+\/[^/\s]+$/u.test(trustPolicy.source_repository) ||
+    !/^[0-9a-f]{40}$/u.test(trustPolicy.trusted_root_commit_sha ?? '') ||
+    ![
+      trustPolicy.inventory_manifest_path,
+      trustPolicy.active_graph_path,
+    ].every(
+      repositoryPath =>
+        typeof repositoryPath === 'string' &&
+        repositoryPath.length > 0 &&
+        !path.posix.isAbsolute(repositoryPath) &&
+        !repositoryPath.split('/').includes('..'),
+    ) ||
     !Array.isArray(trustPolicy.keys) ||
     trustPolicy.keys.length === 0
   ) {
@@ -1021,7 +1045,8 @@ async function verifySourceLocatorSelectionArtifact({
     !/^[0-9a-f]{40}$/u.test(manifest.source_commit_sha ?? '') ||
     !/^[0-9a-f]{64}$/u.test(manifest.active_graph_sha256 ?? '') ||
     !Number.isFinite(Date.parse(manifest.generated_at ?? '')) ||
-    Date.parse(manifest.generated_at) > Date.parse(queue.audited_on) ||
+    Date.parse(manifest.generated_at) >
+      Date.parse(`${queue.audited_on}T23:59:59.999Z`) ||
     !Array.isArray(manifest.sources) ||
     manifest.sources.length === 0 ||
     !hasExactKeys(signature, [
@@ -1059,6 +1084,58 @@ async function verifySourceLocatorSelectionArtifact({
   ) {
     throw new Error(`source maintenance inventory 서명 불일치: ${workId}`);
   }
+  const fetchJson = io.fetchJson || defaultFetchJson;
+  const fetchBytes = io.fetchBytes || defaultFetchBytes;
+  if (manifest.source_commit_sha !== trustPolicy.trusted_root_commit_sha) {
+    const comparison = await fetchJson(
+      `https://api.github.com/repos/${trustPolicy.source_repository}/compare/` +
+        `${trustPolicy.trusted_root_commit_sha}...${manifest.source_commit_sha}`,
+    );
+    if (
+      !['ahead', 'identical'].includes(comparison?.status) ||
+      !Number.isInteger(comparison.ahead_by) ||
+      comparison.ahead_by < 0
+    ) {
+      throw new Error(
+        `source maintenance inventory commit이 승인 root의 후손이 아닙니다: ${workId}`,
+      );
+    }
+  }
+  const sourceCache = new Map();
+  const [remoteManifestRaw, activeGraphRaw] = await Promise.all([
+    loadGithubFileAtCommit({
+      repository: trustPolicy.source_repository,
+      repositoryPath: trustPolicy.inventory_manifest_path,
+      commitSha: manifest.source_commit_sha,
+      fetchJson,
+      cache: sourceCache,
+    }),
+    fetchBytes(
+      `https://raw.githubusercontent.com/${trustPolicy.source_repository}/` +
+        `${manifest.source_commit_sha}/${trustPolicy.active_graph_path
+          .split('/')
+          .map(encodeURIComponent)
+          .join('/')}`,
+    ),
+  ]);
+  let remoteManifest;
+  try {
+    remoteManifest = JSON.parse(remoteManifestRaw.toString('utf8'));
+  } catch {
+    throw new Error(
+      `source maintenance inventory 원천 JSON을 읽을 수 없습니다: ${workId}`,
+    );
+  }
+  if (canonicalJson(remoteManifest) !== canonicalJson(manifest)) {
+    throw new Error(
+      `source maintenance inventory가 승인 commit 원시 행과 다릅니다: ${workId}`,
+    );
+  }
+  if (sha256(activeGraphRaw) !== manifest.active_graph_sha256) {
+    throw new Error(
+      `source maintenance active graph 원시 바이트 해시가 다릅니다: ${workId}`,
+    );
+  }
   const locatorKeys = [
     'coordinate_id',
     'source_id',
@@ -1085,7 +1162,7 @@ async function verifySourceLocatorSelectionArtifact({
       !source.target_domain_ids.includes(artifact.target_domain_id) ||
       !/^https:\/\//u.test(source.official_url) ||
       !Number.isFinite(verifiedAt) ||
-      verifiedAt > Date.parse(queue.audited_on)
+      verifiedAt > Date.parse(`${queue.audited_on}T23:59:59.999Z`)
     ) {
       throw new Error(
         `source maintenance inventory locator가 승인 범위를 벗어났습니다: ${source?.coordinate_id ?? '?'}`,
@@ -1113,7 +1190,11 @@ async function verifySourceLocatorSelectionArtifact({
     evidenceRef,
     artifactSha256: matched[2],
     trustPolicySha256: sha256(trustPolicyRaw),
+    trustedRootCommitSha: trustPolicy.trusted_root_commit_sha,
+    inventoryManifestPath: trustPolicy.inventory_manifest_path,
+    activeGraphPath: trustPolicy.active_graph_path,
     inventoryManifestSha256: sha256(canonicalJson(manifest)),
+    inventoryManifestRawSha256: sha256(remoteManifestRaw),
     inventorySignature: signature.signature_base64,
     activeGraphSha256: manifest.active_graph_sha256,
     sourceCommitSha: manifest.source_commit_sha,

@@ -33,10 +33,12 @@ import {
   DEFAULT_LEGAL_ANSWER_SCHEMA_PATH,
 } from './validate-legal-answer-packets.mjs';
 import {
+  DEFAULT_SOURCE_MAINTENANCE_INVENTORY_TRUST_POLICY_PATH,
   appendPrerequisiteGateReceipts,
   buildCoverageSeedProductionContracts,
   loadQueuePublicationEvidence,
   topicReceipt,
+  validateProductionQueue,
   verifyProductionQueueExternalEvidence,
 } from './validate-publication-production-queue.mjs';
 import {
@@ -61,6 +63,14 @@ const PRODUCTION_REGISTRY_PATH = path.join(
   'publication',
   'production-queue-registry.json',
 );
+
+function gitBlobSha1(value) {
+  const body = Buffer.isBuffer(value) ? value : Buffer.from(value);
+  return createHash('sha1')
+    .update(Buffer.from(`blob ${body.length}\0`, 'utf8'))
+    .update(body)
+    .digest('hex');
+}
 
 test('28허브·284콘텐츠를 9개 법영역과 독립 점수축으로 전수 계획한다', async () => {
   const plan = await buildPublicationCoverageExpansionPlan();
@@ -350,11 +360,24 @@ test('신규 법영역은 정식 등록과 source locator artifact 영수증 뒤
     );
     const signingKey = generateKeyPairSync('ed25519');
     const issuer = 'rulelink-source-maintenance-test';
+    const trustedRootCommitSha = '0'.repeat(40);
+    const sourceCommitSha = '1'.repeat(40);
+    const inventoryManifestPath =
+      'artifacts/source-maintenance/public/source-inventory.json';
+    const activeGraphPath =
+      'artifacts/source-maintenance/public/active-source-graph.sqlite';
+    const activeGraphRaw = Buffer.from(
+      'approved-active-source-graph-fixture',
+      'utf8',
+    );
     const trustPolicy = {
       schema: 'rulelink_source_maintenance_inventory_trust_policy_v1',
       status: 'active',
       issuer,
       source_repository: 'parkkyusang/liale-rulelink-ir',
+      trusted_root_commit_sha: trustedRootCommitSha,
+      inventory_manifest_path: inventoryManifestPath,
+      active_graph_path: activeGraphPath,
       keys: [
         {
           algorithm: 'Ed25519',
@@ -379,9 +402,11 @@ test('신규 법영역은 정식 등록과 source locator artifact 영수증 뒤
       inventory_id: 'inventory.constitutional-public.test',
       issuer,
       source_repository: trustPolicy.source_repository,
-      source_commit_sha: '1'.repeat(40),
-      active_graph_sha256: '2'.repeat(64),
-      generated_at: '2026-07-22T00:00:00Z',
+      source_commit_sha: sourceCommitSha,
+      active_graph_sha256: createHash('sha256')
+        .update(activeGraphRaw)
+        .digest('hex'),
+      generated_at: '2026-07-23T09:00:00Z',
       sources: Array.from({ length: 10 }, (_, index) => ({
         coordinate_id:
           `coord.constitutional-public.approved-${String(index + 1).padStart(2, '0')}`,
@@ -395,9 +420,54 @@ test('신규 법영역은 정식 등록과 source locator artifact 영수증 뒤
         article_no: `제${index + 1}조`,
         official_url:
           `https://www.law.go.kr/법령/헌법공법시험/${index + 1}`,
-        last_verified_at: '2026-07-22T00:00:00Z',
+        last_verified_at: '2026-07-23T09:00:00Z',
         target_domain_ids: [targetDomainId],
       })),
+    };
+    const remoteManifestRaw = Buffer.from(
+      `${JSON.stringify(manifest, null, 2)}\n`,
+      'utf8',
+    );
+    const sourceFetchJson = async url => {
+      if (
+        url.includes(
+          `/compare/${trustedRootCommitSha}...${sourceCommitSha}`,
+        )
+      ) {
+        return {status: 'ahead', ahead_by: 1};
+      }
+      if (
+        url.includes(
+          `/contents/${inventoryManifestPath}?ref=${sourceCommitSha}`,
+        )
+      ) {
+        return {
+          type: 'file',
+          path: inventoryManifestPath,
+          encoding: 'base64',
+          content: remoteManifestRaw.toString('base64'),
+          size: remoteManifestRaw.length,
+          sha: gitBlobSha1(remoteManifestRaw),
+        };
+      }
+      throw new Error(`unexpected source provenance URL: ${url}`);
+    };
+    const sourceFetchBytes = async url => {
+      assert.equal(
+        url,
+        `https://raw.githubusercontent.com/${trustPolicy.source_repository}/` +
+          `${sourceCommitSha}/${activeGraphPath}`,
+      );
+      return activeGraphRaw;
+    };
+    const sourceMaintenanceReadFile = async (candidate, ...args) => {
+      if (
+        path.resolve(candidate) ===
+        path.resolve(DEFAULT_SOURCE_MAINTENANCE_INVENTORY_TRUST_POLICY_PATH)
+      ) {
+        return readFile(trustPolicyPath, ...args);
+      }
+      return readFile(candidate, ...args);
     };
     const inventorySignature = signBytes(
       null,
@@ -458,7 +528,9 @@ test('신규 법영역은 정식 등록과 source locator artifact 영수증 뒤
     const verifiedEvidence =
       await verifyProductionQueueExternalEvidence(queue, {
         registry,
-        sourceMaintenanceTrustPolicyPath: trustPolicyPath,
+        readFile: sourceMaintenanceReadFile,
+        fetchJson: sourceFetchJson,
+        fetchBytes: sourceFetchBytes,
       });
     registry = appendPrerequisiteGateReceipts(registry, queue, {
       verifiedEvidence,
@@ -478,8 +550,17 @@ test('신규 법영역은 정식 등록과 source locator artifact 영수증 뒤
       approvedBundle,
       {
         itemRegistry: registry,
-        sourceMaintenanceTrustPolicyPath: trustPolicyPath,
+        readFile: sourceMaintenanceReadFile,
+        fetchJson: sourceFetchJson,
+        fetchBytes: sourceFetchBytes,
       },
+    );
+    assert.deepEqual(
+      validateProductionQueue(queue, {
+        publishedBundle: approvedBundle,
+        ...queueEvidence,
+      }),
+      [],
     );
     const resolved = await resolveNewDomainSeedAssignment({
       domain,
@@ -496,20 +577,63 @@ test('신규 법영역은 정식 등록과 source locator artifact 영수증 뒤
     assert.equal(resolved.sourceLocatorState, 'bound');
     assert.equal(resolved.requiredSourceLocators.length, 10);
 
-    const fullPlan = await buildPublicationCoverageExpansionPlan({
-      productionQueuePath: queuePath,
-      productionRegistryPath: registryPath,
-      sourceMaintenanceTrustPolicyPath: trustPolicyPath,
-    });
-    const fullTask = fullPlan.task_packets.find(
-      packet => packet.work_id === workId,
+    await assert.rejects(
+      loadQueuePublicationEvidence(queue, approvedBundle, {
+        itemRegistry: registry,
+        readFile: sourceMaintenanceReadFile,
+        fetchJson: sourceFetchJson,
+        fetchBytes: async () => Buffer.from('forged-active-graph', 'utf8'),
+      }),
+      /active graph 원시 바이트 해시/iu,
     );
-    assert.equal(fullTask.assignment_state, 'existing_queue_assignment');
-    assert.equal(fullTask.start_allowed, true);
-    assert.equal(fullTask.source_locator_state, 'bound');
-    assert.deepEqual(
-      fullTask.required_source_locators.map(locator => locator.coordinate_id),
-      [...selectedCoordinateIds].sort(),
+    const forgedRemoteManifest = structuredClone(manifest);
+    forgedRemoteManifest.sources[0].source_snapshot_id = 'forged-remote-row';
+    const forgedRemoteManifestRaw = Buffer.from(
+      `${JSON.stringify(forgedRemoteManifest, null, 2)}\n`,
+      'utf8',
+    );
+    await assert.rejects(
+      loadQueuePublicationEvidence(queue, approvedBundle, {
+        itemRegistry: registry,
+        readFile: sourceMaintenanceReadFile,
+        fetchJson: async url => {
+          if (url.includes('/compare/')) {
+            return {status: 'ahead', ahead_by: 1};
+          }
+          return {
+            type: 'file',
+            path: inventoryManifestPath,
+            encoding: 'base64',
+            content: forgedRemoteManifestRaw.toString('base64'),
+            size: forgedRemoteManifestRaw.length,
+            sha: gitBlobSha1(forgedRemoteManifestRaw),
+          };
+        },
+        fetchBytes: sourceFetchBytes,
+      }),
+      /승인 commit 원시 행과 다릅니다/iu,
+    );
+    await assert.rejects(
+      loadQueuePublicationEvidence(queue, approvedBundle, {
+        itemRegistry: registry,
+        readFile: sourceMaintenanceReadFile,
+        fetchJson: async url =>
+          url.includes('/compare/')
+            ? {status: 'diverged', ahead_by: 0}
+            : sourceFetchJson(url),
+        fetchBytes: sourceFetchBytes,
+      }),
+      /승인 root의 후손이 아닙니다/iu,
+    );
+
+    await assert.rejects(
+      buildPublicationCoverageExpansionPlan({
+        productionQueuePath: queuePath,
+        productionRegistryPath: registryPath,
+        sourceMaintenanceTrustPolicyPath: trustPolicyPath,
+      }),
+      /trust policy가 활성 정본이 아닙니다|trust validation/iu,
+      '공개 planner 호출자는 정본 policy 경로를 다른 키로 바꿀 수 없다',
     );
 
     const forgedArtifact = structuredClone(artifact);
@@ -541,10 +665,11 @@ test('신규 법영역은 정식 등록과 source locator artifact 영수증 뒤
       ),
     ]);
     await assert.rejects(
-      buildPublicationCoverageExpansionPlan({
-        productionQueuePath: queuePath,
-        productionRegistryPath: registryPath,
-        sourceMaintenanceTrustPolicyPath: trustPolicyPath,
+      loadQueuePublicationEvidence(queue, approvedBundle, {
+        itemRegistry: forgedRegistry,
+        readFile: sourceMaintenanceReadFile,
+        fetchJson: sourceFetchJson,
+        fetchBytes: sourceFetchBytes,
       }),
       /inventory 서명 불일치|revalidated|trust validation/iu,
     );
@@ -566,13 +691,22 @@ test('신규 법영역은 정식 등록과 source locator artifact 영수증 뒤
       registryPath,
       `${JSON.stringify(selfIssuedRegistry, null, 2)}\n`,
     );
-    await assert.rejects(
-      buildPublicationCoverageExpansionPlan({
-        productionQueuePath: queuePath,
-        productionRegistryPath: registryPath,
-        sourceMaintenanceTrustPolicyPath: trustPolicyPath,
-      }),
-      /재계산되지 않은 선행 게이트 영수증|trust validation/iu,
+    const selfIssuedEvidence = await loadQueuePublicationEvidence(
+      queue,
+      approvedBundle,
+      {
+        itemRegistry: selfIssuedRegistry,
+        readFile: sourceMaintenanceReadFile,
+        fetchJson: sourceFetchJson,
+        fetchBytes: sourceFetchBytes,
+      },
+    );
+    assert.match(
+      validateProductionQueue(queue, {
+        publishedBundle: approvedBundle,
+        ...selfIssuedEvidence,
+      }).join('\n'),
+      /재계산되지 않은 선행 게이트 영수증/iu,
     );
     await writeFile(
       registryPath,

@@ -842,8 +842,6 @@ export async function buildPublicationCoverageExpansionPlan(options = {}) {
       documents.bundle,
       {
         itemRegistry: documents.productionRegistry,
-        sourceMaintenanceTrustPolicyPath:
-          options.sourceMaintenanceTrustPolicyPath,
       },
     );
   } catch (error) {
