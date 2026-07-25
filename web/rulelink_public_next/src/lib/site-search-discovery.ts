@@ -431,12 +431,17 @@ function scoreDocument(
     }
   }
 
-  const matchReasons = buildMatchReasons(scoringFields, queryTokens);
-  if (queryTokens.length > 0 && matchReasons.length === 0) return null;
   const decisionQuestion = bestMatchingValue(
     scoringFields.decision,
+    normalizedQuery,
     queryTokens,
   ) ?? scoringFields.decision[0];
+  const matchReasons = buildMatchReasons(
+    scoringFields,
+    queryTokens,
+    decisionQuestion,
+  );
+  if (queryTokens.length > 0 && matchReasons.length === 0) return null;
 
   return {
     ...document,
@@ -454,23 +459,40 @@ function scoreDocument(
 
 function bestMatchingValue(
   values: readonly string[],
+  normalizedQuery: string,
   queryTokens: readonly string[][],
 ): string | undefined {
   if (!queryTokens.length) return values[0];
   const ranked = values
     .map((value, index) => {
       const normalized = normalizeSiteSearchText(value);
+      const matchedWeights = queryTokens
+        .map(variants => Math.max(
+          0,
+          ...variants
+            .filter(variant => normalized.includes(variant))
+            .map(variant => variant.length ** 2),
+        ))
+        .filter(weight => weight > 0);
       return {
+        exactPhrase: normalized === normalizedQuery ? 2 : (
+          normalizedQuery && normalized.includes(normalizedQuery) ? 1 : 0
+        ),
         index,
-        matches: queryTokens.filter(variants => (
-          variants.some(variant => normalized.includes(variant))
-        )).length,
+        informationWeight: matchedWeights.reduce(
+          (sum, weight) => sum + weight,
+          0,
+        ),
+        matches: matchedWeights.length,
         value,
       };
     })
     .filter(candidate => candidate.matches > 0)
     .sort((left, right) => (
-      right.matches - left.matches || left.index - right.index
+      right.exactPhrase - left.exactPhrase
+      || right.matches - left.matches
+      || right.informationWeight - left.informationWeight
+      || left.index - right.index
     ));
   return ranked[0]?.value;
 }
@@ -478,37 +500,58 @@ function bestMatchingValue(
 function buildMatchReasons(
   fields: SiteSearchScoringFields,
   queryTokens: string[][],
+  selectedDecision?: string,
 ): SiteSearchMatchReason[] {
   if (!queryTokens.length) return [];
   const reasons: SiteSearchMatchReason[] = [];
   const seen = new Set<string>();
+
+  if (selectedDecision) {
+    appendMatchReason(
+      reasons,
+      seen,
+      FIELD_META.decision,
+      selectedDecision,
+      queryTokens,
+    );
+  }
 
   for (const key of Object.keys(fields) as Array<
     keyof SiteSearchScoringFields
   >) {
     const meta = FIELD_META[key];
     for (const value of fields[key]) {
-      const normalized = normalizeSiteSearchText(value);
-      if (
-        !queryTokens.some(variants => (
-          variants.some(variant => normalized.includes(variant))
-        ))
-      ) {
-        continue;
-      }
-      const text = matchedExcerpt(value, queryTokens);
-      const signature = `${meta.field}:${text}`;
-      if (seen.has(signature)) continue;
-      seen.add(signature);
-      reasons.push({
-        field: meta.field,
-        label_ko: meta.label,
-        text_ko: text,
-      });
+      appendMatchReason(reasons, seen, meta, value, queryTokens);
       if (reasons.length === 3) return reasons;
     }
   }
   return reasons;
+}
+
+function appendMatchReason(
+  reasons: SiteSearchMatchReason[],
+  seen: Set<string>,
+  meta: {field: SiteSearchMatchField; label: string},
+  value: string,
+  queryTokens: string[][],
+): void {
+  const normalized = normalizeSiteSearchText(value);
+  if (
+    !queryTokens.some(variants => (
+      variants.some(variant => normalized.includes(variant))
+    ))
+  ) {
+    return;
+  }
+  const text = matchedExcerpt(value, queryTokens);
+  const signature = `${meta.field}:${text}`;
+  if (seen.has(signature)) return;
+  seen.add(signature);
+  reasons.push({
+    field: meta.field,
+    label_ko: meta.label,
+    text_ko: text,
+  });
 }
 
 function matchedExcerpt(value: string, queryTokens: string[][]): string {

@@ -122,6 +122,47 @@ test('지식 검색 카드는 연결된 모든 사실분기 질문을 순서대�
   )));
 });
 
+test('운영 정본의 후속 사실분기 질문은 전부 카드 질문과 판단 근거가 일치한다', () => {
+  const laterQuestions = [...decisionQuestions].flatMap(
+    ([contentId, questions]) => questions.slice(1).map(question => ({
+      contentId,
+      question,
+    })),
+  );
+  assert.equal(laterQuestions.length, 39);
+
+  for (const {contentId, question} of laterQuestions) {
+    const result = rankSiteSearchDocuments(documents, {
+      now,
+      query: question,
+    }).find(candidate => candidate.id === contentId);
+    assert.ok(result, `${contentId}: 후속 판단 질문 검색 결과 누락`);
+    assert.equal(result.decisionQuestion, question, `${contentId}: 카드 질문 불일치`);
+    assert.ok(
+      result.matchReasons.some(reason => (
+        reason.field === 'decision'
+        && reason.text_ko === question
+        && reason.label_ko === '판단 질문'
+      )),
+      `${contentId}: 선택한 카드 질문이 세 개 검색 근거에 결박되지 않음`,
+    );
+  }
+});
+
+test('복합 질의는 흔한 짧은 말보다 고유한 판단어가 있는 질문을 선택한다', () => {
+  const contentId = 'content.admin-appeal.eligibility-document-branch';
+  const result = rankSiteSearchDocuments(documents, {
+    now,
+    query: '신청 행정정보',
+  }).find(candidate => candidate.id === contentId);
+  assert.ok(result);
+  assert.match(result.decisionQuestion ?? '', /행정정보/u);
+  assert.ok(result.matchReasons.some(reason => (
+    reason.field === 'decision'
+    && reason.text_ko === result.decisionQuestion
+  )));
+});
+
 test('0-query 동률은 검토일·제목·ID로 결정되고 법령변화 종류가 선두를 고정하지 않는다', () => {
   const fixture = [
     searchDocument('change-old', 'change', '2026-01-01', '오래된 법령 변화'),
