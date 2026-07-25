@@ -163,6 +163,22 @@ test('복합 질의는 흔한 짧은 말보다 고유한 판단어가 있는 질
   )));
 });
 
+test('정확한 제목 검색은 부분 일치 판단 질문보다 제목 근거를 먼저 보여준다', () => {
+  const knowledgeSearchDocuments = documents.filter(
+    document => document.kind === 'knowledge',
+  );
+  assert.equal(knowledgeSearchDocuments.length, 284);
+  for (const document of knowledgeSearchDocuments) {
+    const result = rankSiteSearchDocuments(documents, {
+      now,
+      query: document.title,
+    }).find(candidate => candidate.id === document.id);
+    assert.ok(result, `${document.id}: 정확한 제목 검색 결과 누락`);
+    assert.equal(result.matchReasons[0]?.field, 'title', document.id);
+    assert.equal(result.matchReasons[0]?.text_ko, document.title, document.id);
+  }
+});
+
 test('0-query 동률은 검토일·제목·ID로 결정되고 법령변화 종류가 선두를 고정하지 않는다', () => {
   const fixture = [
     searchDocument('change-old', 'change', '2026-01-01', '오래된 법령 변화'),

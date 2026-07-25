@@ -438,6 +438,7 @@ function scoreDocument(
   ) ?? scoringFields.decision[0];
   const matchReasons = buildMatchReasons(
     scoringFields,
+    normalizedQuery,
     queryTokens,
     decisionQuestion,
   );
@@ -465,25 +466,10 @@ function bestMatchingValue(
   if (!queryTokens.length) return values[0];
   const ranked = values
     .map((value, index) => {
-      const normalized = normalizeSiteSearchText(value);
-      const matchedWeights = queryTokens
-        .map(variants => Math.max(
-          0,
-          ...variants
-            .filter(variant => normalized.includes(variant))
-            .map(variant => variant.length ** 2),
-        ))
-        .filter(weight => weight > 0);
+      const metrics = matchValueMetrics(value, normalizedQuery, queryTokens);
       return {
-        exactPhrase: normalized === normalizedQuery ? 2 : (
-          normalizedQuery && normalized.includes(normalizedQuery) ? 1 : 0
-        ),
+        ...metrics,
         index,
-        informationWeight: matchedWeights.reduce(
-          (sum, weight) => sum + weight,
-          0,
-        ),
-        matches: matchedWeights.length,
         value,
       };
     })
@@ -499,59 +485,88 @@ function bestMatchingValue(
 
 function buildMatchReasons(
   fields: SiteSearchScoringFields,
+  normalizedQuery: string,
   queryTokens: string[][],
   selectedDecision?: string,
 ): SiteSearchMatchReason[] {
   if (!queryTokens.length) return [];
-  const reasons: SiteSearchMatchReason[] = [];
+  const candidates: Array<{
+    exactPhrase: number;
+    fieldIndex: number;
+    informationWeight: number;
+    matches: number;
+    reason: SiteSearchMatchReason;
+    valueIndex: number;
+  }> = [];
   const seen = new Set<string>();
 
-  if (selectedDecision) {
-    appendMatchReason(
-      reasons,
-      seen,
-      FIELD_META.decision,
-      selectedDecision,
-      queryTokens,
-    );
-  }
-
-  for (const key of Object.keys(fields) as Array<
+  const fieldKeys = Object.keys(fields) as Array<
     keyof SiteSearchScoringFields
-  >) {
+  >;
+  for (const [fieldIndex, key] of fieldKeys.entries()) {
     const meta = FIELD_META[key];
-    for (const value of fields[key]) {
-      appendMatchReason(reasons, seen, meta, value, queryTokens);
-      if (reasons.length === 3) return reasons;
+    const values = key === 'decision' && selectedDecision
+      ? [selectedDecision]
+      : fields[key];
+    for (const [valueIndex, value] of values.entries()) {
+      const metrics = matchValueMetrics(value, normalizedQuery, queryTokens);
+      if (metrics.matches === 0) continue;
+      const text = matchedExcerpt(value, queryTokens);
+      const signature = `${meta.field}:${text}`;
+      if (seen.has(signature)) continue;
+      seen.add(signature);
+      candidates.push({
+        ...metrics,
+        fieldIndex,
+        reason: {
+          field: meta.field,
+          label_ko: meta.label,
+          text_ko: text,
+        },
+        valueIndex,
+      });
     }
   }
-  return reasons;
+  return candidates
+    .sort((left, right) => (
+      right.exactPhrase - left.exactPhrase
+      || right.matches - left.matches
+      || right.informationWeight - left.informationWeight
+      || left.fieldIndex - right.fieldIndex
+      || left.valueIndex - right.valueIndex
+    ))
+    .slice(0, 3)
+    .map(candidate => candidate.reason);
 }
 
-function appendMatchReason(
-  reasons: SiteSearchMatchReason[],
-  seen: Set<string>,
-  meta: {field: SiteSearchMatchField; label: string},
+function matchValueMetrics(
   value: string,
-  queryTokens: string[][],
-): void {
+  normalizedQuery: string,
+  queryTokens: readonly string[][],
+): {
+  exactPhrase: number;
+  informationWeight: number;
+  matches: number;
+} {
   const normalized = normalizeSiteSearchText(value);
-  if (
-    !queryTokens.some(variants => (
-      variants.some(variant => normalized.includes(variant))
+  const matchedWeights = queryTokens
+    .map(variants => Math.max(
+      0,
+      ...variants
+        .filter(variant => normalized.includes(variant))
+        .map(variant => variant.length ** 2),
     ))
-  ) {
-    return;
-  }
-  const text = matchedExcerpt(value, queryTokens);
-  const signature = `${meta.field}:${text}`;
-  if (seen.has(signature)) return;
-  seen.add(signature);
-  reasons.push({
-    field: meta.field,
-    label_ko: meta.label,
-    text_ko: text,
-  });
+    .filter(weight => weight > 0);
+  return {
+    exactPhrase: normalized === normalizedQuery ? 2 : (
+      normalizedQuery && normalized.includes(normalizedQuery) ? 1 : 0
+    ),
+    informationWeight: matchedWeights.reduce(
+      (sum, weight) => sum + weight,
+      0,
+    ),
+    matches: matchedWeights.length,
+  };
 }
 
 function matchedExcerpt(value: string, queryTokens: string[][]): string {
