@@ -15,7 +15,7 @@ test('coverage dashboard는 콘텐츠 수가 아니라 검증 단위와 격차�
   assert.equal(dashboard.snapshot_id, 'kr-knowledge-core-20260723-023');
   assert.equal(
     dashboard.base_bundle_sha256,
-    '18209d6268b59e8e6bee3e1628234da9804e7b835b3e08d2eef70b91410fa581',
+    'f2b6d4cfbb818c374946d706a653b69652d0b35c1259ef15704b24a5b1a6dde2',
   );
   assert.deepEqual(dashboard.invalidations, []);
   assert.deepEqual(dashboard.total, {

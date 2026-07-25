@@ -133,6 +133,13 @@ function bytesSha256(value) {
   return createHash('sha256').update(value).digest('hex');
 }
 
+function portableJsonTextSha256(value) {
+  const normalized = value
+    .toString('utf8')
+    .replace(/\r\n?/gu, '\n');
+  return createHash('sha256').update(normalized, 'utf8').digest('hex');
+}
+
 async function readJson(filename, label) {
   try {
     return JSON.parse(await readFile(filename, 'utf8'));
@@ -271,7 +278,7 @@ export async function loadCoverageDocuments(options = {}) {
   return {
     authorityPolicy,
     bundle,
-    bundleSha256: bytesSha256(bundleBytes),
+    bundleSha256: portableJsonTextSha256(bundleBytes),
     domains,
     evaluationResultEvidence,
     evaluationScopeReceipt,

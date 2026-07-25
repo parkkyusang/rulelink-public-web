@@ -4,18 +4,31 @@ import {createHash} from 'node:crypto';
 import {
   mkdirSync,
   mkdtempSync,
+  readFileSync,
   rmSync,
   writeFileSync,
 } from 'node:fs';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
+import {fileURLToPath} from 'node:url';
 
 import {
   loadCoverageDocuments,
   validateCoverageDocuments,
   verifyReleaseGitProof,
 } from './publication-coverage-core.mjs';
+
+const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const publicationBundlePath = path.resolve(
+  appRoot,
+  '..',
+  '..',
+  'artifacts',
+  'publication',
+  'current',
+  'bundle.json',
+);
 
 function sha256(value) {
   return createHash('sha256').update(value).digest('hex');
@@ -44,7 +57,7 @@ test('023 coverage matrix는 8개 답변 단위를 L1으로 정직하게 보고�
   assert.deepEqual(result.invalidations, []);
   assert.equal(
     result.base_bundle_sha256,
-    '18209d6268b59e8e6bee3e1628234da9804e7b835b3e08d2eef70b91410fa581',
+    'f2b6d4cfbb818c374946d706a653b69652d0b35c1259ef15704b24a5b1a6dde2',
   );
   assert.equal(result.snapshot_id, 'kr-knowledge-core-20260723-023');
   assert.equal(result.units.length, 8);
@@ -99,6 +112,26 @@ test('023 coverage matrix는 8개 답변 단위를 L1으로 정직하게 보고�
       'content.payment-order-objection-two-weeks:situation',
     ],
   );
+});
+
+test('coverage bundle hash는 LF와 CRLF에서 같은 Git 정본 값을 사용한다', async (t) => {
+  const repository = mkdtempSync(path.join(tmpdir(), 'rulelink-coverage-eol-'));
+  t.after(() => rmSync(repository, {recursive: true, force: true}));
+  const lf = readFileSync(publicationBundlePath, 'utf8').replace(/\r\n?/gu, '\n');
+  const lfPath = path.join(repository, 'bundle-lf.json');
+  const crlfPath = path.join(repository, 'bundle-crlf.json');
+  writeFileSync(lfPath, lf, 'utf8');
+  writeFileSync(crlfPath, lf.replace(/\n/gu, '\r\n'), 'utf8');
+
+  const [lfDocuments, crlfDocuments] = await Promise.all([
+    loadCoverageDocuments({bundlePath: lfPath}),
+    loadCoverageDocuments({bundlePath: crlfPath}),
+  ]);
+  assert.equal(
+    lfDocuments.bundleSha256,
+    'f2b6d4cfbb818c374946d706a653b69652d0b35c1259ef15704b24a5b1a6dde2',
+  );
+  assert.equal(crlfDocuments.bundleSha256, lfDocuments.bundleSha256);
 });
 
 test('분기 서명은 실제 Scenario의 결정사실과 양쪽 결과 문언에 결박된다', async () => {
@@ -277,7 +310,7 @@ test('같은 snapshot id 안에서 bundle bytes가 바뀌어도 fail-closed 한�
   const result = validateCoverageDocuments(documents);
   assert.ok(
     result.errors.includes(
-      'coverage_base_bundle_hash_mismatch:18209d6268b59e8e6bee3e1628234da9804e7b835b3e08d2eef70b91410fa581:' +
+      'coverage_base_bundle_hash_mismatch:f2b6d4cfbb818c374946d706a653b69652d0b35c1259ef15704b24a5b1a6dde2:' +
         '0'.repeat(64),
     ),
   );

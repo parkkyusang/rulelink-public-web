@@ -2,8 +2,8 @@
   "schema": "rulelink_publication_expansion_backlog_v1",
   "schema_sha256": "6f29f9b5d87f6bfc56bc24e0c0d6358b0dd09cdec5044836cc53e6963e01ffb3",
   "snapshot_id": "kr-knowledge-core-20260723-023",
-  "base_bundle_sha256": "18209d6268b59e8e6bee3e1628234da9804e7b835b3e08d2eef70b91410fa581",
-  "coverage_manifest_sha256": "9c7f11a87ada239f28e2f751949b2b5db97046f25d474746fc39b5c628d1948d",
+  "base_bundle_sha256": "f2b6d4cfbb818c374946d706a653b69652d0b35c1259ef15704b24a5b1a6dde2",
+  "coverage_manifest_sha256": "8da99fd85b0789a61240365043f479b3894d41a9bacc6383c3868a61159db183",
   "content_count": 284,
   "hub_count": 28,
   "summary": {

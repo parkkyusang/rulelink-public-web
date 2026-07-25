@@ -4,8 +4,8 @@
   "generated_from": {
     "snapshot_id": "kr-knowledge-core-20260723-023",
     "as_of": "2026-07-23T08:08:00Z",
-    "base_bundle_sha256": "18209d6268b59e8e6bee3e1628234da9804e7b835b3e08d2eef70b91410fa581",
-    "backlog_sha256": "450474657e03529d5f70169e2d38e34fa1c39b4755dcd5fcd9e26357c1cd4455",
+    "base_bundle_sha256": "f2b6d4cfbb818c374946d706a653b69652d0b35c1259ef15704b24a5b1a6dde2",
+    "backlog_sha256": "bacbca80b9187c62c882d5fed8804827876b96dcf627e2f2fbe1d4a256ae77c3",
     "taxonomy_sha256": "4cb524d1d0479246c943a2fcacfce0807e4b13feddae2e8d70afc78d7e1b1e11",
     "topic_manifest_sha256": "8ec514941561b1660429e382f7021f9508eb4543c0b8286bc4c370579b7c8434",
     "production_queue_sha256": "5b37e15e554ac3879de95cac4b1ac8e140a07b607ee9061c044fd904873f0e26",
