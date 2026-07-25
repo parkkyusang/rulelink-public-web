@@ -103,7 +103,6 @@ test('기본 데이터 처리 정본은 기기 내 선택 기능만 활성이고
     item.activationMode,
   ]), [
     ['device-checklist', 'functional', 'active', 'after-user-action'],
-    ['device-scenario-choice', 'functional', 'active', 'after-user-action'],
     ['analytics-disabled', 'analytics', 'disabled', 'denied'],
     ['advertising-disabled', 'advertising', 'disabled', 'denied'],
   ]);
@@ -114,12 +113,6 @@ test('기본 데이터 처리 정본은 기기 내 선택 기능만 활성이고
   assert.equal(checklist.transfer.serverTransmission, false);
   assert.equal(checklist.transfer.thirdPartyProvision, false);
   assert.match(workspace, /rulelink-checklist-v1/);
-  const scenarioChoice = inventory[1];
-  assert.deepEqual(scenarioChoice.storageKeys, [
-    'rulelink-scenario-v1:{content_id}:{revision_key}:{scenario_id}',
-  ]);
-  assert.equal(scenarioChoice.transfer.serverTransmission, false);
-  assert.equal(scenarioChoice.transfer.thirdPartyProvision, false);
 });
 
 test('공개 런타임에는 광고·분석·쿠키·비콘 코드가 없고 localStorage 소유자가 정본과 일치한다', async () => {
@@ -143,7 +136,6 @@ test('공개 런타임에는 광고·분석·쿠키·비콘 코드가 없고 loc
     .map(row => path.relative(root, row.filename).replaceAll('\\', '/'));
   assert.deepEqual(storageOwners, [
     'src/components/knowledge-action-workspace.tsx',
-    'src/components/knowledge-scenario-decision.tsx',
   ]);
 });
 
@@ -166,7 +158,6 @@ test('완전한 운영 사실만 privacy와 hosting inventory를 연다', () => 
   assert.deepEqual(config.inventory.map(item => item.id), [
     'hosting-request-logs',
     'device-checklist',
-    'device-scenario-choice',
     'analytics-disabled',
     'advertising-disabled',
   ]);

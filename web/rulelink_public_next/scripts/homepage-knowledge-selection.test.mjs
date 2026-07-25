@@ -65,19 +65,19 @@ test('홈 상황별 법률 주제는 초기 HTML의 28개 링크를 보존하는
   assert.match(page, /<KnowledgeHubDirectory hubs=\{knowledgeHubs\} \/>/);
   assert.match(page, /<form action="\/ko\/search"[^>]*method="get"[^>]*role="search"/);
   assert.match(page, /name="q"/);
-  assert.match(page, /상황으로 법률정보 찾기/);
+  assert.match(page, /무슨 일이 있었는지 평소 말로 적어보세요/);
   assert.doesNotMatch(page, /세 가지 시작점|법이 바뀌었나요\?/u);
   assert.ok(
     page.indexOf('<KnowledgeHubDirectory') < page.indexOf('className="changeSection"'),
     '법령변화 모음은 상황별 주제 뒤의 보조 구역이어야 합니다.',
   );
   assert.match(component, /^'use client';/);
-  assert.match(component, /상황별 법률 주제/);
-  assert.match(component, /어떤 일로 찾아오셨나요/);
+  assert.match(component, /보조 탐색/);
+  assert.match(component, /생활영역에서 고르기/);
   assert.match(component, /상황별 주제 검색/);
   assert.match(component, /hub\.content_ids\.length/);
   assert.match(component, /관련 안내/);
-  assert.match(component, /aria-label="상황별 법률 주제"/);
+  assert.match(component, /aria-label="생활영역별 법률 안내"/);
   assert.match(component, /aria-live="polite"/);
   assert.match(component, /categories\.map\(category =>/);
   assert.match(component, /category\.hubs\.map\(hub =>/);

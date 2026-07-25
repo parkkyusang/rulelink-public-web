@@ -157,8 +157,8 @@ test('공용 링크 UI는 외부 새 탭과 mailto 경계를 접근 가능한 �
 test('공식원문은 외부 목적지 설정에 섞지 않고 기존 URL 검증과 새 탭 보호를 유지한다', async () => {
   const officialFiles = [
     'src/components/authority-reading-card.tsx',
+    'src/components/knowledge-source-evidence.tsx',
     'src/components/knowledge-source-library.tsx',
-    'app/ko/knowledge/[slug]/page.tsx',
     'app/ko/changes/[slug]/page.tsx',
     'app/ko/concepts/[slug]/page.tsx',
     'app/ko/issues/[slug]/page.tsx',

@@ -1,0 +1,153 @@
+.root {
+  border-top: 1px solid var(--line);
+  padding-top: 54px;
+  scroll-margin-top: 84px;
+}
+
+.root > header {
+  margin-bottom: 22px;
+  max-width: 790px;
+}
+
+.root > header h2 {
+  font-size: clamp(27px, 4vw, 36px);
+  letter-spacing: -.04em;
+  margin: 7px 0 12px;
+}
+
+.root > header > p:not(:global(.eyebrow)) {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.grid {
+  display: grid;
+  gap: 12px;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  min-width: 0;
+  overflow: clip;
+}
+
+.card summary {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  list-style-position: inside;
+  padding: 20px 22px;
+}
+
+.card summary:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: -3px;
+}
+
+.card summary > span:first-child {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.card summary small {
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.card summary strong {
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+.reviewed {
+  color: var(--muted);
+  flex: 0 0 auto;
+  font-size: 11px;
+}
+
+.body {
+  border-top: 1px solid var(--line);
+  padding: 22px;
+}
+
+.body dl {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0 0 22px;
+}
+
+.body dl > div {
+  background: var(--surface-soft);
+  min-width: 0;
+  padding: 13px;
+}
+
+.body dt {
+  color: var(--muted);
+  font-size: 10px;
+  margin-bottom: 6px;
+}
+
+.body dd {
+  font-size: 12px;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.body h3 {
+  font-size: 15px;
+  margin: 0 0 10px;
+}
+
+.body li,
+.boundary {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.boundary {
+  background: var(--surface-soft);
+  border-radius: 12px;
+  font-size: 12px;
+  padding: 14px;
+}
+
+.official {
+  border-top: 1px solid var(--line);
+  color: var(--green);
+  display: flex;
+  font-size: 13px;
+  font-weight: 800;
+  gap: 8px;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 18px;
+}
+
+.official:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.official span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+@media (max-width: 640px) {
+  .card summary {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .body dl {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

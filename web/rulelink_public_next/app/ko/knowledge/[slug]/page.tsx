@@ -4,17 +4,21 @@ import {notFound} from 'next/navigation';
 import {AuthorityReadingSection} from '@/components/authority-reading-section';
 import {EditorialAttribution} from '@/components/editorial-attribution';
 import {KnowledgeActionWorkspace} from '@/components/knowledge-action-workspace';
+import {KnowledgeFollowUpQuestions} from '@/components/knowledge-follow-up-questions';
 import {KnowledgeReadingDepthNav} from '@/components/knowledge-reading-depth-nav';
 import {KnowledgeReadingPath} from '@/components/knowledge-reading-path';
 import {KnowledgeScenarioDecision} from '@/components/knowledge-scenario-decision';
+import {KnowledgeSourceEvidence} from '@/components/knowledge-source-evidence';
 import {LegalConceptLayer, LegalConceptText} from '@/components/legal-concept-text';
 import {OfficialSourceJump} from '@/components/official-source-jump';
 import {PublicAdvertisingPlaceholder} from '@/components/public-advertising-placeholder';
+import {ScenarioHandoffFocus} from '@/components/scenario-handoff-focus';
 import {ScenarioRuleLinks} from '@/components/scenario-rule-links';
 import {VerifiedLegalAnswerCard} from '@/components/verified-legal-answer-card';
 import {changeLifecycleLabel} from '@/lib/change-lifecycle';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {formatKoreanLegalDate} from '@/lib/legal-date';
+import {buildKnowledgeLaunchJourney} from '@/lib/knowledge-launch-journey';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {loadPublicLegalAnswerForContent} from '@/lib/public-legal-answer-loader';
 import {
@@ -77,6 +81,11 @@ export default async function KnowledgePage({params}: Props) {
     readingPathSections,
   } = await knowledgeDetail(entry);
   const verifiedAnswer = await loadPublicLegalAnswerForContent(entry.content_id);
+  const launchJourney = buildKnowledgeLaunchJourney({
+    actionSteps: entry.action_steps_ko,
+    answer: verifiedAnswer,
+    factsToCheck: entry.facts_to_check_ko,
+  });
   const relatedChangeBriefs = await relatedChangeBriefsForKnowledgeEntry(entry);
   const trustConfig = resolvePublicTrustConfig();
   const editorialAttribution = resolveApprovedEditorialAttribution(
@@ -128,6 +137,7 @@ export default async function KnowledgePage({params}: Props) {
         <a href="/">홈</a><span aria-hidden="true">/</span><a href="/ko/knowledge">생활법률 지식</a>
         {hubs[0] ? <><span aria-hidden="true">/</span><a href={`/ko/hubs/${hubs[0].slug}`}>{hubs[0].title_ko}</a></> : null}
       </nav>
+      <ScenarioHandoffFocus />
       <header className="knowledgeHero">
         <p className="eyebrow">{knowledgeContentTypeLabel(entry.content_type)}</p>
         <h1>{entry.title_ko}</h1>
@@ -150,57 +160,34 @@ export default async function KnowledgePage({params}: Props) {
             {hubs.map(hub => <a href={`/ko/hubs/${hub.slug}`} key={hub.hub_id}>{hub.title_ko} →</a>)}
           </nav>
         ) : null}
-        {verifiedAnswer ? (
-          <VerifiedLegalAnswerCard
-            answer={verifiedAnswer}
-            hasAuthorityReading={Boolean(authorityReadingUnits.length)}
-            hasScenarios={Boolean(scenarios.length)}
-          />
-        ) : null}
       </header>
-
-      {relatedChangeBriefs.length ? (
-        <section aria-labelledby="knowledge-change-heading" className={styles.relatedChanges}>
-          <div>
-            <p className="eyebrow">이 질문과 관련된 법령 변화</p>
-            <h2 id="knowledge-change-heading">현재 적용 상태와 달라진 내용을 함께 확인하세요.</h2>
-          </div>
-          <div className={styles.relatedChangeList}>
-            {relatedChangeBriefs.map(brief => (
-              <a href={`/ko/changes/${brief.slug}`} key={brief.change_brief_id}>
-                <span className={`lifecycle ${brief.lifecycle}`}>{changeLifecycleLabel(brief.lifecycle)}</span>
-                <time dateTime={brief.effective_date}>{formatKoreanLegalDate(brief.effective_date)}</time>
-                <strong>{brief.title_ko}</strong>
-                <small>개정 전후와 적용 경계 보기 <span aria-hidden="true">→</span></small>
-              </a>
-            ))}
-          </div>
-        </section>
-      ) : null}
 
       {authorityReadingUnits.length ? (
         <KnowledgeReadingDepthNav
           hasCasePractice={false}
           hasScenarios={Boolean(scenarios.length)}
+          hasVerifiedAnswer={Boolean(verifiedAnswer)}
         />
       ) : (
         <nav aria-label="이 글 안에서 이동" className="knowledgeSectionNav">
           <span>이 글에서</span>
-          <a href="#summary">핵심 정리</a>
-          {concepts.length ? <a href="#concepts">용어 해설</a> : null}
-          <a href="#rules">적용 법리</a>
+          <a href={verifiedAnswer ? '#quick-answer' : '#summary'}>빠른 답</a>
+          {verifiedAnswer ? <a href="#summary">답 이해</a> : null}
           {scenarios.length ? <a href="#scenarios">결론 사실</a> : null}
-          <a href="#actions">할 일과 자료</a>
-          {readingPathSections.length ? <a href="#reading-path">다음 읽기</a> : null}
+          <a href="#rules">적용 결과와 근거</a>
           <OfficialSourceJump targetId="sources" />
+          <a href="#actions">증거·기한·행동</a>
+          {scenarios.length ? <a href="#follow-up-questions">추가 질문</a> : null}
+          {concepts.length ? <a href="#concepts">용어 해설</a> : null}
+          {readingPathSections.length ? <a href="#reading-path">다음 읽기</a> : null}
         </nav>
       )}
 
       <section className="knowledgeLayout">
         <div>
           <section className="knowledgeSection" id="summary">
-            <p className="eyebrow">핵심 정리</p>
-            <h2>무엇부터 확인해야 하나요?</h2>
+            <p className="eyebrow">{verifiedAnswer ? '답을 이해하기' : '빠른 답'}</p>
+            <h2>{verifiedAnswer ? '왜 그런지 핵심부터 확인합니다.' : '무엇부터 확인해야 하나요?'}</h2>
             <ul>
               {entry.key_points_ko.map(point => <li key={point}><LegalConceptText concepts={concepts} text={point} /></li>)}
             </ul>
@@ -214,36 +201,24 @@ export default async function KnowledgePage({params}: Props) {
             </div>
           </section>
 
-          <section className="knowledgeSection" id="rules">
-            <p className="eyebrow">적용 법리</p>
-            <h2>먼저 기준을 확인합니다.</h2>
-            <div className="ruleStack">
-              {rules.map(rule => {
-                const showProposition = shouldShowPublicRuleProposition(rule.proposition_ko, rule.norm.legal_effect_ko);
-                return (
-                  <article className="ruleCard" id={rule.rule_id} key={rule.rule_id}>
-                    <h3>{rule.title_ko}</h3>
-                    {showProposition ? <p><LegalConceptText concepts={concepts} text={rule.proposition_ko} /></p> : null}
-                    <dl className="normSlots">
-                      <div><dt>누가</dt><dd><LegalConceptText concepts={concepts} text={rule.norm.actor_ko} /></dd></div>
-                      <div><dt>어떤 때</dt><dd><LegalConceptText concepts={concepts} text={rule.norm.conditions_ko} /></dd></div>
-                      <div><dt>결과</dt><dd><LegalConceptText concepts={concepts} text={rule.norm.legal_effect_ko} /></dd></div>
-                    </dl>
-                  </article>
-                );
-              })}
-            </div>
-          </section>
-
           {scenarios.length ? (
             <section className="knowledgeSection" id="scenarios">
               <p className="eyebrow">결론을 가르는 사실</p>
-              <h2>내 상황은 어느 쪽입니까?</h2>
+              <h2>답을 바꿀 수 있는 사실을 먼저 확인하세요.</h2>
+              <p className="knowledgeSectionLead">
+                예·아니오·모르겠음 중 하나를 선택하면 출판된 결과 분기만
+                보여줍니다. 확인하지 못한 사실이 있으면 결론을 단정하지 않습니다.
+              </p>
               <div className="branchStack">
                 {scenarios.map((branch, scenarioIndex) => {
                   const linkedRules = scenarioRules[branch.scenario_id] ?? [];
                   return (
-                    <article className="branchCard" key={branch.scenario_id}>
+                    <article
+                      className="branchCard"
+                      id={`scenario-${branch.scenario_id}`}
+                      key={branch.scenario_id}
+                      tabIndex={-1}
+                    >
                       <KnowledgeScenarioDecision
                         contentId={entry.content_id}
                         concepts={concepts}
@@ -273,17 +248,72 @@ export default async function KnowledgePage({params}: Props) {
             </section>
           ) : null}
 
-          <section className="knowledgeSection" id="actions">
-            <p className="eyebrow">지금 할 일과 자료</p>
-            <h2>다음 순서로 준비합니다.</h2>
-            <KnowledgeActionWorkspace
-              actionSteps={entry.action_steps_ko}
+          {verifiedAnswer ? (
+            <VerifiedLegalAnswerCard
+              answer={verifiedAnswer}
               contentId={entry.content_id}
-              factsToCheck={entry.facts_to_check_ko}
+              hasAuthorityReading={Boolean(authorityReadingUnits.length)}
+              hasScenarios={Boolean(scenarios.length)}
+              revisionKey={entry.reviewed_at}
+            />
+          ) : null}
+
+          <section className="knowledgeSection" id="rules">
+            <p className="eyebrow">적용 결과와 기준</p>
+            <h2>출판된 법리의 요건과 효과를 확인합니다.</h2>
+            <div className="ruleStack">
+              {rules.map(rule => {
+                const showProposition = shouldShowPublicRuleProposition(rule.proposition_ko, rule.norm.legal_effect_ko);
+                return (
+                  <article className="ruleCard" id={rule.rule_id} key={rule.rule_id}>
+                    <h3>{rule.title_ko}</h3>
+                    {showProposition ? <p><LegalConceptText concepts={concepts} text={rule.proposition_ko} /></p> : null}
+                    <dl className="normSlots">
+                      <div><dt>누가</dt><dd><LegalConceptText concepts={concepts} text={rule.norm.actor_ko} /></dd></div>
+                      <div><dt>어떤 때</dt><dd><LegalConceptText concepts={concepts} text={rule.norm.conditions_ko} /></dd></div>
+                      <div><dt>결과</dt><dd><LegalConceptText concepts={concepts} text={rule.norm.legal_effect_ko} /></dd></div>
+                    </dl>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+
+          <div id="sources">
+            {authorityReadingUnits.length ? (
+              <AuthorityReadingSection
+                asOf={authorityAsOf}
+                claims={verifiedAnswer?.claims}
+                concepts={concepts}
+                views={authorityReadingUnits}
+              />
+            ) : (
+              <KnowledgeSourceEvidence
+                claims={verifiedAnswer?.claims}
+                sources={sources}
+              />
+            )}
+          </div>
+
+          <section className="knowledgeSection" id="actions">
+            <p className="eyebrow">증거·기한·행동</p>
+            <h2>확인할 자료와 다음 행동을 한 번에 정리합니다.</h2>
+            <KnowledgeActionWorkspace
+              actionItems={launchJourney.actionItems}
+              contentId={entry.content_id}
+              deadlines={launchJourney.deadlines}
+              evidenceItems={launchJourney.evidenceItems}
+              factsToCheck={launchJourney.factsToCheck}
               revisionKey={entry.reviewed_at}
             />
             <p><b>주의할 점</b> · {entry.caution_ko}</p>
           </section>
+
+          <KnowledgeFollowUpQuestions
+            contentId={entry.content_id}
+            revisionKey={entry.reviewed_at}
+            scenarios={scenarios}
+          />
         </div>
 
         <aside className="knowledgeAside">
@@ -309,24 +339,27 @@ export default async function KnowledgePage({params}: Props) {
               <a href={entry.lawyer_workspace_entry.href}>왜 변호사만 사용할 수 있나요? <span aria-hidden="true">→</span></a>
             </section>
           ) : null}
-          <section className="knowledgeSources" id="sources">
-            <h2>공식 근거</h2>
-            <p className={styles.sourcesIntro}>원문 주소와 마지막 확인일을 함께 표시합니다.</p>
-            {sources.map(source => (
-              <a className={styles.sourceLink} href={browserOfficialSourceUrl(source) ?? source.official_url} key={source.coordinate_id} rel="noopener noreferrer" target="_blank">
-                <span>{sourceLabel(source)} 원문 (새 탭) <span aria-hidden="true">↗</span></span>
-                <small>원문 확인 {formatDate(source.last_verified_at)}</small>
-              </a>
-            ))}
-          </section>
         </aside>
       </section>
 
-      <AuthorityReadingSection
-        asOf={authorityAsOf}
-        concepts={concepts}
-        views={authorityReadingUnits}
-      />
+      {relatedChangeBriefs.length ? (
+        <section aria-labelledby="knowledge-change-heading" className={styles.relatedChanges}>
+          <div>
+            <p className="eyebrow">이 질문과 관련된 법령 변화</p>
+            <h2 id="knowledge-change-heading">현재 적용 상태와 달라진 내용을 함께 확인하세요.</h2>
+          </div>
+          <div className={styles.relatedChangeList}>
+            {relatedChangeBriefs.map(brief => (
+              <a href={`/ko/changes/${brief.slug}`} key={brief.change_brief_id}>
+                <span className={`lifecycle ${brief.lifecycle}`}>{changeLifecycleLabel(brief.lifecycle)}</span>
+                <time dateTime={brief.effective_date}>{formatKoreanLegalDate(brief.effective_date)}</time>
+                <strong>{brief.title_ko}</strong>
+                <small>개정 전후와 적용 경계 보기 <span aria-hidden="true">→</span></small>
+              </a>
+            ))}
+          </div>
+        </section>
+      ) : null}
       <PublicAdvertisingPlaceholder placement="knowledge-after-sources-and-authority" />
       <KnowledgeReadingPath currentTitle={entry.title_ko} sections={readingPathSections} />
       {readingPathSections.length ? (

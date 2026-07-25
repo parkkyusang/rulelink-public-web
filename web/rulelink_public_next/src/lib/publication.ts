@@ -168,7 +168,10 @@ export async function listKnowledgeSearchDocuments() {
   return buildKnowledgeSearchDocuments(knowledge, visibleContentIds);
 }
 
-export async function listKnowledgeDecisionQuestions(): Promise<Map<string, string[]>> {
+export async function listKnowledgeDecisionQuestions(): Promise<Map<string, Array<{
+  question: string;
+  scenarioId: string;
+}>>> {
   const knowledge = (await loadPublishedBundle())?.knowledge;
   if (!knowledge) return new Map();
   const scenarioById = new Map(
@@ -177,13 +180,21 @@ export async function listKnowledgeDecisionQuestions(): Promise<Map<string, stri
   return new Map(
     filterFreshPublications(knowledge.content_entries)
       .map(entry => {
-        const questions = [...new Set(entry.scenario_ids
-          .map(scenarioId => scenarioById.get(scenarioId)?.question_ko)
-          .filter((value): value is string => Boolean(value?.trim()))
-          .map(value => value.trim()))];
+        const questions = entry.scenario_ids.flatMap(scenarioId => {
+          const question = scenarioById.get(scenarioId)?.question_ko.trim();
+          return question ? [{question, scenarioId}] : [];
+        }).filter((value, index, values) => (
+          values.findIndex(candidate => (
+            candidate.question === value.question
+            && candidate.scenarioId === value.scenarioId
+          )) === index
+        ));
         return questions.length ? [entry.content_id, questions] as const : null;
       })
-      .filter((value): value is readonly [string, string[]] => Boolean(value)),
+      .filter((value): value is readonly [string, Array<{
+        question: string;
+        scenarioId: string;
+      }>] => Boolean(value)),
   );
 }
 

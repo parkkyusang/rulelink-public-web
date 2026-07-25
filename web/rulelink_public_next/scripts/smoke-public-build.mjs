@@ -3,7 +3,6 @@ import path from 'node:path';
 import {spawn} from 'node:child_process';
 import {once} from 'node:events';
 
-import {selectHomepageKnowledge} from '../src/lib/homepage-knowledge-selection.ts';
 import {resolvePublicTrustConfig} from '../src/lib/public-trust.ts';
 import {resolvePublicPrivacyConfig} from '../src/lib/public-data-practices.ts';
 
@@ -67,9 +66,10 @@ try {
     const privacyResponse = await fetch(`${baseUrl}/ko/privacy`, {redirect: 'manual'});
     assert(privacyResponse.status === 404, `비활성 개인정보 처리방침은 404여야 합니다: ${privacyResponse.status}`);
   }
-  for (const entry of selectHomepageKnowledge(bundle.knowledge?.content_entries ?? [], 6)) {
-    assert(homeHtml.includes(`href="/ko/knowledge/${entry.slug}"`), `홈에서 공개 지식이 노출되지 않습니다: ${entry.slug}`);
-  }
+  assert(
+    homeHtml.includes('action="/ko/search"') && homeHtml.includes('name="q"'),
+    '홈의 주 입구가 상황 검색으로 연결되지 않습니다.',
+  );
   for (const hub of bundle.knowledge?.topic_hubs ?? []) {
     const hubHref = `href="/ko/hubs/${hub.slug}"`;
     const hrefIndex = homeHtml.indexOf(hubHref);

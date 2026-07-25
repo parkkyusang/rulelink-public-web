@@ -37,6 +37,7 @@ export type SiteSearchDocument = {
   reviewedAt: string;
   expiresAt: string;
   evidenceLabels: string[];
+  decisionIds?: string[];
   fields: {
     searchIntent: string[];
     audience: string[];
@@ -57,6 +58,7 @@ type SiteSearchScoringFields = {
 
 export type RankedSiteSearchResult = SiteSearchDocument & {
   decisionQuestion?: string;
+  decisionScenarioId?: string;
   score: number;
   matchReasons: SiteSearchMatchReason[];
   freshnessState: 'current' | 'review_due';
@@ -190,7 +192,10 @@ export function buildSiteSearchDocuments(
   knowledgeDocuments: readonly PublicKnowledgeSearchDocument[],
   topics: readonly PublicTopic[],
   labels: Labels,
-  knowledgeDecisionQuestions: ReadonlyMap<string, readonly string[]> = new Map(),
+  knowledgeDecisionQuestions: ReadonlyMap<string, readonly {
+    question: string;
+    scenarioId: string;
+  }[]> = new Map(),
 ): SiteSearchDocument[] {
   const topicByCardId = new Map<string, PublicTopic[]>();
   for (const topic of topics) {
@@ -246,7 +251,7 @@ export function buildSiteSearchDocuments(
         evidenceLabels: document.evidence_labels_ko,
         searchIntent: entry.search_intents_ko,
         audience: [entry.audience_situation_ko],
-        decision: [...(knowledgeDecisionQuestions.get(entry.content_id) ?? [])],
+        decisionTargets: [...(knowledgeDecisionQuestions.get(entry.content_id) ?? [])],
         detail: [contentType, ...document.search_terms_ko],
       });
     }),
@@ -356,9 +361,17 @@ function siteSearchDocument(value: {
   searchIntent?: string[];
   audience?: string[];
   decision?: string[];
+  decisionTargets?: Array<{
+    question: string;
+    scenarioId: string;
+  }>;
   detail?: string[];
 }): SiteSearchDocument {
-  const decision = uniqueNonEmpty(value.decision ?? []);
+  const decisionTargets = value.decisionTargets ?? [];
+  const decision = uniqueNonEmpty([
+    ...(value.decision ?? []),
+    ...decisionTargets.map(target => target.question),
+  ]);
   return {
     id: value.id,
     kind: value.kind,
@@ -369,6 +382,9 @@ function siteSearchDocument(value: {
     reviewedAt: value.reviewedAt,
     expiresAt: value.expiresAt,
     evidenceLabels: uniqueNonEmpty(value.evidenceLabels ?? []),
+    ...(decisionTargets.length ? {
+      decisionIds: decisionTargets.map(target => target.scenarioId),
+    } : {}),
     fields: {
       searchIntent: uniqueNonEmpty(value.searchIntent ?? []),
       audience: uniqueNonEmpty(value.audience ?? []),
@@ -436,6 +452,9 @@ function scoreDocument(
     normalizedQuery,
     queryTokens,
   ) ?? scoringFields.decision[0];
+  const decisionScenarioId = decisionQuestion
+    ? document.decisionIds?.[scoringFields.decision.indexOf(decisionQuestion)]
+    : undefined;
   const matchReasons = buildMatchReasons(
     scoringFields,
     normalizedQuery,
@@ -447,6 +466,7 @@ function scoreDocument(
   return {
     ...document,
     ...(decisionQuestion ? {decisionQuestion} : {}),
+    ...(decisionScenarioId ? {decisionScenarioId} : {}),
     score,
     matchReasons,
     freshnessState: isPublicationFresh(

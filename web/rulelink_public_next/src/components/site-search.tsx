@@ -184,7 +184,9 @@ export function SiteSearch({
                 className={styles.result}
                 data-search-result-id={result.id}
                 data-search-result-kind={result.kind}
-                href={result.href}
+                href={result.decisionScenarioId
+                  ? `${result.href}#scenario-${result.decisionScenarioId}`
+                  : result.href}
                 key={`${result.kind}-${result.id}`}
               >
                 <div className={styles.resultMeta}>

@@ -2,16 +2,19 @@ import {AuthorityFragmentController} from '@/components/authority-fragment-contr
 import {AuthorityReadingCard} from '@/components/authority-reading-card';
 
 import type {AuthorityReadingView} from '@/lib/authority-reading';
+import type {LegalAnswerClaim} from '@/types/legal-answer-packet';
 import type {PublicConceptCard} from '@/types/publication';
 
 import styles from './authority-reading-section.module.css';
 
 export function AuthorityReadingSection({
   asOf,
+  claims = [],
   concepts,
   views,
 }: {
   asOf: string | null;
+  claims?: readonly LegalAnswerClaim[];
   concepts: PublicConceptCard[];
   views: readonly AuthorityReadingView[];
 }) {
@@ -40,6 +43,10 @@ export function AuthorityReadingSection({
       <div className={styles.grid}>
         {views.map((view, index) => (
           <AuthorityReadingCard
+            claims={claims.filter(claim => claim.authority_refs.some(reference => (
+              reference.authority_reading_unit_id === view.authorityReadingUnitId
+              || reference.source_coordinate_id === view.source.coordinate_id
+            )))}
             concepts={concepts}
             key={view.authorityReadingUnitId}
             primary={index === 0}

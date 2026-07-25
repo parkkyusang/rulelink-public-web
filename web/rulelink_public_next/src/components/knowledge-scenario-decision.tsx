@@ -1,13 +1,15 @@
 'use client';
 
-import {useEffect, useMemo, useState} from 'react';
+import {useEffect, useState} from 'react';
 
 import {LegalConceptText} from '@/components/legal-concept-text';
+import {
+  KNOWLEDGE_SCENARIO_CHANGE_EVENT,
+  type KnowledgeScenarioAnswer,
+} from '@/lib/knowledge-scenario-state';
 import type {PublicConceptCard} from '@/types/publication';
 
 import styles from './knowledge-scenario-decision.module.css';
-
-type ScenarioAnswer = 'yes' | 'no' | 'unknown';
 
 type Props = {
   contentId: string;
@@ -30,40 +32,25 @@ export function KnowledgeScenarioDecision({
   scenarioId,
   trueOutcome,
 }: Props) {
-  const storageKey = useMemo(
-    () => ['rulelink-scenario-v1', contentId, revisionKey, scenarioId].join(':'),
-    [contentId, revisionKey, scenarioId],
-  );
-  const [answer, setAnswer] = useState<ScenarioAnswer | null>(null);
+  const [answer, setAnswer] = useState<KnowledgeScenarioAnswer | null>(null);
   const [enhanced, setEnhanced] = useState(false);
 
-  useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem(storageKey);
-      setAnswer(isScenarioAnswer(saved) ? saved : null);
-    } catch {
-      setAnswer(null);
-    } finally {
-      setEnhanced(true);
-    }
-  }, [storageKey]);
+  useEffect(() => setEnhanced(true), []);
 
-  function choose(next: ScenarioAnswer) {
+  function choose(next: KnowledgeScenarioAnswer) {
     setAnswer(next);
-    try {
-      window.localStorage.setItem(storageKey, next);
-    } catch {
-      // 저장소가 차단되어도 현재 화면의 선택 기능은 유지합니다.
-    }
+    notifyScenarioChange(next);
   }
 
   function clear() {
     setAnswer(null);
-    try {
-      window.localStorage.removeItem(storageKey);
-    } catch {
-      // 저장소가 차단되어도 현재 화면의 초기화는 유지합니다.
-    }
+    notifyScenarioChange(null);
+  }
+
+  function notifyScenarioChange(next: KnowledgeScenarioAnswer | null) {
+    window.dispatchEvent(new CustomEvent(KNOWLEDGE_SCENARIO_CHANGE_EVENT, {
+      detail: {answer: next, contentId, revisionKey, scenarioId},
+    }));
   }
 
   return (
@@ -109,11 +96,7 @@ export function KnowledgeScenarioDecision({
           <p className={styles.prompt}>답을 선택하면 이 질문에 연결된 검토 결과만 보여드립니다.</p>
         )}
       </div>
-      <p className={styles.privacy}>선택은 서버로 전송되지 않고 현재 기기에만 저장됩니다.</p>
+      <p className={styles.privacy}>선택은 이 화면에서만 유지되며 저장되거나 서버로 전송되지 않습니다.</p>
     </div>
   );
-}
-
-function isScenarioAnswer(value: string | null): value is ScenarioAnswer {
-  return value === 'yes' || value === 'no' || value === 'unknown';
 }

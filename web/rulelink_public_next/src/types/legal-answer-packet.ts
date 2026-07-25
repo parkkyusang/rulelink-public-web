@@ -362,6 +362,9 @@ export type CanonicalLegalAnswerProjection = {
   asOf: string;
   canonicalContentIds: string[];
   quickAnswer: LegalAnswerUnit[];
+  answerUnits: LegalAnswerUnit[];
+  facts: LegalAnswerFact[];
+  branches: LegalAnswerBranch[];
   claims: LegalAnswerClaim[];
   evidence: LegalAnswerEvidence[];
   actions: LegalAnswerAction[];

@@ -62,6 +62,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .homeSituationSearch button:hover {background: var(--green-dark);}
 .homeSituationSearch > p {color: var(--muted); font-size: 12px; margin: 0;}
 .homeSituationSearch a {color: var(--green); font-weight: 800;}
+.heroSearch {background: rgba(255,255,255,.98); color: var(--ink); margin-top: 34px; max-width: 820px; position: relative; z-index: 1;}
+.heroSearch > label {font-size: 15px;}
+.heroSearch > p {line-height: 1.6;}
 .entryGrid {display: grid; gap: 14px; grid-template-columns: repeat(3,1fr);}
 .entryGrid a {background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-card); display: flex; flex-direction: column; min-height: 250px; padding: 25px; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;}
 .entryGrid a:hover {border-color: #9bb8a8; box-shadow: var(--shadow-card); transform: translateY(-2px);}
@@ -192,19 +195,25 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .knowledgeHero {border-bottom: 1px solid var(--line); padding: 68px 0 44px;}
 .knowledgeHero h1 {font-size: clamp(38px,6vw,61px); letter-spacing: -.055em; line-height: 1.16; margin: 0 0 24px;}
 .knowledgeHero > p:not(.eyebrow) {color: var(--muted); font-size: 20px; line-height: 1.7; max-width: 820px;}
+.answerUnitList {display: grid; gap: 8px; margin: 18px 0;}
+.answerUnitList > div {background: var(--surface-soft); border-radius: 11px; padding: 13px 15px;}
+.answerUnitList dt {color: var(--green); font-size: 11px; font-weight: 800; margin-bottom: 5px;}
+.answerUnitList dd {line-height: 1.65; margin: 0;}
 .audienceBadge {background: var(--mint); border-radius: 999px; color: var(--green); display: inline-flex; font-size: 12px; font-weight: 750; margin-top: 18px; padding: 8px 12px;}
 .knowledgeSectionNav {align-items: center; backdrop-filter: blur(14px); background: rgba(255,255,255,.9); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 10px 30px rgba(20,55,40,.07); display: flex; flex-wrap: wrap; gap: 5px; margin-top: 18px; padding: 7px; position: sticky; top: 10px; z-index: 5;}
 .knowledgeSectionNav > span {color: var(--muted); flex: 0 0 auto; font-size: 11px; font-weight: 800; letter-spacing: .04em; padding: 9px 10px;}
 .knowledgeSectionNav a, .knowledgeSectionNav button {background: transparent; border: 0; border-radius: 9px; color: var(--muted); cursor: pointer; flex: 0 0 auto; font: inherit; font-size: 12px; font-weight: 750; padding: 9px 11px;}
 .knowledgeSectionNav a:hover, .knowledgeSectionNav button:hover {background: var(--mint); color: var(--green);}
 .knowledgeSectionNav button:focus-visible {outline: 2px solid var(--green); outline-offset: 1px;}
-.knowledgeLayout {display: grid; gap: 52px; grid-template-columns: minmax(0,1.7fr) minmax(270px,.75fr); padding-top: 20px;}
+.knowledgeLayout {display: grid; gap: 52px; grid-template-columns: minmax(0,1fr); padding-top: 20px;}
 .knowledgeSection {border-bottom: 1px solid var(--line); padding: 38px 0; scroll-margin-top: 82px;}
 .ruleCard[id] {scroll-margin-top: 82px;}
 .knowledgeSection h2 {font-size: 29px; letter-spacing: -.04em; margin: 0 0 24px;}
 .ruleStack, .branchStack {display: grid; gap: 14px;}
 .ruleCard, .branchCard {background: var(--white); border: 1px solid var(--line); border-radius: 17px; padding: 25px;}
 .ruleCard h3, .branchCard h3 {font-size: 21px; margin: 0 0 12px;}
+.branchCard[tabindex="-1"]:focus {box-shadow: 0 0 0 4px rgba(33,112,78,.2); outline: 2px solid var(--green); outline-offset: 3px;}
+.knowledgeSectionLead {color: var(--muted); line-height: 1.7; max-width: 780px;}
 .ruleCard > p {color: var(--muted); line-height: 1.7;}
 .normSlots {display: grid; gap: 1px; grid-template-columns: repeat(3,1fr); margin: 22px 0 0; overflow: visible;}
 .normSlots div {background: #f5f8f6; min-width: 0; padding: 15px; position: relative;}
@@ -215,7 +224,19 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .branchOutcomes {display: grid; gap: 10px; grid-template-columns: 1fr 1fr; margin-top: 20px;}
 .branchOutcomes p {background: #f5f8f6; border-radius: 11px; line-height: 1.6; margin: 0; padding: 15px;}
 .branchOutcomes b {color: var(--green); display: block; font-size: 11px; margin-bottom: 7px;}
-.knowledgeAside {align-self: start; padding-top: 38px; position: sticky; top: 76px;}
+.knowledgeAside {align-self: start; display: grid; gap: 18px; grid-template-columns: repeat(auto-fit,minmax(min(280px,100%),1fr)); padding-top: 18px; position: static;}
+.claimConnectionList {display: grid; gap: 10px; margin-top: 20px;}
+.claimConnectionList > article {border-left: 3px solid var(--green); padding: 12px 15px;}
+.claimConnectionList > article > span {color: var(--green); font-size: 10px; font-weight: 850;}
+.claimConnectionList h3 {font-size: 16px; line-height: 1.55; margin: 5px 0 10px;}
+.claimConnectionList dl {display: grid; gap: 7px; margin: 0;}
+.claimConnectionList dl > div {display: grid; gap: 8px; grid-template-columns: 42px minmax(0,1fr);}
+.claimConnectionList dt {color: var(--muted); font-size: 11px; font-weight: 800;}
+.claimConnectionList dd {display: flex; flex-wrap: wrap; gap: 6px; margin: 0;}
+.claimConnectionList dd > a, .claimConnectionList dd > span {background: var(--surface-soft); border-radius: 999px; font-size: 11px; line-height: 1.45; padding: 5px 8px;}
+.claimConnectionList dd > a {color: var(--green); font-weight: 800;}
+.claimConnectionList > p {color: var(--muted); font-size: 12px;}
+#sources {scroll-margin-top: 84px;}
 
 .lawyerWorkspacePanel {background: var(--green-dark); border-radius: 18px; color: white; padding: 24px;}
 .lawyerWorkspacePanel h2 {font-size: 21px; line-height: 1.45; margin: 0 0 12px;}

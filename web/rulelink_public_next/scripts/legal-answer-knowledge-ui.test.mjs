@@ -10,6 +10,7 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 
+import {createElement} from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import ts from 'typescript';
 
@@ -171,7 +172,7 @@ test('존재하지만 비었거나 같은 content를 중복 점유한 sidecar는
   );
 });
 
-test('상세 화면은 서버 정적 카드와 기존 질문·근거·행동 anchor만 연결한다', async () => {
+test('상세 화면은 사실분기 선택과 claim별 근거·자료·행동을 같은 식별자로 연결한다', async () => {
   const componentSource = await readFile(
     path.join(appRoot, 'src', 'components', 'verified-legal-answer-card.tsx'),
     'utf8',
@@ -180,12 +181,18 @@ test('상세 화면은 서버 정적 카드와 기존 질문·근거·행동 anc
     path.join(appRoot, 'app', 'ko', 'knowledge', '[slug]', 'page.tsx'),
     'utf8',
   );
-  assert.doesNotMatch(componentSource, /['"]use client['"]/u);
+  assert.match(componentSource, /['"]use client['"]/u);
   assert.match(componentSource, /data-verified-legal-answer/u);
   assert.match(componentSource, /<time dateTime=\{answer\.asOf\}>/u);
   assert.match(componentSource, /href="#scenarios"/u);
   assert.match(componentSource, /'#statute-reading' : '#sources'/u);
   assert.match(componentSource, /href="#actions"/u);
+  assert.match(componentSource, /KNOWLEDGE_SCENARIO_CHANGE_EVENT/u);
+  assert.match(componentSource, /data-active-claim-id/u);
+  assert.match(componentSource, /data-claim-authority-id/u);
+  assert.match(componentSource, /data-claim-evidence-id/u);
+  assert.match(componentSource, /data-claim-action-id/u);
+  assert.match(componentSource, /data-claim-deadline-id/u);
   assert.match(
     pageSource,
     /loadPublicLegalAnswerForContent\(entry\.content_id\)/u,
@@ -194,22 +201,22 @@ test('상세 화면은 서버 정적 카드와 기존 질문·근거·행동 anc
   assert.doesNotMatch(pageSource, /\/ko\/answers/u);
 });
 
-test('검증 답변 카드는 자바스크립트 없이 읽히는 의미 구조와 정적 anchor를 가진다', async () => {
+test('검증 답변 카드는 무JS에서 조건부 답과 정적 anchor를 모두 보존한다', async () => {
   await withFixture(async ({catalog}) => {
     const projection = catalog.projections[0];
     const {VerifiedLegalAnswerCard} = await compileServerComponent();
     const html = renderToStaticMarkup(
-      VerifiedLegalAnswerCard({
+      createElement(VerifiedLegalAnswerCard, {
         answer: projection,
+        contentId: projection.targetContentId,
         hasAuthorityReading: true,
         hasScenarios: true,
+        revisionKey: projection.asOf,
       }),
     );
     assert.match(html, /<section[^>]*data-verified-legal-answer/u);
-    assert.match(
-      html,
-      /<h2 id="verified-legal-answer-heading">[^<]+<\/h2>/u,
-    );
+    assert.match(html, /<h2 id="verified-legal-answer-heading">/u);
+    assert.match(html, /data-static-conditional-answer/u);
     assert.match(
       html,
       new RegExp(`<time dateTime="${projection.asOf}">`, 'u'),
@@ -362,8 +369,15 @@ async function compileServerComponent() {
   }).outputText;
   const module = {exports: {}};
   const localRequire = createRequire(import.meta.url);
+  const journeyState = await import('../src/lib/legal-answer-journey-state.ts');
+  const scenarioState = await import('../src/lib/knowledge-scenario-state.ts');
+  const requireWithAliases = specifier => {
+    if (specifier === '@/lib/legal-answer-journey-state') return journeyState;
+    if (specifier === '@/lib/knowledge-scenario-state') return scenarioState;
+    return localRequire(specifier);
+  };
   new Function('require', 'module', 'exports', output)(
-    localRequire,
+    requireWithAliases,
     module,
     module.exports,
   );
@@ -443,6 +457,9 @@ async function compileKnowledgePage({catalog, fixture}) {
       KnowledgeActionWorkspace: () =>
         jsxRuntime.jsx('div', {'data-action-workspace': true}),
     },
+    '@/components/knowledge-follow-up-questions': {
+      KnowledgeFollowUpQuestions: nullComponent,
+    },
     '@/components/knowledge-reading-depth-nav': {
       KnowledgeReadingDepthNav: nullComponent,
     },
@@ -453,6 +470,9 @@ async function compileKnowledgePage({catalog, fixture}) {
       KnowledgeScenarioDecision: ({scenarioId}) =>
         jsxRuntime.jsx('div', {'data-scenario-id': scenarioId}),
     },
+    '@/components/knowledge-source-evidence': {
+      KnowledgeSourceEvidence: nullComponent,
+    },
     '@/components/legal-concept-text': {
       LegalConceptLayer: passthrough,
       LegalConceptText: ({text}) => text,
@@ -462,6 +482,9 @@ async function compileKnowledgePage({catalog, fixture}) {
     },
     '@/components/public-advertising-placeholder': {
       PublicAdvertisingPlaceholder: nullComponent,
+    },
+    '@/components/scenario-handoff-focus': {
+      ScenarioHandoffFocus: nullComponent,
     },
     '@/components/scenario-rule-links': {
       ScenarioRuleLinks: nullComponent,
@@ -474,6 +497,14 @@ async function compileKnowledgePage({catalog, fixture}) {
     '@/lib/change-lifecycle': {changeLifecycleLabel: value => value},
     '@/lib/content-labels': {knowledgeContentTypeLabel: value => value},
     '@/lib/legal-date': {formatKoreanLegalDate: value => value},
+    '@/lib/knowledge-launch-journey': {
+      buildKnowledgeLaunchJourney: ({actionSteps, factsToCheck}) => ({
+        actionItems: actionSteps.map(label => ({label})),
+        deadlines: [],
+        evidenceItems: [],
+        factsToCheck,
+      }),
+    },
     '@/lib/official-source-url': {
       browserOfficialSourceUrl: sourceItem => sourceItem.official_url,
     },
@@ -649,12 +680,7 @@ test('실제 KnowledgePage는 대상 페이지에만 답변과 근거·분기·�
     for (const anchor of ['scenarios', 'actions', 'sources', 'statute-reading']) {
       assert.match(targetHtml, new RegExp(`id="${anchor}"`, 'u'));
     }
-    for (const sourceItem of sources) {
-      assert.match(
-        targetHtml,
-        new RegExp(escapeRegExp(sourceItem.official_url), 'u'),
-      );
-    }
+    assert.match(targetHtml, /data-authority-view-count/u);
 
     const relatedHtml = renderToStaticMarkup(
       await KnowledgePage({

@@ -54,22 +54,22 @@ export function KnowledgeHubDirectory({hubs}: {hubs: HubSummary[]}) {
     >
       <div className={styles.heading}>
         <div>
-          <p className="eyebrow">상황별 법률 주제</p>
-          <h3 id="knowledge-hub-heading">어떤 일로 찾아오셨나요?</h3>
+          <p className="eyebrow">보조 탐색</p>
+          <h3 id="knowledge-hub-heading">생활영역에서 고르기</h3>
           <p>
-            법 이름을 몰라도 생활영역을 고르거나 겪은 일을 검색할 수
-            있습니다.
+            검색어가 떠오르지 않을 때 영역을 펼쳐 가까운 안내를 찾습니다.
           </p>
         </div>
-        <span>{hubs.length}개 주제</span>
+        <span>7개 생활영역 · {hubs.length}개 주제</span>
       </div>
 
       {enhanced ? (
         <div className={styles.controls}>
-          <label htmlFor="knowledge-hub-search">상황별 주제 검색</label>
+          <label htmlFor="knowledge-hub-search">이 목록 안에서 좁혀 찾기</label>
           <div className={styles.searchRow}>
             <span aria-hidden="true">⌕</span>
             <input
+              aria-label="상황별 주제 검색"
               aria-describedby="knowledge-hub-search-hint"
               id="knowledge-hub-search"
               onChange={event => setQuery(event.target.value)}
@@ -79,7 +79,7 @@ export function KnowledgeHubDirectory({hubs}: {hubs: HubSummary[]}) {
             />
             {query ? (
               <button
-                aria-label="상황별 주제 검색어 지우기"
+              aria-label="상황별 주제 검색어 지우기"
                 onClick={() => setQuery('')}
                 type="button"
               >
@@ -106,7 +106,7 @@ export function KnowledgeHubDirectory({hubs}: {hubs: HubSummary[]}) {
       ) : null}
 
       <nav
-        aria-label="상황별 법률 주제"
+        aria-label="생활영역별 법률 안내"
         className={styles.categories}
         id="knowledge-hub-directory"
       >

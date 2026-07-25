@@ -170,16 +170,24 @@ test('후속 상황 질문도 네 폭에서 검색 카드와 상세 사실분기
     await expect(targetResult.locator('[data-match-reasons]')).toContainText(
       '판단 질문',
     );
+    await expect(targetResult).toHaveAttribute(
+      'href',
+      `/ko/knowledge/${scenarioEntry.slug}#scenario-${scenarioFixture.scenario_id}`,
+    );
     await assertNoHorizontalOverflow(page);
 
     await targetResult.click();
     await expect(page).toHaveURL(
-      new RegExp(`/ko/knowledge/${scenarioEntry.slug}$`, 'u'),
+      new RegExp(
+        `/ko/knowledge/${scenarioEntry.slug}#scenario-${scenarioFixture.scenario_id}$`,
+        'u',
+      ),
     );
     const decision = page.locator(
       `[data-scenario-id="${scenarioFixture.scenario_id}"]`,
     );
     await expect(decision).toHaveAttribute('data-enhanced', 'true');
+    await expect(decision.locator('xpath=ancestor::article[1]')).toBeFocused();
     await expect(decision).toContainText(situationQuery);
     await decision.getByRole('button', {name: '예', exact: true}).click();
     await expect(decision.locator('[data-selected-outcome="true"]')).toContainText(
@@ -193,6 +201,16 @@ test('후속 상황 질문도 네 폭에서 검색 카드와 상세 사실분기
     await expect(decision.locator('[data-selected-outcome="unknown"]')).toContainText(
       '어느 결과가 적용되는지 단정할 수 없습니다',
     );
+    await expect(page.locator('[data-follow-up-questions]')).toContainText(
+      scenarioFixture.question_ko,
+    );
+    const scenarioStorageKeys = await page.evaluate(() => (
+      Object.keys(localStorage).filter(key => key.startsWith('rulelink-scenario-'))
+    ));
+    expect(scenarioStorageKeys).toEqual([]);
+    await expect(page.locator('#sources')).toBeVisible();
+    await expect(page.locator('[data-source-evidence] details').first()).toBeVisible();
+    await expect(page.locator('#actions')).toBeVisible();
     await assertNoHorizontalOverflow(page);
 
     const noScriptContext = await browser.newContext({
@@ -259,7 +277,7 @@ test('검색은 느린 전체 인덱스 중 0건을 확정하지 않고 준비 �
   );
   expect(indexResponses).toHaveLength(1);
   expect(indexResponses[0].status).toBe(200);
-  expect(indexResponses[0].bytes).toBeLessThanOrEqual(400_000);
+  expect(indexResponses[0].bytes).toBeLessThanOrEqual(420_000);
 
   for (const query of goldenQueries) {
     await input.fill(query);

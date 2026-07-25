@@ -3,15 +3,18 @@ import {AuthorityTimeBadge} from '@/components/authority-time-badge';
 import {LegalConceptText} from '@/components/legal-concept-text';
 
 import type {AuthorityReadingView} from '@/lib/authority-reading';
+import type {LegalAnswerClaim} from '@/types/legal-answer-packet';
 import type {PublicConceptCard} from '@/types/publication';
 
 import styles from './authority-reading-section.module.css';
 
 export function AuthorityReadingCard({
+  claims = [],
   concepts,
   primary = false,
   view,
 }: {
+  claims?: readonly LegalAnswerClaim[];
   concepts: PublicConceptCard[];
   primary?: boolean;
   view: AuthorityReadingView;
@@ -22,6 +25,7 @@ export function AuthorityReadingCard({
       data-authority-id={view.authorityReadingUnitId}
       data-primary={primary ? 'true' : undefined}
       data-source-kind="statute"
+      id={`authority-${view.authorityReadingUnitId}`}
     >
       <details
         className={styles.cardDisclosure}
@@ -37,6 +41,18 @@ export function AuthorityReadingCard({
           <AuthorityTimeBadge label={view.timeLabelKo} state={view.timeState} />
         </summary>
         <div className={styles.cardBody}>
+          {claims.length ? (
+            <section
+              aria-label={`${view.titleKo}가 뒷받침하는 답변`}
+              className={styles.claims}
+              data-authority-claims
+            >
+              <h4>이 근거가 뒷받침하는 내용</h4>
+              <ul>
+                {claims.map(claim => <li key={claim.claim_id}>{claim.statement_ko}</li>)}
+              </ul>
+            </section>
+          ) : null}
           <section aria-label={`${view.titleKo} 쉬운 조문 지도`} className={styles.plainMap}>
             <h4>쉬운 조문 지도</h4>
             <ol>

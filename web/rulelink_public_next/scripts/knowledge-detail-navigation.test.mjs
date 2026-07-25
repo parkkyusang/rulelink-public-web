@@ -41,7 +41,7 @@ test('긴 생활법률 상세 화면은 핵심 법리부터 공식 근거까지 
   assert.match(knowledgeSectionNavRule, /flex-wrap:\s*wrap/);
   assert.doesNotMatch(knowledgeSectionNavRule, /overflow-x:\s*auto/);
   assert.match(css, /\.knowledgeSection[^}]*scroll-margin-top:/);
-  assert.match(css, /\.knowledgeAside[^}]*position:\s*sticky/);
+  assert.match(css, /\.knowledgeAside[^}]*position:\s*static/);
   assert.match(css, /\.ruleCard\[id\][^}]*scroll-margin-top:/);
   assert.match(css, /@media \(max-width: 800px\)[\s\S]*\.knowledgeAside\s*\{position:\s*static;/);
 });
@@ -56,13 +56,14 @@ test('사실분기는 정본 예·아니오 결과만 선택하고 모르겠음�
   for (const prop of ['scenarioId', 'question', 'decisionFact', 'trueOutcome', 'falseOutcome']) {
     assert.match(page, new RegExp(`${prop}=\\{branch\\.`));
   }
-  assert.match(component, /'yes' \| 'no' \| 'unknown'/);
+  assert.match(component, /KnowledgeScenarioAnswer/);
   assert.match(component, /예를 선택한 경우/);
   assert.match(component, /아니오를 선택한 경우/);
   assert.match(component, /아직 결론을 고르지 않습니다/);
   assert.match(component, /어느 결과가 적용되는지 단정할 수 없습니다/);
-  assert.match(component, /window\.localStorage/);
-  assert.match(component, /서버로 전송되지 않고 현재 기기에만 저장/);
+  assert.doesNotMatch(component, /window\.localStorage/);
+  assert.match(component, /저장되거나 서버로 전송되지 않습니다/);
+  assert.match(component, /KNOWLEDGE_SCENARIO_CHANGE_EVENT/);
   assert.match(component, /!enhanced[\s\S]*fallbackOutcomes/);
   assert.match(css, /\.fallbackOutcomes/);
 });
@@ -213,7 +214,7 @@ test('조문 정본이 있는 상세만 깊이 내비게이션과 법적 근거 
     page.indexOf('<AuthorityReadingSection') < page.indexOf('<KnowledgeReadingPath'),
     '법적 근거는 typed 다음 읽기보다 먼저 렌더해야 합니다.',
   );
-  assert.match(depthNav, /\{href: '#summary', id: 'summary'/);
+  assert.match(depthNav, /hasVerifiedAnswer \? '#quick-answer' : '#summary'/);
   assert.match(depthNav, /\{href: '#statute-reading', id: 'statute-reading'/);
   assert.match(depthNav, /\{href: '#case-practice', id: 'case-practice'/);
   assert.match(depthNav, /aria-current=\{currentSection === section\.id \? 'location' : undefined\}/);

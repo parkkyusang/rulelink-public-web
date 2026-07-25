@@ -1,0 +1,59 @@
+.root {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 26px;
+  scroll-margin-top: 84px;
+}
+
+.root h2 {
+  font-size: 24px;
+  letter-spacing: -.03em;
+  margin: 5px 0 10px;
+}
+
+.root > p:not(:global(.eyebrow)),
+.root noscript p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.root ul {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+}
+
+.root li a {
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  line-height: 1.55;
+  padding: 13px 15px;
+}
+
+.root li a:focus-visible,
+.nextAction:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.root li span {
+  color: var(--green);
+  flex: 0 0 auto;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.nextAction {
+  color: var(--green);
+  display: inline-flex;
+  font-weight: 800;
+  margin-top: 18px;
+}

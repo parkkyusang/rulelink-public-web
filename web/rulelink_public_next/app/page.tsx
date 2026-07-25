@@ -1,8 +1,6 @@
 import {IssueExplorer} from '@/components/issue-explorer';
 import {KnowledgeHubDirectory} from '@/components/knowledge-hub-directory';
 import {changeLifecycleLabel} from '@/lib/change-lifecycle';
-import {knowledgeContentTypeLabel} from '@/lib/content-labels';
-import {selectHomepageKnowledge} from '@/lib/homepage-knowledge-selection';
 import {formatKoreanLegalDate} from '@/lib/legal-date';
 import {
   listChangeBriefs,
@@ -25,28 +23,14 @@ export default async function HomePage() {
     listKnowledgeEntries(),
     listKnowledgeHubs(),
   ]);
-  const homepageKnowledgeEntries = selectHomepageKnowledge(knowledgeEntries, 6);
   return (
     <main>
       <section className="hero">
         <p className="eyebrow">근거가 연결되는 생활법률</p>
         <h1>법률용어가 아니라<br />내가 겪은 일에서 시작합니다.</h1>
         <p className="heroCopy">{site.description}</p>
-        <div className="trustRail" aria-label={`${site.name} 정보 원칙`}>
-          <span><b>01</b> 상황별 탐색</span>
-          <span><b>02</b> 결론을 가르는 사실</span>
-          <span><b>03</b> 근거와 다음 행동</span>
-        </div>
-      </section>
-
-      <section className="entrySection" aria-labelledby="entry-heading">
-        <div className="entryIntro">
-          <p className="eyebrow">내 상황에서 시작</p>
-          <h2 id="entry-heading">무슨 일이 있었는지 평소 말로 적어보세요.</h2>
-          <p>관련 질문과 현재 답, 결론을 바꾸는 사실, 공식 근거와 다음 행동까지 이어서 보여드립니다.</p>
-        </div>
-        <form action="/ko/search" className="homeSituationSearch" method="get" role="search">
-          <label htmlFor="home-situation-search">상황으로 법률정보 찾기</label>
+        <form action="/ko/search" className="homeSituationSearch heroSearch" method="get" role="search">
+          <label htmlFor="home-situation-search">무슨 일이 있었는지 평소 말로 적어보세요.</label>
           <div>
             <input
               id="home-situation-search"
@@ -57,39 +41,30 @@ export default async function HomePage() {
             <button type="submit">관련 질문 찾기</button>
           </div>
           <p>
-            검색 결과에는 실제로 맞은 이유를 표시합니다.
-            <a href="#knowledge"> 또는 생활영역에서 고르기</a>
+            실제로 맞은 이유와 결론을 바꾸는 사실, 공식 근거, 다음 행동을 이어서 보여드립니다.
+            <a href="#knowledge"> 생활영역에서 고르기</a>
           </p>
         </form>
+        <div className="trustRail" aria-label={`${site.name} 정보 원칙`}>
+          <span><b>01</b> 상황별 탐색</span>
+          <span><b>02</b> 결론을 가르는 사실</span>
+          <span><b>03</b> 근거와 다음 행동</span>
+        </div>
       </section>
 
       {knowledgeEntries.length ? (
         <section className="knowledgeHome" id="knowledge" aria-labelledby="knowledge-heading">
           <div className="changeIntro">
             <div>
-              <p className="eyebrow">상황별 법률 주제</p>
-              <h2 id="knowledge-heading">생활영역을 고르고, 내 질문과 가까운 글을 찾으세요.</h2>
+              <p className="eyebrow">다른 방법으로 찾기</p>
+              <h2 id="knowledge-heading">검색어가 떠오르지 않으면 생활영역에서 고르세요.</h2>
             </div>
             <p>
-              각 글에서 현재 답, 결론을 가르는 사실, 준비자료와 행동, 공식 원문을 함께 확인할 수 있습니다.
+              7개 생활영역의 모든 주제를 빠짐없이 표시합니다.
               <br /><a className="cardLink" href="/ko/knowledge">{knowledgeEntries.length}개 전체 지식에서 검색하기 →</a>
             </p>
           </div>
           <KnowledgeHubDirectory hubs={knowledgeHubs} />
-          <div className="knowledgeGrid">
-            {homepageKnowledgeEntries.map(entry => (
-              <a className="knowledgeCard" href={`/ko/knowledge/${entry.slug}`} key={entry.content_id}>
-                <span className="knowledgeMeta">
-                  <b>{knowledgeContentTypeLabel(entry.content_type)}</b>
-                  <time dateTime={entry.reviewed_at}>기준 확인 {formatReviewDate(entry.reviewed_at)}</time>
-                  <span>{entry.audience_situation_ko}</span>
-                </span>
-                <h3>{entry.title_ko}</h3>
-                <p>{entry.one_line_answer_ko}</p>
-                <strong>법리와 사실분기 보기 →</strong>
-              </a>
-            ))}
-          </div>
         </section>
       ) : null}
 
@@ -141,8 +116,4 @@ export default async function HomePage() {
       ) : null}
     </main>
   );
-}
-
-function formatReviewDate(value: string): string {
-  return new Intl.DateTimeFormat('ko-KR', {dateStyle: 'medium'}).format(new Date(value));
 }
