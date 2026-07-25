@@ -22,11 +22,32 @@ export const DEFAULT_PUBLICATION_BUNDLE_PATH = path.join(
   'bundle.json',
 );
 
+const DEFAULT_RELEASE_DESCRIPTOR_PATH = path.join(
+  appRoot,
+  'deploy',
+  'release.json',
+);
+
+const DEFAULT_PRODUCTION_QUEUE_PATH = path.join(
+  repositoryRoot,
+  'artifacts',
+  'publication',
+  'production-queue.json',
+);
+
+const DEFAULT_PRODUCTION_REGISTRY_PATH = path.join(
+  repositoryRoot,
+  'artifacts',
+  'publication',
+  'production-queue-registry.json',
+);
+
 const UNIT_REQUIRED_KEYS = [
   'coverage_unit_id',
   'question_family_id',
   'procedure_stage_id',
   'jurisdiction',
+  'as_of',
   'as_of_policy',
   'risk_level',
   'target_authority_level',
@@ -41,12 +62,38 @@ const UNIT_REQUIRED_KEYS = [
 ];
 
 const NON_EMPTY_ARRAY_KEYS = [
-  'branch_signature',
   'canonical_content_ids',
   'required_rule_ids',
   'required_scenario_ids',
   'required_source_coordinate_ids',
 ];
+
+const SHA256_PATTERN = /^[a-f0-9]{64}$/;
+const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+const TRUSTED_EVALUATOR_COMMIT =
+  '3bea0db11468757531df602d40596decf2dce78e';
+const TRUSTED_EVALUATION_SCOPE_MANIFEST_SHA256 =
+  'c2aaaba48a17bba0c9cfe74827ca21502e61403e3695c4e8342a56853c381b35';
+const TRUSTED_EVALUATION_CASE_FILE_SHA256 = new Set([
+  'bb7c3c054ec9ec7b432f9ef985c566712e8b40dea6bdaa605a1021cb400fc6a4',
+  '39a4dd5299e88ee01440158cacf4822cf84cc6467157fbe3939403b9273554be',
+]);
+const TRUSTED_EVALUATION_CASE_IDS = new Set([
+  'eval.compensation-order.eligibility.A',
+  'eval.compensation-order.eligibility.B',
+  'eval.compensation-order.agreed-amount.A',
+  'eval.compensation-order.agreed-amount.B',
+  'eval.compensation-order.dismissal.A',
+  'eval.compensation-order.dismissal.B',
+  'eval.compensation-order.deadline.A',
+  'eval.compensation-order.deadline.B',
+  'eval.compensation-order.copies.A',
+  'eval.compensation-order.copies.B',
+  'eval.compensation-order.enforcement.A',
+  'eval.compensation-order.enforcement.B',
+]);
+const TRUSTED_EVALUATION_GOLD_SHA256 =
+  '90e5422f4d914a6080e0ee362a30e82cfba579aca5308a99c9873d893ccf16f8';
 
 const ARRAY_KEYS = [
   ...NON_EMPTY_ARRAY_KEYS,
@@ -148,6 +195,45 @@ export async function loadCoverageDocuments(options = {}) {
         'authority level policy',
       ),
     ]);
+  const [evaluationScopeReceipt, releaseEvidence] = await Promise.all([
+    readJson(
+      resolveRepositoryFile(
+        manifest.evaluation_scope_receipt_file,
+        'evaluation scope receipt',
+      ),
+      'evaluation scope receipt',
+    ),
+    readJson(
+      resolveRepositoryFile(
+        manifest.release_evidence_file,
+        'coverage release evidence',
+      ),
+      'coverage release evidence',
+    ),
+  ]);
+  const releaseDescriptorPath = path.resolve(
+    options.releaseDescriptorPath ?? DEFAULT_RELEASE_DESCRIPTOR_PATH,
+  );
+  const productionQueuePath = path.resolve(
+    options.productionQueuePath ?? DEFAULT_PRODUCTION_QUEUE_PATH,
+  );
+  const productionRegistryPath = path.resolve(
+    options.productionRegistryPath ?? DEFAULT_PRODUCTION_REGISTRY_PATH,
+  );
+  const [
+    releaseDescriptorBytes,
+    productionQueueBytes,
+    productionRegistryBytes,
+  ] = await Promise.all([
+    readFile(releaseDescriptorPath),
+    readFile(productionQueuePath),
+    readFile(productionRegistryPath),
+  ]);
+  const releaseDescriptor = JSON.parse(releaseDescriptorBytes.toString('utf8'));
+  const productionQueue = JSON.parse(productionQueueBytes.toString('utf8'));
+  const productionRegistry = JSON.parse(
+    productionRegistryBytes.toString('utf8'),
+  );
   const domains = [];
   for (const filename of manifest.domain_files ?? []) {
     domains.push(
@@ -162,9 +248,17 @@ export async function loadCoverageDocuments(options = {}) {
     bundle,
     bundleSha256: bytesSha256(bundleBytes),
     domains,
+    evaluationScopeReceipt,
     manifest,
+    productionQueue,
+    productionQueueSha256: bytesSha256(productionQueueBytes),
+    productionRegistry,
+    productionRegistrySha256: bytesSha256(productionRegistryBytes),
     procedureCatalog,
     questionCatalog,
+    releaseDescriptor,
+    releaseDescriptorSha256: bytesSha256(releaseDescriptorBytes),
+    releaseEvidence,
   };
 }
 
@@ -215,6 +309,194 @@ function missingReferences(values, available) {
 
 function safeArray(value) {
   return Array.isArray(value) ? value : [];
+}
+
+function textSha256(value) {
+  return createHash('sha256').update(String(value ?? ''), 'utf8').digest('hex');
+}
+
+function validateBranchSignature(unit, scenarioById, label, errors) {
+  const signatures = unit.branch_signature;
+  if (!Array.isArray(signatures)) {
+    errors.push(`${label}:branch_signature:array_required`);
+    return {closed: false, invalid: ['array_required']};
+  }
+  if (signatures.length === 0) {
+    errors.push(`${label}:branch_signature:non_empty_required`);
+  }
+  const invalid = [];
+  const scenarioIds = [];
+  for (const [index, signature] of signatures.entries()) {
+    const signatureLabel = `${label}:branch_signature:${index}`;
+    if (!isRecord(signature)) {
+      errors.push(`${signatureLabel}:object_required`);
+      invalid.push(`${index}:object_required`);
+      continue;
+    }
+    const expectedKeys = [
+      'decision_fact_sha256',
+      'scenario_id',
+      'when_false_sha256',
+      'when_true_sha256',
+    ];
+    if (Object.keys(signature).sort().join(',') !== expectedKeys.join(',')) {
+      errors.push(`${signatureLabel}:fields_invalid`);
+    }
+    scenarioIds.push(signature.scenario_id);
+    const scenario = scenarioById.get(signature.scenario_id);
+    if (!scenario) {
+      errors.push(`${signatureLabel}:scenario_missing:${signature.scenario_id}`);
+      invalid.push(`${signature.scenario_id}:missing`);
+      continue;
+    }
+    for (const [field, scenarioField] of [
+      ['decision_fact_sha256', 'decision_fact_ko'],
+      ['when_true_sha256', 'when_true_ko'],
+      ['when_false_sha256', 'when_false_ko'],
+    ]) {
+      if (!SHA256_PATTERN.test(signature[field] ?? '')) {
+        errors.push(`${signatureLabel}:${field}:sha256_required`);
+        invalid.push(`${signature.scenario_id}:${field}:invalid`);
+        continue;
+      }
+      const actual = textSha256(scenario[scenarioField]);
+      if (signature[field] !== actual) {
+        errors.push(
+          `${signatureLabel}:${field}:mismatch:${signature[field]}:${actual}`,
+        );
+        invalid.push(`${signature.scenario_id}:${field}:mismatch`);
+      }
+    }
+  }
+  for (const duplicate of duplicateValues(scenarioIds)) {
+    errors.push(`${label}:branch_signature:duplicate_scenario:${duplicate}`);
+  }
+  const requiredScenarioIds = [...new Set(safeArray(unit.required_scenario_ids))]
+    .sort();
+  const signedScenarioIds = [...new Set(scenarioIds)].sort();
+  if (canonicalJson(requiredScenarioIds) !== canonicalJson(signedScenarioIds)) {
+    errors.push(`${label}:branch_signature:scenario_set_mismatch`);
+    invalid.push('scenario_set_mismatch');
+  }
+  return {
+    closed: signatures.length > 0 && invalid.length === 0,
+    invalid,
+  };
+}
+
+function evaluationScopeState(unit, evaluationScopeReceipt) {
+  const receiptCaseIds = new Set(safeArray(evaluationScopeReceipt?.case_ids));
+  const declaredCaseIds = safeArray(unit.evaluation_case_ids);
+  const missing = declaredCaseIds.filter((caseId) => !receiptCaseIds.has(caseId));
+  const verifiedResultIds = new Set(
+    safeArray(evaluationScopeReceipt?.verified_result_receipts).map(
+      (receipt) => receipt?.case_id,
+    ),
+  );
+  return {
+    bound: declaredCaseIds.length === 0 || missing.length === 0,
+    boundCaseCount: declaredCaseIds.length - missing.length,
+    missing,
+    verifiedResultCount: declaredCaseIds.filter((caseId) =>
+      verifiedResultIds.has(caseId),
+    ).length,
+  };
+}
+
+function dateWithinPeriod(asOf, effectiveFrom, effectiveTo) {
+  if (!DATE_PATTERN.test(asOf ?? '') || !DATE_PATTERN.test(effectiveFrom ?? '')) {
+    return false;
+  }
+  return asOf >= effectiveFrom && (!effectiveTo || asOf < effectiveTo);
+}
+
+function authorityTemporalState(unit, bindingById, authorityReadingById) {
+  const requiredSources = new Set(safeArray(unit.required_source_coordinate_ids));
+  const requirementBySource = new Map(
+    safeArray(unit.source_version_requirements).map((requirement) => [
+      requirement?.coordinate_id,
+      requirement,
+    ]),
+  );
+  const matchingSources = new Set();
+  const invalid = [];
+  for (const bindingId of safeArray(unit.required_authority_binding_ids)) {
+    const binding = bindingById.get(bindingId);
+    const authority = authorityReadingById.get(
+      binding?.to_authority_reading_unit_id,
+    );
+    if (!authority || !requiredSources.has(authority.source_coordinate_id)) {
+      invalid.push(`${bindingId}:authority_missing`);
+      continue;
+    }
+    if (
+      authority.source_snapshot_id !==
+      requirementBySource.get(authority.source_coordinate_id)?.source_snapshot_id
+    ) {
+      invalid.push(`${bindingId}:source_snapshot_mismatch`);
+      continue;
+    }
+    const stateMatches = authority.time_state === unit.as_of_policy;
+    const periodMatches =
+      unit.as_of_policy === 'future_effective'
+        ? DATE_PATTERN.test(unit.as_of ?? '') &&
+          DATE_PATTERN.test(authority.effective_from ?? '') &&
+          unit.as_of < authority.effective_from
+        : dateWithinPeriod(
+            unit.as_of,
+            authority.effective_from,
+            authority.effective_to,
+          );
+    if (!stateMatches || !periodMatches) {
+      invalid.push(
+        `${bindingId}:time_mismatch:${unit.as_of_policy}:${unit.as_of}`,
+      );
+      continue;
+    }
+    matchingSources.add(authority.source_coordinate_id);
+  }
+  const missingSources = [...requiredSources].filter(
+    (sourceId) => !matchingSources.has(sourceId),
+  );
+  for (const sourceId of missingSources) invalid.push(`${sourceId}:time_unbound`);
+  return {
+    verified:
+      requiredSources.size > 0 &&
+      missingSources.length === 0 &&
+      invalid.length === 0,
+    invalid,
+  };
+}
+
+function releaseState(unit, documents) {
+  const receipt = safeArray(documents.releaseEvidence?.releases).find(
+    (item) => item?.coverage_unit_id === unit.coverage_unit_id,
+  );
+  if (!receipt) return {verified: false, invalid: []};
+  const invalid = [];
+  const expected = {
+    snapshot_id: documents.bundle?.snapshot_id,
+    publication_bundle_sha256: documents.bundleSha256,
+    release_descriptor_sha256: documents.releaseDescriptorSha256,
+    production_queue_sha256: documents.productionQueueSha256,
+    production_registry_sha256: documents.productionRegistrySha256,
+  };
+  for (const [key, value] of Object.entries(expected)) {
+    if (receipt[key] !== value) {
+      invalid.push(`${key}:mismatch`);
+    }
+  }
+  if (documents.releaseDescriptor?.snapshot_id !== receipt.snapshot_id) {
+    invalid.push('release_descriptor_snapshot_mismatch');
+  }
+  if (
+    !/^[a-f0-9]{40}$/.test(receipt.migration_commit_sha ?? '') ||
+    !/^[a-f0-9]{40}$/.test(receipt.evidence_commit_sha ?? '') ||
+    receipt.migration_commit_sha === receipt.evidence_commit_sha
+  ) {
+    invalid.push('commit_chain_invalid');
+  }
+  return {verified: invalid.length === 0, invalid};
 }
 
 function addMissingReferenceErrors(errors, label, values, available) {
@@ -327,12 +609,15 @@ function bindingCoverageState(
 function coverageObservation({
   authorityBindingIds,
   authorityReadingById,
+  branchClosure,
   bindingById,
   contentById,
   contentIds,
   currentSnapshotMatches,
+  evaluationScopeReceipt,
   questionFamilyIds,
   procedureStageIds,
+  release,
   ruleIds,
   scenarioIds,
   sourceById,
@@ -353,7 +638,13 @@ function coverageObservation({
   );
   const evaluationCaseIds = safeArray(unit.evaluation_case_ids);
   const sourceVersion = sourceVersionState(unit, sourceById);
+  const evaluationScope = evaluationScopeState(unit, evaluationScopeReceipt);
   const bindingCoverage = bindingCoverageState(
+    unit,
+    bindingById,
+    authorityReadingById,
+  );
+  const temporal = authorityTemporalState(
     unit,
     bindingById,
     authorityReadingById,
@@ -387,19 +678,26 @@ function coverageObservation({
     bindingCoverage.relevant;
   return {
     authority_level: l2 ? 'L2_locator' : l1 ? 'L1_coordinate' : 'L0_structure',
+    branch_closed: branchClosure.closed,
     content_present_in_base_snapshot: Boolean(
       structured && currentSnapshotMatches,
     ),
-    coverage_release_verified: false,
-    evaluation_case_count: evaluationCaseIds.length,
-    evaluation_verified: false,
+    coverage_release_verified: release.verified,
+    evaluation_cases_bound_count: evaluationScope.boundCaseCount,
+    evaluation_cases_declared_count: evaluationCaseIds.length,
+    evaluation_results_verified_count: evaluationScope.verifiedResultCount,
     experience_missing: experience.missing,
-    experience_ready: experience.ready,
+    experience_fields_complete: experience.ready,
     source_version_current: sourceVersion.current,
     structured: Boolean(structured),
+    temporal_authority_verified: temporal.verified,
     target_gap:
       (unit.target_authority_level === 'L2_locator' ? !l2 : !l1) ||
-      !experience.ready,
+      !experience.ready ||
+      !branchClosure.closed ||
+      !evaluationScope.bound ||
+      !temporal.verified ||
+      !release.verified,
   };
 }
 
@@ -411,9 +709,17 @@ export function validateCoverageDocuments(documents) {
     bundle,
     bundleSha256,
     domains,
+    evaluationScopeReceipt,
     manifest,
+    productionQueue,
+    productionQueueSha256,
+    productionRegistry,
+    productionRegistrySha256,
     procedureCatalog,
     questionCatalog,
+    releaseDescriptor,
+    releaseDescriptorSha256,
+    releaseEvidence,
   } = documents;
 
   if (manifest?.schema !== 'rulelink_publication_coverage_manifest_v1') {
@@ -425,6 +731,18 @@ export function validateCoverageDocuments(documents) {
     for (const duplicate of duplicateValues(manifest.domain_files)) {
       errors.push(`coverage_manifest_domain_file_duplicate:${duplicate}`);
     }
+  }
+  if (
+    typeof manifest?.evaluation_scope_receipt_file !== 'string' ||
+    manifest.evaluation_scope_receipt_file.length === 0
+  ) {
+    errors.push('coverage_manifest_evaluation_scope_receipt_required');
+  }
+  if (
+    typeof manifest?.release_evidence_file !== 'string' ||
+    manifest.release_evidence_file.length === 0
+  ) {
+    errors.push('coverage_manifest_release_evidence_required');
   }
   if (bundle?.snapshot_id !== manifest?.base_snapshot_id) {
     errors.push(
@@ -457,6 +775,95 @@ export function validateCoverageDocuments(documents) {
     'rulelink_publication_authority_level_policy_v1'
   ) {
     errors.push('coverage_authority_policy_schema_invalid');
+  }
+  if (
+    evaluationScopeReceipt?.schema !==
+    'rulelink_legal_answer_eval_scope_vendor_receipt_v1'
+  ) {
+    errors.push('coverage_evaluation_scope_receipt_schema_invalid');
+  }
+  if (
+    evaluationScopeReceipt?.evaluator_commit !== TRUSTED_EVALUATOR_COMMIT ||
+    evaluationScopeReceipt?.scope_manifest_sha256 !==
+      TRUSTED_EVALUATION_SCOPE_MANIFEST_SHA256
+  ) {
+    errors.push('coverage_evaluation_scope_receipt_identity_invalid');
+  }
+  validateUniqueStringArray(
+    evaluationScopeReceipt?.case_ids,
+    'coverage_evaluation_scope_receipt:case_ids',
+    errors,
+    {nonEmpty: true},
+  );
+  if (
+    !Array.isArray(evaluationScopeReceipt?.case_ids) ||
+    evaluationScopeReceipt.case_ids.length !== TRUSTED_EVALUATION_CASE_IDS.size ||
+    evaluationScopeReceipt.case_ids.some(
+      (caseId) => !TRUSTED_EVALUATION_CASE_IDS.has(caseId),
+    )
+  ) {
+    errors.push('coverage_evaluation_scope_receipt:case_ids:trusted_set_mismatch');
+  }
+  if (!Array.isArray(evaluationScopeReceipt?.case_files)) {
+    errors.push('coverage_evaluation_scope_receipt:case_files:array_required');
+  } else {
+    for (const [index, file] of evaluationScopeReceipt.case_files.entries()) {
+      if (
+        !isRecord(file) ||
+        typeof file.path !== 'string' ||
+        !TRUSTED_EVALUATION_CASE_FILE_SHA256.has(file.sha256)
+      ) {
+        errors.push(
+          `coverage_evaluation_scope_receipt:case_files:${index}:invalid`,
+        );
+      }
+    }
+    const caseFileHashes = evaluationScopeReceipt.case_files.map(
+      (file) => file?.sha256,
+    );
+    if (
+      caseFileHashes.length !== TRUSTED_EVALUATION_CASE_FILE_SHA256.size ||
+      new Set(caseFileHashes).size !== TRUSTED_EVALUATION_CASE_FILE_SHA256.size ||
+      caseFileHashes.some(
+        (sha256) => !TRUSTED_EVALUATION_CASE_FILE_SHA256.has(sha256),
+      )
+    ) {
+      errors.push(
+        'coverage_evaluation_scope_receipt:case_files:trusted_set_mismatch',
+      );
+    }
+  }
+  if (
+    !isRecord(evaluationScopeReceipt?.gold_file) ||
+    typeof evaluationScopeReceipt.gold_file.path !== 'string' ||
+    evaluationScopeReceipt.gold_file.sha256 !==
+      TRUSTED_EVALUATION_GOLD_SHA256
+  ) {
+    errors.push('coverage_evaluation_scope_receipt:gold_file:invalid');
+  }
+  if (
+    !Array.isArray(evaluationScopeReceipt?.verified_result_receipts)
+  ) {
+    errors.push(
+      'coverage_evaluation_scope_receipt:verified_result_receipts:array_required',
+    );
+  }
+  if (
+    releaseEvidence?.schema !==
+    'rulelink_publication_coverage_release_evidence_v1' ||
+    !Array.isArray(releaseEvidence?.releases)
+  ) {
+    errors.push('coverage_release_evidence_schema_invalid');
+  }
+  if (
+    releaseDescriptor?.schema !== 'rulelink_public_release_v1' ||
+    productionQueue?.schema === undefined ||
+    productionRegistry?.schema === undefined ||
+    !SHA256_PATTERN.test(releaseDescriptorSha256 ?? '') ||
+    !SHA256_PATTERN.test(productionQueueSha256 ?? '') ||
+    !SHA256_PATTERN.test(productionRegistrySha256 ?? '')
+  ) {
+    errors.push('coverage_release_inputs_invalid');
   }
 
   const questionFamilies = questionCatalog?.question_families ?? [];
@@ -561,6 +968,43 @@ export function validateCoverageDocuments(documents) {
   )) {
     errors.push(`coverage_evaluation_case_duplicate:${duplicate}`);
   }
+  const unitIds = new Set(units.map((unit) => unit.coverage_unit_id));
+  for (const duplicate of duplicateValues(
+    safeArray(releaseEvidence?.releases).map(
+      (release) => release?.coverage_unit_id,
+    ),
+  )) {
+    errors.push(`coverage_release_evidence_duplicate:${duplicate}`);
+  }
+  for (const release of safeArray(releaseEvidence?.releases)) {
+    if (!isRecord(release) || !unitIds.has(release.coverage_unit_id)) {
+      errors.push(
+        `coverage_release_evidence_unknown_unit:${
+          release?.coverage_unit_id ?? 'missing'
+        }`,
+      );
+    }
+  }
+  const receiptCaseIds = new Set(safeArray(evaluationScopeReceipt?.case_ids));
+  for (const duplicate of duplicateValues(
+    safeArray(evaluationScopeReceipt?.verified_result_receipts).map(
+      (receipt) => receipt?.case_id,
+    ),
+  )) {
+    errors.push(`coverage_evaluation_result_receipt_duplicate:${duplicate}`);
+  }
+  for (const [index, receipt] of safeArray(
+    evaluationScopeReceipt?.verified_result_receipts,
+  ).entries()) {
+    if (
+      !isRecord(receipt) ||
+      !receiptCaseIds.has(receipt.case_id) ||
+      !SHA256_PATTERN.test(receipt.result_sha256 ?? '') ||
+      !SHA256_PATTERN.test(receipt.review_receipt_sha256 ?? '')
+    ) {
+      errors.push(`coverage_evaluation_result_receipt_invalid:${index}`);
+    }
+  }
 
   const observations = [];
   for (const unit of units) {
@@ -583,6 +1027,9 @@ export function validateCoverageDocuments(documents) {
     if (unit.jurisdiction !== 'KR') {
       errors.push(`${label}:jurisdiction_invalid`);
     }
+    if (!DATE_PATTERN.test(unit.as_of ?? '')) {
+      errors.push(`${label}:as_of_invalid`);
+    }
     if (!AS_OF_POLICIES.has(unit.as_of_policy)) {
       errors.push(`${label}:as_of_policy_invalid`);
     }
@@ -597,6 +1044,12 @@ export function validateCoverageDocuments(documents) {
         nonEmpty: NON_EMPTY_ARRAY_KEYS.includes(key),
       });
     }
+    const branchClosure = validateBranchSignature(
+      unit,
+      scenarioById,
+      label,
+      errors,
+    );
     if (!Array.isArray(unit.source_version_requirements)) {
       errors.push(`${label}:source_version_requirements:array_required`);
     } else {
@@ -689,12 +1142,23 @@ export function validateCoverageDocuments(documents) {
       unit.required_authority_binding_ids ?? [],
       authorityBindingIds,
     );
+    const evaluationScope = evaluationScopeState(
+      unit,
+      evaluationScopeReceipt,
+    );
+    for (const caseId of evaluationScope.missing) {
+      errors.push(`${label}:evaluation_case_not_in_scope_receipt:${caseId}`);
+    }
     for (const invalid of bindingCoverageState(
       unit,
       bindingById,
       authorityReadingById,
     ).invalid) {
       errors.push(`${label}:authority_binding_not_relevant:${invalid}`);
+    }
+    const release = releaseState(unit, documents);
+    for (const invalid of release.invalid) {
+      errors.push(`${label}:release_evidence_invalid:${invalid}`);
     }
 
     const hubContentIds = new Set(
@@ -740,16 +1204,19 @@ export function validateCoverageDocuments(documents) {
       ...coverageObservation({
         authorityBindingIds,
         authorityReadingById,
+        branchClosure,
         bindingById,
         contentById,
         contentIds,
         currentSnapshotMatches:
           bundle.snapshot_id === manifest.base_snapshot_id &&
           bundleSha256 === manifest.base_bundle_sha256,
+        evaluationScopeReceipt,
         procedureStageIds,
         questionFamilyIds,
         ruleIds,
         scenarioIds,
+        release,
         sourceById,
         sourceIds,
         topicHubById,
@@ -766,9 +1233,11 @@ export function validateCoverageDocuments(documents) {
     manifest_sha256: canonicalSha256({
       authorityPolicy,
       domains,
+      evaluationScopeReceipt,
       manifest,
       procedureCatalog,
       questionCatalog,
+      releaseEvidence,
     }),
     observations,
     snapshot_id: bundle?.snapshot_id ?? null,
@@ -788,22 +1257,30 @@ export function buildCoverageDashboard(validation) {
       authority_l0: 0,
       authority_l1: 0,
       authority_l2: 0,
+      bound_evaluation_cases: 0,
+      branch_closed_coverage_units: 0,
       coverage_units: 0,
       declared_evaluation_cases: 0,
       content_present_in_base_snapshot: 0,
-      experience_ready_coverage_units: 0,
+      experience_fields_complete_coverage_units: 0,
       invalidated_coverage_units: 0,
       released_coverage_units: 0,
       target_gap: 0,
+      temporal_authority_verified_coverage_units: 0,
       topic_id: observation.topic_id,
+      verified_evaluation_results: 0,
     };
     current.coverage_units += 1;
-    current.declared_evaluation_cases += observation.evaluation_case_count;
+    current.declared_evaluation_cases +=
+      observation.evaluation_cases_declared_count;
+    current.bound_evaluation_cases += observation.evaluation_cases_bound_count;
+    current.verified_evaluation_results +=
+      observation.evaluation_results_verified_count;
+    current.branch_closed_coverage_units += observation.branch_closed ? 1 : 0;
     current.content_present_in_base_snapshot +=
       observation.content_present_in_base_snapshot ? 1 : 0;
-    current.experience_ready_coverage_units += observation.experience_ready
-      ? 1
-      : 0;
+    current.experience_fields_complete_coverage_units +=
+      observation.experience_fields_complete ? 1 : 0;
     current.invalidated_coverage_units += observation.source_version_current
       ? 0
       : 1;
@@ -811,6 +1288,8 @@ export function buildCoverageDashboard(validation) {
       ? 1
       : 0;
     current.target_gap += observation.target_gap ? 1 : 0;
+    current.temporal_authority_verified_coverage_units +=
+      observation.temporal_authority_verified ? 1 : 0;
     if (observation.authority_level === 'L2_locator') current.authority_l2 += 1;
     else if (observation.authority_level === 'L1_coordinate')
       current.authority_l1 += 1;
@@ -821,22 +1300,29 @@ export function buildCoverageDashboard(validation) {
     authority_l0: 0,
     authority_l1: 0,
     authority_l2: 0,
+    bound_evaluation_cases: 0,
+    branch_closed_coverage_units: 0,
     coverage_units: validation.observations.length,
     content_present_in_base_snapshot: 0,
     declared_evaluation_cases: 0,
-    experience_ready_coverage_units: 0,
+    experience_fields_complete_coverage_units: 0,
     invalidated_coverage_units: 0,
     released_coverage_units: 0,
     target_gap: 0,
-    verified_evaluation_receipts: 0,
+    temporal_authority_verified_coverage_units: 0,
+    verified_evaluation_results: 0,
   };
   for (const observation of validation.observations) {
-    total.declared_evaluation_cases += observation.evaluation_case_count;
+    total.declared_evaluation_cases +=
+      observation.evaluation_cases_declared_count;
+    total.bound_evaluation_cases += observation.evaluation_cases_bound_count;
+    total.verified_evaluation_results +=
+      observation.evaluation_results_verified_count;
+    total.branch_closed_coverage_units += observation.branch_closed ? 1 : 0;
     total.content_present_in_base_snapshot +=
       observation.content_present_in_base_snapshot ? 1 : 0;
-    total.experience_ready_coverage_units += observation.experience_ready
-      ? 1
-      : 0;
+    total.experience_fields_complete_coverage_units +=
+      observation.experience_fields_complete ? 1 : 0;
     total.invalidated_coverage_units += observation.source_version_current
       ? 0
       : 1;
@@ -844,6 +1330,8 @@ export function buildCoverageDashboard(validation) {
       ? 1
       : 0;
     total.target_gap += observation.target_gap ? 1 : 0;
+    total.temporal_authority_verified_coverage_units +=
+      observation.temporal_authority_verified ? 1 : 0;
     if (observation.authority_level === 'L2_locator') total.authority_l2 += 1;
     else if (observation.authority_level === 'L1_coordinate')
       total.authority_l1 += 1;
@@ -859,16 +1347,18 @@ export function buildCoverageDashboard(validation) {
       a.topic_id.localeCompare(b.topic_id),
     ),
     experience_gaps: validation.observations
-      .filter((observation) => !observation.experience_ready)
+      .filter((observation) => !observation.experience_fields_complete)
       .map((observation) => ({
         coverage_unit_id: observation.coverage_unit_id,
         missing: observation.experience_missing,
       })),
     honesty: {
-      content_presence_is_not_experience_readiness: true,
-      evaluation_case_ids_are_not_verification_receipts: true,
+      bound_evaluation_cases_are_not_verified_results: true,
+      content_presence_is_not_field_completeness: true,
+      field_completeness_is_not_semantic_answer_verification: true,
       l1_and_l2_are_reported_separately: true,
       released_state_is_derived_not_authored: true,
+      temporal_authority_is_separate_and_fail_closed: true,
       source_versions_are_pinned: true,
     },
     invalidations: validation.invalidations,

@@ -8,11 +8,17 @@
       "question_family_id": "question.crime-victim.compensation-order.eligibility",
       "procedure_stage_id": "procedure.criminal-trial.compensation-order",
       "jurisdiction": "KR",
+      "as_of": "2026-07-24",
       "as_of_policy": "current_as_of_review",
       "risk_level": "high",
       "target_authority_level": "L2_locator",
       "branch_signature": [
-        "fact.eligible-offense"
+        {
+          "scenario_id": "scenario.crime-victim-response.crime-victim-10",
+          "decision_fact_sha256": "3b170132613ce3d135493cb3f7528e657ed0997b63fa017a48d276b347522a06",
+          "when_true_sha256": "f8d4b7eb3c1db70113a4bc1e661ce3f4e1dfbf6790581ca468d5b2a2721cee82",
+          "when_false_sha256": "38d4af8e36592ccaba352cf29d98575c38699be8c8359508645c820c2649c1d4"
+        }
       ],
       "canonical_content_ids": [
         "content.compensation-order-eligible-damages"
@@ -44,11 +50,17 @@
       "question_family_id": "question.crime-victim.compensation-order.agreed-amount",
       "procedure_stage_id": "procedure.criminal-trial.compensation-order",
       "jurisdiction": "KR",
+      "as_of": "2026-07-24",
       "as_of_policy": "current_as_of_review",
       "risk_level": "high",
       "target_authority_level": "L2_locator",
       "branch_signature": [
-        "fact.agreed-amount"
+        {
+          "scenario_id": "scenario.crime-victim-response.crime-victim-10",
+          "decision_fact_sha256": "3b170132613ce3d135493cb3f7528e657ed0997b63fa017a48d276b347522a06",
+          "when_true_sha256": "f8d4b7eb3c1db70113a4bc1e661ce3f4e1dfbf6790581ca468d5b2a2721cee82",
+          "when_false_sha256": "38d4af8e36592ccaba352cf29d98575c38699be8c8359508645c820c2649c1d4"
+        }
       ],
       "canonical_content_ids": [
         "content.compensation-order-eligible-damages"
@@ -80,11 +92,17 @@
       "question_family_id": "question.crime-victim.compensation-order.dismissal",
       "procedure_stage_id": "procedure.criminal-trial.compensation-order",
       "jurisdiction": "KR",
+      "as_of": "2026-07-24",
       "as_of_policy": "current_as_of_review",
       "risk_level": "high",
       "target_authority_level": "L2_locator",
       "branch_signature": [
-        "fact.complex-determination"
+        {
+          "scenario_id": "scenario.crime-victim-response.crime-victim-10",
+          "decision_fact_sha256": "3b170132613ce3d135493cb3f7528e657ed0997b63fa017a48d276b347522a06",
+          "when_true_sha256": "f8d4b7eb3c1db70113a4bc1e661ce3f4e1dfbf6790581ca468d5b2a2721cee82",
+          "when_false_sha256": "38d4af8e36592ccaba352cf29d98575c38699be8c8359508645c820c2649c1d4"
+        }
       ],
       "canonical_content_ids": [
         "content.compensation-order-eligible-damages"
@@ -116,11 +134,17 @@
       "question_family_id": "question.crime-victim.compensation-order.deadline",
       "procedure_stage_id": "procedure.criminal-trial.compensation-order",
       "jurisdiction": "KR",
+      "as_of": "2026-07-24",
       "as_of_policy": "current_as_of_review",
       "risk_level": "critical",
       "target_authority_level": "L2_locator",
       "branch_signature": [
-        "fact.before-closing"
+        {
+          "scenario_id": "scenario.crime-victim-response.crime-victim-11",
+          "decision_fact_sha256": "1886407879853e54d1cf664a50ec1bd8f519fe264cbb15525f69c0c5be6e6f8b",
+          "when_true_sha256": "f0502ba572ec0402c091422b172f5708a4180e11b80b6ea6d88402233953cf33",
+          "when_false_sha256": "e0bbaf1f2fb167754dabfd61eb0115e21ab264ee036aacd8cae19ea930b58a5f"
+        }
       ],
       "canonical_content_ids": [
         "content.compensation-order-application-deadline"
@@ -152,11 +176,17 @@
       "question_family_id": "question.crime-victim.compensation-order.copies",
       "procedure_stage_id": "procedure.criminal-trial.compensation-order",
       "jurisdiction": "KR",
+      "as_of": "2026-07-24",
       "as_of_policy": "current_as_of_review",
       "risk_level": "high",
       "target_authority_level": "L2_locator",
       "branch_signature": [
-        "fact.copies-sufficient"
+        {
+          "scenario_id": "scenario.crime-victim-response.crime-victim-11",
+          "decision_fact_sha256": "1886407879853e54d1cf664a50ec1bd8f519fe264cbb15525f69c0c5be6e6f8b",
+          "when_true_sha256": "f0502ba572ec0402c091422b172f5708a4180e11b80b6ea6d88402233953cf33",
+          "when_false_sha256": "e0bbaf1f2fb167754dabfd61eb0115e21ab264ee036aacd8cae19ea930b58a5f"
+        }
       ],
       "canonical_content_ids": [
         "content.compensation-order-application-deadline"
@@ -188,11 +218,23 @@
       "question_family_id": "question.crime-victim.compensation-order.enforcement",
       "procedure_stage_id": "procedure.criminal-trial.compensation-order",
       "jurisdiction": "KR",
+      "as_of": "2026-07-24",
       "as_of_policy": "current_as_of_review",
       "risk_level": "high",
       "target_authority_level": "L2_locator",
       "branch_signature": [
-        "fact.enforceable-order"
+        {
+          "scenario_id": "scenario.crime-victim-response.crime-victim-10",
+          "decision_fact_sha256": "3b170132613ce3d135493cb3f7528e657ed0997b63fa017a48d276b347522a06",
+          "when_true_sha256": "f8d4b7eb3c1db70113a4bc1e661ce3f4e1dfbf6790581ca468d5b2a2721cee82",
+          "when_false_sha256": "38d4af8e36592ccaba352cf29d98575c38699be8c8359508645c820c2649c1d4"
+        },
+        {
+          "scenario_id": "scenario.crime-victim-response.crime-victim-11",
+          "decision_fact_sha256": "1886407879853e54d1cf664a50ec1bd8f519fe264cbb15525f69c0c5be6e6f8b",
+          "when_true_sha256": "f0502ba572ec0402c091422b172f5708a4180e11b80b6ea6d88402233953cf33",
+          "when_false_sha256": "e0bbaf1f2fb167754dabfd61eb0115e21ab264ee036aacd8cae19ea930b58a5f"
+        }
       ],
       "canonical_content_ids": [
         "content.compensation-order-eligible-damages",

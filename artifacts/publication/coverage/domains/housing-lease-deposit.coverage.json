@@ -8,12 +8,23 @@
       "question_family_id": "question.housing-lease.deposit-return-before-move",
       "procedure_stage_id": "procedure.housing-lease.after-end-before-refund",
       "jurisdiction": "KR",
+      "as_of": "2026-07-24",
       "as_of_policy": "current_as_of_review",
       "risk_level": "critical",
       "target_authority_level": "L2_locator",
       "branch_signature": [
-        "fact.lease-ended",
-        "fact.registration-completed-before-move"
+        {
+          "scenario_id": "scenario.housing-lease-deposit.housing-lease-lease-ended",
+          "decision_fact_sha256": "deacdbdd9fc1d934adedda02c30f7af4774c07bab156d912ade13aedc4b1c1bb",
+          "when_true_sha256": "6be47c79c2386b3776cd7c10236facb788b1244ed4260eed973513fd3673b6b4",
+          "when_false_sha256": "fdbb8d1db36a67760c117749de0adc7fad13c7d3d688936a30466d43257bef93"
+        },
+        {
+          "scenario_id": "scenario.housing-lease-deposit.housing-lease-registration-completed-before-move",
+          "decision_fact_sha256": "ac4d99ac63d44279cda033aaff59720ccfb97f089b4a890221845bd519be7abc",
+          "when_true_sha256": "51ed7b0f9b805a743673e868ff2e26ffe4249f938059111fc54557b7126d19cf",
+          "when_false_sha256": "2d37f3bf6f5870eddc80c018c92140e31891de08f03f87dbb9cad5f691cb3293"
+        }
       ],
       "canonical_content_ids": [
         "content.move-before-deposit-refund",

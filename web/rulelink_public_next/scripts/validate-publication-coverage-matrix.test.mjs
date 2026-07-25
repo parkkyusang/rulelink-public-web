@@ -32,7 +32,7 @@ test('023 coverage matrix는 8개 답변 단위를 L1으로 정직하게 보고�
   );
   assert.equal(
     result.observations.reduce(
-      (sum, item) => sum + item.evaluation_case_count,
+      (sum, item) => sum + item.evaluation_cases_declared_count,
       0,
     ),
     12,
@@ -42,19 +42,20 @@ test('023 coverage matrix는 8개 답변 단위를 L1으로 정직하게 보고�
       (item) =>
         item.content_present_in_base_snapshot &&
         item.source_version_current &&
+        item.branch_closed &&
         !item.coverage_release_verified &&
         item.target_gap &&
-        !item.evaluation_verified,
+        !item.temporal_authority_verified,
     ),
     true,
   );
   assert.equal(
-    result.observations.filter((item) => item.experience_ready).length,
+    result.observations.filter((item) => item.experience_fields_complete).length,
     1,
   );
   assert.deepEqual(
     result.observations
-      .filter((item) => !item.experience_ready)
+      .filter((item) => !item.experience_fields_complete)
       .flatMap((item) => item.experience_missing)
       .sort(),
     [
@@ -67,6 +68,79 @@ test('023 coverage matrix는 8개 답변 단위를 L1으로 정직하게 보고�
       'content.compensation-order-eligible-damages:situation',
       'content.payment-order-objection-two-weeks:situation',
     ],
+  );
+});
+
+test('분기 서명은 실제 Scenario의 결정사실과 양쪽 결과 문언에 결박된다', async () => {
+  const documents = structuredClone(await loadCoverageDocuments());
+  const unit = documents.domains[0].units[0];
+  unit.branch_signature[0].when_true_sha256 = '0'.repeat(64);
+
+  const result = validateCoverageDocuments(documents);
+  assert.ok(
+    result.errors.some((error) =>
+      error.includes(
+        `coverage_unit:${unit.coverage_unit_id}:branch_signature:0:when_true_sha256:mismatch`,
+      ),
+    ),
+  );
+  const observation = result.observations.find(
+    (item) => item.coverage_unit_id === unit.coverage_unit_id,
+  );
+  assert.equal(observation.branch_closed, false);
+});
+
+test('평가 사례는 승인된 외부 evaluator scope receipt에 존재해야 한다', async () => {
+  const documents = structuredClone(await loadCoverageDocuments());
+  const unit = documents.domains[0].units[0];
+  unit.evaluation_case_ids = ['eval.not-in-approved-scope'];
+
+  const result = validateCoverageDocuments(documents);
+  assert.ok(
+    result.errors.includes(
+      `coverage_unit:${unit.coverage_unit_id}:evaluation_case_not_in_scope_receipt:eval.not-in-approved-scope`,
+    ),
+  );
+  const observation = result.observations.find(
+    (item) => item.coverage_unit_id === unit.coverage_unit_id,
+  );
+  assert.equal(observation.evaluation_cases_bound_count, 0);
+  assert.equal(observation.evaluation_results_verified_count, 0);
+});
+
+test('evaluator commit과 manifest·case·gold hash는 신뢰된 receipt와 exact 일치해야 한다', async () => {
+  const documents = structuredClone(await loadCoverageDocuments());
+  documents.evaluationScopeReceipt.evaluator_commit = 'f'.repeat(40);
+  documents.evaluationScopeReceipt.case_files[0].sha256 = '0'.repeat(64);
+
+  const result = validateCoverageDocuments(documents);
+  assert.ok(
+    result.errors.includes('coverage_evaluation_scope_receipt_identity_invalid'),
+  );
+  assert.ok(
+    result.errors.includes(
+      'coverage_evaluation_scope_receipt:case_files:0:invalid',
+    ),
+  );
+});
+
+test('evaluation receipt requires the exact trusted case and file sets', async () => {
+  const documents = structuredClone(await loadCoverageDocuments());
+  documents.evaluationScopeReceipt.case_ids.pop();
+  documents.evaluationScopeReceipt.case_files[1] = structuredClone(
+    documents.evaluationScopeReceipt.case_files[0],
+  );
+
+  const result = validateCoverageDocuments(documents);
+  assert.ok(
+    result.errors.includes(
+      'coverage_evaluation_scope_receipt:case_ids:trusted_set_mismatch',
+    ),
+  );
+  assert.ok(
+    result.errors.includes(
+      'coverage_evaluation_scope_receipt:case_files:trusted_set_mismatch',
+    ),
   );
 });
 
@@ -252,6 +326,10 @@ test('L2 binding은 해당 콘텐츠에서 해당 근거로 가는 투영일 때
     {
       authority_reading_unit_id: authorityId,
       source_coordinate_id: unit.required_source_coordinate_ids[0],
+      source_snapshot_id:
+        unit.source_version_requirements[0].source_snapshot_id,
+      time_state: 'current_as_of_review',
+      effective_from: '2025-01-01',
     },
   ];
   documents.bundle.knowledge.authority_bindings = [
@@ -272,6 +350,12 @@ test('L2 binding은 해당 콘텐츠에서 해당 근거로 가는 투영일 때
     ).authority_level,
     'L2_locator',
   );
+  assert.equal(
+    result.observations.find(
+      (item) => item.coverage_unit_id === unit.coverage_unit_id,
+    ).temporal_authority_verified,
+    true,
+  );
 
   documents.bundle.knowledge.authority_bindings[0].from_id =
     'content.payment-order-objection-two-weeks';
@@ -286,5 +370,76 @@ test('L2 binding은 해당 콘텐츠에서 해당 근거로 가는 투영일 때
       (item) => item.coverage_unit_id === unit.coverage_unit_id,
     ).authority_level,
     'L1_coordinate',
+  );
+});
+
+test('적용시점은 authority time_state와 시행기간에 맞아야 한다', async () => {
+  const documents = structuredClone(await loadCoverageDocuments());
+  const unit = documents.domains[1].units[0];
+  const bindingId = 'binding.coverage.temporal';
+  const authorityId = 'authority.coverage.temporal';
+  unit.required_authority_binding_ids = [bindingId];
+  documents.bundle.knowledge.authority_reading_units = [
+    {
+      authority_reading_unit_id: authorityId,
+      source_coordinate_id: unit.required_source_coordinate_ids[0],
+      source_snapshot_id:
+        unit.source_version_requirements[0].source_snapshot_id,
+      time_state: 'historical',
+      effective_from: '2020-01-01',
+      effective_to: '2025-01-01',
+    },
+  ];
+  documents.bundle.knowledge.authority_bindings = [
+    {
+      binding_id: bindingId,
+      from_kind: 'content',
+      from_id: unit.canonical_content_ids[0],
+      to_kind: 'authority_reading_unit',
+      to_authority_reading_unit_id: authorityId,
+    },
+  ];
+
+  const result = validateCoverageDocuments(documents);
+  const observation = result.observations.find(
+    (item) => item.coverage_unit_id === unit.coverage_unit_id,
+  );
+  assert.equal(observation.temporal_authority_verified, false);
+  assert.equal(observation.target_gap, true);
+});
+
+test('릴리스 완료는 current·bundle·release·queue·registry와 두 커밋 receipt가 모두 맞을 때만 계산된다', async () => {
+  const documents = structuredClone(await loadCoverageDocuments());
+  const unit = documents.domains[2].units[0];
+  documents.releaseEvidence.releases = [
+    {
+      coverage_unit_id: unit.coverage_unit_id,
+      snapshot_id: documents.bundle.snapshot_id,
+      publication_bundle_sha256: documents.bundleSha256,
+      release_descriptor_sha256: documents.releaseDescriptorSha256,
+      production_queue_sha256: documents.productionQueueSha256,
+      production_registry_sha256: documents.productionRegistrySha256,
+      migration_commit_sha: '1'.repeat(40),
+      evidence_commit_sha: '2'.repeat(40),
+      released_at: '2026-07-25T00:00:00Z',
+    },
+  ];
+
+  let result = validateCoverageDocuments(documents);
+  assert.deepEqual(result.errors, []);
+  assert.equal(
+    result.observations.find(
+      (item) => item.coverage_unit_id === unit.coverage_unit_id,
+    ).coverage_release_verified,
+    true,
+  );
+
+  documents.releaseEvidence.releases[0].production_queue_sha256 =
+    '0'.repeat(64);
+  result = validateCoverageDocuments(documents);
+  assert.ok(
+    result.errors.includes(
+      `coverage_unit:${unit.coverage_unit_id}:release_evidence_invalid:production_queue_sha256:mismatch`,
+    ),
   );
 });

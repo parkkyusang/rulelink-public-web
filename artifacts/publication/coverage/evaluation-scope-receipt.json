@@ -1,0 +1,36 @@
+{
+  "schema": "rulelink_legal_answer_eval_scope_vendor_receipt_v1",
+  "producer_repository": "https://github.com/parkkyusang/liale-rulelink-ir.git",
+  "evaluator_commit": "3bea0db11468757531df602d40596decf2dce78e",
+  "scope_manifest_path": "evals/rulelink_legal_answer_eval_v1/scope-manifest.json",
+  "scope_manifest_sha256": "c2aaaba48a17bba0c9cfe74827ca21502e61403e3695c4e8342a56853c381b35",
+  "case_files": [
+    {
+      "path": "evals/rulelink_legal_answer_eval_v1/cases/public-canonical.jsonl",
+      "sha256": "bb7c3c054ec9ec7b432f9ef985c566712e8b40dea6bdaa605a1021cb400fc6a4"
+    },
+    {
+      "path": "evals/rulelink_legal_answer_eval_v1/cases/private-personalized.synthetic.jsonl",
+      "sha256": "39a4dd5299e88ee01440158cacf4822cf84cc6467157fbe3939403b9273554be"
+    }
+  ],
+  "gold_file": {
+    "path": "evals/rulelink_legal_answer_eval_v1/gold/crime-victim-compensation-order.jsonl",
+    "sha256": "90e5422f4d914a6080e0ee362a30e82cfba579aca5308a99c9873d893ccf16f8"
+  },
+  "case_ids": [
+    "eval.compensation-order.eligibility.A",
+    "eval.compensation-order.eligibility.B",
+    "eval.compensation-order.agreed-amount.A",
+    "eval.compensation-order.agreed-amount.B",
+    "eval.compensation-order.dismissal.A",
+    "eval.compensation-order.dismissal.B",
+    "eval.compensation-order.deadline.A",
+    "eval.compensation-order.deadline.B",
+    "eval.compensation-order.copies.A",
+    "eval.compensation-order.copies.B",
+    "eval.compensation-order.enforcement.A",
+    "eval.compensation-order.enforcement.B"
+  ],
+  "verified_result_receipts": []
+}

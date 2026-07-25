@@ -5,6 +5,8 @@
   "question_family_catalog_file": "artifacts/publication/coverage/question-family-catalog.json",
   "procedure_stage_catalog_file": "artifacts/publication/coverage/procedure-stage-catalog.json",
   "authority_level_policy_file": "artifacts/publication/coverage/authority-level-policy.json",
+  "evaluation_scope_receipt_file": "artifacts/publication/coverage/evaluation-scope-receipt.json",
+  "release_evidence_file": "artifacts/publication/coverage/release-evidence.json",
   "domain_files": [
     "artifacts/publication/coverage/domains/crime-victim-response.coverage.json",
     "artifacts/publication/coverage/domains/debt-enforcement.coverage.json",

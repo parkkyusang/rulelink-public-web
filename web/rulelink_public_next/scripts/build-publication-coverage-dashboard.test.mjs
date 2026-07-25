@@ -22,14 +22,17 @@ test('coverage dashboard는 콘텐츠 수가 아니라 검증 단위와 격차�
     authority_l0: 0,
     authority_l1: 8,
     authority_l2: 0,
+    bound_evaluation_cases: 12,
+    branch_closed_coverage_units: 8,
     coverage_units: 8,
     content_present_in_base_snapshot: 8,
     declared_evaluation_cases: 12,
-    experience_ready_coverage_units: 1,
+    experience_fields_complete_coverage_units: 1,
     invalidated_coverage_units: 0,
     released_coverage_units: 0,
     target_gap: 8,
-    verified_evaluation_receipts: 0,
+    temporal_authority_verified_coverage_units: 0,
+    verified_evaluation_results: 0,
   });
   assert.deepEqual(
     dashboard.by_topic.map((item) => [
@@ -38,7 +41,7 @@ test('coverage dashboard는 콘텐츠 수가 아니라 검증 단위와 격차�
       item.authority_l1,
       item.authority_l2,
       item.declared_evaluation_cases,
-      item.experience_ready_coverage_units,
+      item.experience_fields_complete_coverage_units,
       item.invalidated_coverage_units,
       item.target_gap,
     ]),
@@ -49,10 +52,12 @@ test('coverage dashboard는 콘텐츠 수가 아니라 검증 단위와 격차�
     ],
   );
   assert.deepEqual(dashboard.honesty, {
-    content_presence_is_not_experience_readiness: true,
-    evaluation_case_ids_are_not_verification_receipts: true,
+    bound_evaluation_cases_are_not_verified_results: true,
+    content_presence_is_not_field_completeness: true,
+    field_completeness_is_not_semantic_answer_verification: true,
     l1_and_l2_are_reported_separately: true,
     released_state_is_derived_not_authored: true,
+    temporal_authority_is_separate_and_fail_closed: true,
     source_versions_are_pinned: true,
   });
   assert.equal(dashboard.experience_gaps.length, 7);

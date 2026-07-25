@@ -8,11 +8,17 @@
       "question_family_id": "question.debt-enforcement.payment-order-objection",
       "procedure_stage_id": "procedure.civil-enforcement.payment-order",
       "jurisdiction": "KR",
+      "as_of": "2026-07-24",
       "as_of_policy": "current_as_of_review",
       "risk_level": "critical",
       "target_authority_level": "L2_locator",
       "branch_signature": [
-        "fact.payment-order-objected"
+        {
+          "scenario_id": "scenario.debt-enforcement.payment-order-objected",
+          "decision_fact_sha256": "822c03b31d63928d9931bb0748b5e3b86c1a414ce908c7a65024919c9eb40eb1",
+          "when_true_sha256": "bf1c0b7f277aae0ae1c32aa37585b5c6cde65a21442d6f0048da8551bf34b281",
+          "when_false_sha256": "e90f4fa4c8fc7dfe43159250c5bd12fd88e7c345f504340714b53eadd4946b16"
+        }
       ],
       "canonical_content_ids": [
         "content.payment-order-objection-two-weeks"
