@@ -251,6 +251,9 @@ export default async function KnowledgePage({params}: Props) {
           {verifiedAnswer ? (
             <VerifiedLegalAnswerCard
               answer={verifiedAnswer}
+              authorityTargetIds={Object.fromEntries(authorityReadingUnits.map(view => (
+                [view.authorityReadingUnitId, view.cardDomId]
+              )))}
               contentId={entry.content_id}
               hasAuthorityReading={Boolean(authorityReadingUnits.length)}
               hasScenarios={Boolean(scenarios.length)}
@@ -282,14 +285,18 @@ export default async function KnowledgePage({params}: Props) {
           <div id="sources">
             {authorityReadingUnits.length ? (
               <AuthorityReadingSection
+                answer={verifiedAnswer}
                 asOf={authorityAsOf}
-                claims={verifiedAnswer?.claims}
                 concepts={concepts}
+                contentId={entry.content_id}
+                revisionKey={entry.reviewed_at}
                 views={authorityReadingUnits}
               />
             ) : (
               <KnowledgeSourceEvidence
-                claims={verifiedAnswer?.claims}
+                answer={verifiedAnswer}
+                contentId={entry.content_id}
+                revisionKey={entry.reviewed_at}
                 sources={sources}
               />
             )}

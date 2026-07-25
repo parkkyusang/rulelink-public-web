@@ -88,8 +88,10 @@ test('패킷의 사실·자료·행동·기한은 정본 배열과 중복 없이
 });
 
 test('주장별 자료·행동·기한 링크는 실제 작업 목록의 exact packet ID를 가리킨다', async () => {
-  const [answerCard, workspace] = await Promise.all([
+  const [answerCard, page, sourceEvidence, workspace] = await Promise.all([
     readFile(path.join(root, 'src/components/verified-legal-answer-card.tsx'), 'utf8'),
+    readFile(path.join(root, 'app/ko/knowledge/[slug]/page.tsx'), 'utf8'),
+    readFile(path.join(root, 'src/components/knowledge-source-evidence.tsx'), 'utf8'),
     readFile(path.join(root, 'src/components/knowledge-action-workspace.tsx'), 'utf8'),
   ]);
   assert.match(answerCard, /href=\{`#packet-evidence-\$\{item\.evidence_id\}`\}/u);
@@ -98,6 +100,24 @@ test('주장별 자료·행동·기한 링크는 실제 작업 목록의 exact p
   assert.match(workspace, /`packet-\$\{group\}-\$\{item\.id\}`/u);
   assert.match(workspace, /id=\{`packet-deadline-\$\{deadline\.id\}`\}/u);
   assert.match(workspace, /tabIndex=\{targetId \? -1 : undefined\}/u);
+  assert.match(page, /\[view\.authorityReadingUnitId, view\.cardDomId\]/u);
+  assert.match(answerCard, /authorityTargetIds\[reference\.authority_reading_unit_id \?\? ''\]/u);
+  assert.match(sourceEvidence, /id=\{`source-summary-\$\{source\.coordinate_id\}`\}/u);
+});
+
+test('조문·출처 카드의 claim은 분기 선택 상태를 소비하고 배제 claim을 렌더하지 않는다', async () => {
+  const [section, card, source] = await Promise.all([
+    readFile(path.join(root, 'src/components/authority-reading-section.tsx'), 'utf8'),
+    readFile(path.join(root, 'src/components/authority-reading-card.tsx'), 'utf8'),
+    readFile(path.join(root, 'src/components/knowledge-source-evidence.tsx'), 'utf8'),
+  ]);
+  assert.match(section, /claimSelectionState\(answer, claim, scenarioAnswers\)/u);
+  assert.match(section, /\.filter\(item => item\.state !== 'excluded'\)/u);
+  assert.match(card, /data-claim-state=\{state\}/u);
+  assert.match(card, /사실 확인 전 조건부/u);
+  assert.match(source, /claimSelectionState\(answer, claim, scenarioAnswers\)/u);
+  assert.match(source, /\.filter\(item => item\.state !== 'excluded'\)/u);
+  assert.match(source, /data-claim-state=\{state\}/u);
 });
 
 test('검색 질문은 exact scenario anchor로 넘기고 상세는 같은 식별자로 받는다', async () => {

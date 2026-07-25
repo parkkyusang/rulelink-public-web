@@ -1,9 +1,13 @@
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 
 import {sha256Bytes} from '../src/lib/legal-answer-packet.ts';
 
-const appRoot = path.resolve(import.meta.dirname, '..');
+const appRoot = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  '..',
+);
 const packetFixturePath = path.join(
   appRoot,
   'scripts',

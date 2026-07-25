@@ -208,6 +208,7 @@ test('검증 답변 카드는 무JS에서 조건부 답과 정적 anchor를 모�
     const html = renderToStaticMarkup(
       createElement(VerifiedLegalAnswerCard, {
         answer: projection,
+        authorityTargetIds: {},
         contentId: projection.targetContentId,
         hasAuthorityReading: true,
         hasScenarios: true,

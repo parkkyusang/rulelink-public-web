@@ -34,6 +34,7 @@
     "test:trust-browser": "node e2e/trust/support/run-trust-playwright.mjs",
     "test:site-identity-browser": "node e2e/site-identity/support/run-site-identity-playwright.mjs",
     "test:discovery-browser": "playwright test --config playwright.discovery.config.ts",
+    "test:launch-pilot-browser": "playwright test --config playwright.launch-pilot.config.ts",
     "test:accessibility-browser": "node e2e/accessibility/support/run-accessibility-playwright.mjs",
     "test:performance-browser": "node e2e/performance/support/run-performance-acceptance.mjs --label current",
     "test:privacy-browser": "node e2e/privacy/support/run-privacy-playwright.mjs",

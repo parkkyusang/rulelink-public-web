@@ -3,6 +3,7 @@ import {AuthorityTimeBadge} from '@/components/authority-time-badge';
 import {LegalConceptText} from '@/components/legal-concept-text';
 
 import type {AuthorityReadingView} from '@/lib/authority-reading';
+import type {ClaimSelectionState} from '@/lib/legal-answer-journey-state';
 import type {LegalAnswerClaim} from '@/types/legal-answer-packet';
 import type {PublicConceptCard} from '@/types/publication';
 
@@ -14,7 +15,10 @@ export function AuthorityReadingCard({
   primary = false,
   view,
 }: {
-  claims?: readonly LegalAnswerClaim[];
+  claims?: ReadonlyArray<{
+    claim: LegalAnswerClaim;
+    state: ClaimSelectionState;
+  }>;
   concepts: PublicConceptCard[];
   primary?: boolean;
   view: AuthorityReadingView;
@@ -49,7 +53,14 @@ export function AuthorityReadingCard({
             >
               <h4>이 근거가 뒷받침하는 내용</h4>
               <ul>
-                {claims.map(claim => <li key={claim.claim_id}>{claim.statement_ko}</li>)}
+                {claims.map(({claim, state}) => (
+                  <li data-claim-state={state} key={claim.claim_id}>
+                    <span>
+                      {state === 'pending' ? '사실 확인 전 조건부' : '선택한 사실에 연결'}
+                    </span>
+                    {claim.statement_ko}
+                  </li>
+                ))}
               </ul>
             </section>
           ) : null}

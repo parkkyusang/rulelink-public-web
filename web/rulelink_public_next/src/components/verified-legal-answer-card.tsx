@@ -16,12 +16,14 @@ import type {CanonicalLegalAnswerProjection} from '@/types/legal-answer-packet';
 
 export function VerifiedLegalAnswerCard({
   answer,
+  authorityTargetIds,
   contentId,
   hasAuthorityReading,
   hasScenarios,
   revisionKey,
 }: {
   answer: CanonicalLegalAnswerProjection;
+  authorityTargetIds: Record<string, string>;
   contentId: string;
   hasAuthorityReading: boolean;
   hasScenarios: boolean;
@@ -115,7 +117,11 @@ export function VerifiedLegalAnswerCard({
             <article data-active-claim-id={claim.claim_id} key={claim.claim_id}>
               <span>{claimTypeLabel(claim.claim_type)}</span>
               <h3>{claim.statement_ko}</h3>
-              <ClaimBindings answer={answer} claim={claim} />
+              <ClaimBindings
+                answer={answer}
+                authorityTargetIds={authorityTargetIds}
+                claim={claim}
+              />
             </article>
           ))}
           {pendingClaims.length ? (
@@ -140,9 +146,11 @@ export function VerifiedLegalAnswerCard({
 
 function ClaimBindings({
   answer,
+  authorityTargetIds,
   claim,
 }: {
   answer: CanonicalLegalAnswerProjection;
+  authorityTargetIds: Record<string, string>;
   claim: CanonicalLegalAnswerProjection['claims'][number];
 }) {
   const evidence = answer.evidence.filter(item => (
@@ -158,9 +166,10 @@ function ClaimBindings({
           <dd>{claim.authority_refs.map(reference => (
             <a
               data-claim-authority-id={reference.source_coordinate_id}
-              href={reference.authority_reading_unit_id
-                ? `#authority-${reference.authority_reading_unit_id}`
-                : `#source-${reference.source_coordinate_id}`}
+              href={`#${
+                authorityTargetIds[reference.authority_reading_unit_id ?? '']
+                ?? `source-summary-${reference.source_coordinate_id}`
+              }`}
               key={`${reference.source_coordinate_id}:${reference.support_role}`}
             >
               {locatorLabel(reference.locator)}

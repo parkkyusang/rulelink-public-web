@@ -1,16 +1,66 @@
+'use client';
+
+import {useEffect, useMemo, useState} from 'react';
+
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
-import type {LegalAnswerClaim} from '@/types/legal-answer-packet';
+import {
+  claimSelectionState,
+  type ScenarioAnswerState,
+} from '@/lib/legal-answer-journey-state';
+import {
+  KNOWLEDGE_SCENARIO_CHANGE_EVENT,
+  type KnowledgeScenarioChangeDetail,
+} from '@/lib/knowledge-scenario-state';
+import type {
+  CanonicalLegalAnswerProjection,
+  LegalAnswerClaim,
+} from '@/types/legal-answer-packet';
 import type {PublicKnowledgeSource} from '@/types/publication';
 
 import styles from './knowledge-source-evidence.module.css';
 
 export function KnowledgeSourceEvidence({
+  answer,
   claims = [],
+  contentId,
+  revisionKey,
   sources,
 }: {
+  answer?: CanonicalLegalAnswerProjection | null;
   claims?: readonly LegalAnswerClaim[];
+  contentId?: string;
+  revisionKey?: string;
   sources: readonly PublicKnowledgeSource[];
 }) {
+  const [scenarioAnswers, setScenarioAnswers] = useState<ScenarioAnswerState>({});
+  useEffect(() => {
+    if (!answer || !contentId || !revisionKey) return;
+    function handleChange(event: Event) {
+      const detail = (event as CustomEvent<KnowledgeScenarioChangeDetail>).detail;
+      if (
+        !detail
+        || detail.contentId !== contentId
+        || detail.revisionKey !== revisionKey
+      ) return;
+      setScenarioAnswers(current => {
+        const next = {...current};
+        if (detail.answer) next[detail.scenarioId] = detail.answer;
+        else delete next[detail.scenarioId];
+        return next;
+      });
+    }
+    window.addEventListener(KNOWLEDGE_SCENARIO_CHANGE_EVENT, handleChange);
+    return () => window.removeEventListener(KNOWLEDGE_SCENARIO_CHANGE_EVENT, handleChange);
+  }, [answer, contentId, revisionKey]);
+  const claimViews = useMemo(() => {
+    if (!answer) return claims.map(claim => ({claim, state: 'active' as const}));
+    return answer.claims
+      .map(claim => ({
+        claim,
+        state: claimSelectionState(answer, claim, scenarioAnswers),
+      }))
+      .filter(item => item.state !== 'excluded');
+  }, [answer, claims, scenarioAnswers]);
   if (!sources.length) return null;
   return (
     <section
@@ -28,13 +78,13 @@ export function KnowledgeSourceEvidence({
       </header>
       <div className={styles.grid}>
         {sources.map((source, index) => {
-          const sourceClaims = claims.filter(claim => (
+          const sourceClaims = claimViews.filter(({claim}) => (
             claim.authority_refs.some(reference => (
               reference.source_coordinate_id === source.coordinate_id
             ))
           ));
           const versionStates = unique(
-            sourceClaims.flatMap(claim => claim.authority_refs
+            sourceClaims.flatMap(({claim}) => claim.authority_refs
               .filter(reference => reference.source_coordinate_id === source.coordinate_id)
               .map(reference => reference.version.time_state)),
           );
@@ -46,7 +96,9 @@ export function KnowledgeSourceEvidence({
               key={source.coordinate_id}
             >
               <details open={index === 0}>
-                <summary>
+                <summary
+                  id={`source-summary-${source.coordinate_id}`}
+                >
                   <span>
                     <small>{sourceKindLabel(source)}</small>
                     <strong>{sourceLabel(source)}</strong>
@@ -73,8 +125,13 @@ export function KnowledgeSourceEvidence({
                     <section aria-label={`${sourceLabel(source)}가 뒷받침하는 내용`}>
                       <h3>이 근거가 뒷받침하는 내용</h3>
                       <ul>
-                        {sourceClaims.map(claim => (
-                          <li key={claim.claim_id}>{claim.statement_ko}</li>
+                        {sourceClaims.map(({claim, state}) => (
+                          <li data-claim-state={state} key={claim.claim_id}>
+                            <span>
+                              {state === 'pending' ? '사실 확인 전 조건부' : '선택한 사실에 연결'}
+                            </span>
+                            {claim.statement_ko}
+                          </li>
                         ))}
                       </ul>
                     </section>
