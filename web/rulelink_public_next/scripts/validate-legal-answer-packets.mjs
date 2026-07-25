@@ -171,12 +171,15 @@ export async function loadLegalAnswerActivation(options = {}) {
       'production registry',
     ),
   ]);
-  const productionQueueBundle = await readJson(
-    path.resolve(
-      options.productionQueueBundlePath ??
-        DEFAULT_PRODUCTION_QUEUE_BUNDLE_PATH,
-    ),
-    'production queue published bundle',
+  const productionQueueBundlePath = path.resolve(
+    options.productionQueueBundlePath ??
+      DEFAULT_PRODUCTION_QUEUE_BUNDLE_PATH,
+  );
+  const productionQueueBundleRaw = await readFile(
+    productionQueueBundlePath,
+  );
+  const productionQueueBundle = JSON.parse(
+    productionQueueBundleRaw.toString('utf8'),
   );
   let registryHistory;
   try {
@@ -193,7 +196,18 @@ export async function loadLegalAnswerActivation(options = {}) {
     productionQueueEvidence = await loadQueuePublicationEvidence(
       queue,
       productionQueueBundle,
-      {itemRegistry: registry},
+      {
+        itemRegistry: registry,
+        readFile: options.productionQueueReadFile,
+        legalAnswerPacketSetPath:
+          options.packetSetPath ?? DEFAULT_LEGAL_ANSWER_PACKET_SET_PATH,
+        legalAnswerPacketReceiptPath:
+          options.packetReceiptPath ??
+          DEFAULT_LEGAL_ANSWER_PACKET_RECEIPT_PATH,
+        legalAnswerPacketTrustPolicyPath:
+          options.packetTrustPolicyPath ??
+          DEFAULT_LEGAL_ANSWER_PACKET_TRUST_POLICY_PATH,
+      },
     );
   } catch (error) {
     throw new Error(
@@ -255,6 +269,8 @@ export async function loadLegalAnswerActivation(options = {}) {
     manifest,
     manifestSha256: sha256Bytes(await readFile(activationManifestPath)),
     gateReceiptId: `${manifest.queue_work_id}:${manifest.queue_gate_id}`,
+    productionQueueBundleSha256: sha256Bytes(productionQueueBundleRaw),
+    productionQueueSnapshotId: productionQueueBundle.snapshot_id,
   };
 }
 
@@ -390,6 +406,14 @@ export async function validateLegalAnswerPacketFiles(options = {}) {
       };
     }
     const expected = activation.manifest;
+    if (
+      activation.productionQueueSnapshotId !== bundle.snapshot_id ||
+      activation.productionQueueBundleSha256 !== sha256Bytes(bundleRaw)
+    ) {
+      activeErrors.push(
+        'legal_answer_activation_queue_bundle_mismatch',
+      );
+    }
     if (bundle.snapshot_id !== expected.expected_snapshot_id) {
       activeErrors.push('legal_answer_activation_snapshot_mismatch');
     }

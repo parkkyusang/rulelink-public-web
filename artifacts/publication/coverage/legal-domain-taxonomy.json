@@ -21,6 +21,40 @@
       "typed_relation_after": 10
     }
   },
+  "new_domain_seed_registry": [
+    {
+      "target_domain_id": "target.constitutional-public",
+      "work_id": "coverage-expansion-new-domain-constitutional-public"
+    },
+    {
+      "target_domain_id": "target.tax",
+      "work_id": "coverage-expansion-new-domain-tax"
+    },
+    {
+      "target_domain_id": "target.corporate-commercial",
+      "work_id": "coverage-expansion-new-domain-corporate-commercial"
+    },
+    {
+      "target_domain_id": "target.insolvency",
+      "work_id": "coverage-expansion-new-domain-insolvency"
+    },
+    {
+      "target_domain_id": "target.intellectual-property",
+      "work_id": "coverage-expansion-new-domain-intellectual-property"
+    },
+    {
+      "target_domain_id": "target.medical-health",
+      "work_id": "coverage-expansion-new-domain-medical-health"
+    },
+    {
+      "target_domain_id": "target.immigration",
+      "work_id": "coverage-expansion-new-domain-immigration"
+    },
+    {
+      "target_domain_id": "target.environment",
+      "work_id": "coverage-expansion-new-domain-environment"
+    }
+  ],
   "domains": [
     {
       "domain_id": "domain.public-administrative",

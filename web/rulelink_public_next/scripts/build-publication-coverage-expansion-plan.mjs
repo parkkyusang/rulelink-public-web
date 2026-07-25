@@ -25,6 +25,7 @@ import {
 } from './publication-coverage-core.mjs';
 import {
   loadQueuePublicationEvidence,
+  verifiedSourceSelectionFromQueueEvidence,
   validateProductionQueue,
 } from './validate-publication-production-queue.mjs';
 
@@ -164,6 +165,7 @@ function validateTaxonomy(taxonomy, bundle, topicManifest) {
     throw new Error('legal domain taxonomy schema invalid');
   }
   const seedContract = taxonomy.new_domain_seed_contract;
+  const seedRegistry = taxonomy.new_domain_seed_registry;
   if (
     !exactObjectKeys(seedContract, ['counts', 'quality_targets']) ||
     !exactObjectKeys(seedContract.counts, [
@@ -185,6 +187,8 @@ function validateTaxonomy(taxonomy, bundle, topicManifest) {
       'nonstandard_content_type_after',
       'typed_relation_after',
     ])
+    || !Array.isArray(seedRegistry)
+    || seedRegistry.length === 0
   ) {
     throw new Error('new domain seed production contract invalid');
   }
@@ -224,6 +228,26 @@ function validateTaxonomy(taxonomy, bundle, topicManifest) {
     )
   ) {
     throw new Error('target domain horizon identity invalid');
+  }
+  const seedTargetIds = seedRegistry.map(seed => seed?.target_domain_id);
+  const seedWorkIds = seedRegistry.map(seed => seed?.work_id);
+  const unstartedTargetIds = horizon
+    .filter(domain => (domain.current_hub_ids ?? []).length === 0)
+    .map(domain => domain.target_domain_id);
+  if (
+    seedRegistry.some(
+      seed =>
+        !exactObjectKeys(seed, ['target_domain_id', 'work_id']) ||
+        seed.work_id !==
+          `coverage-expansion-new-domain-${String(
+            seed.target_domain_id,
+          ).replace(/^target\./u, '')}`,
+    ) ||
+    new Set(seedTargetIds).size !== seedTargetIds.length ||
+    new Set(seedWorkIds).size !== seedWorkIds.length ||
+    unstartedTargetIds.some(targetId => !seedTargetIds.includes(targetId))
+  ) {
+    throw new Error('new domain seed registry invalid');
   }
   const horizonHubIds = horizon.flatMap(
     (domain) => domain.current_hub_ids ?? [],
@@ -501,139 +525,37 @@ function exactObjectKeys(value, keys) {
   );
 }
 
-async function loadNewDomainSourceSelection({
+function loadNewDomainSourceSelection({
   item,
-  registry,
   topicId,
-  repositoryRoot,
-  builtAt,
-  approvedSources,
+  targetDomainId,
+  revalidatedGateProofs,
 }) {
-  const selection = item?.source_locator_selection;
-  if (selection === undefined) {
+  if (item?.source_locator_selection === undefined) {
     return {
       state: 'selection_required',
       locators: [],
       blockers: ['source_locator_selection_required'],
     };
   }
-  if (
-    !exactObjectKeys(selection, [
-      'gate_id',
-      'artifact_path',
-      'artifact_sha256',
-    ]) ||
-    selection.gate_id !== 'source-maintenance.source-locators-selected' ||
-    typeof selection.artifact_path !== 'string' ||
-    !/^artifacts\/publication\/coverage\/source-locator-selections\/[a-z0-9][a-z0-9._-]*\.json$/u.test(
-      selection.artifact_path,
-    ) ||
-    !/^[a-f0-9]{64}$/u.test(selection.artifact_sha256 ?? '')
-  ) {
-    throw new Error(`new domain source selection shape invalid:${topicId}`);
-  }
-  const selectionRoot = `${path.resolve(
-    repositoryRoot,
-    'artifacts',
-    'publication',
-    'coverage',
-    'source-locator-selections',
-  )}${path.sep}`;
-  const artifactPath = path.resolve(repositoryRoot, selection.artifact_path);
-  if (!artifactPath.startsWith(selectionRoot)) {
-    throw new Error(`new domain source selection path escaped:${topicId}`);
-  }
-  const artifactRaw = await readFile(artifactPath);
-  if (sha256Bytes(artifactRaw) !== selection.artifact_sha256) {
-    throw new Error(`new domain source selection hash mismatch:${topicId}`);
-  }
-  let artifact;
-  try {
-    artifact = JSON.parse(artifactRaw.toString('utf8'));
-  } catch {
-    throw new Error(`new domain source selection JSON invalid:${topicId}`);
-  }
-  if (
-    !exactObjectKeys(artifact, [
-      'schema',
-      'work_id',
-      'topic_id',
-      'locators',
-    ]) ||
-    artifact.schema !== 'rulelink_source_locator_selection_v1' ||
-    artifact.work_id !== item.work_id ||
-    artifact.topic_id !== topicId ||
-    !Array.isArray(artifact.locators) ||
-    artifact.locators.length === 0
-  ) {
-    throw new Error(`new domain source selection artifact invalid:${topicId}`);
-  }
-  const locatorKeys = [
-    'coordinate_id',
-    'source_id',
-    'source_snapshot_id',
-    'law_name_ko',
-    'article_no',
-    'official_url',
-    'last_verified_at',
-  ];
-  const coordinateIds = [];
-  for (const locator of artifact.locators) {
-    const verifiedAt = Date.parse(locator?.last_verified_at ?? '');
-    if (
-      !exactObjectKeys(locator, locatorKeys) ||
-      !locatorKeys.every(
-        (key) => typeof locator[key] === 'string' && locator[key].length > 0,
-      ) ||
-      !/^https:\/\//u.test(locator.official_url) ||
-      !Number.isFinite(verifiedAt) ||
-      verifiedAt > Date.parse(builtAt)
-    ) {
-      throw new Error(`new domain source locator invalid:${topicId}`);
-    }
-    coordinateIds.push(locator.coordinate_id);
-  }
-  if (new Set(coordinateIds).size !== coordinateIds.length) {
-    throw new Error(`new domain source locator duplicate:${topicId}`);
-  }
-  const approvedByCoordinateId = new Map(
-    (approvedSources ?? []).map(source => [source.coordinate_id, source]),
-  );
-  for (const locator of artifact.locators) {
-    const approved = approvedByCoordinateId.get(locator.coordinate_id);
-    if (!approved || canonicalJson(locator) !== canonicalJson(approved)) {
-      throw new Error(
-        `new domain source locator is not in approved publication inventory:${locator.coordinate_id}`,
-      );
-    }
-  }
-  const gate = (item.prerequisite_gates ?? []).find(
-    candidate => candidate.gate_id === selection.gate_id,
-  );
-  const receipt = (registry.prerequisite_gate_receipts ?? []).find(
-    candidate =>
-      candidate.work_id === item.work_id &&
-      candidate.gate_id === selection.gate_id &&
-      candidate.evidence_ref === gate?.evidence_ref,
+  const verified = verifiedSourceSelectionFromQueueEvidence(
+    revalidatedGateProofs,
+    item.work_id,
   );
   if (
-    gate?.status !== 'satisfied' ||
-    gate.evidence_ref !==
-      `source-locator-selection:${item.work_id}` +
-        `@sha256:${selection.artifact_sha256}` ||
-    !receipt
+    !verified ||
+    verified.target_domain_id !== targetDomainId ||
+    verified.locators.length === 0
   ) {
     return {
       state: 'selection_required',
       locators: [],
-      blockers: ['source_locator_selection_receipt_required'],
+      blockers: ['source_locator_selection_revalidation_required'],
     };
   }
   return {
     state: 'bound',
-    locators: [...artifact.locators].sort((left, right) =>
-      left.coordinate_id.localeCompare(right.coordinate_id, 'en'),
-    ),
+    locators: verified.locators,
     blockers: [],
   };
 }
@@ -645,7 +567,7 @@ export async function resolveNewDomainSeedAssignment({
   snapshotId,
   builtAt,
   repositoryRoot = REPOSITORY_ROOT,
-  approvedSources = [],
+  revalidatedGateProofs = null,
 }) {
   const stem = domain.target_domain_id.replace(/^target\./u, '');
   const topicId = `hub.${stem}`;
@@ -665,13 +587,11 @@ export async function resolveNewDomainSeedAssignment({
     candidate => candidate.topic_id === topicId,
   );
   const selection = item
-    ? await loadNewDomainSourceSelection({
+    ? loadNewDomainSourceSelection({
         item,
-        registry,
         topicId,
-        repositoryRoot,
-        builtAt,
-        approvedSources,
+        targetDomainId: domain.target_domain_id,
+        revalidatedGateProofs,
       })
     : {
         state: 'selection_required',
@@ -920,7 +840,11 @@ export async function buildPublicationCoverageExpansionPlan(options = {}) {
     productionQueueEvidence = await loadQueuePublicationEvidence(
       documents.productionQueue,
       documents.bundle,
-      { itemRegistry: documents.productionRegistry },
+      {
+        itemRegistry: documents.productionRegistry,
+        sourceMaintenanceTrustPolicyPath:
+          options.sourceMaintenanceTrustPolicyPath,
+      },
     );
   } catch (error) {
     throw new Error(
@@ -1266,7 +1190,8 @@ export async function buildPublicationCoverageExpansionPlan(options = {}) {
         registry: documents.productionRegistry,
         snapshotId: documents.bundle.snapshot_id,
         builtAt: documents.bundle.built_at,
-        approvedSources: documents.bundle.knowledge.sources,
+        revalidatedGateProofs:
+          productionQueueEvidence.revalidatedGateProofs,
       });
       const {
         stem,

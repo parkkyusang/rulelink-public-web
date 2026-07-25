@@ -1,4 +1,4 @@
-import {createHash} from 'node:crypto';
+import {createHash, verify as verifySignature} from 'node:crypto';
 import {execFile} from 'node:child_process';
 import {readFile, rename, unlink, writeFile} from 'node:fs/promises';
 import path from 'node:path';
@@ -25,6 +25,14 @@ const repoRoot = path.resolve(appRoot, '..', '..');
 const defaultQueuePath = path.join(repoRoot, 'artifacts', 'publication', 'production-queue.json');
 const defaultQueueRegistryPath = path.join(repoRoot, 'artifacts', 'publication', 'production-queue-registry.json');
 const defaultPublishedBundlePath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
+export const DEFAULT_SOURCE_MAINTENANCE_INVENTORY_TRUST_POLICY_PATH =
+  path.join(
+    repoRoot,
+    'artifacts',
+    'publication',
+    'coverage',
+    'source-maintenance-inventory-trust-policy.json',
+  );
 const defaultLivePublicationUrl = `${site.url}/publication.json`;
 const execFileAsync = promisify(execFile);
 const contentTypeContract = JSON.parse(
@@ -221,6 +229,14 @@ const evidenceArtifactPaths = {
   'search-hub-sitemap-200': path.join(repoRoot, 'artifacts', 'publication', 'evidence', 'releases', '024', 'search-hub-sitemap-200.json'),
 };
 const verifiedEvidenceBrand = Symbol('rulelink-production-evidence-v1');
+const queuePublicationEvidenceBrand =
+  Symbol('rulelink-queue-publication-evidence-v1');
+const trustedRevalidatedGateProofMaps = new WeakSet();
+const sourceSelectionsByGateProofMap = new WeakMap();
+const locallyRevalidatedGateMethods = new Set([
+  'legal_answer_packet_activation_v1',
+  'source_locator_selection_v2',
+]);
 
 const STATIC_PRODUCTION_WORK_CONTRACTS = {
   'reader-backfill-crime-victim-wave1': {
@@ -373,33 +389,64 @@ const STATIC_PRODUCTION_WORK_CONTRACTS = {
   },
 };
 
-const coverageSeedDefaults = legalDomainTaxonomy.new_domain_seed_contract;
-if (
-  legalDomainTaxonomy.schema !==
-    'rulelink_publication_legal_domain_taxonomy_v1' ||
-  !coverageSeedDefaults?.counts ||
-  !coverageSeedDefaults?.quality_targets
-) {
-  throw new Error('법영역 확장 seed 생산계약 정본이 올바르지 않습니다.');
-}
-
-const coverageSeedContracts = Object.fromEntries(
-  legalDomainTaxonomy.target_domain_horizon
+export function buildCoverageSeedProductionContracts(taxonomy) {
+  const coverageSeedDefaults = taxonomy.new_domain_seed_contract;
+  const coverageSeedRegistry = taxonomy.new_domain_seed_registry;
+  if (
+    taxonomy.schema !==
+      'rulelink_publication_legal_domain_taxonomy_v1' ||
+    !coverageSeedDefaults?.counts ||
+    !coverageSeedDefaults?.quality_targets ||
+    !Array.isArray(coverageSeedRegistry) ||
+    coverageSeedRegistry.length === 0
+  ) {
+    throw new Error('법영역 확장 seed 생산계약 정본이 올바르지 않습니다.');
+  }
+  const targetDomainById = new Map(
+    taxonomy.target_domain_horizon.map(domain => [
+      domain.target_domain_id,
+      domain,
+    ]),
+  );
+  const registeredSeedTargetIds = coverageSeedRegistry.map(
+    seed => seed.target_domain_id,
+  );
+  const registeredSeedWorkIds = coverageSeedRegistry.map(
+    seed => seed.work_id,
+  );
+  const currentlyUnstartedTargetIds = taxonomy.target_domain_horizon
     .filter(domain => (domain.current_hub_ids ?? []).length === 0)
-    .map(domain => {
-      const stem = String(domain.target_domain_id ?? '').replace(
+    .map(domain => domain.target_domain_id);
+  if (
+    new Set(registeredSeedTargetIds).size !== registeredSeedTargetIds.length ||
+    new Set(registeredSeedWorkIds).size !== registeredSeedWorkIds.length ||
+    currentlyUnstartedTargetIds.some(
+      targetDomainId => !registeredSeedTargetIds.includes(targetDomainId),
+    )
+  ) {
+    throw new Error('법영역 확장 seed 원장은 중복 없이 미개척 영역을 보존해야 합니다.');
+  }
+  return Object.fromEntries(
+    coverageSeedRegistry
+    .map(seed => {
+      const domain = targetDomainById.get(seed.target_domain_id);
+      const stem = String(domain?.target_domain_id ?? '').replace(
         /^target\./u,
         '',
       );
+      const expectedWorkId = `coverage-expansion-new-domain-${stem}`;
       if (
+        !domain ||
+        Object.keys(seed).length !== 2 ||
+        seed.work_id !== expectedWorkId ||
         !coverageSeedStemPattern.test(stem) ||
         windowsReservedBasenames.test(stem)
       ) {
         throw new Error(
-          `법영역 확장 seed 파일 식별자가 안전하지 않습니다: ${stem}`,
+          `법영역 확장 seed 원장 식별자가 안전하지 않습니다: ${seed.target_domain_id ?? '?'}`,
         );
       }
-      const workId = `coverage-expansion-new-domain-${stem}`;
+      const workId = seed.work_id;
       return [
         workId,
         {
@@ -419,9 +466,9 @@ const coverageSeedContracts = Object.fromEntries(
             'source-maintenance.source-locators-selected': {
               gate_kind: 'artifact',
               owner_role: 'source_maintenance',
-              verification_method: 'source_locator_selection_v1',
+              verification_method: 'source_locator_selection_v2',
               verification_contract:
-                'rulelink_source_locator_selection_verification_v1',
+                'rulelink_source_locator_selection_verification_v2',
               evidence_pattern:
                 new RegExp(
                   `^source-locator-selection:${workId}@sha256:[0-9a-f]{64}$`,
@@ -431,7 +478,7 @@ const coverageSeedContracts = Object.fromEntries(
           },
           depends_on_work_ids: [],
           integration_checks: [
-            '승인된 source locator 선택 산출물의 모든 좌표를 현재 공개 근거 인벤토리와 exact 재결박한다.',
+            '승인된 Source Maintenance 서명 인벤토리에서 선택한 좌표와 법영역 관련성을 exact 재결박한다.',
             '새 주제는 표준 콘텐츠 유형·사실분기·typed relation·공식근거 역참조 계약을 모두 통과해야 한다.',
             'topic과 자기시험만 생산하고 current·snapshot·release·production queue는 직접 수정하지 않는다.',
             '검증 완료 뒤 migrate_publication이 current와 새 불변 snapshot에 함께 승격한다.',
@@ -446,7 +493,11 @@ const coverageSeedContracts = Object.fromEntries(
         },
       ];
     }),
-);
+  );
+}
+
+const coverageSeedContracts =
+  buildCoverageSeedProductionContracts(legalDomainTaxonomy);
 
 export const PRODUCTION_WORK_CONTRACTS = {
   ...STATIC_PRODUCTION_WORK_CONTRACTS,
@@ -846,6 +897,243 @@ async function verifyAuthoritySourceCiAttestation({
   return verified;
 }
 
+function hasExactKeys(value, keys) {
+  return (
+    value &&
+    typeof value === 'object' &&
+    !Array.isArray(value) &&
+    Object.keys(value).length === keys.length &&
+    keys.every(key => Object.hasOwn(value, key))
+  );
+}
+
+async function verifySourceLocatorSelectionArtifact({
+  workId,
+  evidenceRef,
+  queue,
+  io,
+}) {
+  const matched =
+    /^source-locator-selection:([^@]+)@sha256:([0-9a-f]{64})$/u.exec(
+      evidenceRef,
+    );
+  if (!matched || matched[1] !== workId) {
+    throw new Error(`source locator 선택 증거 형식 오류: ${evidenceRef}`);
+  }
+  const item = (queue.items ?? []).find(
+    candidate => candidate.work_id === workId,
+  );
+  const contract = PRODUCTION_WORK_CONTRACTS[workId];
+  const selection = item?.source_locator_selection;
+  if (
+    selection?.gate_id !==
+      'source-maintenance.source-locators-selected' ||
+    selection?.artifact_sha256 !== matched[2] ||
+    typeof selection?.artifact_path !== 'string' ||
+    !/^artifacts\/publication\/coverage\/source-locator-selections\/[a-z0-9][a-z0-9._-]*\.json$/u.test(
+      selection.artifact_path,
+    )
+  ) {
+    throw new Error(`source locator 선택 계약 불일치: ${workId}`);
+  }
+  const artifactPath = path.resolve(repoRoot, selection.artifact_path);
+  const selectionRoot = `${path.resolve(
+    repoRoot,
+    'artifacts',
+    'publication',
+    'coverage',
+    'source-locator-selections',
+  )}${path.sep}`;
+  if (!artifactPath.startsWith(selectionRoot)) {
+    throw new Error(`source locator 선택 경로 이탈: ${workId}`);
+  }
+  const read = io.readFile || readFile;
+  const trustPolicyPath = path.resolve(
+    io.sourceMaintenanceTrustPolicyPath ??
+      DEFAULT_SOURCE_MAINTENANCE_INVENTORY_TRUST_POLICY_PATH,
+  );
+  const [artifactRaw, trustPolicyRaw] = await Promise.all([
+    read(artifactPath),
+    read(trustPolicyPath),
+  ]);
+  if (sha256(artifactRaw) !== matched[2]) {
+    throw new Error(`source locator 선택 산출물 해시 불일치: ${workId}`);
+  }
+  const artifact = JSON.parse(artifactRaw.toString('utf8'));
+  const trustPolicy = JSON.parse(trustPolicyRaw.toString('utf8'));
+  if (
+    !hasExactKeys(trustPolicy, [
+      'schema',
+      'status',
+      'issuer',
+      'source_repository',
+      'keys',
+    ]) ||
+    trustPolicy.schema !==
+      'rulelink_source_maintenance_inventory_trust_policy_v1' ||
+    trustPolicy.status !== 'active' ||
+    typeof trustPolicy.issuer !== 'string' ||
+    trustPolicy.issuer.length === 0 ||
+    typeof trustPolicy.source_repository !== 'string' ||
+    trustPolicy.source_repository.length === 0 ||
+    !Array.isArray(trustPolicy.keys) ||
+    trustPolicy.keys.length === 0
+  ) {
+    throw new Error('source maintenance inventory trust policy가 활성 정본이 아닙니다.');
+  }
+  if (
+    !hasExactKeys(artifact, [
+      'schema',
+      'work_id',
+      'topic_id',
+      'target_domain_id',
+      'inventory_manifest',
+      'inventory_signature',
+      'selected_coordinate_ids',
+    ]) ||
+    artifact.schema !== 'rulelink_source_locator_selection_v2' ||
+    artifact.work_id !== workId ||
+    artifact.topic_id !== item.topic_id ||
+    artifact.target_domain_id !== `target.${item.topic_id.replace(/^hub\./u, '')}` ||
+    !Array.isArray(artifact.selected_coordinate_ids) ||
+    artifact.selected_coordinate_ids.length !== contract.counts.sources ||
+    new Set(artifact.selected_coordinate_ids).size !==
+      artifact.selected_coordinate_ids.length
+  ) {
+    throw new Error(`source locator 선택 산출물 구조 오류: ${workId}`);
+  }
+  const manifest = artifact.inventory_manifest;
+  const signature = artifact.inventory_signature;
+  if (
+    !hasExactKeys(manifest, [
+      'schema',
+      'inventory_id',
+      'issuer',
+      'source_repository',
+      'source_commit_sha',
+      'active_graph_sha256',
+      'generated_at',
+      'sources',
+    ]) ||
+    manifest.schema !== 'rulelink_source_maintenance_inventory_v1' ||
+    manifest.issuer !== trustPolicy.issuer ||
+    manifest.source_repository !== trustPolicy.source_repository ||
+    !/^[0-9a-f]{40}$/u.test(manifest.source_commit_sha ?? '') ||
+    !/^[0-9a-f]{64}$/u.test(manifest.active_graph_sha256 ?? '') ||
+    !Number.isFinite(Date.parse(manifest.generated_at ?? '')) ||
+    Date.parse(manifest.generated_at) > Date.parse(queue.audited_on) ||
+    !Array.isArray(manifest.sources) ||
+    manifest.sources.length === 0 ||
+    !hasExactKeys(signature, [
+      'algorithm',
+      'issuer',
+      'key_id',
+      'signature_base64',
+    ]) ||
+    signature.algorithm !== 'Ed25519' ||
+    signature.issuer !== trustPolicy.issuer ||
+    !/^[A-Za-z0-9+/]+={0,2}$/u.test(signature.signature_base64 ?? '')
+  ) {
+    throw new Error(`source maintenance inventory 구조 오류: ${workId}`);
+  }
+  const trustedKey = trustPolicy.keys.find(
+    key =>
+      hasExactKeys(key, [
+        'algorithm',
+        'key_id',
+        'public_key_pem',
+      ]) &&
+      key.algorithm === signature.algorithm &&
+      key.key_id === signature.key_id &&
+      typeof key.public_key_pem === 'string' &&
+      key.public_key_pem.length > 0,
+  );
+  if (
+    !trustedKey ||
+    !verifySignature(
+      null,
+      Buffer.from(canonicalJson(manifest), 'utf8'),
+      trustedKey.public_key_pem,
+      Buffer.from(signature.signature_base64, 'base64'),
+    )
+  ) {
+    throw new Error(`source maintenance inventory 서명 불일치: ${workId}`);
+  }
+  const locatorKeys = [
+    'coordinate_id',
+    'source_id',
+    'source_snapshot_id',
+    'law_name_ko',
+    'article_no',
+    'official_url',
+    'last_verified_at',
+    'target_domain_ids',
+  ];
+  const sourceByCoordinateId = new Map();
+  for (const source of manifest.sources) {
+    const verifiedAt = Date.parse(source?.last_verified_at ?? '');
+    if (
+      !hasExactKeys(source, locatorKeys) ||
+      !locatorKeys
+        .filter(key => key !== 'target_domain_ids')
+        .every(
+          key => typeof source[key] === 'string' && source[key].length > 0,
+        ) ||
+      !Array.isArray(source.target_domain_ids) ||
+      source.target_domain_ids.length === 0 ||
+      new Set(source.target_domain_ids).size !== source.target_domain_ids.length ||
+      !source.target_domain_ids.includes(artifact.target_domain_id) ||
+      !/^https:\/\//u.test(source.official_url) ||
+      !Number.isFinite(verifiedAt) ||
+      verifiedAt > Date.parse(queue.audited_on)
+    ) {
+      throw new Error(
+        `source maintenance inventory locator가 승인 범위를 벗어났습니다: ${source?.coordinate_id ?? '?'}`,
+      );
+    }
+    if (sourceByCoordinateId.has(source.coordinate_id)) {
+      throw new Error(
+        `source maintenance inventory locator 중복: ${source.coordinate_id}`,
+      );
+    }
+    sourceByCoordinateId.set(source.coordinate_id, source);
+  }
+  const locators = artifact.selected_coordinate_ids.map(coordinateId => {
+    const source = sourceByCoordinateId.get(coordinateId);
+    if (!source) {
+      throw new Error(
+        `선택된 source locator가 서명된 inventory에 없습니다: ${coordinateId}`,
+      );
+    }
+    const {target_domain_ids: _targetDomainIds, ...locator} = source;
+    return locator;
+  });
+  const proof = sha256(canonicalJson({
+    verificationMethod: 'source_locator_selection_v2',
+    evidenceRef,
+    artifactSha256: matched[2],
+    trustPolicySha256: sha256(trustPolicyRaw),
+    inventoryManifestSha256: sha256(canonicalJson(manifest)),
+    inventorySignature: signature.signature_base64,
+    activeGraphSha256: manifest.active_graph_sha256,
+    sourceCommitSha: manifest.source_commit_sha,
+    selectedCoordinateIds: [...artifact.selected_coordinate_ids].sort(),
+  }));
+  return {
+    proof,
+    selection: {
+      work_id: workId,
+      target_domain_id: artifact.target_domain_id,
+      inventory_id: manifest.inventory_id,
+      active_graph_sha256: manifest.active_graph_sha256,
+      source_commit_sha: manifest.source_commit_sha,
+      locators: locators.sort((left, right) =>
+        left.coordinate_id.localeCompare(right.coordinate_id, 'en'),
+      ),
+    },
+  };
+}
+
 async function verifyEvidenceReference({
   gateId,
   workId,
@@ -1181,78 +1469,15 @@ async function verifyEvidenceReference({
       referencedArtifacts: semantic.referenced_artifacts,
     }));
   }
-  if (verificationMethod === 'source_locator_selection_v1') {
-    const matched =
-      /^source-locator-selection:([^@]+)@sha256:([0-9a-f]{64})$/u.exec(
+  if (verificationMethod === 'source_locator_selection_v2') {
+    return (
+      await verifySourceLocatorSelectionArtifact({
+        workId,
         evidenceRef,
-      );
-    if (!matched || matched[1] !== workId) {
-      throw new Error(`source locator 선택 증거 형식 오류: ${evidenceRef}`);
-    }
-    const item = (queue.items ?? []).find(
-      candidate => candidate.work_id === workId,
-    );
-    const selection = item?.source_locator_selection;
-    if (
-      selection?.gate_id !==
-        'source-maintenance.source-locators-selected' ||
-      selection?.artifact_sha256 !== matched[2] ||
-      typeof selection?.artifact_path !== 'string' ||
-      !/^artifacts\/publication\/coverage\/source-locator-selections\/[a-z0-9][a-z0-9._-]*\.json$/u.test(
-        selection.artifact_path,
-      )
-    ) {
-      throw new Error(`source locator 선택 계약 불일치: ${workId}`);
-    }
-    const artifactPath = path.resolve(repoRoot, selection.artifact_path);
-    const selectionRoot = `${path.resolve(
-      repoRoot,
-      'artifacts',
-      'publication',
-      'coverage',
-      'source-locator-selections',
-    )}${path.sep}`;
-    if (!artifactPath.startsWith(selectionRoot)) {
-      throw new Error(`source locator 선택 경로 이탈: ${workId}`);
-    }
-    const [artifactRaw, publishedBundle] = await Promise.all([
-      read(artifactPath),
-      read(defaultPublishedBundlePath, 'utf8').then(JSON.parse),
-    ]);
-    if (sha256(artifactRaw) !== matched[2]) {
-      throw new Error(`source locator 선택 산출물 해시 불일치: ${workId}`);
-    }
-    const artifact = JSON.parse(artifactRaw.toString('utf8'));
-    const sourceByCoordinateId = new Map(
-      (publishedBundle.knowledge?.sources ?? []).map(source => [
-        source.coordinate_id,
-        source,
-      ]),
-    );
-    if (
-      artifact?.schema !== 'rulelink_source_locator_selection_v1' ||
-      artifact.work_id !== workId ||
-      artifact.topic_id !== item.topic_id ||
-      !Array.isArray(artifact.locators) ||
-      artifact.locators.length === 0
-    ) {
-      throw new Error(`source locator 선택 산출물 구조 오류: ${workId}`);
-    }
-    for (const locator of artifact.locators) {
-      const trusted = sourceByCoordinateId.get(locator.coordinate_id);
-      if (!trusted || canonicalJson(locator) !== canonicalJson(trusted)) {
-        throw new Error(
-          `source locator가 현재 승인 공개 근거와 다릅니다: ${locator.coordinate_id ?? '?'}`,
-        );
-      }
-    }
-    return sha256(canonicalJson({
-      verificationMethod,
-      evidenceRef,
-      artifactPath,
-      publishedSnapshotId: publishedBundle.snapshot_id,
-      locatorIds: artifact.locators.map(locator => locator.coordinate_id).sort(),
-    }));
+        queue,
+        io: {...io, readFile: read},
+      })
+    ).proof;
   }
   if (verificationMethod === 'legal_answer_packet_activation_v1') {
     const matched =
@@ -1264,22 +1489,27 @@ async function verifyEvidenceReference({
     }
     const [, snapshotId, packetHash, receiptHash, trustHash] = matched;
     const [packetBytes, receiptBytes, trustBytes] = await Promise.all([
-      read(path.join(appRoot, 'content', 'legal-answer-packets.json')),
       read(
-        path.join(
-          appRoot,
-          'contracts',
-          'legal-answer-packet',
-          'packet-set-verification-receipt.json',
-        ),
+        io.legalAnswerPacketSetPath ??
+          path.join(appRoot, 'content', 'legal-answer-packets.json'),
       ),
       read(
-        path.join(
-          appRoot,
-          'contracts',
-          'legal-answer-packet',
-          'packet-set-trust-policy.json',
-        ),
+        io.legalAnswerPacketReceiptPath ??
+          path.join(
+            appRoot,
+            'contracts',
+            'legal-answer-packet',
+            'packet-set-verification-receipt.json',
+          ),
+      ),
+      read(
+        io.legalAnswerPacketTrustPolicyPath ??
+          path.join(
+            appRoot,
+            'contracts',
+            'legal-answer-packet',
+            'packet-set-trust-policy.json',
+          ),
       ),
     ]);
     if (
@@ -2068,7 +2298,7 @@ export function appendPrerequisiteGateReceipts(
     const contract = PRODUCTION_WORK_CONTRACTS[item.work_id];
     for (const gate of item.prerequisite_gates || []) {
       if (gate.status !== 'satisfied') continue;
-      const contractGate = contract?.prerequisite_gates?.[gate.gate_id];
+      const contractGate = productionGateContract(contract, gate.gate_id);
       const gateKey = [
         item.work_id,
         gate.gate_id,
@@ -2516,14 +2746,87 @@ export async function loadQueuePublicationEvidence(queue, bundle, io = {}) {
   const registryPath = io.queueRegistryPath || defaultQueueRegistryPath;
   const itemRegistry = io.itemRegistry || JSON.parse(await read(registryPath, 'utf8'));
   const registryHistory = await inspectQueueItemRegistryHistory(itemRegistry, io);
+  const revalidatedGateProofs = new Map();
+  const verifiedSourceSelections = new Map();
+  for (const receipt of itemRegistry.prerequisite_gate_receipts ?? []) {
+    const item = queue.items.find(
+      candidate => candidate.work_id === receipt.work_id,
+    );
+    const gate = item?.prerequisite_gates?.find(
+      candidate =>
+        candidate.gate_id === receipt.gate_id &&
+        candidate.evidence_ref === receipt.evidence_ref &&
+        candidate.status === 'satisfied',
+    );
+    const gateContract = productionGateContract(
+      PRODUCTION_WORK_CONTRACTS[receipt.work_id],
+      receipt.gate_id,
+    );
+    if (
+      !item ||
+      !gate ||
+      !gateContract ||
+      !locallyRevalidatedGateMethods.has(gateContract.verification_method)
+    ) {
+      continue;
+    }
+    const key = [
+      receipt.work_id,
+      receipt.gate_id,
+      receipt.evidence_ref,
+      receipt.verification_contract || '',
+    ].join('|');
+    if (gateContract.verification_method === 'source_locator_selection_v2') {
+      const verified = await verifySourceLocatorSelectionArtifact({
+        workId: receipt.work_id,
+        evidenceRef: receipt.evidence_ref,
+        queue,
+        io: {...io, readFile: read},
+      });
+      revalidatedGateProofs.set(key, verified.proof);
+      verifiedSourceSelections.set(receipt.work_id, verified.selection);
+    } else {
+      revalidatedGateProofs.set(
+        key,
+        await verifyEvidenceReference({
+          kind: 'prerequisite_gate',
+          gateId: receipt.gate_id,
+          workId: receipt.work_id,
+          evidenceRef: receipt.evidence_ref,
+          verificationMethod: gateContract.verification_method,
+          queue,
+          io: {...io, readFile: read},
+        }),
+      );
+    }
+  }
+  trustedRevalidatedGateProofMaps.add(revalidatedGateProofs);
+  sourceSelectionsByGateProofMap.set(
+    revalidatedGateProofs,
+    verifiedSourceSelections,
+  );
   return {
+    [queuePublicationEvidenceBrand]: true,
     publishedSnapshot,
     topicReceipts,
     workTopicMeasurements,
     migrationCommits,
     itemRegistry,
     previousItemRegistry: registryHistory.previous_registry,
+    revalidatedGateProofs,
   };
+}
+
+export function verifiedSourceSelectionFromQueueEvidence(
+  revalidatedGateProofs,
+  workId,
+) {
+  if (!trustedRevalidatedGateProofMaps.has(revalidatedGateProofs)) {
+    return null;
+  }
+  const selection =
+    sourceSelectionsByGateProofMap.get(revalidatedGateProofs)?.get(workId);
+  return selection ? structuredClone(selection) : null;
 }
 
 function publicationArray(bundle, key) {
@@ -2623,6 +2926,7 @@ export function validateProductionQueue(
     migrationCommits = null,
     itemRegistry = null,
     previousItemRegistry = null,
+    revalidatedGateProofs = null,
   } = {},
 ) {
   const errors = [];
@@ -2638,6 +2942,30 @@ export function validateProductionQueue(
     return errors;
   }
   errors.push(...validateQueueItemRegistry(itemRegistry, queue, {previousRegistry: previousItemRegistry}));
+  for (const receipt of itemRegistry?.prerequisite_gate_receipts ?? []) {
+    const contract = PRODUCTION_WORK_CONTRACTS[receipt.work_id];
+    const gateContract = productionGateContract(contract, receipt.gate_id);
+    if (
+      !gateContract ||
+      !locallyRevalidatedGateMethods.has(gateContract.verification_method)
+    ) {
+      continue;
+    }
+    const key = [
+      receipt.work_id,
+      receipt.gate_id,
+      receipt.evidence_ref,
+      receipt.verification_contract || '',
+    ].join('|');
+    if (
+      !trustedRevalidatedGateProofMaps.has(revalidatedGateProofs) ||
+      revalidatedGateProofs.get(key) !== receipt.verification_proof
+    ) {
+      errors.push(
+        `로컬 정본에서 재계산되지 않은 선행 게이트 영수증입니다: ${receipt.work_id}/${receipt.gate_id}`,
+      );
+    }
+  }
 
   if (canonicalJson(queue.policy?.owner_role_contracts) !== canonicalJson(OWNER_ROLE_CONTRACTS)) {
     errors.push('policy.owner_role_contracts가 표준 역할별 소유·금지 파일 경계와 다릅니다.');

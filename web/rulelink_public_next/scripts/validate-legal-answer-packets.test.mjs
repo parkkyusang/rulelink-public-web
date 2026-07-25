@@ -39,7 +39,11 @@ import {
   rebindPacketSet,
   validLegalAnswerFixture as validFixture,
 } from './legal-answer-test-fixture.mjs';
-import {topicReceipt} from './validate-publication-production-queue.mjs';
+import {
+  appendPrerequisiteGateReceipts,
+  topicReceipt,
+  verifyProductionQueueExternalEvidence,
+} from './validate-publication-production-queue.mjs';
 
 const appRoot = path.resolve(import.meta.dirname, '..');
 const repositoryRoot = path.resolve(appRoot, '..', '..');
@@ -182,7 +186,7 @@ test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue 
       mutate(paths) {
         paths.packetSetPath = `${paths.packetSetPath}.missing`;
       },
-      expected: /required_but_missing/u,
+      expected: /required_but_missing|production_queue_invalid/u,
     },
     {
       label: 'empty',
@@ -192,7 +196,7 @@ test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue 
         await writeFile(paths.packetSetPath, canonicalBytes(packetSet));
       },
       expected:
-        /required_but_empty|packet_set_hash_mismatch|queue_gate_evidence_invalid/u,
+        /required_but_empty|packet_set_hash_mismatch|queue_gate_evidence_invalid|production_queue_invalid/u,
     },
     {
       label: 'wrong-count-id',
@@ -217,7 +221,7 @@ test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue 
           'expected_packet_set_sha256',
         );
       },
-      expected: /packet_set_hash_mismatch|queue_gate_evidence_invalid/u,
+      expected: /packet_set_hash_mismatch|queue_gate_evidence_invalid|production_queue_invalid/u,
     },
     {
       label: 'receipt-hash',
@@ -227,7 +231,7 @@ test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue 
           'expected_verification_receipt_sha256',
         );
       },
-      expected: /receipt_hash_mismatch|queue_gate_evidence_invalid/u,
+      expected: /receipt_hash_mismatch|queue_gate_evidence_invalid|production_queue_invalid/u,
     },
     {
       label: 'trust-hash',
@@ -237,7 +241,7 @@ test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue 
           'expected_trust_policy_sha256',
         );
       },
-      expected: /trust_policy_hash_mismatch|queue_gate_evidence_invalid/u,
+      expected: /trust_policy_hash_mismatch|queue_gate_evidence_invalid|production_queue_invalid/u,
     },
     {
       label: 'queue-receipt',
@@ -293,6 +297,23 @@ test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue 
       expected: /production_queue_invalid/u,
     },
     {
+      label: 'self-issued-verification-proof',
+      async mutate(paths) {
+        const registry = JSON.parse(
+          await readFile(paths.productionRegistryPath, 'utf8'),
+        );
+        const receipt = registry.prerequisite_gate_receipts.at(-1);
+        receipt.verification_proof = 'b'.repeat(64);
+        receipt.receipt = topicReceipt(receipt);
+        registry.prerequisite_gate_receipt = receipt.receipt;
+        await writeFile(
+          paths.productionRegistryPath,
+          canonicalBytes(registry),
+        );
+      },
+      expected: /재계산되지 않은 선행 게이트 영수증|production_queue_invalid/u,
+    },
+    {
       label: 'duplicate-queue-work-id',
       async mutate(paths) {
         const queue = JSON.parse(
@@ -335,6 +356,14 @@ test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue 
       expected: /target_topic_ids_mismatch/u,
     },
     {
+      label: 'queue-bundle-world-mismatch',
+      mutate(paths) {
+        paths.productionQueueBundlePath = currentBundlePath;
+        paths.productionQueueReadFile = undefined;
+      },
+      expected: /queue_bundle_mismatch/u,
+    },
+    {
       label: 'signed-receipt',
       async mutate(paths) {
         const receipt = JSON.parse(
@@ -353,7 +382,7 @@ test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue 
         );
       },
       expected:
-        /trusted_loader_failed:.*signature_invalid|queue_gate_evidence_invalid/u,
+        /trusted_loader_failed:.*signature_invalid|queue_gate_evidence_invalid|production_queue_invalid/u,
     },
   ];
   for (const attack of attacks) {
@@ -868,14 +897,39 @@ async function withActivationFixture(callback) {
   );
   try {
     const fixture = validFixture();
-    fixture.bundle.knowledge.topic_hubs = [
-      {
-        hub_id: 'hub.crime-victim-response',
-        content_ids: [
-          fixture.packetSet.packets[0].retrieval.canonical_content_ids[0],
-        ],
-      },
-    ];
+    const packetKnowledge = fixture.bundle.knowledge;
+    fixture.bundle = structuredClone(currentBundle);
+    replaceRowsByIdentity(
+      fixture.bundle.knowledge.sources,
+      packetKnowledge.sources,
+      'coordinate_id',
+    );
+    replaceRowsByIdentity(
+      fixture.bundle.knowledge.rule_cards,
+      packetKnowledge.rule_cards,
+      'rule_id',
+    );
+    replaceRowsByIdentity(
+      fixture.bundle.knowledge.scenario_branches,
+      packetKnowledge.scenario_branches,
+      'scenario_id',
+    );
+    for (const packetEntry of packetKnowledge.content_entries) {
+      const currentEntry = fixture.bundle.knowledge.content_entries.find(
+        entry => entry.content_id === packetEntry.content_id,
+      );
+      Object.assign(currentEntry, packetEntry, {
+        hub_ids: currentEntry.hub_ids,
+      });
+    }
+    fixture.bundle.knowledge.source_authority_units =
+      packetKnowledge.source_authority_units;
+    fixture.bundle.knowledge.source_version_bridges =
+      packetKnowledge.source_version_bridges;
+    fixture.bundle.knowledge.authority_reading_units =
+      packetKnowledge.authority_reading_units;
+    fixture.bundle.knowledge.authority_bindings =
+      packetKnowledge.authority_bindings;
     fixture.bundleRaw = canonicalBytes(fixture.bundle);
     rebindPacketSet(
       fixture.packetSet,
@@ -929,7 +983,7 @@ async function withActivationFixture(callback) {
     const queue = JSON.parse(
       await readFile(DEFAULT_PRODUCTION_QUEUE_PATH, 'utf8'),
     );
-    const registry = JSON.parse(
+    let registry = JSON.parse(
       await readFile(DEFAULT_PRODUCTION_REGISTRY_PATH, 'utf8'),
     );
     const queueWorkId = 'reader-backfill-crime-victim-wave1';
@@ -949,22 +1003,6 @@ async function withActivationFixture(callback) {
       status: 'satisfied',
       evidence_ref: evidenceRef,
     });
-    const gateReceipt = {
-      sequence: registry.prerequisite_gate_receipts.length + 1,
-      work_id: queueWorkId,
-      gate_id: queueGateId,
-      verified_by_role: 'quality_governance',
-      verification_method: 'legal_answer_packet_activation_v1',
-      verification_contract:
-        'rulelink_legal_answer_packet_activation_verification_v1',
-      evidence_ref: evidenceRef,
-      verification_proof: 'b'.repeat(64),
-      verified_on: queue.audited_on,
-      previous_receipt: registry.prerequisite_gate_receipt,
-    };
-    gateReceipt.receipt = topicReceipt(gateReceipt);
-    registry.prerequisite_gate_receipts.push(gateReceipt);
-    registry.prerequisite_gate_receipt = gateReceipt.receipt;
     const activation = {
       schema: 'rulelink_legal_answer_packet_activation_v1',
       activation_state: 'active',
@@ -989,7 +1027,7 @@ async function withActivationFixture(callback) {
       packetTrustPolicyPath: path.join(directory, 'trust-policy.json'),
       productionQueuePath: path.join(directory, 'queue.json'),
       productionRegistryPath: path.join(directory, 'registry.json'),
-      productionQueueBundlePath: currentBundlePath,
+      productionQueueBundlePath: path.join(directory, 'bundle.json'),
     };
     await Promise.all([
       writeFile(paths.activationManifestPath, canonicalBytes(activation)),
@@ -998,11 +1036,79 @@ async function withActivationFixture(callback) {
       writeFile(paths.packetSetPath, packetSetRaw),
       writeFile(paths.packetTrustPolicyPath, trustPolicyRaw),
       writeFile(paths.productionQueuePath, canonicalBytes(queue)),
-      writeFile(paths.productionRegistryPath, canonicalBytes(registry)),
     ]);
+    paths.productionQueueReadFile = async (filename, ...args) => {
+      const normalized = path.normalize(String(filename));
+      if (
+        normalized.endsWith(
+          path.normalize(
+            `artifacts/publication/snapshots/${fixture.bundle.snapshot_id}/bundle.json`,
+          ),
+        )
+      ) {
+        return args[0] === 'utf8'
+          ? fixture.bundleRaw.toString('utf8')
+          : fixture.bundleRaw;
+      }
+      return readFile(filename, ...args);
+    };
+    const verifiedEvidence =
+      await verifyProductionQueueExternalEvidence(queue, {
+        registry,
+        legalAnswerPacketSetPath: paths.packetSetPath,
+        legalAnswerPacketReceiptPath: paths.packetReceiptPath,
+        legalAnswerPacketTrustPolicyPath:
+          paths.packetTrustPolicyPath,
+      });
+    registry = appendPrerequisiteGateReceipts(registry, queue, {
+      verifiedEvidence,
+    });
+    await writeFile(
+      paths.productionRegistryPath,
+      canonicalBytes(registry),
+    );
     await callback(paths);
   } finally {
     await rm(directory, {recursive: true, force: true});
+  }
+}
+
+function replaceRowsByIdentity(targetRows, replacementRows, identityKey) {
+  const replacementIds = new Set(
+    replacementRows.map(row => row[identityKey]),
+  );
+  const reservedIndexes = new Set();
+  for (const replacement of replacementRows) {
+    const existingIndex = targetRows.findIndex(
+      row => row[identityKey] === replacement[identityKey],
+    );
+    if (existingIndex >= 0) {
+      targetRows[existingIndex] = replacement;
+      reservedIndexes.add(existingIndex);
+    }
+  }
+  let fallbackIndex = targetRows.length - 1;
+  for (const replacement of replacementRows) {
+    if (
+      targetRows.some(
+        row => row[identityKey] === replacement[identityKey],
+      )
+    ) {
+      continue;
+    }
+    while (
+      fallbackIndex >= 0 &&
+      (
+        reservedIndexes.has(fallbackIndex) ||
+        replacementIds.has(targetRows[fallbackIndex][identityKey])
+      )
+    ) {
+      fallbackIndex -= 1;
+    }
+    assert.ok(fallbackIndex >= 0, 'fixture replacement capacity');
+    targetRows[fallbackIndex] = replacement;
+    reservedIndexes.add(fallbackIndex);
+    fallbackIndex -= 1;
   }
 }
 
