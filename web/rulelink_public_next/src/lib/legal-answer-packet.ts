@@ -446,9 +446,9 @@ function validateRetrieval(
         errors.push('current_public_bundle_receipt_mismatch');
       }
     } else if (receipt.index_kind === 'active_sqlite') {
-      if (receipt.canonical_hash !== packet.provenance.source_db_release_id) {
-        errors.push('active_sqlite_receipt_mismatch');
-      }
+      // Stage B에는 패킷과 분리된 활성 DB 승인 신뢰근이 없다.
+      // packet provenance와 영수증끼리 맞춘 자기진술은 신뢰하지 않는다.
+      errors.push('active_sqlite_receipt_not_supported_in_public_stage_b');
     } else {
       errors.push('opensearch_receipt_not_supported_in_public_stage_b');
     }

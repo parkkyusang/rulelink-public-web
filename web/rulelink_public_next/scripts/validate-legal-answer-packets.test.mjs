@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -15,6 +16,10 @@ import {
   validateJsonSchema,
   validateVendoredLegalAnswerContract,
 } from '../src/lib/legal-answer-packet.ts';
+import {
+  PYTHON_CASEFOLD_UNICODE_VERSION,
+  pythonCaseFold,
+} from '../src/lib/python-casefold.ts';
 import {
   DEFAULT_LEGAL_ANSWER_PACKET_SET_PATH,
   DEFAULT_LEGAL_ANSWER_RECEIPT_PATH,
@@ -140,6 +145,17 @@ test('canonical packet은 current snapshot/hash와 닫힌 ID·authority graph에
 });
 
 test('검색 영수증은 producer query fingerprint와 candidate 재수화 집합을 그대로 검증한다', () => {
+  assert.equal(PYTHON_CASEFOLD_UNICODE_VERSION, '15.0.0');
+  assert.equal(
+    pythonCaseFold('\u1c89\ua7cb\u{10d50}'),
+    '\u1c89\ua7cb\u{10d50}',
+    '생산자 UCD 15.0에서 미할당이던 문자는 최신 Node Unicode 표에 따라 바뀌면 안 된다',
+  );
+  assert.equal(
+    legalAnswerQueryFingerprint('A\u1c89\ua7cb\u{10d50}'),
+    'dcbb5e3aa40b5a2b35335b694ef69147d9d0d06927cf5e98d7aedb548b7bb83c',
+    '생산자 Python 3.12.1의 전체 non-identity casefold 표와 identity fallback을 고정한다',
+  );
   assert.equal(
     legalAnswerQueryFingerprint('  Straße\tᎠ '),
     '5f436ff28f1c27565bf65361a0331e484a9984fec71e9539885b42bf4d7ab346',
@@ -198,6 +214,53 @@ test('검색 영수증은 producer query fingerprint와 candidate 재수화 집�
     assert.deepEqual(result.packets, []);
     assert.match(result.errors.join('\n'), attack.expected);
   }
+});
+
+test('casefold 정본은 Python 3.12.1 Unicode 15.0의 전체 non-identity 1,530개와 같다', () => {
+  const rows = [];
+  for (let codePoint = 0; codePoint <= 0x10ffff; codePoint += 1) {
+    const character = String.fromCodePoint(codePoint);
+    const folded = pythonCaseFold(character);
+    if (folded === character) continue;
+    rows.push(
+      `${codePoint.toString(16)}:${[...folded]
+        .map(value => value.codePointAt(0).toString(16))
+        .join('-')}`,
+    );
+  }
+  assert.equal(rows.length, 1530);
+  assert.equal(
+    createHash('sha256').update(`${rows.join('\n')}\n`).digest('hex'),
+    '4221b03090f993849475150e0a6b0ff0e8b6ccb82a17621992eb3cf0053823ff',
+  );
+});
+
+test('공개 Stage B는 외부 승인 신뢰근이 없는 active SQLite 영수증을 fail-closed 거부한다', () => {
+  const fixture = validFixture();
+  const packet = fixture.packetSet.packets[0];
+  const forgedReleaseId = 'f'.repeat(64);
+  packet.provenance.source_db_release_id = forgedReleaseId;
+  packet.retrieval.receipts.push({
+    index_kind: 'active_sqlite',
+    index_version: 'forged:index-version',
+    query_sha256: legalAnswerQueryFingerprint(packet.request.query_text),
+    candidate_ids: [packet.retrieval.source_coordinate_ids[0]],
+    rehydrated_ids: [packet.retrieval.source_coordinate_ids[0]],
+    canonical_snapshot_id: 'forged:snapshot',
+    canonical_hash: forgedReleaseId,
+  });
+
+  const result = inspect(
+    fixture.packetSet,
+    fixture.bundle,
+    fixture.bundleRaw,
+  );
+  assert.equal(result.ok, false);
+  assert.deepEqual(result.packets, []);
+  assert.match(
+    result.errors.join('\n'),
+    /active_sqlite_receipt_not_supported_in_public_stage_b/,
+  );
 });
 
 test('packet 기준일과 request time_context 기준일은 정확히 같아야 한다', () => {
