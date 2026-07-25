@@ -1,0 +1,4295 @@
+{
+  "schema": "rulelink_publication_expansion_backlog_v1",
+  "snapshot_id": "kr-knowledge-core-20260723-023",
+  "base_bundle_sha256": "18209d6268b59e8e6bee3e1628234da9804e7b835b3e08d2eef70b91410fa581",
+  "coverage_manifest_sha256": "9c7f11a87ada239f28e2f751949b2b5db97046f25d474746fc39b5c628d1948d",
+  "content_count": 284,
+  "hub_count": 28,
+  "summary": {
+    "coverage_declared": 5,
+    "coverage_unmapped": 279,
+    "declared_incomplete": 5,
+    "graph_ready_unmapped": 220,
+    "structure_incomplete": 59,
+    "verified_release": 0
+  },
+  "entries": [
+    {
+      "content_id": "content.2026-livelihood-account-protection",
+      "content_revision_sha256": "67ef178826b623731536deda21da1450416bfeaa10e3c51a9fc6a4b5c6c0e43e",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.2026-loss-of-inheritance-right-and-representation",
+      "content_revision_sha256": "ab50de11b99e9c470805415d87b5172066dd4ee0b6a06232a8b97e535b049c66",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.accident-damages-responsibility-map",
+      "content_revision_sha256": "340313f89f3c7f0e4bc86d977789b949d1a9c4e07f8743b43414e3fbeccabd09",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.everyday-damages"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.accident-evidence-and-tort-limitation",
+      "content_revision_sha256": "71ae61ccd4577fa003134cd846600ad912c6670623d1162d623815c7d75aa564",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared",
+        "scenario_missing"
+      ],
+      "hub_ids": [
+        "hub.everyday-damages"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.admin-appeal.application-preparation",
+      "content_revision_sha256": "b0192c9b80d6c9cd874df664842ba0cbf5d9fd56a2c4452253d830befe798090",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.administrative-appeals"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.admin-appeal.data-sharing-consent",
+      "content_revision_sha256": "4ed17781f78cf6522ef329743dbafeea1fe486351f0f9eccc3b7fe7ab8b26dcc",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.administrative-appeals"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.admin-appeal.documents-law-change",
+      "content_revision_sha256": "61f39a2f1762efbdf879192ca7865c857490a06570ed41cf5e342a06d5eb0d4d",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.administrative-appeals"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.admin-appeal.eligibility-document-branch",
+      "content_revision_sha256": "763e356f2bb09efbf2491849d426db5313fb8b9672e2c883a120c810c67de635",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.administrative-appeals"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.admin-appeal.not-all-documents-waived",
+      "content_revision_sha256": "994469260f835ef1f4a5ba6d22dea7b81a90e99b34605ef3a7c073d7fff8469b",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.administrative-appeals"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.admin-appeal.qualification-vs-proof",
+      "content_revision_sha256": "5df6bf6c5df9f3542b1f7d77de10a2a2233f553f429ca17f030b644da025be58",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.administrative-appeals"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.administrative-appeal-suspension-vs-court-suspension",
+      "content_revision_sha256": "5c244b9b41fe15c079073f74a529c23e0aa79d8f4f536f95d23f9c465a22267a",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.remedy-path-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.administrative-appeal-vs-revocation-lawsuit",
+      "content_revision_sha256": "55fa174b366aadfbaf5ed7a501b0062cbf04fbf4c589c7a24f013b30c5531a25",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.remedy-path-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.administrative-appeal-vs-revocation-suit-deadline",
+      "content_revision_sha256": "d35b9ee5c74d3467aeaa83136c12b19e6ba806b41b262e2cbff6aabd93e0e564",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.deadline-and-timing-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.asset-transfer-harming-property-division",
+      "content_revision_sha256": "a7fc28d3e8b729317ec40e7f11700d06ff7d1d4faa1763416218ce06818ad67b",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.attorney-advertising-and-selection",
+      "content_revision_sha256": "18e76dd0db8f228a0840fc5848e1a9e48f53dc68d720531ed5fd97fa39c60b05",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-service-boundaries"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.auto-accident-insurance-comprehensive-insurance-criminal",
+      "content_revision_sha256": "a42c436e342ddd84188f0b07d66171a2f4d9d3e11b1ffc6493dbb87ded7d3cac",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.auto-accident-insurance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.auto-accident-insurance-direct-insurance-claim",
+      "content_revision_sha256": "c89e2f99d6cd6395b0ac3a4562979694861b946450a6660258daab77cdf913fc",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.auto-accident-insurance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.auto-accident-insurance-evidence-and-treatment",
+      "content_revision_sha256": "ea5df79db988ed85b21b301d4cf220bb295be89c97480864dc6375c5eebe8f4d",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.auto-accident-insurance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.auto-accident-insurance-immediate-response",
+      "content_revision_sha256": "3bc4957e646abe6e415e90e78c1332a6d5998786484febbef880b8693c752368",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.auto-accident-insurance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.auto-accident-insurance-operator-liability",
+      "content_revision_sha256": "2a61779cdf2ae8ac4463f5b94917f96f29e14c3b8b041bc47d38ae74be15a266",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.auto-accident-insurance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.auto-accident-insurance-police-report",
+      "content_revision_sha256": "5494bc0a6b4a587cafd513a29643e74b3fbee81da06cef9622cae42f2415de38",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.auto-accident-insurance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.auto-accident-insurance-provisional-payment",
+      "content_revision_sha256": "117b414be74e15dc6845e0ebb7717bc622dca785011b3d94d9f1c166b8af3f13",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.auto-accident-insurance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.auto-accident-insurance-settlement-criminal-effect",
+      "content_revision_sha256": "f6acb06f15f83e70805ff9aa12d3eb3b93a2df7999640d169c3de8830cd14229",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.auto-accident-insurance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.auto-accident-insurance-three-year-limit",
+      "content_revision_sha256": "cc436024d6fa62ce827506ca41588f57ed4303da4324bc948bf47acc80cd9257",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.auto-accident-insurance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.auto-accident-insurance-uninsured-hit-and-run",
+      "content_revision_sha256": "fc171b909b12c4f8783732f0faecc674e3b360868f1f1ee8efe560bf996feff3",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.auto-accident-insurance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.bank-account-seizure-and-collection-order",
+      "content_revision_sha256": "588a0154797841d71f5e6ad21eef85a2cd3aeea8756c8a43b92c67ad4d489568",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.bank-transfer-loan-or-gift",
+      "content_revision_sha256": "b47c90d34eaa439bc0afa283d5c88292a493998d6ada58d689b087180f1cf88b",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.money-guarantee"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.broker-confirmation-explanation-checklist",
+      "content_revision_sha256": "2504aef9e48e46fd0e7fb6d543065bef5567e0207f425b1ab87a3b7443ba0469",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.real-estate-sale"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.business-registration-does-not-decide-worker-status",
+      "content_revision_sha256": "2269aa7474f9c4d9354c83c8ba47aef7a861df213c7a41ae7401c638ca0480da",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.cancel-lease-registration-after-refund",
+      "content_revision_sha256": "d70c6d5356730625c80472a3c97115f2d56b63f78e6a759db4ce2f87a45473c2",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared",
+        "scenario_missing"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-deposit"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.certified-demand-vs-judicial-claim",
+      "content_revision_sha256": "0261491cc3a5aa6510407da040158cc1500d2056e5abee215878f3e1e41fdc95",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons-02"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.child-support-record-is-not-private-memo",
+      "content_revision_sha256": "144995db9f369832067d9d23e8ffc7112d253e51de831cba67a7e306fdfe86eb",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.civil-appeal-vs-supreme-appeal",
+      "content_revision_sha256": "2a2d63bcf044ec89b5622f2e6e889e500b895046a042b72ffac12ef94f3f1e11",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.remedy-path-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.civil-damages-after-crime",
+      "content_revision_sha256": "5b0ad950aef3118570dc29875fef2b3d0f23d9caeaf63b54641f7f2ed57bca03",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.civil-mediation-vs-civil-lawsuit",
+      "content_revision_sha256": "b532e6de7071bdaef04aea4ae023dc55f4fa5bd2a72ad848696d8622d928ef51",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.remedy-path-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.civil-small-claims-answer-default",
+      "content_revision_sha256": "aa728fe9e91740c9a21d09b4d0281a5b5454a754bea890562f246f66ad86ea89",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.civil-small-claims-complaint-content",
+      "content_revision_sha256": "7c65b0009997b8bffde752d4194700273fc66c973b3520e2077cc49d3feeb67b",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.civil-small-claims-costs-appeal",
+      "content_revision_sha256": "c96e7a40cf8f8de7fb0de6105cbf61e2deed060787f1284a06b1d1b571ab6535",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.civil-small-claims-evidence-hearing",
+      "content_revision_sha256": "8f02dd4e7f5cd1589a77e81c4802b776e0bd1ead60b5210e2068d61edff45775",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.civil-small-claims-family-representation",
+      "content_revision_sha256": "2e112d37a74b912dd85c7de1f656d6e82749135ee0b2be9a94a4d2f7822f5dc0",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.civil-small-claims-filing-method",
+      "content_revision_sha256": "c9e1b905cb64f6923dd2a91a32d5ebad4994d5f7e60b6fc00b309be5aa71b189",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.civil-small-claims-judgment-enforcement",
+      "content_revision_sha256": "95b152f5a8e35ea1338e455c4b9892b670ac5a3b60cb8439d1443b2a81299fb5",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.civil-small-claims-jurisdiction",
+      "content_revision_sha256": "d36291e08d4203eaa643f519f841c49fec05e6cfad61588a74ff9fc6231296be",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.civil-small-claims-performance-recommendation",
+      "content_revision_sha256": "9ce6119431abf5d56463aea6ea90670775ff0cb16cea7742a32f97b54471e1a0",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.civil-small-claims-small-claim-scope",
+      "content_revision_sha256": "e93d688bc24f2f6c7f7f2fe3d4b24fc1deacbb4a2c446c2ced0a8cb0cd3032ef",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.civil-small-claims"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.commercial-lease-act-scope",
+      "content_revision_sha256": "e328c7cae32f386818c33b11a86982d9cf815366566a468082207ec7287cac2d",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.commercial-lease-closure-termination",
+      "content_revision_sha256": "0144b8c97bfc6f1eda5bc46199a827fc731e1986bacdf87ec6aabcc5ef911e8d",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.commercial-lease-dispute-conciliation",
+      "content_revision_sha256": "e297c7821d14716352c4a7cb19737a7dead1fb59c4b2719960495d0a20ceadc0",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.commercial-lease-key-money-recovery",
+      "content_revision_sha256": "6076a44e50cd39678b2c4db73c56d90cead9c91e48c93ae80e666627bc73c971",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.commercial-lease-management-fee-breakdown",
+      "content_revision_sha256": "93b45221bcbf509db060a532afe7cb44a4836d1594a14f88eaec9b9315a21400",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.commercial-lease-move-before-deposit-refund",
+      "content_revision_sha256": "5bc224bab2a085c950c9b60b961a408bef2b6f4a73c9347706baf22f621d3b55",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.commercial-lease-opposability-and-registration",
+      "content_revision_sha256": "ba7158412d973b965cc4a6a85a6d33fb2b5520ad4c42358b9e74a82d03a7e7f5",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.commercial-lease-priority-repayment",
+      "content_revision_sha256": "cbdd4862f32a38c15128dc60162eddc7bf0c62b750bc27d6debc6dc0ae5275d2",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.commercial-lease-renewal-right",
+      "content_revision_sha256": "365302755f4a01bc241ec6b0cb920c04a244f04e607ee388007214b8dcdda124",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.commercial-lease-rent-arrears",
+      "content_revision_sha256": "37ce8ed39b734c46ed80023d31326c0a6db13a8cd67d828226077a6a1856a7cc",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.commercial-lease-rent-increase-and-conversion",
+      "content_revision_sha256": "f7310ebe44f3d8084e0ac055d0a5b4349ee720b507c84234189efc23ed4810e8",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.commercial-lease"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.compensation-order-application-deadline",
+      "content_revision_sha256": "06172abed493a318563a1cc4a99caa9694beb4717a2bcbd9d5a959f00b307d5a",
+      "coverage_state": "coverage_declared",
+      "coverage_unit_ids": [
+        "coverage.kr.crime-victim.compensation-order.copies.v1",
+        "coverage.kr.crime-victim.compensation-order.deadline.v1",
+        "coverage.kr.crime-victim.compensation-order.enforcement.v1"
+      ],
+      "gap_codes": [
+        "audience_situation_missing",
+        "authority_locator_unverified",
+        "evaluation_result_unverified",
+        "release_evidence_missing",
+        "temporal_authority_unverified"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "next_action": "close_declared_coverage_gates",
+      "readiness_state": "declared_incomplete"
+    },
+    {
+      "content_id": "content.compensation-order-eligible-damages",
+      "content_revision_sha256": "306644179f773d55b70a9445ecf30f5a084615b2f0a7b778fd9648e77fa38791",
+      "coverage_state": "coverage_declared",
+      "coverage_unit_ids": [
+        "coverage.kr.crime-victim.compensation-order.agreed-amount.v1",
+        "coverage.kr.crime-victim.compensation-order.dismissal.v1",
+        "coverage.kr.crime-victim.compensation-order.eligibility.v1",
+        "coverage.kr.crime-victim.compensation-order.enforcement.v1"
+      ],
+      "gap_codes": [
+        "audience_situation_missing",
+        "authority_locator_unverified",
+        "evaluation_result_unverified",
+        "release_evidence_missing",
+        "temporal_authority_unverified"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "next_action": "close_declared_coverage_gates",
+      "readiness_state": "declared_incomplete"
+    },
+    {
+      "content_id": "content.compensation-order-vs-crime-victim-relief-deadline",
+      "content_revision_sha256": "747da63e28f63082e883f542b79ad01bbc09463f6aff571c67ece54bab6e5da2",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.deadline-and-timing-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.consensual-divorce-cooling-period",
+      "content_revision_sha256": "9de2f38320bd00c12fde47acdd1bd41ce18def46054b1c906049404e8edf2193",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.consensual-divorce-needs-court-confirmation-and-report",
+      "content_revision_sha256": "c2ff7b3fda1fa083012bdf6fa2000b3ce820c99fd46ed25e123af1370ea62e6e",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.content-certified-demand-needs-followup",
+      "content_revision_sha256": "b2ea12a3e79fa411f4331cbd3f476fb5b8272b51a5f2ee97e47da8cd485b6964",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.content-certified-letter-prescription",
+      "content_revision_sha256": "044dd3a3c4f5a3a63f32e392df87acec2d865b86a79070f30e74d2f4d4974765",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.money-guarantee"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.continuing-guarantee-maximum-amount",
+      "content_revision_sha256": "58968bb784c0b4f325f4ef941fc239fc47b15b0bcb0c278cc1f036cd0687849f",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.money-guarantee"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.contract-rescission-vs-cancellation",
+      "content_revision_sha256": "e39073012ad593ea444981b53801d36fd77ac7c34ffab085dc3056bc73c9449a",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons-02"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.contractual-interest-vs-default-damages",
+      "content_revision_sha256": "6cf7129ac52031f1983100e7156dd2abec5cfacbab442232a18b062626db8de3",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons-02"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.crime-evidence-preservation-first-steps",
+      "content_revision_sha256": "8b8fd94346635479b79826708582ec3361171e5d47ba72b17d4ec6ca38245b5a",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.crime-victim-relief-fund-eligibility-deadline",
+      "content_revision_sha256": "64745c82882ebf368192b6d3d37b7a4db96e9749d11d07940e6b05fd4201347a",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared",
+        "scenario_missing"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.crime-victim-relief-fund-vs-civil-damages",
+      "content_revision_sha256": "d9f81efc7cb5d3d7e747b4da8345ee2699a70d08a79d489171c0e002bbf082bd",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons-02"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.crime-victim-urgent-safety-and-support",
+      "content_revision_sha256": "7976d11d0703cce46f3ca8510282f4a0337c760c92b8a0cfc5cac3f89863351c",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.criminal-compensation-order-vs-civil-damages",
+      "content_revision_sha256": "88e77016ba43ba136a8a37927af5cc06cc189775f2744bc22231feedb37cc3fa",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.criminal-settlement-vs-complaint-withdrawal",
+      "content_revision_sha256": "7d1bbe7cbccf10b61f527e37ebd70972cc891c97225c1501cc7fde00990e9039",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.customer-sexual-harassment-protection",
+      "content_revision_sha256": "36a75ace62ee4714eabb1d42d4ed15262f5368e18e04b892196184dad925bd45",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.workplace-harassment"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.debt-limitation-is-not-always-ten-years",
+      "content_revision_sha256": "0a2fb468bbee725abd21c23dad50357ae398941347707a17632152f193245258",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.digital-content-cancellation-exception",
+      "content_revision_sha256": "163dca4186abbfcd3060de0f3236cb9eec5b89084aa83c32f19ab5f1c730eea4",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.consumer-online-contracts"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.direct-attorney-contract-checklist",
+      "content_revision_sha256": "237ccebcc420ecd81b6ff5d381a165e52f85ba70b7f9c1d7735c66db0946f96b",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-service-boundaries"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.disclaimer-does-not-change-function",
+      "content_revision_sha256": "e971e66d3e2499f42c02cb0b52badb40acec4139a35b6d935f26e4ab1bab1359",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-service-boundaries"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.dismissal-notice-vs-unfair-dismissal-remedy",
+      "content_revision_sha256": "edce839ae21fda1b2c1dc77cbe59d7e7603c9150cd5afdd38ea40a1c0fdbf6da",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.divorce-agreement-vs-effective-divorce",
+      "content_revision_sha256": "9a15258a027eec04d9d8a2e3c662f6d167e5dc44433fda8eaf65b752732e60a0",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons-02"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.divorce-child-custody-support-parental-authority-agreement",
+      "content_revision_sha256": "485c3b6e3d0bf6c181e8544fe0e317adbedd98bdb5864933325e6abd8d696c74",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.divorce-consolation-money-vs-property-division",
+      "content_revision_sha256": "ea303616ce17c1c48f76e95388d6c1701ba1569ffe707fdc36deaa60fca1c9b4",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.divorce-cooling-period-shortening-for-violence",
+      "content_revision_sha256": "a39082a414daf4b70b586eb775c220823e18d4e22b031c3a48cdab37d10ec3cb",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.divorce-property-division-two-year-period",
+      "content_revision_sha256": "61abfe970df84f7dcd45496052453ca66cc6cb28862944c5d7dd53fff3ea0b36",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.documents-that-allow-compulsory-enforcement",
+      "content_revision_sha256": "09520eccabaa6e650c151dd88bee7d50541647451c117cd39d4f198a7119ba40",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.dog-bite-and-animal-keeper-liability",
+      "content_revision_sha256": "86446ccacb3235b968e13986d40aa433d68c07ed4d134d2b59864d48819ba25f",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.everyday-damages"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.domestic-violence-stalking-domestic-emergency",
+      "content_revision_sha256": "f05d3be63ac6e6d763d25734f3be10cb5560aadacecea4472765b674e653b05b",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.domestic-violence-stalking"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.domestic-violence-stalking-domestic-emergency-temporary",
+      "content_revision_sha256": "25d0ddabdf1506d4a5938771a2a7258c60aabf95e2b87bad45229f439d43e862",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.domestic-violence-stalking"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.domestic-violence-stalking-domestic-protection-order",
+      "content_revision_sha256": "99055a0c9db9f241ba84b8399e8938fcd014cb785b53bd563f99c67221c9e380",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.domestic-violence-stalking"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.domestic-violence-stalking-domestic-scope",
+      "content_revision_sha256": "955d32ae319067520c92fb89d81a70403d731c885c737364506cf51759fe670d",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.domestic-violence-stalking"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.domestic-violence-stalking-domestic-support",
+      "content_revision_sha256": "58256b92087b8338068d09dd4a51a23a3e141b6c279d6bc3670bc718850e46e7",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.domestic-violence-stalking"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.domestic-violence-stalking-stalking-emergency",
+      "content_revision_sha256": "18fe50b353fc800d3fe66250b9915ffcfc20d3b7ccb40148584c1c94c6482250",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.domestic-violence-stalking"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.domestic-violence-stalking-stalking-provisional",
+      "content_revision_sha256": "432e53dfb2c8623532482b5dc99c476eb39dc7ec551a852ef13c6bf133a02172",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.domestic-violence-stalking"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.domestic-violence-stalking-stalking-scope",
+      "content_revision_sha256": "7fc82c52a7e770fbaa60476f9fcfb08556787a6ba1f2bd33b309a847e4c216fc",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.domestic-violence-stalking"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.domestic-violence-stalking-stalking-support",
+      "content_revision_sha256": "326c8b8e51f51efc1333b88e0f2791f0d1d5a53ac9b0ad19215ca65a329065ef",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.domestic-violence-stalking"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.domestic-violence-stalking-stalking-workplace",
+      "content_revision_sha256": "4666863e070528ebba28ae44cb48409419dd8cb402eb3a87d4e2fb99d4481af8",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.domestic-violence-stalking"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.earnest-money-cancellation-vs-default-rescission",
+      "content_revision_sha256": "820938cc25e1d500fb85aa48506ce6cb65cc973b90a92ce2d9964510fb980455",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.earnest-money-rescission-cutoff",
+      "content_revision_sha256": "d689cb02f478e4d875a52aa25423e006cb29461de5ff3fc57426d806293055de",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.real-estate-sale"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.emotional-distress-and-consolation-money",
+      "content_revision_sha256": "fa67a59e8088cb4e26cc86d4870cac006b69795a4d9b42a9724e6240bb83f8b4",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared",
+        "scenario_missing"
+      ],
+      "hub_ids": [
+        "hub.everyday-damages"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.employee-caused-accident-employer-liability",
+      "content_revision_sha256": "2a5bf5495100b43bffd59e286340199c914acd668675104a02d18745f9e0b26c",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.everyday-damages"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.employment-exit-managerial-dismissal",
+      "content_revision_sha256": "78259fa8ad324a0347afc7472dce3bd327d72f867d5a36fa4c3a841dfb19a97e",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.employment-exit"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.employment-exit-managerial-reemployment",
+      "content_revision_sha256": "9e327110d2898a5efce838a2575dd6beabce44ceb86d58b68d0589f79b8efc82",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.employment-exit"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.employment-exit-monetary-remedy",
+      "content_revision_sha256": "45bec039e58940d5c506ad800c9a5b8f779744b89f9f385595d77ab2df9dfd98",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.employment-exit"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.employment-exit-notice-pay-not-validity",
+      "content_revision_sha256": "411a55b7c28c7baa041c7b4d8a61a65f2f8caf27f772308d62d484abbbbce22b",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.employment-exit"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.employment-exit-protected-period-dismissal",
+      "content_revision_sha256": "e645156214b37865fcbbdeb33253b3ce44df16b10da01ec043a52eff0216e2c7",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.employment-exit"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.employment-exit-retirement-benefit-eligibility",
+      "content_revision_sha256": "6e13168b95a1ba40cdc0264eb992ea52a0a66488438715cbc5829b025416f5be",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.employment-exit"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.employment-exit-retirement-irp-transfer",
+      "content_revision_sha256": "828d3eebddb8c1abe2243500b3920cb0ef129f5e0ad1335a4cb0c9399f226510",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.employment-exit"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.employment-exit-under-five-workplace",
+      "content_revision_sha256": "ec0c994c0b201be0772e5633886de5a3538bb252c980376322e2d2144b017703",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.employment-exit"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.employment-exit-unemployment-benefit-eligibility",
+      "content_revision_sha256": "3cd9d14ffe5f818fa21cdae7b15dd8cf49a17ccb4d7c938d2b4573c41df45e3b",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.employment-exit"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.employment-exit-unemployment-report-period",
+      "content_revision_sha256": "dbcc3478baeb33eaaadf59cdc6b70f4c0431324b00f9993df4ccc5cf06724edd",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.employment-exit"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.estate-disposal-before-renunciation",
+      "content_revision_sha256": "ccdfbac0232f988ea532c8ea56b9349294ed57733044e0f688ebb27a776ff088",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.final-wages-after-retirement-14-days",
+      "content_revision_sha256": "f4150169cbdb0059957bbd00195dc869014902a4d0ec3e835f4c266cae7cc2fd",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.fraudulent-transfer-before-enforcement",
+      "content_revision_sha256": "35cd4cae3491a6937c0af6a29b649395c6952e904af603e10f1a5ade531e332c",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.free-service-and-ad-revenue",
+      "content_revision_sha256": "feac23b9e72d5e291331f0bba854cb8c979442d318f3ff583e369ee2b98b437a",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-service-boundaries"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.free-trial-to-paid-subscription",
+      "content_revision_sha256": "1b4ecfc8d3ecc3e5bfa1b5cde67936ccfa7c7cc411820213c3e3a4c6fafa682d",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.consumer-online-contracts"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.freelancer-contract-worker-status",
+      "content_revision_sha256": "7b1cd89cfff1bf1e35d0ec7bdbd5c4bfa2dbf40bcc500251153284ee11ec8eb9",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.goods-different-from-advertisement-deadline",
+      "content_revision_sha256": "62206f520e577325d92c3ba06c2be41d31e9487ccaff48eba991ab75569476de",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.consumer-online-contracts"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.guarantee-by-message-validity",
+      "content_revision_sha256": "ec73f335a5b233a351b538198f3e7c2df574eac626a053ccd74b3903c6cfe2bd",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.money-guarantee"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.harassment-mental-illness-industrial-accident",
+      "content_revision_sha256": "e082004d4bddb1d5c1e60174a980f8da155f16d19c2fc4cc2e89c093f9236d6b",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.workplace-harassment"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.hidden-defect-after-purchase",
+      "content_revision_sha256": "fd29c7eb33f723b741f990838f2866c850f7806ca681ea2e907fbdee6034a782",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.real-estate-sale"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.housing-lease-living-actual-residence",
+      "content_revision_sha256": "f8d4bd325b125546a4d2204e17123ff74e8f00a489f9ea94c996c294c9ae14e5",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-living"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.housing-lease-living-increase-limit",
+      "content_revision_sha256": "b0dca1fb48ceb42096b12cbbe958987b89e3dadf58cb0dc12b8e047b56886e5f",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-living"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.housing-lease-living-lease-report",
+      "content_revision_sha256": "8b91e0fe9446b0a0bc1ffc29a693d3892b3125fc13f62ae838abace389531fb1",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-living"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.housing-lease-living-minimum-term",
+      "content_revision_sha256": "d4f4aa3f97f61334de150f5832a0488e9b12d4d102b67023e7c8ae20ebdcc61b",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-living"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.housing-lease-living-renewal-request",
+      "content_revision_sha256": "6a227d7f8edf0482e70619431b5b4333ddb8cfe6d9c0788aa16163e35e266367",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-living"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.housing-lease-living-rent-arrears",
+      "content_revision_sha256": "933cf271de0eadd633659f40e34bfebad164f1c02fac5ff1e7d0b1ec2e7c5003",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-living"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.housing-lease-living-repair-duty",
+      "content_revision_sha256": "33a094ec095aa7ea86d892a357dab714eb10b9bf37bc6d44ee74e0fc6e368dd6",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-living"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.housing-lease-living-repair-reimbursement",
+      "content_revision_sha256": "98ce33484f6d4670a418a6288d4c2747e94f6e8ad8320b737f73468e0cdd62f5",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-living"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.housing-lease-living-sublease",
+      "content_revision_sha256": "127b9323388748f3c1f710fe7b1c4c0d67798f2d469a7d3380ead8d2c336a9c3",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-living"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.housing-lease-living-tacit-renewal",
+      "content_revision_sha256": "c46e92e5f2e769bc18cf2c306332774acba1d2d2891cb81d52c0f9ff07d6b6de",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-living"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.housing-lease-opposability-basics",
+      "content_revision_sha256": "d2de1564014713bb1b8aeb9393799dc55fcc892ef8d4e2884228ab628f1e46e9",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-deposit"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.housing-lease-priority-repayment-basics",
+      "content_revision_sha256": "5b905941a70299044ee15c84d703104c5c64188fbbff95e320639de97e398167",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-deposit"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.how-to-file-criminal-complaint",
+      "content_revision_sha256": "c95675678817ed6309792e239dc0481acdfefa317f93ca723b46954c71bdb869",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.industrial-accident-benefit-map",
+      "content_revision_sha256": "b84063b87a1a7df0567b43ae579a750a2161781c52b7b455eee598394a7c10de",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.industrial-accident-benefits-vs-civil-damages",
+      "content_revision_sha256": "71b80dfc7c83718cdfff1ffb0977aa61549a6daeafadf53a8fe6abb059c50feb",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.remedy-path-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.industrial-accident-commute-detour",
+      "content_revision_sha256": "73fe33cfe2c2327c13af554232e4b4957ac100b97802df487f62421546138106",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.industrial-accident-disability-benefit",
+      "content_revision_sha256": "19a66461317c88d7bdbf858b6313c19f1b3302efa179d2de697ffdeaca032b79",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.industrial-accident-employer-refusal",
+      "content_revision_sha256": "2e9a1cf286213f3a83fb04f445d812de69182abfdc4b82ec6793e4ee4687924d",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.industrial-accident-limitation-period",
+      "content_revision_sha256": "6930109184c2e4a19f9a2a1596bfd0737d672d4365683e8f43224846c8d41846",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.industrial-accident-medical-benefit",
+      "content_revision_sha256": "dc4c003d7013e34809ab29174a27e6ce96ef46e9de158aaa0542745f432a6a98",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.industrial-accident-recognition",
+      "content_revision_sha256": "d4ea68cdb18bea97bab1477cb6ba84b558d1e66233e648dc82d739a6061bd3a1",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.industrial-accident-review-vs-rereview-deadline",
+      "content_revision_sha256": "e7abed375239f9c957f06742af9d2c5c65dd912a82e15a0c2c104bafc33ff1c5",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.deadline-and-timing-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.industrial-accident-special-coverage",
+      "content_revision_sha256": "dbba14f27b1957d40bd111b90a4783ad8be28fb2cd25d0ba3dddde3bd0629037",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.industrial-accident-survivor-funeral",
+      "content_revision_sha256": "79d255ca4fd1ba08e637a2a48208e6a4983a558f4ab5937099bbf218875144c7",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.industrial-accident-temporary-disability",
+      "content_revision_sha256": "535a553281710d2986e2ed5adfe491edcbd0be3f94ab261270d8bf344d43795a",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.industrial-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.inheritance-assets-and-debts-checklist",
+      "content_revision_sha256": "ef153c7d89baf0989cb2531d3e23b417a7a55723c89527a260e04c0169c3f28d",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.inheritance-choice-vs-recovery-claim-deadline",
+      "content_revision_sha256": "3f1ef4ec50906eb539558acc1f0eacdb256276b6736b8f5e51444dea710c66ba",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.deadline-and-timing-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.inheritance-renunciation-procedure",
+      "content_revision_sha256": "742e19fbbbe0dd9cb7e3854d9fd5e247f5f74b3ab8f09cc974e78222588c22cd",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.inheritance-renunciation-vs-limited-acceptance",
+      "content_revision_sha256": "40216e578885e1fadd6d80dbb8101a89c6a4bdc01031d965ebce7772012138c5",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.interim-payment-and-concurrent-closing",
+      "content_revision_sha256": "523da96b331a09720a234e99e3f6773004c073b114577d620994ad3adf8a12b1",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.real-estate-sale"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.judgment-debt-limitation-ten-years",
+      "content_revision_sha256": "4768487161d7b61cad5db00c5bb3b6683b62ec7e4484ae13c8a9fa0661fa3235",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.labor-commission-rereview-vs-lawsuit-deadline",
+      "content_revision_sha256": "a82bbf5e7ff48e464868dddba9650c35f973db6d33f9899acae1eccb7940014f",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.deadline-and-timing-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.lease-registration-and-distribution-demand",
+      "content_revision_sha256": "426ea061b9065642370a86ac2e1a5422c630c8676989a80d700e119acc320982",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-deposit"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.lease-registration-application-is-not-completion",
+      "content_revision_sha256": "39c9857fe46953df7cb515996fdc2aebabcfe6b7292f2765646a54d7400d2e42",
+      "coverage_state": "coverage_declared",
+      "coverage_unit_ids": [
+        "coverage.kr.housing-lease.deposit-return-before-move.v1"
+      ],
+      "gap_codes": [
+        "authority_locator_unverified",
+        "evaluation_result_unverified",
+        "release_evidence_missing",
+        "temporal_authority_unverified"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-deposit"
+      ],
+      "next_action": "close_declared_coverage_gates",
+      "readiness_state": "declared_incomplete"
+    },
+    {
+      "content_id": "content.lease-registration-application-vs-completion",
+      "content_revision_sha256": "a56c3baf9c9abacb42c8eb16cc77e57aff727dbd825de0de5e0d3ec9d35e758a",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons-02"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.lease-registration-order-requirements",
+      "content_revision_sha256": "77bf5e056debbaf147ad88e6f649925fbbc2b9b4d56f591e82c2adfc4a263fc7",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-deposit"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.lease-registration-vs-opposability-priority",
+      "content_revision_sha256": "87f601730bb19a2d34d969887073765c2fddd30d0813d6a1d5d24aed7c9046e9",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.legal-heir-order-and-spouse",
+      "content_revision_sha256": "0dd9823e41eccbce94f17754562748a39bb2b76ba3cf080be31e14daa620f37c",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.legal-information-vs-individual-advice",
+      "content_revision_sha256": "ea43421d5d4f3f0de7667c28b92df1c5b09c5c2f094e6f42afce44fe2f19af5e",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-service-boundaries"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.limited-acceptance-creditor-notice",
+      "content_revision_sha256": "e667d2a5cf7704de7a1b71c39f16a5e4adf1f009717c492380e5ffdb81e39bd9",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.limited-acceptance-effect",
+      "content_revision_sha256": "7e741d5c77fd35d1905aea126bdf5f02c46ad2c49495bab3204e06d6e982636a",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.loan-and-guarantee-evidence-checklist",
+      "content_revision_sha256": "8562fa7b5282c7355627d4e792f49e8d3ba53e6d6ae6977fca19c71ce71c6cd9",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.money-guarantee"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.loan-obligation-vs-guarantee-obligation",
+      "content_revision_sha256": "5a3e291efb1584d2473bd2ecbb9902aa52f7875c9fc080673ea869f60c8a9022",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons-02"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.loan-proof-vs-enforceable-title",
+      "content_revision_sha256": "0563b2e0f19ecc7f6673ddbde9b55a28d6be17677743669484ee7c8e1ff8384d",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.loan-without-repayment-date",
+      "content_revision_sha256": "d83b9672e837027c6895cb0db3f2df43991c4a84af65b56bc52fff70f5554fcb",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.money-guarantee"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.loan-without-written-note",
+      "content_revision_sha256": "5332ba50e2bbe82dc6764e238433a38f4e4a538f26a9159c08b74e467a4882d9",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.money-guarantee"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.mistake-fraud-in-real-estate-contract",
+      "content_revision_sha256": "085951fb43a13d10b228e1e02b863035a47de2032ad3515aaab2c2aa2cf3e652",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.real-estate-sale"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.move-before-deposit-refund",
+      "content_revision_sha256": "65d5a21f69672edf8c3c044705cf123a4e85eb5f329d1346539cbb14f59b0c29",
+      "coverage_state": "coverage_declared",
+      "coverage_unit_ids": [
+        "coverage.kr.housing-lease.deposit-return-before-move.v1"
+      ],
+      "gap_codes": [
+        "authority_locator_unverified",
+        "evaluation_result_unverified",
+        "release_evidence_missing",
+        "temporal_authority_unverified"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-deposit"
+      ],
+      "next_action": "close_declared_coverage_gates",
+      "readiness_state": "declared_incomplete"
+    },
+    {
+      "content_id": "content.multiple-people-caused-one-damage",
+      "content_revision_sha256": "fa5140b250f68b4d04ee25d246e423559935ebb6d874df3effc6767e1cbfbe67",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.everyday-damages"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.negligence-and-causation-in-accidents",
+      "content_revision_sha256": "c9a3417e57ea672e2324da6c293b1bfc2fb20f9fde1da7df3f7ba68479d814fb",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.everyday-damages"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-cause-location-liability",
+      "content_revision_sha256": "4148d9c3035a807ef5aca6835525df5540cdf11e204407b42325fdb4f70a3600",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-exclusive-common-area",
+      "content_revision_sha256": "c29f30e06724ca39cb2975deb40db8b03b2b6ffa9435a14d3f65eec780294ffe",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-floor-noise-management-route",
+      "content_revision_sha256": "1cdd1eefa4f1a23d6afec6cef8085074d4d93db94b1acbfaf63a6df142c988fc",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-floor-noise-mediation",
+      "content_revision_sha256": "6dfd0dbb6f5146b5243a54873882411a35b90ec5157846116ef043b1a57fd6cd",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-injunction-vs-damages",
+      "content_revision_sha256": "bd9c2d939875441c3fc92f60b1567422affe3dcfef10e1c5195077502d28a2f3",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-inspection-access",
+      "content_revision_sha256": "7348c935f960a0d4782ff73e04c1adc4d5b07ec8a627c15956e2abcb68445ac7",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-inspection-refusal-evidence-preservation",
+      "content_revision_sha256": "ecde7a04ceaabe025e29901810b62cd29c84e52e69779db70673294b726b9111",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-leak-origin-evidence",
+      "content_revision_sha256": "2d5d4debb3bf999ffdee65077d085ed2afa5fe39d89b0aeba6d1983d4c272a03",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-neighbor-interference-limit",
+      "content_revision_sha256": "3cf8465d79c1fc0b068d785844707ab7c294abf02f5b7818c1432aafc251e616",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.neighbor-leak-noise-occupant-owner-liability",
+      "content_revision_sha256": "ebf660efbe3691bc841bae3c3158416a6c468f2c7c1e5dff3b0900741d5e7b13",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.neighbor-leak-noise"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.noncustodial-parent-child-visitation",
+      "content_revision_sha256": "0e6b2f2be59b229d27f77cec7f0c4d06cf4b1a6d0ff30b15921639a5f7ccd598",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.notice-of-prosecution-or-nonprosecution",
+      "content_revision_sha256": "3e4934e8d62db48ee561a36fc2d6a7bcf87d09026be4faa83da5c7e20a90c072",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.online-contract-evidence-checklist",
+      "content_revision_sha256": "eadc1fef333dcfa35d57397190e97aeac5df79ef7f74bf9c33d835903657fd03",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.consumer-online-contracts"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.online-purchase-cancellation-seven-days",
+      "content_revision_sha256": "d3c1f1b0ba2d43618afb75eb5ced4bd591c43722a98e3f6657f0cf759c0b8847",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.consumer-online-contracts"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.online-withdrawal-seven-days-vs-defect-deadline",
+      "content_revision_sha256": "2629e2c5496aed1fead429150e953ded09840ee6cd33d5364884367a010a2a4c",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.deadline-and-timing-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.online-withdrawal-vs-contract-rescission",
+      "content_revision_sha256": "cfadc4ba2b2c1fa8d57fe6ee737a714cfd747a8fbcd1621a52ae485077143e66",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.opened-package-return-right",
+      "content_revision_sha256": "b851ed6df43f9dc3987bd7a646e858119f5af3bd1228f74dd42e5485d783fcdb",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.consumer-online-contracts"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.ownership-changes-only-after-registration",
+      "content_revision_sha256": "900023f499f1f709435236a3bd6bb49fb4f870bf4290684bf0967cafded69321",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.real-estate-sale"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.paid-but-goods-not-supplied",
+      "content_revision_sha256": "d28d61fa7ea3c1e875dabfd0d7d648535c950a00b71b0cf43979b3b39ef5dcf0",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.consumer-online-contracts"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.parental-authority-vs-custody",
+      "content_revision_sha256": "06e0a2426c74d137ba5e3cb7ba75c1c6545751f437d4d84a32b5de908cce7602",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.partial-repayment-allocation",
+      "content_revision_sha256": "2c4f4b409079b3bcb74a9a6f7b20da1fa1cd104915c07eea914eb4de4aac2c50",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.money-guarantee"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.payment-order-objection-two-weeks",
+      "content_revision_sha256": "324b7c0a288c4d8d27a5fe27b2aa11f1c784e6c8ce5a79d3910a43f7ddae6130",
+      "coverage_state": "coverage_declared",
+      "coverage_unit_ids": [
+        "coverage.kr.debt-enforcement.payment-order-objection.v1"
+      ],
+      "gap_codes": [
+        "audience_situation_missing",
+        "authority_locator_unverified",
+        "evaluation_result_unverified",
+        "release_evidence_missing",
+        "temporal_authority_unverified"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "next_action": "close_declared_coverage_gates",
+      "readiness_state": "declared_incomplete"
+    },
+    {
+      "content_id": "content.payment-order-objection-vs-civil-appeal-deadline",
+      "content_revision_sha256": "dfc0a608d722a940940aecb8b7a3e4e9d4783edf83e5f9045459c5fe5636bd76",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.deadline-and-timing-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.payment-order-vs-civil-lawsuit",
+      "content_revision_sha256": "e8724aaa736db44b8dd225b33701dd86f436122b1083599f7e693ac7e4bc4d3e",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.payment-order-vs-civil-mediation",
+      "content_revision_sha256": "417a8f2c7e7bfc17b87ca14a87b0ace86d435d1178f4648fb3e606ac74bc3caf",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.remedy-path-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.platform-seller-information-2026-change",
+      "content_revision_sha256": "17fd68cb9eae3f96d0417da73cef3b7bd67a9fc226d296d63b24cbed030165a8",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.consumer-online-contracts"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.private-loan-interest-limit",
+      "content_revision_sha256": "282e837b5b1eb5e744c6074b1ade1ade350713180fd8bf3440d97a2316e96a92",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared",
+        "scenario_missing"
+      ],
+      "hub_ids": [
+        "hub.money-guarantee"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.product-liability-damage-scope",
+      "content_revision_sha256": "8c290c345b7872f4b94782a13c17efb575c114c6476ff4b4152df375f4a4a642",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.shared-mobility-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.property-disclosure-when-assets-unknown",
+      "content_revision_sha256": "5e740d18fb9250c6b3a57e7ce4e91bc2c2e8088d27a2198f22a2ce206df29707",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.property-division-vs-consolation-deadline",
+      "content_revision_sha256": "66737434a744f51929bdbbbb956bf2a9582e1b328cf51c588c965d1ce2cc8dbc",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.deadline-and-timing-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.property-division-vs-consolation-money",
+      "content_revision_sha256": "e9322559f03a5f3fd7c6bf9f64353a6f0a4b255f919f317fa53e1ef04f4ea70c",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.provisional-attachment-before-judgment",
+      "content_revision_sha256": "adf84d796aa334cc59a70b82bdf2dd121a3504ed884dfb89009c948e04a1977a",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.provisional-attachment-vs-claim-seizure",
+      "content_revision_sha256": "350bddcf618162b4d752f8b4cf8afc4294d0c562011b67462d5d417a13372f6a",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.provisional-attachment-vs-property-disclosure",
+      "content_revision_sha256": "e7ee5c615b48b11832f49f13e8fa50674482385679d19d877ef537f76376b557",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons-02"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.real-estate-reservation-deposit-meaning",
+      "content_revision_sha256": "087b58b11e3577c62fe6feaf8bb183cc5dc9722de3460b932b775eece30cd837",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.real-estate-sale"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.real-estate-sale-contract-before-signing",
+      "content_revision_sha256": "ffa45e9f46e7c5fc56e83bdac2e60fd379aa7d29fe63cfa5ea5b94624f6a5e64",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.real-estate-sale"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.real-estate-transaction-reporting-30-days",
+      "content_revision_sha256": "951a89eeb091d0a9ea242a36ce3fd896773dff6c8180c09cd90456c6e1c8a21d",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.real-estate-sale"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.referral-fees-and-revenue-sharing",
+      "content_revision_sha256": "b80284a2ab8d661d052eef9da8f5b081e513cb53dbc201a5c21e069f06b12bba",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-service-boundaries"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.refund-within-three-business-days",
+      "content_revision_sha256": "9e6caf4498ac79383fd04fa52a8c5f068900ea655b8524d2589168574abcd44b",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.consumer-online-contracts"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.renting-home-with-lease-registration",
+      "content_revision_sha256": "bd228b358c6ff04b3ee61a411326430079251387075f7d0aa87e80c3f82369ff",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared",
+        "scenario_missing"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-deposit"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.report-complaint-accusation-difference",
+      "content_revision_sha256": "79ec92b14f06a29e666291192b36798028601704c5b33c58ada3477a021fcac3",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.report-vs-complaint-vs-accusation",
+      "content_revision_sha256": "0e339fab094454541b1ed6f747b76ad7f5d1b879a2322b9c8e953b279ebe6b8d",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons-02"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.rescission-restitution-and-damages",
+      "content_revision_sha256": "72ad1a452b9cc109ba9b00380f89c1eb7c4d3c24f5150b9aab9340bf81f65733",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared",
+        "scenario_missing"
+      ],
+      "hub_ids": [
+        "hub.real-estate-sale"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.reservation-deposit-vs-earnest-money",
+      "content_revision_sha256": "cfdc8c8cdf798ef239075ec999c8dd3806518b521fbdeb90aa35a49a6e2b995c",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons-02"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.retirement-pay-basic-formula",
+      "content_revision_sha256": "6d76093bd511fa8817a7822144c54754940297b18e8967e66145acec71215758",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared",
+        "scenario_missing"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.retirement-pay-payment-deadline",
+      "content_revision_sha256": "4f7568a541ed67c3c4e62c69da60932acce50da4f0051d6ba1d0fb370e30c387",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.revocation-lawsuit-vs-state-compensation",
+      "content_revision_sha256": "c80a0238647d4bc1975056080b393a8516efcbe69ab9cf22df7b75344a2a411d",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.remedy-path-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.rights-after-lease-registration",
+      "content_revision_sha256": "2d5bebed470df8fc28aa7ed337aedede278da9f221b4884ef3fec0e366834e02",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-deposit"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.school-violence-appeal-lawsuit",
+      "content_revision_sha256": "57375bb2d5d2221356f116c9a4f1b312d22a8ea44cca697614d594cb2bede0b0",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.school-violence"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.school-violence-confidentiality-records",
+      "content_revision_sha256": "da605c2d3fceaa0136267e0d82e2b2f91bb59d03bc17d7f48ddfb950199cd0bd",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.school-violence"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.school-violence-cyber-deletion",
+      "content_revision_sha256": "cf0586de4cb2d43fcf5d7c1fb0aa4a40ab856dbc98ea2aab525116d3dff514be",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.school-violence"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.school-violence-investigation-committee",
+      "content_revision_sha256": "9b29927dde992b7bc1f900ba7d077c74d16c278e1579aad2ee970c87c6e741f2",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.school-violence"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.school-violence-offender-measures",
+      "content_revision_sha256": "456672fd0554e9c436d9d271e7fef06093426275ab02f15b55bc3bec52b9c7cc",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.school-violence"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.school-violence-report",
+      "content_revision_sha256": "e31dbab8a69aff85b8c462109e7dd243ae6450e891666707318965ec581287e6",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.school-violence"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.school-violence-school-resolution",
+      "content_revision_sha256": "dd9baefb24286efc367999dc6e8ae12049b7479093d5a904a5b143b45abf0cdc",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.school-violence"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.school-violence-scope",
+      "content_revision_sha256": "57a86eec8020591e5841c1e8917eb4099710687a5c03ac5a6a58e93e08192e59",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.school-violence"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.school-violence-stay-separation",
+      "content_revision_sha256": "9f3ef82e29242aed05b167421b32cd84563aca479d9d1ae0c6515a30e8cdfdd4",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.school-violence"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.school-violence-victim-protection",
+      "content_revision_sha256": "1e2807124c87375bd8b85991d34b8603f20d385f848a71a9cef85c1ecd4f84f9",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.school-violence"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.scope-of-guarantee-debt",
+      "content_revision_sha256": "3b1cb543e56537c8a73a3b7eb1db909bf7dde5106b345defb2c6585c00ba5191",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.money-guarantee"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.seller-does-not-own-property",
+      "content_revision_sha256": "aa4364ce105aa9d3ac110db067b9872400bbe2cdc7a0f7a8f2033991fc227814",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.real-estate-sale"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.seller-misses-title-transfer-date",
+      "content_revision_sha256": "bb64bed1cdcba5d2c4a9ce5b8d8725baa4716ffa7bc230fe8fd1cb7208d166b7",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.real-estate-sale"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.settlement-and-punishment-intent",
+      "content_revision_sha256": "4c0dcdd7c1aa28808cd6bd1dd20d9bf950922d23beea78b3fc187706cf94640e",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.sexual-harassment-labor-commission-remedy",
+      "content_revision_sha256": "2d8b063b61cf3d34549f9823af45cc2f1f1379cf0966959f45d85c40cc31ecb3",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.workplace-harassment"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.shared-mobility-accident-cause-map",
+      "content_revision_sha256": "daeb1433ce2d4644263cacc1f2b07cde38f4fef19072b3cc4e375dd0d777ec5e",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.shared-mobility-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.shared-mobility-accident-evidence-checklist",
+      "content_revision_sha256": "3e0b2957494804e1d3ae9cff4ac365385b6ad29e7ecdfb23af7196f57b6d1626",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.shared-mobility-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.shared-mobility-device-defect",
+      "content_revision_sha256": "a173315505a77d0395a7d4596b374d497fd979995a94015bb7870d4873dcbb2e",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.shared-mobility-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.shared-mobility-operator-liability-not-automatic",
+      "content_revision_sha256": "2b03a5fdef9c06d05cd0d722a806a25e27cb2a9b52c30f0addff49c81668b0a1",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.shared-mobility-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.shared-mobility-other-road-user-fault",
+      "content_revision_sha256": "130411ffa1f1bc615f7ff3f36b9eb23439a0cef7db16ace17ed25e98150780ed",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.shared-mobility-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.shared-mobility-private-facility-defect",
+      "content_revision_sha256": "c088e1fc21bbfb9159b3d053597a11f18aacdf1870e4b9f3840924155df28f91",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.shared-mobility-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.shared-mobility-public-road-defect",
+      "content_revision_sha256": "ee0d0962a46ac0491695e4dc06b4e143eac1a5f3670c0818c4cbd042d211641e",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.shared-mobility-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.shared-mobility-user-fault-and-compensation",
+      "content_revision_sha256": "17f698fc1f9162b5d6eff5d89aad281f78e90a0a7e24bee5a4b414922869c4f9",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.shared-mobility-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.shared-mobility-visible-defect-before-ride",
+      "content_revision_sha256": "6a5ecb361d055108f64b148def2368ca71643ecc8f25d2aff456ac258da3764b",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.shared-mobility-accident"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.six-grounds-for-judicial-divorce",
+      "content_revision_sha256": "835551894de03af5e8848d8dd3bf1fe9c6800e310c540884bd790f42bff1eccd",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.divorce-parenting"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.slip-fall-and-unsafe-facility-liability",
+      "content_revision_sha256": "19b3d57287a02a014e9400c6d3e2368fd35453be66fe9b877889b699691f181f",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.everyday-damages"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.small-claims-trial-vs-general-civil-lawsuit",
+      "content_revision_sha256": "9717026574d92698bc0b323e2435501a41dd95a602f90172bf6743e81aaee073",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.remedy-path-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.special-limited-acceptance-late-debt",
+      "content_revision_sha256": "78e43a8882d1c8565f5e6e5c9fbc74a699054b76b7a0f4b604e19ea96e5b2ad3",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.specific-reason-in-dismissal-notice",
+      "content_revision_sha256": "6c02b59723522e58164821b2730eb92a03977b463687005c0b13f8938622660c",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.spouse-when-all-children-renounce",
+      "content_revision_sha256": "2e54e2c6ac6ab4c1160c6da8d2e2195d3245b90958fd686a887a60fa1f5db33d",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.summary-order-formal-trial-vs-criminal-appeal-deadline",
+      "content_revision_sha256": "e10e096799ace460a45a9abcc8666c18771bf7db9d802ffc963a47d6a620e162",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.deadline-and-timing-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.summary-order-vs-formal-trial",
+      "content_revision_sha256": "1f8b951d40722f54de3d459d8ea5614de14aa0b74dea0fb4766b66e4a61c0079",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.remedy-path-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.three-month-inheritance-decision-period",
+      "content_revision_sha256": "5c089d6ec30f36e50f3d72cd1c7b91e96e10a998f14b9a3c54d699593308e098",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.unfair-dismissal-remedy-three-months",
+      "content_revision_sha256": "099cef16caed5bd9b4735bcef6fc3ff383e94cc2e5713035256150a2b97e4c19",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.unfair-dismissal-vs-wage-claim-deadline",
+      "content_revision_sha256": "2784a82cf6dc1378dcbb1ef91fff1085be38d1d72c355d06c62b5977985fd9a1",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.deadline-and-timing-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.unjust-enrichment-vs-tort-damages",
+      "content_revision_sha256": "44b6c6088ce7a882f445500f7edd0c675ce104f6fbdb7378fb53a34342159394",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.remedy-path-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.verbal-delay-agreement-after-retirement",
+      "content_revision_sha256": "5f56195d402100e9583c134fa8aa62ad4826678526d1c3de091710e060f5b0f8",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.verbal-dismissal-written-notice",
+      "content_revision_sha256": "e0fa7ab889bddacf8e7a314ed34597d60201ef85ea4547b9edb674212c1bd769",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.victim-access-to-trial-records",
+      "content_revision_sha256": "054f6eb56c4176084f54bc2d47b7467a0b3650edc431c0d70a32f850d4dd99a9",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.victim-case-information-notifications",
+      "content_revision_sha256": "3aac8b32387d2272f00ab96489369cbbad59de62a5d8dbf315dc0c4bd5aa6ec9",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.victim-fault-does-not-erase-all-compensation",
+      "content_revision_sha256": "521a852c1a012305950b037b8dd0a20867042baccce25f7081c5ddfd1c76656d",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.everyday-damages"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.victim-statement-in-criminal-trial",
+      "content_revision_sha256": "f16ce39a98abbe8693c1a7881a6ed9d9e5c7838e6876649efdbca9964d9c40bb",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.crime-victim-response"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.voice-phishing-refund-account-holder-objection",
+      "content_revision_sha256": "d488a62c137826883262a47de8b1b360476716261f8d87b1dce566121681111f",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.voice-phishing-refund-cash-delivery-withdrawal",
+      "content_revision_sha256": "a538e14f9fcae0b80d43b22fb8e1bce1b98c08d45c1bc0cc908fb44e73d02fb2",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.voice-phishing-refund-claim-extinction-timeline",
+      "content_revision_sha256": "178f57018689a797f56e9ebaba3236cfe56bf1baf15e50245083a015ca686afc",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.voice-phishing-refund-covered-scam",
+      "content_revision_sha256": "9c069ed4c62d43fe390818d63b3c01ab30df3be575df30afb24aada6c17a6832",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.voice-phishing-refund-immediate-application",
+      "content_revision_sha256": "095dca0794d1c9a67cc6715e4ba478f9eb7e645fd89583d8e0fa17c42a005309",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.voice-phishing-refund-late-application",
+      "content_revision_sha256": "6e2e96156b2c2d8c8ae98a4932f25da56693f11fa5ceabb45bd481c834078e1e",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.voice-phishing-refund-low-balance-request",
+      "content_revision_sha256": "02ab36cade9fbea3a46eabc630cc8f26e9f00942ae9b170701bed33087e760de",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.voice-phishing-refund-refund-amount",
+      "content_revision_sha256": "cf6fb5a9dff1a45760fff6518c456d11a8d5364a4fbe8f045ee06bd6c65832cd",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.voice-phishing-refund-refund-and-civil-claim",
+      "content_revision_sha256": "ab91e0846405b1a1912c9d29565cbd305c51ddf51da6e9f9cc892e87a85d38e1",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.voice-phishing-refund-transferred-again",
+      "content_revision_sha256": "32851bde997560d3e3c19c6751cfaf753e6b26f8760da2d2ff73aa5d066c4f6c",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.voice-phishing-refund"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.wage-and-protected-claim-seizure",
+      "content_revision_sha256": "5e01792b15dfeecb06d1220112c31f924037e14c9d54e1dedd7c038a9458ef16",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.what-accident-damages-can-be-claimed",
+      "content_revision_sha256": "b28f4861a30019943bfa1ebade9faecd4f67a84493ac7c79a81e9de7a3cdf6fe",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.everyday-damages"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.when-default-interest-starts",
+      "content_revision_sha256": "96994a47b77ffd520dc4beb32814850b9192f006ebccadc7ba8a5913e54b6dbd",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.when-payment-order-fits",
+      "content_revision_sha256": "9eac9f66298c9a1517faefd6e9735a52b0889a5607ce0c8ddcf1ddc18c61feeb",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "audience_situation_missing",
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.debt-enforcement"
+      ],
+      "next_action": "complete_canonical_content_structure",
+      "readiness_state": "structure_incomplete"
+    },
+    {
+      "content_id": "content.who-pays-return-shipping",
+      "content_revision_sha256": "959ec5fee4ebfcb5b286165e16e63718e0e39da6a78f7a923d78739ecde39208",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.consumer-online-contracts"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.why-attorney-workspace-is-gated",
+      "content_revision_sha256": "ada6186ae22eb997bfeb073aeeb405b60e956c3877232a80deee252f328510a2",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-service-boundaries"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.worker-status-evidence-checklist",
+      "content_revision_sha256": "4f986ed60b656ff42ef40c84332375af7b22e51e2e05947b9a8123c5b2ba7bcf",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.labor-wages"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.worker-status-vs-contract-label",
+      "content_revision_sha256": "103ab4b3e558924d0dc812e680c5cc96e5a7aecedbf0921e22d41939b7c73cfa",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.legal-concept-comparisons"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.workplace-harassment-elements",
+      "content_revision_sha256": "67fd52fa453a2e9ed896c3f8ff0de7761986ab502d522ce62211cc2728562540",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.workplace-harassment"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.workplace-harassment-protection-measures",
+      "content_revision_sha256": "ed370345e52f2e7a53dfb922de5517e91a6daf5c2c76dc38a91a13b57b4fa105",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.workplace-harassment"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.workplace-harassment-report-investigation",
+      "content_revision_sha256": "be9b92221d3657a225bf3092b2b09c5ef4ad274a2487302d69348ffe2f23c8c9",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.workplace-harassment"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.workplace-harassment-retaliation-confidentiality",
+      "content_revision_sha256": "ff6fe7afd4d91f043d2d9d20756b1413a2bf5bd19fff60e72d59f3edad229012",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.workplace-harassment"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.workplace-harassment-vs-sexual-harassment",
+      "content_revision_sha256": "0f7d93e86576978e5523a05f2e1813779106633a65aac985202d9e8dfb78a7a3",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.workplace-harassment"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.workplace-sexual-harassment-elements",
+      "content_revision_sha256": "360574f1f169a65ca58062d3790525dce4fc7ae0aae9499ff62fa8e4bd873120",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.workplace-harassment"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    },
+    {
+      "content_id": "content.workplace-sexual-harassment-employer-response",
+      "content_revision_sha256": "4bdef0d9b0286e4dbda7d7a159f05a5ef39c2fac568b0547a633d831a5306ee0",
+      "coverage_state": "unmapped",
+      "coverage_unit_ids": [],
+      "gap_codes": [
+        "coverage_not_declared"
+      ],
+      "hub_ids": [
+        "hub.workplace-harassment"
+      ],
+      "next_action": "declare_coverage_and_evaluation_scope",
+      "readiness_state": "graph_ready_unmapped"
+    }
+  ],
+  "hubs": [
+    {
+      "content_count": 6,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 6,
+      "hub_id": "hub.administrative-appeals",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.auto-accident-insurance",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.civil-small-claims",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 11,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 11,
+      "hub_id": "hub.commercial-lease",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.consumer-online-contracts",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 13,
+      "coverage_declared_count": 2,
+      "coverage_unmapped_count": 11,
+      "hub_id": "hub.crime-victim-response",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.deadline-and-timing-comparisons",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 13,
+      "coverage_declared_count": 1,
+      "coverage_unmapped_count": 12,
+      "hub_id": "hub.debt-enforcement",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.divorce-parenting",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.domestic-violence-stalking",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.employment-exit",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.everyday-damages",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.family-inheritance",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 9,
+      "coverage_declared_count": 2,
+      "coverage_unmapped_count": 7,
+      "hub_id": "hub.housing-lease-deposit",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.housing-lease-living",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.industrial-accident",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.labor-wages",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 13,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 13,
+      "hub_id": "hub.legal-concept-comparisons",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.legal-concept-comparisons-02",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 7,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 7,
+      "hub_id": "hub.legal-service-boundaries",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.money-guarantee",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.neighbor-leak-noise",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 12,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 12,
+      "hub_id": "hub.real-estate-sale",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.remedy-path-comparisons",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.school-violence",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.shared-mobility-accident",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.voice-phishing-refund",
+      "verified_release_count": 0
+    },
+    {
+      "content_count": 10,
+      "coverage_declared_count": 0,
+      "coverage_unmapped_count": 10,
+      "hub_id": "hub.workplace-harassment",
+      "verified_release_count": 0
+    }
+  ],
+  "honesty": {
+    "demand_is_not_legal_accuracy": true,
+    "declared_coverage_is_not_verified_release": true,
+    "graph_readiness_is_not_legal_verification": true,
+    "no_legal_priority_is_inferred": true,
+    "release_state_is_derived_from_trusted_receipts": true
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:rulelink:schema:publication-expansion-backlog:v1",
+  "title": "RuleLink publication expansion backlog v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "snapshot_id",
+    "base_bundle_sha256",
+    "coverage_manifest_sha256",
+    "content_count",
+    "hub_count",
+    "summary",
+    "entries",
+    "hubs",
+    "honesty"
+  ],
+  "properties": {
+    "schema": {
+      "const": "rulelink_publication_expansion_backlog_v1"
+    },
+    "snapshot_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "base_bundle_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "coverage_manifest_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "content_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "hub_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "summary": {
+      "type": "object"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    },
+    "hubs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/hub"
+      }
+    },
+    "honesty": {
+      "type": "object",
+      "additionalProperties": {
+        "const": true
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "content_id",
+        "content_revision_sha256",
+        "coverage_state",
+        "coverage_unit_ids",
+        "gap_codes",
+        "hub_ids",
+        "next_action",
+        "readiness_state"
+      ],
+      "properties": {
+        "content_id": {
+          "type": "string",
+          "pattern": "^content\\."
+        },
+        "content_revision_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "coverage_state": {
+          "enum": [
+            "unmapped",
+            "coverage_declared",
+            "verified_release"
+          ]
+        },
+        "coverage_unit_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^coverage\\."
+          }
+        },
+        "gap_codes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "hub_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^hub\\."
+          }
+        },
+        "next_action": {
+          "enum": [
+            "maintain_and_reverify",
+            "close_declared_coverage_gates",
+            "declare_coverage_and_evaluation_scope",
+            "complete_canonical_content_structure"
+          ]
+        },
+        "readiness_state": {
+          "enum": [
+            "verified_release",
+            "declared_incomplete",
+            "graph_ready_unmapped",
+            "structure_incomplete"
+          ]
+        }
+      }
+    },
+    "hub": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "content_count",
+        "coverage_declared_count",
+        "coverage_unmapped_count",
+        "hub_id",
+        "verified_release_count"
+      ],
+      "properties": {
+        "content_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "coverage_declared_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "coverage_unmapped_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hub_id": {
+          "type": "string",
+          "pattern": "^hub\\."
+        },
+        "verified_release_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}
