@@ -1,5 +1,9 @@
 import assert from 'node:assert/strict';
-import {createHash} from 'node:crypto';
+import {
+  createHash,
+  generateKeyPairSync,
+  sign as signBytes,
+} from 'node:crypto';
 import {mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
 import {createRequire} from 'node:module';
 import os from 'node:os';
@@ -16,11 +20,18 @@ import {
 } from '../src/lib/public-legal-answer-loader.ts';
 import {
   canonicalBytes,
+  escapeRegExp,
   rebindPacketSet,
   validLegalAnswerFixture,
 } from './legal-answer-test-fixture.mjs';
 
 const appRoot = path.resolve(import.meta.dirname, '..');
+const packetReceiptSigningKey = generateKeyPairSync('ed25519');
+const packetReceiptPublicKeyPem =
+  packetReceiptSigningKey.publicKey.export({
+    format: 'pem',
+    type: 'spki',
+  });
 
 test('023에 답변 sidecar가 없으면 기존 상세 화면의 zero state를 유지한다', async () => {
   const directory = await mkdtemp(
@@ -215,6 +226,7 @@ async function withFixture(
   packetBytes,
   receiptMutator,
   bundleMutator,
+  signedReceiptMutator,
 ) {
   const directory = await mkdtemp(
     path.join(os.tmpdir(), 'rulelink-answer-ui-fixture-'),
@@ -239,6 +251,10 @@ async function withFixture(
     const packetReceiptPath = path.join(
       directory,
       'packet-set-verification-receipt.json',
+    );
+    const packetTrustPolicyPath = path.join(
+      directory,
+      'packet-set-trust-policy.json',
     );
     await writeFile(
       bundlePath,
@@ -274,17 +290,46 @@ async function withFixture(
           )[0],
         verifier_version: packet.verification.verifier_version,
       })),
+      signing: {
+        algorithm: 'Ed25519',
+        issuer: 'rulelink-test-legal-answer-producer',
+        key_id: 'test-key-20260725',
+      },
     };
     receiptMutator?.(verificationReceipt, original);
+    verificationReceipt.signing.signature = signBytes(
+      null,
+      canonicalPacketBytes(verificationReceipt),
+      packetReceiptSigningKey.privateKey,
+    ).toString('base64');
+    signedReceiptMutator?.(verificationReceipt, original);
+    const trustPolicy = {
+      schema: 'rulelink_legal_answer_packet_set_trust_policy_v1',
+      status: 'active',
+      issuer: verificationReceipt.signing.issuer,
+      producer_commit: producerReceipt.producer_commit,
+      keys: [
+        {
+          algorithm: 'Ed25519',
+          key_id: verificationReceipt.signing.key_id,
+          public_key_pem: packetReceiptPublicKeyPem,
+        },
+      ],
+    };
     await writeFile(
       packetReceiptPath,
       canonicalBytes(verificationReceipt),
+    );
+    await writeFile(
+      packetTrustPolicyPath,
+      canonicalBytes(trustPolicy),
     );
     const catalog = await loadPublicLegalAnswerCatalog({
       appRoot,
       bundlePath,
       packetReceiptPath,
       packetSetPath,
+      packetTrustPolicyPath,
     });
     return await callback({catalog, fixture});
   } finally {
@@ -325,7 +370,191 @@ async function compileServerComponent() {
   return module.exports;
 }
 
+async function compileKnowledgePage({catalog, fixture}) {
+  const source = await readFile(
+    path.join(appRoot, 'app', 'ko', 'knowledge', '[slug]', 'page.tsx'),
+    'utf8',
+  );
+  const output = ts.transpileModule(source, {
+    compilerOptions: {
+      esModuleInterop: true,
+      jsx: ts.JsxEmit.ReactJSX,
+      module: ts.ModuleKind.CommonJS,
+      target: ts.ScriptTarget.ES2020,
+    },
+    fileName: 'app/ko/knowledge/[slug]/page.tsx',
+  }).outputText;
+  const packet = fixture.packetSet.packets[0];
+  const sources = fixture.bundle.knowledge.sources;
+  const entries = packet.retrieval.canonical_content_ids.map(
+    (contentId, index) => ({
+      content_id: contentId,
+      slug: index === 0 ? 'answer-target' : 'answer-related',
+      title_ko: index === 0 ? '답변 대상 질문' : '관련 질문',
+      one_line_answer_ko: '검증된 한 줄 답변입니다.',
+      audience_situation_ko: '이 절차를 확인하려는 사람',
+      search_intents_ko: ['절차 확인'],
+      content_type: 'procedure',
+      reviewed_at: '2026-07-25',
+      expires_at: '2027-07-25',
+      key_points_ko: ['핵심 판단'],
+      body_sections: [
+        {heading_ko: '판단 구조', paragraphs_ko: ['근거와 사실을 확인합니다.']},
+      ],
+      facts_to_check_ko: ['결정 사실'],
+      action_steps_ko: ['다음 행동'],
+      caution_ko: '사실관계에 따라 달라질 수 있습니다.',
+    }),
+  );
+  const rules = packet.retrieval.rule_ids.map(ruleId => ({
+    rule_id: ruleId,
+    title_ko: '적용 법리',
+    proposition_ko: '요건을 충족하면 법률효과가 발생합니다.',
+    norm: {
+      actor_ko: '신청인',
+      conditions_ko: '법정 요건을 충족한 경우',
+      legal_effect_ko: '법률효과가 발생합니다.',
+    },
+  }));
+  const scenarios = packet.retrieval.scenario_ids.map(scenarioId => ({
+    scenario_id: scenarioId,
+    decision_fact_ko: '결론을 가르는 사실',
+    question_ko: '요건을 충족했나요?',
+    when_true_ko: '해당 절차를 진행할 수 있습니다.',
+    when_false_ko: '다른 절차를 확인해야 합니다.',
+  }));
+  const entryBySlug = new Map(entries.map(entry => [entry.slug, entry]));
+  const {VerifiedLegalAnswerCard} = await compileServerComponent();
+  const jsxRuntime = await import('react/jsx-runtime');
+  const passthrough = ({children}) => children ?? null;
+  const nullComponent = () => null;
+  const componentMocks = {
+    '@/components/authority-reading-section': {
+      AuthorityReadingSection: ({views}) =>
+        jsxRuntime.jsx('section', {
+          'data-authority-view-count': views.length,
+          id: 'statute-reading',
+        }),
+    },
+    '@/components/editorial-attribution': {
+      EditorialAttribution: nullComponent,
+    },
+    '@/components/knowledge-action-workspace': {
+      KnowledgeActionWorkspace: () =>
+        jsxRuntime.jsx('div', {'data-action-workspace': true}),
+    },
+    '@/components/knowledge-reading-depth-nav': {
+      KnowledgeReadingDepthNav: nullComponent,
+    },
+    '@/components/knowledge-reading-path': {
+      KnowledgeReadingPath: nullComponent,
+    },
+    '@/components/knowledge-scenario-decision': {
+      KnowledgeScenarioDecision: ({scenarioId}) =>
+        jsxRuntime.jsx('div', {'data-scenario-id': scenarioId}),
+    },
+    '@/components/legal-concept-text': {
+      LegalConceptLayer: passthrough,
+      LegalConceptText: ({text}) => text,
+    },
+    '@/components/official-source-jump': {
+      OfficialSourceJump: nullComponent,
+    },
+    '@/components/public-advertising-placeholder': {
+      PublicAdvertisingPlaceholder: nullComponent,
+    },
+    '@/components/scenario-rule-links': {
+      ScenarioRuleLinks: nullComponent,
+    },
+    '@/components/verified-legal-answer-card': {
+      VerifiedLegalAnswerCard,
+    },
+  };
+  const libraryMocks = {
+    '@/lib/change-lifecycle': {changeLifecycleLabel: value => value},
+    '@/lib/content-labels': {knowledgeContentTypeLabel: value => value},
+    '@/lib/legal-date': {formatKoreanLegalDate: value => value},
+    '@/lib/official-source-url': {
+      browserOfficialSourceUrl: sourceItem => sourceItem.official_url,
+    },
+    '@/lib/public-legal-answer-loader': {
+      loadPublicLegalAnswerForContent: contentId =>
+        publicLegalAnswerForContent(catalog, contentId),
+    },
+    '@/lib/publication': {
+      findKnowledgeEntry: slug => entryBySlug.get(slug) ?? null,
+      knowledgeDetail: () => ({
+        authorityAsOf: packet.as_of,
+        authorityReadingUnits: [{}],
+        concepts: [],
+        hubs: [],
+        readingPathSections: [],
+        rules,
+        scenarioRules: Object.fromEntries(
+          scenarios.map(scenario => [scenario.scenario_id, rules]),
+        ),
+        scenarios,
+        sources,
+      }),
+      listKnowledgeEntries: () => entries,
+      relatedChangeBriefsForKnowledgeEntry: () => [],
+    },
+    '@/lib/public-rule-presentation': {
+      shouldShowPublicRuleProposition: () => true,
+    },
+    '@/lib/public-structured-data': {
+      buildKnowledgePageStructuredData: () => ({}),
+    },
+    '@/lib/public-trust': {
+      resolveApprovedEditorialAttribution: () => null,
+      resolvePublicTrustConfig: () => null,
+    },
+    '@/lib/site': {
+      site: {name: 'RuleLink', url: 'https://example.test'},
+    },
+    '@/lib/structured-data': {
+      serializeStructuredData: value => JSON.stringify(value),
+    },
+  };
+  const localRequire = createRequire(import.meta.url);
+  const module = {exports: {}};
+  const pageRequire = request => {
+    if (request === 'react/jsx-runtime') return jsxRuntime;
+    if (request === 'next/navigation') {
+      return {notFound: () => {
+        throw new Error('not_found');
+      }};
+    }
+    if (request.endsWith('.module.css')) {
+      return new Proxy({}, {get: (_, key) => String(key)});
+    }
+    if (componentMocks[request]) return componentMocks[request];
+    if (libraryMocks[request]) return libraryMocks[request];
+    return localRequire(request);
+  };
+  new Function('require', 'module', 'exports', output)(
+    pageRequire,
+    module,
+    module.exports,
+  );
+  return {KnowledgePage: module.exports.default, entries, sources};
+}
+
 test('생산자 검증 영수증이 packet bytes와 대상 content를 exact 결박한다', async () => {
+  await assert.rejects(
+    () =>
+      withFixture(
+        () => assert.fail('서명 뒤 바뀐 영수증이 승인되었습니다'),
+        undefined,
+        undefined,
+        undefined,
+        receipt => {
+          receipt.packets[0].packet_sha256 = 'f'.repeat(64);
+        },
+      ),
+    /packet_receipt_signature_invalid/u,
+  );
+
   await assert.rejects(
     () =>
       withFixture(
@@ -403,4 +632,35 @@ test('빠른 답은 claim과 대상 페이지의 rule·scenario·source·binding
       ),
     /target_source_missing/u,
   );
+});
+
+test('실제 KnowledgePage는 대상 페이지에만 답변과 근거·분기·행동 앵커를 렌더한다', async () => {
+  await withFixture(async ({catalog, fixture}) => {
+    const {KnowledgePage, entries, sources} = await compileKnowledgePage({
+      catalog,
+      fixture,
+    });
+    const targetHtml = renderToStaticMarkup(
+      await KnowledgePage({
+        params: Promise.resolve({slug: entries[0].slug}),
+      }),
+    );
+    assert.match(targetHtml, /data-verified-legal-answer/u);
+    for (const anchor of ['scenarios', 'actions', 'sources', 'statute-reading']) {
+      assert.match(targetHtml, new RegExp(`id="${anchor}"`, 'u'));
+    }
+    for (const sourceItem of sources) {
+      assert.match(
+        targetHtml,
+        new RegExp(escapeRegExp(sourceItem.official_url), 'u'),
+      );
+    }
+
+    const relatedHtml = renderToStaticMarkup(
+      await KnowledgePage({
+        params: Promise.resolve({slug: entries[1].slug}),
+      }),
+    );
+    assert.doesNotMatch(relatedHtml, /data-verified-legal-answer/u);
+  });
 });

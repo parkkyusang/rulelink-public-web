@@ -1,3 +1,4 @@
+import {createPublicKey, verify as verifySignature} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 
@@ -34,6 +35,7 @@ type LoaderOptions = {
   bundlePath?: string;
   packetReceiptPath?: string;
   packetSetPath?: string;
+  packetTrustPolicyPath?: string;
   receiptPath?: string;
   schemaPath?: string;
 };
@@ -94,6 +96,15 @@ async function loadPublicLegalAnswerCatalogUncached(
         'packet-set-verification-receipt.json',
       ),
   );
+  const packetTrustPolicyPath = path.resolve(
+    options.packetTrustPolicyPath ??
+      path.join(
+        appRoot,
+        'contracts',
+        'legal-answer-packet',
+        'packet-set-trust-policy.json',
+      ),
+  );
 
   const bundlePath = path.resolve(
     options.bundlePath ?? path.join(appRoot, 'content', 'bundle.json'),
@@ -116,7 +127,13 @@ async function loadPublicLegalAnswerCatalogUncached(
         'producer-receipt.json',
       ),
   );
-  const [bundleRaw, schemaRawBuffer, receiptRaw, packetReceiptRaw] =
+  const [
+    bundleRaw,
+    schemaRawBuffer,
+    receiptRaw,
+    packetReceiptRaw,
+    packetTrustPolicyRaw,
+  ] =
     await Promise.all([
     readRequiredFile(bundlePath, 'publication_bundle'),
     readRequiredFile(schemaPath, 'legal_answer_schema'),
@@ -124,6 +141,10 @@ async function loadPublicLegalAnswerCatalogUncached(
     readRequiredFile(
       packetReceiptPath,
       'legal_answer_packet_set_verification_receipt',
+    ),
+    readRequiredFile(
+      packetTrustPolicyPath,
+      'legal_answer_packet_set_trust_policy',
     ),
   ]);
   const schemaRaw = schemaRawBuffer.toString('utf8');
@@ -140,6 +161,10 @@ async function loadPublicLegalAnswerCatalogUncached(
     parseJson(
       packetReceiptRaw,
       'legal_answer_packet_set_verification_receipt',
+    ),
+    parseJson(
+      packetTrustPolicyRaw,
+      'legal_answer_packet_set_trust_policy',
     ),
     producerReceipt,
     receiptRaw,
@@ -220,11 +245,16 @@ type PacketReceiptRow = {
 
 function validatePacketSetVerificationReceipt(
   value: unknown,
+  trustPolicy: unknown,
   producerReceipt: unknown,
   producerReceiptRaw: Uint8Array,
   packetSetRaw: Uint8Array,
 ): Map<string, PacketReceiptRow> {
-  if (!isRecord(value) || !isRecord(producerReceipt)) {
+  if (
+    !isRecord(value) ||
+    !isRecord(trustPolicy) ||
+    !isRecord(producerReceipt)
+  ) {
     throw new Error('public_legal_answer_packet_receipt_shape_invalid');
   }
   if (
@@ -239,6 +269,7 @@ function validatePacketSetVerificationReceipt(
   ) {
     throw new Error('public_legal_answer_packet_receipt_binding_invalid');
   }
+  assertPacketReceiptSignature(value, trustPolicy, producerReceipt);
   const rows = new Map<string, PacketReceiptRow>();
   for (const row of value.packets) {
     if (
@@ -254,6 +285,62 @@ function validatePacketSetVerificationReceipt(
     rows.set(row.packet_id, row as PacketReceiptRow);
   }
   return rows;
+}
+
+function assertPacketReceiptSignature(
+  receipt: Record<string, unknown>,
+  policy: Record<string, unknown>,
+  producerReceipt: Record<string, unknown>,
+): void {
+  const signing = receipt.signing;
+  if (
+    policy.schema !==
+      'rulelink_legal_answer_packet_set_trust_policy_v1' ||
+    policy.status !== 'active' ||
+    typeof policy.issuer !== 'string' ||
+    policy.producer_commit !== producerReceipt.producer_commit ||
+    !Array.isArray(policy.keys) ||
+    !isRecord(signing) ||
+    signing.algorithm !== 'Ed25519' ||
+    signing.issuer !== policy.issuer ||
+    typeof signing.key_id !== 'string' ||
+    typeof signing.signature !== 'string'
+  ) {
+    throw new Error('public_legal_answer_packet_receipt_trust_invalid');
+  }
+  const key = policy.keys.find(
+    candidate =>
+      isRecord(candidate) &&
+      candidate.key_id === signing.key_id &&
+      candidate.algorithm === 'Ed25519' &&
+      typeof candidate.public_key_pem === 'string',
+  );
+  if (!isRecord(key) || typeof key.public_key_pem !== 'string') {
+    throw new Error('public_legal_answer_packet_receipt_key_untrusted');
+  }
+  const unsignedReceipt = structuredClone(receipt);
+  const unsignedSigning = unsignedReceipt.signing;
+  if (!isRecord(unsignedSigning)) {
+    throw new Error('public_legal_answer_packet_receipt_shape_invalid');
+  }
+  delete unsignedSigning.signature;
+  let signature: Buffer;
+  try {
+    signature = Buffer.from(signing.signature, 'base64');
+  } catch {
+    throw new Error('public_legal_answer_packet_receipt_signature_invalid');
+  }
+  if (
+    signature.length !== 64 ||
+    !verifySignature(
+      null,
+      Buffer.from(canonicalJson(unsignedReceipt), 'utf8'),
+      createPublicKey(key.public_key_pem),
+      signature,
+    )
+  ) {
+    throw new Error('public_legal_answer_packet_receipt_signature_invalid');
+  }
 }
 
 function assertReceiptPacketSetExact(
