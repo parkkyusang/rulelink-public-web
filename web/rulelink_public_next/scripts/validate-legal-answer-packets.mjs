@@ -10,7 +10,8 @@ import {
 import {loadPublicLegalAnswerCatalog} from '../src/lib/public-legal-answer-loader.ts';
 import {
   inspectQueueItemRegistryHistory,
-  validateQueueItemRegistry,
+  loadQueuePublicationEvidence,
+  validateProductionQueue,
 } from './validate-publication-production-queue.mjs';
 
 const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -62,6 +63,8 @@ export const DEFAULT_PRODUCTION_REGISTRY_PATH = path.join(
   'publication',
   'production-queue-registry.json',
 );
+export const DEFAULT_PRODUCTION_QUEUE_BUNDLE_PATH =
+  DEFAULT_PUBLICATION_BUNDLE_PATH;
 
 const SHA256_PATTERN = /^[a-f0-9]{64}$/u;
 
@@ -168,6 +171,13 @@ export async function loadLegalAnswerActivation(options = {}) {
       'production registry',
     ),
   ]);
+  const productionQueueBundle = await readJson(
+    path.resolve(
+      options.productionQueueBundlePath ??
+        DEFAULT_PRODUCTION_QUEUE_BUNDLE_PATH,
+    ),
+    'production queue published bundle',
+  );
   let registryHistory;
   try {
     registryHistory = await inspectQueueItemRegistryHistory(registry);
@@ -178,8 +188,24 @@ export async function loadLegalAnswerActivation(options = {}) {
       }`,
     );
   }
-  const productionQueueErrors = validateQueueItemRegistry(registry, queue, {
-    previousRegistry: registryHistory.previous_registry,
+  let productionQueueEvidence;
+  try {
+    productionQueueEvidence = await loadQueuePublicationEvidence(
+      queue,
+      productionQueueBundle,
+      {itemRegistry: registry},
+    );
+  } catch (error) {
+    throw new Error(
+      `legal_answer_activation_production_queue_invalid:${
+        error instanceof Error ? error.message : String(error)
+      }`,
+    );
+  }
+  const productionQueueErrors = validateProductionQueue(queue, {
+    publishedBundle: productionQueueBundle,
+    ...productionQueueEvidence,
+    previousItemRegistry: registryHistory.previous_registry,
   });
   if (productionQueueErrors.length > 0) {
     throw new Error(
@@ -208,6 +234,21 @@ export async function loadLegalAnswerActivation(options = {}) {
   );
   if (!gateReceipt) {
     throw new Error('legal_answer_activation_queue_receipt_missing');
+  }
+  if (manifest.queue_gate_id !== 'legal-answer.packet-set-activation') {
+    throw new Error('legal_answer_activation_queue_gate_contract_invalid');
+  }
+  const expectedEvidenceRef =
+    `legal-answer-activation:${manifest.expected_snapshot_id}` +
+    `@packets-sha256:${manifest.expected_packet_set_sha256}` +
+    `@receipt-sha256:${manifest.expected_verification_receipt_sha256}` +
+    `@trust-sha256:${manifest.expected_trust_policy_sha256}`;
+  if (
+    manifest.queue_gate_evidence_ref !== expectedEvidenceRef ||
+    gateReceipt.verification_contract !==
+      'rulelink_legal_answer_packet_activation_verification_v1'
+  ) {
+    throw new Error('legal_answer_activation_queue_gate_evidence_invalid');
   }
   return {
     state: 'active',

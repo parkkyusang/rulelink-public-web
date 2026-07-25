@@ -31,6 +31,22 @@ const contentTypeContract = JSON.parse(
   await readFile(path.join(appRoot, 'src', 'lib', 'knowledge-content-types.json'), 'utf8'),
 );
 const canonicalContentTypes = new Set(Object.keys(contentTypeContract.canonical));
+const legalDomainTaxonomy = JSON.parse(
+  await readFile(
+    path.join(
+      repoRoot,
+      'artifacts',
+      'publication',
+      'coverage',
+      'legal-domain-taxonomy.json',
+    ),
+    'utf8',
+  ),
+);
+const windowsReservedBasenames =
+  /^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])$/u;
+const coverageSeedStemPattern =
+  /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 
 const statuses = new Set([
   'planned',
@@ -206,7 +222,7 @@ const evidenceArtifactPaths = {
 };
 const verifiedEvidenceBrand = Symbol('rulelink-production-evidence-v1');
 
-export const PRODUCTION_WORK_CONTRACTS = {
+const STATIC_PRODUCTION_WORK_CONTRACTS = {
   'reader-backfill-crime-victim-wave1': {
     title_ko: '배상명령 대상손해·신청기한 조문 읽기 정본 백필',
     topic_id: 'hub.crime-victim-response',
@@ -244,6 +260,17 @@ export const PRODUCTION_WORK_CONTRACTS = {
       ],
     },
     prerequisite_gates: wave1GateContract,
+    optional_prerequisite_gates: {
+      'legal-answer.packet-set-activation': {
+        gate_kind: 'artifact',
+        owner_role: 'quality_governance',
+        verification_method: 'legal_answer_packet_activation_v1',
+        verification_contract:
+          'rulelink_legal_answer_packet_activation_verification_v1',
+        evidence_pattern:
+          /^legal-answer-activation:[^@]+@packets-sha256:[0-9a-f]{64}@receipt-sha256:[0-9a-f]{64}@trust-sha256:[0-9a-f]{64}$/u,
+      },
+    },
     depends_on_work_ids: [],
     integration_checks: [
       'snapshot 023 운영 배포와 authority 스키마·런타임을 포함한 모든 선행 게이트가 충족된 뒤 생산한다.',
@@ -345,6 +372,93 @@ export const PRODUCTION_WORK_CONTRACTS = {
     ],
   },
 };
+
+const coverageSeedDefaults = legalDomainTaxonomy.new_domain_seed_contract;
+if (
+  legalDomainTaxonomy.schema !==
+    'rulelink_publication_legal_domain_taxonomy_v1' ||
+  !coverageSeedDefaults?.counts ||
+  !coverageSeedDefaults?.quality_targets
+) {
+  throw new Error('법영역 확장 seed 생산계약 정본이 올바르지 않습니다.');
+}
+
+const coverageSeedContracts = Object.fromEntries(
+  legalDomainTaxonomy.target_domain_horizon
+    .filter(domain => (domain.current_hub_ids ?? []).length === 0)
+    .map(domain => {
+      const stem = String(domain.target_domain_id ?? '').replace(
+        /^target\./u,
+        '',
+      );
+      if (
+        !coverageSeedStemPattern.test(stem) ||
+        windowsReservedBasenames.test(stem)
+      ) {
+        throw new Error(
+          `법영역 확장 seed 파일 식별자가 안전하지 않습니다: ${stem}`,
+        );
+      }
+      const workId = `coverage-expansion-new-domain-${stem}`;
+      return [
+        workId,
+        {
+          title_ko: `${domain.title_ko} 신규 공개 주제 정본 구축`,
+          topic_id: `hub.${stem}`,
+          topic_file: `artifacts/publication/topics/${stem}.json`,
+          test_file:
+            `web/rulelink_public_next/scripts/${stem}-topic-handoff.test.mjs`,
+          branch: `codex/content-${stem}-coverage-seed`,
+          change_mode: 'new_topic',
+          counts: structuredClone(coverageSeedDefaults.counts),
+          quality_targets: structuredClone(
+            coverageSeedDefaults.quality_targets,
+          ),
+          measurement_scope: 'all_topic',
+          prerequisite_gates: {
+            'source-maintenance.source-locators-selected': {
+              gate_kind: 'artifact',
+              owner_role: 'source_maintenance',
+              verification_method: 'source_locator_selection_v1',
+              verification_contract:
+                'rulelink_source_locator_selection_verification_v1',
+              evidence_pattern:
+                new RegExp(
+                  `^source-locator-selection:${workId}@sha256:[0-9a-f]{64}$`,
+                  'u',
+                ),
+            },
+          },
+          depends_on_work_ids: [],
+          integration_checks: [
+            '승인된 source locator 선택 산출물의 모든 좌표를 현재 공개 근거 인벤토리와 exact 재결박한다.',
+            '새 주제는 표준 콘텐츠 유형·사실분기·typed relation·공식근거 역참조 계약을 모두 통과해야 한다.',
+            'topic과 자기시험만 생산하고 current·snapshot·release·production queue는 직접 수정하지 않는다.',
+            '검증 완료 뒤 migrate_publication이 current와 새 불변 snapshot에 함께 승격한다.',
+          ],
+          release_check_ids: [
+            'canonical-urls-unchanged',
+            'official-urls-pass',
+            'runtime-responsive-no-overflow',
+            'runtime-keyboard-reading-path',
+            'search-hub-sitemap-200',
+          ],
+        },
+      ];
+    }),
+);
+
+export const PRODUCTION_WORK_CONTRACTS = {
+  ...STATIC_PRODUCTION_WORK_CONTRACTS,
+  ...coverageSeedContracts,
+};
+
+function productionGateContract(contract, gateId) {
+  return (
+    contract?.prerequisite_gates?.[gateId] ??
+    contract?.optional_prerequisite_gates?.[gateId]
+  );
+}
 
 
 export const OWNER_ROLE_CONTRACTS = {
@@ -1067,6 +1181,134 @@ async function verifyEvidenceReference({
       referencedArtifacts: semantic.referenced_artifacts,
     }));
   }
+  if (verificationMethod === 'source_locator_selection_v1') {
+    const matched =
+      /^source-locator-selection:([^@]+)@sha256:([0-9a-f]{64})$/u.exec(
+        evidenceRef,
+      );
+    if (!matched || matched[1] !== workId) {
+      throw new Error(`source locator 선택 증거 형식 오류: ${evidenceRef}`);
+    }
+    const item = (queue.items ?? []).find(
+      candidate => candidate.work_id === workId,
+    );
+    const selection = item?.source_locator_selection;
+    if (
+      selection?.gate_id !==
+        'source-maintenance.source-locators-selected' ||
+      selection?.artifact_sha256 !== matched[2] ||
+      typeof selection?.artifact_path !== 'string' ||
+      !/^artifacts\/publication\/coverage\/source-locator-selections\/[a-z0-9][a-z0-9._-]*\.json$/u.test(
+        selection.artifact_path,
+      )
+    ) {
+      throw new Error(`source locator 선택 계약 불일치: ${workId}`);
+    }
+    const artifactPath = path.resolve(repoRoot, selection.artifact_path);
+    const selectionRoot = `${path.resolve(
+      repoRoot,
+      'artifacts',
+      'publication',
+      'coverage',
+      'source-locator-selections',
+    )}${path.sep}`;
+    if (!artifactPath.startsWith(selectionRoot)) {
+      throw new Error(`source locator 선택 경로 이탈: ${workId}`);
+    }
+    const [artifactRaw, publishedBundle] = await Promise.all([
+      read(artifactPath),
+      read(defaultPublishedBundlePath, 'utf8').then(JSON.parse),
+    ]);
+    if (sha256(artifactRaw) !== matched[2]) {
+      throw new Error(`source locator 선택 산출물 해시 불일치: ${workId}`);
+    }
+    const artifact = JSON.parse(artifactRaw.toString('utf8'));
+    const sourceByCoordinateId = new Map(
+      (publishedBundle.knowledge?.sources ?? []).map(source => [
+        source.coordinate_id,
+        source,
+      ]),
+    );
+    if (
+      artifact?.schema !== 'rulelink_source_locator_selection_v1' ||
+      artifact.work_id !== workId ||
+      artifact.topic_id !== item.topic_id ||
+      !Array.isArray(artifact.locators) ||
+      artifact.locators.length === 0
+    ) {
+      throw new Error(`source locator 선택 산출물 구조 오류: ${workId}`);
+    }
+    for (const locator of artifact.locators) {
+      const trusted = sourceByCoordinateId.get(locator.coordinate_id);
+      if (!trusted || canonicalJson(locator) !== canonicalJson(trusted)) {
+        throw new Error(
+          `source locator가 현재 승인 공개 근거와 다릅니다: ${locator.coordinate_id ?? '?'}`,
+        );
+      }
+    }
+    return sha256(canonicalJson({
+      verificationMethod,
+      evidenceRef,
+      artifactPath,
+      publishedSnapshotId: publishedBundle.snapshot_id,
+      locatorIds: artifact.locators.map(locator => locator.coordinate_id).sort(),
+    }));
+  }
+  if (verificationMethod === 'legal_answer_packet_activation_v1') {
+    const matched =
+      /^legal-answer-activation:([^@]+)@packets-sha256:([0-9a-f]{64})@receipt-sha256:([0-9a-f]{64})@trust-sha256:([0-9a-f]{64})$/u.exec(
+        evidenceRef,
+      );
+    if (!matched) {
+      throw new Error(`법률답변 활성화 증거 형식 오류: ${evidenceRef}`);
+    }
+    const [, snapshotId, packetHash, receiptHash, trustHash] = matched;
+    const [packetBytes, receiptBytes, trustBytes] = await Promise.all([
+      read(path.join(appRoot, 'content', 'legal-answer-packets.json')),
+      read(
+        path.join(
+          appRoot,
+          'contracts',
+          'legal-answer-packet',
+          'packet-set-verification-receipt.json',
+        ),
+      ),
+      read(
+        path.join(
+          appRoot,
+          'contracts',
+          'legal-answer-packet',
+          'packet-set-trust-policy.json',
+        ),
+      ),
+    ]);
+    if (
+      sha256(packetBytes) !== packetHash ||
+      sha256(receiptBytes) !== receiptHash ||
+      sha256(trustBytes) !== trustHash
+    ) {
+      throw new Error('법률답변 활성화 산출물의 실제 바이트가 증거와 다릅니다.');
+    }
+    const packetSet = JSON.parse(packetBytes.toString('utf8'));
+    if (
+      !Array.isArray(packetSet.packets) ||
+      packetSet.packets.length === 0 ||
+      packetSet.packets.some(
+        packet =>
+          packet?.provenance?.publication_snapshot_id !== snapshotId,
+      )
+    ) {
+      throw new Error('법률답변 활성화 snapshot이 packet set과 다릅니다.');
+    }
+    return sha256(canonicalJson({
+      verificationMethod,
+      evidenceRef,
+      snapshotId,
+      packetHash,
+      receiptHash,
+      trustHash,
+    }));
+  }
   if (verificationMethod === 'artifact_sha256') {
     const matched = /^artifact:([a-z0-9-]+)@sha256:([0-9a-f]{64})$/u.exec(evidenceRef);
     if (!matched) throw new Error(`산출물 증거 형식 오류: ${evidenceRef}`);
@@ -1130,7 +1372,7 @@ export async function verifyProductionQueueExternalEvidence(queue, {
     if (!contract) continue;
     for (const gate of item.prerequisite_gates || []) {
       if (gate.status !== 'satisfied') continue;
-      const contractGate = contract.prerequisite_gates[gate.gate_id];
+      const contractGate = productionGateContract(contract, gate.gate_id);
       const key = [
         item.work_id,
         gate.gate_id,
@@ -1188,10 +1430,15 @@ function normalizeExactText(value) {
 }
 
 function measureWorkTopic(topic, contract) {
-  const contentIds = new Set(contract.measurement_scope.content_ids);
-  const ruleIds = new Set(contract.measurement_scope.rule_ids);
-  const entries = (topic.content_entries || []).filter(entry => contentIds.has(entry.content_id));
-  const rules = (topic.rule_cards || []).filter(rule => ruleIds.has(rule.rule_id));
+  const allTopic = contract.measurement_scope === 'all_topic';
+  const contentIds = new Set(contract.measurement_scope?.content_ids ?? []);
+  const ruleIds = new Set(contract.measurement_scope?.rule_ids ?? []);
+  const entries = (topic.content_entries || []).filter(
+    entry => allTopic || contentIds.has(entry.content_id),
+  );
+  const rules = (topic.rule_cards || []).filter(
+    rule => allTopic || ruleIds.has(rule.rule_id),
+  );
   const copiedSearch = entries.filter(entry => {
     const copiedFrom = new Set(
       [entry.title_ko, entry.slug].map(normalizeExactText).filter(Boolean),
@@ -1575,8 +1822,10 @@ export function validateQueueItemRegistry(
       const gate = item?.prerequisite_gates?.find(
         candidate => candidate.gate_id === gateReceipt.gate_id,
       );
-      const contractGate = PRODUCTION_WORK_CONTRACTS[gateReceipt.work_id]
-        ?.prerequisite_gates?.[gateReceipt.gate_id];
+      const contractGate = productionGateContract(
+        PRODUCTION_WORK_CONTRACTS[gateReceipt.work_id],
+        gateReceipt.gate_id,
+      );
       if (
         !item ||
         !gate ||
@@ -1624,8 +1873,10 @@ export function validateQueueItemRegistry(
     for (const item of queue?.items || []) {
       if (!nonEmpty(item.work_id)) continue;
       for (const gate of item.prerequisite_gates || []) {
-        const contractGate = PRODUCTION_WORK_CONTRACTS[item.work_id]
-          ?.prerequisite_gates?.[gate.gate_id];
+        const contractGate = productionGateContract(
+          PRODUCTION_WORK_CONTRACTS[item.work_id],
+          gate.gate_id,
+        );
         const gateKey = [
           item.work_id,
           gate.gate_id,
@@ -2625,7 +2876,10 @@ export function validateProductionQueue(
           ) {
             errors.push(`${label}의 외부 PR 게이트 evidence_ref는 owner/repo#PR@40SHA 형식이어야 합니다: ${gate?.gate_id || '?'}`);
           }
-          const expectedGate = workContract?.prerequisite_gates?.[gate?.gate_id];
+          const expectedGate = productionGateContract(
+            workContract,
+            gate?.gate_id,
+          );
           if (!expectedGate) {
             errors.push(`${label}의 승인되지 않은 선행 게이트입니다: ${gate?.gate_id || '?'}`);
           } else {
@@ -2643,9 +2897,25 @@ export function validateProductionQueue(
             }
           }
         }
-        const expectedGateIds = Object.keys(workContract?.prerequisite_gates ?? {}).sort();
+        const expectedGateIds = Object.keys(
+          workContract?.prerequisite_gates ?? {},
+        ).sort();
         const actualGateIds = [...gateIds].sort();
-        if (canonicalJson(actualGateIds) !== canonicalJson(expectedGateIds)) {
+        const optionalGateIds = new Set(
+          Object.keys(workContract?.optional_prerequisite_gates ?? {}),
+        );
+        const missingRequiredGateIds = expectedGateIds.filter(
+          gateId => !gateIds.has(gateId),
+        );
+        const unexpectedGateIds = actualGateIds.filter(
+          gateId =>
+            !expectedGateIds.includes(gateId) &&
+            !optionalGateIds.has(gateId),
+        );
+        if (
+          missingRequiredGateIds.length > 0 ||
+          unexpectedGateIds.length > 0
+        ) {
           errors.push(`${label}.prerequisite_gates가 승인된 필수 게이트 집합과 다릅니다: ${item.work_id}`);
         }
         if (

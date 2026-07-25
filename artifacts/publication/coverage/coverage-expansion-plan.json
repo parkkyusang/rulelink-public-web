@@ -6,7 +6,7 @@
     "as_of": "2026-07-23T08:08:00Z",
     "base_bundle_sha256": "18209d6268b59e8e6bee3e1628234da9804e7b835b3e08d2eef70b91410fa581",
     "backlog_sha256": "450474657e03529d5f70169e2d38e34fa1c39b4755dcd5fcd9e26357c1cd4455",
-    "taxonomy_sha256": "37b514c56b26f4cd52c95342f4061383f0bb6111ae4ff42e0f6ee58db959fd5c",
+    "taxonomy_sha256": "14218d42d862aeecc1a45c3e7b8264d36fab8f53b491f4fc97bd28e7ef3b3332",
     "topic_manifest_sha256": "8ec514941561b1660429e382f7021f9508eb4543c0b8286bc4c370579b7c8434",
     "production_queue_sha256": "5b37e15e554ac3879de95cac4b1ac8e140a07b607ee9061c044fd904873f0e26",
     "production_registry_sha256": "d8543e3761e5fa36697d251d19c8e96cd6dcf16bcdcaab49a4b44e8fa5e0bdd4"
@@ -28172,7 +28172,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-new-domain-constitutional-public-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-new-domain-constitutional-public",
       "work_kind": "new_domain_seed",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -28352,7 +28352,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-new-domain-corporate-commercial-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-new-domain-corporate-commercial",
       "work_kind": "new_domain_seed",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -29786,7 +29786,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-new-domain-environment-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-new-domain-environment",
       "work_kind": "new_domain_seed",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -30632,7 +30632,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-new-domain-immigration-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-new-domain-immigration",
       "work_kind": "new_domain_seed",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -30878,7 +30878,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-new-domain-insolvency-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-new-domain-insolvency",
       "work_kind": "new_domain_seed",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -30930,7 +30930,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-new-domain-intellectual-property-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-new-domain-intellectual-property",
       "work_kind": "new_domain_seed",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -31994,7 +31994,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-new-domain-medical-health-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-new-domain-medical-health",
       "work_kind": "new_domain_seed",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -33270,7 +33270,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-new-domain-tax-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-new-domain-tax",
       "work_kind": "new_domain_seed",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,

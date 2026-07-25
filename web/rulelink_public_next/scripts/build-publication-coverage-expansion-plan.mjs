@@ -86,6 +86,8 @@ const STRUCTURAL_TARGET_GAPS = new Set([
 ]);
 const TARGET_DOMAIN_ID_PATTERN =
   /^target\.[a-z0-9]+(?:-[a-z0-9]+)*$/u;
+const WINDOWS_RESERVED_BASENAME_PATTERN =
+  /^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])$/u;
 const FORBIDDEN_PATHS = Object.freeze([
   'README.md',
   'artifacts/publication/current/**',
@@ -161,6 +163,31 @@ function validateTaxonomy(taxonomy, bundle, topicManifest) {
   if (taxonomy?.schema !== 'rulelink_publication_legal_domain_taxonomy_v1') {
     throw new Error('legal domain taxonomy schema invalid');
   }
+  const seedContract = taxonomy.new_domain_seed_contract;
+  if (
+    !exactObjectKeys(seedContract, ['counts', 'quality_targets']) ||
+    !exactObjectKeys(seedContract.counts, [
+      'sources',
+      'rule_cards',
+      'scenario_branches',
+      'content_entries',
+      'topic_hubs',
+      'authority_units',
+    ]) ||
+    !exactObjectKeys(seedContract.quality_targets, [
+      'duplicate_rule_before',
+      'duplicate_rule_after',
+      'blank_audience_before',
+      'blank_audience_after',
+      'copied_search_before',
+      'copied_search_after',
+      'nonstandard_content_type_before',
+      'nonstandard_content_type_after',
+      'typed_relation_after',
+    ])
+  ) {
+    throw new Error('new domain seed production contract invalid');
+  }
   const domains = taxonomy.domains ?? [];
   const domainIds = domains.map((domain) => domain.domain_id);
   if (new Set(domainIds).size !== domainIds.length) {
@@ -190,7 +217,10 @@ function validateTaxonomy(taxonomy, bundle, topicManifest) {
     targetIds.some(
       targetId =>
         typeof targetId !== 'string' ||
-        !TARGET_DOMAIN_ID_PATTERN.test(targetId),
+        !TARGET_DOMAIN_ID_PATTERN.test(targetId) ||
+        WINDOWS_RESERVED_BASENAME_PATTERN.test(
+          targetId.replace(/^target\./u, ''),
+        ),
     )
   ) {
     throw new Error('target domain horizon identity invalid');
@@ -477,6 +507,7 @@ async function loadNewDomainSourceSelection({
   topicId,
   repositoryRoot,
   builtAt,
+  approvedSources,
 }) {
   const selection = item?.source_locator_selection;
   if (selection === undefined) {
@@ -565,6 +596,17 @@ async function loadNewDomainSourceSelection({
   if (new Set(coordinateIds).size !== coordinateIds.length) {
     throw new Error(`new domain source locator duplicate:${topicId}`);
   }
+  const approvedByCoordinateId = new Map(
+    (approvedSources ?? []).map(source => [source.coordinate_id, source]),
+  );
+  for (const locator of artifact.locators) {
+    const approved = approvedByCoordinateId.get(locator.coordinate_id);
+    if (!approved || canonicalJson(locator) !== canonicalJson(approved)) {
+      throw new Error(
+        `new domain source locator is not in approved publication inventory:${locator.coordinate_id}`,
+      );
+    }
+  }
   const gate = (item.prerequisite_gates ?? []).find(
     candidate => candidate.gate_id === selection.gate_id,
   );
@@ -576,9 +618,9 @@ async function loadNewDomainSourceSelection({
   );
   if (
     gate?.status !== 'satisfied' ||
-    !gate.evidence_ref.endsWith(
-      `@sha256:${selection.artifact_sha256}`,
-    ) ||
+    gate.evidence_ref !==
+      `source-locator-selection:${item.work_id}` +
+        `@sha256:${selection.artifact_sha256}` ||
     !receipt
   ) {
     return {
@@ -603,6 +645,7 @@ export async function resolveNewDomainSeedAssignment({
   snapshotId,
   builtAt,
   repositoryRoot = REPOSITORY_ROOT,
+  approvedSources = [],
 }) {
   const stem = domain.target_domain_id.replace(/^target\./u, '');
   const topicId = `hub.${stem}`;
@@ -616,7 +659,7 @@ export async function resolveNewDomainSeedAssignment({
     selfTest: { path: selfTestFile },
     snapshotId,
     proposedWorkId:
-      `coverage-expansion-new-domain-${stem}-${snapshotId}`,
+      `coverage-expansion-new-domain-${stem}`,
   });
   const item = activeQueueItems(queue).find(
     candidate => candidate.topic_id === topicId,
@@ -628,6 +671,7 @@ export async function resolveNewDomainSeedAssignment({
         topicId,
         repositoryRoot,
         builtAt,
+        approvedSources,
       })
     : {
         state: 'selection_required',
@@ -1222,6 +1266,7 @@ export async function buildPublicationCoverageExpansionPlan(options = {}) {
         registry: documents.productionRegistry,
         snapshotId: documents.bundle.snapshot_id,
         builtAt: documents.bundle.built_at,
+        approvedSources: documents.bundle.knowledge.sources,
       });
       const {
         stem,

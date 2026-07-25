@@ -28,6 +28,12 @@ import {
 import {
   DEFAULT_LEGAL_ANSWER_SCHEMA_PATH,
 } from './validate-legal-answer-packets.mjs';
+import {
+  topicReceipt,
+} from './validate-publication-production-queue.mjs';
+import {
+  prepareProductionWorkRegistration,
+} from './register-publication-production-work.mjs';
 
 const REPOSITORY_ROOT = path.resolve(
   path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/u, '$1')),
@@ -321,32 +327,25 @@ test('신규 법영역은 정식 등록과 source locator artifact 영수증 뒤
   const temporary = await mkdtemp(
     path.join(os.tmpdir(), 'rulelink-coverage-new-domain-transition-'),
   );
+  const artifactRelative =
+    'artifacts/publication/coverage/source-locator-selections/' +
+    'constitutional-public.test.json';
+  const artifactPath = path.join(REPOSITORY_ROOT, artifactRelative);
   try {
     const snapshotId = 'kr-knowledge-core-20260723-023';
-    const workId =
-      `coverage-expansion-new-domain-constitutional-public-${snapshotId}`;
+    const workId = 'coverage-expansion-new-domain-constitutional-public';
     const topicId = 'hub.constitutional-public';
-    const artifactRelative =
-      'artifacts/publication/coverage/source-locator-selections/' +
-      'constitutional-public.json';
-    const artifactPath = path.join(temporary, artifactRelative);
     await mkdir(path.dirname(artifactPath), { recursive: true });
+    const approvedBundle = JSON.parse(
+      await readFile(DEFAULT_PUBLICATION_BUNDLE_PATH, 'utf8'),
+    );
+    const approvedLocator = approvedBundle.knowledge.sources[0];
     const artifactRaw = Buffer.from(
       `${JSON.stringify({
         schema: 'rulelink_source_locator_selection_v1',
         work_id: workId,
         topic_id: topicId,
-        locators: [
-          {
-            coordinate_id: 'coord.constitutional-public.fixture-0001',
-            source_id: 'constitutional_fixture_0001',
-            source_snapshot_id: '0123456789abcdef0123456789abcdef',
-            law_name_ko: '헌법',
-            article_no: '제1조',
-            official_url: 'https://example.test/statute',
-            last_verified_at: '2026-07-24T00:00:00Z',
-          },
-        ],
+        locators: [approvedLocator],
       }, null, 2)}\n`,
     );
     await writeFile(artifactPath, artifactRaw);
@@ -355,47 +354,54 @@ test('신규 법영역은 정식 등록과 source locator artifact 영수증 뒤
       .digest('hex');
     const gateId = 'source-maintenance.source-locators-selected';
     const evidenceRef =
-      `github-artifact:owner/repo#1@${'a'.repeat(40)}:` +
-      `${artifactRelative}@sha256:${artifactSha256}`;
-    const item = {
+      `source-locator-selection:${workId}@sha256:${artifactSha256}`;
+    const [baseQueue, baseRegistry] = await Promise.all([
+      readFile(PRODUCTION_QUEUE_PATH, 'utf8').then(JSON.parse),
+      readFile(PRODUCTION_REGISTRY_PATH, 'utf8').then(JSON.parse),
+    ]);
+    const prepared = prepareProductionWorkRegistration(
+      baseQueue,
+      baseRegistry,
+      [workId],
+    );
+    const queue = prepared.queue;
+    const registry = prepared.registry;
+    const item = queue.items.find(candidate => candidate.work_id === workId);
+    const gate = item.prerequisite_gates.find(
+      candidate => candidate.gate_id === gateId,
+    );
+    Object.assign(gate, {
+      status: 'satisfied',
+      evidence_ref: evidenceRef,
+    });
+    item.source_locator_selection = {
+      gate_id: gateId,
+      artifact_path: artifactRelative,
+      artifact_sha256: artifactSha256,
+    };
+    const previousReceipt = registry.prerequisite_gate_receipt;
+    const gateReceipt = {
+      sequence: registry.prerequisite_gate_receipts.length + 1,
       work_id: workId,
-      topic_id: topicId,
-      topic_file: 'artifacts/publication/topics/constitutional-public.json',
-      test_file:
-        'web/rulelink_public_next/scripts/' +
-        'constitutional-public-topic-handoff.test.mjs',
-      status: 'planned',
-      depends_on_work_ids: [],
-      prerequisite_gates: [
-        {
-          gate_id: gateId,
-          status: 'satisfied',
-          evidence_ref: evidenceRef,
-        },
-      ],
-      source_locator_selection: {
-        gate_id: gateId,
-        artifact_path: artifactRelative,
-        artifact_sha256: artifactSha256,
-      },
+      gate_id: gateId,
+      verified_by_role: 'source_maintenance',
+      verification_method: 'source_locator_selection_v1',
+      verification_contract:
+        'rulelink_source_locator_selection_verification_v1',
+      evidence_ref: evidenceRef,
+      verification_proof: 'a'.repeat(64),
+      verified_on: queue.audited_on,
+      previous_receipt: previousReceipt,
     };
-    const queue = { items: [item] };
-    const registry = {
-      registrations: [
-        {
-          work_id: workId,
-          topic_id: topicId,
-          topic_file: item.topic_file,
-        },
-      ],
-      prerequisite_gate_receipts: [
-        {
-          work_id: workId,
-          gate_id: gateId,
-          evidence_ref: evidenceRef,
-        },
-      ],
-    };
+    gateReceipt.receipt = topicReceipt(gateReceipt);
+    registry.prerequisite_gate_receipts.push(gateReceipt);
+    registry.prerequisite_gate_receipt = gateReceipt.receipt;
+    const queuePath = path.join(temporary, 'queue.json');
+    const registryPath = path.join(temporary, 'registry.json');
+    await Promise.all([
+      writeFile(queuePath, `${JSON.stringify(queue, null, 2)}\n`),
+      writeFile(registryPath, `${JSON.stringify(registry, null, 2)}\n`),
+    ]);
     const domain = {
       target_domain_id: 'target.constitutional-public',
       coverage_state: 'not_started',
@@ -406,12 +412,68 @@ test('신규 법영역은 정식 등록과 source locator artifact 영수증 뒤
       registry,
       snapshotId,
       builtAt: '2026-07-25T00:00:00Z',
-      repositoryRoot: temporary,
+      repositoryRoot: REPOSITORY_ROOT,
+      approvedSources: approvedBundle.knowledge.sources,
     });
     assert.equal(resolved.assignment.assignment_state, 'existing_queue_assignment');
     assert.equal(resolved.assignment.start_allowed, true);
     assert.equal(resolved.sourceLocatorState, 'bound');
     assert.equal(resolved.requiredSourceLocators.length, 1);
+
+    const fullPlan = await buildPublicationCoverageExpansionPlan({
+      productionQueuePath: queuePath,
+      productionRegistryPath: registryPath,
+    });
+    const fullTask = fullPlan.task_packets.find(
+      packet => packet.work_id === workId,
+    );
+    assert.equal(fullTask.assignment_state, 'existing_queue_assignment');
+    assert.equal(fullTask.start_allowed, true);
+    assert.equal(fullTask.source_locator_state, 'bound');
+    assert.deepEqual(fullTask.required_source_locators, [approvedLocator]);
+
+    const forgedArtifactRaw = Buffer.from(
+      `${JSON.stringify({
+        schema: 'rulelink_source_locator_selection_v1',
+        work_id: workId,
+        topic_id: topicId,
+        locators: [
+          {
+            ...approvedLocator,
+            source_snapshot_id: 'snapshot:forged',
+            official_url: 'https://example.test/forged',
+          },
+        ],
+      }, null, 2)}\n`,
+    );
+    const forgedHash = createHash('sha256')
+      .update(forgedArtifactRaw)
+      .digest('hex');
+    await writeFile(artifactPath, forgedArtifactRaw);
+    item.source_locator_selection.artifact_sha256 = forgedHash;
+    gate.evidence_ref =
+      `source-locator-selection:${workId}@sha256:${forgedHash}`;
+    gateReceipt.evidence_ref = gate.evidence_ref;
+    gateReceipt.receipt = topicReceipt(gateReceipt);
+    registry.prerequisite_gate_receipt = gateReceipt.receipt;
+    await assert.rejects(
+      resolveNewDomainSeedAssignment({
+        domain,
+        queue,
+        registry,
+        snapshotId,
+        builtAt: '2026-07-25T00:00:00Z',
+        repositoryRoot: REPOSITORY_ROOT,
+        approvedSources: approvedBundle.knowledge.sources,
+      }),
+      /not in approved publication inventory/iu,
+    );
+    await writeFile(artifactPath, artifactRaw);
+    item.source_locator_selection.artifact_sha256 = artifactSha256;
+    gate.evidence_ref = evidenceRef;
+    gateReceipt.evidence_ref = evidenceRef;
+    gateReceipt.receipt = topicReceipt(gateReceipt);
+    registry.prerequisite_gate_receipt = gateReceipt.receipt;
 
     const missingReceipt = await resolveNewDomainSeedAssignment({
       domain,
@@ -422,7 +484,8 @@ test('신규 법영역은 정식 등록과 source locator artifact 영수증 뒤
       },
       snapshotId,
       builtAt: '2026-07-25T00:00:00Z',
-      repositoryRoot: temporary,
+      repositoryRoot: REPOSITORY_ROOT,
+      approvedSources: approvedBundle.knowledge.sources,
     });
     assert.equal(missingReceipt.assignment.start_allowed, false);
     assert.deepEqual(missingReceipt.assignment.blocking_reasons, [
@@ -431,6 +494,7 @@ test('신규 법영역은 정식 등록과 source locator artifact 영수증 뒤
     ]);
     assert.equal(missingReceipt.sourceLocatorState, 'selection_required');
   } finally {
+    await rm(artifactPath, { force: true });
     await rm(temporary, { recursive: true, force: true });
   }
 });
@@ -609,6 +673,19 @@ test('목표 법영역 ID가 승인된 소유경로 밖으로 이탈하지 못�
     await assert.rejects(
       buildPublicationCoverageExpansionPlan({
         legalDomainTaxonomyPath: unsafePath,
+      }),
+      /target domain horizon identity invalid/iu,
+    );
+    const reserved = structuredClone(original);
+    reserved.target_domain_horizon[0].target_domain_id = 'target.con';
+    const reservedPath = path.join(temporary, 'reserved.json');
+    await writeFile(
+      reservedPath,
+      `${JSON.stringify(reserved, null, 2)}\n`,
+    );
+    await assert.rejects(
+      buildPublicationCoverageExpansionPlan({
+        legalDomainTaxonomyPath: reservedPath,
       }),
       /target domain horizon identity invalid/iu,
     );

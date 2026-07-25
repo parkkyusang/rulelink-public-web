@@ -1,5 +1,26 @@
 {
   "schema": "rulelink_publication_legal_domain_taxonomy_v1",
+  "new_domain_seed_contract": {
+    "counts": {
+      "sources": 10,
+      "rule_cards": 10,
+      "scenario_branches": 10,
+      "content_entries": 10,
+      "topic_hubs": 1,
+      "authority_units": 0
+    },
+    "quality_targets": {
+      "duplicate_rule_before": 0,
+      "duplicate_rule_after": 0,
+      "blank_audience_before": 0,
+      "blank_audience_after": 0,
+      "copied_search_before": 0,
+      "copied_search_after": 0,
+      "nonstandard_content_type_before": 0,
+      "nonstandard_content_type_after": 0,
+      "typed_relation_after": 10
+    }
+  },
   "domains": [
     {
       "domain_id": "domain.public-administrative",

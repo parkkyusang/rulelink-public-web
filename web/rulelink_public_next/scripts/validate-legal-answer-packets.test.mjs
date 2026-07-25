@@ -39,6 +39,7 @@ import {
   rebindPacketSet,
   validLegalAnswerFixture as validFixture,
 } from './legal-answer-test-fixture.mjs';
+import {topicReceipt} from './validate-publication-production-queue.mjs';
 
 const appRoot = path.resolve(import.meta.dirname, '..');
 const repositoryRoot = path.resolve(appRoot, '..', '..');
@@ -190,7 +191,8 @@ test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue 
         packetSet.packets = [];
         await writeFile(paths.packetSetPath, canonicalBytes(packetSet));
       },
-      expected: /required_but_empty|packet_set_hash_mismatch/u,
+      expected:
+        /required_but_empty|packet_set_hash_mismatch|queue_gate_evidence_invalid/u,
     },
     {
       label: 'wrong-count-id',
@@ -215,7 +217,7 @@ test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue 
           'expected_packet_set_sha256',
         );
       },
-      expected: /packet_set_hash_mismatch/u,
+      expected: /packet_set_hash_mismatch|queue_gate_evidence_invalid/u,
     },
     {
       label: 'receipt-hash',
@@ -225,7 +227,7 @@ test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue 
           'expected_verification_receipt_sha256',
         );
       },
-      expected: /receipt_hash_mismatch/u,
+      expected: /receipt_hash_mismatch|queue_gate_evidence_invalid/u,
     },
     {
       label: 'trust-hash',
@@ -235,7 +237,7 @@ test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue 
           'expected_trust_policy_sha256',
         );
       },
-      expected: /trust_policy_hash_mismatch/u,
+      expected: /trust_policy_hash_mismatch|queue_gate_evidence_invalid/u,
     },
     {
       label: 'queue-receipt',
@@ -291,6 +293,34 @@ test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue 
       expected: /production_queue_invalid/u,
     },
     {
+      label: 'duplicate-queue-work-id',
+      async mutate(paths) {
+        const queue = JSON.parse(
+          await readFile(paths.productionQueuePath, 'utf8'),
+        );
+        queue.items.push(structuredClone(queue.items[0]));
+        await writeFile(
+          paths.productionQueuePath,
+          canonicalBytes(queue),
+        );
+      },
+      expected: /production_queue_invalid/u,
+    },
+    {
+      label: 'unrelated-queue-gate',
+      async mutate(paths) {
+        const activation = JSON.parse(
+          await readFile(paths.activationManifestPath, 'utf8'),
+        );
+        activation.queue_gate_id = 'runtime.statute-reading-ui';
+        await writeFile(
+          paths.activationManifestPath,
+          canonicalBytes(activation),
+        );
+      },
+      expected: /queue_gate_invalid|queue_gate_contract_invalid/u,
+    },
+    {
       label: 'wrong-target-topic',
       async mutate(paths) {
         const activation = JSON.parse(
@@ -322,7 +352,8 @@ test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue 
           canonicalBytes(activation),
         );
       },
-      expected: /trusted_loader_failed:.*signature_invalid/u,
+      expected:
+        /trusted_loader_failed:.*signature_invalid|queue_gate_evidence_invalid/u,
     },
   ];
   for (const attack of attacks) {
@@ -902,15 +933,38 @@ async function withActivationFixture(callback) {
       await readFile(DEFAULT_PRODUCTION_REGISTRY_PATH, 'utf8'),
     );
     const queueWorkId = 'reader-backfill-crime-victim-wave1';
-    const queueGateId = 'runtime.statute-reading-ui';
+    const queueGateId = 'legal-answer.packet-set-activation';
     const queueItem = queue.items.find(
       item => item.work_id === queueWorkId,
     );
-    const queueGate = queueItem.prerequisite_gates.find(
-      gate => gate.gate_id === queueGateId,
-    );
-    assert.equal(queueGate.status, 'satisfied');
-    const evidenceRef = queueGate.evidence_ref;
+    const evidenceRef =
+      `legal-answer-activation:${fixture.bundle.snapshot_id}` +
+      `@packets-sha256:${sha256(packetSetRaw)}` +
+      `@receipt-sha256:${sha256(packetReceiptRaw)}` +
+      `@trust-sha256:${sha256(trustPolicyRaw)}`;
+    queueItem.prerequisite_gates.push({
+      gate_id: queueGateId,
+      gate_kind: 'artifact',
+      owner_role: 'quality_governance',
+      status: 'satisfied',
+      evidence_ref: evidenceRef,
+    });
+    const gateReceipt = {
+      sequence: registry.prerequisite_gate_receipts.length + 1,
+      work_id: queueWorkId,
+      gate_id: queueGateId,
+      verified_by_role: 'quality_governance',
+      verification_method: 'legal_answer_packet_activation_v1',
+      verification_contract:
+        'rulelink_legal_answer_packet_activation_verification_v1',
+      evidence_ref: evidenceRef,
+      verification_proof: 'b'.repeat(64),
+      verified_on: queue.audited_on,
+      previous_receipt: registry.prerequisite_gate_receipt,
+    };
+    gateReceipt.receipt = topicReceipt(gateReceipt);
+    registry.prerequisite_gate_receipts.push(gateReceipt);
+    registry.prerequisite_gate_receipt = gateReceipt.receipt;
     const activation = {
       schema: 'rulelink_legal_answer_packet_activation_v1',
       activation_state: 'active',
@@ -935,6 +989,7 @@ async function withActivationFixture(callback) {
       packetTrustPolicyPath: path.join(directory, 'trust-policy.json'),
       productionQueuePath: path.join(directory, 'queue.json'),
       productionRegistryPath: path.join(directory, 'registry.json'),
+      productionQueueBundlePath: currentBundlePath,
     };
     await Promise.all([
       writeFile(paths.activationManifestPath, canonicalBytes(activation)),
