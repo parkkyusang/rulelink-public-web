@@ -291,8 +291,43 @@ function contentExperienceState(contentIds, contentById) {
   };
 }
 
+function bindingCoverageState(
+  unit,
+  bindingById,
+  authorityReadingById,
+) {
+  const contentIds = new Set(safeArray(unit.canonical_content_ids));
+  const sourceIds = new Set(safeArray(unit.required_source_coordinate_ids));
+  const bindingIds = safeArray(unit.required_authority_binding_ids);
+  const invalid = [];
+  for (const bindingId of bindingIds) {
+    const binding = bindingById.get(bindingId);
+    if (!binding) continue;
+    if (
+      binding.from_kind !== 'content' ||
+      !contentIds.has(binding.from_id) ||
+      binding.to_kind !== 'authority_reading_unit'
+    ) {
+      invalid.push(`${bindingId}:content_projection_mismatch`);
+      continue;
+    }
+    const authority = authorityReadingById.get(
+      binding.to_authority_reading_unit_id,
+    );
+    if (!authority || !sourceIds.has(authority.source_coordinate_id)) {
+      invalid.push(`${bindingId}:source_projection_mismatch`);
+    }
+  }
+  return {
+    relevant: bindingIds.length > 0 && invalid.length === 0,
+    invalid,
+  };
+}
+
 function coverageObservation({
   authorityBindingIds,
+  authorityReadingById,
+  bindingById,
   contentById,
   contentIds,
   currentSnapshotMatches,
@@ -318,6 +353,11 @@ function coverageObservation({
   );
   const evaluationCaseIds = safeArray(unit.evaluation_case_ids);
   const sourceVersion = sourceVersionState(unit, sourceById);
+  const bindingCoverage = bindingCoverageState(
+    unit,
+    bindingById,
+    authorityReadingById,
+  );
   const experience = contentExperienceState(
     canonicalContentIds,
     contentById,
@@ -343,7 +383,8 @@ function coverageObservation({
   const l2 =
     l1 &&
     requiredAuthorityBindingIds.length > 0 &&
-    requiredAuthorityBindingIds.every((id) => authorityBindingIds.has(id));
+    requiredAuthorityBindingIds.every((id) => authorityBindingIds.has(id)) &&
+    bindingCoverage.relevant;
   return {
     authority_level: l2 ? 'L2_locator' : l1 ? 'L1_coordinate' : 'L0_structure',
     content_present_in_base_snapshot: Boolean(
@@ -452,6 +493,7 @@ export function validateCoverageDocuments(documents) {
   const sources = knowledge.sources ?? [];
   const topicHubs = knowledge.topic_hubs ?? [];
   const authorityBindings = knowledge.authority_bindings ?? [];
+  const authorityReadingUnits = knowledge.authority_reading_units ?? [];
   const contentIds = idSet(contentEntries, 'content_id');
   const ruleIds = idSet(ruleCards, 'rule_id');
   const scenarioIds = idSet(scenarioBranches, 'scenario_id');
@@ -462,7 +504,16 @@ export function validateCoverageDocuments(documents) {
   const topicIds = idSet(topicHubs, 'hub_id');
   const authorityBindingIds = idSet(
     authorityBindings,
-    'authority_binding_id',
+    'binding_id',
+  );
+  const bindingById = new Map(
+    authorityBindings.map((binding) => [binding.binding_id, binding]),
+  );
+  const authorityReadingById = new Map(
+    authorityReadingUnits.map((unit) => [
+      unit.authority_reading_unit_id,
+      unit,
+    ]),
   );
   const contentById = new Map(
     contentEntries.map((entry) => [entry.content_id, entry]),
@@ -638,6 +689,13 @@ export function validateCoverageDocuments(documents) {
       unit.required_authority_binding_ids ?? [],
       authorityBindingIds,
     );
+    for (const invalid of bindingCoverageState(
+      unit,
+      bindingById,
+      authorityReadingById,
+    ).invalid) {
+      errors.push(`${label}:authority_binding_not_relevant:${invalid}`);
+    }
 
     const hubContentIds = new Set(
       topicHubById.get(unit.topic_id)?.content_ids ?? [],
@@ -681,6 +739,8 @@ export function validateCoverageDocuments(documents) {
       topic_id: unit.topic_id,
       ...coverageObservation({
         authorityBindingIds,
+        authorityReadingById,
+        bindingById,
         contentById,
         contentIds,
         currentSnapshotMatches:

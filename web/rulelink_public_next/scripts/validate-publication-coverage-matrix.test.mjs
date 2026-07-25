@@ -241,3 +241,50 @@ test('L2 binding은 실제 bundle에 존재할 때만 선언할 수 있다', asy
   );
   assert.equal(observation.authority_level, 'L1_coordinate');
 });
+
+test('L2 binding은 해당 콘텐츠에서 해당 근거로 가는 투영일 때만 인정한다', async () => {
+  const documents = structuredClone(await loadCoverageDocuments());
+  const unit = documents.domains[0].units[0];
+  const bindingId = 'binding.coverage.test';
+  const authorityId = 'authority.coverage.test';
+  unit.required_authority_binding_ids = [bindingId];
+  documents.bundle.knowledge.authority_reading_units = [
+    {
+      authority_reading_unit_id: authorityId,
+      source_coordinate_id: unit.required_source_coordinate_ids[0],
+    },
+  ];
+  documents.bundle.knowledge.authority_bindings = [
+    {
+      binding_id: bindingId,
+      from_kind: 'content',
+      from_id: unit.canonical_content_ids[0],
+      to_kind: 'authority_reading_unit',
+      to_authority_reading_unit_id: authorityId,
+    },
+  ];
+
+  let result = validateCoverageDocuments(documents);
+  assert.deepEqual(result.errors, []);
+  assert.equal(
+    result.observations.find(
+      (item) => item.coverage_unit_id === unit.coverage_unit_id,
+    ).authority_level,
+    'L2_locator',
+  );
+
+  documents.bundle.knowledge.authority_bindings[0].from_id =
+    'content.payment-order-objection-two-weeks';
+  result = validateCoverageDocuments(documents);
+  assert.ok(
+    result.errors.includes(
+      `coverage_unit:${unit.coverage_unit_id}:authority_binding_not_relevant:${bindingId}:content_projection_mismatch`,
+    ),
+  );
+  assert.equal(
+    result.observations.find(
+      (item) => item.coverage_unit_id === unit.coverage_unit_id,
+    ).authority_level,
+    'L1_coordinate',
+  );
+});
