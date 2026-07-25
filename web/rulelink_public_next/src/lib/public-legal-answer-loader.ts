@@ -6,23 +6,33 @@ import {
   projectCanonicalLegalAnswerPacket,
   sha256Bytes,
 } from './legal-answer-packet.ts';
+import {resolveKnowledgeEntryGraph} from './knowledge-search.ts';
 
-import type {CanonicalLegalAnswerProjection} from '@/types/legal-answer-packet';
+import type {
+  CanonicalLegalAnswerProjection,
+  RuleLinkLegalAnswerPacket,
+} from '@/types/legal-answer-packet';
 import type {PublishedBundle} from '@/types/publication';
+
+export type TargetedCanonicalLegalAnswerProjection =
+  CanonicalLegalAnswerProjection & {
+    targetContentId: string;
+  };
 
 export type PublicLegalAnswerCatalog =
   | {
       state: 'absent';
-      projections: readonly CanonicalLegalAnswerProjection[];
+      projections: readonly TargetedCanonicalLegalAnswerProjection[];
     }
   | {
       state: 'validated';
-      projections: readonly CanonicalLegalAnswerProjection[];
+      projections: readonly TargetedCanonicalLegalAnswerProjection[];
     };
 
 type LoaderOptions = {
   appRoot?: string;
   bundlePath?: string;
+  packetReceiptPath?: string;
   packetSetPath?: string;
   receiptPath?: string;
   schemaPath?: string;
@@ -30,7 +40,8 @@ type LoaderOptions = {
 
 const ABSENT_CATALOG: PublicLegalAnswerCatalog = Object.freeze({
   state: 'absent',
-  projections: Object.freeze([]) as readonly CanonicalLegalAnswerProjection[],
+  projections:
+    Object.freeze([]) as readonly TargetedCanonicalLegalAnswerProjection[],
 });
 
 let defaultCatalogPromise: Promise<PublicLegalAnswerCatalog> | undefined;
@@ -55,11 +66,11 @@ export async function loadPublicLegalAnswerForContent(
 export function publicLegalAnswerForContent(
   catalog: PublicLegalAnswerCatalog,
   contentId: string,
-): CanonicalLegalAnswerProjection | null {
+): TargetedCanonicalLegalAnswerProjection | null {
   if (catalog.state === 'absent') return null;
   return (
-    catalog.projections.find(projection =>
-      projection.canonicalContentIds.includes(contentId),
+    catalog.projections.find(
+      projection => projection.targetContentId === contentId,
     ) ?? null
   );
 }
@@ -74,6 +85,15 @@ async function loadPublicLegalAnswerCatalogUncached(
   );
   const packetSetRaw = await readOptionalFile(packetSetPath);
   if (packetSetRaw === null) return ABSENT_CATALOG;
+  const packetReceiptPath = path.resolve(
+    options.packetReceiptPath ??
+      path.join(
+        appRoot,
+        'contracts',
+        'legal-answer-packet',
+        'packet-set-verification-receipt.json',
+      ),
+  );
 
   const bundlePath = path.resolve(
     options.bundlePath ?? path.join(appRoot, 'content', 'bundle.json'),
@@ -96,22 +116,45 @@ async function loadPublicLegalAnswerCatalogUncached(
         'producer-receipt.json',
       ),
   );
-  const [bundleRaw, schemaRawBuffer, receiptRaw] = await Promise.all([
+  const [bundleRaw, schemaRawBuffer, receiptRaw, packetReceiptRaw] =
+    await Promise.all([
     readRequiredFile(bundlePath, 'publication_bundle'),
     readRequiredFile(schemaPath, 'legal_answer_schema'),
     readRequiredFile(receiptPath, 'legal_answer_producer_receipt'),
+    readRequiredFile(
+      packetReceiptPath,
+      'legal_answer_packet_set_verification_receipt',
+    ),
   ]);
   const schemaRaw = schemaRawBuffer.toString('utf8');
+  const bundle = parseJson(bundleRaw, 'publication_bundle') as PublishedBundle;
+  const packetSet = parseJson(
+    packetSetRaw,
+    'legal_answer_packet_set',
+  );
+  const producerReceipt = parseJson(
+    receiptRaw,
+    'legal_answer_producer_receipt',
+  );
+  const receiptByPacketId = validatePacketSetVerificationReceipt(
+    parseJson(
+      packetReceiptRaw,
+      'legal_answer_packet_set_verification_receipt',
+    ),
+    producerReceipt,
+    receiptRaw,
+    packetSetRaw,
+  );
   const inspection = inspectPublicLegalAnswerPacketSet(
-    parseJson(packetSetRaw, 'legal_answer_packet_set'),
+    packetSet,
     {
-      bundle: parseJson(bundleRaw, 'publication_bundle') as PublishedBundle,
+      bundle,
       bundleSha256: sha256Bytes(bundleRaw),
       schema: parseJson(
         schemaRawBuffer,
         'legal_answer_schema',
       ) as Parameters<typeof inspectPublicLegalAnswerPacketSet>[1]['schema'],
-      receipt: parseJson(receiptRaw, 'legal_answer_producer_receipt'),
+      receipt: producerReceipt,
       schemaRaw,
     },
   );
@@ -124,31 +167,211 @@ async function loadPublicLegalAnswerCatalogUncached(
     throw new Error('public_legal_answer_packet_set_present_but_empty');
   }
 
+  assertReceiptPacketSetExact(inspection.packets, receiptByPacketId);
   const projections = inspection.packets.map(packet => {
+    const receiptRow = receiptByPacketId.get(packet.packet_id);
+    if (!receiptRow) {
+      throw new Error(
+        `public_legal_answer_packet_receipt_target_missing:${packet.packet_id}`,
+      );
+    }
+    const targetContentId = receiptRow.target_content_id;
+    assertPageProjectionClosed(packet, bundle, targetContentId);
     const projection = projectCanonicalLegalAnswerPacket(packet);
     if (projection.quickAnswer.length === 0) {
       throw new Error(
         `public_legal_answer_quick_answer_required:${projection.packetId}`,
       );
     }
-    return Object.freeze(projection);
+    if (
+      projection.quickAnswer.some(unit => unit.claim_ids.length === 0)
+    ) {
+      throw new Error(
+        `public_legal_answer_quick_answer_claim_required:${projection.packetId}`,
+      );
+    }
+    return Object.freeze({...projection, targetContentId});
   });
   const packetByContentId = new Map<string, string>();
   for (const projection of projections) {
-    for (const contentId of projection.canonicalContentIds) {
-      const existing = packetByContentId.get(contentId);
-      if (existing) {
-        throw new Error(
-          `public_legal_answer_content_mapping_duplicate:${contentId}:${existing}:${projection.packetId}`,
-        );
-      }
-      packetByContentId.set(contentId, projection.packetId);
+    const existing = packetByContentId.get(projection.targetContentId);
+    if (existing) {
+      throw new Error(
+        `public_legal_answer_content_mapping_duplicate:${projection.targetContentId}:${existing}:${projection.packetId}`,
+      );
     }
+    packetByContentId.set(
+      projection.targetContentId,
+      projection.packetId,
+    );
   }
   return Object.freeze({
     state: 'validated',
     projections: Object.freeze(projections),
   });
+}
+
+type PacketReceiptRow = {
+  packet_id: string;
+  packet_sha256: string;
+  target_content_id: string;
+  verifier_version: string;
+};
+
+function validatePacketSetVerificationReceipt(
+  value: unknown,
+  producerReceipt: unknown,
+  producerReceiptRaw: Uint8Array,
+  packetSetRaw: Uint8Array,
+): Map<string, PacketReceiptRow> {
+  if (!isRecord(value) || !isRecord(producerReceipt)) {
+    throw new Error('public_legal_answer_packet_receipt_shape_invalid');
+  }
+  if (
+    value.schema !==
+      'rulelink_legal_answer_packet_set_verification_receipt_v1' ||
+    value.producer_commit !== producerReceipt.producer_commit ||
+    value.schema_source_commit !== producerReceipt.schema_source_commit ||
+    value.schema_sha256 !== producerReceipt.schema_sha256 ||
+    value.producer_receipt_sha256 !== sha256Bytes(producerReceiptRaw) ||
+    value.packet_set_sha256 !== sha256Bytes(packetSetRaw) ||
+    !Array.isArray(value.packets)
+  ) {
+    throw new Error('public_legal_answer_packet_receipt_binding_invalid');
+  }
+  const rows = new Map<string, PacketReceiptRow>();
+  for (const row of value.packets) {
+    if (
+      !isRecord(row) ||
+      typeof row.packet_id !== 'string' ||
+      typeof row.packet_sha256 !== 'string' ||
+      typeof row.target_content_id !== 'string' ||
+      typeof row.verifier_version !== 'string' ||
+      rows.has(row.packet_id)
+    ) {
+      throw new Error('public_legal_answer_packet_receipt_row_invalid');
+    }
+    rows.set(row.packet_id, row as PacketReceiptRow);
+  }
+  return rows;
+}
+
+function assertReceiptPacketSetExact(
+  packets: readonly RuleLinkLegalAnswerPacket[],
+  receiptByPacketId: ReadonlyMap<string, PacketReceiptRow>,
+): void {
+  if (
+    packets.length !== receiptByPacketId.size ||
+    packets.some(packet => !receiptByPacketId.has(packet.packet_id))
+  ) {
+    throw new Error('public_legal_answer_packet_receipt_set_mismatch');
+  }
+  for (const packet of packets) {
+    const row = receiptByPacketId.get(packet.packet_id);
+    if (
+      !row ||
+      row.packet_sha256 !== sha256Bytes(canonicalJson(packet)) ||
+      row.verifier_version !== packet.verification.verifier_version
+    ) {
+      throw new Error(
+        `public_legal_answer_packet_receipt_verification_mismatch:${packet.packet_id}`,
+      );
+    }
+  }
+}
+
+function assertPageProjectionClosed(
+  packet: RuleLinkLegalAnswerPacket,
+  bundle: PublishedBundle,
+  targetContentId: string,
+): void {
+  const knowledge = bundle.knowledge;
+  if (!knowledge) {
+    throw new Error(
+      `public_legal_answer_knowledge_missing:${packet.packet_id}`,
+    );
+  }
+  const entry = knowledge.content_entries.find(
+    candidate => candidate.content_id === targetContentId,
+  );
+  if (
+    !entry ||
+    !packet.retrieval.canonical_content_ids.includes(targetContentId) ||
+    !packet.retrieval.receipts.some(receipt =>
+      receipt.rehydrated_ids.includes(targetContentId),
+    )
+  ) {
+    throw new Error(
+      `public_legal_answer_target_content_invalid:${packet.packet_id}:${targetContentId}`,
+    );
+  }
+  const graph = resolveKnowledgeEntryGraph(knowledge, entry);
+  const visibleRuleIds = new Set(graph.rules.map(rule => rule.rule_id));
+  const visibleScenarioIds = new Set(
+    graph.scenarios.map(scenario => scenario.scenario_id),
+  );
+  const visibleSourceIds = new Set(
+    graph.sources.map(source => source.coordinate_id),
+  );
+  const visibleBindingIds = new Set(entry.authority_binding_ids ?? []);
+  const bindingById = new Map(
+    (knowledge.authority_bindings ?? []).map(binding => [
+      binding.binding_id,
+      binding,
+    ]),
+  );
+  for (const claim of packet.claims) {
+    for (const ruleId of claim.rule_ids) {
+      if (!visibleRuleIds.has(ruleId)) {
+        throw new Error(
+          `public_legal_answer_target_rule_missing:${packet.packet_id}:${targetContentId}:${ruleId}`,
+        );
+      }
+    }
+    for (const scenarioId of claim.scenario_ids) {
+      if (!visibleScenarioIds.has(scenarioId)) {
+        throw new Error(
+          `public_legal_answer_target_scenario_missing:${packet.packet_id}:${targetContentId}:${scenarioId}`,
+        );
+      }
+    }
+    for (const authority of claim.authority_refs) {
+      if (!visibleSourceIds.has(authority.source_coordinate_id)) {
+        throw new Error(
+          `public_legal_answer_target_source_missing:${packet.packet_id}:${targetContentId}:${authority.source_coordinate_id}`,
+        );
+      }
+      const bindingId = authority.authority_binding_id;
+      const binding = bindingId ? bindingById.get(bindingId) : undefined;
+      if (
+        !bindingId ||
+        !visibleBindingIds.has(bindingId) ||
+        !binding ||
+        binding.from_id !== targetContentId
+      ) {
+        throw new Error(
+          `public_legal_answer_target_binding_mismatch:${packet.packet_id}:${targetContentId}:${bindingId ?? 'missing'}`,
+        );
+      }
+    }
+  }
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function canonicalJson(value: unknown): string {
+  if (Array.isArray(value)) {
+    return `[${value.map(item => canonicalJson(item)).join(',')}]`;
+  }
+  if (isRecord(value)) {
+    return `{${Object.keys(value)
+      .sort()
+      .map(key => `${JSON.stringify(key)}:${canonicalJson(value[key])}`)
+      .join(',')}}`;
+  }
+  return JSON.stringify(value);
 }
 
 async function readOptionalFile(filename: string): Promise<Buffer | null> {

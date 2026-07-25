@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
 import {createRequire} from 'node:module';
 import os from 'node:os';
@@ -15,6 +16,7 @@ import {
 } from '../src/lib/public-legal-answer-loader.ts';
 import {
   canonicalBytes,
+  rebindPacketSet,
   validLegalAnswerFixture,
 } from './legal-answer-test-fixture.mjs';
 
@@ -51,12 +53,23 @@ test('검증된 canonical packet만 content ID exact mapping으로 투영한다'
       projection.canonicalContentIds,
       fixture.packetSet.packets[0].retrieval.canonical_content_ids,
     );
-    for (const contentId of projection.canonicalContentIds) {
-      assert.equal(
-        publicLegalAnswerForContent(catalog, contentId)?.packetId,
-        projection.packetId,
-      );
-    }
+    assert.equal(
+      projection.targetContentId,
+      fixture.packetSet.packets[0].retrieval.receipts[0].rehydrated_ids[0],
+    );
+    assert.equal(
+      publicLegalAnswerForContent(catalog, projection.targetContentId)
+        ?.packetId,
+      projection.packetId,
+    );
+    assert.equal(
+      publicLegalAnswerForContent(
+        catalog,
+        projection.canonicalContentIds[1],
+      ),
+      null,
+      '검색 후보인 관련 글에는 같은 답변을 표시하지 않는다',
+    );
     assert.equal(
       publicLegalAnswerForContent(catalog, 'compensation-order-eligible-damages'),
       null,
@@ -197,30 +210,95 @@ test('검증 답변 카드는 자바스크립트 없이 읽히는 의미 구조�
   });
 });
 
-async function withFixture(callback, packetBytes) {
+async function withFixture(
+  callback,
+  packetBytes,
+  receiptMutator,
+  bundleMutator,
+) {
   const directory = await mkdtemp(
     path.join(os.tmpdir(), 'rulelink-answer-ui-fixture-'),
   );
   try {
     const fixture = validLegalAnswerFixture();
+    const original = {
+      packetSet: structuredClone(fixture.packetSet),
+      packetSetBytes: canonicalBytes(fixture.packetSet),
+    };
+    bundleMutator?.(fixture);
+    if (bundleMutator) {
+      fixture.bundleRaw = canonicalBytes(fixture.bundle);
+      rebindPacketSet(
+        fixture.packetSet,
+        fixture.bundle,
+        fixture.bundleRaw,
+      );
+    }
     const bundlePath = path.join(directory, 'bundle.json');
     const packetSetPath = path.join(directory, 'packets.json');
-    await writeFile(bundlePath, fixture.bundleRaw);
+    const packetReceiptPath = path.join(
+      directory,
+      'packet-set-verification-receipt.json',
+    );
     await writeFile(
-      packetSetPath,
-      packetBytes
-        ? packetBytes(fixture)
-        : canonicalBytes(fixture.packetSet),
+      bundlePath,
+      fixture.bundleRaw,
+    );
+    const actualPacketBytes = packetBytes
+      ? packetBytes(fixture)
+      : canonicalBytes(fixture.packetSet);
+    await writeFile(packetSetPath, actualPacketBytes);
+    const producerReceiptRaw = await readFile(
+      path.join(
+        appRoot,
+        'contracts',
+        'legal-answer-packet',
+        'producer-receipt.json',
+      ),
+    );
+    const producerReceipt = JSON.parse(producerReceiptRaw.toString('utf8'));
+    const verificationReceipt = {
+      schema:
+        'rulelink_legal_answer_packet_set_verification_receipt_v1',
+      producer_commit: producerReceipt.producer_commit,
+      schema_source_commit: producerReceipt.schema_source_commit,
+      schema_sha256: producerReceipt.schema_sha256,
+      producer_receipt_sha256: sha256(producerReceiptRaw),
+      packet_set_sha256: sha256(actualPacketBytes),
+      packets: fixture.packetSet.packets.map(packet => ({
+        packet_id: packet.packet_id,
+        packet_sha256: sha256(canonicalPacketBytes(packet)),
+        target_content_id:
+          packet.retrieval.receipts.flatMap(
+            receipt => receipt.rehydrated_ids,
+          )[0],
+        verifier_version: packet.verification.verifier_version,
+      })),
+    };
+    receiptMutator?.(verificationReceipt, original);
+    await writeFile(
+      packetReceiptPath,
+      canonicalBytes(verificationReceipt),
     );
     const catalog = await loadPublicLegalAnswerCatalog({
       appRoot,
       bundlePath,
+      packetReceiptPath,
       packetSetPath,
     });
     return await callback({catalog, fixture});
   } finally {
     await rm(directory, {recursive: true, force: true});
   }
+}
+
+function sha256(value) {
+  return createHash('sha256').update(value).digest('hex');
+}
+
+function canonicalPacketBytes(value) {
+  const bytes = canonicalBytes(value);
+  return bytes.subarray(0, bytes.length - 1);
 }
 
 async function compileServerComponent() {
@@ -246,3 +324,83 @@ async function compileServerComponent() {
   );
   return module.exports;
 }
+
+test('생산자 검증 영수증이 packet bytes와 대상 content를 exact 결박한다', async () => {
+  await assert.rejects(
+    () =>
+      withFixture(
+        () => assert.fail('생산자 정본과 다른 영수증이 승인되었습니다'),
+        undefined,
+        receipt => {
+          receipt.producer_receipt_sha256 = 'f'.repeat(64);
+        },
+      ),
+    /packet_receipt_binding_invalid/u,
+  );
+
+  await assert.rejects(
+    () =>
+      withFixture(
+        () => assert.fail('영수증과 다른 답변 문장이 표시되었습니다'),
+        fixture => {
+          fixture.packetSet.packets[0].answer.units[0].text_ko +=
+            ' 임의 문장';
+          return canonicalBytes(fixture.packetSet);
+        },
+        (receipt, original) => {
+          receipt.packet_set_sha256 = sha256(original.packetSetBytes);
+          receipt.packets[0].packet_sha256 = sha256(
+            canonicalPacketBytes(original.packetSet.packets[0]),
+          );
+        },
+      ),
+    /packet_receipt_binding_invalid|packet_receipt_verification_mismatch/u,
+  );
+
+  await assert.rejects(
+    () =>
+      withFixture(
+        () => assert.fail('다른 페이지 대상 영수증이 표시되었습니다'),
+        undefined,
+        receipt => {
+          receipt.packets[0].target_content_id =
+            'content.compensation-order-application-deadline';
+        },
+      ),
+    /target_(?:content_invalid|binding_mismatch)/u,
+  );
+});
+
+test('빠른 답은 claim과 대상 페이지의 rule·scenario·source·binding에 닫혀야 한다', async () => {
+  await assert.rejects(
+    () =>
+      withFixture(
+        () => assert.fail('claim 없는 빠른 답이 표시되었습니다'),
+        fixture => {
+          fixture.packetSet.packets[0].answer.units[0].claim_ids = [];
+          return canonicalBytes(fixture.packetSet);
+        },
+      ),
+    /quick_answer_claim_required/u,
+  );
+
+  await assert.rejects(
+    () =>
+      withFixture(
+        () => assert.fail('페이지에 없는 근거가 표시되었습니다'),
+        undefined,
+        undefined,
+        fixture => {
+          fixture.bundle.knowledge.content_entries[0].source_coordinate_ids =
+            [];
+          for (const rule of fixture.bundle.knowledge.rule_cards) {
+            rule.source_coordinate_ids = [];
+          }
+          for (const scenario of fixture.bundle.knowledge.scenario_branches) {
+            scenario.source_coordinate_ids = [];
+          }
+        },
+      ),
+    /target_source_missing/u,
+  );
+});

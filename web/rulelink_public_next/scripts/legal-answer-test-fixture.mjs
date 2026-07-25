@@ -200,13 +200,29 @@ function buildKnowledge(packet) {
   return {
     schema: 'rulelink_public_knowledge_index_v1',
     sources,
-    rule_cards: packet.retrieval.rule_ids.map(rule_id => ({rule_id})),
+    rule_cards: packet.retrieval.rule_ids.map(rule_id => ({
+      rule_id,
+      source_coordinate_ids: [...packet.retrieval.source_coordinate_ids],
+    })),
     scenario_branches: packet.retrieval.scenario_ids.map(scenario_id => ({
       scenario_id,
+      rule_ids: [...packet.retrieval.rule_ids],
+      source_coordinate_ids: [...packet.retrieval.source_coordinate_ids],
     })),
-    content_entries: packet.retrieval.canonical_content_ids.map(content_id => ({
-      content_id,
-    })),
+    content_entries: packet.retrieval.canonical_content_ids.map(
+      (content_id, index) => ({
+        content_id,
+        rule_ids: index === 0 ? [...packet.retrieval.rule_ids] : [],
+        scenario_ids:
+          index === 0 ? [...packet.retrieval.scenario_ids] : [],
+        source_coordinate_ids:
+          index === 0 ? [...packet.retrieval.source_coordinate_ids] : [],
+        hub_ids: [],
+        concept_ids: [],
+        authority_binding_ids:
+          index === 0 ? [...packet.retrieval.authority_binding_ids] : [],
+      }),
+    ),
     topic_hubs: [],
     concept_cards: packet.retrieval.concept_ids.map(concept_id => ({
       concept_id,
