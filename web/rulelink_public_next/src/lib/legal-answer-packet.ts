@@ -11,6 +11,8 @@ import type {
   PublicAuthorityReadingUnit,
   PublicKnowledgeIndex,
   PublicKnowledgeSource,
+  PublicSourceAuthorityUnit,
+  PublicSourceVersionBridge,
   PublishedBundle,
 } from '@/types/publication';
 
@@ -80,10 +82,19 @@ type JsonSchema = {
   [key: string]: unknown;
 };
 
-export type LegalAnswerPacketInspection = {
-  errors: string[];
-  packets: ValidatedCanonicalLegalAnswerPacket[];
-};
+export type LegalAnswerPacketInspection =
+  | {
+      ok: true;
+      errors: [];
+      packets: ValidatedCanonicalLegalAnswerPacket[];
+    }
+  | {
+      ok: false;
+      errors: string[];
+      packets: [];
+    };
+
+const validatedPacketRegistry = new WeakSet<RuleLinkLegalAnswerPacket>();
 
 export function sha256Bytes(value: string | Uint8Array): string {
   return createHash('sha256').update(value).digest('hex');
@@ -139,7 +150,7 @@ export function inspectPublicLegalAnswerPacketSet(
     options.receipt,
   );
   if (!isRecord(value)) {
-    return {errors: [...errors, 'legal_answer_packet_set_not_object'], packets: []};
+    return inspectionFailure([...errors, 'legal_answer_packet_set_not_object']);
   }
   if (value.schema !== 'rulelink_public_legal_answer_packet_set_v1') {
     errors.push('legal_answer_packet_set_schema_invalid');
@@ -151,7 +162,10 @@ export function inspectPublicLegalAnswerPacketSet(
     errors.push('legal_answer_packet_set_bundle_sha256_mismatch');
   }
   if (!Array.isArray(value.packets)) {
-    return {errors: [...errors, 'legal_answer_packet_set_packets_not_array'], packets: []};
+    return inspectionFailure([
+      ...errors,
+      'legal_answer_packet_set_packets_not_array',
+    ]);
   }
   const seenPacketIds = new Set<string>();
   const validated: ValidatedCanonicalLegalAnswerPacket[] = [];
@@ -175,12 +189,24 @@ export function inspectPublicLegalAnswerPacketSet(
       validated.push(packet as ValidatedCanonicalLegalAnswerPacket);
     }
   }
-  return {errors: [...new Set(errors)], packets: validated};
+  const uniqueErrors = [...new Set(errors)];
+  if (uniqueErrors.length > 0) return inspectionFailure(uniqueErrors);
+  const packets = validated.map(packet => {
+    const immutablePacket = deepFreezeJson(
+      structuredClone(packet),
+    ) as ValidatedCanonicalLegalAnswerPacket;
+    validatedPacketRegistry.add(immutablePacket);
+    return immutablePacket;
+  });
+  return {ok: true, errors: [], packets};
 }
 
 export function projectCanonicalLegalAnswerPacket(
   packet: ValidatedCanonicalLegalAnswerPacket,
 ): CanonicalLegalAnswerProjection {
+  if (!validatedPacketRegistry.has(packet)) {
+    throw new Error('legal_answer_packet_not_from_successful_inspection');
+  }
   const quickIds = new Set(packet.answer.quick_answer_unit_ids);
   return {
     packetId: packet.packet_id,
@@ -193,6 +219,18 @@ export function projectCanonicalLegalAnswerPacket(
     actions: [...packet.actions].sort((left, right) => left.sequence - right.sequence),
     deadlines: [...packet.deadlines],
   };
+}
+
+function inspectionFailure(errors: string[]): LegalAnswerPacketInspection {
+  return {ok: false, errors: [...new Set(errors)], packets: []};
+}
+
+function deepFreezeJson<T>(value: T): T {
+  if (value !== null && typeof value === 'object') {
+    for (const nested of Object.values(value)) deepFreezeJson(nested);
+    Object.freeze(value);
+  }
+  return value;
 }
 
 export function validateJsonSchema(value: unknown, schema: JsonSchema): string[] {
@@ -410,7 +448,9 @@ function validatePacketGraph(
   const scenarioIds = ids(knowledge.scenario_branches, 'scenario_id');
 
   for (const fact of packet.facts) {
-    if (fact.origin !== 'canonical') errors.push(`canonical_fact_origin_invalid:${fact.fact_id}`);
+    if (!['canonical', 'system_derived'].includes(fact.origin)) {
+      errors.push(`canonical_fact_origin_invalid:${fact.fact_id}`);
+    }
   }
   for (const branch of packet.branches) {
     checkReferences([branch.scenario_id], scenarioIds, `branch_scenario:${branch.branch_id}`, errors);
@@ -478,9 +518,21 @@ function validatePacketAuthority(
     knowledge.authority_reading_units ?? [],
     'authority_reading_unit_id',
   );
+  const sourceUnits = objectMap(
+    knowledge.source_authority_units ?? [],
+    'source_authority_unit_id',
+  );
+  const versionBridges = objectMap(
+    knowledge.source_version_bridges ?? [],
+    'bridge_id',
+  );
   const canonicalContentIds = new Set(packet.retrieval.canonical_content_ids);
+  const referencedSourceIds = new Set<string>();
+  const referencedBindingIds = new Set<string>();
   for (const claim of packet.claims) {
     for (const ref of claim.authority_refs) {
+      referencedSourceIds.add(ref.source_coordinate_id);
+      if (ref.authority_binding_id) referencedBindingIds.add(ref.authority_binding_id);
       const source = sources.get(ref.source_coordinate_id) as PublicKnowledgeSource | undefined;
       if (!source) {
         errors.push(`authority_source_missing:${ref.source_coordinate_id}`);
@@ -519,6 +571,22 @@ function validatePacketAuthority(
       ) {
         errors.push(`authority_reading_version_mismatch:${reading.authority_reading_unit_id}`);
       }
+      if (
+        ['direct', 'exception'].includes(ref.support_role) &&
+        (
+          ref.version.time_state !== 'current_as_of_review' ||
+          ref.version.as_of_match !== 'matched' ||
+          !dateWithinVersion(packet.as_of, ref.version.effective_from, ref.version.effective_to)
+        )
+      ) {
+        errors.push(`authority_direct_version_not_current:${claim.claim_id}`);
+      }
+      if (
+        ['direct', 'exception'].includes(ref.support_role) &&
+        (ref.anchor_ids?.length ?? 0) === 0
+      ) {
+        errors.push(`authority_direct_anchor_required:${claim.claim_id}`);
+      }
       const anchorIds = new Set(reading.anchors.map(anchor => anchor.anchor_id));
       checkReferences(ref.anchor_ids ?? [], anchorIds, `authority_anchor:${claim.claim_id}`, errors);
       checkReferences(
@@ -527,6 +595,40 @@ function validatePacketAuthority(
         `authority_binding_anchor:${claim.claim_id}`,
         errors,
       );
+      for (const anchorId of ref.anchor_ids ?? []) {
+        const anchor = reading.anchors.find(row => row.anchor_id === anchorId);
+        if (!anchor) continue;
+        const sourceUnit = sourceUnits.get(
+          anchor.source_authority_unit_id,
+        ) as PublicSourceAuthorityUnit | undefined;
+        if (
+          !sourceUnit ||
+          sourceUnit.source_coordinate_id !== ref.source_coordinate_id ||
+          sourceUnit.source_snapshot_id !== ref.source_snapshot_id ||
+          sourceUnit.locator_key !== anchor.locator_key
+        ) {
+          errors.push(`authority_anchor_source_unit_mismatch:${anchorId}`);
+          continue;
+        }
+        const versionBridge = versionBridges.get(
+          sourceUnit.version_bridge_id,
+        ) as PublicSourceVersionBridge | undefined;
+        if (
+          !versionBridge ||
+          versionBridge.source_coordinate_id !== ref.source_coordinate_id ||
+          versionBridge.source_snapshot_id !== ref.source_snapshot_id ||
+          versionBridge.source_version_key !== sourceUnit.source_version_key ||
+          reading.source_version_key !== sourceUnit.source_version_key
+        ) {
+          errors.push(`authority_source_version_bridge_mismatch:${anchorId}`);
+        }
+        if (
+          ref.locator.locator_kind === 'statute' &&
+          !sameStatuteLocator(ref.locator, sourceUnit.locator)
+        ) {
+          errors.push(`authority_anchor_locator_mismatch:${anchorId}`);
+        }
+      }
       if (
         ref.locator.locator_kind === 'statute' &&
         (
@@ -545,6 +647,49 @@ function validatePacketAuthority(
       }
     }
   }
+  checkExactProjection(
+    packet.retrieval.source_coordinate_ids,
+    referencedSourceIds,
+    'retrieval_source_projection',
+    errors,
+  );
+  checkExactProjection(
+    packet.retrieval.authority_binding_ids,
+    referencedBindingIds,
+    'retrieval_authority_binding_projection',
+    errors,
+  );
+}
+
+function sameStatuteLocator(
+  locator: Extract<
+    RuleLinkLegalAnswerPacket['claims'][number]['authority_refs'][number]['locator'],
+    {locator_kind: 'statute'}
+  >,
+  sourceLocator: PublicSourceAuthorityUnit['locator'],
+): boolean {
+  return (
+    locator.article_no === sourceLocator.article_no &&
+    (locator.paragraph_no === undefined ||
+      locator.paragraph_no === sourceLocator.paragraph_no) &&
+    (locator.item_no === undefined ||
+      locator.item_no === sourceLocator.item_no) &&
+    (locator.subitem_no === undefined ||
+      locator.subitem_no === sourceLocator.subitem_no)
+  );
+}
+
+function dateWithinVersion(
+  asOf: string,
+  effectiveFrom: string,
+  effectiveTo?: string,
+): boolean {
+  const asOfDate = datePrefix(asOf);
+  return (
+    asOfDate !== undefined &&
+    asOfDate >= effectiveFrom &&
+    (effectiveTo === undefined || asOfDate <= effectiveTo)
+  );
 }
 
 function validateSourceLocator(
@@ -642,7 +787,7 @@ function validDate(value: string): boolean {
 
 function validDateTime(value: string): boolean {
   const match = value.match(
-    /^(\d{4}-\d{2}-\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.\d+)?(?:Z|([+-])(\d{2}):(\d{2}))$/u,
+    /^(\d{4}-\d{2}-\d{2})[Tt](\d{2}):(\d{2}):(\d{2})(?:\.\d+)?(?:[Zz]|([+-])(\d{2}):(\d{2}))$/u,
   );
   if (!match || !validDate(match[1])) {
     return false;
@@ -651,13 +796,17 @@ function validDateTime(value: string): boolean {
   if (
     Number(hour) > 23 ||
     Number(minute) > 59 ||
-    Number(second) > 59 ||
+    Number(second) > 60 ||
     Number(offsetHour) > 23 ||
     Number(offsetMinute) > 59
   ) {
     return false;
   }
-  return !Number.isNaN(Date.parse(value));
+  const normalized = value
+    .replace('t', 'T')
+    .replace(/z$/u, 'Z')
+    .replace(/:60(?=(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$)/u, ':59');
+  return !Number.isNaN(Date.parse(normalized));
 }
 
 function uniqueValues(values: unknown[]): Set<string> {
@@ -728,6 +877,21 @@ function checkReferences(
 ): void {
   for (const value of values) {
     if (!available.has(value)) errors.push(`${label}_missing:${value}`);
+  }
+}
+
+function checkExactProjection(
+  declared: string[],
+  referenced: Set<string>,
+  label: string,
+  errors: string[],
+): void {
+  const declaredSet = new Set(declared);
+  for (const value of referenced) {
+    if (!declaredSet.has(value)) errors.push(`${label}_undeclared:${value}`);
+  }
+  for (const value of declaredSet) {
+    if (!referenced.has(value)) errors.push(`${label}_unused:${value}`);
   }
 }
 

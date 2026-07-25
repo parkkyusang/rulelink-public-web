@@ -93,10 +93,21 @@ export async function validateLegalAnswerPacketFiles(options = {}) {
     receipt,
     schemaRaw,
   });
+  if (
+    options.requirePackets === true &&
+    inspection.ok &&
+    inspection.packets.length === 0
+  ) {
+    return {
+      errors: ['legal_answer_packet_set_required_but_empty'],
+      packetCount: 0,
+      state: 'empty',
+    };
+  }
   return {
     errors: inspection.errors,
     packetCount: inspection.packets.length,
-    state: inspection.errors.length > 0 ? 'invalid' : 'validated',
+    state: inspection.ok ? 'validated' : 'invalid',
   };
 }
 

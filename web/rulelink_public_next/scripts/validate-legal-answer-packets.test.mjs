@@ -11,6 +11,7 @@ import {
   LEGAL_ANSWER_PACKET_SCHEMA_SHA256,
   projectCanonicalLegalAnswerPacket,
   sha256Bytes,
+  validateJsonSchema,
   validateVendoredLegalAnswerContract,
 } from '../src/lib/legal-answer-packet.ts';
 import {
@@ -81,9 +82,36 @@ test('packet sidecar가 요구되면 부재를 성공으로 가장하지 않는�
   });
 });
 
+test('packet sidecar가 요구되면 빈 배열도 성공으로 가장하지 않는다', async () => {
+  const fixture = validFixture();
+  fixture.packetSet.packets = [];
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'rulelink-answer-empty-'));
+  try {
+    const bundlePath = path.join(directory, 'bundle.json');
+    const packetSetPath = path.join(directory, 'packets.json');
+    await writeFile(bundlePath, fixture.bundleRaw);
+    await writeFile(packetSetPath, canonicalBytes(fixture.packetSet));
+    assert.deepEqual(
+      await validateLegalAnswerPacketFiles({
+        bundlePath,
+        packetSetPath,
+        requirePackets: true,
+      }),
+      {
+        errors: ['legal_answer_packet_set_required_but_empty'],
+        packetCount: 0,
+        state: 'empty',
+      },
+    );
+  } finally {
+    await rm(directory, {recursive: true, force: true});
+  }
+});
+
 test('canonical packet은 current snapshot/hash와 닫힌 ID·authority graph에서만 투영된다', () => {
   const {bundle, bundleRaw, packetSet} = validFixture();
   const result = inspect(packetSet, bundle, bundleRaw);
+  assert.equal(result.ok, true);
   assert.deepEqual(result.errors, []);
   assert.equal(result.packets.length, 1);
   const projection = projectCanonicalLegalAnswerPacket(result.packets[0]);
@@ -127,8 +155,38 @@ test('stale snapshot·bundle hash·schema commit은 각각 거부된다', () => 
   ]) {
     const packetSet = structuredClone(fixture.packetSet);
     mutate(packetSet);
-    assert.notEqual(inspect(packetSet, fixture.bundle, fixture.bundleRaw).errors.length, 0);
+    const result = inspect(packetSet, fixture.bundle, fixture.bundleRaw);
+    assert.equal(result.ok, false);
+    assert.deepEqual(result.packets, []);
+    assert.notEqual(result.errors.length, 0);
+    assert.throws(
+      () => projectCanonicalLegalAnswerPacket(packetSet.packets[0]),
+      /not_from_successful_inspection/,
+    );
   }
+});
+
+test('중복 packet ID나 위조 vendor receipt가 있으면 성공 브랜드를 하나도 발급하지 않는다', () => {
+  const fixture = validFixture();
+  fixture.packetSet.packets.push(structuredClone(fixture.packetSet.packets[0]));
+  const duplicate = inspect(fixture.packetSet, fixture.bundle, fixture.bundleRaw);
+  assert.equal(duplicate.ok, false);
+  assert.deepEqual(duplicate.packets, []);
+  assert.match(duplicate.errors.join('\n'), /packet_id_duplicate/);
+
+  const forged = inspectPublicLegalAnswerPacketSet(
+    structuredClone(validFixture().packetSet),
+    {
+      bundle: fixture.bundle,
+      bundleSha256: sha256Bytes(fixture.bundleRaw),
+      schema,
+      receipt: {...receipt, producer_commit: 'f'.repeat(40)},
+      schemaRaw,
+    },
+  );
+  assert.equal(forged.ok, false);
+  assert.deepEqual(forged.packets, []);
+  assert.match(forged.errors.join('\n'), /vendor_receipt_mismatch/);
 });
 
 test('content/rule/scenario/source/authority ID closure가 하나라도 깨지면 거부된다', () => {
@@ -173,6 +231,73 @@ test('authority snapshot·binding from_id·locator·version 변조는 거부된�
   }
 });
 
+test('authority anchor·locator·bridge·현재 법판 폐쇄를 우회할 수 없다', () => {
+  const attacks = [
+    {
+      mutate(packet) {
+        packet.claims[0].authority_refs[0].anchor_ids = [];
+      },
+      expected: /authority_direct_anchor_required/,
+    },
+    {
+      mutate(packet) {
+        packet.claims[0].authority_refs[0].locator.paragraph_no = '99';
+      },
+      expected: /authority_anchor_locator_mismatch/,
+    },
+    {
+      mutate(_packet, bundle) {
+        bundle.knowledge.source_version_bridges[0].source_snapshot_id = 'snapshot:forged';
+      },
+      expected: /authority_source_version_bridge_mismatch/,
+    },
+    {
+      mutate(packet) {
+        packet.claims[0].authority_refs[0].version.time_state = 'historical';
+        packet.claims[0].authority_refs[0].version.as_of_match = 'historical_only';
+      },
+      expected: /authority_direct_version_not_current/,
+    },
+  ];
+  for (const attack of attacks) {
+    const fixture = validFixture();
+    attack.mutate(fixture.packetSet.packets[0], fixture.bundle);
+    const raw = canonicalBytes(fixture.bundle);
+    rebindPacketSet(fixture.packetSet, fixture.bundle, raw);
+    const result = inspect(fixture.packetSet, fixture.bundle, raw);
+    assert.equal(result.ok, false);
+    assert.deepEqual(result.packets, []);
+    assert.match(result.errors.join('\n'), attack.expected);
+  }
+});
+
+test('claim authority와 retrieval source·binding은 양방향 exact projection이다', () => {
+  for (const mutate of [
+    packet => {
+      packet.retrieval.source_coordinate_ids.pop();
+    },
+    packet => {
+      packet.retrieval.authority_binding_ids.pop();
+    },
+    packet => {
+      packet.retrieval.source_coordinate_ids.push('coord.unused');
+    },
+    packet => {
+      packet.retrieval.authority_binding_ids.push('binding.unused');
+    },
+  ]) {
+    const fixture = validFixture();
+    mutate(fixture.packetSet.packets[0]);
+    const result = inspect(fixture.packetSet, fixture.bundle, fixture.bundleRaw);
+    assert.equal(result.ok, false);
+    assert.deepEqual(result.packets, []);
+    assert.match(
+      result.errors.join('\n'),
+      /retrieval_(?:source|authority_binding)(?:_projection|)_/,
+    );
+  }
+});
+
 test('private·noindex·user-data packet과 unknown schema field는 공개 소비가 거부된다', () => {
   for (const mutate of [
     packet => {
@@ -200,6 +325,45 @@ test('private·noindex·user-data packet과 unknown schema field는 공개 소�
       inspect(fixture.packetSet, fixture.bundle, fixture.bundleRaw).errors.length,
       0,
     );
+  }
+});
+
+test('canonical public fact는 canonical·system_derived만 허용한다', () => {
+  for (const origin of ['user', 'uploaded_document', 'llm_extracted']) {
+    const fixture = validFixture();
+    fixture.packetSet.packets[0].facts[0].origin = origin;
+    const result = inspect(fixture.packetSet, fixture.bundle, fixture.bundleRaw);
+    assert.equal(result.ok, false);
+    assert.match(result.errors.join('\n'), /canonical_fact_origin_invalid/);
+  }
+  for (const origin of ['canonical', 'system_derived']) {
+    const fixture = validFixture();
+    fixture.packetSet.packets[0].facts[0].origin = origin;
+    assert.equal(
+      inspect(fixture.packetSet, fixture.bundle, fixture.bundleRaw).ok,
+      true,
+    );
+  }
+});
+
+test('date-time은 producer가 허용하는 RFC3339 소문자 t/z와 윤초를 동일하게 허용한다', () => {
+  const dateTimeSchema = {type: 'string', format: 'date-time'};
+  for (const value of [
+    '2026-07-25T00:00:00Z',
+    '2026-07-25t00:00:00z',
+    '1990-12-31T23:59:60Z',
+    '2026-07-25T00:00:00.123+09:00',
+  ]) {
+    assert.deepEqual(validateJsonSchema(value, dateTimeSchema), []);
+  }
+  for (const value of [
+    '2026-07-25',
+    '2026-07-25T00:00:00',
+    '2026-02-30T00:00:00Z',
+    '2026-07-25T24:00:00Z',
+    '2026-07-25T00:00:61Z',
+  ]) {
+    assert.notEqual(validateJsonSchema(value, dateTimeSchema).length, 0);
   }
 });
 
@@ -345,6 +509,44 @@ function buildKnowledge(packet) {
       anchor_ids: readingById.get(readingId).anchors.map(anchor => anchor.anchor_id),
     };
   });
+  const sourceAuthorityUnits = uniqueBy(
+    refs.flatMap(ref => (ref.anchor_ids ?? []).map((anchorId, ordinal) => {
+      const paragraph = anchorId.match(/\.p(\d+)(?:\.|$)/u)?.[1];
+      const item = anchorId.match(/\.i(\d+)(?:\.|$)/u)?.[1];
+      const subitem = anchorId.match(/\.s(\d+)(?:\.|$)/u)?.[1];
+      const locator = {
+        article_no: ref.locator.article_no,
+        ...(paragraph ? {paragraph_no: paragraph} : {}),
+        ...(item ? {item_no: item} : {}),
+        ...(subitem ? {subitem_no: subitem} : {}),
+      };
+      return {
+        source_authority_unit_id: `unit:${anchorId}`,
+        version_bridge_id: `bridge:${ref.source_coordinate_id}`,
+        source_coordinate_id: ref.source_coordinate_id,
+        source_snapshot_id: ref.source_snapshot_id,
+        source_version_key: 'sha256:test',
+        unit_kind: subitem ? 'subitem' : item ? 'item' : paragraph ? 'paragraph' : 'article',
+        locator,
+        locator_key: anchorId,
+        ordinal,
+        official_text_ko: '시험 조문 원문',
+        official_text_hash: 'a'.repeat(64),
+        validation_status: 'verified',
+      };
+    })),
+    'source_authority_unit_id',
+  );
+  const sourceVersionBridges = uniqueBy(
+    refs.map(ref => ({
+      bridge_id: `bridge:${ref.source_coordinate_id}`,
+      source_coordinate_id: ref.source_coordinate_id,
+      source_snapshot_id: ref.source_snapshot_id,
+      source_version_key: 'sha256:test',
+      validation_status: 'verified',
+    })),
+    'bridge_id',
+  );
   return {
     schema: 'rulelink_public_knowledge_index_v1',
     sources,
@@ -353,8 +555,8 @@ function buildKnowledge(packet) {
     content_entries: packet.retrieval.canonical_content_ids.map(content_id => ({content_id})),
     topic_hubs: [],
     concept_cards: packet.retrieval.concept_ids.map(concept_id => ({concept_id})),
-    source_authority_units: [],
-    source_version_bridges: [],
+    source_authority_units: sourceAuthorityUnits,
+    source_version_bridges: sourceVersionBridges,
     authority_reading_units: readings,
     authority_bindings: bindings,
   };
