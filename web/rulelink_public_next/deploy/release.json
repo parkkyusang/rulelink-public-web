@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20260724-019",
+  "release_id": "production-20260725-020",
   "snapshot_id": "kr-knowledge-core-20260723-023",
-  "requested_at": "2026-07-24T01:52:00.000Z",
-  "summary_ko": "공개 법률지식을 28개 주제 허브와 284개 상세 콘텐츠, 6개 법률개념으로 확장하고 조문 읽기 플랫폼의 무데이터 호환 기반을 배포한다."
+  "requested_at": "2026-07-25T13:35:33.422Z",
+  "summary_ko": "승인된 snapshot 023을 유지하면서 생활법률 읽기 여정, 버전 분리 검색 인덱스, 신뢰·접근성·성능·개인정보·보안 기반을 운영에 배포한다."
 }
