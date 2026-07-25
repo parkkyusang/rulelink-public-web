@@ -1,2 +1,3 @@
 /.github/workflows/authority-release-evidence.yml text eol=lf
 /web/rulelink_public_next/scripts/fixtures/authority-public-evidence/** text eol=lf
+/web/rulelink_public_next/contracts/legal-answer-packet/** text eol=lf

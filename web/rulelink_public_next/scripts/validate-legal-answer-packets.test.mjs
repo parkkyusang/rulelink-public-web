@@ -63,6 +63,17 @@ test('vendored producer schema와 승인 영수증은 exact SHA 및 commit에 �
   );
 });
 
+test('vendored 계약 bytes는 Windows checkout에서도 LF로 고정된다', async () => {
+  const attributes = await readFile(
+    path.join(repositoryRoot, '.gitattributes'),
+    'utf8',
+  );
+  assert.match(
+    attributes,
+    /^\/web\/rulelink_public_next\/contracts\/legal-answer-packet\/\*\* text eol=lf$/mu,
+  );
+});
+
 test('023은 packet sidecar가 없을 때 0건으로 exact 호환된다', async () => {
   assert.equal(
     await exists(DEFAULT_LEGAL_ANSWER_PACKET_SET_PATH),
