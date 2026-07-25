@@ -62,7 +62,7 @@ function uniqueIds(items, key, label, errors) {
   return new Set(ids);
 }
 
-function validateBacklogInputGraph(bundle) {
+export function validateBacklogInputGraph(bundle) {
   const errors = [];
   const knowledge = bundle?.knowledge;
   const entries = Array.isArray(knowledge?.content_entries)
@@ -432,7 +432,7 @@ const SUPPORTED_SCHEMA_KEYWORDS = new Set([
   'minimum',
 ]);
 
-function validateSupportedSchemaKeywords(rootSchema) {
+export function validateSupportedSchemaKeywords(rootSchema) {
   const unsupported = [];
   const invalid = [];
   const schemaTypes = new Set(['object', 'array', 'string', 'integer']);
@@ -551,7 +551,7 @@ function validateSupportedSchemaKeywords(rootSchema) {
   }
 }
 
-function validateJsonSchema(rootSchema, value) {
+export function validateJsonSchema(rootSchema, value) {
   const errors = [];
   const visit = (schema, current, location) => {
     if (schema.$ref) {

@@ -1,0 +1,908 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:rulelink:schema:publication-coverage-expansion-plan:v1",
+  "title": "RuleLink publication coverage expansion plan v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "schema_sha256",
+    "generated_from",
+    "denominator",
+    "taxonomy",
+    "target_domain_horizon",
+    "score_contract",
+    "demand_availability",
+    "legal_answer_activation",
+    "content_assessments",
+    "task_packets",
+    "maintenance_queue",
+    "summary",
+    "honesty"
+  ],
+  "properties": {
+    "schema": {
+      "const": "rulelink_publication_coverage_expansion_plan_v1"
+    },
+    "schema_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "generated_from": {
+      "$ref": "#/$defs/generated_from"
+    },
+    "denominator": {
+      "$ref": "#/$defs/denominator"
+    },
+    "taxonomy": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/domain"
+      }
+    },
+    "target_domain_horizon": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/target_domain"
+      }
+    },
+    "score_contract": {
+      "$ref": "#/$defs/score_contract"
+    },
+    "demand_availability": {
+      "enum": [
+        "not_provided",
+        "provided"
+      ]
+    },
+    "legal_answer_activation": {
+      "$ref": "#/$defs/legal_answer_activation"
+    },
+    "content_assessments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/content_assessment"
+      }
+    },
+    "task_packets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/task_packet"
+      }
+    },
+    "maintenance_queue": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/maintenance_item"
+      }
+    },
+    "summary": {
+      "$ref": "#/$defs/summary"
+    },
+    "honesty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "demand_is_not_legal_accuracy",
+        "no_legal_text_is_generated",
+        "priority_uses_declared_structure_and_risk_only",
+        "unregistered_work_cannot_start",
+        "verified_release_requires_current_and_immutable_snapshot",
+        "current_publication_and_target_horizon_are_separate_denominators",
+        "target_domain_started_is_not_domain_complete"
+      ],
+      "properties": {
+        "demand_is_not_legal_accuracy": {
+          "const": true
+        },
+        "no_legal_text_is_generated": {
+          "const": true
+        },
+        "priority_uses_declared_structure_and_risk_only": {
+          "const": true
+        },
+        "unregistered_work_cannot_start": {
+          "const": true
+        },
+        "verified_release_requires_current_and_immutable_snapshot": {
+          "const": true
+        },
+        "current_publication_and_target_horizon_are_separate_denominators": {
+          "const": true
+        },
+        "target_domain_started_is_not_domain_complete": {
+          "const": true
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "string_array": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "generated_from": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "snapshot_id",
+        "as_of",
+        "base_bundle_sha256",
+        "backlog_sha256",
+        "taxonomy_sha256",
+        "topic_manifest_sha256",
+        "production_queue_sha256",
+        "production_registry_sha256"
+      ],
+      "properties": {
+        "snapshot_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "as_of": {
+          "type": "string",
+          "minLength": 1
+        },
+        "base_bundle_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "backlog_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "taxonomy_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "topic_manifest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "production_queue_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "production_registry_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "denominator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hub_count",
+        "content_count",
+        "rule_count",
+        "scenario_count",
+        "source_count",
+        "domain_count",
+        "target_domain_count",
+        "change_brief_count"
+      ],
+      "properties": {
+        "hub_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "content_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "rule_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "scenario_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "domain_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "target_domain_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "change_brief_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "domain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "domain_id",
+        "title_ko",
+        "hub_ids",
+        "risk_dimensions",
+        "content_count"
+      ],
+      "properties": {
+        "domain_id": {
+          "type": "string",
+          "pattern": "^domain\\."
+        },
+        "title_ko": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hub_ids": {
+          "$ref": "#/$defs/string_array"
+        },
+        "risk_dimensions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "appeal",
+              "deadline",
+              "safety"
+            ]
+          }
+        },
+        "content_count": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "target_domain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_domain_id",
+        "title_ko",
+        "current_hub_ids",
+        "current_content_count",
+        "coverage_state"
+      ],
+      "properties": {
+        "target_domain_id": {
+          "type": "string",
+          "pattern": "^target\\."
+        },
+        "title_ko": {
+          "type": "string",
+          "minLength": 1
+        },
+        "current_hub_ids": {
+          "$ref": "#/$defs/string_array"
+        },
+        "current_content_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "coverage_state": {
+          "enum": [
+            "started",
+            "not_started"
+          ]
+        }
+      }
+    },
+    "score_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fatal_risk",
+        "structural_gap",
+        "authority_readiness",
+        "source_freshness",
+        "user_demand"
+      ],
+      "properties": {
+        "fatal_risk": {
+          "const": "declared_coverage_risk_and_typed_deadline_only"
+        },
+        "structural_gap": {
+          "const": "missing_publication_fields_and_relations_only"
+        },
+        "authority_readiness": {
+          "const": "L0_structure_0_L1_coordinate_50_L2_locator_100"
+        },
+        "source_freshness": {
+          "const": "metadata_completeness_not_legal_currency"
+        },
+        "user_demand": {
+          "const": "separate_signal_never_legal_accuracy"
+        }
+      }
+    },
+    "legal_answer_activation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "manifest_sha256",
+        "expected_packet_count",
+        "expected_packet_ids",
+        "target_topic_ids",
+        "gate_receipt_id"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "inactive",
+            "active"
+          ]
+        },
+        "manifest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "expected_packet_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "expected_packet_ids": {
+          "$ref": "#/$defs/string_array"
+        },
+        "target_topic_ids": {
+          "$ref": "#/$defs/string_array"
+        },
+        "gate_receipt_id": {
+          "type": "string"
+        }
+      }
+    },
+    "gap_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "count"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "complete",
+            "missing",
+            "partial",
+            "not_applicable",
+            "unverified"
+          ]
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "content_assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "content_id",
+        "content_revision_sha256",
+        "topic_id",
+        "domain_id",
+        "coverage_state",
+        "gap_codes",
+        "gaps",
+        "scores"
+      ],
+      "properties": {
+        "content_id": {
+          "type": "string",
+          "pattern": "^content\\."
+        },
+        "content_revision_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "topic_id": {
+          "type": "string",
+          "pattern": "^hub\\."
+        },
+        "domain_id": {
+          "type": "string",
+          "pattern": "^domain\\."
+        },
+        "coverage_state": {
+          "enum": [
+            "unmapped",
+            "coverage_declared",
+            "verified_release"
+          ]
+        },
+        "gap_codes": {
+          "$ref": "#/$defs/string_array"
+        },
+        "gaps": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "audience",
+            "scenario",
+            "typed_relation",
+            "authority_l1",
+            "authority_l2",
+            "freshness_version",
+            "search_intent",
+            "action",
+            "evidence",
+            "deadline"
+          ],
+          "properties": {
+            "audience": {
+              "$ref": "#/$defs/gap_status"
+            },
+            "scenario": {
+              "$ref": "#/$defs/gap_status"
+            },
+            "typed_relation": {
+              "$ref": "#/$defs/gap_status"
+            },
+            "authority_l1": {
+              "$ref": "#/$defs/gap_status"
+            },
+            "authority_l2": {
+              "$ref": "#/$defs/gap_status"
+            },
+            "freshness_version": {
+              "$ref": "#/$defs/gap_status"
+            },
+            "search_intent": {
+              "$ref": "#/$defs/gap_status"
+            },
+            "action": {
+              "$ref": "#/$defs/gap_status"
+            },
+            "evidence": {
+              "$ref": "#/$defs/gap_status"
+            },
+            "deadline": {
+              "$ref": "#/$defs/gap_status"
+            }
+          }
+        },
+        "scores": {
+          "$ref": "#/$defs/scores"
+        }
+      }
+    },
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fatal_risk",
+        "structural_gap",
+        "authority_readiness",
+        "source_freshness",
+        "user_demand"
+      ],
+      "properties": {
+        "fatal_risk": {
+          "$ref": "#/$defs/score"
+        },
+        "structural_gap": {
+          "$ref": "#/$defs/score"
+        },
+        "authority_readiness": {
+          "$ref": "#/$defs/score"
+        },
+        "source_freshness": {
+          "$ref": "#/$defs/score"
+        },
+        "user_demand": {
+          "$ref": "#/$defs/demand_score"
+        }
+      }
+    },
+    "score": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "score",
+        "state",
+        "evidence"
+      ],
+      "properties": {
+        "score": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "state": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "$ref": "#/$defs/string_array"
+        }
+      }
+    },
+    "demand_score": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "not_used_for_legal_accuracy",
+        "impressions",
+        "clicks",
+        "query_count"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "not_provided",
+            "measured"
+          ]
+        },
+        "not_used_for_legal_accuracy": {
+          "const": true
+        },
+        "impressions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "clicks": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "query_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "task_packet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "work_id",
+        "work_kind",
+        "assignment_state",
+        "start_allowed",
+        "blocking_reasons",
+        "topic_id",
+        "planning_domain_id",
+        "target_content_ids",
+        "topic_file",
+        "self_test_file",
+        "self_test_state",
+        "owned_paths",
+        "forbidden_paths",
+        "required_source_locators",
+        "source_locator_state",
+        "expected_backlog_delta",
+        "dependencies"
+      ],
+      "properties": {
+        "schema": {
+          "const": "rulelink_codex_task_packet_v1"
+        },
+        "work_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "work_kind": {
+          "enum": [
+            "existing_topic_backfill",
+            "new_domain_seed"
+          ]
+        },
+        "assignment_state": {
+          "enum": [
+            "existing_queue_assignment",
+            "proposed_unregistered"
+          ]
+        },
+        "start_allowed": {
+          "enum": [
+            true,
+            false
+          ]
+        },
+        "blocking_reasons": {
+          "$ref": "#/$defs/string_array"
+        },
+        "topic_id": {
+          "type": "string",
+          "pattern": "^hub\\."
+        },
+        "planning_domain_id": {
+          "type": "string",
+          "pattern": "^(domain|target)\\."
+        },
+        "target_content_ids": {
+          "$ref": "#/$defs/string_array"
+        },
+        "topic_file": {
+          "type": "string",
+          "pattern": "^artifacts/publication/topics/"
+        },
+        "self_test_file": {
+          "type": "string",
+          "pattern": "^web/rulelink_public_next/scripts/"
+        },
+        "self_test_state": {
+          "enum": [
+            "existing",
+            "to_create"
+          ]
+        },
+        "owned_paths": {
+          "$ref": "#/$defs/string_array"
+        },
+        "forbidden_paths": {
+          "$ref": "#/$defs/string_array"
+        },
+        "required_source_locators": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_locator"
+          }
+        },
+        "source_locator_state": {
+          "enum": [
+            "bound",
+            "selection_required"
+          ]
+        },
+        "expected_backlog_delta": {
+          "$ref": "#/$defs/backlog_delta"
+        },
+        "dependencies": {
+          "$ref": "#/$defs/dependencies"
+        }
+      }
+    },
+    "source_locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "coordinate_id",
+        "source_id",
+        "source_snapshot_id",
+        "law_name_ko",
+        "article_no",
+        "official_url",
+        "last_verified_at"
+      ],
+      "properties": {
+        "coordinate_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_snapshot_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "law_name_ko": {
+          "type": "string"
+        },
+        "article_no": {
+          "type": "string"
+        },
+        "official_url": {
+          "type": "string"
+        },
+        "last_verified_at": {
+          "type": "string"
+        }
+      }
+    },
+    "backlog_delta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "current_gap_counts",
+        "topic_edit_target_gap_codes",
+        "verified_release_delta_before_migration",
+        "verified_release_requires"
+      ],
+      "properties": {
+        "current_gap_counts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "topic_edit_target_gap_codes": {
+          "$ref": "#/$defs/string_array"
+        },
+        "verified_release_delta_before_migration": {
+          "const": 0
+        },
+        "verified_release_requires": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "current_bundle",
+              "new_immutable_snapshot",
+              "trusted_release_receipts",
+              "activated_legal_answer_packet_receipt"
+            ]
+          }
+        }
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "migration_required",
+        "depends_on_work_ids",
+        "prerequisite_gate_ids",
+        "receipt_dependency_ids",
+        "legal_answer_packet_gate"
+      ],
+      "properties": {
+        "migration_required": {
+          "const": true
+        },
+        "depends_on_work_ids": {
+          "$ref": "#/$defs/string_array"
+        },
+        "prerequisite_gate_ids": {
+          "$ref": "#/$defs/string_array"
+        },
+        "receipt_dependency_ids": {
+          "$ref": "#/$defs/string_array"
+        },
+        "legal_answer_packet_gate": {
+          "enum": [
+            "not_activated",
+            "satisfied"
+          ]
+        }
+      }
+    },
+    "maintenance_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "maintenance_id",
+        "change_brief_id",
+        "source_id",
+        "old_snapshot_ids",
+        "new_snapshot_ids",
+        "observed_snapshot_ids",
+        "affected_content_ids",
+        "affected_rule_ids",
+        "affected_scenario_ids",
+        "affected_claim_ids",
+        "claim_projection_state",
+        "impact_state",
+        "required_action",
+        "topic_ids"
+      ],
+      "properties": {
+        "maintenance_id": {
+          "type": "string",
+          "pattern": "^maintenance\\.source-impact\\."
+        },
+        "change_brief_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "old_snapshot_ids": {
+          "$ref": "#/$defs/string_array"
+        },
+        "new_snapshot_ids": {
+          "$ref": "#/$defs/string_array"
+        },
+        "observed_snapshot_ids": {
+          "$ref": "#/$defs/string_array"
+        },
+        "affected_content_ids": {
+          "$ref": "#/$defs/string_array"
+        },
+        "affected_rule_ids": {
+          "$ref": "#/$defs/string_array"
+        },
+        "affected_scenario_ids": {
+          "$ref": "#/$defs/string_array"
+        },
+        "affected_claim_ids": {
+          "$ref": "#/$defs/string_array"
+        },
+        "claim_projection_state": {
+          "enum": [
+            "not_provided",
+            "available"
+          ]
+        },
+        "impact_state": {
+          "enum": [
+            "new_snapshot_linked",
+            "old_snapshot_still_observed",
+            "source_version_mismatch",
+            "unmapped_change_source"
+          ]
+        },
+        "required_action": {
+          "enum": [
+            "reverify_affected_content",
+            "review_source_version_binding",
+            "map_change_source_to_content"
+          ]
+        },
+        "topic_ids": {
+          "$ref": "#/$defs/string_array"
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verified_release_count",
+        "start_allowed_task_count",
+        "blocked_task_count",
+        "proposed_unregistered_task_count",
+        "maintenance_item_count",
+        "new_domain_seed_task_count",
+        "target_domain_started_count",
+        "target_domain_not_started_count",
+        "content_gap_counts"
+      ],
+      "properties": {
+        "verified_release_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "start_allowed_task_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "blocked_task_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "proposed_unregistered_task_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maintenance_item_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "new_domain_seed_task_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "target_domain_started_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "target_domain_not_started_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "content_gap_counts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }
+}

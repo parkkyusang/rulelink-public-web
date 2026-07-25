@@ -1,5 +1,9 @@
 import assert from 'node:assert/strict';
-import {createHash} from 'node:crypto';
+import {
+  createHash,
+  generateKeyPairSync,
+  sign as signBytes,
+} from 'node:crypto';
 import {mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -22,6 +26,7 @@ import {
 } from '../src/lib/python-casefold.ts';
 import {
   DEFAULT_LEGAL_ANSWER_PACKET_SET_PATH,
+  DEFAULT_LEGAL_ANSWER_ACTIVATION_MANIFEST_PATH,
   DEFAULT_LEGAL_ANSWER_RECEIPT_PATH,
   DEFAULT_LEGAL_ANSWER_SCHEMA_PATH,
   validateLegalAnswerPacketFiles,
@@ -58,6 +63,11 @@ const receipt = JSON.parse(
 const packetFixture = JSON.parse(await readFile(packetFixturePath, 'utf8'));
 const currentBundleRaw = await readFile(currentBundlePath);
 const currentBundle = JSON.parse(currentBundleRaw.toString('utf8'));
+const activationSigningKey = generateKeyPairSync('ed25519');
+const activationPublicKeyPem = activationSigningKey.publicKey.export({
+  type: 'spki',
+  format: 'pem',
+});
 
 test('vendored producer schema와 승인 영수증은 exact SHA 및 commit에 결박된다', () => {
   assert.equal(sha256Bytes(schemaRaw), LEGAL_ANSWER_PACKET_SCHEMA_SHA256);
@@ -87,6 +97,14 @@ test('vendored 계약 bytes는 Windows checkout에서도 LF로 고정된다', as
 });
 
 test('023은 packet sidecar가 없을 때 0건으로 exact 호환된다', async () => {
+  const activation = JSON.parse(
+    await readFile(DEFAULT_LEGAL_ANSWER_ACTIVATION_MANIFEST_PATH, 'utf8'),
+  );
+  assert.deepEqual(activation, {
+    schema: 'rulelink_legal_answer_packet_activation_v1',
+    activation_state: 'inactive',
+    base_snapshot_id: 'kr-knowledge-core-20260723-023',
+  });
   assert.equal(
     await exists(DEFAULT_LEGAL_ANSWER_PACKET_SET_PATH),
     false,
@@ -94,6 +112,143 @@ test('023은 packet sidecar가 없을 때 0건으로 exact 호환된다', async 
   );
   const result = await validateLegalAnswerPacketFiles();
   assert.deepEqual(result, {errors: [], packetCount: 0, state: 'zero_state'});
+});
+
+test('inactive 023 선언은 publication snapshot이 전진하면 optional fallback하지 않는다', async () => {
+  const directory = await mkdtemp(
+    path.join(os.tmpdir(), 'rulelink-answer-inactive-stale-'),
+  );
+  try {
+    const bundle = structuredClone(currentBundle);
+    bundle.snapshot_id = 'kr-knowledge-core-20260725-024';
+    const bundlePath = path.join(directory, 'bundle.json');
+    await writeFile(bundlePath, canonicalBytes(bundle));
+    assert.deepEqual(
+      await validateLegalAnswerPacketFiles({bundlePath}),
+      {
+        errors: ['legal_answer_activation_inactive_snapshot_mismatch'],
+        packetCount: 0,
+        state: 'activation_invalid',
+      },
+    );
+  } finally {
+    await rm(directory, {recursive: true, force: true});
+  }
+});
+
+test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue evidence를 모두 요구한다', async () => {
+  await withActivationFixture(async paths => {
+    assert.deepEqual(
+      await validateLegalAnswerPacketFiles(paths),
+      {errors: [], packetCount: 1, state: 'validated'},
+    );
+  });
+
+  const attacks = [
+    {
+      label: 'missing',
+      mutate(paths) {
+        paths.packetSetPath = `${paths.packetSetPath}.missing`;
+      },
+      expected: /required_but_missing/u,
+    },
+    {
+      label: 'empty',
+      async mutate(paths) {
+        const packetSet = JSON.parse(await readFile(paths.packetSetPath, 'utf8'));
+        packetSet.packets = [];
+        await writeFile(paths.packetSetPath, canonicalBytes(packetSet));
+      },
+      expected: /required_but_empty|packet_set_hash_mismatch/u,
+    },
+    {
+      label: 'wrong-count-id',
+      async mutate(paths) {
+        const activation = JSON.parse(
+          await readFile(paths.activationManifestPath, 'utf8'),
+        );
+        activation.expected_packet_count = 2;
+        activation.expected_packet_ids.push('answer.not-present');
+        await writeFile(
+          paths.activationManifestPath,
+          canonicalBytes(activation),
+        );
+      },
+      expected: /packet_ids_or_count_mismatch/u,
+    },
+    {
+      label: 'packet-hash',
+      async mutate(paths) {
+        await mutateActivationHash(
+          paths.activationManifestPath,
+          'expected_packet_set_sha256',
+        );
+      },
+      expected: /packet_set_hash_mismatch/u,
+    },
+    {
+      label: 'receipt-hash',
+      async mutate(paths) {
+        await mutateActivationHash(
+          paths.activationManifestPath,
+          'expected_verification_receipt_sha256',
+        );
+      },
+      expected: /receipt_hash_mismatch/u,
+    },
+    {
+      label: 'trust-hash',
+      async mutate(paths) {
+        await mutateActivationHash(
+          paths.activationManifestPath,
+          'expected_trust_policy_sha256',
+        );
+      },
+      expected: /trust_policy_hash_mismatch/u,
+    },
+    {
+      label: 'queue-receipt',
+      async mutate(paths) {
+        const registry = JSON.parse(
+          await readFile(paths.productionRegistryPath, 'utf8'),
+        );
+        registry.prerequisite_gate_receipts = [];
+        await writeFile(
+          paths.productionRegistryPath,
+          canonicalBytes(registry),
+        );
+      },
+      expected: /queue_receipt_missing/u,
+    },
+    {
+      label: 'signed-receipt',
+      async mutate(paths) {
+        const receipt = JSON.parse(
+          await readFile(paths.packetReceiptPath, 'utf8'),
+        );
+        receipt.signing.signature = Buffer.alloc(64).toString('base64');
+        const raw = canonicalBytes(receipt);
+        await writeFile(paths.packetReceiptPath, raw);
+        const activation = JSON.parse(
+          await readFile(paths.activationManifestPath, 'utf8'),
+        );
+        activation.expected_verification_receipt_sha256 = sha256(raw);
+        await writeFile(
+          paths.activationManifestPath,
+          canonicalBytes(activation),
+        );
+      },
+      expected: /trusted_loader_failed:.*signature_invalid/u,
+    },
+  ];
+  for (const attack of attacks) {
+    await withActivationFixture(async paths => {
+      await attack.mutate(paths);
+      const result = await validateLegalAnswerPacketFiles(paths);
+      assert.equal(result.packetCount, 0, attack.label);
+      assert.match(result.errors.join('\n'), attack.expected, attack.label);
+    });
+  }
 });
 
 test('packet sidecar가 요구되면 부재를 성공으로 가장하지 않는다', async () => {
@@ -112,10 +267,16 @@ test('packet sidecar가 요구되면 빈 배열도 성공으로 가장하지 않
   try {
     const bundlePath = path.join(directory, 'bundle.json');
     const packetSetPath = path.join(directory, 'packets.json');
+    const activationManifestPath = path.join(directory, 'activation.json');
     await writeFile(bundlePath, fixture.bundleRaw);
     await writeFile(packetSetPath, canonicalBytes(fixture.packetSet));
+    await writeInactiveActivation(
+      activationManifestPath,
+      fixture.bundle.snapshot_id,
+    );
     assert.deepEqual(
       await validateLegalAnswerPacketFiles({
+        activationManifestPath,
         bundlePath,
         packetSetPath,
         requirePackets: true,
@@ -535,9 +696,18 @@ test('실제 파일 경로에서도 invalid packet은 build validator를 실패�
   try {
     const bundlePath = path.join(directory, 'bundle.json');
     const packetSetPath = path.join(directory, 'packets.json');
+    const activationManifestPath = path.join(directory, 'activation.json');
     await writeFile(bundlePath, fixture.bundleRaw);
     await writeFile(packetSetPath, canonicalBytes(fixture.packetSet));
-    const result = await validateLegalAnswerPacketFiles({bundlePath, packetSetPath});
+    await writeInactiveActivation(
+      activationManifestPath,
+      fixture.bundle.snapshot_id,
+    );
+    const result = await validateLegalAnswerPacketFiles({
+      activationManifestPath,
+      bundlePath,
+      packetSetPath,
+    });
     assert.equal(result.state, 'invalid');
     assert.match(result.errors.join('\n'), /packet_publication_provenance_mismatch/);
     const command = spawnSync(
@@ -548,6 +718,8 @@ test('실제 파일 경로에서도 invalid packet은 build validator를 실패�
         bundlePath,
         '--packet-set',
         packetSetPath,
+        '--activation-manifest',
+        activationManifestPath,
       ],
       {cwd: appRoot, encoding: 'utf8'},
     );
@@ -557,6 +729,150 @@ test('실제 파일 경로에서도 invalid packet은 build validator를 실패�
     await rm(directory, {recursive: true, force: true});
   }
 });
+
+async function mutateActivationHash(filename, field) {
+  const activation = JSON.parse(await readFile(filename, 'utf8'));
+  activation[field] = 'f'.repeat(64);
+  await writeFile(filename, canonicalBytes(activation));
+}
+
+async function writeInactiveActivation(filename, snapshotId) {
+  await writeFile(
+    filename,
+    canonicalBytes({
+      schema: 'rulelink_legal_answer_packet_activation_v1',
+      activation_state: 'inactive',
+      base_snapshot_id: snapshotId,
+    }),
+  );
+}
+
+async function withActivationFixture(callback) {
+  const directory = await mkdtemp(
+    path.join(os.tmpdir(), 'rulelink-answer-activation-'),
+  );
+  try {
+    const fixture = validFixture();
+    const packetSetRaw = canonicalBytes(fixture.packetSet);
+    const producerReceiptRaw = await readFile(
+      DEFAULT_LEGAL_ANSWER_RECEIPT_PATH,
+    );
+    const producerReceipt = JSON.parse(producerReceiptRaw.toString('utf8'));
+    const packetReceipt = {
+      schema: 'rulelink_legal_answer_packet_set_verification_receipt_v1',
+      producer_commit: producerReceipt.producer_commit,
+      schema_source_commit: producerReceipt.schema_source_commit,
+      schema_sha256: producerReceipt.schema_sha256,
+      producer_receipt_sha256: sha256(producerReceiptRaw),
+      packet_set_sha256: sha256(packetSetRaw),
+      packets: fixture.packetSet.packets.map(packet => ({
+        packet_id: packet.packet_id,
+        packet_sha256: sha256(canonicalPacketBytes(packet)),
+        target_content_id: packet.retrieval.canonical_content_ids[0],
+        verifier_version: packet.verification.verifier_version,
+      })),
+      signing: {
+        algorithm: 'Ed25519',
+        issuer: 'rulelink-test-activation',
+        key_id: 'activation-test-key',
+      },
+    };
+    packetReceipt.signing.signature = signBytes(
+      null,
+      canonicalPacketBytes(packetReceipt),
+      activationSigningKey.privateKey,
+    ).toString('base64');
+    const packetReceiptRaw = canonicalBytes(packetReceipt);
+    const trustPolicy = {
+      schema: 'rulelink_legal_answer_packet_set_trust_policy_v1',
+      status: 'active',
+      issuer: packetReceipt.signing.issuer,
+      producer_commit: producerReceipt.producer_commit,
+      keys: [
+        {
+          algorithm: 'Ed25519',
+          key_id: packetReceipt.signing.key_id,
+          public_key_pem: activationPublicKeyPem,
+        },
+      ],
+    };
+    const trustPolicyRaw = canonicalBytes(trustPolicy);
+    const queueWorkId = 'fixture-legal-answer-activation';
+    const queueGateId = 'legal-answer-packets.activated';
+    const evidenceRef = `legal-answer-activation:${fixture.bundle.snapshot_id}@${sha256(packetSetRaw)}`;
+    const queue = {
+      schema: 'rulelink_publication_production_queue_v1',
+      items: [
+        {
+          work_id: queueWorkId,
+          prerequisite_gates: [
+            {
+              gate_id: queueGateId,
+              status: 'satisfied',
+              evidence_ref: evidenceRef,
+            },
+          ],
+        },
+      ],
+    };
+    const registry = {
+      schema: 'rulelink_publication_queue_item_registry_v1',
+      prerequisite_gate_receipts: [
+        {
+          work_id: queueWorkId,
+          gate_id: queueGateId,
+          evidence_ref: evidenceRef,
+        },
+      ],
+    };
+    const activation = {
+      schema: 'rulelink_legal_answer_packet_activation_v1',
+      activation_state: 'active',
+      expected_snapshot_id: fixture.bundle.snapshot_id,
+      expected_packet_count: fixture.packetSet.packets.length,
+      expected_packet_ids: fixture.packetSet.packets.map(
+        packet => packet.packet_id,
+      ),
+      expected_packet_set_sha256: sha256(packetSetRaw),
+      expected_verification_receipt_sha256: sha256(packetReceiptRaw),
+      expected_trust_policy_sha256: sha256(trustPolicyRaw),
+      target_topic_ids: ['hub.crime-victim-response'],
+      queue_work_id: queueWorkId,
+      queue_gate_id: queueGateId,
+      queue_gate_evidence_ref: evidenceRef,
+    };
+    const paths = {
+      activationManifestPath: path.join(directory, 'activation.json'),
+      bundlePath: path.join(directory, 'bundle.json'),
+      packetReceiptPath: path.join(directory, 'packet-receipt.json'),
+      packetSetPath: path.join(directory, 'packets.json'),
+      packetTrustPolicyPath: path.join(directory, 'trust-policy.json'),
+      productionQueuePath: path.join(directory, 'queue.json'),
+      productionRegistryPath: path.join(directory, 'registry.json'),
+    };
+    await Promise.all([
+      writeFile(paths.activationManifestPath, canonicalBytes(activation)),
+      writeFile(paths.bundlePath, fixture.bundleRaw),
+      writeFile(paths.packetReceiptPath, packetReceiptRaw),
+      writeFile(paths.packetSetPath, packetSetRaw),
+      writeFile(paths.packetTrustPolicyPath, trustPolicyRaw),
+      writeFile(paths.productionQueuePath, canonicalBytes(queue)),
+      writeFile(paths.productionRegistryPath, canonicalBytes(registry)),
+    ]);
+    await callback(paths);
+  } finally {
+    await rm(directory, {recursive: true, force: true});
+  }
+}
+
+function sha256(value) {
+  return createHash('sha256').update(value).digest('hex');
+}
+
+function canonicalPacketBytes(value) {
+  const bytes = canonicalBytes(value);
+  return bytes.subarray(0, bytes.length - 1);
+}
 
 function inspect(packetSet, bundle, bundleRaw) {
   return inspectPublicLegalAnswerPacketSet(packetSet, {
