@@ -1,4 +1,5 @@
 import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -94,6 +95,7 @@ const TRUSTED_EVALUATION_CASE_IDS = new Set([
 ]);
 const TRUSTED_EVALUATION_GOLD_SHA256 =
   '90e5422f4d914a6080e0ee362a30e82cfba579aca5308a99c9873d893ccf16f8';
+const TRUSTED_EVALUATION_RESULT_RECEIPTS = new Map();
 
 const ARRAY_KEYS = [
   ...NON_EMPTY_ARRAY_KEYS,
@@ -211,6 +213,29 @@ export async function loadCoverageDocuments(options = {}) {
       'coverage release evidence',
     ),
   ]);
+  const evaluationResultEvidence = new Map();
+  for (const receipt of evaluationScopeReceipt.verified_result_receipts ?? []) {
+    const [resultBytes, reviewReceiptBytes] = await Promise.all([
+      readFile(
+        resolveRepositoryFile(
+          receipt.result_path,
+          `evaluation result ${receipt.case_id}`,
+        ),
+      ),
+      readFile(
+        resolveRepositoryFile(
+          receipt.review_receipt_path,
+          `evaluation review receipt ${receipt.case_id}`,
+        ),
+      ),
+    ]);
+    evaluationResultEvidence.set(receipt.case_id, {
+      result: JSON.parse(resultBytes.toString('utf8')),
+      resultSha256: bytesSha256(resultBytes),
+      reviewReceipt: JSON.parse(reviewReceiptBytes.toString('utf8')),
+      reviewReceiptSha256: bytesSha256(reviewReceiptBytes),
+    });
+  }
   const releaseDescriptorPath = path.resolve(
     options.releaseDescriptorPath ?? DEFAULT_RELEASE_DESCRIPTOR_PATH,
   );
@@ -248,6 +273,7 @@ export async function loadCoverageDocuments(options = {}) {
     bundle,
     bundleSha256: bytesSha256(bundleBytes),
     domains,
+    evaluationResultEvidence,
     evaluationScopeReceipt,
     manifest,
     productionQueue,
@@ -384,14 +410,40 @@ function validateBranchSignature(unit, scenarioById, label, errors) {
   };
 }
 
-function evaluationScopeState(unit, evaluationScopeReceipt) {
+function trustedEvaluationResultReceipt(receipt, evaluationResultEvidence) {
+  if (!isRecord(receipt) || typeof receipt.case_id !== 'string') return false;
+  const trusted = TRUSTED_EVALUATION_RESULT_RECEIPTS.get(receipt.case_id);
+  const evidence = evaluationResultEvidence?.get?.(receipt.case_id);
+  return (
+    trusted !== undefined &&
+    canonicalJson(receipt) === canonicalJson(trusted) &&
+    evidence?.resultSha256 === receipt.result_sha256 &&
+    evidence?.reviewReceiptSha256 === receipt.review_receipt_sha256 &&
+    evidence?.result?.schema === 'rulelink_legal_answer_eval_result_v1' &&
+    evidence.result.case_id === receipt.case_id &&
+    evidence.result.passed === true &&
+    evidence?.reviewReceipt?.schema ===
+      'rulelink_legal_answer_eval_review_receipt_v1' &&
+    evidence.reviewReceipt.case_id === receipt.case_id &&
+    evidence.reviewReceipt.result_sha256 === receipt.result_sha256 &&
+    evidence.reviewReceipt.passed === true
+  );
+}
+
+function evaluationScopeState(
+  unit,
+  evaluationScopeReceipt,
+  evaluationResultEvidence,
+) {
   const receiptCaseIds = new Set(safeArray(evaluationScopeReceipt?.case_ids));
   const declaredCaseIds = safeArray(unit.evaluation_case_ids);
   const missing = declaredCaseIds.filter((caseId) => !receiptCaseIds.has(caseId));
   const verifiedResultIds = new Set(
-    safeArray(evaluationScopeReceipt?.verified_result_receipts).map(
-      (receipt) => receipt?.case_id,
-    ),
+    safeArray(evaluationScopeReceipt?.verified_result_receipts)
+      .filter((receipt) =>
+        trustedEvaluationResultReceipt(receipt, evaluationResultEvidence),
+      )
+      .map((receipt) => receipt.case_id),
   );
   return {
     bound: declaredCaseIds.length === 0 || missing.length === 0,
@@ -468,6 +520,149 @@ function authorityTemporalState(unit, bindingById, authorityReadingById) {
   };
 }
 
+function runGit(repository, args, encoding = 'utf8') {
+  return execFileSync(
+    'git',
+    [
+      '-c',
+      `safe.directory=${repository.replaceAll('\\', '/')}`,
+      ...args,
+    ],
+    {
+      cwd: repository,
+      encoding,
+      stdio: ['ignore', 'pipe', 'pipe'],
+      windowsHide: true,
+    },
+  );
+}
+
+function commitParents(repository, commitSha) {
+  return runGit(repository, ['rev-list', '--parents', '-n', '1', commitSha])
+    .trim()
+    .split(/\s+/);
+}
+
+function commitChangedFiles(repository, commitSha) {
+  const output = runGit(repository, [
+    'diff-tree',
+    '--no-commit-id',
+    '--name-only',
+    '-r',
+    commitSha,
+  ]).trim();
+  return output ? output.split(/\r?\n/).sort() : [];
+}
+
+function gitBlobSha256(repository, commitSha, filename) {
+  return bytesSha256(
+    runGit(repository, ['show', `${commitSha}:${filename}`], null),
+  );
+}
+
+export function verifyReleaseGitProof(
+  receipt,
+  expected,
+  repository = repositoryRoot,
+) {
+  const invalid = [];
+  try {
+    runGit(repository, ['cat-file', '-e', `${receipt.migration_commit_sha}^{commit}`]);
+    runGit(repository, ['cat-file', '-e', `${receipt.evidence_commit_sha}^{commit}`]);
+  } catch {
+    return ['commit_not_found'];
+  }
+  const migrationParents = commitParents(
+    repository,
+    receipt.migration_commit_sha,
+  );
+  const evidenceParents = commitParents(repository, receipt.evidence_commit_sha);
+  if (migrationParents.length !== 2) invalid.push('migration_commit_not_linear');
+  if (
+    evidenceParents.length !== 2 ||
+    evidenceParents[1] !== receipt.migration_commit_sha
+  ) {
+    invalid.push('evidence_commit_not_direct_child');
+  }
+  const migrationFiles = commitChangedFiles(
+    repository,
+    receipt.migration_commit_sha,
+  );
+  const snapshotBundlePath =
+    `artifacts/publication/snapshots/${receipt.snapshot_id}/bundle.json`;
+  const migrationAllowed = (filename) =>
+    filename === 'artifacts/publication/current/bundle.json' ||
+    filename === snapshotBundlePath ||
+    /^artifacts\/publication\/topics\/[^/]+\.json$/.test(filename);
+  if (
+    migrationFiles.length === 0 ||
+    migrationFiles.some((filename) => !migrationAllowed(filename)) ||
+    !migrationFiles.includes('artifacts/publication/current/bundle.json') ||
+    !migrationFiles.includes(snapshotBundlePath) ||
+    !migrationFiles.some((filename) =>
+      /^artifacts\/publication\/topics\/[^/]+\.json$/.test(filename),
+    )
+  ) {
+    invalid.push('migration_commit_scope_invalid');
+  }
+  const evidenceFiles = commitChangedFiles(
+    repository,
+    receipt.evidence_commit_sha,
+  );
+  if (
+    canonicalJson(evidenceFiles) !==
+    canonicalJson([
+      'artifacts/publication/production-queue-registry.json',
+      'artifacts/publication/production-queue.json',
+    ])
+  ) {
+    invalid.push('evidence_commit_scope_invalid');
+  }
+  for (const [label, commitSha, filename, expectedSha256] of [
+    [
+      'publication_bundle',
+      receipt.migration_commit_sha,
+      'artifacts/publication/current/bundle.json',
+      expected.publication_bundle_sha256,
+    ],
+    [
+      'snapshot_bundle',
+      receipt.migration_commit_sha,
+      snapshotBundlePath,
+      expected.publication_bundle_sha256,
+    ],
+    [
+      'release_descriptor',
+      receipt.evidence_commit_sha,
+      'web/rulelink_public_next/deploy/release.json',
+      expected.release_descriptor_sha256,
+    ],
+    [
+      'production_queue',
+      receipt.evidence_commit_sha,
+      'artifacts/publication/production-queue.json',
+      expected.production_queue_sha256,
+    ],
+    [
+      'production_registry',
+      receipt.evidence_commit_sha,
+      'artifacts/publication/production-queue-registry.json',
+      expected.production_registry_sha256,
+    ],
+  ]) {
+    try {
+      if (
+        gitBlobSha256(repository, commitSha, filename) !== expectedSha256
+      ) {
+        invalid.push(`${label}_blob_mismatch`);
+      }
+    } catch {
+      invalid.push(`${label}_blob_missing`);
+    }
+  }
+  return invalid;
+}
+
 function releaseState(unit, documents) {
   const receipt = safeArray(documents.releaseEvidence?.releases).find(
     (item) => item?.coverage_unit_id === unit.coverage_unit_id,
@@ -495,6 +690,12 @@ function releaseState(unit, documents) {
     receipt.migration_commit_sha === receipt.evidence_commit_sha
   ) {
     invalid.push('commit_chain_invalid');
+  } else {
+    invalid.push(
+      ...verifyReleaseGitProof(receipt, expected).map(
+        (reason) => `git:${reason}`,
+      ),
+    );
   }
   return {verified: invalid.length === 0, invalid};
 }
@@ -614,6 +815,7 @@ function coverageObservation({
   contentById,
   contentIds,
   currentSnapshotMatches,
+  evaluationResultEvidence,
   evaluationScopeReceipt,
   questionFamilyIds,
   procedureStageIds,
@@ -638,7 +840,11 @@ function coverageObservation({
   );
   const evaluationCaseIds = safeArray(unit.evaluation_case_ids);
   const sourceVersion = sourceVersionState(unit, sourceById);
-  const evaluationScope = evaluationScopeState(unit, evaluationScopeReceipt);
+  const evaluationScope = evaluationScopeState(
+    unit,
+    evaluationScopeReceipt,
+    evaluationResultEvidence,
+  );
   const bindingCoverage = bindingCoverageState(
     unit,
     bindingById,
@@ -709,6 +915,7 @@ export function validateCoverageDocuments(documents) {
     bundle,
     bundleSha256,
     domains,
+    evaluationResultEvidence,
     evaluationScopeReceipt,
     manifest,
     productionQueue,
@@ -999,8 +1206,11 @@ export function validateCoverageDocuments(documents) {
     if (
       !isRecord(receipt) ||
       !receiptCaseIds.has(receipt.case_id) ||
+      typeof receipt.result_path !== 'string' ||
+      typeof receipt.review_receipt_path !== 'string' ||
       !SHA256_PATTERN.test(receipt.result_sha256 ?? '') ||
-      !SHA256_PATTERN.test(receipt.review_receipt_sha256 ?? '')
+      !SHA256_PATTERN.test(receipt.review_receipt_sha256 ?? '') ||
+      !trustedEvaluationResultReceipt(receipt, evaluationResultEvidence)
     ) {
       errors.push(`coverage_evaluation_result_receipt_invalid:${index}`);
     }
@@ -1145,6 +1355,7 @@ export function validateCoverageDocuments(documents) {
     const evaluationScope = evaluationScopeState(
       unit,
       evaluationScopeReceipt,
+      evaluationResultEvidence,
     );
     for (const caseId of evaluationScope.missing) {
       errors.push(`${label}:evaluation_case_not_in_scope_receipt:${caseId}`);
@@ -1211,6 +1422,7 @@ export function validateCoverageDocuments(documents) {
         currentSnapshotMatches:
           bundle.snapshot_id === manifest.base_snapshot_id &&
           bundleSha256 === manifest.base_bundle_sha256,
+        evaluationResultEvidence,
         evaluationScopeReceipt,
         procedureStageIds,
         questionFamilyIds,

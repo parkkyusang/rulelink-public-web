@@ -1,10 +1,40 @@
 import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {
+  mkdirSync,
+  mkdtempSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
+import {tmpdir} from 'node:os';
+import path from 'node:path';
 import test from 'node:test';
 
 import {
   loadCoverageDocuments,
   validateCoverageDocuments,
+  verifyReleaseGitProof,
 } from './publication-coverage-core.mjs';
+
+function sha256(value) {
+  return createHash('sha256').update(value).digest('hex');
+}
+
+function git(repository, ...args) {
+  return execFileSync('git', args, {
+    cwd: repository,
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+    windowsHide: true,
+  }).trim();
+}
+
+function writeFixture(repository, filename, value) {
+  const absolute = path.join(repository, ...filename.split('/'));
+  mkdirSync(path.dirname(absolute), {recursive: true});
+  writeFileSync(absolute, value);
+}
 
 test('023 coverage matrix는 8개 답변 단위를 L1으로 정직하게 보고한다', async () => {
   const documents = await loadCoverageDocuments();
@@ -141,6 +171,32 @@ test('evaluation receipt requires the exact trusted case and file sets', async (
     result.errors.includes(
       'coverage_evaluation_scope_receipt:case_files:trusted_set_mismatch',
     ),
+  );
+});
+
+test('evaluation result hashes without approved source files never count as verified', async () => {
+  const documents = structuredClone(await loadCoverageDocuments());
+  const unit = documents.domains[0].units[0];
+  documents.evaluationScopeReceipt.verified_result_receipts = [
+    {
+      case_id: unit.evaluation_case_ids[0],
+      result_path: 'artifacts/publication/coverage/fake-result.json',
+      result_sha256: 'a'.repeat(64),
+      review_receipt_path:
+        'artifacts/publication/coverage/fake-review-receipt.json',
+      review_receipt_sha256: 'b'.repeat(64),
+    },
+  ];
+
+  const result = validateCoverageDocuments(documents);
+  assert.ok(
+    result.errors.includes('coverage_evaluation_result_receipt_invalid:0'),
+  );
+  assert.equal(
+    result.observations.find(
+      (item) => item.coverage_unit_id === unit.coverage_unit_id,
+    ).evaluation_results_verified_count,
+    0,
   );
 });
 
@@ -426,12 +482,16 @@ test('릴리스 완료는 current·bundle·release·queue·registry와 두 커�
   ];
 
   let result = validateCoverageDocuments(documents);
-  assert.deepEqual(result.errors, []);
+  assert.ok(
+    result.errors.includes(
+      `coverage_unit:${unit.coverage_unit_id}:release_evidence_invalid:git:commit_not_found`,
+    ),
+  );
   assert.equal(
     result.observations.find(
       (item) => item.coverage_unit_id === unit.coverage_unit_id,
     ).coverage_release_verified,
-    true,
+    false,
   );
 
   documents.releaseEvidence.releases[0].production_queue_sha256 =
@@ -442,4 +502,95 @@ test('릴리스 완료는 current·bundle·release·queue·registry와 두 커�
       `coverage_unit:${unit.coverage_unit_id}:release_evidence_invalid:production_queue_sha256:mismatch`,
     ),
   );
+});
+
+test('release proof accepts only an actual linear migration and evidence commit pair', () => {
+  const repository = mkdtempSync(
+    path.join(tmpdir(), 'rulelink-coverage-release-proof-'),
+  );
+  const snapshotId = 'kr-test-024';
+  const bundleBytes = Buffer.from('{"snapshot_id":"kr-test-024"}\n');
+  const releaseBytes = Buffer.from('{"snapshot_id":"kr-test-024"}\n');
+  const queueBytes = Buffer.from('{"queue":"024"}\n');
+  const registryBytes = Buffer.from('{"registry":"024"}\n');
+  try {
+    git(repository, 'init');
+    git(repository, 'config', 'user.email', 'coverage-test@example.invalid');
+    git(repository, 'config', 'user.name', 'Coverage Test');
+    writeFixture(
+      repository,
+      'web/rulelink_public_next/deploy/release.json',
+      releaseBytes,
+    );
+    writeFixture(
+      repository,
+      'artifacts/publication/production-queue.json',
+      Buffer.from('{"queue":"023"}\n'),
+    );
+    writeFixture(
+      repository,
+      'artifacts/publication/production-queue-registry.json',
+      Buffer.from('{"registry":"023"}\n'),
+    );
+    git(repository, 'add', '.');
+    git(repository, 'commit', '-m', 'initial');
+
+    writeFixture(
+      repository,
+      'artifacts/publication/current/bundle.json',
+      bundleBytes,
+    );
+    writeFixture(
+      repository,
+      `artifacts/publication/snapshots/${snapshotId}/bundle.json`,
+      bundleBytes,
+    );
+    writeFixture(
+      repository,
+      'artifacts/publication/topics/manifest.json',
+      Buffer.from('{"snapshot_id":"kr-test-024"}\n'),
+    );
+    git(repository, 'add', '.');
+    git(repository, 'commit', '-m', 'migration');
+    const migrationCommit = git(repository, 'rev-parse', 'HEAD');
+
+    writeFixture(
+      repository,
+      'artifacts/publication/production-queue.json',
+      queueBytes,
+    );
+    writeFixture(
+      repository,
+      'artifacts/publication/production-queue-registry.json',
+      registryBytes,
+    );
+    git(repository, 'add', '.');
+    git(repository, 'commit', '-m', 'evidence');
+    const evidenceCommit = git(repository, 'rev-parse', 'HEAD');
+
+    const receipt = {
+      snapshot_id: snapshotId,
+      migration_commit_sha: migrationCommit,
+      evidence_commit_sha: evidenceCommit,
+    };
+    const expected = {
+      publication_bundle_sha256: sha256(bundleBytes),
+      release_descriptor_sha256: sha256(releaseBytes),
+      production_queue_sha256: sha256(queueBytes),
+      production_registry_sha256: sha256(registryBytes),
+    };
+    assert.deepEqual(
+      verifyReleaseGitProof(receipt, expected, repository),
+      [],
+    );
+    assert.ok(
+      verifyReleaseGitProof(
+        {...receipt, evidence_commit_sha: migrationCommit},
+        expected,
+        repository,
+      ).includes('evidence_commit_not_direct_child'),
+    );
+  } finally {
+    rmSync(repository, {recursive: true, force: true});
+  }
 });
