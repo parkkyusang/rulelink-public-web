@@ -185,13 +185,11 @@ const OPTIONAL_CONVERSATIONAL_TOKENS = new Set([
   '있나요',
   '갑자기',
   '때문에',
-  '상대방이',
-  '상대방',
-  '상사가',
-  '상사',
   '계속',
   '자꾸',
   '전',
+  '왔어요',
+  '안되고',
   '연락도',
   '더',
   '좀',
@@ -214,6 +212,7 @@ const CONVERSATIONAL_EQUIVALENCE_GROUPS = [
   ['집주인', '임대인'],
   ['보증금', '전세금', '임대차보증금'],
   ['사장님', '사용자', '사업주', '회사'],
+  ['상사', '상급자', '직속 상급자', '관리자'],
   ['월급', '임금', '급여'],
   ['퇴직금', '퇴직급여'],
   ['줘요', '지급', '주지', '돌려주지'],
@@ -227,6 +226,16 @@ const CONVERSATIONAL_EQUIVALENCE_GROUPS = [
   ['돈', '피해금', '금전'],
   ['돌려받기', '환급', '반환', '회수', '피해구제'],
   ['남편', '배우자', '연인', '애인'],
+  ['때려', '폭행', '가정폭력', '신체폭력'],
+  ['부모님', '부모', '피상속인'],
+  ['돌아가시', '사망', '상속개시'],
+  ['났는데', '났', '사고', '발생'],
+  ['상대방', '가해자', '상대차량', '운전자'],
+  ['내고', '사고', '발생', '야기'],
+  ['당해', '당한', '피해', '피해자', '발생'],
+  ['환불받', '환불', '환급', '반환', '회수'],
+  ['젖었', '누수', '침수', '물 피해'],
+  ['아이', '학생', '자녀', '미성년자'],
   ['연락해요', '연락', '접촉', '찾아오'],
   ['맞았어요', '폭행', '학교폭력'],
   ['맞고', '폭행', '학교폭력'],
@@ -235,6 +244,12 @@ const CONVERSATIONAL_EQUIVALENCE_GROUPS = [
   ['도망', '도주', '뺑소니'],
   ['보냈', '송금', '이체'],
   ['빌려', '대여', '대여금'],
+  ['냈', '지급', '지불', '납부'],
+  ['샀는데', '샀', '매수', '매매', '구입'],
+  ['발견됐', '발견', '확인'],
+  ['취소', '해제', '철회'],
+  ['준비', '서류', '자료', '증빙'],
+  ['억울', '부당', '위법', '불복'],
   ['갚', '변제', '상환', '미변제'],
   ['잠', '수면', '수면 방해'],
   ['못자', '수면 방해', '수면'],
@@ -865,10 +880,6 @@ function queryDocumentMatch(
     };
   });
   const matched = matches.filter(match => match.matched);
-  const unmatchedRequired = matches.filter(match => (
-    !match.matched
-    && !isOptionalUnmatchedConversationalToken(match.originalToken)
-  ));
   const strongestOriginalToken = Math.max(
     0,
     ...matched.map(match => match.originalInformationLength),
@@ -878,7 +889,7 @@ function queryDocumentMatch(
     accepted: queryTokens.length === 0 || (
       matchedTokenCount > 0
       && strongestOriginalToken >= 2
-      && unmatchedRequired.length === 0
+      && matches.every(match => match.matched)
     ),
     matchedInformationWeight: matched.reduce(
       (sum, match) => sum + match.informationWeight,
@@ -891,10 +902,4 @@ function queryDocumentMatch(
 function valueIncludesVariant(value: string, variant: string): boolean {
   if (variant.length > 1) return value.includes(variant);
   return value.split(' ').includes(variant);
-}
-
-function isOptionalUnmatchedConversationalToken(token: string): boolean {
-  if (/^많(?:아요|으면|은|다)?$/u.test(token)) return false;
-  return /(?:는데요?|은데요?|한데요?|고|서|지만|거나|면서|니까|려고|려면|해야|나요|죠|어요|아요|해요|돼요|겠어요|습니다|습니까)$/u
-    .test(token);
 }
