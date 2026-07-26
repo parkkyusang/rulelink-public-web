@@ -406,11 +406,6 @@
   padding-top: 17px;
 }
 
-.newTabNote {
-  font-size: 11px;
-  font-weight: 650;
-}
-
 @media (max-width: 767px) {
   .root {
     margin-top: 54px;

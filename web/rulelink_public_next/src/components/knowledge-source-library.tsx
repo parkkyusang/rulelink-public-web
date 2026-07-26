@@ -2,6 +2,7 @@
 
 import {useEffect, useMemo, useState} from 'react';
 
+import {ExternalLinkIcon} from '@/components/external-link-icon';
 import {buildCollectionSearchHref, parseCollectionSearchState, sanitizeCollectionQuery} from '@/lib/collection-search-state';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import type {PublicKnowledgeSourceDocument} from '@/lib/knowledge-search';
@@ -124,8 +125,15 @@ export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeS
                 ) : (
                   <p>{source.law_name_ko} {source.article_no}</p>
                 )}
-                <a className={styles.official} href={officialUrl} rel="noopener noreferrer" target="_blank">
-                  국가법령정보센터 원문 (새 탭) <span aria-hidden="true">↗</span>
+                <a
+                  aria-label={`${document.label_ko} 국가법령정보센터 원문, 새 탭으로 열기`}
+                  className={styles.official}
+                  href={officialUrl}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  국가법령정보센터 원문
+                  <ExternalLinkIcon />
                 </a>
                 <div className={styles.related}>
                   <b>이 근거를 사용하는 연결 지식 {totalLinks}개</b>

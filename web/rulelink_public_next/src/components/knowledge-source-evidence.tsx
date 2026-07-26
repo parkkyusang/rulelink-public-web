@@ -10,6 +10,7 @@ import {
   KNOWLEDGE_SCENARIO_CHANGE_EVENT,
   type KnowledgeScenarioChangeDetail,
 } from '@/lib/knowledge-scenario-state';
+import {ExternalLinkIcon} from '@/components/external-link-icon';
 import type {
   CanonicalLegalAnswerProjection,
   LegalAnswerClaim,
@@ -160,12 +161,14 @@ export function KnowledgeSourceEvidence({
                     </section>
                   ) : null}
                   <a
+                    aria-label={`${sourceLabel(source)} 국가법령정보센터 공식 원문 전체 보기, 새 탭으로 열기`}
                     className={styles.official}
                     href={officialUrl}
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    공식 원문 전체 보기 <span>(새 탭)</span>
+                    공식 원문 전체 보기
+                    <ExternalLinkIcon />
                   </a>
                 </div>
               </details>
