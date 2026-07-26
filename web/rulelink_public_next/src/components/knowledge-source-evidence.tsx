@@ -145,13 +145,13 @@ export function KnowledgeSourceEvidence({
                       <p>{sourceText}</p>
                     </section>
                   ) : (
-                    <section className={styles.officialText} data-source-text-state="link_only">
-                      <h3>공식 원문에서 확인</h3>
+                    <div className={styles.officialText} data-source-text-state="link_only">
+                      <strong>공식 원문에서 확인</strong>
                       <p>
                         이 자료는 페이지 안에 문언을 옮겨 싣지 않고,
                         아래 공식 원문으로 연결합니다.
                       </p>
-                    </section>
+                    </div>
                   )}
                   {sourceClaims.length ? (
                     <section aria-label={`${sourceLabel(source)}가 뒷받침하는 내용`}>
