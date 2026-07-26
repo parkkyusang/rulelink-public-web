@@ -232,14 +232,57 @@ export async function verifyExistingTopicCoverageCandidate({
   }
 
   const branchRef = `refs/heads/${spec.source_branch}`;
-  const [branchHead, mergeBase, requiredPlanText, contentTypesText] =
+  const remoteBranchRef = `refs/remotes/origin/${spec.source_branch}`;
+  const branchHeads = (
+    await Promise.all(
+      [branchRef, remoteBranchRef].map(async candidateRef => {
+        try {
+          const resolved = String(
+            await runGit([
+              'show-ref',
+              '--verify',
+              '--hash',
+              candidateRef,
+            ]),
+          ).trim();
+          if (!/^[0-9a-f]{40}$/u.test(resolved)) {
+            throw new Error(
+              `${spec.work_id}.${candidateRef}가 commit SHA를 가리키지 않습니다.`,
+            );
+          }
+          return {ref: candidateRef, sha: resolved};
+        } catch (error) {
+          if (
+            error instanceof Error &&
+            error.message.includes('commit SHA를 가리키지 않습니다')
+          ) {
+            throw error;
+          }
+          return null;
+        }
+      }),
+    )
+  ).filter(Boolean);
+  if (branchHeads.length === 0) {
+    throw new Error(
+      `${spec.work_id}.source_branch의 local·origin ref가 모두 없습니다.`,
+    );
+  }
+  if (
+    new Set(branchHeads.map(candidate => candidate.sha)).size !== 1
+  ) {
+    throw new Error(
+      `${spec.work_id}.source_branch의 local·origin ref SHA가 서로 다릅니다.`,
+    );
+  }
+  const branchHead = branchHeads[0].sha;
+  const [mergeBase, requiredPlanText, contentTypesText] =
     await Promise.all([
-      runGit(['show-ref', '--verify', '--hash', branchRef]),
       runGit(['merge-base', spec.source_head_sha, spec.required_pr_base_sha]),
       runGit(['show', `${spec.required_pr_base_sha}:${planPath}`]),
       readFile(contentTypesPath, 'utf8'),
     ]);
-  if (String(branchHead).trim() !== spec.source_head_sha) {
+  if (branchHead !== spec.source_head_sha) {
     throw new Error(
       `${spec.work_id}.source_branch ref가 source_head_sha와 다릅니다.`,
     );

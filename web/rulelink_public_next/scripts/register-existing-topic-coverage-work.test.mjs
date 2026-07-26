@@ -239,10 +239,23 @@ function gitFixture({
   revertedIntermediatePath = false,
   prExtraOwner = false,
   branchHead = headSha,
+  remoteBranchHead = null,
   candidateMergeBase = baseSha,
 } = {}) {
   return async args => {
-    if (args[0] === 'show-ref') return `${branchHead}\n`;
+    if (args[0] === 'show-ref') {
+      const candidateRef = args.at(-1);
+      if (candidateRef.startsWith('refs/heads/')) {
+        if (branchHead === null) throw new Error('local ref missing');
+        return `${branchHead}\n`;
+      }
+      if (candidateRef.startsWith('refs/remotes/origin/')) {
+        if (remoteBranchHead === null) {
+          throw new Error('origin ref missing');
+        }
+        return `${remoteBranchHead}\n`;
+      }
+    }
     if (args[0] === 'cat-file') return '';
     if (args[0] === 'merge-base' && args[1] === '--is-ancestor') return '';
     if (args[0] === 'merge-base') return `${candidateMergeBase}\n`;
@@ -344,6 +357,60 @@ test('source_branch가 source_head_sha를 직접 가리키지 않으면 등록�
       runGit: gitFixture({branchHead: '4'.repeat(40)}),
     }),
     /source_branch ref가 source_head_sha와 다릅니다/u,
+  );
+});
+
+test('local source branch가 없어도 fetched origin branch가 exact head면 등록한다', async () => {
+  const item = await buildImportedCoverageProductionWorkItem(
+    candidateSpec(),
+    {
+      runGit: gitFixture({
+        branchHead: null,
+        remoteBranchHead: headSha,
+      }),
+    },
+  );
+  assert.equal(item.candidate_import.source_head_sha, headSha);
+  assert.equal(
+    item.candidate_import.source_branch_ref,
+    `refs/heads/${candidateSpec().source_branch}`,
+  );
+});
+
+test('local과 fetched origin branch가 같은 exact head면 등록한다', async () => {
+  const item = await buildImportedCoverageProductionWorkItem(
+    candidateSpec(),
+    {
+      runGit: gitFixture({
+        branchHead: headSha,
+        remoteBranchHead: headSha,
+      }),
+    },
+  );
+  assert.equal(item.candidate_import.source_head_sha, headSha);
+});
+
+test('local과 fetched origin branch SHA가 다르면 등록을 거부한다', async () => {
+  await assert.rejects(
+    buildImportedCoverageProductionWorkItem(candidateSpec(), {
+      runGit: gitFixture({
+        branchHead: headSha,
+        remoteBranchHead: '4'.repeat(40),
+      }),
+    }),
+    /local·origin ref SHA가 서로 다릅니다/u,
+  );
+});
+
+test('local과 fetched origin branch가 모두 없으면 등록을 거부한다', async () => {
+  await assert.rejects(
+    buildImportedCoverageProductionWorkItem(candidateSpec(), {
+      runGit: gitFixture({
+        branchHead: null,
+        remoteBranchHead: null,
+      }),
+    }),
+    /local·origin ref가 모두 없습니다/u,
   );
 });
 
