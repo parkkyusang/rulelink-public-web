@@ -114,6 +114,22 @@ test('사용자 화면은 내부 스냅샷·패킷 용어 대신 검증된 조�
   assert.match(sync, /maintenance-index\.json/u);
 });
 
+test('공식 원문 링크는 시각적으로 외부 링크 아이콘을 쓰고 새 탭 의미는 접근성 이름에 보존한다', async () => {
+  const [evidence, authority, library, icon] = await Promise.all([
+    readFile(new URL('../src/components/knowledge-source-evidence.tsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/authority-reading-card.tsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/knowledge-source-library.tsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/external-link-icon.tsx', import.meta.url), 'utf8'),
+  ]);
+  for (const component of [evidence, authority, library]) {
+    assert.match(component, /<ExternalLinkIcon \/>/u);
+    assert.match(component, /aria-label=.*새 탭으로 열기/u);
+    assert.doesNotMatch(component, />\(새 탭\)</u);
+  }
+  assert.match(icon, /aria-hidden="true"/u);
+  assert.match(icon, /focusable="false"/u);
+});
+
 function fixtureBundle() {
   return {
     schema: 'rulelink_published_bundle_v1',

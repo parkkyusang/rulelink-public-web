@@ -1,5 +1,6 @@
 import {AuthorityClauseTree} from '@/components/authority-clause-tree';
 import {AuthorityTimeBadge} from '@/components/authority-time-badge';
+import {ExternalLinkIcon} from '@/components/external-link-icon';
 import {LegalConceptText} from '@/components/legal-concept-text';
 
 import type {AuthorityReadingView} from '@/lib/authority-reading';
@@ -103,6 +104,7 @@ export function AuthorityReadingCard({
 
           {view.officialUrl ? (
             <a
+              aria-label={`${view.titleKo} 국가법령정보센터 원문 전체 보기, 새 탭으로 열기`}
               className={styles.officialAction}
               data-authority-official-link
               data-authority-return-fragment={view.cardDomId}
@@ -111,7 +113,7 @@ export function AuthorityReadingCard({
               target="_blank"
             >
               국가법령정보센터에서 원문 전체 보기
-              <span className={styles.newTabNote}>(새 탭)</span>
+              <ExternalLinkIcon />
             </a>
           ) : null}
         </div>

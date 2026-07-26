@@ -151,11 +151,6 @@
   outline-offset: 3px;
 }
 
-.official span {
-  color: var(--muted);
-  font-size: 11px;
-}
-
 @media (max-width: 640px) {
   .card summary {
     align-items: start;
