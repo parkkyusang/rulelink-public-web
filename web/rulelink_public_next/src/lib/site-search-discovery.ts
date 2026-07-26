@@ -74,23 +74,7 @@ export type SiteSearchMissReason =
   | 'unindexed_reference'
   | 'possible_expression_or_coverage_gap';
 
-export const SITE_SEARCH_EXAMPLES = Object.freeze([
-  {
-    kind: 'situation',
-    label_ko: '집주인이 보증금을 돌려주지 않아요',
-    query: '집주인이 보증금을 돌려주지 않아요',
-  },
-  {
-    kind: 'statute',
-    label_ko: '민법 제1026조',
-    query: '민법 제1026조',
-  },
-  {
-    kind: 'precedent',
-    label_ko: '2013다73520',
-    query: '2013다73520',
-  },
-] as const);
+export const SITE_SEARCH_PLACEHOLDER = '집주인이 보증금을 돌려주지 않아요';
 
 type Labels = {
   changeLifecycle: (value: LegalChangeBrief['lifecycle']) => string;

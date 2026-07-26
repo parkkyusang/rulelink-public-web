@@ -10,7 +10,7 @@ import {
   buildSiteSearchDocuments,
   classifySiteSearchMiss,
   rankSiteSearchDocuments,
-  SITE_SEARCH_EXAMPLES,
+  SITE_SEARCH_PLACEHOLDER,
   tokenizeSiteSearchQuery,
 } from '../src/lib/site-search-discovery.ts';
 import {
@@ -306,17 +306,25 @@ test('문장 어미가 붙은 미일치 의미 술어는 버리지 않고 관련
   assert.ok(violence[0].matchReasons.length > 0);
 });
 
-test('화면에 노출한 검색 예시는 운영 정본에서 실제 결과와 표시 근거를 가진다', () => {
-  assert.equal(SITE_SEARCH_EXAMPLES.length, 3);
-  for (const example of SITE_SEARCH_EXAMPLES) {
-    const ranked = rankSiteSearchDocuments(documents, {
-      now,
-      query: example.query,
-    });
-    assert.ok(ranked.length > 0, `${example.query}: 노출 예시가 0건입니다.`);
+test('placeholder 질의는 운영 정본에서 실제 결과와 표시 근거를 가진다', () => {
+  const ranked = rankSiteSearchDocuments(documents, {
+    now,
+    query: SITE_SEARCH_PLACEHOLDER,
+  });
+  assert.ok(ranked.length > 0, `${SITE_SEARCH_PLACEHOLDER}: 검색 결과가 0건입니다.`);
+  assert.ok(
+    ranked.every(result => result.matchReasons.length > 0),
+    `${SITE_SEARCH_PLACEHOLDER}: 검색 근거 없는 결과가 있습니다.`,
+  );
+});
+
+test('조문·사건번호 검색은 화면용 운영 데이터 없이 검색 회귀로만 보존한다', () => {
+  for (const query of ['민법 제1026조', '2013다73520']) {
+    const ranked = rankSiteSearchDocuments(documents, {now, query});
+    assert.ok(ranked.length > 0, `${query}: 검색 결과가 0건입니다.`);
     assert.ok(
       ranked.every(result => result.matchReasons.length > 0),
-      `${example.query}: 검색 근거 없는 결과가 있습니다.`,
+      `${query}: 검색 근거 없는 결과가 있습니다.`,
     );
   }
 });
@@ -325,16 +333,39 @@ test('홈은 결과처럼 보이는 하드코딩 링크 없이 실제 검색 for
   const homeSource = await readFile(path.join(appRoot, 'app', 'page.tsx'), 'utf8');
   assert.match(homeSource, /<form action="\/ko\/search"[\s\S]*method="get"/u);
   assert.match(homeSource, /name="q"/u);
-  assert.match(homeSource, /placeholder=\{`예: \$\{SITE_SEARCH_EXAMPLES\[0\]\.label_ko\}`\}/u);
+  assert.match(homeSource, /placeholder=\{`예: \$\{SITE_SEARCH_PLACEHOLDER\}`\}/u);
   assert.doesNotMatch(homeSource, /homeSearchExamples|\/ko\/search\?q=/u);
 
-  const example = SITE_SEARCH_EXAMPLES[0];
-  const ranked = rankSiteSearchDocuments(documents, {now, query: example.query});
+  const ranked = rankSiteSearchDocuments(documents, {
+    now,
+    query: SITE_SEARCH_PLACEHOLDER,
+  });
   assert.ok(ranked.length > 0, '홈 placeholder 질의는 현재 정본에서 결과를 찾아야 합니다.');
   assert.ok(
     ranked.every(result => result.matchReasons.length > 0),
     '홈 placeholder 질의 결과는 실제 일치 근거를 가져야 합니다.',
   );
+});
+
+test('통합검색은 placeholder만 유지하고 결과처럼 보이는 예시 버튼을 렌더하지 않는다', async () => {
+  const searchSource = await readFile(
+    path.join(appRoot, 'src', 'components', 'site-search.tsx'),
+    'utf8',
+  );
+  const searchStyles = await readFile(
+    path.join(appRoot, 'src', 'components', 'site-search.module.css'),
+    'utf8',
+  );
+
+  assert.match(
+    searchSource,
+    /placeholder=\{`예: \$\{SITE_SEARCH_PLACEHOLDER\}`\}/u,
+  );
+  assert.doesNotMatch(
+    searchSource,
+    /aria-label="검색 예시"|searchExamples|SITE_SEARCH_EXAMPLES|updateQuery\(example\.query\)/u,
+  );
+  assert.doesNotMatch(searchStyles, /\.searchExamples/u);
 });
 
 test('무결과는 짧은 질의·정확 식별자·표현 또는 콘텐츠 결손으로 분류한다', () => {

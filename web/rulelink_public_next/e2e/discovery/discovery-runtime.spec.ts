@@ -318,18 +318,42 @@ test('검색은 느린 전체 인덱스 중 0건을 확정하지 않고 준비 �
 
   await input.fill('');
   await input.focus();
-  const exampleButtons = page.getByLabel('검색 예시').getByRole('button');
-  const exampleCount = await exampleButtons.count();
-  expect(exampleCount).toBeGreaterThan(0);
-  for (let index = 0; index < exampleCount; index += 1) {
-    await page.keyboard.press('Tab');
-    await expect(exampleButtons.nth(index)).toBeFocused();
-  }
+  await expect(page.getByLabel('검색 예시')).toHaveCount(0);
   await page.keyboard.press('Tab');
   const allFilter = page.getByRole('button', {name: /^전체/u});
   await expect(allFilter).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(allFilter).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('검색 예시 버튼은 초기 HTML과 자바스크립트 비활성 화면에도 존재하지 않는다', async ({
+  browser,
+  request,
+}, testInfo) => {
+  const response = await request.get('/ko/search');
+  expect(response.ok()).toBe(true);
+  expect(await response.text()).not.toContain('aria-label="검색 예시"');
+
+  const context = await browser.newContext({
+    javaScriptEnabled: false,
+    viewport: testInfo.project.use.viewport ?? {height: 844, width: 390},
+  });
+  try {
+    const page = await context.newPage();
+    await page.goto('/ko/search');
+    await expect(page.getByLabel('검색 예시')).toHaveCount(0);
+    for (const label of [
+      '집주인이 보증금을 돌려주지 않아요',
+      '민법 제1026조',
+      '2013다73520',
+    ]) {
+      await expect(page.getByRole('button', {name: label, exact: true})).toHaveCount(0);
+    }
+    await expect(page.getByRole('searchbox')).toHaveAttribute('placeholder', /^예:/u);
+    await expect(page.getByText('공개 승인을 마친 법률정보 안에서만 찾습니다.')).toBeVisible();
+  } finally {
+    await context.close();
+  }
 });
 
 test('버전별 검색 인덱스는 구·신 클라이언트의 교차 배포 캐시를 분리한다', async ({

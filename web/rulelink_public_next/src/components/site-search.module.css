@@ -54,37 +54,6 @@
   color: #86928c;
 }
 
-.searchExamples {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 12px;
-}
-
-.searchExamples > span {
-  color: var(--muted-soft);
-  font-size: 11px;
-  font-weight: 800;
-}
-
-.searchExamples button {
-  background: transparent;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-pill);
-  color: var(--muted);
-  cursor: pointer;
-  font: inherit;
-  font-size: 12px;
-  padding: 7px 10px;
-}
-
-.searchExamples button:hover,
-.searchExamples button:focus-visible {
-  border-color: var(--green);
-  color: var(--green);
-}
-
 .searchBox > p {
   color: var(--muted-soft);
   font-size: 11px;

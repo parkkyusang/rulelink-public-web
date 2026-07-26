@@ -17,7 +17,7 @@ import {
 import {
   classifySiteSearchMiss,
   rankSiteSearchDocuments,
-  SITE_SEARCH_EXAMPLES,
+  SITE_SEARCH_PLACEHOLDER,
   type SiteSearchDocument,
   type SiteSearchResultCounts,
   type SiteSearchResultFilter,
@@ -150,22 +150,10 @@ export function SiteSearch({
               void ensureFullIndex().catch(() => undefined);
             }}
             onChange={event => updateQuery(event.target.value)}
-            placeholder={`예: ${SITE_SEARCH_EXAMPLES[0].label_ko}`}
+            placeholder={`예: ${SITE_SEARCH_PLACEHOLDER}`}
             type="search"
             value={query}
           />
-        </div>
-        <div aria-label="검색 예시" className={styles.searchExamples}>
-          <span>예시</span>
-          {SITE_SEARCH_EXAMPLES.map(example => (
-            <button
-              key={example.kind}
-              onClick={() => updateQuery(example.query)}
-              type="button"
-            >
-              {example.label_ko}
-            </button>
-          ))}
         </div>
         <p>공개 승인을 마친 법률정보 안에서만 찾습니다.</p>
       </div>
