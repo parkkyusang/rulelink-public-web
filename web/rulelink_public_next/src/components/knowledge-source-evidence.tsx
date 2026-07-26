@@ -114,8 +114,9 @@ export function KnowledgeSourceEvidence({
         <p className="eyebrow">공식 근거</p>
         <h2 id="source-evidence-heading">이 글의 판단에 사용한 법령과 공식 자료입니다.</h2>
         <p>
-          확인한 조문은 카드 안에서 바로 읽을 수 있습니다.
-          나머지 자료는 각 카드에서 공식 원문을 확인할 수 있습니다.
+          카드를 열면 근거 위치와 원문 확인 방법을 볼 수 있습니다.
+          정확한 조문 문언을 대조해 둔 자료는 페이지 안에 함께 보여드리고,
+          나머지는 공식 사이트의 해당 원문으로 연결합니다.
         </p>
       </header>
       <div className={styles.grid}>
@@ -147,7 +148,7 @@ export function KnowledgeSourceEvidence({
                     <small>{sourceKindLabel(source)}</small>
                     <strong>{sourceLabel(source)}</strong>
                     <span className={styles.availability}>
-                      {sourceText ? '조문 문언 포함' : '공식 원문에서 확인'}
+                      {sourceText ? '페이지에서 조문 보기' : '공식 사이트에서 원문 보기'}
                     </span>
                   </span>
                   <span className={styles.reviewed}>
@@ -177,8 +178,8 @@ export function KnowledgeSourceEvidence({
                     </section>
                   ) : (
                     <div className={styles.officialText} data-source-text-state="link_only">
-                      <strong>공식 원문에서 확인</strong>
-                      <p>이 자료의 원문은 아래 공식 사이트에서 확인할 수 있습니다.</p>
+                      <strong>공식 사이트에서 원문 보기</strong>
+                      <p>아래 링크를 열면 이 근거의 공식 원문을 확인할 수 있습니다.</p>
                     </div>
                   )}
                   {sourceClaims.length ? (

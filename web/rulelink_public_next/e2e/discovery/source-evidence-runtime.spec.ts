@@ -128,7 +128,7 @@ test('검증 문언과 공식 원문 연결 상태를 카드 제목과 본문에
   const verifiedCard = page.locator(
     `[data-source-coordinate="${firstMatchingSource(verifiedEntry, verifiedSourceIds)}"]`,
   );
-  await expect(verifiedCard.locator('summary')).toContainText('조문 문언 포함');
+  await expect(verifiedCard.locator('summary')).toContainText('페이지에서 조문 보기');
   await verifiedCard.locator('summary').click();
   await expect(verifiedCard.locator('[data-source-text-state="verified_text"]')).toBeVisible();
   await expect(verifiedCard.locator('[data-source-text-state="verified_text"] p')).not.toBeEmpty();
@@ -138,11 +138,11 @@ test('검증 문언과 공식 원문 연결 상태를 카드 제목과 본문에
   const linkOnlyCard = page.locator(
     `[data-source-coordinate="${firstMatchingSource(linkOnlyEntry, linkOnlySourceIds)}"]`,
   );
-  await expect(linkOnlyCard.locator('summary')).toContainText('공식 원문에서 확인');
+  await expect(linkOnlyCard.locator('summary')).toContainText('공식 사이트에서 원문 보기');
   await linkOnlyCard.locator('summary').click();
   const linkOnly = linkOnlyCard.locator('[data-source-text-state="link_only"]');
   await expect(linkOnly).toBeVisible();
-  await expect(linkOnly).toContainText('아래 공식 사이트에서 확인할 수 있습니다.');
+  await expect(linkOnly).toContainText('아래 링크를 열면 이 근거의 공식 원문을 확인할 수 있습니다.');
   await expect(linkOnly).not.toContainText('페이지 안에 문언을 옮겨 싣지 않고');
   await expect(linkOnlyCard.getByRole('link', {name: /새 탭으로 열기/u})).toBeVisible();
 });
@@ -181,7 +181,7 @@ async function assertSummaryAvailabilityIsComplete(page: Page) {
     '[data-source-evidence] [data-source-card] summary',
   ).evaluateAll(items => items.map(item => {
     const text = item.textContent ?? '';
-    return ['조문 문언 포함', '공식 원문에서 확인']
+    return ['페이지에서 조문 보기', '공식 사이트에서 원문 보기']
       .filter(label => text.includes(label)).length;
   }));
   expect(states.every(count => count === 1)).toBe(true);
