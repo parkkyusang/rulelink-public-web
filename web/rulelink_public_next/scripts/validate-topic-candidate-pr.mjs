@@ -199,6 +199,45 @@ export async function classifyTopicCandidatePullRequest({
     registered.push(matches[0]);
   }
 
+  const registeredTopicFiles = sorted(registered.map(item => item.topic_file));
+  const registeredTestFiles = sorted(registered.map(item => item.test_file));
+  for (const item of registered) {
+    if (
+      !topicPathPattern.test(item.topic_file) ||
+      !testPathPattern.test(item.test_file)
+    ) {
+      throw new Error(
+        `${item.work_id}의 topic/test 등록 경로가 후보 전용 경로 계약과 다릅니다.`,
+      );
+    }
+    const itemFiles = sorted(item.candidate_import.pr_changed_files ?? []);
+    const allowedItemFiles = sorted([item.topic_file, item.test_file]);
+    if (canonicalJson(itemFiles) !== canonicalJson(allowedItemFiles)) {
+      throw new Error(
+        `${item.work_id}의 후보 범위에는 등록 topic과 test 외 파일이 있으면 안 됩니다.`,
+      );
+    }
+  }
+  const actualTopicFiles = sorted(
+    actualFiles.filter(filePath => topicPathPattern.test(filePath)),
+  );
+  const actualTestFiles = sorted(
+    actualFiles.filter(filePath => testPathPattern.test(filePath)),
+  );
+  if (
+    actualFiles.some(
+      filePath =>
+        !topicPathPattern.test(filePath) &&
+        !testPathPattern.test(filePath),
+    ) ||
+    canonicalJson(actualTopicFiles) !== canonicalJson(registeredTopicFiles) ||
+    canonicalJson(actualTestFiles) !== canonicalJson(registeredTestFiles)
+  ) {
+    throw new Error(
+      'topic-only 후보는 등록된 기존 주제 파일과 각 전용 시험 파일만 변경할 수 있습니다.',
+    );
+  }
+
   const expectedFiles = sorted(
     registered.flatMap(item => item.candidate_import.pr_changed_files ?? []),
   );
@@ -266,10 +305,11 @@ export async function classifyTopicCandidatePullRequest({
     }
     if (
       !Array.isArray(candidate.range_commit_shas) ||
-      !candidate.range_commit_shas.includes(candidate.source_head_sha)
+      !candidate.range_commit_shas.includes(candidate.source_head_sha) ||
+      candidate.source_head_sha !== headSha
     ) {
       throw new Error(
-        `${item.work_id}의 source head가 등록 commit 범위에 없습니다.`,
+        `${item.work_id}의 source head가 실제 PR head와 정확히 일치하지 않습니다.`,
       );
     }
     await runGit([

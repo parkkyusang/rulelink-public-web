@@ -108,7 +108,23 @@ test('등록 범위 밖 파일이 하나라도 있으면 후보 게이트를 통
       queue: queueFixture(),
       runGit: gitFixture({files: [topicFile, testFile, 'README.md']}),
     }),
-    /등록된 후보 범위와 실제 PR 범위가 다릅니다/u,
+    /등록된 기존 주제 파일과 각 전용 시험 파일만/u,
+  );
+});
+
+test('등록부가 임의 코드 파일을 후보 범위에 넣어도 topic-only 게이트를 우회하지 못한다', async () => {
+  const queue = queueFixture();
+  const codeFile = 'web/rulelink_public_next/src/lib/unsafe-candidate.ts';
+  queue.items[0].candidate_import.pr_changed_files.push(codeFile);
+  await assert.rejects(
+    classifyTopicCandidatePullRequest({
+      baseSha,
+      headSha,
+      headRef: 'codex/content-example-20260727',
+      queue,
+      runGit: gitFixture({files: [topicFile, testFile, codeFile]}),
+    }),
+    /등록 topic과 test 외 파일/u,
   );
 });
 
@@ -179,6 +195,28 @@ test('실제 PR base·merge-base·head ref가 다르면 fail-closed다', async (
       runGit: gitFixture({mergeBase: 'c'.repeat(40)}),
     }),
     /merge-base/u,
+  );
+});
+
+test('등록 source head가 실제 PR head의 조상이기만 하고 exact가 아니면 거부한다', async () => {
+  const queue = queueFixture();
+  const ancestorSha = 'c'.repeat(40);
+  queue.items[0].candidate_import.source_head_sha = ancestorSha;
+  queue.items[0].candidate_import.range_commit_shas = [ancestorSha, headSha];
+  await assert.rejects(
+    classifyTopicCandidatePullRequest({
+      baseSha,
+      headSha,
+      headRef: 'codex/content-example-20260727',
+      queue,
+      runGit: gitFixture({
+        commits: [
+          `${ancestorSha} ${baseSha}`,
+          `${headSha} ${ancestorSha}`,
+        ],
+      }),
+    }),
+    /실제 PR head와 정확히 일치/u,
   );
 });
 
