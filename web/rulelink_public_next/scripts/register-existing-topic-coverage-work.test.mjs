@@ -12,20 +12,10 @@ import {
   topicReceipt,
   validateProductionQueue,
 } from './validate-publication-production-queue.mjs';
-
-const registrationChainChangeScope = Object.freeze([
-  'artifacts/publication/coverage/coverage-expansion-plan.json',
-  'artifacts/publication/production-queue-registry.json',
-  'artifacts/publication/production-queue.json',
-  'web/rulelink_public_next/scripts/build-publication-coverage-expansion-plan.mjs',
-  'web/rulelink_public_next/scripts/existing-topic-coverage-candidate-core.mjs',
-  'web/rulelink_public_next/scripts/publication-coverage-expansion-planner.test.mjs',
-  'web/rulelink_public_next/scripts/register-existing-topic-coverage-work.test.mjs',
-  'web/rulelink_public_next/scripts/register-publication-production-work.mjs',
-  'web/rulelink_public_next/scripts/register-publication-production-work.test.mjs',
-  'web/rulelink_public_next/scripts/validate-publication-production-queue.mjs',
-  'web/rulelink_public_next/scripts/validate-publication-production-queue.test.mjs',
-]);
+import {
+  EXISTING_TOPIC_COVERAGE_REGISTRATION_CHANGE_SCOPE,
+  verifyExistingTopicCoverageRegistrationChangeScope,
+} from './existing-topic-coverage-candidate-core.mjs';
 
 const workId =
   'coverage-expansion-housing-lease-deposit-kr-knowledge-core-20260726-024';
@@ -38,29 +28,66 @@ const topicFile =
 const candidateTestFile =
   'web/rulelink_public_next/scripts/housing-lease-deposit-response-map-topic.test.mjs';
 
-test('기존 주제 후보 등록 체인은 정본·계획·등록·검증 11파일만 소유한다', () => {
-  assert.equal(registrationChainChangeScope.length, 11);
-  assert.deepEqual(registrationChainChangeScope, [
-    'artifacts/publication/coverage/coverage-expansion-plan.json',
-    'artifacts/publication/production-queue-registry.json',
-    'artifacts/publication/production-queue.json',
-    'web/rulelink_public_next/scripts/build-publication-coverage-expansion-plan.mjs',
-    'web/rulelink_public_next/scripts/existing-topic-coverage-candidate-core.mjs',
-    'web/rulelink_public_next/scripts/publication-coverage-expansion-planner.test.mjs',
-    'web/rulelink_public_next/scripts/register-existing-topic-coverage-work.test.mjs',
-    'web/rulelink_public_next/scripts/register-publication-production-work.mjs',
-    'web/rulelink_public_next/scripts/register-publication-production-work.test.mjs',
-    'web/rulelink_public_next/scripts/validate-publication-production-queue.mjs',
-    'web/rulelink_public_next/scripts/validate-publication-production-queue.test.mjs',
-  ]);
-  assert.equal(registrationChainChangeScope.some(filePath => (
-    filePath.startsWith('artifacts/publication/topics/')
-    || filePath.startsWith('artifacts/publication/current/')
-    || filePath.startsWith('artifacts/publication/snapshots/')
-    || filePath.startsWith('artifacts/publication/releases/')
-    || filePath.includes('site-search')
-    || filePath.includes('source-text')
-  )), false);
+test('기존 주제 후보 등록 체인의 실제 PR 3-dot 범위는 exact 11파일만 허용한다', async () => {
+  const exact = [...EXISTING_TOPIC_COVERAGE_REGISTRATION_CHANGE_SCOPE];
+  const runGit = async args => {
+    assert.deepEqual(args, [
+      'diff',
+      '--name-only',
+      `${baseSha}...${headSha}`,
+    ]);
+    return `${exact.join('\n')}\n`;
+  };
+  const verified = await verifyExistingTopicCoverageRegistrationChangeScope({
+    baseSha,
+    headSha,
+    runGit,
+  });
+  assert.equal(verified.changedFiles.length, 11);
+  assert.deepEqual(verified.changedFiles, [...exact].sort());
+});
+
+test('등록 체인 밖 topic·current·snapshot·release·search·source 파일은 PR 범위에서 차단한다', async () => {
+  const forbiddenExtras = [
+    'artifacts/publication/topics/housing-lease-deposit.json',
+    'artifacts/publication/current/bundle.json',
+    'artifacts/publication/snapshots/kr-knowledge-core-test/bundle.json',
+    'artifacts/publication/releases/release.json',
+    'web/rulelink_public_next/src/lib/site-search-discovery.ts',
+    'artifacts/publication/derived/source-text-library.json',
+  ];
+  for (const extraPath of forbiddenExtras) {
+    const runGit = async () => [
+      ...EXISTING_TOPIC_COVERAGE_REGISTRATION_CHANGE_SCOPE,
+      extraPath,
+      '',
+    ].join('\n');
+    await assert.rejects(
+      verifyExistingTopicCoverageRegistrationChangeScope({
+        baseSha,
+        headSha,
+        runGit,
+      }),
+      new RegExp(`extra=.*${extraPath.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&')}`, 'u'),
+    );
+  }
+});
+
+test('등록 체인 필수 파일이 빠진 PR 범위도 차단한다', async () => {
+  const missingPath = 'web/rulelink_public_next/scripts/existing-topic-coverage-candidate-core.mjs';
+  const runGit = async () => (
+    EXISTING_TOPIC_COVERAGE_REGISTRATION_CHANGE_SCOPE
+      .filter(filePath => filePath !== missingPath)
+      .join('\n')
+  );
+  await assert.rejects(
+    verifyExistingTopicCoverageRegistrationChangeScope({
+      baseSha,
+      headSha,
+      runGit,
+    }),
+    new RegExp(`missing=${missingPath.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&')}`, 'u'),
+  );
 });
 
 function topic(extraEntry = false) {

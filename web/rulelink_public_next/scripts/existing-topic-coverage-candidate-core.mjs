@@ -5,6 +5,20 @@ const candidateSchema = 'rulelink_existing_topic_candidate_import_v2';
 const rangeMergePolicy =
   'exact_pr_base_reject_merge_commits_and_require_exact_path_union';
 
+export const EXISTING_TOPIC_COVERAGE_REGISTRATION_CHANGE_SCOPE = Object.freeze([
+  'artifacts/publication/coverage/coverage-expansion-plan.json',
+  'artifacts/publication/production-queue-registry.json',
+  'artifacts/publication/production-queue.json',
+  'web/rulelink_public_next/scripts/build-publication-coverage-expansion-plan.mjs',
+  'web/rulelink_public_next/scripts/existing-topic-coverage-candidate-core.mjs',
+  'web/rulelink_public_next/scripts/publication-coverage-expansion-planner.test.mjs',
+  'web/rulelink_public_next/scripts/register-existing-topic-coverage-work.test.mjs',
+  'web/rulelink_public_next/scripts/register-publication-production-work.mjs',
+  'web/rulelink_public_next/scripts/register-publication-production-work.test.mjs',
+  'web/rulelink_public_next/scripts/validate-publication-production-queue.mjs',
+  'web/rulelink_public_next/scripts/validate-publication-production-queue.test.mjs',
+]);
+
 function canonicalJson(value) {
   if (Array.isArray(value)) return `[${value.map(canonicalJson).join(',')}]`;
   if (value && typeof value === 'object') {
@@ -128,6 +142,36 @@ function splitLines(value) {
     .split(/\r?\n/u)
     .map(line => line.trim())
     .filter(Boolean);
+}
+
+export async function verifyExistingTopicCoverageRegistrationChangeScope({
+  baseSha,
+  headSha,
+  runGit,
+}) {
+  for (const [field, value] of Object.entries({baseSha, headSha})) {
+    if (!/^[0-9a-f]{40}$/u.test(value || '')) {
+      throw new Error(`registration scope ${field}는 40자리 commit SHA여야 합니다.`);
+    }
+  }
+  if (typeof runGit !== 'function') {
+    throw new Error('registration scope 검증에는 Git diff 공급자가 필요합니다.');
+  }
+  const observed = splitLines(
+    await runGit(['diff', '--name-only', `${baseSha}...${headSha}`]),
+  ).sort();
+  const expected = [...EXISTING_TOPIC_COVERAGE_REGISTRATION_CHANGE_SCOPE].sort();
+  if (canonicalJson(observed) !== canonicalJson(expected)) {
+    const expectedSet = new Set(expected);
+    const observedSet = new Set(observed);
+    const extra = observed.filter(filePath => !expectedSet.has(filePath));
+    const missing = expected.filter(filePath => !observedSet.has(filePath));
+    throw new Error(
+      `existing-topic registration PR 범위가 exact 11파일이 아닙니다: ` +
+      `extra=${extra.join(',') || '-'} missing=${missing.join(',') || '-'}`,
+    );
+  }
+  return {baseSha, headSha, changedFiles: observed};
 }
 
 async function commitPathUnion(runGit, baseSha, headSha) {
