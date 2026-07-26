@@ -5,7 +5,7 @@ import test from 'node:test';
 import {fileURLToPath} from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const [bundle, projectionSource, rankingSource, siteSearchSource, siteSearchIndexSource, siteSearchPublicationSource, searchPageSource, legacySearchRouteSource, searchRouteSource, knowledgeExplorerSource] = await Promise.all([
+const [bundle, projectionSource, rankingSource, siteSearchSource, siteSearchIndexSource, siteSearchPublicationSource, searchPageSource, legacySearchRouteSource, searchV2RouteSource, searchRouteSource, knowledgeExplorerSource] = await Promise.all([
   readFile(path.resolve(root, '..', '..', 'artifacts', 'publication', 'current', 'bundle.json'), 'utf8').then(JSON.parse),
   readFile(path.join(root, 'src', 'lib', 'knowledge-search.ts'), 'utf8'),
   readFile(path.join(root, 'src', 'lib', 'knowledge-search-ranking.ts'), 'utf8'),
@@ -15,6 +15,7 @@ const [bundle, projectionSource, rankingSource, siteSearchSource, siteSearchInde
   readFile(path.join(root, 'app', 'ko', 'search', 'page.tsx'), 'utf8'),
   readFile(path.join(root, 'app', 'search-index.json', 'route.ts'), 'utf8'),
   readFile(path.join(root, 'app', 'search-index.v2.json', 'route.ts'), 'utf8'),
+  readFile(path.join(root, 'app', 'search-index.v3.json', 'route.ts'), 'utf8'),
   readFile(path.join(root, 'src', 'components', 'knowledge-explorer.tsx'), 'utf8'),
 ]);
 
@@ -43,8 +44,9 @@ test('통합검색과 지식 보관함은 검색 투영과 연결 근거 표지�
   assert.match(siteSearchPublicationSource, /buildSiteSearchDocuments/);
   assert.match(siteSearchSource, /rankSiteSearchDocuments/);
   assert.match(siteSearchSource, /fetch\(indexHref/);
-  assert.match(searchPageSource, /indexHref="\/search-index\.v2\.json"/);
+  assert.match(searchPageSource, /indexHref="\/search-index\.v3\.json"/);
   assert.match(siteSearchSource, /decodeSiteSearchIndex/);
+  assert.match(siteSearchIndexSource, /rulelink_public_search_index_v3/);
   assert.match(siteSearchIndexSource, /rulelink_public_search_index_v2/);
   assert.match(siteSearchSource, /matchReasons/);
   for (const source of [siteSearchSource, rankingSource]) assert.match(source, /evidence_labels_ko|evidenceLabels/u);
@@ -70,6 +72,7 @@ test('통합검색은 전체 검색 투영을 유지하고 화면 카드만 점�
   assert.match(searchPageSource, /hasPart: initialParts\.map/);
   assert.match(searchRouteSource, /encodeSiteSearchIndex/);
   assert.match(searchRouteSource, /await loadSiteSearchDocuments\(\)/);
+  assert.match(searchV2RouteSource, /encodeSiteSearchIndexV2/);
   assert.match(legacySearchRouteSource, /rulelink_public_search_index_v1/);
   assert.doesNotMatch(legacySearchRouteSource, /encodeSiteSearchIndex/);
 });

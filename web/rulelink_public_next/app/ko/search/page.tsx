@@ -75,7 +75,7 @@ export default async function SearchPage() {
       </header>
       <SiteSearch
         freshnessNow={freshnessNow.toISOString()}
-        indexHref="/search-index.v2.json"
+        indexHref="/search-index.v3.json"
         initialDocuments={initialDocuments}
         totalCounts={countSiteSearchDocuments(documents)}
       />

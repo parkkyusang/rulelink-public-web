@@ -5,7 +5,10 @@ import test from 'node:test';
 import {fileURLToPath} from 'node:url';
 
 import {changeLifecycleLabel} from '../src/lib/change-lifecycle.ts';
-import {buildKnowledgeSearchDocuments} from '../src/lib/knowledge-search.ts';
+import {
+  buildKnowledgeSearchDocuments,
+  buildKnowledgeSearchSemanticSupport,
+} from '../src/lib/knowledge-search.ts';
 import {
   buildSiteSearchDocuments,
   rankSiteSearchDocuments,
@@ -41,6 +44,7 @@ const documents = buildSiteSearchDocuments(
     knowledgeContentType: value => value || '법률정보',
   },
   decisionQuestions,
+  buildKnowledgeSearchSemanticSupport(bundle.knowledge),
 );
 const now = new Date('2026-07-26T00:00:00+09:00');
 

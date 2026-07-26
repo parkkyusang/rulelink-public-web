@@ -4,18 +4,27 @@ import {
   listChangeBriefs,
   listKnowledgeDecisionQuestions,
   listKnowledgeSearchDocuments,
+  listKnowledgeSearchSemanticSupport,
   listPublishedCards,
   listPublishedTopics,
 } from './publication';
 import {buildSiteSearchDocuments} from './site-search-discovery';
 
 export async function loadSiteSearchDocuments() {
-  const [cards, changeBriefs, knowledgeDocuments, topics, decisionQuestions] = await Promise.all([
+  const [
+    cards,
+    changeBriefs,
+    knowledgeDocuments,
+    topics,
+    decisionQuestions,
+    semanticSupport,
+  ] = await Promise.all([
     listPublishedCards(),
     listChangeBriefs(),
     listKnowledgeSearchDocuments(),
     listPublishedTopics(),
     listKnowledgeDecisionQuestions(),
+    listKnowledgeSearchSemanticSupport(),
   ]);
   return buildSiteSearchDocuments(
     cards,
@@ -27,5 +36,6 @@ export async function loadSiteSearchDocuments() {
       knowledgeContentType: knowledgeContentTypeLabel,
     },
     decisionQuestions,
+    semanticSupport,
   );
 }

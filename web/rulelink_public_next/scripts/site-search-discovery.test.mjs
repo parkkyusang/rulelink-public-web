@@ -5,7 +5,10 @@ import test from 'node:test';
 import {fileURLToPath} from 'node:url';
 
 import {changeLifecycleLabel} from '../src/lib/change-lifecycle.ts';
-import {buildKnowledgeSearchDocuments} from '../src/lib/knowledge-search.ts';
+import {
+  buildKnowledgeSearchDocuments,
+  buildKnowledgeSearchSemanticSupport,
+} from '../src/lib/knowledge-search.ts';
 import {
   buildSiteSearchDocuments,
   classifySiteSearchMiss,
@@ -16,6 +19,7 @@ import {
 import {
   decodeSiteSearchIndex,
   encodeSiteSearchIndex,
+  encodeSiteSearchIndexV2,
   projectLegacySiteSearchDocuments,
 } from '../src/lib/site-search-index.ts';
 
@@ -47,6 +51,7 @@ const documents = buildSiteSearchDocuments(
     knowledgeContentType: value => value || '법률정보',
   },
   decisionQuestions,
+  buildKnowledgeSearchSemanticSupport(bundle.knowledge),
 );
 const now = new Date('2026-07-24T00:00:00+09:00');
 
@@ -83,6 +88,7 @@ test('운영 정본의 모든 검색 대상을 종류 편향 없이 한 투영�
 
 test('전체 검색 인덱스와 초기 24개 문서는 각각 절대 전송량 예산 안에 있다', () => {
   const payload = encodeSiteSearchIndex(documents, now.toISOString());
+  const v2Payload = encodeSiteSearchIndexV2(documents, now.toISOString());
   const legacyDocuments = projectLegacySiteSearchDocuments(documents);
   const legacyPayload = {
     schema: 'rulelink_public_search_index_v1',
@@ -93,6 +99,9 @@ test('전체 검색 인덱스와 초기 24개 문서는 각각 절대 전송량 
     generatedAt: now.toISOString(),
     documents,
   });
+  assert.equal(v2Payload.schema, 'rulelink_public_search_index_v2');
+  assert.ok(v2Payload.documents.every(document => document.length === 14));
+  assert.equal(decodeSiteSearchIndex(v2Payload), null);
   const ranked = rankSiteSearchDocuments(documents, {now, query: ''})
     .slice(0, 24)
     .map(({
@@ -495,10 +504,112 @@ test('공백·구두점과 부분 토큰을 정규화하고 모든 논리 토큰
   });
   assert.ok(spaced.length > 0);
   assert.ok(spaced.every(result => (
-    /온라인|인터넷|전자상거래/u.test(searchableText(result))
-    && /쇼핑/u.test(searchableText(result))
-    && /환불|환급|반환|회수/u.test(searchableText(result))
+    result.semanticFacets?.includes('@domain:online-commerce')
+    && result.semanticFacets?.includes('@remedy:refund-return')
+    && result.matchReasons.length > 0
   )));
+});
+
+test('역할·행동·부정·구제수단을 정본 의미 필드에서 일반화해 찾는다', () => {
+  const stalking = rankSiteSearchDocuments(documents, {
+    now,
+    query: '스토킹 접근금지 받고 싶어요',
+  });
+  assert.equal(
+    stalking[0]?.id,
+    'content.domestic-violence-stalking-stalking-emergency',
+  );
+  assert.ok(stalking[0]?.matchReasons.length > 0);
+
+  const onlineRefund = rankSiteSearchDocuments(documents, {
+    now,
+    query: '온라인 쇼핑 환불 거부',
+  });
+  assert.equal(
+    onlineRefund[0]?.id,
+    'content.online-withdrawal-seven-days-vs-defect-deadline',
+  );
+  assert.match(searchableText(onlineRefund[0]), /온라인|구매/u);
+  assert.match(searchableText(onlineRefund[0]), /거절|거부/u);
+  assert.ok(onlineRefund[0].matchReasons.length > 0);
+
+  const unpaidWage = rankSiteSearchDocuments(documents, {
+    now,
+    query: '월급을 못 받았어요',
+  });
+  assert.ok(unpaidWage.length > 0);
+  assert.notEqual(
+    unpaidWage[0]?.id,
+    'content.dismissal-notice-pay-is-not-dismissal-validity',
+  );
+  assert.ok(unpaidWage.every(result => (
+    result.semanticFacets?.includes('@subject:wage')
+    && result.semanticFacets?.includes('@state:nonpayment')
+  )));
+  assert.ok(unpaidWage[0].matchReasons.length > 0);
+});
+
+test('피동형 역할은 문서의 주된 독자 역할과 일치할 때만 열고 콘텐츠 공백은 닫는다', () => {
+  assert.deepEqual(
+    rankSiteSearchDocuments(documents, {now, query: '고소당했는데'}),
+    [],
+    '피고소인용 글이 없으면 피해자용 고소 글을 대신 내보내지 않습니다.',
+  );
+
+  const accused = {
+    ...searchDocument(
+      'accused',
+      'knowledge',
+      '2026-07-20',
+      '피고소인이 수사 연락을 받았을 때 확인할 절차',
+    ),
+    fields: {
+      ...searchDocument('accused', 'knowledge', '2026-07-20', '피고소인 안내').fields,
+      audience: ['고소를 당해 피의자 조사 연락을 받은 사람'],
+    },
+  };
+  const victim = {
+    ...searchDocument(
+      'victim',
+      'knowledge',
+      '2026-07-20',
+      '피해자가 고소를 취소하려면',
+    ),
+    fields: {
+      ...searchDocument('victim', 'knowledge', '2026-07-20', '피해자 안내').fields,
+      audience: ['고소인인 피해자가 처벌 의사를 바꾸려는 경우'],
+    },
+  };
+  assert.deepEqual(
+    rankSiteSearchDocuments([victim, accused], {
+      now,
+      query: '고소당했는데',
+    }).map(result => result.id),
+    ['accused'],
+  );
+  assert.deepEqual(
+    rankSiteSearchDocuments([victim, accused], {
+      now,
+      query: '고소를 취소하고 싶어요',
+    }).map(result => result.id),
+    ['victim'],
+  );
+});
+
+test('부정 수령 표현은 임금 미지급일 때만 결박하고 정상 수령 질의를 오염시키지 않는다', () => {
+  const unpaidTokens = tokenizeSiteSearchQuery('월급을 못 받았어요');
+  assert.ok(unpaidTokens.some(group => group.includes('@subject:wage')));
+  assert.ok(unpaidTokens.some(group => group.includes('@state:nonpayment')));
+
+  const benefitTokens = tokenizeSiteSearchQuery('산재 요양급여를 받을 수 있나요');
+  assert.ok(!benefitTokens.flat().includes('@subject:wage'));
+  assert.ok(!benefitTokens.flat().includes('@state:nonpayment'));
+  const benefits = rankSiteSearchDocuments(documents, {
+    now,
+    query: '산재 요양급여를 받을 수 있나요',
+  });
+  assert.ok(benefits.length > 0);
+  assert.match(searchableText(benefits[0]), /산재|요양급여|보험급여/u);
 });
 
 test('매칭 이유는 실제 표시 필드의 문구만 사용하고 현재성은 publicationNow 계약을 따른다', () => {
