@@ -5,10 +5,14 @@
     {
       "coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
       "source_id": "housing_lease_ko_0003_03",
+      "source_kind": "statute",
+      "law_key": "housing_lease",
       "law_name_ko": "주택임대차보호법",
       "article_no": "제3조의3",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C3%EC%A1%B0%EC%9D%983",
-      "source_snapshot_id": "snapshot:1c35b925f8d04acba8a9a1b0c9796e07",
+      "official_url_http_status": 200,
+      "source_snapshot_id": "1c35b925f8d04acba8a9a1b0c9796e07",
+      "source_version_key": "sha256:e7b90dac2690889444482f85c38db5e913a4caba88d7a90c23f5fb46b4fce82a",
       "last_verified_at": "2026-07-21T08:00:00+00:00"
     },
     {
@@ -52,6 +56,374 @@
       "last_verified_at": "2026-07-21T08:00:00+00:00"
     }
   ],
+  "source_version_bridges": [
+    {
+      "bridge_id": "bridge.housing-lease.3-3.v1",
+      "source_coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
+      "source_snapshot_id": "1c35b925f8d04acba8a9a1b0c9796e07",
+      "source_version_key": "sha256:e7b90dac2690889444482f85c38db5e913a4caba88d7a90c23f5fb46b4fce82a",
+      "validation_status": "verified"
+    }
+  ],
+  "source_authority_units": [
+    {
+      "source_authority_unit_id": "unit:housing_lease:0003_03:article",
+      "version_bridge_id": "bridge.housing-lease.3-3.v1",
+      "source_coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
+      "source_snapshot_id": "1c35b925f8d04acba8a9a1b0c9796e07",
+      "source_version_key": "sha256:e7b90dac2690889444482f85c38db5e913a4caba88d7a90c23f5fb46b4fce82a",
+      "unit_kind": "article",
+      "locator": {
+        "article_no": "0003-03"
+      },
+      "locator_key": "a3-3",
+      "ordinal": 0,
+      "official_text_ko": "제3조의3(임차권등기명령)",
+      "official_text_hash": "44919cb2568d9e97928845b0982f9367040fb79f7f275fd9b9960ff9e96aacac",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:housing_lease:0003_03:article:p1",
+      "parent_source_authority_unit_id": "unit:housing_lease:0003_03:article",
+      "version_bridge_id": "bridge.housing-lease.3-3.v1",
+      "source_coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
+      "source_snapshot_id": "1c35b925f8d04acba8a9a1b0c9796e07",
+      "source_version_key": "sha256:e7b90dac2690889444482f85c38db5e913a4caba88d7a90c23f5fb46b4fce82a",
+      "unit_kind": "paragraph",
+      "locator": {
+        "article_no": "0003-03",
+        "paragraph_no": "1"
+      },
+      "locator_key": "a3-3-p1",
+      "ordinal": 1,
+      "official_text_ko": "① 임대차가 끝난 후 보증금이 반환되지 아니한 경우 임차인은 임차주택의 소재지를 관할하는 지방법원ㆍ지방법원지원 또는 시ㆍ군 법원에 임차권등기명령을 신청할 수 있다.",
+      "official_text_hash": "940a04877cd332ebd99025ba6317ee96b4e131abce8803fa5994ff5cec0fddb3",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:housing_lease:0003_03:article:p2",
+      "parent_source_authority_unit_id": "unit:housing_lease:0003_03:article",
+      "version_bridge_id": "bridge.housing-lease.3-3.v1",
+      "source_coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
+      "source_snapshot_id": "1c35b925f8d04acba8a9a1b0c9796e07",
+      "source_version_key": "sha256:e7b90dac2690889444482f85c38db5e913a4caba88d7a90c23f5fb46b4fce82a",
+      "unit_kind": "paragraph",
+      "locator": {
+        "article_no": "0003-03",
+        "paragraph_no": "2"
+      },
+      "locator_key": "a3-3-p2",
+      "ordinal": 2,
+      "official_text_ko": "② 임차권등기명령의 신청서에는 다음 각 호의 사항을 적어야 하며, 신청의 이유와 임차권등기의 원인이 된 사실을 소명(疎明)하여야 한다.",
+      "official_text_hash": "c522638cc736a61d30b4077aec49af503c8d066747f0c1575a573ad6e0a85f17",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:housing_lease:0003_03:article:p5",
+      "parent_source_authority_unit_id": "unit:housing_lease:0003_03:article",
+      "version_bridge_id": "bridge.housing-lease.3-3.v1",
+      "source_coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
+      "source_snapshot_id": "1c35b925f8d04acba8a9a1b0c9796e07",
+      "source_version_key": "sha256:e7b90dac2690889444482f85c38db5e913a4caba88d7a90c23f5fb46b4fce82a",
+      "unit_kind": "paragraph",
+      "locator": {
+        "article_no": "0003-03",
+        "paragraph_no": "5"
+      },
+      "locator_key": "a3-3-p5",
+      "ordinal": 5,
+      "official_text_ko": "⑤ 임차인은 임차권등기명령의 집행에 따른 임차권등기를 마치면 제3조제1항ㆍ제2항 또는 제3항에 따른 대항력과 제3조의2제2항에 따른 우선변제권을 취득한다. 다만, 임차인이 임차권등기 이전에 이미 대항력이나 우선변제권을 취득한 경우에는 그 대항력이나 우선변제권은 그대로 유지되며, 임차권등기 이후에는 제3조제1항ㆍ제2항 또는 제3항의 대항요건을 상실하더라도 이미 취득한 대항력이나 우선변제권을 상실하지 아니한다.",
+      "official_text_hash": "108dab105e83ccc69def51043e053b35106863fe4aef9e5ba3d0f0d4ca5d93bf",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:housing_lease:0003_03:article:p2:i1",
+      "parent_source_authority_unit_id": "unit:housing_lease:0003_03:article:p2",
+      "version_bridge_id": "bridge.housing-lease.3-3.v1",
+      "source_coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
+      "source_snapshot_id": "1c35b925f8d04acba8a9a1b0c9796e07",
+      "source_version_key": "sha256:e7b90dac2690889444482f85c38db5e913a4caba88d7a90c23f5fb46b4fce82a",
+      "unit_kind": "item",
+      "locator": {
+        "article_no": "0003-03",
+        "paragraph_no": "2",
+        "item_no": "1"
+      },
+      "locator_key": "a3-3-p2-i1",
+      "ordinal": 1,
+      "official_text_ko": "1. 신청의 취지 및 이유",
+      "official_text_hash": "eae6f4167e6247ebbbd95c1dcf6b8b2362cc07b1e9673f61ca0ab4dd07deb064",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:housing_lease:0003_03:article:p2:i2",
+      "parent_source_authority_unit_id": "unit:housing_lease:0003_03:article:p2",
+      "version_bridge_id": "bridge.housing-lease.3-3.v1",
+      "source_coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
+      "source_snapshot_id": "1c35b925f8d04acba8a9a1b0c9796e07",
+      "source_version_key": "sha256:e7b90dac2690889444482f85c38db5e913a4caba88d7a90c23f5fb46b4fce82a",
+      "unit_kind": "item",
+      "locator": {
+        "article_no": "0003-03",
+        "paragraph_no": "2",
+        "item_no": "2"
+      },
+      "locator_key": "a3-3-p2-i2",
+      "ordinal": 2,
+      "official_text_ko": "2. 임대차의 목적인 주택(임대차의 목적이 주택의 일부분인 경우에는 해당 부분의 도면을 첨부한다)",
+      "official_text_hash": "9ec9ec68319015767d0b35b213fd17934e816af3670a2028a7421a7670a13ae7",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:housing_lease:0003_03:article:p2:i3",
+      "parent_source_authority_unit_id": "unit:housing_lease:0003_03:article:p2",
+      "version_bridge_id": "bridge.housing-lease.3-3.v1",
+      "source_coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
+      "source_snapshot_id": "1c35b925f8d04acba8a9a1b0c9796e07",
+      "source_version_key": "sha256:e7b90dac2690889444482f85c38db5e913a4caba88d7a90c23f5fb46b4fce82a",
+      "unit_kind": "item",
+      "locator": {
+        "article_no": "0003-03",
+        "paragraph_no": "2",
+        "item_no": "3"
+      },
+      "locator_key": "a3-3-p2-i3",
+      "ordinal": 3,
+      "official_text_ko": "3. 임차권등기의 원인이 된 사실(임차인이 제3조제1항ㆍ제2항 또는 제3항에 따른 대항력을 취득하였거나 제3조의2제2항에 따른 우선변제권을 취득한 경우에는 그 사실)",
+      "official_text_hash": "1c56bd557e56e8ae0e5918968862ff53b9714587966e4d6032a710e247e3337f",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:housing_lease:0003_03:article:p2:i4",
+      "parent_source_authority_unit_id": "unit:housing_lease:0003_03:article:p2",
+      "version_bridge_id": "bridge.housing-lease.3-3.v1",
+      "source_coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
+      "source_snapshot_id": "1c35b925f8d04acba8a9a1b0c9796e07",
+      "source_version_key": "sha256:e7b90dac2690889444482f85c38db5e913a4caba88d7a90c23f5fb46b4fce82a",
+      "unit_kind": "item",
+      "locator": {
+        "article_no": "0003-03",
+        "paragraph_no": "2",
+        "item_no": "4"
+      },
+      "locator_key": "a3-3-p2-i4",
+      "ordinal": 4,
+      "official_text_ko": "4. 그 밖에 대법원규칙으로 정하는 사항",
+      "official_text_hash": "54f2cb4becd4cf7170054e48851609587c1408999419ec16eb624c6e85cc5aaf",
+      "validation_status": "verified"
+    }
+  ],
+  "authority_reading_units": [
+    {
+      "authority_reading_unit_id": "authority.housing-lease.3-3.v1",
+      "title_ko": "보증금 미반환 뒤 임차권등기명령 신청과 권리 유지",
+      "route_key": {
+        "law_key": "housing_lease",
+        "article_no": "0003-03"
+      },
+      "source_coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
+      "source_snapshot_id": "1c35b925f8d04acba8a9a1b0c9796e07",
+      "source_version_key": "sha256:e7b90dac2690889444482f85c38db5e913a4caba88d7a90c23f5fb46b4fce82a",
+      "time_state": "current_as_of_review",
+      "effective_from": "2026-01-02T00:00:00.000Z",
+      "summary_ko": "임대차 종료ㆍ보증금 미반환이라는 신청요건, 신청서와 소명자료, 등기 완료 뒤 권리 유지 효과를 순서대로 확인합니다.",
+      "anchors": [
+        {
+          "anchor_id": "anchor.housing-lease.3-3",
+          "source_authority_unit_id": "unit:housing_lease:0003_03:article",
+          "locator_key": "a3-3",
+          "official_text_hash": "44919cb2568d9e97928845b0982f9367040fb79f7f275fd9b9960ff9e96aacac",
+          "plain_heading_ko": "임차권등기명령",
+          "explanation_ko": "보증금 미반환 뒤 권리 보전을 위한 임차권등기명령 조문입니다."
+        },
+        {
+          "anchor_id": "anchor.housing-lease.3-3.p1",
+          "parent_anchor_id": "anchor.housing-lease.3-3",
+          "source_authority_unit_id": "unit:housing_lease:0003_03:article:p1",
+          "locator_key": "a3-3-p1",
+          "official_text_hash": "940a04877cd332ebd99025ba6317ee96b4e131abce8803fa5994ff5cec0fddb3",
+          "plain_heading_ko": "신청요건과 관할",
+          "explanation_ko": "임대차 종료, 보증금 미반환, 임차주택 소재지 관할 법원을 확인합니다."
+        },
+        {
+          "anchor_id": "anchor.housing-lease.3-3.p2",
+          "parent_anchor_id": "anchor.housing-lease.3-3",
+          "source_authority_unit_id": "unit:housing_lease:0003_03:article:p2",
+          "locator_key": "a3-3-p2",
+          "official_text_hash": "c522638cc736a61d30b4077aec49af503c8d066747f0c1575a573ad6e0a85f17",
+          "plain_heading_ko": "신청서와 소명자료",
+          "explanation_ko": "신청서 기재사항과 신청 이유ㆍ원인 사실의 소명 필요성을 확인합니다."
+        },
+        {
+          "anchor_id": "anchor.housing-lease.3-3.p2.i1",
+          "parent_anchor_id": "anchor.housing-lease.3-3.p2",
+          "source_authority_unit_id": "unit:housing_lease:0003_03:article:p2:i1",
+          "locator_key": "a3-3-p2-i1",
+          "official_text_hash": "eae6f4167e6247ebbbd95c1dcf6b8b2362cc07b1e9673f61ca0ab4dd07deb064",
+          "plain_heading_ko": "신청 취지와 이유",
+          "explanation_ko": "신청서에 신청 취지와 이유를 적습니다."
+        },
+        {
+          "anchor_id": "anchor.housing-lease.3-3.p2.i2",
+          "parent_anchor_id": "anchor.housing-lease.3-3.p2",
+          "source_authority_unit_id": "unit:housing_lease:0003_03:article:p2:i2",
+          "locator_key": "a3-3-p2-i2",
+          "official_text_hash": "9ec9ec68319015767d0b35b213fd17934e816af3670a2028a7421a7670a13ae7",
+          "plain_heading_ko": "임차주택 특정",
+          "explanation_ko": "임차 목적 주택을 특정하고 필요한 경우 도면을 첨부합니다."
+        },
+        {
+          "anchor_id": "anchor.housing-lease.3-3.p2.i3",
+          "parent_anchor_id": "anchor.housing-lease.3-3.p2",
+          "source_authority_unit_id": "unit:housing_lease:0003_03:article:p2:i3",
+          "locator_key": "a3-3-p2-i3",
+          "official_text_hash": "1c56bd557e56e8ae0e5918968862ff53b9714587966e4d6032a710e247e3337f",
+          "plain_heading_ko": "임차권등기 원인 사실",
+          "explanation_ko": "대항력ㆍ우선변제권 취득 사실을 포함한 원인 사실을 특정합니다."
+        },
+        {
+          "anchor_id": "anchor.housing-lease.3-3.p2.i4",
+          "parent_anchor_id": "anchor.housing-lease.3-3.p2",
+          "source_authority_unit_id": "unit:housing_lease:0003_03:article:p2:i4",
+          "locator_key": "a3-3-p2-i4",
+          "official_text_hash": "54f2cb4becd4cf7170054e48851609587c1408999419ec16eb624c6e85cc5aaf",
+          "plain_heading_ko": "그 밖의 기재사항",
+          "explanation_ko": "대법원규칙이 정하는 추가 기재사항을 확인합니다."
+        },
+        {
+          "anchor_id": "anchor.housing-lease.3-3.p5",
+          "parent_anchor_id": "anchor.housing-lease.3-3",
+          "source_authority_unit_id": "unit:housing_lease:0003_03:article:p5",
+          "locator_key": "a3-3-p5",
+          "official_text_hash": "108dab105e83ccc69def51043e053b35106863fe4aef9e5ba3d0f0d4ca5d93bf",
+          "plain_heading_ko": "등기 뒤 권리 유지",
+          "explanation_ko": "임차권등기를 마치면 기존 대항력ㆍ우선변제권이 유지되는 범위를 확인합니다."
+        }
+      ],
+      "logical_groups": [
+        {
+          "logical_group_id": "group.housing-lease.3-3.application",
+          "role": "requirement",
+          "operator": "all",
+          "title_ko": "신청요건과 신청서 준비",
+          "ordinal": 0,
+          "anchor_ids": [
+            "anchor.housing-lease.3-3",
+            "anchor.housing-lease.3-3.p1",
+            "anchor.housing-lease.3-3.p2",
+            "anchor.housing-lease.3-3.p2.i1",
+            "anchor.housing-lease.3-3.p2.i2",
+            "anchor.housing-lease.3-3.p2.i3",
+            "anchor.housing-lease.3-3.p2.i4"
+          ]
+        },
+        {
+          "logical_group_id": "group.housing-lease.3-3.effect",
+          "role": "effect",
+          "operator": "all",
+          "title_ko": "등기 완료 뒤 권리 유지",
+          "ordinal": 1,
+          "anchor_ids": [
+            "anchor.housing-lease.3-3.p5"
+          ]
+        }
+      ],
+      "explanation_paragraphs": [
+        {
+          "explanation_paragraph_id": "paragraph.housing-lease.3-3.application",
+          "text_ko": "계약 종료일과 미반환액을 먼저 확인하고, 신청 취지ㆍ주택ㆍ원인 사실을 신청서와 자료로 소명합니다.",
+          "logical_group_id": "group.housing-lease.3-3.application",
+          "anchor_ids": [
+            "anchor.housing-lease.3-3.p1",
+            "anchor.housing-lease.3-3.p2",
+            "anchor.housing-lease.3-3.p2.i1",
+            "anchor.housing-lease.3-3.p2.i2",
+            "anchor.housing-lease.3-3.p2.i3",
+            "anchor.housing-lease.3-3.p2.i4"
+          ]
+        },
+        {
+          "explanation_paragraph_id": "paragraph.housing-lease.3-3.effect",
+          "text_ko": "전출이나 주택 인도에 앞서 임차권등기가 실제로 완료됐는지 확인해 기존 권리 유지 여부를 판단합니다.",
+          "logical_group_id": "group.housing-lease.3-3.effect",
+          "anchor_ids": [
+            "anchor.housing-lease.3-3.p5"
+          ]
+        }
+      ],
+      "citation_edges": [],
+      "editorial_status": "approved"
+    }
+  ],
+  "authority_bindings": [
+    {
+      "binding_id": "binding.housing-lease.3-3.move-before-refund",
+      "from_kind": "content",
+      "from_id": "content.move-before-deposit-refund",
+      "to_kind": "authority_reading_unit",
+      "to_authority_reading_unit_id": "authority.housing-lease.3-3.v1",
+      "anchor_ids": [
+        "anchor.housing-lease.3-3.p1",
+        "anchor.housing-lease.3-3.p2",
+        "anchor.housing-lease.3-3.p2.i1",
+        "anchor.housing-lease.3-3.p2.i2",
+        "anchor.housing-lease.3-3.p2.i3",
+        "anchor.housing-lease.3-3.p2.i4",
+        "anchor.housing-lease.3-3.p5"
+      ]
+    },
+    {
+      "binding_id": "binding.housing-lease.3-3.application-requirements",
+      "from_kind": "content",
+      "from_id": "content.lease-registration-order-requirements",
+      "to_kind": "authority_reading_unit",
+      "to_authority_reading_unit_id": "authority.housing-lease.3-3.v1",
+      "anchor_ids": [
+        "anchor.housing-lease.3-3.p1",
+        "anchor.housing-lease.3-3.p2",
+        "anchor.housing-lease.3-3.p2.i1",
+        "anchor.housing-lease.3-3.p2.i2",
+        "anchor.housing-lease.3-3.p2.i3",
+        "anchor.housing-lease.3-3.p2.i4"
+      ]
+    },
+    {
+      "binding_id": "binding.housing-lease.3-3.application-not-completion",
+      "from_kind": "content",
+      "from_id": "content.lease-registration-application-is-not-completion",
+      "to_kind": "authority_reading_unit",
+      "to_authority_reading_unit_id": "authority.housing-lease.3-3.v1",
+      "anchor_ids": [
+        "anchor.housing-lease.3-3.p5"
+      ]
+    },
+    {
+      "binding_id": "binding.housing-lease.3-3.rights-after-registration",
+      "from_kind": "content",
+      "from_id": "content.rights-after-lease-registration",
+      "to_kind": "authority_reading_unit",
+      "to_authority_reading_unit_id": "authority.housing-lease.3-3.v1",
+      "anchor_ids": [
+        "anchor.housing-lease.3-3.p5"
+      ]
+    },
+    {
+      "binding_id": "binding.housing-lease.3-3.deposit-refund-response-map",
+      "from_kind": "content",
+      "from_id": "content.deposit-refund-response-map",
+      "to_kind": "authority_reading_unit",
+      "to_authority_reading_unit_id": "authority.housing-lease.3-3.v1",
+      "anchor_ids": [
+        "anchor.housing-lease.3-3.p1",
+        "anchor.housing-lease.3-3.p2",
+        "anchor.housing-lease.3-3.p2.i1",
+        "anchor.housing-lease.3-3.p2.i2",
+        "anchor.housing-lease.3-3.p2.i3",
+        "anchor.housing-lease.3-3.p2.i4",
+        "anchor.housing-lease.3-3.p5"
+      ]
+    }
+  ],
   "topic_hubs": [
     {
       "hub_id": "hub.housing-lease-deposit",
@@ -67,7 +439,8 @@
         "content.housing-lease-priority-repayment-basics",
         "content.cancel-lease-registration-after-refund",
         "content.lease-registration-and-distribution-demand",
-        "content.renting-home-with-lease-registration"
+        "content.renting-home-with-lease-registration",
+        "content.deposit-refund-response-map"
       ]
     }
   ],
@@ -287,6 +660,9 @@
       "source_coordinate_ids": [
         "coord.housing-lease-deposit.housing-lease-ko-0003-03"
       ],
+      "authority_binding_ids": [
+        "binding.housing-lease.3-3.move-before-refund"
+      ],
       "hub_ids": [
         "hub.housing-lease-deposit"
       ],
@@ -397,6 +773,9 @@
       "source_coordinate_ids": [
         "coord.housing-lease-deposit.housing-lease-ko-0003-03"
       ],
+      "authority_binding_ids": [
+        "binding.housing-lease.3-3.application-not-completion"
+      ],
       "hub_ids": [
         "hub.housing-lease-deposit"
       ],
@@ -480,6 +859,9 @@
       ],
       "source_coordinate_ids": [
         "coord.housing-lease-deposit.housing-lease-ko-0003-03"
+      ],
+      "authority_binding_ids": [
+        "binding.housing-lease.3-3.application-requirements"
       ],
       "hub_ids": [
         "hub.housing-lease-deposit"
@@ -588,6 +970,9 @@
         "coord.housing-lease-deposit.housing-lease-ko-0003",
         "coord.housing-lease-deposit.housing-lease-ko-0003-02",
         "coord.housing-lease-deposit.housing-lease-ko-0003-03"
+      ],
+      "authority_binding_ids": [
+        "binding.housing-lease.3-3.rights-after-registration"
       ],
       "hub_ids": [
         "hub.housing-lease-deposit"
@@ -1026,6 +1411,186 @@
           "target_id": "content.housing-lease-priority-repayment-basics",
           "relation_type": "comparison",
           "label_ko": "새 임차인의 우선변제 범위 비교"
+        }
+      ]
+    },
+    {
+      "content_id": "content.deposit-refund-response-map",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-26T00:00:00+00:00",
+      "expires_at": "2026-10-26T00:00:00+00:00",
+      "slug": "deposit-refund-response-map",
+      "title_ko": "집주인이 보증금을 안 줄 때 어떤 순서로 대응해야 하나요?",
+      "one_line_answer_ko": "계약 종료와 미반환 금액을 먼저 확정하고, 이사 전에는 임차권등기명령의 신청 요건과 등기 완료 시점을 확인한 뒤, 임대인의 주소와 다툼 정도에 따라 지급명령ㆍ조정ㆍ소송을 비교하고 경매가 시작됐다면 배당요구 필요성과 기한을 별도로 확인합니다.",
+      "audience_situation_ko": "임대차가 끝났거나 곧 끝나는데 보증금 전부 또는 일부를 돌려받지 못했고, 이사ㆍ새집 잔금ㆍ경매 같은 다음 일정이 다가오는 임차인",
+      "key_points_ko": [
+        "계약 종료, 해지ㆍ갱신거절 통지, 미반환 금액과 공제 다툼을 먼저 구분합니다.",
+        "보증금을 받기 전에 이사해야 한다면 임차권등기명령 신청만이 아니라 등기 완료 시점까지 확인합니다.",
+        "지급명령ㆍ민사조정ㆍ민사소송은 임대인의 주소, 청구금액, 예상되는 다툼과 송달 가능성을 기준으로 비교합니다.",
+        "경매가 시작된 경우에는 임차권등기 시점과 경매개시결정등기 시점을 대조하고 배당요구 필요성과 종기를 따로 확인합니다."
+      ],
+      "action_steps_ko": [
+        "임대차계약서, 보증금 지급자료, 해지ㆍ갱신거절 통지와 임대인 답변을 한곳에 모읍니다.",
+        "계약 종료일, 미반환 금액, 임대인이 주장하는 공제 항목, 현재 점유ㆍ전입 상태를 표로 정리합니다.",
+        "보증금 반환 전에 이사해야 한다면 관할 법원과 임차권등기명령 요건을 확인하고 등기 완료 전 점유ㆍ전입 변경 위험을 점검합니다.",
+        "임대인의 주소와 다툼 정도를 확인해 지급명령ㆍ민사조정ㆍ민사소송 중 다음 절차를 비교합니다.",
+        "등기부에서 경매개시 여부를 확인하고 경매가 진행 중이면 사건번호, 배당요구 종기, 임차권등기 완료 시점을 함께 확인합니다.",
+        "신청서ㆍ송달내역ㆍ등기사항증명서ㆍ배당 관련 서류를 날짜순으로 보관합니다."
+      ],
+      "facts_to_check_ko": [
+        "임대차계약 종료일",
+        "해지 또는 갱신거절 통지일과 도달자료",
+        "지급한 보증금과 실제 미반환 금액",
+        "임대인이 주장하는 수리비ㆍ관리비 등 공제 항목",
+        "임대인 성명과 송달 가능한 주소",
+        "현재 점유ㆍ전입ㆍ확정일자 상태",
+        "이사 예정일과 주택 인도 예정일",
+        "임차권등기명령 신청일과 등기 완료일",
+        "등기부상 근저당ㆍ압류ㆍ경매개시 여부",
+        "경매 사건번호와 배당요구 종기"
+      ],
+      "caution_ko": "신청서 제출, 임차권등기 완료, 실제 배당요구는 서로 다른 절차와 시점입니다. 보증금 반환 전 이사나 주택 인도를 서두르거나 경매 통지를 미루면 권리 보전과 기한 판단이 달라질 수 있으므로 날짜와 등기 상태를 확인한 뒤 진행해야 합니다.",
+      "search_intents_ko": [
+        "집주인이 보증금을 안 줘요",
+        "전세보증금 못 받았는데 무엇부터 해야 하나요",
+        "계약 끝났는데 보증금 일부만 돌려받았어요",
+        "보증금 못 받고 이사해야 할 때",
+        "임차권등기명령 신청 전에 준비할 서류",
+        "임차권등기명령과 보증금 반환소송 차이",
+        "보증금 반환 지급명령 조정 소송 중 무엇을 하나요",
+        "전세집 경매 시작됐는데 배당요구 해야 하나요",
+        "새집 잔금 전에 전세보증금 못 받으면",
+        "임대인이 연락을 안 받는데 보증금 청구 절차"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "1. 먼저 사실을 네 갈래로 나눕니다",
+          "paragraphs_ko": [
+            "계약이 실제로 끝났는지, 보증금 전부 또는 일부가 남았는지, 반환 범위를 두고 공제 다툼이 있는지, 보증금을 받기 전에 이사해야 하는지를 먼저 확인합니다.",
+            "경매가 이미 시작됐다면 일반 반환청구 준비와 별도로 경매 사건번호와 배당요구 종기를 확인해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "2. 이사 전 권리 보전과 반환청구 수단을 구분합니다",
+          "paragraphs_ko": [
+            "임차권등기명령은 계약 종료와 보증금 미반환을 전제로 이사 뒤에도 기존 권리를 보전하기 위한 절차입니다. 신청한 날과 등기가 완료된 날은 같지 않으므로 이사 전 등기 완료 여부를 확인합니다.",
+            "보증금 반환을 실제로 명하는 집행권원이 필요하다면 임대인의 주소, 청구금액과 다툼 가능성을 기준으로 지급명령ㆍ민사조정ㆍ민사소송을 비교합니다."
+          ]
+        },
+        {
+          "heading_ko": "3. 결론을 바꾸는 자료부터 모읍니다",
+          "paragraphs_ko": [
+            "임대차계약서와 보증금 지급자료, 해지ㆍ갱신거절 통지의 도달자료, 임대인의 반환 거절 또는 공제 주장, 주택 인도와 전입 상태가 기본 자료입니다.",
+            "임차권등기명령을 신청했다면 신청서만 보관하지 말고 등기사항증명서에서 실제 등기 완료일을 확인합니다. 경매가 진행 중이면 경매개시결정등기와 배당요구 관련 서류도 함께 모읍니다."
+          ]
+        },
+        {
+          "heading_ko": "4. 기한은 하나가 아니라 절차별로 확인합니다",
+          "paragraphs_ko": [
+            "계약 종료일, 해지ㆍ갱신거절 통지 도달일, 임차권등기 완료일, 경매개시결정등기일과 배당요구 종기는 서로 다른 날짜입니다.",
+            "특히 임차권등기가 경매개시결정등기 전에 완료됐는지에 따라 배당요구에 관한 판단이 달라질 수 있으므로 사건별 날짜를 대조합니다."
+          ]
+        },
+        {
+          "heading_ko": "5. 지금 할 행동을 순서대로 정합니다",
+          "paragraphs_ko": [
+            "계약 종료와 미반환 금액을 정리하고 반환 요구 기록을 남긴 뒤, 이사 예정이면 임차권등기명령과 등기 완료 확인을 먼저 배치합니다.",
+            "그 다음 지급명령ㆍ조정ㆍ소송 중 맞는 절차를 고르고, 경매가 있다면 배당요구 여부와 종기를 별도 일정으로 관리합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.housing-lease-deposit.housing-lease-registration-application",
+        "rule.housing-lease-deposit.housing-lease-registration-completion-effect",
+        "rule.housing-lease-deposit.housing-lease-opposability",
+        "rule.housing-lease-deposit.housing-lease-priority-repayment",
+        "rule.housing-lease-deposit.housing-lease-distribution-without-demand"
+      ],
+      "scenario_ids": [
+        "scenario.housing-lease-deposit.housing-lease-lease-ended",
+        "scenario.housing-lease-deposit.housing-lease-deposit-unpaid",
+        "scenario.housing-lease-deposit.housing-lease-registration-completed-before-move",
+        "scenario.housing-lease-deposit.housing-lease-fixed-date",
+        "scenario.housing-lease-deposit.housing-lease-registration-before-auction"
+      ],
+      "source_coordinate_ids": [
+        "coord.housing-lease-deposit.housing-lease-ko-0003-03",
+        "coord.housing-lease-deposit.housing-lease-ko-0003",
+        "coord.housing-lease-deposit.housing-lease-ko-0003-02",
+        "coord.housing-lease-deposit.src-supreme-2005da33039"
+      ],
+      "authority_binding_ids": [
+        "binding.housing-lease.3-3.deposit-refund-response-map"
+      ],
+      "hub_ids": [
+        "hub.housing-lease-deposit"
+      ],
+      "related_content_ids": [
+        "content.move-before-deposit-refund",
+        "content.lease-registration-order-requirements",
+        "content.lease-registration-application-is-not-completion",
+        "content.rights-after-lease-registration",
+        "content.lease-registration-and-distribution-demand",
+        "content.payment-order-vs-civil-mediation",
+        "content.civil-mediation-vs-civil-lawsuit",
+        "content.payment-order-vs-civil-lawsuit",
+        "content.when-payment-order-fits"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.move-before-deposit-refund",
+          "relation_type": "procedure",
+          "label_ko": "보증금 미반환 상태에서 이사 전 권리 보전 순서"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.lease-registration-order-requirements",
+          "relation_type": "prerequisite",
+          "label_ko": "임차권등기명령의 계약 종료ㆍ미반환 요건"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.lease-registration-application-is-not-completion",
+          "relation_type": "deadline",
+          "label_ko": "신청일과 등기 완료일을 구분해 이사 시점 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.rights-after-lease-registration",
+          "relation_type": "procedure",
+          "label_ko": "등기 완료 뒤 유지되는 권리와 다음 절차"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.lease-registration-and-distribution-demand",
+          "relation_type": "deadline",
+          "label_ko": "경매개시와 배당요구 종기 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.payment-order-vs-civil-mediation",
+          "relation_type": "comparison",
+          "label_ko": "정해진 반환금 청구에서 지급명령과 조정 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.civil-mediation-vs-civil-lawsuit",
+          "relation_type": "comparison",
+          "label_ko": "공제 다툼이 있을 때 조정과 소송 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.payment-order-vs-civil-lawsuit",
+          "relation_type": "comparison",
+          "label_ko": "송달과 다툼 가능성에 따른 지급명령과 소송 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.when-payment-order-fits",
+          "relation_type": "prerequisite",
+          "label_ko": "지급명령의 금전청구ㆍ송달 가능성 확인"
         }
       ]
     }
