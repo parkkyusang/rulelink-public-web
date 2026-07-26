@@ -48,6 +48,18 @@ function fixture({kind = 'existing_topic', withSupersede = true} = {}) {
       authority_units: 0,
     },
     quality_targets: {},
+    prerequisite_gates: [{
+      gate_id: 'quality.fixture-approved',
+      gate_kind: 'quality_schema',
+      owner_role: 'quality_governance',
+      status: 'pending',
+    }],
+    release_checks: [{
+      check_id: 'canonical-urls-unchanged',
+      status: 'pending',
+    }],
+    depends_on_work_ids: [],
+    integration_checks: ['등록된 v3 후보를 publication migration으로 이관한다.'],
     direct_merge: false,
     integrate_requires: [
       'current_bundle',
@@ -79,6 +91,17 @@ function fixture({kind = 'existing_topic', withSupersede = true} = {}) {
         topic_hubs: 1,
         authority_units: 0,
       },
+      expected_quality_targets: {},
+      expected_depends_on_work_ids: [],
+      expected_integration_checks: [
+        '등록된 v3 후보를 publication migration으로 이관한다.',
+      ],
+      expected_prerequisite_gates: [{
+        gate_id: 'quality.fixture-approved',
+        gate_kind: 'quality_schema',
+        owner_role: 'quality_governance',
+      }],
+      expected_release_check_ids: ['canonical-urls-unchanged'],
     },
   };
   const oldItem = {
@@ -311,6 +334,31 @@ test('신규 주제가 base current 또는 manifest와 충돌하면 차단한다
     }),
   });
   assert.equal(result.expectedTopics[0].candidateKind, 'new_topic');
+});
+
+test('v3 생산계약은 선행 게이트와 출시 점검의 누락·위조를 차단한다', () => {
+  const mutations = [
+    item => item.prerequisite_gates.pop(),
+    item => {
+      item.prerequisite_gates[0].owner_role = 'content_production';
+    },
+    item => item.release_checks.pop(),
+    item => {
+      item.release_checks[0].check_id = 'runtime-responsive-no-overflow';
+    },
+  ];
+  for (const mutate of mutations) {
+    const state = fixture();
+    mutate(state.item);
+    state.registry.registrations[0].contract_sha256 =
+      topicCandidateV3ContractReceipt(state.item);
+    assert.notDeepEqual(
+      validateTopicCandidateV3QueueContract(state.queue, {
+        itemRegistry: state.registry,
+      }),
+      [],
+    );
+  }
 });
 
 test('신규 주제 후보 manifest는 기존 상대경로를 보존한 격리 합성 트리를 만든다', async () => {

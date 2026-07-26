@@ -34,6 +34,103 @@ function uniqueStrings(value) {
   );
 }
 
+function validateRegisteredProductionContract(item, candidate, label) {
+  const errors = [];
+  const exactFields = [
+    ['counts', 'expected_counts'],
+    ['quality_targets', 'expected_quality_targets'],
+    ['depends_on_work_ids', 'expected_depends_on_work_ids'],
+    ['integration_checks', 'expected_integration_checks'],
+  ];
+  for (const [itemField, candidateField] of exactFields) {
+    if (
+      canonicalJson(item[itemField] ?? []) !==
+      canonicalJson(candidate[candidateField] ?? [])
+    ) {
+      errors.push(
+        `${label}: ${itemField}가 등록된 v3 생산계약과 다릅니다.`,
+      );
+    }
+  }
+  if (
+    !candidate.expected_counts ||
+    typeof candidate.expected_counts !== 'object' ||
+    Array.isArray(candidate.expected_counts)
+  ) {
+    errors.push(`${label}: expected_counts가 필요합니다.`);
+  }
+  if (
+    !candidate.expected_quality_targets ||
+    typeof candidate.expected_quality_targets !== 'object' ||
+    Array.isArray(candidate.expected_quality_targets)
+  ) {
+    errors.push(`${label}: expected_quality_targets가 필요합니다.`);
+  }
+  if (!uniqueStrings(candidate.expected_depends_on_work_ids ?? [])) {
+    errors.push(`${label}: expected_depends_on_work_ids가 올바르지 않습니다.`);
+  }
+  if (
+    !uniqueStrings(candidate.expected_integration_checks ?? []) ||
+    candidate.expected_integration_checks.length === 0
+  ) {
+    errors.push(`${label}: expected_integration_checks가 올바르지 않습니다.`);
+  }
+
+  const expectedGates = candidate.expected_prerequisite_gates;
+  if (
+    !Array.isArray(expectedGates) ||
+    expectedGates.length === 0 ||
+    expectedGates.some(gate =>
+      !gate ||
+      typeof gate.gate_id !== 'string' ||
+      typeof gate.gate_kind !== 'string' ||
+      typeof gate.owner_role !== 'string'
+    ) ||
+    new Set((expectedGates ?? []).map(gate => gate.gate_id)).size !==
+      (expectedGates ?? []).length
+  ) {
+    errors.push(`${label}: expected_prerequisite_gates가 올바르지 않습니다.`);
+  } else {
+    const actualGates = (item.prerequisite_gates ?? []).map(gate => ({
+      gate_id: gate.gate_id,
+      gate_kind: gate.gate_kind,
+      owner_role: gate.owner_role,
+    }));
+    if (canonicalJson(actualGates) !== canonicalJson(expectedGates)) {
+      errors.push(`${label}: prerequisite_gates가 등록된 v3 생산계약과 다릅니다.`);
+    }
+    if (
+      item.status === 'awaiting_pr' &&
+      (item.prerequisite_gates ?? []).some(gate => gate.status !== 'pending')
+    ) {
+      errors.push(`${label}: awaiting_pr 선행 게이트는 pending이어야 합니다.`);
+    }
+  }
+
+  if (
+    !uniqueStrings(candidate.expected_release_check_ids ?? []) ||
+    candidate.expected_release_check_ids.length === 0
+  ) {
+    errors.push(`${label}: expected_release_check_ids가 올바르지 않습니다.`);
+  } else {
+    const actualReleaseCheckIds = (item.release_checks ?? [])
+      .map(check => check.check_id);
+    if (
+      canonicalJson(actualReleaseCheckIds) !==
+      canonicalJson(candidate.expected_release_check_ids)
+    ) {
+      errors.push(`${label}: release_checks가 등록된 v3 생산계약과 다릅니다.`);
+    }
+    if (
+      item.status === 'awaiting_pr' &&
+      (item.release_checks ?? []).some(check => check.status !== 'pending')
+    ) {
+      errors.push(`${label}: awaiting_pr 운영검증은 pending이어야 합니다.`);
+    }
+  }
+  return errors;
+}
+
 function sorted(values) {
   return [...new Set(values)].sort((left, right) =>
     left.localeCompare(right, 'en'),
@@ -165,6 +262,7 @@ function validateItemShape(item, label) {
   ) {
     errors.push(`${label}: publication migration 요구사항이 닫히지 않았습니다.`);
   }
+  errors.push(...validateRegisteredProductionContract(item, candidate, label));
   return errors;
 }
 

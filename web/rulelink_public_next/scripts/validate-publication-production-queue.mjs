@@ -1994,6 +1994,11 @@ export function validateQueueItemRegistry(
     if (!nonEmpty(registration.topic_file)) errors.push(`${label}.topic_file이 필요합니다.`);
     const registeredContract =
       hasWorkIdentity && PRODUCTION_WORK_CONTRACTS[registration.work_id];
+    const registeredQueueItem =
+      hasWorkIdentity && queueByWorkId.get(registration.work_id);
+    const isRegisteredV3Candidate =
+      registeredQueueItem?.candidate_import?.schema ===
+      TOPIC_CANDIDATE_V3_SCHEMA;
     if (
       registeredContract?.contract_kind === 'coverage_plan_existing_topic_v1'
     ) {
@@ -2019,6 +2024,16 @@ export function validateQueueItemRegistry(
         errors.push(
           `${label}.contract_pr_base_rebind_from_sha256가 올바르지 않습니다.`,
         );
+      }
+    } else if (isRegisteredV3Candidate) {
+      if (!/^[0-9a-f]{64}$/u.test(registration.contract_sha256 || '')) {
+        errors.push(`${label}.contract_sha256가 필요합니다.`);
+      }
+      if (
+        registration.contract_upgrade_from_sha256 !== undefined ||
+        registration.contract_pr_base_rebind_from_sha256 !== undefined
+      ) {
+        errors.push(`${label}: v3 계약은 기존 등록을 제자리에서 바꿀 수 없습니다.`);
       }
     } else if (registration.contract_sha256 !== undefined) {
       errors.push(`${label}.contract_sha256는 coverage plan 작업에만 허용됩니다.`);
@@ -2054,10 +2069,13 @@ export function validateQueueItemRegistry(
           'change_mode',
           'topic_id',
           'topic_file',
-          ...(registeredContract?.contract_kind ===
-          'coverage_plan_existing_topic_v1'
+          ...(
+            registeredContract?.contract_kind ===
+              'coverage_plan_existing_topic_v1' ||
+            isRegisteredV3Candidate
             ? ['contract_sha256']
-            : []),
+            : []
+          ),
         ]
       : ['queue_id', 'pr_number', 'change_mode', 'topic_id', 'topic_file'];
     for (const field of identityFields) {
@@ -3465,9 +3483,41 @@ export function validateProductionQueue(
     }
 
     if (hasWorkId) {
-      const workContract = PRODUCTION_WORK_CONTRACTS[item.work_id];
       const isV3Candidate =
         item.candidate_import?.schema === TOPIC_CANDIDATE_V3_SCHEMA;
+      const v3CandidateContract = isV3Candidate
+        ? {
+            contract_kind: 'topic_candidate_v3',
+            title_ko: item.title_ko,
+            topic_id: item.topic_id,
+            topic_file: item.topic_file,
+            test_file: item.test_file,
+            change_mode: item.change_mode,
+            branch: item.branch,
+            counts: item.candidate_import.expected_counts,
+            quality_targets:
+              item.candidate_import.expected_quality_targets,
+            depends_on_work_ids:
+              item.candidate_import.expected_depends_on_work_ids,
+            integration_checks:
+              item.candidate_import.expected_integration_checks,
+            prerequisite_gates: Object.fromEntries(
+              (item.candidate_import.expected_prerequisite_gates ?? [])
+                .map(gate => [
+                  gate.gate_id,
+                  {
+                    gate_kind: gate.gate_kind,
+                    owner_role: gate.owner_role,
+                    evidence_pattern: /^$/u,
+                  },
+                ]),
+            ),
+            release_check_ids:
+              item.candidate_import.expected_release_check_ids,
+          }
+        : null;
+      const workContract =
+        PRODUCTION_WORK_CONTRACTS[item.work_id] ?? v3CandidateContract;
       if (!workContract && !isV3Candidate) {
         errors.push(`${label}.work_id에 승인된 생산계약이 없습니다: ${item.work_id}`);
       } else if (workContract) {
@@ -3844,9 +3894,10 @@ export function validateProductionQueue(
     if (item.status === 'awaiting_pr') {
       if (
         PRODUCTION_WORK_CONTRACTS[item.work_id]?.contract_kind !==
-        'coverage_plan_existing_topic_v1'
+          'coverage_plan_existing_topic_v1' &&
+        item.candidate_import?.schema !== TOPIC_CANDIDATE_V3_SCHEMA
       ) {
-        errors.push(`${label}.awaiting_pr는 coverage plan 후보 등록에만 허용됩니다.`);
+        errors.push(`${label}.awaiting_pr는 등록된 후보 작업에만 허용됩니다.`);
       }
       if (item.pr_number !== undefined || item.head_sha !== undefined) {
         errors.push(`${label}.awaiting_pr에는 실제 PR 번호나 PR head를 미리 기록할 수 없습니다.`);
