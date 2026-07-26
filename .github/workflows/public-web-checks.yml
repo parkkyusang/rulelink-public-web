@@ -66,13 +66,23 @@ jobs:
       - name: 고정 의존성 설치
         run: npm ci
 
+      - name: 기존 주제 후보 PR 분류
+        if: github.event_name == 'pull_request'
+        id: topic-candidate
+        run: npm run validate:topic-candidate-pr -- --github-output "$GITHUB_OUTPUT"
+
       - name: 주제 품질부채 래칫
         env:
           RULELINK_QUALITY_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: npm run validate:publication-quality-debt -- --base "$RULELINK_QUALITY_BASE"
 
       - name: 공개 번들 차단 규칙 테스트
+        if: github.event_name != 'pull_request' || steps.topic-candidate.outputs.rulelink_mode != 'candidate'
         run: npm run test:publication
+
+      - name: 기존 주제 후보 임시 합성·정본 검증
+        if: github.event_name == 'pull_request' && steps.topic-candidate.outputs.rulelink_mode == 'candidate'
+        run: npm run validate:topic-candidate-pr -- --validate-candidate --candidate-output "${RUNNER_TEMP}/rulelink-topic-candidate-bundle.json"
 
       - name: 주제별 인계 테스트 자동 발견
         run: npm run test:publication-topics
@@ -97,11 +107,29 @@ jobs:
         run: npm run typecheck
 
       - name: 승인 출판본 정적 빌드
+        if: github.event_name != 'pull_request' || steps.topic-candidate.outputs.rulelink_mode != 'candidate'
         env:
           RULELINK_PUBLIC_BUILD_CHECK: "true"
         run: npm run build
+
+      - name: 기존 주제 후보 임시 출판본 정적 빌드
+        if: github.event_name == 'pull_request' && steps.topic-candidate.outputs.rulelink_mode == 'candidate'
+        env:
+          RULELINK_PUBLIC_BUILD_CHECK: "true"
+          RULELINK_PUBLICATION_BUNDLE: ${{ runner.temp }}/rulelink-topic-candidate-bundle.json
+        run: |
+          npm run sync-publication
+          npx next build --webpack
 
       - name: 승인 출판본 런타임 스모크
         env:
           RULELINK_PUBLIC_BUILD_CHECK: "true"
         run: npm run smoke:public-build
+
+      - name: 기존 주제 후보 임시 산출물 정리
+        if: always() && github.event_name == 'pull_request' && steps.topic-candidate.outputs.rulelink_mode == 'candidate'
+        run: |
+          rm -f "${RUNNER_TEMP}/rulelink-topic-candidate-bundle.json"
+          rm -f content/bundle.json content/source-text-library.json content/maintenance-index.json
+          git checkout -- next-env.d.ts
+          git diff --exit-code
