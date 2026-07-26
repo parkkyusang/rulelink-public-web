@@ -162,7 +162,40 @@ const KOREAN_PARTICLES = [
   '로',
 ] as const;
 
-const OPTIONAL_CONVERSATIONAL_TOKENS = new Set(['세', '번']);
+const OPTIONAL_CONVERSATIONAL_TOKENS = new Set([
+  '세',
+  '번',
+  '제가',
+  '저는',
+  '나는',
+  '어떻게',
+  '어떡해요',
+  '어떡하죠',
+  '해야',
+  '하나요',
+  '해요',
+  '되나요',
+  '될까요',
+  '싶어요',
+  '싶습니다',
+  '궁금해요',
+  '뭘',
+  '무엇을',
+  '수',
+  '있나요',
+  '갑자기',
+  '때문에',
+  '상대방이',
+  '상대방',
+  '상사가',
+  '상사',
+  '계속',
+  '자꾸',
+  '전',
+  '연락도',
+  '더',
+  '좀',
+]);
 const CONTEXTUAL_NEGATION_TOKENS = new Set(['안', '미', '못', '않']);
 const NEGATION_ACTION_CONTEXT = new Set([
   '줘요',
@@ -179,18 +212,33 @@ const DEBT_CONTEXT = new Set(['빚', '채무', '부채']);
 const CONVERSATIONAL_EQUIVALENCE_GROUPS = [
   ['계속', '지속', '반복'],
   ['집주인', '임대인'],
+  ['보증금', '전세금', '임대차보증금'],
   ['사장님', '사용자', '사업주', '회사'],
   ['월급', '임금', '급여'],
+  ['퇴직금', '퇴직급여'],
   ['줘요', '지급', '주지', '돌려주지'],
+  ['돌려줘', '돌려주', '돌려받', '반환', '환급', '회수'],
+  ['잘렸', '잘리', '해고', '근로관계 종료'],
+  ['괴롭혀', '괴롭힘', '직장 내 괴롭힘'],
+  ['나누', '재산분할', '분할'],
   ['당했어요', '피해', '당한', '발생'],
+  ['사기당', '사기 피해', '기망'],
   ['인터넷', '온라인', '전자상거래'],
   ['돈', '피해금', '금전'],
   ['돌려받기', '환급', '반환', '회수', '피해구제'],
-  ['남편', '배우자', '연인'],
+  ['남편', '배우자', '연인', '애인'],
   ['연락해요', '연락', '접촉', '찾아오'],
   ['맞았어요', '폭행', '학교폭력'],
+  ['맞고', '폭행', '학교폭력'],
   ['밀렸어요', '연체', '밀리', '누적'],
-  ['빚', '채무'],
+  ['빚', '채무', '부채'],
+  ['도망', '도주', '뺑소니'],
+  ['보냈', '송금', '이체'],
+  ['빌려', '대여', '대여금'],
+  ['갚', '변제', '상환', '미변제'],
+  ['잠', '수면', '수면 방해'],
+  ['못자', '수면 방해', '수면'],
+  ['다투', '불복', '행정심판'],
 ] as const;
 
 const CONVERSATIONAL_EQUIVALENCES = new Map<string, string[]>();
@@ -351,7 +399,7 @@ export function tokenizeSiteSearchQuery(value: string): string[][] {
   const baseTokens = normalizeSiteSearchText(value)
     .split(' ')
     .filter(Boolean)
-    .filter(token => !OPTIONAL_CONVERSATIONAL_TOKENS.has(token))
+    .filter(token => !isOptionalConversationalToken(token))
     .map(token => {
       const stripped = stripKoreanParticle(token);
       return stripped === token ? [token] : [token, stripped];
@@ -435,15 +483,13 @@ function scoreDocument(
   const scoringFields = siteSearchScoringFields(document);
   const normalizedFields = mapNormalizedFields(scoringFields);
   const searchable = Object.values(normalizedFields).flat();
-  if (
-    queryTokens.some(variants => (
-      !variants.some(variant => searchable.some(value => value.includes(variant)))
-    ))
-  ) {
+  const queryMatch = queryDocumentMatch(searchable, queryTokens);
+  if (!queryMatch.accepted) {
     return null;
   }
 
-  let score = 0;
+  let score = queryMatch.matchedTokenCount * 36
+    + queryMatch.matchedInformationWeight;
   if (normalizedQuery) {
     if (normalizedFields.title.some(value => value === normalizedQuery)) {
       score += 180;
@@ -468,7 +514,7 @@ function scoreDocument(
       >) {
         if (
           normalizedFields[key].some(value => (
-            variants.some(variant => value.includes(variant))
+            variants.some(variant => valueIncludesVariant(value, variant))
           ))
         ) {
           score += FIELD_META[key].tokenWeight;
@@ -603,7 +649,7 @@ function matchValueMetrics(
     .map(variants => Math.max(
       0,
       ...variants
-        .filter(variant => normalized.includes(variant))
+        .filter(variant => valueIncludesVariant(normalized, variant))
         .map(variant => variant.length ** 2),
     ))
     .filter(weight => weight > 0);
@@ -662,11 +708,11 @@ function siteSearchScoringFields(
 }
 
 function stripKoreanParticle(token: string): string {
-  if (token.length < 3) return token;
+  if (token.length < 2) return token;
   for (const particle of KOREAN_PARTICLES) {
     if (!token.endsWith(particle)) continue;
     const stem = token.slice(0, -particle.length);
-    if (stem.length >= 2) return stem;
+    if (stem.length >= 1) return stem;
   }
   return token;
 }
@@ -683,22 +729,172 @@ function contextualQueryVariants(
       token => context.has(token),
     );
     return hasActionContext
-      ? ['미지급', '지급하지', '주지', '돌려주지', '못', '않']
+      ? [base, '미지급', '지급하지', '주지', '돌려주지', '못', '않']
       : [];
   }
-  if (base === '많아요') {
+  if (/^많(?:아요|으면|은|다)?$/u.test(base)) {
     const hasDebtContext = [...context].some(token => (
       DEBT_CONTEXT.has(token)
       || /^(빚|채무|부채)(이|가|은|는|을|를)$/u.test(token)
     ));
-    return hasDebtContext ? ['많아요', '많', '초과'] : ['많아요'];
+    return hasDebtContext ? [base, '많', '초과'] : [base, '많'];
   }
-  return [
-    base,
-    ...(CONVERSATIONAL_EQUIVALENCES.get(base) ?? []),
-  ];
+  const inflectional = inflectionalQueryVariants(base);
+  const compactNegation = inflectional.flatMap(value => {
+    const match = value.match(/^(안|못)(.+)$/u);
+    if (!match) return [];
+    const predicate = match[2];
+    const predicateEquivalents = equivalentQueryVariants(predicate);
+    const hasPaymentContext = [...NEGATION_ACTION_CONTEXT].some(action => (
+      predicate.startsWith(action)
+      || action.startsWith(predicate)
+      || context.has(action)
+    ));
+    return [
+      predicate,
+      ...predicateEquivalents,
+      ...(hasPaymentContext ? [
+        '미지급',
+        '지급하지',
+        '주지',
+        '돌려주지',
+        '받지 못',
+      ] : []),
+    ];
+  });
+  return [...new Set([
+    ...inflectional,
+    ...inflectional.flatMap(equivalentQueryVariants),
+    ...compactNegation,
+  ])];
 }
 
 function uniqueNonEmpty(values: readonly string[]): string[] {
   return [...new Set(values.map(value => value.trim()).filter(Boolean))];
+}
+
+function isOptionalConversationalToken(token: string): boolean {
+  if (OPTIONAL_CONVERSATIONAL_TOKENS.has(token)) return true;
+  return /^(?:어떻게|어떡)(?:해|하|해야|하면|하면요|하나요|하죠|할까요)?$/u
+    .test(token);
+}
+
+function inflectionalQueryVariants(base: string): string[] {
+  const variants = new Set([base]);
+  const suffixes = [
+    '고싶습니다',
+    '고싶어요',
+    '으려면',
+    '려면',
+    '하려면',
+    '해야',
+    '하고',
+    '했는데요',
+    '았는데요',
+    '었는데요',
+    '했는데',
+    '았는데',
+    '었는데',
+    '는데요',
+    '은데요',
+    '는데',
+    '은데',
+    '했습니다',
+    '했어요',
+    '됐어요',
+    '였어요',
+    '았어요',
+    '었어요',
+    '겠어요',
+    '해요',
+    '돼요',
+    '나요',
+    '죠',
+    '어요',
+    '아요',
+    '습니다',
+    '습니까',
+    '으면',
+  ] as const;
+  for (const suffix of suffixes) {
+    if (!base.endsWith(suffix)) continue;
+    const stem = base.slice(0, -suffix.length);
+    if (stem.length >= 2) variants.add(stem);
+  }
+  for (const variant of [...variants]) {
+    if (variant.length >= 3 && /(?:받|당|하|되)$/u.test(variant)) {
+      variants.add(variant.slice(0, -1));
+    }
+  }
+  return [...variants];
+}
+
+function equivalentQueryVariants(base: string): string[] {
+  const exact = CONVERSATIONAL_EQUIVALENCES.get(base);
+  if (exact) return exact;
+  if (base.length < 2) return [];
+  for (const [term, equivalents] of CONVERSATIONAL_EQUIVALENCES) {
+    if (term.length < 2) continue;
+    if (base.startsWith(term)) {
+      return [term, ...equivalents];
+    }
+  }
+  return [];
+}
+
+function queryDocumentMatch(
+  searchable: readonly string[],
+  queryTokens: readonly string[][],
+): {
+  accepted: boolean;
+  matchedInformationWeight: number;
+  matchedTokenCount: number;
+} {
+  const matches = queryTokens.map(variants => {
+    const matchingVariants = variants.filter(variant => (
+      searchable.some(value => valueIncludesVariant(value, variant))
+    ));
+    return {
+      informationWeight: Math.max(
+        0,
+        ...matchingVariants.map(variant => variant.length ** 2),
+      ),
+      matched: matchingVariants.length > 0,
+      originalInformationLength: variants[0]?.length ?? 0,
+      originalToken: variants[0] ?? '',
+    };
+  });
+  const matched = matches.filter(match => match.matched);
+  const unmatchedRequired = matches.filter(match => (
+    !match.matched
+    && !isOptionalUnmatchedConversationalToken(match.originalToken)
+  ));
+  const strongestOriginalToken = Math.max(
+    0,
+    ...matched.map(match => match.originalInformationLength),
+  );
+  const matchedTokenCount = matched.length;
+  return {
+    accepted: queryTokens.length === 0 || (
+      matchedTokenCount > 0
+      && strongestOriginalToken >= 2
+      && unmatchedRequired.length === 0
+    ),
+    matchedInformationWeight: matched.reduce(
+      (sum, match) => sum + match.informationWeight,
+      0,
+    ),
+    matchedTokenCount,
+  };
+}
+
+function valueIncludesVariant(value: string, variant: string): boolean {
+  if (variant.length > 1) return value.includes(variant);
+  return value.split(' ').includes(variant);
+}
+
+function isOptionalUnmatchedConversationalToken(token: string): boolean {
+  if (/^많(?:아요|으면|은|다)?$/u.test(token)) return false;
+  return /(?:는데요?|은데요?|한데요?|고|서|지만|거나|면서|니까|려고|려면|해야|나요|죠|어요|아요|해요|돼요|겠어요|습니다|습니까)$/u
+    .test(token);
 }

@@ -350,11 +350,14 @@ test('조사 제거는 원문을 보존한 보조 variant이고 짧은 말·법�
   assert.deepEqual(tokenizeSiteSearchQuery('상속인이'), [['상속인이', '상속인']]);
   assert.deepEqual(tokenizeSiteSearchQuery('법인은'), [['법인은', '법인']]);
   assert.deepEqual(tokenizeSiteSearchQuery('이'), [['이']]);
+  assert.deepEqual(tokenizeSiteSearchQuery('빚이')[0].slice(0, 2), ['빚이', '빚']);
 
   const fixture = [
     searchDocument('heir', 'knowledge', '2026-07-20', '법정상속인 순위'),
     searchDocument('tax', 'knowledge', '2026-07-20', '상속세 신고'),
     searchDocument('seizure', 'knowledge', '2026-07-20', '급여 압류'),
+    searchDocument('corporation', 'knowledge', '2026-07-20', '법인 설립 안내'),
+    searchDocument('debt', 'knowledge', '2026-07-20', '상속 채무 확인'),
   ];
   assert.deepEqual(
     rankSiteSearchDocuments(fixture, {now, query: '상속인이'}).map(result => result.id),
@@ -366,6 +369,17 @@ test('조사 제거는 원문을 보존한 보조 variant이고 짧은 말·법�
       query: '사장님이 월급을 안 줘요',
     }).map(result => result.id),
     [],
+  );
+  assert.deepEqual(
+    rankSiteSearchDocuments(fixture, {now, query: '법이'})
+      .map(result => result.id),
+    [],
+    '한 글자 조사 제거 stem은 다른 단어의 부분문자열을 열지 않습니다.',
+  );
+  assert.deepEqual(
+    rankSiteSearchDocuments(fixture, {now, query: '빚이'})
+      .map(result => result.id),
+    ['debt'],
   );
 });
 
