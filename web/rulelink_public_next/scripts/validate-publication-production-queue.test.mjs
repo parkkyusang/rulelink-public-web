@@ -274,7 +274,7 @@ test('임시 Git fixture는 과거 registry와 현재 migration 이력을 서로
 function refreshSummary(value) {
   const openStatuses = new Set(['pr_open', 'ready_for_integration', 'needs_rework', 'migration_required', 'blocked']);
   value.audit_summary.open_content_prs = value.items.filter(item => openStatuses.has(item.status)).length;
-  for (const status of ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated', 'merged_pending_publication', 'superseded', 'withdrawn']) {
+  for (const status of ['awaiting_pr', 'ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated', 'merged_pending_publication', 'superseded', 'withdrawn']) {
     value.audit_summary[status] = value.items.filter(item => item.status === status).length;
   }
   value.audit_summary.official_source_references_checked =

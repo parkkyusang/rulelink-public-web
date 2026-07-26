@@ -1050,16 +1050,26 @@ export async function buildPublicationCoverageExpansionPlan(options = {}) {
       if (active.length > 1) {
         throw new Error(`duplicate active topic assignment:${topic.topic_id}`);
       }
-      const selfTest = resolveTopicSelfTest(
+      const resolvedSelfTest = resolveTopicSelfTest(
         topic,
         active[0],
         scriptFiles,
       );
+      const importedCandidate = active[0]?.candidate_import;
+      const importedPlannedTest =
+        importedCandidate?.lifecycle_gate === 'awaiting_pr'
+          ? importedCandidate.planned_owner_files?.find(
+              (candidatePath) => candidatePath !== active[0].topic_file,
+            )
+          : null;
+      const selfTest = importedPlannedTest
+        ? {path: importedPlannedTest, state: 'to_create'}
+        : resolvedSelfTest;
       const assignment = workAssignment({
         topic,
         queue: documents.productionQueue,
         registry: documents.productionRegistry,
-        selfTest,
+        selfTest: resolvedSelfTest,
         snapshotId: documents.bundle.snapshot_id,
       });
       const legalAnswerGate = legalAnswerActivationForTopic(

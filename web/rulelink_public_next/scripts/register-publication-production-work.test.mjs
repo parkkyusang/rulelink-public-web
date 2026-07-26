@@ -22,6 +22,9 @@ import {
   prepareProductionWorkRegistration,
   registerProductionWorkFiles,
 } from './register-publication-production-work.mjs';
+import {
+  PRODUCTION_WORK_CONTRACTS,
+} from './validate-publication-production-queue.mjs';
 
 const scriptPath = fileURLToPath(import.meta.url);
 const appRoot = path.resolve(path.dirname(scriptPath), '..');
@@ -54,6 +57,13 @@ async function readJson(filePath) {
     'reader-backfill-crime-victim-wave1',
     'reader-backfill-debt-enforcement-wave2',
   ]);
+  for (const [registeredWorkId, contract] of Object.entries(
+    PRODUCTION_WORK_CONTRACTS,
+  )) {
+    if (contract.contract_kind === 'coverage_plan_existing_topic_v1') {
+      workIds.add(registeredWorkId);
+    }
+  }
   if (filePath === queuePath) {
     value.items = value.items.filter(item => !workIds.has(item.work_id));
     const openStatuses = new Set([
@@ -66,6 +76,7 @@ async function readJson(filePath) {
     value.audit_summary.open_content_prs =
       value.items.filter(item => openStatuses.has(item.status)).length;
     for (const status of [
+      'awaiting_pr',
       'ready_for_integration',
       'needs_rework',
       'migration_required',

@@ -138,7 +138,8 @@
     "integrated": 16,
     "merged_pending_publication": 0,
     "superseded": 1,
-    "withdrawn": 0
+    "withdrawn": 0,
+    "awaiting_pr": 3
   },
   "items": [
     {
@@ -1395,6 +1396,456 @@
         "RuleCard 중복 13→0, audience 공란 13→0, 복사 검색어 13→0, 비표준 content_type 8→0, typed relation 39개를 검증한다.",
         "주제만 직접 병합하지 않고 Wave1과 함께 current bundle과 새 불변 snapshot을 한 번의 publication migration으로 합성한다."
       ]
+    },
+    {
+      "queue_id": "publication-work-coverage-expansion-housing-lease-deposit-kr-knowledge-core-20260726-024",
+      "work_id": "coverage-expansion-housing-lease-deposit-kr-knowledge-core-20260726-024",
+      "title_ko": "housing-lease-deposit 기존 주제 확장",
+      "owner_role": "content_production",
+      "topic_id": "hub.housing-lease-deposit",
+      "topic_file": "artifacts/publication/topics/housing-lease-deposit.json",
+      "test_file": "web/rulelink_public_next/scripts/housing-lease-deposit-response-map-topic.test.mjs",
+      "change_mode": "existing_topic_revision",
+      "status": "awaiting_pr",
+      "counts": {
+        "sources": 5,
+        "rule_cards": 7,
+        "scenario_branches": 5,
+        "content_entries": 10,
+        "topic_hubs": 1,
+        "authority_units": 1
+      },
+      "quality_targets": {
+        "duplicate_rule_before": 0,
+        "duplicate_rule_after": 0,
+        "blank_audience_before": 0,
+        "blank_audience_after": 0,
+        "copied_search_before": 0,
+        "copied_search_after": 0,
+        "nonstandard_content_type_before": 0,
+        "nonstandard_content_type_after": 0,
+        "typed_relation_after": 32
+      },
+      "prerequisite_gates": [
+        {
+          "gate_id": "quality.coverage-task-pr-approved",
+          "gate_kind": "quality_schema",
+          "owner_role": "quality_governance",
+          "status": "pending"
+        },
+        {
+          "gate_id": "source-maintenance.coverage-locators-approved",
+          "gate_kind": "artifact",
+          "owner_role": "source_maintenance",
+          "status": "pending"
+        }
+      ],
+      "release_checks": [
+        {
+          "check_id": "canonical-urls-unchanged",
+          "status": "pending"
+        },
+        {
+          "check_id": "official-urls-pass",
+          "status": "pending"
+        },
+        {
+          "check_id": "runtime-responsive-no-overflow",
+          "status": "pending"
+        },
+        {
+          "check_id": "runtime-keyboard-reading-path",
+          "status": "pending"
+        },
+        {
+          "check_id": "search-hub-sitemap-200",
+          "status": "pending"
+        }
+      ],
+      "depends_on_prs": [],
+      "depends_on_work_ids": [],
+      "integration_order": null,
+      "direct_merge": false,
+      "integrate_requires": [
+        "current_bundle",
+        "new_immutable_snapshot",
+        "migrate_publication"
+      ],
+      "official_url_check": {
+        "status": "pending",
+        "referenced_count": 0
+      },
+      "source_freshness": {
+        "status": "pending",
+        "mismatch_count": 0
+      },
+      "integration_checks": [
+        "coverage expansion plan의 task packet과 실제 후보 Git base/head 및 변경 파일을 다시 대조한다.",
+        "실제 PR 번호·head·검사 영수증이 생기기 전에는 migration_required 또는 integrated로 전환하지 않는다.",
+        "기존 주제 개정은 current bundle과 새 immutable snapshot을 함께 만드는 publication migration으로만 반영한다."
+      ],
+      "candidate_import": {
+        "schema": "rulelink_existing_topic_candidate_import_v2",
+        "state": "imported_existing_candidate",
+        "lifecycle_gate": "awaiting_pr",
+        "source_branch": "codex/existing-topic-coverage-housing-prbase-20260726",
+        "source_branch_ref": "refs/heads/codex/existing-topic-coverage-housing-prbase-20260726",
+        "source_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
+        "source_head_sha": "4e1787a05d64ea6e3ccc67b57d3cedd1b3bc5227",
+        "required_pr_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
+        "candidate_pr_merge_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
+        "planner_contract_sha256": "4ff2e8c386c98baa9c8ca30cb1e9a3b237cc9ea8ccee102e9dd30378b2c671aa",
+        "range_merge_policy": "exact_pr_base_reject_merge_commits_and_require_exact_path_union",
+        "range_commit_shas": [
+          "4e1787a05d64ea6e3ccc67b57d3cedd1b3bc5227"
+        ],
+        "range_changed_files": [
+          "artifacts/publication/topics/housing-lease-deposit.json",
+          "web/rulelink_public_next/scripts/housing-lease-deposit-response-map-topic.test.mjs"
+        ],
+        "pr_changed_files": [
+          "artifacts/publication/topics/housing-lease-deposit.json",
+          "web/rulelink_public_next/scripts/housing-lease-deposit-response-map-topic.test.mjs"
+        ],
+        "observed_owner_files": [
+          "artifacts/publication/topics/housing-lease-deposit.json",
+          "web/rulelink_public_next/scripts/housing-lease-deposit-response-map-topic.test.mjs"
+        ],
+        "planned_owner_files": [
+          "artifacts/publication/topics/housing-lease-deposit.json",
+          "web/rulelink_public_next/scripts/housing-lease-deposit-coverage-expansion.test.mjs"
+        ],
+        "owner_scope_state": "repackaging_required",
+        "changed_content_ids": [
+          "content.deposit-refund-response-map",
+          "content.lease-registration-application-is-not-completion",
+          "content.lease-registration-order-requirements",
+          "content.move-before-deposit-refund",
+          "content.rights-after-lease-registration"
+        ],
+        "added_content_ids": [
+          "content.deposit-refund-response-map"
+        ],
+        "topic_before_sha256": "4dbc2046748958d16f557832bbad28fb0058ad4666038e552257dadc9dd3bb7e",
+        "topic_after_sha256": "4fb2bed3968a8c7819707662c790e9b864795aee970b65392f396d2bdba9c438",
+        "expected_counts": {
+          "sources": 5,
+          "rule_cards": 7,
+          "scenario_branches": 5,
+          "content_entries": 10,
+          "topic_hubs": 1,
+          "authority_units": 1
+        },
+        "expected_quality_targets": {
+          "duplicate_rule_before": 0,
+          "duplicate_rule_after": 0,
+          "blank_audience_before": 0,
+          "blank_audience_after": 0,
+          "copied_search_before": 0,
+          "copied_search_after": 0,
+          "nonstandard_content_type_before": 0,
+          "nonstandard_content_type_after": 0,
+          "typed_relation_after": 32
+        }
+      }
+    },
+    {
+      "queue_id": "publication-work-coverage-expansion-labor-wages-kr-knowledge-core-20260726-024",
+      "work_id": "coverage-expansion-labor-wages-kr-knowledge-core-20260726-024",
+      "title_ko": "labor-wages 기존 주제 확장",
+      "owner_role": "content_production",
+      "topic_id": "hub.labor-wages",
+      "topic_file": "artifacts/publication/topics/labor-wages.json",
+      "test_file": "web/rulelink_public_next/scripts/labor-wages-problem-flow-topic.test.mjs",
+      "change_mode": "existing_topic_revision",
+      "status": "awaiting_pr",
+      "counts": {
+        "sources": 8,
+        "rule_cards": 7,
+        "scenario_branches": 6,
+        "content_entries": 10,
+        "topic_hubs": 1,
+        "authority_units": 1
+      },
+      "quality_targets": {
+        "duplicate_rule_before": 0,
+        "duplicate_rule_after": 0,
+        "blank_audience_before": 0,
+        "blank_audience_after": 0,
+        "copied_search_before": 0,
+        "copied_search_after": 0,
+        "nonstandard_content_type_before": 0,
+        "nonstandard_content_type_after": 0,
+        "typed_relation_after": 34
+      },
+      "prerequisite_gates": [
+        {
+          "gate_id": "quality.coverage-task-pr-approved",
+          "gate_kind": "quality_schema",
+          "owner_role": "quality_governance",
+          "status": "pending"
+        },
+        {
+          "gate_id": "source-maintenance.coverage-locators-approved",
+          "gate_kind": "artifact",
+          "owner_role": "source_maintenance",
+          "status": "pending"
+        }
+      ],
+      "release_checks": [
+        {
+          "check_id": "canonical-urls-unchanged",
+          "status": "pending"
+        },
+        {
+          "check_id": "official-urls-pass",
+          "status": "pending"
+        },
+        {
+          "check_id": "runtime-responsive-no-overflow",
+          "status": "pending"
+        },
+        {
+          "check_id": "runtime-keyboard-reading-path",
+          "status": "pending"
+        },
+        {
+          "check_id": "search-hub-sitemap-200",
+          "status": "pending"
+        }
+      ],
+      "depends_on_prs": [],
+      "depends_on_work_ids": [],
+      "integration_order": null,
+      "direct_merge": false,
+      "integrate_requires": [
+        "current_bundle",
+        "new_immutable_snapshot",
+        "migrate_publication"
+      ],
+      "official_url_check": {
+        "status": "pending",
+        "referenced_count": 0
+      },
+      "source_freshness": {
+        "status": "pending",
+        "mismatch_count": 0
+      },
+      "integration_checks": [
+        "coverage expansion plan의 task packet과 실제 후보 Git base/head 및 변경 파일을 다시 대조한다.",
+        "실제 PR 번호·head·검사 영수증이 생기기 전에는 migration_required 또는 integrated로 전환하지 않는다.",
+        "기존 주제 개정은 current bundle과 새 immutable snapshot을 함께 만드는 publication migration으로만 반영한다."
+      ],
+      "candidate_import": {
+        "schema": "rulelink_existing_topic_candidate_import_v2",
+        "state": "imported_existing_candidate",
+        "lifecycle_gate": "awaiting_pr",
+        "source_branch": "codex/existing-topic-coverage-labor-prbase-20260726",
+        "source_branch_ref": "refs/heads/codex/existing-topic-coverage-labor-prbase-20260726",
+        "source_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
+        "source_head_sha": "3eaf77e1a578c4cf63dff01c1acaba9645aa628d",
+        "required_pr_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
+        "candidate_pr_merge_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
+        "planner_contract_sha256": "8975d00f8532577b2e57e1766403366ae5039ef14d7c874afd82e5da774302e1",
+        "range_merge_policy": "exact_pr_base_reject_merge_commits_and_require_exact_path_union",
+        "range_commit_shas": [
+          "3eaf77e1a578c4cf63dff01c1acaba9645aa628d"
+        ],
+        "range_changed_files": [
+          "artifacts/publication/topics/labor-wages.json",
+          "web/rulelink_public_next/scripts/labor-wages-problem-flow-topic.test.mjs"
+        ],
+        "pr_changed_files": [
+          "artifacts/publication/topics/labor-wages.json",
+          "web/rulelink_public_next/scripts/labor-wages-problem-flow-topic.test.mjs"
+        ],
+        "observed_owner_files": [
+          "artifacts/publication/topics/labor-wages.json",
+          "web/rulelink_public_next/scripts/labor-wages-problem-flow-topic.test.mjs"
+        ],
+        "planned_owner_files": [
+          "artifacts/publication/topics/labor-wages.json",
+          "web/rulelink_public_next/scripts/labor-wages-coverage-expansion.test.mjs"
+        ],
+        "owner_scope_state": "repackaging_required",
+        "changed_content_ids": [
+          "content.final-wages-after-retirement-14-days"
+        ],
+        "added_content_ids": [],
+        "topic_before_sha256": "9bfc285f7be5bd56c34847a2e8efbe9cae966b27e7e11df7beb65ad949b3ddf2",
+        "topic_after_sha256": "d1f99f2517db684cd81bc20aab8b4912528e2d174724b721a4f0e379827d1785",
+        "expected_counts": {
+          "sources": 8,
+          "rule_cards": 7,
+          "scenario_branches": 6,
+          "content_entries": 10,
+          "topic_hubs": 1,
+          "authority_units": 1
+        },
+        "expected_quality_targets": {
+          "duplicate_rule_before": 0,
+          "duplicate_rule_after": 0,
+          "blank_audience_before": 0,
+          "blank_audience_after": 0,
+          "copied_search_before": 0,
+          "copied_search_after": 0,
+          "nonstandard_content_type_before": 0,
+          "nonstandard_content_type_after": 0,
+          "typed_relation_after": 34
+        }
+      }
+    },
+    {
+      "queue_id": "publication-work-coverage-expansion-family-inheritance-kr-knowledge-core-20260726-024",
+      "work_id": "coverage-expansion-family-inheritance-kr-knowledge-core-20260726-024",
+      "title_ko": "family-inheritance 기존 주제 확장",
+      "owner_role": "content_production",
+      "topic_id": "hub.family-inheritance",
+      "topic_file": "artifacts/publication/topics/family-inheritance.json",
+      "test_file": "web/rulelink_public_next/scripts/family-inheritance-problem-pages-topic.test.mjs",
+      "change_mode": "existing_topic_revision",
+      "status": "awaiting_pr",
+      "counts": {
+        "sources": 24,
+        "rule_cards": 13,
+        "scenario_branches": 10,
+        "content_entries": 13,
+        "topic_hubs": 1,
+        "authority_units": 0
+      },
+      "quality_targets": {
+        "duplicate_rule_before": 0,
+        "duplicate_rule_after": 0,
+        "blank_audience_before": 0,
+        "blank_audience_after": 0,
+        "copied_search_before": 0,
+        "copied_search_after": 0,
+        "nonstandard_content_type_before": 0,
+        "nonstandard_content_type_after": 0,
+        "typed_relation_after": 26
+      },
+      "prerequisite_gates": [
+        {
+          "gate_id": "quality.coverage-task-pr-approved",
+          "gate_kind": "quality_schema",
+          "owner_role": "quality_governance",
+          "status": "pending"
+        },
+        {
+          "gate_id": "source-maintenance.coverage-locators-approved",
+          "gate_kind": "artifact",
+          "owner_role": "source_maintenance",
+          "status": "pending"
+        }
+      ],
+      "release_checks": [
+        {
+          "check_id": "canonical-urls-unchanged",
+          "status": "pending"
+        },
+        {
+          "check_id": "official-urls-pass",
+          "status": "pending"
+        },
+        {
+          "check_id": "runtime-responsive-no-overflow",
+          "status": "pending"
+        },
+        {
+          "check_id": "runtime-keyboard-reading-path",
+          "status": "pending"
+        },
+        {
+          "check_id": "search-hub-sitemap-200",
+          "status": "pending"
+        }
+      ],
+      "depends_on_prs": [],
+      "depends_on_work_ids": [],
+      "integration_order": null,
+      "direct_merge": false,
+      "integrate_requires": [
+        "current_bundle",
+        "new_immutable_snapshot",
+        "migrate_publication"
+      ],
+      "official_url_check": {
+        "status": "pending",
+        "referenced_count": 0
+      },
+      "source_freshness": {
+        "status": "pending",
+        "mismatch_count": 0
+      },
+      "integration_checks": [
+        "coverage expansion plan의 task packet과 실제 후보 Git base/head 및 변경 파일을 다시 대조한다.",
+        "실제 PR 번호·head·검사 영수증이 생기기 전에는 migration_required 또는 integrated로 전환하지 않는다.",
+        "기존 주제 개정은 current bundle과 새 immutable snapshot을 함께 만드는 publication migration으로만 반영한다."
+      ],
+      "candidate_import": {
+        "schema": "rulelink_existing_topic_candidate_import_v2",
+        "state": "imported_existing_candidate",
+        "lifecycle_gate": "awaiting_pr",
+        "source_branch": "codex/existing-topic-coverage-family-prbase-20260726",
+        "source_branch_ref": "refs/heads/codex/existing-topic-coverage-family-prbase-20260726",
+        "source_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
+        "source_head_sha": "182bf44382438d00a064edde168ca176c72a895b",
+        "required_pr_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
+        "candidate_pr_merge_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
+        "planner_contract_sha256": "66803949b0071540c89a34c62b3fe32d536555e68b1e9a4dac44e06c2a045737",
+        "range_merge_policy": "exact_pr_base_reject_merge_commits_and_require_exact_path_union",
+        "range_commit_shas": [
+          "182bf44382438d00a064edde168ca176c72a895b"
+        ],
+        "range_changed_files": [
+          "artifacts/publication/topics/family-inheritance.json",
+          "web/rulelink_public_next/scripts/family-inheritance-problem-pages-topic.test.mjs"
+        ],
+        "pr_changed_files": [
+          "artifacts/publication/topics/family-inheritance.json",
+          "web/rulelink_public_next/scripts/family-inheritance-problem-pages-topic.test.mjs"
+        ],
+        "observed_owner_files": [
+          "artifacts/publication/topics/family-inheritance.json",
+          "web/rulelink_public_next/scripts/family-inheritance-problem-pages-topic.test.mjs"
+        ],
+        "planned_owner_files": [
+          "artifacts/publication/topics/family-inheritance.json",
+          "web/rulelink_public_next/scripts/family-inheritance-rule-copy-topic-handoff.test.mjs"
+        ],
+        "owner_scope_state": "repackaging_required",
+        "changed_content_ids": [
+          "content.limited-acceptance-late-unreported-creditor",
+          "content.limited-acceptance-payment-before-deadline",
+          "content.one-coheir-renounces-share"
+        ],
+        "added_content_ids": [
+          "content.limited-acceptance-late-unreported-creditor",
+          "content.limited-acceptance-payment-before-deadline",
+          "content.one-coheir-renounces-share"
+        ],
+        "topic_before_sha256": "158c1e22ac9ce6b84e368e83d88ff4a8e1f2adbe054348ccc500acd50861c614",
+        "topic_after_sha256": "a6794bc2e6096c2a7564a84d14b80d464a55f509ff7ab30bde529bb1a523cca1",
+        "expected_counts": {
+          "sources": 24,
+          "rule_cards": 13,
+          "scenario_branches": 10,
+          "content_entries": 13,
+          "topic_hubs": 1,
+          "authority_units": 0
+        },
+        "expected_quality_targets": {
+          "duplicate_rule_before": 0,
+          "duplicate_rule_after": 0,
+          "blank_audience_before": 0,
+          "blank_audience_after": 0,
+          "copied_search_before": 0,
+          "copied_search_after": 0,
+          "nonstandard_content_type_before": 0,
+          "nonstandard_content_type_after": 0,
+          "typed_relation_after": 26
+        }
+      }
     }
   ],
   "quality_backlog": [

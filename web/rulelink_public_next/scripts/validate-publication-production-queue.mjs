@@ -20,6 +20,10 @@ import {
 import {
   validateSourceMaintenanceInventoryEvidenceCore,
 } from './source-maintenance-inventory-evidence-core.mjs';
+import {
+  existingTopicCoverageCandidateContractReceipt,
+  verifyExistingTopicCoverageCandidate,
+} from './existing-topic-coverage-candidate-core.mjs';
 import {site} from '../src/lib/site.ts';
 
 const scriptPath = fileURLToPath(import.meta.url);
@@ -54,6 +58,18 @@ const legalDomainTaxonomy = JSON.parse(
     'utf8',
   ),
 );
+const coverageExpansionPlan = JSON.parse(
+  await readFile(
+    path.join(
+      repoRoot,
+      'artifacts',
+      'publication',
+      'coverage',
+      'coverage-expansion-plan.json',
+    ),
+    'utf8',
+  ),
+);
 const windowsReservedBasenames =
   /^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])$/u;
 const coverageSeedStemPattern =
@@ -61,6 +77,7 @@ const coverageSeedStemPattern =
 
 const statuses = new Set([
   'planned',
+  'awaiting_pr',
   'claimed',
   'in_progress',
   'pr_open',
@@ -80,6 +97,7 @@ const releasedClaimStatuses = new Set(['integrated', 'superseded', 'withdrawn'])
 const openPrStatuses = new Set(['pr_open', 'ready_for_integration', 'needs_rework', 'migration_required', 'blocked']);
 const existingTopicRevisionStatuses = new Set([
   'planned',
+  'awaiting_pr',
   'claimed',
   'in_progress',
   'pr_open',
@@ -111,6 +129,7 @@ const queueRegistrySchema = 'rulelink_publication_queue_item_registry_v1';
 const queueRegistryVersion = 1;
 const prePrStatuses = new Set([
   'planned',
+  'awaiting_pr',
   'claimed',
   'in_progress',
   'blocked',
@@ -236,6 +255,7 @@ const queuePublicationEvidenceBrand =
   Symbol('rulelink-queue-publication-evidence-v1');
 const trustedRevalidatedGateProofMaps = new WeakSet();
 const sourceSelectionsByGateProofMap = new WeakMap();
+const trustedCoverageCandidateProofMaps = new WeakSet();
 const locallyRevalidatedGateMethods = new Set([
   'legal_answer_packet_activation_v1',
   'source_locator_selection_v2',
@@ -502,9 +522,118 @@ export function buildCoverageSeedProductionContracts(taxonomy) {
 const coverageSeedContracts =
   buildCoverageSeedProductionContracts(legalDomainTaxonomy);
 
+export function buildExistingTopicCoverageProductionContracts(plan) {
+  if (
+    plan?.schema !== 'rulelink_publication_coverage_expansion_plan_v1' ||
+    !Array.isArray(plan.task_packets)
+  ) {
+    throw new Error('coverage expansion plan의 task_packets 정본이 올바르지 않습니다.');
+  }
+  const entries = [];
+  const workIds = new Set();
+  for (const packet of plan.task_packets) {
+    if (packet?.work_kind !== 'existing_topic_backfill') continue;
+    if (STATIC_PRODUCTION_WORK_CONTRACTS[packet.work_id]) continue;
+    const isProposedUnregistered =
+      packet.assignment_state === 'proposed_unregistered' &&
+      canonicalJson(packet.blocking_reasons) ===
+        canonicalJson(['production_queue_registration_required']);
+    const isAwaitingPrRegistration =
+      packet.assignment_state === 'existing_queue_assignment' &&
+      canonicalJson(packet.blocking_reasons) === canonicalJson([
+        'gate_pending:quality.coverage-task-pr-approved',
+        'gate_pending:source-maintenance.coverage-locators-approved',
+        'queue_status:awaiting_pr',
+      ]);
+    if (
+      packet.schema !== 'rulelink_codex_task_packet_v1' ||
+      (!isProposedUnregistered && !isAwaitingPrRegistration) ||
+      packet.start_allowed !== false ||
+      !nonEmpty(packet.work_id) ||
+      workIds.has(packet.work_id) ||
+      !/^hub\.[a-z0-9.-]+$/u.test(packet.topic_id || '') ||
+      !/^artifacts\/publication\/topics\/[a-z0-9-]+\.json$/u.test(
+        packet.topic_file || '',
+      ) ||
+      !Array.isArray(packet.target_content_ids) ||
+      packet.target_content_ids.length === 0 ||
+      new Set(packet.target_content_ids).size !== packet.target_content_ids.length ||
+      packet.target_content_ids.some(
+        contentId => !/^content\.[a-z0-9._-]+$/u.test(contentId),
+      ) ||
+      packet.dependencies?.migration_required !== true ||
+      !Array.isArray(packet.owned_paths) ||
+      !packet.owned_paths.includes(packet.topic_file) ||
+      !packet.owned_paths.includes(packet.self_test_file)
+    ) {
+      throw new Error(
+        `등록 가능한 existing-topic coverage task packet이 아닙니다: ${packet?.work_id || '?'}`,
+      );
+    }
+    workIds.add(packet.work_id);
+    entries.push([
+      packet.work_id,
+      {
+        contract_kind: 'coverage_plan_existing_topic_v1',
+        title_ko: `${packet.topic_id.replace(/^hub\./u, '')} 기존 주제 확장`,
+        topic_id: packet.topic_id,
+        topic_file: packet.topic_file,
+        planned_test_file: packet.self_test_file,
+        planned_owned_paths: structuredClone(packet.owned_paths),
+        forbidden_paths: structuredClone(packet.forbidden_paths),
+        target_content_ids: structuredClone(packet.target_content_ids),
+        planning_snapshot_id: plan.generated_from?.snapshot_id,
+        planning_bundle_sha256: plan.generated_from?.base_bundle_sha256,
+        change_mode: 'existing_topic_revision',
+        measurement_scope: 'all_topic',
+        prerequisite_gates: {
+          'quality.coverage-task-pr-approved': {
+            gate_kind: 'quality_schema',
+            owner_role: 'quality_governance',
+            verification_method: 'git_ancestor',
+            evidence_pattern:
+              /^parkkyusang\/rulelink-public-web#\d+@[0-9a-f]{40}$/u,
+          },
+          'source-maintenance.coverage-locators-approved': {
+            gate_kind: 'artifact',
+            owner_role: 'source_maintenance',
+            verification_method: 'source_locator_selection_v2',
+            verification_contract:
+              'rulelink_source_locator_selection_verification_v2',
+            evidence_pattern: new RegExp(
+              `^source-locator-selection:${packet.work_id}@sha256:[0-9a-f]{64}$`,
+              'u',
+            ),
+          },
+        },
+        depends_on_work_ids: structuredClone(
+          packet.dependencies?.depends_on_work_ids ?? [],
+        ),
+        release_check_ids: [
+          'canonical-urls-unchanged',
+          'official-urls-pass',
+          'runtime-responsive-no-overflow',
+          'runtime-keyboard-reading-path',
+          'search-hub-sitemap-200',
+        ],
+        integration_checks: [
+          'coverage expansion plan의 task packet과 실제 후보 Git base/head 및 변경 파일을 다시 대조한다.',
+          '실제 PR 번호·head·검사 영수증이 생기기 전에는 migration_required 또는 integrated로 전환하지 않는다.',
+          '기존 주제 개정은 current bundle과 새 immutable snapshot을 함께 만드는 publication migration으로만 반영한다.',
+        ],
+      },
+    ]);
+  }
+  return Object.fromEntries(entries);
+}
+
+const existingTopicCoverageContracts =
+  buildExistingTopicCoverageProductionContracts(coverageExpansionPlan);
+
 export const PRODUCTION_WORK_CONTRACTS = {
   ...STATIC_PRODUCTION_WORK_CONTRACTS,
   ...coverageSeedContracts,
+  ...existingTopicCoverageContracts,
 };
 
 function productionGateContract(contract, gateId) {
@@ -1703,6 +1832,10 @@ export function topicReceipt(value) {
   return createHash('sha256').update(canonicalJson(value)).digest('hex');
 }
 
+export function coverageCandidateContractReceipt(item) {
+  return existingTopicCoverageCandidateContractReceipt(item);
+}
+
 function queueRegistryGenesisReceipt() {
   return topicReceipt({schema: queueRegistrySchema, registry_version: queueRegistryVersion});
 }
@@ -1714,7 +1847,15 @@ function queueItemIdentity(item) {
     topic_id: item.topic_id,
     topic_file: item.topic_file,
   };
-  if (nonEmpty(item.work_id)) identity.work_id = item.work_id;
+  if (nonEmpty(item.work_id)) {
+    identity.work_id = item.work_id;
+    if (
+      PRODUCTION_WORK_CONTRACTS[item.work_id]?.contract_kind ===
+      'coverage_plan_existing_topic_v1'
+    ) {
+      identity.contract_sha256 = coverageCandidateContractReceipt(item);
+    }
+  }
   else identity.pr_number = item.pr_number;
   return identity;
 }
@@ -1781,7 +1922,11 @@ function releaseCheckReceiptGenesis() {
 export function validateQueueItemRegistry(
   registry,
   queue,
-  {allowUnregisteredQueueItems = false, previousRegistry = null} = {},
+  {
+    allowUnregisteredQueueItems = false,
+    previousRegistry = null,
+    coverageCandidateProofs = null,
+  } = {},
 ) {
   const errors = [];
   if (!registry || typeof registry !== 'object') return ['production queue item registry가 필요합니다.'];
@@ -1840,6 +1985,47 @@ export function validateQueueItemRegistry(
     if (!modes.has(registration.change_mode)) errors.push(`${label}.change_mode가 올바르지 않습니다.`);
     if (!nonEmpty(registration.topic_id)) errors.push(`${label}.topic_id가 필요합니다.`);
     if (!nonEmpty(registration.topic_file)) errors.push(`${label}.topic_file이 필요합니다.`);
+    const registeredContract =
+      hasWorkIdentity && PRODUCTION_WORK_CONTRACTS[registration.work_id];
+    if (
+      registeredContract?.contract_kind === 'coverage_plan_existing_topic_v1'
+    ) {
+      if (!/^[0-9a-f]{64}$/u.test(registration.contract_sha256 || '')) {
+        errors.push(`${label}.contract_sha256가 필요합니다.`);
+      }
+      if (
+        registration.contract_upgrade_from_sha256 !== undefined &&
+        !/^[0-9a-f]{64}$/u.test(
+          registration.contract_upgrade_from_sha256 || '',
+        )
+      ) {
+        errors.push(
+          `${label}.contract_upgrade_from_sha256가 올바르지 않습니다.`,
+        );
+      }
+      if (
+        registration.contract_pr_base_rebind_from_sha256 !== undefined &&
+        !/^[0-9a-f]{64}$/u.test(
+          registration.contract_pr_base_rebind_from_sha256 || '',
+        )
+      ) {
+        errors.push(
+          `${label}.contract_pr_base_rebind_from_sha256가 올바르지 않습니다.`,
+        );
+      }
+    } else if (registration.contract_sha256 !== undefined) {
+      errors.push(`${label}.contract_sha256는 coverage plan 작업에만 허용됩니다.`);
+    } else if (registration.contract_upgrade_from_sha256 !== undefined) {
+      errors.push(
+        `${label}.contract_upgrade_from_sha256는 coverage plan 작업에만 허용됩니다.`,
+      );
+    } else if (
+      registration.contract_pr_base_rebind_from_sha256 !== undefined
+    ) {
+      errors.push(
+        `${label}.contract_pr_base_rebind_from_sha256는 coverage plan 작업에만 허용됩니다.`,
+      );
+    }
     const expectedReceipt = queueRegistrationReceipt(registration);
     if (registration.receipt !== expectedReceipt) errors.push(`${label}.receipt가 등록 내용과 다릅니다.`);
     previousReceipt = registration.receipt;
@@ -1855,7 +2041,17 @@ export function validateQueueItemRegistry(
     }
     const expectedIdentity = queueItemIdentity(currentById);
     const identityFields = hasWorkIdentity
-      ? ['queue_id', 'work_id', 'change_mode', 'topic_id', 'topic_file']
+      ? [
+          'queue_id',
+          'work_id',
+          'change_mode',
+          'topic_id',
+          'topic_file',
+          ...(registeredContract?.contract_kind ===
+          'coverage_plan_existing_topic_v1'
+            ? ['contract_sha256']
+            : []),
+        ]
       : ['queue_id', 'pr_number', 'change_mode', 'topic_id', 'topic_file'];
     for (const field of identityFields) {
       if (registration[field] !== expectedIdentity[field]) {
@@ -1874,7 +2070,63 @@ export function validateQueueItemRegistry(
       errors.push('production queue item registry의 직전 불변 이력을 삭제할 수 없습니다.');
     } else {
       for (const [index, previousRegistration] of previousRegistry.registrations.entries()) {
-        if (canonicalJson(registry.registrations[index]) !== canonicalJson(previousRegistration)) {
+        const currentRegistration = registry.registrations[index];
+        const currentItem = queueByWorkId.get(currentRegistration?.work_id);
+        const proof = coverageCandidateProofs?.get?.(
+          currentRegistration?.work_id,
+        );
+        const {
+          contract_sha256: _previousContract,
+          receipt: _previousReceipt,
+          previous_receipt: _previousPreviousReceipt,
+          contract_upgrade_from_sha256: _previousUpgrade,
+          contract_pr_base_rebind_from_sha256: _previousPrBaseRebind,
+          ...previousIdentity
+        } = previousRegistration ?? {};
+        const {
+          contract_sha256: _currentContract,
+          receipt: _currentReceipt,
+          previous_receipt: _currentPreviousReceipt,
+          contract_upgrade_from_sha256: _currentUpgrade,
+          contract_pr_base_rebind_from_sha256: _currentPrBaseRebind,
+          ...currentIdentity
+        } = currentRegistration ?? {};
+        const isOneTimeCoverageContractUpgrade =
+          previousRegistration?.contract_upgrade_from_sha256 === undefined &&
+          currentRegistration?.contract_upgrade_from_sha256 ===
+            previousRegistration?.contract_sha256 &&
+          currentItem?.status === 'awaiting_pr' &&
+          currentItem?.candidate_import?.schema ===
+            'rulelink_existing_topic_candidate_import_v2' &&
+          trustedCoverageCandidateProofMaps.has(coverageCandidateProofs) &&
+          proof?.ok === true &&
+          proof.contract_sha256 === currentRegistration?.contract_sha256 &&
+          canonicalJson(currentIdentity) === canonicalJson(previousIdentity);
+        const isOneTimePrBaseContractRebind =
+          previousRegistration?.contract_upgrade_from_sha256 !== undefined &&
+          currentRegistration?.contract_upgrade_from_sha256 ===
+            previousRegistration?.contract_upgrade_from_sha256 &&
+          previousRegistration?.contract_pr_base_rebind_from_sha256 ===
+            undefined &&
+          currentRegistration?.contract_pr_base_rebind_from_sha256 ===
+            previousRegistration?.contract_sha256 &&
+          currentItem?.status === 'awaiting_pr' &&
+          currentItem?.candidate_import?.schema ===
+            'rulelink_existing_topic_candidate_import_v2' &&
+          currentItem?.candidate_import?.source_base_sha ===
+            currentItem?.candidate_import?.required_pr_base_sha &&
+          currentItem?.candidate_import?.candidate_pr_merge_base_sha ===
+            currentItem?.candidate_import?.required_pr_base_sha &&
+          trustedCoverageCandidateProofMaps.has(coverageCandidateProofs) &&
+          proof?.ok === true &&
+          proof.contract_sha256 === currentRegistration?.contract_sha256 &&
+          canonicalJson(currentIdentity) === canonicalJson(previousIdentity);
+        if (
+          canonicalJson(currentRegistration) !==
+            canonicalJson(previousRegistration) &&
+          !isOneTimeCoverageContractUpgrade &&
+          !isOneTimePrBaseContractRebind
+        ) {
           errors.push(`production queue item registry의 직전 불변 등록을 바꿀 수 없습니다: sequence ${index + 1}`);
         }
       }
@@ -2834,6 +3086,48 @@ export async function loadQueuePublicationEvidence(queue, bundle, io = {}) {
     revalidatedGateProofs,
     verifiedSourceSelections,
   );
+  const coverageCandidateProofs = new Map();
+  const runCoverageGit = async args => (
+    await runGitCommand(args, io)
+  ).stdout;
+  for (const item of queue.items ?? []) {
+    const contract = PRODUCTION_WORK_CONTRACTS[item?.work_id];
+    if (contract?.contract_kind !== 'coverage_plan_existing_topic_v1') continue;
+    try {
+      const verified = await verifyExistingTopicCoverageCandidate({
+        spec: {
+          ...item.candidate_import,
+          work_id: item.work_id,
+        },
+        contract,
+        runGit: runCoverageGit,
+        contentTypesPath: path.join(
+          appRoot,
+          'src',
+          'lib',
+          'knowledge-content-types.json',
+        ),
+      });
+      const verifiedItem = {
+        ...item,
+        test_file: verified.testFile,
+        counts: verified.counts,
+        quality_targets: verified.qualityTargets,
+        candidate_import: verified.candidateImport,
+      };
+      coverageCandidateProofs.set(item.work_id, {
+        ok: true,
+        contract_sha256:
+          existingTopicCoverageCandidateContractReceipt(verifiedItem),
+      });
+    } catch (error) {
+      coverageCandidateProofs.set(item.work_id, {
+        ok: false,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
+  }
+  trustedCoverageCandidateProofMaps.add(coverageCandidateProofs);
   return {
     [queuePublicationEvidenceBrand]: true,
     publishedSnapshot,
@@ -2843,6 +3137,7 @@ export async function loadQueuePublicationEvidence(queue, bundle, io = {}) {
     itemRegistry,
     previousItemRegistry: registryHistory.previous_registry,
     revalidatedGateProofs,
+    coverageCandidateProofs,
   };
 }
 
@@ -2956,6 +3251,7 @@ export function validateProductionQueue(
     itemRegistry = null,
     previousItemRegistry = null,
     revalidatedGateProofs = null,
+    coverageCandidateProofs = null,
   } = {},
 ) {
   const errors = [];
@@ -2970,7 +3266,10 @@ export function validateProductionQueue(
     errors.push('items 배열이 필요합니다.');
     return errors;
   }
-  errors.push(...validateQueueItemRegistry(itemRegistry, queue, {previousRegistry: previousItemRegistry}));
+  errors.push(...validateQueueItemRegistry(itemRegistry, queue, {
+    previousRegistry: previousItemRegistry,
+    coverageCandidateProofs,
+  }));
   for (const receipt of itemRegistry?.prerequisite_gate_receipts ?? []) {
     const contract = PRODUCTION_WORK_CONTRACTS[receipt.work_id];
     const gateContract = productionGateContract(contract, receipt.gate_id);
@@ -3165,19 +3464,184 @@ export function validateProductionQueue(
         if (item.title_ko !== workContract.title_ko) {
           errors.push(`${label}.title_ko가 승인된 생산계약과 다릅니다: ${item.work_id}`);
         }
-        for (const field of ['topic_id', 'topic_file', 'test_file', 'change_mode']) {
+        const identityFields =
+          workContract.contract_kind === 'coverage_plan_existing_topic_v1'
+            ? ['topic_id', 'topic_file', 'change_mode']
+            : ['topic_id', 'topic_file', 'test_file', 'change_mode'];
+        for (const field of identityFields) {
           if (item[field] !== workContract[field]) {
             errors.push(`${label}.${field}가 승인된 생산계약과 다릅니다: ${item.work_id}`);
           }
         }
-        if (nonEmpty(item.branch) && item.branch !== workContract.branch) {
+        if (
+          workContract.contract_kind !== 'coverage_plan_existing_topic_v1' &&
+          nonEmpty(item.branch) &&
+          item.branch !== workContract.branch
+        ) {
           errors.push(`${label}.branch가 승인된 생산계약과 다릅니다: ${item.work_id}`);
         }
-        if (canonicalJson(item.counts) !== canonicalJson(workContract.counts)) {
-          errors.push(`${label}.counts가 승인된 생산계약과 다릅니다: ${item.work_id}`);
-        }
-        if (canonicalJson(item.quality_targets) !== canonicalJson(workContract.quality_targets)) {
-          errors.push(`${label}.quality_targets가 승인된 생산계약과 다릅니다: ${item.work_id}`);
+        if (workContract.contract_kind === 'coverage_plan_existing_topic_v1') {
+          const candidate = item.candidate_import;
+          if (!candidate || typeof candidate !== 'object') {
+            errors.push(`${label}.candidate_import가 필요합니다.`);
+          } else {
+            if (
+              candidate.schema !==
+                'rulelink_existing_topic_candidate_import_v2' ||
+              candidate.state !== 'imported_existing_candidate' ||
+              candidate.lifecycle_gate !== 'awaiting_pr'
+            ) {
+              errors.push(`${label}.candidate_import 상태가 올바르지 않습니다.`);
+            }
+            if (
+              candidate.lifecycle_gate === 'awaiting_pr' &&
+              item.status !== 'awaiting_pr'
+            ) {
+              errors.push(
+                `${label}.candidate_import는 실제 PR 결박 전 awaiting_pr 상태를 벗어날 수 없습니다.`,
+              );
+            }
+            for (const field of [
+              'source_base_sha',
+              'source_head_sha',
+              'required_pr_base_sha',
+            ]) {
+              if (!/^[0-9a-f]{40}$/u.test(candidate[field] || '')) {
+                errors.push(`${label}.candidate_import.${field}가 올바르지 않습니다.`);
+              }
+            }
+            for (const field of ['topic_before_sha256', 'topic_after_sha256']) {
+              if (!/^[0-9a-f]{64}$/u.test(candidate[field] || '')) {
+                errors.push(`${label}.candidate_import.${field}가 올바르지 않습니다.`);
+              }
+            }
+            if (
+              candidate.source_branch_ref !==
+              `refs/heads/${candidate.source_branch}`
+            ) {
+              errors.push(
+                `${label}.candidate_import.source_branch_ref가 source_branch와 다릅니다.`,
+              );
+            }
+            for (const field of [
+              'candidate_pr_merge_base_sha',
+            ]) {
+              if (!/^[0-9a-f]{40}$/u.test(candidate[field] || '')) {
+                errors.push(`${label}.candidate_import.${field}가 올바르지 않습니다.`);
+              }
+            }
+            if (!/^[0-9a-f]{64}$/u.test(candidate.planner_contract_sha256 || '')) {
+              errors.push(
+                `${label}.candidate_import.planner_contract_sha256가 올바르지 않습니다.`,
+              );
+            }
+            if (
+              candidate.range_merge_policy !==
+              'exact_pr_base_reject_merge_commits_and_require_exact_path_union'
+            ) {
+              errors.push(`${label}.candidate_import.range_merge_policy가 올바르지 않습니다.`);
+            }
+            if (
+              candidate.source_base_sha === candidate.source_head_sha ||
+              candidate.required_pr_base_sha === candidate.source_head_sha
+            ) {
+              errors.push(`${label}.candidate_import의 base/head 경계가 닫히지 않았습니다.`);
+            }
+            if (!/^codex\/[a-z0-9._/-]+$/u.test(candidate.source_branch || '')) {
+              errors.push(`${label}.candidate_import.source_branch가 올바르지 않습니다.`);
+            }
+            for (const field of [
+              'observed_owner_files',
+              'planned_owner_files',
+              'changed_content_ids',
+              'added_content_ids',
+              'range_commit_shas',
+              'range_changed_files',
+              'pr_changed_files',
+            ]) {
+              const values = candidate[field];
+              if (
+                !Array.isArray(values) ||
+                new Set(values).size !== values.length ||
+                values.some(value => !nonEmpty(value))
+              ) {
+                errors.push(`${label}.candidate_import.${field}가 올바르지 않습니다.`);
+              }
+            }
+            if (
+              canonicalJson(candidate.range_changed_files) !==
+                canonicalJson(candidate.observed_owner_files) ||
+              canonicalJson(candidate.pr_changed_files) !==
+                canonicalJson(candidate.observed_owner_files)
+            ) {
+              errors.push(
+                `${label}.candidate_import commit별 union·PR 3-dot·최종 범위가 다릅니다.`,
+              );
+            }
+            if (
+              canonicalJson(candidate.planned_owner_files) !==
+              canonicalJson(workContract.planned_owned_paths)
+            ) {
+              errors.push(`${label}.candidate_import.planned_owner_files가 task packet과 다릅니다.`);
+            }
+            if (
+              !candidate.observed_owner_files?.includes(item.topic_file) ||
+              !candidate.observed_owner_files?.includes(item.test_file) ||
+              candidate.observed_owner_files?.length !== 2
+            ) {
+              errors.push(`${label}.candidate_import는 topic+test 정확히 2파일이어야 합니다.`);
+            }
+            const exactOwnerScope =
+              canonicalJson(candidate.observed_owner_files) ===
+              canonicalJson(candidate.planned_owner_files);
+            if (
+              candidate.owner_scope_state !==
+              (exactOwnerScope ? 'exact' : 'repackaging_required')
+            ) {
+              errors.push(`${label}.candidate_import.owner_scope_state가 실제 파일범위와 다릅니다.`);
+            }
+            if (
+              !candidate.changed_content_ids?.every(contentId =>
+                /^content\.[a-z0-9._-]+$/u.test(contentId),
+              ) ||
+              !candidate.added_content_ids?.every(contentId =>
+                candidate.changed_content_ids.includes(contentId),
+              )
+            ) {
+              errors.push(`${label}.candidate_import 콘텐츠 범위가 올바르지 않습니다.`);
+            }
+            if (
+              canonicalJson(item.counts) !== canonicalJson(candidate.expected_counts) ||
+              canonicalJson(item.quality_targets) !==
+                canonicalJson(candidate.expected_quality_targets)
+            ) {
+              errors.push(`${label}.candidate_import의 예상 산출 수치와 queue 계약이 다릅니다.`);
+            }
+          }
+          const registration = itemRegistry?.registrations?.find(
+            value => value.work_id === item.work_id,
+          );
+          const contractReceipt = coverageCandidateContractReceipt(item);
+          if (registration?.contract_sha256 !== contractReceipt) {
+            errors.push(`${label}.candidate_import 계약이 append-only registry와 다릅니다.`);
+          }
+          const gitProof = coverageCandidateProofs?.get?.(item.work_id);
+          if (
+            !trustedCoverageCandidateProofMaps.has(coverageCandidateProofs) ||
+            gitProof?.ok !== true ||
+            gitProof.contract_sha256 !== contractReceipt
+          ) {
+            errors.push(
+              `${label}.candidate_import가 독립 Git·planner 재검증과 다릅니다: ${gitProof?.error || 'trusted proof 없음'}`,
+            );
+          }
+        } else {
+          if (canonicalJson(item.counts) !== canonicalJson(workContract.counts)) {
+            errors.push(`${label}.counts가 승인된 생산계약과 다릅니다: ${item.work_id}`);
+          }
+          if (canonicalJson(item.quality_targets) !== canonicalJson(workContract.quality_targets)) {
+            errors.push(`${label}.quality_targets가 승인된 생산계약과 다릅니다: ${item.work_id}`);
+          }
         }
         if (
           canonicalJson(item.depends_on_work_ids ?? []) !==
@@ -3190,18 +3654,26 @@ export function validateProductionQueue(
         }
         if (completedMeasurementStatuses.has(item.status)) {
           const measurement = workTopicMeasurements?.get?.(item.work_id);
+          const expectedCounts =
+            workContract.contract_kind === 'coverage_plan_existing_topic_v1'
+              ? item.counts
+              : workContract.counts;
+          const expectedQuality =
+            workContract.contract_kind === 'coverage_plan_existing_topic_v1'
+              ? item.quality_targets
+              : workContract.quality_targets;
           if (!measurement) {
             errors.push(`${label}의 완료 상태에는 실제 topic 품질 측정값이 필요합니다: ${item.work_id}`);
           } else {
-            if (canonicalJson(measurement.counts) !== canonicalJson(workContract.counts)) {
+            if (canonicalJson(measurement.counts) !== canonicalJson(expectedCounts)) {
               errors.push(`${label}의 실제 topic 객체 수가 생산계약과 다릅니다: ${item.work_id}`);
             }
             const expectedAfter = {
-              duplicate_rule: workContract.quality_targets.duplicate_rule_after,
-              blank_audience: workContract.quality_targets.blank_audience_after,
-              copied_search: workContract.quality_targets.copied_search_after,
-              nonstandard_content_type: workContract.quality_targets.nonstandard_content_type_after,
-              typed_relation: workContract.quality_targets.typed_relation_after,
+              duplicate_rule: expectedQuality.duplicate_rule_after,
+              blank_audience: expectedQuality.blank_audience_after,
+              copied_search: expectedQuality.copied_search_after,
+              nonstandard_content_type: expectedQuality.nonstandard_content_type_after,
+              typed_relation: expectedQuality.typed_relation_after,
             };
             if (canonicalJson(measurement.quality) !== canonicalJson(expectedAfter)) {
               errors.push(`${label}의 실제 topic 품질 수치가 생산계약 after 값과 다릅니다: ${item.work_id}`);
@@ -3355,6 +3827,32 @@ export function validateProductionQueue(
 
     if (item.status === 'ready_for_integration' && !isPositiveInteger(item.integration_order)) {
       errors.push(`${label}의 ready_for_integration 상태에는 integration_order가 필요합니다.`);
+    }
+    if (item.status === 'awaiting_pr') {
+      if (
+        PRODUCTION_WORK_CONTRACTS[item.work_id]?.contract_kind !==
+        'coverage_plan_existing_topic_v1'
+      ) {
+        errors.push(`${label}.awaiting_pr는 coverage plan 후보 등록에만 허용됩니다.`);
+      }
+      if (item.pr_number !== undefined || item.head_sha !== undefined) {
+        errors.push(`${label}.awaiting_pr에는 실제 PR 번호나 PR head를 미리 기록할 수 없습니다.`);
+      }
+      if (item.direct_merge !== false || item.integration_order !== null) {
+        errors.push(`${label}.awaiting_pr는 직접 병합하거나 통합 순서를 예약할 수 없습니다.`);
+      }
+      if (
+        item.prerequisite_gates?.some(gate => gate.status !== 'pending') ||
+        item.release_checks?.some(check => check.status !== 'pending')
+      ) {
+        errors.push(`${label}.awaiting_pr의 게이트와 검사는 실제 영수증 전 pending이어야 합니다.`);
+      }
+      if (
+        item.official_url_check?.status !== 'pending' ||
+        item.source_freshness?.status !== 'pending'
+      ) {
+        errors.push(`${label}.awaiting_pr의 근거 검사는 실제 PR 전 pending이어야 합니다.`);
+      }
     }
     if (['needs_rework', 'blocked'].includes(item.status) && !nonEmpty(item.blocking_reason_ko)) {
       errors.push(`${label}의 ${item.status} 상태에는 blocking_reason_ko가 필요합니다.`);
@@ -3726,9 +4224,12 @@ export function validateProductionQueue(
   if (summary.official_source_references_checked !== sourceTotal) {
     errors.push('audit_summary.official_source_references_checked와 대기열 근거 합계가 다릅니다.');
   }
-  const statusSummaryKeys = ['ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated', 'merged_pending_publication', 'superseded', 'withdrawn'];
+  const statusSummaryKeys = ['awaiting_pr', 'ready_for_integration', 'needs_rework', 'migration_required', 'blocked', 'integrated', 'merged_pending_publication', 'superseded', 'withdrawn'];
   for (const status of statusSummaryKeys) {
     const actual = queue.items.filter(item => item.status === status).length;
+    if (status === 'awaiting_pr' && actual === 0 && summary[status] === undefined) {
+      continue;
+    }
     if (summary[status] !== actual) {
       errors.push(`audit_summary.${status}와 실제 상태 수가 다릅니다: expected=${actual}, actual=${String(summary[status])}`);
     }
