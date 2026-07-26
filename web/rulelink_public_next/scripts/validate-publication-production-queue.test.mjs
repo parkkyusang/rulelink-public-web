@@ -31,8 +31,10 @@ import {
   appendQueuePrBindings,
   compareQueueCurrentPublication,
   deriveCurrentPublication,
+  effectiveOwnerRoleContracts,
   inspectMigrationCommit,
   inspectQueueItemRegistryHistory,
+  isMigrationOwnedPath,
   loadQueuePublicationEvidence,
   synchronizeCurrentPublicationFile,
   synchronizeQueueItemRegistryFile,
@@ -897,7 +899,10 @@ test('학교폭력 #153 상태는 current 공개 여부와 일치한다', () => 
 });
 
 test('역할 정본은 허용 역할과 실제 runtime 지식 시험 경계를 고정한다', () => {
-  assert.deepEqual(queue.policy.owner_role_contracts, OWNER_ROLE_CONTRACTS);
+  assert.deepEqual(
+    effectiveOwnerRoleContracts(queue.policy.owner_role_contracts),
+    OWNER_ROLE_CONTRACTS,
+  );
   assert.equal(
     queue.policy.existing_topic_migration_commit_protocol,
     'data_commit_then_queue_evidence_commit_merge_without_squash',
@@ -914,10 +919,77 @@ test('역할 정본은 허용 역할과 실제 runtime 지식 시험 경계를 �
   assert.ok(OWNER_ROLE_CONTRACTS.migrate_publication.owned_paths.includes('artifacts/publication/concepts/manifest.json'));
   assert.ok(OWNER_ROLE_CONTRACTS.migrate_publication.owned_paths.includes('artifacts/publication/production-queue.json'));
   assert.ok(OWNER_ROLE_CONTRACTS.migrate_publication.owned_paths.includes('artifacts/publication/production-queue-registry.json'));
+  for (const requiredPath of [
+    'artifacts/publication/coverage/coverage-manifest.json',
+    'artifacts/publication/coverage/expansion-backlog.json',
+    'artifacts/publication/coverage/coverage-expansion-plan.json',
+    'artifacts/publication/coverage/domains/*.coverage.json',
+    'artifacts/publication/derived/source-text-library.json',
+    'artifacts/publication/derived/maintenance-index.json',
+    'web/rulelink_public_next/contracts/legal-answer-packet/activation-manifest.json',
+    'web/rulelink_public_next/scripts/build-publication-coverage-dashboard.test.mjs',
+    'web/rulelink_public_next/scripts/publication-coverage-expansion-planner.test.mjs',
+    'web/rulelink_public_next/scripts/publication-expansion-backlog.test.mjs',
+    'web/rulelink_public_next/scripts/validate-publication-coverage-matrix.test.mjs',
+  ]) {
+    assert.ok(
+      OWNER_ROLE_CONTRACTS.migrate_publication.owned_paths.includes(requiredPath),
+      `migrate_publication owned_paths 누락: ${requiredPath}`,
+    );
+  }
   assert.equal(queue.items.find(item => item.pr_number === 166).test_file, 'web/rulelink_public_next/scripts/money-guarantee-topic-backfill.test.mjs');
   const invalid = clone(queue);
   invalid.items[0].owner_role = 'unknown_role';
   assert.ok(validateProductionQueue(invalid).some(error => error.includes('owner_role')));
+});
+
+test('publication migration은 snapshot-bound coverage 산출물만 추가로 소유한다', () => {
+  for (const allowedPath of [
+    'artifacts/publication/coverage/coverage-manifest.json',
+    'artifacts/publication/coverage/expansion-backlog.json',
+    'artifacts/publication/coverage/coverage-expansion-plan.json',
+    'artifacts/publication/coverage/domains/crime-victim-response.coverage.json',
+    'artifacts/publication/derived/source-text-library.json',
+    'artifacts/publication/derived/maintenance-index.json',
+    'web/rulelink_public_next/contracts/legal-answer-packet/activation-manifest.json',
+    'web/rulelink_public_next/scripts/build-publication-coverage-dashboard.test.mjs',
+    'web/rulelink_public_next/scripts/publication-coverage-expansion-planner.test.mjs',
+    'web/rulelink_public_next/scripts/publication-expansion-backlog.test.mjs',
+    'web/rulelink_public_next/scripts/validate-publication-coverage-matrix.test.mjs',
+  ]) {
+    assert.equal(isMigrationOwnedPath(allowedPath), true, allowedPath);
+  }
+
+  for (const forbiddenPath of [
+    'artifacts/publication/coverage/coverage-manifest.schema.json',
+    'artifacts/publication/coverage/legal-domain-taxonomy.json',
+    'artifacts/publication/coverage/domains/crime-victim-response.json',
+    'artifacts/publication/derived/arbitrary.json',
+    'web/rulelink_public_next/scripts/publication-coverage-core.mjs',
+    'web/rulelink_public_next/scripts/arbitrary-coverage.test.mjs',
+    'web/rulelink_public_next/contracts/legal-answer-packet/schema.json',
+  ]) {
+    assert.equal(isMigrationOwnedPath(forbiddenPath), false, forbiddenPath);
+  }
+
+  const arbitraryExtension = clone(queue.policy.owner_role_contracts);
+  arbitraryExtension.migrate_publication.owned_paths.push(
+    'web/rulelink_public_next/scripts/arbitrary-coverage.test.mjs',
+  );
+  assert.notDeepEqual(
+    effectiveOwnerRoleContracts(arbitraryExtension),
+    OWNER_ROLE_CONTRACTS,
+  );
+
+  const missingLegacyBoundary = clone(queue.policy.owner_role_contracts);
+  missingLegacyBoundary.migrate_publication.owned_paths =
+    missingLegacyBoundary.migrate_publication.owned_paths.filter(
+      (value) => value !== 'README.md',
+    );
+  assert.notDeepEqual(
+    effectiveOwnerRoleContracts(missingLegacyBoundary),
+    OWNER_ROLE_CONTRACTS,
+  );
 });
 
 test('역할별 WIP 1과 같은 topic_file의 활성 중복 소유를 차단한다', () => {

@@ -71,6 +71,8 @@ const NON_EMPTY_ARRAY_KEYS = [
 
 const SHA256_PATTERN = /^[a-f0-9]{64}$/;
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+const RFC3339_DATE_TIME_PATTERN =
+  /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,9})?(?:Z|[+-]\d{2}:\d{2})$/;
 const TRUSTED_EVALUATOR_COMMIT =
   '3bea0db11468757531df602d40596decf2dce78e';
 const TRUSTED_EVALUATION_SCOPE_MANIFEST_SHA256 =
@@ -462,11 +464,25 @@ function evaluationScopeState(
   };
 }
 
-function dateWithinPeriod(asOf, effectiveFrom, effectiveTo) {
-  if (!DATE_PATTERN.test(asOf ?? '') || !DATE_PATTERN.test(effectiveFrom ?? '')) {
+function normalizedTemporalDate(value) {
+  if (DATE_PATTERN.test(value ?? '')) return value;
+  if (RFC3339_DATE_TIME_PATTERN.test(value ?? '')) return value.slice(0, 10);
+  return null;
+}
+
+export function dateWithinPeriod(asOf, effectiveFrom, effectiveTo) {
+  const asOfDate = normalizedTemporalDate(asOf);
+  const effectiveFromDate = normalizedTemporalDate(effectiveFrom);
+  const effectiveToDate = effectiveTo
+    ? normalizedTemporalDate(effectiveTo)
+    : null;
+  if (!asOfDate || !effectiveFromDate || (effectiveTo && !effectiveToDate)) {
     return false;
   }
-  return asOf >= effectiveFrom && (!effectiveTo || asOf < effectiveTo);
+  return (
+    asOfDate >= effectiveFromDate &&
+    (!effectiveToDate || asOfDate < effectiveToDate)
+  );
 }
 
 function authorityTemporalState(unit, bindingById, authorityReadingById) {
@@ -496,11 +512,15 @@ function authorityTemporalState(unit, bindingById, authorityReadingById) {
       continue;
     }
     const stateMatches = authority.time_state === unit.as_of_policy;
+    const asOfDate = normalizedTemporalDate(unit.as_of);
+    const effectiveFromDate = normalizedTemporalDate(authority.effective_from);
     const periodMatches =
       unit.as_of_policy === 'future_effective'
-        ? DATE_PATTERN.test(unit.as_of ?? '') &&
-          DATE_PATTERN.test(authority.effective_from ?? '') &&
-          unit.as_of < authority.effective_from
+        ? Boolean(
+            asOfDate &&
+              effectiveFromDate &&
+              asOfDate < effectiveFromDate,
+          )
         : dateWithinPeriod(
             unit.as_of,
             authority.effective_from,
