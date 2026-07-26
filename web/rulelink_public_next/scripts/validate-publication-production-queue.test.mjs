@@ -49,12 +49,27 @@ const repoRoot = path.resolve(process.cwd(), '..', '..');
 const queuePath = path.join(repoRoot, 'artifacts', 'publication', 'production-queue.json');
 const registryPath = path.join(repoRoot, 'artifacts', 'publication', 'production-queue-registry.json');
 const bundlePath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
+const prerequisitePublicationBundlePath = path.join(
+  repoRoot,
+  'artifacts',
+  'publication',
+  'snapshots',
+  'kr-knowledge-core-20260723-023',
+  'bundle.json',
+);
 const workflowPath = path.join(repoRoot, '.github', 'workflows', 'public-web-checks.yml');
 const execFileAsync = promisify(execFile);
-const [currentQueue, currentRegistry, bundle, workflow] = await Promise.all([
+const [
+  currentQueue,
+  currentRegistry,
+  bundle,
+  prerequisitePublicationBundle,
+  workflow,
+] = await Promise.all([
   readFile(queuePath, 'utf8').then(JSON.parse),
   readFile(registryPath, 'utf8').then(JSON.parse),
   readFile(bundlePath, 'utf8').then(JSON.parse),
+  readFile(prerequisitePublicationBundlePath, 'utf8').then(JSON.parse),
   readFile(workflowPath, 'utf8'),
 ]);
 const productionWorkIds = new Set(Object.keys(PRODUCTION_WORK_CONTRACTS));
@@ -159,10 +174,27 @@ async function createPreRegistrationHistoryFixture({
 const preRegistrationHistory = await createPreRegistrationHistoryFixture();
 after(preRegistrationHistory.cleanup);
 const preRegistrationHistoryRepository = preRegistrationHistory.repository;
+const registryRepositoryPath =
+  'artifacts/publication/production-queue-registry.json';
+function isRegistryHistoryCommand(args) {
+  return (
+    args[0] === 'rev-list' &&
+    args.includes('--') &&
+    args.at(-1) === registryRepositoryPath
+  ) || (
+    args[0] === 'show' &&
+    String(args[1] ?? '').endsWith(`:${registryRepositoryPath}`)
+  );
+}
 const preRegistrationRunGit = args => execFileAsync(
   'git',
   args,
-  {cwd: preRegistrationHistoryRepository, encoding: 'utf8'},
+  {
+    cwd: isRegistryHistoryCommand(args)
+      ? preRegistrationHistoryRepository
+      : repoRoot,
+    encoding: 'utf8',
+  },
 );
 const [publicationEvidence, currentPublicationEvidence] = await Promise.all([
   loadQueuePublicationEvidence(queue, bundle, {
@@ -207,6 +239,37 @@ for (const setupStep of ['clone', 'checkout']) {
     await assertTemporaryDirectoryRemoved(directory);
   });
 }
+
+test('임시 Git fixture는 과거 registry와 현재 migration 이력을 서로 다른 신뢰경계에서 읽는다', async () => {
+  const fixtureHead = String((await execFileAsync(
+    'git',
+    ['rev-parse', 'HEAD'],
+    {cwd: preRegistrationHistoryRepository, encoding: 'utf8'},
+  )).stdout || '').trim();
+  const currentHead = String((await preRegistrationRunGit([
+    'rev-parse',
+    'HEAD',
+  ])).stdout || '').trim();
+  assert.equal(fixtureHead, preRegistrationHistoryCommit);
+  assert.notEqual(currentHead, fixtureHead);
+
+  const migrationCommitShas = [
+    ...new Set(
+      currentQueue.items
+        .map((item) => item.migration_commit_sha)
+        .filter(Boolean),
+    ),
+  ];
+  assert.ok(migrationCommitShas.length > 0);
+  for (const migrationCommitSha of migrationCommitShas) {
+    await preRegistrationRunGit([
+      'merge-base',
+      '--is-ancestor',
+      migrationCommitSha,
+      'HEAD',
+    ]);
+  }
+});
 
 function refreshSummary(value) {
   const openStatuses = new Set(['pr_open', 'ready_for_integration', 'needs_rework', 'migration_required', 'blocked']);
@@ -515,13 +578,26 @@ function authoritySourceFetchFixture({
   };
 }
 
-function publicationEvidenceRef(snapshotId = bundle.snapshot_id) {
-  const status = buildPublicationStatusFromBundle(bundle);
+function publicationEvidenceRef(
+  publicationBundle = prerequisitePublicationBundle,
+) {
+  const status = buildPublicationStatusFromBundle(publicationBundle);
   return [
-    `publication:${snapshotId}`,
+    `publication:${publicationBundle.snapshot_id}`,
     `status-sha256:${topicReceipt(status)}`,
-    `bundle-sha256:${topicReceipt(bundle)}`,
+    `bundle-sha256:${topicReceipt(publicationBundle)}`,
   ].join('@');
+}
+
+function historicalPublicationRead(filePath, encoding) {
+  if (path.resolve(filePath) === path.resolve(bundlePath)) {
+    return Promise.resolve(
+      encoding
+        ? JSON.stringify(prerequisitePublicationBundle)
+        : Buffer.from(JSON.stringify(prerequisitePublicationBundle), 'utf8'),
+    );
+  }
+  return readFile(filePath, encoding);
 }
 
 function satisfyWorkGates(item) {
@@ -568,10 +644,23 @@ function completeWorkSourceChecks(item) {
 }
 
 async function verifiedEvidenceFor(value, itemRegistry = null) {
+  const verifiesHistoricalPublication = value.items.some(item =>
+    item.prerequisite_gates?.some(
+      gate =>
+        gate.gate_id === 'publication.snapshot-023-released' &&
+        gate.status === 'satisfied',
+    ),
+  );
   return verifyProductionQueueExternalEvidence(value, {
     registry: itemRegistry,
     fetchJson: async url => {
-      if (url.endsWith('/publication.json')) return buildPublicationStatusFromBundle(bundle);
+      if (url.endsWith('/publication.json')) {
+        return buildPublicationStatusFromBundle(
+          verifiesHistoricalPublication
+            ? prerequisitePublicationBundle
+            : bundle,
+        );
+      }
       const sourceCiResponse = authoritySourceCiApiFixture(url);
       if (sourceCiResponse) return sourceCiResponse;
       if (url.endsWith(`/pulls/${sourceEvidencePrNumber}/files?per_page=100`)) {
@@ -652,6 +741,9 @@ async function verifiedEvidenceFor(value, itemRegistry = null) {
       const normalized = String(filePath).replaceAll('\\', '/');
       for (const [artifactId, payload] of evidenceArtifactFixtures) {
         if (normalized.endsWith(`/${artifactId}.json`)) return payload;
+      }
+      if (verifiesHistoricalPublication) {
+        return historicalPublicationRead(filePath, ...args);
       }
       return readFile(filePath, ...args);
     },
@@ -2670,8 +2762,9 @@ test('운영 출판 상태표와 전체 번들의 서로 다른 해시를 함께
     registry,
     fetchJson: async url => {
       assert.ok(url.endsWith('/publication.json'));
-      return buildPublicationStatusFromBundle(bundle);
+      return buildPublicationStatusFromBundle(prerequisitePublicationBundle);
     },
+    readFile: historicalPublicationRead,
   });
 
   assert.equal(verifiedEvidence.gateProofs.size, 1);
@@ -2686,13 +2779,16 @@ test('운영 출판 상태표가 현재 번들의 공개 투영과 다르면 검
   );
   gate.status = 'satisfied';
   gate.evidence_ref = publicationEvidenceRef();
-  const mismatchedStatus = buildPublicationStatusFromBundle(bundle);
+  const mismatchedStatus = buildPublicationStatusFromBundle(
+    prerequisitePublicationBundle,
+  );
   mismatchedStatus.counts.knowledge_entries += 1;
 
   await assert.rejects(
     verifyProductionQueueExternalEvidence(value, {
       registry,
       fetchJson: async () => mismatchedStatus,
+      readFile: historicalPublicationRead,
     }),
     /운영 출판 표지가 현재 정본의 공개 상태와 다릅니다/u,
   );

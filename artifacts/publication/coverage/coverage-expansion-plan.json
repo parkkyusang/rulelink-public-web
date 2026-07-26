@@ -8,7 +8,7 @@
     "backlog_sha256": "d172fb51e6a64407a81c13d811654700e3748cb6ebd25479b4d06b4ccea48334",
     "taxonomy_sha256": "4cb524d1d0479246c943a2fcacfce0807e4b13feddae2e8d70afc78d7e1b1e11",
     "topic_manifest_sha256": "8ec514941561b1660429e382f7021f9508eb4543c0b8286bc4c370579b7c8434",
-    "production_queue_sha256": "4ec5206812b55c58c7abb959f07e2922d6316624f8ca8795dc67db3a2c415e6b",
+    "production_queue_sha256": "20dd9aa5d8102e245d55f749b3b02c67829d3ec806e310a46918e47145057612",
     "production_registry_sha256": "4ee89994c39627cd9ddb3aa9eb12f5a12d49e90c2b183d77798ea432de80eab3"
   },
   "denominator": {
