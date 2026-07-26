@@ -11,6 +11,9 @@ import {
   loadQueuePublicationEvidence,
   validateProductionQueue,
 } from './validate-publication-production-queue.mjs';
+import {
+  verifyExistingTopicCoverageCandidate,
+} from './existing-topic-coverage-candidate-core.mjs';
 
 const scriptPath = fileURLToPath(import.meta.url);
 const appRoot = path.resolve(path.dirname(scriptPath), '..');
@@ -213,7 +216,7 @@ async function defaultRunGit(args) {
   return result.stdout;
 }
 
-async function inspectCoverageCandidate(spec, io = {}) {
+async function legacyInspectCoverageCandidate(spec, io = {}) {
   const contract = PRODUCTION_WORK_CONTRACTS[spec?.work_id];
   if (contract?.contract_kind !== 'coverage_plan_existing_topic_v1') {
     throw new Error(`coverage plan existing-topic work_id가 아닙니다: ${spec?.work_id || '?'}`);
@@ -343,6 +346,20 @@ async function inspectCoverageCandidate(spec, io = {}) {
       expected_quality_targets: qualityTargets,
     },
   };
+}
+
+async function inspectCoverageCandidate(spec, io = {}) {
+  return verifyExistingTopicCoverageCandidate({
+    spec,
+    contract: PRODUCTION_WORK_CONTRACTS[spec?.work_id],
+    runGit: io.runGit || defaultRunGit,
+    contentTypesPath: path.join(
+      appRoot,
+      'src',
+      'lib',
+      'knowledge-content-types.json',
+    ),
+  });
 }
 
 export async function buildImportedCoverageProductionWorkItem(spec, io = {}) {

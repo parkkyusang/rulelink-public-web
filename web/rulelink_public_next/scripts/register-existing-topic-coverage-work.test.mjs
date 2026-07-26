@@ -8,6 +8,8 @@ import {
 } from './register-publication-production-work.mjs';
 import {
   PRODUCTION_WORK_CONTRACTS,
+  coverageCandidateContractReceipt,
+  topicReceipt,
   validateProductionQueue,
 } from './validate-publication-production-queue.mjs';
 
@@ -65,16 +67,65 @@ function topic(extraEntry = false) {
 function candidateSpec() {
   return {
     work_id: workId,
-    source_branch: 'codex/content-wave-025-20260726',
+    source_branch: 'codex/existing-topic-coverage-housing-lease-deposit-20260726',
     source_base_sha: baseSha,
     source_head_sha: headSha,
     required_pr_base_sha: requiredPrBaseSha,
   };
 }
 
-function gitFixture({extraOwner = false} = {}) {
+function requiredPlan() {
+  const contract = PRODUCTION_WORK_CONTRACTS[workId];
+  return {
+    generated_from: {
+      snapshot_id: contract.planning_snapshot_id,
+      base_bundle_sha256: contract.planning_bundle_sha256,
+    },
+    task_packets: [{
+      work_id: workId,
+      topic_id: contract.topic_id,
+      topic_file: contract.topic_file,
+      self_test_file: contract.planned_test_file,
+      owned_paths: contract.planned_owned_paths,
+      forbidden_paths: contract.forbidden_paths,
+      target_content_ids: contract.target_content_ids,
+    }],
+  };
+}
+
+function gitFixture({
+  extraOwner = false,
+  revertedIntermediatePath = false,
+  branchHead = headSha,
+  candidateMergeBase = baseSha,
+  rejectMergeBaseAncestor = false,
+} = {}) {
   return async args => {
-    if (args[0] === 'cat-file' || args[0] === 'merge-base') return '';
+    if (args[0] === 'show-ref') return `${branchHead}\n`;
+    if (args[0] === 'cat-file') return '';
+    if (args[0] === 'merge-base' && args[1] === '--is-ancestor') {
+      if (
+        rejectMergeBaseAncestor &&
+        args[2] === candidateMergeBase &&
+        args[3] === baseSha
+      ) {
+        throw new Error('not an ancestor');
+      }
+      return '';
+    }
+    if (args[0] === 'merge-base') return `${candidateMergeBase}\n`;
+    if (args[0] === 'rev-list') {
+      return `${headSha} ${baseSha}\n`;
+    }
+    if (args[0] === 'diff-tree') {
+      return [
+        topicFile,
+        candidateTestFile,
+        ...(extraOwner ? ['README.md'] : []),
+        ...(revertedIntermediatePath ? ['README.md'] : []),
+        '',
+      ].join('\n');
+    }
     if (args[0] === 'diff') {
       return [
         topicFile,
@@ -84,6 +135,9 @@ function gitFixture({extraOwner = false} = {}) {
       ].join('\n');
     }
     if (args[0] === 'show') {
+      if (args[1] === `${requiredPrBaseSha}:artifacts/publication/coverage/coverage-expansion-plan.json`) {
+        return JSON.stringify(requiredPlan());
+      }
       return JSON.stringify(
         args[1].startsWith(baseSha) ? topic(false) : topic(true),
       );
@@ -108,6 +162,12 @@ test('coverage task packet과 Git 후보를 결박해 awaiting_pr 항목을 만�
   assert.equal(item.candidate_import.source_base_sha, baseSha);
   assert.equal(item.candidate_import.source_head_sha, headSha);
   assert.equal(item.candidate_import.required_pr_base_sha, requiredPrBaseSha);
+  assert.equal(item.candidate_import.candidate_pr_merge_base_sha, baseSha);
+  assert.deepEqual(item.candidate_import.range_commit_shas, [headSha]);
+  assert.deepEqual(item.candidate_import.range_changed_files, [
+    topicFile,
+    candidateTestFile,
+  ].sort());
   assert.equal(item.candidate_import.owner_scope_state, 'repackaging_required');
   assert.equal(
     item.counts.content_entries,
@@ -136,6 +196,47 @@ test('candidate base와 head가 같으면 등록을 거부한다', async () => {
   );
 });
 
+test('source_branch가 source_head_sha를 직접 가리키지 않으면 등록을 거부한다', async () => {
+  await assert.rejects(
+    buildImportedCoverageProductionWorkItem(candidateSpec(), {
+      runGit: gitFixture({branchHead: '4'.repeat(40)}),
+    }),
+    /source_branch ref가 source_head_sha와 다릅니다/u,
+  );
+});
+
+test('임의 branch 문자열과 commit 문자열은 Git 조회 전에 거부한다', async () => {
+  await assert.rejects(
+    buildImportedCoverageProductionWorkItem({
+      ...candidateSpec(),
+      source_branch: 'main;echo forged',
+      source_head_sha: 'not-a-commit',
+    }, {runGit: gitFixture()}),
+    /40자리 commit SHA|source_branch가 올바르지 않습니다/u,
+  );
+});
+
+test('required PR base의 merge-base가 candidate source base의 조상이 아니면 거부한다', async () => {
+  await assert.rejects(
+    buildImportedCoverageProductionWorkItem(candidateSpec(), {
+      runGit: gitFixture({
+        candidateMergeBase: '4'.repeat(40),
+        rejectMergeBaseAncestor: true,
+      }),
+    }),
+    /not an ancestor/u,
+  );
+});
+
+test('중간 commit에서 금지 경로를 바꿨다가 되돌려도 등록을 거부한다', async () => {
+  await assert.rejects(
+    buildImportedCoverageProductionWorkItem(candidateSpec(), {
+      runGit: gitFixture({revertedIntermediatePath: true}),
+    }),
+    /commit별 changed-path union과 최종 diff가 다릅니다/u,
+  );
+});
+
 test('coverage task는 후보 증거 없는 일반 planned 등록을 거부한다', () => {
   assert.throws(
     () => buildPlannedProductionWorkItem(workId),
@@ -161,6 +262,35 @@ test('append-only contract hash가 바뀌면 queue 검증이 거부한다', asyn
     error.includes('append-only registry') ||
     error.includes('contract_sha256')
   )));
+});
+
+test('queue와 registry를 함께 위조해 self-hash해도 독립 Git proof 없이는 거부한다', async () => {
+  const [queue, registry] = await Promise.all([
+    readFile(
+      new URL('../../../artifacts/publication/production-queue.json', import.meta.url),
+      'utf8',
+    ).then(JSON.parse),
+    readFile(
+      new URL('../../../artifacts/publication/production-queue-registry.json', import.meta.url),
+      'utf8',
+    ).then(JSON.parse),
+  ]);
+  const target = queue.items.find(item => (
+    item.work_id ===
+    'coverage-expansion-family-inheritance-kr-knowledge-core-20260726-024'
+  ));
+  target.candidate_import.source_head_sha = 'f'.repeat(40);
+  const registration = registry.registrations.find(entry => (
+    entry.work_id === target.work_id
+  ));
+  registration.contract_sha256 = coverageCandidateContractReceipt(target);
+  delete registration.receipt;
+  registration.receipt = topicReceipt(registration);
+  registry.registry_receipt = registration.receipt;
+
+  const errors = validateProductionQueue(queue, {itemRegistry: registry});
+  assert.ok(!errors.some(error => error.includes('append-only registry')));
+  assert.ok(errors.some(error => error.includes('독립 Git·planner 재검증')));
 });
 
 test('실제 PR 결박 전 migration_required로 상태만 바꾸면 거부한다', async () => {

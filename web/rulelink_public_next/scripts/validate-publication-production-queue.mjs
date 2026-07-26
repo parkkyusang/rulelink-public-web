@@ -20,6 +20,10 @@ import {
 import {
   validateSourceMaintenanceInventoryEvidenceCore,
 } from './source-maintenance-inventory-evidence-core.mjs';
+import {
+  existingTopicCoverageCandidateContractReceipt,
+  verifyExistingTopicCoverageCandidate,
+} from './existing-topic-coverage-candidate-core.mjs';
 import {site} from '../src/lib/site.ts';
 
 const scriptPath = fileURLToPath(import.meta.url);
@@ -251,6 +255,7 @@ const queuePublicationEvidenceBrand =
   Symbol('rulelink-queue-publication-evidence-v1');
 const trustedRevalidatedGateProofMaps = new WeakSet();
 const sourceSelectionsByGateProofMap = new WeakMap();
+const trustedCoverageCandidateProofMaps = new WeakSet();
 const locallyRevalidatedGateMethods = new Set([
   'legal_answer_packet_activation_v1',
   'source_locator_selection_v2',
@@ -1828,19 +1833,7 @@ export function topicReceipt(value) {
 }
 
 export function coverageCandidateContractReceipt(item) {
-  return topicReceipt({
-    work_id: item.work_id,
-    title_ko: item.title_ko,
-    topic_id: item.topic_id,
-    topic_file: item.topic_file,
-    test_file: item.test_file,
-    change_mode: item.change_mode,
-    counts: item.counts,
-    quality_targets: item.quality_targets,
-    depends_on_work_ids: item.depends_on_work_ids ?? [],
-    integration_checks: item.integration_checks,
-    candidate_import: item.candidate_import,
-  });
+  return existingTopicCoverageCandidateContractReceipt(item);
 }
 
 function queueRegistryGenesisReceipt() {
@@ -1929,7 +1922,11 @@ function releaseCheckReceiptGenesis() {
 export function validateQueueItemRegistry(
   registry,
   queue,
-  {allowUnregisteredQueueItems = false, previousRegistry = null} = {},
+  {
+    allowUnregisteredQueueItems = false,
+    previousRegistry = null,
+    coverageCandidateProofs = null,
+  } = {},
 ) {
   const errors = [];
   if (!registry || typeof registry !== 'object') return ['production queue item registry가 필요합니다.'];
@@ -1996,8 +1993,22 @@ export function validateQueueItemRegistry(
       if (!/^[0-9a-f]{64}$/u.test(registration.contract_sha256 || '')) {
         errors.push(`${label}.contract_sha256가 필요합니다.`);
       }
+      if (
+        registration.contract_upgrade_from_sha256 !== undefined &&
+        !/^[0-9a-f]{64}$/u.test(
+          registration.contract_upgrade_from_sha256 || '',
+        )
+      ) {
+        errors.push(
+          `${label}.contract_upgrade_from_sha256가 올바르지 않습니다.`,
+        );
+      }
     } else if (registration.contract_sha256 !== undefined) {
       errors.push(`${label}.contract_sha256는 coverage plan 작업에만 허용됩니다.`);
+    } else if (registration.contract_upgrade_from_sha256 !== undefined) {
+      errors.push(
+        `${label}.contract_upgrade_from_sha256는 coverage plan 작업에만 허용됩니다.`,
+      );
     }
     const expectedReceipt = queueRegistrationReceipt(registration);
     if (registration.receipt !== expectedReceipt) errors.push(`${label}.receipt가 등록 내용과 다릅니다.`);
@@ -2043,7 +2054,41 @@ export function validateQueueItemRegistry(
       errors.push('production queue item registry의 직전 불변 이력을 삭제할 수 없습니다.');
     } else {
       for (const [index, previousRegistration] of previousRegistry.registrations.entries()) {
-        if (canonicalJson(registry.registrations[index]) !== canonicalJson(previousRegistration)) {
+        const currentRegistration = registry.registrations[index];
+        const currentItem = queueByWorkId.get(currentRegistration?.work_id);
+        const proof = coverageCandidateProofs?.get?.(
+          currentRegistration?.work_id,
+        );
+        const {
+          contract_sha256: _previousContract,
+          receipt: _previousReceipt,
+          previous_receipt: _previousPreviousReceipt,
+          contract_upgrade_from_sha256: _previousUpgrade,
+          ...previousIdentity
+        } = previousRegistration ?? {};
+        const {
+          contract_sha256: _currentContract,
+          receipt: _currentReceipt,
+          previous_receipt: _currentPreviousReceipt,
+          contract_upgrade_from_sha256: _currentUpgrade,
+          ...currentIdentity
+        } = currentRegistration ?? {};
+        const isOneTimeCoverageContractUpgrade =
+          previousRegistration?.contract_upgrade_from_sha256 === undefined &&
+          currentRegistration?.contract_upgrade_from_sha256 ===
+            previousRegistration?.contract_sha256 &&
+          currentItem?.status === 'awaiting_pr' &&
+          currentItem?.candidate_import?.schema ===
+            'rulelink_existing_topic_candidate_import_v2' &&
+          trustedCoverageCandidateProofMaps.has(coverageCandidateProofs) &&
+          proof?.ok === true &&
+          proof.contract_sha256 === currentRegistration?.contract_sha256 &&
+          canonicalJson(currentIdentity) === canonicalJson(previousIdentity);
+        if (
+          canonicalJson(currentRegistration) !==
+            canonicalJson(previousRegistration) &&
+          !isOneTimeCoverageContractUpgrade
+        ) {
           errors.push(`production queue item registry의 직전 불변 등록을 바꿀 수 없습니다: sequence ${index + 1}`);
         }
       }
@@ -3003,6 +3048,48 @@ export async function loadQueuePublicationEvidence(queue, bundle, io = {}) {
     revalidatedGateProofs,
     verifiedSourceSelections,
   );
+  const coverageCandidateProofs = new Map();
+  const runCoverageGit = async args => (
+    await runGitCommand(args, io)
+  ).stdout;
+  for (const item of queue.items ?? []) {
+    const contract = PRODUCTION_WORK_CONTRACTS[item?.work_id];
+    if (contract?.contract_kind !== 'coverage_plan_existing_topic_v1') continue;
+    try {
+      const verified = await verifyExistingTopicCoverageCandidate({
+        spec: {
+          ...item.candidate_import,
+          work_id: item.work_id,
+        },
+        contract,
+        runGit: runCoverageGit,
+        contentTypesPath: path.join(
+          appRoot,
+          'src',
+          'lib',
+          'knowledge-content-types.json',
+        ),
+      });
+      const verifiedItem = {
+        ...item,
+        test_file: verified.testFile,
+        counts: verified.counts,
+        quality_targets: verified.qualityTargets,
+        candidate_import: verified.candidateImport,
+      };
+      coverageCandidateProofs.set(item.work_id, {
+        ok: true,
+        contract_sha256:
+          existingTopicCoverageCandidateContractReceipt(verifiedItem),
+      });
+    } catch (error) {
+      coverageCandidateProofs.set(item.work_id, {
+        ok: false,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
+  }
+  trustedCoverageCandidateProofMaps.add(coverageCandidateProofs);
   return {
     [queuePublicationEvidenceBrand]: true,
     publishedSnapshot,
@@ -3012,6 +3099,7 @@ export async function loadQueuePublicationEvidence(queue, bundle, io = {}) {
     itemRegistry,
     previousItemRegistry: registryHistory.previous_registry,
     revalidatedGateProofs,
+    coverageCandidateProofs,
   };
 }
 
@@ -3125,6 +3213,7 @@ export function validateProductionQueue(
     itemRegistry = null,
     previousItemRegistry = null,
     revalidatedGateProofs = null,
+    coverageCandidateProofs = null,
   } = {},
 ) {
   const errors = [];
@@ -3139,7 +3228,10 @@ export function validateProductionQueue(
     errors.push('items 배열이 필요합니다.');
     return errors;
   }
-  errors.push(...validateQueueItemRegistry(itemRegistry, queue, {previousRegistry: previousItemRegistry}));
+  errors.push(...validateQueueItemRegistry(itemRegistry, queue, {
+    previousRegistry: previousItemRegistry,
+    coverageCandidateProofs,
+  }));
   for (const receipt of itemRegistry?.prerequisite_gate_receipts ?? []) {
     const contract = PRODUCTION_WORK_CONTRACTS[receipt.work_id];
     const gateContract = productionGateContract(contract, receipt.gate_id);
@@ -3357,7 +3449,7 @@ export function validateProductionQueue(
           } else {
             if (
               candidate.schema !==
-                'rulelink_existing_topic_candidate_import_v1' ||
+                'rulelink_existing_topic_candidate_import_v2' ||
               candidate.state !== 'imported_existing_candidate' ||
               candidate.lifecycle_gate !== 'awaiting_pr'
             ) {
@@ -3386,6 +3478,32 @@ export function validateProductionQueue(
               }
             }
             if (
+              candidate.source_branch_ref !==
+              `refs/heads/${candidate.source_branch}`
+            ) {
+              errors.push(
+                `${label}.candidate_import.source_branch_ref가 source_branch와 다릅니다.`,
+              );
+            }
+            for (const field of [
+              'candidate_pr_merge_base_sha',
+            ]) {
+              if (!/^[0-9a-f]{40}$/u.test(candidate[field] || '')) {
+                errors.push(`${label}.candidate_import.${field}가 올바르지 않습니다.`);
+              }
+            }
+            if (!/^[0-9a-f]{64}$/u.test(candidate.planner_contract_sha256 || '')) {
+              errors.push(
+                `${label}.candidate_import.planner_contract_sha256가 올바르지 않습니다.`,
+              );
+            }
+            if (
+              candidate.range_merge_policy !==
+              'reject_merge_commits_and_require_exact_path_union'
+            ) {
+              errors.push(`${label}.candidate_import.range_merge_policy가 올바르지 않습니다.`);
+            }
+            if (
               candidate.source_base_sha === candidate.source_head_sha ||
               candidate.required_pr_base_sha === candidate.source_head_sha
             ) {
@@ -3399,6 +3517,8 @@ export function validateProductionQueue(
               'planned_owner_files',
               'changed_content_ids',
               'added_content_ids',
+              'range_commit_shas',
+              'range_changed_files',
             ]) {
               const values = candidate[field];
               if (
@@ -3408,6 +3528,14 @@ export function validateProductionQueue(
               ) {
                 errors.push(`${label}.candidate_import.${field}가 올바르지 않습니다.`);
               }
+            }
+            if (
+              canonicalJson(candidate.range_changed_files) !==
+              canonicalJson(candidate.observed_owner_files)
+            ) {
+              errors.push(
+                `${label}.candidate_import commit별 changed-path union이 최종 범위와 다릅니다.`,
+              );
             }
             if (
               canonicalJson(candidate.planned_owner_files) !==
@@ -3455,6 +3583,16 @@ export function validateProductionQueue(
           const contractReceipt = coverageCandidateContractReceipt(item);
           if (registration?.contract_sha256 !== contractReceipt) {
             errors.push(`${label}.candidate_import 계약이 append-only registry와 다릅니다.`);
+          }
+          const gitProof = coverageCandidateProofs?.get?.(item.work_id);
+          if (
+            !trustedCoverageCandidateProofMaps.has(coverageCandidateProofs) ||
+            gitProof?.ok !== true ||
+            gitProof.contract_sha256 !== contractReceipt
+          ) {
+            errors.push(
+              `${label}.candidate_import가 독립 Git·planner 재검증과 다릅니다: ${gitProof?.error || 'trusted proof 없음'}`,
+            );
           }
         } else {
           if (canonicalJson(item.counts) !== canonicalJson(workContract.counts)) {
