@@ -88,9 +88,9 @@ test('28허브·284콘텐츠를 9개 법영역과 독립 점수축으로 전수 
   assert.deepEqual(plan.denominator, {
     hub_count: 28,
     content_count: 284,
-    rule_count: 278,
-    scenario_count: 247,
-    source_count: 425,
+    rule_count: 281,
+    scenario_count: 254,
+    source_count: 428,
     domain_count: 9,
     target_domain_count: 21,
     change_brief_count: 11,

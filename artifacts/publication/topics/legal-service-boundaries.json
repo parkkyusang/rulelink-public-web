@@ -365,18 +365,7 @@
             "도구가 초안을 만들더라도 변호사가 원자료를 보고 수정하거나 거절할 수 있어야 하며 최종 법률서비스의 계약·보수·명의·책임도 변호사 측에 있어야 합니다."
           ]
         }
-      ],
-      "lawyer_workspace_entry": {
-        "question_ko": "이 쟁점을 변호사 전용 도구에서 검토하시나요?",
-        "decision_facts_ko": [
-          "이용자 자격",
-          "사건별 기능",
-          "계약·보수 주체",
-          "최종 검토·책임"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      ]
     },
     {
       "content_id": "content.legal-information-vs-individual-advice",

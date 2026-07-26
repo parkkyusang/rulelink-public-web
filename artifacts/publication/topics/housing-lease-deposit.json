@@ -75,7 +75,7 @@
     {
       "rule_id": "rule.housing-lease-deposit.housing-lease-registration-application",
       "title_ko": "계약 종료와 보증금 미반환이 임차권등기명령 신청의 출발점",
-      "proposition_ko": "임대차가 끝난 뒤에도 보증금이 반환되지 않은 임차인은 관할 법원에 임차권등기명령을 신청할 수 있습니다.",
+      "proposition_ko": "임대차의 종료일과 보증금 전부 또는 일부의 미반환 여부를 확인해 임차권등기명령 신청요건을 판단합니다.",
       "norm": {
         "actor_ko": "임대차가 끝났지만 보증금을 돌려받지 못한 주택임차인",
         "conditions_ko": "임대차가 종료했는데도 임대인이 보증금 전부 또는 일부를 반환하지 않은 경우",
@@ -88,7 +88,7 @@
     {
       "rule_id": "rule.housing-lease-deposit.housing-lease-registration-completion-effect",
       "title_ko": "임차권등기 완료 뒤 대항요건을 잃어도 기존 권리 유지",
-      "proposition_ko": "임차권등기명령에 따른 등기를 마치면 대항력과 우선변제권을 취득할 수 있고, 이미 취득한 권리는 등기 뒤 대항요건을 잃더라도 유지됩니다.",
+      "proposition_ko": "임차권등기 완료일, 기존 대항력·우선변제권 취득 여부와 전출·인도 시점의 선후를 구분해 권리 유지 여부를 판단합니다.",
       "norm": {
         "actor_ko": "임차권등기명령을 신청한 주택임차인",
         "conditions_ko": "법원의 임차권등기명령에 따른 임차권등기가 완료된 경우",
@@ -101,7 +101,7 @@
     {
       "rule_id": "rule.housing-lease-deposit.housing-lease-opposability",
       "title_ko": "주택 인도와 주민등록을 모두 마친 다음 날 대항력 발생",
-      "proposition_ko": "일반 개인 임차인의 주택임대차는 주택을 인도받고 주민등록을 마치면 그 다음 날부터 제3자에 대한 효력이 생깁니다.",
+      "proposition_ko": "주택 인도와 주민등록을 모두 갖춘 시점 중 늦은 날을 기준으로 대항력 발생시점을 판단합니다.",
       "norm": {
         "actor_ko": "주택을 인도받고 주민등록을 마친 임차인",
         "conditions_ko": "주거용 주택을 인도받고 전입신고 등 주민등록을 마친 경우",
@@ -114,7 +114,7 @@
     {
       "rule_id": "rule.housing-lease-deposit.housing-lease-priority-repayment",
       "title_ko": "대항요건과 확정일자를 갖추어야 우선변제권 성립",
-      "proposition_ko": "대항요건과 임대차계약증서상의 확정일자를 갖춘 임차인은 경매나 공매에서 후순위권리자나 그 밖의 채권자보다 우선하여 보증금을 변제받을 권리가 있습니다.",
+      "proposition_ko": "주택 인도·주민등록의 대항요건과 임대차계약증서상의 확정일자를 모두 갖췄는지 판단합니다.",
       "norm": {
         "actor_ko": "대항요건과 확정일자를 갖춘 주택임차인",
         "conditions_ko": "주택 인도·주민등록과 임대차계약증서의 확정일자를 갖춘 뒤 경매·공매가 진행되는 경우",
@@ -127,7 +127,7 @@
     {
       "rule_id": "rule.housing-lease-deposit.housing-lease-deposit-before-cancellation",
       "title_ko": "보증금 반환의무가 임차권등기 말소의무보다 선이행",
-      "proposition_ko": "주택임대차보호법 제3조의3에 따른 임차권등기의 경우 임대인의 보증금 반환의무와 임차인의 등기 말소의무는 동시이행관계가 아니며, 보증금 반환의무가 먼저 이행되어야 합니다.",
+      "proposition_ko": "주택임대차보호법 제3조의3에 따른 임차권등기인지와 보증금 미반환 상태에서 임대인이 말소 선이행을 요구하는지 판단합니다.",
       "norm": {
         "actor_ko": "임차권등기를 마친 임차인과 보증금을 반환할 임대인",
         "conditions_ko": "임대차가 종료되고 보증금이 반환되지 않은 상태에서 임대인이 임차권등기 말소를 먼저 요구하는 경우",
@@ -140,7 +140,7 @@
     {
       "rule_id": "rule.housing-lease-deposit.housing-lease-distribution-without-demand",
       "title_ko": "첫 경매개시결정등기 전 임차권등기와 배당요구",
-      "proposition_ko": "임차권등기명령에 따른 등기가 첫 경매개시결정등기 전에 이루어진 경우, 해당 임차인은 별도 배당요구 없이도 배당받을 채권자에 속한다고 본 대법원 판례가 있습니다.",
+      "proposition_ko": "임차권등기명령에 따른 등기 완료일이 첫 경매개시결정등기일보다 앞서는지 판단합니다.",
       "norm": {
         "actor_ko": "임차권등기를 마친 임차인",
         "conditions_ko": "첫 경매개시결정등기 전에 임차권등기가 완료된 주택에 관하여 경매 배당절차가 진행되는 경우",
@@ -153,7 +153,7 @@
     {
       "rule_id": "rule.housing-lease-deposit.housing-lease-later-tenant-small-deposit",
       "title_ko": "임차권등기가 끝난 주택의 후순위 임차인 제한",
-      "proposition_ko": "임차권등기명령에 따른 임차권등기가 끝난 주택을 그 이후 임차한 임차인은 주택임대차보호법 제8조의 소액보증금 우선변제권을 받을 수 없습니다.",
+      "proposition_ko": "새 임대차계약이 임차권등기명령에 따른 기존 임차권등기 완료 뒤에 체결됐는지 판단합니다.",
       "norm": {
         "actor_ko": "임차권등기가 끝난 주택을 그 이후 임차한 사람",
         "conditions_ko": "임차권등기명령에 따른 등기가 완료된 주택을 그 이후 새로 임차한 경우",
@@ -293,22 +293,50 @@
       "related_content_ids": [
         "content.lease-registration-application-is-not-completion",
         "content.lease-registration-order-requirements",
-        "content.rights-after-lease-registration"
+        "content.rights-after-lease-registration",
+        "content.why-attorney-workspace-is-gated"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.lease-registration-application-is-not-completion",
+          "relation_type": "deadline",
+          "label_ko": "이사 전 임차권등기 완료시점 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.lease-registration-order-requirements",
+          "relation_type": "prerequisite",
+          "label_ko": "신청 전 계약종료·미반환 요건 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.rights-after-lease-registration",
+          "relation_type": "procedure",
+          "label_ko": "등기 완료 뒤 유지되는 권리 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
+        }
       ],
       "lawyer_workspace_entry": {
         "question_ko": "보증금을 못 받은 채 이사해야 한다면 무엇부터 확인해야 하나",
-        "decision_facts_ko": [
-          "계약 종료일",
-          "미반환 보증금",
-          "신청일",
-          "임차권등기 완료일",
-          "전출일",
-          "주택 인도일",
-          "확정일자"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.housing-lease-deposit.housing-lease-lease-ended",
+          "scenario.housing-lease-deposit.housing-lease-deposit-unpaid",
+          "scenario.housing-lease-deposit.housing-lease-registration-completed-before-move"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ]
     },
     {
       "content_id": "content.lease-registration-application-is-not-completion",
@@ -375,6 +403,20 @@
       "related_content_ids": [
         "content.move-before-deposit-refund",
         "content.rights-after-lease-registration"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.move-before-deposit-refund",
+          "relation_type": "procedure",
+          "label_ko": "등기 완료 전 이사 위험 다시 점검"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.rights-after-lease-registration",
+          "relation_type": "procedure",
+          "label_ko": "등기 완료 뒤 권리 유지범위 확인"
+        }
       ]
     },
     {
@@ -444,22 +486,43 @@
       ],
       "related_content_ids": [
         "content.move-before-deposit-refund",
-        "content.lease-registration-application-is-not-completion"
+        "content.lease-registration-application-is-not-completion",
+        "content.why-attorney-workspace-is-gated"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.move-before-deposit-refund",
+          "relation_type": "procedure",
+          "label_ko": "요건 충족 뒤 이사 전 보전절차 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.lease-registration-application-is-not-completion",
+          "relation_type": "procedure",
+          "label_ko": "신청 뒤 실제 등기 완료까지 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
+        }
       ],
       "lawyer_workspace_entry": {
         "question_ko": "임차권등기명령은 언제 신청할 수 있나",
-        "decision_facts_ko": [
-          "계약서",
-          "갱신ㆍ해지 통지",
-          "보증금 지급 자료",
-          "반환 내역",
-          "주민등록",
-          "점유",
-          "확정일자"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.housing-lease-deposit.housing-lease-lease-ended",
+          "scenario.housing-lease-deposit.housing-lease-deposit-unpaid"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ]
     },
     {
       "content_id": "content.rights-after-lease-registration",
@@ -533,6 +596,26 @@
         "content.housing-lease-opposability-basics",
         "content.housing-lease-priority-repayment-basics",
         "content.lease-registration-application-is-not-completion"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.housing-lease-opposability-basics",
+          "relation_type": "prerequisite",
+          "label_ko": "기존 대항력 취득시점 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.housing-lease-priority-repayment-basics",
+          "relation_type": "prerequisite",
+          "label_ko": "기존 우선변제권 취득요건 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.lease-registration-application-is-not-completion",
+          "relation_type": "deadline",
+          "label_ko": "권리 보전을 위한 등기 완료시점 확인"
+        }
       ]
     },
     {
@@ -600,6 +683,20 @@
       "related_content_ids": [
         "content.housing-lease-priority-repayment-basics",
         "content.rights-after-lease-registration"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.housing-lease-priority-repayment-basics",
+          "relation_type": "comparison",
+          "label_ko": "대항력과 우선변제권 요건 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.rights-after-lease-registration",
+          "relation_type": "procedure",
+          "label_ko": "임차권등기 뒤 대항력 유지범위 확인"
+        }
       ]
     },
     {
@@ -670,6 +767,26 @@
         "content.housing-lease-opposability-basics",
         "content.rights-after-lease-registration",
         "content.lease-registration-and-distribution-demand"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.housing-lease-opposability-basics",
+          "relation_type": "comparison",
+          "label_ko": "우선변제권과 대항력 요건 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.rights-after-lease-registration",
+          "relation_type": "procedure",
+          "label_ko": "임차권등기 뒤 우선변제권 유지 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.lease-registration-and-distribution-demand",
+          "relation_type": "procedure",
+          "label_ko": "경매에서 배당요구 필요성 확인"
+        }
       ]
     },
     {
@@ -735,6 +852,20 @@
       "related_content_ids": [
         "content.move-before-deposit-refund",
         "content.rights-after-lease-registration"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.move-before-deposit-refund",
+          "relation_type": "prerequisite",
+          "label_ko": "보증금 미반환과 임차권등기 절차 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.rights-after-lease-registration",
+          "relation_type": "procedure",
+          "label_ko": "말소 전 유지되는 담보적 권리 확인"
+        }
       ]
     },
     {
@@ -802,6 +933,20 @@
       "related_content_ids": [
         "content.housing-lease-priority-repayment-basics",
         "content.rights-after-lease-registration"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.housing-lease-priority-repayment-basics",
+          "relation_type": "prerequisite",
+          "label_ko": "경매 전 우선변제권 취득요건 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.rights-after-lease-registration",
+          "relation_type": "prerequisite",
+          "label_ko": "배당 전 임차권등기와 권리 유지 확인"
+        }
       ]
     },
     {
@@ -869,19 +1014,20 @@
         "content.housing-lease-opposability-basics",
         "content.housing-lease-priority-repayment-basics"
       ],
-      "lawyer_workspace_entry": {
-        "question_ko": "임차권등기가 있는 집을 새로 임차할 때 확인할 점",
-        "decision_facts_ko": [
-          "등기사항증명서",
-          "임차권등기 원인",
-          "등기 완료일",
-          "새 계약일",
-          "보증금",
-          "선순위 권리"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.housing-lease-opposability-basics",
+          "relation_type": "comparison",
+          "label_ko": "새 임차인의 대항력 취득요건 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.housing-lease-priority-repayment-basics",
+          "relation_type": "comparison",
+          "label_ko": "새 임차인의 우선변제 범위 비교"
+        }
+      ]
     }
   ]
 }

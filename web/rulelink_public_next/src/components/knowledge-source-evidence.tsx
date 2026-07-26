@@ -78,6 +78,31 @@ export function KnowledgeSourceEvidence({
       .filter(item => item.state !== 'excluded');
   }, [answer, claims, scenarioAnswers]);
 
+  useEffect(() => {
+    let frame = 0;
+    const revealSourceFromFragment = () => {
+      const targetId = decodeFragment(window.location.hash);
+      if (!targetId) return;
+      const target = document.getElementById(targetId);
+      const card = target?.closest<HTMLElement>('[data-source-card]');
+      if (!card?.closest('[data-source-evidence]')) return;
+      const disclosure = card.querySelector<HTMLDetailsElement>(':scope > details');
+      if (!disclosure) return;
+      disclosure.open = true;
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        card.focus({preventScroll: true});
+        card.scrollIntoView({behavior: 'auto', block: 'start'});
+      });
+    };
+    revealSourceFromFragment();
+    window.addEventListener('hashchange', revealSourceFromFragment);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener('hashchange', revealSourceFromFragment);
+    };
+  }, []);
+
   if (!sources.length) return null;
   return (
     <section
@@ -89,12 +114,12 @@ export function KnowledgeSourceEvidence({
         <p className="eyebrow">공식 근거</p>
         <h2 id="source-evidence-heading">이 글의 판단에 사용한 법령과 공식 자료입니다.</h2>
         <p>
-          확인한 조문 문언은 카드 안에 그대로 표시합니다.
-          판례·공식문서 또는 직접 표시할 수 없는 자료는 공식 원문으로 연결합니다.
+          확인한 조문은 카드 안에서 바로 읽을 수 있습니다.
+          나머지 자료는 각 카드에서 공식 원문을 확인할 수 있습니다.
         </p>
       </header>
       <div className={styles.grid}>
-        {sources.map((source, index) => {
+        {sources.map(source => {
           const sourceClaims = claimViews.filter(({claim}) => (
             claim.authority_refs.some(reference => (
               reference.source_coordinate_id === source.coordinate_id
@@ -110,14 +135,20 @@ export function KnowledgeSourceEvidence({
           return (
             <article
               className={styles.card}
+              data-source-card
+              data-source-coordinate={source.coordinate_id}
               id={`source-${source.coordinate_id}`}
               key={source.coordinate_id}
+              tabIndex={-1}
             >
-              <details open={index === 0}>
+              <details>
                 <summary id={`source-summary-${source.coordinate_id}`}>
                   <span>
                     <small>{sourceKindLabel(source)}</small>
                     <strong>{sourceLabel(source)}</strong>
+                    <span className={styles.availability}>
+                      {sourceText ? '조문 문언 포함' : '공식 원문에서 확인'}
+                    </span>
                   </span>
                   <span className={styles.reviewed}>
                     원문 확인 {formatDate(source.last_verified_at)}
@@ -147,10 +178,7 @@ export function KnowledgeSourceEvidence({
                   ) : (
                     <div className={styles.officialText} data-source-text-state="link_only">
                       <strong>공식 원문에서 확인</strong>
-                      <p>
-                        이 자료는 페이지 안에 문언을 옮겨 싣지 않고,
-                        아래 공식 원문으로 연결합니다.
-                      </p>
+                      <p>이 자료의 원문은 아래 공식 사이트에서 확인할 수 있습니다.</p>
                     </div>
                   )}
                   {sourceClaims.length ? (
@@ -241,4 +269,13 @@ function formatDate(value: string): string {
 
 function unique(values: readonly string[]): string[] {
   return [...new Set(values)];
+}
+
+function decodeFragment(hash: string): string | null {
+  if (!hash.startsWith('#') || hash.length === 1) return null;
+  try {
+    return decodeURIComponent(hash.slice(1));
+  } catch {
+    return null;
+  }
 }

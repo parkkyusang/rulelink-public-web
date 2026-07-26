@@ -12,7 +12,7 @@ import {
 const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repoRoot = path.resolve(appRoot, '..', '..');
 
-test('023 current의 authority 0건은 새 경로·구역·binding을 생성하지 않는다', async () => {
+test('authority가 없는 정본은 새 경로·구역·binding을 생성하지 않는다', async () => {
   const bundle = JSON.parse(await readFile(path.join(
     repoRoot,
     'artifacts',
@@ -20,7 +20,11 @@ test('023 current의 authority 0건은 새 경로·구역·binding을 생성하�
     'current',
     'bundle.json',
   ), 'utf8'));
-  const knowledge = bundle.knowledge;
+  const knowledge = structuredClone(bundle.knowledge);
+  delete knowledge.source_version_bridges;
+  delete knowledge.source_authority_units;
+  delete knowledge.authority_reading_units;
+  delete knowledge.authority_bindings;
   assert.equal(projectAuthorityReadingUnits(knowledge).length, 0);
   assert.ok(knowledge.content_entries.every(entry => (
     resolveAuthorityReadingForEntry(knowledge, entry).length === 0

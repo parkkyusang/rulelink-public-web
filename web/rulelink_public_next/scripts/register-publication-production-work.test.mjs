@@ -36,6 +36,18 @@ const registryPath = path.join(
 const bundlePath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
 const execFileAsync = promisify(execFile);
 
+async function runGitAt(cwd, args, safeDirectories = [cwd]) {
+  const safeArgs = safeDirectories.flatMap(directory => [
+    '-c',
+    `safe.directory=${directory.replaceAll('\\', '/')}`,
+  ]);
+  const result = await execFileAsync('git', [...safeArgs, ...args], {
+    cwd,
+    encoding: 'utf8',
+  });
+  return String(result.stdout || '');
+}
+
 async function readJson(filePath) {
   const value = JSON.parse(await readFile(filePath, 'utf8'));
   const workIds = new Set([
@@ -113,28 +125,22 @@ async function withTemporaryProductionFiles(callback, options = {}) {
     registry: path.join(directory, 'production-queue-registry.json'),
     bundle: path.join(directory, 'bundle.json'),
   };
-  const previousGitDir = process.env.GIT_DIR;
-  const previousGitWorkTree = process.env.GIT_WORK_TREE;
-  let gitEnvironmentChanged = false;
   try {
     const [queue, registry] = await Promise.all([
       readJson(queuePath),
       readJson(registryPath),
     ]);
-    const registryCommits = String((await execFileAsync(
-      'git',
-      ['rev-list', 'HEAD'],
-      {cwd: repoRoot, encoding: 'utf8'},
-    )).stdout || '').split(/\r?\n/u).filter(Boolean);
+    const registryCommits = (await runGitAt(repoRoot, ['rev-list', 'HEAD']))
+      .split(/\r?\n/u)
+      .filter(Boolean);
     let baselineCommit = '';
     for (const commit of registryCommits) {
       let candidate;
       try {
-        candidate = JSON.parse(String((await execFileAsync(
-          'git',
-          ['show', `${commit}:artifacts/publication/production-queue-registry.json`],
-          {cwd: repoRoot, encoding: 'utf8'},
-        )).stdout || ''));
+        candidate = JSON.parse(await runGitAt(repoRoot, [
+          'show',
+          `${commit}:artifacts/publication/production-queue-registry.json`,
+        ]));
       } catch {
         continue;
       }
@@ -146,34 +152,42 @@ async function withTemporaryProductionFiles(callback, options = {}) {
     assert.ok(baselineCommit, '등록 전 registry와 같은 실제 Git 이력 커밋이 필요합니다.');
     paths.historyRepository = path.join(directory, 'history-repository');
     if (options.failSetupAt === 'clone') throw new Error('injected clone setup failure');
-    await execFileAsync(
-      'git',
-      ['clone', '--shared', '--no-checkout', repoRoot, paths.historyRepository],
-      {cwd: directory, encoding: 'utf8'},
-    );
+    await runGitAt(directory, [
+      'clone',
+      '--shared',
+      '--no-checkout',
+      repoRoot,
+      paths.historyRepository,
+    ], [repoRoot]);
     if (options.failSetupAt === 'checkout') throw new Error('injected checkout setup failure');
-    await execFileAsync(
-      'git',
-      ['checkout', '--detach', baselineCommit],
-      {cwd: paths.historyRepository, encoding: 'utf8'},
-    );
+    await runGitAt(paths.historyRepository, [
+      'checkout',
+      '--detach',
+      baselineCommit,
+    ], [paths.historyRepository, repoRoot]);
     if (options.failSetupAt === 'write') throw new Error('injected write setup failure');
     await Promise.all([
       writeFile(paths.queue, `${JSON.stringify(queue, null, 2)}\n`, 'utf8'),
       writeFile(paths.registry, `${JSON.stringify(registry, null, 2)}\n`, 'utf8'),
       cp(bundlePath, paths.bundle),
     ]);
-    process.env.GIT_DIR = path.join(paths.historyRepository, '.git');
-    process.env.GIT_WORK_TREE = paths.historyRepository;
-    gitEnvironmentChanged = true;
+    paths.baselineCommit = baselineCommit;
+    paths.runGit = async args => {
+      const usesRegistryHistory = (
+        args[0] === 'rev-list'
+        && args.includes('--')
+        && args.at(-1) === 'artifacts/publication/production-queue-registry.json'
+      ) || (
+        args[0] === 'show'
+        && String(args[1] || '').endsWith(
+          ':artifacts/publication/production-queue-registry.json',
+        )
+      );
+      const cwd = usesRegistryHistory ? paths.historyRepository : repoRoot;
+      return {stdout: await runGitAt(cwd, args, [cwd, repoRoot])};
+    };
     return await callback(paths);
   } finally {
-    if (gitEnvironmentChanged) {
-      if (previousGitDir === undefined) delete process.env.GIT_DIR;
-      else process.env.GIT_DIR = previousGitDir;
-      if (previousGitWorkTree === undefined) delete process.env.GIT_WORK_TREE;
-      else process.env.GIT_WORK_TREE = previousGitWorkTree;
-    }
     await rm(directory, {recursive: true, force: true});
   }
 }
@@ -293,12 +307,32 @@ test('사전검증은 전체 생산 대기열 검증을 통과하고 두 정본 
     registry: await fileHash(registryPath),
   };
   await withTemporaryProductionFiles(async paths => {
+    assert.equal(
+      (await paths.runGit(['rev-parse', 'HEAD'])).stdout.trim(),
+      (await runGitAt(repoRoot, ['rev-parse', 'HEAD'])).trim(),
+      'migration 증거는 현재 저장소 이력에서 읽어야 합니다.',
+    );
+    assert.equal(
+      (await runGitAt(
+        paths.historyRepository,
+        ['rev-parse', 'HEAD'],
+        [paths.historyRepository, repoRoot],
+      )).trim(),
+      paths.baselineCommit,
+      'registry 불변 검사는 격리된 과거 checkout을 사용해야 합니다.',
+    );
+    assert.notEqual(
+      (await paths.runGit(['rev-parse', 'HEAD'])).stdout.trim(),
+      paths.baselineCommit,
+      'migration 이력과 registry 직전 불변 이력을 같은 HEAD로 읽으면 안 됩니다.',
+    );
     const prepared = await registerProductionWorkFiles({
       workIds: ['reader-backfill-crime-victim-wave1'],
       queuePath: paths.queue,
       registryPath: paths.registry,
       bundlePath: paths.bundle,
       write: false,
+      io: {runGit: paths.runGit},
     });
     assert.equal(
       prepared.queue.items.at(-1).work_id,
@@ -338,6 +372,7 @@ test('쓰기 성공은 queue와 registry를 한 세대로 갱신하고 transacti
       registryPath: paths.registry,
       bundlePath: paths.bundle,
       write: true,
+      io: {runGit: paths.runGit},
     });
     const [writtenQueue, writtenRegistry] = await Promise.all([
       readJson(paths.queue),
@@ -373,6 +408,7 @@ for (const failingTarget of ['queue', 'registry']) {
           bundlePath: paths.bundle,
           write: true,
           io: {
+            runGit: paths.runGit,
             rename: async (source, target) => {
               const targetPath = failingTarget === 'queue' ? paths.queue : paths.registry;
               if (!injected && target === targetPath && source.includes('registration-next')) {
@@ -439,6 +475,7 @@ test('다른 플랫폼에서 중단되어 queue만 교체된 journal도 다음 w
       registryPath: paths.registry,
       bundlePath: paths.bundle,
       write: true,
+      io: {runGit: paths.runGit},
     });
     assert.equal(
       (await readJson(paths.queue)).items.at(-1).work_id,
@@ -492,6 +529,7 @@ test('조작된 journal 경로는 현재 queue와 registry 작업범위 밖 파�
         registryPath: paths.registry,
         bundlePath: paths.bundle,
         write: true,
+        io: {runGit: paths.runGit},
       }),
       /작업범위를 벗어났습니다/u,
     );
@@ -552,6 +590,7 @@ test('교체된 정본의 backup이 없고 원본 hash도 아니면 journal을 �
         registryPath: paths.registry,
         bundlePath: paths.bundle,
         write: true,
+        io: {runGit: paths.runGit},
       }),
       /rollback 백업이 없고 정본도 원본 hash가 아닙니다/u,
     );
@@ -581,6 +620,7 @@ test('동시에 살아 있는 writer lock은 stale generation 덮어쓰기를 �
         registryPath: paths.registry,
         bundlePath: paths.bundle,
         write: true,
+        io: {runGit: paths.runGit},
       }),
       /pid/u,
     );

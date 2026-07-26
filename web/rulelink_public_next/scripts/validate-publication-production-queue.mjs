@@ -515,17 +515,52 @@ function productionGateContract(contract, gateId) {
 }
 
 
+const MIGRATION_SNAPSHOT_BOUND_OWNED_PATHS = [
+  'artifacts/publication/coverage/coverage-manifest.json',
+  'artifacts/publication/coverage/expansion-backlog.json',
+  'artifacts/publication/coverage/coverage-expansion-plan.json',
+  'artifacts/publication/coverage/domains/*.coverage.json',
+  'artifacts/publication/derived/source-text-library.json',
+  'artifacts/publication/derived/maintenance-index.json',
+  'web/rulelink_public_next/contracts/legal-answer-packet/activation-manifest.json',
+  'web/rulelink_public_next/scripts/build-publication-coverage-dashboard.test.mjs',
+  'web/rulelink_public_next/scripts/publication-coverage-expansion-planner.test.mjs',
+  'web/rulelink_public_next/scripts/publication-expansion-backlog.test.mjs',
+  'web/rulelink_public_next/scripts/validate-publication-coverage-matrix.test.mjs',
+];
+
+const MIGRATION_SNAPSHOT_BOUND_EXACT_PATHS = new Set(
+  MIGRATION_SNAPSHOT_BOUND_OWNED_PATHS.filter(
+    (value) => !value.includes('*'),
+  ),
+);
+
 export const OWNER_ROLE_CONTRACTS = {
   orchestration: {assignment: 'coordination_only', owned_paths: ['artifacts/publication/production-queue.json', 'artifacts/publication/production-queue-registry.json'], forbidden_paths: ['artifacts/publication/topics/*.json', 'artifacts/publication/current/**', 'artifacts/publication/snapshots/**']},
   reader_research: {assignment: 'read_only', owned_paths: [], forbidden_paths: ['**/*']},
   quality_governance: {assignment: 'governance_contracts', owned_paths: ['artifacts/publication/production-queue.json', 'artifacts/publication/production-queue-registry.json', 'web/rulelink_public_next/scripts/*publication*.mjs', 'web/rulelink_public_next/scripts/*publication*.test.mjs'], forbidden_paths: ['artifacts/publication/topics/*.json', 'artifacts/publication/current/**', 'artifacts/publication/snapshots/**', 'artifacts/publication/release.json']},
   runtime_design: {assignment: 'runtime_design', owned_paths: ['web/rulelink_public_next/src/**', 'web/rulelink_public_next/scripts/*runtime*.test.mjs', 'web/rulelink_public_next/scripts/*knowledge*.test.mjs'], forbidden_paths: ['artifacts/publication/topics/*.json', 'artifacts/publication/current/**', 'artifacts/publication/snapshots/**']},
   content_production: {assignment: 'topic_handoff', owned_paths: ['artifacts/publication/topics/<topic>.json', 'web/rulelink_public_next/scripts/<topic>-topic-*.test.mjs'], forbidden_paths: ['artifacts/publication/current/**', 'artifacts/publication/snapshots/**', 'artifacts/publication/manifest.json', 'artifacts/publication/release.json']},
-  migrate_publication: {assignment: 'publication_migration', owned_paths: ['README.md', 'artifacts/publication/topics/*.json', 'web/rulelink_public_next/scripts/*topic*.test.mjs', 'web/rulelink_public_next/scripts/*handoff*.test.mjs', 'artifacts/publication/concepts/*.json', 'artifacts/publication/concepts/manifest.json', 'artifacts/publication/current/**', 'artifacts/publication/snapshots/**', 'artifacts/publication/topics/manifest.json', 'artifacts/publication/production-queue.json', 'artifacts/publication/production-queue-registry.json'], forbidden_paths: ['artifacts/publication/release.json']},
+  migrate_publication: {assignment: 'publication_migration', owned_paths: ['README.md', 'artifacts/publication/topics/*.json', 'web/rulelink_public_next/scripts/*topic*.test.mjs', 'web/rulelink_public_next/scripts/*handoff*.test.mjs', 'artifacts/publication/concepts/*.json', 'artifacts/publication/concepts/manifest.json', 'artifacts/publication/current/**', 'artifacts/publication/snapshots/**', 'artifacts/publication/topics/manifest.json', 'artifacts/publication/production-queue.json', 'artifacts/publication/production-queue-registry.json', ...MIGRATION_SNAPSHOT_BOUND_OWNED_PATHS], forbidden_paths: ['artifacts/publication/release.json']},
   release: {assignment: 'release', owned_paths: ['artifacts/publication/release.json', 'web/rulelink_public_next/publication.json'], forbidden_paths: ['artifacts/publication/topics/*.json']},
   source_maintenance: {assignment: 'external_repository', owned_paths: [], forbidden_paths: ['**/*']},
   product_policy: {assignment: 'read_only', owned_paths: [], forbidden_paths: ['**/*']},
 };
+
+export function effectiveOwnerRoleContracts(contracts) {
+  if (!contracts || typeof contracts !== 'object') return contracts;
+  const effective = structuredClone(contracts);
+  if (!Array.isArray(effective.migrate_publication?.owned_paths)) {
+    return effective;
+  }
+  effective.migrate_publication.owned_paths = [
+    ...new Set([
+      ...effective.migrate_publication.owned_paths,
+      ...MIGRATION_SNAPSHOT_BOUND_OWNED_PATHS,
+    ]),
+  ];
+  return effective;
+}
 
 function canonicalJson(value) {
   if (Array.isArray(value)) return JSON.stringify(value.map(item => JSON.parse(canonicalJson(item))));
@@ -2506,7 +2541,7 @@ export async function synchronizeQueueItemRegistryFile(registryPath, queue, io =
   return updatedRegistry;
 }
 
-function isMigrationOwnedPath(filePath) {
+export function isMigrationOwnedPath(filePath) {
   const value = String(filePath || '').replaceAll('\\', '/');
   return value === 'README.md'
     || value === 'artifacts/publication/production-queue.json'
@@ -2516,6 +2551,8 @@ function isMigrationOwnedPath(filePath) {
     || /^artifacts\/publication\/topics\/[a-z0-9-]+\.json$/u.test(value)
     || /^artifacts\/publication\/concepts\/[a-z0-9-]+\.json$/u.test(value)
     || /^web\/rulelink_public_next\/scripts\/[a-z0-9-]*(?:topic|handoff)[a-z0-9-]*\.test\.mjs$/u.test(value)
+    || MIGRATION_SNAPSHOT_BOUND_EXACT_PATHS.has(value)
+    || /^artifacts\/publication\/coverage\/domains\/[a-z0-9-]+\.coverage\.json$/u.test(value)
     || /^artifacts\/publication\/current\//u.test(value)
     || /^artifacts\/publication\/snapshots\/[a-z0-9._-]+\//u.test(value);
 }
@@ -2921,7 +2958,11 @@ export function validateProductionQueue(
     }
   }
 
-  if (canonicalJson(queue.policy?.owner_role_contracts) !== canonicalJson(OWNER_ROLE_CONTRACTS)) {
+  if (
+    canonicalJson(
+      effectiveOwnerRoleContracts(queue.policy?.owner_role_contracts),
+    ) !== canonicalJson(OWNER_ROLE_CONTRACTS)
+  ) {
     errors.push('policy.owner_role_contracts가 표준 역할별 소유·금지 파일 경계와 다릅니다.');
   }
   if (queue.policy?.existing_topic_migration_commit_protocol

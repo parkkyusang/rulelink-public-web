@@ -49,7 +49,7 @@ function writeFixture(repository, filename, value) {
   writeFileSync(absolute, value);
 }
 
-test('023 coverage matrix는 8개 답변 단위를 L1으로 정직하게 보고한다', async () => {
+test('024 coverage matrix는 8개 답변 단위의 L1·L2·시간 결박을 정직하게 보고한다', async () => {
   const documents = await loadCoverageDocuments();
   const result = validateCoverageDocuments(documents);
 
@@ -57,21 +57,21 @@ test('023 coverage matrix는 8개 답변 단위를 L1으로 정직하게 보고�
   assert.deepEqual(result.invalidations, []);
   assert.equal(
     result.base_bundle_sha256,
-    'f2b6d4cfbb818c374946d706a653b69652d0b35c1259ef15704b24a5b1a6dde2',
+    documents.manifest.base_bundle_sha256,
   );
-  assert.equal(result.snapshot_id, 'kr-knowledge-core-20260723-023');
+  assert.equal(result.snapshot_id, 'kr-knowledge-core-20260726-024');
   assert.equal(result.units.length, 8);
   assert.equal(
     result.observations.filter(
       (item) => item.authority_level === 'L1_coordinate',
     ).length,
-    8,
+    2,
   );
   assert.equal(
     result.observations.filter(
       (item) => item.authority_level === 'L2_locator',
     ).length,
-    0,
+    6,
   );
   assert.equal(
     result.observations.reduce(
@@ -87,14 +87,13 @@ test('023 coverage matrix는 8개 답변 단위를 L1으로 정직하게 보고�
         item.source_version_current &&
         item.branch_closed &&
         !item.coverage_release_verified &&
-        item.target_gap &&
-        !item.temporal_authority_verified,
+        item.target_gap,
     ),
     true,
   );
   assert.equal(
     result.observations.filter((item) => item.experience_fields_complete).length,
-    1,
+    7,
   );
   assert.deepEqual(
     result.observations
@@ -102,15 +101,14 @@ test('023 coverage matrix는 8개 답변 단위를 L1으로 정직하게 보고�
       .flatMap((item) => item.experience_missing)
       .sort(),
     [
-      'content.compensation-order-application-deadline:situation',
-      'content.compensation-order-application-deadline:situation',
-      'content.compensation-order-application-deadline:situation',
-      'content.compensation-order-eligible-damages:situation',
-      'content.compensation-order-eligible-damages:situation',
-      'content.compensation-order-eligible-damages:situation',
-      'content.compensation-order-eligible-damages:situation',
       'content.payment-order-objection-two-weeks:situation',
     ],
+  );
+  assert.equal(
+    result.observations.filter(
+      (item) => item.temporal_authority_verified,
+    ).length,
+    6,
   );
 });
 
@@ -129,7 +127,7 @@ test('coverage bundle hash는 LF와 CRLF에서 같은 Git 정본 값을 사용�
   ]);
   assert.equal(
     lfDocuments.bundleSha256,
-    'f2b6d4cfbb818c374946d706a653b69652d0b35c1259ef15704b24a5b1a6dde2',
+    lfDocuments.manifest.base_bundle_sha256,
   );
   assert.equal(crlfDocuments.bundleSha256, lfDocuments.bundleSha256);
 });
@@ -294,7 +292,7 @@ test('base snapshot이 바뀌면 기존 coverage를 공개 완료로 인정하�
   const result = validateCoverageDocuments(documents);
   assert.ok(
     result.errors.includes(
-      'coverage_base_snapshot_mismatch:kr-knowledge-core-20260723-023:kr-knowledge-core-20990101-999',
+      `coverage_base_snapshot_mismatch:${documents.manifest.base_snapshot_id}:kr-knowledge-core-20990101-999`,
     ),
   );
   assert.equal(
@@ -310,7 +308,7 @@ test('같은 snapshot id 안에서 bundle bytes가 바뀌어도 fail-closed 한�
   const result = validateCoverageDocuments(documents);
   assert.ok(
     result.errors.includes(
-      'coverage_base_bundle_hash_mismatch:f2b6d4cfbb818c374946d706a653b69652d0b35c1259ef15704b24a5b1a6dde2:' +
+      `coverage_base_bundle_hash_mismatch:${documents.manifest.base_bundle_sha256}:` +
         '0'.repeat(64),
     ),
   );
@@ -411,25 +409,21 @@ test('L2 binding은 해당 콘텐츠에서 해당 근거로 가는 투영일 때
   const bindingId = 'binding.coverage.test';
   const authorityId = 'authority.coverage.test';
   unit.required_authority_binding_ids = [bindingId];
-  documents.bundle.knowledge.authority_reading_units = [
-    {
-      authority_reading_unit_id: authorityId,
-      source_coordinate_id: unit.required_source_coordinate_ids[0],
-      source_snapshot_id:
-        unit.source_version_requirements[0].source_snapshot_id,
-      time_state: 'current_as_of_review',
-      effective_from: '2025-01-01',
-    },
-  ];
-  documents.bundle.knowledge.authority_bindings = [
-    {
-      binding_id: bindingId,
-      from_kind: 'content',
-      from_id: unit.canonical_content_ids[0],
-      to_kind: 'authority_reading_unit',
-      to_authority_reading_unit_id: authorityId,
-    },
-  ];
+  documents.bundle.knowledge.authority_reading_units.push({
+    authority_reading_unit_id: authorityId,
+    source_coordinate_id: unit.required_source_coordinate_ids[0],
+    source_snapshot_id:
+      unit.source_version_requirements[0].source_snapshot_id,
+    time_state: 'current_as_of_review',
+    effective_from: '2025-01-01T00:00:00.000Z',
+  });
+  documents.bundle.knowledge.authority_bindings.push({
+    binding_id: bindingId,
+    from_kind: 'content',
+    from_id: unit.canonical_content_ids[0],
+    to_kind: 'authority_reading_unit',
+    to_authority_reading_unit_id: authorityId,
+  });
 
   let result = validateCoverageDocuments(documents);
   assert.deepEqual(result.errors, []);
@@ -446,8 +440,9 @@ test('L2 binding은 해당 콘텐츠에서 해당 근거로 가는 투영일 때
     true,
   );
 
-  documents.bundle.knowledge.authority_bindings[0].from_id =
-    'content.payment-order-objection-two-weeks';
+  documents.bundle.knowledge.authority_bindings.find(
+    (binding) => binding.binding_id === bindingId,
+  ).from_id = 'content.payment-order-objection-two-weeks';
   result = validateCoverageDocuments(documents);
   assert.ok(
     result.errors.includes(

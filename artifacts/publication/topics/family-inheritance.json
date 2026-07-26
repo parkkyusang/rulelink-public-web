@@ -760,21 +760,7 @@
           "target_id": "concept.kr.inheritance.legal_heir",
           "relation_type": "concept"
         }
-      ],
-      "lawyer_workspace_entry": {
-        "question_ko": "상속포기·한정승인 3개월은 언제부터 계산하나",
-        "decision_facts_ko": [
-          "사망일",
-          "사망을 안 날",
-          "자신이 상속인임을 안 날",
-          "선순위자 포기 수리일",
-          "법원 통지일",
-          "채권통지일",
-          "연장청구 여부"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      ]
     },
     {
       "content_id": "content.inheritance-renunciation-procedure",
@@ -862,21 +848,7 @@
           "target_id": "concept.kr.inheritance.co_heir",
           "relation_type": "concept"
         }
-      ],
-      "lawyer_workspace_entry": {
-        "question_ko": "상속포기는 가족끼리 말하면 끝나는가",
-        "decision_facts_ko": [
-          "상속개시를 안 날",
-          "법원 신고일",
-          "관할법원",
-          "수리 여부",
-          "공동상속인",
-          "배우자 존재",
-          "후순위 상속인"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      ]
     },
     {
       "content_id": "content.limited-acceptance-effect",
@@ -1051,22 +1023,30 @@
       "hub_ids": [
         "hub.family-inheritance"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.why-attorney-workspace-is-gated"
+      ],
       "lawyer_workspace_entry": {
         "question_ko": "3개월 뒤 숨은 빚을 알게 되면 방법이 없나",
-        "decision_facts_ko": [
-          "새 채무 종류·금액",
-          "통지 수령일",
-          "채무초과를 안 날",
-          "기존 재산조사",
-          "조사하지 못한 이유",
-          "이미 처분한 재산",
-          "기존 변제",
-          "신고일"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.family-inheritance.sc-late-debt"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
+        }
+      ]
     },
     {
       "content_id": "content.estate-disposal-before-renunciation",
@@ -1233,22 +1213,30 @@
       "hub_ids": [
         "hub.family-inheritance"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.why-attorney-workspace-is-gated"
+      ],
       "lawyer_workspace_entry": {
         "question_ko": "한정승인 수리 뒤 바로 끝나는가",
-        "decision_facts_ko": [
-          "수리일",
-          "공고일",
-          "신고기간",
-          "알고 있는 채권자",
-          "담보권·우선권",
-          "채권액",
-          "상속재산 환가액",
-          "변제 내역"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.family-inheritance.sc-limited-approved"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
+        }
+      ]
     },
     {
       "content_id": "content.inheritance-assets-and-debts-checklist",
@@ -1332,24 +1320,7 @@
           "target_id": "concept.kr.inheritance.legal_heir",
           "relation_type": "concept"
         }
-      ],
-      "lawyer_workspace_entry": {
-        "question_ko": "상속재산·채무 조사 체크리스트",
-        "decision_facts_ko": [
-          "예금·증권",
-          "부동산",
-          "차량",
-          "보험금·해약환급금",
-          "대출·카드",
-          "보증채무",
-          "세금·공과금",
-          "임대차보증금",
-          "진행 중 소송·집행",
-          "디지털자산"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      ]
     },
     {
       "content_id": "content.2026-loss-of-inheritance-right-and-representation",

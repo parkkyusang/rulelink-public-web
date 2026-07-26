@@ -515,6 +515,20 @@
         "coord.real-estate-sale.licensed-real-estate-agents-act-ko-0025",
         "coord.real-estate-sale.civil-act-ko-0186"
       ]
+    },
+    {
+      "scenario_id": "scenario.real-estate-sale.real-estate-12",
+      "question_ko": "계약을 해제했다고 통보했는데 지급한 돈과 추가 손해를 함께 청구할 수 있는지 궁금합니다.",
+      "decision_fact_ko": "유효한 해제 성립 여부",
+      "when_true_ko": "유효한 해제가 성립했다면 각 당사자는 받은 급부를 반환하는 원상회복을 해야 하고, 금전에는 받은 날부터 이자가 문제되며 별도의 손해배상청구가 배제되지는 않습니다.",
+      "when_false_ko": "유효한 해제가 성립하지 않았다면 민법 제548조의 원상회복을 전제로 정산할 수 없으므로, 해제 사유·의사표시 도달·해약금 해제인지 여부를 먼저 확인해야 합니다.",
+      "rule_ids": [
+        "rule.real-estate-sale.real-estate-06"
+      ],
+      "source_coordinate_ids": [
+        "coord.real-estate-sale.civil-act-ko-0548",
+        "coord.real-estate-sale.civil-act-ko-0551"
+      ]
     }
   ],
   "content_entries": [
@@ -527,7 +541,7 @@
       "slug": "real-estate-sale-contract-before-signing",
       "title_ko": "부동산 계약서를 아직 안 썼으면 계약이 아닌가요?",
       "one_line_answer_ko": "매매목적물과 대금 등 핵심 조건에 합의했다면 서면 전에도 계약 성립이 문제될 수 있으므로, 합의 내용과 계약 체결 의사를 함께 확인해야 합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "부동산 매매 조건에는 합의했지만 계약서에 아직 서명하지 않아, 목적물·대금·체결 의사와 추가 조건을 확인하려는 경우",
       "key_points_ko": [
         "계약서 작성과 계약 성립은 같은 문제가 아닙니다.",
         "목적물·대금과 확정 의사를 확인합니다.",
@@ -547,9 +561,9 @@
       ],
       "caution_ko": "토지거래허가 등 별도 법률이 요구하는 절차가 있거나 당사자가 서면 체결을 효력요건으로 합의한 경우에는 추가 검토가 필요합니다.",
       "search_intents_ko": [
-        "부동산 계약서를 아직 안 썼으면 계약이 아닌가요?",
-        "매매조건을 합의했지만 정식 계약서에 서명하지 않았습니다.",
-        "real estate sale contract before signing"
+        "계약서 서명 전 구두로 합의한 부동산 매매도 효력이 있나요",
+        "문자와 송금내역만 있는 부동산 계약 성립 여부",
+        "가계약 뒤 정식 계약서를 안 쓴 경우 거래를 중단할 수 있나요"
       ],
       "body_sections": [
         {
@@ -583,6 +597,26 @@
         "content.real-estate-reservation-deposit-meaning",
         "content.earnest-money-rescission-cutoff",
         "content.mistake-fraud-in-real-estate-contract"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.real-estate-reservation-deposit-meaning",
+          "relation_type": "comparison",
+          "label_ko": "서명 전 합의와 가계약금 송금의 의미 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.earnest-money-rescission-cutoff",
+          "relation_type": "procedure",
+          "label_ko": "계약 성립 뒤 해약금 해제 가능 시점 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.mistake-fraud-in-real-estate-contract",
+          "relation_type": "remedy",
+          "label_ko": "착오·사기로 성립한 계약의 취소 경로 확인"
+        }
       ]
     },
     {
@@ -594,7 +628,7 @@
       "slug": "real-estate-reservation-deposit-meaning",
       "title_ko": "가계약금을 보냈다면 무조건 계약금으로 포기해야 하나요?",
       "one_line_answer_ko": "송금 명칭보다 계약 성립 여부, 반환 약정, 해약금 약정과 실제 교부 범위를 확인해야 하며 자동으로 몰취된다고 단정할 수 없습니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "정식 계약서 작성 전 가계약금을 보낸 뒤 거래를 중단하려 하며, 핵심 조건 합의와 반환·몰취 약정 여부를 확인하려는 경우",
       "key_points_ko": [
         "가계약금이라는 이름만으로 법적 성격이 정해지지 않습니다.",
         "계약 성립과 해약금 약정을 나눠 봅니다.",
@@ -614,9 +648,9 @@
       ],
       "caution_ko": "일부 계약금만 지급한 경우의 해약금 범위는 약정과 판례 법리에 따라 달라질 수 있어 송금액만으로 계산하면 위험합니다.",
       "search_intents_ko": [
-        "가계약금을 보냈다면 무조건 계약금으로 포기해야 하나요?",
-        "정식 계약 전 소액을 보냈는데 거래를 중단하고 싶습니다.",
-        "real estate reservation deposit meaning"
+        "부동산 가계약금만 송금한 뒤 돌려받을 수 있나요",
+        "가계약금 반환 약정이 없으면 매수인이 포기해야 하나요",
+        "정식 계약 전 보낸 돈이 해약금인지 확인하는 방법"
       ],
       "body_sections": [
         {
@@ -652,17 +686,26 @@
         "content.earnest-money-rescission-cutoff",
         "content.rescission-restitution-and-damages"
       ],
-      "lawyer_workspace_entry": {
-        "question_ko": "가계약금을 보냈다면 무조건 계약금으로 포기해야 하나요?",
-        "decision_facts_ko": [
-          "송금액과 전체 계약금",
-          "송금 명목",
-          "반환·몰취 합의",
-          "핵심 조건 합의 여부"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.real-estate-sale-contract-before-signing",
+          "relation_type": "prerequisite",
+          "label_ko": "가계약금 송금 전 계약 성립 여부 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.earnest-money-rescission-cutoff",
+          "relation_type": "comparison",
+          "label_ko": "가계약금 반환과 해약금 해제의 차이 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.rescission-restitution-and-damages",
+          "relation_type": "remedy",
+          "label_ko": "계약 해제 뒤 반환·손해 정산 경로 확인"
+        }
+      ]
     },
     {
       "content_id": "content.earnest-money-rescission-cutoff",
@@ -673,7 +716,7 @@
       "slug": "earnest-money-rescission-cutoff",
       "title_ko": "계약금만 포기하면 언제까지 부동산 계약을 해제할 수 있나요?",
       "one_line_answer_ko": "다른 약정이 없다면 상대방 또는 자신이 이행에 착수하기 전까지만 계약금 포기나 배액상환에 의한 해제가 원칙적으로 가능합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "부동산 계약금을 실제로 지급한 뒤 계약을 끝내려 하며, 이행착수 여부와 해약금 특약·통보 시점을 확인하려는 경우",
       "key_points_ko": [
         "잔금일이 아니라 이행착수 여부가 경계입니다.",
         "교부자는 포기, 수령자는 배액상환 구조입니다.",
@@ -693,9 +736,9 @@
       ],
       "caution_ko": "무엇이 이행착수인지와 중도금 선지급의 효력은 구체적 약정과 판례에 따라 달라질 수 있습니다.",
       "search_intents_ko": [
-        "계약금만 포기하면 언제까지 부동산 계약을 해제할 수 있나요?",
-        "잔금 전이면 언제든 계약금을 포기하고 해제할 수 있나요?",
-        "earnest money rescission cutoff"
+        "중도금 지급 전 부동산 계약금을 포기하고 해제할 수 있나요",
+        "매도인이 이행을 시작한 뒤 계약금 배액으로 해제할 수 있나요",
+        "부동산 해약금 해제에서 이행착수 시점은 언제인가요"
       ],
       "body_sections": [
         {
@@ -729,6 +772,26 @@
         "content.real-estate-reservation-deposit-meaning",
         "content.interim-payment-and-concurrent-closing",
         "content.rescission-restitution-and-damages"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.real-estate-reservation-deposit-meaning",
+          "relation_type": "prerequisite",
+          "label_ko": "송금액이 해약금인지 계약 성립부터 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.interim-payment-and-concurrent-closing",
+          "relation_type": "deadline",
+          "label_ko": "중도금 등 이행착수 전 해제 시점 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.rescission-restitution-and-damages",
+          "relation_type": "comparison",
+          "label_ko": "해약금 해제와 채무불이행 해제 정산 비교"
+        }
       ]
     },
     {
@@ -740,7 +803,7 @@
       "slug": "interim-payment-and-concurrent-closing",
       "title_ko": "중도금을 지급한 뒤 잔금과 소유권이전은 어떻게 맞바꾸나요?",
       "one_line_answer_ko": "특약이나 관습이 없으면 권리이전 의무와 대금지급 의무는 동시에 이행하는 것이 원칙이므로 잔금일의 서류·말소·지급 순서를 구체화해야 합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "중도금을 지급한 부동산 매매의 잔금일을 앞두고, 잔금 지급과 등기서류·권리말소의 이행 순서를 확인하려는 경우",
       "key_points_ko": [
         "매도인의 권리이전과 매수인의 대금지급은 원칙적으로 동시이행입니다.",
         "단순 준비와 적법한 이행제공을 구분합니다.",
@@ -760,9 +823,9 @@
       ],
       "caution_ko": "특약으로 선이행 의무를 정했거나 상대방의 이행이 현저히 곤란해진 경우에는 동시이행 판단이 달라질 수 있습니다.",
       "search_intents_ko": [
-        "중도금을 지급한 뒤 잔금과 소유권이전은 어떻게 맞바꾸나요?",
-        "매수인은 잔금을, 매도인은 등기서류를 누가 먼저 줘야 하는지 다툽니다.",
-        "interim payment and concurrent closing"
+        "부동산 잔금 지급과 소유권이전등기는 동시에 해야 하나요",
+        "잔금일에 매도인이 준비해야 할 등기서류와 말소 절차",
+        "매수인이 잔금을 준비했음을 입증하는 방법"
       ],
       "body_sections": [
         {
@@ -799,17 +862,26 @@
         "content.seller-misses-title-transfer-date",
         "content.ownership-changes-only-after-registration"
       ],
-      "lawyer_workspace_entry": {
-        "question_ko": "중도금을 지급한 뒤 잔금과 소유권이전은 어떻게 맞바꾸나요?",
-        "decision_facts_ko": [
-          "잔금일과 장소",
-          "말소 대상 권리",
-          "등기 필요서류",
-          "지급 준비와 이행제공"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.earnest-money-rescission-cutoff",
+          "relation_type": "prerequisite",
+          "label_ko": "중도금 지급 전 해약금 해제 가능성 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.seller-misses-title-transfer-date",
+          "relation_type": "procedure",
+          "label_ko": "잔금일 등기이전 불이행 대응 절차 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.ownership-changes-only-after-registration",
+          "relation_type": "procedure",
+          "label_ko": "잔금 지급과 소유권이전등기 실행 순서 확인"
+        }
+      ]
     },
     {
       "content_id": "content.seller-misses-title-transfer-date",
@@ -820,7 +892,7 @@
       "slug": "seller-misses-title-transfer-date",
       "title_ko": "매도인이 잔금일에 소유권이전을 해주지 않으면 바로 해제할 수 있나요?",
       "one_line_answer_ko": "원칙적으로 상당한 기간을 정해 이행을 최고하고 그 기간에도 이행하지 않을 때 해제를 검토하며, 자신의 동시이행 준비도 입증해야 합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "잔금은 준비했지만 매도인이 약정일에 소유권이전을 미루어, 미이행 내용·최고·이행 준비와 거절 여부를 확인하려는 경우",
       "key_points_ko": [
         "통상 상당한 기간의 최고가 먼저 필요합니다.",
         "미리 이행거절을 표시한 경우는 예외가 될 수 있습니다.",
@@ -840,9 +912,9 @@
       ],
       "caution_ko": "최고 없는 즉시 해제가 가능한지는 정기행위, 명백한 이행거절, 특약 등 구체적 사정에 따라 달라집니다.",
       "search_intents_ko": [
-        "매도인이 잔금일에 소유권이전을 해주지 않으면 바로 해제할 수 있나요?",
-        "잔금은 준비했는데 매도인이 등기 이전을 미룹니다.",
-        "seller misses title transfer date"
+        "잔금일에 매도인이 등기이전을 거절하면 계약을 해제할 수 있나요",
+        "소유권이전 지연 시 최고 기간과 해제 통보 방법",
+        "매도인 불이행 전에 매수인이 잔금을 준비했다는 증거"
       ],
       "body_sections": [
         {
@@ -879,17 +951,26 @@
         "content.rescission-restitution-and-damages",
         "content.ownership-changes-only-after-registration"
       ],
-      "lawyer_workspace_entry": {
-        "question_ko": "매도인이 잔금일에 소유권이전을 해주지 않으면 바로 해제할 수 있나요?",
-        "decision_facts_ko": [
-          "매도인의 미이행 내용",
-          "매수인의 잔금 준비",
-          "최고 내용과 도달일",
-          "명백한 이행거절 여부"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.interim-payment-and-concurrent-closing",
+          "relation_type": "prerequisite",
+          "label_ko": "잔금과 등기서류의 동시이행 준비 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.rescission-restitution-and-damages",
+          "relation_type": "remedy",
+          "label_ko": "최고 뒤 해제 시 반환·손해 정산 경로 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.ownership-changes-only-after-registration",
+          "relation_type": "procedure",
+          "label_ko": "소유권이전등기 접수와 완료 상태 확인"
+        }
+      ]
     },
     {
       "content_id": "content.rescission-restitution-and-damages",
@@ -900,7 +981,7 @@
       "slug": "rescission-restitution-and-damages",
       "title_ko": "부동산 계약을 해제하면 돈만 돌려받으면 끝인가요?",
       "one_line_answer_ko": "해제되면 원상회복이 기본이고 반환할 금전에는 받은 날부터 이자가 문제되며, 손해배상청구가 별도로 배제되는 것은 아닙니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "부동산 계약을 해제한 뒤 계약금·중도금과 이자를 돌려받고 추가 손해도 청구하려 하며, 해제 성립과 지급내역·귀책사유를 확인하려는 경우",
       "key_points_ko": [
         "해제의 기본 효과는 원상회복입니다.",
         "반환금의 이자 기산을 확인합니다.",
@@ -920,9 +1001,9 @@
       ],
       "caution_ko": "계약금 해약해제에는 민법 제551조가 적용되지 않으므로 채무불이행 해제와 구분해야 합니다.",
       "search_intents_ko": [
-        "부동산 계약을 해제하면 돈만 돌려받으면 끝인가요?",
-        "해제 뒤 계약금·중도금 반환과 손해배상을 함께 요구할 수 있나요?",
-        "rescission restitution and damages"
+        "부동산 계약 해제 후 계약금과 중도금에 이자도 받을 수 있나요",
+        "계약 해제 원상회복과 손해배상을 함께 청구할 수 있나요",
+        "해약금 해제와 채무불이행 해제의 정산 차이"
       ],
       "body_sections": [
         {
@@ -943,7 +1024,9 @@
       "rule_ids": [
         "rule.real-estate-sale.real-estate-06"
       ],
-      "scenario_ids": [],
+      "scenario_ids": [
+        "scenario.real-estate-sale.real-estate-12"
+      ],
       "source_coordinate_ids": [
         "coord.real-estate-sale.civil-act-ko-0548",
         "coord.real-estate-sale.civil-act-ko-0551"
@@ -955,6 +1038,26 @@
         "content.earnest-money-rescission-cutoff",
         "content.seller-misses-title-transfer-date",
         "content.hidden-defect-after-purchase"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.earnest-money-rescission-cutoff",
+          "relation_type": "comparison",
+          "label_ko": "해약금 해제와 채무불이행 해제 구분"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.seller-misses-title-transfer-date",
+          "relation_type": "prerequisite",
+          "label_ko": "상대방 불이행과 해제 성립 요건 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.hidden-defect-after-purchase",
+          "relation_type": "prerequisite",
+          "label_ko": "숨은 하자가 해제 사유가 되는지 확인"
+        }
       ]
     },
     {
@@ -966,7 +1069,7 @@
       "slug": "seller-does-not-own-property",
       "title_ko": "등기 명의자가 아닌 사람이 부동산을 팔면 계약은 무조건 무효인가요?",
       "one_line_answer_ko": "타인의 권리를 매매하는 계약도 곧바로 무효가 되는 것은 아니지만, 매도인은 그 권리를 취득해 이전해야 하고 불가능하면 매수인은 해제를 검토할 수 있습니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "매도인이 현재 등기명의자가 아닌 사실을 알게 되어, 매도인의 권한·권리 취득 가능성과 자신의 인식 상태를 확인하려는 경우",
       "key_points_ko": [
         "타인 권리 매매와 무효를 동일시하지 않습니다.",
         "매도인의 취득·이전 가능성을 확인합니다.",
@@ -986,9 +1089,9 @@
       ],
       "caution_ko": "대리권, 명의신탁, 공동소유, 처분제한이 얽히면 계약 효력과 등기 가능성을 별도로 검토해야 합니다.",
       "search_intents_ko": [
-        "등기 명의자가 아닌 사람이 부동산을 팔면 계약은 무조건 무효인가요?",
-        "매도인이 현재 소유자가 아닌 사실을 뒤늦게 알았습니다.",
-        "seller does not own property"
+        "소유자가 아닌 사람과 체결한 부동산 매매계약도 유효한가요",
+        "매도인이 등기명의를 취득하지 못하면 계약을 해제할 수 있나요",
+        "타인 소유 부동산을 산 매수인이 확인할 권리관계"
       ],
       "body_sections": [
         {
@@ -1024,6 +1127,26 @@
         "content.interim-payment-and-concurrent-closing",
         "content.hidden-defect-after-purchase",
         "content.ownership-changes-only-after-registration"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.interim-payment-and-concurrent-closing",
+          "relation_type": "procedure",
+          "label_ko": "매도인의 권리 취득과 잔금 동시이행 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.hidden-defect-after-purchase",
+          "relation_type": "comparison",
+          "label_ko": "타인 권리 매매와 목적물 하자 책임 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.ownership-changes-only-after-registration",
+          "relation_type": "procedure",
+          "label_ko": "매도인 명의 취득과 소유권이전등기 확인"
+        }
       ]
     },
     {
@@ -1035,7 +1158,7 @@
       "slug": "hidden-defect-after-purchase",
       "title_ko": "집을 산 뒤 숨은 하자를 발견하면 언제까지 책임을 물을 수 있나요?",
       "one_line_answer_ko": "하자가 계약 목적 달성에 미치는 영향, 매수인의 선의·무과실, 안 날부터 6개월의 행사기간을 확인해 해제 또는 손해배상을 검토합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "부동산을 산 뒤 누수 등 하자를 발견해, 하자의 원인·발견일·계약 목적에 미치는 영향과 사전 인식 여부를 확인하려는 경우",
       "key_points_ko": [
         "단순 불편과 법적 하자를 구분합니다.",
         "매수인이 알았거나 과실로 몰랐는지 확인합니다.",
@@ -1055,9 +1178,9 @@
       ],
       "caution_ko": "신축 공동주택의 사업주체 책임, 집합건물 책임, 별도 품질보증 등 특별법·특약이 함께 적용될 수 있습니다.",
       "search_intents_ko": [
-        "집을 산 뒤 숨은 하자를 발견하면 언제까지 책임을 물을 수 있나요?",
-        "입주 뒤 누수나 구조상 하자를 발견했습니다.",
-        "hidden defect after purchase"
+        "집을 산 뒤 누수를 발견하면 매도인에게 언제까지 청구하나요",
+        "매수인이 몰랐던 구조상 하자로 계약을 해제할 수 있나요",
+        "부동산 하자를 안 날부터 6개월 안에 해야 할 조치"
       ],
       "body_sections": [
         {
@@ -1094,17 +1217,26 @@
         "content.seller-does-not-own-property",
         "content.broker-confirmation-explanation-checklist"
       ],
-      "lawyer_workspace_entry": {
-        "question_ko": "집을 산 뒤 숨은 하자를 발견하면 언제까지 책임을 물을 수 있나요?",
-        "decision_facts_ko": [
-          "하자 존재와 원인",
-          "계약 목적 달성 영향",
-          "발견일",
-          "매수인의 사전 인식과 과실"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.rescission-restitution-and-damages",
+          "relation_type": "remedy",
+          "label_ko": "중대한 하자에 따른 해제와 손해 정산 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.seller-does-not-own-property",
+          "relation_type": "comparison",
+          "label_ko": "목적물 하자와 매도인 권리 흠결 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.broker-confirmation-explanation-checklist",
+          "relation_type": "prerequisite",
+          "label_ko": "계약 전 하자·권리 설명 자료 확인"
+        }
+      ]
     },
     {
       "content_id": "content.ownership-changes-only-after-registration",
@@ -1115,7 +1247,7 @@
       "slug": "ownership-changes-only-after-registration",
       "title_ko": "잔금을 다 냈으면 소유권이 자동으로 넘어오나요?",
       "one_line_answer_ko": "부동산에 관한 법률행위로 인한 소유권 변동은 등기해야 효력이 생기므로 잔금 지급과 등기 완료를 같은 것으로 보면 안 됩니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "매매대금을 지급했지만 소유권이전등기가 아직 완료되지 않아, 등기 상태와 매도인의 이전 협력 여부를 확인하려는 경우",
       "key_points_ko": [
         "계약·대금지급과 물권변동을 구분합니다.",
         "등기 접수 전 권리변동을 다시 확인합니다.",
@@ -1135,9 +1267,9 @@
       ],
       "caution_ko": "상속·경매 등 법률 규정에 따른 물권취득은 민법 제187조가 문제될 수 있으므로 일반 매매와 구분합니다.",
       "search_intents_ko": [
-        "잔금을 다 냈으면 소유권이 자동으로 넘어오나요?",
-        "매매대금을 지급했지만 소유권이전등기가 아직입니다.",
-        "ownership changes only after registration"
+        "부동산 잔금을 지급했는데 등기 전에도 소유자가 되나요",
+        "소유권이전등기 접수 전 매도인이 다시 처분하면 어떻게 되나요",
+        "잔금 지급 뒤 등기 완료 여부를 확인하는 방법"
       ],
       "body_sections": [
         {
@@ -1172,6 +1304,26 @@
         "content.interim-payment-and-concurrent-closing",
         "content.seller-does-not-own-property",
         "content.real-estate-transaction-reporting-30-days"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.interim-payment-and-concurrent-closing",
+          "relation_type": "procedure",
+          "label_ko": "잔금과 등기접수를 연속해 실행하는 절차"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.seller-does-not-own-property",
+          "relation_type": "prerequisite",
+          "label_ko": "등기 전 매도인의 권리 취득 가능성 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.real-estate-transaction-reporting-30-days",
+          "relation_type": "comparison",
+          "label_ko": "실거래 신고와 소유권이전등기 절차 구분"
+        }
       ]
     },
     {
@@ -1183,7 +1335,7 @@
       "slug": "mistake-fraud-in-real-estate-contract",
       "title_ko": "중요 사실을 잘못 알거나 속아 계약했다면 취소할 수 있나요?",
       "one_line_answer_ko": "법률행위의 중요부분에 관한 착오인지, 상대방의 사기인지, 중대한 과실이나 제3자 관계가 있는지를 나눠 취소 가능성을 판단합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "부동산의 면적·용도·개발계획 등에 관한 설명이 사실과 달라, 착오나 기망의 내용과 계약 취소 검토에 필요한 사실을 확인하려는 경우",
       "key_points_ko": [
         "단순 기대와 중요부분 착오를 구분합니다.",
         "누가 어떤 거짓말을 했는지 특정합니다.",
@@ -1203,9 +1355,9 @@
       ],
       "caution_ko": "착오 취소는 표의자의 중대한 과실로 제한될 수 있고 사기 취소는 선의의 제3자에게 대항하지 못할 수 있습니다.",
       "search_intents_ko": [
-        "중요 사실을 잘못 알거나 속아 계약했다면 취소할 수 있나요?",
-        "면적·용도·개발계획 설명을 믿고 샀는데 사실과 달랐습니다.",
-        "mistake fraud in real estate contract"
+        "부동산 면적이나 용도를 잘못 알고 계약하면 취소할 수 있나요",
+        "개발계획 거짓 설명을 믿고 산 경우 계약 취소 요건",
+        "공인중개사 설명과 실제 부동산 상태가 다른 경우 증거"
       ],
       "body_sections": [
         {
@@ -1241,17 +1393,26 @@
         "content.hidden-defect-after-purchase",
         "content.broker-confirmation-explanation-checklist"
       ],
-      "lawyer_workspace_entry": {
-        "question_ko": "중요 사실을 잘못 알거나 속아 계약했다면 취소할 수 있나요?",
-        "decision_facts_ko": [
-          "잘못 안 사실의 중요성",
-          "중대한 과실 여부",
-          "기망 주체와 내용",
-          "선의의 제3자 존재"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.real-estate-sale-contract-before-signing",
+          "relation_type": "prerequisite",
+          "label_ko": "계약 내용으로 표시된 중요 사실 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.hidden-defect-after-purchase",
+          "relation_type": "comparison",
+          "label_ko": "착오·사기 취소와 목적물 하자 책임 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.broker-confirmation-explanation-checklist",
+          "relation_type": "prerequisite",
+          "label_ko": "중개 설명과 공식 자료의 불일치 확인"
+        }
+      ]
     },
     {
       "content_id": "content.real-estate-transaction-reporting-30-days",
@@ -1262,7 +1423,7 @@
       "slug": "real-estate-transaction-reporting-30-days",
       "title_ko": "부동산 매매계약과 해제는 언제까지 신고해야 하나요?",
       "one_line_answer_ko": "대상 계약은 원칙적으로 체결일부터 30일 이내 신고하고, 신고 뒤 해제·무효·취소가 확정되면 그 날부터 30일 이내 해제등 신고를 해야 합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "부동산 매매계약을 체결했거나 신고한 계약이 해제·무효·취소되어, 계약일 또는 확정일부터 30일 신고기한과 신고 주체를 확인하려는 경우",
       "key_points_ko": [
         "계약 체결 신고와 해제등 신고를 구분합니다.",
         "각 기산일로부터 30일을 계산합니다.",
@@ -1282,9 +1443,9 @@
       ],
       "caution_ko": "거짓 신고, 지연 신고와 자금조달계획서 등 부수 의무는 거래 지역·가격·당사자에 따라 추가될 수 있습니다.",
       "search_intents_ko": [
-        "부동산 매매계약과 해제는 언제까지 신고해야 하나요?",
-        "계약을 체결하거나 해제했는데 실거래 신고기한이 궁금합니다.",
-        "real estate transaction reporting 30 days"
+        "부동산 매매계약 체결 후 실거래 신고는 며칠 안에 하나요",
+        "부동산 계약 해제 신고 30일 기산일",
+        "중개거래와 직거래 부동산 신고 주체"
       ],
       "body_sections": [
         {
@@ -1320,17 +1481,26 @@
         "content.rescission-restitution-and-damages",
         "content.ownership-changes-only-after-registration"
       ],
-      "lawyer_workspace_entry": {
-        "question_ko": "부동산 매매계약과 해제는 언제까지 신고해야 하나요?",
-        "decision_facts_ko": [
-          "신고대상 계약 여부",
-          "계약 체결일",
-          "해제·무효·취소 확정일",
-          "중개 여부와 신고 주체"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.real-estate-sale-contract-before-signing",
+          "relation_type": "prerequisite",
+          "label_ko": "신고할 계약의 실제 체결 여부 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.rescission-restitution-and-damages",
+          "relation_type": "procedure",
+          "label_ko": "해제 확정 뒤 해제등 신고 절차 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.ownership-changes-only-after-registration",
+          "relation_type": "comparison",
+          "label_ko": "실거래 신고와 소유권이전등기 구분"
+        }
+      ]
     },
     {
       "content_id": "content.broker-confirmation-explanation-checklist",
@@ -1341,7 +1511,7 @@
       "slug": "broker-confirmation-explanation-checklist",
       "title_ko": "공인중개사에게 계약 전에 어떤 자료와 설명을 요구해야 하나요?",
       "one_line_answer_ko": "중개가 완성되기 전에 대상물의 상태·입지·권리관계와 거래·이용 제한을 근거자료와 함께 확인·설명받고, 계약서와 확인·설명서의 불일치를 점검해야 합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "공인중개사를 통해 부동산을 계약하기 전, 확인·설명서와 근거자료로 권리관계·이용제한·실제 상태를 점검하려는 경우",
       "key_points_ko": [
         "설명은 중개 완성 전에 이루어져야 합니다.",
         "등기사항증명서·신탁원부·건축물대장 등 근거자료를 확인합니다.",
@@ -1361,9 +1531,9 @@
       ],
       "caution_ko": "중개사의 확인·설명의무가 매수인의 독립적인 등기·현장 확인을 모두 대신하는 것은 아닙니다.",
       "search_intents_ko": [
-        "공인중개사에게 계약 전에 어떤 자료와 설명을 요구해야 하나요?",
-        "등기만 보면 충분한지, 확인·설명서를 언제 받아야 하는지 궁금합니다.",
-        "broker confirmation explanation checklist"
+        "부동산 계약 전 공인중개사에게 받아야 할 확인설명 자료",
+        "등기사항증명서 외에 신탁원부와 건축물대장도 봐야 하나요",
+        "중개대상물 확인설명서와 실제 상태가 다를 때 확인할 사항"
       ],
       "body_sections": [
         {
@@ -1399,17 +1569,26 @@
         "content.hidden-defect-after-purchase",
         "content.mistake-fraud-in-real-estate-contract"
       ],
-      "lawyer_workspace_entry": {
-        "question_ko": "공인중개사에게 계약 전에 어떤 자료와 설명을 요구해야 하나요?",
-        "decision_facts_ko": [
-          "중개 완성 전 설명 여부",
-          "제시된 근거자료",
-          "권리·이용제한",
-          "설명서와 실제 상태의 차이"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.seller-does-not-own-property",
+          "relation_type": "prerequisite",
+          "label_ko": "계약 전 등기명의와 매도 권한 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.hidden-defect-after-purchase",
+          "relation_type": "prerequisite",
+          "label_ko": "계약 전 목적물 상태와 하자 자료 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.mistake-fraud-in-real-estate-contract",
+          "relation_type": "prerequisite",
+          "label_ko": "설명과 실제 사실의 차이를 계약 전에 확인"
+        }
+      ]
     }
   ]
 }

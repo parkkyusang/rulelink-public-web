@@ -41,13 +41,6 @@ export default async function HomePage() {
             />
             <button type="submit">관련 질문 찾기</button>
           </div>
-          <nav aria-label="검색 예시" className="homeSearchExamples">
-            {SITE_SEARCH_EXAMPLES.map(example => (
-              <a href={`/ko/search?q=${encodeURIComponent(example.query)}`} key={example.kind}>
-                {example.label_ko}
-              </a>
-            ))}
-          </nav>
           <p>
             실제로 맞은 이유와 결론을 바꾸는 사실, 공식 근거, 다음 행동을 이어서 보여드립니다.
             <a href="#knowledge"> 생활영역에서 고르기</a>

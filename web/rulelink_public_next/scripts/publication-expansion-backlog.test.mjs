@@ -20,19 +20,19 @@ import {
   canonicalSha256,
 } from './publication-coverage-core.mjs';
 
-test('023 전체 콘텐츠와 허브를 누락 없이 결정론적 확장 백로그로 만든다', async () => {
+test('024 전체 콘텐츠와 허브를 누락 없이 결정론적 확장 백로그로 만든다', async () => {
   const backlog = await buildPublicationExpansionBacklog();
 
   assert.equal(backlog.schema, 'rulelink_publication_expansion_backlog_v1');
-  assert.equal(backlog.snapshot_id, 'kr-knowledge-core-20260723-023');
+  assert.equal(backlog.snapshot_id, 'kr-knowledge-core-20260726-024');
   assert.equal(backlog.content_count, 284);
   assert.equal(backlog.hub_count, 28);
   assert.deepEqual(backlog.summary, {
     coverage_declared: 5,
     coverage_unmapped: 279,
     declared_incomplete: 5,
-    graph_ready_unmapped: 220,
-    structure_incomplete: 59,
+    graph_ready_unmapped: 251,
+    structure_incomplete: 28,
     verified_release: 0,
   });
   assert.equal(

@@ -14,10 +14,10 @@
       "target_authority_level": "L2_locator",
       "branch_signature": [
         {
-          "scenario_id": "scenario.crime-victim-response.crime-victim-10",
-          "decision_fact_sha256": "3b170132613ce3d135493cb3f7528e657ed0997b63fa017a48d276b347522a06",
-          "when_true_sha256": "f8d4b7eb3c1db70113a4bc1e661ce3f4e1dfbf6790581ca468d5b2a2721cee82",
-          "when_false_sha256": "38d4af8e36592ccaba352cf29d98575c38699be8c8359508645c820c2649c1d4"
+          "scenario_id": "scenario.crime-victim-response.compensation-order-offense-damage",
+          "decision_fact_sha256": "22daf301a7b08b73d273347b39e6208d628f3238a6ad0cdff8021c10c4be0503",
+          "when_true_sha256": "a7a0650b5b0765a017b2e12ed3fc04e24f3943ad650a18cc27e4ebe0ad034ecb",
+          "when_false_sha256": "a27c28b090d3323d41b321b51bcbd2a04c1d9bde637c3eb050f3afd58e78baba"
         }
       ],
       "canonical_content_ids": [
@@ -27,7 +27,7 @@
         "rule.crime-victim-response.crime-victim-10"
       ],
       "required_scenario_ids": [
-        "scenario.crime-victim-response.crime-victim-10"
+        "scenario.crime-victim-response.compensation-order-offense-damage"
       ],
       "required_source_coordinate_ids": [
         "coord.crime-victim-response.litigation-promotion-special-ko-0025"
@@ -35,11 +35,13 @@
       "source_version_requirements": [
         {
           "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
-          "source_snapshot_id": "snapshot:50983dddba9cd06682339ba8c6b33d9a",
-          "last_verified_at": "2026-07-21T08:30:00+00:00"
+          "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+          "last_verified_at": "2026-07-24T00:00:00+00:00"
         }
       ],
-      "required_authority_binding_ids": [],
+      "required_authority_binding_ids": [
+        "binding.compensation-order.25"
+      ],
       "evaluation_case_ids": [
         "eval.compensation-order.eligibility.A",
         "eval.compensation-order.eligibility.B"
@@ -56,20 +58,20 @@
       "target_authority_level": "L2_locator",
       "branch_signature": [
         {
-          "scenario_id": "scenario.crime-victim-response.crime-victim-10",
-          "decision_fact_sha256": "3b170132613ce3d135493cb3f7528e657ed0997b63fa017a48d276b347522a06",
-          "when_true_sha256": "f8d4b7eb3c1db70113a4bc1e661ce3f4e1dfbf6790581ca468d5b2a2721cee82",
-          "when_false_sha256": "38d4af8e36592ccaba352cf29d98575c38699be8c8359508645c820c2649c1d4"
+          "scenario_id": "scenario.crime-victim-response.compensation-order-agreed-amount",
+          "decision_fact_sha256": "82a149f6d75d73d864c274d97fa80994a2eb8cbe472be46a642f803dbcebb692",
+          "when_true_sha256": "7bdbfb1e8358c7b384a5442686d1b5c8ff8727bf77fb081d6c6ec08130f7c044",
+          "when_false_sha256": "0fccee439fde718b0b9463aac3aeefec10c0146881488ebddf469c1e35226bea"
         }
       ],
       "canonical_content_ids": [
         "content.compensation-order-eligible-damages"
       ],
       "required_rule_ids": [
-        "rule.crime-victim-response.crime-victim-10"
+        "rule.crime-victim-response.compensation-order-agreed-amount"
       ],
       "required_scenario_ids": [
-        "scenario.crime-victim-response.crime-victim-10"
+        "scenario.crime-victim-response.compensation-order-agreed-amount"
       ],
       "required_source_coordinate_ids": [
         "coord.crime-victim-response.litigation-promotion-special-ko-0025"
@@ -77,11 +79,13 @@
       "source_version_requirements": [
         {
           "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
-          "source_snapshot_id": "snapshot:50983dddba9cd06682339ba8c6b33d9a",
-          "last_verified_at": "2026-07-21T08:30:00+00:00"
+          "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+          "last_verified_at": "2026-07-24T00:00:00+00:00"
         }
       ],
-      "required_authority_binding_ids": [],
+      "required_authority_binding_ids": [
+        "binding.compensation-order.25"
+      ],
       "evaluation_case_ids": [
         "eval.compensation-order.agreed-amount.A",
         "eval.compensation-order.agreed-amount.B"
@@ -98,32 +102,41 @@
       "target_authority_level": "L2_locator",
       "branch_signature": [
         {
-          "scenario_id": "scenario.crime-victim-response.crime-victim-10",
-          "decision_fact_sha256": "3b170132613ce3d135493cb3f7528e657ed0997b63fa017a48d276b347522a06",
-          "when_true_sha256": "f8d4b7eb3c1db70113a4bc1e661ce3f4e1dfbf6790581ca468d5b2a2721cee82",
-          "when_false_sha256": "38d4af8e36592ccaba352cf29d98575c38699be8c8359508645c820c2649c1d4"
+          "scenario_id": "scenario.crime-victim-response.compensation-order-dismissal-risk",
+          "decision_fact_sha256": "ec1893e9ba604555a123b3e5b5b42facbeba85e34fee24cba3985c692edcb48c",
+          "when_true_sha256": "dea528830434dce1b033860723dcfa0141b7cff3b22104f64efcab9b55cd387d",
+          "when_false_sha256": "82ba5de7c274999bdcbcd14d40be48bd1fc8beffeed2743aed21cafb61a78655"
         }
       ],
       "canonical_content_ids": [
         "content.compensation-order-eligible-damages"
       ],
       "required_rule_ids": [
-        "rule.crime-victim-response.crime-victim-10"
+        "rule.crime-victim-response.compensation-order-dismissal"
       ],
       "required_scenario_ids": [
-        "scenario.crime-victim-response.crime-victim-10"
+        "scenario.crime-victim-response.compensation-order-dismissal-risk"
       ],
       "required_source_coordinate_ids": [
-        "coord.crime-victim-response.litigation-promotion-special-ko-0025"
+        "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0032"
       ],
       "source_version_requirements": [
         {
           "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
-          "source_snapshot_id": "snapshot:50983dddba9cd06682339ba8c6b33d9a",
-          "last_verified_at": "2026-07-21T08:30:00+00:00"
+          "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+          "last_verified_at": "2026-07-24T00:00:00+00:00"
+        },
+        {
+          "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0032",
+          "source_snapshot_id": "c7d70e140addfb2e580cb419da25eec6",
+          "last_verified_at": "2026-07-24T00:00:00+00:00"
         }
       ],
-      "required_authority_binding_ids": [],
+      "required_authority_binding_ids": [
+        "binding.compensation-order.25",
+        "binding.compensation-order.32"
+      ],
       "evaluation_case_ids": [
         "eval.compensation-order.dismissal.A",
         "eval.compensation-order.dismissal.B"
@@ -141,9 +154,9 @@
       "branch_signature": [
         {
           "scenario_id": "scenario.crime-victim-response.crime-victim-11",
-          "decision_fact_sha256": "1886407879853e54d1cf664a50ec1bd8f519fe264cbb15525f69c0c5be6e6f8b",
+          "decision_fact_sha256": "a4c77626aa2396dd99fd200867b660865162725e7d50e54cd61bb0d7145afd01",
           "when_true_sha256": "f0502ba572ec0402c091422b172f5708a4180e11b80b6ea6d88402233953cf33",
-          "when_false_sha256": "e0bbaf1f2fb167754dabfd61eb0115e21ab264ee036aacd8cae19ea930b58a5f"
+          "when_false_sha256": "5408a588aab048a3dd5b6ad5aa8649bc71c7a075a7ddfb495333cd708b508b00"
         }
       ],
       "canonical_content_ids": [
@@ -161,11 +174,13 @@
       "source_version_requirements": [
         {
           "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
-          "source_snapshot_id": "snapshot:33b1a9b966387025275a6c4531a08027",
-          "last_verified_at": "2026-07-21T08:30:00+00:00"
+          "source_snapshot_id": "bb35446950761affb71d6c804d4dd5f8",
+          "last_verified_at": "2026-07-24T00:00:00+00:00"
         }
       ],
-      "required_authority_binding_ids": [],
+      "required_authority_binding_ids": [
+        "binding.compensation-order.26"
+      ],
       "evaluation_case_ids": [
         "eval.compensation-order.deadline.A",
         "eval.compensation-order.deadline.B"
@@ -182,10 +197,10 @@
       "target_authority_level": "L2_locator",
       "branch_signature": [
         {
-          "scenario_id": "scenario.crime-victim-response.crime-victim-11",
-          "decision_fact_sha256": "1886407879853e54d1cf664a50ec1bd8f519fe264cbb15525f69c0c5be6e6f8b",
-          "when_true_sha256": "f0502ba572ec0402c091422b172f5708a4180e11b80b6ea6d88402233953cf33",
-          "when_false_sha256": "e0bbaf1f2fb167754dabfd61eb0115e21ab264ee036aacd8cae19ea930b58a5f"
+          "scenario_id": "scenario.crime-victim-response.compensation-order-application-records",
+          "decision_fact_sha256": "f4f45ad2ea7207f6dead381159093ccb130a8dbe8691c04086193e0005bc9421",
+          "when_true_sha256": "e7ab6d9f95ebc9504faf3d606e596fe9abf741c652ac47687b8c536ea1d23316",
+          "when_false_sha256": "371a94aefa969d436bc8a3b990348380eb435c9def5bc38aa6d0b6ab9c3ec06f"
         }
       ],
       "canonical_content_ids": [
@@ -195,7 +210,7 @@
         "rule.crime-victim-response.crime-victim-11"
       ],
       "required_scenario_ids": [
-        "scenario.crime-victim-response.crime-victim-11"
+        "scenario.crime-victim-response.compensation-order-application-records"
       ],
       "required_source_coordinate_ids": [
         "coord.crime-victim-response.litigation-promotion-special-ko-0026"
@@ -203,11 +218,13 @@
       "source_version_requirements": [
         {
           "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
-          "source_snapshot_id": "snapshot:33b1a9b966387025275a6c4531a08027",
-          "last_verified_at": "2026-07-21T08:30:00+00:00"
+          "source_snapshot_id": "bb35446950761affb71d6c804d4dd5f8",
+          "last_verified_at": "2026-07-24T00:00:00+00:00"
         }
       ],
-      "required_authority_binding_ids": [],
+      "required_authority_binding_ids": [
+        "binding.compensation-order.26"
+      ],
       "evaluation_case_ids": [
         "eval.compensation-order.copies.A",
         "eval.compensation-order.copies.B"
@@ -224,16 +241,10 @@
       "target_authority_level": "L2_locator",
       "branch_signature": [
         {
-          "scenario_id": "scenario.crime-victim-response.crime-victim-10",
-          "decision_fact_sha256": "3b170132613ce3d135493cb3f7528e657ed0997b63fa017a48d276b347522a06",
-          "when_true_sha256": "f8d4b7eb3c1db70113a4bc1e661ce3f4e1dfbf6790581ca468d5b2a2721cee82",
-          "when_false_sha256": "38d4af8e36592ccaba352cf29d98575c38699be8c8359508645c820c2649c1d4"
-        },
-        {
-          "scenario_id": "scenario.crime-victim-response.crime-victim-11",
-          "decision_fact_sha256": "1886407879853e54d1cf664a50ec1bd8f519fe264cbb15525f69c0c5be6e6f8b",
-          "when_true_sha256": "f0502ba572ec0402c091422b172f5708a4180e11b80b6ea6d88402233953cf33",
-          "when_false_sha256": "e0bbaf1f2fb167754dabfd61eb0115e21ab264ee036aacd8cae19ea930b58a5f"
+          "scenario_id": "scenario.crime-victim-response.compensation-order-enforcement-title",
+          "decision_fact_sha256": "53771c82ee8afd564577aee91cd627242de72140741357b991a24603aa7d4f0f",
+          "when_true_sha256": "274752db661c63ae7ba99bd0284d4bdda98bbbbc574a98d3a36947bb57b83353",
+          "when_false_sha256": "2e0b1ea4c88b34d2748ec4ce31d0a590a9def6e939989171e1b78f4ff215808e"
         }
       ],
       "canonical_content_ids": [
@@ -241,30 +252,31 @@
         "content.compensation-order-application-deadline"
       ],
       "required_rule_ids": [
-        "rule.crime-victim-response.crime-victim-10",
-        "rule.crime-victim-response.crime-victim-11"
+        "rule.crime-victim-response.compensation-order-judgment-enforcement"
       ],
       "required_scenario_ids": [
-        "scenario.crime-victim-response.crime-victim-10",
-        "scenario.crime-victim-response.crime-victim-11"
+        "scenario.crime-victim-response.compensation-order-enforcement-title"
       ],
       "required_source_coordinate_ids": [
-        "coord.crime-victim-response.litigation-promotion-special-ko-0025",
-        "coord.crime-victim-response.litigation-promotion-special-ko-0026"
+        "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0034"
       ],
       "source_version_requirements": [
         {
-          "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
-          "source_snapshot_id": "snapshot:50983dddba9cd06682339ba8c6b33d9a",
-          "last_verified_at": "2026-07-21T08:30:00+00:00"
+          "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+          "source_snapshot_id": "9af4e46708641c88dc39ec6af514632c",
+          "last_verified_at": "2026-07-24T00:00:00+00:00"
         },
         {
-          "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
-          "source_snapshot_id": "snapshot:33b1a9b966387025275a6c4531a08027",
-          "last_verified_at": "2026-07-21T08:30:00+00:00"
+          "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0034",
+          "source_snapshot_id": "c8776a4473237b3cf5c8ea85c7dc7076",
+          "last_verified_at": "2026-07-24T00:00:00+00:00"
         }
       ],
-      "required_authority_binding_ids": [],
+      "required_authority_binding_ids": [
+        "binding.compensation-order.31",
+        "binding.compensation-order.34"
+      ],
       "evaluation_case_ids": [
         "eval.compensation-order.enforcement.A",
         "eval.compensation-order.enforcement.B"

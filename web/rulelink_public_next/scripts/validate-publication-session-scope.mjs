@@ -32,6 +32,8 @@ export function isPublicationGovernedPath(filePath) {
     || value === 'artifacts/publication/production-queue.json'
     || value === 'artifacts/publication/production-queue-registry.json'
     || value === 'artifacts/publication/current/bundle.json'
+    || value === 'artifacts/publication/derived/maintenance-index.json'
+    || value === 'artifacts/publication/derived/source-text-library.json'
     || value === 'artifacts/publication/topics/manifest.json'
     || value === 'artifacts/publication/concepts/manifest.json'
     || /^artifacts\/publication\/(?:topics|concepts)\/[a-z0-9-]+\.json$/u.test(value)
@@ -146,6 +148,8 @@ export function allowedForRole(role, filePath) {
       || value === '.gitattributes'
       || value === '.github/workflows/authority-release-evidence.yml'
       || /^artifacts\/publication\/coverage\/[a-z0-9._/-]+\.json$/u.test(value)
+      || value === 'artifacts/publication/derived/maintenance-index.json'
+      || value === 'artifacts/publication/derived/source-text-library.json'
       || value === 'web/rulelink_public_next/.env.example'
       || value === 'web/rulelink_public_next/.gitignore'
       || value === 'web/rulelink_public_next/package-lock.json'

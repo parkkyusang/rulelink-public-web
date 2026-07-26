@@ -98,7 +98,7 @@ function fixtureBundle() {
   };
 }
 
-test('운영 023의 상세·허브·법령변화 범위를 정확히 감사하고 입력이 없으면 추정값을 만들지 않는다', () => {
+test('운영 024의 상세·허브·법령변화 범위를 snapshot-bound로 감사하고 입력이 없으면 추정값을 만들지 않는다', () => {
   const first = auditPublicationSearchPerformance(currentBundle);
   const second = auditPublicationSearchPerformance(currentBundle);
   assert.deepEqual(first, second);
@@ -108,7 +108,7 @@ test('운영 023의 상세·허브·법령변화 범위를 정확히 감사하�
     change: 11,
     total: 323,
   });
-  assert.equal(first.source.snapshot_id, 'kr-knowledge-core-20260723-023');
+  assert.equal(first.source.snapshot_id, 'kr-knowledge-core-20260726-024');
   assert.equal(first.data_availability.search_console, 'not_provided');
   assert.equal(first.data_availability.search_volume, 'not_available_and_not_estimated');
   assert.equal(first.data_availability.advertising_rpm, 'not_available_and_not_estimated');
@@ -119,18 +119,18 @@ test('운영 023의 상세·허브·법령변화 범위를 정확히 감사하�
   assert.deepEqual(first.summary.action_counts, {
     'noindex-review': 0,
     merge: 0,
-    improve: 4,
-    keep: 319,
+    improve: 2,
+    keep: 321,
   });
   assert.equal(first.summary.orphan_outbound, 0);
   assert.equal(first.summary.orphan_inbound, 0);
   assert.equal(first.summary.weak_internal_link, 0);
   assert.equal(first.summary.verified_official_source_pages, 295);
-  assert.equal(first.summary.verified_official_source_links, 740);
-  assert.equal(first.summary.knowledge_verified_official_source_links, 717);
+  assert.equal(first.summary.verified_official_source_links, 747);
+  assert.equal(first.summary.knowledge_verified_official_source_links, 724);
   assert.equal(first.summary.change_verified_official_source_links, 23);
-  assert.equal(first.summary.direct_knowledge_verified_official_source_links, 653);
-  assert.equal(first.summary.knowledge_graph_expanded_source_pages, 18);
+  assert.equal(first.summary.direct_knowledge_verified_official_source_links, 659);
+  assert.equal(first.summary.knowledge_graph_expanded_source_pages, 19);
   assert.deepEqual(
     first.pages
       .filter(page => page.recommendation === 'improve')
@@ -139,8 +139,6 @@ test('운영 023의 상세·허브·법령변화 범위를 정확히 감사하�
     [
       'content.2026-livelihood-account-protection',
       'content.fraudulent-transfer-before-enforcement',
-      'content.multiple-people-caused-one-damage',
-      'content.real-estate-transaction-reporting-30-days',
     ],
   );
   assert.ok(first.pages.filter(page => page.recommendation === 'improve').every(
@@ -164,11 +162,11 @@ test('운영 023의 상세·허브·법령변화 범위를 정확히 감사하�
   );
   assert.equal(
     hubs.reduce((total, page) => total + page.internal_link_evidence.decision_path_count, 0),
-    247,
+    254,
   );
   assert.equal(
     hubs.reduce((total, page) => total + page.internal_link_evidence.connected_hub_count, 0),
-    76,
+    86,
   );
 });
 

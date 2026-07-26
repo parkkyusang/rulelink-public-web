@@ -11,6 +11,7 @@ const topic = JSON.parse(await readFile(path.join(repoRoot, 'artifacts', 'public
 const current = JSON.parse(await readFile(path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json'), 'utf8'));
 const sources = new Map(topic.sources.map(source => [source.coordinate_id, source]));
 const rules = new Map(topic.rule_cards.map(rule => [rule.rule_id, rule]));
+const scenarios = new Map(topic.scenario_branches.map(scenario => [scenario.scenario_id, scenario]));
 const entries = new Map(topic.content_entries.map(entry => [entry.content_id, entry]));
 const relatedUniverse = new Set([...entries.keys(), ...current.knowledge.content_entries.map(entry => entry.content_id)]);
 
@@ -117,12 +118,15 @@ test('10개 콘텐츠의 typed relation과 legacy 투영 집합을 정확히 고
   for (const [entryId, expected] of expectedRelations) {
     const entry = entries.get(entryId);
     const actual = entry.related_edges.map(edge => [edge.target_id, edge.relation_type]);
-    assert.deepEqual(actual, expected, entryId);
+    const expectedWithWorkspaceBoundary = entry.lawyer_workspace_entry
+      ? [...expected, ['content.why-attorney-workspace-is-gated', 'concierge_boundary']]
+      : expected;
+    assert.deepEqual(actual, expectedWithWorkspaceBoundary, entryId);
     assert.ok(entry.related_edges.every(edge => edge.target_kind === 'content' && edge.label_ko.trim()));
     assert.ok(entry.related_edges.every(edge => relatedUniverse.has(edge.target_id)), entryId);
-    const expectedIds = expected.map(([targetId]) => targetId);
+    const expectedIds = expectedWithWorkspaceBoundary.map(([targetId]) => targetId);
     assert.deepEqual(entry.related_content_ids, expectedIds, `${entryId}: 명시 legacy 집합`);
-    assert.deepEqual(projectKnowledgeEntryCompatibility(entry).related_content_ids, expectedIds, `${entryId}: 투영 legacy 집합`);
+    assert.deepEqual(projectKnowledgeEntryCompatibility(entry, scenarios).related_content_ids, expectedIds, `${entryId}: 투영 legacy 집합`);
     assert.deepEqual(entry.concept_ids, []);
   }
 });

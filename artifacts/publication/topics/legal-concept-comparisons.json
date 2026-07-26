@@ -802,9 +802,9 @@
       ],
       "caution_ko": "상속재산을 임의로 처분한 뒤에는 단순승인 문제가 생길 수 있으므로 선택 전에 재산을 움직이지 않는 것이 안전합니다.",
       "search_intents_ko": [
-        "상속포기와 한정승인은 무엇이 다른가요?",
-        "상속채무가 걱정되는데 상속포기와 한정승인 중 무엇을 해야 하나요?",
-        "inheritance-renunciation-vs-limited-acceptance"
+        "부모님 빚이 재산보다 많을 때 상속을 어떻게 정리하나요",
+        "상속재산과 채무 규모를 모르면 한정승인을 해야 하나요",
+        "제가 상속을 포기하면 다음 순위 가족에게 빚이 넘어가나요"
       ],
       "body_sections": [
         {
@@ -839,11 +839,29 @@
         "hub.legal-concept-comparisons"
       ],
       "related_content_ids": [
-        "content.earnest-money-cancellation-vs-default-rescission",
-        "content.lease-registration-vs-opposability-priority",
         "content.inheritance-renunciation-procedure",
         "content.limited-acceptance-effect",
         "content.three-month-inheritance-decision-period"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.inheritance-renunciation-procedure",
+          "relation_type": "procedure",
+          "label_ko": "상속포기 법원 신고 절차"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.limited-acceptance-effect",
+          "relation_type": "comparison",
+          "label_ko": "한정승인의 채무정리 효과 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.three-month-inheritance-decision-period",
+          "relation_type": "deadline",
+          "label_ko": "상속 선택의 3개월 기간 확인"
+        }
       ]
     },
     {
@@ -875,9 +893,9 @@
       ],
       "caution_ko": "계약금이 오갔다고 언제든 포기·배액상환으로 끝낼 수 있는 것은 아니며, 이행착수 이후에는 적용 경로가 달라질 수 있습니다.",
       "search_intents_ko": [
-        "계약금 해제와 채무불이행 해제는 같은 절차인가요?",
-        "부동산 계약을 끝내려는데 계약금을 포기하면 되는지, 이행을 최고해야 하는지 헷갈립니다.",
-        "earnest-money-cancellation-vs-default-rescission"
+        "부동산 계약을 취소하려면 계약금만 포기하면 되나요",
+        "중도금을 낸 뒤에도 계약금 배액으로 계약을 끝낼 수 있나요",
+        "상대방이 잔금일을 어겼을 때 언제 계약을 해제할 수 있나요"
       ],
       "body_sections": [
         {
@@ -912,10 +930,35 @@
       ],
       "related_content_ids": [
         "content.online-withdrawal-vs-contract-rescission",
-        "content.inheritance-renunciation-vs-limited-acceptance",
         "content.earnest-money-rescission-cutoff",
         "content.seller-misses-title-transfer-date",
         "content.rescission-restitution-and-damages"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.online-withdrawal-vs-contract-rescission",
+          "relation_type": "comparison",
+          "label_ko": "다른 취소·해제 기준 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.earnest-money-rescission-cutoff",
+          "relation_type": "deadline",
+          "label_ko": "계약금 해제가 가능한 시점 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.seller-misses-title-transfer-date",
+          "relation_type": "prerequisite",
+          "label_ko": "매도인의 이행지체 사실 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.rescission-restitution-and-damages",
+          "relation_type": "remedy",
+          "label_ko": "해제 뒤 원상회복과 손해배상 검토"
+        }
       ]
     },
     {
@@ -947,9 +990,9 @@
       ],
       "caution_ko": "청약철회가 제한돼도 상품이 광고와 다르거나 계약대로 이행되지 않았다면 별도 구제 가능성이 남을 수 있습니다.",
       "search_intents_ko": [
-        "온라인 청약철회와 계약해제는 무엇이 다른가요?",
-        "온라인 구매를 취소하려는데 청약철회 기간을 따져야 하는지 판매자의 계약위반을 주장해야 하는지 알고 싶습니다.",
-        "online-withdrawal-vs-contract-rescission"
+        "인터넷으로 산 물건을 단순 변심으로 취소할 수 있나요",
+        "광고와 다른 상품이 왔을 때 청약철회 기간은 어떻게 되나요",
+        "온라인 주문 상품을 판매자가 보내지 않으면 어떻게 취소하나요"
       ],
       "body_sections": [
         {
@@ -983,11 +1026,36 @@
         "hub.legal-concept-comparisons"
       ],
       "related_content_ids": [
-        "content.loan-proof-vs-enforceable-title",
         "content.earnest-money-cancellation-vs-default-rescission",
         "content.online-purchase-cancellation-seven-days",
         "content.goods-different-from-advertisement-deadline",
         "content.paid-but-goods-not-supplied"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.earnest-money-cancellation-vs-default-rescission",
+          "relation_type": "comparison",
+          "label_ko": "일반 계약해제 경로와 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.online-purchase-cancellation-seven-days",
+          "relation_type": "deadline",
+          "label_ko": "단순변심 청약철회 기간 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.goods-different-from-advertisement-deadline",
+          "relation_type": "deadline",
+          "label_ko": "광고와 다른 상품의 철회 기간 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.paid-but-goods-not-supplied",
+          "relation_type": "remedy",
+          "label_ko": "상품 미공급 때의 대응 확인"
+        }
       ]
     },
     {
@@ -1019,9 +1087,9 @@
       ],
       "caution_ko": "내용증명이나 단순 인증 차용증은 중요한 증거지만 그 자체가 언제나 집행권원은 아닙니다.",
       "search_intents_ko": [
-        "차용증과 집행권원은 왜 구분해야 하나요?",
-        "차용증과 송금내역이 있으면 바로 통장 압류를 할 수 있나요?",
-        "loan-proof-vs-enforceable-title"
+        "차용증만 있으면 채무자 통장을 바로 압류할 수 있나요",
+        "송금내역과 대화만으로 빌려준 돈을 강제집행할 수 있나요",
+        "돈을 빌려준 증거가 있어도 판결이 따로 필요한가요"
       ],
       "body_sections": [
         {
@@ -1054,9 +1122,28 @@
       ],
       "related_content_ids": [
         "content.payment-order-vs-civil-lawsuit",
-        "content.online-withdrawal-vs-contract-rescission",
         "content.loan-without-written-note",
         "content.documents-that-allow-compulsory-enforcement"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.payment-order-vs-civil-lawsuit",
+          "relation_type": "procedure",
+          "label_ko": "집행권원을 얻는 절차 선택"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.loan-without-written-note",
+          "relation_type": "prerequisite",
+          "label_ko": "차용증 없는 대여금 증거 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.documents-that-allow-compulsory-enforcement",
+          "relation_type": "prerequisite",
+          "label_ko": "강제집행 가능한 문서 확인"
+        }
       ]
     },
     {
@@ -1088,9 +1175,9 @@
       ],
       "caution_ko": "지급명령은 상대방이 다투지 않을 때 효율적이며, 이의가 제기되면 확정된 지급명령의 효과를 바로 얻을 수 없습니다.",
       "search_intents_ko": [
-        "지급명령과 민사소송 중 어느 절차가 맞나요?",
-        "돈을 못 받았는데 지급명령이 빠른지 바로 민사소송을 해야 하는지 알고 싶습니다.",
-        "payment-order-vs-civil-lawsuit"
+        "빌려준 돈을 받으려면 지급명령부터 신청하는 게 빠른가요",
+        "채무자가 다툴 것 같으면 바로 민사소송을 해야 하나요",
+        "상대방 주소를 모르면 지급명령을 신청할 수 있나요"
       ],
       "body_sections": [
         {
@@ -1127,6 +1214,32 @@
         "content.loan-proof-vs-enforceable-title",
         "content.when-payment-order-fits",
         "content.payment-order-objection-two-weeks"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.provisional-attachment-vs-claim-seizure",
+          "relation_type": "procedure",
+          "label_ko": "채무자 재산 보전·집행 절차"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.loan-proof-vs-enforceable-title",
+          "relation_type": "prerequisite",
+          "label_ko": "증거와 집행권원의 차이 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.when-payment-order-fits",
+          "relation_type": "prerequisite",
+          "label_ko": "지급명령에 맞는 사건인지 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.payment-order-objection-two-weeks",
+          "relation_type": "deadline",
+          "label_ko": "지급명령 이의기간 확인"
+        }
       ]
     },
     {
@@ -1158,9 +1271,9 @@
       ],
       "caution_ko": "가압류는 돈을 바로 지급받는 절차가 아니며 본안에서 권리를 확정하고 본집행으로 이어갈 준비가 필요합니다.",
       "search_intents_ko": [
-        "가압류와 채권압류·추심명령은 어떻게 다른가요?",
-        "채무자 통장을 먼저 묶어야 하는지 바로 압류해서 돈을 받아야 하는지 헷갈립니다.",
-        "provisional-attachment-vs-claim-seizure"
+        "판결받기 전에 채무자 통장을 미리 묶을 수 있나요",
+        "지급명령이 확정되면 예금 압류와 추심을 어떻게 하나요",
+        "가압류한 통장에서 바로 돈을 받을 수 있는 건가요"
       ],
       "body_sections": [
         {
@@ -1194,10 +1307,29 @@
         "hub.legal-concept-comparisons"
       ],
       "related_content_ids": [
-        "content.criminal-compensation-order-vs-civil-damages",
         "content.payment-order-vs-civil-lawsuit",
         "content.provisional-attachment-before-judgment",
         "content.bank-account-seizure-and-collection-order"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.payment-order-vs-civil-lawsuit",
+          "relation_type": "prerequisite",
+          "label_ko": "집행권원을 얻는 절차 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.provisional-attachment-before-judgment",
+          "relation_type": "procedure",
+          "label_ko": "판결 전 가압류 신청 절차"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.bank-account-seizure-and-collection-order",
+          "relation_type": "procedure",
+          "label_ko": "예금 압류·추심 신청 절차"
+        }
       ]
     },
     {
@@ -1229,9 +1361,9 @@
       ],
       "caution_ko": "배상명령 신청이 각하되거나 일부 손해가 대상에서 빠질 수 있으므로 민사상 시효와 별도 청구 가능성을 함께 관리해야 합니다.",
       "search_intents_ko": [
-        "배상명령과 민사 손해배상청구는 무엇이 다른가요?",
-        "형사재판에서 배상명령을 신청할지 별도로 민사소송을 해야 할지 알고 싶습니다.",
-        "criminal-compensation-order-vs-civil-damages"
+        "범죄 피해금은 형사재판에서 함께 돌려받을 수 있나요",
+        "배상명령으로 청구하지 못하는 손해는 민사소송을 해야 하나요",
+        "형사재판이 진행 중일 때 손해배상은 언제 신청하나요"
       ],
       "body_sections": [
         {
@@ -1265,11 +1397,36 @@
         "hub.legal-concept-comparisons"
       ],
       "related_content_ids": [
-        "content.criminal-settlement-vs-complaint-withdrawal",
         "content.provisional-attachment-vs-claim-seizure",
         "content.compensation-order-eligible-damages",
         "content.compensation-order-application-deadline",
         "content.civil-damages-after-crime"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.provisional-attachment-vs-claim-seizure",
+          "relation_type": "remedy",
+          "label_ko": "손해배상 재산의 보전·집행 검토"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.compensation-order-eligible-damages",
+          "relation_type": "prerequisite",
+          "label_ko": "배상명령 대상 손해 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.compensation-order-application-deadline",
+          "relation_type": "deadline",
+          "label_ko": "배상명령 신청시점 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.civil-damages-after-crime",
+          "relation_type": "remedy",
+          "label_ko": "별도 민사 손해배상 경로"
+        }
       ]
     },
     {
@@ -1301,9 +1458,9 @@
       ],
       "caution_ko": "고소취소는 다시 고소할 수 없는 효과가 문제될 수 있으므로 합의금 지급 전에 무조건 먼저 제출하지 않도록 순서를 설계해야 합니다.",
       "search_intents_ko": [
-        "형사합의와 고소취소는 같은 뜻인가요?",
-        "가해자와 합의하면 고소가 자동으로 취소되고 형사사건이 끝나는지 궁금합니다.",
-        "criminal-settlement-vs-complaint-withdrawal"
+        "가해자와 합의하면 고소가 자동으로 취소되나요",
+        "합의금을 받은 뒤에도 고소취소서를 따로 내야 하나요",
+        "처벌을 원하지 않는다는 합의서를 쓰면 사건이 끝나나요"
       ],
       "body_sections": [
         {
@@ -1336,10 +1493,22 @@
         "hub.legal-concept-comparisons"
       ],
       "related_content_ids": [
-        "content.parental-authority-vs-custody",
-        "content.criminal-compensation-order-vs-civil-damages",
         "content.settlement-and-punishment-intent",
         "content.report-complaint-accusation-difference"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.settlement-and-punishment-intent",
+          "relation_type": "prerequisite",
+          "label_ko": "합의서의 처벌의견 효과 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.report-complaint-accusation-difference",
+          "relation_type": "comparison",
+          "label_ko": "신고·고소·고발의 절차 차이"
+        }
       ]
     },
     {
@@ -1371,9 +1540,9 @@
       ],
       "caution_ko": "명칭만 정하고 실제 인도·생활비·교육·의료 의사결정 방식을 비워두면 이혼 후 분쟁이 반복될 수 있습니다.",
       "search_intents_ko": [
-        "친권자와 양육자는 반드시 같은 사람인가요?",
-        "이혼할 때 친권과 양육권을 한 사람에게 모두 정해야 하는지 궁금합니다.",
-        "parental-authority-vs-custody"
+        "이혼할 때 친권자와 아이를 키울 사람을 다르게 정할 수 있나요",
+        "양육자가 아니어도 자녀의 학교와 병원 결정을 할 수 있나요",
+        "친권과 양육비 면접교섭은 각각 어떻게 정해야 하나요"
       ],
       "body_sections": [
         {
@@ -1405,10 +1574,22 @@
         "hub.legal-concept-comparisons"
       ],
       "related_content_ids": [
-        "content.property-division-vs-consolation-money",
-        "content.criminal-settlement-vs-complaint-withdrawal",
         "content.divorce-child-custody-support-parental-authority-agreement",
         "content.noncustodial-parent-child-visitation"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.divorce-child-custody-support-parental-authority-agreement",
+          "relation_type": "procedure",
+          "label_ko": "친권·양육·양육비 협의 절차"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.noncustodial-parent-child-visitation",
+          "relation_type": "procedure",
+          "label_ko": "비양육 부모의 면접교섭 정하기"
+        }
       ]
     },
     {
@@ -1440,9 +1621,9 @@
       ],
       "caution_ko": "상대방의 잘못이 크다는 사실만으로 재산분할 비율이 자동으로 같은 폭만큼 올라가는 것은 아닙니다.",
       "search_intents_ko": [
-        "이혼 재산분할과 위자료는 무엇이 다른가요?",
-        "상대방의 잘못이 크면 재산분할도 더 많이 받을 수 있는지 궁금합니다.",
-        "property-division-vs-consolation-money"
+        "배우자의 잘못이 크면 재산분할도 더 많이 받을 수 있나요",
+        "이혼 위자료와 재산분할을 각각 청구해야 하나요",
+        "혼인 중 모은 재산과 정신적 피해 보상은 어떻게 나누어 계산하나요"
       ],
       "body_sections": [
         {
@@ -1475,10 +1656,22 @@
         "hub.legal-concept-comparisons"
       ],
       "related_content_ids": [
-        "content.worker-status-vs-contract-label",
-        "content.parental-authority-vs-custody",
         "content.divorce-consolation-money-vs-property-division",
         "content.divorce-property-division-two-year-period"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.divorce-consolation-money-vs-property-division",
+          "relation_type": "comparison",
+          "label_ko": "위자료와 재산분할 기준 상세 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.divorce-property-division-two-year-period",
+          "relation_type": "deadline",
+          "label_ko": "재산분할 청구기간 확인"
+        }
       ]
     },
     {
@@ -1510,9 +1703,9 @@
       ],
       "caution_ko": "어느 한 지표만으로 결론내리지 말고 실제 종속관계를 보여주는 여러 사실을 함께 평가해야 합니다.",
       "search_intents_ko": [
-        "프리랜서 계약서와 사업자등록이 있으면 근로자가 아닌가요?",
-        "계약서에는 프리랜서라고 되어 있고 사업자등록도 있지만 실제로 출퇴근과 업무지시를 받았습니다.",
-        "worker-status-vs-contract-label"
+        "프리랜서 계약서를 써도 출퇴근 지시를 받으면 근로자인가요",
+        "사업자등록이 있어도 퇴직금과 연차를 받을 수 있나요",
+        "회사 지시대로 일한 프리랜서가 근로자임을 입증하려면 무엇이 필요한가요"
       ],
       "body_sections": [
         {
@@ -1545,10 +1738,35 @@
       ],
       "related_content_ids": [
         "content.dismissal-notice-vs-unfair-dismissal-remedy",
-        "content.property-division-vs-consolation-money",
         "content.freelancer-contract-worker-status",
         "content.business-registration-does-not-decide-worker-status",
         "content.worker-status-evidence-checklist"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.dismissal-notice-vs-unfair-dismissal-remedy",
+          "relation_type": "comparison",
+          "label_ko": "근로자 권리의 다른 판단축 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.freelancer-contract-worker-status",
+          "relation_type": "comparison",
+          "label_ko": "프리랜서 계약과 실제 근로관계 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.business-registration-does-not-decide-worker-status",
+          "relation_type": "comparison",
+          "label_ko": "사업자등록과 근로자성 구별"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.worker-status-evidence-checklist",
+          "relation_type": "prerequisite",
+          "label_ko": "근로자성 판단자료 먼저 확인"
+        }
       ]
     },
     {
@@ -1580,9 +1798,9 @@
       ],
       "caution_ko": "서면통지 하자가 있다고 판단해도 노동위원회 구제신청 기간이 자동으로 늘어나지는 않습니다.",
       "search_intents_ko": [
-        "해고 서면통지와 부당해고 구제신청은 별개인가요?",
-        "해고통지서를 받지 못했는데 노동위원회 구제신청도 따로 해야 하나요?",
-        "dismissal-notice-vs-unfair-dismissal-remedy"
+        "말이나 문자로만 해고 통보를 받으면 해고가 유효한가요",
+        "해고통지서가 없어도 노동위원회에 구제신청을 해야 하나요",
+        "해고 사유가 적힌 서면을 받은 뒤 무엇부터 준비해야 하나요"
       ],
       "body_sections": [
         {
@@ -1615,11 +1833,36 @@
         "hub.legal-concept-comparisons"
       ],
       "related_content_ids": [
-        "content.lease-registration-vs-opposability-priority",
         "content.worker-status-vs-contract-label",
         "content.verbal-dismissal-written-notice",
         "content.specific-reason-in-dismissal-notice",
         "content.unfair-dismissal-remedy-three-months"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.worker-status-vs-contract-label",
+          "relation_type": "prerequisite",
+          "label_ko": "근로기준법상 근로자성 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.verbal-dismissal-written-notice",
+          "relation_type": "prerequisite",
+          "label_ko": "구두·문자 해고의 서면요건 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.specific-reason-in-dismissal-notice",
+          "relation_type": "prerequisite",
+          "label_ko": "해고사유의 구체적 기재 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.unfair-dismissal-remedy-three-months",
+          "relation_type": "deadline",
+          "label_ko": "부당해고 구제신청 기간 확인"
+        }
       ]
     },
     {
@@ -1651,9 +1894,9 @@
       ],
       "caution_ko": "법원에 신청서를 냈다는 사실만으로 즉시 등기가 완료되는 것은 아니므로 전출 시점을 성급히 정하면 안 됩니다.",
       "search_intents_ko": [
-        "임차권등기와 대항력·우선변제권은 어떻게 다른가요?",
-        "보증금을 못 받은 채 이사할 때 임차권등기만 신청하면 권리가 바로 보전되는지 궁금합니다.",
-        "lease-registration-vs-opposability-priority"
+        "보증금을 못 받은 채 이사하면 대항력과 우선변제권이 사라지나요",
+        "임차권등기명령을 신청한 날 바로 전출해도 되나요",
+        "전입신고와 확정일자가 있으면 임차권등기를 따로 해야 하나요"
       ],
       "body_sections": [
         {
@@ -1686,11 +1929,29 @@
         "hub.legal-concept-comparisons"
       ],
       "related_content_ids": [
-        "content.inheritance-renunciation-vs-limited-acceptance",
-        "content.dismissal-notice-vs-unfair-dismissal-remedy",
         "content.lease-registration-application-is-not-completion",
         "content.housing-lease-opposability-basics",
         "content.housing-lease-priority-repayment-basics"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.lease-registration-application-is-not-completion",
+          "relation_type": "procedure",
+          "label_ko": "임차권등기 완료 전 확인사항"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.housing-lease-opposability-basics",
+          "relation_type": "prerequisite",
+          "label_ko": "주택임대차 대항력 요건 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.housing-lease-priority-repayment-basics",
+          "relation_type": "prerequisite",
+          "label_ko": "우선변제권 요건 확인"
+        }
       ]
     }
   ]

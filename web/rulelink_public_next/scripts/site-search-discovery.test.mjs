@@ -16,6 +16,7 @@ import {
 import {
   decodeSiteSearchIndex,
   encodeSiteSearchIndex,
+  projectLegacySiteSearchDocuments,
 } from '../src/lib/site-search-index.ts';
 
 const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -82,10 +83,11 @@ test('운영 정본의 모든 검색 대상을 종류 편향 없이 한 투영�
 
 test('전체 검색 인덱스와 초기 24개 문서는 각각 절대 전송량 예산 안에 있다', () => {
   const payload = encodeSiteSearchIndex(documents, now.toISOString());
+  const legacyDocuments = projectLegacySiteSearchDocuments(documents);
   const legacyPayload = {
     schema: 'rulelink_public_search_index_v1',
     generated_at: now.toISOString(),
-    documents,
+    documents: legacyDocuments,
   };
   assert.deepEqual(decodeSiteSearchIndex(payload), {
     generatedAt: now.toISOString(),
@@ -104,9 +106,12 @@ test('전체 검색 인덱스와 초기 24개 문서는 각각 절대 전송량 
     'exact scenario handoff를 포함한 지연 검색 인덱스가 390KB 절대 예산을 넘었습니다.',
   );
   assert.ok(
-    Buffer.byteLength(JSON.stringify(legacyPayload)) <= 420_000,
-    '구 클라이언트 호환용 v1 검색 인덱스가 기존 실측 상한을 넘었습니다.',
+    Buffer.byteLength(JSON.stringify(legacyPayload)) <= 390_000,
+    '구 클라이언트 호환용 v1 검색 인덱스가 390KB 절대 예산을 넘었습니다.',
   );
+  assert.ok(legacyDocuments.every(document => (
+    document.decisionIds === undefined && document.fields.decision === undefined
+  )), 'v1 호환 인덱스에는 v2 전용 사실분기 투영을 중복 전송하지 않습니다.');
   assert.ok(
     Buffer.byteLength(JSON.stringify(ranked)) <= 60_000,
     '초기 검색 문서 24개가 60KB 절대 예산을 넘었습니다.',
@@ -179,7 +184,15 @@ test('운영 정본의 후속 사실분기 질문은 전부 카드 질문과 판
       scenarioId: target.scenarioId,
     })),
   );
-  assert.equal(laterQuestions.length, 39);
+  const expectedLaterQuestionCount = bundle.knowledge.content_entries.reduce(
+    (count, entry) => count + Math.max(0, (
+      entry.scenario_ids.filter(scenarioId => (
+        Boolean(scenarioById.get(scenarioId)?.question_ko?.trim())
+      )).length - 1
+    )),
+    0,
+  );
+  assert.equal(laterQuestions.length, expectedLaterQuestionCount);
 
   for (const {contentId, question, scenarioId} of laterQuestions) {
     const result = rankSiteSearchDocuments(documents, {
@@ -282,6 +295,22 @@ test('화면에 노출한 검색 예시는 운영 정본에서 실제 결과와 
       `${example.query}: 검색 근거 없는 결과가 있습니다.`,
     );
   }
+});
+
+test('홈은 결과처럼 보이는 하드코딩 링크 없이 실제 검색 form과 검증된 placeholder만 둔다', async () => {
+  const homeSource = await readFile(path.join(appRoot, 'app', 'page.tsx'), 'utf8');
+  assert.match(homeSource, /<form action="\/ko\/search"[\s\S]*method="get"/u);
+  assert.match(homeSource, /name="q"/u);
+  assert.match(homeSource, /placeholder=\{`예: \$\{SITE_SEARCH_EXAMPLES\[0\]\.label_ko\}`\}/u);
+  assert.doesNotMatch(homeSource, /homeSearchExamples|\/ko\/search\?q=/u);
+
+  const example = SITE_SEARCH_EXAMPLES[0];
+  const ranked = rankSiteSearchDocuments(documents, {now, query: example.query});
+  assert.ok(ranked.length > 0, '홈 placeholder 질의는 현재 정본에서 결과를 찾아야 합니다.');
+  assert.ok(
+    ranked.every(result => result.matchReasons.length > 0),
+    '홈 placeholder 질의 결과는 실제 일치 근거를 가져야 합니다.',
+  );
 });
 
 test('무결과는 짧은 질의·정확 식별자·표현 또는 콘텐츠 결손으로 분류한다', () => {

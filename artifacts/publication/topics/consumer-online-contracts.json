@@ -478,7 +478,8 @@
         "hub.consumer-online-contracts"
       ],
       "related_content_ids": [
-        "content.who-pays-return-shipping"
+        "content.who-pays-return-shipping",
+        "content.why-attorney-workspace-is-gated"
       ],
       "related_edges": [
         {
@@ -486,22 +487,27 @@
           "target_id": "content.who-pays-return-shipping",
           "relation_type": "procedure",
           "label_ko": "계약 불일치 반품비 부담 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
         }
       ],
       "lawyer_workspace_entry": {
         "question_ko": "광고와 다른 상품을 받았을 때 반품 기간",
-        "decision_facts_ko": [
-          "상품 공급일",
-          "불일치 발견일",
-          "상세페이지 표시",
-          "선택 옵션",
-          "실제 상품 사양",
-          "사용 여부",
-          "판매자와 대화 기록"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.consumer-online-contracts.sc-not-as-advertised"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ]
     },
     {
       "content_id": "content.opened-package-return-right",
@@ -646,7 +652,8 @@
         "hub.consumer-online-contracts"
       ],
       "related_content_ids": [
-        "content.refund-within-three-business-days"
+        "content.refund-within-three-business-days",
+        "content.why-attorney-workspace-is-gated"
       ],
       "related_edges": [
         {
@@ -654,22 +661,27 @@
           "target_id": "content.refund-within-three-business-days",
           "relation_type": "procedure",
           "label_ko": "철회 가능한 부분의 환급기한 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
         }
       ],
       "lawyer_workspace_entry": {
         "question_ko": "전자책·영상·게임 콘텐츠는 결제 후 바로 환불할 수 있나",
-        "decision_facts_ko": [
-          "콘텐츠 종류",
-          "제공 개시 시각",
-          "다운로드·재생 기록",
-          "가분성",
-          "이용한 분량",
-          "철회 제한 표시",
-          "시험 사용 제공 여부"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.consumer-online-contracts.sc-digital-started"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ]
     },
     {
       "content_id": "content.who-pays-return-shipping",
@@ -822,7 +834,8 @@
       "related_content_ids": [
         "content.civil-mediation-vs-civil-lawsuit",
         "content.payment-order-vs-civil-mediation",
-        "content.small-claims-trial-vs-general-civil-lawsuit"
+        "content.small-claims-trial-vs-general-civil-lawsuit",
+        "content.why-attorney-workspace-is-gated"
       ],
       "related_edges": [
         {
@@ -842,23 +855,28 @@
           "target_id": "content.small-claims-trial-vs-general-civil-lawsuit",
           "relation_type": "remedy",
           "label_ko": "청구액에 따라 소액사건과 일반소송 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
         }
       ],
       "lawyer_workspace_entry": {
         "question_ko": "반품한 뒤 환불은 언제까지 받아야 하나",
-        "decision_facts_ko": [
-          "거래가 재화·용역·디지털콘텐츠 중 무엇인지",
-          "반환 완료일",
-          "철회 통지일",
-          "미공급 여부",
-          "결제수단",
-          "결제취소 요청일",
-          "실제 환급일",
-          "공제 내역"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.consumer-online-contracts.sc-undelivered",
+          "scenario.consumer-online-contracts.sc-change-mind"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ]
     },
     {
       "content_id": "content.paid-but-goods-not-supplied",
@@ -929,7 +947,8 @@
         "hub.consumer-online-contracts"
       ],
       "related_content_ids": [
-        "content.refund-within-three-business-days"
+        "content.refund-within-three-business-days",
+        "content.why-attorney-workspace-is-gated"
       ],
       "related_edges": [
         {
@@ -937,22 +956,27 @@
           "target_id": "content.refund-within-three-business-days",
           "relation_type": "deadline",
           "label_ko": "미공급 취소 뒤 환급기한 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
         }
       ],
       "lawyer_workspace_entry": {
         "question_ko": "결제했는데 배송되지 않을 때 확인할 순서",
-        "decision_facts_ko": [
-          "청약일",
-          "대금 지급일",
-          "약정 배송일",
-          "운송장 발급일",
-          "집화·배송조회",
-          "공급곤란 인지·통지일",
-          "환급조치일"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.consumer-online-contracts.sc-undelivered"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ]
     },
     {
       "content_id": "content.free-trial-to-paid-subscription",
@@ -1238,24 +1262,7 @@
           "relation_type": "remedy",
           "label_ko": "청구액에 따라 소액사건과 일반소송 비교"
         }
-      ],
-      "lawyer_workspace_entry": {
-        "question_ko": "온라인 구매 분쟁 증거 체크리스트",
-        "decision_facts_ko": [
-          "상품 상세페이지",
-          "선택 옵션",
-          "판매자 신원정보",
-          "주문서와 결제내역",
-          "배송조회",
-          "개봉·하자 사진",
-          "철회 통지",
-          "반송 송장",
-          "고객센터 답변",
-          "환급 내역"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      ]
     }
   ]
 }

@@ -65,6 +65,12 @@
   word-break: keep-all;
 }
 
+.availability {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 650;
+}
+
 .reviewed {
   color: var(--muted);
   flex: 0 0 auto;

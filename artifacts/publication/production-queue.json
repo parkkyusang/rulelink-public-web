@@ -1,13 +1,13 @@
 {
   "schema": "rulelink_publication_production_queue_v1",
-  "audited_on": "2026-07-23",
+  "audited_on": "2026-07-26",
   "current_publication": {
-    "snapshot_id": "kr-knowledge-core-20260723-023",
+    "snapshot_id": "kr-knowledge-core-20260726-024",
     "topic_hubs": 28,
     "content_entries": 284,
-    "rule_cards": 278,
-    "scenario_branches": 247,
-    "sources": 425,
+    "rule_cards": 281,
+    "scenario_branches": 254,
+    "sources": 428,
     "live_parity": "verified"
   },
   "policy": {
@@ -179,11 +179,11 @@
         "new_immutable_snapshot",
         "migrate_publication"
       ],
-      "integrated_snapshot_id": "kr-knowledge-core-20260723-023",
-      "migration_commit_sha": "bf31dc89c36326932e91d8eaefbc677b19758615",
+      "integrated_snapshot_id": "kr-knowledge-core-20260726-024",
+      "migration_commit_sha": "1f6c8c64ddb9df3b5c158ebd06cef8f91840b0d7",
       "absorbed_head_sha": "e10ae17e67e02321f2057ba9213ef1d8d50dc7f9",
-      "topic_receipt": "709e265697937aa0b290e72e78f31272b795f127a76ced17fa81d2e974180b4b",
-      "integration_mode": "exact"
+      "topic_receipt": "693ee95a8f48ff2cf7a7e3afae483e95de0d224f804e79ecaddff11e3f7cae04",
+      "integration_mode": "absorbed"
     },
     {
       "queue_id": "publication-pr-87",
@@ -368,10 +368,10 @@
         "new_immutable_snapshot",
         "migrate_publication"
       ],
-      "integrated_snapshot_id": "kr-knowledge-core-20260723-023",
-      "migration_commit_sha": "bf31dc89c36326932e91d8eaefbc677b19758615",
+      "integrated_snapshot_id": "kr-knowledge-core-20260726-024",
+      "migration_commit_sha": "1f6c8c64ddb9df3b5c158ebd06cef8f91840b0d7",
       "absorbed_head_sha": "4d37d92d5c775d554a95910f18dfc0156054bbde",
-      "topic_receipt": "bb88b070415ea853663e07a2b4d1fc8f387fd36f66c5cf39e3b2f96b463edf5d",
+      "topic_receipt": "158c1e22ac9ce6b84e368e83d88ff4a8e1f2adbe054348ccc500acd50861c614",
       "integration_mode": "absorbed"
     },
     {
@@ -982,11 +982,11 @@
         "current bundle과 새 불변 snapshot을 migrate_publication 역할이 함께 재합성한다.",
         "typed CTA 후보 4건은 attorney-workspace-typed-migration에서 별도 심사한다."
       ],
-      "integrated_snapshot_id": "kr-knowledge-core-20260723-023",
-      "migration_commit_sha": "bf31dc89c36326932e91d8eaefbc677b19758615",
+      "integrated_snapshot_id": "kr-knowledge-core-20260726-024",
+      "migration_commit_sha": "1f6c8c64ddb9df3b5c158ebd06cef8f91840b0d7",
       "absorbed_head_sha": "237bff8a1a8c58ad3961f215236bc3f3df0d3197",
-      "topic_receipt": "95389f3b98c14c10d899c1ebe9372d56e37895451498e11dbc8d21d45c9901f3",
-      "integration_mode": "exact"
+      "topic_receipt": "bbadf439dad1c7421c752edfa8dbe4723b82add12480d10da98cf32ab092b958",
+      "integration_mode": "absorbed"
     },
     {
       "queue_id": "publication-pr-169",
@@ -1030,11 +1030,11 @@
         "런타임 연결 독해 PR #168을 먼저 병합한 뒤 typed relation을 공개한다.",
         "current bundle과 새 불변 snapshot을 migrate_publication 역할이 함께 재합성한다."
       ],
-      "integrated_snapshot_id": "kr-knowledge-core-20260723-023",
-      "migration_commit_sha": "bf31dc89c36326932e91d8eaefbc677b19758615",
+      "integrated_snapshot_id": "kr-knowledge-core-20260726-024",
+      "migration_commit_sha": "1f6c8c64ddb9df3b5c158ebd06cef8f91840b0d7",
       "absorbed_head_sha": "c8167f563975f6ba26f1df6697443fa67016bb39",
-      "topic_receipt": "6ead674143e2f0937612a38e5fba763a1d104f6228fa8213e38c994005c2752c",
-      "integration_mode": "exact"
+      "topic_receipt": "23713c224b32fd5f3a6ddfc3efbc15cb9b00030972e003bcfe3d87da0d5afd24",
+      "integration_mode": "absorbed"
     },
     {
       "queue_id": "publication-pr-171",
@@ -1075,8 +1075,8 @@
         "구제절차·기한 비교의 3개 typed relation과 legacy 투영을 보존한다.",
         "current bundle과 새 불변 snapshot을 migrate_publication 역할이 함께 재합성한다."
       ],
-      "integrated_snapshot_id": "kr-knowledge-core-20260723-023",
-      "migration_commit_sha": "bf31dc89c36326932e91d8eaefbc677b19758615",
+      "integrated_snapshot_id": "kr-knowledge-core-20260726-024",
+      "migration_commit_sha": "1f6c8c64ddb9df3b5c158ebd06cef8f91840b0d7",
       "absorbed_head_sha": "0d100fcd315de4d99e9fe80e51b56312e0402f53",
       "topic_receipt": "c6dfb0137c13f58dc0921ee68fea692f3d7837aa5b3bc0db5b255a0eb6753bbc",
       "integration_mode": "exact"

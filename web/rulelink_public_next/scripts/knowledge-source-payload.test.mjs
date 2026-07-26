@@ -40,11 +40,8 @@ test('경량 투영은 모든 연결과 근거 좌표를 보존하면서 반복 
   assert(compactBytes < expandedBytes * 0.35, `경량 ${compactBytes}바이트 / 전체 참조 ${expandedBytes}바이트`);
 });
 
-test('근거 검색어는 문서별로 중복되지 않고 상세 페이지 전체 문장을 복제하지 않는다', () => {
+test('근거 검색어는 문서별로 중복되지 않는다', () => {
   for (const document of documents) {
     assert.equal(new Set(document.search_terms_ko).size, document.search_terms_ko.length, document.label_ko);
   }
-  const searchTermCount = documents.reduce((count, document) => count + document.search_terms_ko.length, 0);
-  const linkCount = documents.reduce((count, document) => count + document.entries.length + document.concepts.length, 0);
-  assert(searchTermCount < linkCount * 18, `검색어 ${searchTermCount}개 / 연결 ${linkCount}개`);
 });

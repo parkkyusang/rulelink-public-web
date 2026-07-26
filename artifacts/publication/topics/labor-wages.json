@@ -103,7 +103,7 @@
     {
       "rule_id": "rule.labor-wages.rule-worker-status",
       "title_ko": "근로자성의 실질 판단",
-      "proposition_ko": "근로자성은 계약 명칭 하나가 아니라 사용종속관계를 보여주는 여러 사정을 종합해 판단한다.",
+      "proposition_ko": "업무 내용, 지휘·감독 방식, 근무시간·장소의 구속, 보수의 성격, 독립사업성 등 실제 자료를 확인합니다.",
       "norm": {
         "actor_ko": "계약 형식과 무관하게 임금을 목적으로 사업 또는 사업장에 근로를 제공하는 사람",
         "conditions_ko": "업무 내용·지휘감독·시간과 장소 구속·대체 가능성·장비와 비용 부담·보수 성격·전속성과 계속성 등 실제 사용종속관계를 종합해 근로자 여부를 판단하는 경우",
@@ -117,7 +117,7 @@
     {
       "rule_id": "rule.labor-wages.rule-money-14days",
       "title_ko": "퇴직 후 금품청산 기한",
-      "proposition_ko": "근로자가 퇴직하면 사용자는 특별한 사정에 관한 당사자 합의가 없는 한 임금·보상금 등 금품을 14일 이내 지급해야 한다.",
+      "proposition_ko": "퇴직일, 미정산 금품과 지급기일 연장에 관한 특별한 사정·당사자 합의가 있는지 확인합니다.",
       "norm": {
         "actor_ko": "퇴직한 근로자와 임금·보상금 등 금품을 지급할 사용자",
         "conditions_ko": "근로관계가 종료되어 임금·보상금 등 금품의 지급사유가 발생한 경우",
@@ -130,7 +130,7 @@
     {
       "rule_id": "rule.labor-wages.rule-retirement-14days",
       "title_ko": "퇴직급여 지급기한",
-      "proposition_ko": "퇴직급여도 원칙적으로 퇴직일부터 14일 이내 지급하며 특별한 사정이 있으면 당사자 합의로 기일을 연장할 수 있다.",
+      "proposition_ko": "퇴직일과 퇴직급여 지급사유, 기일 연장에 관한 특별한 사정·당사자 합의가 있는지 확인합니다.",
       "norm": {
         "actor_ko": "퇴직급여를 지급할 사용자와 퇴직 근로자",
         "conditions_ko": "근로자가 퇴직하여 퇴직금 지급사유가 발생한 경우",
@@ -144,7 +144,7 @@
     {
       "rule_id": "rule.labor-wages.rule-retirement-base",
       "title_ko": "퇴직금의 기본 산식",
-      "proposition_ko": "퇴직금 제도의 기본 출발점은 계속근로 1년에 대하여 30일분 이상의 평균임금이다.",
+      "proposition_ko": "퇴직금 적용대상, 계속근로기간과 평균임금 산정자료를 확인해 퇴직금 산정기준을 판단합니다.",
       "norm": {
         "actor_ko": "퇴직금제도를 설정한 사용자와 계속근로한 퇴직 근로자",
         "conditions_ko": "퇴직금제도의 적용대상 근로자가 1년 이상의 계속근로기간을 마치고 퇴직한 경우",
@@ -158,7 +158,7 @@
     {
       "rule_id": "rule.labor-wages.rule-written-dismissal",
       "title_ko": "해고의 서면통지 요건",
-      "proposition_ko": "해고는 해고사유와 해고시기를 서면으로 통지해야 효력이 있다.",
+      "proposition_ko": "사용자의 일방적인 근로관계 종료인지와 해고사유·해고시기가 적힌 서면 통지가 있었는지 확인합니다.",
       "norm": {
         "actor_ko": "근로자를 해고하려는 사용자와 해고 통지를 받는 근로자",
         "conditions_ko": "사용자가 근로관계를 일방적으로 종료하는 해고를 하려는 경우",
@@ -171,7 +171,7 @@
     {
       "rule_id": "rule.labor-wages.rule-concrete-dismissal-reason",
       "title_ko": "해고사유의 구체적 서면통지",
-      "proposition_ko": "해고 서면은 근로자가 어떤 사유로 해고되는지 구체적으로 알 수 있을 정도여야 한다.",
+      "proposition_ko": "해고통지서에 문제된 행위·시기·장소와 적용 규정 또는 해고사유가 어떻게 기재됐는지 확인합니다.",
       "norm": {
         "actor_ko": "근로자를 해고하는 사용자와 해고 통지를 받는 근로자",
         "conditions_ko": "서면 해고통지의 사유가 근로자가 구체적인 해고 원인을 알 수 있을 정도로 특정됐는지 판단하는 경우",
@@ -185,7 +185,7 @@
     {
       "rule_id": "rule.labor-wages.rule-remedy-3months",
       "title_ko": "부당해고 구제신청의 3개월 기간",
-      "proposition_ko": "부당해고 등의 구제신청은 부당해고가 있었던 날부터 3개월 이내에 해야 한다.",
+      "proposition_ko": "해고일 또는 불이익 처분일과 노동위원회 접수일을 기준으로 구제신청 기간을 계산합니다.",
       "norm": {
         "actor_ko": "부당해고 등의 구제를 신청하려는 근로자",
         "conditions_ko": "해고 등 불이익 처분이 있었던 날부터 노동위원회 구제신청 기간을 계산하는 경우",
@@ -350,22 +350,51 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.worker-status-evidence-checklist",
+        "content.business-registration-does-not-decide-worker-status",
+        "content.final-wages-after-retirement-14-days",
+        "content.why-attorney-workspace-is-gated"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.worker-status-evidence-checklist",
+          "relation_type": "procedure",
+          "label_ko": "실제 근무관계를 보여줄 자료 정리"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.business-registration-does-not-decide-worker-status",
+          "relation_type": "comparison",
+          "label_ko": "사업자등록·3.3%와 근로자성 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.final-wages-after-retirement-14-days",
+          "relation_type": "procedure",
+          "label_ko": "근로자 인정 뒤 미지급 금품 기한 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
+        }
+      ],
       "lawyer_workspace_entry": {
         "question_ko": "프리랜서 계약서를 썼어도 근로자일 수 있나",
-        "decision_facts_ko": [
-          "업무 내용을 누가 정했는지",
-          "구체적인 지휘·감독이 있었는지",
-          "근무시간과 장소가 정해졌는지",
-          "다른 사람에게 일을 대신 맡길 수 있었는지",
-          "장비와 비용을 누가 부담했는지",
-          "보수가 시간·노무 제공의 대가인지",
-          "계속적·전속적으로 일했는지",
-          "4대보험 처리와 세금 원천징수 방식"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.labor-wages.sc-contractor-label"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ]
     },
     {
       "content_id": "content.worker-status-evidence-checklist",
@@ -433,22 +462,31 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": [],
-      "lawyer_workspace_entry": {
-        "question_ko": "근로자성 판단에 필요한 자료 체크리스트",
-        "decision_facts_ko": [
-          "근로계약서·위탁계약서 원본",
-          "업무지시 메신저와 전자우편",
-          "출퇴근·로그인 기록",
-          "근무표와 휴가 승인 기록",
-          "급여명세와 지급내역",
-          "장비·재료 비용 부담자료",
-          "대체근무 허용 여부",
-          "다른 업체 업무 수행 가능 여부"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      "related_content_ids": [
+        "content.freelancer-contract-worker-status",
+        "content.business-registration-does-not-decide-worker-status",
+        "content.final-wages-after-retirement-14-days"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.freelancer-contract-worker-status",
+          "relation_type": "procedure",
+          "label_ko": "수집한 자료로 근로자성 판단"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.business-registration-does-not-decide-worker-status",
+          "relation_type": "comparison",
+          "label_ko": "세무 형식과 실제 종속성 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.final-wages-after-retirement-14-days",
+          "relation_type": "procedure",
+          "label_ko": "근로자 인정 뒤 체불 금품 정리"
+        }
+      ]
     },
     {
       "content_id": "content.business-registration-does-not-decide-worker-status",
@@ -515,7 +553,24 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.freelancer-contract-worker-status",
+        "content.worker-status-evidence-checklist"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.freelancer-contract-worker-status",
+          "relation_type": "comparison",
+          "label_ko": "계약 명칭과 실제 근로관계 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.worker-status-evidence-checklist",
+          "relation_type": "procedure",
+          "label_ko": "사업자 형식과 다른 실제 자료 정리"
+        }
+      ]
     },
     {
       "content_id": "content.final-wages-after-retirement-14-days",
@@ -584,7 +639,31 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.verbal-delay-agreement-after-retirement",
+        "content.unfair-dismissal-vs-wage-claim-deadline",
+        "content.payment-order-vs-civil-mediation"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.verbal-delay-agreement-after-retirement",
+          "relation_type": "procedure",
+          "label_ko": "14일 뒤 지급 합의의 성립 여부 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.unfair-dismissal-vs-wage-claim-deadline",
+          "relation_type": "deadline",
+          "label_ko": "임금청구 기간과 해고구제 3개월 구분"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.payment-order-vs-civil-mediation",
+          "relation_type": "remedy",
+          "label_ko": "확정한 체불액의 지급명령·조정 비교"
+        }
+      ]
     },
     {
       "content_id": "content.verbal-delay-agreement-after-retirement",
@@ -653,21 +732,51 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.final-wages-after-retirement-14-days",
+        "content.retirement-pay-payment-deadline",
+        "content.payment-order-vs-civil-mediation",
+        "content.why-attorney-workspace-is-gated"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.final-wages-after-retirement-14-days",
+          "relation_type": "prerequisite",
+          "label_ko": "원래의 퇴직 금품 14일 기한 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.retirement-pay-payment-deadline",
+          "relation_type": "comparison",
+          "label_ko": "임금과 퇴직금의 연장합의 요건 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.payment-order-vs-civil-mediation",
+          "relation_type": "remedy",
+          "label_ko": "합의기한 경과 뒤 금전청구 절차 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
+        }
+      ],
       "lawyer_workspace_entry": {
         "question_ko": "회사가 14일 뒤에 주겠다고 말하면 지급기일이 자동 연장되나",
-        "decision_facts_ko": [
-          "회사가 제시한 연장 사유",
-          "근로자가 명시적으로 동의했는지",
-          "새 지급일을 정했는지",
-          "연장 대상 금액",
-          "서면·메신저 기록",
-          "일부 지급 여부",
-          "압박이나 오인이 있었는지"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.labor-wages.sc-verbal-extension"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ]
     },
     {
       "content_id": "content.retirement-pay-basic-formula",
@@ -732,7 +841,31 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.employment-exit-retirement-benefit-eligibility",
+        "content.retirement-pay-payment-deadline",
+        "content.employment-exit-retirement-irp-transfer"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.employment-exit-retirement-benefit-eligibility",
+          "relation_type": "prerequisite",
+          "label_ko": "계속근로·주당시간 적용대상 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.retirement-pay-payment-deadline",
+          "relation_type": "procedure",
+          "label_ko": "계산 뒤 퇴직금 지급기한 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.employment-exit-retirement-irp-transfer",
+          "relation_type": "procedure",
+          "label_ko": "퇴직금 수령계좌·IRP 경로 확인"
+        }
+      ]
     },
     {
       "content_id": "content.retirement-pay-payment-deadline",
@@ -800,21 +933,51 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.retirement-pay-basic-formula",
+        "content.verbal-delay-agreement-after-retirement",
+        "content.payment-order-vs-civil-mediation",
+        "content.why-attorney-workspace-is-gated"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.retirement-pay-basic-formula",
+          "relation_type": "prerequisite",
+          "label_ko": "퇴직금 적용대상과 산정액 먼저 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.verbal-delay-agreement-after-retirement",
+          "relation_type": "procedure",
+          "label_ko": "지급기일 연장합의의 범위 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.payment-order-vs-civil-mediation",
+          "relation_type": "remedy",
+          "label_ko": "미지급 퇴직금의 금전청구 절차 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
+        }
+      ],
       "lawyer_workspace_entry": {
         "question_ko": "퇴직금도 퇴직 후 14일 안에 지급해야 하나",
-        "decision_facts_ko": [
-          "퇴직일",
-          "퇴직급여 제도 유형",
-          "퇴직금 산정액",
-          "지급 예정일 안내",
-          "연장 합의 유무",
-          "합의된 새 지급일",
-          "중간정산 이력"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.labor-wages.sc-verbal-extension"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ]
     },
     {
       "content_id": "content.verbal-dismissal-written-notice",
@@ -880,7 +1043,31 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.specific-reason-in-dismissal-notice",
+        "content.unfair-dismissal-remedy-three-months",
+        "content.dismissal-notice-vs-unfair-dismissal-remedy"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.specific-reason-in-dismissal-notice",
+          "relation_type": "procedure",
+          "label_ko": "서면에 적힌 해고사유의 구체성 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.unfair-dismissal-remedy-three-months",
+          "relation_type": "deadline",
+          "label_ko": "해고일 기준 구제신청 3개월 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.dismissal-notice-vs-unfair-dismissal-remedy",
+          "relation_type": "comparison",
+          "label_ko": "서면통지 하자와 부당해고 구제 구분"
+        }
+      ]
     },
     {
       "content_id": "content.specific-reason-in-dismissal-notice",
@@ -947,7 +1134,31 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": []
+      "related_content_ids": [
+        "content.verbal-dismissal-written-notice",
+        "content.unfair-dismissal-remedy-three-months",
+        "content.dismissal-notice-vs-unfair-dismissal-remedy"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.verbal-dismissal-written-notice",
+          "relation_type": "prerequisite",
+          "label_ko": "해고사유·시기의 서면통지 여부 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.unfair-dismissal-remedy-three-months",
+          "relation_type": "deadline",
+          "label_ko": "사유가 부족하면 구제신청 기한 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.dismissal-notice-vs-unfair-dismissal-remedy",
+          "relation_type": "comparison",
+          "label_ko": "통지 형식과 해고 정당성 쟁점 비교"
+        }
+      ]
     },
     {
       "content_id": "content.unfair-dismissal-remedy-three-months",
@@ -1017,22 +1228,59 @@
       "hub_ids": [
         "hub.labor-wages"
       ],
-      "related_content_ids": [],
+      "related_content_ids": [
+        "content.verbal-dismissal-written-notice",
+        "content.employment-exit-under-five-workplace",
+        "content.employment-exit-monetary-remedy",
+        "content.unfair-dismissal-vs-wage-claim-deadline",
+        "content.why-attorney-workspace-is-gated"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.verbal-dismissal-written-notice",
+          "relation_type": "prerequisite",
+          "label_ko": "해고 여부와 서면통지부터 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.employment-exit-under-five-workplace",
+          "relation_type": "comparison",
+          "label_ko": "5인 미만 사업장의 구제 적용범위 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.employment-exit-monetary-remedy",
+          "relation_type": "remedy",
+          "label_ko": "복직 대신 금전보상 경로 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.unfair-dismissal-vs-wage-claim-deadline",
+          "relation_type": "deadline",
+          "label_ko": "해고구제 3개월과 임금청구 기간 구분"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
+        }
+      ],
       "lawyer_workspace_entry": {
         "question_ko": "부당해고 구제신청은 언제까지 해야 하나",
-        "decision_facts_ko": [
-          "통보받은 날",
-          "통지된 해고일",
-          "실제 출근 종료일",
-          "서면통지서",
-          "사직서 제출 여부",
-          "회사 출입·계정 차단일",
-          "구제신청 접수일",
-          "기간 말일의 휴일 여부"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.labor-wages.sc-resignation-dispute",
+          "scenario.labor-wages.sc-verbal-dismissal"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ]
     }
   ]
 }

@@ -546,9 +546,9 @@
       ],
       "caution_ko": "법 전체가 적용된다거나 전혀 적용되지 않는다는 식의 이분법은 부정확합니다.",
       "search_intents_ko": [
-        "상가임대차보호법은 보증금이 크면 전혀 적용되지 않나요?",
-        "상가임대차 act-scope",
-        "상가 계약 전후에 자신의 보증금 규모가 법정 보호범위에 드는지 확인하려는 임차인"
+        "환산보증금이 기준을 넘으면 상가임대차보호법을 전혀 못 받나요?",
+        "보증금이 큰 상가도 대항력과 갱신요구권이 적용되나요?",
+        "내 상가 보증금이 법의 보호 범위에 드는지 어떻게 확인하나요?"
       ],
       "body_sections": [
         {
@@ -579,6 +579,20 @@
       "related_content_ids": [
         "content.commercial-lease-opposability-and-registration",
         "content.commercial-lease-renewal-right"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-opposability-and-registration",
+          "relation_type": "procedure",
+          "label_ko": "적용범위 확인 뒤 대항력 요건 갖추기"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-renewal-right",
+          "relation_type": "comparison",
+          "label_ko": "보증금 기준을 넘을 때 갱신권 적용 비교"
+        }
       ]
     },
     {
@@ -611,9 +625,9 @@
       ],
       "caution_ko": "사업자등록증 발급일과 신청일, 계약 체결일과 건물 인도일을 혼동하면 안 됩니다.",
       "search_intents_ko": [
-        "상가를 인도받고 사업자등록을 하면 언제부터 대항력이 생기나요?",
-        "상가임대차 opposability-and-registration",
-        "상가 소유자가 바뀌거나 경매 가능성이 있어 임대차 대항력을 확보하려는 임차인"
+        "상가를 인도받고 사업자등록을 신청하면 대항력은 언제 생기나요?",
+        "건물주가 바뀌어도 상가 임대차를 주장하려면 무엇이 필요한가요?",
+        "상가가 경매로 넘어가기 전에 사업자등록 외에 무엇을 확인해야 하나요?"
       ],
       "body_sections": [
         {
@@ -645,6 +659,26 @@
         "content.commercial-lease-priority-repayment",
         "content.commercial-lease-move-before-deposit-refund",
         "content.housing-lease-opposability-basics"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-priority-repayment",
+          "relation_type": "procedure",
+          "label_ko": "대항요건 뒤 확정일자·우선변제 갖추기"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-move-before-deposit-refund",
+          "relation_type": "procedure",
+          "label_ko": "이전 전 임차권등기로 권리 보전하기"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.housing-lease-opposability-basics",
+          "relation_type": "comparison",
+          "label_ko": "상가와 주택의 대항력 요건 비교"
+        }
       ]
     },
     {
@@ -678,9 +712,9 @@
       ],
       "caution_ko": "우선변제권이 있어도 선순위 담보권보다 항상 먼저 받는 것은 아닙니다.",
       "search_intents_ko": [
-        "상가 확정일자만 받으면 경매에서 보증금을 먼저 받나요?",
-        "상가임대차 priority-repayment",
-        "상가가 경매·공매될 위험에 대비해 보증금 회수 순위를 확인하려는 임차인"
+        "상가 확정일자를 받으면 경매 배당에서 무조건 먼저 받나요?",
+        "상가 보증금 우선변제를 받으려면 어떤 요건이 필요한가요?",
+        "사업자등록과 확정일자 중 무엇을 먼저 갖춰야 하나요?"
       ],
       "body_sections": [
         {
@@ -714,6 +748,26 @@
         "content.commercial-lease-opposability-and-registration",
         "content.commercial-lease-move-before-deposit-refund",
         "content.housing-lease-priority-repayment-basics"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-opposability-and-registration",
+          "relation_type": "prerequisite",
+          "label_ko": "우선변제 전 인도·사업자등록 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-move-before-deposit-refund",
+          "relation_type": "procedure",
+          "label_ko": "이전해야 하면 임차권등기로 순위 보전"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.housing-lease-priority-repayment-basics",
+          "relation_type": "comparison",
+          "label_ko": "상가와 주택의 우선변제 요건 비교"
+        }
       ]
     },
     {
@@ -746,9 +800,9 @@
       ],
       "caution_ko": "임차권등기명령을 신청했다는 사실만으로 즉시 대항력 보전 효과가 완성되는 것은 아닙니다.",
       "search_intents_ko": [
-        "상가 보증금을 못 받은 채 먼저 이전해도 되나요?",
-        "상가임대차 move-before-deposit-refund",
-        "폐업·이전 때문에 점포를 비워야 하지만 보증금을 돌려받지 못한 임차인"
+        "상가 보증금을 못 받았는데 점포를 먼저 비워도 되나요?",
+        "상가 임차권등기명령을 신청한 뒤 바로 이전해도 되나요?",
+        "폐업으로 상가를 옮기기 전에 보증금 순위를 어떻게 지키나요?"
       ],
       "body_sections": [
         {
@@ -781,6 +835,32 @@
         "content.commercial-lease-dispute-conciliation",
         "content.move-before-deposit-refund",
         "content.lease-registration-application-is-not-completion"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-priority-repayment",
+          "relation_type": "prerequisite",
+          "label_ko": "이전 전 우선변제 요건과 순위 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-dispute-conciliation",
+          "relation_type": "remedy",
+          "label_ko": "보증금 미반환 분쟁조정 검토"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.move-before-deposit-refund",
+          "relation_type": "comparison",
+          "label_ko": "주택 보증금 미반환 이사 경로와 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.lease-registration-application-is-not-completion",
+          "relation_type": "procedure",
+          "label_ko": "신청 뒤 임차권등기 완료까지 확인"
+        }
       ]
     },
     {
@@ -813,9 +893,9 @@
       ],
       "caution_ko": "10년 안이라고 무조건 갱신되는 것은 아니며 법정 거절사유가 있으면 결론이 달라집니다.",
       "search_intents_ko": [
-        "상가 임차인은 언제까지 계약갱신을 요구할 수 있나요?",
-        "상가임대차 renewal-right",
-        "영업을 계속하기 위해 상가 계약 갱신 시기와 보호기간을 확인하려는 임차인"
+        "상가 계약이 끝나기 몇 달 전부터 갱신을 요구할 수 있나요?",
+        "상가 계약갱신요구권은 처음 계약일부터 몇 년까지 보호되나요?",
+        "임대인은 어떤 사유가 있어야 상가 갱신을 거절할 수 있나요?"
       ],
       "body_sections": [
         {
@@ -848,6 +928,20 @@
       "related_content_ids": [
         "content.commercial-lease-rent-arrears",
         "content.commercial-lease-rent-increase-and-conversion"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-rent-arrears",
+          "relation_type": "comparison",
+          "label_ko": "3기 차임연체의 갱신거절 효과 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-rent-increase-and-conversion",
+          "relation_type": "comparison",
+          "label_ko": "갱신과 차임·보증금 조정 기준 비교"
+        }
       ]
     },
     {
@@ -881,9 +975,9 @@
       ],
       "caution_ko": "연체금을 뒤늦게 지급해도 이미 발생한 해지 효력이 항상 사라지는 것은 아닙니다.",
       "search_intents_ko": [
-        "상가 월세를 몇 달 밀리면 계약이 해지될 수 있나요?",
-        "상가임대차 rent-arrears",
-        "차임 일부 또는 여러 달을 연체해 해지·명도 위험을 확인하려는 상가임차인"
+        "상가 월세를 일부씩 밀렸는데 3기 연체는 어떻게 계산하나요?",
+        "월세 3개월분을 밀리면 임대인이 바로 계약을 해지할 수 있나요?",
+        "밀린 월세를 나중에 갚으면 갱신 거절 사유도 없어지나요?"
       ],
       "body_sections": [
         {
@@ -915,6 +1009,20 @@
       "related_content_ids": [
         "content.commercial-lease-renewal-right",
         "content.commercial-lease-dispute-conciliation"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-renewal-right",
+          "relation_type": "comparison",
+          "label_ko": "연체의 해지·갱신거절 효과 함께 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-dispute-conciliation",
+          "relation_type": "remedy",
+          "label_ko": "연체액·해지 다툼의 분쟁조정 검토"
+        }
       ]
     },
     {
@@ -948,9 +1056,9 @@
       ],
       "caution_ko": "권리금 자체를 임대인이 직접 지급하는 제도가 아니라 회수기회 방해로 인한 손해배상 구조입니다.",
       "search_intents_ko": [
-        "임대인이 새 임차인 계약을 거절하면 권리금을 배상해야 하나요?",
-        "상가임대차 key-money-recovery",
-        "폐업·이전 과정에서 신규임차인을 구해 권리금을 회수하려는 상가임차인"
+        "임대인이 제가 구한 새 임차인과 계약을 거절하면 권리금을 청구할 수 있나요?",
+        "상가 권리금 회수기회 보호는 계약 종료 몇 달 전부터 적용되나요?",
+        "신규 임차인 소개와 임대인의 거절을 어떤 자료로 남겨야 하나요?"
       ],
       "body_sections": [
         {
@@ -983,6 +1091,20 @@
       "related_content_ids": [
         "content.commercial-lease-renewal-right",
         "content.commercial-lease-dispute-conciliation"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-renewal-right",
+          "relation_type": "prerequisite",
+          "label_ko": "계약 종료·갱신 시점 먼저 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-dispute-conciliation",
+          "relation_type": "remedy",
+          "label_ko": "권리금 회수 방해의 분쟁조정 검토"
+        }
       ]
     },
     {
@@ -1016,9 +1138,9 @@
       ],
       "caution_ko": "경제사정 변화에 따른 증감청구와 당사자의 새로운 합의를 같은 것으로 단정하면 안 됩니다.",
       "search_intents_ko": [
-        "상가 임대인이 월세를 마음대로 올리거나 보증금을 월세로 바꿀 수 있나요?",
-        "상가임대차 rent-increase-and-conversion",
-        "상가 월세·보증금 인상 통지나 보증금의 월세 전환 제안을 받은 임차인"
+        "상가 임대인이 월세를 5퍼센트 넘게 올릴 수 있나요?",
+        "상가 월세를 올린 지 1년이 안 됐는데 또 올릴 수 있나요?",
+        "상가 보증금을 월세로 바꿀 때 금액은 어떻게 계산하나요?"
       ],
       "body_sections": [
         {
@@ -1051,6 +1173,20 @@
       "related_content_ids": [
         "content.commercial-lease-renewal-right",
         "content.commercial-lease-management-fee-breakdown"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-renewal-right",
+          "relation_type": "comparison",
+          "label_ko": "계약 갱신과 차임 조정 기준 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-management-fee-breakdown",
+          "relation_type": "comparison",
+          "label_ko": "차임 증액과 관리비 인상 구별"
+        }
       ]
     },
     {
@@ -1084,9 +1220,9 @@
       ],
       "caution_ko": "내역 제공청구권이 모든 관리비 항목의 적정성을 자동 확정하거나 지급의무를 바로 없애는 것은 아닙니다.",
       "search_intents_ko": [
-        "상가 관리비 내역을 임대인에게 요구할 수 있나요?",
-        "상가임대차 management-fee-breakdown",
-        "관리비가 크게 올랐거나 총액만 고지되어 산정내역을 확인하려는 상가임차인"
+        "상가 관리비 총액만 받았는데 항목별 내역을 요구할 수 있나요?",
+        "임대인은 상가 관리비의 부과기간과 금액을 공개해야 하나요?",
+        "월세 인상과 관리비 인상을 어떻게 구별하나요?"
       ],
       "body_sections": [
         {
@@ -1117,6 +1253,20 @@
       "related_content_ids": [
         "content.commercial-lease-rent-increase-and-conversion",
         "content.commercial-lease-dispute-conciliation"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-rent-increase-and-conversion",
+          "relation_type": "comparison",
+          "label_ko": "관리비와 차임·월세 증액 구별"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-dispute-conciliation",
+          "relation_type": "remedy",
+          "label_ko": "관리비 내역·부담 다툼의 조정 검토"
+        }
       ]
     },
     {
@@ -1150,9 +1300,9 @@
       ],
       "caution_ko": "상대방 불응이나 급박한 명도·집행 상황에서는 조정만으로 충분하지 않을 수 있습니다.",
       "search_intents_ko": [
-        "상가임대차 분쟁도 조정위원회에서 해결할 수 있나요?",
-        "상가임대차 dispute-conciliation",
-        "임대인과 협의가 막혀 소송 전 조정 절차와 준비자료를 확인하려는 당사자"
+        "상가 보증금이나 권리금 분쟁을 조정위원회에 신청할 수 있나요?",
+        "상가임대차 분쟁조정을 신청하려면 어떤 자료가 필요한가요?",
+        "상가 분쟁조정과 민사소송 중 무엇을 먼저 검토해야 하나요?"
       ],
       "body_sections": [
         {
@@ -1185,6 +1335,32 @@
         "content.commercial-lease-key-money-recovery",
         "content.commercial-lease-management-fee-breakdown",
         "content.civil-mediation-vs-civil-lawsuit"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-rent-arrears",
+          "relation_type": "prerequisite",
+          "label_ko": "차임 연체액과 해지 쟁점 먼저 정리"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-key-money-recovery",
+          "relation_type": "prerequisite",
+          "label_ko": "권리금 주선·거절 증거 먼저 정리"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-management-fee-breakdown",
+          "relation_type": "prerequisite",
+          "label_ko": "관리비 항목·금액 자료 먼저 정리"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.civil-mediation-vs-civil-lawsuit",
+          "relation_type": "comparison",
+          "label_ko": "상가 조정과 민사소송 경로 비교"
+        }
       ]
     },
     {
@@ -1218,9 +1394,9 @@
       ],
       "caution_ko": "일반적인 매출감소나 임차인의 임의 폐업만으로 특별 해지권이 생기는 것은 아니므로 법정 조치·기간·인과관계를 함께 확인해야 합니다.",
       "search_intents_ko": [
-        "상가 폐업 임대차 해지",
-        "집합금지 상가 계약해지",
-        "상가임대차보호법 제11조의2"
+        "집합금지로 폐업한 상가는 임대차를 중도 해지할 수 있나요?",
+        "영업시간 제한이 몇 달 이어져야 상가 계약 해지를 검토할 수 있나요?",
+        "폐업 후 해지 통보를 하면 언제 계약이 끝나나요?"
       ],
       "body_sections": [
         {
@@ -1254,6 +1430,26 @@
         "content.commercial-lease-rent-arrears",
         "content.commercial-lease-dispute-conciliation",
         "content.civil-mediation-vs-civil-lawsuit"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-rent-arrears",
+          "relation_type": "comparison",
+          "label_ko": "특별 해지와 차임연체 해지 구별"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.commercial-lease-dispute-conciliation",
+          "relation_type": "remedy",
+          "label_ko": "폐업 해지·정산 다툼의 조정 검토"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.civil-mediation-vs-civil-lawsuit",
+          "relation_type": "comparison",
+          "label_ko": "조정과 민사소송의 해결 경로 비교"
+        }
       ]
     }
   ]
