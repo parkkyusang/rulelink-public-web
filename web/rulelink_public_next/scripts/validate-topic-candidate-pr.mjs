@@ -1,6 +1,13 @@
 import {execFile} from 'node:child_process';
 import {promisify} from 'node:util';
-import {appendFile, mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
+import {
+  appendFile,
+  cp,
+  mkdtemp,
+  readFile,
+  rm,
+  writeFile,
+} from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -9,6 +16,10 @@ import {
   applyKnowledgeComposition,
   loadComposition,
 } from './compose-publication-knowledge.mjs';
+import {
+  inspectTopicCandidateV3PullRequest,
+  topicFileName,
+} from './topic-candidate-v3-contract.mjs';
 
 const execFileAsync = promisify(execFile);
 const scriptPath = fileURLToPath(import.meta.url);
@@ -182,6 +193,22 @@ export async function classifyTopicCandidatePullRequest({
     throw new Error(
       `topic-only 후보 pull request head는 codex/content-*여야 합니다: ${headRef}`,
     );
+  }
+
+  if (
+    (queue.items ?? []).some(
+      item => item.candidate_import?.schema ===
+        'rulelink_topic_candidate_import_v3',
+    )
+  ) {
+    const v3Classification = await inspectTopicCandidateV3PullRequest({
+      baseSha,
+      headSha,
+      actualFiles,
+      changedTopics,
+      runGit,
+    });
+    if (v3Classification) return v3Classification;
   }
 
   const registered = [];
@@ -395,6 +422,47 @@ export async function composeTopicCandidateBundle({
   );
 }
 
+export async function prepareNewTopicCandidateManifest({
+  tempRoot,
+  newTopics,
+  sourceManifestPath = defaultManifestPath,
+  sourceConceptDirectory = path.resolve(
+    path.dirname(defaultManifestPath),
+    '..',
+    'concepts',
+  ),
+}) {
+  const candidatePublicationRoot = path.join(tempRoot, 'publication');
+  const candidateTopicDirectory = path.join(candidatePublicationRoot, 'topics');
+  const candidateConceptDirectory = path.join(
+    candidatePublicationRoot,
+    'concepts',
+  );
+  await cp(path.dirname(sourceManifestPath), candidateTopicDirectory, {
+    recursive: true,
+  });
+  await cp(sourceConceptDirectory, candidateConceptDirectory, {
+    recursive: true,
+  });
+  const candidateManifestPath = path.join(
+    candidateTopicDirectory,
+    'manifest.json',
+  );
+  const manifest = JSON.parse(await readFile(candidateManifestPath, 'utf8'));
+  manifest.topics = [
+    ...(manifest.topics ?? []),
+    ...newTopics.map(topic => ({
+      topic_id: topic.topicId,
+      file: topicFileName(topic.topicFile),
+    })),
+  ];
+  await writeFile(
+    candidateManifestPath,
+    `${JSON.stringify(manifest, null, 2)}\n`,
+  );
+  return candidateManifestPath;
+}
+
 async function defaultRunGit(args) {
   const safeRepositoryRoot = repositoryRoot.replaceAll('\\', '/');
   const {stdout} = await execFileAsync('git', [
@@ -465,9 +533,20 @@ export async function validateCandidate({
       }
     }
 
+    let candidateManifestPath = defaultManifestPath;
+    const newTopics = classification.expectedTopics.filter(
+      topic => topic.candidateKind === 'new_topic',
+    );
+    if (newTopics.length > 0) {
+      candidateManifestPath = await prepareNewTopicCandidateManifest({
+        tempRoot,
+        newTopics,
+      });
+    }
     const candidate = await composeTopicCandidateBundle({
       headSha,
       builtAt: new Date().toISOString(),
+      manifestPath: candidateManifestPath,
     });
     await writeFile(candidatePath, `${JSON.stringify(candidate, null, 2)}\n`);
 
