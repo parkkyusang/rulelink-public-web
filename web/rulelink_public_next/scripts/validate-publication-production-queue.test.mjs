@@ -764,6 +764,9 @@ function migrationEvidence(value, overrides = {}) {
     is_first_parent_ancestor: true,
     is_head: false,
     evidence_is_direct_first_parent_child: true,
+    eligible_evidence_child_count: 1,
+    direct_child_commits: ['e'.repeat(40)],
+    eligible_evidence_child_commits: ['e'.repeat(40)],
     shallow: false,
     evidence_commit_sha: 'e'.repeat(40),
     changed_files: [
@@ -1478,9 +1481,9 @@ test('migration_commit_sha는 현재 이력의 선행 데이터 커밋이며 이
     value,
     {
       publishedBundle: bundle,
-      ...completedPublicationEvidence(value, {is_first_parent_ancestor: false}),
+      ...completedPublicationEvidence(value, {eligible_evidence_child_count: 0}),
     },
-  ).some(error => error.includes('현재 HEAD의 first-parent 이력에 있어야 합니다')));
+  ).some(error => error.includes('직접 증거 자식이 정확히 1개여야 합니다')));
 
   assert.ok(validateProductionQueue(
     value,
@@ -1498,7 +1501,7 @@ test('migration_commit_sha는 현재 이력의 선행 데이터 커밋이며 이
         evidence_is_direct_first_parent_child: false,
       }),
     },
-  ).some(error => error.includes('migration_commit_sha의 직접 first-parent 자식이어야 합니다')));
+  ).some(error => error.includes('migration_commit_sha만 부모로 갖는 직접 자식이어야 합니다')));
 
   const missingTopic = migrationEvidence(value);
   missingTopic.changed_files = missingTopic.changed_files.filter(file => file !== value.items.find(item => item.pr_number === 166).topic_file);
@@ -1551,7 +1554,7 @@ test('migration_commit_sha는 현재 이력의 선행 데이터 커밋이며 이
       publishedBundle: bundle,
       ...completedPublicationEvidence(value, {evidence_changed_files: []}),
     },
-  ).some(error => error.includes('production-queue.json을 변경하는 queue 증거 커밋이어야 합니다')));
+  ).some(error => error.includes('직접 증거 자식은 production-queue.json을 변경해야 합니다')));
 
   assert.ok(validateProductionQueue(
     value,
@@ -1559,7 +1562,7 @@ test('migration_commit_sha는 현재 이력의 선행 데이터 커밋이며 이
       publishedBundle: bundle,
       ...completedPublicationEvidence(value, {evidence_commit_count: 2}),
     },
-  ).some(error => error.includes('첫 queue 증거까지는 정확히 1개 커밋이어야 합니다')));
+  ).some(error => error.includes('queue 증거까지는 정확히 1개 커밋이어야 합니다')));
 
   assert.ok(validateProductionQueue(
     value,
@@ -1567,7 +1570,7 @@ test('migration_commit_sha는 현재 이력의 선행 데이터 커밋이며 이
       publishedBundle: bundle,
       ...completedPublicationEvidence(value, {evidence_merge_commits: ['c'.repeat(40)]}),
     },
-  ).some(error => error.includes('첫 queue 증거 커밋은 merge 커밋일 수 없습니다')));
+  ).some(error => error.includes('queue 증거 커밋은 merge 커밋일 수 없습니다')));
 
   const forbiddenEvidenceFiles = [
     value.items.find(item => item.pr_number === 166).topic_file,
@@ -1592,7 +1595,7 @@ test('migration_commit_sha는 현재 이력의 선행 데이터 커밋이며 이
           ],
         }),
       },
-    ).some(error => error.includes(`첫 queue 증거 커밋이 허용되지 않은 파일을 변경했습니다: ${forbiddenFile}`)));
+    ).some(error => error.includes(`queue 증거 커밋이 허용되지 않은 파일을 변경했습니다: ${forbiddenFile}`)));
   }
 
   assert.match(workflow, /uses:\s*actions\/checkout@v4[\s\S]*?fetch-depth:\s*0/u);
@@ -1689,7 +1692,7 @@ test('실제 Git의 첫 후속 queue 증거만 고정하고 이후 정상 개발
     assert.ok(validateProductionQueue(
       value,
       {publishedBundle: bundle, ...completedPublicationEvidence(value, invalidEvidence)},
-    ).some(error => error.includes(`첫 queue 증거 커밋이 허용되지 않은 파일을 변경했습니다: ${item.topic_file}`)));
+    ).some(error => error.includes(`queue 증거 커밋이 허용되지 않은 파일을 변경했습니다: ${item.topic_file}`)));
 
     await git(['checkout', '-b', 'invalid-merge-base', dataCommit]);
     await git(['checkout', '-b', 'invalid-merge-side', dataCommit]);
@@ -1703,14 +1706,13 @@ test('실제 Git의 첫 후속 queue 증거만 고정하고 이후 정상 개발
       value,
       {publishedBundle: bundle, ...completedPublicationEvidence(value, mergeEvidence)},
     );
-    assert.ok(mergeErrors.some(error => error.includes('첫 queue 증거 커밋은 merge 커밋일 수 없습니다')));
-    assert.ok(mergeErrors.some(error => error.includes('docs/merge-only-forbidden.md')));
+    assert.ok(mergeErrors.some(error => error.includes('직접 증거 자식이 정확히 1개여야 합니다')));
   } finally {
     await rm(directory, {recursive: true, force: true});
   }
 });
 
-test('side-branch PR head는 이관 커밋이 아니며 first-parent 통합 merge 커밋만 허용한다', async () => {
+test('migration과 queue 증거의 직접 관계는 비 first-parent PR merge 뒤에도 보존된다', async () => {
   const directory = await mkdtemp(path.join(tmpdir(), 'rulelink-side-branch-migration-'));
   const value = completeExistingRevision();
   const item = value.items.find(entry => entry.pr_number === 166);
@@ -1746,13 +1748,6 @@ test('side-branch PR head는 이관 커밋이 아니며 first-parent 통합 merg
     await git(['commit', '-m', 'side branch migration payload']);
     const sideBranchHead = String((await git(['rev-parse', 'HEAD'])).stdout).trim();
 
-    await git(['checkout', mainBranch]);
-    await writeRepoFile('docs/main-line.md', 'main line\n');
-    await git(['add', '--', 'docs/main-line.md']);
-    await git(['commit', '-m', 'main line development']);
-    await git(['merge', '--no-ff', 'migration-side', '-m', 'integrate migration payload']);
-    const integrationCommit = String((await git(['rev-parse', 'HEAD'])).stdout).trim();
-
     await writeRepoFile('artifacts/publication/production-queue.json', '{"evidence":1}\n');
     await writeRepoFile('artifacts/publication/production-queue-registry.json', '{"evidence":1}\n');
     await git([
@@ -1762,37 +1757,41 @@ test('side-branch PR head는 이관 커밋이 아니며 first-parent 통합 merg
       'artifacts/publication/production-queue-registry.json',
     ]);
     await git(['commit', '-m', 'queue evidence']);
+    const queueEvidenceCommit = String((await git(['rev-parse', 'HEAD'])).stdout).trim();
+
+    await git(['checkout', mainBranch]);
+    await writeRepoFile('docs/main-line.md', 'main line\n');
+    await git(['add', '--', 'docs/main-line.md']);
+    await git(['commit', '-m', 'main line development']);
+    await git(['merge', '--no-ff', 'migration-side', '-m', 'integrate migration payload']);
+    const integrationCommit = String((await git(['rev-parse', 'HEAD'])).stdout).trim();
 
     item.migration_commit_sha = sideBranchHead;
     const sideBranchEvidence = await inspectMigrationCommit(sideBranchHead, {runGit: git});
     assert.equal(sideBranchEvidence.is_ancestor, true);
     assert.equal(sideBranchEvidence.is_first_parent_ancestor, false);
-    assert.ok(validateProductionQueue(
+    assert.equal(sideBranchEvidence.eligible_evidence_child_count, 1);
+    assert.equal(sideBranchEvidence.evidence_commit_sha, queueEvidenceCommit);
+    assert.deepEqual(validateProductionQueue(
       value,
       {
         publishedBundle: bundle,
         ...completedPublicationEvidence(value, sideBranchEvidence),
       },
-    ).some(error => error.includes('현재 HEAD의 first-parent 이력에 있어야 합니다')));
+    ), []);
 
     item.migration_commit_sha = integrationCommit;
     const integrationEvidence = await inspectMigrationCommit(integrationCommit, {runGit: git});
     assert.equal(integrationEvidence.is_ancestor, true);
     assert.equal(integrationEvidence.is_first_parent_ancestor, true);
-    assert.equal(integrationEvidence.evidence_is_direct_first_parent_child, true);
-    assert.deepEqual(new Set(integrationEvidence.changed_files), new Set([
-      item.topic_file,
-      'artifacts/publication/current/bundle.json',
-      'artifacts/publication/topics/manifest.json',
-      snapshotFile,
-    ]));
-    assert.deepEqual(validateProductionQueue(
+    assert.equal(integrationEvidence.eligible_evidence_child_count, 0);
+    assert.ok(validateProductionQueue(
       value,
       {
         publishedBundle: bundle,
         ...completedPublicationEvidence(value, integrationEvidence),
       },
-    ), []);
+    ).some(error => error.includes('직접 증거 자식이 정확히 1개여야 합니다')));
   } finally {
     await rm(directory, {recursive: true, force: true});
   }
