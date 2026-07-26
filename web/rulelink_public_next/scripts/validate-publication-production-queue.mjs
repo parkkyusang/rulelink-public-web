@@ -641,6 +641,64 @@ export const PRODUCTION_WORK_CONTRACTS = {
   ...existingTopicCoverageContracts,
 };
 
+function compileTopicCandidateEvidencePattern(gate) {
+  try {
+    return new RegExp(gate?.evidence_pattern, gate?.evidence_pattern_flags);
+  } catch {
+    return /(?!)/u;
+  }
+}
+
+function topicCandidateV3WorkContract(item) {
+  if (item?.candidate_import?.schema !== TOPIC_CANDIDATE_V3_SCHEMA) {
+    return null;
+  }
+  return {
+    contract_kind: 'topic_candidate_v3',
+    title_ko: item.title_ko,
+    topic_id: item.topic_id,
+    topic_file: item.topic_file,
+    test_file: item.test_file,
+    change_mode: item.change_mode,
+    branch: item.branch,
+    counts: item.candidate_import.expected_counts,
+    quality_targets: item.candidate_import.expected_quality_targets,
+    depends_on_work_ids:
+      item.candidate_import.expected_depends_on_work_ids,
+    integration_checks:
+      item.candidate_import.expected_integration_checks,
+    prerequisite_gates: Object.fromEntries(
+      (item.candidate_import.expected_prerequisite_gates ?? []).map(gate => [
+        gate.gate_id,
+        {
+          gate_kind: gate.gate_kind,
+          owner_role: gate.owner_role,
+          verification_method: gate.verification_method,
+          ...(gate.verification_contract
+            ? {verification_contract: gate.verification_contract}
+            : {}),
+          evidence_pattern: compileTopicCandidateEvidencePattern(gate),
+        },
+      ]),
+    ),
+    release_check_ids: item.candidate_import.expected_release_check_ids,
+  };
+}
+
+function productionWorkContractForItem(item) {
+  return (
+    PRODUCTION_WORK_CONTRACTS[item?.work_id] ??
+    topicCandidateV3WorkContract(item)
+  );
+}
+
+function productionWorkContractForWorkId(queue, workId) {
+  const item = (queue?.items ?? []).find(
+    candidate => candidate?.work_id === workId,
+  );
+  return productionWorkContractForItem(item);
+}
+
 function productionGateContract(contract, gateId) {
   return (
     contract?.prerequisite_gates?.[gateId] ??
@@ -1105,7 +1163,7 @@ async function verifySourceLocatorSelectionArtifact({
   const item = (queue.items ?? []).find(
     candidate => candidate.work_id === workId,
   );
-  const contract = PRODUCTION_WORK_CONTRACTS[workId];
+  const contract = productionWorkContractForItem(item);
   const selection = item?.source_locator_selection;
   if (
     selection?.gate_id !==
@@ -1699,7 +1757,7 @@ export async function verifyProductionQueueExternalEvidence(queue, {
   const authoritySourceCache = new Map();
   const authorityAttestationCache = new Map();
   for (const item of queue.items || []) {
-    const contract = PRODUCTION_WORK_CONTRACTS[item.work_id];
+    const contract = productionWorkContractForItem(item);
     if (!contract) continue;
     for (const gate of item.prerequisite_gates || []) {
       if (gate.status !== 'satisfied') continue;
@@ -1992,10 +2050,10 @@ export function validateQueueItemRegistry(
     if (!modes.has(registration.change_mode)) errors.push(`${label}.change_mode가 올바르지 않습니다.`);
     if (!nonEmpty(registration.topic_id)) errors.push(`${label}.topic_id가 필요합니다.`);
     if (!nonEmpty(registration.topic_file)) errors.push(`${label}.topic_file이 필요합니다.`);
-    const registeredContract =
-      hasWorkIdentity && PRODUCTION_WORK_CONTRACTS[registration.work_id];
     const registeredQueueItem =
       hasWorkIdentity && queueByWorkId.get(registration.work_id);
+    const registeredContract =
+      hasWorkIdentity && productionWorkContractForItem(registeredQueueItem);
     const isRegisteredV3Candidate =
       registeredQueueItem?.candidate_import?.schema ===
       TOPIC_CANDIDATE_V3_SCHEMA;
@@ -2319,7 +2377,7 @@ export function validateQueueItemRegistry(
         candidate => candidate.gate_id === gateReceipt.gate_id,
       );
       const contractGate = productionGateContract(
-        PRODUCTION_WORK_CONTRACTS[gateReceipt.work_id],
+        productionWorkContractForItem(item),
         gateReceipt.gate_id,
       );
       if (
@@ -2370,7 +2428,7 @@ export function validateQueueItemRegistry(
       if (!nonEmpty(item.work_id)) continue;
       for (const gate of item.prerequisite_gates || []) {
         const contractGate = productionGateContract(
-          PRODUCTION_WORK_CONTRACTS[item.work_id],
+          productionWorkContractForItem(item),
           gate.gate_id,
         );
         const gateKey = [
@@ -2433,7 +2491,7 @@ export function validateQueueItemRegistry(
         errors.push(`${label}가 현재 통과한 운영검증과 다릅니다.`);
       }
       if (
-        !PRODUCTION_WORK_CONTRACTS[releaseReceipt.work_id]
+        !productionWorkContractForWorkId(queue, releaseReceipt.work_id)
           ?.release_check_ids?.includes(releaseReceipt.check_id) ||
         !releaseCheckEvidencePatterns[releaseReceipt.check_id]
           ?.test(releaseReceipt.evidence_ref || '') ||
@@ -2561,7 +2619,7 @@ export function appendPrerequisiteGateReceipts(
   let previousReceipt = next.prerequisite_gate_receipt;
   for (const item of queue.items) {
     if (!nonEmpty(item.work_id)) continue;
-    const contract = PRODUCTION_WORK_CONTRACTS[item.work_id];
+    const contract = productionWorkContractForItem(item);
     for (const gate of item.prerequisite_gates || []) {
       if (gate.status !== 'satisfied') continue;
       const contractGate = productionGateContract(contract, gate.gate_id);
@@ -3037,7 +3095,7 @@ export async function loadQueuePublicationEvidence(queue, bundle, io = {}) {
     for (const item of queue.items.filter(candidate => (
       candidate?.work_id && candidate.topic_file === topicFile
     ))) {
-      const contract = PRODUCTION_WORK_CONTRACTS[item.work_id];
+      const contract = productionWorkContractForItem(item);
       if (contract) workTopicMeasurements.set(item.work_id, measureWorkTopic(topic, contract));
     }
   }
@@ -3065,7 +3123,7 @@ export async function loadQueuePublicationEvidence(queue, bundle, io = {}) {
         candidate.status === 'satisfied',
     );
     const gateContract = productionGateContract(
-      PRODUCTION_WORK_CONTRACTS[receipt.work_id],
+      productionWorkContractForItem(item),
       receipt.gate_id,
     );
     if (
@@ -3245,7 +3303,7 @@ function isPositiveInteger(value) {
 
 function hasVerifiedSourceGateReceipts(item, itemRegistry) {
   if (!nonEmpty(item?.work_id) || !itemRegistry || typeof itemRegistry !== 'object') return false;
-  const contract = PRODUCTION_WORK_CONTRACTS[item.work_id];
+  const contract = productionWorkContractForItem(item);
   if (!contract) return false;
   const requiredGateIds = Object.entries(contract.prerequisite_gates)
     .filter(([, gate]) => gate.owner_role === 'source_maintenance')
@@ -3297,7 +3355,7 @@ export function validateProductionQueue(
   }));
   errors.push(...validateTopicCandidateV3QueueContract(queue, {itemRegistry}));
   for (const receipt of itemRegistry?.prerequisite_gate_receipts ?? []) {
-    const contract = PRODUCTION_WORK_CONTRACTS[receipt.work_id];
+    const contract = productionWorkContractForWorkId(queue, receipt.work_id);
     const gateContract = productionGateContract(contract, receipt.gate_id);
     if (
       !gateContract ||
@@ -3485,39 +3543,7 @@ export function validateProductionQueue(
     if (hasWorkId) {
       const isV3Candidate =
         item.candidate_import?.schema === TOPIC_CANDIDATE_V3_SCHEMA;
-      const v3CandidateContract = isV3Candidate
-        ? {
-            contract_kind: 'topic_candidate_v3',
-            title_ko: item.title_ko,
-            topic_id: item.topic_id,
-            topic_file: item.topic_file,
-            test_file: item.test_file,
-            change_mode: item.change_mode,
-            branch: item.branch,
-            counts: item.candidate_import.expected_counts,
-            quality_targets:
-              item.candidate_import.expected_quality_targets,
-            depends_on_work_ids:
-              item.candidate_import.expected_depends_on_work_ids,
-            integration_checks:
-              item.candidate_import.expected_integration_checks,
-            prerequisite_gates: Object.fromEntries(
-              (item.candidate_import.expected_prerequisite_gates ?? [])
-                .map(gate => [
-                  gate.gate_id,
-                  {
-                    gate_kind: gate.gate_kind,
-                    owner_role: gate.owner_role,
-                    evidence_pattern: /^$/u,
-                  },
-                ]),
-            ),
-            release_check_ids:
-              item.candidate_import.expected_release_check_ids,
-          }
-        : null;
-      const workContract =
-        PRODUCTION_WORK_CONTRACTS[item.work_id] ?? v3CandidateContract;
+      const workContract = productionWorkContractForItem(item);
       if (!workContract && !isV3Candidate) {
         errors.push(`${label}.work_id에 승인된 생산계약이 없습니다: ${item.work_id}`);
       } else if (workContract) {

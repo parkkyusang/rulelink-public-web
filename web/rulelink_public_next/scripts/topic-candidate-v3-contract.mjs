@@ -9,7 +9,16 @@ const topicPathPattern =
 const testPathPattern =
   /^web\/rulelink_public_next\/scripts\/[a-z0-9]+(?:-[a-z0-9]+)*\.test\.mjs$/u;
 const terminalStatuses = new Set(['withdrawn', 'superseded']);
-const activeStatuses = new Set(['awaiting_pr']);
+const activeStatuses = new Set([
+  'awaiting_pr',
+  'blocked',
+  'needs_rework',
+  'pr_open',
+  'ready_for_integration',
+  'migration_required',
+  'integrated',
+  'merged_pending_publication',
+]);
 
 export function canonicalJson(value) {
   if (Array.isArray(value)) return `[${value.map(canonicalJson).join(',')}]`;
@@ -84,19 +93,55 @@ function validateRegisteredProductionContract(item, candidate, label) {
       !gate ||
       typeof gate.gate_id !== 'string' ||
       typeof gate.gate_kind !== 'string' ||
-      typeof gate.owner_role !== 'string'
+      typeof gate.owner_role !== 'string' ||
+      typeof gate.verification_method !== 'string' ||
+      typeof gate.evidence_pattern !== 'string' ||
+      gate.evidence_pattern_flags !== 'u'
     ) ||
     new Set((expectedGates ?? []).map(gate => gate.gate_id)).size !==
       (expectedGates ?? []).length
   ) {
     errors.push(`${label}: expected_prerequisite_gates가 올바르지 않습니다.`);
   } else {
+    for (const gate of expectedGates) {
+      let pattern;
+      try {
+        pattern = new RegExp(gate.evidence_pattern, gate.evidence_pattern_flags);
+      } catch {
+        errors.push(`${label}: ${gate.gate_id}의 evidence_pattern이 올바르지 않습니다.`);
+        continue;
+      }
+      if (
+        !gate.evidence_pattern.startsWith('^') ||
+        !gate.evidence_pattern.endsWith('$') ||
+        pattern.test('')
+      ) {
+        errors.push(
+          `${label}: ${gate.gate_id}의 evidence_pattern은 비어 있지 않은 전체 증거를 결박해야 합니다.`,
+        );
+      }
+      if (
+        gate.verification_contract !== undefined &&
+        typeof gate.verification_contract !== 'string'
+      ) {
+        errors.push(
+          `${label}: ${gate.gate_id}의 verification_contract가 올바르지 않습니다.`,
+        );
+      }
+    }
     const actualGates = (item.prerequisite_gates ?? []).map(gate => ({
       gate_id: gate.gate_id,
       gate_kind: gate.gate_kind,
       owner_role: gate.owner_role,
     }));
-    if (canonicalJson(actualGates) !== canonicalJson(expectedGates)) {
+    const expectedGateIdentities = expectedGates.map(gate => ({
+      gate_id: gate.gate_id,
+      gate_kind: gate.gate_kind,
+      owner_role: gate.owner_role,
+    }));
+    if (
+      canonicalJson(actualGates) !== canonicalJson(expectedGateIdentities)
+    ) {
       errors.push(`${label}: prerequisite_gates가 등록된 v3 생산계약과 다릅니다.`);
     }
     if (
@@ -159,7 +204,6 @@ export function topicCandidateV3ContractReceipt(item) {
     topic_file: item.topic_file,
     test_file: item.test_file,
     change_mode: item.change_mode,
-    status: item.status,
     counts: item.counts,
     quality_targets: item.quality_targets,
     direct_merge: item.direct_merge,

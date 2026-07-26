@@ -437,6 +437,10 @@ function registeredTopicCandidateV3Queue() {
           gate_id,
           gate_kind,
           owner_role,
+          verification_method: 'github_merged_head',
+          evidence_pattern:
+            '^parkkyusang/rulelink-public-web#\\d+@[0-9a-f]{40}$',
+          evidence_pattern_flags: 'u',
         }),
       ),
       expected_release_check_ids: releaseChecks.map(check => check.check_id),
@@ -490,6 +494,126 @@ test('v3 후보의 선행 게이트와 출시 점검은 등록 영수증을 다�
       errors.join('\n'),
     );
   }
+});
+
+test('v3 후보는 등록 계약을 유지한 채 선행 게이트 검증과 소유자 영수증 발급을 완료한다', async () => {
+  const state = registeredTopicCandidateV3Queue();
+  state.item.status = 'blocked';
+  state.item.blocking_reason_ko =
+    '선행 품질 게이트 영수증을 결박하는 동안 진행을 보류합니다.';
+  const gate = state.item.prerequisite_gates[0];
+  gate.status = 'satisfied';
+  gate.evidence_ref =
+    `parkkyusang/rulelink-public-web#207@${'9'.repeat(40)}`;
+  refreshSummary(state.value);
+
+  const withoutReceipt = validateProductionQueueRaw(state.value, {
+    ...currentPublicationEvidence,
+    itemRegistry: state.itemRegistry,
+  });
+  assert.ok(
+    withoutReceipt.some(error => error.includes('소유자 영수증')),
+    withoutReceipt.join('\n'),
+  );
+
+  const verifiedEvidence = await verifyProductionQueueExternalEvidence(
+    state.value,
+    {
+      registry: state.itemRegistry,
+      fetchJson: async url => {
+        assert.match(url, /pulls\/207$/u);
+        return {
+          merged_at: '2026-07-27T00:00:00Z',
+          head: {sha: '9'.repeat(40)},
+          merge_commit_sha: '8'.repeat(40),
+        };
+      },
+    },
+  );
+  const receiptedRegistry = appendPrerequisiteGateReceipts(
+    state.itemRegistry,
+    state.value,
+    {
+      previousRegistry: state.itemRegistry,
+      verifiedEvidence,
+    },
+  );
+  assert.equal(
+    receiptedRegistry.prerequisite_gate_receipts.length,
+    state.itemRegistry.prerequisite_gate_receipts.length + 1,
+  );
+  assert.deepEqual(
+    validateProductionQueueRaw(state.value, {
+      ...currentPublicationEvidence,
+      itemRegistry: receiptedRegistry,
+    }),
+    [],
+  );
+});
+
+test('v3 게이트 계약은 누락·소유자·종류·증거패턴 위조를 각각 차단한다', () => {
+  const mutations = [
+    candidate => {
+      delete candidate.verification_method;
+    },
+    candidate => {
+      candidate.owner_role = 'content_production';
+    },
+    candidate => {
+      candidate.gate_kind = 'artifact';
+    },
+    candidate => {
+      candidate.evidence_pattern = '^$';
+    },
+    candidate => {
+      candidate.evidence_pattern = '[';
+    },
+  ];
+  for (const mutate of mutations) {
+    const state = registeredTopicCandidateV3Queue();
+    mutate(state.item.candidate_import.expected_prerequisite_gates[0]);
+    const rewrittenRegistry = appendQueueItemRegistrations(
+      currentRegistry,
+      state.value,
+    );
+    const errors = validateProductionQueueRaw(state.value, {
+      ...currentPublicationEvidence,
+      itemRegistry: rewrittenRegistry,
+    });
+    assert.notDeepEqual(errors, []);
+  }
+});
+
+test('v3 후보는 불변 등록 영수증을 다시 쓰지 않고 awaiting_pr에서 withdrawn으로 전이한다', () => {
+  const state = registeredTopicCandidateV3Queue();
+  const originalRegistration = clone(state.itemRegistry.registrations.at(-1));
+  state.item.status = 'withdrawn';
+  state.item.terminal_reason_ko = '후속 통합 후보로 대체하여 철회합니다.';
+  refreshSummary(state.value);
+  assert.deepEqual(
+    validateProductionQueueRaw(state.value, {
+      ...currentPublicationEvidence,
+      itemRegistry: state.itemRegistry,
+    }),
+    [],
+  );
+  assert.deepEqual(
+    state.itemRegistry.registrations.at(-1),
+    originalRegistration,
+  );
+
+  state.item.quality_targets = {
+    ...state.item.quality_targets,
+    verified_after: 1,
+  };
+  const rewritten = validateProductionQueueRaw(state.value, {
+    ...currentPublicationEvidence,
+    itemRegistry: state.itemRegistry,
+  });
+  assert.ok(
+    rewritten.some(error => error.includes('append-only registry')),
+    rewritten.join('\n'),
+  );
 });
 
 const authorityEvidenceFixtures = createAuthorityEvidenceFixtures();

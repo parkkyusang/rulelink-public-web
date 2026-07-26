@@ -100,6 +100,10 @@ function fixture({kind = 'existing_topic', withSupersede = true} = {}) {
         gate_id: 'quality.fixture-approved',
         gate_kind: 'quality_schema',
         owner_role: 'quality_governance',
+        verification_method: 'github_merged_head',
+        evidence_pattern:
+          '^parkkyusang/rulelink-public-web#\\d+@[0-9a-f]{40}$',
+        evidence_pattern_flags: 'u',
       }],
       expected_release_check_ids: ['canonical-urls-unchanged'],
     },
@@ -284,6 +288,25 @@ test('양방향 supersede가 없거나 종료 후보만 재사용하면 차단�
       runGit: makeRunGit(stale),
     }),
     /역참조/u,
+  );
+});
+
+test('v3 불변 계약 영수증은 상태 전이를 허용하되 계약 본문 변경은 차단한다', () => {
+  const state = fixture();
+  const registeredReceipt = topicCandidateV3ContractReceipt(state.item);
+  for (const status of ['blocked', 'withdrawn', 'superseded']) {
+    const transitioned = clone(state.item);
+    transitioned.status = status;
+    assert.equal(
+      topicCandidateV3ContractReceipt(transitioned),
+      registeredReceipt,
+    );
+  }
+  const rewritten = clone(state.item);
+  rewritten.quality_targets = {...rewritten.quality_targets, verified_after: 1};
+  assert.notEqual(
+    topicCandidateV3ContractReceipt(rewritten),
+    registeredReceipt,
   );
 });
 
