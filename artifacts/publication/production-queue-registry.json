@@ -288,9 +288,45 @@
       "registered_on": "2026-07-23",
       "previous_receipt": "b0bcb1a42bb37a97c228fb1d459007773c21479a0287dd5806ec8720b1a1563e",
       "receipt": "fd7aeb9ad518558b24fc4cbf7a172e8dbf3dd8fed07fae361521ff64800a3c68"
+    },
+    {
+      "sequence": 27,
+      "queue_id": "publication-work-coverage-expansion-housing-lease-deposit-kr-knowledge-core-20260726-024",
+      "change_mode": "existing_topic_revision",
+      "topic_id": "hub.housing-lease-deposit",
+      "topic_file": "artifacts/publication/topics/housing-lease-deposit.json",
+      "work_id": "coverage-expansion-housing-lease-deposit-kr-knowledge-core-20260726-024",
+      "contract_sha256": "2f3b1c3236afa3e30bc5f03c8e1680f360c12164fa44967fa31a966405167a53",
+      "registered_on": "2026-07-26",
+      "previous_receipt": "fd7aeb9ad518558b24fc4cbf7a172e8dbf3dd8fed07fae361521ff64800a3c68",
+      "receipt": "f102ead413d9b96cbf6f4fd85be692bdab394847c31327a6d0dd83d6d08fce55"
+    },
+    {
+      "sequence": 28,
+      "queue_id": "publication-work-coverage-expansion-labor-wages-kr-knowledge-core-20260726-024",
+      "change_mode": "existing_topic_revision",
+      "topic_id": "hub.labor-wages",
+      "topic_file": "artifacts/publication/topics/labor-wages.json",
+      "work_id": "coverage-expansion-labor-wages-kr-knowledge-core-20260726-024",
+      "contract_sha256": "80faa5442cc427ef6926789aa134ba0cb2692b091104df4aa66adcb17d7bf705",
+      "registered_on": "2026-07-26",
+      "previous_receipt": "f102ead413d9b96cbf6f4fd85be692bdab394847c31327a6d0dd83d6d08fce55",
+      "receipt": "c11c43a3d28351a03485bffdfc1ccc3a411bba636def6a393c836a2335365ee0"
+    },
+    {
+      "sequence": 29,
+      "queue_id": "publication-work-coverage-expansion-family-inheritance-kr-knowledge-core-20260726-024",
+      "change_mode": "existing_topic_revision",
+      "topic_id": "hub.family-inheritance",
+      "topic_file": "artifacts/publication/topics/family-inheritance.json",
+      "work_id": "coverage-expansion-family-inheritance-kr-knowledge-core-20260726-024",
+      "contract_sha256": "d2e9a69c9860dc10bd54313574e3ab8967aad941623594a8651a8ea6fbaf2e09",
+      "registered_on": "2026-07-26",
+      "previous_receipt": "c11c43a3d28351a03485bffdfc1ccc3a411bba636def6a393c836a2335365ee0",
+      "receipt": "6bf66fe8a92018e00a4627f90c4824624f4307c00e0c83a5b4be57d9bcc7699f"
     }
   ],
-  "registry_receipt": "fd7aeb9ad518558b24fc4cbf7a172e8dbf3dd8fed07fae361521ff64800a3c68",
+  "registry_receipt": "6bf66fe8a92018e00a4627f90c4824624f4307c00e0c83a5b4be57d9bcc7699f",
   "prerequisite_gate_receipts": [
     {
       "sequence": 1,

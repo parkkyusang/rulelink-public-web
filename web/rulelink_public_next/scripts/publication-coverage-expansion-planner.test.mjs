@@ -254,6 +254,11 @@ test('미등록 작업과 Wave2는 막고 영수증이 닫힌 Wave1만 시작 �
   const proposed = plan.task_packets.filter(
     (packet) => packet.assignment_state === 'proposed_unregistered',
   );
+  const awaitingPr = plan.task_packets.filter(
+    (packet) =>
+      packet.assignment_state === 'existing_queue_assignment' &&
+      packet.blocking_reasons.includes('queue_status:awaiting_pr'),
+  );
 
   assert.equal(wave1.assignment_state, 'existing_queue_assignment');
   assert.equal(wave1.start_allowed, true);
@@ -264,13 +269,27 @@ test('미등록 작업과 Wave2는 막고 영수증이 닫힌 Wave1만 시작 �
     'gate_pending:wave1.crime-victim-complete',
     'work_dependency_incomplete:reader-backfill-crime-victim-wave1',
   ]);
-  assert.equal(proposed.length, 34);
+  assert.equal(proposed.length, plan.summary.proposed_unregistered_task_count);
   assert.equal(
     proposed.every(
       (packet) =>
         !packet.start_allowed &&
         packet.blocking_reasons.includes(
           'production_queue_registration_required',
+        ),
+    ),
+    true,
+  );
+  assert.equal(awaitingPr.length, 3);
+  assert.equal(
+    awaitingPr.every(
+      (packet) =>
+        !packet.start_allowed &&
+        packet.blocking_reasons.includes(
+          'gate_pending:quality.coverage-task-pr-approved',
+        ) &&
+        packet.blocking_reasons.includes(
+          'gate_pending:source-maintenance.coverage-locators-approved',
         ),
     ),
     true,

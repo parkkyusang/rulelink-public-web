@@ -8,8 +8,8 @@
     "backlog_sha256": "d172fb51e6a64407a81c13d811654700e3748cb6ebd25479b4d06b4ccea48334",
     "taxonomy_sha256": "4cb524d1d0479246c943a2fcacfce0807e4b13feddae2e8d70afc78d7e1b1e11",
     "topic_manifest_sha256": "8ec514941561b1660429e382f7021f9508eb4543c0b8286bc4c370579b7c8434",
-    "production_queue_sha256": "20dd9aa5d8102e245d55f749b3b02c67829d3ec806e310a46918e47145057612",
-    "production_registry_sha256": "4ee89994c39627cd9ddb3aa9eb12f5a12d49e90c2b183d77798ea432de80eab3"
+    "production_queue_sha256": "554adae382f90f878e049914b672f688973d83dfcc5bc6b6f889c90fcba49e46",
+    "production_registry_sha256": "c6f428d6cce76a3fa6c072685db6a258d6a32c4c2e00f180b075bff44a8ffcbb"
   },
   "denominator": {
     "hub_count": 28,
@@ -29699,10 +29699,12 @@
       "schema": "rulelink_codex_task_packet_v1",
       "work_id": "coverage-expansion-family-inheritance-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
-      "assignment_state": "proposed_unregistered",
+      "assignment_state": "existing_queue_assignment",
       "start_allowed": false,
       "blocking_reasons": [
-        "production_queue_registration_required"
+        "gate_pending:quality.coverage-task-pr-approved",
+        "gate_pending:source-maintenance.coverage-locators-approved",
+        "queue_status:awaiting_pr"
       ],
       "topic_id": "hub.family-inheritance",
       "planning_domain_id": "domain.family-inheritance",
@@ -29720,7 +29722,7 @@
       ],
       "topic_file": "artifacts/publication/topics/family-inheritance.json",
       "self_test_file": "web/rulelink_public_next/scripts/family-inheritance-rule-copy-topic-handoff.test.mjs",
-      "self_test_state": "existing",
+      "self_test_state": "to_create",
       "owned_paths": [
         "artifacts/publication/topics/family-inheritance.json",
         "web/rulelink_public_next/scripts/family-inheritance-rule-copy-topic-handoff.test.mjs"
@@ -30016,7 +30018,10 @@
       "dependencies": {
         "migration_required": true,
         "depends_on_work_ids": [],
-        "prerequisite_gate_ids": [],
+        "prerequisite_gate_ids": [
+          "quality.coverage-task-pr-approved",
+          "source-maintenance.coverage-locators-approved"
+        ],
         "receipt_dependency_ids": [],
         "legal_answer_packet_gate": "not_activated"
       }
@@ -30025,10 +30030,12 @@
       "schema": "rulelink_codex_task_packet_v1",
       "work_id": "coverage-expansion-housing-lease-deposit-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
-      "assignment_state": "proposed_unregistered",
+      "assignment_state": "existing_queue_assignment",
       "start_allowed": false,
       "blocking_reasons": [
-        "production_queue_registration_required"
+        "gate_pending:quality.coverage-task-pr-approved",
+        "gate_pending:source-maintenance.coverage-locators-approved",
+        "queue_status:awaiting_pr"
       ],
       "topic_id": "hub.housing-lease-deposit",
       "planning_domain_id": "domain.housing-real-estate",
@@ -30132,7 +30139,10 @@
       "dependencies": {
         "migration_required": true,
         "depends_on_work_ids": [],
-        "prerequisite_gate_ids": [],
+        "prerequisite_gate_ids": [
+          "quality.coverage-task-pr-approved",
+          "source-maintenance.coverage-locators-approved"
+        ],
         "receipt_dependency_ids": [],
         "legal_answer_packet_gate": "not_activated"
       }
@@ -30676,10 +30686,12 @@
       "schema": "rulelink_codex_task_packet_v1",
       "work_id": "coverage-expansion-labor-wages-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
-      "assignment_state": "proposed_unregistered",
+      "assignment_state": "existing_queue_assignment",
       "start_allowed": false,
       "blocking_reasons": [
-        "production_queue_registration_required"
+        "gate_pending:quality.coverage-task-pr-approved",
+        "gate_pending:source-maintenance.coverage-locators-approved",
+        "queue_status:awaiting_pr"
       ],
       "topic_id": "hub.labor-wages",
       "planning_domain_id": "domain.labor-social-protection",
@@ -30807,7 +30819,10 @@
       "dependencies": {
         "migration_required": true,
         "depends_on_work_ids": [],
-        "prerequisite_gate_ids": [],
+        "prerequisite_gate_ids": [
+          "quality.coverage-task-pr-approved",
+          "source-maintenance.coverage-locators-approved"
+        ],
         "receipt_dependency_ids": [],
         "legal_answer_packet_gate": "not_activated"
       }
@@ -34023,7 +34038,7 @@
     "verified_release_count": 0,
     "start_allowed_task_count": 1,
     "blocked_task_count": 35,
-    "proposed_unregistered_task_count": 34,
+    "proposed_unregistered_task_count": 31,
     "maintenance_item_count": 23,
     "new_domain_seed_task_count": 8,
     "target_domain_started_count": 13,
