@@ -1488,18 +1488,22 @@
         "schema": "rulelink_existing_topic_candidate_import_v2",
         "state": "imported_existing_candidate",
         "lifecycle_gate": "awaiting_pr",
-        "source_branch": "codex/existing-topic-coverage-housing-lease-deposit-20260726",
-        "source_branch_ref": "refs/heads/codex/existing-topic-coverage-housing-lease-deposit-20260726",
-        "source_base_sha": "5154c69a8f0b5d05d6c3c1513df9d1d8aa488732",
-        "source_head_sha": "ba8456088f82e31619b21f20dd75c437a167e7fd",
+        "source_branch": "codex/existing-topic-coverage-housing-prbase-20260726",
+        "source_branch_ref": "refs/heads/codex/existing-topic-coverage-housing-prbase-20260726",
+        "source_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
+        "source_head_sha": "4e1787a05d64ea6e3ccc67b57d3cedd1b3bc5227",
         "required_pr_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
-        "candidate_pr_merge_base_sha": "5154c69a8f0b5d05d6c3c1513df9d1d8aa488732",
+        "candidate_pr_merge_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
         "planner_contract_sha256": "4ff2e8c386c98baa9c8ca30cb1e9a3b237cc9ea8ccee102e9dd30378b2c671aa",
-        "range_merge_policy": "reject_merge_commits_and_require_exact_path_union",
+        "range_merge_policy": "exact_pr_base_reject_merge_commits_and_require_exact_path_union",
         "range_commit_shas": [
-          "ba8456088f82e31619b21f20dd75c437a167e7fd"
+          "4e1787a05d64ea6e3ccc67b57d3cedd1b3bc5227"
         ],
         "range_changed_files": [
+          "artifacts/publication/topics/housing-lease-deposit.json",
+          "web/rulelink_public_next/scripts/housing-lease-deposit-response-map-topic.test.mjs"
+        ],
+        "pr_changed_files": [
           "artifacts/publication/topics/housing-lease-deposit.json",
           "web/rulelink_public_next/scripts/housing-lease-deposit-response-map-topic.test.mjs"
         ],
@@ -1636,18 +1640,22 @@
         "schema": "rulelink_existing_topic_candidate_import_v2",
         "state": "imported_existing_candidate",
         "lifecycle_gate": "awaiting_pr",
-        "source_branch": "codex/existing-topic-coverage-labor-wages-20260726",
-        "source_branch_ref": "refs/heads/codex/existing-topic-coverage-labor-wages-20260726",
-        "source_base_sha": "ba8456088f82e31619b21f20dd75c437a167e7fd",
-        "source_head_sha": "64aaddfd59b7688dda65584978bae2ee9b98c569",
+        "source_branch": "codex/existing-topic-coverage-labor-prbase-20260726",
+        "source_branch_ref": "refs/heads/codex/existing-topic-coverage-labor-prbase-20260726",
+        "source_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
+        "source_head_sha": "3eaf77e1a578c4cf63dff01c1acaba9645aa628d",
         "required_pr_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
-        "candidate_pr_merge_base_sha": "5154c69a8f0b5d05d6c3c1513df9d1d8aa488732",
+        "candidate_pr_merge_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
         "planner_contract_sha256": "8975d00f8532577b2e57e1766403366ae5039ef14d7c874afd82e5da774302e1",
-        "range_merge_policy": "reject_merge_commits_and_require_exact_path_union",
+        "range_merge_policy": "exact_pr_base_reject_merge_commits_and_require_exact_path_union",
         "range_commit_shas": [
-          "64aaddfd59b7688dda65584978bae2ee9b98c569"
+          "3eaf77e1a578c4cf63dff01c1acaba9645aa628d"
         ],
         "range_changed_files": [
+          "artifacts/publication/topics/labor-wages.json",
+          "web/rulelink_public_next/scripts/labor-wages-problem-flow-topic.test.mjs"
+        ],
+        "pr_changed_files": [
           "artifacts/publication/topics/labor-wages.json",
           "web/rulelink_public_next/scripts/labor-wages-problem-flow-topic.test.mjs"
         ],
@@ -1778,18 +1786,22 @@
         "schema": "rulelink_existing_topic_candidate_import_v2",
         "state": "imported_existing_candidate",
         "lifecycle_gate": "awaiting_pr",
-        "source_branch": "codex/new-problem-pages-wave-20260726",
-        "source_branch_ref": "refs/heads/codex/new-problem-pages-wave-20260726",
-        "source_base_sha": "5154c69a8f0b5d05d6c3c1513df9d1d8aa488732",
-        "source_head_sha": "76ec2a83b1b33f9875d37150650a0c82c106dbe4",
+        "source_branch": "codex/existing-topic-coverage-family-prbase-20260726",
+        "source_branch_ref": "refs/heads/codex/existing-topic-coverage-family-prbase-20260726",
+        "source_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
+        "source_head_sha": "182bf44382438d00a064edde168ca176c72a895b",
         "required_pr_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
-        "candidate_pr_merge_base_sha": "5154c69a8f0b5d05d6c3c1513df9d1d8aa488732",
+        "candidate_pr_merge_base_sha": "736d28233252b878ca07e0cb7c806071b48d2996",
         "planner_contract_sha256": "66803949b0071540c89a34c62b3fe32d536555e68b1e9a4dac44e06c2a045737",
-        "range_merge_policy": "reject_merge_commits_and_require_exact_path_union",
+        "range_merge_policy": "exact_pr_base_reject_merge_commits_and_require_exact_path_union",
         "range_commit_shas": [
-          "76ec2a83b1b33f9875d37150650a0c82c106dbe4"
+          "182bf44382438d00a064edde168ca176c72a895b"
         ],
         "range_changed_files": [
+          "artifacts/publication/topics/family-inheritance.json",
+          "web/rulelink_public_next/scripts/family-inheritance-problem-pages-topic.test.mjs"
+        ],
+        "pr_changed_files": [
           "artifacts/publication/topics/family-inheritance.json",
           "web/rulelink_public_next/scripts/family-inheritance-problem-pages-topic.test.mjs"
         ],

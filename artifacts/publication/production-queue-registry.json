@@ -296,11 +296,12 @@
       "topic_id": "hub.housing-lease-deposit",
       "topic_file": "artifacts/publication/topics/housing-lease-deposit.json",
       "work_id": "coverage-expansion-housing-lease-deposit-kr-knowledge-core-20260726-024",
-      "contract_sha256": "9e89b2ee66f499e38f010d095230bcbfada9595a36faff11218612fafaab82b5",
+      "contract_sha256": "dd7028e580fedacee54814368f5b56d01df05d6ec03dc154073a34a17079a123",
       "registered_on": "2026-07-26",
       "previous_receipt": "fd7aeb9ad518558b24fc4cbf7a172e8dbf3dd8fed07fae361521ff64800a3c68",
       "contract_upgrade_from_sha256": "2f3b1c3236afa3e30bc5f03c8e1680f360c12164fa44967fa31a966405167a53",
-      "receipt": "92b23b555868da03405de484b7e8494f118316ac52fd6fa731d3e5e2e8736f05"
+      "contract_pr_base_rebind_from_sha256": "9e89b2ee66f499e38f010d095230bcbfada9595a36faff11218612fafaab82b5",
+      "receipt": "64761b63ae3619cb423d83b26736c90a0e19fc05f25acb60f37bd180df6bcf98"
     },
     {
       "sequence": 28,
@@ -309,11 +310,12 @@
       "topic_id": "hub.labor-wages",
       "topic_file": "artifacts/publication/topics/labor-wages.json",
       "work_id": "coverage-expansion-labor-wages-kr-knowledge-core-20260726-024",
-      "contract_sha256": "d22e35c893008e79a14185d41924221e5db84551a997123f6fbd6d8ba2ec95f2",
+      "contract_sha256": "1bd82c58b78c8b7540405dab520c1a7bc9e83e470f87a7d18322b26a1f2a1225",
       "registered_on": "2026-07-26",
-      "previous_receipt": "92b23b555868da03405de484b7e8494f118316ac52fd6fa731d3e5e2e8736f05",
+      "previous_receipt": "64761b63ae3619cb423d83b26736c90a0e19fc05f25acb60f37bd180df6bcf98",
       "contract_upgrade_from_sha256": "80faa5442cc427ef6926789aa134ba0cb2692b091104df4aa66adcb17d7bf705",
-      "receipt": "df5f13c3b4848d6a74f74b9fb155aaab68700457da2b498eb1901256a3a6c293"
+      "contract_pr_base_rebind_from_sha256": "d22e35c893008e79a14185d41924221e5db84551a997123f6fbd6d8ba2ec95f2",
+      "receipt": "364a6ae9c8aff6ba1242dd1558ca7e1ac4e89a417059bea91b75636eb02fd041"
     },
     {
       "sequence": 29,
@@ -322,14 +324,15 @@
       "topic_id": "hub.family-inheritance",
       "topic_file": "artifacts/publication/topics/family-inheritance.json",
       "work_id": "coverage-expansion-family-inheritance-kr-knowledge-core-20260726-024",
-      "contract_sha256": "3244a362a778a32f645c37f82b4049c69264e646888d48720a9b3c2f8d303f67",
+      "contract_sha256": "50d71cc4d3687043723519d643c29a0044232ea3a4748dd3e84da59de7025e91",
       "registered_on": "2026-07-26",
-      "previous_receipt": "df5f13c3b4848d6a74f74b9fb155aaab68700457da2b498eb1901256a3a6c293",
+      "previous_receipt": "364a6ae9c8aff6ba1242dd1558ca7e1ac4e89a417059bea91b75636eb02fd041",
       "contract_upgrade_from_sha256": "d2e9a69c9860dc10bd54313574e3ab8967aad941623594a8651a8ea6fbaf2e09",
-      "receipt": "e8d40d61f6b0a847e8abee04e7a15e8ca3d896b6d5ef039d8838b3c65af9eff6"
+      "contract_pr_base_rebind_from_sha256": "3244a362a778a32f645c37f82b4049c69264e646888d48720a9b3c2f8d303f67",
+      "receipt": "4329638b8bf2ea25bdfb87e3b902199bf11f3314b2449905ad0fee2a6a2aaccc"
     }
   ],
-  "registry_receipt": "e8d40d61f6b0a847e8abee04e7a15e8ca3d896b6d5ef039d8838b3c65af9eff6",
+  "registry_receipt": "4329638b8bf2ea25bdfb87e3b902199bf11f3314b2449905ad0fee2a6a2aaccc",
   "prerequisite_gate_receipts": [
     {
       "sequence": 1,

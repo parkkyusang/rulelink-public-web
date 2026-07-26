@@ -2,7 +2,8 @@ import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
 
 const candidateSchema = 'rulelink_existing_topic_candidate_import_v2';
-const rangeMergePolicy = 'reject_merge_commits_and_require_exact_path_union';
+const rangeMergePolicy =
+  'exact_pr_base_reject_merge_commits_and_require_exact_path_union';
 
 function canonicalJson(value) {
   if (Array.isArray(value)) return `[${value.map(canonicalJson).join(',')}]`;
@@ -219,12 +220,14 @@ export async function verifyExistingTopicCoverageCandidate({
     'HEAD',
   ]);
   const candidatePrMergeBaseSha = String(mergeBase).trim();
-  await runGit([
-    'merge-base',
-    '--is-ancestor',
-    candidatePrMergeBaseSha,
-    spec.source_base_sha,
-  ]);
+  if (
+    spec.source_base_sha !== spec.required_pr_base_sha ||
+    candidatePrMergeBaseSha !== spec.required_pr_base_sha
+  ) {
+    throw new Error(
+      `${spec.work_id}의 source_base_sha·required_pr_base_sha·실제 PR merge-base가 exact 일치해야 합니다.`,
+    );
+  }
 
   const requiredPlan = JSON.parse(requiredPlanText);
   const requiredPacket = requiredPlan.task_packets?.find(
@@ -251,6 +254,11 @@ export async function verifyExistingTopicCoverageCandidate({
     spec.source_base_sha,
     spec.source_head_sha,
   ])).sort();
+  const prChangedFiles = splitLines(await runGit([
+    'diff',
+    '--name-only',
+    `${spec.required_pr_base_sha}...${spec.source_head_sha}`,
+  ])).sort();
   const range = await commitPathUnion(
     runGit,
     spec.source_base_sha,
@@ -259,6 +267,13 @@ export async function verifyExistingTopicCoverageCandidate({
   if (canonicalJson(finalChangedFiles) !== canonicalJson(range.changedFiles)) {
     throw new Error(
       `${spec.work_id}의 commit별 changed-path union과 최종 diff가 다릅니다.`,
+    );
+  }
+  if (
+    canonicalJson(prChangedFiles) !== canonicalJson(finalChangedFiles)
+  ) {
+    throw new Error(
+      `${spec.work_id}의 실제 PR 3-dot 변경범위와 candidate 범위가 다릅니다.`,
     );
   }
   const testFiles = finalChangedFiles.filter(
@@ -353,6 +368,7 @@ export async function verifyExistingTopicCoverageCandidate({
       range_merge_policy: rangeMergePolicy,
       range_commit_shas: range.commits,
       range_changed_files: range.changedFiles,
+      pr_changed_files: prChangedFiles,
       observed_owner_files: finalChangedFiles,
       planned_owner_files: plannedOwnerFiles,
       owner_scope_state:

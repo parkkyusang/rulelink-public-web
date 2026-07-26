@@ -2003,11 +2003,27 @@ export function validateQueueItemRegistry(
           `${label}.contract_upgrade_from_sha256가 올바르지 않습니다.`,
         );
       }
+      if (
+        registration.contract_pr_base_rebind_from_sha256 !== undefined &&
+        !/^[0-9a-f]{64}$/u.test(
+          registration.contract_pr_base_rebind_from_sha256 || '',
+        )
+      ) {
+        errors.push(
+          `${label}.contract_pr_base_rebind_from_sha256가 올바르지 않습니다.`,
+        );
+      }
     } else if (registration.contract_sha256 !== undefined) {
       errors.push(`${label}.contract_sha256는 coverage plan 작업에만 허용됩니다.`);
     } else if (registration.contract_upgrade_from_sha256 !== undefined) {
       errors.push(
         `${label}.contract_upgrade_from_sha256는 coverage plan 작업에만 허용됩니다.`,
+      );
+    } else if (
+      registration.contract_pr_base_rebind_from_sha256 !== undefined
+    ) {
+      errors.push(
+        `${label}.contract_pr_base_rebind_from_sha256는 coverage plan 작업에만 허용됩니다.`,
       );
     }
     const expectedReceipt = queueRegistrationReceipt(registration);
@@ -2064,6 +2080,7 @@ export function validateQueueItemRegistry(
           receipt: _previousReceipt,
           previous_receipt: _previousPreviousReceipt,
           contract_upgrade_from_sha256: _previousUpgrade,
+          contract_pr_base_rebind_from_sha256: _previousPrBaseRebind,
           ...previousIdentity
         } = previousRegistration ?? {};
         const {
@@ -2071,6 +2088,7 @@ export function validateQueueItemRegistry(
           receipt: _currentReceipt,
           previous_receipt: _currentPreviousReceipt,
           contract_upgrade_from_sha256: _currentUpgrade,
+          contract_pr_base_rebind_from_sha256: _currentPrBaseRebind,
           ...currentIdentity
         } = currentRegistration ?? {};
         const isOneTimeCoverageContractUpgrade =
@@ -2084,10 +2102,30 @@ export function validateQueueItemRegistry(
           proof?.ok === true &&
           proof.contract_sha256 === currentRegistration?.contract_sha256 &&
           canonicalJson(currentIdentity) === canonicalJson(previousIdentity);
+        const isOneTimePrBaseContractRebind =
+          previousRegistration?.contract_upgrade_from_sha256 !== undefined &&
+          currentRegistration?.contract_upgrade_from_sha256 ===
+            previousRegistration?.contract_upgrade_from_sha256 &&
+          previousRegistration?.contract_pr_base_rebind_from_sha256 ===
+            undefined &&
+          currentRegistration?.contract_pr_base_rebind_from_sha256 ===
+            previousRegistration?.contract_sha256 &&
+          currentItem?.status === 'awaiting_pr' &&
+          currentItem?.candidate_import?.schema ===
+            'rulelink_existing_topic_candidate_import_v2' &&
+          currentItem?.candidate_import?.source_base_sha ===
+            currentItem?.candidate_import?.required_pr_base_sha &&
+          currentItem?.candidate_import?.candidate_pr_merge_base_sha ===
+            currentItem?.candidate_import?.required_pr_base_sha &&
+          trustedCoverageCandidateProofMaps.has(coverageCandidateProofs) &&
+          proof?.ok === true &&
+          proof.contract_sha256 === currentRegistration?.contract_sha256 &&
+          canonicalJson(currentIdentity) === canonicalJson(previousIdentity);
         if (
           canonicalJson(currentRegistration) !==
             canonicalJson(previousRegistration) &&
-          !isOneTimeCoverageContractUpgrade
+          !isOneTimeCoverageContractUpgrade &&
+          !isOneTimePrBaseContractRebind
         ) {
           errors.push(`production queue item registry의 직전 불변 등록을 바꿀 수 없습니다: sequence ${index + 1}`);
         }
@@ -3499,7 +3537,7 @@ export function validateProductionQueue(
             }
             if (
               candidate.range_merge_policy !==
-              'reject_merge_commits_and_require_exact_path_union'
+              'exact_pr_base_reject_merge_commits_and_require_exact_path_union'
             ) {
               errors.push(`${label}.candidate_import.range_merge_policy가 올바르지 않습니다.`);
             }
@@ -3519,6 +3557,7 @@ export function validateProductionQueue(
               'added_content_ids',
               'range_commit_shas',
               'range_changed_files',
+              'pr_changed_files',
             ]) {
               const values = candidate[field];
               if (
@@ -3531,10 +3570,12 @@ export function validateProductionQueue(
             }
             if (
               canonicalJson(candidate.range_changed_files) !==
-              canonicalJson(candidate.observed_owner_files)
+                canonicalJson(candidate.observed_owner_files) ||
+              canonicalJson(candidate.pr_changed_files) !==
+                canonicalJson(candidate.observed_owner_files)
             ) {
               errors.push(
-                `${label}.candidate_import commit별 changed-path union이 최종 범위와 다릅니다.`,
+                `${label}.candidate_import commit별 union·PR 3-dot·최종 범위가 다릅니다.`,
               );
             }
             if (

@@ -17,7 +17,8 @@ const workId =
   'coverage-expansion-housing-lease-deposit-kr-knowledge-core-20260726-024';
 const baseSha = '1'.repeat(40);
 const headSha = '2'.repeat(40);
-const requiredPrBaseSha = '3'.repeat(40);
+const requiredPrBaseSha = baseSha;
+const mismatchedPrBaseSha = '3'.repeat(40);
 const topicFile =
   'artifacts/publication/topics/housing-lease-deposit.json';
 const candidateTestFile =
@@ -96,23 +97,14 @@ function requiredPlan() {
 function gitFixture({
   extraOwner = false,
   revertedIntermediatePath = false,
+  prExtraOwner = false,
   branchHead = headSha,
   candidateMergeBase = baseSha,
-  rejectMergeBaseAncestor = false,
 } = {}) {
   return async args => {
     if (args[0] === 'show-ref') return `${branchHead}\n`;
     if (args[0] === 'cat-file') return '';
-    if (args[0] === 'merge-base' && args[1] === '--is-ancestor') {
-      if (
-        rejectMergeBaseAncestor &&
-        args[2] === candidateMergeBase &&
-        args[3] === baseSha
-      ) {
-        throw new Error('not an ancestor');
-      }
-      return '';
-    }
+    if (args[0] === 'merge-base' && args[1] === '--is-ancestor') return '';
     if (args[0] === 'merge-base') return `${candidateMergeBase}\n`;
     if (args[0] === 'rev-list') {
       return `${headSha} ${baseSha}\n`;
@@ -127,15 +119,21 @@ function gitFixture({
       ].join('\n');
     }
     if (args[0] === 'diff') {
+      const isPrRange = args.at(-1).includes('...');
       return [
         topicFile,
         candidateTestFile,
         ...(extraOwner ? ['README.md'] : []),
+        ...(isPrRange && prExtraOwner ? ['README.md'] : []),
         '',
       ].join('\n');
     }
     if (args[0] === 'show') {
-      if (args[1] === `${requiredPrBaseSha}:artifacts/publication/coverage/coverage-expansion-plan.json`) {
+      if (
+        args[1].endsWith(
+          ':artifacts/publication/coverage/coverage-expansion-plan.json',
+        )
+      ) {
         return JSON.stringify(requiredPlan());
       }
       return JSON.stringify(
@@ -168,6 +166,10 @@ test('coverage task packet과 Git 후보를 결박해 awaiting_pr 항목을 만�
     topicFile,
     candidateTestFile,
   ].sort());
+  assert.deepEqual(
+    item.candidate_import.pr_changed_files,
+    item.candidate_import.range_changed_files,
+  );
   assert.equal(item.candidate_import.owner_scope_state, 'repackaging_required');
   assert.equal(
     item.counts.content_entries,
@@ -216,15 +218,24 @@ test('임의 branch 문자열과 commit 문자열은 Git 조회 전에 거부한
   );
 });
 
-test('required PR base의 merge-base가 candidate source base의 조상이 아니면 거부한다', async () => {
+test('required PR base가 source base 및 실제 merge-base와 exact 다르면 거부한다', async () => {
+  await assert.rejects(
+    buildImportedCoverageProductionWorkItem({
+      ...candidateSpec(),
+      required_pr_base_sha: mismatchedPrBaseSha,
+    }, {
+      runGit: gitFixture({candidateMergeBase: baseSha}),
+    }),
+    /source_base_sha·required_pr_base_sha·실제 PR merge-base가 exact/u,
+  );
+});
+
+test('최종 diff가 exact2여도 실제 PR 3-dot에 추가 파일이 있으면 거부한다', async () => {
   await assert.rejects(
     buildImportedCoverageProductionWorkItem(candidateSpec(), {
-      runGit: gitFixture({
-        candidateMergeBase: '4'.repeat(40),
-        rejectMergeBaseAncestor: true,
-      }),
+      runGit: gitFixture({prExtraOwner: true}),
     }),
-    /not an ancestor/u,
+    /실제 PR 3-dot 변경범위와 candidate 범위가 다릅니다/u,
   );
 });
 
