@@ -450,6 +450,9 @@ test('상세의 모든 공식 근거는 확인한 문언 또는 공식 원문 �
       name: '이 글의 판단에 사용한 법령과 공식 자료입니다.',
     })).toBeVisible();
     const verified = page.locator('[data-source-text-state="verified_text"]');
+    await expect(page.locator('[data-source-evidence] details[open]')).toHaveCount(0);
+    await expect(verified.first()).toBeHidden();
+    await verified.first().locator('xpath=ancestor::article[1]/details/summary').click();
     await expect(verified.first()).toBeVisible();
     await expect(verified.first()).toContainText('확인한 조문 문언');
     await expect(verified.first().locator('p')).not.toBeEmpty();
@@ -460,9 +463,14 @@ test('상세의 모든 공식 근거는 확인한 문언 또는 공식 원문 �
       waitUntil: 'networkidle',
     });
     const linkOnly = page.locator('[data-source-text-state="link_only"]');
+    await expect(page.locator('[data-source-evidence] details[open]')).toHaveCount(0);
+    await expect(linkOnly.first()).toBeHidden();
+    await linkOnly.first().locator('xpath=ancestor::article[1]/details/summary').click();
     await expect(linkOnly.first()).toBeVisible();
     await expect(linkOnly.first()).toContainText('공식 원문에서 확인');
-    await expect(linkOnly.first()).toContainText('아래 공식 원문으로 연결합니다.');
+    await expect(linkOnly.first()).toContainText(
+      '아래 공식 사이트에서 확인할 수 있습니다.',
+    );
     await assertEverySourceHasOneDisplayState(page);
     await assertNoHorizontalOverflow(page);
   }
