@@ -16,6 +16,10 @@ const targetName = previewMode
   ? 'editorial-preview-bundle.json'
   : 'bundle.json';
 const target = path.join(appRoot, 'content', targetName);
+const derivedFiles = [
+  'source-text-library.json',
+  'maintenance-index.json',
+];
 
 if (await exists(source)) {
   await mkdir(path.dirname(target), {recursive: true});
@@ -24,6 +28,24 @@ if (await exists(source)) {
 } else {
   await rm(target, {force: true});
   process.stdout.write(`승인된 출판본이 없어 빈 공개 정보관을 빌드합니다: ${source}\n`);
+}
+
+for (const filename of derivedFiles) {
+  const derivedSource = path.join(
+    repoRoot,
+    'artifacts',
+    'publication',
+    'derived',
+    filename,
+  );
+  const derivedTarget = path.join(appRoot, 'content', filename);
+  if (!previewMode && await exists(derivedSource)) {
+    await mkdir(path.dirname(derivedTarget), {recursive: true});
+    await copyFile(derivedSource, derivedTarget);
+    process.stdout.write(`파생 출판 구조 동기화: ${derivedSource} -> ${derivedTarget}\n`);
+  } else {
+    await rm(derivedTarget, {force: true});
+  }
 }
 
 async function exists(filePath) {

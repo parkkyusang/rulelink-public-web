@@ -8,7 +8,10 @@ import {KnowledgeFollowUpQuestions} from '@/components/knowledge-follow-up-quest
 import {KnowledgeReadingDepthNav} from '@/components/knowledge-reading-depth-nav';
 import {KnowledgeReadingPath} from '@/components/knowledge-reading-path';
 import {KnowledgeScenarioDecision} from '@/components/knowledge-scenario-decision';
-import {KnowledgeSourceEvidence} from '@/components/knowledge-source-evidence';
+import {
+  KnowledgeSourceEvidence,
+  type PublicKnowledgeSourceView,
+} from '@/components/knowledge-source-evidence';
 import {LegalConceptLayer, LegalConceptText} from '@/components/legal-concept-text';
 import {OfficialSourceJump} from '@/components/official-source-jump';
 import {PublicAdvertisingPlaceholder} from '@/components/public-advertising-placeholder';
@@ -79,6 +82,8 @@ export default async function KnowledgePage({params}: Props) {
     sources,
     hubs,
     readingPathSections,
+    maintenance,
+    sourceTexts,
   } = await knowledgeDetail(entry);
   const verifiedAnswer = await loadPublicLegalAnswerForContent(entry.content_id);
   const launchJourney = buildKnowledgeLaunchJourney({
@@ -97,6 +102,12 @@ export default async function KnowledgePage({params}: Props) {
     const url = browserOfficialSourceUrl(source) ?? source.official_url;
     return url ? [{name: sourceLabel(source), url}] : [];
   });
+  const sourceViews = sources.map(publicSourceView);
+  const publicSourceTexts = Object.fromEntries(
+    Object.entries(sourceTexts).map(([coordinateId, text]) => (
+      [coordinateId, text.official_text_ko]
+    )),
+  );
   return (
     <LegalConceptLayer>
       <main className="knowledgePage">
@@ -111,7 +122,7 @@ export default async function KnowledgePage({params}: Props) {
           ],
           description: entry.one_line_answer_ko,
           editorialAttribution: editorialAttribution ?? undefined,
-          expiresAt: entry.expires_at,
+          expiresAt: maintenance?.next_check_at ?? entry.expires_at,
           officialSources,
           pageUrl: canonicalUrl,
           publisher: trustConfig ? {
@@ -143,9 +154,14 @@ export default async function KnowledgePage({params}: Props) {
         <h1>{entry.title_ko}</h1>
         <p><LegalConceptText concepts={concepts} text={entry.one_line_answer_ko} /></p>
         <span className="audienceBadge">{entry.audience_situation_ko}</span>
-        <div aria-label="콘텐츠 기준일" className={styles.trust}>
-          <span><b>기준 확인</b>{formatDate(entry.reviewed_at)}</span>
-          <span><b>다음 점검</b>{formatDate(entry.expires_at)}</span>
+        <div aria-label="콘텐츠 최신성" className={styles.trust}>
+          <span><b>내용 검토</b>{formatDate(entry.reviewed_at)}</span>
+          <span>
+            <b>근거 점검</b>
+            {maintenance?.next_check_at
+              ? `${formatDate(maintenance.next_check_at)}까지`
+              : formatDate(entry.expires_at)}
+          </span>
           <span><b>공식 근거</b>{sources.length}건 연결</span>
         </div>
         {editorialAttribution ? (
@@ -297,7 +313,8 @@ export default async function KnowledgePage({params}: Props) {
                 answer={verifiedAnswer}
                 contentId={entry.content_id}
                 revisionKey={entry.reviewed_at}
-                sources={sources}
+                sources={sourceViews}
+                sourceTexts={publicSourceTexts}
               />
             )}
           </div>
@@ -380,6 +397,40 @@ export default async function KnowledgePage({params}: Props) {
 function sourceLabel(source: import('@/types/publication').PublicKnowledgeSource): string {
   if (source.source_kind === 'precedent' || source.source_kind === 'official_document') return source.title_ko;
   return `${source.law_name_ko} ${source.article_no}`;
+}
+
+function publicSourceView(
+  source: import('@/types/publication').PublicKnowledgeSource,
+): PublicKnowledgeSourceView {
+  const base = {
+    coordinate_id: source.coordinate_id,
+    official_url: browserOfficialSourceUrl(source) ?? source.official_url,
+    last_verified_at: source.last_verified_at,
+  };
+  if (source.source_kind === 'precedent') {
+    return {
+      ...base,
+      source_kind: 'precedent',
+      title_ko: source.title_ko,
+      case_number: source.case_number,
+      decision_date: source.decision_date,
+    };
+  }
+  if (source.source_kind === 'official_document') {
+    return {
+      ...base,
+      source_kind: 'official_document',
+      title_ko: source.title_ko,
+      promulgation_number: source.promulgation_number,
+      effective_date: source.effective_date,
+    };
+  }
+  return {
+    ...base,
+    source_kind: 'statute',
+    law_name_ko: source.law_name_ko,
+    article_no: source.article_no,
+  };
 }
 
 function formatDate(value: string): string {
