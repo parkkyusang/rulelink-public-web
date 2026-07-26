@@ -527,6 +527,8 @@ async function compileKnowledgePage({catalog, fixture}) {
         ),
         scenarios,
         sources,
+        maintenance: null,
+        sourceTexts: {},
       }),
       listKnowledgeEntries: () => entries,
       relatedChangeBriefsForKnowledgeEntry: () => [],

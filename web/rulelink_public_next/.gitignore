@@ -8,6 +8,8 @@ test-results/
 *.log
 tsconfig.tsbuildinfo
 content/bundle.json
+content/maintenance-index.json
+content/source-text-library.json
 content/editorial-preview-bundle.json
 
 .vercel

@@ -13,11 +13,20 @@ import {
 import {changeLifecycleOrder} from '@/lib/change-lifecycle';
 import {projectChangeBrief} from '@/lib/change-brief-projection';
 import {filterFreshPublications, publicationNow} from '@/lib/publication-freshness';
+import {
+  loadDerivedPublicationState,
+  maintenanceForContent,
+  visibleKnowledgeEntries,
+} from '@/lib/publication-derived';
 
 import type {AuthorityReadingView} from '@/lib/authority-reading';
 import type {KnowledgeHubConnection} from '@/lib/knowledge-hub-connections';
 import type {KnowledgeReadingPathSection, KnowledgeRelatedSection} from '@/lib/knowledge-relations';
 import type {ChangeBriefProjection} from '@/lib/change-brief-projection';
+import type {
+  PublicContentMaintenanceView,
+  PublicSourceText,
+} from '@/types/publication-derived';
 
 import type {
   EditorialOperationsQueue,
@@ -117,7 +126,7 @@ export async function changeBriefProjection(brief: LegalChangeBrief): Promise<Ch
   return projectChangeBrief({
     brief,
     assertions: bundle.assertions.filter(assertion => assertionIds.has(assertion.assertion_id)),
-    entries: filterFreshPublications(bundle.knowledge?.content_entries ?? []),
+    entries: await visibleKnowledgeEntriesForBundle(bundle),
     sources: bundle.knowledge?.sources ?? [],
     asOf: publicationNow().toISOString(),
   });
@@ -148,7 +157,8 @@ export async function relatedChangeBriefsForKnowledgeEntry(
 }
 
 export async function listKnowledgeEntries(): Promise<PublicKnowledgeEntry[]> {
-  return filterFreshPublications((await loadPublishedBundle())?.knowledge?.content_entries ?? []);
+  const bundle = await loadPublishedBundle();
+  return bundle ? visibleKnowledgeEntriesForBundle(bundle) : [];
 }
 
 export async function listConceptCards(): Promise<PublicConceptCard[]> {
@@ -160,10 +170,11 @@ export async function findConceptCard(slug: string): Promise<PublicConceptCard |
 }
 
 export async function listKnowledgeSearchDocuments() {
-  const knowledge = (await loadPublishedBundle())?.knowledge;
+  const bundle = await loadPublishedBundle();
+  const knowledge = bundle?.knowledge;
   if (!knowledge) return [];
   const visibleContentIds = new Set(
-    filterFreshPublications(knowledge.content_entries).map(entry => entry.content_id),
+    (await visibleKnowledgeEntriesForBundle(bundle)).map(entry => entry.content_id),
   );
   return buildKnowledgeSearchDocuments(knowledge, visibleContentIds);
 }
@@ -172,13 +183,14 @@ export async function listKnowledgeDecisionQuestions(): Promise<Map<string, Arra
   question: string;
   scenarioId: string;
 }>>> {
-  const knowledge = (await loadPublishedBundle())?.knowledge;
+  const bundle = await loadPublishedBundle();
+  const knowledge = bundle?.knowledge;
   if (!knowledge) return new Map();
   const scenarioById = new Map(
     knowledge.scenario_branches.map(scenario => [scenario.scenario_id, scenario]),
   );
   return new Map(
-    filterFreshPublications(knowledge.content_entries)
+    (await visibleKnowledgeEntriesForBundle(bundle))
       .map(entry => {
         const questions = entry.scenario_ids.flatMap(scenarioId => {
           const question = scenarioById.get(scenarioId)?.question_ko.trim();
@@ -199,10 +211,11 @@ export async function listKnowledgeDecisionQuestions(): Promise<Map<string, Arra
 }
 
 export async function listKnowledgeSourceDocuments() {
-  const knowledge = (await loadPublishedBundle())?.knowledge;
+  const bundle = await loadPublishedBundle();
+  const knowledge = bundle?.knowledge;
   if (!knowledge) return [];
   const visibleContentIds = new Set(
-    filterFreshPublications(knowledge.content_entries).map(entry => entry.content_id),
+    (await visibleKnowledgeEntriesForBundle(bundle)).map(entry => entry.content_id),
   );
   const visibleConceptIds = new Set(
     filterFreshPublications(knowledge.concept_cards ?? []).map(concept => concept.concept_id),
@@ -246,7 +259,8 @@ export async function conceptDetail(concept: PublicConceptCard): Promise<{
   relatedConcepts: PublicConceptCard[];
   relatedEntries: PublicKnowledgeEntry[];
 }> {
-  const knowledge = (await loadPublishedBundle())?.knowledge;
+  const bundle = await loadPublishedBundle();
+  const knowledge = bundle?.knowledge;
   if (!knowledge) return {sources: [], rules: [], relatedConcepts: [], relatedEntries: []};
   const sourceIds = new Set([
     ...concept.source_coordinate_ids,
@@ -260,17 +274,18 @@ export async function conceptDetail(concept: PublicConceptCard): Promise<{
     rules: knowledge.rule_cards.filter(rule => ruleIds.has(rule.rule_id)),
     relatedConcepts: filterFreshPublications(knowledge.concept_cards ?? [])
       .filter(candidate => relatedConceptIds.has(candidate.concept_id)),
-    relatedEntries: filterFreshPublications(knowledge.content_entries)
+    relatedEntries: (await visibleKnowledgeEntriesForBundle(bundle))
       .filter(entry => relatedEntryIds.has(entry.content_id) || (entry.concept_ids ?? []).includes(concept.concept_id))
       .slice(0, 8),
   };
 }
 
 export async function listKnowledgeHubs(): Promise<PublicKnowledgeHub[]> {
-  const knowledge = (await loadPublishedBundle())?.knowledge;
+  const bundle = await loadPublishedBundle();
+  const knowledge = bundle?.knowledge;
   if (!knowledge) return [];
   const visibleEntryIds = new Set(
-    filterFreshPublications(knowledge.content_entries).map(entry => entry.content_id),
+    (await visibleKnowledgeEntriesForBundle(bundle)).map(entry => entry.content_id),
   );
   return knowledge.topic_hubs.filter(hub => hub.content_ids.some(contentId => visibleEntryIds.has(contentId)));
 }
@@ -288,10 +303,11 @@ export async function decisionPathsForKnowledgeHub(hub: PublicKnowledgeHub): Pro
   scenario: PublicScenarioBranch;
   entries: PublicKnowledgeEntry[];
 }>> {
-  const knowledge = (await loadPublishedBundle())?.knowledge;
+  const bundle = await loadPublishedBundle();
+  const knowledge = bundle?.knowledge;
   if (!knowledge) return [];
   const visibleEntryById = new Map(
-    filterFreshPublications(knowledge.content_entries).map(entry => [entry.content_id, entry]),
+    (await visibleKnowledgeEntriesForBundle(bundle)).map(entry => [entry.content_id, entry]),
   );
   const hubEntries = hub.content_ids
     .map(contentId => visibleEntryById.get(contentId))
@@ -328,6 +344,8 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
   related: PublicKnowledgeEntry[];
   relatedSections: KnowledgeRelatedSection[];
   readingPathSections: KnowledgeReadingPathSection[];
+  maintenance: PublicContentMaintenanceView | null;
+  sourceTexts: Readonly<Record<string, PublicSourceText>>;
 }> {
   const bundle = await loadPublishedBundle();
   const knowledge = bundle?.knowledge;
@@ -343,7 +361,10 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
     related: [],
     relatedSections: [],
     readingPathSections: [],
+    maintenance: null,
+    sourceTexts: {},
   };
+  const derived = await loadDerivedPublicationState(bundle);
   const graph = resolveKnowledgeEntryGraph(knowledge, entry);
   const ruleById = new Map(graph.rules.map(rule => [rule.rule_id, rule]));
   const scenarioRules = Object.fromEntries(
@@ -354,7 +375,11 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
         .filter((rule): rule is PublicRuleCard => Boolean(rule)),
     ]),
   );
-  const visibleEntries = filterFreshPublications(knowledge.content_entries);
+  const visibleEntries = visibleKnowledgeEntries(
+    knowledge.content_entries,
+    derived.maintenance,
+    values => filterFreshPublications([...values]),
+  );
   const visibleConcepts = filterFreshPublications(knowledge.concept_cards ?? []);
   const {related, sections: relatedSections} = buildKnowledgeRelatedPresentation(
     entry,
@@ -381,7 +406,26 @@ export async function knowledgeDetail(entry: PublicKnowledgeEntry): Promise<{
     related,
     relatedSections,
     readingPathSections,
+    maintenance: maintenanceForContent(derived.maintenance, entry.content_id),
+    sourceTexts: Object.fromEntries(
+      graph.sources.flatMap(source => {
+        const text = derived.sourceTextByCoordinate.get(source.coordinate_id);
+        return text ? [[source.coordinate_id, text]] : [];
+      }),
+    ),
   };
+}
+
+async function visibleKnowledgeEntriesForBundle(
+  bundle: PublicContentBundle,
+): Promise<PublicKnowledgeEntry[]> {
+  const entries = bundle.knowledge?.content_entries ?? [];
+  const {maintenance} = await loadDerivedPublicationState(bundle);
+  return visibleKnowledgeEntries(
+    entries,
+    maintenance,
+    values => filterFreshPublications([...values]),
+  );
 }
 
 export function publicationBundlePath(): string {

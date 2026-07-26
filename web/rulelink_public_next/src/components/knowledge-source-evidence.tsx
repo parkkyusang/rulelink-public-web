@@ -2,7 +2,6 @@
 
 import {useEffect, useMemo, useState} from 'react';
 
-import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {
   claimSelectionState,
   type ScenarioAnswerState,
@@ -15,9 +14,22 @@ import type {
   CanonicalLegalAnswerProjection,
   LegalAnswerClaim,
 } from '@/types/legal-answer-packet';
-import type {PublicKnowledgeSource} from '@/types/publication';
 
 import styles from './knowledge-source-evidence.module.css';
+
+export type PublicKnowledgeSourceView = {
+  coordinate_id: string;
+  source_kind?: 'statute' | 'precedent' | 'official_document';
+  title_ko?: string;
+  law_name_ko?: string;
+  article_no?: string;
+  case_number?: string;
+  promulgation_number?: string;
+  official_url: string;
+  last_verified_at: string;
+  decision_date?: string;
+  effective_date?: string;
+};
 
 export function KnowledgeSourceEvidence({
   answer,
@@ -25,12 +37,14 @@ export function KnowledgeSourceEvidence({
   contentId,
   revisionKey,
   sources,
+  sourceTexts = {},
 }: {
   answer?: CanonicalLegalAnswerProjection | null;
   claims?: readonly LegalAnswerClaim[];
   contentId?: string;
   revisionKey?: string;
-  sources: readonly PublicKnowledgeSource[];
+  sources: readonly PublicKnowledgeSourceView[];
+  sourceTexts?: Readonly<Record<string, string>>;
 }) {
   const [scenarioAnswers, setScenarioAnswers] = useState<ScenarioAnswerState>({});
   useEffect(() => {
@@ -52,6 +66,7 @@ export function KnowledgeSourceEvidence({
     window.addEventListener(KNOWLEDGE_SCENARIO_CHANGE_EVENT, handleChange);
     return () => window.removeEventListener(KNOWLEDGE_SCENARIO_CHANGE_EVENT, handleChange);
   }, [answer, contentId, revisionKey]);
+
   const claimViews = useMemo(() => {
     if (!answer) return claims.map(claim => ({claim, state: 'active' as const}));
     return answer.claims
@@ -61,6 +76,7 @@ export function KnowledgeSourceEvidence({
       }))
       .filter(item => item.state !== 'excluded');
   }, [answer, claims, scenarioAnswers]);
+
   if (!sources.length) return null;
   return (
     <section
@@ -69,11 +85,11 @@ export function KnowledgeSourceEvidence({
       data-source-evidence
     >
       <header>
-        <p className="eyebrow">이 답의 공식 근거</p>
-        <h2 id="source-evidence-heading">페이지 안에서 근거 좌표를 먼저 확인하세요.</h2>
+        <p className="eyebrow">공식 근거와 원문</p>
+        <h2 id="source-evidence-heading">이 글에서 참고한 조문과 공식 자료입니다.</h2>
         <p>
-          출판본에 저장된 법령·판례·공식문서의 정확한 이름과 좌표만 표시합니다.
-          원문 전체 링크는 카드의 마지막에 둡니다.
+          저장된 공식 원문과 이 글이 참고한 법령 버전이 일치하는 조문은
+          페이지 안에서 바로 읽을 수 있습니다. 공식 사이트의 원문 전체도 함께 확인할 수 있습니다.
         </p>
       </header>
       <div className={styles.grid}>
@@ -88,7 +104,8 @@ export function KnowledgeSourceEvidence({
               .filter(reference => reference.source_coordinate_id === source.coordinate_id)
               .map(reference => reference.version.time_state)),
           );
-          const officialUrl = browserOfficialSourceUrl(source) ?? source.official_url;
+          const officialUrl = source.official_url;
+          const sourceText = sourceTexts[source.coordinate_id];
           return (
             <article
               className={styles.card}
@@ -96,9 +113,7 @@ export function KnowledgeSourceEvidence({
               key={source.coordinate_id}
             >
               <details open={index === 0}>
-                <summary
-                  id={`source-summary-${source.coordinate_id}`}
-                >
+                <summary id={`source-summary-${source.coordinate_id}`}>
                   <span>
                     <small>{sourceKindLabel(source)}</small>
                     <strong>{sourceLabel(source)}</strong>
@@ -109,18 +124,26 @@ export function KnowledgeSourceEvidence({
                 </summary>
                 <div className={styles.body}>
                   <dl>
-                    <div><dt>근거 좌표</dt><dd>{sourceLocator(source)}</dd></div>
-                    <div><dt>출판 원문본</dt><dd>{source.source_snapshot_id}</dd></div>
+                    <div><dt>근거 위치</dt><dd>{sourceLocator(source)}</dd></div>
                     {sourceDate(source) ? (
-                      <div><dt>{sourceDate(source)!.label}</dt><dd>{sourceDate(source)!.value}</dd></div>
+                      <div>
+                        <dt>{sourceDate(source)!.label}</dt>
+                        <dd>{sourceDate(source)!.value}</dd>
+                      </div>
                     ) : null}
                     {versionStates.length ? (
                       <div>
-                        <dt>패킷 검증 상태</dt>
+                        <dt>적용 상태</dt>
                         <dd>{versionStates.map(versionStateLabel).join(' · ')}</dd>
                       </div>
                     ) : null}
                   </dl>
+                  {sourceText ? (
+                    <section className={styles.officialText}>
+                      <h3>조문 원문</h3>
+                      <p>{sourceText}</p>
+                    </section>
+                  ) : null}
                   {sourceClaims.length ? (
                     <section aria-label={`${sourceLabel(source)}가 뒷받침하는 내용`}>
                       <h3>이 근거가 뒷받침하는 내용</h3>
@@ -128,19 +151,14 @@ export function KnowledgeSourceEvidence({
                         {sourceClaims.map(({claim, state}) => (
                           <li data-claim-state={state} key={claim.claim_id}>
                             <span>
-                              {state === 'pending' ? '사실 확인 전 조건부' : '선택한 사실에 연결'}
+                              {state === 'pending' ? '사실 확인 전 조건부' : '선택한 사실과 연결'}
                             </span>
                             {claim.statement_ko}
                           </li>
                         ))}
                       </ul>
                     </section>
-                  ) : (
-                    <p className={styles.boundary}>
-                      별도 답변 패킷이 없는 글이므로 이 출처가 특정 문장을
-                      뒷받침한다고 새로 추론하지 않습니다.
-                    </p>
-                  )}
+                  ) : null}
                   <a
                     className={styles.official}
                     href={officialUrl}
@@ -159,30 +177,32 @@ export function KnowledgeSourceEvidence({
   );
 }
 
-function sourceKindLabel(source: PublicKnowledgeSource): string {
+function sourceKindLabel(source: PublicKnowledgeSourceView): string {
   if (source.source_kind === 'precedent') return '판례';
   if (source.source_kind === 'official_document') return '공식문서';
   return '법령';
 }
 
-function sourceLabel(source: PublicKnowledgeSource): string {
+function sourceLabel(source: PublicKnowledgeSourceView): string {
   if (source.source_kind === 'precedent' || source.source_kind === 'official_document') {
-    return source.title_ko;
+    return source.title_ko ?? '공식 자료';
   }
-  return `${source.law_name_ko} ${source.article_no}`;
+  return `${source.law_name_ko ?? '법령'} ${source.article_no ?? ''}`.trim();
 }
 
-function sourceLocator(source: PublicKnowledgeSource): string {
-  if (source.source_kind === 'precedent') return source.case_number;
-  if (source.source_kind === 'official_document') return source.promulgation_number;
-  return source.article_no;
+function sourceLocator(source: PublicKnowledgeSourceView): string {
+  if (source.source_kind === 'precedent') return source.case_number ?? '사건번호 확인';
+  if (source.source_kind === 'official_document') {
+    return source.promulgation_number ?? '문서번호 확인';
+  }
+  return source.article_no ?? '조문 확인';
 }
 
-function sourceDate(source: PublicKnowledgeSource): {label: string; value: string} | null {
-  if (source.source_kind === 'precedent') {
+function sourceDate(source: PublicKnowledgeSourceView): {label: string; value: string} | null {
+  if (source.source_kind === 'precedent' && source.decision_date) {
     return {label: '선고일', value: formatDate(source.decision_date)};
   }
-  if (source.source_kind === 'official_document') {
+  if (source.source_kind === 'official_document' && source.effective_date) {
     return {label: '시행일', value: formatDate(source.effective_date)};
   }
   return null;
@@ -192,7 +212,7 @@ function versionStateLabel(value: string): string {
   return {
     current_as_of_review: '검토일 현재 적용',
     future_effective: '향후 시행',
-    historical: '과거 적용본',
+    historical: '과거 적용법',
   }[value] ?? value;
 }
 
