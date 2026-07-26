@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20260726-022",
+  "release_id": "production-20260726-023",
   "snapshot_id": "kr-knowledge-core-20260723-023",
-  "requested_at": "2026-07-26T04:40:00.533Z",
-  "summary_ko": "공식 원문 링크의 새 탭 문구를 익숙한 외부 링크 아이콘으로 교체하고 접근성 의미를 유지한다."
+  "requested_at": "2026-07-26T08:52:07.851Z",
+  "summary_ko": "검색 예시와 무결과 안내를 실제 승인 정보에 맞추고, 공식 조문 문언 표시와 출처 단위 증분 점검 구조를 공개한다."
 }
