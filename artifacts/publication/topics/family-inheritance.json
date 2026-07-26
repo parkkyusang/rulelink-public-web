@@ -242,7 +242,10 @@
         "content.estate-disposal-before-renunciation",
         "content.limited-acceptance-creditor-notice",
         "content.inheritance-assets-and-debts-checklist",
-        "content.2026-loss-of-inheritance-right-and-representation"
+        "content.2026-loss-of-inheritance-right-and-representation",
+        "content.one-coheir-renounces-share",
+        "content.limited-acceptance-payment-before-deadline",
+        "content.limited-acceptance-late-unreported-creditor"
       ]
     }
   ],
@@ -377,6 +380,51 @@
       ]
     },
     {
+      "rule_id": "rule.family-inheritance.rule-renounced-share-reallocation",
+      "title_ko": "공동상속인 일부 포기 뒤 상속분 귀속",
+      "proposition_ko": "공동상속인 중 한 사람이 적법하게 상속을 포기하면 그 상속분은 다른 상속인의 기존 상속분 비율에 따라 귀속된다.",
+      "norm": {
+        "actor_ko": "여러 공동상속인 중 상속을 포기한 사람과 남은 공동상속인",
+        "conditions_ko": "공동상속인 중 일부의 상속포기가 가정법원에서 수리되고 다른 공동상속인이 남아 있는 경우",
+        "legal_effect_ko": "포기한 사람은 상속개시 때부터 상속인이 아니었던 것으로 보며, 그 상속분은 남은 상속인들의 기존 상속분 비율에 따라 귀속된다."
+      },
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1041",
+        "coord.family-inheritance.civil-act-ko-1042",
+        "coord.family-inheritance.civil-act-ko-1043"
+      ]
+    },
+    {
+      "rule_id": "rule.family-inheritance.rule-limited-payment-timing",
+      "title_ko": "한정승인 신고기간 중 변제거절과 기간 후 배당",
+      "proposition_ko": "한정승인자는 채권 신고기간이 끝나기 전에는 변제를 거절할 수 있고, 기간이 끝난 뒤에는 신고 채권자와 알고 있는 채권자에게 우선권과 채권액 비율에 따라 변제해야 한다.",
+      "norm": {
+        "actor_ko": "한정승인자와 변제를 요구하는 상속채권자",
+        "conditions_ko": "한정승인 수리 뒤 2개월 이상의 채권 신고기간을 진행하고 상속재산으로 채권자들에게 변제하는 경우",
+        "legal_effect_ko": "신고기간 만료 전에는 변제를 거절할 수 있고, 기간 만료 후에는 우선권을 해치지 않는 범위에서 채권액 비율로 배당변제해야 한다."
+      },
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1032",
+        "coord.family-inheritance.civil-act-ko-1033",
+        "coord.family-inheritance.civil-act-ko-1034",
+        "coord.family-inheritance.civil-act-ko-1038"
+      ]
+    },
+    {
+      "rule_id": "rule.family-inheritance.rule-late-unreported-creditor",
+      "title_ko": "신고기간 뒤 나타난 미신고 채권자의 변제 범위",
+      "proposition_ko": "신고기간 안에 신고하지 않았고 한정승인자도 알지 못한 채권자는 원칙적으로 남은 상속재산이 있을 때만 변제받지만, 상속재산에 특별담보권이 있으면 달리 본다.",
+      "norm": {
+        "actor_ko": "채권 신고기간 뒤 처음 권리를 주장하는 상속채권자와 한정승인자",
+        "conditions_ko": "채권자가 신고기간 안에 신고하지 않았고 한정승인자도 그 채권을 알지 못했던 경우",
+        "legal_effect_ko": "미신고·미인지 채권자는 상속재산의 잔여가 있을 때만 변제받을 수 있으나, 상속재산에 특별담보권이 있는 경우에는 그 제한을 그대로 적용하지 않는다."
+      },
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1032",
+        "coord.family-inheritance.civil-act-ko-1039"
+      ]
+    },
+    {
       "rule_id": "rule.family-inheritance.rule-2026-representation-change",
       "title_ko": "2026년 대습상속 규정 변경",
       "proposition_ko": "2026년 3월 17일 개정 민법은 상속권 상실선고 제도와 연결해 제1001조 대습상속 사유에 제1004조의2를 반영했다.",
@@ -484,6 +532,51 @@
       "source_coordinate_ids": [
         "coord.family-inheritance.civil-act-ko-1026",
         "coord.family-inheritance.src-supreme-disposal-187951"
+      ]
+    },
+    {
+      "scenario_id": "scenario.family-inheritance.sc-one-coheir-renounces",
+      "question_ko": "여러 공동상속인 중 한 사람만 상속을 포기한 경우",
+      "decision_fact_ko": "가정법원이 일부 공동상속인의 포기를 수리했고 포기하지 않은 공동상속인이 남아 있는지",
+      "when_true_ko": "포기한 사람의 상속분을 남은 공동상속인들의 기존 상속분 비율에 따라 다시 계산합니다.",
+      "when_false_ko": "포기가 아직 수리되지 않았거나 같은 순위 상속인이 전부 포기했다면 제1043조의 일부 포기 계산만 적용하지 않고 상속인 순위와 별도 판례 축을 다시 확인합니다.",
+      "rule_ids": [
+        "rule.family-inheritance.rule-renounced-share-reallocation"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1041",
+        "coord.family-inheritance.civil-act-ko-1042",
+        "coord.family-inheritance.civil-act-ko-1043"
+      ]
+    },
+    {
+      "scenario_id": "scenario.family-inheritance.sc-payment-demand-before-deadline",
+      "question_ko": "한정승인 공고의 채권 신고기간 중 변제 요구를 받은 경우",
+      "decision_fact_ko": "제1032조에 따라 정한 2개월 이상의 신고기간이 이미 끝났는지",
+      "when_true_ko": "신고 채권과 알고 있는 채권, 우선권과 상속재산 가액을 확정해 채권액 비율에 따른 배당변제를 진행합니다.",
+      "when_false_ko": "신고기간이 끝나기 전에는 변제를 거절하고 채권 신고자료와 우선권 자료를 모아 임의 선지급을 피합니다.",
+      "rule_ids": [
+        "rule.family-inheritance.rule-limited-payment-timing"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1032",
+        "coord.family-inheritance.civil-act-ko-1033",
+        "coord.family-inheritance.civil-act-ko-1034",
+        "coord.family-inheritance.civil-act-ko-1038"
+      ]
+    },
+    {
+      "scenario_id": "scenario.family-inheritance.sc-unreported-creditor-after-deadline",
+      "question_ko": "채권 신고기간이 끝난 뒤 처음 채권자가 나타난 경우",
+      "decision_fact_ko": "그 채권을 한정승인자가 알고 있었는지, 기간 안에 신고했는지, 상속재산 잔여와 특별담보권이 있는지",
+      "when_true_ko": "미신고·미인지 채권이면 남은 상속재산 범위와 특별담보권 존재를 기준으로 변제 가능 범위를 확인합니다.",
+      "when_false_ko": "한정승인자가 이미 알던 채권이거나 기간 안에 신고한 채권이면 일반 배당변제 대상에서 누락되지 않았는지 다시 정리합니다.",
+      "rule_ids": [
+        "rule.family-inheritance.rule-late-unreported-creditor"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1032",
+        "coord.family-inheritance.civil-act-ko-1039"
       ]
     },
     {
@@ -1403,6 +1496,389 @@
           "target_kind": "concept",
           "target_id": "concept.kr.inheritance.legal_heir",
           "relation_type": "concept"
+        }
+      ]
+    },
+    {
+      "content_id": "content.one-coheir-renounces-share",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-26T18:30:00+09:00",
+      "expires_at": "2026-10-26T00:00:00+09:00",
+      "slug": "one-coheir-renounces-share",
+      "title_ko": "형제 중 나만 상속포기하면 내 상속분은 누구에게 가나",
+      "one_line_answer_ko": "공동상속인 중 한 사람의 포기가 수리되면 그 사람은 상속개시 때부터 상속인이 아니었던 것으로 보고, 그 상속분은 남은 상속인들의 기존 상속분 비율에 따라 귀속됩니다.",
+      "question_signature": {
+        "actor": [
+          "상속포기가 수리된 일부 공동상속인",
+          "포기하지 않고 남은 공동상속인"
+        ],
+        "life_event": [
+          "공동상속인 일부의 상속포기 수리 뒤 상속분 재배분"
+        ],
+        "user_goal": [
+          "포기한 사람의 상속분이 남은 사람들에게 어떻게 귀속되는지 계산"
+        ],
+        "procedure_or_forum": [
+          "가정법원 상속포기 수리 뒤 상속분 귀속"
+        ],
+        "legal_effect": [
+          "포기한 상속분은 남은 상속인의 기존 상속분 비율로 귀속"
+        ],
+        "time_scope": [
+          "일부 공동상속인의 포기 수리 후"
+        ],
+        "decision_facts": [
+          "일부 공동상속인의 포기 수리 여부",
+          "포기하지 않은 공동상속인의 존재",
+          "일부 포기인지 전원 포기인지"
+        ],
+        "normative_sources": [
+          "민법:제1043조"
+        ]
+      },
+      "audience_situation_ko": "형제자매나 다른 공동상속인 중 나만 상속포기를 하려는데 내 몫이 누구에게 넘어가는지 알고 싶다.",
+      "key_points_ko": [
+        "가족끼리 포기 의사를 말한 것과 가정법원 신고 수리는 다릅니다.",
+        "일부 공동상속인만 포기한 경우에는 남은 상속인의 기존 상속분 비율을 기준으로 다시 계산합니다.",
+        "자녀 전원이 포기하고 배우자가 남는 경우는 전원합의체 결정의 별도 판단축을 확인해야 합니다."
+      ],
+      "action_steps_ko": [
+        "사망일과 상속개시 사실을 안 날을 확인합니다.",
+        "가족관계증명서로 같은 순위 공동상속인과 법률상 배우자를 표시합니다.",
+        "포기하려는 사람별로 3개월 기간과 가정법원 신고 여부를 확인합니다.",
+        "법원의 상속포기 수리심판문과 확정 여부를 모읍니다.",
+        "수리된 사람만 제외해 남은 공동상속인의 기존 상속분 비율로 다시 계산합니다."
+      ],
+      "facts_to_check_ko": [
+        "피상속인 사망일",
+        "상속개시 사실을 안 날",
+        "법률상 배우자",
+        "같은 순위 공동상속인",
+        "포기 신고일",
+        "포기 수리심판문",
+        "수리 확정 여부",
+        "포기한 사람이 일부인지 전부인지"
+      ],
+      "caution_ko": "같은 순위 상속인 전원이 포기한 경우나 배우자와 자녀가 함께 있던 경우에는 단순히 다음 순위로 넘긴다고 계산하지 말고 상속인 구성과 전원합의체 결정의 적용범위를 따로 확인해야 합니다.",
+      "search_intents_ko": [
+        "형제 중 한 명만 상속포기하면",
+        "나만 상속포기하면 내 지분 누구에게",
+        "공동상속인 일부 포기 상속분 계산"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "먼저 실제로 포기가 수리됐는지 확인합니다.",
+          "paragraphs_ko": [
+            "상속포기는 상속개시 있음을 안 날부터 3개월 안에 가정법원에 신고해야 합니다. 가족끼리 합의하거나 채권자에게 포기한다고 말한 것만으로 제1041조의 상속포기가 되지는 않습니다.",
+            "법원이 포기 신고를 수리하면 포기의 효력은 상속이 시작된 때로 소급합니다. 따라서 수리심판문과 포기한 사람의 범위를 기준으로 상속인 표를 다시 만듭니다."
+          ]
+        },
+        {
+          "heading_ko": "일부 포기와 전원 포기를 나눠 계산합니다.",
+          "paragraphs_ko": [
+            "공동상속인 중 일부가 포기하면 민법 제1043조에 따라 그 상속분은 남은 상속인의 상속분 비율로 귀속됩니다. 포기자의 지분을 임의로 특정인에게 증여한 것으로 처리하는 구조가 아닙니다.",
+            "다만 배우자와 자녀가 공동상속인이었다가 자녀 전원이 포기한 경우에는 2020그42 전원합의체 결정의 결론을 별도로 확인해야 합니다. 일부 포기 계산을 전원 포기 상황에 그대로 확장하지 않습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.family-inheritance.rule-renounced-share-reallocation",
+        "rule.family-inheritance.rule-three-months"
+      ],
+      "scenario_ids": [
+        "scenario.family-inheritance.sc-one-coheir-renounces"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1019",
+        "coord.family-inheritance.civil-act-ko-1041",
+        "coord.family-inheritance.civil-act-ko-1042",
+        "coord.family-inheritance.civil-act-ko-1043",
+        "coord.family-inheritance.src-supreme-2020geu42"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "related_content_ids": [
+        "content.inheritance-renunciation-procedure",
+        "content.spouse-when-all-children-renounce",
+        "content.legal-heir-order-and-spouse"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.inheritance-renunciation-procedure",
+          "relation_type": "procedure",
+          "label_ko": "상속포기 신고와 수리 절차 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.spouse-when-all-children-renounce",
+          "relation_type": "comparison",
+          "label_ko": "자녀 전원 포기와 일부 포기 결과 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.legal-heir-order-and-spouse",
+          "relation_type": "prerequisite",
+          "label_ko": "포기 전 공동상속인 구성 확인"
+        }
+      ]
+    },
+    {
+      "content_id": "content.limited-acceptance-payment-before-deadline",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-26T18:30:00+09:00",
+      "expires_at": "2026-10-26T00:00:00+09:00",
+      "slug": "limited-acceptance-payment-before-deadline",
+      "title_ko": "한정승인 공고기간 중 채권자가 당장 갚으라고 하면",
+      "one_line_answer_ko": "채권 신고기간이 끝나기 전에는 변제를 거절할 수 있고, 기간이 끝난 뒤에는 신고 채권자와 알고 있는 채권자를 우선권과 채권액 비율에 따라 변제해야 합니다.",
+      "question_signature": {
+        "actor": [
+          "한정승인자",
+          "채권 신고기간 중 즉시 변제를 요구하는 상속채권자"
+        ],
+        "life_event": [
+          "한정승인 채권 신고기간이 끝나기 전 변제 요구"
+        ],
+        "user_goal": [
+          "신고기간 중 지급을 보류하고 기간 뒤 적법하게 배당"
+        ],
+        "procedure_or_forum": [
+          "한정승인 공고기간 중 변제거절과 기간 만료 후 배당"
+        ],
+        "legal_effect": [
+          "신고기간 만료 전 변제거절 가능",
+          "기간 만료 후 우선권과 채권액 비율에 따른 변제"
+        ],
+        "time_scope": [
+          "채권 신고기간 만료 전"
+        ],
+        "decision_facts": [
+          "채권 신고기간 만료 여부",
+          "채권 신고 여부",
+          "우선권과 채권액"
+        ],
+        "normative_sources": [
+          "민법:제1033조",
+          "민법:제1034조"
+        ]
+      },
+      "audience_situation_ko": "한정승인 공고를 진행 중인데 고인의 채권자 한 명이 자기 돈부터 바로 갚으라고 요구한다.",
+      "key_points_ko": [
+        "공고의 신고기간은 2개월 이상이어야 합니다.",
+        "신고기간이 끝나기 전에는 채권 변제를 거절할 수 있습니다.",
+        "기간 뒤에는 우선권을 먼저 확인하고 일반 채권은 채권액 비율로 배당합니다."
+      ],
+      "action_steps_ko": [
+        "한정승인 수리일, 공고일과 신고 마감일을 한 장에 기록합니다.",
+        "요구받은 채권의 계약서·판결·담보 자료와 채권액을 받습니다.",
+        "신고기간이 남아 있으면 제1033조에 따른 변제거절 취지를 남기고 임의 지급을 보류합니다.",
+        "신고된 채권과 알고 있는 채권을 하나의 채권자 목록으로 합칩니다.",
+        "우선권과 상속재산 가액을 확정한 뒤 일반 채권을 채권액 비율로 배당합니다.",
+        "지급일·금액·계산표·영수증을 채권자별로 보존합니다."
+      ],
+      "facts_to_check_ko": [
+        "한정승인 수리일",
+        "공고일",
+        "채권 신고 마감일",
+        "채권 신고 여부",
+        "한정승인자가 이미 알고 있던 채권",
+        "채권액",
+        "담보권·우선권",
+        "상속재산 가액",
+        "선지급 여부와 지급일"
+      ],
+      "caution_ko": "신고기간 중 일부 채권자에게 먼저 지급하거나 기간 뒤 법정 배당순서를 어겨 다른 채권자가 변제받지 못하면 손해배상 문제가 생길 수 있습니다.",
+      "search_intents_ko": [
+        "한정승인 공고 중 채권자 돈 달라고",
+        "한정승인 2개월 전에 갚아야 하나",
+        "한정승인 채권자 먼저 변제"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "신고기간이 끝났는지가 첫 분기입니다.",
+          "paragraphs_ko": [
+            "한정승인자는 한정승인을 한 날부터 5일 안에 한정승인 사실과 채권 신고를 공고하고, 신고기간을 2개월 이상으로 정해야 합니다. 수리일·공고일·마감일을 구분해 기록합니다.",
+            "민법 제1033조는 그 기간이 끝나기 전 한정승인자가 상속채권 변제를 거절할 수 있다고 정합니다. 먼저 요구한 채권자라는 이유만으로 즉시 지급할 필요는 없습니다."
+          ]
+        },
+        {
+          "heading_ko": "기간 뒤에는 우선권과 채권액 비율로 배당합니다.",
+          "paragraphs_ko": [
+            "신고기간이 끝나면 기간 안에 신고한 채권자와 한정승인자가 알고 있는 채권자를 함께 정리합니다. 특별담보권 등 우선권을 해치지 않는 범위에서 일반 채권은 각 채권액 비율로 변제합니다.",
+            "한 사람에게 임의로 많이 지급해 다른 채권자가 받지 못하면 제1038조의 손해배상 문제가 생길 수 있습니다. 계산표와 지급 증빙을 남기는 것이 핵심입니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.family-inheritance.rule-limited-payment-timing",
+        "rule.family-inheritance.rule-limited-effect"
+      ],
+      "scenario_ids": [
+        "scenario.family-inheritance.sc-payment-demand-before-deadline"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1028",
+        "coord.family-inheritance.civil-act-ko-1032",
+        "coord.family-inheritance.civil-act-ko-1033",
+        "coord.family-inheritance.civil-act-ko-1034",
+        "coord.family-inheritance.civil-act-ko-1038"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "related_content_ids": [
+        "content.limited-acceptance-creditor-notice",
+        "content.limited-acceptance-effect",
+        "content.inheritance-assets-and-debts-checklist"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.limited-acceptance-creditor-notice",
+          "relation_type": "prerequisite",
+          "label_ko": "한정승인 공고·최고의 전체 순서 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.limited-acceptance-effect",
+          "relation_type": "prerequisite",
+          "label_ko": "한정승인의 책임 범위 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.inheritance-assets-and-debts-checklist",
+          "relation_type": "procedure",
+          "label_ko": "상속재산과 전체 채권 목록 정리"
+        }
+      ]
+    },
+    {
+      "content_id": "content.limited-acceptance-late-unreported-creditor",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-26T18:30:00+09:00",
+      "expires_at": "2026-10-26T00:00:00+09:00",
+      "slug": "limited-acceptance-late-unreported-creditor",
+      "title_ko": "한정승인 공고기간이 지난 뒤 처음 채권자가 나타나면",
+      "one_line_answer_ko": "기간 안에 신고하지 않았고 한정승인자도 알지 못한 채권자는 원칙적으로 남은 상속재산이 있을 때만 변제받지만, 상속재산에 특별담보권이 있으면 별도로 판단합니다.",
+      "question_signature": {
+        "actor": [
+          "채권 신고기간 뒤 처음 권리를 주장하는 상속채권자",
+          "그 채권을 알지 못했던 한정승인자"
+        ],
+        "life_event": [
+          "채권 신고기간과 배당 뒤 미신고 채권자가 처음 나타남"
+        ],
+        "user_goal": [
+          "늦게 나타난 채권자의 변제 가능 범위와 특별담보권 예외 확인"
+        ],
+        "procedure_or_forum": [
+          "한정승인 배당 뒤 미신고 채권 처리"
+        ],
+        "legal_effect": [
+          "미신고·미인지 채권자는 남은 상속재산이 있을 때만 변제",
+          "특별담보권이 있으면 잔여재산 제한의 예외"
+        ],
+        "time_scope": [
+          "채권 신고기간 만료 후"
+        ],
+        "decision_facts": [
+          "기간 내 신고 여부",
+          "한정승인자의 기존 인지 여부",
+          "상속재산 잔여와 특별담보권"
+        ],
+        "normative_sources": [
+          "민법:제1039조"
+        ]
+      },
+      "audience_situation_ko": "한정승인 공고기간과 배당이 끝난 뒤 처음 보는 채권자가 고인의 빚을 갚으라고 요구한다.",
+      "key_points_ko": [
+        "늦게 나타났다는 사실만으로 결론을 내리지 않고 기간 내 신고 여부와 기존 인지 여부를 나눕니다.",
+        "미신고·미인지 채권자는 남은 상속재산이 있을 때만 변제받는 것이 원칙입니다.",
+        "상속재산에 특별담보권이 있으면 잔여재산 제한의 예외를 따로 확인합니다."
+      ],
+      "action_steps_ko": [
+        "공고문, 신고기간과 채권자별 최고 자료를 꺼냅니다.",
+        "새 채권의 계약·판결·담보 문서와 발생일·금액을 받습니다.",
+        "기간 안 신고 여부와 한정승인자가 그 채권을 알고 있었는지 기록으로 확인합니다.",
+        "배당 뒤 남은 상속재산과 이미 지급한 내역을 계산합니다.",
+        "근저당권·질권 등 상속재산의 특별담보권 존재를 확인합니다.",
+        "미신고·미인지·잔여재산·특별담보권 분기에 따라 답변과 지급 범위를 정리합니다."
+      ],
+      "facts_to_check_ko": [
+        "공고문",
+        "채권 신고기간",
+        "채권자의 신고일",
+        "채권을 처음 안 날",
+        "기존 채권자 목록",
+        "배당·지급 내역",
+        "남은 상속재산",
+        "특별담보권 등기·계약",
+        "채권액과 발생 근거"
+      ],
+      "caution_ko": "한정승인자가 이미 알고 있던 채권을 목록이나 배당에서 빠뜨린 경우에는 단순한 미신고 채권으로 처리할 수 없으므로 공고·최고와 배당 과정의 누락 책임을 별도로 검토해야 합니다.",
+      "search_intents_ko": [
+        "한정승인 끝난 뒤 채권자 나타남",
+        "한정승인 공고 미신고 채권",
+        "한정승인 후 숨은 채권자 변제"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "신고 여부와 알고 있던 채권인지부터 나눕니다.",
+          "paragraphs_ko": [
+            "공고기간 뒤 나타난 채권이라도 기간 안에 실제로 신고했거나 한정승인자가 이미 알고 있었다면 일반 배당대상에서 누락된 것인지 먼저 확인해야 합니다.",
+            "반대로 기간 안에 신고하지 않았고 한정승인자도 알지 못했던 채권이라면 민법 제1039조의 미신고 채권자 분기로 들어갑니다. 공고문, 최고 발송자료와 당시 채권자 목록이 판단 증거입니다."
+          ]
+        },
+        {
+          "heading_ko": "남은 상속재산과 특별담보권을 확인합니다.",
+          "paragraphs_ko": [
+            "미신고·미인지 채권자는 원칙적으로 배당 뒤 남아 있는 상속재산이 있을 때만 변제받을 수 있습니다. 한정승인자의 고유재산에서 당연히 전액 변제하는 결론으로 넘어가지 않습니다.",
+            "다만 상속재산에 특별담보권이 있으면 제1039조 단서에 따라 달리 봅니다. 담보권의 대상 재산, 순위와 채권 범위를 등기·계약 자료로 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.family-inheritance.rule-late-unreported-creditor",
+        "rule.family-inheritance.rule-limited-effect"
+      ],
+      "scenario_ids": [
+        "scenario.family-inheritance.sc-unreported-creditor-after-deadline"
+      ],
+      "source_coordinate_ids": [
+        "coord.family-inheritance.civil-act-ko-1028",
+        "coord.family-inheritance.civil-act-ko-1032",
+        "coord.family-inheritance.civil-act-ko-1039"
+      ],
+      "hub_ids": [
+        "hub.family-inheritance"
+      ],
+      "related_content_ids": [
+        "content.limited-acceptance-creditor-notice",
+        "content.limited-acceptance-payment-before-deadline",
+        "content.inheritance-assets-and-debts-checklist"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.limited-acceptance-creditor-notice",
+          "relation_type": "prerequisite",
+          "label_ko": "공고·최고와 기존 채권자 목록 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.limited-acceptance-payment-before-deadline",
+          "relation_type": "comparison",
+          "label_ko": "신고기간 전후 변제 분기 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.inheritance-assets-and-debts-checklist",
+          "relation_type": "procedure",
+          "label_ko": "상속재산 잔여와 채권 증거 정리"
         }
       ]
     }
