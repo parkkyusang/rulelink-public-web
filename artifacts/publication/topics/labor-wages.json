@@ -25,10 +25,14 @@
     {
       "coordinate_id": "coord.labor-wages.labor-standards-ko-0036",
       "source_id": "labor_standards_ko_0036",
+      "source_kind": "statute",
+      "law_key": "labor-standards-act",
       "law_name_ko": "근로기준법",
       "article_no": "제36조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C36%EC%A1%B0",
-      "source_snapshot_id": "snapshot:1a407952c492676358a540b100de3c04",
+      "official_url_http_status": 200,
+      "source_snapshot_id": "1a407952c492676358a540b100de3c04",
+      "source_version_key": "sha256:4c92bffe9903efead5eb5c62e30abf45006614e3845a555e9e8fa198cfdb1541",
       "last_verified_at": "2026-07-21T08:15:00+00:00"
     },
     {
@@ -579,48 +583,67 @@
       "reviewed_at": "2026-07-21T08:30:00+00:00",
       "expires_at": "2026-10-21T00:00:00+00:00",
       "slug": "final-wages-after-retirement-14-days",
-      "title_ko": "퇴직한 뒤 임금은 언제까지 받아야 하나",
-      "one_line_answer_ko": "원칙적으로 퇴직일부터 14일 이내이며, 특별한 사정이 있고 당사자가 지급기일 연장에 합의한 경우는 달라질 수 있다.",
-      "audience_situation_ko": "회사를 그만두면 남은 급여와 수당은 언제까지 지급돼야 하나?",
+      "title_ko": "퇴직 후 14일이 지났는데 임금을 못 받았다면",
+      "one_line_answer_ko": "지급기일 연장 합의가 없다면 퇴직으로 지급사유가 발생한 때부터 14일이 지났는지 확인하고, 미지급 항목과 증거를 붙인 서면 청구 뒤 고용노동부 진정과 민사청구를 상황에 맞게 검토한다.",
+      "audience_situation_ko": "퇴직한 지 14일이 지났는데 마지막 급여·수당이 입금되지 않았고, 회사는 다음 급여일이나 자금 사정만 말하는 경우",
       "key_points_ko": [
-        "정산 대상은 임금뿐 아니라 보상금과 그 밖의 금품을 포함할 수 있다.",
-        "14일은 회사의 급여일과 별도로 작동하는 법정 기준이다.",
-        "연장에는 특별한 사정과 당사자 합의가 요구된다."
+        "먼저 퇴직일과 지급사유 발생일을 확정해 14일이 실제로 지났는지 가른다.",
+        "회사의 다음 급여일이나 일방적인 연기 통보만으로 지급기일이 자동 연장되지는 않는다.",
+        "예외를 주장한다면 특별한 사정뿐 아니라 당사자 합의, 대상 금액과 새 지급일을 함께 확인한다.",
+        "14일 경과는 체불 대응의 출발점이며, 근로자성·미지급 금액·지급 여부는 자료로 따로 입증해야 한다."
       ],
       "action_steps_ko": [
-        "마지막 근무일과 근로관계 종료일을 확정한다.",
-        "기본급·수당·그 밖의 미정산 금품을 항목별로 계산한다.",
-        "지급기일 연장 합의가 있는지와 범위를 확인한다.",
-        "14일 경과 전후의 지급요청과 회사 답변을 기록으로 남긴다."
+        "사직서·퇴직확인 자료와 마지막 근무기록을 대조해 퇴직일을 확정하고 14일 기한을 달력에 표시한다.",
+        "근로계약서, 임금명세서, 출퇴근·연장근로 기록, 급여 입금내역과 회사 메시지를 모아 미지급 항목·금액·근거를 한 표로 정리한다.",
+        "지급기일 연장 주장이 있으면 특별한 사정, 본인의 동의, 연장 대상 금액과 새 지급일이 기록에 남아 있는지 확인한다.",
+        "14일이 지났다면 미지급 항목·합계·원래 지급기일·입금계좌·회신기한을 적은 서면을 회사에 보내고 도달 기록과 답변을 보존한다.",
+        "서면 청구 뒤에도 지급되지 않으면 같은 증거 묶음으로 관할 지방고용노동관서의 임금체불 진정을 검토한다.",
+        "회사가 금액을 다투거나 지급명령·강제집행이 필요하면 진정과 별개로 지급명령·소액사건 등 민사절차를 비교하고 청구권의 기간도 따로 확인한다."
       ],
       "facts_to_check_ko": [
-        "정확한 퇴직일",
-        "미지급 기본급",
-        "연장·야간·휴일수당",
-        "미사용 연차 관련 금품",
-        "지급기일 연장 합의 존재",
-        "합의의 내용과 기간",
-        "일부 지급 내역"
+        "사직·해고·계약종료 중 실제 근로관계가 끝난 사유와 날짜",
+        "퇴직일부터 14일이 지난 날짜",
+        "기본급·연장·야간·휴일수당 등 미지급 항목별 금액과 계산 근거",
+        "임금명세서·근로시간 기록·급여 입금내역과 일부 지급일",
+        "특별한 사정에 따른 지급기일 연장 제안과 근로자의 동의 여부",
+        "연장 합의가 대상으로 삼은 금액과 새 지급일",
+        "회사의 다음 급여일 안내·자금 사정 통보와 실제 답변 원문",
+        "서면 청구의 발송일·도달 여부와 회사의 지급 약속",
+        "사업주 또는 법인의 정확한 명칭과 사업장 주소"
       ],
-      "caution_ko": "어떤 금품이 임금인지, 퇴직일이 언제인지에 다툼이 있으면 계산 출발점도 달라진다.",
+      "caution_ko": "14일이 지났다는 사실만으로 미지급 금액이나 근로자성이 자동 확정되지는 않는다. 고용노동부 진정은 체불 확인과 시정 요구를 위한 절차이고 민사상 지급명령·판결과 강제집행을 대신하지 않으므로, 금액 다툼·사업주 재산상태·청구권 기간에 따라 경로를 나눠야 한다.",
       "search_intents_ko": [
-        "퇴직 후 임금 14일",
-        "퇴사 미지급 급여 지급기한",
-        "퇴직 금품청산"
+        "퇴사한 지 14일이 지났는데 월급이 안 들어왔어요",
+        "퇴직 후 마지막 급여를 안 주면 노동청에 언제 신고하나요",
+        "회사가 다음 월급날에 준다는데 퇴직 임금 지급기한은 언제인가요"
       ],
       "body_sections": [
         {
-          "heading_ko": "정기 급여일과 별도로 14일 기준을 본다",
+          "heading_ko": "1. 오늘이 14일 전인지 후인지 먼저 가른다",
           "paragraphs_ko": [
-            "퇴직한 근로자에게 지급할 임금·보상금과 그 밖의 금품은 원칙적으로 지급사유가 발생한 때부터 14일 이내에 청산해야 합니다. 회사의 다음 정기 급여일이 더 늦다는 사정만으로 기한이 자동 연장되지는 않습니다.",
-            "계산의 출발점이 되는 퇴직일과 정산 대상 금액부터 확정해야 합니다. 미지급 기본급, 연장·야간·휴일근로수당 등 항목별 발생 근거와 일부 지급 내역을 나눠 봅니다."
+            "근로기준법 제36조는 근로자가 퇴직한 경우 지급사유가 발생한 때부터 14일 이내에 임금·보상금과 그 밖의 모든 금품을 지급하도록 정합니다. 실제 사건에서는 사직서상 날짜, 마지막 근무일과 회사가 처리한 퇴직일이 일치하는지부터 확인합니다.",
+            "아직 14일 전이면 정산표를 요청하고 지급 예정일을 기록으로 남깁니다. 14일이 지났고 해당 금품이 지급되지 않았다면 회사의 다음 정기 급여일만 기다리지 말고 아래 증거 정리와 서면 청구로 넘어갑니다."
           ]
         },
         {
-          "heading_ko": "연장 합의는 존재와 범위를 따로 확인한다",
+          "heading_ko": "2. 늦게 주기로 합의했는지는 네 가지로 확인한다",
           "paragraphs_ko": [
-            "특별한 사정이 있는 경우 당사자 합의로 지급기일을 연장할 수 있으므로, 합의가 있었는지뿐 아니라 어떤 금액을 언제까지 지급하기로 했는지를 확인해야 합니다.",
-            "회사의 자금사정 통보, 근로자의 침묵, 명시적인 동의는 같은 것이 아닙니다. 문자·메신저·전자우편과 정산표를 보존해 합의의 존재와 범위를 구분합니다."
+            "제36조 단서는 특별한 사정이 있는 경우 당사자 사이의 합의로 기일을 연장할 수 있다고 정합니다. 따라서 특별한 사정, 근로자의 동의, 연장 대상 금액, 새 지급일이 무엇인지 각각 확인해야 합니다.",
+            "회사가 자금 사정을 알렸다는 사실, 메시지를 읽고 답하지 않은 사실과 구체적인 연장 합의는 같지 않습니다. 반대로 실제 합의가 있다면 그 범위 밖의 금품과 새 지급일이 지난 금품을 분리해 봅니다."
+          ]
+        },
+        {
+          "heading_ko": "3. 미지급액과 증거를 한 묶음으로 만든다",
+          "paragraphs_ko": [
+            "기본급, 연장·야간·휴일수당 등 항목별로 발생 기간, 계산식, 약정 지급일, 지급액과 잔액을 적습니다. 근로계약서와 임금명세서만 보지 말고 출퇴근·업무 기록, 급여 통장, 정산표와 회사 답변을 같은 순서로 붙입니다.",
+            "회사가 금액이나 근로자성을 다툴 수 있으므로 결론만 적은 요구서보다 원자료가 연결된 표가 중요합니다. 일부 입금이 있었다면 입금일과 충당된 항목을 별도로 표시해 남은 금액을 과장하지 않습니다."
+          ]
+        },
+        {
+          "heading_ko": "4. 서면 청구 뒤 진정과 민사를 목적에 맞게 나눈다",
+          "paragraphs_ko": [
+            "14일 경과 뒤 서면 청구에는 퇴직일, 미지급 항목과 합계, 원래 지급기일, 입금계좌와 회신기한을 적고 전자우편·문자·내용증명 등 도달을 확인할 수 있는 방법을 씁니다. 회사 답변과 지급 약속도 원문으로 보존합니다.",
+            "그래도 지급되지 않으면 관할 지방고용노동관서의 임금체불 진정에 같은 자료를 제출할 수 있습니다. 다만 진정만으로 민사상 집행권원이 생기는 것은 아니므로, 금액 다툼이나 실제 회수가 문제라면 지급명령·소액사건 등 민사절차와 청구권 기간을 별도로 확인합니다."
           ]
         }
       ],
@@ -663,6 +686,9 @@
           "relation_type": "remedy",
           "label_ko": "확정한 체불액의 지급명령·조정 비교"
         }
+      ],
+      "authority_binding_ids": [
+        "binding.final-wages.labor-standards.36"
       ]
     },
     {
@@ -1280,6 +1306,95 @@
       "product_roles": [
         "user_orientation",
         "concierge_entry"
+      ]
+    }
+  ],
+  "source_version_bridges": [
+    {
+      "bridge_id": "bridge.labor-standards.36.v1",
+      "source_coordinate_id": "coord.labor-wages.labor-standards-ko-0036",
+      "source_snapshot_id": "1a407952c492676358a540b100de3c04",
+      "source_version_key": "sha256:4c92bffe9903efead5eb5c62e30abf45006614e3845a555e9e8fa198cfdb1541",
+      "validation_status": "verified"
+    }
+  ],
+  "source_authority_units": [
+    {
+      "source_authority_unit_id": "unit:labor_standards_act:0036:article",
+      "version_bridge_id": "bridge.labor-standards.36.v1",
+      "source_coordinate_id": "coord.labor-wages.labor-standards-ko-0036",
+      "source_snapshot_id": "1a407952c492676358a540b100de3c04",
+      "source_version_key": "sha256:4c92bffe9903efead5eb5c62e30abf45006614e3845a555e9e8fa198cfdb1541",
+      "unit_kind": "article",
+      "locator": {
+        "article_no": "0036"
+      },
+      "locator_key": "a36",
+      "ordinal": 0,
+      "official_text_ko": "제36조(금품 청산) 사용자는 근로자가 사망 또는 퇴직한 경우에는 그 지급 사유가 발생한 때부터 14일 이내에 임금, 보상금, 그 밖의 모든 금품을 지급하여야 한다. 다만, 특별한 사정이 있을 경우에는 당사자 사이의 합의에 의하여 기일을 연장할 수 있다.",
+      "official_text_hash": "4c92bffe9903efead5eb5c62e30abf45006614e3845a555e9e8fa198cfdb1541",
+      "validation_status": "verified"
+    }
+  ],
+  "authority_reading_units": [
+    {
+      "authority_reading_unit_id": "authority.labor-standards.36.v1",
+      "title_ko": "퇴직 뒤 금품청산 기한과 합의 예외",
+      "route_key": {
+        "law_key": "labor-standards-act",
+        "article_no": "0036"
+      },
+      "source_coordinate_id": "coord.labor-wages.labor-standards-ko-0036",
+      "source_snapshot_id": "1a407952c492676358a540b100de3c04",
+      "source_version_key": "sha256:4c92bffe9903efead5eb5c62e30abf45006614e3845a555e9e8fa198cfdb1541",
+      "time_state": "current_as_of_review",
+      "effective_from": "2025-10-23T00:00:00.000Z",
+      "summary_ko": "퇴직 등으로 지급사유가 발생한 때부터 14일 이내 지급이라는 원칙과 특별한 사정·당사자 합의에 따른 기일 연장 예외를 함께 읽습니다.",
+      "anchors": [
+        {
+          "anchor_id": "anchor.labor-standards.36.article",
+          "source_authority_unit_id": "unit:labor_standards_act:0036:article",
+          "locator_key": "a36",
+          "official_text_hash": "4c92bffe9903efead5eb5c62e30abf45006614e3845a555e9e8fa198cfdb1541",
+          "plain_heading_ko": "퇴직 뒤 14일 지급 원칙과 합의 예외",
+          "explanation_ko": "퇴직일·미지급 금품·14일 경과와 특별한 사정에 따른 지급기일 연장 합의를 한 문언에서 함께 확인합니다."
+        }
+      ],
+      "logical_groups": [
+        {
+          "logical_group_id": "group.final-wages.36.deadline-and-exception",
+          "role": "requirement",
+          "operator": "all",
+          "title_ko": "지급사유·14일·합의 예외 확인",
+          "ordinal": 0,
+          "anchor_ids": [
+            "anchor.labor-standards.36.article"
+          ]
+        }
+      ],
+      "explanation_paragraphs": [
+        {
+          "explanation_paragraph_id": "paragraph.final-wages.36.deadline-and-exception",
+          "text_ko": "퇴직으로 지급사유가 발생한 날짜와 미지급 금품을 먼저 확정하고 14일 경과를 계산합니다. 연장 주장이 있으면 특별한 사정과 당사자 합의, 대상 금액과 새 지급일을 확인하되, 이 문언만으로 개별 금액이나 근로자성이 확정된다고 과장하지 않습니다.",
+          "logical_group_id": "group.final-wages.36.deadline-and-exception",
+          "anchor_ids": [
+            "anchor.labor-standards.36.article"
+          ]
+        }
+      ],
+      "citation_edges": [],
+      "editorial_status": "approved"
+    }
+  ],
+  "authority_bindings": [
+    {
+      "binding_id": "binding.final-wages.labor-standards.36",
+      "from_kind": "content",
+      "from_id": "content.final-wages-after-retirement-14-days",
+      "to_kind": "authority_reading_unit",
+      "to_authority_reading_unit_id": "authority.labor-standards.36.v1",
+      "anchor_ids": [
+        "anchor.labor-standards.36.article"
       ]
     }
   ]
