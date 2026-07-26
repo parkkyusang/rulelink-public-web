@@ -2618,6 +2618,9 @@ export async function inspectMigrationCommit(commitSha, io = {}) {
       is_first_parent_ancestor: false,
       is_head: false,
       evidence_is_direct_first_parent_child: false,
+      eligible_evidence_child_count: 0,
+      direct_child_commits: [],
+      eligible_evidence_child_commits: [],
       shallow,
       changed_files: [],
     };
@@ -2628,9 +2631,15 @@ export async function inspectMigrationCommit(commitSha, io = {}) {
   } catch {
     isAncestor = false;
   }
-  const [headResult, firstParentResult] = await Promise.all([
+  const [headResult, firstParentResult, ancestryResult] = await Promise.all([
     runGitCommand(['rev-parse', 'HEAD'], io),
     runGitCommand(['rev-list', '--first-parent', 'HEAD'], io),
+    isAncestor
+      ? runGitCommand(
+        ['rev-list', '--ancestry-path', '--parents', `${commitSha}..HEAD`],
+        io,
+      )
+      : Promise.resolve({stdout: ''}),
   ]);
   const firstParentHistory = String(firstParentResult.stdout || '')
     .split(/\r?\n/u)
@@ -2638,9 +2647,15 @@ export async function inspectMigrationCommit(commitSha, io = {}) {
     .filter(Boolean);
   const migrationIndex = firstParentHistory.indexOf(commitSha);
   const isFirstParentAncestor = migrationIndex >= 0;
-  const evidenceCommitSha = migrationIndex > 0
-    ? firstParentHistory[migrationIndex - 1]
-    : '';
+  const directChildren = String(ancestryResult.stdout || '')
+    .split(/\r?\n/u)
+    .map(value => value.trim())
+    .filter(Boolean)
+    .map(value => {
+      const [sha, ...parents] = value.split(/\s+/u);
+      return {sha, parents};
+    })
+    .filter(({parents}) => parents.includes(commitSha));
   let changedFiles = [];
   try {
     const firstParent = await runGitCommand(['rev-parse', `${commitSha}^1`], io);
@@ -2656,31 +2671,51 @@ export async function inspectMigrationCommit(commitSha, io = {}) {
     );
     changedFiles = String(changedResult.stdout || '').split(/\r?\n/u).filter(Boolean);
   }
-  let evidenceChangedFiles = [];
+  const allowedEvidenceFiles = new Set([
+    'artifacts/publication/production-queue.json',
+    'artifacts/publication/production-queue-registry.json',
+  ]);
+  const directChildEvidence = [];
+  for (const child of directChildren) {
+    const changedResult = await runGitCommand(
+      ['diff', '--name-only', commitSha, child.sha],
+      io,
+    );
+    const childChangedFiles = String(changedResult.stdout || '')
+      .split(/\r?\n/u)
+      .filter(Boolean);
+    const isSingleParentChild =
+      child.parents.length === 1 && child.parents[0] === commitSha;
+    const isEligible =
+      isSingleParentChild
+      && childChangedFiles.includes('artifacts/publication/production-queue.json')
+      && childChangedFiles.every(file => allowedEvidenceFiles.has(file));
+    directChildEvidence.push({
+      ...child,
+      changed_files: childChangedFiles,
+      is_single_parent_child: isSingleParentChild,
+      is_eligible: isEligible,
+    });
+  }
+  const eligibleEvidenceChildren = directChildEvidence.filter(child => child.is_eligible);
+  const selectedEvidenceChild = eligibleEvidenceChildren.length === 1
+    ? eligibleEvidenceChildren[0]
+    : (directChildEvidence.length === 1 ? directChildEvidence[0] : null);
+  const evidenceCommitSha = selectedEvidenceChild?.sha || '';
+  let evidenceChangedFiles = selectedEvidenceChild?.changed_files || [];
   let evidenceMergeCommits = [];
   let evidenceCommitCount = 0;
-  let evidenceIsDirectFirstParentChild = false;
-  if (evidenceCommitSha) {
+  let evidenceIsDirectFirstParentChild =
+    selectedEvidenceChild?.is_single_parent_child === true;
+  if (selectedEvidenceChild) {
     const [
-      evidenceParentResult,
-      evidenceChangedResult,
       evidenceMergeResult,
       evidenceCommitCountResult,
     ] =
       await Promise.all([
-        runGitCommand(['rev-parse', `${evidenceCommitSha}^1`], io),
-        runGitCommand(
-          ['diff', '--name-only', commitSha, evidenceCommitSha],
-          io,
-        ),
         runGitCommand(['rev-list', '--merges', `${commitSha}..${evidenceCommitSha}`], io),
         runGitCommand(['rev-list', '--count', `${commitSha}..${evidenceCommitSha}`], io),
       ]);
-    evidenceIsDirectFirstParentChild =
-      String(evidenceParentResult.stdout || '').trim() === commitSha;
-    evidenceChangedFiles = String(evidenceChangedResult.stdout || '')
-      .split(/\r?\n/u)
-      .filter(Boolean);
     evidenceMergeCommits = String(evidenceMergeResult.stdout || '')
       .split(/\r?\n/u)
       .filter(Boolean);
@@ -2695,6 +2730,9 @@ export async function inspectMigrationCommit(commitSha, io = {}) {
     is_first_parent_ancestor: isFirstParentAncestor,
     is_head: String(headResult.stdout || '').trim() === commitSha,
     evidence_is_direct_first_parent_child: evidenceIsDirectFirstParentChild,
+    eligible_evidence_child_count: eligibleEvidenceChildren.length,
+    direct_child_commits: directChildEvidence.map(child => child.sha),
+    eligible_evidence_child_commits: eligibleEvidenceChildren.map(child => child.sha),
     shallow,
     changed_files: changedFiles,
     evidence_commit_sha: evidenceCommitSha,
@@ -3363,12 +3401,14 @@ export function validateProductionQueue(
           errors.push(`${label}.migration_commit_sha가 실제 Git 커밋으로 존재하지 않습니다.${shallowHint}`);
         } else {
           if (!commitEvidence.is_ancestor) errors.push(`${label}.migration_commit_sha가 현재 HEAD 이력에 없습니다.`);
-          if (!commitEvidence.is_first_parent_ancestor) {
-            errors.push(`${label}.migration_commit_sha는 현재 HEAD의 first-parent 이력에 있어야 합니다.`);
-          }
           if (commitEvidence.is_head) errors.push(`${label}.migration_commit_sha는 queue 증거를 기록하는 후속 커밋보다 앞선 데이터 이관 커밋이어야 합니다.`);
+          if (commitEvidence.eligible_evidence_child_count !== 1) {
+            errors.push(
+              `${label}.migration_commit_sha의 현재 HEAD ancestry에는 queue/registry만 변경하는 단일-parent 직접 증거 자식이 정확히 1개여야 합니다.`,
+            );
+          }
           if (!commitEvidence.evidence_is_direct_first_parent_child) {
-            errors.push(`${label}.queue 증거 커밋은 migration_commit_sha의 직접 first-parent 자식이어야 합니다.`);
+            errors.push(`${label}.queue 증거 커밋은 migration_commit_sha만 부모로 갖는 직접 자식이어야 합니다.`);
           }
           const changedFiles = new Set(commitEvidence.changed_files || []);
           const requiredFiles = [
@@ -3393,17 +3433,17 @@ export function validateProductionQueue(
             'artifacts/publication/production-queue-registry.json',
           ]);
           if (!evidenceChangedFiles.has('artifacts/publication/production-queue.json')) {
-            errors.push(`${label}.migration_commit_sha의 첫 후속 커밋은 production-queue.json을 변경하는 queue 증거 커밋이어야 합니다.`);
+            errors.push(`${label}.migration_commit_sha의 직접 증거 자식은 production-queue.json을 변경해야 합니다.`);
           }
           if (commitEvidence.evidence_commit_count !== 1) {
-            errors.push(`${label}.migration_commit_sha부터 첫 queue 증거까지는 정확히 1개 커밋이어야 합니다.`);
+            errors.push(`${label}.migration_commit_sha부터 queue 증거까지는 정확히 1개 커밋이어야 합니다.`);
           }
           if ((commitEvidence.evidence_merge_commits || []).length > 0) {
-            errors.push(`${label}.migration_commit_sha의 첫 queue 증거 커밋은 merge 커밋일 수 없습니다.`);
+            errors.push(`${label}.migration_commit_sha의 queue 증거 커밋은 merge 커밋일 수 없습니다.`);
           }
           for (const changedFile of evidenceChangedFiles) {
             if (!allowedEvidenceFiles.has(changedFile)) {
-              errors.push(`${label}.migration_commit_sha의 첫 queue 증거 커밋이 허용되지 않은 파일을 변경했습니다: ${changedFile}`);
+              errors.push(`${label}.migration_commit_sha의 queue 증거 커밋이 허용되지 않은 파일을 변경했습니다: ${changedFile}`);
             }
           }
         }
