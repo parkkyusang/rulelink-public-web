@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20260726-021",
+  "release_id": "production-20260726-022",
   "snapshot_id": "kr-knowledge-core-20260723-023",
-  "requested_at": "2026-07-26T03:47:10.240Z",
-  "summary_ko": "승인된 snapshot 023을 유지하면서 내부 식별자를 숨기고 검증된 조문 원문과 근거 중심 최신성 구조를 운영에 배포한다."
+  "requested_at": "2026-07-26T04:40:00.533Z",
+  "summary_ko": "공식 원문 링크의 새 탭 문구를 익숙한 외부 링크 아이콘으로 교체하고 접근성 의미를 유지한다."
 }
