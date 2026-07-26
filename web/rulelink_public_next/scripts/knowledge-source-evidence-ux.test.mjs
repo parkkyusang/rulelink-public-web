@@ -22,9 +22,12 @@ test('복수 공식 근거 카드는 모두 접힌 상태로 시작하고 fragme
 test('문언 표시 여부를 카드 제목에서 구분하고 사용자에게 내부 구현 문구를 노출하지 않는다', async () => {
   const component = await readFile(componentUrl, 'utf8');
 
-  assert.match(component, /sourceText \? '조문 문언 포함' : '공식 원문에서 확인'/u);
-  assert.match(component, /확인한 조문은 카드 안에서 바로 읽을 수 있습니다/u);
-  assert.match(component, /이 자료의 원문은 아래 공식 사이트에서 확인할 수 있습니다/u);
+  assert.match(
+    component,
+    /sourceText \? '페이지에서 조문 보기' : '공식 사이트에서 원문 보기'/u,
+  );
+  assert.match(component, /정확한 조문 문언을 대조해 둔 자료는 페이지 안에 함께 보여드리고/u);
+  assert.match(component, /아래 링크를 열면 이 근거의 공식 원문을 확인할 수 있습니다/u);
   assert.doesNotMatch(component, /페이지 안에 문언을 옮겨 싣지 않고/u);
   assert.doesNotMatch(component, /별도 답변 패킷|패킷 검증 상태/u);
 });

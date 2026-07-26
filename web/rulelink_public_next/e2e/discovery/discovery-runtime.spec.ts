@@ -467,9 +467,9 @@ test('상세의 모든 공식 근거는 확인한 문언 또는 공식 원문 �
     await expect(linkOnly.first()).toBeHidden();
     await linkOnly.first().locator('xpath=ancestor::article[1]/details/summary').click();
     await expect(linkOnly.first()).toBeVisible();
-    await expect(linkOnly.first()).toContainText('공식 원문에서 확인');
+    await expect(linkOnly.first()).toContainText('공식 사이트에서 원문 보기');
     await expect(linkOnly.first()).toContainText(
-      '아래 공식 사이트에서 확인할 수 있습니다.',
+      '아래 링크를 열면 이 근거의 공식 원문을 확인할 수 있습니다.',
     );
     await assertEverySourceHasOneDisplayState(page);
     await assertNoHorizontalOverflow(page);

@@ -205,7 +205,7 @@ test('사용자 화면은 내부 스냅샷·패킷 용어 대신 검증된 조�
   assert.match(component, /<p>\{sourceText\}<\/p>/u);
   assert.match(component, /data-source-text-state="verified_text"/u);
   assert.match(component, /data-source-text-state="link_only"/u);
-  assert.match(component, /공식 원문에서 확인/u);
+  assert.match(component, /공식 사이트에서 원문 보기/u);
   assert.match(authority, /이 글의 판단에 사용한 조문을 항·호별로 확인합니다/u);
   assert.doesNotMatch(authority, /결박|패킷|스냅샷|원장 식별자/u);
   assert.match(page, /maintenance\?\.next_check_at/u);
