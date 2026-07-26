@@ -1,18 +1,18 @@
 {
   "schema": "rulelink_public_source_text_library_v1",
-  "generated_at": "2026-07-25T15:00:00.000Z",
-  "publication_snapshot_id": "kr-knowledge-core-20260723-023",
-  "publication_bundle_sha256": "014287529cc73e076bab39d269d5511672154baeb61709d7c30f4873a0c5cf1f",
+  "generated_at": "2026-07-26T09:29:42.000Z",
+  "publication_snapshot_id": "kr-knowledge-core-20260726-024",
+  "publication_bundle_sha256": "06e1fdf74c69b25feab9bda57163bc01c42af709ab84f5196fb5a359a4664886",
   "source_ledger": {
     "kind": "active_sqlite_export",
     "database_sha256": "f2023894041d32bb46c0b5354a624a0065d442612408cc15a219aff413dfc1fb",
-    "exported_at": "2026-07-25T15:00:00.000Z"
+    "exported_at": "2026-07-26T09:29:42.000Z"
   },
   "coverage": {
-    "publication_statute_coordinates": 407,
+    "publication_statute_coordinates": 410,
     "bound_statute_coordinates": 233,
     "unique_verified_texts": 205,
-    "unresolved_statute_coordinates": 174
+    "unresolved_statute_coordinates": 177
   },
   "texts": [
     {
@@ -4035,6 +4035,18 @@
     },
     {
       "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
+      "reason": "ledger_version_mismatch"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+      "reason": "ledger_version_mismatch"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0032",
+      "reason": "ledger_version_mismatch"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0034",
       "reason": "ledger_version_mismatch"
     },
     {

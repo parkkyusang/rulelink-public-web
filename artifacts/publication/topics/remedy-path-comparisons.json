@@ -1,6 +1,6 @@
 {
-  "schema":"rulelink_public_knowledge_topic_v1",
   "topic_id":"hub.remedy-path-comparisons",
+  "schema":"rulelink_public_knowledge_topic_v1",
   "sources":[
     {"coordinate_id":"coord.remedy-path-comparisons.administrative-appeals-ko-0005","source_id":"administrative_appeals_ko_0005","law_name_ko":"행정심판법","article_no":"제5조","official_url":"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%96%89%EC%A0%95%EC%8B%AC%ED%8C%90%EB%B2%95/%EC%A0%9C5%EC%A1%B0","source_snapshot_id":"snapshot:e30fa19faa3416fb063164bbdc6b255e","last_verified_at":"2026-07-21T14:20:00+00:00"},
     {"coordinate_id":"coord.remedy-path-comparisons.administrative-appeals-ko-0027","source_id":"administrative_appeals_ko_0027","law_name_ko":"행정심판법","article_no":"제27조","official_url":"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%96%89%EC%A0%95%EC%8B%AC%ED%8C%90%EB%B2%95/%EC%A0%9C27%EC%A1%B0","source_snapshot_id":"snapshot:a2b31dd4fe9025236fb7a0d2297346ee","last_verified_at":"2026-07-21T14:20:00+00:00"},

@@ -848,19 +848,7 @@
         "content.content-certified-demand-needs-followup",
         "content.payment-order-objection-two-weeks",
         "content.documents-that-allow-compulsory-enforcement"
-      ],
-      "lawyer_workspace_entry": {
-        "question_ko": "지급명령은 금전청구와 송달 가능성을 먼저 봅니다",
-        "decision_facts_ko": [
-          "청구금액",
-          "채무자 주소",
-          "변제기",
-          "송금내역",
-          "채무 인정 자료"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      ]
     },
     {
       "content_id": "content.payment-order-objection-two-weeks",
@@ -1133,20 +1121,48 @@
       "related_content_ids": [
         "content.documents-that-allow-compulsory-enforcement",
         "content.wage-and-protected-claim-seizure",
-        "content.property-disclosure-when-assets-unknown"
+        "content.property-disclosure-when-assets-unknown",
+        "content.why-attorney-workspace-is-gated"
       ],
       "lawyer_workspace_entry": {
         "question_ko": "통장압류는 은행에 대한 예금채권을 특정해 진행합니다",
-        "decision_facts_ko": [
-          "집행권원",
-          "은행명",
-          "채무자 식별정보",
-          "청구액",
-          "선행 압류·잔액"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.debt-enforcement.third-party-claim-known"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.documents-that-allow-compulsory-enforcement",
+          "relation_type": "prerequisite",
+          "label_ko": "예금압류 전 집행권원 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.wage-and-protected-claim-seizure",
+          "relation_type": "comparison",
+          "label_ko": "예금채권과 급여채권 압류 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.property-disclosure-when-assets-unknown",
+          "relation_type": "procedure",
+          "label_ko": "재산을 모르면 재산명시로 이동"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
+        }
+      ]
     },
     {
       "content_id": "content.wage-and-protected-claim-seizure",
@@ -1350,20 +1366,48 @@
       "related_content_ids": [
         "content.judgment-debt-limitation-ten-years",
         "content.documents-that-allow-compulsory-enforcement",
-        "content.bank-account-seizure-and-collection-order"
+        "content.bank-account-seizure-and-collection-order",
+        "content.why-attorney-workspace-is-gated"
       ],
       "lawyer_workspace_entry": {
         "question_ko": "집행권원은 있는데 재산을 모르면 재산명시를 검토합니다",
-        "decision_facts_ko": [
-          "집행권원 종류",
-          "집행 가능 상태",
-          "채무자 주소",
-          "알고 있는 재산",
-          "기존 집행 결과"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.debt-enforcement.property-unknown"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.judgment-debt-limitation-ten-years",
+          "relation_type": "deadline",
+          "label_ko": "판결채권 시효 안에 재산명시"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.documents-that-allow-compulsory-enforcement",
+          "relation_type": "prerequisite",
+          "label_ko": "재산명시 전 집행권원 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.bank-account-seizure-and-collection-order",
+          "relation_type": "procedure",
+          "label_ko": "확인한 예금채권 압류·추심"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
+        }
+      ]
     },
     {
       "content_id": "content.fraudulent-transfer-before-enforcement",

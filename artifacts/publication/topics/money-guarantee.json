@@ -477,22 +477,17 @@
       "related_content_ids": [
         "content.loan-proof-vs-enforceable-title",
         "content.loan-and-guarantee-evidence-checklist",
-        "content.when-payment-order-fits"
+        "content.when-payment-order-fits",
+        "content.why-attorney-workspace-is-gated"
       ],
       "lawyer_workspace_entry": {
         "question_ko": "돈을 송금하면 자동으로 대여금이 되나",
-        "decision_facts_ko": [
-          "송금일과 금액",
-          "송금 전 요청 내용",
-          "반환 약속",
-          "변제기",
-          "이자 약정",
-          "당사자 관계",
-          "돈의 사용 목적",
-          "일부변제 여부"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.money-guarantee.sc-transfer-gift-dispute"
+        ],
+        "gate_id": "verified_attorney_v1"
       },
       "related_edges": [
         {
@@ -512,9 +507,19 @@
           "target_id": "content.when-payment-order-fits",
           "relation_type": "remedy",
           "label_ko": "지급명령 선택 기준"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
         }
       ],
-      "concept_ids": []
+      "concept_ids": [],
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ]
     },
     {
       "content_id": "content.loan-without-written-note",
@@ -870,22 +875,17 @@
       ],
       "related_content_ids": [
         "content.contractual-interest-vs-default-damages",
-        "content.loan-and-guarantee-evidence-checklist"
+        "content.loan-and-guarantee-evidence-checklist",
+        "content.why-attorney-workspace-is-gated"
       ],
       "lawyer_workspace_entry": {
         "question_ko": "일부만 갚았을 때 원금이 얼마나 남았나",
-        "decision_facts_ko": [
-          "대여 건수",
-          "각 원금",
-          "각 변제기",
-          "약정 이자",
-          "비용",
-          "일부변제일·금액",
-          "충당 지정",
-          "즉시 이의 여부"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.money-guarantee.sc-partial-payment"
+        ],
+        "gate_id": "verified_attorney_v1"
       },
       "related_edges": [
         {
@@ -899,9 +899,19 @@
           "target_id": "content.loan-and-guarantee-evidence-checklist",
           "relation_type": "procedure",
           "label_ko": "입금·충당 증거 점검"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
         }
       ],
-      "concept_ids": []
+      "concept_ids": [],
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ]
     },
     {
       "content_id": "content.guarantee-by-message-validity",
@@ -1154,22 +1164,17 @@
       "related_content_ids": [
         "content.continuing-guarantee-maximum-amount",
         "content.loan-obligation-vs-guarantee-obligation",
-        "content.loan-and-guarantee-evidence-checklist"
+        "content.loan-and-guarantee-evidence-checklist",
+        "content.why-attorney-workspace-is-gated"
       ],
       "lawyer_workspace_entry": {
         "question_ko": "보증인은 원금만 갚으면 되는가",
-        "decision_facts_ko": [
-          "보증서 문언",
-          "보증 원금",
-          "최고액",
-          "약정이자",
-          "지연손해금",
-          "위약금",
-          "주채무 변경",
-          "일부변제"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.money-guarantee.sc-continuing-guarantee"
+        ],
+        "gate_id": "verified_attorney_v1"
       },
       "related_edges": [
         {
@@ -1189,9 +1194,19 @@
           "target_id": "content.loan-and-guarantee-evidence-checklist",
           "relation_type": "procedure",
           "label_ko": "보증 범위 증거 점검"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
         }
       ],
-      "concept_ids": []
+      "concept_ids": [],
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ]
     },
     {
       "content_id": "content.content-certified-letter-prescription",
@@ -1380,25 +1395,20 @@
         "content.bank-transfer-loan-or-gift",
         "content.loan-proof-vs-enforceable-title",
         "content.when-payment-order-fits",
-        "content.provisional-attachment-before-judgment"
+        "content.provisional-attachment-before-judgment",
+        "content.why-attorney-workspace-is-gated"
       ],
       "lawyer_workspace_entry": {
         "question_ko": "대여금·보증 분쟁 증거 체크리스트",
-        "decision_facts_ko": [
-          "채권자·채무자 정보",
-          "원금",
-          "송금일",
-          "반환 합의",
-          "변제기",
-          "이자",
-          "보증인·보증서",
-          "최고액",
-          "일부변제",
-          "독촉·도달",
-          "시효 기산점"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.money-guarantee.sc-no-note",
+          "scenario.money-guarantee.sc-partial-payment",
+          "scenario.money-guarantee.sc-continuing-guarantee",
+          "scenario.money-guarantee.sc-content-certified-demand"
+        ],
+        "gate_id": "verified_attorney_v1"
       },
       "related_edges": [
         {
@@ -1424,9 +1434,19 @@
           "target_id": "content.provisional-attachment-before-judgment",
           "relation_type": "remedy",
           "label_ko": "판결 전 보전처분"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
         }
       ],
-      "concept_ids": []
+      "concept_ids": [],
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ]
     }
   ],
   "concept_link_candidates": [

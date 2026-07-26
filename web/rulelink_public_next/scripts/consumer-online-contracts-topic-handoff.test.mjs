@@ -175,9 +175,16 @@ test('10개 글의 타입 관계와 기존 related_content_ids 투영을 정확�
     const entry = entries.get(contentId);
     assert.ok(entry, contentId);
     assert.ok(Array.isArray(entry.related_edges) && entry.related_edges.length > 0, `${contentId}: 타입 관계가 없습니다.`);
+    const expectedWithWorkspaceBoundary = entry.lawyer_workspace_entry
+      ? [...expected, [
+        'content.why-attorney-workspace-is-gated',
+        'concierge_boundary',
+        '변호사 전용 작업공간의 자격 경계 확인',
+      ]]
+      : expected;
     assert.deepEqual(
       entry.related_edges.map(edge => [edge.target_id, edge.relation_type, edge.label_ko]),
-      expected,
+      expectedWithWorkspaceBoundary,
       contentId,
     );
 
@@ -280,12 +287,16 @@ test('미래 검토시각과 일반인 변호사 연결을 추가하지 않는�
     assert.equal(entry.reviewed_at, '2026-07-21T08:30:00+00:00', `${entry.content_id}: 검토시각 변경`);
     assert.ok(Date.parse(entry.reviewed_at) <= now, `${entry.content_id}: 미래 검토시각`);
     assert.ok(!Object.hasOwn(entry, 'cta'), `${entry.content_id}: CTA 추가 금지`);
-    assert.ok(!Object.hasOwn(entry, 'product_roles'), `${entry.content_id}: 제품 역할 변경 금지`);
+    if (entry.content_id === 'content.online-contract-evidence-checklist') {
+      assert.ok(!Object.hasOwn(entry, 'product_roles'), `${entry.content_id}: 일반 체크리스트 CTA 숨김`);
+      assert.ok(!Object.hasOwn(entry, 'lawyer_workspace_entry'), `${entry.content_id}: 일반 체크리스트 작업공간 링크 숨김`);
+    }
     assert.ok(!Object.hasOwn(entry, 'gate_id'), `${entry.content_id}: 게이트 변경 금지`);
     if (entry.lawyer_workspace_entry) {
+      assert.deepEqual(entry.product_roles, ['user_orientation', 'concierge_entry']);
       assert.equal(entry.lawyer_workspace_entry.href, '/ko/lawyer-workspace');
       assert.equal(entry.lawyer_workspace_entry.audience, 'verified_attorney');
-      assert.ok(!Object.hasOwn(entry.lawyer_workspace_entry, 'gate_id'), `${entry.content_id}: 게이트 변경 금지`);
+      assert.equal(entry.lawyer_workspace_entry.gate_id, 'verified_attorney_v1');
     }
   }
 });

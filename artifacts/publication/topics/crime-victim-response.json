@@ -140,20 +140,67 @@
     {
       "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
       "source_id": "litigation_promotion_special_ko_0025",
+      "source_kind": "statute",
+      "law_key": "litigation-promotion-special",
       "law_name_ko": "소송촉진 등에 관한 특례법",
       "article_no": "제25조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%86%A1%EC%B4%89%EC%A7%84%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C25%EC%A1%B0",
-      "source_snapshot_id": "snapshot:50983dddba9cd06682339ba8c6b33d9a",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+      "source_version_key": "sha256:73dbf4890bd58c0d7c31309cb82edc4477f03d3c0c67389ab60fc082bec31f1e",
+      "official_url_http_status": 200,
+      "last_verified_at": "2026-07-24T00:00:00+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
       "source_id": "litigation_promotion_special_ko_0026",
+      "source_kind": "statute",
+      "law_key": "litigation-promotion-special",
       "law_name_ko": "소송촉진 등에 관한 특례법",
       "article_no": "제26조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%86%A1%EC%B4%89%EC%A7%84%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C26%EC%A1%B0",
-      "source_snapshot_id": "snapshot:33b1a9b966387025275a6c4531a08027",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "bb35446950761affb71d6c804d4dd5f8",
+      "source_version_key": "sha256:71db765102e3dc36c200b1193471ee9e24953832465712c14a87437c32398c19",
+      "official_url_http_status": 200,
+      "last_verified_at": "2026-07-24T00:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+      "source_id": "litigation_promotion_special_ko_0031",
+      "source_kind": "statute",
+      "law_key": "litigation-promotion-special",
+      "law_name_ko": "소송촉진 등에 관한 특례법",
+      "article_no": "제31조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%86%A1%EC%B4%89%EC%A7%84%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C31%EC%A1%B0",
+      "source_snapshot_id": "9af4e46708641c88dc39ec6af514632c",
+      "source_version_key": "sha256:962b756d582d502320315a5279a7bc2e4cb691339e38f52f04e62df537d5cdfe",
+      "official_url_http_status": 200,
+      "last_verified_at": "2026-07-24T00:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0032",
+      "source_id": "litigation_promotion_special_ko_0032",
+      "source_kind": "statute",
+      "law_key": "litigation-promotion-special",
+      "law_name_ko": "소송촉진 등에 관한 특례법",
+      "article_no": "제32조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%86%A1%EC%B4%89%EC%A7%84%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C32%EC%A1%B0",
+      "source_snapshot_id": "c7d70e140addfb2e580cb419da25eec6",
+      "source_version_key": "sha256:b5827a9f6978452137104457762399b9ef44ab1097d5bed51a9c948e897dacd9",
+      "official_url_http_status": 200,
+      "last_verified_at": "2026-07-24T00:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0034",
+      "source_id": "litigation_promotion_special_ko_0034",
+      "source_kind": "statute",
+      "law_key": "litigation-promotion-special",
+      "law_name_ko": "소송촉진 등에 관한 특례법",
+      "article_no": "제34조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%86%A1%EC%B4%89%EC%A7%84%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C34%EC%A1%B0",
+      "source_snapshot_id": "c8776a4473237b3cf5c8ea85c7dc7076",
+      "source_version_key": "sha256:37a259a2f30f0b86dbed16b017b6548e92dc0556d69173da52e45dc928e17992",
+      "official_url_http_status": 200,
+      "last_verified_at": "2026-07-24T00:00:00+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.civil-act-ko-0751",
@@ -344,7 +391,7 @@
     {
       "rule_id": "rule.crime-victim-response.crime-victim-10",
       "title_ko": "형사재판에서 배상명령으로 어떤 손해를 받을 수 있나요",
-      "proposition_ko": "법이 정한 대상 범죄의 유죄판결 절차에서는 직접적인 물적 피해, 치료비 손해와 위자료 또는 합의된 손해배상액에 대해 배상명령을 신청할 수 있습니다.",
+      "proposition_ko": "기소된 죄가 배상명령 대상인지, 청구액이 범죄행위로 생긴 직접 물적 피해·치료비·위자료인지, 피해액과 책임범위가 자료로 특정되는지를 확인합니다.",
       "norm": {
         "actor_ko": "배상명령 대상 손해를 청구하려는 범죄피해자",
         "conditions_ko": "별도 민사소송 없이 치료비·위자료를 청구하고 싶습니다.",
@@ -357,7 +404,7 @@
     {
       "rule_id": "rule.crime-victim-response.crime-victim-11",
       "title_ko": "배상명령은 언제, 어느 법원에 어떻게 신청하나요",
-      "proposition_ko": "피해자는 제1심 또는 제2심 공판의 변론 종결 전까지 사건이 계속된 법원에 신청서와 피고인 수만큼의 부본, 필요한 증거서류를 제출할 수 있습니다.",
+      "proposition_ko": "현재 심급, 변론종결 여부, 사건 계속 법원, 피고인 수, 신청서의 배상 대상·금액 기재와 증거서류 준비 여부를 확인합니다.",
       "norm": {
         "actor_ko": "배상명령 신청을 준비하는 범죄피해자",
         "conditions_ko": "형사사건이 재판 중인데 신청시기를 놓칠까 걱정됩니다.",
@@ -365,6 +412,47 @@
       },
       "source_coordinate_ids": [
         "coord.crime-victim-response.litigation-promotion-special-ko-0026"
+      ]
+    },
+    {
+      "rule_id": "rule.crime-victim-response.compensation-order-agreed-amount",
+      "title_ko": "형사합의에서 정한 손해배상액도 배상명령 대상이 되나요",
+      "proposition_ko": "피고인과 피해자 사이에 손해배상액이 합의되었는지와 합의서에 금액·지급범위가 특정되어 있는지를 확인합니다.",
+      "norm": {
+        "actor_ko": "형사합의에서 정한 금액의 배상명령을 구하는 범죄피해자",
+        "conditions_ko": "합의된 손해배상액과 합의서의 범위가 특정되어 있습니다.",
+        "legal_effect_ko": "대상 범죄 여부와 별개로 피고인과 피해자가 합의한 손해배상액은 법원이 배상명령으로 명할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0025"
+      ]
+    },
+    {
+      "rule_id": "rule.crime-victim-response.compensation-order-dismissal",
+      "title_ko": "배상명령 신청이 각하되는 경우는 무엇인가요",
+      "proposition_ko": "신청의 적법성, 대상 범죄와 손해범위, 피해액 특정 여부, 배상책임·범위의 명백성, 형사재판 지연 우려를 확인합니다.",
+      "norm": {
+        "actor_ko": "배상명령 각하 위험을 확인하는 범죄피해자",
+        "conditions_ko": "배상신청의 요건이나 손해액·책임범위가 불명확하거나 형사절차에서 심리하기 곤란합니다.",
+        "legal_effect_ko": "신청이 부적법하거나 이유 없거나 배상명령이 타당하지 않으면 법원은 결정으로 신청을 각하하며, 신청인은 그 각하나 일부 인용 재판에 불복하거나 동일 신청을 다시 할 수 없습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0032"
+      ]
+    },
+    {
+      "rule_id": "rule.crime-victim-response.compensation-order-judgment-enforcement",
+      "title_ko": "배상명령을 받으면 바로 강제집행할 수 있나요",
+      "proposition_ko": "유죄판결과 동시에 배상명령이 선고되었는지, 판결서 정본에 배상 대상·금액과 가집행선고가 기재되었는지, 명령이 확정되었는지를 확인합니다.",
+      "norm": {
+        "actor_ko": "배상명령 판결서로 강제집행을 준비하는 범죄피해자",
+        "conditions_ko": "확정된 배상명령 또는 가집행선고가 있는 배상명령이 유죄판결서 정본에 기재되어 있습니다.",
+        "legal_effect_ko": "그 판결서 정본은 강제집행에서 집행력 있는 민사판결 정본과 같은 효력이 있고, 확정된 인용금액 범위에서는 다른 절차로 중복 청구할 수 없습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0034"
       ]
     },
     {
@@ -526,9 +614,9 @@
     {
       "scenario_id": "scenario.crime-victim-response.crime-victim-10",
       "question_ko": "별도 민사소송 없이 치료비·위자료를 청구하고 싶습니다.",
-      "decision_fact_ko": "기소 죄명",
+      "decision_fact_ko": "기소 죄명과 직접 손해항목이 제25조의 대상·범위에 들어가고 금액과 책임범위가 특정되는지",
       "when_true_ko": "법이 정한 대상 범죄의 유죄판결 절차에서는 직접적인 물적 피해, 치료비 손해와 위자료 또는 합의된 손해배상액에 대해 배상명령을 신청할 수 있습니다.",
-      "when_false_ko": "기소 죄명·직접 피해 항목·치료비·위자료·배상책임 명백성를 먼저 확인한 뒤 다음 절차를 정합니다.",
+      "when_false_ko": "대상 범죄가 아니거나 손해액·책임범위가 복잡하면 배상명령만 고집하지 말고 별도 민사 손해배상청구를 검토합니다.",
       "rule_ids": [
         "rule.crime-victim-response.crime-victim-10"
       ],
@@ -539,14 +627,81 @@
     {
       "scenario_id": "scenario.crime-victim-response.crime-victim-11",
       "question_ko": "형사사건이 재판 중인데 신청시기를 놓칠까 걱정됩니다.",
-      "decision_fact_ko": "심급과 변론종결",
+      "decision_fact_ko": "제1심·제2심 변론종결 전인지와 사건 계속 법원·피고인 수·신청내용을 확인했는지",
       "when_true_ko": "피해자는 제1심 또는 제2심 공판의 변론 종결 전까지 사건이 계속된 법원에 신청서와 피고인 수만큼의 부본, 필요한 증거서류를 제출할 수 있습니다.",
-      "when_false_ko": "심급과 변론종결·피고인 수·청구금액과 증거·동일 피해 민사소송를 먼저 확인한 뒤 다음 절차를 정합니다.",
+      "when_false_ko": "변론이 이미 종결되었거나 같은 피해의 민사소송이 계속 중이면 배상신청 대신 민사절차의 진행·제소 가능성을 확인합니다.",
       "rule_ids": [
         "rule.crime-victim-response.crime-victim-11"
       ],
       "source_coordinate_ids": [
         "coord.crime-victim-response.litigation-promotion-special-ko-0026"
+      ]
+    },
+    {
+      "scenario_id": "scenario.crime-victim-response.compensation-order-offense-damage",
+      "question_ko": "제 범죄피해가 배상명령 대상 손해에 들어가나요?",
+      "decision_fact_ko": "기소 죄명과 직접 물적 피해·치료비·위자료의 인과관계 및 금액 특정 여부",
+      "when_true_ko": "제25조가 정한 범죄의 유죄판결 절차에서 직접 물적 피해·치료비·위자료를 특정해 신청할 수 있습니다.",
+      "when_false_ko": "대상 죄명이나 직접 손해 범위를 벗어나는 항목은 민사 손해배상청구로 분리해 검토합니다.",
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-10"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0025"
+      ]
+    },
+    {
+      "scenario_id": "scenario.crime-victim-response.compensation-order-agreed-amount",
+      "question_ko": "형사합의서에 적은 금액을 배상명령으로 받을 수 있나요?",
+      "decision_fact_ko": "피고인과 피해자가 합의한 손해배상액과 지급범위가 문서로 특정되는지",
+      "when_true_ko": "합의된 손해배상액은 제25조제2항에 따라 배상명령의 대상이 될 수 있습니다.",
+      "when_false_ko": "합의 성립이나 금액·범위가 다투어지면 합의서와 지급자료를 정리하고 민사청구 가능성도 함께 검토합니다.",
+      "rule_ids": [
+        "rule.crime-victim-response.compensation-order-agreed-amount"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0025"
+      ]
+    },
+    {
+      "scenario_id": "scenario.crime-victim-response.compensation-order-dismissal-risk",
+      "question_ko": "손해액이 복잡하면 배상명령 신청이 각하되나요?",
+      "decision_fact_ko": "신청 적법성, 손해액 특정, 책임범위 명백성 및 형사재판 지연 우려",
+      "when_true_ko": "신청이 부적법하거나 이유가 없거나 배상명령이 타당하지 않다고 인정되면 법원은 배상신청을 각하하여야 합니다.",
+      "when_false_ko": "손해항목과 금액·증거가 명확하면 변론종결 전 신청서를 제출하되 각하 시 민사대안을 준비합니다.",
+      "rule_ids": [
+        "rule.crime-victim-response.compensation-order-dismissal"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0032"
+      ]
+    },
+    {
+      "scenario_id": "scenario.crime-victim-response.compensation-order-application-records",
+      "question_ko": "배상명령 신청서에는 무엇을 쓰고 무엇을 붙이나요?",
+      "decision_fact_ko": "사건번호·법원·당사자·배상 대상·금액 기재와 피고인 수만큼의 부본·증거서류 준비 여부",
+      "when_true_ko": "필수 기재사항과 부본을 갖추고 필요한 영수증·진단서·합의서 등 증거서류를 붙여 신청할 수 있습니다.",
+      "when_false_ko": "사건기록과 피해자료를 열람·정리해 누락을 보완한 뒤 변론종결 전에 제출합니다.",
+      "rule_ids": [
+        "rule.crime-victim-response.crime-victim-11"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0026"
+      ]
+    },
+    {
+      "scenario_id": "scenario.crime-victim-response.compensation-order-enforcement-title",
+      "question_ko": "배상명령 판결서로 예금이나 재산을 집행할 수 있나요?",
+      "decision_fact_ko": "배상명령의 확정 또는 가집행선고와 판결서 정본의 송달·기재 여부",
+      "when_true_ko": "확정되었거나 가집행선고가 있는 배상명령 판결서 정본은 민사판결 정본과 같이 강제집행에 사용할 수 있습니다.",
+      "when_false_ko": "확정·가집행 여부와 정본을 먼저 확인하고, 집행권원이 없다면 민사판결 등 다른 집행권원 확보 절차를 검토합니다.",
+      "rule_ids": [
+        "rule.crime-victim-response.compensation-order-judgment-enforcement"
+      ],
+      "source_coordinate_ids": [
+        "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0034"
       ]
     },
     {
@@ -632,18 +787,7 @@
         "content.crime-evidence-preservation-first-steps",
         "content.victim-case-information-notifications",
         "content.crime-victim-relief-fund-eligibility-deadline"
-      ],
-      "lawyer_workspace_entry": {
-        "question_ko": "범죄피해 직후 안전이 불안하면 신고 외에 무엇을 요청할 수 있나요?",
-        "decision_facts_ko": [
-          "현재 위험 수준",
-          "가해자의 접근·협박",
-          "치료·주거 필요",
-          "보호 요청과 처리 결과"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      ]
     },
     {
       "content_id": "content.crime-evidence-preservation-first-steps",
@@ -711,18 +855,7 @@
         "content.crime-victim-urgent-safety-and-support",
         "content.how-to-file-criminal-complaint",
         "content.civil-damages-after-crime"
-      ],
-      "lawyer_workspace_entry": {
-        "question_ko": "신고 전에 어떤 증거부터 보존해야 하나요?",
-        "decision_facts_ko": [
-          "자료 생성일",
-          "원본 보관 위치",
-          "CCTV 보존기간",
-          "피해와 자료의 연결"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      ]
     },
     {
       "content_id": "content.report-complaint-accusation-difference",
@@ -859,18 +992,7 @@
         "content.crime-evidence-preservation-first-steps",
         "content.report-complaint-accusation-difference",
         "content.notice-of-prosecution-or-nonprosecution"
-      ],
-      "lawyer_workspace_entry": {
-        "question_ko": "고소장은 어디에 어떤 방식으로 제출하나요?",
-        "decision_facts_ko": [
-          "접수기관",
-          "범죄사실 특정",
-          "처벌 요구 의사",
-          "제출 증거목록"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      ]
     },
     {
       "content_id": "content.notice-of-prosecution-or-nonprosecution",
@@ -938,18 +1060,7 @@
         "content.report-complaint-accusation-difference",
         "content.victim-case-information-notifications",
         "content.victim-statement-in-criminal-trial"
-      ],
-      "lawyer_workspace_entry": {
-        "question_ko": "고소한 사건의 기소·불기소 결과와 이유는 어떻게 확인하나요?",
-        "decision_facts_ko": [
-          "처분 종류",
-          "통지일",
-          "이유고지 청구일",
-          "불복기한"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      ]
     },
     {
       "content_id": "content.victim-case-information-notifications",
@@ -1017,18 +1128,7 @@
         "content.crime-victim-urgent-safety-and-support",
         "content.notice-of-prosecution-or-nonprosecution",
         "content.victim-statement-in-criminal-trial"
-      ],
-      "lawyer_workspace_entry": {
-        "question_ko": "피해자는 공판일·재판결과·피고인 석방을 통지받을 수 있나요?",
-        "decision_facts_ko": [
-          "피해자 또는 법정대리인 지위",
-          "통지 신청 여부",
-          "사건번호",
-          "현재 연락처"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      ]
     },
     {
       "content_id": "content.victim-statement-in-criminal-trial",
@@ -1162,18 +1262,7 @@
         "content.victim-case-information-notifications",
         "content.victim-statement-in-criminal-trial",
         "content.civil-damages-after-crime"
-      ],
-      "lawyer_workspace_entry": {
-        "question_ko": "피해자는 진행 중인 형사재판 기록을 열람·등사할 수 있나요?",
-        "decision_facts_ko": [
-          "신청인 지위",
-          "필요 기록 범위",
-          "사용 목적",
-          "제한 사유"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      ]
     },
     {
       "content_id": "content.settlement-and-punishment-intent",
@@ -1252,7 +1341,7 @@
       "slug": "compensation-order-eligible-damages",
       "title_ko": "형사재판에서 배상명령으로 어떤 손해를 받을 수 있나요?",
       "one_line_answer_ko": "법이 정한 대상 범죄의 유죄판결 절차에서는 직접적인 물적 피해, 치료비 손해와 위자료 또는 합의된 손해배상액에 대해 배상명령을 신청할 수 있습니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "형사재판 안에서 치료비·위자료나 합의금을 함께 받고 싶지만 대상 손해와 각하 가능성을 구분하기 어려운 범죄피해자",
       "key_points_ko": [
         "대상 범죄인지 확인합니다.",
         "직접 물적 피해·치료비·위자료를 특정합니다.",
@@ -1272,9 +1361,9 @@
       ],
       "caution_ko": "피해액이나 책임범위가 명확하지 않거나 형사재판을 지연시킬 우려가 있으면 배상명령을 하지 않을 수 있습니다.",
       "search_intents_ko": [
-        "형사재판에서 배상명령으로 어떤 손해를 받을 수 있나요?",
-        "별도 민사소송 없이 치료비·위자료를 청구하고 싶습니다.",
-        "compensation order eligible damages"
+        "배상명령으로 받을 수 있는 손해 범위",
+        "형사합의금 배상명령 신청 가능 여부",
+        "배상명령 신청 각하 사유"
       ],
       "body_sections": [
         {
@@ -1288,18 +1377,35 @@
           "heading_ko": "간이한 배상에 맞는 사건인지 판단한다",
           "paragraphs_ko": [
             "복잡한 과실비율, 장래치료비나 다수 책임자의 분담처럼 별도 심리가 많이 필요한 쟁점은 배상명령에 맞지 않을 수 있습니다.",
-            "각하 가능성과 별도 민사소송의 시간·비용을 함께 비교합니다."
+            "신청이 부적법하거나 이유가 없거나 배상명령이 타당하지 않으면 각하되고, 각하나 일부 인용 재판에는 신청인이 불복하거나 동일 신청을 다시 할 수 없으므로 민사소송 대안을 함께 준비합니다."
+          ]
+        },
+        {
+          "heading_ko": "합의액·선고·집행을 서로 다른 단계로 본다",
+          "paragraphs_ko": [
+            "피고인과 피해자가 합의한 손해배상액은 제25조제2항에 따라 배상명령 대상이 될 수 있지만 합의의 성립과 금액·범위를 문서로 특정해야 합니다.",
+            "배상명령은 유죄판결과 동시에 선고되고, 확정되거나 가집행선고가 있는 판결서 정본은 민사판결 정본과 같이 강제집행에 사용할 수 있습니다."
           ]
         }
       ],
       "rule_ids": [
-        "rule.crime-victim-response.crime-victim-10"
+        "rule.crime-victim-response.crime-victim-10",
+        "rule.crime-victim-response.compensation-order-agreed-amount",
+        "rule.crime-victim-response.compensation-order-dismissal",
+        "rule.crime-victim-response.compensation-order-judgment-enforcement"
       ],
       "scenario_ids": [
-        "scenario.crime-victim-response.crime-victim-10"
+        "scenario.crime-victim-response.crime-victim-10",
+        "scenario.crime-victim-response.compensation-order-offense-damage",
+        "scenario.crime-victim-response.compensation-order-agreed-amount",
+        "scenario.crime-victim-response.compensation-order-dismissal-risk",
+        "scenario.crime-victim-response.compensation-order-enforcement-title"
       ],
       "source_coordinate_ids": [
-        "coord.crime-victim-response.litigation-promotion-special-ko-0025"
+        "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0032",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0034"
       ],
       "hub_ids": [
         "hub.crime-victim-response"
@@ -1307,7 +1413,47 @@
       "related_content_ids": [
         "content.victim-access-to-trial-records",
         "content.settlement-and-punishment-intent",
-        "content.compensation-order-application-deadline"
+        "content.compensation-order-application-deadline",
+        "content.criminal-compensation-order-vs-civil-damages",
+        "content.civil-damages-after-crime"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.victim-access-to-trial-records",
+          "relation_type": "prerequisite",
+          "label_ko": "죄명과 피해자료를 사건기록에서 먼저 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.settlement-and-punishment-intent",
+          "relation_type": "comparison",
+          "label_ko": "형사합의액과 배상명령 손해범위 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.compensation-order-application-deadline",
+          "relation_type": "procedure",
+          "label_ko": "대상 손해 확인 뒤 신청기한·서류 준비"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.criminal-compensation-order-vs-civil-damages",
+          "relation_type": "comparison",
+          "label_ko": "배상명령과 별도 민사청구 범위 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.civil-damages-after-crime",
+          "relation_type": "remedy",
+          "label_ko": "각하·미인용 손해는 민사청구 검토"
+        }
+      ],
+      "authority_binding_ids": [
+        "binding.compensation-order.25",
+        "binding.compensation-order.31",
+        "binding.compensation-order.32",
+        "binding.compensation-order.34"
       ]
     },
     {
@@ -1319,7 +1465,7 @@
       "slug": "compensation-order-application-deadline",
       "title_ko": "배상명령은 언제, 어느 법원에 어떻게 신청하나요?",
       "one_line_answer_ko": "피해자는 제1심 또는 제2심 공판의 변론 종결 전까지 사건이 계속된 법원에 신청서와 피고인 수만큼의 부본, 필요한 증거서류를 제출할 수 있습니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "형사재판이 진행 중이라 배상명령 신청기한·제출법원·서류와 이후 집행절차를 한 번에 확인하려는 범죄피해자",
       "key_points_ko": [
         "제1심·제2심 변론 종결 전이 기한입니다.",
         "사건 계속 법원과 피고인 수를 확인합니다.",
@@ -1339,9 +1485,9 @@
       ],
       "caution_ko": "배상명령 신청은 대상 범죄·손해 범위의 제한을 받으며, 각하된 손해를 다시 신청할 수 있는지와 민사소송 전환은 별도 확인이 필요합니다.",
       "search_intents_ko": [
-        "배상명령은 언제, 어느 법원에 어떻게 신청하나요?",
-        "형사사건이 재판 중인데 신청시기를 놓칠까 걱정됩니다.",
-        "compensation order application deadline"
+        "배상명령 신청기한 변론종결 전",
+        "배상명령 신청서 부본 증거서류",
+        "배상명령 판결서 강제집행 방법"
       ],
       "body_sections": [
         {
@@ -1357,36 +1503,77 @@
             "사건번호, 당사자, 배상의 대상과 금액을 적고 피고인 수에 맞는 부본을 준비합니다.",
             "같은 범죄피해에 관한 민사소송이 이미 계속 중이면 배상신청이 제한됩니다."
           ]
+        },
+        {
+          "heading_ko": "각하와 선고 뒤 집행 경로까지 준비한다",
+          "paragraphs_ko": [
+            "신청이 부적법하거나 이유가 없거나 형사절차에서 배상명령이 타당하지 않으면 각하될 수 있으므로 민사청구 대안을 함께 확인합니다.",
+            "배상명령이 확정되거나 가집행선고가 있으면 판결서 정본을 집행권원으로 사용해 예금채권 압류·추심 등 민사집행 절차로 이어갈 수 있습니다."
+          ]
         }
       ],
       "rule_ids": [
-        "rule.crime-victim-response.crime-victim-11"
+        "rule.crime-victim-response.crime-victim-11",
+        "rule.crime-victim-response.compensation-order-dismissal",
+        "rule.crime-victim-response.compensation-order-judgment-enforcement"
       ],
       "scenario_ids": [
-        "scenario.crime-victim-response.crime-victim-11"
+        "scenario.crime-victim-response.crime-victim-11",
+        "scenario.crime-victim-response.compensation-order-application-records",
+        "scenario.crime-victim-response.compensation-order-dismissal-risk",
+        "scenario.crime-victim-response.compensation-order-enforcement-title"
       ],
       "source_coordinate_ids": [
-        "coord.crime-victim-response.litigation-promotion-special-ko-0026"
+        "coord.crime-victim-response.litigation-promotion-special-ko-0026",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0032",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0034"
       ],
       "hub_ids": [
         "hub.crime-victim-response"
       ],
       "related_content_ids": [
-        "content.victim-case-information-notifications",
         "content.compensation-order-eligible-damages",
-        "content.civil-damages-after-crime"
+        "content.victim-case-information-notifications",
+        "content.civil-damages-after-crime",
+        "content.documents-that-allow-compulsory-enforcement",
+        "content.bank-account-seizure-and-collection-order"
       ],
-      "lawyer_workspace_entry": {
-        "question_ko": "배상명령은 언제, 어느 법원에 어떻게 신청하나요?",
-        "decision_facts_ko": [
-          "심급과 변론종결",
-          "피고인 수",
-          "청구금액과 증거",
-          "동일 피해 민사소송"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.compensation-order-eligible-damages",
+          "relation_type": "prerequisite",
+          "label_ko": "신청 전 대상 범죄·손해범위 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.victim-case-information-notifications",
+          "relation_type": "procedure",
+          "label_ko": "사건번호·재판일정 통지로 기한 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.civil-damages-after-crime",
+          "relation_type": "remedy",
+          "label_ko": "각하·누락 손해는 민사청구로 보완"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.documents-that-allow-compulsory-enforcement",
+          "relation_type": "procedure",
+          "label_ko": "배상명령 판결서의 집행권원 효과 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.bank-account-seizure-and-collection-order",
+          "relation_type": "remedy",
+          "label_ko": "판결서 정본으로 예금채권 압류·추심"
+        }
+      ],
+      "authority_binding_ids": [
+        "binding.compensation-order.26"
+      ]
     },
     {
       "content_id": "content.civil-damages-after-crime",
@@ -1521,18 +1708,1162 @@
         "content.crime-victim-urgent-safety-and-support",
         "content.victim-case-information-notifications",
         "content.civil-damages-after-crime"
+      ]
+    }
+  ],
+  "source_version_bridges": [
+    {
+      "bridge_id": "bridge.litigation-promotion-special.25.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+      "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+      "source_version_key": "sha256:73dbf4890bd58c0d7c31309cb82edc4477f03d3c0c67389ab60fc082bec31f1e",
+      "validation_status": "verified"
+    },
+    {
+      "bridge_id": "bridge.litigation-promotion-special.26.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
+      "source_snapshot_id": "bb35446950761affb71d6c804d4dd5f8",
+      "source_version_key": "sha256:71db765102e3dc36c200b1193471ee9e24953832465712c14a87437c32398c19",
+      "validation_status": "verified"
+    },
+    {
+      "bridge_id": "bridge.litigation-promotion-special.31.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+      "source_snapshot_id": "9af4e46708641c88dc39ec6af514632c",
+      "source_version_key": "sha256:962b756d582d502320315a5279a7bc2e4cb691339e38f52f04e62df537d5cdfe",
+      "validation_status": "verified"
+    },
+    {
+      "bridge_id": "bridge.litigation-promotion-special.32.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0032",
+      "source_snapshot_id": "c7d70e140addfb2e580cb419da25eec6",
+      "source_version_key": "sha256:b5827a9f6978452137104457762399b9ef44ab1097d5bed51a9c948e897dacd9",
+      "validation_status": "verified"
+    },
+    {
+      "bridge_id": "bridge.litigation-promotion-special.34.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0034",
+      "source_snapshot_id": "c8776a4473237b3cf5c8ea85c7dc7076",
+      "source_version_key": "sha256:37a259a2f30f0b86dbed16b017b6548e92dc0556d69173da52e45dc928e17992",
+      "validation_status": "verified"
+    }
+  ],
+  "source_authority_units": [
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0025:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.25.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+      "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+      "source_version_key": "sha256:73dbf4890bd58c0d7c31309cb82edc4477f03d3c0c67389ab60fc082bec31f1e",
+      "unit_kind": "article",
+      "locator": {
+        "article_no": "0025"
+      },
+      "locator_key": "a25",
+      "ordinal": 0,
+      "official_text_ko": "제25조(배상명령)",
+      "official_text_hash": "2cfab2ed863e718e56641d271b40fd8413874b7eb3360e67d3afadc643495fdb",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p1",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0025:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.25.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+      "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+      "source_version_key": "sha256:73dbf4890bd58c0d7c31309cb82edc4477f03d3c0c67389ab60fc082bec31f1e",
+      "unit_kind": "paragraph",
+      "locator": {
+        "article_no": "0025",
+        "paragraph_no": "1"
+      },
+      "locator_key": "a25-p1",
+      "ordinal": 1,
+      "official_text_ko": "① 제1심 또는 제2심의 형사공판 절차에서 다음 각 호의 죄 중 어느 하나에 관하여 유죄판결을 선고할 경우, 법원은 직권에 의하여 또는 피해자나 그 상속인(이하 \"피해자\"라 한다)의 신청에 의하여 피고사건의 범죄행위로 인하여 발생한 직접적인 물적(物的) 피해, 치료비 손해 및 위자료의 배상을 명할 수 있다. <개정 2012.1.17, 2012.12.18, 2016.1.6, 2025.11.11>",
+      "official_text_hash": "cd0d2ff4355a7cc882d56569d20c7a009b0315508acbb0b7f61eb302982bf930",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p1:i1",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p1",
+      "version_bridge_id": "bridge.litigation-promotion-special.25.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+      "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+      "source_version_key": "sha256:73dbf4890bd58c0d7c31309cb82edc4477f03d3c0c67389ab60fc082bec31f1e",
+      "unit_kind": "item",
+      "locator": {
+        "article_no": "0025",
+        "paragraph_no": "1",
+        "item_no": "1"
+      },
+      "locator_key": "a25-p1-i1",
+      "ordinal": 1,
+      "official_text_ko": "1. 「형법」 제257조제1항, 제258조제1항 및 제2항, 제258조의2제1항(제257조제1항의 죄로 한정한다)ㆍ제2항(제258조제1항ㆍ제2항의 죄로 한정한다), 제259조제1항, 제262조(존속폭행치사상의 죄는 제외한다), 같은 법 제26장, 제32장(제304조의 죄는 제외한다), 제38장부터 제40장까지 및 제42장에 규정된 죄",
+      "official_text_hash": "51b91592f8b4bdaeaf439ad036ee7eebac460ce0eb17da83661416bc9e9fa3d4",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p1:i2",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p1",
+      "version_bridge_id": "bridge.litigation-promotion-special.25.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+      "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+      "source_version_key": "sha256:73dbf4890bd58c0d7c31309cb82edc4477f03d3c0c67389ab60fc082bec31f1e",
+      "unit_kind": "item",
+      "locator": {
+        "article_no": "0025",
+        "paragraph_no": "1",
+        "item_no": "2"
+      },
+      "locator_key": "a25-p1-i2",
+      "ordinal": 2,
+      "official_text_ko": "2. 「성폭력범죄의 처벌 등에 관한 특례법」 제10조부터 제14조까지, 제14조의2, 제14조의3, 제15조(제3조부터 제9조까지의 미수범은 제외한다), 「아동ㆍ청소년의 성보호에 관한 법률」 제11조, 제12조, 제14조 및 제15조의2에 규정된 죄",
+      "official_text_hash": "fce31a7a15db18fdb61cdc1d53d7c8e8e0b33caea536596442f6492cbdab0afb",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p1:i3",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p1",
+      "version_bridge_id": "bridge.litigation-promotion-special.25.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+      "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+      "source_version_key": "sha256:73dbf4890bd58c0d7c31309cb82edc4477f03d3c0c67389ab60fc082bec31f1e",
+      "unit_kind": "item",
+      "locator": {
+        "article_no": "0025",
+        "paragraph_no": "1",
+        "item_no": "3"
+      },
+      "locator_key": "a25-p1-i3",
+      "ordinal": 3,
+      "official_text_ko": "3. 제1호의 죄를 가중처벌하는 죄 및 그 죄의 미수범을 처벌하는 경우 미수의 죄",
+      "official_text_hash": "a26bb6a7a5d6a61a0ed0dccdcf6c067c6a398b9c402c6bd8789a674c0337d657",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p2",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0025:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.25.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+      "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+      "source_version_key": "sha256:73dbf4890bd58c0d7c31309cb82edc4477f03d3c0c67389ab60fc082bec31f1e",
+      "unit_kind": "paragraph",
+      "locator": {
+        "article_no": "0025",
+        "paragraph_no": "2"
+      },
+      "locator_key": "a25-p2",
+      "ordinal": 2,
+      "official_text_ko": "② 법원은 제1항에 규정된 죄 및 그 외의 죄에 대한 피고사건에서 피고인과 피해자 사이에 합의된 손해배상액에 관하여도 제1항에 따라 배상을 명할 수 있다.",
+      "official_text_hash": "ccbbb8f874784e7e5de8b37434cd2e038c82bbc0537e4720d8264184c87412db",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p3",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0025:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.25.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+      "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+      "source_version_key": "sha256:73dbf4890bd58c0d7c31309cb82edc4477f03d3c0c67389ab60fc082bec31f1e",
+      "unit_kind": "paragraph",
+      "locator": {
+        "article_no": "0025",
+        "paragraph_no": "3"
+      },
+      "locator_key": "a25-p3",
+      "ordinal": 3,
+      "official_text_ko": "③ 법원은 다음 각 호의 어느 하나에 해당하는 경우에는 배상명령을 하여서는 아니 된다.",
+      "official_text_hash": "a4b94953ccffced71952c8713836bb0abf73391186a10ef5db1b62d57778459f",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p3:i1",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p3",
+      "version_bridge_id": "bridge.litigation-promotion-special.25.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+      "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+      "source_version_key": "sha256:73dbf4890bd58c0d7c31309cb82edc4477f03d3c0c67389ab60fc082bec31f1e",
+      "unit_kind": "item",
+      "locator": {
+        "article_no": "0025",
+        "paragraph_no": "3",
+        "item_no": "1"
+      },
+      "locator_key": "a25-p3-i1",
+      "ordinal": 1,
+      "official_text_ko": "1. 피해자의 성명ㆍ주소가 분명하지 아니한 경우",
+      "official_text_hash": "9d977298e30c9c24b7cf1de1d838b27342512a612bc845100cd039b58c4269e4",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p3:i2",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p3",
+      "version_bridge_id": "bridge.litigation-promotion-special.25.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+      "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+      "source_version_key": "sha256:73dbf4890bd58c0d7c31309cb82edc4477f03d3c0c67389ab60fc082bec31f1e",
+      "unit_kind": "item",
+      "locator": {
+        "article_no": "0025",
+        "paragraph_no": "3",
+        "item_no": "2"
+      },
+      "locator_key": "a25-p3-i2",
+      "ordinal": 2,
+      "official_text_ko": "2. 피해 금액이 특정되지 아니한 경우",
+      "official_text_hash": "3b36e026046fcf38e7b1c9b346aefbf85ad4ac4a297c5d35205b7215a283a1ea",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p3:i3",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p3",
+      "version_bridge_id": "bridge.litigation-promotion-special.25.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+      "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+      "source_version_key": "sha256:73dbf4890bd58c0d7c31309cb82edc4477f03d3c0c67389ab60fc082bec31f1e",
+      "unit_kind": "item",
+      "locator": {
+        "article_no": "0025",
+        "paragraph_no": "3",
+        "item_no": "3"
+      },
+      "locator_key": "a25-p3-i3",
+      "ordinal": 3,
+      "official_text_ko": "3. 피고인의 배상책임의 유무 또는 그 범위가 명백하지 아니한 경우",
+      "official_text_hash": "e09eacc6e097becb1463b000e351741e7564e6b866bd7f26810c2eab4361d144",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p3:i4",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p3",
+      "version_bridge_id": "bridge.litigation-promotion-special.25.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+      "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+      "source_version_key": "sha256:73dbf4890bd58c0d7c31309cb82edc4477f03d3c0c67389ab60fc082bec31f1e",
+      "unit_kind": "item",
+      "locator": {
+        "article_no": "0025",
+        "paragraph_no": "3",
+        "item_no": "4"
+      },
+      "locator_key": "a25-p3-i4",
+      "ordinal": 4,
+      "official_text_ko": "4. 배상명령으로 인하여 공판절차가 현저히 지연될 우려가 있거나 형사소송 절차에서 배상명령을 하는 것이 타당하지 아니하다고 인정되는 경우",
+      "official_text_hash": "e5e0dd620bba89f59114de270cc4d7bf02cc02ce9403b5e67c90d07f2c79abfc",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0026:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.26.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
+      "source_snapshot_id": "bb35446950761affb71d6c804d4dd5f8",
+      "source_version_key": "sha256:71db765102e3dc36c200b1193471ee9e24953832465712c14a87437c32398c19",
+      "unit_kind": "article",
+      "locator": {
+        "article_no": "0026"
+      },
+      "locator_key": "a26",
+      "ordinal": 0,
+      "official_text_ko": "제26조(배상신청)",
+      "official_text_hash": "45a643c7689a30b61ff80afd86633f442e2739e5133a1fe2df2c60e87bf6b646",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0026:article:p1",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0026:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.26.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
+      "source_snapshot_id": "bb35446950761affb71d6c804d4dd5f8",
+      "source_version_key": "sha256:71db765102e3dc36c200b1193471ee9e24953832465712c14a87437c32398c19",
+      "unit_kind": "paragraph",
+      "locator": {
+        "article_no": "0026",
+        "paragraph_no": "1"
+      },
+      "locator_key": "a26-p1",
+      "ordinal": 1,
+      "official_text_ko": "① 피해자는 제1심 또는 제2심 공판의 변론이 종결될 때까지 사건이 계속(係屬)된 법원에 제25조에 따른 피해배상을 신청할 수 있다. 이 경우 신청서에 인지(印紙)를 붙이지 아니한다.",
+      "official_text_hash": "cd6b6df5800db044c090db8d66d7084267a5b91b1b34807a9db2e8315d34e185",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0026:article:p2",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0026:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.26.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
+      "source_snapshot_id": "bb35446950761affb71d6c804d4dd5f8",
+      "source_version_key": "sha256:71db765102e3dc36c200b1193471ee9e24953832465712c14a87437c32398c19",
+      "unit_kind": "paragraph",
+      "locator": {
+        "article_no": "0026",
+        "paragraph_no": "2"
+      },
+      "locator_key": "a26-p2",
+      "ordinal": 2,
+      "official_text_ko": "② 피해자는 배상신청을 할 때에는 신청서와 상대방 피고인 수만큼의 신청서 부본(副本)을 제출하여야 한다.",
+      "official_text_hash": "61af73037a640f829f75d63c3c9b805532b30113031d8cf2871a658a64c9970c",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0026:article:p3",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0026:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.26.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
+      "source_snapshot_id": "bb35446950761affb71d6c804d4dd5f8",
+      "source_version_key": "sha256:71db765102e3dc36c200b1193471ee9e24953832465712c14a87437c32398c19",
+      "unit_kind": "paragraph",
+      "locator": {
+        "article_no": "0026",
+        "paragraph_no": "3"
+      },
+      "locator_key": "a26-p3",
+      "ordinal": 3,
+      "official_text_ko": "③ 신청서에는 다음 각 호의 사항을 적고 신청인 또는 대리인이 서명ㆍ날인하여야 한다.",
+      "official_text_hash": "6ae50d5f792f01996e7ac3b08ecc10dc235adabcacd310d825ccb932b8ca11a1",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0026:article:p4",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0026:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.26.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
+      "source_snapshot_id": "bb35446950761affb71d6c804d4dd5f8",
+      "source_version_key": "sha256:71db765102e3dc36c200b1193471ee9e24953832465712c14a87437c32398c19",
+      "unit_kind": "paragraph",
+      "locator": {
+        "article_no": "0026",
+        "paragraph_no": "4"
+      },
+      "locator_key": "a26-p4",
+      "ordinal": 4,
+      "official_text_ko": "④ 신청서에는 필요한 증거서류를 첨부할 수 있다.",
+      "official_text_hash": "9603478340b018034245ecf3a3a10bc3b9c71f18eb65f12b70d6c6f02da3ccf7",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0031:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.31.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+      "source_snapshot_id": "9af4e46708641c88dc39ec6af514632c",
+      "source_version_key": "sha256:962b756d582d502320315a5279a7bc2e4cb691339e38f52f04e62df537d5cdfe",
+      "unit_kind": "article",
+      "locator": {
+        "article_no": "0031"
+      },
+      "locator_key": "a31",
+      "ordinal": 0,
+      "official_text_ko": "제31조(배상명령의 선고 등)",
+      "official_text_hash": "d8109ad86787a52731989be05977834b2e31555ca0d45e47bbcdc85637078dfb",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0031:article:p1",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0031:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.31.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+      "source_snapshot_id": "9af4e46708641c88dc39ec6af514632c",
+      "source_version_key": "sha256:962b756d582d502320315a5279a7bc2e4cb691339e38f52f04e62df537d5cdfe",
+      "unit_kind": "paragraph",
+      "locator": {
+        "article_no": "0031",
+        "paragraph_no": "1"
+      },
+      "locator_key": "a31-p1",
+      "ordinal": 1,
+      "official_text_ko": "① 배상명령은 유죄판결의 선고와 동시에 하여야 한다.",
+      "official_text_hash": "1ec24d5ac69b025fd219dd4f1d5b7706cfd2854e45a603bc72fc6fab86ff97fc",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0031:article:p2",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0031:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.31.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+      "source_snapshot_id": "9af4e46708641c88dc39ec6af514632c",
+      "source_version_key": "sha256:962b756d582d502320315a5279a7bc2e4cb691339e38f52f04e62df537d5cdfe",
+      "unit_kind": "paragraph",
+      "locator": {
+        "article_no": "0031",
+        "paragraph_no": "2"
+      },
+      "locator_key": "a31-p2",
+      "ordinal": 2,
+      "official_text_ko": "② 배상명령은 일정액의 금전 지급을 명함으로써 하고 배상의 대상과 금액을 유죄판결의 주문(主文)에 표시하여야 한다. 배상명령의 이유는 특히 필요하다고 인정되는 경우가 아니면 적지 아니한다.",
+      "official_text_hash": "62232531a42f661649032fb3a01088328b150c71e6a1a9e58825fda55d7f3f36",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0031:article:p3",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0031:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.31.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+      "source_snapshot_id": "9af4e46708641c88dc39ec6af514632c",
+      "source_version_key": "sha256:962b756d582d502320315a5279a7bc2e4cb691339e38f52f04e62df537d5cdfe",
+      "unit_kind": "paragraph",
+      "locator": {
+        "article_no": "0031",
+        "paragraph_no": "3"
+      },
+      "locator_key": "a31-p3",
+      "ordinal": 3,
+      "official_text_ko": "③ 배상명령은 가집행(假執行)할 수 있음을 선고할 수 있다.",
+      "official_text_hash": "de17f481d80e6ebc12f500f000b25d4c2fcfcaf4e27033b425558c50af2e65fa",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0032:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.32.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0032",
+      "source_snapshot_id": "c7d70e140addfb2e580cb419da25eec6",
+      "source_version_key": "sha256:b5827a9f6978452137104457762399b9ef44ab1097d5bed51a9c948e897dacd9",
+      "unit_kind": "article",
+      "locator": {
+        "article_no": "0032"
+      },
+      "locator_key": "a32",
+      "ordinal": 0,
+      "official_text_ko": "제32조(배상신청의 각하)",
+      "official_text_hash": "274801bf4dc6e70864d065ad23a1fe2905872eec86ab5009bf528d32d6713714",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0032:article:p1",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0032:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.32.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0032",
+      "source_snapshot_id": "c7d70e140addfb2e580cb419da25eec6",
+      "source_version_key": "sha256:b5827a9f6978452137104457762399b9ef44ab1097d5bed51a9c948e897dacd9",
+      "unit_kind": "paragraph",
+      "locator": {
+        "article_no": "0032",
+        "paragraph_no": "1"
+      },
+      "locator_key": "a32-p1",
+      "ordinal": 1,
+      "official_text_ko": "① 법원은 다음 각 호의 어느 하나에 해당하는 경우에는 결정(決定)으로 배상신청을 각하(却下)하여야 한다.",
+      "official_text_hash": "19b84af4efab44b8590ccf3d1813543c783a6c70730ad26210cc942cf5c70ef2",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0032:article:p1:i1",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0032:article:p1",
+      "version_bridge_id": "bridge.litigation-promotion-special.32.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0032",
+      "source_snapshot_id": "c7d70e140addfb2e580cb419da25eec6",
+      "source_version_key": "sha256:b5827a9f6978452137104457762399b9ef44ab1097d5bed51a9c948e897dacd9",
+      "unit_kind": "item",
+      "locator": {
+        "article_no": "0032",
+        "paragraph_no": "1",
+        "item_no": "1"
+      },
+      "locator_key": "a32-p1-i1",
+      "ordinal": 1,
+      "official_text_ko": "1. 배상신청이 적법하지 아니한 경우",
+      "official_text_hash": "bb5399135c66d22a62138aee3127b1495dce221bf75f765f291a119eb0ba81d7",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0032:article:p1:i2",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0032:article:p1",
+      "version_bridge_id": "bridge.litigation-promotion-special.32.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0032",
+      "source_snapshot_id": "c7d70e140addfb2e580cb419da25eec6",
+      "source_version_key": "sha256:b5827a9f6978452137104457762399b9ef44ab1097d5bed51a9c948e897dacd9",
+      "unit_kind": "item",
+      "locator": {
+        "article_no": "0032",
+        "paragraph_no": "1",
+        "item_no": "2"
+      },
+      "locator_key": "a32-p1-i2",
+      "ordinal": 2,
+      "official_text_ko": "2. 배상신청이 이유 없다고 인정되는 경우",
+      "official_text_hash": "7dedfdee80cee7b778889ed335a05031085861544be26ea9d7f5ac063414f2d7",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0032:article:p1:i3",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0032:article:p1",
+      "version_bridge_id": "bridge.litigation-promotion-special.32.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0032",
+      "source_snapshot_id": "c7d70e140addfb2e580cb419da25eec6",
+      "source_version_key": "sha256:b5827a9f6978452137104457762399b9ef44ab1097d5bed51a9c948e897dacd9",
+      "unit_kind": "item",
+      "locator": {
+        "article_no": "0032",
+        "paragraph_no": "1",
+        "item_no": "3"
+      },
+      "locator_key": "a32-p1-i3",
+      "ordinal": 3,
+      "official_text_ko": "3. 배상명령을 하는 것이 타당하지 아니하다고 인정되는 경우",
+      "official_text_hash": "17c5316502adb14df4a76e07eb6b326c7aaabf3d07ad9d35e71224c95955c157",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0032:article:p4",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0032:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.32.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0032",
+      "source_snapshot_id": "c7d70e140addfb2e580cb419da25eec6",
+      "source_version_key": "sha256:b5827a9f6978452137104457762399b9ef44ab1097d5bed51a9c948e897dacd9",
+      "unit_kind": "paragraph",
+      "locator": {
+        "article_no": "0032",
+        "paragraph_no": "4"
+      },
+      "locator_key": "a32-p4",
+      "ordinal": 4,
+      "official_text_ko": "④ 배상신청을 각하하거나 그 일부를 인용(認容)한 재판에 대하여 신청인은 불복을 신청하지 못하며, 다시 동일한 배상신청을 할 수 없다. <개정 2016.1.19>",
+      "official_text_hash": "b1a62cee299b2019fa2c94d7644bf5041f0805bbb2829b66128d4badd3139848",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0034:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.34.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0034",
+      "source_snapshot_id": "c8776a4473237b3cf5c8ea85c7dc7076",
+      "source_version_key": "sha256:37a259a2f30f0b86dbed16b017b6548e92dc0556d69173da52e45dc928e17992",
+      "unit_kind": "article",
+      "locator": {
+        "article_no": "0034"
+      },
+      "locator_key": "a34",
+      "ordinal": 0,
+      "official_text_ko": "제34조(배상명령의 효력과 강제집행)",
+      "official_text_hash": "0d5b5a18078330b403d6e03f0ab01267fedb79ec439c477c48d9046b36603050",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0034:article:p1",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0034:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.34.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0034",
+      "source_snapshot_id": "c8776a4473237b3cf5c8ea85c7dc7076",
+      "source_version_key": "sha256:37a259a2f30f0b86dbed16b017b6548e92dc0556d69173da52e45dc928e17992",
+      "unit_kind": "paragraph",
+      "locator": {
+        "article_no": "0034",
+        "paragraph_no": "1"
+      },
+      "locator_key": "a34-p1",
+      "ordinal": 1,
+      "official_text_ko": "① 확정된 배상명령 또는 가집행선고가 있는 배상명령이 기재된 유죄판결서의 정본은 「민사집행법」에 따른 강제집행에 관하여는 집행력 있는 민사판결 정본과 동일한 효력이 있다.",
+      "official_text_hash": "7028f1903f0f033a07ca45744e26c79c6266c1328031191ded0bd526a6bb77cc",
+      "validation_status": "verified"
+    },
+    {
+      "source_authority_unit_id": "unit:litigation_promotion_special:0034:article:p2",
+      "parent_source_authority_unit_id": "unit:litigation_promotion_special:0034:article",
+      "version_bridge_id": "bridge.litigation-promotion-special.34.v1",
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0034",
+      "source_snapshot_id": "c8776a4473237b3cf5c8ea85c7dc7076",
+      "source_version_key": "sha256:37a259a2f30f0b86dbed16b017b6548e92dc0556d69173da52e45dc928e17992",
+      "unit_kind": "paragraph",
+      "locator": {
+        "article_no": "0034",
+        "paragraph_no": "2"
+      },
+      "locator_key": "a34-p2",
+      "ordinal": 2,
+      "official_text_ko": "② 이 법에 따른 배상명령이 확정된 경우 피해자는 그 인용된 금액의 범위에서 다른 절차에 따른 손해배상을 청구할 수 없다.",
+      "official_text_hash": "65d8c009fd113ab472ec4dd9e209c486ce1c3a305d542e8f9ea2be8c72a347cf",
+      "validation_status": "verified"
+    }
+  ],
+  "authority_reading_units": [
+    {
+      "authority_reading_unit_id": "authority.litigation-promotion-special.25.v1",
+      "title_ko": "배상명령의 대상 손해와 제한",
+      "route_key": {
+        "law_key": "litigation-promotion-special",
+        "article_no": "0025"
+      },
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+      "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+      "source_version_key": "sha256:73dbf4890bd58c0d7c31309cb82edc4477f03d3c0c67389ab60fc082bec31f1e",
+      "time_state": "current_as_of_review",
+      "effective_from": "2026-06-02T00:00:00.000Z",
+      "summary_ko": "대상 범죄의 직접 물적 피해·치료비·위자료와 합의액, 배상명령 제한을 구분합니다.",
+      "anchors": [
+        {
+          "anchor_id": "anchor.litigation-promotion-special.25.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0025:article",
+          "locator_key": "a25",
+          "official_text_hash": "2cfab2ed863e718e56641d271b40fd8413874b7eb3360e67d3afadc643495fdb",
+          "plain_heading_ko": "배상명령",
+          "explanation_ko": "배상명령의 대상과 제한을 정한 조문입니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.25.p1",
+          "parent_anchor_id": "anchor.litigation-promotion-special.25.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p1",
+          "locator_key": "a25-p1",
+          "official_text_hash": "cd0d2ff4355a7cc882d56569d20c7a009b0315508acbb0b7f61eb302982bf930",
+          "plain_heading_ko": "대상 범죄와 직접 손해",
+          "explanation_ko": "유죄판결 절차와 직접 물적 피해·치료비·위자료를 함께 확인합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.25.p1.i1",
+          "parent_anchor_id": "anchor.litigation-promotion-special.25.p1",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p1:i1",
+          "locator_key": "a25-p1-i1",
+          "official_text_hash": "51b91592f8b4bdaeaf439ad036ee7eebac460ce0eb17da83661416bc9e9fa3d4",
+          "plain_heading_ko": "형법상 대상 범죄",
+          "explanation_ko": "제1호가 열거한 형법상 대상 죄명과 제외 범위를 확인합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.25.p1.i2",
+          "parent_anchor_id": "anchor.litigation-promotion-special.25.p1",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p1:i2",
+          "locator_key": "a25-p1-i2",
+          "official_text_hash": "fce31a7a15db18fdb61cdc1d53d7c8e8e0b33caea536596442f6492cbdab0afb",
+          "plain_heading_ko": "성폭력·아동청소년 대상 범죄",
+          "explanation_ko": "제2호가 열거한 특별법상 대상 죄명과 미수범 제외 범위를 확인합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.25.p1.i3",
+          "parent_anchor_id": "anchor.litigation-promotion-special.25.p1",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p1:i3",
+          "locator_key": "a25-p1-i3",
+          "official_text_hash": "a26bb6a7a5d6a61a0ed0dccdcf6c067c6a398b9c402c6bd8789a674c0337d657",
+          "plain_heading_ko": "가중처벌죄와 미수범",
+          "explanation_ko": "제1호 범죄를 가중처벌하거나 그 미수를 처벌하는 경우를 확인합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.25.p2",
+          "parent_anchor_id": "anchor.litigation-promotion-special.25.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p2",
+          "locator_key": "a25-p2",
+          "official_text_hash": "ccbbb8f874784e7e5de8b37434cd2e038c82bbc0537e4720d8264184c87412db",
+          "plain_heading_ko": "합의된 손해배상액",
+          "explanation_ko": "피고인과 피해자가 합의한 금액의 배상명령 가능성을 확인합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.25.p3",
+          "parent_anchor_id": "anchor.litigation-promotion-special.25.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p3",
+          "locator_key": "a25-p3",
+          "official_text_hash": "a4b94953ccffced71952c8713836bb0abf73391186a10ef5db1b62d57778459f",
+          "plain_heading_ko": "배상명령 금지 사유",
+          "explanation_ko": "다음 각 호 가운데 하나라도 해당하면 배상명령을 하여서는 안 됩니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.25.p3.i1",
+          "parent_anchor_id": "anchor.litigation-promotion-special.25.p3",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p3:i1",
+          "locator_key": "a25-p3-i1",
+          "official_text_hash": "9d977298e30c9c24b7cf1de1d838b27342512a612bc845100cd039b58c4269e4",
+          "plain_heading_ko": "피해자 인적사항 불명",
+          "explanation_ko": "피해자의 성명·주소가 분명한지 확인합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.25.p3.i2",
+          "parent_anchor_id": "anchor.litigation-promotion-special.25.p3",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p3:i2",
+          "locator_key": "a25-p3-i2",
+          "official_text_hash": "3b36e026046fcf38e7b1c9b346aefbf85ad4ac4a297c5d35205b7215a283a1ea",
+          "plain_heading_ko": "피해금액 미특정",
+          "explanation_ko": "피해금액이 자료로 특정되는지 확인합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.25.p3.i3",
+          "parent_anchor_id": "anchor.litigation-promotion-special.25.p3",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p3:i3",
+          "locator_key": "a25-p3-i3",
+          "official_text_hash": "e09eacc6e097becb1463b000e351741e7564e6b866bd7f26810c2eab4361d144",
+          "plain_heading_ko": "배상책임 불명확",
+          "explanation_ko": "피고인의 책임 유무와 범위가 명백한지 확인합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.25.p3.i4",
+          "parent_anchor_id": "anchor.litigation-promotion-special.25.p3",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0025:article:p3:i4",
+          "locator_key": "a25-p3-i4",
+          "official_text_hash": "e5e0dd620bba89f59114de270cc4d7bf02cc02ce9403b5e67c90d07f2c79abfc",
+          "plain_heading_ko": "공판 지연·절차 부적합",
+          "explanation_ko": "공판 지연 우려나 형사절차에서 배상명령이 타당한지 확인합니다."
+        }
       ],
-      "lawyer_workspace_entry": {
-        "question_ko": "가해자에게 배상받지 못하면 범죄피해 구조금을 신청할 수 있나요?",
-        "decision_facts_ko": [
-          "구조대상 범죄피해",
-          "미배상 금액",
-          "피해 인지일",
-          "범죄 발생일"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      "logical_groups": [
+        {
+          "logical_group_id": "group.compensation-order.25.scope",
+          "role": "requirement",
+          "operator": "all",
+          "title_ko": "대상·손해·명확성 확인",
+          "ordinal": 0,
+          "anchor_ids": [
+            "anchor.litigation-promotion-special.25.article",
+            "anchor.litigation-promotion-special.25.p1",
+            "anchor.litigation-promotion-special.25.p1.i1",
+            "anchor.litigation-promotion-special.25.p1.i2",
+            "anchor.litigation-promotion-special.25.p1.i3",
+            "anchor.litigation-promotion-special.25.p2",
+            "anchor.litigation-promotion-special.25.p3",
+            "anchor.litigation-promotion-special.25.p3.i1",
+            "anchor.litigation-promotion-special.25.p3.i2",
+            "anchor.litigation-promotion-special.25.p3.i3",
+            "anchor.litigation-promotion-special.25.p3.i4"
+          ]
+        }
+      ],
+      "explanation_paragraphs": [
+        {
+          "explanation_paragraph_id": "paragraph.compensation-order.25.scope",
+          "text_ko": "각 호의 대상 죄명과 손해항목, 합의액을 확인하고, 제3항 각 호의 금지 사유가 없는지 순서대로 대조합니다.",
+          "logical_group_id": "group.compensation-order.25.scope",
+          "anchor_ids": [
+            "anchor.litigation-promotion-special.25.p1",
+            "anchor.litigation-promotion-special.25.p1.i1",
+            "anchor.litigation-promotion-special.25.p1.i2",
+            "anchor.litigation-promotion-special.25.p1.i3",
+            "anchor.litigation-promotion-special.25.p2",
+            "anchor.litigation-promotion-special.25.p3",
+            "anchor.litigation-promotion-special.25.p3.i1",
+            "anchor.litigation-promotion-special.25.p3.i2",
+            "anchor.litigation-promotion-special.25.p3.i3",
+            "anchor.litigation-promotion-special.25.p3.i4"
+          ]
+        }
+      ],
+      "citation_edges": [
+        {
+          "citation_edge_id": "article_cite_cec4335119cc20ab",
+          "source_anchor_id": "anchor.litigation-promotion-special.25.p2",
+          "quoted_law_key": "litigation-promotion-special",
+          "resolution_status": "resolved",
+          "publication_status": "active",
+          "target_kind": "authority_reading_unit",
+          "target_authority_reading_unit_id": "authority.litigation-promotion-special.25.v1",
+          "target_anchor_id": "anchor.litigation-promotion-special.25.p1"
+        }
+      ],
+      "editorial_status": "approved"
+    },
+    {
+      "authority_reading_unit_id": "authority.litigation-promotion-special.26.v1",
+      "title_ko": "배상명령 신청기한과 신청서",
+      "route_key": {
+        "law_key": "litigation-promotion-special",
+        "article_no": "0026"
+      },
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
+      "source_snapshot_id": "bb35446950761affb71d6c804d4dd5f8",
+      "source_version_key": "sha256:71db765102e3dc36c200b1193471ee9e24953832465712c14a87437c32398c19",
+      "time_state": "current_as_of_review",
+      "effective_from": "2026-06-02T00:00:00.000Z",
+      "summary_ko": "제1심·제2심 변론종결 전이라는 기한과 신청서 기재·증거서류를 확인합니다.",
+      "anchors": [
+        {
+          "anchor_id": "anchor.litigation-promotion-special.26.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0026:article",
+          "locator_key": "a26",
+          "official_text_hash": "45a643c7689a30b61ff80afd86633f442e2739e5133a1fe2df2c60e87bf6b646",
+          "plain_heading_ko": "배상신청",
+          "explanation_ko": "배상명령 신청의 기한과 방식을 정한 조문입니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.26.p1",
+          "parent_anchor_id": "anchor.litigation-promotion-special.26.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0026:article:p1",
+          "locator_key": "a26-p1",
+          "official_text_hash": "cd6b6df5800db044c090db8d66d7084267a5b91b1b34807a9db2e8315d34e185",
+          "plain_heading_ko": "신청기한과 법원",
+          "explanation_ko": "제1심·제2심 변론종결 전과 사건 계속 법원을 확인합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.26.p2",
+          "parent_anchor_id": "anchor.litigation-promotion-special.26.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0026:article:p2",
+          "locator_key": "a26-p2",
+          "official_text_hash": "61af73037a640f829f75d63c3c9b805532b30113031d8cf2871a658a64c9970c",
+          "plain_heading_ko": "피고인 수만큼의 부본",
+          "explanation_ko": "신청서 원본과 상대방 피고인 수만큼의 신청서 부본을 준비합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.26.p3",
+          "parent_anchor_id": "anchor.litigation-promotion-special.26.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0026:article:p3",
+          "locator_key": "a26-p3",
+          "official_text_hash": "6ae50d5f792f01996e7ac3b08ecc10dc235adabcacd310d825ccb932b8ca11a1",
+          "plain_heading_ko": "신청서 기재사항",
+          "explanation_ko": "사건·당사자·배상 대상·금액을 신청서에 특정합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.26.p4",
+          "parent_anchor_id": "anchor.litigation-promotion-special.26.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0026:article:p4",
+          "locator_key": "a26-p4",
+          "official_text_hash": "9603478340b018034245ecf3a3a10bc3b9c71f18eb65f12b70d6c6f02da3ccf7",
+          "plain_heading_ko": "증거서류",
+          "explanation_ko": "신청서에 필요한 피해·금액 증거를 첨부할 수 있습니다."
+        }
+      ],
+      "logical_groups": [
+        {
+          "logical_group_id": "group.compensation-order.26.procedure",
+          "role": "procedure",
+          "operator": "sequence",
+          "title_ko": "기한 확인부터 증거 첨부까지",
+          "ordinal": 0,
+          "anchor_ids": [
+            "anchor.litigation-promotion-special.26.article",
+            "anchor.litigation-promotion-special.26.p1",
+            "anchor.litigation-promotion-special.26.p2",
+            "anchor.litigation-promotion-special.26.p3",
+            "anchor.litigation-promotion-special.26.p4"
+          ]
+        }
+      ],
+      "explanation_paragraphs": [
+        {
+          "explanation_paragraph_id": "paragraph.compensation-order.26.procedure",
+          "text_ko": "변론종결 전인지 확인한 뒤 원본과 피고인 수만큼의 부본을 준비하고, 사건과 손해를 신청서에 특정해 증거서류를 붙입니다.",
+          "logical_group_id": "group.compensation-order.26.procedure",
+          "anchor_ids": [
+            "anchor.litigation-promotion-special.26.p1",
+            "anchor.litigation-promotion-special.26.p2",
+            "anchor.litigation-promotion-special.26.p3",
+            "anchor.litigation-promotion-special.26.p4"
+          ]
+        }
+      ],
+      "citation_edges": [
+        {
+          "citation_edge_id": "article_cite_d105bbb7ba3561fc",
+          "source_anchor_id": "anchor.litigation-promotion-special.26.p1",
+          "quoted_law_key": "litigation-promotion-special",
+          "resolution_status": "resolved",
+          "publication_status": "active",
+          "target_kind": "authority_reading_unit",
+          "target_authority_reading_unit_id": "authority.litigation-promotion-special.25.v1",
+          "target_anchor_id": "anchor.litigation-promotion-special.25.article"
+        }
+      ],
+      "editorial_status": "approved"
+    },
+    {
+      "authority_reading_unit_id": "authority.litigation-promotion-special.31.v1",
+      "title_ko": "배상명령의 선고와 가집행",
+      "route_key": {
+        "law_key": "litigation-promotion-special",
+        "article_no": "0031"
+      },
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+      "source_snapshot_id": "9af4e46708641c88dc39ec6af514632c",
+      "source_version_key": "sha256:962b756d582d502320315a5279a7bc2e4cb691339e38f52f04e62df537d5cdfe",
+      "time_state": "current_as_of_review",
+      "effective_from": "2026-06-02T00:00:00.000Z",
+      "summary_ko": "유죄판결과 동시 선고, 주문의 대상·금액 표시와 가집행선고를 확인합니다.",
+      "anchors": [
+        {
+          "anchor_id": "anchor.litigation-promotion-special.31.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0031:article",
+          "locator_key": "a31",
+          "official_text_hash": "d8109ad86787a52731989be05977834b2e31555ca0d45e47bbcdc85637078dfb",
+          "plain_heading_ko": "배상명령의 선고",
+          "explanation_ko": "배상명령의 선고 시점과 주문·가집행을 정합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.31.p1",
+          "parent_anchor_id": "anchor.litigation-promotion-special.31.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0031:article:p1",
+          "locator_key": "a31-p1",
+          "official_text_hash": "1ec24d5ac69b025fd219dd4f1d5b7706cfd2854e45a603bc72fc6fab86ff97fc",
+          "plain_heading_ko": "유죄판결과 동시 선고",
+          "explanation_ko": "배상명령은 유죄판결 선고와 동시에 합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.31.p2",
+          "parent_anchor_id": "anchor.litigation-promotion-special.31.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0031:article:p2",
+          "locator_key": "a31-p2",
+          "official_text_hash": "62232531a42f661649032fb3a01088328b150c71e6a1a9e58825fda55d7f3f36",
+          "plain_heading_ko": "주문의 대상과 금액",
+          "explanation_ko": "배상 대상과 금액이 판결 주문에 표시되는지 확인합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.31.p3",
+          "parent_anchor_id": "anchor.litigation-promotion-special.31.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0031:article:p3",
+          "locator_key": "a31-p3",
+          "official_text_hash": "de17f481d80e6ebc12f500f000b25d4c2fcfcaf4e27033b425558c50af2e65fa",
+          "plain_heading_ko": "가집행선고",
+          "explanation_ko": "확정 전 집행 가능성을 좌우하는 가집행선고를 확인합니다."
+        }
+      ],
+      "logical_groups": [
+        {
+          "logical_group_id": "group.compensation-order.31.effect",
+          "role": "effect",
+          "operator": "sequence",
+          "title_ko": "선고·주문·가집행 확인",
+          "ordinal": 0,
+          "anchor_ids": [
+            "anchor.litigation-promotion-special.31.article",
+            "anchor.litigation-promotion-special.31.p1",
+            "anchor.litigation-promotion-special.31.p2",
+            "anchor.litigation-promotion-special.31.p3"
+          ]
+        }
+      ],
+      "explanation_paragraphs": [
+        {
+          "explanation_paragraph_id": "paragraph.compensation-order.31.effect",
+          "text_ko": "선고 시점과 주문의 배상 대상·금액, 가집행선고를 판결서에서 확인합니다.",
+          "logical_group_id": "group.compensation-order.31.effect",
+          "anchor_ids": [
+            "anchor.litigation-promotion-special.31.p1",
+            "anchor.litigation-promotion-special.31.p2",
+            "anchor.litigation-promotion-special.31.p3"
+          ]
+        }
+      ],
+      "citation_edges": [],
+      "editorial_status": "approved"
+    },
+    {
+      "authority_reading_unit_id": "authority.litigation-promotion-special.32.v1",
+      "title_ko": "배상신청 각하와 재신청 제한",
+      "route_key": {
+        "law_key": "litigation-promotion-special",
+        "article_no": "0032"
+      },
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0032",
+      "source_snapshot_id": "c7d70e140addfb2e580cb419da25eec6",
+      "source_version_key": "sha256:b5827a9f6978452137104457762399b9ef44ab1097d5bed51a9c948e897dacd9",
+      "time_state": "current_as_of_review",
+      "effective_from": "2026-06-02T00:00:00.000Z",
+      "summary_ko": "부적법·이유 없음·부적절한 배상명령의 각하와 불복·동일신청 제한을 확인합니다.",
+      "anchors": [
+        {
+          "anchor_id": "anchor.litigation-promotion-special.32.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0032:article",
+          "locator_key": "a32",
+          "official_text_hash": "274801bf4dc6e70864d065ad23a1fe2905872eec86ab5009bf528d32d6713714",
+          "plain_heading_ko": "배상신청의 각하",
+          "explanation_ko": "각하 사유와 그 뒤 효과를 정한 조문입니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.32.p1",
+          "parent_anchor_id": "anchor.litigation-promotion-special.32.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0032:article:p1",
+          "locator_key": "a32-p1",
+          "official_text_hash": "19b84af4efab44b8590ccf3d1813543c783a6c70730ad26210cc942cf5c70ef2",
+          "plain_heading_ko": "각하 사유",
+          "explanation_ko": "다음 각 호 가운데 하나라도 해당하면 법원은 배상신청을 각하하여야 합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.32.p1.i1",
+          "parent_anchor_id": "anchor.litigation-promotion-special.32.p1",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0032:article:p1:i1",
+          "locator_key": "a32-p1-i1",
+          "official_text_hash": "bb5399135c66d22a62138aee3127b1495dce221bf75f765f291a119eb0ba81d7",
+          "plain_heading_ko": "부적법한 신청",
+          "explanation_ko": "배상신청이 법정 방식과 요건에 맞는지 확인합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.32.p1.i2",
+          "parent_anchor_id": "anchor.litigation-promotion-special.32.p1",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0032:article:p1:i2",
+          "locator_key": "a32-p1-i2",
+          "official_text_hash": "7dedfdee80cee7b778889ed335a05031085861544be26ea9d7f5ac063414f2d7",
+          "plain_heading_ko": "이유 없는 신청",
+          "explanation_ko": "신청한 배상청구에 이유가 있는지 확인합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.32.p1.i3",
+          "parent_anchor_id": "anchor.litigation-promotion-special.32.p1",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0032:article:p1:i3",
+          "locator_key": "a32-p1-i3",
+          "official_text_hash": "17c5316502adb14df4a76e07eb6b326c7aaabf3d07ad9d35e71224c95955c157",
+          "plain_heading_ko": "배상명령의 부적절성",
+          "explanation_ko": "형사절차에서 배상명령을 하는 것이 타당한지 확인합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.32.p4",
+          "parent_anchor_id": "anchor.litigation-promotion-special.32.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0032:article:p4",
+          "locator_key": "a32-p4",
+          "official_text_hash": "b1a62cee299b2019fa2c94d7644bf5041f0805bbb2829b66128d4badd3139848",
+          "plain_heading_ko": "불복과 동일신청 제한",
+          "explanation_ko": "신청인의 불복과 같은 배상신청의 반복이 제한됩니다."
+        }
+      ],
+      "logical_groups": [
+        {
+          "logical_group_id": "group.compensation-order.32.exception",
+          "role": "exception",
+          "operator": "sequence",
+          "title_ko": "각하 사유와 후속 제한",
+          "ordinal": 0,
+          "anchor_ids": [
+            "anchor.litigation-promotion-special.32.article",
+            "anchor.litigation-promotion-special.32.p1",
+            "anchor.litigation-promotion-special.32.p1.i1",
+            "anchor.litigation-promotion-special.32.p1.i2",
+            "anchor.litigation-promotion-special.32.p1.i3",
+            "anchor.litigation-promotion-special.32.p4"
+          ]
+        }
+      ],
+      "explanation_paragraphs": [
+        {
+          "explanation_paragraph_id": "paragraph.compensation-order.32.exception",
+          "text_ko": "신청이 부적법하거나 이유가 없거나 배상명령이 타당하지 않다고 인정되는 각 호의 사유가 있으면 법원은 배상신청을 각하하여야 하므로, 신청 전에 이를 확인하고 각하 뒤에는 동일 신청 반복이 아닌 민사대안을 검토합니다.",
+          "logical_group_id": "group.compensation-order.32.exception",
+          "anchor_ids": [
+            "anchor.litigation-promotion-special.32.p1",
+            "anchor.litigation-promotion-special.32.p1.i1",
+            "anchor.litigation-promotion-special.32.p1.i2",
+            "anchor.litigation-promotion-special.32.p1.i3",
+            "anchor.litigation-promotion-special.32.p4"
+          ]
+        }
+      ],
+      "citation_edges": [],
+      "editorial_status": "approved"
+    },
+    {
+      "authority_reading_unit_id": "authority.litigation-promotion-special.34.v1",
+      "title_ko": "배상명령의 집행력과 중복청구 제한",
+      "route_key": {
+        "law_key": "litigation-promotion-special",
+        "article_no": "0034"
+      },
+      "source_coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0034",
+      "source_snapshot_id": "c8776a4473237b3cf5c8ea85c7dc7076",
+      "source_version_key": "sha256:37a259a2f30f0b86dbed16b017b6548e92dc0556d69173da52e45dc928e17992",
+      "time_state": "current_as_of_review",
+      "effective_from": "2026-06-02T00:00:00.000Z",
+      "summary_ko": "확정·가집행 배상명령 판결서의 집행력과 인용금액 중복청구 제한을 확인합니다.",
+      "anchors": [
+        {
+          "anchor_id": "anchor.litigation-promotion-special.34.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0034:article",
+          "locator_key": "a34",
+          "official_text_hash": "0d5b5a18078330b403d6e03f0ab01267fedb79ec439c477c48d9046b36603050",
+          "plain_heading_ko": "배상명령의 효력과 강제집행",
+          "explanation_ko": "배상명령 판결서의 집행력과 중복청구 범위를 정합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.34.p1",
+          "parent_anchor_id": "anchor.litigation-promotion-special.34.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0034:article:p1",
+          "locator_key": "a34-p1",
+          "official_text_hash": "7028f1903f0f033a07ca45744e26c79c6266c1328031191ded0bd526a6bb77cc",
+          "plain_heading_ko": "민사판결과 같은 집행력",
+          "explanation_ko": "확정 또는 가집행선고가 있는 판결서 정본의 집행력을 확인합니다."
+        },
+        {
+          "anchor_id": "anchor.litigation-promotion-special.34.p2",
+          "parent_anchor_id": "anchor.litigation-promotion-special.34.article",
+          "source_authority_unit_id": "unit:litigation_promotion_special:0034:article:p2",
+          "locator_key": "a34-p2",
+          "official_text_hash": "65d8c009fd113ab472ec4dd9e209c486ce1c3a305d542e8f9ea2be8c72a347cf",
+          "plain_heading_ko": "인용금액 중복청구 제한",
+          "explanation_ko": "확정된 인용금액 범위에서 다른 손해배상 절차를 중복 이용할 수 없습니다."
+        }
+      ],
+      "logical_groups": [
+        {
+          "logical_group_id": "group.compensation-order.34.effect",
+          "role": "effect",
+          "operator": "all",
+          "title_ko": "집행력과 중복청구 범위",
+          "ordinal": 0,
+          "anchor_ids": [
+            "anchor.litigation-promotion-special.34.article",
+            "anchor.litigation-promotion-special.34.p1",
+            "anchor.litigation-promotion-special.34.p2"
+          ]
+        }
+      ],
+      "explanation_paragraphs": [
+        {
+          "explanation_paragraph_id": "paragraph.compensation-order.34.effect",
+          "text_ko": "판결서 정본의 집행 가능성을 확인하되 확정 인용금액을 다른 절차에서 중복 청구하지 않습니다.",
+          "logical_group_id": "group.compensation-order.34.effect",
+          "anchor_ids": [
+            "anchor.litigation-promotion-special.34.p1",
+            "anchor.litigation-promotion-special.34.p2"
+          ]
+        }
+      ],
+      "citation_edges": [],
+      "editorial_status": "approved"
+    }
+  ],
+  "authority_bindings": [
+    {
+      "binding_id": "binding.compensation-order.25",
+      "from_kind": "content",
+      "from_id": "content.compensation-order-eligible-damages",
+      "to_kind": "authority_reading_unit",
+      "to_authority_reading_unit_id": "authority.litigation-promotion-special.25.v1",
+      "anchor_ids": [
+        "anchor.litigation-promotion-special.25.p1",
+        "anchor.litigation-promotion-special.25.p1.i1",
+        "anchor.litigation-promotion-special.25.p1.i2",
+        "anchor.litigation-promotion-special.25.p1.i3",
+        "anchor.litigation-promotion-special.25.p2",
+        "anchor.litigation-promotion-special.25.p3",
+        "anchor.litigation-promotion-special.25.p3.i1",
+        "anchor.litigation-promotion-special.25.p3.i2",
+        "anchor.litigation-promotion-special.25.p3.i3",
+        "anchor.litigation-promotion-special.25.p3.i4"
+      ]
+    },
+    {
+      "binding_id": "binding.compensation-order.26",
+      "from_kind": "content",
+      "from_id": "content.compensation-order-application-deadline",
+      "to_kind": "authority_reading_unit",
+      "to_authority_reading_unit_id": "authority.litigation-promotion-special.26.v1",
+      "anchor_ids": [
+        "anchor.litigation-promotion-special.26.p1",
+        "anchor.litigation-promotion-special.26.p2",
+        "anchor.litigation-promotion-special.26.p3",
+        "anchor.litigation-promotion-special.26.p4"
+      ]
+    },
+    {
+      "binding_id": "binding.compensation-order.31",
+      "from_kind": "content",
+      "from_id": "content.compensation-order-eligible-damages",
+      "to_kind": "authority_reading_unit",
+      "to_authority_reading_unit_id": "authority.litigation-promotion-special.31.v1",
+      "anchor_ids": [
+        "anchor.litigation-promotion-special.31.p1",
+        "anchor.litigation-promotion-special.31.p2",
+        "anchor.litigation-promotion-special.31.p3"
+      ]
+    },
+    {
+      "binding_id": "binding.compensation-order.32",
+      "from_kind": "content",
+      "from_id": "content.compensation-order-eligible-damages",
+      "to_kind": "authority_reading_unit",
+      "to_authority_reading_unit_id": "authority.litigation-promotion-special.32.v1",
+      "anchor_ids": [
+        "anchor.litigation-promotion-special.32.p1",
+        "anchor.litigation-promotion-special.32.p1.i1",
+        "anchor.litigation-promotion-special.32.p1.i2",
+        "anchor.litigation-promotion-special.32.p1.i3",
+        "anchor.litigation-promotion-special.32.p4"
+      ]
+    },
+    {
+      "binding_id": "binding.compensation-order.34",
+      "from_kind": "content",
+      "from_id": "content.compensation-order-eligible-damages",
+      "to_kind": "authority_reading_unit",
+      "to_authority_reading_unit_id": "authority.litigation-promotion-special.34.v1",
+      "anchor_ids": [
+        "anchor.litigation-promotion-special.34.p1",
+        "anchor.litigation-promotion-special.34.p2"
+      ]
     }
   ]
 }

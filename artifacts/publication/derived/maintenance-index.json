@@ -1,9 +1,9 @@
 {
   "schema": "rulelink_publication_maintenance_index_v1",
-  "generated_at": "2026-07-25T15:00:00.000Z",
-  "publication_snapshot_id": "kr-knowledge-core-20260723-023",
-  "publication_bundle_sha256": "014287529cc73e076bab39d269d5511672154baeb61709d7c30f4873a0c5cf1f",
-  "source_text_library_sha256": "f93fac8291c9168299089a542488f9e57bced5c931c3fe79ffff673d17f44e3e",
+  "generated_at": "2026-07-26T09:29:42.000Z",
+  "publication_snapshot_id": "kr-knowledge-core-20260726-024",
+  "publication_bundle_sha256": "06e1fdf74c69b25feab9bda57163bc01c42af709ab84f5196fb5a359a4664886",
+  "source_text_library_sha256": "e81f5445e7b826fa24219f9def26b9be79a494ee0ef0f1f8bf68e5e18ebabde3",
   "review_policy": {
     "mode": "source_event_with_periodic_longstop",
     "coordinate_only_days": 90,
@@ -11,7 +11,7 @@
     "content_dates_are_derived": true
   },
   "counts": {
-    "source_receipts": 425,
+    "source_receipts": 428,
     "content_views": 284,
     "current": 284,
     "review_due": 0,
@@ -1440,23 +1440,53 @@
       "status": "current"
     },
     {
-      "receipt_id": "source-review.0f27bfef462f7526fbd09355",
+      "receipt_id": "source-review.949ed61bdd99f5b0b180a79a",
       "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
-      "source_snapshot_id": "snapshot:50983dddba9cd06682339ba8c6b33d9a",
-      "checked_at": "2026-07-21T08:30:00.000Z",
-      "next_check_at": "2026-10-19T08:30:00.000Z",
+      "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
+      "checked_at": "2026-07-24T00:00:00.000Z",
+      "next_check_at": "2026-10-22T00:00:00.000Z",
       "evidence_level": "coordinate_only",
-      "evidence_hash": "0f27bfef462f7526fbd093554c16e317464dd6d2a9b731341713ab1b48ce9b82",
+      "evidence_hash": "949ed61bdd99f5b0b180a79a195b2dc3cab573939cf82b730190e71bbc72cea1",
       "status": "current"
     },
     {
-      "receipt_id": "source-review.4f3dc4f21ef3327af8f3a1b5",
+      "receipt_id": "source-review.78c9b15eebf788cd06b97517",
       "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
-      "source_snapshot_id": "snapshot:33b1a9b966387025275a6c4531a08027",
-      "checked_at": "2026-07-21T08:30:00.000Z",
-      "next_check_at": "2026-10-19T08:30:00.000Z",
+      "source_snapshot_id": "bb35446950761affb71d6c804d4dd5f8",
+      "checked_at": "2026-07-24T00:00:00.000Z",
+      "next_check_at": "2026-10-22T00:00:00.000Z",
       "evidence_level": "coordinate_only",
-      "evidence_hash": "4f3dc4f21ef3327af8f3a1b5631e34f1a94c752d21ba595bdf067c09d47bb1de",
+      "evidence_hash": "78c9b15eebf788cd06b97517fef63488d38d244a1c7a1e2731bca05fe1b7a697",
+      "status": "current"
+    },
+    {
+      "receipt_id": "source-review.d49eba76418e9b243d445cfb",
+      "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+      "source_snapshot_id": "9af4e46708641c88dc39ec6af514632c",
+      "checked_at": "2026-07-24T00:00:00.000Z",
+      "next_check_at": "2026-10-22T00:00:00.000Z",
+      "evidence_level": "coordinate_only",
+      "evidence_hash": "d49eba76418e9b243d445cfbafe93eb4e92a4dd86ea86a0592a8d51b4f320093",
+      "status": "current"
+    },
+    {
+      "receipt_id": "source-review.37cacebdd8b15f92ce5209b1",
+      "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0032",
+      "source_snapshot_id": "c7d70e140addfb2e580cb419da25eec6",
+      "checked_at": "2026-07-24T00:00:00.000Z",
+      "next_check_at": "2026-10-22T00:00:00.000Z",
+      "evidence_level": "coordinate_only",
+      "evidence_hash": "37cacebdd8b15f92ce5209b14de80602359b6e900231313836d791984574368e",
+      "status": "current"
+    },
+    {
+      "receipt_id": "source-review.71a74c9575487f92848b08e2",
+      "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0034",
+      "source_snapshot_id": "c8776a4473237b3cf5c8ea85c7dc7076",
+      "checked_at": "2026-07-24T00:00:00.000Z",
+      "next_check_at": "2026-10-22T00:00:00.000Z",
+      "evidence_level": "coordinate_only",
+      "evidence_hash": "71a74c9575487f92848b08e216bd348f7b39377f10949f164438b99dd5fb83d1",
       "status": "current"
     },
     {
@@ -5523,7 +5553,7 @@
     },
     {
       "content_id": "content.emotional-distress-and-consolation-money",
-      "dependency_hash": "ac68a82385873b4c8979fbce9bde32c2dc0dc7cb652da7107e621bc81a32c705",
+      "dependency_hash": "0b3f534158f24996f7da4766869d4c1a90b39413e9439550011ab5fe7eae3d0f",
       "source_coordinate_ids": [
         "coord.everyday-damages.civil-act-ko-0751"
       ],
@@ -6042,7 +6072,7 @@
     },
     {
       "content_id": "content.rescission-restitution-and-damages",
-      "dependency_hash": "99e8d94f13dbb9a6ef4365cd49f3f96ad006f34462f6a6f4688221eb0844ee87",
+      "dependency_hash": "125b80e693f61354b739f3197a1705de3ca461fe2cfdbe93149e9c0cb09d8d11",
       "source_coordinate_ids": [
         "coord.real-estate-sale.civil-act-ko-0548",
         "coord.real-estate-sale.civil-act-ko-0551"
@@ -6284,27 +6314,41 @@
     },
     {
       "content_id": "content.compensation-order-eligible-damages",
-      "dependency_hash": "f5e6b6a8fc76557b682eefefd35b8de78bc4618a61b0279f414ee49c298980e2",
+      "dependency_hash": "d5fe9da02ede6513617bf9d5ed84603a1b2f5e6469fcc503732801655c0e09ee",
       "source_coordinate_ids": [
-        "coord.crime-victim-response.litigation-promotion-special-ko-0025"
+        "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0032",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0034"
       ],
       "source_review_receipt_ids": [
-        "source-review.0f27bfef462f7526fbd09355"
+        "source-review.37cacebdd8b15f92ce5209b1",
+        "source-review.71a74c9575487f92848b08e2",
+        "source-review.949ed61bdd99f5b0b180a79a",
+        "source-review.d49eba76418e9b243d445cfb"
       ],
-      "next_check_at": "2026-10-19T08:30:00.000Z",
+      "next_check_at": "2026-10-22T00:00:00.000Z",
       "status": "current",
       "invalidated_by": []
     },
     {
       "content_id": "content.compensation-order-application-deadline",
-      "dependency_hash": "9a91a19167c3194c15e73294ab89785b2b0cfe11de6b3eaa740e08c916fc2cf8",
+      "dependency_hash": "fafb2fa4929f982a501cd6a8b1c62fb12d57bbacfa3eb599b8d179374c9e7c37",
       "source_coordinate_ids": [
-        "coord.crime-victim-response.litigation-promotion-special-ko-0026"
+        "coord.crime-victim-response.litigation-promotion-special-ko-0025",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0026",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0032",
+        "coord.crime-victim-response.litigation-promotion-special-ko-0034"
       ],
       "source_review_receipt_ids": [
-        "source-review.4f3dc4f21ef3327af8f3a1b5"
+        "source-review.37cacebdd8b15f92ce5209b1",
+        "source-review.71a74c9575487f92848b08e2",
+        "source-review.78c9b15eebf788cd06b97517",
+        "source-review.949ed61bdd99f5b0b180a79a",
+        "source-review.d49eba76418e9b243d445cfb"
       ],
-      "next_check_at": "2026-10-19T08:30:00.000Z",
+      "next_check_at": "2026-10-22T00:00:00.000Z",
       "status": "current",
       "invalidated_by": []
     },

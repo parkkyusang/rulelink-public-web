@@ -2,21 +2,21 @@
   "schema": "rulelink_publication_coverage_expansion_plan_v1",
   "schema_sha256": "79e1b8ae6bc6ed6bbc3dc16eec9df6f025ab7ccbe676ee398233aeb6b1893322",
   "generated_from": {
-    "snapshot_id": "kr-knowledge-core-20260723-023",
-    "as_of": "2026-07-23T08:08:00Z",
-    "base_bundle_sha256": "f2b6d4cfbb818c374946d706a653b69652d0b35c1259ef15704b24a5b1a6dde2",
-    "backlog_sha256": "bacbca80b9187c62c882d5fed8804827876b96dcf627e2f2fbe1d4a256ae77c3",
+    "snapshot_id": "kr-knowledge-core-20260726-024",
+    "as_of": "2026-07-26T09:29:42Z",
+    "base_bundle_sha256": "5ede84d53415dee9452f4bbdaf8318cc823925769396404f03416e934445ea32",
+    "backlog_sha256": "d172fb51e6a64407a81c13d811654700e3748cb6ebd25479b4d06b4ccea48334",
     "taxonomy_sha256": "4cb524d1d0479246c943a2fcacfce0807e4b13feddae2e8d70afc78d7e1b1e11",
     "topic_manifest_sha256": "8ec514941561b1660429e382f7021f9508eb4543c0b8286bc4c370579b7c8434",
-    "production_queue_sha256": "c701a208dd3b8edc7dca79520696eddea80fce50e3eeba14649f0738259414b0",
+    "production_queue_sha256": "4ec5206812b55c58c7abb959f07e2922d6316624f8ca8795dc67db3a2c415e6b",
     "production_registry_sha256": "4ee89994c39627cd9ddb3aa9eb12f5a12d49e90c2b183d77798ea432de80eab3"
   },
   "denominator": {
     "hub_count": 28,
     "content_count": 284,
-    "rule_count": 278,
-    "scenario_count": 247,
-    "source_count": 425,
+    "rule_count": 281,
+    "scenario_count": 254,
+    "source_count": 428,
     "domain_count": 9,
     "target_domain_count": 21,
     "change_brief_count": 11
@@ -359,7 +359,7 @@
   "demand_availability": "not_provided",
   "legal_answer_activation": {
     "state": "inactive",
-    "manifest_sha256": "ddf6702729675b016d5c10d3ba855007c8b54525dae597e4ad7954cf23ae72cb",
+    "manifest_sha256": "7cc0d5fef06abb3a9d28ca5cc096e68fd63f7a9decf3cc92993bda768a8a34ec",
     "expected_packet_count": 0,
     "expected_packet_ids": [],
     "target_topic_ids": [],
@@ -558,29 +558,26 @@
     },
     {
       "content_id": "content.accident-damages-responsibility-map",
-      "content_revision_sha256": "340313f89f3c7f0e4bc86d977789b949d1a9c4e07f8743b43414e3fbeccabd09",
+      "content_revision_sha256": "aeaaa88c09c2735a5a71f320c19e19b76c0936df8523961d7cefeadd17efd105",
       "topic_id": "hub.everyday-damages",
       "domain_id": "domain.civil-obligations-enforcement",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 5
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 6
         },
         "authority_l1": {
           "status": "complete",
@@ -607,27 +604,23 @@
           "count": 8
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:appeal",
-            "taxonomy_risk:deadline"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -655,30 +648,28 @@
     },
     {
       "content_id": "content.accident-evidence-and-tort-limitation",
-      "content_revision_sha256": "71ae61ccd4577fa003134cd846600ad912c6670623d1162d623815c7d75aa564",
+      "content_revision_sha256": "23effa9d71e94a811c3925cab863c71744f02cbe59d2424e0746e1f342154e71",
       "topic_id": "hub.everyday-damages",
       "domain_id": "domain.civil-obligations-enforcement",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
         "deadline_unverified",
-        "scenario_missing",
-        "typed_relation_missing"
+        "scenario_missing"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "missing",
           "count": 0
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 9
         },
         "authority_l1": {
           "status": "complete",
@@ -719,12 +710,10 @@
           ]
         },
         "structural_gap": {
-          "score": 52,
+          "score": 28,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
             "scenario_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -754,15 +743,14 @@
     },
     {
       "content_id": "content.admin-appeal.application-preparation",
-      "content_revision_sha256": "b0192c9b80d6c9cd874df664842ba0cbf5d9fd56a2c4452253d830befe798090",
+      "content_revision_sha256": "2bf11b45e2e2734aa567d1c4e9ee9b429d13902a2b6de329e26df72e4a9d05d4",
       "topic_id": "hub.administrative-appeals",
       "domain_id": "domain.public-administrative",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -774,8 +762,8 @@
           "count": 3
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -816,10 +804,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -1039,15 +1026,14 @@
     },
     {
       "content_id": "content.admin-appeal.eligibility-document-branch",
-      "content_revision_sha256": "763e356f2bb09efbf2491849d426db5313fb8b9672e2c883a120c810c67de635",
+      "content_revision_sha256": "4b21feb07620b1517e683b6ed7240883cea0c7ef02cbc94e37dce894ac6837d4",
       "topic_id": "hub.administrative-appeals",
       "domain_id": "domain.public-administrative",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -1059,8 +1045,8 @@
           "count": 2
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -1101,10 +1087,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -1609,29 +1594,27 @@
     },
     {
       "content_id": "content.asset-transfer-harming-property-division",
-      "content_revision_sha256": "a7fc28d3e8b729317ec40e7f11700d06ff7d1d4faa1763416218ce06818ad67b",
+      "content_revision_sha256": "ab2ab498b93931014698b5b0a5f5300ec74120560b6218fde2ceec7743249018",
       "topic_id": "hub.divorce-parenting",
       "domain_id": "domain.family-inheritance",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -1672,11 +1655,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -2751,7 +2732,7 @@
     },
     {
       "content_id": "content.bank-account-seizure-and-collection-order",
-      "content_revision_sha256": "588a0154797841d71f5e6ad21eef85a2cd3aeea8756c8a43b92c67ad4d489568",
+      "content_revision_sha256": "56242057b78023903427f3c9fa3a0c3ed8881e395c099667ec35c94e857b5779",
       "topic_id": "hub.debt-enforcement",
       "domain_id": "domain.civil-obligations-enforcement",
       "coverage_state": "unmapped",
@@ -2759,8 +2740,7 @@
         "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -2772,8 +2752,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -2814,11 +2794,10 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 25,
           "state": "deficit_present",
           "evidence": [
             "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -2848,7 +2827,7 @@
     },
     {
       "content_id": "content.bank-transfer-loan-or-gift",
-      "content_revision_sha256": "b47c90d34eaa439bc0afa283d5c88292a493998d6ada58d689b087180f1cf88b",
+      "content_revision_sha256": "fcdfb1bcd106136681826e1efe707d840f896baa8c7bbcaaac16655315438835",
       "topic_id": "hub.money-guarantee",
       "domain_id": "domain.civil-obligations-enforcement",
       "coverage_state": "unmapped",
@@ -2868,7 +2847,7 @@
         },
         "typed_relation": {
           "status": "complete",
-          "count": 3
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -2941,29 +2920,27 @@
     },
     {
       "content_id": "content.broker-confirmation-explanation-checklist",
-      "content_revision_sha256": "2504aef9e48e46fd0e7fb6d543065bef5567e0207f425b1ab87a3b7443ba0469",
+      "content_revision_sha256": "296e210425c939f81835aa5873010934db5e6e1e936865794ca4f10dc3501809",
       "topic_id": "hub.real-estate-sale",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -3004,11 +2981,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -3038,15 +3013,14 @@
     },
     {
       "content_id": "content.business-registration-does-not-decide-worker-status",
-      "content_revision_sha256": "2269aa7474f9c4d9354c83c8ba47aef7a861df213c7a41ae7401c638ca0480da",
+      "content_revision_sha256": "a511ff153edaabc9a351ca0cc625c975d7bd84a85ce3f90b14f65ecdcf6ea635",
       "topic_id": "hub.labor-wages",
       "domain_id": "domain.labor-social-protection",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -3058,8 +3032,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -3101,10 +3075,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -3134,7 +3107,7 @@
     },
     {
       "content_id": "content.cancel-lease-registration-after-refund",
-      "content_revision_sha256": "d70c6d5356730625c80472a3c97115f2d56b63f78e6a759db4ce2f87a45473c2",
+      "content_revision_sha256": "a27dad46c1d9d0c9be4745b858f9ed3c24efcc5efbb835aacd901dfd3a89745b",
       "topic_id": "hub.housing-lease-deposit",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
@@ -3142,8 +3115,7 @@
         "authority_l2_unverified",
         "coverage_not_declared",
         "deadline_unverified",
-        "scenario_missing",
-        "typed_relation_missing"
+        "scenario_missing"
       ],
       "gaps": {
         "audience": {
@@ -3155,8 +3127,8 @@
           "count": 0
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -3197,11 +3169,10 @@
           ]
         },
         "structural_gap": {
-          "score": 40,
+          "score": 28,
           "state": "deficit_present",
           "evidence": [
             "scenario_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -3326,29 +3297,27 @@
     },
     {
       "content_id": "content.child-support-record-is-not-private-memo",
-      "content_revision_sha256": "144995db9f369832067d9d23e8ffc7112d253e51de831cba67a7e306fdfe86eb",
+      "content_revision_sha256": "8579ff1fff5e592b295fa5efca5b465b05e27c85375de81b225c207717ff3a32",
       "topic_id": "hub.divorce-parenting",
       "domain_id": "domain.family-inheritance",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -3389,11 +3358,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -4656,15 +4623,14 @@
     },
     {
       "content_id": "content.commercial-lease-act-scope",
-      "content_revision_sha256": "e328c7cae32f386818c33b11a86982d9cf815366566a468082207ec7287cac2d",
+      "content_revision_sha256": "596ef2a69664537c9a2ce78946a186475ee30f07b9daf887d5e1bd1d6086216c",
       "topic_id": "hub.commercial-lease",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -4676,8 +4642,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -4718,10 +4684,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -4751,15 +4716,14 @@
     },
     {
       "content_id": "content.commercial-lease-closure-termination",
-      "content_revision_sha256": "0144b8c97bfc6f1eda5bc46199a827fc731e1986bacdf87ec6aabcc5ef911e8d",
+      "content_revision_sha256": "a79ffcc70047aab434897442a4cc7afef242a0d2254b0048f751bb219529ad70",
       "topic_id": "hub.commercial-lease",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -4771,8 +4735,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -4813,10 +4777,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -4846,15 +4809,14 @@
     },
     {
       "content_id": "content.commercial-lease-dispute-conciliation",
-      "content_revision_sha256": "e297c7821d14716352c4a7cb19737a7dead1fb59c4b2719960495d0a20ceadc0",
+      "content_revision_sha256": "5371c47d215d2853fc6187561ba0e03f8d0e33d5a45a443de59cc39f58439be1",
       "topic_id": "hub.commercial-lease",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -4866,8 +4828,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -4908,10 +4870,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -4941,15 +4902,14 @@
     },
     {
       "content_id": "content.commercial-lease-key-money-recovery",
-      "content_revision_sha256": "6076a44e50cd39678b2c4db73c56d90cead9c91e48c93ae80e666627bc73c971",
+      "content_revision_sha256": "03c7ea28e9a1e1ea35053dc6e96e70382f5c07c4f757f595e49b97ade5a28229",
       "topic_id": "hub.commercial-lease",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -4961,8 +4921,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -5003,10 +4963,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -5036,15 +4995,14 @@
     },
     {
       "content_id": "content.commercial-lease-management-fee-breakdown",
-      "content_revision_sha256": "93b45221bcbf509db060a532afe7cb44a4836d1594a14f88eaec9b9315a21400",
+      "content_revision_sha256": "acecbd3437c4b84acdb32eab2a463a14ca9593866f006e79c3ff1bfcf32203cf",
       "topic_id": "hub.commercial-lease",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -5056,8 +5014,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -5098,10 +5056,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -5131,15 +5088,14 @@
     },
     {
       "content_id": "content.commercial-lease-move-before-deposit-refund",
-      "content_revision_sha256": "5bc224bab2a085c950c9b60b961a408bef2b6f4a73c9347706baf22f621d3b55",
+      "content_revision_sha256": "b68095f5ae84f2ce659413f2f55c88bd70fb4e2ae58a5fd7ebe71a201d592ef7",
       "topic_id": "hub.commercial-lease",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -5151,8 +5107,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -5193,10 +5149,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -5226,15 +5181,14 @@
     },
     {
       "content_id": "content.commercial-lease-opposability-and-registration",
-      "content_revision_sha256": "ba7158412d973b965cc4a6a85a6d33fb2b5520ad4c42358b9e74a82d03a7e7f5",
+      "content_revision_sha256": "aa4c27e6041518ae467c8040b7c8155e95f6011fa8aedf48c7f38c5c6651c42f",
       "topic_id": "hub.commercial-lease",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -5246,8 +5200,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -5288,10 +5242,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -5321,15 +5274,14 @@
     },
     {
       "content_id": "content.commercial-lease-priority-repayment",
-      "content_revision_sha256": "cbdd4862f32a38c15128dc60162eddc7bf0c62b750bc27d6debc6dc0ae5275d2",
+      "content_revision_sha256": "f58c1f68dc3c572c82fb40c01c56b33aaccd6df9a9175dad7f157ecd7998c5c4",
       "topic_id": "hub.commercial-lease",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -5341,8 +5293,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -5383,10 +5335,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -5416,15 +5367,14 @@
     },
     {
       "content_id": "content.commercial-lease-renewal-right",
-      "content_revision_sha256": "365302755f4a01bc241ec6b0cb920c04a244f04e607ee388007214b8dcdda124",
+      "content_revision_sha256": "4092245f63b79453fddaf00cc25048d4fc20d5f4813ae43bc1b04f99e9cca254",
       "topic_id": "hub.commercial-lease",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -5436,8 +5386,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -5478,10 +5428,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -5511,15 +5460,14 @@
     },
     {
       "content_id": "content.commercial-lease-rent-arrears",
-      "content_revision_sha256": "37ce8ed39b734c46ed80023d31326c0a6db13a8cd67d828226077a6a1856a7cc",
+      "content_revision_sha256": "38db806c12890d71bd998b1a20154a806b1675905b6d70ef0bbfdaf09228433b",
       "topic_id": "hub.commercial-lease",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -5531,8 +5479,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -5573,10 +5521,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -5606,15 +5553,14 @@
     },
     {
       "content_id": "content.commercial-lease-rent-increase-and-conversion",
-      "content_revision_sha256": "f7310ebe44f3d8084e0ac055d0a5b4349ee720b507c84234189efc23ed4810e8",
+      "content_revision_sha256": "f3738d95efcab2b9d5a260d3c5cc399a54d01f465e7806405da9bbb6028b5d4c",
       "topic_id": "hub.commercial-lease",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -5626,8 +5572,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -5668,10 +5614,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -5701,44 +5646,39 @@
     },
     {
       "content_id": "content.compensation-order-application-deadline",
-      "content_revision_sha256": "06172abed493a318563a1cc4a99caa9694beb4717a2bcbd9d5a959f00b307d5a",
+      "content_revision_sha256": "17253e3ecb93225a21e855bb6d4f818a8897c5d76a5ccc88ef2ea18ea104010d",
       "topic_id": "hub.crime-victim-response",
       "domain_id": "domain.crime-victim-safety",
       "coverage_state": "coverage_declared",
       "gap_codes": [
-        "audience_situation_missing",
-        "authority_l2_unverified",
-        "authority_locator_unverified",
         "deadline_unverified",
         "evaluation_result_unverified",
-        "release_evidence_missing",
-        "temporal_authority_unverified",
-        "typed_relation_missing"
+        "release_evidence_missing"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
-          "count": 1
+          "count": 4
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 5
         },
         "authority_l1": {
           "status": "complete",
-          "count": 1
+          "count": 5
         },
         "authority_l2": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "freshness_version": {
           "status": "complete",
-          "count": 1
+          "count": 5
         },
         "search_intent": {
           "status": "complete",
@@ -5766,20 +5706,17 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 5,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
-            "authority_l2_unverified",
             "deadline_unverified"
           ]
         },
         "authority_readiness": {
-          "score": 50,
-          "state": "L1_coordinate",
+          "score": 100,
+          "state": "L2_locator",
           "evidence": [
-            "authority:L1"
+            "authority:L2"
           ]
         },
         "source_freshness": {
@@ -5800,44 +5737,39 @@
     },
     {
       "content_id": "content.compensation-order-eligible-damages",
-      "content_revision_sha256": "306644179f773d55b70a9445ecf30f5a084615b2f0a7b778fd9648e77fa38791",
+      "content_revision_sha256": "64fbdc4a99141537a3e6e76359d71e1cbe37df99789dd905d01c72090f2ac80e",
       "topic_id": "hub.crime-victim-response",
       "domain_id": "domain.crime-victim-safety",
       "coverage_state": "coverage_declared",
       "gap_codes": [
-        "audience_situation_missing",
-        "authority_l2_unverified",
-        "authority_locator_unverified",
         "deadline_unverified",
         "evaluation_result_unverified",
-        "release_evidence_missing",
-        "temporal_authority_unverified",
-        "typed_relation_missing"
+        "release_evidence_missing"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
-          "count": 1
+          "count": 5
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 5
         },
         "authority_l1": {
           "status": "complete",
-          "count": 1
+          "count": 4
         },
         "authority_l2": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "freshness_version": {
           "status": "complete",
-          "count": 1
+          "count": 4
         },
         "search_intent": {
           "status": "complete",
@@ -5865,20 +5797,17 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 5,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
-            "authority_l2_unverified",
             "deadline_unverified"
           ]
         },
         "authority_readiness": {
-          "score": 50,
-          "state": "L1_coordinate",
+          "score": 100,
+          "state": "L2_locator",
           "evidence": [
-            "authority:L1"
+            "authority:L2"
           ]
         },
         "source_freshness": {
@@ -5994,29 +5923,27 @@
     },
     {
       "content_id": "content.consensual-divorce-cooling-period",
-      "content_revision_sha256": "9de2f38320bd00c12fde47acdd1bd41ce18def46054b1c906049404e8edf2193",
+      "content_revision_sha256": "b1a021ec8479c38a72e4f4d4a285bdca2a687d800bd78849560168e4254e769c",
       "topic_id": "hub.divorce-parenting",
       "domain_id": "domain.family-inheritance",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -6057,11 +5984,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -6091,29 +6016,26 @@
     },
     {
       "content_id": "content.consensual-divorce-needs-court-confirmation-and-report",
-      "content_revision_sha256": "c2ff7b3fda1fa083012bdf6fa2000b3ce820c99fd46ed25e123af1370ea62e6e",
+      "content_revision_sha256": "e37a8574a5f37c191492b1022a506fef04c7b05b9ed4d0814e210c64cc7e671d",
       "topic_id": "hub.divorce-parenting",
       "domain_id": "domain.family-inheritance",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -6140,27 +6062,23 @@
           "count": 6
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:deadline",
-            "taxonomy_risk:safety"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -6658,7 +6576,7 @@
     },
     {
       "content_id": "content.crime-evidence-preservation-first-steps",
-      "content_revision_sha256": "8b8fd94346635479b79826708582ec3361171e5d47ba72b17d4ec6ca38245b5a",
+      "content_revision_sha256": "59d88c76923afdd4c7fc917f0a0b8a401e314952faf275e02aa6f11625e8874d",
       "topic_id": "hub.crime-victim-response",
       "domain_id": "domain.crime-victim-safety",
       "coverage_state": "unmapped",
@@ -6756,7 +6674,7 @@
     },
     {
       "content_id": "content.crime-victim-relief-fund-eligibility-deadline",
-      "content_revision_sha256": "64745c82882ebf368192b6d3d37b7a4db96e9749d11d07940e6b05fd4201347a",
+      "content_revision_sha256": "4e4ddf44d89e024e55996ef865caa180d85704923f959a384ff8edc4b6ef4106",
       "topic_id": "hub.crime-victim-response",
       "domain_id": "domain.crime-victim-safety",
       "coverage_state": "unmapped",
@@ -6951,7 +6869,7 @@
     },
     {
       "content_id": "content.crime-victim-urgent-safety-and-support",
-      "content_revision_sha256": "7976d11d0703cce46f3ca8510282f4a0337c760c92b8a0cfc5cac3f89863351c",
+      "content_revision_sha256": "08dae454e19873c2416a790e4549830979e8860f620587c3cde02011b83eea16",
       "topic_id": "hub.crime-victim-response",
       "domain_id": "domain.crime-victim-safety",
       "coverage_state": "unmapped",
@@ -7049,15 +6967,13 @@
     },
     {
       "content_id": "content.criminal-compensation-order-vs-civil-damages",
-      "content_revision_sha256": "88e77016ba43ba136a8a37927af5cc06cc189775f2744bc22231feedb37cc3fa",
+      "content_revision_sha256": "2454a088571b1a7955130036870aa2c27813e9db88108a28f47adf21987bffc7",
       "topic_id": "hub.legal-concept-comparisons",
       "domain_id": "domain.legal-navigation",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
@@ -7069,8 +6985,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -7097,26 +7013,23 @@
           "count": 4
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:appeal",
-            "taxonomy_risk:deadline"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -7144,15 +7057,14 @@
     },
     {
       "content_id": "content.criminal-settlement-vs-complaint-withdrawal",
-      "content_revision_sha256": "7d1bbe7cbccf10b61f527e37ebd70972cc891c97225c1501cc7fde00990e9039",
+      "content_revision_sha256": "c335e8cdcba50dc1fb7d8a32956cb5d25ae8110b637d9059a9074aebbb7ccd0f",
       "topic_id": "hub.legal-concept-comparisons",
       "domain_id": "domain.legal-navigation",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -7164,8 +7076,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -7206,10 +7118,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -7432,7 +7343,7 @@
     },
     {
       "content_id": "content.digital-content-cancellation-exception",
-      "content_revision_sha256": "163dca4186abbfcd3060de0f3236cb9eec5b89084aa83c32f19ab5f1c730eea4",
+      "content_revision_sha256": "ef6b4debec66bd4df62f5d7945e9dbff0a73926788a5874eadde78bd5f7fa603",
       "topic_id": "hub.consumer-online-contracts",
       "domain_id": "domain.consumer-digital",
       "coverage_state": "unmapped",
@@ -7452,7 +7363,7 @@
         },
         "typed_relation": {
           "status": "complete",
-          "count": 1
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -7714,15 +7625,13 @@
     },
     {
       "content_id": "content.dismissal-notice-vs-unfair-dismissal-remedy",
-      "content_revision_sha256": "edce839ae21fda1b2c1dc77cbe59d7e7603c9150cd5afdd38ea40a1c0fdbf6da",
+      "content_revision_sha256": "a187203e0e6588ac4c40c1b1cc6372f43f526c3e32b3361afaccf0757272cb0f",
       "topic_id": "hub.legal-concept-comparisons",
       "domain_id": "domain.legal-navigation",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
@@ -7734,8 +7643,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -7762,26 +7671,23 @@
           "count": 4
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:appeal",
-            "taxonomy_risk:deadline"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -7904,29 +7810,27 @@
     },
     {
       "content_id": "content.divorce-child-custody-support-parental-authority-agreement",
-      "content_revision_sha256": "485c3b6e3d0bf6c181e8544fe0e317adbedd98bdb5864933325e6abd8d696c74",
+      "content_revision_sha256": "a562665f20f2c1d0d5a179aad92b80b979cbbc71247913956461273b2838325a",
       "topic_id": "hub.divorce-parenting",
       "domain_id": "domain.family-inheritance",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 2
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -7967,11 +7871,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -8001,29 +7903,27 @@
     },
     {
       "content_id": "content.divorce-consolation-money-vs-property-division",
-      "content_revision_sha256": "ea303616ce17c1c48f76e95388d6c1701ba1569ffe707fdc36deaa60fca1c9b4",
+      "content_revision_sha256": "fb0e69520966af0b1de89c9967226d9de64b1c2c3ed0028c85d18320fd74f893",
       "topic_id": "hub.divorce-parenting",
       "domain_id": "domain.family-inheritance",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 2
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -8064,11 +7964,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -8098,29 +7996,27 @@
     },
     {
       "content_id": "content.divorce-cooling-period-shortening-for-violence",
-      "content_revision_sha256": "a39082a414daf4b70b586eb775c220823e18d4e22b031c3a48cdab37d10ec3cb",
+      "content_revision_sha256": "58d8780fc2cc9929846ae38350c4b6906a7632fe7e2524691e97cf33fdf8d321",
       "topic_id": "hub.divorce-parenting",
       "domain_id": "domain.family-inheritance",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -8161,11 +8057,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -8195,29 +8089,27 @@
     },
     {
       "content_id": "content.divorce-property-division-two-year-period",
-      "content_revision_sha256": "61abfe970df84f7dcd45496052453ca66cc6cb28862944c5d7dd53fff3ea0b36",
+      "content_revision_sha256": "a693e8d9475005fdd095d175c9e937075eb51a04c129bec791b71f3410842466",
       "topic_id": "hub.divorce-parenting",
       "domain_id": "domain.family-inheritance",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -8258,11 +8150,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -8389,29 +8279,27 @@
     },
     {
       "content_id": "content.dog-bite-and-animal-keeper-liability",
-      "content_revision_sha256": "86446ccacb3235b968e13986d40aa433d68c07ed4d134d2b59864d48819ba25f",
+      "content_revision_sha256": "23362c33059d7248bc4a41d993d02c0f53f46afdf52a0242a0f0f8a5d856f20c",
       "topic_id": "hub.everyday-damages",
       "domain_id": "domain.civil-obligations-enforcement",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 2
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -8452,11 +8340,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -9442,15 +9328,13 @@
     },
     {
       "content_id": "content.earnest-money-cancellation-vs-default-rescission",
-      "content_revision_sha256": "820938cc25e1d500fb85aa48506ce6cb65cc973b90a92ce2d9964510fb980455",
+      "content_revision_sha256": "c2c5b1c2e5d5c6bc9ef37a339772365b970db3485e8d9626f1c4efc9c0413904",
       "topic_id": "hub.legal-concept-comparisons",
       "domain_id": "domain.legal-navigation",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
@@ -9462,8 +9346,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -9490,26 +9374,23 @@
           "count": 4
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:appeal",
-            "taxonomy_risk:deadline"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -9537,29 +9418,26 @@
     },
     {
       "content_id": "content.earnest-money-rescission-cutoff",
-      "content_revision_sha256": "d689cb02f478e4d875a52aa25423e006cb29461de5ff3fc57426d806293055de",
+      "content_revision_sha256": "55a903b643df6799e8f2ace92d09371dbfa70fe5a925b3d6665a4426163bc73c",
       "topic_id": "hub.real-estate-sale",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -9586,27 +9464,23 @@
           "count": 4
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:deadline",
-            "taxonomy_risk:safety"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -9634,30 +9508,26 @@
     },
     {
       "content_id": "content.emotional-distress-and-consolation-money",
-      "content_revision_sha256": "fa67a59e8088cb4e26cc86d4870cac006b69795a4d9b42a9724e6240bb83f8b4",
+      "content_revision_sha256": "6ce79d0d2eea37038f5e5502261d6cd569c947b739962d5aee504b7e690f120a",
       "topic_id": "hub.everyday-damages",
       "domain_id": "domain.civil-obligations-enforcement",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "scenario_missing",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -9684,28 +9554,23 @@
           "count": 6
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:appeal",
-            "taxonomy_risk:deadline"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 52,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "scenario_missing",
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -9733,29 +9598,27 @@
     },
     {
       "content_id": "content.employee-caused-accident-employer-liability",
-      "content_revision_sha256": "2a5bf5495100b43bffd59e286340199c914acd668675104a02d18745f9e0b26c",
+      "content_revision_sha256": "706fad5190317716d594d998050d12aa5908cd01d08df740d9b765b5dbf33eca",
       "topic_id": "hub.everyday-damages",
       "domain_id": "domain.civil-obligations-enforcement",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -9796,11 +9659,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -10883,15 +10744,13 @@
     },
     {
       "content_id": "content.final-wages-after-retirement-14-days",
-      "content_revision_sha256": "f4150169cbdb0059957bbd00195dc869014902a4d0ec3e835f4c266cae7cc2fd",
+      "content_revision_sha256": "7120062e1de06c9f1859d23e43b8cbe327454a16b41dc4dc07355b3619ccf715",
       "topic_id": "hub.labor-wages",
       "domain_id": "domain.labor-social-protection",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
@@ -10903,8 +10762,8 @@
           "count": 2
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -10931,27 +10790,23 @@
           "count": 7
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:appeal",
-            "taxonomy_risk:deadline",
-            "taxonomy_risk:safety"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -11263,15 +11118,14 @@
     },
     {
       "content_id": "content.freelancer-contract-worker-status",
-      "content_revision_sha256": "7b1cd89cfff1bf1e35d0ec7bdbd5c4bfa2dbf40bcc500251153284ee11ec8eb9",
+      "content_revision_sha256": "8da60edaa8602f9fbdb1c95e0e6b65e4ea6bd890597c68bf0d975ebc79148259",
       "topic_id": "hub.labor-wages",
       "domain_id": "domain.labor-social-protection",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -11283,8 +11137,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -11326,10 +11180,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -11359,7 +11212,7 @@
     },
     {
       "content_id": "content.goods-different-from-advertisement-deadline",
-      "content_revision_sha256": "62206f520e577325d92c3ba06c2be41d31e9487ccaff48eba991ab75569476de",
+      "content_revision_sha256": "df4e8f4f2593f858b64e0baf5825aaf994724a0e339bc405518fd0f606f40f36",
       "topic_id": "hub.consumer-online-contracts",
       "domain_id": "domain.consumer-digital",
       "coverage_state": "unmapped",
@@ -11379,7 +11232,7 @@
         },
         "typed_relation": {
           "status": "complete",
-          "count": 1
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -11640,29 +11493,27 @@
     },
     {
       "content_id": "content.hidden-defect-after-purchase",
-      "content_revision_sha256": "fd29c7eb33f723b741f990838f2866c850f7806ca681ea2e907fbdee6034a782",
+      "content_revision_sha256": "1b1b46db6cbe5935a2f4b4c961d02dd92cb918df6e3f10fee6a1b366267e9037",
       "topic_id": "hub.real-estate-sale",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -11703,11 +11554,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -12687,15 +12536,14 @@
     },
     {
       "content_id": "content.housing-lease-opposability-basics",
-      "content_revision_sha256": "d2de1564014713bb1b8aeb9393799dc55fcc892ef8d4e2884228ab628f1e46e9",
+      "content_revision_sha256": "a66929869b958846d8c0ccf88c6d3556e1d80c53c2138a9a20be2f2091fa4e22",
       "topic_id": "hub.housing-lease-deposit",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -12707,8 +12555,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -12749,10 +12597,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -12782,15 +12629,14 @@
     },
     {
       "content_id": "content.housing-lease-priority-repayment-basics",
-      "content_revision_sha256": "5b905941a70299044ee15c84d703104c5c64188fbbff95e320639de97e398167",
+      "content_revision_sha256": "b90c5ebf80f2ab48449d20a486b9e3d8df4c35ce482d49241331d9dbce4a58ed",
       "topic_id": "hub.housing-lease-deposit",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -12802,8 +12648,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -12844,10 +12690,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -12877,7 +12722,7 @@
     },
     {
       "content_id": "content.how-to-file-criminal-complaint",
-      "content_revision_sha256": "c95675678817ed6309792e239dc0481acdfefa317f93ca723b46954c71bdb869",
+      "content_revision_sha256": "8ae33fcc4ca34e292c64d3bb76e926e2e55d3ff22b36e60db500a73eb14fb4c1",
       "topic_id": "hub.crime-victim-response",
       "domain_id": "domain.crime-victim-safety",
       "coverage_state": "unmapped",
@@ -14125,7 +13970,7 @@
     },
     {
       "content_id": "content.inheritance-assets-and-debts-checklist",
-      "content_revision_sha256": "ef153c7d89baf0989cb2531d3e23b417a7a55723c89527a260e04c0169c3f28d",
+      "content_revision_sha256": "20ab4d2a6cf9381273c1b32114e9ebab10e94718164e2b2ac74ef60cd9fadea7",
       "topic_id": "hub.family-inheritance",
       "domain_id": "domain.family-inheritance",
       "coverage_state": "unmapped",
@@ -14313,7 +14158,7 @@
     },
     {
       "content_id": "content.inheritance-renunciation-procedure",
-      "content_revision_sha256": "742e19fbbbe0dd9cb7e3854d9fd5e247f5f74b3ab8f09cc974e78222588c22cd",
+      "content_revision_sha256": "61e536fce368f3235f011fb2168dde6c64300bc62661ddb60029d3039924d80e",
       "topic_id": "hub.family-inheritance",
       "domain_id": "domain.family-inheritance",
       "coverage_state": "unmapped",
@@ -14406,15 +14251,13 @@
     },
     {
       "content_id": "content.inheritance-renunciation-vs-limited-acceptance",
-      "content_revision_sha256": "40216e578885e1fadd6d80dbb8101a89c6a4bdc01031d965ebce7772012138c5",
+      "content_revision_sha256": "a1d18c32d3e245f807b25fccb790bc694711c8ef1e9463aad92ab27ec6f0f981",
       "topic_id": "hub.legal-concept-comparisons",
       "domain_id": "domain.legal-navigation",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
@@ -14426,8 +14269,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -14454,26 +14297,23 @@
           "count": 4
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:appeal",
-            "taxonomy_risk:deadline"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -14501,29 +14341,27 @@
     },
     {
       "content_id": "content.interim-payment-and-concurrent-closing",
-      "content_revision_sha256": "523da96b331a09720a234e99e3f6773004c073b114577d620994ad3adf8a12b1",
+      "content_revision_sha256": "0cfd1d20c0f562936cd62c9ab3b5bda920ecc27e5f50a56741af011bf93d43f3",
       "topic_id": "hub.real-estate-sale",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -14564,11 +14402,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -14790,15 +14626,14 @@
     },
     {
       "content_id": "content.lease-registration-and-distribution-demand",
-      "content_revision_sha256": "426ea061b9065642370a86ac2e1a5422c630c8676989a80d700e119acc320982",
+      "content_revision_sha256": "6ae545c1d43890353b3254e0f2b6f6405ccd69822ab8091f5acad4c2fbb49337",
       "topic_id": "hub.housing-lease-deposit",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -14810,8 +14645,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -14852,10 +14687,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -14885,7 +14719,7 @@
     },
     {
       "content_id": "content.lease-registration-application-is-not-completion",
-      "content_revision_sha256": "39c9857fe46953df7cb515996fdc2aebabcfe6b7292f2765646a54d7400d2e42",
+      "content_revision_sha256": "d696da9711d26f506536285ea7a8de193edff27f5f2d03e2e6c47aaff4e8dbf0",
       "topic_id": "hub.housing-lease-deposit",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "coverage_declared",
@@ -14895,8 +14729,7 @@
         "deadline_unverified",
         "evaluation_result_unverified",
         "release_evidence_missing",
-        "temporal_authority_unverified",
-        "typed_relation_missing"
+        "temporal_authority_unverified"
       ],
       "gaps": {
         "audience": {
@@ -14908,8 +14741,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -14949,10 +14782,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -15077,15 +14909,14 @@
     },
     {
       "content_id": "content.lease-registration-order-requirements",
-      "content_revision_sha256": "77bf5e056debbaf147ad88e6f649925fbbc2b9b4d56f591e82c2adfc4a263fc7",
+      "content_revision_sha256": "7fa52eb0f8abf2eb185c2a535f362bf34be76d9820aa94fc2fa69729d1abf2ac",
       "topic_id": "hub.housing-lease-deposit",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -15097,8 +14928,8 @@
           "count": 2
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -15139,10 +14970,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -15172,15 +15002,14 @@
     },
     {
       "content_id": "content.lease-registration-vs-opposability-priority",
-      "content_revision_sha256": "87f601730bb19a2d34d969887073765c2fddd30d0813d6a1d5d24aed7c9046e9",
+      "content_revision_sha256": "aa448720a0d2e3682944cb8c9e4d03bd45ba1a3c2f01b57dcd4aaece082e4fe4",
       "topic_id": "hub.legal-concept-comparisons",
       "domain_id": "domain.legal-navigation",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -15192,8 +15021,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -15234,10 +15063,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -15455,15 +15283,14 @@
     },
     {
       "content_id": "content.limited-acceptance-creditor-notice",
-      "content_revision_sha256": "e667d2a5cf7704de7a1b71c39f16a5e4adf1f009717c492380e5ffdb81e39bd9",
+      "content_revision_sha256": "91a7ddcce9736427d0520c5c64a798e1a7d85bdeab31b5793246d7c64e1c35a5",
       "topic_id": "hub.family-inheritance",
       "domain_id": "domain.family-inheritance",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -15475,8 +15302,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "authority_l1": {
           "status": "complete",
@@ -15517,10 +15344,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -15643,7 +15469,7 @@
     },
     {
       "content_id": "content.loan-and-guarantee-evidence-checklist",
-      "content_revision_sha256": "8562fa7b5282c7355627d4e792f49e8d3ba53e6d6ae6977fca19c71ce71c6cd9",
+      "content_revision_sha256": "c8840dab655a5d6b1eac2fbe7018bfe4363462954c4d2699c0e76260a4c7478c",
       "topic_id": "hub.money-guarantee",
       "domain_id": "domain.civil-obligations-enforcement",
       "coverage_state": "unmapped",
@@ -15663,7 +15489,7 @@
         },
         "typed_relation": {
           "status": "complete",
-          "count": 4
+          "count": 5
         },
         "authority_l1": {
           "status": "complete",
@@ -15831,15 +15657,14 @@
     },
     {
       "content_id": "content.loan-proof-vs-enforceable-title",
-      "content_revision_sha256": "0563b2e0f19ecc7f6673ddbde9b55a28d6be17677743669484ee7c8e1ff8384d",
+      "content_revision_sha256": "4975175c6d75a8d24437150b51296a9b1565f8b984a16489a7f75f142a1f7c9e",
       "topic_id": "hub.legal-concept-comparisons",
       "domain_id": "domain.legal-navigation",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -15851,8 +15676,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -15893,10 +15718,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -16109,29 +15933,27 @@
     },
     {
       "content_id": "content.mistake-fraud-in-real-estate-contract",
-      "content_revision_sha256": "085951fb43a13d10b228e1e02b863035a47de2032ad3515aaab2c2aa2cf3e652",
+      "content_revision_sha256": "faf625422f7a0ae65c32587405d1991c3d2439cfaa4af743547b0ea64af1e79a",
       "topic_id": "hub.real-estate-sale",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -16172,11 +15994,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -16206,18 +16026,16 @@
     },
     {
       "content_id": "content.move-before-deposit-refund",
-      "content_revision_sha256": "65d5a21f69672edf8c3c044705cf123a4e85eb5f329d1346539cbb14f59b0c29",
+      "content_revision_sha256": "0675bbb169adfb51fbb07eeb56bd82f74b5d40918d22a7e752a6d120ff07147b",
       "topic_id": "hub.housing-lease-deposit",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "coverage_declared",
       "gap_codes": [
         "authority_l2_unverified",
         "authority_locator_unverified",
-        "deadline_unverified",
         "evaluation_result_unverified",
         "release_evidence_missing",
-        "temporal_authority_unverified",
-        "typed_relation_missing"
+        "temporal_authority_unverified"
       ],
       "gaps": {
         "audience": {
@@ -16229,8 +16047,8 @@
           "count": 3
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -16257,8 +16075,8 @@
           "count": 7
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
@@ -16266,16 +16084,15 @@
           "score": 100,
           "state": "explicit_risk_evidence",
           "evidence": [
-            "coverage_risk:critical"
+            "coverage_risk:critical",
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -16303,29 +16120,27 @@
     },
     {
       "content_id": "content.multiple-people-caused-one-damage",
-      "content_revision_sha256": "fa5140b250f68b4d04ee25d246e423559935ebb6d874df3effc6767e1cbfbe67",
+      "content_revision_sha256": "04728ccb54101ea2cf6cbc9624d90c26f281c883aac87839617e3cd1ebb1b43b",
       "topic_id": "hub.everyday-damages",
       "domain_id": "domain.civil-obligations-enforcement",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -16366,11 +16181,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -16400,29 +16213,27 @@
     },
     {
       "content_id": "content.negligence-and-causation-in-accidents",
-      "content_revision_sha256": "c9a3417e57ea672e2324da6c293b1bfc2fb20f9fde1da7df3f7ba68479d814fb",
+      "content_revision_sha256": "665bd585a789361aef67ad3c35c6a87f96feea94fb7c8790457972ecbd23d6b8",
       "topic_id": "hub.everyday-damages",
       "domain_id": "domain.civil-obligations-enforcement",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -16463,11 +16274,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -17447,29 +17256,27 @@
     },
     {
       "content_id": "content.noncustodial-parent-child-visitation",
-      "content_revision_sha256": "0e6b2f2be59b229d27f77cec7f0c4d06cf4b1a6d0ff30b15921639a5f7ccd598",
+      "content_revision_sha256": "0c7caaff77c4d54fe89b0ba0ecf5d960faae967f0715e0600169816e6523e33d",
       "topic_id": "hub.divorce-parenting",
       "domain_id": "domain.family-inheritance",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -17510,11 +17317,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -17544,7 +17349,7 @@
     },
     {
       "content_id": "content.notice-of-prosecution-or-nonprosecution",
-      "content_revision_sha256": "3e4934e8d62db48ee561a36fc2d6a7bcf87d09026be4faa83da5c7e20a90c072",
+      "content_revision_sha256": "2d0478f5c1a7942dab6c51a6444f0f383e0506ecc73661766ecd02c25b204690",
       "topic_id": "hub.crime-victim-response",
       "domain_id": "domain.crime-victim-safety",
       "coverage_state": "unmapped",
@@ -17642,7 +17447,7 @@
     },
     {
       "content_id": "content.online-contract-evidence-checklist",
-      "content_revision_sha256": "eadc1fef333dcfa35d57397190e97aeac5df79ef7f74bf9c33d835903657fd03",
+      "content_revision_sha256": "2fd2e534091206266b58e4bd9490a2dbe58fb7259bc7ecec0123c691c06400d4",
       "topic_id": "hub.consumer-online-contracts",
       "domain_id": "domain.consumer-digital",
       "coverage_state": "unmapped",
@@ -17921,15 +17726,13 @@
     },
     {
       "content_id": "content.online-withdrawal-vs-contract-rescission",
-      "content_revision_sha256": "cfadc4ba2b2c1fa8d57fe6ee737a714cfd747a8fbcd1621a52ae485077143e66",
+      "content_revision_sha256": "d400d67c7bf220fdba7a8d6745a51b7ece4511ac65057667eccaa371264adce0",
       "topic_id": "hub.legal-concept-comparisons",
       "domain_id": "domain.legal-navigation",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
@@ -17941,8 +17744,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -17969,26 +17772,23 @@
           "count": 4
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:appeal",
-            "taxonomy_risk:deadline"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -18108,29 +17908,27 @@
     },
     {
       "content_id": "content.ownership-changes-only-after-registration",
-      "content_revision_sha256": "900023f499f1f709435236a3bd6bb49fb4f870bf4290684bf0967cafded69321",
+      "content_revision_sha256": "ac28b8323321879b7389507f07ea6a281c8429d8ef4496fd459b691afb1f3aba",
       "topic_id": "hub.real-estate-sale",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -18171,11 +17969,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -18205,7 +18001,7 @@
     },
     {
       "content_id": "content.paid-but-goods-not-supplied",
-      "content_revision_sha256": "d28d61fa7ea3c1e875dabfd0d7d648535c950a00b71b0cf43979b3b39ef5dcf0",
+      "content_revision_sha256": "251299e39bb93bd11e602c60184b445093a5112a2a58e1856ba887c63ddc784c",
       "topic_id": "hub.consumer-online-contracts",
       "domain_id": "domain.consumer-digital",
       "coverage_state": "unmapped",
@@ -18224,7 +18020,7 @@
         },
         "typed_relation": {
           "status": "complete",
-          "count": 1
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -18295,15 +18091,14 @@
     },
     {
       "content_id": "content.parental-authority-vs-custody",
-      "content_revision_sha256": "06e0a2426c74d137ba5e3cb7ba75c1c6545751f437d4d84a32b5de908cce7602",
+      "content_revision_sha256": "dba1afc89c43ec3731bc477b452b9769386e29787844944603c2f12168f91fdb",
       "topic_id": "hub.legal-concept-comparisons",
       "domain_id": "domain.legal-navigation",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -18315,8 +18110,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -18357,10 +18152,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -18390,7 +18184,7 @@
     },
     {
       "content_id": "content.partial-repayment-allocation",
-      "content_revision_sha256": "2c4f4b409079b3bcb74a9a6f7b20da1fa1cd104915c07eea914eb4de4aac2c50",
+      "content_revision_sha256": "0a1917817c2ed90b22d84b870b2f7e9cc0740da0bf00ea6bece7419149a0207a",
       "topic_id": "hub.money-guarantee",
       "domain_id": "domain.civil-obligations-enforcement",
       "coverage_state": "unmapped",
@@ -18410,7 +18204,7 @@
         },
         "typed_relation": {
           "status": "complete",
-          "count": 2
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -18677,15 +18471,13 @@
     },
     {
       "content_id": "content.payment-order-vs-civil-lawsuit",
-      "content_revision_sha256": "e8724aaa736db44b8dd225b33701dd86f436122b1083599f7e693ac7e4bc4d3e",
+      "content_revision_sha256": "632ecfd799fe56004b42e7dbf774e8f7e6393b22bf74f7b5f9b1bce1561f24f9",
       "topic_id": "hub.legal-concept-comparisons",
       "domain_id": "domain.legal-navigation",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
@@ -18697,8 +18489,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -18725,26 +18517,23 @@
           "count": 4
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:appeal",
-            "taxonomy_risk:deadline"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -19146,16 +18935,14 @@
     },
     {
       "content_id": "content.property-disclosure-when-assets-unknown",
-      "content_revision_sha256": "5e740d18fb9250c6b3a57e7ce4e91bc2c2e8088d27a2198f22a2ce206df29707",
+      "content_revision_sha256": "bd894b3d32b7a046bf18f8bac20049aebb0605b4161c3ea2bbdcc1ae2df84d78",
       "topic_id": "hub.debt-enforcement",
       "domain_id": "domain.civil-obligations-enforcement",
       "coverage_state": "unmapped",
       "gap_codes": [
         "audience_situation_missing",
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
@@ -19167,8 +18954,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -19195,27 +18982,24 @@
           "count": 5
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:appeal",
-            "taxonomy_risk:deadline"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 20,
           "state": "deficit_present",
           "evidence": [
             "audience_situation_missing",
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -19338,15 +19122,13 @@
     },
     {
       "content_id": "content.property-division-vs-consolation-money",
-      "content_revision_sha256": "e9322559f03a5f3fd7c6bf9f64353a6f0a4b255f919f317fa53e1ef04f4ea70c",
+      "content_revision_sha256": "87e70a12929439cfb455b9e4671bcc13658f8adf8536173a54b009e4af84695d",
       "topic_id": "hub.legal-concept-comparisons",
       "domain_id": "domain.legal-navigation",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
@@ -19358,8 +19140,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -19386,26 +19168,23 @@
           "count": 4
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:appeal",
-            "taxonomy_risk:deadline"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -19530,15 +19309,14 @@
     },
     {
       "content_id": "content.provisional-attachment-vs-claim-seizure",
-      "content_revision_sha256": "350bddcf618162b4d752f8b4cf8afc4294d0c562011b67462d5d417a13372f6a",
+      "content_revision_sha256": "2cf36771c79b7003f178ca9908bc10f8f8ce838c44782b87b5126e29a6591785",
       "topic_id": "hub.legal-concept-comparisons",
       "domain_id": "domain.legal-navigation",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -19550,8 +19328,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -19592,10 +19370,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -19720,29 +19497,27 @@
     },
     {
       "content_id": "content.real-estate-reservation-deposit-meaning",
-      "content_revision_sha256": "087b58b11e3577c62fe6feaf8bb183cc5dc9722de3460b932b775eece30cd837",
+      "content_revision_sha256": "2625bbfb1c75b0d8429947abee5bef0c76d59409f7480d4d5fb566eea3ac53f5",
       "topic_id": "hub.real-estate-sale",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -19783,11 +19558,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -19817,29 +19590,27 @@
     },
     {
       "content_id": "content.real-estate-sale-contract-before-signing",
-      "content_revision_sha256": "ffa45e9f46e7c5fc56e83bdac2e60fd379aa7d29fe63cfa5ea5b94624f6a5e64",
+      "content_revision_sha256": "2a70b796e5658551acdaca3041adacfe668350f5734d36e0d93eda4e32507bfa",
       "topic_id": "hub.real-estate-sale",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -19880,11 +19651,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -19914,29 +19683,27 @@
     },
     {
       "content_id": "content.real-estate-transaction-reporting-30-days",
-      "content_revision_sha256": "951a89eeb091d0a9ea242a36ce3fd896773dff6c8180c09cd90456c6e1c8a21d",
+      "content_revision_sha256": "3ffea0c323576faa2bb62f4c76137437e0c7c97ed67066505c4995751dd1ad91",
       "topic_id": "hub.real-estate-sale",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -19977,11 +19744,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -20106,7 +19871,7 @@
     },
     {
       "content_id": "content.refund-within-three-business-days",
-      "content_revision_sha256": "9e6caf4498ac79383fd04fa52a8c5f068900ea655b8524d2589168574abcd44b",
+      "content_revision_sha256": "56d8ddb97eade18b6a5c033551dd3e3d733579ee85ab4beca5495dbbab009216",
       "topic_id": "hub.consumer-online-contracts",
       "domain_id": "domain.consumer-digital",
       "coverage_state": "unmapped",
@@ -20126,7 +19891,7 @@
         },
         "typed_relation": {
           "status": "complete",
-          "count": 3
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -20198,7 +19963,7 @@
     },
     {
       "content_id": "content.renting-home-with-lease-registration",
-      "content_revision_sha256": "bd228b358c6ff04b3ee61a411326430079251387075f7d0aa87e80c3f82369ff",
+      "content_revision_sha256": "e0d5714415b04f0c2a139a3b072f39582baaf9890472b35f7e946e42fee764a1",
       "topic_id": "hub.housing-lease-deposit",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
@@ -20206,8 +19971,7 @@
         "authority_l2_unverified",
         "coverage_not_declared",
         "deadline_unverified",
-        "scenario_missing",
-        "typed_relation_missing"
+        "scenario_missing"
       ],
       "gaps": {
         "audience": {
@@ -20219,8 +19983,8 @@
           "count": 0
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 2
         },
         "authority_l1": {
           "status": "complete",
@@ -20261,11 +20025,10 @@
           ]
         },
         "structural_gap": {
-          "score": 40,
+          "score": 28,
           "state": "deficit_present",
           "evidence": [
             "scenario_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -20488,30 +20251,27 @@
     },
     {
       "content_id": "content.rescission-restitution-and-damages",
-      "content_revision_sha256": "72ad1a452b9cc109ba9b00380f89c1eb7c4d3c24f5150b9aab9340bf81f65733",
+      "content_revision_sha256": "631fae47db79346f5293ae1191ff6253a0a5e3199f7121e7201f98bcdb71abb7",
       "topic_id": "hub.real-estate-sale",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "scenario_missing",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -20552,12 +20312,9 @@
           ]
         },
         "structural_gap": {
-          "score": 52,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "scenario_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -20682,7 +20439,7 @@
     },
     {
       "content_id": "content.retirement-pay-basic-formula",
-      "content_revision_sha256": "6d76093bd511fa8817a7822144c54754940297b18e8967e66145acec71215758",
+      "content_revision_sha256": "1387347ef4be3da53c39e3fdf18f21fae73f083d6f27271b1db337a39237ac41",
       "topic_id": "hub.labor-wages",
       "domain_id": "domain.labor-social-protection",
       "coverage_state": "unmapped",
@@ -20690,8 +20447,7 @@
         "authority_l2_unverified",
         "coverage_not_declared",
         "deadline_unverified",
-        "scenario_missing",
-        "typed_relation_missing"
+        "scenario_missing"
       ],
       "gaps": {
         "audience": {
@@ -20703,8 +20459,8 @@
           "count": 0
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -20746,11 +20502,10 @@
           ]
         },
         "structural_gap": {
-          "score": 40,
+          "score": 28,
           "state": "deficit_present",
           "evidence": [
             "scenario_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -20780,15 +20535,14 @@
     },
     {
       "content_id": "content.retirement-pay-payment-deadline",
-      "content_revision_sha256": "4f7568a541ed67c3c4e62c69da60932acce50da4f0051d6ba1d0fb370e30c387",
+      "content_revision_sha256": "5db61ef0ddbbf8ab1f1b839df5e3deef52fe4ccd131e3e0e609232695cd2adca",
       "topic_id": "hub.labor-wages",
       "domain_id": "domain.labor-social-protection",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -20800,8 +20554,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -20843,10 +20597,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -20971,15 +20724,13 @@
     },
     {
       "content_id": "content.rights-after-lease-registration",
-      "content_revision_sha256": "2d5bebed470df8fc28aa7ed337aedede278da9f221b4884ef3fec0e366834e02",
+      "content_revision_sha256": "610cddffa97870972af615ca738f3561b03c714307953d5d9a8bf158a480debf",
       "topic_id": "hub.housing-lease-deposit",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
@@ -20991,8 +20742,8 @@
           "count": 2
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -21019,26 +20770,23 @@
           "count": 6
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:deadline",
-            "taxonomy_risk:safety"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -22026,7 +21774,7 @@
     },
     {
       "content_id": "content.scope-of-guarantee-debt",
-      "content_revision_sha256": "3b1cb543e56537c8a73a3b7eb1db909bf7dde5106b345defb2c6585c00ba5191",
+      "content_revision_sha256": "a1116e6a3ba94dae00c6ead10d82b67c13c27df5a76edf7ef4d14e24ed36cdc4",
       "topic_id": "hub.money-guarantee",
       "domain_id": "domain.civil-obligations-enforcement",
       "coverage_state": "unmapped",
@@ -22046,7 +21794,7 @@
         },
         "typed_relation": {
           "status": "complete",
-          "count": 3
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -22119,29 +21867,27 @@
     },
     {
       "content_id": "content.seller-does-not-own-property",
-      "content_revision_sha256": "aa4364ce105aa9d3ac110db067b9872400bbe2cdc7a0f7a8f2033991fc227814",
+      "content_revision_sha256": "ed2a654840f14e7b1932f4a6c3bf383e2d18e1f8ee0035e349278472e1996660",
       "topic_id": "hub.real-estate-sale",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -22182,11 +21928,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -22216,29 +21960,27 @@
     },
     {
       "content_id": "content.seller-misses-title-transfer-date",
-      "content_revision_sha256": "bb64bed1cdcba5d2c4a9ce5b8d8725baa4716ffa7bc230fe8fd1cb7208d166b7",
+      "content_revision_sha256": "970118063bf306d227f20c75f959876e67ee11f8a028f0647860703bc06847f7",
       "topic_id": "hub.real-estate-sale",
       "domain_id": "domain.housing-real-estate",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -22279,11 +22021,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -22602,7 +22342,7 @@
     },
     {
       "content_id": "content.shared-mobility-accident-evidence-checklist",
-      "content_revision_sha256": "3e0b2957494804e1d3ae9cff4ac365385b6ad29e7ecdfb23af7196f57b6d1626",
+      "content_revision_sha256": "b78385bb68145a756b5dd1dec554a3baa7d5e739ccc9fddbc326634cedfa3bf3",
       "topic_id": "hub.shared-mobility-accident",
       "domain_id": "domain.mobility-insurance",
       "coverage_state": "unmapped",
@@ -22697,15 +22437,14 @@
     },
     {
       "content_id": "content.shared-mobility-device-defect",
-      "content_revision_sha256": "a173315505a77d0395a7d4596b374d497fd979995a94015bb7870d4873dcbb2e",
+      "content_revision_sha256": "b3c9686820f0b3760161bba6e3e2f49f334f9e997ea11add0caaee56da5b0e8b",
       "topic_id": "hub.shared-mobility-accident",
       "domain_id": "domain.mobility-insurance",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -22717,8 +22456,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -22759,10 +22498,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -22982,15 +22720,14 @@
     },
     {
       "content_id": "content.shared-mobility-private-facility-defect",
-      "content_revision_sha256": "c088e1fc21bbfb9159b3d053597a11f18aacdf1870e4b9f3840924155df28f91",
+      "content_revision_sha256": "c23edb5e7703b84cc993675dcdfa1dcdd795cc871534fbcf058fe3266d1e7fdc",
       "topic_id": "hub.shared-mobility-accident",
       "domain_id": "domain.mobility-insurance",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -23002,8 +22739,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -23044,10 +22781,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -23077,15 +22813,14 @@
     },
     {
       "content_id": "content.shared-mobility-public-road-defect",
-      "content_revision_sha256": "ee0d0962a46ac0491695e4dc06b4e143eac1a5f3670c0818c4cbd042d211641e",
+      "content_revision_sha256": "65147e9bf0463f5cf37cd0581840c1e4b37d6b184846bfe111091017b92153ac",
       "topic_id": "hub.shared-mobility-accident",
       "domain_id": "domain.mobility-insurance",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -23097,8 +22832,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -23139,10 +22874,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -23267,15 +23001,14 @@
     },
     {
       "content_id": "content.shared-mobility-visible-defect-before-ride",
-      "content_revision_sha256": "6a5ecb361d055108f64b148def2368ca71643ecc8f25d2aff456ac258da3764b",
+      "content_revision_sha256": "979490deed60afdb434cd04015998644eda80b6458cf6aa3fbc0af110fdeb8b4",
       "topic_id": "hub.shared-mobility-accident",
       "domain_id": "domain.mobility-insurance",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -23287,8 +23020,8 @@
           "count": 2
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -23329,10 +23062,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -23362,29 +23094,26 @@
     },
     {
       "content_id": "content.six-grounds-for-judicial-divorce",
-      "content_revision_sha256": "835551894de03af5e8848d8dd3bf1fe9c6800e310c540884bd790f42bff1eccd",
+      "content_revision_sha256": "a30acd68d932a8889948bb0dc8cf6486da5764da95c64088e72a3076391cf148",
       "topic_id": "hub.divorce-parenting",
       "domain_id": "domain.family-inheritance",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -23411,27 +23140,23 @@
           "count": 8
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:deadline",
-            "taxonomy_risk:safety"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -23459,29 +23184,27 @@
     },
     {
       "content_id": "content.slip-fall-and-unsafe-facility-liability",
-      "content_revision_sha256": "19b3d57287a02a014e9400c6d3e2368fd35453be66fe9b877889b699691f181f",
+      "content_revision_sha256": "8620af6309b3ec4e39bb5e5f6d8dcc784ddddec45e3046b1b585b862953c8549",
       "topic_id": "hub.everyday-damages",
       "domain_id": "domain.civil-obligations-enforcement",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 2
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -23522,11 +23245,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -23651,15 +23372,14 @@
     },
     {
       "content_id": "content.special-limited-acceptance-late-debt",
-      "content_revision_sha256": "78e43a8882d1c8565f5e6e5c9fbc74a699054b76b7a0f4b604e19ea96e5b2ad3",
+      "content_revision_sha256": "8bb20df779c1ebdbe3e19ab2a04c284cc5a5a8650dfd1f3589968161e30fa671",
       "topic_id": "hub.family-inheritance",
       "domain_id": "domain.family-inheritance",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -23671,8 +23391,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "authority_l1": {
           "status": "complete",
@@ -23713,10 +23433,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -23746,15 +23465,13 @@
     },
     {
       "content_id": "content.specific-reason-in-dismissal-notice",
-      "content_revision_sha256": "6c02b59723522e58164821b2730eb92a03977b463687005c0b13f8938622660c",
+      "content_revision_sha256": "8896a21fff83d6a9c9248a0b4826cea998f12ac58b427aeffce777dc8bcbbbfd",
       "topic_id": "hub.labor-wages",
       "domain_id": "domain.labor-social-protection",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
@@ -23766,8 +23483,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -23794,27 +23511,23 @@
           "count": 7
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:appeal",
-            "taxonomy_risk:deadline",
-            "taxonomy_risk:safety"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -24120,7 +23833,7 @@
     },
     {
       "content_id": "content.three-month-inheritance-decision-period",
-      "content_revision_sha256": "5c089d6ec30f36e50f3d72cd1c7b91e96e10a998f14b9a3c54d699593308e098",
+      "content_revision_sha256": "1458e5d9274023feeff06a77085c522551c0afdd1c79c4405da4bf4f41b043de",
       "topic_id": "hub.family-inheritance",
       "domain_id": "domain.family-inheritance",
       "coverage_state": "unmapped",
@@ -24213,15 +23926,13 @@
     },
     {
       "content_id": "content.unfair-dismissal-remedy-three-months",
-      "content_revision_sha256": "099cef16caed5bd9b4735bcef6fc3ff383e94cc2e5713035256150a2b97e4c19",
+      "content_revision_sha256": "8c13531a2f7ae6c9ea274cf7b749ef8ecfa07c44b54731ecda96696e6b242f7a",
       "topic_id": "hub.labor-wages",
       "domain_id": "domain.labor-social-protection",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
@@ -24233,8 +23944,8 @@
           "count": 2
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 5
         },
         "authority_l1": {
           "status": "complete",
@@ -24261,27 +23972,23 @@
           "count": 8
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:appeal",
-            "taxonomy_risk:deadline",
-            "taxonomy_risk:safety"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -24499,15 +24206,14 @@
     },
     {
       "content_id": "content.verbal-delay-agreement-after-retirement",
-      "content_revision_sha256": "5f56195d402100e9583c134fa8aa62ad4826678526d1c3de091710e060f5b0f8",
+      "content_revision_sha256": "5aac37a8af02d45ed5cc3e927249afbdb545140e04337f24496d3579715c2959",
       "topic_id": "hub.labor-wages",
       "domain_id": "domain.labor-social-protection",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -24519,8 +24225,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -24562,10 +24268,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -24595,15 +24300,13 @@
     },
     {
       "content_id": "content.verbal-dismissal-written-notice",
-      "content_revision_sha256": "e0fa7ab889bddacf8e7a314ed34597d60201ef85ea4547b9edb674212c1bd769",
+      "content_revision_sha256": "d0f41eb5c9b5611c586d34cf34f1eaaf331fbc0a3ef7ec7e86c1d8d39867310a",
       "topic_id": "hub.labor-wages",
       "domain_id": "domain.labor-social-protection",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
@@ -24615,8 +24318,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -24643,27 +24346,23 @@
           "count": 7
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:appeal",
-            "taxonomy_risk:deadline",
-            "taxonomy_risk:safety"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -24691,7 +24390,7 @@
     },
     {
       "content_id": "content.victim-access-to-trial-records",
-      "content_revision_sha256": "054f6eb56c4176084f54bc2d47b7467a0b3650edc431c0d70a32f850d4dd99a9",
+      "content_revision_sha256": "2967a894486f01c83d5ff6a2b081027fd9ccc74a460d0c615caa81977a32436d",
       "topic_id": "hub.crime-victim-response",
       "domain_id": "domain.crime-victim-safety",
       "coverage_state": "unmapped",
@@ -24789,7 +24488,7 @@
     },
     {
       "content_id": "content.victim-case-information-notifications",
-      "content_revision_sha256": "3aac8b32387d2272f00ab96489369cbbad59de62a5d8dbf315dc0c4bd5aa6ec9",
+      "content_revision_sha256": "9ee5b062ad81f313fe308d37b5b2270595376c3d1ba886b7949d334f8acb8197",
       "topic_id": "hub.crime-victim-response",
       "domain_id": "domain.crime-victim-safety",
       "coverage_state": "unmapped",
@@ -24887,29 +24586,27 @@
     },
     {
       "content_id": "content.victim-fault-does-not-erase-all-compensation",
-      "content_revision_sha256": "521a852c1a012305950b037b8dd0a20867042baccce25f7081c5ddfd1c76656d",
+      "content_revision_sha256": "c9505414f3122edb79647d1121de44ba2a409b0f5db5c5c8230aff7964603f0b",
       "topic_id": "hub.everyday-damages",
       "domain_id": "domain.civil-obligations-enforcement",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 2
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 5
         },
         "authority_l1": {
           "status": "complete",
@@ -24950,11 +24647,9 @@
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -26119,29 +25814,26 @@
     },
     {
       "content_id": "content.what-accident-damages-can-be-claimed",
-      "content_revision_sha256": "b28f4861a30019943bfa1ebade9faecd4f67a84493ac7c79a81e9de7a3cdf6fe",
+      "content_revision_sha256": "2fe5259bcf1e99def4a91f31ad109e6e31e6ab52233e07e272b7ceaf06a73538",
       "topic_id": "hub.everyday-damages",
       "domain_id": "domain.civil-obligations-enforcement",
       "coverage_state": "unmapped",
       "gap_codes": [
-        "audience_situation_missing",
         "authority_l2_unverified",
-        "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "coverage_not_declared"
       ],
       "gaps": {
         "audience": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 1
         },
         "scenario": {
           "status": "complete",
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -26168,27 +25860,23 @@
           "count": 7
         },
         "deadline": {
-          "status": "unverified",
-          "count": 0
+          "status": "complete",
+          "count": 1
         }
       },
       "scores": {
         "fatal_risk": {
-          "score": 25,
-          "state": "domain_triage_required",
+          "score": 70,
+          "state": "explicit_risk_evidence",
           "evidence": [
-            "taxonomy_risk:appeal",
-            "taxonomy_risk:deadline"
+            "typed_relation:deadline"
           ]
         },
         "structural_gap": {
-          "score": 37,
+          "score": 8,
           "state": "deficit_present",
           "evidence": [
-            "audience_situation_missing",
-            "typed_relation_missing",
-            "authority_l2_unverified",
-            "deadline_unverified"
+            "authority_l2_unverified"
           ]
         },
         "authority_readiness": {
@@ -26313,7 +26001,7 @@
     },
     {
       "content_id": "content.when-payment-order-fits",
-      "content_revision_sha256": "9eac9f66298c9a1517faefd6e9735a52b0889a5607ce0c8ddcf1ddc18c61feeb",
+      "content_revision_sha256": "f4b3104c98655caa3992917dd2b1503ef81bee6a79642af6ee7dc1058991bad2",
       "topic_id": "hub.debt-enforcement",
       "domain_id": "domain.civil-obligations-enforcement",
       "coverage_state": "unmapped",
@@ -26502,7 +26190,7 @@
     },
     {
       "content_id": "content.why-attorney-workspace-is-gated",
-      "content_revision_sha256": "ada6186ae22eb997bfeb073aeeb405b60e956c3877232a80deee252f328510a2",
+      "content_revision_sha256": "c70bac1be15d93b8d5581a69b0bac440a6e4d180e166f4d7f1e36fcd43c1c108",
       "topic_id": "hub.legal-service-boundaries",
       "domain_id": "domain.legal-navigation",
       "coverage_state": "unmapped",
@@ -26597,15 +26285,14 @@
     },
     {
       "content_id": "content.worker-status-evidence-checklist",
-      "content_revision_sha256": "4f986ed60b656ff42ef40c84332375af7b22e51e2e05947b9a8123c5b2ba7bcf",
+      "content_revision_sha256": "32bf29b994b8cba1c2db5672546d9e79bde5edf7125088c264c0004d479c0e7a",
       "topic_id": "hub.labor-wages",
       "domain_id": "domain.labor-social-protection",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -26617,8 +26304,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 3
         },
         "authority_l1": {
           "status": "complete",
@@ -26660,10 +26347,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -26693,15 +26379,14 @@
     },
     {
       "content_id": "content.worker-status-vs-contract-label",
-      "content_revision_sha256": "103ab4b3e558924d0dc812e680c5cc96e5a7aecedbf0921e22d41939b7c73cfa",
+      "content_revision_sha256": "928cd68e2954e79a508ffe22a5a3148212915cc5857cf975f9e9d4d399fac7e1",
       "topic_id": "hub.legal-concept-comparisons",
       "domain_id": "domain.legal-navigation",
       "coverage_state": "unmapped",
       "gap_codes": [
         "authority_l2_unverified",
         "coverage_not_declared",
-        "deadline_unverified",
-        "typed_relation_missing"
+        "deadline_unverified"
       ],
       "gaps": {
         "audience": {
@@ -26713,8 +26398,8 @@
           "count": 1
         },
         "typed_relation": {
-          "status": "missing",
-          "count": 0
+          "status": "complete",
+          "count": 4
         },
         "authority_l1": {
           "status": "complete",
@@ -26755,10 +26440,9 @@
           ]
         },
         "structural_gap": {
-          "score": 25,
+          "score": 13,
           "state": "deficit_present",
           "evidence": [
-            "typed_relation_missing",
             "authority_l2_unverified",
             "deadline_unverified"
           ]
@@ -27462,7 +27146,7 @@
   "task_packets": [
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-administrative-appeals-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-administrative-appeals-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -27522,7 +27206,7 @@
           "authority_l2_unverified": 6,
           "coverage_not_declared": 6,
           "deadline_unverified": 6,
-          "typed_relation_missing": 6
+          "typed_relation_missing": 4
         },
         "topic_edit_target_gap_codes": [
           "typed_relation_missing"
@@ -27544,7 +27228,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-auto-accident-insurance-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-auto-accident-insurance-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -27711,7 +27395,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-civil-small-claims-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-civil-small-claims-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -27959,7 +27643,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-commercial-lease-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-commercial-lease-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -28149,12 +27833,9 @@
         "current_gap_counts": {
           "authority_l2_unverified": 11,
           "coverage_not_declared": 11,
-          "deadline_unverified": 11,
-          "typed_relation_missing": 11
+          "deadline_unverified": 11
         },
-        "topic_edit_target_gap_codes": [
-          "typed_relation_missing"
-        ],
+        "topic_edit_target_gap_codes": [],
         "verified_release_delta_before_migration": 0,
         "verified_release_requires": [
           "current_bundle",
@@ -28224,7 +27905,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-consumer-online-contracts-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-consumer-online-contracts-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -28618,35 +28299,60 @@
         {
           "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
           "source_id": "litigation_promotion_special_ko_0025",
-          "source_snapshot_id": "snapshot:50983dddba9cd06682339ba8c6b33d9a",
+          "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
           "law_name_ko": "소송촉진 등에 관한 특례법",
           "article_no": "제25조",
           "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%86%A1%EC%B4%89%EC%A7%84%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C25%EC%A1%B0",
-          "last_verified_at": "2026-07-21T08:30:00+00:00"
+          "last_verified_at": "2026-07-24T00:00:00+00:00"
         },
         {
           "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
           "source_id": "litigation_promotion_special_ko_0026",
-          "source_snapshot_id": "snapshot:33b1a9b966387025275a6c4531a08027",
+          "source_snapshot_id": "bb35446950761affb71d6c804d4dd5f8",
           "law_name_ko": "소송촉진 등에 관한 특례법",
           "article_no": "제26조",
           "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%86%A1%EC%B4%89%EC%A7%84%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C26%EC%A1%B0",
-          "last_verified_at": "2026-07-21T08:30:00+00:00"
+          "last_verified_at": "2026-07-24T00:00:00+00:00"
+        },
+        {
+          "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0031",
+          "source_id": "litigation_promotion_special_ko_0031",
+          "source_snapshot_id": "9af4e46708641c88dc39ec6af514632c",
+          "law_name_ko": "소송촉진 등에 관한 특례법",
+          "article_no": "제31조",
+          "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%86%A1%EC%B4%89%EC%A7%84%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C31%EC%A1%B0",
+          "last_verified_at": "2026-07-24T00:00:00+00:00"
+        },
+        {
+          "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0032",
+          "source_id": "litigation_promotion_special_ko_0032",
+          "source_snapshot_id": "c7d70e140addfb2e580cb419da25eec6",
+          "law_name_ko": "소송촉진 등에 관한 특례법",
+          "article_no": "제32조",
+          "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%86%A1%EC%B4%89%EC%A7%84%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C32%EC%A1%B0",
+          "last_verified_at": "2026-07-24T00:00:00+00:00"
+        },
+        {
+          "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0034",
+          "source_id": "litigation_promotion_special_ko_0034",
+          "source_snapshot_id": "c8776a4473237b3cf5c8ea85c7dc7076",
+          "law_name_ko": "소송촉진 등에 관한 특례법",
+          "article_no": "제34조",
+          "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EC%86%A1%EC%B4%89%EC%A7%84%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C34%EC%A1%B0",
+          "last_verified_at": "2026-07-24T00:00:00+00:00"
         }
       ],
       "source_locator_state": "bound",
       "expected_backlog_delta": {
         "current_gap_counts": {
-          "audience_situation_missing": 13,
-          "authority_l2_unverified": 13,
-          "authority_locator_unverified": 2,
+          "audience_situation_missing": 11,
+          "authority_l2_unverified": 11,
           "coverage_not_declared": 11,
           "deadline_unverified": 13,
           "evaluation_result_unverified": 2,
           "release_evidence_missing": 2,
           "scenario_missing": 1,
-          "temporal_authority_unverified": 2,
-          "typed_relation_missing": 13
+          "typed_relation_missing": 11
         },
         "topic_edit_target_gap_codes": [
           "audience_situation_missing",
@@ -28686,7 +28392,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-deadline-and-timing-comparisons-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-deadline-and-timing-comparisons-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -29120,11 +28826,11 @@
           "authority_l2_unverified": 13,
           "authority_locator_unverified": 1,
           "coverage_not_declared": 12,
-          "deadline_unverified": 13,
+          "deadline_unverified": 12,
           "evaluation_result_unverified": 1,
           "release_evidence_missing": 1,
           "temporal_authority_unverified": 1,
-          "typed_relation_missing": 13
+          "typed_relation_missing": 11
         },
         "topic_edit_target_gap_codes": [
           "audience_situation_missing",
@@ -29166,7 +28872,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-divorce-parenting-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-divorce-parenting-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -29308,16 +29014,11 @@
       "source_locator_state": "bound",
       "expected_backlog_delta": {
         "current_gap_counts": {
-          "audience_situation_missing": 10,
           "authority_l2_unverified": 10,
           "coverage_not_declared": 10,
-          "deadline_unverified": 10,
-          "typed_relation_missing": 10
+          "deadline_unverified": 8
         },
-        "topic_edit_target_gap_codes": [
-          "audience_situation_missing",
-          "typed_relation_missing"
-        ],
+        "topic_edit_target_gap_codes": [],
         "verified_release_delta_before_migration": 0,
         "verified_release_requires": [
           "current_bundle",
@@ -29335,7 +29036,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-domestic-violence-stalking-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-domestic-violence-stalking-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -29601,7 +29302,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-employment-exit-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-employment-exit-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -29838,7 +29539,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-everyday-damages-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-everyday-damages-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -29971,17 +29672,13 @@
       "source_locator_state": "bound",
       "expected_backlog_delta": {
         "current_gap_counts": {
-          "audience_situation_missing": 10,
           "authority_l2_unverified": 10,
           "coverage_not_declared": 10,
-          "deadline_unverified": 10,
-          "scenario_missing": 2,
-          "typed_relation_missing": 10
+          "deadline_unverified": 7,
+          "scenario_missing": 1
         },
         "topic_edit_target_gap_codes": [
-          "audience_situation_missing",
-          "scenario_missing",
-          "typed_relation_missing"
+          "scenario_missing"
         ],
         "verified_release_delta_before_migration": 0,
         "verified_release_requires": [
@@ -30000,7 +29697,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-family-inheritance-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-family-inheritance-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -30306,12 +30003,9 @@
         "current_gap_counts": {
           "authority_l2_unverified": 10,
           "coverage_not_declared": 10,
-          "deadline_unverified": 10,
-          "typed_relation_missing": 2
+          "deadline_unverified": 10
         },
-        "topic_edit_target_gap_codes": [
-          "typed_relation_missing"
-        ],
+        "topic_edit_target_gap_codes": [],
         "verified_release_delta_before_migration": 0,
         "verified_release_requires": [
           "current_bundle",
@@ -30329,7 +30023,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-housing-lease-deposit-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-housing-lease-deposit-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -30419,16 +30113,14 @@
           "authority_l2_unverified": 9,
           "authority_locator_unverified": 2,
           "coverage_not_declared": 7,
-          "deadline_unverified": 9,
+          "deadline_unverified": 7,
           "evaluation_result_unverified": 2,
           "release_evidence_missing": 2,
           "scenario_missing": 2,
-          "temporal_authority_unverified": 2,
-          "typed_relation_missing": 9
+          "temporal_authority_unverified": 2
         },
         "topic_edit_target_gap_codes": [
-          "scenario_missing",
-          "typed_relation_missing"
+          "scenario_missing"
         ],
         "verified_release_delta_before_migration": 0,
         "verified_release_requires": [
@@ -30447,7 +30139,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-housing-lease-living-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-housing-lease-living-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -30684,7 +30376,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-industrial-accident-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-industrial-accident-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -30982,7 +30674,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-labor-wages-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-labor-wages-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -31099,13 +30791,11 @@
         "current_gap_counts": {
           "authority_l2_unverified": 10,
           "coverage_not_declared": 10,
-          "deadline_unverified": 10,
-          "scenario_missing": 1,
-          "typed_relation_missing": 10
+          "deadline_unverified": 6,
+          "scenario_missing": 1
         },
         "topic_edit_target_gap_codes": [
-          "scenario_missing",
-          "typed_relation_missing"
+          "scenario_missing"
         ],
         "verified_release_delta_before_migration": 0,
         "verified_release_requires": [
@@ -31124,7 +30814,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-legal-concept-comparisons-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-legal-concept-comparisons-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -31514,12 +31204,9 @@
         "current_gap_counts": {
           "authority_l2_unverified": 13,
           "coverage_not_declared": 13,
-          "deadline_unverified": 13,
-          "typed_relation_missing": 13
+          "deadline_unverified": 6
         },
-        "topic_edit_target_gap_codes": [
-          "typed_relation_missing"
-        ],
+        "topic_edit_target_gap_codes": [],
         "verified_release_delta_before_migration": 0,
         "verified_release_requires": [
           "current_bundle",
@@ -31537,7 +31224,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-legal-concept-comparisons-02-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-legal-concept-comparisons-02-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -31839,7 +31526,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-legal-service-boundaries-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-legal-service-boundaries-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -32046,7 +31733,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-money-guarantee-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-money-guarantee-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -32267,7 +31954,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-neighbor-leak-noise-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-neighbor-leak-noise-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -32443,7 +32130,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-real-estate-sale-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-real-estate-sale-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -32650,18 +32337,11 @@
       "source_locator_state": "bound",
       "expected_backlog_delta": {
         "current_gap_counts": {
-          "audience_situation_missing": 12,
           "authority_l2_unverified": 12,
           "coverage_not_declared": 12,
-          "deadline_unverified": 12,
-          "scenario_missing": 1,
-          "typed_relation_missing": 12
+          "deadline_unverified": 11
         },
-        "topic_edit_target_gap_codes": [
-          "audience_situation_missing",
-          "scenario_missing",
-          "typed_relation_missing"
-        ],
+        "topic_edit_target_gap_codes": [],
         "verified_release_delta_before_migration": 0,
         "verified_release_requires": [
           "current_bundle",
@@ -32679,7 +32359,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-remedy-path-comparisons-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-remedy-path-comparisons-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -32945,7 +32625,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-school-violence-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-school-violence-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -33121,7 +32801,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-shared-mobility-accident-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-shared-mobility-accident-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -33248,7 +32928,7 @@
           "authority_l2_unverified": 10,
           "coverage_not_declared": 10,
           "deadline_unverified": 10,
-          "typed_relation_missing": 10
+          "typed_relation_missing": 6
         },
         "topic_edit_target_gap_codes": [
           "typed_relation_missing"
@@ -33322,7 +33002,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-voice-phishing-refund-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-voice-phishing-refund-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -33498,7 +33178,7 @@
     },
     {
       "schema": "rulelink_codex_task_packet_v1",
-      "work_id": "coverage-expansion-workplace-harassment-kr-knowledge-core-20260723-023",
+      "work_id": "coverage-expansion-workplace-harassment-kr-knowledge-core-20260726-024",
       "work_kind": "existing_topic_backfill",
       "assignment_state": "proposed_unregistered",
       "start_allowed": false,
@@ -34349,16 +34029,16 @@
     "target_domain_started_count": 13,
     "target_domain_not_started_count": 8,
     "content_gap_counts": {
-      "audience_situation_missing": 58,
-      "authority_l2_unverified": 284,
-      "authority_locator_unverified": 5,
+      "audience_situation_missing": 24,
+      "authority_l2_unverified": 282,
+      "authority_locator_unverified": 3,
       "coverage_not_declared": 279,
-      "deadline_unverified": 278,
+      "deadline_unverified": 258,
       "evaluation_result_unverified": 5,
       "release_evidence_missing": 5,
-      "scenario_missing": 8,
-      "temporal_authority_unverified": 5,
-      "typed_relation_missing": 252
+      "scenario_missing": 6,
+      "temporal_authority_unverified": 3,
+      "typed_relation_missing": 165
     }
   },
   "honesty": {

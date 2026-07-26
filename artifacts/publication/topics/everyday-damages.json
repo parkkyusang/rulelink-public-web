@@ -331,6 +331,19 @@
         "coord.everyday-damages.civil-act-ko-0756",
         "coord.everyday-damages.civil-act-ko-0750"
       ]
+    },
+    {
+      "scenario_id": "scenario.everyday-damages.emotional-harm",
+      "question_ko": "신체·자유·명예 침해가 있거나 그 밖에 정신상 고통을 가한 사실이 구체적으로 확인되나요?",
+      "decision_fact_ko": "신체·자유·명예 침해 또는 그 밖의 정신상 고통을 가한 행위의 내용·기간과 자료",
+      "when_true_ko": "해당 침해 또는 정신상 고통에 관한 재산 외 손해의 성립과 위자료 범위를 검토합니다.",
+      "when_false_ko": "단순한 불쾌감만으로 단정하지 않고 보호되는 법익 침해나 그 밖의 정신상 고통을 가한 사실을 먼저 확인합니다.",
+      "rule_ids": [
+        "rule.everyday-damages.emotional-damage"
+      ],
+      "source_coordinate_ids": [
+        "coord.everyday-damages.civil-act-ko-0751"
+      ]
     }
   ],
   "content_entries": [
@@ -343,7 +356,7 @@
       "slug": "accident-damages-responsibility-map",
       "title_ko": "사고가 났을 때 누구에게 어떤 책임을 물을지 찾는 순서",
       "one_line_answer_ko": "사고 장소만으로 책임자를 정하지 말고 행위자의 과실, 시설·제품·동물의 상태, 여러 원인, 피해자 행동을 순서대로 나눠야 합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "매장·도로·주택 등에서 사고를 당했지만 사람, 시설 관리자, 동물 관리자 중 누구의 어떤 책임부터 확인해야 할지 모르는 경우",
       "key_points_ko": [
         "사고 원인을 사람·시설·제품·동물로 먼저 분류합니다.",
         "각 원인과 손해 사이의 인과관계를 확인합니다.",
@@ -367,9 +380,9 @@
       ],
       "caution_ko": "경찰·보험사의 초기 분류는 중요한 자료지만 민사상 최종 책임비율을 자동 확정하지는 않습니다.",
       "search_intents_ko": [
-        "사고가 났을 때 누구에게 어떤 책임을 물을지 찾는 순서",
-        "일상사고 손해배상은 무엇부터 따져야 하나?",
-        "accident damages responsibility map"
+        "일상 사고 손해배상 책임자는 어떻게 찾나요",
+        "시설과 사람 잘못이 함께 있는 사고 책임",
+        "사고 원인별 배상책임 확인 순서"
       ],
       "body_sections": [
         {
@@ -419,6 +432,44 @@
         "content.dog-bite-and-animal-keeper-liability",
         "content.victim-fault-does-not-erase-all-compensation",
         "content.accident-evidence-and-tort-limitation"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.negligence-and-causation-in-accidents",
+          "relation_type": "comparison",
+          "label_ko": "사람의 과실·인과관계 책임축 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.what-accident-damages-can-be-claimed",
+          "relation_type": "comparison",
+          "label_ko": "책임 성립과 손해범위 판단 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.slip-fall-and-unsafe-facility-liability",
+          "relation_type": "comparison",
+          "label_ko": "시설 하자와 관리주체 책임축 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.dog-bite-and-animal-keeper-liability",
+          "relation_type": "comparison",
+          "label_ko": "동물 관리자 책임축 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.victim-fault-does-not-erase-all-compensation",
+          "relation_type": "comparison",
+          "label_ko": "책임 성립과 피해자 기여 판단 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.accident-evidence-and-tort-limitation",
+          "relation_type": "deadline",
+          "label_ko": "사라지는 증거와 소멸시효 함께 관리"
+        }
       ]
     },
     {
@@ -430,7 +481,7 @@
       "slug": "negligence-and-causation-in-accidents",
       "title_ko": "사고가 났다는 사실만으로 상대방 과실이 인정되지는 않습니다",
       "one_line_answer_ko": "구체적인 주의의무 위반과 그 위반 때문에 손해가 발생했다는 연결이 확인돼야 일반 불법행위 책임을 물을 수 있습니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "사고 상대방이 현장에 있었지만 구체적으로 어떤 주의의무를 어겼고 그 행동이 손해를 만들었는지 다투는 경우",
       "key_points_ko": [
         "상대방이 무엇을 했거나 하지 않았는지 특정합니다.",
         "위반한 주의의무가 무엇인지 설명합니다.",
@@ -452,9 +503,9 @@
       ],
       "caution_ko": "결과가 중하다는 사정은 손해액에 영향을 줄 수 있지만 상대방의 과실과 인과관계를 대신 증명하지는 않습니다.",
       "search_intents_ko": [
-        "사고가 났다는 사실만으로 상대방 과실이 인정되지는 않습니다",
-        "상대방이 사고 현장에 있었다면 바로 배상책임이 생기나?",
-        "negligence and causation in accidents"
+        "사고 상대방 과실은 어떻게 입증하나요",
+        "주의의무 위반과 사고 인과관계 증거",
+        "사고 현장에 있던 사람의 배상책임 요건"
       ],
       "body_sections": [
         {
@@ -488,6 +539,26 @@
         "content.accident-damages-responsibility-map",
         "content.what-accident-damages-can-be-claimed",
         "content.victim-fault-does-not-erase-all-compensation"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.accident-damages-responsibility-map",
+          "relation_type": "prerequisite",
+          "label_ko": "사고 원인과 책임주체를 먼저 분류"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.what-accident-damages-can-be-claimed",
+          "relation_type": "comparison",
+          "label_ko": "책임 성립과 손해범위 판단 구별"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.victim-fault-does-not-erase-all-compensation",
+          "relation_type": "comparison",
+          "label_ko": "상대방 과실과 피해자 기여를 분리"
+        }
       ]
     },
     {
@@ -499,7 +570,7 @@
       "slug": "what-accident-damages-can-be-claimed",
       "title_ko": "사고 뒤 쓴 돈을 모두 배상받을 수 있는 것은 아닙니다",
       "one_line_answer_ko": "실제 지출만이 아니라 사고와 상당인과관계가 있는 통상손해인지, 특별손해라면 상대방이 특별사정을 알았거나 알 수 있었는지를 확인해야 합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "사고 뒤 치료비·휴업손해·향후비용 등이 생겼지만 실제 지출과 배상받을 수 있는 손해의 범위를 구분해야 하는 경우",
       "key_points_ko": [
         "치료 필요성과 사고 관련성을 확인합니다.",
         "휴업손해는 실제 소득 감소 자료로 계산합니다.",
@@ -522,9 +593,9 @@
       ],
       "caution_ko": "치료가 장기화됐다는 이유만으로 전 기간 비용과 소득 감소가 자동 인정되는 것은 아니며 의학적 필요성과 사고 관련성이 중요합니다.",
       "search_intents_ko": [
-        "사고 뒤 쓴 돈을 모두 배상받을 수 있는 것은 아닙니다",
-        "치료비와 일을 못 한 손해는 전부 청구할 수 있나?",
-        "what accident damages can be claimed"
+        "사고 치료비와 휴업손해 청구 범위",
+        "사고 때문에 쓴 비용은 어디까지 배상되나요",
+        "특별손해와 통상손해를 구분하는 기준"
       ],
       "body_sections": [
         {
@@ -561,6 +632,32 @@
         "content.emotional-distress-and-consolation-money",
         "content.victim-fault-does-not-erase-all-compensation",
         "content.accident-evidence-and-tort-limitation"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.accident-damages-responsibility-map",
+          "relation_type": "prerequisite",
+          "label_ko": "손해 계산 전 사고 책임주체 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.emotional-distress-and-consolation-money",
+          "relation_type": "comparison",
+          "label_ko": "재산상 손해와 정신상 손해 구별"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.victim-fault-does-not-erase-all-compensation",
+          "relation_type": "comparison",
+          "label_ko": "피해자 기여에 따른 최종 손해액 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.accident-evidence-and-tort-limitation",
+          "relation_type": "deadline",
+          "label_ko": "손해 증빙과 청구기간 함께 관리"
+        }
       ]
     },
     {
@@ -572,7 +669,7 @@
       "slug": "emotional-distress-and-consolation-money",
       "title_ko": "기분이 상했다는 사정만으로 위자료가 정해지지는 않습니다",
       "one_line_answer_ko": "신체·자유·명예 등 보호되는 법익 침해와 정신상 고통이 인정될 수 있지만, 위자료 성립과 금액은 침해 내용·정도·경과를 종합해 판단합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "사고나 침해행위로 정신적 고통을 겪어 위자료를 청구하려 하지만 단순한 불쾌감과 배상 대상 손해를 구분해야 하는 경우",
       "key_points_ko": [
         "재산 외 손해도 배상 대상이 될 수 있습니다.",
         "침해행위와 정신상 고통의 연결이 필요합니다.",
@@ -594,9 +691,9 @@
       ],
       "caution_ko": "정신적 불편이 실제였더라도 모든 갈등이 민법 제751조의 위자료 책임으로 이어지는 것은 아닙니다.",
       "search_intents_ko": [
-        "기분이 상했다는 사정만으로 위자료가 정해지지는 않습니다",
-        "사고로 놀라고 스트레스를 받으면 위자료를 받을 수 있나?",
-        "emotional distress and consolation money"
+        "사고 정신적 피해 위자료 인정 기준",
+        "명예나 신체 침해 위자료는 어떻게 정하나요",
+        "스트레스만으로 위자료를 청구할 수 있나요"
       ],
       "body_sections": [
         {
@@ -617,7 +714,9 @@
       "rule_ids": [
         "rule.everyday-damages.emotional-damage"
       ],
-      "scenario_ids": [],
+      "scenario_ids": [
+        "scenario.everyday-damages.emotional-harm"
+      ],
       "source_coordinate_ids": [
         "coord.everyday-damages.civil-act-ko-0751"
       ],
@@ -627,6 +726,20 @@
       "related_content_ids": [
         "content.what-accident-damages-can-be-claimed",
         "content.accident-evidence-and-tort-limitation"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.what-accident-damages-can-be-claimed",
+          "relation_type": "comparison",
+          "label_ko": "재산상 손해와 정신상 손해 구별"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.accident-evidence-and-tort-limitation",
+          "relation_type": "deadline",
+          "label_ko": "침해 경과 자료와 청구기간 함께 관리"
+        }
       ]
     },
     {
@@ -638,7 +751,7 @@
       "slug": "employee-caused-accident-employer-liability",
       "title_ko": "직원이 업무 중 낸 사고라면 회사도 책임질 수 있습니다",
       "one_line_answer_ko": "행위가 외형상 사용자의 사무집행과 관련되고 피용자의 불법행위 요건이 충족되면 사용자 책임이 문제될 수 있습니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "배달기사·매장 직원 등 다른 회사 직원이 업무 중 낸 사고로 피해를 입어 행위자와 회사 중 누구에게 청구할지 확인하려는 경우",
       "key_points_ko": [
         "계약 명칭보다 실제 지휘·업무 관계를 확인합니다.",
         "행위와 업무 사이의 객관적 관련성을 봅니다.",
@@ -660,9 +773,9 @@
       ],
       "caution_ko": "근무시간 또는 사업장 안이라는 사정 하나만으로 사무집행 관련성이 확정되는 것은 아닙니다.",
       "search_intents_ko": [
-        "직원이 업무 중 낸 사고라면 회사도 책임질 수 있습니다",
-        "배달기사나 매장 직원이 낸 사고는 회사에 청구할 수 있나?",
-        "employee caused accident employer liability"
+        "직원이 업무 중 낸 사고 회사 책임",
+        "배달기사 사고를 회사에 청구할 수 있나요",
+        "직원 개인행위와 회사 업무 관련성 판단"
       ],
       "body_sections": [
         {
@@ -697,21 +810,48 @@
       "related_content_ids": [
         "content.accident-damages-responsibility-map",
         "content.negligence-and-causation-in-accidents",
-        "content.multiple-people-caused-one-damage"
+        "content.multiple-people-caused-one-damage",
+        "content.why-attorney-workspace-is-gated"
       ],
       "lawyer_workspace_entry": {
         "question_ko": "직원이 업무 중 낸 사고라면 회사도 책임질 수 있습니다",
-        "decision_facts_ko": [
-          "행위자와 회사의 관계",
-          "사고 당시 업무",
-          "회사 지시",
-          "업무 장소·시간",
-          "회사 장비 사용",
-          "개인적 이탈 여부"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.everyday-damages.employee-course"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.accident-damages-responsibility-map",
+          "relation_type": "prerequisite",
+          "label_ko": "사고 책임주체를 먼저 분류"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.negligence-and-causation-in-accidents",
+          "relation_type": "prerequisite",
+          "label_ko": "과실과 인과관계 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.multiple-people-caused-one-damage",
+          "relation_type": "comparison",
+          "label_ko": "행위자와 사용자 공동책임 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
+        }
+      ]
     },
     {
       "content_id": "content.slip-fall-and-unsafe-facility-liability",
@@ -722,7 +862,7 @@
       "slug": "slip-fall-and-unsafe-facility-liability",
       "title_ko": "계단·바닥·간판 등 시설 하자 사고는 점유자와 소유자를 구분합니다",
       "one_line_answer_ko": "시설이 통상 갖춰야 할 안전성을 잃었는지, 누가 점유·관리했는지, 점유자가 손해 방지에 필요한 주의를 다했는지를 확인해야 합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "매장 바닥·계단·간판 등 시설 때문에 다쳤지만 실제 점유·관리자와 소유자 책임을 구분해야 하는 경우",
       "key_points_ko": [
         "사고 장소가 공작물인지 확인합니다.",
         "통상적 안전성 결여를 구체적으로 입증합니다.",
@@ -746,9 +886,9 @@
       ],
       "caution_ko": "공공 도로나 공공시설은 국가배상법 등 다른 책임 근거가 적용될 수 있으므로 민간 공작물과 구분해야 합니다.",
       "search_intents_ko": [
-        "계단·바닥·간판 등 시설 하자 사고는 점유자와 소유자를 구분합니다",
-        "매장 바닥에서 넘어지면 건물주가 무조건 책임지나?",
-        "slip fall and unsafe facility liability"
+        "매장 바닥에서 넘어진 사고 책임자",
+        "계단 시설 하자 점유자와 소유자 책임",
+        "시설 안전조치 부족 손해배상 청구"
       ],
       "body_sections": [
         {
@@ -785,23 +925,49 @@
       "related_content_ids": [
         "content.accident-damages-responsibility-map",
         "content.victim-fault-does-not-erase-all-compensation",
-        "content.accident-evidence-and-tort-limitation"
+        "content.accident-evidence-and-tort-limitation",
+        "content.why-attorney-workspace-is-gated"
       ],
       "lawyer_workspace_entry": {
         "question_ko": "계단·바닥·간판 등 시설 하자 사고는 점유자와 소유자를 구분합니다",
-        "decision_facts_ko": [
-          "미끄럼·단차·파손",
-          "조명",
-          "경고표지",
-          "점검주기",
-          "관리주체",
-          "소유자",
-          "날씨·오염",
-          "피해자 동선"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.everyday-damages.structure-defect",
+          "scenario.everyday-damages.victim-contribution"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.accident-damages-responsibility-map",
+          "relation_type": "prerequisite",
+          "label_ko": "시설사고 책임주체를 먼저 분류"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.victim-fault-does-not-erase-all-compensation",
+          "relation_type": "comparison",
+          "label_ko": "피해자 과실과 배상범위 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.accident-evidence-and-tort-limitation",
+          "relation_type": "procedure",
+          "label_ko": "사고 증거와 시효 관리로 이동"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
+        }
+      ]
     },
     {
       "content_id": "content.dog-bite-and-animal-keeper-liability",
@@ -812,7 +978,7 @@
       "slug": "dog-bite-and-animal-keeper-liability",
       "title_ko": "반려동물이 사람을 다치게 했다면 실제 관리자를 확인해야 합니다",
       "one_line_answer_ko": "동물을 사실상 지배·관리한 점유자의 책임과 상당한 보관상 주의 여부를 확인하고, 피해자 행동도 손해액 산정에서 별도로 검토합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "개 등 반려동물에게 다쳤지만 등록 명의자와 사고 당시 실제 관리자가 달라 누구의 책임인지 확인해야 하는 경우",
       "key_points_ko": [
         "등록 명의보다 사고 당시 실제 관리자를 확인합니다.",
         "동물의 종류·성질과 과거 행동에 맞는 주의가 필요합니다.",
@@ -835,9 +1001,9 @@
       ],
       "caution_ko": "동물 소유와 점유는 다를 수 있고, 상당한 주의를 다했는지는 형식적 목줄 착용 하나가 아니라 구체적 상황을 봅니다.",
       "search_intents_ko": [
-        "반려동물이 사람을 다치게 했다면 실제 관리자를 확인해야 합니다",
-        "개에게 물리면 등록된 주인에게 바로 전액 청구할 수 있나?",
-        "dog bite and animal keeper liability"
+        "개 물림 사고 실제 관리자 책임",
+        "반려동물 사고 등록 주인과 점유자 차이",
+        "목줄을 한 개가 사람을 다치게 한 경우 배상"
       ],
       "body_sections": [
         {
@@ -874,22 +1040,49 @@
       "related_content_ids": [
         "content.accident-damages-responsibility-map",
         "content.victim-fault-does-not-erase-all-compensation",
-        "content.accident-evidence-and-tort-limitation"
+        "content.accident-evidence-and-tort-limitation",
+        "content.why-attorney-workspace-is-gated"
       ],
       "lawyer_workspace_entry": {
         "question_ko": "반려동물이 사람을 다치게 했다면 실제 관리자를 확인해야 합니다",
-        "decision_facts_ko": [
-          "사고 당시 관리자",
-          "목줄·격리 상태",
-          "동물의 크기·성질",
-          "과거 공격 이력",
-          "피해자의 접근행동",
-          "경고 여부",
-          "치료기록"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.everyday-damages.animal-care",
+          "scenario.everyday-damages.victim-contribution"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.accident-damages-responsibility-map",
+          "relation_type": "prerequisite",
+          "label_ko": "동물사고 책임주체를 먼저 분류"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.victim-fault-does-not-erase-all-compensation",
+          "relation_type": "comparison",
+          "label_ko": "피해자 행동과 배상범위 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.accident-evidence-and-tort-limitation",
+          "relation_type": "procedure",
+          "label_ko": "치료·사고 증거와 시효 관리"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
+        }
+      ]
     },
     {
       "content_id": "content.multiple-people-caused-one-damage",
@@ -900,7 +1093,7 @@
       "slug": "multiple-people-caused-one-damage",
       "title_ko": "여러 사람이 하나의 손해를 만들면 공동책임이 문제됩니다",
       "one_line_answer_ko": "여러 행위가 공동으로 하나의 손해를 발생시켰거나 공동행위자 중 누구의 행위가 손해를 냈는지 알 수 없는 경우 공동불법행위 책임이 성립할 수 있습니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "여러 사람이 함께 또는 잇달아 행동해 하나의 사고 손해가 생겼거나, 실제 가해자를 특정하기 어려워 누구에게 배상을 청구할지 확인하려는 경우",
       "key_points_ko": [
         "여러 행위와 손해의 공동 관련성을 확인합니다.",
         "공동행위자 중 가해자를 특정하지 못한 경우도 검토합니다.",
@@ -922,9 +1115,9 @@
       ],
       "caution_ko": "여러 사람이 현장에 있었다는 사정이나 관계가 있다는 사정만으로 공동불법행위가 자동 인정되지는 않습니다.",
       "search_intents_ko": [
-        "여러 사람이 하나의 손해를 만들면 공동책임이 문제됩니다",
-        "누가 정확히 손해를 냈는지 모르면 아무에게도 청구할 수 없나?",
-        "multiple people caused one damage"
+        "여러 사람이 함께 일으킨 사고 손해배상은 누구에게 청구하나요",
+        "공동 가해자 중 누가 손해를 냈는지 모를 때 배상청구",
+        "여러 사람의 연속된 행동으로 하나의 손해가 생긴 경우 책임"
       ],
       "body_sections": [
         {
@@ -960,6 +1153,26 @@
         "content.accident-damages-responsibility-map",
         "content.negligence-and-causation-in-accidents",
         "content.victim-fault-does-not-erase-all-compensation"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.accident-damages-responsibility-map",
+          "relation_type": "prerequisite",
+          "label_ko": "여러 원인을 포함한 책임주체 분류"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.negligence-and-causation-in-accidents",
+          "relation_type": "prerequisite",
+          "label_ko": "행위자별 과실과 인과관계 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.victim-fault-does-not-erase-all-compensation",
+          "relation_type": "comparison",
+          "label_ko": "공동 가해와 피해자 기여 구별"
+        }
       ]
     },
     {
@@ -971,7 +1184,7 @@
       "slug": "victim-fault-does-not-erase-all-compensation",
       "title_ko": "피해자에게 과실이 있어도 배상청구가 전부 사라지는 것은 아닙니다",
       "one_line_answer_ko": "피해자의 행동이 손해 발생이나 확대에 기여했다면 손해액에 반영될 수 있지만, 상대방 책임의 성립과 피해자 기여 정도를 나눠 판단합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "사고 피해자이지만 자신의 부주의도 있었다는 이유로 상대방이나 보험사가 배상 전부를 거절하거나 과실비율을 제시한 경우",
       "key_points_ko": [
         "상대방의 책임 요건을 먼저 판단합니다.",
         "피해자 행동의 실제 기여를 객관자료로 확인합니다.",
@@ -994,9 +1207,9 @@
       ],
       "caution_ko": "보험 실무의 과실비율 제안은 협의 자료일 수 있지만 법원의 최종 판단을 자동 구속하지는 않습니다.",
       "search_intents_ko": [
-        "피해자에게 과실이 있어도 배상청구가 전부 사라지는 것은 아닙니다",
-        "내가 조금 부주의했으면 상대방에게 아무것도 청구할 수 없나?",
-        "victim fault does not erase all compensation"
+        "피해자 과실이 있으면 배상을 못 받나요",
+        "보험사가 제시한 사고 과실비율 확인",
+        "상대방 책임과 피해자 부주의를 나누는 기준"
       ],
       "body_sections": [
         {
@@ -1036,6 +1249,38 @@
         "content.what-accident-damages-can-be-claimed",
         "content.slip-fall-and-unsafe-facility-liability",
         "content.dog-bite-and-animal-keeper-liability"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.accident-damages-responsibility-map",
+          "relation_type": "prerequisite",
+          "label_ko": "상대방 책임이 성립하는 원인부터 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.negligence-and-causation-in-accidents",
+          "relation_type": "prerequisite",
+          "label_ko": "상대방 과실과 인과관계 먼저 판단"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.what-accident-damages-can-be-claimed",
+          "relation_type": "comparison",
+          "label_ko": "과실 반영 전 손해항목과 범위 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.slip-fall-and-unsafe-facility-liability",
+          "relation_type": "comparison",
+          "label_ko": "시설 책임과 이용자 행동을 함께 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.dog-bite-and-animal-keeper-liability",
+          "relation_type": "comparison",
+          "label_ko": "동물 관리책임과 피해자 행동 비교"
+        }
       ]
     },
     {
@@ -1047,7 +1292,7 @@
       "slug": "accident-evidence-and-tort-limitation",
       "title_ko": "사고 손해배상은 증거와 기간을 함께 관리해야 합니다",
       "one_line_answer_ko": "사고 원인·책임주체·손해액 자료를 즉시 보존하고, 손해와 가해자를 안 날부터 3년 및 불법행위를 한 날부터 10년이라는 소멸시효 기준을 함께 관리해야 합니다.",
-      "audience_situation_ko": "",
+      "audience_situation_ko": "사고 직후 CCTV·진료기록 등 자료를 보존해야 하고 손해와 가해자를 안 날 및 사고일 기준의 청구기간도 함께 관리해야 하는 경우",
       "key_points_ko": [
         "사고 직후 사라질 자료부터 확보합니다.",
         "손해와 가해자를 안 시점을 기록합니다.",
@@ -1071,9 +1316,9 @@
       ],
       "caution_ko": "단순한 협의나 민원 제기만으로 소멸시효가 항상 중단·유예된다고 단정해서는 안 되며 만료 전에 법적 효과가 있는 조치를 확인해야 합니다.",
       "search_intents_ko": [
-        "사고 손해배상은 증거와 기간을 함께 관리해야 합니다",
-        "사고 뒤 자료는 무엇을 모으고 언제까지 청구해야 하나?",
-        "accident evidence and tort limitation"
+        "사고 손해배상 증거는 무엇을 모아야 하나요",
+        "불법행위 손해배상 3년 10년 기산점",
+        "보험사와 협의 중일 때 손해배상 시효 관리"
       ],
       "body_sections": [
         {
@@ -1114,21 +1359,62 @@
         "content.multiple-people-caused-one-damage",
         "content.victim-fault-does-not-erase-all-compensation"
       ],
-      "lawyer_workspace_entry": {
-        "question_ko": "사고 손해배상은 증거와 기간을 함께 관리해야 합니다",
-        "decision_facts_ko": [
-          "사고일",
-          "손해를 안 날",
-          "가해자를 안 날",
-          "CCTV 보존기간",
-          "진료기록",
-          "지출증빙",
-          "보험 접수",
-          "청구·협의 기록"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.accident-damages-responsibility-map",
+          "relation_type": "prerequisite",
+          "label_ko": "증거 분류 전 사고 원인과 책임축 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.negligence-and-causation-in-accidents",
+          "relation_type": "prerequisite",
+          "label_ko": "입증할 과실과 인과관계 요건 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.what-accident-damages-can-be-claimed",
+          "relation_type": "prerequisite",
+          "label_ko": "증빙할 손해항목과 범위 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.emotional-distress-and-consolation-money",
+          "relation_type": "prerequisite",
+          "label_ko": "정신상 손해를 주장할 때 침해요건 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.employee-caused-accident-employer-liability",
+          "relation_type": "prerequisite",
+          "label_ko": "회사 책임을 주장할 때 업무관련성 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.slip-fall-and-unsafe-facility-liability",
+          "relation_type": "prerequisite",
+          "label_ko": "시설사고의 하자와 관리주체 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.dog-bite-and-animal-keeper-liability",
+          "relation_type": "prerequisite",
+          "label_ko": "동물사고의 실제 관리자와 관리조치 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.multiple-people-caused-one-damage",
+          "relation_type": "prerequisite",
+          "label_ko": "공동 원인일 때 행위자별 관련성 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.victim-fault-does-not-erase-all-compensation",
+          "relation_type": "prerequisite",
+          "label_ko": "피해자 행동의 손해 기여 여부 확인"
+        }
+      ]
     }
   ]
 }

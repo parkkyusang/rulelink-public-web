@@ -417,23 +417,48 @@
       "related_content_ids": [
         "content.product-liability-damage-scope",
         "content.shared-mobility-operator-liability-not-automatic",
-        "content.shared-mobility-accident-evidence-checklist"
+        "content.shared-mobility-accident-evidence-checklist",
+        "content.why-attorney-workspace-is-gated"
       ],
       "lawyer_workspace_entry": {
         "question_ko": "브레이크나 바퀴 이상으로 넘어진 경우 무엇을 입증해야 하나",
-        "decision_facts_ko": [
-          "기기 번호",
-          "대여 시작 시각",
-          "고장 징후",
-          "경고 표시",
-          "사진ㆍ영상",
-          "이전 고장 신고",
-          "회수ㆍ정비 기록",
-          "부상"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.shared-mobility-accident.shared-mobility-cause-device"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.product-liability-damage-scope",
+          "relation_type": "comparison",
+          "label_ko": "제조물책임 손해범위와 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.shared-mobility-operator-liability-not-automatic",
+          "relation_type": "comparison",
+          "label_ko": "운영자 책임의 별도 요건 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.shared-mobility-accident-evidence-checklist",
+          "relation_type": "procedure",
+          "label_ko": "기기 결함 증거 보존으로 이동"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
+        }
+      ]
     },
     {
       "content_id": "content.product-liability-damage-scope",
@@ -573,23 +598,48 @@
       "related_content_ids": [
         "content.shared-mobility-private-facility-defect",
         "content.shared-mobility-accident-evidence-checklist",
-        "content.shared-mobility-user-fault-and-compensation"
+        "content.shared-mobility-user-fault-and-compensation",
+        "content.why-attorney-workspace-is-gated"
       ],
       "lawyer_workspace_entry": {
         "question_ko": "포트홀이나 도로 단차 때문에 사고가 났다면",
-        "decision_facts_ko": [
-          "좌표ㆍ주소",
-          "노면 사진",
-          "깊이ㆍ폭",
-          "조명ㆍ날씨",
-          "경고표지",
-          "민원ㆍ보수이력",
-          "주행경로",
-          "속도"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.shared-mobility-accident.shared-mobility-cause-public-road"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.shared-mobility-private-facility-defect",
+          "relation_type": "comparison",
+          "label_ko": "공공도로와 민간시설 책임주체 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.shared-mobility-accident-evidence-checklist",
+          "relation_type": "procedure",
+          "label_ko": "도로 하자 증거 보존으로 이동"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.shared-mobility-user-fault-and-compensation",
+          "relation_type": "comparison",
+          "label_ko": "이용자 과실과 책임범위 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
+        }
+      ]
     },
     {
       "content_id": "content.shared-mobility-private-facility-defect",
@@ -658,23 +708,42 @@
       ],
       "related_content_ids": [
         "content.shared-mobility-public-road-defect",
-        "content.shared-mobility-accident-evidence-checklist"
+        "content.shared-mobility-accident-evidence-checklist",
+        "content.why-attorney-workspace-is-gated"
       ],
       "lawyer_workspace_entry": {
         "question_ko": "상가ㆍ주차장ㆍ거치시설의 하자로 사고가 났다면",
-        "decision_facts_ko": [
-          "시설 종류",
-          "점유자",
-          "소유자",
-          "설치 상태",
-          "점검기록",
-          "경고표지",
-          "사고 이전 민원",
-          "CCTV"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.shared-mobility-accident.shared-mobility-cause-private-facility"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.shared-mobility-public-road-defect",
+          "relation_type": "comparison",
+          "label_ko": "민간시설과 공공도로 책임주체 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.shared-mobility-accident-evidence-checklist",
+          "relation_type": "procedure",
+          "label_ko": "시설 하자 증거 보존으로 이동"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
+        }
+      ]
     },
     {
       "content_id": "content.shared-mobility-other-road-user-fault",
@@ -972,24 +1041,7 @@
         "content.shared-mobility-accident-cause-map",
         "content.shared-mobility-device-defect",
         "content.shared-mobility-public-road-defect"
-      ],
-      "lawyer_workspace_entry": {
-        "question_ko": "공유자전거 사고 직후 반드시 남길 자료",
-        "decision_facts_ko": [
-          "기기 번호",
-          "대여ㆍ반납시각",
-          "GPS 경로",
-          "사진ㆍ영상",
-          "CCTV",
-          "목격자",
-          "경찰기록",
-          "진단서",
-          "영수증",
-          "휴업자료"
-        ],
-        "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+      ]
     },
     {
       "content_id": "content.shared-mobility-visible-defect-before-ride",
@@ -1066,22 +1118,49 @@
       "related_content_ids": [
         "content.shared-mobility-device-defect",
         "content.shared-mobility-user-fault-and-compensation",
-        "content.shared-mobility-accident-evidence-checklist"
+        "content.shared-mobility-accident-evidence-checklist",
+        "content.why-attorney-workspace-is-gated"
       ],
       "lawyer_workspace_entry": {
         "question_ko": "타기 전 눈에 보이는 이상을 발견했다면",
-        "decision_facts_ko": [
-          "기기 번호",
-          "발견한 이상",
-          "발견 시각",
-          "앱 경고",
-          "신고 기록",
-          "실제 운행 여부",
-          "대체 기기 이용 가능성"
-        ],
         "href": "/ko/lawyer-workspace",
-        "audience": "verified_attorney"
-      }
+        "audience": "verified_attorney",
+        "decision_scenario_ids": [
+          "scenario.shared-mobility-accident.shared-mobility-cause-device",
+          "scenario.shared-mobility-accident.shared-mobility-user-contribution"
+        ],
+        "gate_id": "verified_attorney_v1"
+      },
+      "product_roles": [
+        "user_orientation",
+        "concierge_entry"
+      ],
+      "related_edges": [
+        {
+          "target_kind": "content",
+          "target_id": "content.shared-mobility-device-defect",
+          "relation_type": "comparison",
+          "label_ko": "사고 원인인 기기 결함과 비교"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.shared-mobility-user-fault-and-compensation",
+          "relation_type": "comparison",
+          "label_ko": "위험 인지 뒤 이용자 과실 확인"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.shared-mobility-accident-evidence-checklist",
+          "relation_type": "procedure",
+          "label_ko": "탑승 전 이상 증거 보존"
+        },
+        {
+          "target_kind": "content",
+          "target_id": "content.why-attorney-workspace-is-gated",
+          "relation_type": "concierge_boundary",
+          "label_ko": "변호사 전용 작업공간의 자격 경계 확인"
+        }
+      ]
     }
   ]
 }

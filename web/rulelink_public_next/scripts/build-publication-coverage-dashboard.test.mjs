@@ -12,26 +12,26 @@ test('coverage dashboard는 콘텐츠 수가 아니라 검증 단위와 격차�
   const dashboard = buildCoverageDashboard(validation);
 
   assert.equal(dashboard.schema, 'rulelink_publication_coverage_dashboard_v1');
-  assert.equal(dashboard.snapshot_id, 'kr-knowledge-core-20260723-023');
+  assert.equal(dashboard.snapshot_id, 'kr-knowledge-core-20260726-024');
   assert.equal(
     dashboard.base_bundle_sha256,
-    'f2b6d4cfbb818c374946d706a653b69652d0b35c1259ef15704b24a5b1a6dde2',
+    validation.base_bundle_sha256,
   );
   assert.deepEqual(dashboard.invalidations, []);
   assert.deepEqual(dashboard.total, {
     authority_l0: 0,
-    authority_l1: 8,
-    authority_l2: 0,
+    authority_l1: 2,
+    authority_l2: 6,
     bound_evaluation_cases: 12,
     branch_closed_coverage_units: 8,
     coverage_units: 8,
     content_present_in_base_snapshot: 8,
     declared_evaluation_cases: 12,
-    experience_fields_complete_coverage_units: 1,
+    experience_fields_complete_coverage_units: 7,
     invalidated_coverage_units: 0,
     released_coverage_units: 0,
     target_gap: 8,
-    temporal_authority_verified_coverage_units: 0,
+    temporal_authority_verified_coverage_units: 6,
     verified_evaluation_results: 0,
   });
   assert.deepEqual(
@@ -46,7 +46,7 @@ test('coverage dashboard는 콘텐츠 수가 아니라 검증 단위와 격차�
       item.target_gap,
     ]),
     [
-      ['hub.crime-victim-response', 6, 6, 0, 12, 0, 0, 6],
+      ['hub.crime-victim-response', 6, 0, 6, 12, 6, 0, 6],
       ['hub.debt-enforcement', 1, 1, 0, 0, 0, 0, 1],
       ['hub.housing-lease-deposit', 1, 1, 0, 0, 1, 0, 1],
     ],
@@ -60,7 +60,7 @@ test('coverage dashboard는 콘텐츠 수가 아니라 검증 단위와 격차�
     temporal_authority_is_separate_and_fail_closed: true,
     source_versions_are_pinned: true,
   });
-  assert.equal(dashboard.experience_gaps.length, 7);
+  assert.equal(dashboard.experience_gaps.length, 1);
 });
 
 test('source drift는 dashboard에 별도 invalidation으로 남는다', async () => {
@@ -76,7 +76,8 @@ test('source drift는 dashboard에 별도 invalidation으로 남는다', async (
 
   assert.equal(dashboard.total.invalidated_coverage_units, 1);
   assert.equal(dashboard.total.authority_l0, 1);
-  assert.equal(dashboard.total.authority_l1, 7);
+  assert.equal(dashboard.total.authority_l1, 1);
+  assert.equal(dashboard.total.authority_l2, 6);
   assert.equal(dashboard.invalidations.length, 1);
 });
 

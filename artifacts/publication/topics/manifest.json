@@ -1,6 +1,6 @@
 {
-  "schema": "rulelink_public_knowledge_manifest_v1",
   "knowledge_schema": "rulelink_public_knowledge_index_v1",
+  "schema": "rulelink_public_knowledge_manifest_v1",
   "topics": [
     {
       "topic_id": "hub.administrative-appeals",

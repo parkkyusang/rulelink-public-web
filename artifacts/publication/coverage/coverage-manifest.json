@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_publication_coverage_manifest_v1",
-  "base_snapshot_id": "kr-knowledge-core-20260723-023",
-  "base_bundle_sha256": "f2b6d4cfbb818c374946d706a653b69652d0b35c1259ef15704b24a5b1a6dde2",
+  "base_snapshot_id": "kr-knowledge-core-20260726-024",
+  "base_bundle_sha256": "5ede84d53415dee9452f4bbdaf8318cc823925769396404f03416e934445ea32",
   "question_family_catalog_file": "artifacts/publication/coverage/question-family-catalog.json",
   "procedure_stage_catalog_file": "artifacts/publication/coverage/procedure-stage-catalog.json",
   "authority_level_policy_file": "artifacts/publication/coverage/authority-level-policy.json",
