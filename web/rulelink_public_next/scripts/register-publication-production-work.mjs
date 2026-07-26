@@ -525,6 +525,7 @@ export async function registerProductionWorkFiles({
     const prepared = prepareProductionWorkRegistration(queue, registry, workIds);
     const evidence = await loadQueuePublicationEvidence(prepared.queue, bundle, {
       itemRegistry: prepared.registry,
+      runGit: io.runGit,
     });
     const errors = validateProductionQueue(prepared.queue, {
       publishedBundle: bundle,

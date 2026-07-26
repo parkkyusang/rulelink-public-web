@@ -34,6 +34,15 @@ export type SiteSearchIndexPayload = {
   documents: CompactSiteSearchDocument[];
 };
 
+export function projectLegacySiteSearchDocuments(
+  documents: readonly SiteSearchDocument[],
+): SiteSearchDocument[] {
+  return documents.map(({decisionIds: _decisionIds, ...document}) => {
+    const {decision: _decision, ...fields} = document.fields;
+    return {...document, fields};
+  });
+}
+
 type DecodedSiteSearchIndex = {
   generatedAt: string;
   documents: SiteSearchDocument[];

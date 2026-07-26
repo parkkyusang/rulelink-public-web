@@ -110,31 +110,31 @@ test('vendored 계약 bytes는 Windows checkout에서도 LF로 고정된다', as
   );
 });
 
-test('023은 packet sidecar가 없을 때 0건으로 exact 호환된다', async () => {
+test('현재 publication은 packet sidecar가 없을 때 0건으로 exact 호환된다', async () => {
   const activation = JSON.parse(
     await readFile(DEFAULT_LEGAL_ANSWER_ACTIVATION_MANIFEST_PATH, 'utf8'),
   );
   assert.deepEqual(activation, {
     schema: 'rulelink_legal_answer_packet_activation_v1',
     activation_state: 'inactive',
-    base_snapshot_id: 'kr-knowledge-core-20260723-023',
+    base_snapshot_id: currentBundle.snapshot_id,
   });
   assert.equal(
     await exists(DEFAULT_LEGAL_ANSWER_PACKET_SET_PATH),
     false,
-    '023 기준에는 legal-answer-packets.json이 없어야 한다',
+    `${currentBundle.snapshot_id} 기준에는 legal-answer-packets.json이 없어야 한다`,
   );
   const result = await validateLegalAnswerPacketFiles();
   assert.deepEqual(result, {errors: [], packetCount: 0, state: 'zero_state'});
 });
 
-test('inactive 023 선언은 publication snapshot이 전진하면 optional fallback하지 않는다', async () => {
+test('inactive 선언은 publication snapshot이 전진하면 optional fallback하지 않는다', async () => {
   const directory = await mkdtemp(
     path.join(os.tmpdir(), 'rulelink-answer-inactive-stale-'),
   );
   try {
     const bundle = structuredClone(currentBundle);
-    bundle.snapshot_id = 'kr-knowledge-core-20260725-024';
+    bundle.snapshot_id = 'kr-knowledge-core-20990101-999';
     const bundlePath = path.join(directory, 'bundle.json');
     await writeFile(bundlePath, canonicalBytes(bundle));
     assert.deepEqual(
@@ -594,17 +594,18 @@ test('packet 기준일과 request time_context 기준일은 정확히 같아야 
   assert.match(result.errors.join('\n'), /request_time_context_as_of_mismatch/);
 });
 
-test('현재 023에 authority가 없는 상태에서 packet만 투입하면 fail-closed다', () => {
+test('현재 정본의 authority와 실제 provenance에 다시 결박한 packet은 검증된다', () => {
   const packetSet = {
     schema: 'rulelink_public_legal_answer_packet_set_v1',
     publication_snapshot_id: currentBundle.snapshot_id,
     publication_bundle_sha256: sha256Bytes(currentBundleRaw),
-    packets: [packetFixture],
+    packets: [structuredClone(packetFixture)],
   };
-  const errors = inspect(packetSet, currentBundle, currentBundleRaw).errors.join('\n');
-  assert.match(errors, /retrieval_rule_missing/);
-  assert.match(errors, /retrieval_authority_binding_missing/);
-  assert.match(errors, /authority_binding_or_reading_missing/);
+  rebindPacketSet(packetSet, currentBundle, currentBundleRaw);
+  const result = inspect(packetSet, currentBundle, currentBundleRaw);
+  assert.equal(result.ok, true);
+  assert.deepEqual(result.errors, []);
+  assert.equal(result.packets.length, 1);
 });
 
 test('stale snapshot·bundle hash·schema commit은 각각 거부된다', () => {
