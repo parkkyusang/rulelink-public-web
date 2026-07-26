@@ -13,6 +13,20 @@ import {
   validateProductionQueue,
 } from './validate-publication-production-queue.mjs';
 
+const registrationChainChangeScope = Object.freeze([
+  'artifacts/publication/coverage/coverage-expansion-plan.json',
+  'artifacts/publication/production-queue-registry.json',
+  'artifacts/publication/production-queue.json',
+  'web/rulelink_public_next/scripts/build-publication-coverage-expansion-plan.mjs',
+  'web/rulelink_public_next/scripts/existing-topic-coverage-candidate-core.mjs',
+  'web/rulelink_public_next/scripts/publication-coverage-expansion-planner.test.mjs',
+  'web/rulelink_public_next/scripts/register-existing-topic-coverage-work.test.mjs',
+  'web/rulelink_public_next/scripts/register-publication-production-work.mjs',
+  'web/rulelink_public_next/scripts/register-publication-production-work.test.mjs',
+  'web/rulelink_public_next/scripts/validate-publication-production-queue.mjs',
+  'web/rulelink_public_next/scripts/validate-publication-production-queue.test.mjs',
+]);
+
 const workId =
   'coverage-expansion-housing-lease-deposit-kr-knowledge-core-20260726-024';
 const baseSha = '1'.repeat(40);
@@ -23,6 +37,31 @@ const topicFile =
   'artifacts/publication/topics/housing-lease-deposit.json';
 const candidateTestFile =
   'web/rulelink_public_next/scripts/housing-lease-deposit-response-map-topic.test.mjs';
+
+test('기존 주제 후보 등록 체인은 정본·계획·등록·검증 11파일만 소유한다', () => {
+  assert.equal(registrationChainChangeScope.length, 11);
+  assert.deepEqual(registrationChainChangeScope, [
+    'artifacts/publication/coverage/coverage-expansion-plan.json',
+    'artifacts/publication/production-queue-registry.json',
+    'artifacts/publication/production-queue.json',
+    'web/rulelink_public_next/scripts/build-publication-coverage-expansion-plan.mjs',
+    'web/rulelink_public_next/scripts/existing-topic-coverage-candidate-core.mjs',
+    'web/rulelink_public_next/scripts/publication-coverage-expansion-planner.test.mjs',
+    'web/rulelink_public_next/scripts/register-existing-topic-coverage-work.test.mjs',
+    'web/rulelink_public_next/scripts/register-publication-production-work.mjs',
+    'web/rulelink_public_next/scripts/register-publication-production-work.test.mjs',
+    'web/rulelink_public_next/scripts/validate-publication-production-queue.mjs',
+    'web/rulelink_public_next/scripts/validate-publication-production-queue.test.mjs',
+  ]);
+  assert.equal(registrationChainChangeScope.some(filePath => (
+    filePath.startsWith('artifacts/publication/topics/')
+    || filePath.startsWith('artifacts/publication/current/')
+    || filePath.startsWith('artifacts/publication/snapshots/')
+    || filePath.startsWith('artifacts/publication/releases/')
+    || filePath.includes('site-search')
+    || filePath.includes('source-text')
+  )), false);
+});
 
 function topic(extraEntry = false) {
   const contract = PRODUCTION_WORK_CONTRACTS[workId];
