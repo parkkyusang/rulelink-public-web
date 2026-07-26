@@ -83,7 +83,7 @@ export function KnowledgeExplorer({documents, hubs}: Props) {
           <input
             id="knowledge-search"
             onChange={event => updateQuery(event.target.value)}
-            placeholder="예: 보증금 못 받고 이사, 민법 제1026조, 2013다73520"
+            placeholder="예: 보증금 못 받고 이사"
             type="search"
             value={query}
           />

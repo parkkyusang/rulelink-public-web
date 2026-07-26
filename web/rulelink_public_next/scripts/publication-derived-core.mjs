@@ -4,6 +4,7 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 
 export const DERIVED_SCHEMAS = Object.freeze({
   maintenance: 'rulelink_publication_maintenance_index_v1',
+  sourceCheckQueue: 'rulelink_publication_source_check_queue_v1',
   sourceText: 'rulelink_public_source_text_library_v1',
 });
 
@@ -164,6 +165,119 @@ export function buildMaintenanceIndex({
   };
 }
 
+export function buildSourceCheckQueue({
+  bundle,
+  maintenanceIndex,
+  attentionWindowDays = 30,
+  generatedAt = maintenanceIndex?.generated_at,
+}) {
+  assertRecord(bundle, 'bundle');
+  assertRecord(maintenanceIndex, 'maintenanceIndex');
+  if (!Number.isInteger(attentionWindowDays) || attentionWindowDays < 0) {
+    throw new Error('attentionWindowDays must be a non-negative integer');
+  }
+  const generatedDate = parseDate(generatedAt, 'generatedAt');
+  const attentionCutoff = new Date(
+    generatedDate.getTime() + attentionWindowDays * DAY_MS,
+  );
+  const sourceByCoordinate = new Map(
+    array(bundle?.knowledge?.sources).map(source => [source.coordinate_id, source]),
+  );
+  const viewsByCoordinate = new Map();
+  for (const view of array(maintenanceIndex.content_views)) {
+    for (const coordinateId of array(view.source_coordinate_ids)) {
+      viewsByCoordinate.set(coordinateId, [
+        ...array(viewsByCoordinate.get(coordinateId)),
+        view,
+      ]);
+    }
+  }
+
+  const items = [];
+  for (const receipt of array(maintenanceIndex.source_receipts)) {
+    const views = array(viewsByCoordinate.get(receipt.coordinate_id));
+    const changed = views.some(view => (
+      array(view.invalidated_by)
+        .includes(`source_changed:${receipt.coordinate_id}`)
+    ));
+    const state = receipt.status === 'blocked'
+      ? 'blocked'
+      : changed
+        ? 'invalidated'
+        : receipt.status === 'review_due'
+          ? 'due'
+          : Date.parse(receipt.next_check_at) <= attentionCutoff.getTime()
+            ? 'upcoming'
+            : 'scheduled';
+    const source = sourceByCoordinate.get(receipt.coordinate_id);
+    if (!source) continue;
+    const dependencyDigest = sha256Canonical(
+      views
+        .map(view => ({
+          content_id: view.content_id,
+          dependency_hash: view.dependency_hash,
+        }))
+        .sort((left, right) => left.content_id.localeCompare(right.content_id, 'en')),
+    );
+    const taskFingerprint = sha256Canonical({
+      coordinate_id: receipt.coordinate_id,
+      evidence_hash: receipt.evidence_hash,
+      state,
+    });
+    items.push({
+      task_id: `source-check.${taskFingerprint.slice(0, 24)}`,
+      coordinate_id: receipt.coordinate_id,
+      official_url: source.official_url,
+      expected_source_snapshot_id: receipt.source_snapshot_id,
+      expected_evidence_hash: receipt.evidence_hash,
+      evidence_level: receipt.evidence_level,
+      due_at: receipt.next_check_at,
+      state,
+      check_method: receipt.evidence_level === 'verified_text'
+        ? 'canonical_text_hash'
+        : 'locator_resolution',
+      dependency_selector: {
+        kind: 'maintenance_index_coordinate',
+        dependent_content_count: views.length,
+        dependency_digest: dependencyDigest,
+      },
+      detection_policy: {
+        deterministic_only: true,
+        llm_allowed: false,
+        llm_token_budget: 0,
+      },
+    });
+  }
+  items.sort((left, right) => (
+    sourceCheckPriority(left.state) - sourceCheckPriority(right.state)
+    || left.due_at.localeCompare(right.due_at)
+    || left.coordinate_id.localeCompare(right.coordinate_id, 'en')
+  ));
+  const stateCounts = countBy(items, item => item.state);
+  return {
+    schema: DERIVED_SCHEMAS.sourceCheckQueue,
+    generated_at: generatedDate.toISOString(),
+    publication_snapshot_id: bundle.snapshot_id,
+    publication_bundle_sha256: sha256Canonical(bundle),
+    maintenance_index_sha256: sha256Canonical(maintenanceIndex),
+    policy: {
+      attention_window_days: attentionWindowDays,
+      detection_stage: 'deterministic_zero_token',
+      unchanged_sources_create_content_work: false,
+      changed_sources_require_claim_impact_review: true,
+    },
+    counts: {
+      total: items.length,
+      blocked: stateCounts.blocked ?? 0,
+      invalidated: stateCounts.invalidated ?? 0,
+      due: stateCounts.due ?? 0,
+      upcoming: stateCounts.upcoming ?? 0,
+      scheduled: stateCounts.scheduled ?? 0,
+    },
+    items,
+  };
+}
+
 export function validateSourceTextLibrary(library, bundle) {
   const errors = [];
   if (library?.schema !== DERIVED_SCHEMAS.sourceText) {
@@ -178,6 +292,11 @@ export function validateSourceTextLibrary(library, bundle) {
   }
   const sourceByCoordinate = new Map(
     array(bundle?.knowledge?.sources).map(source => [source.coordinate_id, source]),
+  );
+  const statuteCoordinateIds = new Set(
+    array(bundle?.knowledge?.sources)
+      .filter(source => (source.source_kind ?? 'statute') === 'statute')
+      .map(source => source.coordinate_id),
   );
   const textById = new Map();
   for (const text of array(library.texts)) {
@@ -228,6 +347,36 @@ export function validateSourceTextLibrary(library, bundle) {
     ) {
       errors.push(`source_text_binding_locator_mismatch:${binding.coordinate_id}`);
     }
+  }
+  const unresolvedCoordinates = new Set();
+  for (const unresolved of array(library.unresolved)) {
+    if (unresolvedCoordinates.has(unresolved.coordinate_id)) {
+      errors.push(`source_text_unresolved_duplicate:${unresolved.coordinate_id}`);
+      continue;
+    }
+    unresolvedCoordinates.add(unresolved.coordinate_id);
+    if (!statuteCoordinateIds.has(unresolved.coordinate_id)) {
+      errors.push(`source_text_unresolved_source_missing:${unresolved.coordinate_id}`);
+    }
+    if (boundCoordinates.has(unresolved.coordinate_id)) {
+      errors.push(`source_text_state_conflict:${unresolved.coordinate_id}`);
+    }
+  }
+  for (const coordinateId of statuteCoordinateIds) {
+    if (
+      !boundCoordinates.has(coordinateId)
+      && !unresolvedCoordinates.has(coordinateId)
+    ) {
+      errors.push(`source_text_state_missing:${coordinateId}`);
+    }
+  }
+  if (
+    library?.coverage?.publication_statute_coordinates !== statuteCoordinateIds.size
+    || library?.coverage?.bound_statute_coordinates !== boundCoordinates.size
+    || library?.coverage?.unique_verified_texts !== textById.size
+    || library?.coverage?.unresolved_statute_coordinates !== unresolvedCoordinates.size
+  ) {
+    errors.push('source_text_coverage_counts_mismatch');
   }
   return errors;
 }
@@ -287,6 +436,48 @@ export function validateMaintenanceIndex(index, bundle, sourceTextLibrary) {
   for (const contentId of contentIds) {
     if (!viewIds.has(contentId)) {
       errors.push(`maintenance_content_view_missing:${contentId}`);
+    }
+  }
+  return errors;
+}
+
+export function validateSourceCheckQueue(queue, maintenanceIndex, bundle) {
+  const errors = [];
+  if (queue?.schema !== DERIVED_SCHEMAS.sourceCheckQueue) {
+    errors.push('source_check_queue_schema_invalid');
+    return errors;
+  }
+  if (queue.publication_snapshot_id !== bundle?.snapshot_id) {
+    errors.push('source_check_queue_snapshot_mismatch');
+  }
+  if (queue.publication_bundle_sha256 !== sha256Canonical(bundle)) {
+    errors.push('source_check_queue_bundle_hash_mismatch');
+  }
+  if (queue.maintenance_index_sha256 !== sha256Canonical(maintenanceIndex)) {
+    errors.push('source_check_queue_maintenance_hash_mismatch');
+  }
+  if (
+    !Number.isInteger(queue?.policy?.attention_window_days)
+    || queue.policy.attention_window_days < 0
+  ) {
+    errors.push('source_check_queue_attention_window_invalid');
+    return errors;
+  }
+  const expected = buildSourceCheckQueue({
+    bundle,
+    maintenanceIndex,
+    attentionWindowDays: queue?.policy?.attention_window_days,
+    generatedAt: queue.generated_at,
+  });
+  if (canonicalJson(queue) !== canonicalJson(expected)) {
+    errors.push('source_check_queue_projection_mismatch');
+  }
+  for (const item of array(queue.items)) {
+    if (
+      item?.detection_policy?.llm_allowed !== false
+      || item?.detection_policy?.llm_token_budget !== 0
+    ) {
+      errors.push(`source_check_queue_detection_not_zero_token:${item?.task_id ?? '?'}`);
     }
   }
   return errors;
@@ -369,4 +560,14 @@ function countBy(values, key) {
     result[name] = (result[name] ?? 0) + 1;
   }
   return result;
+}
+
+function sourceCheckPriority(state) {
+  return {
+    blocked: 0,
+    invalidated: 1,
+    due: 2,
+    upcoming: 3,
+    scheduled: 4,
+  }[state] ?? 9;
 }

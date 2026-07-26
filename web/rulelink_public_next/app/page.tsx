@@ -11,6 +11,7 @@ import {
   loadPublishedBundle,
 } from '@/lib/publication';
 import {site} from '@/lib/site';
+import {SITE_SEARCH_EXAMPLES} from '@/lib/site-search-discovery';
 
 export const dynamic = 'force-static';
 
@@ -35,11 +36,18 @@ export default async function HomePage() {
             <input
               id="home-situation-search"
               name="q"
-              placeholder="예: 집주인이 보증금을 돌려주지 않아요"
+              placeholder={`예: ${SITE_SEARCH_EXAMPLES[0].label_ko}`}
               type="search"
             />
             <button type="submit">관련 질문 찾기</button>
           </div>
+          <nav aria-label="검색 예시" className="homeSearchExamples">
+            {SITE_SEARCH_EXAMPLES.map(example => (
+              <a href={`/ko/search?q=${encodeURIComponent(example.query)}`} key={example.kind}>
+                {example.label_ko}
+              </a>
+            ))}
+          </nav>
           <p>
             실제로 맞은 이유와 결론을 바꾸는 사실, 공식 근거, 다음 행동을 이어서 보여드립니다.
             <a href="#knowledge"> 생활영역에서 고르기</a>

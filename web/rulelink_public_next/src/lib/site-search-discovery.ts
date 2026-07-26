@@ -69,6 +69,29 @@ export type SiteSearchResultCounts = Record<
   number
 >;
 
+export type SiteSearchMissReason =
+  | 'insufficient_query'
+  | 'unindexed_reference'
+  | 'possible_expression_or_coverage_gap';
+
+export const SITE_SEARCH_EXAMPLES = Object.freeze([
+  {
+    kind: 'situation',
+    label_ko: '집주인이 보증금을 돌려주지 않아요',
+    query: '집주인이 보증금을 돌려주지 않아요',
+  },
+  {
+    kind: 'statute',
+    label_ko: '민법 제1026조',
+    query: '민법 제1026조',
+  },
+  {
+    kind: 'precedent',
+    label_ko: '2013다73520',
+    query: '2013다73520',
+  },
+] as const);
+
 type Labels = {
   changeLifecycle: (value: LegalChangeBrief['lifecycle']) => string;
   knowledgeContentType: (
@@ -340,6 +363,19 @@ export function tokenizeSiteSearchQuery(value: string): string[][] {
       contextualQueryVariants(base, context)
     )))])
     .filter(variants => variants.length > 0);
+}
+
+export function classifySiteSearchMiss(query: string): SiteSearchMissReason {
+  const normalized = normalizeSiteSearchText(query);
+  const tokens = tokenizeSiteSearchQuery(query);
+  if (!normalized || tokens.length === 0) return 'insufficient_query';
+  if (
+    /(?:제\s*)?\d{1,4}조(?:의\d{1,3})?/u.test(normalized)
+    || /\d{2,4}[가-힣]{1,4}\d{2,}/u.test(normalized)
+  ) {
+    return 'unindexed_reference';
+  }
+  return 'possible_expression_or_coverage_gap';
 }
 
 function siteSearchDocument(value: {
@@ -639,7 +675,10 @@ function contextualQueryVariants(
   base: string,
   context: ReadonlySet<string>,
 ): string[] {
-  if (CONTEXTUAL_NEGATION_TOKENS.has(base)) {
+  if (
+    CONTEXTUAL_NEGATION_TOKENS.has(base)
+    || /^(?:안|미|못|않)(?:아|어|여|해)?(?:요|습니다|다)?$/u.test(base)
+  ) {
     const hasActionContext = [...NEGATION_ACTION_CONTEXT].some(
       token => context.has(token),
     );

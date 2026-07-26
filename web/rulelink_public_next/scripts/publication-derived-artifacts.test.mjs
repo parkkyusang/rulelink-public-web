@@ -4,9 +4,11 @@ import test from 'node:test';
 
 import {
   buildMaintenanceIndex,
+  buildSourceCheckQueue,
   sha256,
   sha256Canonical,
   validateMaintenanceIndex,
+  validateSourceCheckQueue,
   validateSourceTextLibrary,
 } from './publication-derived-core.mjs';
 
@@ -58,6 +60,53 @@ test('근거 버전 변경은 역의존 관계로 영향받는 콘텐츠만 무�
   assert.equal(byId.get('content.three').status, 'current');
 });
 
+test('증분 근거 점검 큐는 출처별 한 작업만 만들고 변경감지에 모델 토큰을 쓰지 않는다', () => {
+  const bundle = fixtureBundle();
+  const sourceTextLibrary = fixtureSourceTextLibrary(bundle);
+  const index = buildMaintenanceIndex({
+    bundle,
+    generatedAt: '2027-01-01T00:00:00.000Z',
+    sourceTextLibrary,
+  });
+  const queue = buildSourceCheckQueue({
+    bundle,
+    generatedAt: '2027-01-01T00:00:00.000Z',
+    maintenanceIndex: index,
+  });
+  assert.equal(queue.items.length, 2);
+  assert.equal(queue.counts.total, 2);
+  assert.ok(queue.items.every(item => (
+    item.detection_policy.deterministic_only
+    && item.detection_policy.llm_allowed === false
+    && item.detection_policy.llm_token_budget === 0
+  )));
+  const shared = queue.items.find(item => item.coordinate_id === 'coord.one');
+  assert.equal(shared.dependency_selector.dependent_content_count, 2);
+  assert.deepEqual(validateSourceCheckQueue(queue, index, bundle), []);
+});
+
+test('증분 근거 점검 큐는 전체 콘텐츠 ID를 복제하지 않고 선택자와 해시로 역의존성을 넘긴다', () => {
+  const bundle = fixtureBundle();
+  const sourceTextLibrary = fixtureSourceTextLibrary(bundle);
+  const index = buildMaintenanceIndex({
+    bundle,
+    generatedAt: '2027-01-01T00:00:00.000Z',
+    sourceTextLibrary,
+  });
+  const queue = buildSourceCheckQueue({
+    bundle,
+    generatedAt: '2027-01-01T00:00:00.000Z',
+    maintenanceIndex: index,
+  });
+  assert.doesNotMatch(JSON.stringify(queue), /dependent_content_ids/u);
+  const changed = structuredClone(queue);
+  changed.items[0].detection_policy.llm_token_budget = 1;
+  assert.match(
+    validateSourceCheckQueue(changed, index, bundle).join('\n'),
+    /source_check_queue_projection_mismatch|source_check_queue_detection_not_zero_token/u,
+  );
+});
+
 test('법리와 사실분기가 추가한 근거도 콘텐츠 의존성에 포함한다', () => {
   const bundle = fixtureBundle();
   bundle.knowledge.content_entries[0].source_coordinate_ids = [];
@@ -94,24 +143,79 @@ test('파생 구조는 번들·스냅샷·원문 해시 변조를 차단한다',
     validateMaintenanceIndex(changedIndex, bundle, sourceTextLibrary).join('\n'),
     /maintenance_bundle_hash_mismatch/,
   );
+
+  const missingState = structuredClone(sourceTextLibrary);
+  missingState.unresolved = [];
+  missingState.coverage.unresolved_statute_coordinates = 0;
+  assert.match(
+    validateSourceTextLibrary(missingState, bundle).join('\n'),
+    /source_text_state_missing:coord\.two/,
+  );
+
+  const conflictingState = structuredClone(sourceTextLibrary);
+  conflictingState.unresolved.push({
+    coordinate_id: 'coord.one',
+    reason: 'forced_conflict',
+  });
+  conflictingState.coverage.unresolved_statute_coordinates = 2;
+  assert.match(
+    validateSourceTextLibrary(conflictingState, bundle).join('\n'),
+    /source_text_state_conflict:coord\.one/,
+  );
+
+  const wrongCoverage = structuredClone(sourceTextLibrary);
+  wrongCoverage.coverage.bound_statute_coordinates = 2;
+  assert.match(
+    validateSourceTextLibrary(wrongCoverage, bundle).join('\n'),
+    /source_text_coverage_counts_mismatch/,
+  );
+});
+
+test('증분 점검 큐의 정책값이 비정상이면 예외 대신 명시적 검증 오류로 닫는다', () => {
+  const bundle = fixtureBundle();
+  const sourceTextLibrary = fixtureSourceTextLibrary(bundle);
+  const index = buildMaintenanceIndex({
+    bundle,
+    generatedAt: '2027-01-01T00:00:00.000Z',
+    sourceTextLibrary,
+  });
+  const queue = buildSourceCheckQueue({
+    bundle,
+    generatedAt: '2027-01-01T00:00:00.000Z',
+    maintenanceIndex: index,
+  });
+  queue.policy.attention_window_days = 'thirty';
+  assert.deepEqual(
+    validateSourceCheckQueue(queue, index, bundle),
+    ['source_check_queue_attention_window_invalid'],
+  );
 });
 
 test('사용자 화면은 내부 스냅샷·패킷 용어 대신 검증된 조문 문언을 표시한다', async () => {
-  const [component, page, publication, sync] = await Promise.all([
+  const [component, authority, page, publication, sync] = await Promise.all([
     readFile(new URL('../src/components/knowledge-source-evidence.tsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/authority-reading-section.tsx', import.meta.url), 'utf8'),
     readFile(new URL('../app/ko/knowledge/[slug]/page.tsx', import.meta.url), 'utf8'),
     readFile(new URL('../src/lib/publication.ts', import.meta.url), 'utf8'),
     readFile(new URL('./sync-publication.mjs', import.meta.url), 'utf8'),
   ]);
-  assert.doesNotMatch(component, /출판 원문본|별도 답변 패킷|패킷 검증 상태/u);
+  assert.doesNotMatch(component, /출판 원문본|별도 답변 패킷|패킷 검증 상태|저장된 공식 원문/u);
   assert.doesNotMatch(component, /source\.source_snapshot_id/u);
-  assert.match(component, /조문 원문/u);
+  assert.match(component, /확인한 조문 문언/u);
   assert.match(component, /<p>\{sourceText\}<\/p>/u);
+  assert.match(component, /data-source-text-state="verified_text"/u);
+  assert.match(component, /data-source-text-state="link_only"/u);
+  assert.match(component, /공식 원문에서 확인/u);
+  assert.match(authority, /이 글의 판단에 사용한 조문을 항·호별로 확인합니다/u);
+  assert.doesNotMatch(authority, /결박|패킷|스냅샷|원장 식별자/u);
   assert.match(page, /maintenance\?\.next_check_at/u);
+  assert.match(page, /다음 점검기한/u);
+  assert.doesNotMatch(page, /<b>근거 점검<\/b>/u);
   assert.match(page, /sourceTexts=\{publicSourceTexts\}/u);
   assert.match(publication, /visibleKnowledgeEntriesForBundle/u);
   assert.match(sync, /source-text-library\.json/u);
   assert.match(sync, /maintenance-index\.json/u);
+  assert.doesNotMatch(sync, /source-check-queue\.json/u);
 });
 
 test('공식 원문 링크는 시각적으로 외부 링크 아이콘을 쓰고 새 탭 의미는 접근성 이름에 보존한다', async () => {

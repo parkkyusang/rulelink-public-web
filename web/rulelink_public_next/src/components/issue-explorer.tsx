@@ -42,7 +42,7 @@ export function IssueExplorer({cards, topics, initialTopicId = 'all'}: Props) {
           <input
             id="issue-search"
             onChange={event => setQuery(event.target.value)}
-            placeholder="예: 보증금 못 받고 이사, 집이 경매에 넘어감"
+            placeholder="예: 보증금 못 받고 이사"
             type="search"
             value={query}
           />

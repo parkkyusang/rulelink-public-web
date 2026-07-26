@@ -8,7 +8,9 @@ import {changeLifecycleLabel} from '../src/lib/change-lifecycle.ts';
 import {buildKnowledgeSearchDocuments} from '../src/lib/knowledge-search.ts';
 import {
   buildSiteSearchDocuments,
+  classifySiteSearchMiss,
   rankSiteSearchDocuments,
+  SITE_SEARCH_EXAMPLES,
   tokenizeSiteSearchQuery,
 } from '../src/lib/site-search-discovery.ts';
 import {
@@ -244,6 +246,7 @@ test('0-query 동률은 검토일·제목·ID로 결정되고 법령변화 종�
 
 test('상황형 한국어 질의는 ID가 아니라 실제 의미 필드가 맞는 독립 글을 찾는다', () => {
   const cases = [
+    ['집주인이 보증금을 돌려주지 않아요', /임대인|보증금|반환/u],
     ['집주인이 보증금을 안 줘요', /임대인|보증금|반환/u],
     ['직장에서 괴롭힘 당했어요', /직장|괴롭힘|피해/u],
     ['사장님이 월급을 안 줘요', /회사|임금|급여|지급/u],
@@ -264,6 +267,30 @@ test('상황형 한국어 질의는 ID가 아니라 실제 의미 필드가 맞�
     assert.match(semanticFields, meaning, `${query}: 의미 필드가 질의를 뒷받침하지 않습니다.`);
     assert.ok(top.matchReasons.length > 0, `${query}: 실제 매칭 이유가 없습니다.`);
   }
+});
+
+test('화면에 노출한 검색 예시는 운영 정본에서 실제 결과와 표시 근거를 가진다', () => {
+  assert.equal(SITE_SEARCH_EXAMPLES.length, 3);
+  for (const example of SITE_SEARCH_EXAMPLES) {
+    const ranked = rankSiteSearchDocuments(documents, {
+      now,
+      query: example.query,
+    });
+    assert.ok(ranked.length > 0, `${example.query}: 노출 예시가 0건입니다.`);
+    assert.ok(
+      ranked.every(result => result.matchReasons.length > 0),
+      `${example.query}: 검색 근거 없는 결과가 있습니다.`,
+    );
+  }
+});
+
+test('무결과는 짧은 질의·정확 식별자·표현 또는 콘텐츠 결손으로 분류한다', () => {
+  assert.equal(classifySiteSearchMiss('세 번'), 'insufficient_query');
+  assert.equal(classifySiteSearchMiss('민법 제9999조'), 'unindexed_reference');
+  assert.equal(
+    classifySiteSearchMiss('집주인이 잠적했어요'),
+    'possible_expression_or_coverage_gap',
+  );
 });
 
 test('정확한 search intent와 제목·대상·요약·공식근거를 결정론적으로 가중한다', () => {

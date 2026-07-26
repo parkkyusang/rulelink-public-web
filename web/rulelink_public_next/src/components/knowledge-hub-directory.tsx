@@ -73,7 +73,7 @@ export function KnowledgeHubDirectory({hubs}: {hubs: HubSummary[]}) {
               aria-describedby="knowledge-hub-search-hint"
               id="knowledge-hub-search"
               onChange={event => setQuery(event.target.value)}
-              placeholder="예: 보증금, 직장, 교통사고"
+              placeholder="예: 보증금"
               type="search"
               value={query}
             />

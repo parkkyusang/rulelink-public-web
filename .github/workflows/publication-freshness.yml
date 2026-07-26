@@ -49,5 +49,11 @@ jobs:
           RULELINK_REQUIRE_PUBLICATION_BUNDLE: "true"
         run: npm run validate-publication
 
+      - name: 변경감지용 증분 근거 점검 작업 확인
+        run: npm run validate:source-check-queue
+
+      - name: 지금 실행할 출처 단위 작업 보고
+        run: npm run report:source-check-queue -- --fail-on-due >> "$GITHUB_STEP_SUMMARY"
+
       - name: 최신성 보고서 생성 및 30일 전 알림
         run: npm run report:freshness -- --fail-on-attention >> "$GITHUB_STEP_SUMMARY"

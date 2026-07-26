@@ -76,7 +76,7 @@ export function KnowledgeSourceLibrary({documents}: {documents: PublicKnowledgeS
           <input
             id="knowledge-source-search"
             onChange={event => updateQuery(event.target.value)}
-            placeholder="예: 민법 제1026조, 2013다73520, 임차권등기"
+            placeholder="예: 민법 제1026조"
             type="search"
             value={query}
           />

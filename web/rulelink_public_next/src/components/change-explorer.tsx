@@ -50,7 +50,7 @@ export function ChangeExplorer({briefs}: Props) {
           <input
             id="change-search"
             onChange={event => setQuery(event.target.value)}
-            placeholder="예: 행정심판, 시행일, 처분 통지"
+            placeholder="예: 행정심판"
             type="search"
             value={query}
           />

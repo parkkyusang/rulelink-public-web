@@ -3,7 +3,9 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 import {
+  buildSourceCheckQueue,
   validateMaintenanceIndex,
+  validateSourceCheckQueue,
   validateSourceTextLibrary,
 } from './publication-derived-core.mjs';
 
@@ -16,9 +18,11 @@ const [bundle, sourceTextLibrary, maintenanceIndex] = await Promise.all([
   readJson(path.join(artifactRoot, 'derived', 'source-text-library.json')),
   readJson(path.join(artifactRoot, 'derived', 'maintenance-index.json')),
 ]);
+const sourceCheckQueue = buildSourceCheckQueue({bundle, maintenanceIndex});
 const errors = [
   ...validateSourceTextLibrary(sourceTextLibrary, bundle),
   ...validateMaintenanceIndex(maintenanceIndex, bundle, sourceTextLibrary),
+  ...validateSourceCheckQueue(sourceCheckQueue, maintenanceIndex, bundle),
 ];
 if (errors.length) {
   process.stderr.write(`${errors.join('\n')}\n`);
@@ -27,7 +31,8 @@ if (errors.length) {
 process.stdout.write(
   `파생 출판 구조 검증 완료: 조문 원문 ${sourceTextLibrary.texts.length}개 · `
   + `근거 결박 ${sourceTextLibrary.bindings.length}개 · `
-  + `콘텐츠 상태 ${maintenanceIndex.content_views.length}개\n`,
+  + `콘텐츠 상태 ${maintenanceIndex.content_views.length}개 · `
+  + `증분 점검 작업 ${sourceCheckQueue.items.length}개\n`,
 );
 
 async function readJson(filePath) {

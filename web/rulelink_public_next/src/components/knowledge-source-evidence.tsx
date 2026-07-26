@@ -86,11 +86,11 @@ export function KnowledgeSourceEvidence({
       data-source-evidence
     >
       <header>
-        <p className="eyebrow">공식 근거와 원문</p>
-        <h2 id="source-evidence-heading">이 글에서 참고한 조문과 공식 자료입니다.</h2>
+        <p className="eyebrow">공식 근거</p>
+        <h2 id="source-evidence-heading">이 글의 판단에 사용한 법령과 공식 자료입니다.</h2>
         <p>
-          저장된 공식 원문과 이 글이 참고한 법령 버전이 일치하는 조문은
-          페이지 안에서 바로 읽을 수 있습니다. 공식 사이트의 원문 전체도 함께 확인할 수 있습니다.
+          확인한 조문 문언은 카드 안에 그대로 표시합니다.
+          판례·공식문서 또는 직접 표시할 수 없는 자료는 공식 원문으로 연결합니다.
         </p>
       </header>
       <div className={styles.grid}>
@@ -140,11 +140,19 @@ export function KnowledgeSourceEvidence({
                     ) : null}
                   </dl>
                   {sourceText ? (
-                    <section className={styles.officialText}>
-                      <h3>조문 원문</h3>
+                    <section className={styles.officialText} data-source-text-state="verified_text">
+                      <h3>확인한 조문 문언</h3>
                       <p>{sourceText}</p>
                     </section>
-                  ) : null}
+                  ) : (
+                    <div className={styles.officialText} data-source-text-state="link_only">
+                      <strong>공식 원문에서 확인</strong>
+                      <p>
+                        이 자료는 페이지 안에 문언을 옮겨 싣지 않고,
+                        아래 공식 원문으로 연결합니다.
+                      </p>
+                    </div>
+                  )}
                   {sourceClaims.length ? (
                     <section aria-label={`${sourceLabel(source)}가 뒷받침하는 내용`}>
                       <h3>이 근거가 뒷받침하는 내용</h3>
@@ -161,13 +169,13 @@ export function KnowledgeSourceEvidence({
                     </section>
                   ) : null}
                   <a
-                    aria-label={`${sourceLabel(source)} 국가법령정보센터 공식 원문 전체 보기, 새 탭으로 열기`}
+                    aria-label={`${sourceLabel(source)} ${officialLinkLabel(source)}, 새 탭으로 열기`}
                     className={styles.official}
                     href={officialUrl}
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    공식 원문 전체 보기
+                    {officialLinkLabel(source)}
                     <ExternalLinkIcon />
                   </a>
                 </div>
@@ -209,6 +217,14 @@ function sourceDate(source: PublicKnowledgeSourceView): {label: string; value: s
     return {label: '시행일', value: formatDate(source.effective_date)};
   }
   return null;
+}
+
+function officialLinkLabel(source: PublicKnowledgeSourceView): string {
+  if (source.source_kind === 'statute' || !source.source_kind) {
+    return '국가법령정보센터에서 전체 조문 보기';
+  }
+  if (source.source_kind === 'precedent') return '공식 사이트에서 판례 원문 보기';
+  return '공식 사이트에서 문서 원문 보기';
 }
 
 function versionStateLabel(value: string): string {
