@@ -337,6 +337,27 @@ test('홈은 결과처럼 보이는 하드코딩 링크 없이 실제 검색 for
   );
 });
 
+test('통합검색은 placeholder만 유지하고 결과처럼 보이는 예시 버튼을 렌더하지 않는다', async () => {
+  const searchSource = await readFile(
+    path.join(appRoot, 'src', 'components', 'site-search.tsx'),
+    'utf8',
+  );
+  const searchStyles = await readFile(
+    path.join(appRoot, 'src', 'components', 'site-search.module.css'),
+    'utf8',
+  );
+
+  assert.match(
+    searchSource,
+    /placeholder=\{`예: \$\{SITE_SEARCH_EXAMPLES\[0\]\.label_ko\}`\}/u,
+  );
+  assert.doesNotMatch(
+    searchSource,
+    /aria-label="검색 예시"|searchExamples|SITE_SEARCH_EXAMPLES\.map|updateQuery\(example\.query\)/u,
+  );
+  assert.doesNotMatch(searchStyles, /\.searchExamples/u);
+});
+
 test('무결과는 짧은 질의·정확 식별자·표현 또는 콘텐츠 결손으로 분류한다', () => {
   assert.equal(classifySiteSearchMiss('세 번'), 'insufficient_query');
   assert.equal(classifySiteSearchMiss('민법 제9999조'), 'unindexed_reference');
