@@ -35,6 +35,8 @@ test('릴리스 열차는 기존 역할의 합집합과 승인된 공개 코드 
     'artifacts/publication/topics/family-inheritance.json',
     'artifacts/publication/topics/manifest.json',
     'artifacts/publication/current/bundle.json',
+    'artifacts/publication/derived/maintenance-index.json',
+    'artifacts/publication/derived/source-text-library.json',
     'artifacts/publication/production-queue.json',
     'artifacts/publication/production-queue-registry.json',
     'artifacts/publication/snapshots/kr-knowledge-core-20260723-023/bundle.json',
@@ -60,6 +62,8 @@ test('릴리스 열차는 기존 역할의 합집합과 승인된 공개 코드 
   assert.equal(allowedForRole('release_train', 'data/private-source.sqlite'), false);
   assert.equal(allowedForRole('release_train', '.github/workflows/unrelated.yml'), false);
   assert.equal(allowedForRole('release_train', 'artifacts/publication/coverage/private.sqlite'), false);
+  assert.equal(allowedForRole('release_train', 'artifacts/publication/derived/private.json'), false);
+  assert.equal(allowedForRole('runtime', 'artifacts/publication/derived/maintenance-index.json'), false);
   assert.equal(allowedForRole('release_train', 'web/rulelink_public_next/contracts/private.exe'), false);
   assert.equal(allowedForRole('release_train', 'web/rulelink_public_next/e2e/private.exe'), false);
 });
