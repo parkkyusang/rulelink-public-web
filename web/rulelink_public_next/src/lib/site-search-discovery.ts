@@ -247,9 +247,19 @@ const SEMANTIC_FACET_DEFINITIONS: readonly SemanticFacetDefinition[] = [
     id: '@procedure:criminal-complaint',
     terms: ['고소', '고발', '형사신고'],
   },
-  {
-    id: '@role:accused',
-    terms: ['피고소인', '피고발인', '피의자', '피고인', '혐의를 받은', '고소를 당한'],
+    {
+      id: '@role:accused',
+      terms: [
+        '피고소인',
+        '피고발인',
+        '피의자',
+        '피고인',
+        '혐의를 받은',
+        '고소를 당',
+        '고소 당',
+        '고발을 당',
+        '고발 당',
+      ],
   },
   {
     id: '@role:victim',
@@ -637,11 +647,11 @@ function scoreDocument(
     ...document.fields.searchIntent,
     ...document.fields.audience,
   ]));
-  const focusedRoleFacet = primaryRoleFacet([
-    document.title,
-    ...document.fields.audience,
-    ...document.fields.searchIntent,
-  ]);
+    const focusedRoleFacet = primaryRoleFacet([
+      ...document.fields.audience,
+      ...document.fields.searchIntent,
+      document.title,
+    ]);
   if (requiredRoleFacets.some(facet => (
     !roleFacingFacets.has(facet) || focusedRoleFacet !== facet
   ))) {

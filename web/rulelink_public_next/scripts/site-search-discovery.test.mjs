@@ -561,11 +561,11 @@ test('피동형 역할은 문서의 주된 독자 역할과 일치할 때만 열
       'accused',
       'knowledge',
       '2026-07-20',
-      '피고소인이 수사 연락을 받았을 때 확인할 절차',
+      '수사 연락을 받았을 때 확인할 절차',
     ),
     fields: {
       ...searchDocument('accused', 'knowledge', '2026-07-20', '피고소인 안내').fields,
-      audience: ['고소를 당해 피의자 조사 연락을 받은 사람'],
+      audience: ['고소를 당했을 때 대응이 필요한 사람'],
     },
   };
   const victim = {
@@ -573,17 +573,28 @@ test('피동형 역할은 문서의 주된 독자 역할과 일치할 때만 열
       'victim',
       'knowledge',
       '2026-07-20',
-      '피해자가 고소를 취소하려면',
+      '피고인이 합의하자고 할 때',
     ),
     fields: {
       ...searchDocument('victim', 'knowledge', '2026-07-20', '피해자 안내').fields,
       audience: ['고소인인 피해자가 처벌 의사를 바꾸려는 경우'],
+      searchIntent: [
+        '피해자가 고소 후 합의할 때',
+        '고소를 취소하고 싶어요',
+      ],
     },
   };
   assert.deepEqual(
     rankSiteSearchDocuments([victim, accused], {
       now,
       query: '고소당했는데',
+    }).map(result => result.id),
+    ['accused'],
+  );
+  assert.deepEqual(
+    rankSiteSearchDocuments([victim, accused], {
+      now,
+      query: '고소를 당했을 때 대응',
     }).map(result => result.id),
     ['accused'],
   );
