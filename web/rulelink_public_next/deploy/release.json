@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20260726-023",
-  "snapshot_id": "kr-knowledge-core-20260723-023",
-  "requested_at": "2026-07-26T08:52:07.851Z",
-  "summary_ko": "검색 예시와 무결과 안내를 실제 승인 정보에 맞추고, 공식 조문 문언 표시와 출처 단위 증분 점검 구조를 공개한다."
+  "release_id": "production-20260726-024",
+  "snapshot_id": "kr-knowledge-core-20260726-024",
+  "requested_at": "2026-07-26T11:10:58.067Z",
+  "summary_ko": "검색 답안처럼 보이던 예시 링크를 제거하고 실제 자연어 검색을 보강하며, 공식 근거 카드를 일관된 접힘 상태와 조문 문언 보유 상태로 공개한다."
 }
