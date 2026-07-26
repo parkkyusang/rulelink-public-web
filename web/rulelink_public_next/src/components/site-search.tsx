@@ -17,7 +17,7 @@ import {
 import {
   classifySiteSearchMiss,
   rankSiteSearchDocuments,
-  SITE_SEARCH_EXAMPLES,
+  SITE_SEARCH_PLACEHOLDER,
   type SiteSearchDocument,
   type SiteSearchResultCounts,
   type SiteSearchResultFilter,
@@ -150,7 +150,7 @@ export function SiteSearch({
               void ensureFullIndex().catch(() => undefined);
             }}
             onChange={event => updateQuery(event.target.value)}
-            placeholder={`예: ${SITE_SEARCH_EXAMPLES[0].label_ko}`}
+            placeholder={`예: ${SITE_SEARCH_PLACEHOLDER}`}
             type="search"
             value={query}
           />
