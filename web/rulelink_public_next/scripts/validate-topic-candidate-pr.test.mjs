@@ -7,6 +7,7 @@ import test from 'node:test';
 import {fileURLToPath} from 'node:url';
 
 import {
+  assertTrackedStateUnchanged,
   classifyTopicCandidatePullRequest,
   composeTopicCandidateBundle,
   validateCandidate,
@@ -123,6 +124,20 @@ test('대기열 counts와 후보 expected_counts가 다르면 fail-closed다', a
       runGit: gitFixture(),
     }),
     /대기열 counts와 후보 expected_counts가 다릅니다/u,
+  );
+});
+
+test('후보 검증의 성공·실패와 무관하게 tracked 상태 변화는 hard fail한다', () => {
+  assert.doesNotThrow(() =>
+    assertTrackedStateUnchanged(' M existing.txt\n', ' M existing.txt\n'),
+  );
+  assert.throws(
+    () =>
+      assertTrackedStateUnchanged(
+        ' M existing.txt\n',
+        ' M existing.txt\n M validator-write.txt\n',
+      ),
+    /성공 여부와 무관하게/u,
   );
 });
 

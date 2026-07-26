@@ -89,6 +89,14 @@ function exactKeys(value, expected) {
   );
 }
 
+export function assertTrackedStateUnchanged(before, after) {
+  if (after !== before) {
+    throw new Error(
+      '후보 검증 성공 여부와 무관하게 저장소의 tracked 파일이 변경되었습니다.',
+    );
+  }
+}
+
 export async function classifyTopicCandidatePullRequest({
   baseSha,
   headSha,
@@ -390,7 +398,6 @@ export async function validateCandidate({
   );
   const candidatePath =
     outputPath ?? path.join(tempRoot, 'candidate-bundle.json');
-  let validationError = null;
   try {
     for (const expected of classification.expectedTopics) {
       const topic = JSON.parse(
@@ -466,9 +473,6 @@ export async function validateCandidate({
       snapshotId: candidate.snapshot_id,
       contentCount: candidate.knowledge.content_entries.length,
     };
-  } catch (error) {
-    validationError = error;
-    throw error;
   } finally {
     await rm(tempRoot, {recursive: true, force: true});
     const trackedAfter = await defaultRunGit([
@@ -476,11 +480,7 @@ export async function validateCandidate({
       '--porcelain=v1',
       '--untracked-files=no',
     ]);
-    if (trackedAfter !== trackedBefore && !validationError) {
-      throw new Error(
-        '후보 검증기가 저장소의 tracked 파일을 변경했습니다.',
-      );
-    }
+    assertTrackedStateUnchanged(trackedBefore, trackedAfter);
   }
 }
 
