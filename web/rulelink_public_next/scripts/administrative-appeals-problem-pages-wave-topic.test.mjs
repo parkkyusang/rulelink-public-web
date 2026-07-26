@@ -106,7 +106,7 @@ const relationFixture = {
   ],
   'content.admin-appeal.oral-hearing-request': [
     ['prerequisite', 'content.admin-appeal.written-appeal-required-items'],
-    ['procedure', 'content.admin-appeal.wrong-agency-filing-date'],
+    ['prerequisite', 'content.admin-appeal.wrong-agency-filing-date'],
     ['procedure', 'content.admin-appeal.application-preparation'],
   ],
 };
@@ -169,7 +169,7 @@ test('신규 3개 문제해결 페이지가 Rule·Scenario·공식근거·행동
   );
   assert.match(
     ruleById.get(newRuleIds[1]).proposition_ko,
-    /처분을 안 날.*선행 신청의 내용과 날짜/u,
+    /처분을 안 날.*부작위를 다투는 청구서에도 청구인, 피청구인과 위원회, 청구 취지와 이유.*선행 신청의 내용과 날짜.*법인·비법인 사단 또는 재단.*대표자·대리인.*이름과 주소/u,
   );
   assert.match(
     ruleById.get(newRuleIds[2]).proposition_ko,
@@ -187,6 +187,8 @@ test('신규 3개 문제해결 페이지가 Rule·Scenario·공식근거·행동
     );
     assert.match(source.official_url, /^https:\/\/www\.law\.go\.kr\//u);
   }
+
+  assertArticle28Coverage(topic);
 });
 
 test('신규 9개 자연어 질의가 실제 사이트 ranker에서 해당 페이지 1위와 근거를 만든다', () => {
@@ -266,10 +268,32 @@ test('근거 극성·검색 1위·관계 분류·비대상 보존 회귀를 음�
   ).proposition_ko = '신청해도 구술심리를 해서는 안 됩니다.';
   assert.throws(() => assertLegalWording(changedPolarity));
 
+  const omittedArticle28CommonItems = structuredClone(topic);
+  omittedArticle28CommonItems.rule_cards.find(
+    rule => rule.rule_id === newRuleIds[1],
+  ).proposition_ko =
+    '부작위를 다투는 청구서에는 선행 신청의 내용과 날짜만 적습니다.';
+  assert.throws(() => assertArticle28Coverage(omittedArticle28CommonItems));
+
+  const ambiguousArticle28Branch = structuredClone(topic);
+  ambiguousArticle28Branch.scenario_branches.find(
+    scenario => scenario.scenario_id === newScenarioIds[1],
+  ).question_ko =
+    '이미 내려진 처분을 다투나요, 신청에 응답하지 않은 부작위를 다투나요?';
+  assert.throws(() => assertArticle28Coverage(ambiguousArticle28Branch));
+
+  const omittedArticle28Representative = structuredClone(topic);
+  omittedArticle28Representative.content_entries.find(
+    entry => entry.content_id === newContentIds[1],
+  ).facts_to_check_ko = omittedArticle28Representative.content_entries
+    .find(entry => entry.content_id === newContentIds[1])
+    .facts_to_check_ko.filter(item => !item.includes('대표자'));
+  assert.throws(() => assertArticle28Coverage(omittedArticle28Representative));
+
   const changedRelation = structuredClone(topic);
   changedRelation.content_entries.find(
-    entry => entry.content_id === newContentIds[0],
-  ).related_edges[0].relation_type = 'concept';
+    entry => entry.content_id === newContentIds[2],
+  ).related_edges[1].relation_type = 'procedure';
   assert.throws(() => assertRelations(changedRelation));
 
   const removedExisting = structuredClone(topic);
@@ -284,6 +308,56 @@ function assertLegalWording(candidate) {
   assert.match(
     rules.get(newRuleIds[2]).proposition_ko,
     /경우 외에는 구술심리를 해야/u,
+  );
+}
+
+function assertArticle28Coverage(candidate) {
+  const rule = candidate.rule_cards.find(rule => rule.rule_id === newRuleIds[1]);
+  const scenario = candidate.scenario_branches.find(
+    scenario => scenario.scenario_id === newScenarioIds[1],
+  );
+  const entry = candidate.content_entries.find(
+    entry => entry.content_id === newContentIds[1],
+  );
+
+  assert.match(
+    rule.proposition_ko,
+    /부작위를 다투는 청구서에도 청구인, 피청구인과 위원회, 청구 취지와 이유.*선행 신청의 내용과 날짜/u,
+  );
+  assert.match(
+    rule.proposition_ko,
+    /법인·비법인 사단 또는 재단.*대표자·대리인.*이름과 주소/u,
+  );
+  assert.equal(
+    scenario.question_ko,
+    '이미 내려진 처분을 다투는 행정심판인가요?',
+  );
+  assert.match(scenario.when_true_ko, /^처분을 다투므로/u);
+  assert.match(
+    scenario.when_false_ko,
+    /^처분이 아니라 신청에 대한 부작위를 다투므로.*청구인, 피청구인과 위원회, 청구 취지와 이유.*선행 신청의 내용과 날짜/u,
+  );
+  assert.match(
+    entry.one_line_answer_ko,
+    /부작위를 다투더라도 청구인, 피청구인과 위원회, 청구 취지·이유.*선행 신청의 내용과 날짜.*법인·비법인 단체.*대표자·대리인/u,
+  );
+  assert.ok(
+    entry.facts_to_check_ko.includes('법인·비법인 사단·재단의 명칭·주소'),
+  );
+  assert.ok(
+    entry.facts_to_check_ko.includes('대표자·관리인·대리인의 이름·주소'),
+  );
+  assert.match(
+    entry.action_steps_ko.join(' '),
+    /부작위 청구.*선행 신청의 내용과 날짜.*법인·비법인 사단 또는 재단.*대표자나 대리인.*명칭·이름과 주소/u,
+  );
+  assert.match(
+    entry.caution_ko,
+    /부작위 청구라고 해서 청구인, 피청구인과 위원회, 청구 취지와 이유를 생략할 수 없습니다.*법인·비법인 단체와 대표자·대리인/u,
+  );
+  assert.match(
+    entry.body_sections.map(section => section.paragraphs_ko.join(' ')).join(' '),
+    /부작위를 다투더라도 청구인, 피청구인과 위원회, 청구 취지와 이유.*법인이 아닌 사단 또는 재단.*대표자·관리인 또는 대리인/u,
   );
 }
 
