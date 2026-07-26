@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
@@ -16,24 +16,13 @@ const currentPath = path.join(
   'current',
   'bundle.json',
 );
-const baselineCommit = 'f08c241f35e3499fd380b2e536d8452e98ef54e7';
+const approvedStableProjectionSha256 =
+  '519c19e56390ef5951f4ee806083d555de6eda2f559d33f5c326981dcbce23b0';
 
 const [topic, current] = await Promise.all([
   readJson(topicPath),
   readJson(currentPath),
 ]);
-const baseline = JSON.parse(
-  execFileSync(
-    'git',
-    [
-      '-c',
-      'safe.directory=*',
-      'show',
-      `${baselineCommit}:${topicRelativePath}`,
-    ],
-    { cwd: repositoryRoot, encoding: 'utf8' },
-  ),
-);
 
 const searchFixture = {
   'content.commercial-lease-act-scope': [
@@ -147,7 +136,7 @@ const edgeFixture = {
   ],
 };
 
-test('검색과 유형 관계 외 법리·수치·기한·분기·근거를 기준 커밋과 동일하게 보존한다', () => {
+test('검색과 유형 관계 외 법리·수치·기한·분기·근거를 승인 투영과 동일하게 보존한다', () => {
   assertStructure(topic);
 });
 
@@ -190,30 +179,25 @@ test('검색 충돌·관계 교체·법률내용 변조를 음성 회귀가 차�
 });
 
 function assertStructure(candidate) {
-  assert.equal(candidate.topic_id, baseline.topic_id);
-  for (const field of [
-    'schema',
-    'sources',
-    'topic_hubs',
-    'rule_cards',
-    'scenario_branches',
-    'concept_cards',
-  ]) {
-    assert.deepEqual(candidate[field], baseline[field], field);
-  }
-
-  assert.deepEqual(
-    candidate.content_entries.map((entry) => entry.content_id),
-    baseline.content_entries.map((entry) => entry.content_id),
-    'content ID 집합·순서',
+  const stableProjection = {
+    topic_id: candidate.topic_id,
+    schema: candidate.schema,
+    sources: candidate.sources,
+    topic_hubs: candidate.topic_hubs,
+    rule_cards: candidate.rule_cards,
+    scenario_branches: candidate.scenario_branches,
+    concept_cards: candidate.concept_cards,
+    content_entries: candidate.content_entries.map(stableEntry),
+  };
+  assert.equal(
+    createHash('sha256')
+      .update(JSON.stringify(stableProjection))
+      .digest('hex'),
+    approvedStableProjectionSha256,
+    '검색·typed 관계 외 승인 투영',
   );
 
   for (const entry of candidate.content_entries) {
-    const before = baseline.content_entries.find(
-      (item) => item.content_id === entry.content_id,
-    );
-    assert.ok(before, entry.content_id);
-    assert.deepEqual(stableEntry(entry), stableEntry(before), entry.content_id);
     assert.ok(entry.audience_situation_ko.trim(), `${entry.content_id}: audience`);
     assert.ok(entry.scenario_ids.length > 0, `${entry.content_id}: scenario`);
   }

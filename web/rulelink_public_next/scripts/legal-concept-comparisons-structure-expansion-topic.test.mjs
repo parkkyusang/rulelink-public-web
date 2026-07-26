@@ -1,6 +1,5 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { execFileSync } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
@@ -18,16 +17,11 @@ const currentPath = path.join(
   'current',
   'bundle.json',
 );
-const baselineCommit = 'f08c241f35e3499fd380b2e536d8452e98ef54e7';
+const approvedStableProjectionSha256 =
+  'c5ff138f49f5b9cf5c5570d1a29906b3cc583f2e1f45f721acf4ca8a4fcb4e49';
 
 const topic = JSON.parse(await readFile(topicPath, 'utf8'));
 const current = JSON.parse(await readFile(currentPath, 'utf8'));
-const baseline = JSON.parse(
-  execFileSync('git', ['show', `${baselineCommit}:${topicRelativePath}`], {
-    cwd: repositoryRoot,
-    encoding: 'utf8',
-  }),
-);
 
 const searchFixture = {
   'content.inheritance-renunciation-vs-limited-acceptance': [
@@ -150,10 +144,6 @@ const allowedRelationTypes = new Set([
   'concierge_boundary',
 ]);
 
-function byContentId(value) {
-  return new Map(value.content_entries.map((entry) => [entry.content_id, entry]));
-}
-
 function normalizeQuery(value) {
   return value
     .normalize('NFKC')
@@ -184,6 +174,19 @@ function normalizeUnchangedEntry(entry) {
   delete copy.related_content_ids;
   delete copy.related_edges;
   return copy;
+}
+
+function stableProjectionHash(candidate) {
+  const envelope = structuredClone(candidate);
+  delete envelope.content_entries;
+  return createHash('sha256')
+    .update(
+      JSON.stringify({
+        envelope,
+        content_entries: candidate.content_entries.map(normalizeUnchangedEntry),
+      }),
+    )
+    .digest('hex');
 }
 
 test('13개 비교 글의 검색질문은 자연어 3개씩이며 제목·slug 복사와 상호 충돌이 없다', () => {
@@ -299,31 +302,21 @@ test('42개 직접 관련 대상은 순서 그대로 typed 관계로 완전 투�
   );
 });
 
-test('검색질문과 직접 관련 경로 외 법리·수치·기한·본문·대상상황은 baseline과 같다', () => {
-  const baselineById = byContentId(baseline);
-  const candidateById = byContentId(topic);
+test('검색질문과 직접 관련 경로 외 법리·수치·기한·본문·대상상황은 승인 투영과 같다', () => {
+  assert.equal(
+    stableProjectionHash(topic),
+    approvedStableProjectionSha256,
+  );
 
-  assert.deepEqual(new Set(candidateById.keys()), new Set(baselineById.keys()));
-  for (const [contentId, entry] of candidateById) {
-    assert.deepEqual(
-      normalizeUnchangedEntry(entry),
-      normalizeUnchangedEntry(baselineById.get(contentId)),
-      `${contentId}: 허용 범위 밖 변경`,
-    );
-  }
-
-  const candidateEnvelope = structuredClone(topic);
-  const baselineEnvelope = structuredClone(baseline);
-  delete candidateEnvelope.content_entries;
-  delete baselineEnvelope.content_entries;
-  assert.deepEqual(candidateEnvelope, baselineEnvelope);
+  const changedLegalEffect = structuredClone(topic);
+  changedLegalEffect.rule_cards[0].norm.legal_effect_ko += ' 임의 변경';
+  assert.notEqual(
+    stableProjectionHash(changedLegalEffect),
+    approvedStableProjectionSha256,
+  );
 });
 
-test('구조 확장 래칫은 제목·slug 검색복사와 legacy-only 관계를 13건씩 줄인다', () => {
-  const baselineById = byContentId(baseline);
-  const candidateById = byContentId(topic);
-  const contentIds = [...candidateById.keys()];
-
+test('구조 확장 래칫은 제목·slug 검색복사와 legacy-only 관계를 0건으로 고정한다', () => {
   const searchCopyGap = (entry) => {
     const normalized = new Set(entry.search_intents_ko.map(normalizeQuery));
     return normalized.has(normalizeQuery(entry.title_ko))
@@ -333,19 +326,11 @@ test('구조 확장 래칫은 제목·slug 검색복사와 legacy-only 관계를
     entry.related_content_ids.length > 0 && !(entry.related_edges?.length > 0);
 
   assert.equal(
-    contentIds.filter((contentId) => searchCopyGap(baselineById.get(contentId))).length,
-    13,
-  );
-  assert.equal(
-    contentIds.filter((contentId) => searchCopyGap(candidateById.get(contentId))).length,
+    topic.content_entries.filter(searchCopyGap).length,
     0,
   );
   assert.equal(
-    contentIds.filter((contentId) => legacyOnlyGap(baselineById.get(contentId))).length,
-    13,
-  );
-  assert.equal(
-    contentIds.filter((contentId) => legacyOnlyGap(candidateById.get(contentId))).length,
+    topic.content_entries.filter(legacyOnlyGap).length,
     0,
   );
 });

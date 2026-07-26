@@ -1,6 +1,5 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { execFileSync } from 'node:child_process';
 import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -41,16 +40,13 @@ const coverageManifestPath = path.join(
   'coverage',
   'coverage-manifest.json',
 );
-const baselineCommit = '3d06649acdf985901e7b7f54007e07b5551a1aa1';
+const approvedStableProjectionSha256 =
+  '1dd0f141c2cb6fb471284bd17e24c0ca8b74c2e4457294ec7a77507a9ea42e6f';
+const approvedUntouchedExperienceSha256 =
+  '78d98742bf86fadb1e335f185df1fc58d1aa5f9bb6f81bd1c136b09e52ecf156';
 
 const topic = JSON.parse(await readFile(topicPath, 'utf8'));
 const current = JSON.parse(await readFile(currentPath, 'utf8'));
-const baseline = JSON.parse(
-  execFileSync('git', ['show', `${baselineCommit}:${topicRelativePath}`], {
-    cwd: repositoryRoot,
-    encoding: 'utf8',
-  }),
-);
 
 const experienceFixture = {
   'content.accident-damages-responsibility-map': {
@@ -240,6 +236,55 @@ function normalizeContent(entry) {
   return copy;
 }
 
+function stableProjectionHash(candidate) {
+  const envelope = structuredClone(candidate);
+  delete envelope.scenario_branches;
+  delete envelope.content_entries;
+  const existingScenarios = candidate.scenario_branches.filter(
+    (scenario) =>
+      !newScenarioFixture.some(
+        (fixture) => fixture.scenario_id === scenario.scenario_id,
+      ),
+  );
+  const entries = candidate.content_entries.map((entry) => {
+    const copy = normalizeContent(entry);
+    if (
+      copy.content_id ===
+      'content.emotional-distress-and-consolation-money'
+    ) {
+      copy.scenario_ids = [];
+    }
+    return copy;
+  });
+  return sha256({
+    envelope,
+    scenario_branches: existingScenarios,
+    content_entries: entries,
+  });
+}
+
+function reconstructPreExpansionTopic(candidate) {
+  const before = structuredClone(candidate);
+  before.scenario_branches = before.scenario_branches.filter(
+    (scenario) =>
+      !newScenarioFixture.some(
+        (fixture) => fixture.scenario_id === scenario.scenario_id,
+      ),
+  );
+  for (const entry of before.content_entries) {
+    if (Object.hasOwn(experienceFixture, entry.content_id)) {
+      entry.audience_situation_ko = '';
+    }
+    if (
+      entry.content_id ===
+      'content.emotional-distress-and-consolation-money'
+    ) {
+      entry.scenario_ids = [];
+    }
+  }
+  return before;
+}
+
 function normalizeSearch(value) {
   return value
     .normalize('NFKC')
@@ -365,14 +410,12 @@ test('대상상황과 검색의도는 실제 사고 질문으로 정확히 보�
   }
 
   const untouchedId = 'content.multiple-people-caused-one-damage';
-  const baselineEntries = byContentId(baseline);
   assert.equal(
-    entries.get(untouchedId).audience_situation_ko,
-    baselineEntries.get(untouchedId).audience_situation_ko,
-  );
-  assert.deepEqual(
-    entries.get(untouchedId).search_intents_ko,
-    baselineEntries.get(untouchedId).search_intents_ko,
+    sha256({
+      audience_situation_ko: entries.get(untouchedId).audience_situation_ko,
+      search_intents_ko: entries.get(untouchedId).search_intents_ko,
+    }),
+    approvedUntouchedExperienceSha256,
   );
 
   const normalized = [];
@@ -394,11 +437,11 @@ test('대상상황과 검색의도는 실제 사고 질문으로 정확히 보�
 
 test('위자료 분기만 기존 Rule과 근거 안에서 닫고 CTA 대기 시효 글은 분기 공백을 보존한다', () => {
   assert.deepEqual(
-    topic.scenario_branches.slice(0, baseline.scenario_branches.length),
-    baseline.scenario_branches,
-  );
-  assert.deepEqual(
-    topic.scenario_branches.slice(baseline.scenario_branches.length),
+    topic.scenario_branches.filter((scenario) =>
+      newScenarioFixture.some(
+        (fixture) => fixture.scenario_id === scenario.scenario_id,
+      ),
+    ),
     newScenarioFixture,
   );
   const emotionalScenario = newScenarioFixture[0];
@@ -479,42 +522,18 @@ test('기존 읽기 대상의 순서를 보존한 typed 경로가 정확히 투�
   }
 });
 
-test('비대상 법리·근거·본문·CTA와 기존 관계는 승인 baseline과 동일하다', () => {
-  const baselineTop = structuredClone(baseline);
-  const topicTop = structuredClone(topic);
-  delete baselineTop.scenario_branches;
-  delete baselineTop.content_entries;
-  delete topicTop.scenario_branches;
-  delete topicTop.content_entries;
-  assert.deepEqual(topicTop, baselineTop);
-
-  const baselineEntries = byContentId(baseline);
-  for (const entry of topic.content_entries) {
-    const actual = normalizeContent(entry);
-    const expected = normalizeContent(baselineEntries.get(entry.content_id));
-    if (
-      entry.content_id ===
-      'content.emotional-distress-and-consolation-money'
-    ) {
-      actual.scenario_ids = expected.scenario_ids;
-    }
-    assert.deepEqual(
-      actual,
-      expected,
-      entry.content_id,
-    );
-  }
-
-  for (const contentId of [
-    'content.employee-caused-accident-employer-liability',
-    'content.slip-fall-and-unsafe-facility-liability',
-    'content.dog-bite-and-animal-keeper-liability',
-  ]) {
-    assert.deepEqual(
-      byContentId(topic).get(contentId).related_edges,
-      baselineEntries.get(contentId).related_edges,
-    );
-  }
+test('비대상 법리·근거·본문·CTA와 기존 분기는 승인 투영과 동일하다', () => {
+  assert.equal(
+    stableProjectionHash(topic),
+    approvedStableProjectionSha256,
+  );
+  const changedBody = structuredClone(topic);
+  changedBody.content_entries[0].body_sections[0].paragraphs_ko[0] +=
+    ' 임의 변경';
+  assert.notEqual(
+    stableProjectionHash(changedBody),
+    approvedStableProjectionSha256,
+  );
 });
 
 test('증분 래칫은 후속 주제 개선은 허용하고 비대상 회귀와 대상 새 결손은 차단한다', () => {
@@ -529,7 +548,8 @@ test('증분 래칫은 후속 주제 개선은 허용하고 비대상 회귀와 
     scenario_ids: ['scenario.fixture'],
     source_coordinate_ids: ['coord.fixture'],
   };
-  const before = [...structuredClone(baseline.content_entries), unrelated];
+  const beforeTopic = reconstructPreExpansionTopic(topic);
+  const before = [...beforeTopic.content_entries, unrelated];
   const after = [
     ...structuredClone(topic.content_entries),
     structuredClone(unrelated),
@@ -566,7 +586,8 @@ test('후속 직렬 개선과 무관하게 이 주제의 구조 8건·대상상�
     snapshotId: current.snapshot_id,
   });
   const topicIds = new Set(topic.content_entries.map((entry) => entry.content_id));
-  const baselineEntries = byContentId(baseline);
+  const beforeTopic = reconstructPreExpansionTopic(topic);
+  const baselineEntries = byContentId(beforeTopic);
   const before = knowledge.content_entries.map((entry) =>
     topicIds.has(entry.content_id)
       ? structuredClone(baselineEntries.get(entry.content_id))

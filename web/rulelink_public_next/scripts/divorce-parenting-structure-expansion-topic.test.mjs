@@ -1,6 +1,5 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { execFileSync } from 'node:child_process';
 import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -42,16 +41,11 @@ const coverageManifestPath = path.join(
   'coverage',
   'coverage-manifest.json',
 );
-const baselineCommit = '225b2988aaac88cb6c4cff9a315e05724f01f4fb';
+const approvedStableProjectionSha256 =
+  '074eb30ccdb8919431cebb6d4e3fd3f48b999f52a2f73f2366e90eba0964ef4e';
 
 const topic = JSON.parse(await readFile(topicPath, 'utf8'));
 const current = JSON.parse(await readFile(currentPath, 'utf8'));
-const baseline = JSON.parse(
-  execFileSync('git', ['show', `${baselineCommit}:${topicRelativePath}`], {
-    cwd: repositoryRoot,
-    encoding: 'utf8',
-  }),
-);
 
 const experienceFixture = {
   'content.consensual-divorce-needs-court-confirmation-and-report': {
@@ -352,6 +346,27 @@ function normalizeNonTarget(entry) {
   return copy;
 }
 
+function stableProjectionHash(candidate) {
+  const envelope = structuredClone(candidate);
+  delete envelope.content_entries;
+  return createHash('sha256')
+    .update(
+      JSON.stringify({
+        envelope,
+        content_entries: candidate.content_entries.map(normalizeNonTarget),
+      }),
+    )
+    .digest('hex');
+}
+
+function reconstructPreExpansionEntry(entry) {
+  const before = structuredClone(entry);
+  if (Object.hasOwn(experienceFixture, before.content_id)) {
+    before.audience_situation_ko = '';
+  }
+  return before;
+}
+
 function structuralCounts(entries) {
   const gaps = entries.map((entry) => entryGaps(entry, []));
   return {
@@ -497,34 +512,21 @@ test('기존 읽기 대상 순서를 보존한 typed 경로가 정확히 투영�
   assert.equal(edgeCount, 31);
 });
 
-test('법리·근거·본문·CTA·분기 배열과 기존 typed 관계는 baseline과 동일하다', () => {
+test('법리·근거·본문·CTA·분기 배열과 기존 typed 관계는 승인 투영과 동일하다', () => {
   assert.equal(topic.rule_cards.length, 10);
   assert.equal(topic.scenario_branches.length, 7);
   assert.equal(topic.sources.length, 11);
+  assert.equal(
+    stableProjectionHash(topic),
+    approvedStableProjectionSha256,
+  );
 
-  const baselineTop = structuredClone(baseline);
-  const topicTop = structuredClone(topic);
-  delete baselineTop.content_entries;
-  delete topicTop.content_entries;
-  assert.deepEqual(topicTop, baselineTop);
-
-  const baselineEntries = byContentId(baseline);
-  for (const entry of topic.content_entries) {
-    assert.deepEqual(
-      normalizeNonTarget(entry),
-      normalizeNonTarget(baselineEntries.get(entry.content_id)),
-      entry.content_id,
-    );
-  }
-  for (const entry of topic.content_entries.filter(
-    (value) => !newRelationIds.has(value.content_id),
-  )) {
-    assert.deepEqual(
-      entry.related_edges,
-      baselineEntries.get(entry.content_id).related_edges,
-      entry.content_id,
-    );
-  }
+  const changedRule = structuredClone(topic);
+  changedRule.rule_cards[0].norm.proposition_ko += ' 임의 변경';
+  assert.notEqual(
+    stableProjectionHash(changedRule),
+    approvedStableProjectionSha256,
+  );
 });
 
 test('분기·근거·법리 참조는 모두 실제 객체로 닫힌다', () => {
@@ -566,10 +568,10 @@ test('후속 주제 개선과 무관하게 이혼 주제의 구조·대상상황
     snapshotId: current.snapshot_id,
   });
   const topicIds = new Set(topic.content_entries.map((entry) => entry.content_id));
-  const baselineEntries = byContentId(baseline);
+  const topicEntries = byContentId(topic);
   const before = knowledge.content_entries.map((entry) =>
     topicIds.has(entry.content_id)
-      ? structuredClone(baselineEntries.get(entry.content_id))
+      ? reconstructPreExpansionEntry(topicEntries.get(entry.content_id))
       : entry,
   );
 

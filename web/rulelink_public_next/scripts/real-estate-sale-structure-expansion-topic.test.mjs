@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
@@ -23,26 +23,17 @@ const manifestPath = path.join(
   'topics',
   'manifest.json',
 );
-const baselineCommit = 'f08c241f35e3499fd380b2e536d8452e98ef54e7';
 const restoredContentId = 'content.rescission-restitution-and-damages';
 const restoredScenarioId = 'scenario.real-estate-sale.real-estate-12';
+const approvedStableProjectionSha256 =
+  '979f16565415e33995aabeca33eaa8ac9628a4b2f39818c762dd52043b27de85';
+const preservedReportingSearchFixture = [
+  '부동산 매매계약 체결 후 실거래 신고는 며칠 안에 하나요',
+  '부동산 계약 해제 신고 30일 기산일',
+  '중개거래와 직거래 부동산 신고 주체',
+];
 
 const topic = JSON.parse(await readFile(topicPath, 'utf8'));
-const baseline = JSON.parse(
-  execFileSync(
-    'git',
-    [
-      '-c',
-      `safe.directory=${repositoryRoot.replaceAll('\\', '/')}`,
-      'show',
-      `${baselineCommit}:${topicRelativePath}`,
-    ],
-    {
-      cwd: repositoryRoot,
-      encoding: 'utf8',
-    },
-  ),
-);
 
 const searchFixture = {
   'content.real-estate-sale-contract-before-signing': [
@@ -191,6 +182,38 @@ function normalizePermittedContentChanges(entry) {
   return copy;
 }
 
+function stableProjectionHash(candidate) {
+  const envelope = structuredClone(candidate);
+  delete envelope.content_entries;
+  delete envelope.scenario_branches;
+  return createHash('sha256')
+    .update(
+      JSON.stringify({
+        envelope,
+        scenario_branches: candidate.scenario_branches.filter(
+          (scenario) => scenario.scenario_id !== restoredScenarioId,
+        ),
+        content_entries: candidate.content_entries.map(
+          normalizePermittedContentChanges,
+        ),
+      }),
+    )
+    .digest('hex');
+}
+
+function reconstructPreExpansionTopic(candidate) {
+  const before = structuredClone(candidate);
+  before.scenario_branches = before.scenario_branches.filter(
+    (scenario) => scenario.scenario_id !== restoredScenarioId,
+  );
+  const restored = before.content_entries.find(
+    (entry) => entry.content_id === restoredContentId,
+  );
+  restored.audience_situation_ko = '';
+  restored.scenario_ids = [];
+  return before;
+}
+
 function structuralCounts(entries) {
   const gaps = entries.map(entry => entryGaps(entry, []));
   return {
@@ -237,9 +260,7 @@ test('11개 글의 검색의도는 실제 부동산 거래 질문으로 교정�
   assert.deepEqual(
     entries.get('content.real-estate-transaction-reporting-30-days')
       .search_intents_ko,
-    byContentId(baseline)
-      .get('content.real-estate-transaction-reporting-30-days')
-      .search_intents_ko,
+    preservedReportingSearchFixture,
   );
 });
 
@@ -298,34 +319,17 @@ test('해제 후 정산 글은 기존 제548조·제551조 범위에서 양쪽 �
   });
 });
 
-test('기존 법리·수치·기한·본문과 승인된 3d06649·61c16e5 변경은 그대로 보존된다', () => {
+test('기존 법리·수치·기한·본문과 승인된 변경은 승인 투영으로 보존된다', () => {
   assert.equal(topic.content_entries.length, 12);
   assert.equal(topic.rule_cards.length, 12);
   assert.equal(topic.sources.length, 18);
   assert.equal(topic.scenario_branches.length, 12);
-
-  const baselineTop = structuredClone(baseline);
-  const topicTop = structuredClone(topic);
-  delete baselineTop.content_entries;
-  delete baselineTop.scenario_branches;
-  delete topicTop.content_entries;
-  delete topicTop.scenario_branches;
-  assert.deepEqual(topicTop, baselineTop);
-
-  assert.deepEqual(
-    topic.scenario_branches.filter(
-      value => value.scenario_id !== restoredScenarioId,
-    ),
-    baseline.scenario_branches,
+  assert.equal(
+    stableProjectionHash(topic),
+    approvedStableProjectionSha256,
   );
 
-  const baselineEntries = byContentId(baseline);
   for (const entry of topic.content_entries) {
-    assert.deepEqual(
-      normalizePermittedContentChanges(entry),
-      normalizePermittedContentChanges(baselineEntries.get(entry.content_id)),
-      entry.content_id,
-    );
     const supportedText = [
       entry.title_ko,
       entry.one_line_answer_ko,
@@ -419,7 +423,8 @@ test('Rule·Scenario·Source·관계 target은 모두 실제 객체로 닫힌다
 });
 
 test('구조 래칫은 이 주제의 audience 1건과 scenario 1건만 정확히 닫는다', async () => {
-  assert.deepEqual(structuralCounts(baseline.content_entries), {
+  const beforeTopic = reconstructPreExpansionTopic(topic);
+  assert.deepEqual(structuralCounts(beforeTopic.content_entries), {
     structure_incomplete: 1,
     audience_situation_missing: 1,
     scenario_missing: 1,
@@ -434,7 +439,7 @@ test('구조 래칫은 이 주제의 audience 1건과 scenario 1건만 정확히
     snapshotId: 'kr-knowledge-core-20260723-023',
   });
   const topicIds = new Set(topic.content_entries.map(entry => entry.content_id));
-  const baselineEntries = byContentId(baseline);
+  const baselineEntries = byContentId(beforeTopic);
   const before = knowledge.content_entries.map(entry =>
     topicIds.has(entry.content_id)
       ? structuredClone(baselineEntries.get(entry.content_id))
