@@ -282,6 +282,30 @@ test('상황형 한국어 질의는 ID가 아니라 실제 의미 필드가 맞�
   }
 });
 
+test('문장 어미가 붙은 미일치 의미 술어는 버리지 않고 관련 없는 결과를 차단한다', () => {
+  for (const query of [
+    '보증금으로 살인했습니다',
+    '직장에서 절도했는데요',
+    '상속을 위조했습니다',
+    '이혼하고 방화했습니다',
+  ]) {
+    assert.deepEqual(
+      rankSiteSearchDocuments(documents, {now, query}),
+      [],
+      `${query}: 미일치 의미 술어를 버리고 관련 없는 결과를 열었습니다.`,
+    );
+  }
+
+  const violence = rankSiteSearchDocuments(documents, {
+    now,
+    query: '남편이 때려요',
+  });
+  assert.ok(violence.length > 0, '일상어 가정폭력 질의가 결과를 찾지 못합니다.');
+  assert.equal(violence[0].kind, 'knowledge');
+  assert.match(searchableText(violence[0]), /배우자|가정폭력|폭행|신체/u);
+  assert.ok(violence[0].matchReasons.length > 0);
+});
+
 test('화면에 노출한 검색 예시는 운영 정본에서 실제 결과와 표시 근거를 가진다', () => {
   assert.equal(SITE_SEARCH_EXAMPLES.length, 3);
   for (const example of SITE_SEARCH_EXAMPLES) {
@@ -350,11 +374,14 @@ test('조사 제거는 원문을 보존한 보조 variant이고 짧은 말·법�
   assert.deepEqual(tokenizeSiteSearchQuery('상속인이'), [['상속인이', '상속인']]);
   assert.deepEqual(tokenizeSiteSearchQuery('법인은'), [['법인은', '법인']]);
   assert.deepEqual(tokenizeSiteSearchQuery('이'), [['이']]);
+  assert.deepEqual(tokenizeSiteSearchQuery('빚이')[0].slice(0, 2), ['빚이', '빚']);
 
   const fixture = [
     searchDocument('heir', 'knowledge', '2026-07-20', '법정상속인 순위'),
     searchDocument('tax', 'knowledge', '2026-07-20', '상속세 신고'),
     searchDocument('seizure', 'knowledge', '2026-07-20', '급여 압류'),
+    searchDocument('corporation', 'knowledge', '2026-07-20', '법인 설립 안내'),
+    searchDocument('debt', 'knowledge', '2026-07-20', '상속 채무 확인'),
   ];
   assert.deepEqual(
     rankSiteSearchDocuments(fixture, {now, query: '상속인이'}).map(result => result.id),
@@ -366,6 +393,17 @@ test('조사 제거는 원문을 보존한 보조 variant이고 짧은 말·법�
       query: '사장님이 월급을 안 줘요',
     }).map(result => result.id),
     [],
+  );
+  assert.deepEqual(
+    rankSiteSearchDocuments(fixture, {now, query: '법이'})
+      .map(result => result.id),
+    [],
+    '한 글자 조사 제거 stem은 다른 단어의 부분문자열을 열지 않습니다.',
+  );
+  assert.deepEqual(
+    rankSiteSearchDocuments(fixture, {now, query: '빚이'})
+      .map(result => result.id),
+    ['debt'],
   );
 });
 
@@ -426,9 +464,9 @@ test('공백·구두점과 부분 토큰을 정규화하고 모든 논리 토큰
   });
   assert.ok(spaced.length > 0);
   assert.ok(spaced.every(result => (
-    /온라인|전자상거래/u.test(searchableText(result))
+    /온라인|인터넷|전자상거래/u.test(searchableText(result))
     && /쇼핑/u.test(searchableText(result))
-    && /환불/u.test(searchableText(result))
+    && /환불|환급|반환|회수/u.test(searchableText(result))
   )));
 });
 
