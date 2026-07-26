@@ -24,6 +24,11 @@ import {
   existingTopicCoverageCandidateContractReceipt,
   verifyExistingTopicCoverageCandidate,
 } from './existing-topic-coverage-candidate-core.mjs';
+import {
+  TOPIC_CANDIDATE_V3_SCHEMA,
+  topicCandidateV3ContractReceipt,
+  validateTopicCandidateV3QueueContract,
+} from './topic-candidate-v3-contract.mjs';
 import {site} from '../src/lib/site.ts';
 
 const scriptPath = fileURLToPath(import.meta.url);
@@ -1849,7 +1854,9 @@ function queueItemIdentity(item) {
   };
   if (nonEmpty(item.work_id)) {
     identity.work_id = item.work_id;
-    if (
+    if (item.candidate_import?.schema === TOPIC_CANDIDATE_V3_SCHEMA) {
+      identity.contract_sha256 = topicCandidateV3ContractReceipt(item);
+    } else if (
       PRODUCTION_WORK_CONTRACTS[item.work_id]?.contract_kind ===
       'coverage_plan_existing_topic_v1'
     ) {
@@ -3270,6 +3277,7 @@ export function validateProductionQueue(
     previousRegistry: previousItemRegistry,
     coverageCandidateProofs,
   }));
+  errors.push(...validateTopicCandidateV3QueueContract(queue, {itemRegistry}));
   for (const receipt of itemRegistry?.prerequisite_gate_receipts ?? []) {
     const contract = PRODUCTION_WORK_CONTRACTS[receipt.work_id];
     const gateContract = productionGateContract(contract, receipt.gate_id);
@@ -3458,9 +3466,11 @@ export function validateProductionQueue(
 
     if (hasWorkId) {
       const workContract = PRODUCTION_WORK_CONTRACTS[item.work_id];
-      if (!workContract) {
+      const isV3Candidate =
+        item.candidate_import?.schema === TOPIC_CANDIDATE_V3_SCHEMA;
+      if (!workContract && !isV3Candidate) {
         errors.push(`${label}.work_id에 승인된 생산계약이 없습니다: ${item.work_id}`);
-      } else {
+      } else if (workContract) {
         if (item.title_ko !== workContract.title_ko) {
           errors.push(`${label}.title_ko가 승인된 생산계약과 다릅니다: ${item.work_id}`);
         }
@@ -3480,7 +3490,10 @@ export function validateProductionQueue(
         ) {
           errors.push(`${label}.branch가 승인된 생산계약과 다릅니다: ${item.work_id}`);
         }
-        if (workContract.contract_kind === 'coverage_plan_existing_topic_v1') {
+        if (
+          workContract.contract_kind === 'coverage_plan_existing_topic_v1' &&
+          !isV3Candidate
+        ) {
           const candidate = item.candidate_import;
           if (!candidate || typeof candidate !== 'object') {
             errors.push(`${label}.candidate_import가 필요합니다.`);
