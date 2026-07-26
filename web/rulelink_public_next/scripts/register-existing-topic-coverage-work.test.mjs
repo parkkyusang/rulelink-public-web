@@ -1,10 +1,20 @@
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {
+  mkdir,
+  mkdtemp,
+  readFile,
+  rm,
+  writeFile,
+} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import path from 'node:path';
 import test from 'node:test';
 
 import {
   buildImportedCoverageProductionWorkItem,
   buildPlannedProductionWorkItem,
+  verifyExistingTopicCoverageRegistrationScope,
 } from './register-publication-production-work.mjs';
 import {
   PRODUCTION_WORK_CONTRACTS,
@@ -88,6 +98,70 @@ test('등록 체인 필수 파일이 빠진 PR 범위도 차단한다', async ()
     }),
     new RegExp(`missing=${missingPath.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&')}`, 'u'),
   );
+});
+
+test('실제 Git 저장소의 base...HEAD 변경범위도 exact11 성공과 12번째 파일 실패를 재현한다', async () => {
+  const repoPath = await mkdtemp(
+    path.join(tmpdir(), 'rulelink-registration-scope-'),
+  );
+  const git = args => execFileSync('git', args, {
+    cwd: repoPath,
+    encoding: 'utf8',
+    maxBuffer: 10 * 1024 * 1024,
+  }).trim();
+  const runGit = async args => `${git(args)}\n`;
+  try {
+    git(['init', '--initial-branch=main']);
+    git(['config', 'user.name', 'RuleLink Scope Test']);
+    git(['config', 'user.email', 'scope-test@invalid.local']);
+    git(['config', 'commit.gpgsign', 'false']);
+    await writeFile(
+      path.join(repoPath, 'README.md'),
+      'registration scope base\n',
+      'utf8',
+    );
+    git(['add', 'README.md']);
+    git(['commit', '-m', 'base']);
+    const trustedBaseSha = git(['rev-parse', 'HEAD']);
+
+    for (const filePath of EXISTING_TOPIC_COVERAGE_REGISTRATION_CHANGE_SCOPE) {
+      const absolutePath = path.join(repoPath, ...filePath.split('/'));
+      await mkdir(path.dirname(absolutePath), {recursive: true});
+      await writeFile(absolutePath, `${filePath}\n`, 'utf8');
+    }
+    git(['add', '--all']);
+    git(['commit', '-m', 'exact registration chain']);
+    const exactHeadSha = git(['rev-parse', 'HEAD']);
+    assert.equal(git(['rev-parse', `${exactHeadSha}^`]), trustedBaseSha);
+    const verified = await verifyExistingTopicCoverageRegistrationScope({
+      baseSha: trustedBaseSha,
+      headSha: exactHeadSha,
+      io: {runGit},
+    });
+    assert.equal(verified.changedFiles.length, 11);
+
+    const forbiddenPath =
+      'artifacts/publication/topics/housing-lease-deposit.json';
+    const forbiddenAbsolutePath = path.join(
+      repoPath,
+      ...forbiddenPath.split('/'),
+    );
+    await mkdir(path.dirname(forbiddenAbsolutePath), {recursive: true});
+    await writeFile(forbiddenAbsolutePath, '{}\n', 'utf8');
+    git(['add', forbiddenPath]);
+    git(['commit', '-m', 'forged twelfth file']);
+    const forgedHeadSha = git(['rev-parse', 'HEAD']);
+    await assert.rejects(
+      verifyExistingTopicCoverageRegistrationScope({
+        baseSha: trustedBaseSha,
+        headSha: forgedHeadSha,
+        io: {runGit},
+      }),
+      /extra=artifacts\/publication\/topics\/housing-lease-deposit\.json/u,
+    );
+  } finally {
+    await rm(repoPath, {recursive: true, force: true});
+  }
 });
 
 function topic(extraEntry = false) {

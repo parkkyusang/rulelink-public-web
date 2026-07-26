@@ -12,6 +12,7 @@ import {
   validateProductionQueue,
 } from './validate-publication-production-queue.mjs';
 import {
+  verifyExistingTopicCoverageRegistrationChangeScope,
   verifyExistingTopicCoverageCandidate,
 } from './existing-topic-coverage-candidate-core.mjs';
 
@@ -214,6 +215,18 @@ async function defaultRunGit(args) {
     {cwd: repoRoot, encoding: 'utf8', maxBuffer: 20 * 1024 * 1024},
   );
   return result.stdout;
+}
+
+export async function verifyExistingTopicCoverageRegistrationScope({
+  baseSha,
+  headSha,
+  io = {},
+}) {
+  return verifyExistingTopicCoverageRegistrationChangeScope({
+    baseSha,
+    headSha,
+    runGit: io.runGit || defaultRunGit,
+  });
 }
 
 async function legacyInspectCoverageCandidate(spec, io = {}) {
@@ -893,6 +906,7 @@ function parseArgs(args) {
   let write = false;
   let list = false;
   let coverageCandidatesPath = '';
+  let registrationScopeBaseSha = '';
   for (let index = 0; index < args.length; index += 1) {
     const value = args[index];
     if (value === '--write') {
@@ -906,6 +920,15 @@ function parseArgs(args) {
       }
       coverageCandidatesPath = path.resolve(candidatePath);
       index += 1;
+    } else if (value === '--verify-registration-scope-base') {
+      const baseSha = args[index + 1];
+      if (!/^[0-9a-f]{40}$/u.test(baseSha || '')) {
+        throw new Error(
+          '--verify-registration-scope-base 뒤에 40자리 commit SHA가 필요합니다.',
+        );
+      }
+      registrationScopeBaseSha = baseSha;
+      index += 1;
     } else if (value === '--work-id') {
       const workId = args[index + 1];
       if (!nonEmpty(workId)) throw new Error('--work-id 뒤에 식별자가 필요합니다.');
@@ -918,12 +941,43 @@ function parseArgs(args) {
   if (coverageCandidatesPath && workIds.length) {
     throw new Error('--coverage-candidates와 --work-id는 함께 사용할 수 없습니다.');
   }
-  return {workIds, write, list, coverageCandidatesPath};
+  if (
+    registrationScopeBaseSha &&
+    (coverageCandidatesPath || workIds.length || write || list)
+  ) {
+    throw new Error(
+      '--verify-registration-scope-base는 등록·쓰기·목록 옵션과 함께 사용할 수 없습니다.',
+    );
+  }
+  return {
+    workIds,
+    write,
+    list,
+    coverageCandidatesPath,
+    registrationScopeBaseSha,
+  };
 }
 
 async function main() {
-  const {workIds, write, list, coverageCandidatesPath} =
+  const {
+    workIds,
+    write,
+    list,
+    coverageCandidatesPath,
+    registrationScopeBaseSha,
+  } =
     parseArgs(process.argv.slice(2));
+  if (registrationScopeBaseSha) {
+    const headSha = String(await defaultRunGit(['rev-parse', 'HEAD'])).trim();
+    const verified = await verifyExistingTopicCoverageRegistrationScope({
+      baseSha: registrationScopeBaseSha,
+      headSha,
+    });
+    console.log(
+      `existing-topic registration PR 범위 검증 통과: ${verified.changedFiles.length}파일`,
+    );
+    return;
+  }
   if (list) {
     for (const workId of Object.keys(PRODUCTION_WORK_CONTRACTS)) console.log(workId);
     return;
