@@ -77,9 +77,9 @@ export function AuthorityReadingSection({
       <AuthorityFragmentController />
       <header className={styles.sectionHeader}>
         <div>
-          <p className={styles.eyebrow}>이 답의 법적 근거</p>
-          <h2 id="authority-reading-title">조문을 쉬운 지도에서 원문까지 읽습니다.</h2>
-          <p>관련 글이 아니라, 이 답을 뒷받침하는 법령의 조·항·호를 순서대로 확인합니다.</p>
+          <p className={styles.eyebrow}>공식 근거</p>
+          <h2 id="authority-reading-title">이 글의 판단에 사용한 조문을 항·호별로 확인합니다.</h2>
+          <p>쉬운 설명과 확인한 법령 문언을 나란히 읽을 수 있습니다.</p>
         </div>
         {asOf ? (
           <p className={styles.asOf}>

@@ -136,6 +136,28 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .searchInputRow span {color: var(--green); font-size: 25px; transform: rotate(-18deg);}
 .searchInputRow input {background: transparent; border: 0; color: var(--ink); font: inherit; outline: 0; padding: 15px 0; width: 100%;}
 .searchInputRow input::placeholder {color: #86928c;}
+
+.homeSearchExamples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 11px;
+}
+
+.homeSearchExamples a {
+  border: 1px solid rgba(255, 255, 255, .32);
+  border-radius: 999px;
+  color: inherit;
+  font-size: 12px;
+  padding: 6px 10px;
+  text-decoration: none;
+}
+
+.homeSearchExamples a:hover,
+.homeSearchExamples a:focus-visible {
+  background: rgba(255, 255, 255, .1);
+  border-color: currentColor;
+}
 .topicFilters {display: flex; flex-wrap: wrap; gap: 9px;}
 .topicFilters button {background: transparent; border: 1px solid #b9c8c0; border-radius: 999px; color: var(--muted); cursor: pointer; font: inherit; font-size: 13px; padding: 9px 14px;}
 .topicFilters button:hover, .topicFilters button.active {background: var(--green); border-color: var(--green); color: white;}

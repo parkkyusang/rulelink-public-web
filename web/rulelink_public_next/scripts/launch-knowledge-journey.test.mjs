@@ -155,7 +155,7 @@ test('상세 세로 흐름은 사실분기 뒤 조건부 답, 근거, 행동, �
   assert.doesNotMatch(page, /\/ko\/answers/u);
 });
 
-test('공식근거 카드는 내부 식별자를 숨기고 검증된 조문 원문과 공식 링크를 제공한다', async () => {
+test('공식근거 카드는 내부 식별자를 숨기고 검증된 조문 문언과 공식 링크를 제공한다', async () => {
   const source = await readFile(
     path.join(root, 'src/components/knowledge-source-evidence.tsx'),
     'utf8',
@@ -164,7 +164,7 @@ test('공식근거 카드는 내부 식별자를 숨기고 검증된 조문 원�
   assert.doesNotMatch(source, /source\.source_snapshot_id/u);
   assert.doesNotMatch(source, /별도 답변 패킷|출판 원문본/u);
   assert.match(source, /<p>\{sourceText\}<\/p>/u);
-  assert.match(source, /조문 원문/u);
+  assert.match(source, /확인한 조문 문언/u);
   assert.ok(
     source.indexOf('data-claim-authority') < 0,
     '축약 근거 카드는 claim 연결을 새로 추론하지 않아야 합니다.',

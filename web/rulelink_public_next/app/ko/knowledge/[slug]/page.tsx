@@ -157,9 +157,9 @@ export default async function KnowledgePage({params}: Props) {
         <div aria-label="콘텐츠 최신성" className={styles.trust}>
           <span><b>내용 검토</b>{formatDate(entry.reviewed_at)}</span>
           <span>
-            <b>근거 점검</b>
+            <b>다음 점검기한</b>
             {maintenance?.next_check_at
-              ? `${formatDate(maintenance.next_check_at)}까지`
+              ? formatDate(maintenance.next_check_at)
               : formatDate(entry.expires_at)}
           </span>
           <span><b>공식 근거</b>{sources.length}건 연결</span>

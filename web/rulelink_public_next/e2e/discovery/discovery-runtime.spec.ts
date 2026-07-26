@@ -7,6 +7,10 @@ const bundle = JSON.parse(readFileSync(
   path.resolve(process.cwd(), 'content', 'bundle.json'),
   'utf8',
 ));
+const sourceTextLibrary = JSON.parse(readFileSync(
+  path.resolve(process.cwd(), 'content', 'source-text-library.json'),
+  'utf8',
+));
 type ScenarioFixture = {
   question_ko: string;
   scenario_id: string;
@@ -20,6 +24,26 @@ type ScenarioEntryFixture = {
   slug: string;
 };
 const expectedHubCount = bundle.knowledge.topic_hubs.length;
+const verifiedSourceIds = new Set<string>(
+  sourceTextLibrary.bindings.map((binding: {coordinate_id: string}) => (
+    binding.coordinate_id
+  )),
+);
+const linkOnlySourceIds = new Set<string>(
+  sourceTextLibrary.unresolved.map((item: {coordinate_id: string}) => (
+    item.coordinate_id
+  )),
+);
+const verifiedTextEntry = bundle.knowledge.content_entries.find(
+  (entry: ScenarioEntryFixture & {source_coordinate_ids: string[]}) => (
+    entry.source_coordinate_ids.some(id => verifiedSourceIds.has(id))
+  ),
+) as ScenarioEntryFixture | undefined;
+const linkOnlyEntry = bundle.knowledge.content_entries.find(
+  (entry: ScenarioEntryFixture & {source_coordinate_ids: string[]}) => (
+    entry.source_coordinate_ids.some(id => linkOnlySourceIds.has(id))
+  ),
+) as ScenarioEntryFixture | undefined;
 const scenarioById = new Map<string, ScenarioFixture>(
   bundle.knowledge.scenario_branches.map((scenario: ScenarioFixture) => [
     scenario.scenario_id,
@@ -294,6 +318,13 @@ test('검색은 느린 전체 인덱스 중 0건을 확정하지 않고 준비 �
 
   await input.fill('');
   await input.focus();
+  const exampleButtons = page.getByLabel('검색 예시').getByRole('button');
+  const exampleCount = await exampleButtons.count();
+  expect(exampleCount).toBeGreaterThan(0);
+  for (let index = 0; index < exampleCount; index += 1) {
+    await page.keyboard.press('Tab');
+    await expect(exampleButtons.nth(index)).toBeFocused();
+  }
   await page.keyboard.press('Tab');
   const allFilter = page.getByRole('button', {name: /^전체/u});
   await expect(allFilter).toBeFocused();
@@ -404,6 +435,39 @@ test('검색·허브 세로 경로·상세 연결 독해는 네 폭에서 의미
   }
 });
 
+test('상세의 모든 공식 근거는 확인한 문언 또는 공식 원문 연결 상태를 명확히 표시한다', async ({
+  page,
+}) => {
+  if (!verifiedTextEntry || !linkOnlyEntry) {
+    throw new Error('문언 표시와 공식 원문 연결 상태를 가진 공개 지식 fixture가 필요합니다.');
+  }
+  for (const width of [390, 1440] as const) {
+    await page.setViewportSize({width, height: 1000});
+    await page.goto(`/ko/knowledge/${verifiedTextEntry.slug}`, {
+      waitUntil: 'networkidle',
+    });
+    await expect(page.getByRole('heading', {
+      name: '이 글의 판단에 사용한 법령과 공식 자료입니다.',
+    })).toBeVisible();
+    const verified = page.locator('[data-source-text-state="verified_text"]');
+    await expect(verified.first()).toBeVisible();
+    await expect(verified.first()).toContainText('확인한 조문 문언');
+    await expect(verified.first().locator('p')).not.toBeEmpty();
+    await assertEverySourceHasOneDisplayState(page);
+    await assertNoHorizontalOverflow(page);
+
+    await page.goto(`/ko/knowledge/${linkOnlyEntry.slug}`, {
+      waitUntil: 'networkidle',
+    });
+    const linkOnly = page.locator('[data-source-text-state="link_only"]');
+    await expect(linkOnly.first()).toBeVisible();
+    await expect(linkOnly.first()).toContainText('공식 원문에서 확인');
+    await expect(linkOnly.first()).toContainText('아래 공식 원문으로 연결합니다.');
+    await assertEverySourceHasOneDisplayState(page);
+    await assertNoHorizontalOverflow(page);
+  }
+});
+
 async function assertNoHorizontalOverflow(
   page: import('@playwright/test').Page,
 ) {
@@ -488,4 +552,15 @@ async function focusByKeyboard(
     )) return;
   }
   throw new Error(`키보드 Tab으로 ${selector}에 도달하지 못했습니다.`);
+}
+
+async function assertEverySourceHasOneDisplayState(
+  page: import('@playwright/test').Page,
+) {
+  const cards = page.locator('[data-source-evidence] article');
+  const states = page.locator(
+    '[data-source-evidence] [data-source-text-state="verified_text"], '
+    + '[data-source-evidence] [data-source-text-state="link_only"]',
+  );
+  await expect(states).toHaveCount(await cards.count());
 }

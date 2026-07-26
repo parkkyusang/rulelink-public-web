@@ -15,7 +15,9 @@ import {
   nextProgressiveResultLimit,
 } from '@/lib/progressive-results';
 import {
+  classifySiteSearchMiss,
   rankSiteSearchDocuments,
+  SITE_SEARCH_EXAMPLES,
   type SiteSearchDocument,
   type SiteSearchResultCounts,
   type SiteSearchResultFilter,
@@ -148,10 +150,22 @@ export function SiteSearch({
               void ensureFullIndex().catch(() => undefined);
             }}
             onChange={event => updateQuery(event.target.value)}
-            placeholder="예: 보증금 반환, 민법 제1026조, 2013다73520"
+            placeholder={`예: ${SITE_SEARCH_EXAMPLES[0].label_ko}`}
             type="search"
             value={query}
           />
+        </div>
+        <div aria-label="검색 예시" className={styles.searchExamples}>
+          <span>예시</span>
+          {SITE_SEARCH_EXAMPLES.map(example => (
+            <button
+              key={example.kind}
+              onClick={() => updateQuery(example.query)}
+              type="button"
+            >
+              {example.label_ko}
+            </button>
+          ))}
         </div>
         <p>공개 승인을 마친 법률정보 안에서만 찾습니다.</p>
       </div>
@@ -261,9 +275,13 @@ export function SiteSearch({
           />
         </>
       ) : isQueryIndexPending ? null : (
-        <div className={styles.empty} data-search-empty>
+        <div
+          className={styles.empty}
+          data-search-empty
+          data-search-miss-reason={classifySiteSearchMiss(query)}
+        >
           <strong>조건에 맞는 법률정보를 찾지 못했습니다.</strong>
-          <p>검색어를 더 짧게 바꾸거나 전체 유형에서 다시 확인해 주세요.</p>
+          <p>{searchMissGuidance(classifySiteSearchMiss(query))}</p>
         </div>
       )}
     </section>
@@ -300,4 +318,14 @@ function kindLabel(kind: SiteSearchResultKind): string {
 
 function freshnessLabel(state: 'current' | 'review_due'): string {
   return state === 'current' ? '현재 공개 기준' : '재검토 시점 경과';
+}
+
+function searchMissGuidance(reason: ReturnType<typeof classifySiteSearchMiss>): string {
+  if (reason === 'insufficient_query') {
+    return '사건의 대상과 원하는 결과를 함께 적어 주세요.';
+  }
+  if (reason === 'unindexed_reference') {
+    return '해당 조문이나 사건번호가 현재 승인된 검색 범위에 없습니다.';
+  }
+  return '같은 뜻의 표현을 아직 연결하지 못했거나, 검토된 법률정보가 없는 영역일 수 있습니다.';
 }
