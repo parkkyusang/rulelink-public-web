@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20260726-026",
+  "release_id": "production-20260726-027",
   "snapshot_id": "kr-knowledge-core-20260726-024",
-  "requested_at": "2026-07-26T12:26:02.999Z",
-  "summary_ko": "하드코딩된 결과 링크 없이 생활어·조사·활용형을 실제 콘텐츠 의미와 연결하고, 모든 의미 술어가 일치해야 결과를 보여주는 자연어 검색을 공개한다."
+  "requested_at": "2026-07-26T13:06:54.998Z",
+  "summary_ko": "통합검색에서 결과처럼 보이던 하드코딩 예시 버튼과 불필요한 운영 예시 데이터를 제거하고, 실제 검색 입력과 필터에 집중하도록 공개한다."
 }
