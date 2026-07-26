@@ -240,7 +240,7 @@ test('Rule·Scenario·Source·Hub·관계 변조는 비상황 정본 digest를 �
   }
 });
 
-test('11개 완성 뒤 backlog 수치는 요청한 구조 개선만 반영한다', async () => {
+test('11개 완성은 대상 audience gap만 제거하고 다른 backlog 구조는 보존한다', async () => {
   const tempDirectory = await mkdtemp(
     path.join(os.tmpdir(), 'rulelink-real-estate-audience-'),
   );
@@ -252,57 +252,126 @@ test('11개 완성 뒤 backlog 수치는 요청한 구조 개선만 반영한다
         entry.audience_situation_ko,
       ]),
     );
-    const bundle = await readJson(currentPath);
-    for (const entry of bundle.knowledge.content_entries) {
+    const candidateBundle = await readJson(currentPath);
+    const baselineBundle = structuredClone(candidateBundle);
+    for (const entry of candidateBundle.knowledge.content_entries) {
       if (expectedAudienceById.has(entry.content_id)) {
         entry.audience_situation_ko = audienceById.get(entry.content_id);
       }
     }
-    const bundleText = `${JSON.stringify(bundle, null, 2)}\n`;
-    const bundlePath = path.join(tempDirectory, 'bundle.json');
-    await writeFile(bundlePath, bundleText, 'utf8');
+    for (const entry of baselineBundle.knowledge.content_entries) {
+      if (expectedAudienceById.has(entry.content_id)) {
+        entry.audience_situation_ko = '';
+      }
+    }
 
-    const manifest = await readJson(coverageManifestPath);
-    manifest.base_bundle_sha256 = createHash('sha256')
-      .update(bundleText)
-      .digest('hex');
-    const manifestPath = path.join(tempDirectory, 'coverage-manifest.json');
-    await writeFile(
-      manifestPath,
-      `${JSON.stringify(manifest, null, 2)}\n`,
-      'utf8',
+    const buildBacklog = async (label, bundle) => {
+      const bundleText = `${JSON.stringify(bundle, null, 2)}\n`;
+      const bundlePath = path.join(tempDirectory, `${label}-bundle.json`);
+      await writeFile(bundlePath, bundleText, 'utf8');
+
+      const manifest = await readJson(coverageManifestPath);
+      manifest.base_bundle_sha256 = createHash('sha256')
+        .update(bundleText)
+        .digest('hex');
+      const manifestPath = path.join(
+        tempDirectory,
+        `${label}-coverage-manifest.json`,
+      );
+      await writeFile(
+        manifestPath,
+        `${JSON.stringify(manifest, null, 2)}\n`,
+        'utf8',
+      );
+      return buildPublicationExpansionBacklog({bundlePath, manifestPath});
+    };
+
+    const [baseline, candidate] = await Promise.all([
+      buildBacklog('baseline', baselineBundle),
+      buildBacklog('candidate', candidateBundle),
+    ]);
+    const baselineById = new Map(
+      baseline.entries.map(entry => [entry.content_id, entry]),
+    );
+    const candidateById = new Map(
+      candidate.entries.map(entry => [entry.content_id, entry]),
     );
 
-    const backlog = await buildPublicationExpansionBacklog({
-      bundlePath,
-      manifestPath,
-    });
-    assert.deepEqual(backlog.summary, {
-      coverage_declared: 5,
-      coverage_unmapped: 279,
-      declared_incomplete: 5,
-      graph_ready_unmapped: 231,
-      structure_incomplete: 48,
-      verified_release: 0,
-    });
+    assert.deepEqual(
+      [...candidateById.keys()].sort(),
+      [...baselineById.keys()].sort(),
+      'backlog entry 집합은 audience 보강으로 바뀌지 않아야 합니다.',
+    );
+    let transitionedToGraphReady = 0;
+    for (const [contentId, before] of baselineById) {
+      const after = candidateById.get(contentId);
+      const beforeGaps = [...before.gap_codes].sort();
+      const afterGaps = [...after.gap_codes].sort();
+      if (expectedAudienceById.has(contentId)) {
+        assert.ok(
+          beforeGaps.includes('audience_situation_missing'),
+          `${contentId}: baseline audience gap`,
+        );
+        assert.deepEqual(
+          afterGaps,
+          beforeGaps.filter(code => code !== 'audience_situation_missing'),
+          `${contentId}: audience gap만 제거되어야 합니다.`,
+        );
+        if (
+          before.readiness_state === 'structure_incomplete'
+          && after.readiness_state === 'graph_ready_unmapped'
+        ) {
+          transitionedToGraphReady += 1;
+        } else {
+          assert.equal(
+            after.readiness_state,
+            before.readiness_state,
+            `${contentId}: audience gap 제거 외 readiness 변화 금지`,
+          );
+        }
+      } else {
+        assert.deepEqual(afterGaps, beforeGaps, `${contentId}: 비대상 gap 불변`);
+        assert.equal(
+          after.readiness_state,
+          before.readiness_state,
+          `${contentId}: 비대상 readiness 불변`,
+        );
+      }
+    }
+
+    for (const key of [
+      'coverage_declared',
+      'coverage_unmapped',
+      'declared_incomplete',
+      'verified_release',
+    ]) {
+      assert.equal(candidate.summary[key], baseline.summary[key], `${key} 불변`);
+    }
     assert.equal(
-      backlog.entries.filter(entry =>
-        entry.readiness_state === 'structure_incomplete'
-        && entry.gap_codes.includes('audience_situation_missing'),
-      ).length,
-      44,
+      candidate.summary.structure_incomplete,
+      baseline.summary.structure_incomplete - transitionedToGraphReady,
+      'structure_incomplete 감소량은 실제 대상 전환 수와 같아야 합니다.',
     );
     assert.equal(
-      backlog.entries.filter(entry =>
+      candidate.summary.graph_ready_unmapped,
+      baseline.summary.graph_ready_unmapped + transitionedToGraphReady,
+      'graph_ready_unmapped 증가량은 실제 대상 전환 수와 같아야 합니다.',
+    );
+    assert.equal(
+      candidate.entries.filter(entry =>
         entry.gap_codes.includes('audience_situation_missing'),
       ).length,
-      47,
+      baseline.entries.filter(entry =>
+        entry.gap_codes.includes('audience_situation_missing'),
+      ).length - expectedAudienceById.size,
     );
     assert.equal(
-      backlog.entries.filter(entry =>
+      candidate.entries.filter(entry =>
         entry.gap_codes.includes('scenario_missing'),
       ).length,
-      8,
+      baseline.entries.filter(entry =>
+        entry.gap_codes.includes('scenario_missing'),
+      ).length,
     );
   } finally {
     await rm(tempDirectory, {recursive: true, force: true});

@@ -132,17 +132,50 @@ const candidateById = new Map(knowledge.content_entries.map(entry => [entry.cont
 const scenarioById = new Map(knowledge.scenario_branches.map(scenario => [scenario.scenario_id, scenario]));
 const classified = new Set([...keepTyped, ...needsScenarioHidden, ...removeCta]);
 
-test('current 023의 legacy 57건을 keep 31 / scenario 대기 21 / 제거 5로 정확히 폐쇄한다', () => {
+test('current는 legacy 57 원본 또는 typed 31 / hidden 26 최종 상태로만 존재한다', () => {
   assert.equal(keepTyped.length, 31);
   assert.equal(needsScenarioHidden.length, 21);
   assert.equal(removeCta.length, 5);
   assert.equal(classified.size, 57);
-  assert.deepEqual(
-    current.knowledge.content_entries
-      .filter(entry => entry.lawyer_workspace_entry)
-      .map(entry => entry.content_id)
-      .sort(),
-    [...classified].sort(),
+
+  const currentById = new Map(
+    current.knowledge.content_entries.map(entry => [entry.content_id, entry]),
+  );
+  const legacyIds = current.knowledge.content_entries
+    .filter(entry => entry.lawyer_workspace_entry)
+    .map(entry => entry.content_id)
+    .sort();
+  const typedIds = current.knowledge.content_entries
+    .filter(entry => entry.product_roles?.includes('concierge_entry'))
+    .map(entry => entry.content_id)
+    .sort();
+  const classifiedIds = [...classified].sort();
+  const keepIds = [...keepTyped].sort();
+
+  const isLegacySource = (
+    JSON.stringify(legacyIds) === JSON.stringify(classifiedIds)
+    && typedIds.length === 0
+    && classifiedIds.every(id => (
+      !currentById.get(id)?.product_roles?.includes('concierge_entry')
+    ))
+  );
+  const isTypedTarget = (
+    JSON.stringify(legacyIds) === JSON.stringify(keepIds)
+    && JSON.stringify(typedIds) === JSON.stringify(keepIds)
+    && keepTyped.every(id => (
+      currentById.get(id)?.product_roles?.includes('concierge_entry')
+      && currentById.get(id)?.lawyer_workspace_entry
+    ))
+    && [...needsScenarioHidden, ...removeCta].every(id => (
+      !currentById.get(id)?.product_roles?.includes('concierge_entry')
+      && !currentById.get(id)?.lawyer_workspace_entry
+    ))
+  );
+
+  assert.equal(
+    Number(isLegacySource) + Number(isTypedTarget),
+    1,
+    'source legacy57 또는 target typed31/hidden26 중 정확히 하나여야 하며 부분 이관은 허용하지 않습니다.',
   );
 });
 
