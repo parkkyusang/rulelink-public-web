@@ -605,6 +605,24 @@ test('피동형 역할은 문서의 주된 독자 역할과 일치할 때만 열
     }).map(result => result.id),
     ['victim'],
   );
+
+  const conflictingAudience = {
+    ...victim,
+    id: 'victim-with-opposing-party-first',
+    title: '형사합의 확인',
+    fields: {
+      ...victim.fields,
+      audience: ['피고인에게 합의를 제안받은 피해자'],
+    },
+  };
+  assert.deepEqual(
+    rankSiteSearchDocuments([conflictingAudience, accused], {
+      now,
+      query: '고소당했는데',
+    }).map(result => result.id),
+    ['accused'],
+    '대상상황에 당사자 역할이 충돌하면 어순으로 독자 역할을 추정하지 않습니다.',
+  );
 });
 
 test('부정 수령 표현은 임금 미지급일 때만 결박하고 정상 수령 질의를 오염시키지 않는다', () => {

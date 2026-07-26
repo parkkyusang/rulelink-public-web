@@ -648,9 +648,9 @@ function scoreDocument(
     ...document.fields.audience,
   ]));
     const focusedRoleFacet = primaryRoleFacet([
-      ...document.fields.audience,
-      ...document.fields.searchIntent,
-      document.title,
+      document.fields.audience,
+      document.fields.searchIntent,
+      [document.title],
     ]);
   if (requiredRoleFacets.some(facet => (
     !roleFacingFacets.has(facet) || focusedRoleFacet !== facet
@@ -987,21 +987,23 @@ function semanticFacetVariantsForToken(token: string): string[] {
     .map(definition => definition.id);
 }
 
-function primaryRoleFacet(values: readonly string[]): string | undefined {
+function primaryRoleFacet(
+  authorityTiers: readonly (readonly string[])[],
+): string | undefined {
   const roleDefinitions = SEMANTIC_FACET_DEFINITIONS.filter(definition => (
     definition.id.startsWith('@role:')
   ));
-  for (const value of values) {
-    const normalized = normalizeSiteSearchText(value);
-    const matches = roleDefinitions.flatMap(definition => (
-      definition.terms
-        .map(term => ({
-          facet: definition.id,
-          index: normalized.indexOf(normalizeSiteSearchText(term)),
-        }))
-        .filter(match => match.index >= 0)
-    )).sort((left, right) => left.index - right.index);
-    if (matches[0]) return matches[0].facet;
+  for (const values of authorityTiers) {
+    const facets = new Set(values.flatMap(value => {
+      const normalized = normalizeSiteSearchText(value);
+      return roleDefinitions
+        .filter(definition => definition.terms.some(term => (
+          normalized.includes(normalizeSiteSearchText(term))
+        )))
+        .map(definition => definition.id);
+    }));
+    if (facets.size === 1) return [...facets][0];
+    if (facets.size > 1) return undefined;
   }
   return undefined;
 }
