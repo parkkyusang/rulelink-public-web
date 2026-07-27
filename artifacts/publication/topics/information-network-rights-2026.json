@@ -1,0 +1,814 @@
+{
+  "schema": "rulelink_public_topic_handoff_v1",
+  "topic_id": "topic.information-network-rights-2026",
+  "sources": [
+    {
+      "coordinate_id": "coord.information-network-2026.amendment-21305",
+      "source_id": "information_network_amendment_21305",
+      "source_cluster_id": "change-cluster:7180a6620cd57b8a528a",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "법률 제21305호 부칙 제1조부터 제6조",
+      "official_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=282481&viewCls=lsRvsDocInfoR",
+      "source_snapshot_id": "snapshot:4f51aa0cf1b18aaf8027360eb8da61a1",
+      "source_hash": "sha256:4f51aa0cf1b18aaf8027360eb8da61a1737b11375027471a9f12ebd4145da348",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0002",
+      "source_id": "information_network_ko_0002",
+      "source_event_id": "event:0750136d5b0b66bca895e019c4b59d94",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제2조",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제2조",
+      "source_snapshot_id": "snapshot:779002cb8eec4a8075eebeaefc5cfdbf",
+      "source_hash": "sha256:0efbbcc14780f1b551916170f3bbcaf0ea7ef491ad2266f5ee2e6de74880242a",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-06",
+      "source_id": "information_network_ko_0044_06",
+      "source_event_id": "event:588dba624514d93702ba1422b09491bb",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의6",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의6",
+      "source_snapshot_id": "snapshot:23478e2c52c1f3d6f9cd4cb67a1ff792",
+      "source_hash": "sha256:e22424b08e6bd338c922a2210ba2690df9b86b09133fc47c4ded0e3f17135c68",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-07",
+      "source_id": "information_network_ko_0044_07",
+      "source_event_id": "event:3d8720e9afa0a9335e5be2fe985b6e02",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의7",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의7",
+      "source_snapshot_id": "snapshot:da57057a7ba4dc58065507464d9c1dad",
+      "source_hash": "sha256:8370992da215048ba58bff99d4cd19dd2ae3c3a4ef169a9e8ce747cf316db142",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-10",
+      "source_id": "information_network_ko_0044_10",
+      "source_event_id": "event:94f779f658cae6e5dea9b431c83da376",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의10",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의10",
+      "source_snapshot_id": "snapshot:2b0210cac79fd983e544f908f8f14988",
+      "source_hash": "sha256:6dd6cd46503b2b5d25ed5a5ccf02ec61725621187759aeecd76388dda7ce312c",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-11",
+      "source_id": "information_network_ko_0044_11",
+      "source_event_id": "event:83b26d94f9d667fe12472860a7966f29",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의11",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의11",
+      "source_snapshot_id": "snapshot:0ca29b3d471f482b9be29001a160261d",
+      "source_hash": "sha256:21209a9dae22d1776ca33c53b83c5969171ab259502fd20b118b2360c90ee628",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-12",
+      "source_id": "information_network_ko_0044_12",
+      "source_event_id": "event:3f15a7a8df868f222f0a89f36b6f4f5e",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의12",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의12",
+      "source_snapshot_id": "snapshot:0b2a91d8ce22c1e5cd553f1befe90371",
+      "source_hash": "sha256:95fbfe0453db422d538246f520eff7f4f670047e8c217075f235e38bb0e76cd3",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-13",
+      "source_id": "information_network_ko_0044_13",
+      "source_event_id": "event:dea9bd534d415fccc26194e0d5fe0736",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의13",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의13",
+      "source_snapshot_id": "snapshot:578a966e9d200db847bd24fa178f0af1",
+      "source_hash": "sha256:00d5eb06a5bae6c7dedf55ff6356168c4a4571777675b4a8378f2ac38f83c8a1",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-14",
+      "source_id": "information_network_ko_0044_14",
+      "source_event_id": "event:d0bb69753263cf77df1627420e860475",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의14",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의14",
+      "source_snapshot_id": "snapshot:1b0843bb1bd9a098dcfa8fd055fb0e46",
+      "source_hash": "sha256:a9f8436935805d5d4f3d7ddd56a2c25b6b1a28ca6d299ff70e4b410e8b0c3892",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-15",
+      "source_id": "information_network_ko_0044_15",
+      "source_event_id": "event:ccd74bc2ffbe4fab1b35b6d65ceebee4",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의15",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의15",
+      "source_snapshot_id": "snapshot:b7e9b706d01633fde4916305b281e4bc",
+      "source_hash": "sha256:ceeec2a4bad984abb150e969d48a4a42b3e800312ab636ce49e94374865be30c",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-16",
+      "source_id": "information_network_ko_0044_16",
+      "source_event_id": "event:27c72fa6b6b35e1bb31bbd5ae5958ec8",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의16",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의16",
+      "source_snapshot_id": "snapshot:027173a6d128309526eb03f14aa56326",
+      "source_hash": "sha256:80da71a671d57795e094f153e6258258561ab7f93ffbc22a034107f1110e9711",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-17",
+      "source_id": "information_network_ko_0044_17",
+      "source_event_id": "event:981eaa061f0e9904e5aac07f2fdc9d25",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의17",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의17",
+      "source_snapshot_id": "snapshot:0fd4963693e4f07f1d172a40f421bf4b",
+      "source_hash": "sha256:9974e903678c5da2f60bd363a644dd9e5c2e5d0536d21026814aaf71d33e2240",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-18",
+      "source_id": "information_network_ko_0044_18",
+      "source_event_id": "event:978bde56494986983d4d6f97b912c090",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의18",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의18",
+      "source_snapshot_id": "snapshot:f5ad8c65a8208c80e41729514dab6ad1",
+      "source_hash": "sha256:b0abed31d854560938b04a8c06c47d6096b3ed8ee5095fe9e34e44ed470ee3d1",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-20",
+      "source_id": "information_network_ko_0044_20",
+      "source_event_id": "event:a9e83df5e9e6d67f2f303e810300fcc1",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의20",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의20",
+      "source_snapshot_id": "snapshot:ca72639b7b226b189c0c78695727c0e8",
+      "source_hash": "sha256:871a7fbf9f9bb90453b95039590a63d2dda1ad9079f976ac3c624be8fc6d423c",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-21",
+      "source_id": "information_network_ko_0044_21",
+      "source_event_id": "event:dc1c133d3d89924a6adf26ad25159b96",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의21",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의21",
+      "source_snapshot_id": "snapshot:f9426e04ff3dac73e91ae2af5e5042e2",
+      "source_hash": "sha256:2f8438b3fb11c7b08b0fea02b19069cbe4a78dd390cd069eb9cb7b92d559631f",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-22",
+      "source_id": "information_network_ko_0044_22",
+      "source_event_id": "event:55b83f0c4558bad52bb69879f5033f55",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의22",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의22",
+      "source_snapshot_id": "snapshot:1766d5935eae990a9f9bbec27c6c614d",
+      "source_hash": "sha256:7b12bd8007490b140d0c4bed91a8ce6dbd41ec5442db11d90b7b41c78a3e53ce",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-23",
+      "source_id": "information_network_ko_0044_23",
+      "source_event_id": "event:ce5757f1b2ee93dccbd8a014645c01a5",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의23",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의23",
+      "source_snapshot_id": "snapshot:357a3d099003ff8e4e3d175b05e928f3",
+      "source_hash": "sha256:1e7164278a221e54d48f0a4029dd3c3d243d458998e0350916de217ec69b9e0a",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-24",
+      "source_id": "information_network_ko_0044_24",
+      "source_event_id": "event:38a6ac1cb97e4e4d668c30656ea60180",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의24",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의24",
+      "source_snapshot_id": "snapshot:68fcc11d71fcf7bd97cf9c58a45a29a4",
+      "source_hash": "sha256:50223ba3434fb370c53acea750355b178fd0b782fa91c9da25aec8d4c0e1ee39",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-25",
+      "source_id": "information_network_ko_0044_25",
+      "source_event_id": "event:b09c84361fca02adfbf4615475b7fa80",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의25",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의25",
+      "source_snapshot_id": "snapshot:f757edb357cf7b287a057335592b7702",
+      "source_hash": "sha256:984bf88e0c9a18402de9923a88ba09c9ab3b7635aaed8ea4df9bb8dd9655ce4b",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0044-26",
+      "source_id": "information_network_ko_0044_26",
+      "source_event_id": "event:2459179d48647e95d68055d18162474d",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제44조의26",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제44조의26",
+      "source_snapshot_id": "snapshot:b2a23990505cc2df38f07693fb620c5e",
+      "source_hash": "sha256:ff434aa473256057d02a55c95e949bca1dc2d93e470554d5ef3571495aa21a51",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0070",
+      "source_id": "information_network_ko_0070",
+      "source_event_id": "event:e1ebebe7e264d9cb3587079c383b81dd",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제70조",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제70조",
+      "source_snapshot_id": "snapshot:10dbe2438276157d5a4208938813ca3e",
+      "source_hash": "sha256:d7e0e52e1fbe85a870bd9d89682f30fa4ba3ce4339e082cb4350ac740c0e56b7",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0073",
+      "source_id": "information_network_ko_0073",
+      "source_event_id": "event:c4849539928f62a75342ba7be922627e",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제73조",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제73조",
+      "source_snapshot_id": "snapshot:00aae3d61f581d66e9900cddc57f67be",
+      "source_hash": "sha256:96d4a9d756c65184a0c22b2529db33ac7a64855d7b7bf6d6f89b4e794bc95583",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    },
+    {
+      "coordinate_id": "coord.information-network-2026.0076",
+      "source_id": "information_network_ko_0076",
+      "source_event_id": "event:6a56f2be3ae2ec27aba3d988d5159d42",
+      "law_name_ko": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article_no": "제76조",
+      "official_url": "https://www.law.go.kr/법령/정보통신망이용촉진및정보보호등에관한법률/제76조",
+      "source_snapshot_id": "snapshot:c6a89af2fa41aed1b29b2e0a9eb0c49e",
+      "source_hash": "sha256:ff1d198306ddb21bd2000156b007194f5b288d6fde21b0b1588a7149fbbcc438",
+      "effective_from": "2026-07-07",
+      "version_scope": "current_as_of_review",
+      "validation_status": "verified",
+      "last_verified_at": "2026-07-21T15:30:10+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.information-network-rights-2026",
+      "slug": "information-network-rights-2026",
+      "title_ko": "2026년 정보통신망법, 이용자와 플랫폼에 무엇이 달라졌나요?",
+      "description_ko": "2026년 7월 7일부터 시행된 허위조작정보, 손해배상, 신고·이의신청, 이용자정보 제공청구, 분쟁조정, 투명성 의무와 제재를 생활질문별로 나눠 설명합니다.",
+      "content_ids": [
+        "content.information-network-false-manipulated-information-2026",
+        "content.information-network-damages-five-times-2026",
+        "content.information-network-anti-slapp-2026",
+        "content.information-network-report-objection-2026",
+        "content.information-network-report-abuse-2026",
+        "content.information-network-platform-transparency-2026",
+        "content.information-network-user-information-request-2026",
+        "content.information-network-dispute-mediation-2026",
+        "content.information-network-repeat-distribution-penalty-2026",
+        "content.information-network-false-defamation-penalty-2026"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.information-network-2026.01",
+      "title_ko": "불법정보와 허위조작정보는 같은 개념이 아닙니다",
+      "proposition_ko": "불법정보에는 법이 열거한 유형이 포함되고, 허위조작정보는 허위 또는 사실로 오인하도록 변형된 정보임을 알면서 손해 의도나 부당한 이익 목적으로 인격권·재산권·공공의 이익을 침해하는 정보이며 풍자와 패러디는 제외됩니다.",
+      "norm": {
+        "actor_ko": "온라인 정보를 게재하거나 유통하는 사람",
+        "conditions_ko": "정보 유형, 허위·변형 인식, 목적, 침해대상, 풍자·패러디 여부 확인",
+        "legal_effect_ko": "제44조의7에 따른 유통금지 여부 판단"
+      },
+      "source_coordinate_ids": [
+        "coord.information-network-2026.0002",
+        "coord.information-network-2026.0044-07"
+      ]
+    },
+    {
+      "rule_id": "rule.information-network-2026.02",
+      "title_ko": "5배 배상은 모든 오정보에 자동 적용되지 않습니다",
+      "proposition_ko": "일반 손해배상, 입증이 매우 어려운 손해액의 5천만원 범위 인정, 최대 5배 배상은 서로 다른 요건을 가지며 최대 5배 배상은 일정한 전문 게재자와 인식·목적·법익침해 요건이 모두 충족되어야 합니다.",
+      "norm": {
+        "actor_ko": "온라인 정보로 손해를 입었다고 주장하는 사람과 게재자",
+        "conditions_ko": "고의·과실, 손해, 인과관계, 게재자 기준, 인식, 목적, 공익 예외 확인",
+        "legal_effect_ko": "실제 손해배상 또는 요건 충족 시 최대 5배 배상 가능"
+      },
+      "source_coordinate_ids": [
+        "coord.information-network-2026.0044-10",
+        "coord.information-network-2026.amendment-21305"
+      ]
+    },
+    {
+      "rule_id": "rule.information-network-2026.03",
+      "title_ko": "공익 비판을 막으려는 가중배상 청구에는 별도 방어절차가 있습니다",
+      "proposition_ko": "제44조의10제3항의 가중배상 청구가 공익을 위한 정당한 비판·감시를 방해하려는 목적이라고 판단되면 피고는 중간판결을 신청할 수 있고, 법원이 남용 청구로 인정하면 소를 각하합니다.",
+      "norm": {
+        "actor_ko": "최대 5배 배상청구를 받은 게재자",
+        "conditions_ko": "청구가 제44조의10제3항에 기초하는지와 공익 비판 방해 목적 확인",
+        "legal_effect_ko": "중간판결 신청, 절차 중지, 남용 인정 시 소 각하"
+      },
+      "source_coordinate_ids": [
+        "coord.information-network-2026.0044-11"
+      ]
+    },
+    {
+      "rule_id": "rule.information-network-2026.04",
+      "title_ko": "대규모 플랫폼의 조치에는 통지와 6개월 이의신청이 연결됩니다",
+      "proposition_ko": "대규모 정보통신서비스 제공자가 신고를 받아 삭제·차단·노출제한·계정조치·수익화 제한 등을 하면 정당한 이유와 이의신청 절차를 신고자와 게재자에게 통지해야 하고, 당사자는 통지일부터 6개월 안에 이의신청할 수 있습니다.",
+      "norm": {
+        "actor_ko": "대규모 플랫폼의 신고 조치를 받은 신고자 또는 게재자",
+        "conditions_ko": "플랫폼의 법정 기준 해당 여부, 신고 내용, 조치 통지일 확인",
+        "legal_effect_ko": "6개월 이내 이의신청 및 이후 분쟁조정 신청 가능"
+      },
+      "source_coordinate_ids": [
+        "coord.information-network-2026.0002",
+        "coord.information-network-2026.0044-12"
+      ]
+    },
+    {
+      "rule_id": "rule.information-network-2026.05",
+      "title_ko": "명백히 근거 없는 반복 신고는 제한될 수 있습니다",
+      "proposition_ko": "대규모 정보통신서비스 제공자는 명백히 근거 없는 신고를 빈번하게 하는 등 신고 제도를 남용했다고 판단하면 사전 통지 후 법정 고려요소에 따라 합리적인 기간 동안 신고를 접수하지 않을 수 있습니다.",
+      "norm": {
+        "actor_ko": "대규모 플랫폼에 반복 신고하는 사람",
+        "conditions_ko": "명백히 근거 없는 신고 수·비율·영향·의도와 사전 통지 확인",
+        "legal_effect_ko": "합리적인 기간 동안 신고 접수 제한 가능"
+      },
+      "source_coordinate_ids": [
+        "coord.information-network-2026.0044-13"
+      ]
+    },
+    {
+      "rule_id": "rule.information-network-2026.06",
+      "title_ko": "대규모 플랫폼에는 보고서·정책·감독 구조가 생겼습니다",
+      "proposition_ko": "대규모 정보통신서비스 제공자는 6개월에 한 번 이상 신고·조치·이의신청 등을 담은 보고서를 공표하고 허위정보·조작정보 처리정책을 운영해야 하며, 방송미디어통신위원회는 기준 해당 여부와 운용 현황을 확인·조사할 수 있습니다.",
+      "norm": {
+        "actor_ko": "대규모 정보통신서비스 제공자와 그 이용자",
+        "conditions_ko": "대통령령상 대규모 기준, 보고·정책·공표 대상 확인",
+        "legal_effect_ko": "정기 보고서 공표, 자율정책 운영, 감독·조사 가능"
+      },
+      "source_coordinate_ids": [
+        "coord.information-network-2026.0002",
+        "coord.information-network-2026.0044-14",
+        "coord.information-network-2026.0044-15",
+        "coord.information-network-2026.0044-16",
+        "coord.information-network-2026.0044-17"
+      ]
+    },
+    {
+      "rule_id": "rule.information-network-2026.07",
+      "title_ko": "권리침해 게시자의 최소 정보는 분쟁조정이나 소송 목적으로 청구합니다",
+      "proposition_ko": "사생활 침해나 명예훼손 등 권리침해를 주장하는 사람은 침해사실을 소명하여 분쟁조정 또는 민형사상 소 제기에 필요한 최소한의 이용자 정보를 분쟁조정부에 청구할 수 있고, 받은 정보는 그 목적 밖에 사용할 수 없습니다.",
+      "norm": {
+        "actor_ko": "익명 게시물로 권리를 침해당했다고 주장하는 사람",
+        "conditions_ko": "침해사실 소명, 분쟁조정 또는 소송 목적, 최소정보 범위 확인",
+        "legal_effect_ko": "분쟁조정부의 정보제공 결정과 목적 제한"
+      },
+      "source_coordinate_ids": [
+        "coord.information-network-2026.0044-06",
+        "coord.information-network-2026.0044-18",
+        "coord.information-network-2026.0073",
+        "coord.information-network-2026.0076",
+        "coord.information-network-2026.amendment-21305"
+      ]
+    },
+    {
+      "rule_id": "rule.information-network-2026.08",
+      "title_ko": "분쟁조정은 60일 심사와 15일 수락기간을 구분합니다",
+      "proposition_ko": "분쟁조정부는 원칙적으로 신청일부터 60일 이내 조정안을 작성하고, 당사자는 조정안 제시일부터 15일 이내 수락 여부를 통보하며, 수락 후 조정서에 기명날인하면 같은 내용의 합의가 성립한 것으로 봅니다.",
+      "norm": {
+        "actor_ko": "온라인 권리침해 또는 플랫폼 조치 분쟁의 당사자",
+        "conditions_ko": "조정대상, 신청일, 연장통지, 조정안 제시일, 수락·기명날인 확인",
+        "legal_effect_ko": "조정 진행 및 수락·기명날인 시 합의 성립"
+      },
+      "source_coordinate_ids": [
+        "coord.information-network-2026.0044-18",
+        "coord.information-network-2026.0044-20",
+        "coord.information-network-2026.0044-21",
+        "coord.information-network-2026.0044-22",
+        "coord.information-network-2026.0044-23",
+        "coord.information-network-2026.amendment-21305"
+      ]
+    },
+    {
+      "rule_id": "rule.information-network-2026.09",
+      "title_ko": "확정판결을 받은 정보를 반복 유통하면 과징금 대상이 될 수 있습니다",
+      "proposition_ko": "사실이나 의견을 불특정 다수에게 전달하는 것을 업으로 하는 자가 법원에서 불법정보 또는 허위조작정보로 인정되어 관련 판결이 확정된 정보를 두 번 이상 유통하면 방송미디어통신위원회는 10억원 이하 과징금을 부과할 수 있습니다.",
+      "norm": {
+        "actor_ko": "사실이나 의견 전달을 업으로 하는 유통자",
+        "conditions_ko": "법원의 확정판결, 동일 정보, 2회 이상 유통, 시행 후 적용례 확인",
+        "legal_effect_ko": "10억원 이하 과징금 가능, 사전 의견제출과 체납징수 절차"
+      },
+      "source_coordinate_ids": [
+        "coord.information-network-2026.0044-24",
+        "coord.information-network-2026.0044-25",
+        "coord.information-network-2026.0044-26",
+        "coord.information-network-2026.amendment-21305"
+      ]
+    },
+    {
+      "rule_id": "rule.information-network-2026.10",
+      "title_ko": "비방 목적 허위사실 명예훼손의 벌금 상한이 올랐습니다",
+      "proposition_ko": "사람을 비방할 목적으로 정보통신망을 통해 거짓 사실을 드러내어 명예를 훼손한 경우 벌금 상한은 7천만원이고, 위반행위로 취득한 금품이나 이익은 몰수하거나 가액을 추징할 수 있습니다.",
+      "norm": {
+        "actor_ko": "정보통신망에서 타인에 관한 사실을 유통한 사람",
+        "conditions_ko": "비방 목적, 거짓 사실, 공개성, 명예훼손, 행위시점 확인",
+        "legal_effect_ko": "7년 이하 징역·10년 이하 자격정지 또는 7천만원 이하 벌금, 범죄이익 몰수·추징 가능"
+      },
+      "source_coordinate_ids": [
+        "coord.information-network-2026.0070",
+        "coord.information-network-2026.amendment-21305"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.information-network-2026.01",
+      "question_ko": "단순히 틀린 정보인가, 법이 정한 불법정보 또는 허위조작정보인가?",
+      "decision_fact_ko": "허위·변형 여부, 이를 알았는지, 유통 목적, 침해된 권리와 풍자·패러디 여부",
+      "when_true_ko": "제44조의7의 금지대상과 후속 구제절차를 검토합니다.",
+      "when_false_ko": "단순 오류만으로 허위조작정보라고 단정하지 않고 다른 권리침해 규정을 검토합니다.",
+      "rule_ids": ["rule.information-network-2026.01"],
+      "source_coordinate_ids": ["coord.information-network-2026.0002", "coord.information-network-2026.0044-07"]
+    },
+    {
+      "scenario_id": "scenario.information-network-2026.02",
+      "question_ko": "실제 손해배상인가, 입증곤란 손해액 인정인가, 최대 5배 배상인가?",
+      "decision_fact_ko": "손해와 인과관계, 게재자의 업·규모 기준, 인식과 목적, 공익정보 여부",
+      "when_true_ko": "각 배상유형의 별도 요건과 2026년 7월 7일 이후 유통 여부를 나눠 검토합니다.",
+      "when_false_ko": "5배나 5천만원이 자동 적용된다고 계산하지 않습니다.",
+      "rule_ids": ["rule.information-network-2026.02"],
+      "source_coordinate_ids": ["coord.information-network-2026.0044-10", "coord.information-network-2026.amendment-21305"]
+    },
+    {
+      "scenario_id": "scenario.information-network-2026.03",
+      "question_ko": "가중배상 청구가 공익 비판을 막기 위한 것인가?",
+      "decision_fact_ko": "공익 관련성, 반복·다수 청구, 청구의 법적 근거와 원고의 지위",
+      "when_true_ko": "중간판결 신청과 소송절차 중지·각하 요건을 검토합니다.",
+      "when_false_ko": "일반 손해배상 본안의 성립요건과 증거를 중심으로 대응합니다.",
+      "rule_ids": ["rule.information-network-2026.03"],
+      "source_coordinate_ids": ["coord.information-network-2026.0044-11"]
+    },
+    {
+      "scenario_id": "scenario.information-network-2026.04",
+      "question_ko": "플랫폼 조치를 통지받은 지 6개월이 지났는가?",
+      "decision_fact_ko": "대규모 플랫폼 해당 여부, 조치 종류, 통지일, 이의신청 여부",
+      "when_true_ko": "법정 이의신청 기간 도과 가능성과 다른 구제경로를 확인합니다.",
+      "when_false_ko": "조치 이유와 근거를 정리해 이의신청하고 필요하면 분쟁조정을 준비합니다.",
+      "rule_ids": ["rule.information-network-2026.04"],
+      "source_coordinate_ids": ["coord.information-network-2026.0002", "coord.information-network-2026.0044-12"]
+    },
+    {
+      "scenario_id": "scenario.information-network-2026.05",
+      "question_ko": "반복 신고가 명백히 근거 없다고 평가될 자료가 있는가?",
+      "decision_fact_ko": "일정 기간 신고 수·비율, 신고 근거, 피해 영향, 신고 의도와 사전 통지",
+      "when_true_ko": "신고 접수 제한의 기간과 판단근거가 합리적인지 확인합니다.",
+      "when_false_ko": "단순히 신고 횟수가 많다는 이유만으로 남용이라고 단정하기 어렵습니다.",
+      "rule_ids": ["rule.information-network-2026.05"],
+      "source_coordinate_ids": ["coord.information-network-2026.0044-13"]
+    },
+    {
+      "scenario_id": "scenario.information-network-2026.06",
+      "question_ko": "해당 서비스가 대통령령상 대규모 제공자 기준에 드는가?",
+      "decision_fact_ko": "일일 평균 이용자 수, 매출액, 사업 종류와 시행령 기준",
+      "when_true_ko": "보고서·처리정책·공표·감독 의무를 항목별로 점검합니다.",
+      "when_false_ko": "대규모 제공자 전용 의무와 일반 제공자 의무를 구분합니다.",
+      "rule_ids": ["rule.information-network-2026.06"],
+      "source_coordinate_ids": ["coord.information-network-2026.0002", "coord.information-network-2026.0044-14", "coord.information-network-2026.0044-15", "coord.information-network-2026.0044-16", "coord.information-network-2026.0044-17"]
+    },
+    {
+      "scenario_id": "scenario.information-network-2026.07",
+      "question_ko": "익명 이용자 정보가 분쟁조정이나 소송 제기에 실제 필요한가?",
+      "decision_fact_ko": "권리침해 소명자료, 청구 목적, 필요한 최소정보, 제공 후 사용계획",
+      "when_true_ko": "분쟁조정부에 정보제공 청구를 준비합니다.",
+      "when_false_ko": "신원정보를 다른 목적으로 요구하거나 사용하지 않습니다.",
+      "rule_ids": ["rule.information-network-2026.07"],
+      "source_coordinate_ids": ["coord.information-network-2026.0044-06", "coord.information-network-2026.0044-18", "coord.information-network-2026.0073", "coord.information-network-2026.0076", "coord.information-network-2026.amendment-21305"]
+    },
+    {
+      "scenario_id": "scenario.information-network-2026.08",
+      "question_ko": "조정안 제시 후 15일 안에 수락했고 조정서에 기명날인했는가?",
+      "decision_fact_ko": "신청일, 연장통지, 조정안 제시일, 수락통보와 기명날인, 소 제기 여부",
+      "when_true_ko": "조정서와 같은 내용의 합의가 성립한 것으로 봅니다.",
+      "when_false_ko": "단순 제시나 구두 동의만으로 합의 성립을 단정하지 않습니다.",
+      "rule_ids": ["rule.information-network-2026.08"],
+      "source_coordinate_ids": ["coord.information-network-2026.0044-18", "coord.information-network-2026.0044-20", "coord.information-network-2026.0044-21", "coord.information-network-2026.0044-22", "coord.information-network-2026.0044-23", "coord.information-network-2026.amendment-21305"]
+    },
+    {
+      "scenario_id": "scenario.information-network-2026.09",
+      "question_ko": "시행 후 확정판결을 받은 동일 정보를 두 번 이상 유통했는가?",
+      "decision_fact_ko": "업으로 전달하는 자인지, 판결 확정일, 정보 동일성, 유통일과 횟수",
+      "when_true_ko": "과징금 부과요건과 사전 의견제출 절차를 확인합니다.",
+      "when_false_ko": "판결 전 정보나 일회 유통만으로 제44조의24 과징금이 자동 부과된다고 보지 않습니다.",
+      "rule_ids": ["rule.information-network-2026.09"],
+      "source_coordinate_ids": ["coord.information-network-2026.0044-24", "coord.information-network-2026.0044-25", "coord.information-network-2026.0044-26", "coord.information-network-2026.amendment-21305"]
+    },
+    {
+      "scenario_id": "scenario.information-network-2026.10",
+      "question_ko": "행위가 2026년 7월 7일 전인가 후인가?",
+      "decision_fact_ko": "게시·유통 시점, 비방 목적, 거짓 사실 인식, 취득한 이익",
+      "when_true_ko": "개정된 벌금 상한과 몰수·추징 규정을 검토합니다.",
+      "when_false_ko": "부칙에 따라 시행 전 위반행위에는 종전 규정이 적용됩니다.",
+      "rule_ids": ["rule.information-network-2026.10"],
+      "source_coordinate_ids": ["coord.information-network-2026.0070", "coord.information-network-2026.amendment-21305"]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.information-network-false-manipulated-information-2026",
+      "content_type": "law_change",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T15:30:10+00:00",
+      "expires_at": "2026-10-21T15:30:10+00:00",
+      "slug": "information-network-false-manipulated-information-2026",
+      "title_ko": "2026년 정보통신망법의 허위조작정보는 단순 오정보와 어떻게 다른가요?",
+      "one_line_answer_ko": "허위 또는 사실로 오인하도록 변형된 정보라는 점만으로 끝나지 않고, 그 점을 알면서 손해 의도나 부당한 이익 목적으로 인격권·재산권·공공의 이익을 침해해야 하며 풍자와 패러디는 제외됩니다.",
+      "audience_situation_ko": "온라인 게시물·영상·뉴스가 허위조작정보인지 신고하거나 반박하려는 경우",
+      "key_points_ko": ["불법정보와 허위조작정보를 구분합니다.", "허위·변형 인식과 목적, 침해대상을 함께 확인합니다.", "풍자와 패러디는 법문상 제외됩니다."],
+      "action_steps_ko": ["문제 정보의 원문과 URL·게시시각을 보존합니다.", "어느 부분이 허위 또는 변형됐는지 특정합니다.", "유통자의 인식·목적과 실제 침해자료를 구분해 정리합니다."],
+      "facts_to_check_ko": ["허위 또는 변형 부분", "유통자의 인식", "손해 의도 또는 부당한 이익 목적", "침해된 권리", "풍자·패러디 여부"],
+      "caution_ko": "의견 차이, 과장, 단순 오류가 곧바로 허위조작정보가 되는 것은 아니며 제44조의7제2항의 모든 요건을 확인해야 합니다.",
+      "search_intents_ko": ["허위조작정보 뜻", "정보통신망법 가짜뉴스", "풍자 패러디 예외"],
+      "body_sections": [{"heading_ko": "2026년 7월 7일부터의 새 기준", "paragraphs_ko": ["제44조의7제2항은 허위정보와 조작정보를 묶어 허위조작정보를 규정하면서 인식·목적·침해 요건을 함께 요구합니다."]}, {"heading_ko": "차별·폭력 선동 정보", "paragraphs_ko": ["제44조의7제1항에는 특정 개인이나 집단에 대한 직접적인 폭력·차별 선동 또는 인간의 존엄성을 현저히 훼손할 정도의 증오 조장 정보도 새 불법정보 유형으로 포함됐습니다."]}],
+      "rule_ids": ["rule.information-network-2026.01"],
+      "scenario_ids": ["scenario.information-network-2026.01"],
+      "source_coordinate_ids": ["coord.information-network-2026.0002", "coord.information-network-2026.0044-07", "coord.information-network-2026.amendment-21305"],
+      "hub_ids": ["hub.information-network-rights-2026"],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.information-network-damages-five-times-2026",
+      "content_type": "law_change",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T15:30:10+00:00",
+      "expires_at": "2026-10-21T15:30:10+00:00",
+      "slug": "information-network-damages-five-times-2026",
+      "title_ko": "허위조작정보면 무조건 5배 배상이나 5천만원을 받나요?",
+      "one_line_answer_ko": "아닙니다. 일반 손해배상, 액수 증명이 매우 어려울 때 법원이 5천만원 범위에서 정하는 손해액, 일정한 전문 게재자에게 적용되는 최대 5배 배상은 요건이 서로 다릅니다.",
+      "audience_situation_ko": "온라인 허위정보로 손해를 입었거나 최대 5배 배상청구를 받은 경우",
+      "key_points_ko": ["5천만원은 모든 사건의 정액배상금이 아닙니다.", "최대 5배는 전문 게재자 기준과 인식·목적·법익침해를 모두 요구합니다.", "공익정보와 상당한 이유가 있는 진실 믿음 등 예외를 확인합니다."],
+      "action_steps_ko": ["유통일과 손해 발생 자료를 보존합니다.", "게재자의 업·규모 기준과 인식·목적 자료를 확인합니다.", "공익성·진실이라고 믿은 상당한 이유·피해자 동의 여부를 정리합니다."],
+      "facts_to_check_ko": ["유통일", "실제 손해액", "게재자의 업과 규모", "불법성 인식", "손해 의도 또는 부당이익 목적", "공익 예외"],
+      "caution_ko": "부칙 제2조에 따라 새 손해배상 규정은 2026년 7월 7일 이후 해당 정보를 유통해 손해를 끼친 경우부터 적용됩니다.",
+      "search_intents_ko": ["허위조작정보 5배 배상", "가짜뉴스 손해배상 5천만원", "정보통신망법 징벌적 손해배상"],
+      "body_sections": [{"heading_ko": "세 층위의 배상", "paragraphs_ko": ["제44조의10제1항은 고의·과실에 따른 실제 손해배상, 제2항은 액수 증명이 매우 어려운 경우의 법원 산정, 제3항은 엄격한 추가요건을 갖춘 최대 5배 배상을 각각 규정합니다."]}, {"heading_ko": "공익 관련 예외", "paragraphs_ko": ["공익신고·부정청탁 등 공익정보에는 최대 5배 규정이 적용되지 않고, 오로지 공익 목적이며 진실이라고 믿을 상당한 이유가 있거나 피해자의 동의가 있으면 법정 요건에 따라 책임을 지지 않을 수 있습니다."]}],
+      "rule_ids": ["rule.information-network-2026.02"],
+      "scenario_ids": ["scenario.information-network-2026.02"],
+      "source_coordinate_ids": ["coord.information-network-2026.0044-10", "coord.information-network-2026.amendment-21305"],
+      "hub_ids": ["hub.information-network-rights-2026"],
+      "related_content_ids": ["content.emotional-distress-and-consolation-money"]
+    },
+    {
+      "content_id": "content.information-network-anti-slapp-2026",
+      "content_type": "law_change",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T15:30:10+00:00",
+      "expires_at": "2026-10-21T15:30:10+00:00",
+      "slug": "information-network-anti-slapp-2026",
+      "title_ko": "공익 비판을 막기 위한 5배 배상소송에는 어떻게 대응하나요?",
+      "one_line_answer_ko": "제44조의10제3항의 가중배상 청구라면 피고는 남용 청구 여부에 대한 중간판결을 신청할 수 있고, 법원은 신청일부터 60일 이내 판단하며 그때까지 소송절차를 중지합니다.",
+      "audience_situation_ko": "공익 목적의 비판·감시 게시물 때문에 최대 5배 손해배상청구를 받은 경우",
+      "key_points_ko": ["모든 손해배상소송이 아니라 제44조의10제3항 청구가 대상입니다.", "중간판결 신청 후 선고 때까지 소송절차가 중지됩니다.", "남용으로 인정되면 소 각하와 비용·공표·손해배상 특칙이 문제 됩니다."],
+      "action_steps_ko": ["소장 청구원인과 제44조의10제3항 인용 여부를 확인합니다.", "게시물의 공익성과 취재·검증 자료를 보존합니다.", "반복·다수 청구 여부와 원고 지위 자료를 확보합니다."],
+      "facts_to_check_ko": ["가중배상 청구 여부", "공익 관련성", "반복·다수 청구", "원고의 공인 해당 여부", "소장 송달일"],
+      "caution_ko": "중간판결 신청은 본안 승소를 자동 보장하지 않으며 구체적인 심문·절차는 대법원규칙과 사건 진행을 함께 확인해야 합니다.",
+      "search_intents_ko": ["전략적 봉쇄소송 대응", "공익 비판 5배 배상", "정보통신망법 중간판결"],
+      "body_sections": [{"heading_ko": "남용 청구 판정", "paragraphs_ko": ["법원은 게시 정보의 공익 관련성과 원고가 반복적으로 또는 다수 게재자를 상대로 청구했는지 등을 고려합니다."]}, {"heading_ko": "각하 뒤 효과", "paragraphs_ko": ["남용 청구로 각하되면 변호사보수 전액을 포함한 소송비용 특칙이 적용되고, 일정한 공인 등에게는 판결 공표나 피고 손해배상 명령이 문제 될 수 있습니다."]}],
+      "rule_ids": ["rule.information-network-2026.03"],
+      "scenario_ids": ["scenario.information-network-2026.03"],
+      "source_coordinate_ids": ["coord.information-network-2026.0044-11", "coord.information-network-2026.amendment-21305"],
+      "hub_ids": ["hub.information-network-rights-2026"],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.information-network-report-objection-2026",
+      "content_type": "law_change",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T15:30:10+00:00",
+      "expires_at": "2026-10-21T15:30:10+00:00",
+      "slug": "information-network-report-objection-2026",
+      "title_ko": "대규모 플랫폼의 삭제·차단 조치에는 언제까지 이의신청할 수 있나요?",
+      "one_line_answer_ko": "신고자와 게재자는 삭제·차단·노출제한·계정조치 등 법정 조치의 통지를 받은 날부터 6개월 이내에 이의신청할 수 있고, 조치나 이의결정에 대해 분쟁조정도 신청할 수 있습니다.",
+      "audience_situation_ko": "대규모 플랫폼에서 게시물 삭제·계정정지·수익화 제한 또는 신고 기각 통지를 받은 경우",
+      "key_points_ko": ["먼저 해당 서비스가 법정 대규모 제공자인지 확인합니다.", "통지일이 6개월 기산점입니다.", "플랫폼은 조치의 정당한 이유와 이의절차를 통지해야 합니다."],
+      "action_steps_ko": ["조치 통지와 이메일·앱 알림을 원본으로 보존합니다.", "통지일과 6개월 만료일을 기록합니다.", "신고 내용·플랫폼 이유·반박자료를 항목별로 제출합니다."],
+      "facts_to_check_ko": ["대규모 제공자 해당 여부", "조치 종류", "통지일", "조치 이유", "이의신청 결과"],
+      "caution_ko": "언론사·인터넷뉴스서비스사업자·인터넷 멀티미디어 방송사업자에는 법문상 일부 조치를 할 수 없는 예외가 있습니다.",
+      "search_intents_ko": ["플랫폼 게시물 삭제 이의신청", "계정정지 이의신청 6개월", "허위조작정보 신고"],
+      "body_sections": [{"heading_ko": "신고할 때 필요한 정보", "paragraphs_ko": ["신고자는 정보의 구체적 위치, 불법정보 또는 허위조작정보라고 보는 이유와 근거, 연락처 등 대통령령상 사항을 적어야 합니다."]}, {"heading_ko": "조치 뒤 분쟁조정", "paragraphs_ko": ["신고자나 게재자는 플랫폼 조치와 이의신청 결정에 대해 분쟁조정을 신청할 수 있습니다."]}],
+      "rule_ids": ["rule.information-network-2026.04"],
+      "scenario_ids": ["scenario.information-network-2026.04"],
+      "source_coordinate_ids": ["coord.information-network-2026.0002", "coord.information-network-2026.0044-12", "coord.information-network-2026.amendment-21305"],
+      "hub_ids": ["hub.information-network-rights-2026"],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.information-network-report-abuse-2026",
+      "content_type": "law_change",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T15:30:10+00:00",
+      "expires_at": "2026-10-21T15:30:10+00:00",
+      "slug": "information-network-report-abuse-2026",
+      "title_ko": "플랫폼에 신고를 많이 하면 신고권이 제한되나요?",
+      "one_line_answer_ko": "신고 횟수만으로 자동 제한되는 것은 아니지만, 명백히 근거 없는 신고를 빈번하게 하는 등 남용으로 판단되면 사전 통지 후 합리적인 기간 동안 신고 접수가 제한될 수 있습니다.",
+      "audience_situation_ko": "반복 신고 때문에 플랫폼에서 신고 접수 제한 통지를 받았거나 신고 남용 피해를 주장하는 경우",
+      "key_points_ko": ["단순 반복과 명백히 근거 없는 반복 신고를 구분합니다.", "플랫폼은 사전 통지를 해야 합니다.", "신고 수·비율·영향·의도 등 법정 요소를 고려해야 합니다."],
+      "action_steps_ko": ["각 신고의 대상·근거·처리결과를 목록으로 정리합니다.", "접수 제한 사전 통지와 기간을 보존합니다.", "근거 있는 신고였음을 보여주는 자료를 제출합니다."],
+      "facts_to_check_ko": ["신고 총수", "명백히 근거 없다고 판단된 신고 수", "신고 비율", "피해 영향", "사전 통지", "제한기간"],
+      "caution_ko": "제44조의13은 대규모 정보통신서비스 제공자의 신고제도에 관한 규정이므로 모든 웹사이트 신고창에 곧바로 적용된다고 단정할 수 없습니다.",
+      "search_intents_ko": ["플랫폼 신고 남용", "신고 접수 제한", "악성 반복 신고"],
+      "body_sections": [{"heading_ko": "플랫폼이 보아야 할 네 요소", "paragraphs_ko": ["법은 일정 기간의 명백히 근거 없는 신고 수, 전체 정보·신고 대비 비율, 정보 성격과 남용 영향, 신고자의 의도를 고려하도록 합니다."]}],
+      "rule_ids": ["rule.information-network-2026.05"],
+      "scenario_ids": ["scenario.information-network-2026.05"],
+      "source_coordinate_ids": ["coord.information-network-2026.0044-13", "coord.information-network-2026.amendment-21305"],
+      "hub_ids": ["hub.information-network-rights-2026"],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.information-network-platform-transparency-2026",
+      "content_type": "law_change",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T15:30:10+00:00",
+      "expires_at": "2026-10-21T15:30:10+00:00",
+      "slug": "information-network-platform-transparency-2026",
+      "title_ko": "대규모 플랫폼은 어떤 신고·조치 자료를 공개해야 하나요?",
+      "one_line_answer_ko": "대규모 제공자는 6개월에 한 번 이상 이용자·매출·신고·조치·이의신청·국가기관 명령 등을 담은 보고서를 접근 가능한 방식으로 공표하고 허위정보·조작정보 처리정책을 운영해야 합니다.",
+      "audience_situation_ko": "플랫폼의 콘텐츠 관리 투명성을 확인하려는 이용자·시민단체 또는 의무를 점검하는 사업자",
+      "key_points_ko": ["대규모 제공자 여부는 대통령령 기준을 확인합니다.", "보고서는 6개월에 1회 이상 공표합니다.", "사실확인 정책·협약·보고서 반영은 별도 구조입니다."],
+      "action_steps_ko": ["서비스의 최신 투명성보고서와 이전 보고서를 내려받습니다.", "신고·조치·이의신청 수와 처리결과를 비교합니다.", "자율정책·사실확인 협약과 변경일을 확인합니다."],
+      "facts_to_check_ko": ["대규모 기준", "보고서 공표일", "신고·조치 통계", "이의신청 결과", "사실확인 정책", "감독기관 요청"],
+      "caution_ko": "제44조의14제1항의 정기 공표와 같은 조 제2항의 불법촬영물등 연간 보고서는 대상·내용·제출방식이 다릅니다.",
+      "search_intents_ko": ["플랫폼 투명성보고서", "대규모 정보통신서비스 제공자", "팩트체크 정책 공개"],
+      "body_sections": [{"heading_ko": "정기 공개 대상", "paragraphs_ko": ["일일 평균 이용자 수와 매출액, 신고 유형과 건수, 처리조치, 이의신청 결과, 국가기관 명령·권고 등이 포함됩니다."]}, {"heading_ko": "감독과 사실확인", "paragraphs_ko": ["방송미디어통신위원회는 대규모 기준과 신고·자율규제 운용을 확인·조사할 수 있고, 플랫폼은 사실확인 단체와 협약을 맺고 그 협약을 공개할 수 있습니다."]}],
+      "rule_ids": ["rule.information-network-2026.06"],
+      "scenario_ids": ["scenario.information-network-2026.06"],
+      "source_coordinate_ids": ["coord.information-network-2026.0002", "coord.information-network-2026.0044-14", "coord.information-network-2026.0044-15", "coord.information-network-2026.0044-16", "coord.information-network-2026.0044-17", "coord.information-network-2026.0076", "coord.information-network-2026.amendment-21305"],
+      "hub_ids": ["hub.information-network-rights-2026"],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.information-network-user-information-request-2026",
+      "content_type": "law_change",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T15:30:10+00:00",
+      "expires_at": "2026-10-21T15:30:10+00:00",
+      "slug": "information-network-user-information-request-2026",
+      "title_ko": "익명 게시자의 이름과 주소를 플랫폼에 바로 요구할 수 있나요?",
+      "one_line_answer_ko": "플랫폼에 임의로 요구하는 구조가 아니라, 권리침해 사실을 소명해 분쟁조정이나 민형사상 소 제기에 필요한 최소정보를 분쟁조정부에 청구하고 그 결정에 따라 제공받는 구조입니다.",
+      "audience_situation_ko": "익명 게시물로 사생활 침해·명예훼손을 당해 조정이나 소송을 준비하는 경우",
+      "key_points_ko": ["침해사실을 소명해야 합니다.", "성명·주소 등 대통령령상 최소정보가 대상입니다.", "받은 정보는 분쟁조정이나 소송 목적 밖에 사용할 수 없습니다."],
+      "action_steps_ko": ["게시물 원본·URL·접속시각과 침해자료를 보존합니다.", "분쟁조정 또는 민형사상 소 중 사용할 경로를 정합니다.", "필요한 최소정보와 사용목적을 청구서에 특정합니다."],
+      "facts_to_check_ko": ["권리침해 내용", "게시물 위치", "청구 목적", "필요한 최소정보", "이용자 의견청취 예외", "정보 수령 후 사용"],
+      "caution_ko": "제공받은 정보를 목적 밖에 사용하면 형사처벌 대상이 될 수 있고, 제공 결정이 곧 권리침해나 상대방 책임의 확정을 뜻하지 않습니다.",
+      "search_intents_ko": ["익명 게시자 신원 확인", "이용자 정보 제공청구", "악플 고소 이름 주소"],
+      "body_sections": [{"heading_ko": "분쟁조정부가 결정", "paragraphs_ko": ["분쟁조정부는 특별한 사정이 없으면 해당 이용자의 의견을 듣고 정보제공 여부를 결정합니다."]}, {"heading_ko": "기존 사무의 승계", "paragraphs_ko": ["2026년 7월 7일 당시 종전 명예훼손 분쟁조정부에서 진행 중이던 이용자 정보 제공청구 사무는 확대된 분쟁조정부가 승계합니다."]}],
+      "rule_ids": ["rule.information-network-2026.07"],
+      "scenario_ids": ["scenario.information-network-2026.07"],
+      "source_coordinate_ids": ["coord.information-network-2026.0044-06", "coord.information-network-2026.0044-18", "coord.information-network-2026.0073", "coord.information-network-2026.0076", "coord.information-network-2026.amendment-21305"],
+      "hub_ids": ["hub.information-network-rights-2026"],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.information-network-dispute-mediation-2026",
+      "content_type": "law_change",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T15:30:10+00:00",
+      "expires_at": "2026-10-21T15:30:10+00:00",
+      "slug": "information-network-dispute-mediation-2026",
+      "title_ko": "온라인 권리침해 분쟁조정은 60일이면 끝나고 바로 집행할 수 있나요?",
+      "one_line_answer_ko": "분쟁조정부는 원칙적으로 신청일부터 60일 이내 조정안을 작성하지만 연장할 수 있고, 당사자가 제시일부터 15일 안에 수락한 뒤 조정서에 기명날인해야 같은 내용의 합의가 성립합니다.",
+      "audience_situation_ko": "온라인 명예훼손·사생활 침해 또는 플랫폼 조치·이의결정 분쟁을 소송 전 조정하려는 경우",
+      "key_points_ko": ["60일은 조정안 작성기간이며 부득이한 사정이 있으면 연장할 수 있습니다.", "조정안 제시와 합의 성립은 다릅니다.", "소송이 제기되면 조정 처리가 중지됩니다."],
+      "action_steps_ko": ["신청일과 연장통지를 보존합니다.", "조정안 제시일로부터 15일을 계산합니다.", "수락통보와 기명날인된 조정서를 확보합니다."],
+      "facts_to_check_ko": ["조정 대상", "신청일", "연장 여부", "조정안 제시일", "수락통보", "기명날인", "소 제기 여부"],
+      "caution_ko": "법문은 수락·기명날인 시 같은 내용의 합의가 성립한다고 규정할 뿐, 조정안 제시만으로 재판상 화해나 집행권원이 된다고 규정하지 않습니다.",
+      "search_intents_ko": ["정보통신망 분쟁조정 60일", "조정안 수락 15일", "플랫폼 조치 분쟁조정"],
+      "body_sections": [{"heading_ko": "자료요청과 의견청취", "paragraphs_ko": ["분쟁조정부는 필요한 자료를 당사자에게 요청할 수 있고 당사자는 정당한 사유가 없으면 따라야 하며, 당사자나 참고인의 의견을 들을 수 있습니다."]}, {"heading_ko": "거부와 중지", "paragraphs_ko": ["조정에 적합하지 않거나 부정한 목적의 신청이면 거부할 수 있고, 진행 중 한쪽이 소를 제기하면 조정 처리를 중지합니다."]}],
+      "rule_ids": ["rule.information-network-2026.08"],
+      "scenario_ids": ["scenario.information-network-2026.08"],
+      "source_coordinate_ids": ["coord.information-network-2026.0044-18", "coord.information-network-2026.0044-20", "coord.information-network-2026.0044-21", "coord.information-network-2026.0044-22", "coord.information-network-2026.0044-23", "coord.information-network-2026.amendment-21305"],
+      "hub_ids": ["hub.information-network-rights-2026"],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.information-network-repeat-distribution-penalty-2026",
+      "content_type": "law_change",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T15:30:10+00:00",
+      "expires_at": "2026-10-21T15:30:10+00:00",
+      "slug": "information-network-repeat-distribution-penalty-2026",
+      "title_ko": "법원에서 불법정보로 확정된 내용을 다시 올리면 바로 10억원 과징금인가요?",
+      "one_line_answer_ko": "바로 부과되는 것은 아닙니다. 사실이나 의견 전달을 업으로 하는 자가 법원의 관련 확정판결을 받은 정보를 정보통신망에 두 번 이상 유통해야 하고, 방송미디어통신위원회가 법정 요소와 대통령령상 기준을 거쳐 10억원 이하에서 부과할 수 있습니다.",
+      "audience_situation_ko": "확정판결을 받은 콘텐츠를 반복 유통했거나 과징금 사전통지를 받은 사업자·게재자",
+      "key_points_ko": ["법원의 확정판결이 선행돼야 합니다.", "동일 정보의 2회 이상 유통이 필요합니다.", "부과 전 의견제출·출석·자료제출 기회가 있습니다."],
+      "action_steps_ko": ["확정판결의 사건번호·확정일·대상 정보를 확인합니다.", "각 유통의 URL·일시·내용 동일성을 정리합니다.", "과징금 사전통지에 의견서와 자료를 제출합니다."],
+      "facts_to_check_ko": ["업으로 전달하는 자", "판결 확정 여부", "정보 동일성", "유통 횟수", "시행 후 적용례", "사전 의견제출"],
+      "caution_ko": "부칙 제3조는 2026년 7월 7일 이후 최초로 관련 판결이 확정된 정보를 유통한 경우부터 제44조의24부터 제44조의26까지를 적용하도록 합니다.",
+      "search_intents_ko": ["허위조작정보 과징금 10억원", "확정판결 정보 반복 유통", "정보통신망법 의견제출"],
+      "body_sections": [{"heading_ko": "부과 전 방어절차", "paragraphs_ko": ["당사자나 이해관계인은 위원회 회의에 출석해 의견을 말하거나 자료를 제출하고 변호인의 도움을 받을 수 있습니다."]}, {"heading_ko": "체납 시", "paragraphs_ko": ["납부기한을 넘기면 대통령령상 가산금과 독촉, 국세 강제징수의 예에 따른 징수가 이어질 수 있습니다."]}],
+      "rule_ids": ["rule.information-network-2026.09"],
+      "scenario_ids": ["scenario.information-network-2026.09"],
+      "source_coordinate_ids": ["coord.information-network-2026.0044-24", "coord.information-network-2026.0044-25", "coord.information-network-2026.0044-26", "coord.information-network-2026.amendment-21305"],
+      "hub_ids": ["hub.information-network-rights-2026"],
+      "related_content_ids": []
+    },
+    {
+      "content_id": "content.information-network-false-defamation-penalty-2026",
+      "content_type": "law_change",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-21T15:30:10+00:00",
+      "expires_at": "2026-10-21T15:30:10+00:00",
+      "slug": "information-network-false-defamation-penalty-2026",
+      "title_ko": "온라인 허위사실 명예훼손의 벌금과 범죄수익 규정은 어떻게 바뀌었나요?",
+      "one_line_answer_ko": "2026년 7월 7일 이후 비방 목적 허위사실 명예훼손의 벌금 상한은 5천만원에서 7천만원으로 올랐고, 위반행위로 취득한 금품·이익은 몰수하거나 가액을 추징할 수 있습니다.",
+      "audience_situation_ko": "온라인 허위사실 명예훼손으로 고소하거나 수사를 받고 행위시점별 법정형을 확인하는 경우",
+      "key_points_ko": ["비방 목적과 거짓 사실 적시를 구분해 확인합니다.", "벌금 상한은 7천만원으로 상향됐습니다.", "관련 범죄이익의 몰수·추징 근거가 신설됐습니다."],
+      "action_steps_ko": ["게시·전송 시점과 원문을 보존합니다.", "사실 적시와 의견 표현을 구분합니다.", "비방 목적·허위 인식·취득 이익 관련 자료를 정리합니다."],
+      "facts_to_check_ko": ["행위일", "비방 목적", "거짓 사실", "공개성", "명예훼손 결과", "취득한 금품·이익"],
+      "caution_ko": "부칙 제4조와 제6조에 따라 2026년 7월 7일 전 위반행위에는 종전 벌칙이 적용되므로 게시·유통 시점을 먼저 확정해야 합니다.",
+      "search_intents_ko": ["온라인 허위사실 명예훼손 벌금", "정보통신망법 7천만원", "명예훼손 범죄수익 몰수"],
+      "body_sections": [{"heading_ko": "개정된 법정형", "paragraphs_ko": ["제70조제2항은 7년 이하 징역, 10년 이하 자격정지 또는 7천만원 이하 벌금을 규정합니다."]}, {"heading_ko": "몰수와 추징", "paragraphs_ko": ["위반행위와 관련해 취득한 금품이나 이익은 몰수하고, 몰수가 불가능하거나 재산상 이익을 취득한 때에는 그 가액을 추징합니다."]}],
+      "rule_ids": ["rule.information-network-2026.10"],
+      "scenario_ids": ["scenario.information-network-2026.10"],
+      "source_coordinate_ids": ["coord.information-network-2026.0070", "coord.information-network-2026.amendment-21305"],
+      "hub_ids": ["hub.information-network-rights-2026"],
+      "related_content_ids": ["content.criminal-settlement-vs-complaint-withdrawal"]
+    }
+  ]
+}
