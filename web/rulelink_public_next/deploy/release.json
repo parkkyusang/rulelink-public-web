@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20260816-029",
+  "release_id": "production-20260816-030",
   "snapshot_id": "kr-knowledge-core-20260726-024",
-  "requested_at": "2026-08-16T02:15:00.000Z",
-  "summary_ko": "생활법률 검색 인덱스 갱신 배포를 Vercel clean clone source ref 준비 핫픽스 위에서 다시 요청한다."
+  "requested_at": "2026-08-16T02:52:00.000Z",
+  "summary_ko": "홈과 통합검색의 특정 예시 검색어 노출을 제거한 사용자 경험 개선 배포를 요청한다."
 }
