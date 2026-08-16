@@ -15,6 +15,20 @@ test('설정 누락은 현재 공개 정본 정체성을 그대로 유지한다'
   });
 });
 
+test('production 배포는 공개 원점 환경변수 누락을 조용히 기본값으로 대체하지 않는다', () => {
+  assert.throws(
+    () => resolveSiteIdentity({VERCEL_ENV: 'production'}),
+    /production 배포에서는 공개 원점을 명시/,
+  );
+  assert.equal(
+    resolveSiteIdentity({
+      NEXT_PUBLIC_RULELINK_SITE_URL: 'https://domain-ready.lolphysical.xyz',
+      VERCEL_ENV: 'production',
+    }).url,
+    'https://domain-ready.lolphysical.xyz',
+  );
+});
+
 test('이름과 원점을 한 묶음으로 교체할 수 있다', () => {
   assert.deepEqual(resolveSiteIdentity({
     NEXT_PUBLIC_RULELINK_INDEXING: 'true',
