@@ -17,7 +17,6 @@ import {
 import {
   classifySiteSearchMiss,
   rankSiteSearchDocuments,
-  SITE_SEARCH_PLACEHOLDER,
   type SiteSearchDocument,
   type SiteSearchResultCounts,
   type SiteSearchResultFilter,
@@ -150,7 +149,7 @@ export function SiteSearch({
               void ensureFullIndex().catch(() => undefined);
             }}
             onChange={event => updateQuery(event.target.value)}
-            placeholder={`예: ${SITE_SEARCH_PLACEHOLDER}`}
+            placeholder="상황, 법 이름, 조문이나 사건번호"
             type="search"
             value={query}
           />
