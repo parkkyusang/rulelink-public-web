@@ -9,7 +9,7 @@ const topicPathPattern =
 const testPathPattern =
   /^web\/rulelink_public_next\/scripts\/[a-z0-9]+(?:-[a-z0-9]+)*\.test\.mjs$/u;
 const terminalStatuses = new Set(['withdrawn', 'superseded']);
-const activeStatuses = new Set([
+const allowedStatuses = new Set([
   'awaiting_pr',
   'blocked',
   'needs_rework',
@@ -18,6 +18,37 @@ const activeStatuses = new Set([
   'migration_required',
   'integrated',
   'merged_pending_publication',
+]);
+const claimHoldingStatuses = new Set([
+  'awaiting_pr',
+  'blocked',
+  'needs_rework',
+  'pr_open',
+  'ready_for_integration',
+  'migration_required',
+  'merged_pending_publication',
+]);
+const replacementTargetStatuses = new Set([
+  ...claimHoldingStatuses,
+  'integrated',
+]);
+const supportedGateVerificationMethods = new Set([
+  'publication_live_parity',
+  'github_merged_head',
+  'github_authority_evidence',
+  'git_ancestor',
+  'legal_answer_packet_activation_v1',
+  'work_status_receipt',
+  'source_locator_selection_v2',
+]);
+const supportedReleaseCheckIds = new Set([
+  'current-equals-snapshot-024',
+  'canonical-urls-unchanged',
+  'official-urls-pass',
+  'runtime-responsive-no-overflow',
+  'runtime-keyboard-reading-path',
+  'runtime-fragment-state-restore',
+  'search-hub-sitemap-200',
 ]);
 
 export function canonicalJson(value) {
@@ -95,6 +126,7 @@ function validateRegisteredProductionContract(item, candidate, label) {
       typeof gate.gate_kind !== 'string' ||
       typeof gate.owner_role !== 'string' ||
       typeof gate.verification_method !== 'string' ||
+      !supportedGateVerificationMethods.has(gate.verification_method) ||
       typeof gate.evidence_pattern !== 'string' ||
       gate.evidence_pattern_flags !== 'u'
     ) ||
@@ -154,7 +186,10 @@ function validateRegisteredProductionContract(item, candidate, label) {
 
   if (
     !uniqueStrings(candidate.expected_release_check_ids ?? []) ||
-    candidate.expected_release_check_ids.length === 0
+    candidate.expected_release_check_ids.length === 0 ||
+    candidate.expected_release_check_ids.some(
+      checkId => !supportedReleaseCheckIds.has(checkId),
+    )
   ) {
     errors.push(`${label}: expected_release_check_ids가 올바르지 않습니다.`);
   } else {
@@ -294,7 +329,7 @@ function validateItemShape(item, label) {
   ) {
     errors.push(`${label}: approved_files가 등록된 topic/test 범위와 다릅니다.`);
   }
-  if (!activeStatuses.has(item.status) && !terminalStatuses.has(item.status)) {
+  if (!allowedStatuses.has(item.status) && !terminalStatuses.has(item.status)) {
     errors.push(`${label}: v3 후보 상태는 awaiting_pr 또는 종료 상태여야 합니다.`);
   }
   if (item.direct_merge !== false) {
@@ -339,7 +374,9 @@ export function validateTopicCandidateV3QueueContract(
 
   const activeByTopic = new Map();
   const replacementOwners = new Map();
-  for (const item of v3Items.filter(item => activeStatuses.has(item.status))) {
+  for (const item of v3Items.filter(item =>
+    claimHoldingStatuses.has(item.status)
+  )) {
     const existing = activeByTopic.get(item.topic_file);
     if (existing) {
       errors.push(
@@ -376,7 +413,7 @@ export function validateTopicCandidateV3QueueContract(
     if (
       !terminalStatuses.has(item.status) ||
       !replacement ||
-      !activeStatuses.has(replacement.status) ||
+      !replacementTargetStatuses.has(replacement.status) ||
       !(replacement.supersedes_work_ids ?? []).includes(item.work_id)
     ) {
       errors.push(`${item.work_id}: superseded_by_work_id의 역참조가 닫히지 않았습니다.`);

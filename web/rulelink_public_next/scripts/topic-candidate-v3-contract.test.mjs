@@ -310,6 +310,62 @@ test('v3 불변 계약 영수증은 상태 전이를 허용하되 계약 본문 
   );
 });
 
+test('integrated v3 후보는 허용 상태지만 같은 주제의 새 활성 후보를 막지 않는다', () => {
+  const state = fixture();
+  state.item.status = 'integrated';
+  const next = clone(state.item);
+  next.queue_id = 'publication-work-fixture-v3-next';
+  next.work_id = 'fixture-v3-next';
+  next.status = 'awaiting_pr';
+  next.supersedes_work_ids = [];
+  next.candidate_import.approved_source_base_sha = '7'.repeat(40);
+  next.candidate_import.approved_source_head_sha = '8'.repeat(40);
+  next.candidate_import.approved_files = [
+    {path: topicFile, blob_sha: '9'.repeat(40)},
+    {path: testFile, blob_sha: 'a'.repeat(40)},
+    {path: regressionFile, blob_sha: 'b'.repeat(40)},
+  ];
+  next.candidate_import.topic_before_sha256 = 'c'.repeat(64);
+  next.candidate_import.topic_after_sha256 = 'd'.repeat(64);
+  state.queue.items.push(next);
+  state.registry.registrations.push({
+    sequence: 2,
+    queue_id: next.queue_id,
+    work_id: next.work_id,
+    contract_sha256: topicCandidateV3ContractReceipt(next),
+  });
+  assert.deepEqual(
+    validateTopicCandidateV3QueueContract(state.queue, {
+      itemRegistry: state.registry,
+    }),
+    [],
+  );
+});
+
+test('v3 게이트 검증 방식과 release check ID는 지원되는 계약만 허용한다', () => {
+  const cases = [
+    candidate => {
+      candidate.expected_prerequisite_gates[0].verification_method =
+        'github_merged_haed';
+    },
+    candidate => {
+      candidate.expected_release_check_ids = ['canonical-url-unchanged'];
+    },
+  ];
+  for (const mutate of cases) {
+    const state = fixture();
+    mutate(state.item.candidate_import);
+    state.registry.registrations[0].contract_sha256 =
+      topicCandidateV3ContractReceipt(state.item);
+    assert.notDeepEqual(
+      validateTopicCandidateV3QueueContract(state.queue, {
+        itemRegistry: state.registry,
+      }),
+      [],
+    );
+  }
+});
+
 test('등록되지 않은 추가 회귀시험을 PR에 끼워 넣을 수 없다', async () => {
   const state = fixture();
   await assert.rejects(
