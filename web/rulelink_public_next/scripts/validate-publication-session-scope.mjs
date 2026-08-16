@@ -99,6 +99,8 @@ export function allowedForRole(role, filePath) {
       || value === 'web/rulelink_public_next/package.json'
       || value === 'web/rulelink_public_next/scripts/validate-publication-session-scope.mjs'
       || value === 'web/rulelink_public_next/scripts/validate-publication-session-scope.test.mjs'
+      || value === 'web/rulelink_public_next/scripts/topic-candidate-v3-contract.mjs'
+      || value === 'web/rulelink_public_next/scripts/topic-candidate-v3-contract.test.mjs'
       || value === 'web/rulelink_public_next/scripts/validate-publication-production-queue.mjs'
       || value === 'web/rulelink_public_next/scripts/validate-publication-production-queue.test.mjs'
       || value === 'web/rulelink_public_next/scripts/audit-publication-semantic-overlap.mjs'
