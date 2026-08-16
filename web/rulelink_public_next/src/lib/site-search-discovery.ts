@@ -3,7 +3,10 @@ import {
   publicationNow,
 } from './publication-freshness.ts';
 
-import type {PublicKnowledgeSearchDocument} from './knowledge-search';
+import type {
+  PublicKnowledgeSearchDocument,
+  PublicKnowledgeSearchSemanticSupport,
+} from './knowledge-search';
 import type {
   LegalChangeBrief,
   LegalIssueCard,
@@ -37,6 +40,7 @@ export type SiteSearchDocument = {
   reviewedAt: string;
   expiresAt: string;
   evidenceLabels: string[];
+  semanticFacets?: string[];
   decisionIds?: string[];
   fields: {
     searchIntent: string[];
@@ -191,6 +195,78 @@ const NEGATION_ACTION_CONTEXT = new Set([
 ]);
 const DEBT_CONTEXT = new Set(['빚', '채무', '부채']);
 
+type SemanticFacetDefinition = {
+  id: string;
+  terms: readonly string[];
+};
+
+/*
+ * 사용자 문장을 콘텐츠 ID나 예시 질의에 연결하지 않는다. 아래 목록은
+ * 여러 생활법률 영역에서 반복되는 역할ㆍ대상ㆍ상태ㆍ구제수단의 작은
+ * 검색 어휘층이다. 같은 어휘층을 질의와 정본 필드 양쪽에 적용한다.
+ */
+const SEMANTIC_FACET_DEFINITIONS: readonly SemanticFacetDefinition[] = [
+  {
+    id: '@domain:online-commerce',
+    terms: ['온라인 쇼핑', '온라인 구매', '인터넷 쇼핑', '통신판매', '전자상거래'],
+  },
+  {
+    id: '@domain:stalking',
+    terms: ['스토킹'],
+  },
+  {
+    id: '@subject:wage',
+    terms: ['월급', '임금체불', '임금채권', '미지급 임금', '미지급 기본급', '기본급'],
+  },
+  {
+    id: '@state:nonpayment',
+    terms: [
+      '미지급',
+      '체불',
+      '지급되지 않',
+      '지급하지 않',
+      '주지 않',
+      '안 줘',
+      '못 받',
+      '받지 못',
+    ],
+  },
+  {
+    id: '@state:refusal',
+    terms: ['거부', '거절', '응하지 않', '받아들이지 않'],
+  },
+  {
+    id: '@remedy:refund-return',
+    terms: ['환불', '환급', '반품', '청약철회', '대금 반환'],
+  },
+  {
+    id: '@remedy:restraining-order',
+    terms: ['접근금지', '접근 차단', '통신 접근금지', '연락 차단', '신변보호'],
+  },
+  {
+    id: '@procedure:criminal-complaint',
+    terms: ['고소', '고발', '형사신고'],
+  },
+    {
+      id: '@role:accused',
+      terms: [
+        '피고소인',
+        '피고발인',
+        '피의자',
+        '피고인',
+        '혐의를 받은',
+        '고소를 당',
+        '고소 당',
+        '고발을 당',
+        '고발 당',
+      ],
+  },
+  {
+    id: '@role:victim',
+    terms: ['피해자', '고소인', '범죄피해자', '신고자'],
+  },
+] as const;
+
 const CONVERSATIONAL_EQUIVALENCE_GROUPS = [
   ['계속', '지속', '반복'],
   ['집주인', '임대인'],
@@ -207,6 +283,7 @@ const CONVERSATIONAL_EQUIVALENCE_GROUPS = [
   ['당했어요', '피해', '당한', '발생'],
   ['사기당', '사기 피해', '기망'],
   ['인터넷', '온라인', '전자상거래'],
+  ['쇼핑', '온라인 구매', '인터넷 쇼핑'],
   ['돈', '피해금', '금전'],
   ['돌려받기', '환급', '반환', '회수', '피해구제'],
   ['남편', '배우자', '연인', '애인'],
@@ -260,6 +337,10 @@ export function buildSiteSearchDocuments(
     question: string;
     scenarioId: string;
   }[]> = new Map(),
+  knowledgeSemanticSupport: ReadonlyMap<
+    string,
+    PublicKnowledgeSearchSemanticSupport
+  > = new Map(),
 ): SiteSearchDocument[] {
   const topicByCardId = new Map<string, PublicTopic[]>();
   for (const topic of topics) {
@@ -303,6 +384,7 @@ export function buildSiteSearchDocuments(
     ...knowledgeDocuments.map(document => {
       const entry = document.entry;
       const contentType = labels.knowledgeContentType(entry.content_type);
+      const semanticSupport = knowledgeSemanticSupport.get(entry.content_id);
       return siteSearchDocument({
         id: entry.content_id,
         kind: 'knowledge',
@@ -316,6 +398,12 @@ export function buildSiteSearchDocuments(
         searchIntent: entry.search_intents_ko,
         audience: [entry.audience_situation_ko],
         decisionTargets: [...(knowledgeDecisionQuestions.get(entry.content_id) ?? [])],
+        semanticSupport: [
+          ...(semanticSupport?.actions ?? []),
+          ...(semanticSupport?.facts ?? []),
+          ...(semanticSupport?.rules ?? []),
+          ...(semanticSupport?.scenarios ?? []),
+        ],
         detail: [contentType, ...document.search_terms_ko],
       });
     }),
@@ -395,21 +483,59 @@ export function normalizeSiteSearchText(value: string): string {
 }
 
 export function tokenizeSiteSearchQuery(value: string): string[][] {
-  const baseTokens = normalizeSiteSearchText(value)
+  const normalized = normalizeSiteSearchText(value);
+  const hasNonpayment = /(?:못\s*받|받지\s*못|안\s*(?:주|줘)|주지\s*않|지급(?:되)?지\s*않|미지급|체불)/u
+    .test(normalized);
+  const wantsRemedy = /(?:싶|원하)/u.test(normalized)
+    && semanticFacetsFromText([normalized]).some(facet => (
+      facet.startsWith('@remedy:')
+    ));
+  const hasAccusedComplaintRole = /(?:고소|고발)\s*(?:를\s*)?당/u
+    .test(normalized);
+  const baseTokens = normalized
     .split(' ')
     .filter(Boolean)
     .filter(token => !isOptionalConversationalToken(token))
+    .filter(token => !(
+      hasNonpayment && isNonpaymentGrammarToken(token)
+    ))
+    .filter(token => !(
+      wantsRemedy && /^(?:받|얻)(?:고|으려|으려고|아|어|아요|어요)/u.test(token)
+    ))
     .map(token => {
       const stripped = stripKoreanParticle(token);
       return stripped === token ? [token] : [token, stripped];
     });
   const context = new Set(baseTokens.flat());
 
-  return baseTokens
+  const lexicalGroups = baseTokens
     .map(bases => [...new Set(bases.flatMap(base => (
-      contextualQueryVariants(base, context)
+      [
+        ...contextualQueryVariants(base, context),
+        ...semanticFacetVariantsForToken(base),
+      ]
     )))])
     .filter(variants => variants.length > 0);
+  const requiredFacets = [
+    ...(hasNonpayment ? [[
+      '@state:nonpayment',
+      '미지급',
+      '지급하지',
+      '주지',
+      '돌려주지',
+      '받지 못',
+    ]] : []),
+    ...(
+      hasNonpayment && /(?:월급|임금|기본급)/u.test(normalized)
+        ? [['@subject:wage']]
+        : []
+    ),
+    ...(hasAccusedComplaintRole ? [['@role:accused']] : []),
+  ];
+  return [
+    ...uniqueTokenGroups(lexicalGroups),
+    ...requiredFacets,
+  ];
 }
 
 export function classifySiteSearchMiss(query: string): SiteSearchMissReason {
@@ -442,12 +568,23 @@ function siteSearchDocument(value: {
     question: string;
     scenarioId: string;
   }>;
+  semanticSupport?: string[];
   detail?: string[];
 }): SiteSearchDocument {
   const decisionTargets = value.decisionTargets ?? [];
   const decision = uniqueNonEmpty([
     ...(value.decision ?? []),
     ...decisionTargets.map(target => target.question),
+  ]);
+  const semanticFacets = semanticFacetsFromText([
+    value.title,
+    value.summary,
+    value.context,
+    ...(value.searchIntent ?? []),
+    ...(value.audience ?? []),
+    ...decision,
+    ...(value.detail ?? []),
+    ...(value.semanticSupport ?? []),
   ]);
   return {
     id: value.id,
@@ -459,6 +596,7 @@ function siteSearchDocument(value: {
     reviewedAt: value.reviewedAt,
     expiresAt: value.expiresAt,
     evidenceLabels: uniqueNonEmpty(value.evidenceLabels ?? []),
+    ...(semanticFacets.length ? {semanticFacets} : {}),
     ...(decisionTargets.length ? {
       decisionIds: decisionTargets.map(target => target.scenarioId),
     } : {}),
@@ -481,7 +619,44 @@ function scoreDocument(
 ): RankedSiteSearchResult | null {
   const scoringFields = siteSearchScoringFields(document);
   const normalizedFields = mapNormalizedFields(scoringFields);
-  const searchable = Object.values(normalizedFields).flat();
+  const primaryFacetValues = [
+    document.title,
+    document.summary,
+    ...document.fields.searchIntent,
+    ...document.fields.audience,
+    ...(document.fields.decision ?? []),
+  ];
+  const primarySemanticFacets = new Set(
+    semanticFacetsFromText(primaryFacetValues),
+  );
+  const semanticFacets = uniqueNonEmpty([
+    ...(document.semanticFacets ?? []),
+    ...primarySemanticFacets,
+  ]);
+  const searchable = [
+    ...Object.values(normalizedFields).flat(),
+    ...semanticFacets,
+  ];
+  const requiredRoleFacets = queryTokens
+    .filter(variants => (
+      variants.length === 1 && variants[0]?.startsWith('@role:')
+    ))
+    .flat();
+  const roleFacingFacets = new Set(semanticFacetsFromText([
+    document.title,
+    ...document.fields.searchIntent,
+    ...document.fields.audience,
+  ]));
+    const focusedRoleFacet = primaryRoleFacet([
+      document.fields.audience,
+      document.fields.searchIntent,
+      [document.title],
+    ]);
+  if (requiredRoleFacets.some(facet => (
+    !roleFacingFacets.has(facet) || focusedRoleFacet !== facet
+  ))) {
+    return null;
+  }
   const queryMatch = queryDocumentMatch(searchable, queryTokens);
   if (!queryMatch.accepted) {
     return null;
@@ -489,6 +664,15 @@ function scoreDocument(
 
   let score = queryMatch.matchedTokenCount * 36
     + queryMatch.matchedInformationWeight;
+  score += queryTokens.reduce((sum, variants) => (
+    sum + (
+      variants.some(variant => (
+        variant.startsWith('@') && semanticFacets.includes(variant)
+      ))
+        ? 24
+        : 0
+    )
+  ), 0);
   if (normalizedQuery) {
     if (normalizedFields.title.some(value => value === normalizedQuery)) {
       score += 180;
@@ -540,6 +724,7 @@ function scoreDocument(
 
   return {
     ...document,
+    ...(semanticFacets.length ? {semanticFacets} : {}),
     ...(decisionQuestion ? {decisionQuestion} : {}),
     ...(decisionScenarioId ? {decisionScenarioId} : {}),
     score,
@@ -772,6 +957,84 @@ function uniqueNonEmpty(values: readonly string[]): string[] {
   return [...new Set(values.map(value => value.trim()).filter(Boolean))];
 }
 
+function semanticFacetsFromText(values: readonly string[]): string[] {
+  const normalizedValues = values
+    .map(normalizeSiteSearchText)
+    .filter(Boolean);
+  return SEMANTIC_FACET_DEFINITIONS
+    .filter(definition => definition.terms.some(term => {
+      const normalizedTerm = normalizeSiteSearchText(term);
+      return normalizedValues.some(value => value.includes(normalizedTerm));
+    }))
+    .map(definition => definition.id);
+}
+
+function semanticFacetVariantsForToken(token: string): string[] {
+  const normalizedToken = normalizeSiteSearchText(token);
+  if (normalizedToken.length < 2) return [];
+  return SEMANTIC_FACET_DEFINITIONS
+    .filter(definition => definition.terms.some(term => {
+      const normalizedTerm = normalizeSiteSearchText(term);
+      if (definition.id.startsWith('@role:')) {
+        return normalizedTerm === normalizedToken
+          || normalizedToken.startsWith(normalizedTerm);
+      }
+      const [firstTerm] = normalizedTerm.split(' ');
+      return normalizedTerm === normalizedToken
+        || firstTerm === normalizedToken
+        || normalizedToken.startsWith(normalizedTerm);
+    }))
+    .map(definition => definition.id);
+}
+
+function primaryRoleFacet(
+  authorityTiers: readonly (readonly string[])[],
+): string | undefined {
+  const roleDefinitions = SEMANTIC_FACET_DEFINITIONS.filter(definition => (
+    definition.id.startsWith('@role:')
+  ));
+  for (const values of authorityTiers) {
+    const facets = new Set(values.flatMap(value => {
+      const normalized = normalizeSiteSearchText(value);
+      return roleDefinitions
+        .filter(definition => definition.terms.some(term => (
+          normalized.includes(normalizeSiteSearchText(term))
+        )))
+        .map(definition => definition.id);
+    }));
+    if (facets.size === 1) return [...facets][0];
+    if (facets.size > 1) return undefined;
+  }
+  return undefined;
+}
+
+function isNonpaymentGrammarToken(token: string): boolean {
+  return /^(?:못|안|않|못받.*|받지|받았.*|받아.*|받을.*|주지|줘.*|지급되지|지급하지)$/u
+    .test(token);
+}
+
+function uniqueTokenGroups(groups: readonly string[][]): string[][] {
+  const merged: string[][] = [];
+  for (const group of groups) {
+    const unique = [...new Set(group)];
+    if (!unique.length) continue;
+    const facets = unique.filter(token => token.startsWith('@'));
+    const existing = facets.length
+      ? merged.find(candidate => candidate.some(token => facets.includes(token)))
+      : undefined;
+    if (existing) {
+      existing.push(...unique.filter(token => !existing.includes(token)));
+      continue;
+    }
+    const signature = [...unique].sort().join('\u0000');
+    if (merged.some(candidate => [...candidate].sort().join('\u0000') === signature)) {
+      continue;
+    }
+    merged.push(unique);
+  }
+  return merged;
+}
+
 function isOptionalConversationalToken(token: string): boolean {
   if (OPTIONAL_CONVERSATIONAL_TOKENS.has(token)) return true;
   return /^(?:어떻게|어떡)(?:해|하|해야|하면|하면요|하나요|하죠|할까요)?$/u
@@ -856,7 +1119,7 @@ function queryDocumentMatch(
     return {
       informationWeight: Math.max(
         0,
-        ...matchingVariants.map(variant => variant.length ** 2),
+        ...matchingVariants.map(queryVariantInformationWeight),
       ),
       matched: matchingVariants.length > 0,
       originalInformationLength: variants[0]?.length ?? 0,
@@ -881,6 +1144,10 @@ function queryDocumentMatch(
     ),
     matchedTokenCount,
   };
+}
+
+function queryVariantInformationWeight(variant: string): number {
+  return variant.startsWith('@') ? 9 : variant.length ** 2;
 }
 
 function valueIncludesVariant(value: string, variant: string): boolean {

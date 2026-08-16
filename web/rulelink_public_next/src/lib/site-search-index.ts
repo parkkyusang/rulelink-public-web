@@ -1,6 +1,7 @@
 import type {SiteSearchDocument, SiteSearchResultKind} from './site-search-discovery';
 
-export const SITE_SEARCH_INDEX_SCHEMA = 'rulelink_public_search_index_v2' as const;
+export const SITE_SEARCH_INDEX_SCHEMA = 'rulelink_public_search_index_v3' as const;
+export const SITE_SEARCH_INDEX_V2_SCHEMA = 'rulelink_public_search_index_v2' as const;
 
 const SITE_SEARCH_KIND_CODES = {
   issue: 0,
@@ -25,6 +26,24 @@ type CompactSiteSearchDocument = [
   audience: number[],
   decision: number[],
   detail: number[],
+  semanticFacets: number[],
+];
+
+type CompactSiteSearchDocumentV2 = [
+  id: number,
+  kind: number,
+  href: number,
+  title: number,
+  summary: number,
+  context: number,
+  reviewedAt: number,
+  expiresAt: number,
+  evidenceLabels: number[],
+  decisionIds: number[],
+  searchIntent: number[],
+  audience: number[],
+  decision: number[],
+  detail: number[],
 ];
 
 export type SiteSearchIndexPayload = {
@@ -34,10 +53,21 @@ export type SiteSearchIndexPayload = {
   documents: CompactSiteSearchDocument[];
 };
 
+export type SiteSearchIndexV2Payload = {
+  schema: typeof SITE_SEARCH_INDEX_V2_SCHEMA;
+  generated_at: string;
+  strings: string[];
+  documents: CompactSiteSearchDocumentV2[];
+};
+
 export function projectLegacySiteSearchDocuments(
   documents: readonly SiteSearchDocument[],
 ): SiteSearchDocument[] {
-  return documents.map(({decisionIds: _decisionIds, ...document}) => {
+  return documents.map(({
+    decisionIds: _decisionIds,
+    semanticFacets: _semanticFacets,
+    ...document
+  }) => {
     const {decision: _decision, ...fields} = document.fields;
     return {...document, fields};
   });
@@ -96,6 +126,46 @@ export function encodeSiteSearchIndex(
       internAll(document.fields.audience),
       internAll(document.fields.decision ?? []),
       internAll(document.fields.detail),
+      internAll(document.semanticFacets ?? []),
+    ]),
+  };
+}
+
+export function encodeSiteSearchIndexV2(
+  documents: readonly SiteSearchDocument[],
+  generatedAt: string,
+): SiteSearchIndexV2Payload {
+  const strings: string[] = [];
+  const indexes = new Map<string, number>();
+  const intern = (value: string) => {
+    const existing = indexes.get(value);
+    if (existing !== undefined) return existing;
+    const index = strings.length;
+    strings.push(value);
+    indexes.set(value, index);
+    return index;
+  };
+  const internAll = (values: readonly string[]) => values.map(intern);
+
+  return {
+    schema: SITE_SEARCH_INDEX_V2_SCHEMA,
+    generated_at: generatedAt,
+    strings,
+    documents: documents.map(document => [
+      intern(document.id),
+      SITE_SEARCH_KIND_CODES[document.kind],
+      intern(document.href),
+      intern(document.title),
+      intern(document.summary),
+      intern(document.context),
+      intern(document.reviewedAt),
+      intern(document.expiresAt),
+      internAll(document.evidenceLabels),
+      internAll(document.decisionIds ?? []),
+      internAll(document.fields.searchIntent),
+      internAll(document.fields.audience),
+      internAll(document.fields.decision ?? []),
+      internAll(document.fields.detail),
     ]),
   };
 }
@@ -117,7 +187,7 @@ export function decodeSiteSearchIndex(payload: unknown): DecodedSiteSearchIndex 
   for (const value of payload.documents) {
     if (
       !Array.isArray(value)
-      || value.length !== 14
+      || value.length !== 15
       || !value.slice(0, 8).every((index, position) => (
         position === 1
           ? Number.isInteger(index) && Number(index) >= 0 && Number(index) < SITE_SEARCH_KINDS.length
@@ -132,6 +202,7 @@ export function decodeSiteSearchIndex(payload: unknown): DecodedSiteSearchIndex 
     const audience = decodeIndexes(value[11], strings);
     const decision = decodeIndexes(value[12], strings);
     const detail = decodeIndexes(value[13], strings);
+    const semanticFacets = decodeIndexes(value[14], strings);
     if (
       !evidenceLabels
       || !decisionIds
@@ -139,6 +210,7 @@ export function decodeSiteSearchIndex(payload: unknown): DecodedSiteSearchIndex 
       || !audience
       || !decision
       || !detail
+      || !semanticFacets
       || decisionIds.length !== decision.length
     ) {
       return null;
@@ -157,6 +229,7 @@ export function decodeSiteSearchIndex(payload: unknown): DecodedSiteSearchIndex 
       expiresAt: strings[value[7] as number]!,
       evidenceLabels,
       ...(decisionIds.length ? {decisionIds} : {}),
+      ...(semanticFacets.length ? {semanticFacets} : {}),
       fields: {
         searchIntent,
         audience,

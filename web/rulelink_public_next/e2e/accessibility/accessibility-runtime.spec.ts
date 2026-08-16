@@ -71,7 +71,7 @@ test.describe('default public build', () => {
       const indexGate = new Promise<void>(resolve => {
         releaseIndex = resolve;
       });
-      await page.route('**/search-index.v2.json', async route => {
+      await page.route('**/search-index.v3.json', async route => {
         await indexGate;
         await route.continue();
       });

@@ -76,6 +76,9 @@ const goldenQueries = [
   '학교에서 맞았어요',
   '월세를 세 번 밀렸어요',
   '상속 빚이 많아요',
+  '스토킹 접근금지 받고 싶어요',
+  '온라인 쇼핑 환불 거부',
+  '월급을 못 받았어요',
 ] as const;
 
 test('홈 상황별 디렉터리는 네 폭에서 7영역·전체 링크·검색·날짜 좌표를 보존한다', async ({
@@ -261,12 +264,12 @@ test('검색은 느린 전체 인덱스 중 0건을 확정하지 않고 준비 �
   page,
 }) => {
   const indexResponses: Array<{bytes: number; status: number}> = [];
-  await page.route('**/search-index.v2.json', async route => {
+  await page.route('**/search-index.v3.json', async route => {
     await new Promise(resolve => setTimeout(resolve, 1_000));
     await route.continue();
   });
   page.on('response', async response => {
-    if (new URL(response.url()).pathname !== '/search-index.v2.json') return;
+    if (new URL(response.url()).pathname !== '/search-index.v3.json') return;
     indexResponses.push({
       bytes: (await response.body()).byteLength,
       status: response.status(),
@@ -371,15 +374,21 @@ test('버전별 검색 인덱스는 구·신 클라이언트의 교차 배포 �
   const v2Payload = await v2Response.json();
   expect(v2Payload.schema).toBe('rulelink_public_search_index_v2');
 
-  const requests = {legacy: 0, v2: 0};
+  const v3Response = await request.get('/search-index.v3.json');
+  expect(v3Response.ok()).toBe(true);
+  const v3Payload = await v3Response.json();
+  expect(v3Payload.schema).toBe('rulelink_public_search_index_v3');
+
+  const requests = {legacy: 0, v2: 0, v3: 0};
   page.on('request', requestEvent => {
     const pathname = new URL(requestEvent.url()).pathname;
     if (pathname === '/search-index.json') requests.legacy += 1;
     if (pathname === '/search-index.v2.json') requests.v2 += 1;
+    if (pathname === '/search-index.v3.json') requests.v3 += 1;
   });
   await page.goto('/ko/search', {waitUntil: 'networkidle'});
   await expect(page.locator('[data-search-result-id]')).toHaveCount(24);
-  expect(requests).toEqual({legacy: 0, v2: 0});
+  expect(requests).toEqual({legacy: 0, v2: 0, v3: 0});
 
   await page.getByLabel(
     '상황, 법 이름, 조문이나 사건번호를 적어보세요',
@@ -388,16 +397,16 @@ test('버전별 검색 인덱스는 구·신 클라이언트의 교차 배포 �
     'data-search-index-state',
     'ready',
   );
-  expect(requests).toEqual({legacy: 0, v2: 1});
+  expect(requests).toEqual({legacy: 0, v2: 0, v3: 1});
 });
 
-test('신 클라이언트는 v2 URL의 구 스키마를 한 번만 요청하고 fail-closed 한다', async ({
+test('신 클라이언트는 v3 URL의 구 스키마를 한 번만 요청하고 fail-closed 한다', async ({
   page,
   request,
 }) => {
   const legacyPayload = await (await request.get('/search-index.json')).json();
   let requestCount = 0;
-  await page.route('**/search-index.v2.json', async route => {
+  await page.route('**/search-index.v3.json', async route => {
     requestCount += 1;
     await route.fulfill({json: legacyPayload, status: 200});
   });
@@ -427,13 +436,46 @@ test('검색·허브 세로 경로·상세 연결 독해는 네 폭에서 의미
 
     await page.goto('/ko/search', {waitUntil: 'networkidle'});
     await assertNoHorizontalOverflow(page);
+    const searchInput = page.getByLabel(
+      '상황, 법 이름, 조문이나 사건번호를 적어보세요',
+    );
+    for (const [query, expectedId] of [
+      [
+        '스토킹 접근금지 받고 싶어요',
+        'content.domestic-violence-stalking-stalking-emergency',
+      ],
+      [
+        '온라인 쇼핑 환불 거부',
+        'content.online-withdrawal-seven-days-vs-defect-deadline',
+      ],
+      [
+        '월급을 못 받았어요',
+        'content.unfair-dismissal-vs-wage-claim-deadline',
+      ],
+    ] as const) {
+      await searchInput.fill(query);
+      await expect(page.locator('[data-site-search]')).toHaveAttribute(
+        'data-search-index-state',
+        'ready',
+      );
+      await expect(page.locator('[data-search-result-id]').first()).toHaveAttribute(
+        'data-search-result-id',
+        expectedId,
+      );
+      await expect(
+        page.locator('[data-search-result-id]').first()
+          .locator('[data-match-reasons]'),
+      ).toBeVisible();
+    }
     const resultColumns = await page.locator('#site-search-result-grid').evaluate(
       element => getComputedStyle(element).gridTemplateColumns
         .split(' ')
         .filter(Boolean).length,
     );
     expect(resultColumns).toBe(width <= 720 ? 1 : 2);
-
+    await searchInput.fill('고소당했는데');
+    await expect(page.locator('[data-search-result-id]')).toHaveCount(0);
+    await expect(page.locator('[data-search-empty]')).toBeVisible();
     await page.goto('/ko/hubs/debt-enforcement', {waitUntil: 'networkidle'});
     await expect(page.locator('[data-hub-journey]')).toBeVisible();
     await expect(page.locator('[data-hub-stage="judgment"]').first()).toBeVisible();

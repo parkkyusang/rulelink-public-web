@@ -30,7 +30,7 @@ import {ProgressiveResultFooter} from './progressive-result-footer';
 
 type Props = {
   freshnessNow: string;
-  indexHref: '/search-index.v2.json';
+  indexHref: '/search-index.v3.json';
   initialDocuments: SiteSearchDocument[];
   totalCounts: SiteSearchResultCounts;
 };

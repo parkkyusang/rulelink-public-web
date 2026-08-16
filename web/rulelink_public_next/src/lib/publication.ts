@@ -1,7 +1,12 @@
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 
-import {buildKnowledgeSearchDocuments, buildKnowledgeSourceDocuments, resolveKnowledgeEntryGraph} from '@/lib/knowledge-search';
+import {
+  buildKnowledgeSearchDocuments,
+  buildKnowledgeSearchSemanticSupport,
+  buildKnowledgeSourceDocuments,
+  resolveKnowledgeEntryGraph,
+} from '@/lib/knowledge-search';
 import {buildKnowledgeHubConnections} from '@/lib/knowledge-hub-connections';
 import {buildKnowledgeReadingPath, buildKnowledgeRelatedPresentation} from '@/lib/knowledge-relations';
 import {
@@ -177,6 +182,16 @@ export async function listKnowledgeSearchDocuments() {
     (await visibleKnowledgeEntriesForBundle(bundle)).map(entry => entry.content_id),
   );
   return buildKnowledgeSearchDocuments(knowledge, visibleContentIds);
+}
+
+export async function listKnowledgeSearchSemanticSupport() {
+  const bundle = await loadPublishedBundle();
+  const knowledge = bundle?.knowledge;
+  if (!knowledge) return new Map();
+  const visibleContentIds = new Set(
+    (await visibleKnowledgeEntriesForBundle(bundle)).map(entry => entry.content_id),
+  );
+  return buildKnowledgeSearchSemanticSupport(knowledge, visibleContentIds);
 }
 
 export async function listKnowledgeDecisionQuestions(): Promise<Map<string, Array<{

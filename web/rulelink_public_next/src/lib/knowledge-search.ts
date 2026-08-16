@@ -14,6 +14,13 @@ export type PublicKnowledgeSearchDocument = {
   evidence_labels_ko: string[];
 };
 
+export type PublicKnowledgeSearchSemanticSupport = {
+  actions: string[];
+  facts: string[];
+  rules: string[];
+  scenarios: string[];
+};
+
 export type PublicKnowledgeSearchEntry = Pick<PublicKnowledgeEntry,
   | 'content_id'
   | 'content_type'
@@ -74,6 +81,21 @@ export function buildKnowledgeSearchDocuments(
   return knowledge.content_entries
     .filter(entry => !visibleContentIds || visibleContentIds.has(entry.content_id))
     .map(entry => makeKnowledgeSearchDocument(entry, resolveEntry(entry)));
+}
+
+export function buildKnowledgeSearchSemanticSupport(
+  knowledge: PublicKnowledgeIndex,
+  visibleContentIds?: ReadonlySet<string>,
+): Map<string, PublicKnowledgeSearchSemanticSupport> {
+  const resolveEntry = createKnowledgeEntryResolver(knowledge);
+  return new Map(
+    knowledge.content_entries
+      .filter(entry => !visibleContentIds || visibleContentIds.has(entry.content_id))
+      .map(entry => [
+        entry.content_id,
+        makeKnowledgeSearchSemanticSupport(entry, resolveEntry(entry)),
+      ]),
+  );
 }
 
 export function buildKnowledgeSourceDocuments(
@@ -200,6 +222,32 @@ function makeKnowledgeSearchDocument(
       ]),
     ]),
     evidence_labels_ko: uniqueTerms(graph.sources.map(sourceLabel)),
+    // 검색 런타임에는 원문 전체를 보내지 않고, 아래 정본 필드에서
+    // 제어된 의미 facet만 추출한다. 검색 신호를 콘텐츠 ID나 예시 질의로
+    // 하드코딩하지 않으면서도 전송량을 제한하기 위한 중간 투영이다.
+  };
+}
+
+function makeKnowledgeSearchSemanticSupport(
+  entry: PublicKnowledgeEntry,
+  graph: ResolvedKnowledgeEntryGraph,
+): PublicKnowledgeSearchSemanticSupport {
+  return {
+    actions: uniqueTerms(entry.action_steps_ko),
+    facts: uniqueTerms(entry.facts_to_check_ko),
+    rules: uniqueTerms(graph.rules.flatMap(rule => [
+      rule.title_ko,
+      rule.proposition_ko,
+      rule.norm.actor_ko,
+      rule.norm.conditions_ko,
+      rule.norm.legal_effect_ko,
+    ])),
+    scenarios: uniqueTerms(graph.scenarios.flatMap(scenario => [
+      scenario.question_ko,
+      scenario.decision_fact_ko,
+      scenario.when_true_ko,
+      scenario.when_false_ko,
+    ])),
   };
 }
 

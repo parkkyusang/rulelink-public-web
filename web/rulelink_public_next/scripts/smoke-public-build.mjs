@@ -40,13 +40,19 @@ try {
   assert(Array.isArray(legacySearchIndex.documents), '호환 검색 인덱스 문서가 배열이 아닙니다.');
   assert(Buffer.byteLength(legacySearchIndexText) <= 420_000, '호환 검색 인덱스가 기존 실측 상한을 넘었습니다.');
 
-  const searchIndexResponse = await fetch(`${baseUrl}/search-index.v2.json`, {cache: 'no-store'});
-  assert(searchIndexResponse.ok, `v2 검색 인덱스 응답 실패: ${searchIndexResponse.status}`);
+  const v2SearchIndexResponse = await fetch(`${baseUrl}/search-index.v2.json`, {cache: 'no-store'});
+  assert(v2SearchIndexResponse.ok, `v2 검색 인덱스 응답 실패: ${v2SearchIndexResponse.status}`);
+  const v2SearchIndex = await v2SearchIndexResponse.json();
+  assert(v2SearchIndex.schema === 'rulelink_public_search_index_v2', '호환 검색 인덱스가 v2 스키마가 아닙니다.');
+  assert(Array.isArray(v2SearchIndex.documents), 'v2 호환 검색 인덱스 문서가 배열이 아닙니다.');
+
+  const searchIndexResponse = await fetch(`${baseUrl}/search-index.v3.json`, {cache: 'no-store'});
+  assert(searchIndexResponse.ok, `v3 검색 인덱스 응답 실패: ${searchIndexResponse.status}`);
   const searchIndexText = await searchIndexResponse.text();
   const searchIndex = decodeSiteSearchIndex(JSON.parse(searchIndexText));
-  assert(searchIndex, 'v2 검색 인덱스를 복원할 수 없습니다.');
-  assert(searchIndex.documents.length === legacySearchIndex.documents.length, 'v1·v2 검색 문서 수가 다릅니다.');
-  assert(Buffer.byteLength(searchIndexText) <= 390_000, 'v2 검색 인덱스가 절대 전송량 예산을 넘었습니다.');
+  assert(searchIndex, 'v3 검색 인덱스를 복원할 수 없습니다.');
+  assert(searchIndex.documents.length === legacySearchIndex.documents.length, 'v1·v3 검색 문서 수가 다릅니다.');
+  assert(Buffer.byteLength(searchIndexText) <= 390_000, 'v3 검색 인덱스가 절대 전송량 예산을 넘었습니다.');
 
   const expectedCounts = {
     issue_cards: bundle.cards?.length ?? 0,

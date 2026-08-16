@@ -1,11 +1,11 @@
 import {publicationNow} from '@/lib/publication-freshness';
 import {loadSiteSearchDocuments} from '@/lib/site-search-publication';
-import {encodeSiteSearchIndexV2} from '@/lib/site-search-index';
+import {encodeSiteSearchIndex} from '@/lib/site-search-index';
 
 export const dynamic = 'force-static';
 
 export async function GET() {
-  const payload = encodeSiteSearchIndexV2(
+  const payload = encodeSiteSearchIndex(
     await loadSiteSearchDocuments(),
     publicationNow().toISOString(),
   );
