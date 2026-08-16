@@ -11,7 +11,6 @@ import {
   loadPublishedBundle,
 } from '@/lib/publication';
 import {site} from '@/lib/site';
-import {SITE_SEARCH_PLACEHOLDER} from '@/lib/site-search-discovery';
 
 export const dynamic = 'force-static';
 
@@ -36,7 +35,7 @@ export default async function HomePage() {
             <input
               id="home-situation-search"
               name="q"
-              placeholder={`예: ${SITE_SEARCH_PLACEHOLDER}`}
+              placeholder="상황을 짧게 적어보세요"
               type="search"
             />
             <button type="submit">관련 질문 찾기</button>

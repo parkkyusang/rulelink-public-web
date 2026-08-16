@@ -338,25 +338,25 @@ test('조문·사건번호 검색은 화면용 운영 데이터 없이 검색 �
   }
 });
 
-test('홈은 결과처럼 보이는 하드코딩 링크 없이 실제 검색 form과 검증된 placeholder만 둔다', async () => {
+test('홈은 결과처럼 보이는 하드코딩 예시 링크 없이 실제 검색 form만 둔다', async () => {
   const homeSource = await readFile(path.join(appRoot, 'app', 'page.tsx'), 'utf8');
   assert.match(homeSource, /<form action="\/ko\/search"[\s\S]*method="get"/u);
   assert.match(homeSource, /name="q"/u);
-  assert.match(homeSource, /placeholder=\{`예: \$\{SITE_SEARCH_PLACEHOLDER\}`\}/u);
-  assert.doesNotMatch(homeSource, /homeSearchExamples|\/ko\/search\?q=/u);
+  assert.match(homeSource, /placeholder="상황을 짧게 적어보세요"/u);
+  assert.doesNotMatch(homeSource, /homeSearchExamples|\/ko\/search\?q=|SITE_SEARCH_PLACEHOLDER|placeholder=\{`예:/u);
 
   const ranked = rankSiteSearchDocuments(documents, {
     now,
     query: SITE_SEARCH_PLACEHOLDER,
   });
-  assert.ok(ranked.length > 0, '홈 placeholder 질의는 현재 정본에서 결과를 찾아야 합니다.');
+  assert.ok(ranked.length > 0, '내부 검색 회귀 질의는 현재 정본에서 결과를 찾아야 합니다.');
   assert.ok(
     ranked.every(result => result.matchReasons.length > 0),
-    '홈 placeholder 질의 결과는 실제 일치 근거를 가져야 합니다.',
+    '내부 검색 회귀 질의 결과는 실제 일치 근거를 가져야 합니다.',
   );
 });
 
-test('통합검색은 placeholder만 유지하고 결과처럼 보이는 예시 버튼을 렌더하지 않는다', async () => {
+test('통합검색은 특정 예시 질의를 노출하지 않고 결과처럼 보이는 예시 버튼을 렌더하지 않는다', async () => {
   const searchSource = await readFile(
     path.join(appRoot, 'src', 'components', 'site-search.tsx'),
     'utf8',
@@ -366,13 +366,10 @@ test('통합검색은 placeholder만 유지하고 결과처럼 보이는 예시 
     'utf8',
   );
 
-  assert.match(
-    searchSource,
-    /placeholder=\{`예: \$\{SITE_SEARCH_PLACEHOLDER\}`\}/u,
-  );
+  assert.match(searchSource, /placeholder="상황, 법 이름, 조문이나 사건번호"/u);
   assert.doesNotMatch(
     searchSource,
-    /aria-label="검색 예시"|searchExamples|SITE_SEARCH_EXAMPLES|updateQuery\(example\.query\)/u,
+    /aria-label="검색 예시"|searchExamples|SITE_SEARCH_EXAMPLES|updateQuery\(example\.query\)|SITE_SEARCH_PLACEHOLDER|placeholder=\{`예:/u,
   );
   assert.doesNotMatch(searchStyles, /\.searchExamples/u);
 });
