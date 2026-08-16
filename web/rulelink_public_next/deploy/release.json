@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20260816-028",
+  "release_id": "production-20260816-029",
   "snapshot_id": "kr-knowledge-core-20260726-024",
-  "requested_at": "2026-08-16T01:34:00.000Z",
-  "summary_ko": "생활법률 검색이 역할·행동·부정·구제수단을 더 정확히 이해하도록 공개 검색 인덱스를 갱신한다."
+  "requested_at": "2026-08-16T02:15:00.000Z",
+  "summary_ko": "생활법률 검색 인덱스 갱신 배포를 Vercel clean clone source ref 준비 핫픽스 위에서 다시 요청한다."
 }
