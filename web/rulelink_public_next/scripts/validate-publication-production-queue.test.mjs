@@ -344,6 +344,278 @@ function plannedAuthorityWork({
   return refreshSummary(value);
 }
 
+function registeredTopicCandidateV3Queue() {
+  const value = clone(currentQueue);
+  const counts = {
+    sources: 10,
+    rule_cards: 9,
+    scenario_branches: 8,
+    content_entries: 10,
+    topic_hubs: 1,
+    authority_units: 0,
+  };
+  const qualityTargets = {
+    duplicate_rule_before: 0,
+    duplicate_rule_after: 0,
+    blank_audience_before: 0,
+    blank_audience_after: 0,
+    copied_search_before: 0,
+    copied_search_after: 0,
+    nonstandard_content_type_before: 0,
+    nonstandard_content_type_after: 0,
+    typed_relation_after: 20,
+  };
+  const prerequisiteGates = [{
+    gate_id: 'quality.topic-candidate-approved',
+    gate_kind: 'quality_schema',
+    owner_role: 'quality_governance',
+    status: 'pending',
+  }];
+  const releaseChecks = [
+    {check_id: 'canonical-urls-unchanged', status: 'pending'},
+    {check_id: 'official-urls-pass', status: 'pending'},
+  ];
+  const integrationChecks = [
+    '승인 source blob과 실제 PR blob을 다시 대조한다.',
+    'current bundle과 새 immutable snapshot을 함께 이관한다.',
+  ];
+  const item = {
+    queue_id: 'publication-work-topic-candidate-v3-validator-fixture',
+    work_id: 'topic-candidate-v3-validator-fixture',
+    title_ko: 'v3 생산 대기열 검증용 후보',
+    owner_role: 'content_production',
+    topic_id: 'hub.everyday-damages',
+    topic_file: 'artifacts/publication/topics/everyday-damages.json',
+    test_file:
+      'web/rulelink_public_next/scripts/everyday-damages-structure-expansion-topic.test.mjs',
+    change_mode: 'existing_topic_revision',
+    status: 'awaiting_pr',
+    counts,
+    quality_targets: qualityTargets,
+    prerequisite_gates: prerequisiteGates,
+    release_checks: releaseChecks,
+    depends_on_prs: [],
+    depends_on_work_ids: [],
+    integration_order: null,
+    direct_merge: false,
+    integrate_requires: [
+      'current_bundle',
+      'new_immutable_snapshot',
+      'migrate_publication',
+    ],
+    official_url_check: {status: 'pending', referenced_count: 0},
+    source_freshness: {status: 'pending', mismatch_count: 0},
+    integration_checks: integrationChecks,
+    supersedes_work_ids: [],
+    candidate_import: {
+      schema: 'rulelink_topic_candidate_import_v3',
+      state: 'approved_source',
+      lifecycle_gate: 'awaiting_pr',
+      candidate_kind: 'existing_topic',
+      approved_source_base_sha: 'a'.repeat(40),
+      approved_source_head_sha: 'b'.repeat(40),
+      approved_files: [
+        {
+          path: 'artifacts/publication/topics/everyday-damages.json',
+          blob_sha: 'c'.repeat(40),
+        },
+        {
+          path:
+            'web/rulelink_public_next/scripts/everyday-damages-structure-expansion-topic.test.mjs',
+          blob_sha: 'd'.repeat(40),
+        },
+      ],
+      additional_regression_test_files: [],
+      topic_before_sha256: 'e'.repeat(64),
+      topic_after_sha256: 'f'.repeat(64),
+      expected_counts: counts,
+      expected_quality_targets: qualityTargets,
+      expected_depends_on_work_ids: [],
+      expected_integration_checks: integrationChecks,
+      expected_prerequisite_gates: prerequisiteGates.map(
+        ({gate_id, gate_kind, owner_role}) => ({
+          gate_id,
+          gate_kind,
+          owner_role,
+          verification_method: 'github_merged_head',
+          evidence_pattern:
+            '^parkkyusang/rulelink-public-web#\\d+@[0-9a-f]{40}$',
+          evidence_pattern_flags: 'u',
+        }),
+      ),
+      expected_release_check_ids: releaseChecks.map(check => check.check_id),
+    },
+  };
+  value.items.push(item);
+  refreshSummary(value);
+  const itemRegistry = appendQueueItemRegistrations(currentRegistry, value);
+  return {value, item, itemRegistry};
+}
+
+test('등록된 v3 후보는 전체 생산 대기열 검증 경로를 통과한다', () => {
+  const {value, itemRegistry} = registeredTopicCandidateV3Queue();
+  assert.deepEqual(
+    validateProductionQueueRaw(value, {
+      ...currentPublicationEvidence,
+      itemRegistry,
+    }),
+    [],
+  );
+});
+
+test('v3 후보의 선행 게이트와 출시 점검은 등록 영수증을 다시 써도 위조할 수 없다', () => {
+  const mutations = [
+    item => item.prerequisite_gates.pop(),
+    item => {
+      item.prerequisite_gates[0].gate_kind = 'artifact';
+    },
+    item => item.release_checks.pop(),
+    item => {
+      item.release_checks[0].check_id = 'runtime-responsive-no-overflow';
+    },
+  ];
+  for (const mutate of mutations) {
+    const state = registeredTopicCandidateV3Queue();
+    mutate(state.item);
+    refreshSummary(state.value);
+    const rewrittenRegistry = appendQueueItemRegistrations(
+      currentRegistry,
+      state.value,
+    );
+    const errors = validateProductionQueueRaw(state.value, {
+      ...currentPublicationEvidence,
+      itemRegistry: rewrittenRegistry,
+    });
+    assert.ok(
+      errors.some(error =>
+        error.includes('prerequisite_gates') ||
+        error.includes('release_checks')
+      ),
+      errors.join('\n'),
+    );
+  }
+});
+
+test('v3 후보는 등록 계약을 유지한 채 선행 게이트 검증과 소유자 영수증 발급을 완료한다', async () => {
+  const state = registeredTopicCandidateV3Queue();
+  state.item.status = 'blocked';
+  state.item.blocking_reason_ko =
+    '선행 품질 게이트 영수증을 결박하는 동안 진행을 보류합니다.';
+  const gate = state.item.prerequisite_gates[0];
+  gate.status = 'satisfied';
+  gate.evidence_ref =
+    `parkkyusang/rulelink-public-web#207@${'9'.repeat(40)}`;
+  refreshSummary(state.value);
+
+  const withoutReceipt = validateProductionQueueRaw(state.value, {
+    ...currentPublicationEvidence,
+    itemRegistry: state.itemRegistry,
+  });
+  assert.ok(
+    withoutReceipt.some(error => error.includes('소유자 영수증')),
+    withoutReceipt.join('\n'),
+  );
+
+  const verifiedEvidence = await verifyProductionQueueExternalEvidence(
+    state.value,
+    {
+      registry: state.itemRegistry,
+      fetchJson: async url => {
+        assert.match(url, /pulls\/207$/u);
+        return {
+          merged_at: '2026-07-27T00:00:00Z',
+          head: {sha: '9'.repeat(40)},
+          merge_commit_sha: '8'.repeat(40),
+        };
+      },
+    },
+  );
+  const receiptedRegistry = appendPrerequisiteGateReceipts(
+    state.itemRegistry,
+    state.value,
+    {
+      previousRegistry: state.itemRegistry,
+      verifiedEvidence,
+    },
+  );
+  assert.equal(
+    receiptedRegistry.prerequisite_gate_receipts.length,
+    state.itemRegistry.prerequisite_gate_receipts.length + 1,
+  );
+  assert.deepEqual(
+    validateProductionQueueRaw(state.value, {
+      ...currentPublicationEvidence,
+      itemRegistry: receiptedRegistry,
+    }),
+    [],
+  );
+});
+
+test('v3 게이트 계약은 누락·소유자·종류·증거패턴 위조를 각각 차단한다', () => {
+  const mutations = [
+    candidate => {
+      delete candidate.verification_method;
+    },
+    candidate => {
+      candidate.owner_role = 'content_production';
+    },
+    candidate => {
+      candidate.gate_kind = 'artifact';
+    },
+    candidate => {
+      candidate.evidence_pattern = '^$';
+    },
+    candidate => {
+      candidate.evidence_pattern = '[';
+    },
+  ];
+  for (const mutate of mutations) {
+    const state = registeredTopicCandidateV3Queue();
+    mutate(state.item.candidate_import.expected_prerequisite_gates[0]);
+    const rewrittenRegistry = appendQueueItemRegistrations(
+      currentRegistry,
+      state.value,
+    );
+    const errors = validateProductionQueueRaw(state.value, {
+      ...currentPublicationEvidence,
+      itemRegistry: rewrittenRegistry,
+    });
+    assert.notDeepEqual(errors, []);
+  }
+});
+
+test('v3 후보는 불변 등록 영수증을 다시 쓰지 않고 awaiting_pr에서 withdrawn으로 전이한다', () => {
+  const state = registeredTopicCandidateV3Queue();
+  const originalRegistration = clone(state.itemRegistry.registrations.at(-1));
+  state.item.status = 'withdrawn';
+  state.item.terminal_reason_ko = '후속 통합 후보로 대체하여 철회합니다.';
+  refreshSummary(state.value);
+  assert.deepEqual(
+    validateProductionQueueRaw(state.value, {
+      ...currentPublicationEvidence,
+      itemRegistry: state.itemRegistry,
+    }),
+    [],
+  );
+  assert.deepEqual(
+    state.itemRegistry.registrations.at(-1),
+    originalRegistration,
+  );
+
+  state.item.quality_targets = {
+    ...state.item.quality_targets,
+    verified_after: 1,
+  };
+  const rewritten = validateProductionQueueRaw(state.value, {
+    ...currentPublicationEvidence,
+    itemRegistry: state.itemRegistry,
+  });
+  assert.ok(
+    rewritten.some(error => error.includes('append-only registry')),
+    rewritten.join('\n'),
+  );
+});
+
 const authorityEvidenceFixtures = createAuthorityEvidenceFixtures();
 const evidenceArtifactFixtures = new Map([
   ['canonical-url-regression', Buffer.from('canonical url regression fixture', 'utf8')],

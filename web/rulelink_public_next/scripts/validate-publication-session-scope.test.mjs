@@ -144,6 +144,8 @@ test('생산계약 역할만 공식 대기열·계약·검증기를 함께 바�
     'web/rulelink_public_next/package.json',
     'web/rulelink_public_next/scripts/validate-publication-session-scope.mjs',
     'web/rulelink_public_next/scripts/validate-publication-session-scope.test.mjs',
+    'web/rulelink_public_next/scripts/topic-candidate-v3-contract.mjs',
+    'web/rulelink_public_next/scripts/topic-candidate-v3-contract.test.mjs',
     'web/rulelink_public_next/scripts/validate-publication-production-queue.mjs',
     'web/rulelink_public_next/scripts/validate-publication-production-queue.test.mjs',
     'web/rulelink_public_next/scripts/audit-publication-semantic-overlap.mjs',
@@ -162,6 +164,8 @@ test('생산계약 역할만 공식 대기열·계약·검증기를 함께 바�
   assert.equal(allowedForRole('governance', 'artifacts/publication/current/bundle.json'), false);
   assert.equal(allowedForRole('governance', 'web/rulelink_public_next/app/ko/page.tsx'), false);
   assert.equal(allowedForRole('governance', '.github/workflows/public-web-checks.yml'), true);
+  assert.equal(allowedForRole('governance', 'web/rulelink_public_next/scripts/topic-candidate-v3-contract.mjs'), true);
+  assert.equal(allowedForRole('topic', 'web/rulelink_public_next/scripts/topic-candidate-v3-contract.mjs'), false);
   assert.equal(allowedForRole('topic', 'web/rulelink_public_next/src/lib/publication-topic-quality-debt-baseline.json'), false);
 });
 

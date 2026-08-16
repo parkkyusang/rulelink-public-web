@@ -9,7 +9,47 @@ const topicPathPattern =
 const testPathPattern =
   /^web\/rulelink_public_next\/scripts\/[a-z0-9]+(?:-[a-z0-9]+)*\.test\.mjs$/u;
 const terminalStatuses = new Set(['withdrawn', 'superseded']);
-const activeStatuses = new Set(['awaiting_pr']);
+const allowedStatuses = new Set([
+  'awaiting_pr',
+  'blocked',
+  'needs_rework',
+  'pr_open',
+  'ready_for_integration',
+  'migration_required',
+  'integrated',
+  'merged_pending_publication',
+]);
+const claimHoldingStatuses = new Set([
+  'awaiting_pr',
+  'blocked',
+  'needs_rework',
+  'pr_open',
+  'ready_for_integration',
+  'migration_required',
+  'merged_pending_publication',
+]);
+const replacementTargetStatuses = new Set([
+  ...claimHoldingStatuses,
+  'integrated',
+]);
+const supportedGateVerificationMethods = new Set([
+  'publication_live_parity',
+  'github_merged_head',
+  'github_authority_evidence',
+  'git_ancestor',
+  'legal_answer_packet_activation_v1',
+  'work_status_receipt',
+  'source_locator_selection_v2',
+]);
+const supportedReleaseCheckIds = new Set([
+  'current-equals-snapshot-024',
+  'canonical-urls-unchanged',
+  'official-urls-pass',
+  'runtime-responsive-no-overflow',
+  'runtime-keyboard-reading-path',
+  'runtime-fragment-state-restore',
+  'search-hub-sitemap-200',
+]);
 
 export function canonicalJson(value) {
   if (Array.isArray(value)) return `[${value.map(canonicalJson).join(',')}]`;
@@ -32,6 +72,143 @@ function uniqueStrings(value) {
     value.every(item => typeof item === 'string' && item.length > 0) &&
     new Set(value).size === value.length
   );
+}
+
+function validateRegisteredProductionContract(item, candidate, label) {
+  const errors = [];
+  const exactFields = [
+    ['counts', 'expected_counts'],
+    ['quality_targets', 'expected_quality_targets'],
+    ['depends_on_work_ids', 'expected_depends_on_work_ids'],
+    ['integration_checks', 'expected_integration_checks'],
+  ];
+  for (const [itemField, candidateField] of exactFields) {
+    if (
+      canonicalJson(item[itemField] ?? []) !==
+      canonicalJson(candidate[candidateField] ?? [])
+    ) {
+      errors.push(
+        `${label}: ${itemField}가 등록된 v3 생산계약과 다릅니다.`,
+      );
+    }
+  }
+  if (
+    !candidate.expected_counts ||
+    typeof candidate.expected_counts !== 'object' ||
+    Array.isArray(candidate.expected_counts)
+  ) {
+    errors.push(`${label}: expected_counts가 필요합니다.`);
+  }
+  if (
+    !candidate.expected_quality_targets ||
+    typeof candidate.expected_quality_targets !== 'object' ||
+    Array.isArray(candidate.expected_quality_targets)
+  ) {
+    errors.push(`${label}: expected_quality_targets가 필요합니다.`);
+  }
+  if (!uniqueStrings(candidate.expected_depends_on_work_ids ?? [])) {
+    errors.push(`${label}: expected_depends_on_work_ids가 올바르지 않습니다.`);
+  }
+  if (
+    !uniqueStrings(candidate.expected_integration_checks ?? []) ||
+    candidate.expected_integration_checks.length === 0
+  ) {
+    errors.push(`${label}: expected_integration_checks가 올바르지 않습니다.`);
+  }
+
+  const expectedGates = candidate.expected_prerequisite_gates;
+  if (
+    !Array.isArray(expectedGates) ||
+    expectedGates.length === 0 ||
+    expectedGates.some(gate =>
+      !gate ||
+      typeof gate.gate_id !== 'string' ||
+      typeof gate.gate_kind !== 'string' ||
+      typeof gate.owner_role !== 'string' ||
+      typeof gate.verification_method !== 'string' ||
+      !supportedGateVerificationMethods.has(gate.verification_method) ||
+      typeof gate.evidence_pattern !== 'string' ||
+      gate.evidence_pattern_flags !== 'u'
+    ) ||
+    new Set((expectedGates ?? []).map(gate => gate.gate_id)).size !==
+      (expectedGates ?? []).length
+  ) {
+    errors.push(`${label}: expected_prerequisite_gates가 올바르지 않습니다.`);
+  } else {
+    for (const gate of expectedGates) {
+      let pattern;
+      try {
+        pattern = new RegExp(gate.evidence_pattern, gate.evidence_pattern_flags);
+      } catch {
+        errors.push(`${label}: ${gate.gate_id}의 evidence_pattern이 올바르지 않습니다.`);
+        continue;
+      }
+      if (
+        !gate.evidence_pattern.startsWith('^') ||
+        !gate.evidence_pattern.endsWith('$') ||
+        pattern.test('')
+      ) {
+        errors.push(
+          `${label}: ${gate.gate_id}의 evidence_pattern은 비어 있지 않은 전체 증거를 결박해야 합니다.`,
+        );
+      }
+      if (
+        gate.verification_contract !== undefined &&
+        typeof gate.verification_contract !== 'string'
+      ) {
+        errors.push(
+          `${label}: ${gate.gate_id}의 verification_contract가 올바르지 않습니다.`,
+        );
+      }
+    }
+    const actualGates = (item.prerequisite_gates ?? []).map(gate => ({
+      gate_id: gate.gate_id,
+      gate_kind: gate.gate_kind,
+      owner_role: gate.owner_role,
+    }));
+    const expectedGateIdentities = expectedGates.map(gate => ({
+      gate_id: gate.gate_id,
+      gate_kind: gate.gate_kind,
+      owner_role: gate.owner_role,
+    }));
+    if (
+      canonicalJson(actualGates) !== canonicalJson(expectedGateIdentities)
+    ) {
+      errors.push(`${label}: prerequisite_gates가 등록된 v3 생산계약과 다릅니다.`);
+    }
+    if (
+      item.status === 'awaiting_pr' &&
+      (item.prerequisite_gates ?? []).some(gate => gate.status !== 'pending')
+    ) {
+      errors.push(`${label}: awaiting_pr 선행 게이트는 pending이어야 합니다.`);
+    }
+  }
+
+  if (
+    !uniqueStrings(candidate.expected_release_check_ids ?? []) ||
+    candidate.expected_release_check_ids.length === 0 ||
+    candidate.expected_release_check_ids.some(
+      checkId => !supportedReleaseCheckIds.has(checkId),
+    )
+  ) {
+    errors.push(`${label}: expected_release_check_ids가 올바르지 않습니다.`);
+  } else {
+    const actualReleaseCheckIds = (item.release_checks ?? [])
+      .map(check => check.check_id);
+    if (
+      canonicalJson(actualReleaseCheckIds) !==
+      canonicalJson(candidate.expected_release_check_ids)
+    ) {
+      errors.push(`${label}: release_checks가 등록된 v3 생산계약과 다릅니다.`);
+    }
+    if (
+      item.status === 'awaiting_pr' &&
+      (item.release_checks ?? []).some(check => check.status !== 'pending')
+    ) {
+      errors.push(`${label}: awaiting_pr 운영검증은 pending이어야 합니다.`);
+    }
+  }
+  return errors;
 }
 
 function sorted(values) {
@@ -62,7 +239,6 @@ export function topicCandidateV3ContractReceipt(item) {
     topic_file: item.topic_file,
     test_file: item.test_file,
     change_mode: item.change_mode,
-    status: item.status,
     counts: item.counts,
     quality_targets: item.quality_targets,
     direct_merge: item.direct_merge,
@@ -153,7 +329,7 @@ function validateItemShape(item, label) {
   ) {
     errors.push(`${label}: approved_files가 등록된 topic/test 범위와 다릅니다.`);
   }
-  if (!activeStatuses.has(item.status) && !terminalStatuses.has(item.status)) {
+  if (!allowedStatuses.has(item.status) && !terminalStatuses.has(item.status)) {
     errors.push(`${label}: v3 후보 상태는 awaiting_pr 또는 종료 상태여야 합니다.`);
   }
   if (item.direct_merge !== false) {
@@ -165,6 +341,7 @@ function validateItemShape(item, label) {
   ) {
     errors.push(`${label}: publication migration 요구사항이 닫히지 않았습니다.`);
   }
+  errors.push(...validateRegisteredProductionContract(item, candidate, label));
   return errors;
 }
 
@@ -197,7 +374,9 @@ export function validateTopicCandidateV3QueueContract(
 
   const activeByTopic = new Map();
   const replacementOwners = new Map();
-  for (const item of v3Items.filter(item => activeStatuses.has(item.status))) {
+  for (const item of v3Items.filter(item =>
+    claimHoldingStatuses.has(item.status)
+  )) {
     const existing = activeByTopic.get(item.topic_file);
     if (existing) {
       errors.push(
@@ -234,7 +413,7 @@ export function validateTopicCandidateV3QueueContract(
     if (
       !terminalStatuses.has(item.status) ||
       !replacement ||
-      !activeStatuses.has(replacement.status) ||
+      !replacementTargetStatuses.has(replacement.status) ||
       !(replacement.supersedes_work_ids ?? []).includes(item.work_id)
     ) {
       errors.push(`${item.work_id}: superseded_by_work_id의 역참조가 닫히지 않았습니다.`);
