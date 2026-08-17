@@ -1,0 +1,1110 @@
+{
+  "schema": "rulelink_public_knowledge_topic_v1",
+  "topic_id": "hub.personal-rehabilitation",
+  "sources": [
+    {
+      "coordinate_id": "coord.personal-rehabilitation.0579",
+      "source_id": "law_009930_ko_0579",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제579조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%20%ED%9A%8C%EC%83%9D%20%EB%B0%8F%20%ED%8C%8C%EC%82%B0%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C579%EC%A1%B0",
+      "source_snapshot_id": "snapshot:39df2882bc3d4bb2adce27a63e80548a",
+      "last_verified_at": "2026-07-23T08:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-rehabilitation.0588",
+      "source_id": "law_009930_ko_0588",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제588조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%20%ED%9A%8C%EC%83%9D%20%EB%B0%8F%20%ED%8C%8C%EC%82%B0%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C588%EC%A1%B0",
+      "source_snapshot_id": "snapshot:d53ac75b35d1fa4943328c58850cefb2",
+      "last_verified_at": "2026-07-23T08:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-rehabilitation.0589",
+      "source_id": "law_009930_ko_0589",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제589조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%20%ED%9A%8C%EC%83%9D%20%EB%B0%8F%20%ED%8C%8C%EC%82%B0%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C589%EC%A1%B0",
+      "source_snapshot_id": "snapshot:8b1353f09645b69a237c1c08cbfa8d2a",
+      "last_verified_at": "2026-07-23T08:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-rehabilitation.0593",
+      "source_id": "law_009930_ko_0593",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제593조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%20%ED%9A%8C%EC%83%9D%20%EB%B0%8F%20%ED%8C%8C%EC%82%B0%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C593%EC%A1%B0",
+      "source_snapshot_id": "snapshot:c8d1a89f8314e1b6d7587f5161df4b18",
+      "last_verified_at": "2026-07-23T08:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-rehabilitation.0595",
+      "source_id": "law_009930_ko_0595",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제595조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%20%ED%9A%8C%EC%83%9D%20%EB%B0%8F%20%ED%8C%8C%EC%82%B0%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C595%EC%A1%B0",
+      "source_snapshot_id": "snapshot:9d3eec6ca6965bff1b830a1601fe8a94",
+      "last_verified_at": "2026-07-23T08:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-rehabilitation.0596",
+      "source_id": "law_009930_ko_0596",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제596조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%20%ED%9A%8C%EC%83%9D%20%EB%B0%8F%20%ED%8C%8C%EC%82%B0%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C596%EC%A1%B0",
+      "source_snapshot_id": "snapshot:20204fe441d07da77fe2100e3a91710b",
+      "last_verified_at": "2026-07-23T08:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-rehabilitation.0600",
+      "source_id": "law_009930_ko_0600",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제600조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%20%ED%9A%8C%EC%83%9D%20%EB%B0%8F%20%ED%8C%8C%EC%82%B0%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C600%EC%A1%B0",
+      "source_snapshot_id": "snapshot:a47fbdd402a60e2259e773397296de51",
+      "last_verified_at": "2026-07-23T08:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-rehabilitation.0611",
+      "source_id": "law_009930_ko_0611",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제611조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%20%ED%9A%8C%EC%83%9D%20%EB%B0%8F%20%ED%8C%8C%EC%82%B0%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C611%EC%A1%B0",
+      "source_snapshot_id": "snapshot:2fc877b9ffdb92bbf58438de65a9e730",
+      "last_verified_at": "2026-07-23T08:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-rehabilitation.0614",
+      "source_id": "law_009930_ko_0614",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제614조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%20%ED%9A%8C%EC%83%9D%20%EB%B0%8F%20%ED%8C%8C%EC%82%B0%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C614%EC%A1%B0",
+      "source_snapshot_id": "snapshot:ed0e47fa7299ae7d1f5bc23cc8ae352e",
+      "last_verified_at": "2026-07-23T08:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-rehabilitation.0619",
+      "source_id": "law_009930_ko_0619",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제619조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%20%ED%9A%8C%EC%83%9D%20%EB%B0%8F%20%ED%8C%8C%EC%82%B0%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C619%EC%A1%B0",
+      "source_snapshot_id": "snapshot:90a49162ebe8df5c360c11d5ed2cf4fe",
+      "last_verified_at": "2026-07-23T08:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-rehabilitation.0620",
+      "source_id": "law_009930_ko_0620",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제620조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%20%ED%9A%8C%EC%83%9D%20%EB%B0%8F%20%ED%8C%8C%EC%82%B0%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C620%EC%A1%B0",
+      "source_snapshot_id": "snapshot:42fdcefecf849f2783562b12e303d65d",
+      "last_verified_at": "2026-07-23T08:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-rehabilitation.0621",
+      "source_id": "law_009930_ko_0621",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제621조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%20%ED%9A%8C%EC%83%9D%20%EB%B0%8F%20%ED%8C%8C%EC%82%B0%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C621%EC%A1%B0",
+      "source_snapshot_id": "snapshot:234c2aeab5a0a895456a5f925ef50830",
+      "last_verified_at": "2026-07-23T08:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-rehabilitation.0624",
+      "source_id": "law_009930_ko_0624",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제624조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%20%ED%9A%8C%EC%83%9D%20%EB%B0%8F%20%ED%8C%8C%EC%82%B0%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C624%EC%A1%B0",
+      "source_snapshot_id": "snapshot:b634a8534417447175ee8758e2e395d3",
+      "last_verified_at": "2026-07-23T08:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.personal-rehabilitation.0625",
+      "source_id": "law_009930_ko_0625",
+      "law_name_ko": "채무자 회생 및 파산에 관한 법률",
+      "article_no": "제625조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%B1%84%EB%AC%B4%EC%9E%90%20%ED%9A%8C%EC%83%9D%20%EB%B0%8F%20%ED%8C%8C%EC%82%B0%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C625%EC%A1%B0",
+      "source_snapshot_id": "snapshot:1ba54db3a5c199c4db0c4f1877d5ee36",
+      "last_verified_at": "2026-07-23T08:00:00+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.personal-rehabilitation",
+      "slug": "personal-rehabilitation",
+      "title_ko": "개인회생 신청·변제·면책",
+      "description_ko": "신청자격과 채무한도, 채권자·재산목록, 압류 중지, 개시결정, 기각 위험, 변제기간과 인가, 계획변경, 절차폐지, 면책과 남는 채무를 단계별로 찾습니다.",
+      "content_ids": [
+        "content.personal-rehabilitation-eligibility",
+        "content.personal-rehabilitation-application-documents",
+        "content.personal-rehabilitation-stay-order",
+        "content.personal-rehabilitation-opening-effects",
+        "content.personal-rehabilitation-dismissal-risks",
+        "content.personal-rehabilitation-repayment-period",
+        "content.personal-rehabilitation-approval-objection",
+        "content.personal-rehabilitation-plan-change",
+        "content.personal-rehabilitation-procedure-termination",
+        "content.personal-rehabilitation-discharge-scope"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.personal-rehabilitation.eligibility",
+      "title_ko": "소득이 있으면 누구나 개인회생을 신청할 수 있나",
+      "proposition_ko": "개인회생의 개인채무자는 파산원인이 있거나 생길 염려가 있는 급여·영업소득자로서 신청 당시 담보채무 15억원, 그 밖의 채무 10억원 이하의 채무를 부담하는 사람입니다.",
+      "norm": {
+        "actor_ko": "개인회생을 신청하려는 급여소득자·영업소득자",
+        "conditions_ko": "채무초과·지급불능 위험, 소득의 계속성, 담보·무담보 채무액을 확인한 경우",
+        "legal_effect_ko": "법정 개인채무자에 해당하면 본인이 법원에 개인회생절차 개시를 신청할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0579",
+        "coord.personal-rehabilitation.0588"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-rehabilitation.application-documents",
+      "title_ko": "개인회생 신청서에는 어떤 채권자와 재산을 적어야 하나",
+      "proposition_ko": "개인회생 신청서에는 채무자의 재산·채무 등을 기재하고 채권자목록, 재산목록, 수입·지출목록, 소득증명, 진술서와 과거 절차 자료 등을 첨부해야 합니다.",
+      "norm": {
+        "actor_ko": "개인회생을 신청하는 개인채무자",
+        "conditions_ko": "법원에 개인회생절차 개시신청서를 제출하는 경우",
+        "legal_effect_ko": "채권자·채무·재산·소득을 빠짐없이 구조화하고 법원이 정한 보정·제출기한을 지켜야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0589"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-rehabilitation.stay-order",
+      "title_ko": "개인회생을 접수하면 독촉과 압류가 자동으로 멈추나",
+      "proposition_ko": "법원은 신청 뒤 개시결정 전까지 필요하면 강제집행·가압류·경매·변제요구 등을 중지·금지할 수 있고, 신청이 기각되면 중지된 절차는 다시 진행됩니다.",
+      "norm": {
+        "actor_ko": "개인회생 신청채무자, 채권자와 집행기관",
+        "conditions_ko": "개시결정 전에 추심·압류·경매·체납처분 등이 진행되거나 임박한 경우",
+        "legal_effect_ko": "별도의 중지·금지명령 신청·발령 여부와 대상 사건을 확인해야 하며 신청 접수만으로 중지를 단정할 수 없습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0593"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-rehabilitation.opening-effects",
+      "title_ko": "개인회생 개시결정은 언제 나고 무엇이 달라지나",
+      "proposition_ko": "법원은 원칙적으로 신청일부터 1개월 안에 개시 여부를 결정하고 개시결정은 결정시부터 효력이 발생하며 채권목록에 기재된 채권의 집행·변제요구 등이 법정 범위에서 중지·금지됩니다.",
+      "norm": {
+        "actor_ko": "개인회생 신청채무자와 목록상 채권자",
+        "conditions_ko": "법원이 개인회생절차 개시결정을 한 경우",
+        "legal_effect_ko": "개시시각, 채권 이의기간·채권자집회와 목록 기재 여부를 기준으로 중지 범위와 후속 일정을 관리합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0596",
+        "coord.personal-rehabilitation.0600"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-rehabilitation.dismissal-risks",
+      "title_ko": "개인회생 신청이 기각되는 대표적인 이유는 무엇인가",
+      "proposition_ko": "법원은 자격 미달, 필수서류 미제출·허위작성·제출기한 위반, 비용 미납, 변제계획안 기한 위반, 최근 5년 이내 면책, 채권자 일반 이익 부적합, 불성실·지연 등의 경우 신청을 기각할 수 있습니다.",
+      "norm": {
+        "actor_ko": "개인회생 신청채무자와 법원",
+        "conditions_ko": "신청 자격·서류·비용·기한·성실성 중 법정 기각사유가 문제되는 경우",
+        "legal_effect_ko": "보정명령과 제출기한, 비용 납부, 과거 면책일, 자료의 진실성을 사건별 체크리스트로 관리해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0595"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-rehabilitation.repayment-period",
+      "title_ko": "개인회생 변제기간은 무조건 3년인가",
+      "proposition_ko": "변제계획은 인가일부터 1개월 이내 정기 변제를 시작하고 변제개시일부터 원칙적으로 3년, 특별한 사정이 있으면 5년 이내의 기간을 정합니다.",
+      "norm": {
+        "actor_ko": "변제계획안을 제출하는 채무자와 법원",
+        "conditions_ko": "개인회생채권 변제에 제공할 재산·소득과 변제기간을 정하는 경우",
+        "legal_effect_ko": "가용소득, 우선권 채권, 청산가치와 수행 가능성을 대조해 월 변제액과 기간을 설계해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0611"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-rehabilitation.approval-objection",
+      "title_ko": "채권자가 반대하면 변제계획은 인가될 수 없나",
+      "proposition_ko": "채권자나 회생위원이 이의하면 법원은 기본 인가요건에 더해 청산가치 보장, 가용소득 전부 제공과 법정 최저변제 기준 등을 충족하는 경우 변제계획을 인가할 수 있습니다.",
+      "norm": {
+        "actor_ko": "채무자, 이의하는 개인회생채권자·회생위원과 법원",
+        "conditions_ko": "채권자집회 또는 심사에서 변제계획에 이의가 제기된 경우",
+        "legal_effect_ko": "반대 유무만 보지 않고 법률 적합성·공정성·수행 가능성·청산가치·가용소득 요건을 자료로 입증해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0614"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-rehabilitation.plan-change",
+      "title_ko": "인가 뒤 소득이 줄면 변제계획을 바꿀 수 있나",
+      "proposition_ko": "변제 완료 전에는 채무자·회생위원 또는 개인회생채권자가 인가된 변제계획 변경안을 제출할 수 있고 변경안에도 변제계획 내용·집회·인가 등의 규정이 준용됩니다.",
+      "norm": {
+        "actor_ko": "변제 중인 채무자, 회생위원·채권자와 법원",
+        "conditions_ko": "인가 뒤 소득·생계비·재산 등 사정이 달라져 기존 계획 변경이 필요한 경우",
+        "legal_effect_ko": "변제 누락을 방치하지 말고 변경 사유·새 가용소득·수행 가능한 변경안을 법원에 제출해 심사를 받아야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0619"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-rehabilitation.procedure-termination",
+      "title_ko": "개인회생이 폐지되면 이미 낸 돈과 압류중지는 어떻게 되나",
+      "proposition_ko": "인가 전에는 인가불가·서류 미비·불출석·허위설명 등이, 인가 후에는 면책불허 확정·변제계획 수행불능·재산·소득 은닉 등 부정수행이 폐지사유가 됩니다.",
+      "norm": {
+        "actor_ko": "개인회생 채무자, 이해관계인과 법원",
+        "conditions_ko": "변제계획 인가 전후에 법정 폐지사유가 발생한 경우",
+        "legal_effect_ko": "인가 전후를 구분해 보완·변경·면책 가능성을 검토하고 폐지 확정 뒤 추심·집행 재개와 기존 변제의 정산을 확인합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0620",
+        "coord.personal-rehabilitation.0621"
+      ]
+    },
+    {
+      "rule_id": "rule.personal-rehabilitation.discharge-scope",
+      "title_ko": "개인회생 면책을 받으면 세금·양육비·보증채무도 모두 없어지나",
+      "proposition_ko": "변제를 완료하면 법원은 면책해야 하고 책임 없는 사유로 미완료한 경우에도 법정 요건 아래 면책할 수 있지만 면책제외채권과 보증인·공동채무자·담보에 대한 권리는 영향을 받지 않습니다.",
+      "norm": {
+        "actor_ko": "개인회생 채무자, 채권자, 보증인·공동채무자",
+        "conditions_ko": "면책결정의 성립·확정과 면책되는 채무 범위를 판단하는 경우",
+        "legal_effect_ko": "면책 확정일, 목록 기재 여부, 세금·벌금·불법행위·임금·양육비와 보증·담보를 채권별로 구분해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0624",
+        "coord.personal-rehabilitation.0625"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.personal-rehabilitation.eligibility",
+      "question_ko": "정기적 소득 가능성과 담보·무담보 채무액이 법정 범위 안에 있나요?",
+      "decision_fact_ko": "급여·연금·사업소득, 소득 지속 가능성, 담보채무 총액, 무담보채무 총액, 연체·지급불능 상태, 보유재산·담보",
+      "when_true_ko": "소득·채무·재산 자료를 갖추어 개인회생 신청서 작성 단계로 이동합니다.",
+      "when_false_ko": "개인파산이나 사적 채무조정 등 다른 절차의 요건을 비교합니다.",
+      "rule_ids": [
+        "rule.personal-rehabilitation.eligibility"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0579",
+        "coord.personal-rehabilitation.0588"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-rehabilitation.application-documents",
+      "question_ko": "가족·지인·보증·세금까지 포함해 모든 채권자와 재산·소득 자료를 대조했나요?",
+      "decision_fact_ko": "금융채무, 개인·지인채무, 보증·구상채무, 세금·공과금, 부동산·차량·예금, 소득·지출 증빙",
+      "when_true_ko": "채권자목록과 재산목록의 금액·주소·원인을 증빙과 대조합니다.",
+      "when_false_ko": "신용정보·계좌·등기·세금·소송자료를 모아 누락 목록을 보완합니다.",
+      "rule_ids": [
+        "rule.personal-rehabilitation.application-documents"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0589"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-rehabilitation.stay-order",
+      "question_ko": "진행 중인 집행 사건을 특정해 중지·금지명령이 실제 발령됐나요?",
+      "decision_fact_ko": "집행 사건번호, 압류·경매 대상, 채권자, 개인회생 접수일, 중지명령 신청일, 발령·송달 여부",
+      "when_true_ko": "집행기관과 채권자에게 명령이 송달됐는지 확인합니다.",
+      "when_false_ko": "진행 사건과 긴급성을 정리해 중지·금지명령 필요성을 검토합니다.",
+      "rule_ids": [
+        "rule.personal-rehabilitation.stay-order"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0593"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-rehabilitation.opening-effects",
+      "question_ko": "개시결정 시각과 채권자목록 기재 여부, 이의기간·집회기일을 확인했나요?",
+      "decision_fact_ko": "신청일, 개시결정 일시, 채권자목록, 이의기간, 채권자집회일, 진행 중 집행",
+      "when_true_ko": "목록상 채권별 집행 상태와 이의·집회 일정을 갱신합니다.",
+      "when_false_ko": "개시결정문과 공고에서 정확한 시각·기간·기일을 확인합니다.",
+      "rule_ids": [
+        "rule.personal-rehabilitation.opening-effects"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0596",
+        "coord.personal-rehabilitation.0600"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-rehabilitation.dismissal-risks",
+      "question_ko": "법원의 보정명령·제출기한·비용납부와 최근 면책 여부를 모두 확인했나요?",
+      "decision_fact_ko": "신청 자격, 보정명령, 서류 제출기한, 예납비용, 변제계획 제출일, 최근 5년 면책",
+      "when_true_ko": "각 항목의 이행증빙을 사건기록과 대조합니다.",
+      "when_false_ko": "누락·기한·허위 위험을 먼저 보완한 뒤 제출합니다.",
+      "rule_ids": [
+        "rule.personal-rehabilitation.dismissal-risks"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0595"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-rehabilitation.repayment-period",
+      "question_ko": "가용소득과 청산가치, 우선권 채권을 반영해 3년 안에 수행 가능한가요?",
+      "decision_fact_ko": "월 평균소득, 법원 인정 생계비, 월 가용소득, 재산 청산가치, 우선권 채권, 예상 변제기간",
+      "when_true_ko": "정기 변제일과 월 변제액을 계획안·생활예산에 반영합니다.",
+      "when_false_ko": "특별한 사정과 5년 이내 조정 필요성을 자료로 검토합니다.",
+      "rule_ids": [
+        "rule.personal-rehabilitation.repayment-period"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0611"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-rehabilitation.approval-objection",
+      "question_ko": "이의 내용과 청산가치·가용소득·최저변제 요건을 각각 검토했나요?",
+      "decision_fact_ko": "채권자 이의 내용, 변제계획 적법성, 수행 가능성, 청산가치, 가용소득 전부 제공, 최저변제액",
+      "when_true_ko": "이의별 보완자료와 인가요건 충족표를 제출합니다.",
+      "when_false_ko": "채권자 반대만으로 포기하지 말고 법정 인가요건을 수치로 점검합니다.",
+      "rule_ids": [
+        "rule.personal-rehabilitation.approval-objection"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0614"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-rehabilitation.plan-change",
+      "question_ko": "소득감소 원인과 지속기간, 새 월 가용소득을 객관 자료로 설명할 수 있나요?",
+      "decision_fact_ko": "변경 전 소득, 변경 후 소득, 감소 원인·기간, 추가 생계비, 변제 미납 내역, 새 변제안",
+      "when_true_ko": "변제 완료 전 변경안을 제출하고 심사·집회·인가 일정을 확인합니다.",
+      "when_false_ko": "급여·매출·진단·실업자료를 확보해 변화의 지속성을 먼저 소명합니다.",
+      "rule_ids": [
+        "rule.personal-rehabilitation.plan-change"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0619"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-rehabilitation.procedure-termination",
+      "question_ko": "폐지 위험이 인가 전 서류·출석 문제인가, 인가 후 수행불능·부정수행 문제인가?",
+      "decision_fact_ko": "인가 여부·일자, 폐지 사유, 보정·출석 이력, 변제 납입내역, 소득·재산 변화, 폐지결정 확정일",
+      "when_true_ko": "사유에 따라 보완·변경·면책 또는 불복 가능성을 즉시 검토합니다.",
+      "when_false_ko": "현재 절차 단계와 미이행 사항을 법원 기록으로 다시 확인합니다.",
+      "rule_ids": [
+        "rule.personal-rehabilitation.procedure-termination"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0620",
+        "coord.personal-rehabilitation.0621"
+      ]
+    },
+    {
+      "scenario_id": "scenario.personal-rehabilitation.discharge-scope",
+      "question_ko": "각 채무가 채권자목록에 있고 법정 면책제외채권이나 보증·담보에 해당하지 않나요?",
+      "decision_fact_ko": "면책결정·확정일, 채권자목록 기재, 세금·벌금, 불법행위 손해배상, 임금·양육비, 보증인·공동채무·담보",
+      "when_true_ko": "면책되는 본인 책임과 남는 제3자·담보 권리를 구분해 정리합니다.",
+      "when_false_ko": "누락·면책제외·보증·담보 채무는 별도 변제·분쟁 계획을 세웁니다.",
+      "rule_ids": [
+        "rule.personal-rehabilitation.discharge-scope"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0624",
+        "coord.personal-rehabilitation.0625"
+      ]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.personal-rehabilitation-eligibility",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T08:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "personal-rehabilitation-eligibility",
+      "title_ko": "소득이 있으면 누구나 개인회생을 신청할 수 있나",
+      "one_line_answer_ko": "아닙니다. 파산원인이 있거나 생길 염려가 있고, 정기적·확실하거나 계속적·반복적인 수입 가능성이 있으며, 담보채무 15억원·그 밖의 채무 10억원 이하인 개인채무자여야 합니다.",
+      "audience_situation_ko": "빚을 감당하기 어렵지만 직장·연금·사업소득이 있어 개인회생 자격을 확인하려는 사람",
+      "key_points_ko": [
+        "개인회생의 개인채무자는 파산원인이 있거나 생길 염려가 있는 급여·영업소득자로서 신청 당시 담보채무 15억원, 그 밖의 채무 10억원 이하의 채무를 부담하는 사람입니다.",
+        "법정 개인채무자에 해당하면 본인이 법원에 개인회생절차 개시를 신청할 수 있습니다.",
+        "개인회생은 신청·개시·인가·수행·면책 단계마다 효력과 실패 위험이 달라 단계별 기록이 필요합니다."
+      ],
+      "action_steps_ko": [
+        "모든 채무를 담보·무담보로 나누어 합산한다.",
+        "급여·연금·사업소득의 지속 가능성을 확인한다.",
+        "재산과 월 생계비를 함께 정리한다.",
+        "개인회생 자격이 아니면 파산·채무조정 경로를 비교한다."
+      ],
+      "facts_to_check_ko": [
+        "급여·연금·사업소득",
+        "소득 지속 가능성",
+        "담보채무 총액",
+        "무담보채무 총액",
+        "연체·지급불능 상태",
+        "보유재산·담보"
+      ],
+      "caution_ko": "채무 총액이나 신청 접수만으로 결과를 단정하지 말고 채권자목록·소득·재산·법원 결정과 면책제외 여부를 단계별로 확인해야 합니다.",
+      "search_intents_ko": [
+        "소득이 있으면 누구나 개인회생을 신청할 수 있나",
+        "개인회생 절차",
+        "개인회생 면책 효과"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "개인회생의 개인채무자는 파산원인이 있거나 생길 염려가 있는 급여·영업소득자로서 신청 당시 담보채무 15억원, 그 밖의 채무 10억원 이하의 채무를 부담하는 사람입니다.",
+            "법정 개인채무자에 해당하면 본인이 법원에 개인회생절차 개시를 신청할 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "급여·연금·사업소득, 소득 지속 가능성, 담보채무 총액, 무담보채무 총액, 연체·지급불능 상태, 보유재산·담보",
+            "소득·채무·재산 자료를 갖추어 개인회생 신청서 작성 단계로 이동합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-rehabilitation.eligibility"
+      ],
+      "scenario_ids": [
+        "scenario.personal-rehabilitation.eligibility"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0579",
+        "coord.personal-rehabilitation.0588"
+      ],
+      "hub_ids": [
+        "hub.personal-rehabilitation"
+      ],
+      "related_content_ids": [
+        "content.when-default-interest-starts",
+        "content.debt-limitation-is-not-always-ten-years"
+      ]
+    },
+    {
+      "content_id": "content.personal-rehabilitation-application-documents",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T08:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "personal-rehabilitation-application-documents",
+      "title_ko": "개인회생 신청서에는 어떤 채권자와 재산을 적어야 하나",
+      "one_line_answer_ko": "채무자 정보와 신청 원인뿐 아니라 개인회생채권자목록, 재산목록, 수입·지출목록, 소득증명, 진술서 등을 첨부해야 합니다.",
+      "audience_situation_ko": "개인회생을 준비하면서 누락 없이 제출서류를 정리하려는 채무자",
+      "key_points_ko": [
+        "개인회생 신청서에는 채무자의 재산·채무 등을 기재하고 채권자목록, 재산목록, 수입·지출목록, 소득증명, 진술서와 과거 절차 자료 등을 첨부해야 합니다.",
+        "채권자·채무·재산·소득을 빠짐없이 구조화하고 법원이 정한 보정·제출기한을 지켜야 합니다.",
+        "개인회생은 신청·개시·인가·수행·면책 단계마다 효력과 실패 위험이 달라 단계별 기록이 필요합니다."
+      ],
+      "action_steps_ko": [
+        "채권자별 원인·원금·이자·주소를 표로 만든다.",
+        "부동산·차량·예금·보험·보증금을 재산목록에 대조한다.",
+        "최근 소득과 월 지출 증빙을 모은다.",
+        "과거 회생·파산 신청과 면책자료를 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "금융채무",
+        "개인·지인채무",
+        "보증·구상채무",
+        "세금·공과금",
+        "부동산·차량·예금",
+        "소득·지출 증빙"
+      ],
+      "caution_ko": "채무 총액이나 신청 접수만으로 결과를 단정하지 말고 채권자목록·소득·재산·법원 결정과 면책제외 여부를 단계별로 확인해야 합니다.",
+      "search_intents_ko": [
+        "개인회생 신청서에는 어떤 채권자와 재산을 적어야 하나",
+        "개인회생 절차",
+        "개인회생 서류 기한"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "개인회생 신청서에는 채무자의 재산·채무 등을 기재하고 채권자목록, 재산목록, 수입·지출목록, 소득증명, 진술서와 과거 절차 자료 등을 첨부해야 합니다.",
+            "채권자·채무·재산·소득을 빠짐없이 구조화하고 법원이 정한 보정·제출기한을 지켜야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "금융채무, 개인·지인채무, 보증·구상채무, 세금·공과금, 부동산·차량·예금, 소득·지출 증빙",
+            "채권자목록과 재산목록의 금액·주소·원인을 증빙과 대조합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-rehabilitation.application-documents"
+      ],
+      "scenario_ids": [
+        "scenario.personal-rehabilitation.application-documents"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0589"
+      ],
+      "hub_ids": [
+        "hub.personal-rehabilitation"
+      ],
+      "related_content_ids": [
+        "content.loan-and-guarantee-evidence-checklist",
+        "content.scope-of-guarantee-debt"
+      ]
+    },
+    {
+      "content_id": "content.personal-rehabilitation-stay-order",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T08:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "personal-rehabilitation-stay-order",
+      "title_ko": "개인회생을 접수하면 독촉과 압류가 자동으로 멈추나",
+      "one_line_answer_ko": "접수만으로 모두 자동 중지되는 것은 아닙니다. 법원이 필요하다고 인정해 중지·금지명령을 하거나 개시결정이 내려져야 법정 범위의 집행·변제요구 등이 중지됩니다.",
+      "audience_situation_ko": "급여압류·통장압류·경매·추심이 진행 중이라 개인회생 접수 효과를 확인하려는 채무자",
+      "key_points_ko": [
+        "법원은 신청 뒤 개시결정 전까지 필요하면 강제집행·가압류·경매·변제요구 등을 중지·금지할 수 있고, 신청이 기각되면 중지된 절차는 다시 진행됩니다.",
+        "별도의 중지·금지명령 신청·발령 여부와 대상 사건을 확인해야 하며 신청 접수만으로 중지를 단정할 수 없습니다.",
+        "개인회생은 신청·개시·인가·수행·면책 단계마다 효력과 실패 위험이 달라 단계별 기록이 필요합니다."
+      ],
+      "action_steps_ko": [
+        "모든 압류·경매·추심 사건번호를 모은다.",
+        "개인회생 신청과 별도로 중지·금지명령 필요성을 표시한다.",
+        "발령문과 송달내역을 확인한다.",
+        "기각·취소 시 집행 재개 위험을 일정에 반영한다."
+      ],
+      "facts_to_check_ko": [
+        "집행 사건번호",
+        "압류·경매 대상",
+        "채권자",
+        "개인회생 접수일",
+        "중지명령 신청일",
+        "발령·송달 여부"
+      ],
+      "caution_ko": "채무 총액이나 신청 접수만으로 결과를 단정하지 말고 채권자목록·소득·재산·법원 결정과 면책제외 여부를 단계별로 확인해야 합니다.",
+      "search_intents_ko": [
+        "개인회생을 접수하면 독촉과 압류가 자동으로 멈추나",
+        "개인회생 절차",
+        "개인회생 면책 효과"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "법원은 신청 뒤 개시결정 전까지 필요하면 강제집행·가압류·경매·변제요구 등을 중지·금지할 수 있고, 신청이 기각되면 중지된 절차는 다시 진행됩니다.",
+            "별도의 중지·금지명령 신청·발령 여부와 대상 사건을 확인해야 하며 신청 접수만으로 중지를 단정할 수 없습니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "집행 사건번호, 압류·경매 대상, 채권자, 개인회생 접수일, 중지명령 신청일, 발령·송달 여부",
+            "집행기관과 채권자에게 명령이 송달됐는지 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-rehabilitation.stay-order"
+      ],
+      "scenario_ids": [
+        "scenario.personal-rehabilitation.stay-order"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0593"
+      ],
+      "hub_ids": [
+        "hub.personal-rehabilitation"
+      ],
+      "related_content_ids": [
+        "content.bank-account-seizure-and-collection-order",
+        "content.wage-and-protected-claim-seizure"
+      ]
+    },
+    {
+      "content_id": "content.personal-rehabilitation-opening-effects",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T08:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "personal-rehabilitation-opening-effects",
+      "title_ko": "개인회생 개시결정은 언제 나고 무엇이 달라지나",
+      "one_line_answer_ko": "법은 원칙적으로 신청일부터 1개월 안에 개시 여부를 결정하도록 하고, 결정은 그 시점부터 효력이 생깁니다. 목록에 기재된 채권의 집행·변제요구 등이 법정 범위에서 중지·금지됩니다.",
+      "audience_situation_ko": "개인회생 접수 뒤 개시결정 시기와 강제집행 영향이 궁금한 채무자·채권자",
+      "key_points_ko": [
+        "법원은 원칙적으로 신청일부터 1개월 안에 개시 여부를 결정하고 개시결정은 결정시부터 효력이 발생하며 채권목록에 기재된 채권의 집행·변제요구 등이 법정 범위에서 중지·금지됩니다.",
+        "개시시각, 채권 이의기간·채권자집회와 목록 기재 여부를 기준으로 중지 범위와 후속 일정을 관리합니다.",
+        "개인회생은 신청·개시·인가·수행·면책 단계마다 효력과 실패 위험이 달라 단계별 기록이 필요합니다."
+      ],
+      "action_steps_ko": [
+        "개시결정문과 결정시각을 확인한다.",
+        "채권자목록에 각 집행채권이 들어 있는지 대조한다.",
+        "이의기간과 채권자집회일을 달력에 기록한다.",
+        "집행기관별 중지 여부를 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "신청일",
+        "개시결정 일시",
+        "채권자목록",
+        "이의기간",
+        "채권자집회일",
+        "진행 중 집행"
+      ],
+      "caution_ko": "채무 총액이나 신청 접수만으로 결과를 단정하지 말고 채권자목록·소득·재산·법원 결정과 면책제외 여부를 단계별로 확인해야 합니다.",
+      "search_intents_ko": [
+        "개인회생 개시결정은 언제 나고 무엇이 달라지나",
+        "개인회생 절차",
+        "개인회생 면책 효과"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "법원은 원칙적으로 신청일부터 1개월 안에 개시 여부를 결정하고 개시결정은 결정시부터 효력이 발생하며 채권목록에 기재된 채권의 집행·변제요구 등이 법정 범위에서 중지·금지됩니다.",
+            "개시시각, 채권 이의기간·채권자집회와 목록 기재 여부를 기준으로 중지 범위와 후속 일정을 관리합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "신청일, 개시결정 일시, 채권자목록, 이의기간, 채권자집회일, 진행 중 집행",
+            "목록상 채권별 집행 상태와 이의·집회 일정을 갱신합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-rehabilitation.opening-effects"
+      ],
+      "scenario_ids": [
+        "scenario.personal-rehabilitation.opening-effects"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0596",
+        "coord.personal-rehabilitation.0600"
+      ],
+      "hub_ids": [
+        "hub.personal-rehabilitation"
+      ],
+      "related_content_ids": [
+        "content.documents-that-allow-compulsory-enforcement",
+        "content.bank-account-seizure-and-collection-order"
+      ]
+    },
+    {
+      "content_id": "content.personal-rehabilitation-dismissal-risks",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T08:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "personal-rehabilitation-dismissal-risks",
+      "title_ko": "개인회생 신청이 기각되는 대표적인 이유는 무엇인가",
+      "one_line_answer_ko": "자격 부족뿐 아니라 필수서류 미제출·허위작성·기한 위반, 비용 미납, 변제계획안 지연, 최근 5년 이내 면책, 불성실 신청 등이 기각사유가 될 수 있습니다.",
+      "audience_situation_ko": "개인회생 신청이나 보정 과정에서 기각 위험을 미리 점검하려는 채무자",
+      "key_points_ko": [
+        "법원은 자격 미달, 필수서류 미제출·허위작성·제출기한 위반, 비용 미납, 변제계획안 기한 위반, 최근 5년 이내 면책, 채권자 일반 이익 부적합, 불성실·지연 등의 경우 신청을 기각할 수 있습니다.",
+        "보정명령과 제출기한, 비용 납부, 과거 면책일, 자료의 진실성을 사건별 체크리스트로 관리해야 합니다.",
+        "개인회생은 신청·개시·인가·수행·면책 단계마다 효력과 실패 위험이 달라 단계별 기록이 필요합니다."
+      ],
+      "action_steps_ko": [
+        "기각사유별 점검표를 만든다.",
+        "보정명령과 마감일을 하루 단위로 관리한다.",
+        "비용 납부 영수증을 보존한다.",
+        "과거 면책 확정일과 신청 이력을 확인한다."
+      ],
+      "facts_to_check_ko": [
+        "신청 자격",
+        "보정명령",
+        "서류 제출기한",
+        "예납비용",
+        "변제계획 제출일",
+        "최근 5년 면책"
+      ],
+      "caution_ko": "채무 총액이나 신청 접수만으로 결과를 단정하지 말고 채권자목록·소득·재산·법원 결정과 면책제외 여부를 단계별로 확인해야 합니다.",
+      "search_intents_ko": [
+        "개인회생 신청이 기각되는 대표적인 이유는 무엇인가",
+        "개인회생 절차",
+        "개인회생 서류 기한"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "법원은 자격 미달, 필수서류 미제출·허위작성·제출기한 위반, 비용 미납, 변제계획안 기한 위반, 최근 5년 이내 면책, 채권자 일반 이익 부적합, 불성실·지연 등의 경우 신청을 기각할 수 있습니다.",
+            "보정명령과 제출기한, 비용 납부, 과거 면책일, 자료의 진실성을 사건별 체크리스트로 관리해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "신청 자격, 보정명령, 서류 제출기한, 예납비용, 변제계획 제출일, 최근 5년 면책",
+            "각 항목의 이행증빙을 사건기록과 대조합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-rehabilitation.dismissal-risks"
+      ],
+      "scenario_ids": [
+        "scenario.personal-rehabilitation.dismissal-risks"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0595"
+      ],
+      "hub_ids": [
+        "hub.personal-rehabilitation"
+      ],
+      "related_content_ids": [
+        "content.personal-rehabilitation-application-documents",
+        "content.loan-and-guarantee-evidence-checklist"
+      ]
+    },
+    {
+      "content_id": "content.personal-rehabilitation-repayment-period",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T08:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "personal-rehabilitation-repayment-period",
+      "title_ko": "개인회생 변제기간은 무조건 3년인가",
+      "one_line_answer_ko": "원칙적으로 변제개시일부터 3년을 넘을 수 없지만, 인가요건을 충족하는 데 필요한 특별한 사정이 있으면 5년 이내로 정할 수 있습니다.",
+      "audience_situation_ko": "월 변제액과 변제기간을 계산해 변제계획안을 준비하는 채무자",
+      "key_points_ko": [
+        "변제계획은 인가일부터 1개월 이내 정기 변제를 시작하고 변제개시일부터 원칙적으로 3년, 특별한 사정이 있으면 5년 이내의 기간을 정합니다.",
+        "가용소득, 우선권 채권, 청산가치와 수행 가능성을 대조해 월 변제액과 기간을 설계해야 합니다.",
+        "개인회생은 신청·개시·인가·수행·면책 단계마다 효력과 실패 위험이 달라 단계별 기록이 필요합니다."
+      ],
+      "action_steps_ko": [
+        "소득에서 세금·보험료·생계비를 공제해 가용소득을 계산한다.",
+        "재산 청산가치와 총변제액을 대조한다.",
+        "3년 기준 월 변제액의 지속 가능성을 검토한다.",
+        "특별사정이 있으면 기간 연장의 필요자료를 준비한다."
+      ],
+      "facts_to_check_ko": [
+        "월 평균소득",
+        "법원 인정 생계비",
+        "월 가용소득",
+        "재산 청산가치",
+        "우선권 채권",
+        "예상 변제기간"
+      ],
+      "caution_ko": "채무 총액이나 신청 접수만으로 결과를 단정하지 말고 채권자목록·소득·재산·법원 결정과 면책제외 여부를 단계별로 확인해야 합니다.",
+      "search_intents_ko": [
+        "개인회생 변제기간은 무조건 3년인가",
+        "개인회생 절차",
+        "개인회생 면책 효과"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "변제계획은 인가일부터 1개월 이내 정기 변제를 시작하고 변제개시일부터 원칙적으로 3년, 특별한 사정이 있으면 5년 이내의 기간을 정합니다.",
+            "가용소득, 우선권 채권, 청산가치와 수행 가능성을 대조해 월 변제액과 기간을 설계해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "월 평균소득, 법원 인정 생계비, 월 가용소득, 재산 청산가치, 우선권 채권, 예상 변제기간",
+            "정기 변제일과 월 변제액을 계획안·생활예산에 반영합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-rehabilitation.repayment-period"
+      ],
+      "scenario_ids": [
+        "scenario.personal-rehabilitation.repayment-period"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0611"
+      ],
+      "hub_ids": [
+        "hub.personal-rehabilitation"
+      ],
+      "related_content_ids": [
+        "content.partial-repayment-allocation",
+        "content.when-default-interest-starts"
+      ]
+    },
+    {
+      "content_id": "content.personal-rehabilitation-approval-objection",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T08:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "personal-rehabilitation-approval-objection",
+      "title_ko": "채권자가 반대하면 변제계획은 인가될 수 없나",
+      "one_line_answer_ko": "채권자의 이의가 곧 거부권은 아닙니다. 이의가 있어도 법률 적합성·공정성·수행 가능성, 청산가치와 가용소득 등 추가 요건을 충족하면 법원이 인가할 수 있습니다.",
+      "audience_situation_ko": "채권자 이의 때문에 개인회생 인가가 불가능할까 걱정하는 채무자",
+      "key_points_ko": [
+        "채권자나 회생위원이 이의하면 법원은 기본 인가요건에 더해 청산가치 보장, 가용소득 전부 제공과 법정 최저변제 기준 등을 충족하는 경우 변제계획을 인가할 수 있습니다.",
+        "반대 유무만 보지 않고 법률 적합성·공정성·수행 가능성·청산가치·가용소득 요건을 자료로 입증해야 합니다.",
+        "개인회생은 신청·개시·인가·수행·면책 단계마다 효력과 실패 위험이 달라 단계별 기록이 필요합니다."
+      ],
+      "action_steps_ko": [
+        "채권자별 이의 내용과 금액을 정리한다.",
+        "청산가치와 총변제액을 계산한다.",
+        "가용소득 전부 제공 여부를 확인한다.",
+        "수행 가능성을 소득·지출 자료로 소명한다."
+      ],
+      "facts_to_check_ko": [
+        "채권자 이의 내용",
+        "변제계획 적법성",
+        "수행 가능성",
+        "청산가치",
+        "가용소득 전부 제공",
+        "최저변제액"
+      ],
+      "caution_ko": "채무 총액이나 신청 접수만으로 결과를 단정하지 말고 채권자목록·소득·재산·법원 결정과 면책제외 여부를 단계별로 확인해야 합니다.",
+      "search_intents_ko": [
+        "채권자가 반대하면 변제계획은 인가될 수 없나",
+        "개인회생 절차",
+        "개인회생 면책 효과"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "채권자나 회생위원이 이의하면 법원은 기본 인가요건에 더해 청산가치 보장, 가용소득 전부 제공과 법정 최저변제 기준 등을 충족하는 경우 변제계획을 인가할 수 있습니다.",
+            "반대 유무만 보지 않고 법률 적합성·공정성·수행 가능성·청산가치·가용소득 요건을 자료로 입증해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "채권자 이의 내용, 변제계획 적법성, 수행 가능성, 청산가치, 가용소득 전부 제공, 최저변제액",
+            "이의별 보완자료와 인가요건 충족표를 제출합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-rehabilitation.approval-objection"
+      ],
+      "scenario_ids": [
+        "scenario.personal-rehabilitation.approval-objection"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0614"
+      ],
+      "hub_ids": [
+        "hub.personal-rehabilitation"
+      ],
+      "related_content_ids": [
+        "content.personal-rehabilitation-repayment-period",
+        "content.loan-and-guarantee-evidence-checklist"
+      ]
+    },
+    {
+      "content_id": "content.personal-rehabilitation-plan-change",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T08:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "personal-rehabilitation-plan-change",
+      "title_ko": "인가 뒤 소득이 줄면 변제계획을 바꿀 수 있나",
+      "one_line_answer_ko": "변제가 끝나기 전에는 채무자·회생위원·개인회생채권자가 변경안을 제출할 수 있습니다. 다만 자동 감액이 아니라 변경안도 법정 내용과 인가 절차를 거칩니다.",
+      "audience_situation_ko": "실직·휴업·질병·가족변화로 인가된 월 변제액을 감당하기 어려워진 채무자",
+      "key_points_ko": [
+        "변제 완료 전에는 채무자·회생위원 또는 개인회생채권자가 인가된 변제계획 변경안을 제출할 수 있고 변경안에도 변제계획 내용·집회·인가 등의 규정이 준용됩니다.",
+        "변제 누락을 방치하지 말고 변경 사유·새 가용소득·수행 가능한 변경안을 법원에 제출해 심사를 받아야 합니다.",
+        "개인회생은 신청·개시·인가·수행·면책 단계마다 효력과 실패 위험이 달라 단계별 기록이 필요합니다."
+      ],
+      "action_steps_ko": [
+        "소득감소 발생일과 원인을 기록한다.",
+        "기존·변경 예산을 비교한다.",
+        "미납 전에 법원·회생위원에 변경 필요성을 알린다.",
+        "변경안 제출과 인가 여부를 추적한다."
+      ],
+      "facts_to_check_ko": [
+        "변경 전 소득",
+        "변경 후 소득",
+        "감소 원인·기간",
+        "추가 생계비",
+        "변제 미납 내역",
+        "새 변제안"
+      ],
+      "caution_ko": "채무 총액이나 신청 접수만으로 결과를 단정하지 말고 채권자목록·소득·재산·법원 결정과 면책제외 여부를 단계별로 확인해야 합니다.",
+      "search_intents_ko": [
+        "인가 뒤 소득이 줄면 변제계획을 바꿀 수 있나",
+        "개인회생 절차",
+        "개인회생 서류 기한"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "변제 완료 전에는 채무자·회생위원 또는 개인회생채권자가 인가된 변제계획 변경안을 제출할 수 있고 변경안에도 변제계획 내용·집회·인가 등의 규정이 준용됩니다.",
+            "변제 누락을 방치하지 말고 변경 사유·새 가용소득·수행 가능한 변경안을 법원에 제출해 심사를 받아야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "변경 전 소득, 변경 후 소득, 감소 원인·기간, 추가 생계비, 변제 미납 내역, 새 변제안",
+            "변제 완료 전 변경안을 제출하고 심사·집회·인가 일정을 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-rehabilitation.plan-change"
+      ],
+      "scenario_ids": [
+        "scenario.personal-rehabilitation.plan-change"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0619"
+      ],
+      "hub_ids": [
+        "hub.personal-rehabilitation"
+      ],
+      "related_content_ids": [
+        "content.personal-rehabilitation-repayment-period",
+        "content.wage-and-protected-claim-seizure"
+      ]
+    },
+    {
+      "content_id": "content.personal-rehabilitation-procedure-termination",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T08:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "personal-rehabilitation-procedure-termination",
+      "title_ko": "개인회생이 폐지되면 이미 낸 돈과 압류중지는 어떻게 되나",
+      "one_line_answer_ko": "인가 전에는 인가불가·서류문제·불출석 등이, 인가 후에는 수행불능·부정수행·면책불허 등이 폐지사유가 됩니다. 인가 후 폐지는 이미 한 변제와 생긴 효력 자체를 소급해 없애지는 않지만 이후 집행 재개 위험을 확인해야 합니다.",
+      "audience_situation_ko": "보정·집회·변제 미이행으로 개인회생 폐지 가능성이 생긴 채무자·채권자",
+      "key_points_ko": [
+        "인가 전에는 인가불가·서류 미비·불출석·허위설명 등이, 인가 후에는 면책불허 확정·변제계획 수행불능·재산·소득 은닉 등 부정수행이 폐지사유가 됩니다.",
+        "인가 전후를 구분해 보완·변경·면책 가능성을 검토하고 폐지 확정 뒤 추심·집행 재개와 기존 변제의 정산을 확인합니다.",
+        "개인회생은 신청·개시·인가·수행·면책 단계마다 효력과 실패 위험이 달라 단계별 기록이 필요합니다."
+      ],
+      "action_steps_ko": [
+        "인가 전후와 폐지사유를 구분한다.",
+        "이미 낸 변제액과 미납액을 확인한다.",
+        "폐지결정·확정일과 불복기한을 확인한다.",
+        "압류·추심·경매 재개 가능성을 채권별로 점검한다."
+      ],
+      "facts_to_check_ko": [
+        "인가 여부·일자",
+        "폐지 사유",
+        "보정·출석 이력",
+        "변제 납입내역",
+        "소득·재산 변화",
+        "폐지결정 확정일"
+      ],
+      "caution_ko": "채무 총액이나 신청 접수만으로 결과를 단정하지 말고 채권자목록·소득·재산·법원 결정과 면책제외 여부를 단계별로 확인해야 합니다.",
+      "search_intents_ko": [
+        "개인회생이 폐지되면 이미 낸 돈과 압류중지는 어떻게 되나",
+        "개인회생 절차",
+        "개인회생 면책 효과"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "인가 전에는 인가불가·서류 미비·불출석·허위설명 등이, 인가 후에는 면책불허 확정·변제계획 수행불능·재산·소득 은닉 등 부정수행이 폐지사유가 됩니다.",
+            "인가 전후를 구분해 보완·변경·면책 가능성을 검토하고 폐지 확정 뒤 추심·집행 재개와 기존 변제의 정산을 확인합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "인가 여부·일자, 폐지 사유, 보정·출석 이력, 변제 납입내역, 소득·재산 변화, 폐지결정 확정일",
+            "사유에 따라 보완·변경·면책 또는 불복 가능성을 즉시 검토합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-rehabilitation.procedure-termination"
+      ],
+      "scenario_ids": [
+        "scenario.personal-rehabilitation.procedure-termination"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0620",
+        "coord.personal-rehabilitation.0621"
+      ],
+      "hub_ids": [
+        "hub.personal-rehabilitation"
+      ],
+      "related_content_ids": [
+        "content.personal-rehabilitation-dismissal-risks",
+        "content.bank-account-seizure-and-collection-order"
+      ]
+    },
+    {
+      "content_id": "content.personal-rehabilitation-discharge-scope",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T08:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "personal-rehabilitation-discharge-scope",
+      "title_ko": "개인회생 면책을 받으면 세금·양육비·보증채무도 모두 없어지나",
+      "one_line_answer_ko": "아닙니다. 면책은 확정 뒤 효력이 생기며 목록 누락채권, 세금, 벌금, 고의 불법행위 손해배상, 임금·퇴직금, 양육비 등은 면책되지 않습니다. 보증인·공동채무자와 담보에 대한 채권자의 권리도 그대로 남을 수 있습니다.",
+      "audience_situation_ko": "변제를 마쳤거나 완료하지 못한 상태에서 면책 범위와 남는 채무를 확인하려는 채무자·보증인",
+      "key_points_ko": [
+        "변제를 완료하면 법원은 면책해야 하고 책임 없는 사유로 미완료한 경우에도 법정 요건 아래 면책할 수 있지만 면책제외채권과 보증인·공동채무자·담보에 대한 권리는 영향을 받지 않습니다.",
+        "면책 확정일, 목록 기재 여부, 세금·벌금·불법행위·임금·양육비와 보증·담보를 채권별로 구분해야 합니다.",
+        "개인회생은 신청·개시·인가·수행·면책 단계마다 효력과 실패 위험이 달라 단계별 기록이 필요합니다."
+      ],
+      "action_steps_ko": [
+        "면책결정이 확정됐는지 확인한다.",
+        "채권자목록과 실제 채무를 대조한다.",
+        "면책제외채권을 종류별로 표시한다.",
+        "보증인·공동채무자·담보에 남는 권리를 별도로 설명한다."
+      ],
+      "facts_to_check_ko": [
+        "면책결정·확정일",
+        "채권자목록 기재",
+        "세금·벌금",
+        "불법행위 손해배상",
+        "임금·양육비",
+        "보증인·공동채무·담보"
+      ],
+      "caution_ko": "채무 총액이나 신청 접수만으로 결과를 단정하지 말고 채권자목록·소득·재산·법원 결정과 면책제외 여부를 단계별로 확인해야 합니다.",
+      "search_intents_ko": [
+        "개인회생 면책을 받으면 세금·양육비·보증채무도 모두 없어지나",
+        "개인회생 절차",
+        "개인회생 면책 효과"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "변제를 완료하면 법원은 면책해야 하고 책임 없는 사유로 미완료한 경우에도 법정 요건 아래 면책할 수 있지만 면책제외채권과 보증인·공동채무자·담보에 대한 권리는 영향을 받지 않습니다.",
+            "면책 확정일, 목록 기재 여부, 세금·벌금·불법행위·임금·양육비와 보증·담보를 채권별로 구분해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "면책결정·확정일, 채권자목록 기재, 세금·벌금, 불법행위 손해배상, 임금·양육비, 보증인·공동채무·담보",
+            "면책되는 본인 책임과 남는 제3자·담보 권리를 구분해 정리합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.personal-rehabilitation.discharge-scope"
+      ],
+      "scenario_ids": [
+        "scenario.personal-rehabilitation.discharge-scope"
+      ],
+      "source_coordinate_ids": [
+        "coord.personal-rehabilitation.0624",
+        "coord.personal-rehabilitation.0625"
+      ],
+      "hub_ids": [
+        "hub.personal-rehabilitation"
+      ],
+      "related_content_ids": [
+        "content.scope-of-guarantee-debt",
+        "content.guarantee-by-message-validity"
+      ]
+    }
+  ]
+}
