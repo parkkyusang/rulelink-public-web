@@ -10,6 +10,28 @@ const nextConfig: NextConfig = {
       : '.next',
   reactStrictMode: true,
   devIndicators: false,
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{type: 'host', value: 'www.rule-link.com'}],
+        destination: 'https://rule-link.com/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [{type: 'host', value: 'rule.ai.kr'}],
+        destination: 'https://rule-link.com/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [{type: 'host', value: 'rulelink.lolphysical.xyz'}],
+        destination: 'https://rule-link.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return publicSecurityHeaderRules();
   },

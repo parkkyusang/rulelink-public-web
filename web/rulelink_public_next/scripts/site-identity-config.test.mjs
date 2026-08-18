@@ -149,6 +149,19 @@ test('별도 변호사 작업공간 주소는 공개 사이트 원점과 분리�
   assert.deepEqual(owners, []);
 });
 
+test('기존·보조 공개 호스트는 rule-link.com 정식 원점으로 영구 이동한다', async () => {
+  const source = await readFile(path.join(root, 'next.config.ts'), 'utf8');
+  for (const host of [
+    'www.rule-link.com',
+    'rule.ai.kr',
+    'rulelink.lolphysical.xyz',
+  ]) {
+    assert.match(source, new RegExp(`value: '${host.replaceAll('.', '\\.')}'`, 'u'));
+  }
+  assert.equal((source.match(/destination: 'https:\/\/rule-link\.com\/:path\*'/gu) ?? []).length, 3);
+  assert.equal((source.match(/permanent: true/gu) ?? []).length, 3);
+});
+
 async function sourceFiles(directories) {
   const results = [];
   for (const directory of directories) await walk(directory, results);
