@@ -18,7 +18,7 @@ const defaultIdentity = {
   englishName: 'RuleLink',
   name: 'RuleLink',
   operatorName: '리알레',
-  url: 'https://rulelink.lolphysical.xyz',
+  url: 'https://rule-link.com',
 } as const;
 
 const specialPurposeIpv4Ranges = new BlockList();
@@ -97,6 +97,7 @@ export function resolveSiteIdentity(
   const url = resolvedOrigin(
     environment.NEXT_PUBLIC_RULELINK_SITE_URL,
     defaultIdentity.url,
+    environment.VERCEL_ENV,
   );
   return {
     englishName,
@@ -123,7 +124,16 @@ function resolvedIdentityValue(
   return value;
 }
 
-function resolvedOrigin(candidate: string | undefined, fallback: string): string {
+function resolvedOrigin(
+  candidate: string | undefined,
+  fallback: string,
+  vercelEnvironment: string | undefined,
+): string {
+  if (candidate === undefined && vercelEnvironment === 'production') {
+    throw new Error(
+      'NEXT_PUBLIC_RULELINK_SITE_URL: production 배포에서는 공개 원점을 명시해야 합니다.',
+    );
+  }
   if (candidate === undefined) return fallback;
   const value = candidate.trim();
   const error = publicUrlError(value);

@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20260816-030",
+  "release_id": "production-20260818-031",
   "snapshot_id": "kr-knowledge-core-20260726-024",
-  "requested_at": "2026-08-16T02:52:00.000Z",
-  "summary_ko": "홈과 통합검색의 특정 예시 검색어 노출을 제거한 사용자 경험 개선 배포를 요청한다."
+  "requested_at": "2026-08-18T01:45:00.000Z",
+  "summary_ko": "공개 법률정보 사이트의 프로덕션 원점을 rule-link.com으로 이전하는 배포를 요청한다."
 }

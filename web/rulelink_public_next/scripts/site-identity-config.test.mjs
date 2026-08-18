@@ -11,8 +11,22 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 test('설정 누락은 현재 공개 정본 정체성을 그대로 유지한다', () => {
   assert.deepEqual(resolveSiteIdentity({}), {
     englishName: 'RuleLink', indexing: false, name: 'RuleLink',
-    operatorName: '리알레', url: 'https://rulelink.lolphysical.xyz',
+    operatorName: '리알레', url: 'https://rule-link.com',
   });
+});
+
+test('production 배포는 공개 원점 환경변수 누락을 조용히 기본값으로 대체하지 않는다', () => {
+  assert.throws(
+    () => resolveSiteIdentity({VERCEL_ENV: 'production'}),
+    /production 배포에서는 공개 원점을 명시/,
+  );
+  assert.equal(
+    resolveSiteIdentity({
+      NEXT_PUBLIC_RULELINK_SITE_URL: 'https://rule-link.com',
+      VERCEL_ENV: 'production',
+    }).url,
+    'https://rule-link.com',
+  );
 });
 
 test('이름과 원점을 한 묶음으로 교체할 수 있다', () => {
@@ -108,6 +122,7 @@ test('공개 런타임과 운영 도구의 브랜드·원점 하드코딩은 설
     for (const expression of [
       /['"`]RuleLink/gu,
       /룰링크/gu,
+      /https:\/\/rule-link\.com/gu,
       /https:\/\/rulelink\.lolphysical\.xyz/gu,
     ]) {
       if (expression.test(source)) findings.push(file);
@@ -132,6 +147,19 @@ test('별도 변호사 작업공간 주소는 공개 사이트 원점과 분리�
     if (text.includes('https://liale-review.lolphysical.xyz')) owners.push(file);
   }
   assert.deepEqual(owners, []);
+});
+
+test('기존·보조 공개 호스트는 rule-link.com 정식 원점으로 영구 이동한다', async () => {
+  const source = await readFile(path.join(root, 'next.config.ts'), 'utf8');
+  for (const host of [
+    'www.rule-link.com',
+    'rule.ai.kr',
+    'rulelink.lolphysical.xyz',
+  ]) {
+    assert.match(source, new RegExp(`value: '${host.replaceAll('.', '\\.')}'`, 'u'));
+  }
+  assert.equal((source.match(/destination: 'https:\/\/rule-link\.com\/:path\*'/gu) ?? []).length, 3);
+  assert.equal((source.match(/permanent: true/gu) ?? []).length, 3);
 });
 
 async function sourceFiles(directories) {
