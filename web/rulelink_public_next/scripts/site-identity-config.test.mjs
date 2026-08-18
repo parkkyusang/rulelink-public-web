@@ -11,7 +11,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 test('설정 누락은 현재 공개 정본 정체성을 그대로 유지한다', () => {
   assert.deepEqual(resolveSiteIdentity({}), {
     englishName: 'RuleLink', indexing: false, name: 'RuleLink',
-    operatorName: '리알레', url: 'https://rulelink.lolphysical.xyz',
+    operatorName: '리알레', url: 'https://rule-link.com',
   });
 });
 
@@ -22,10 +22,10 @@ test('production 배포는 공개 원점 환경변수 누락을 조용히 기본
   );
   assert.equal(
     resolveSiteIdentity({
-      NEXT_PUBLIC_RULELINK_SITE_URL: 'https://domain-ready.lolphysical.xyz',
+      NEXT_PUBLIC_RULELINK_SITE_URL: 'https://rule-link.com',
       VERCEL_ENV: 'production',
     }).url,
-    'https://domain-ready.lolphysical.xyz',
+    'https://rule-link.com',
   );
 });
 
@@ -122,6 +122,7 @@ test('공개 런타임과 운영 도구의 브랜드·원점 하드코딩은 설
     for (const expression of [
       /['"`]RuleLink/gu,
       /룰링크/gu,
+      /https:\/\/rule-link\.com/gu,
       /https:\/\/rulelink\.lolphysical\.xyz/gu,
     ]) {
       if (expression.test(source)) findings.push(file);

@@ -18,7 +18,7 @@ const defaultIdentity = {
   englishName: 'RuleLink',
   name: 'RuleLink',
   operatorName: '리알레',
-  url: 'https://rulelink.lolphysical.xyz',
+  url: 'https://rule-link.com',
 } as const;
 
 const specialPurposeIpv4Ranges = new BlockList();
