@@ -24,12 +24,6 @@ const nextConfig: NextConfig = {
         destination: 'https://rule-link.com/:path*',
         permanent: true,
       },
-      {
-        source: '/:path*',
-        has: [{type: 'host', value: 'rulelink.lolphysical.xyz'}],
-        destination: 'https://rule-link.com/:path*',
-        permanent: true,
-      },
     ];
   },
   async headers() {
