@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20261017-031",
+  "release_id": "production-20261017-032",
   "snapshot_id": "kr-knowledge-core-20260726-024",
-  "requested_at": "2026-10-17T06:30:00.000Z",
-  "summary_ko": "공개 사이트 대표 주소를 rule-link.com으로 반영한다. 임시주소 리다이렉트는 적용하지 않는다."
+  "requested_at": "2026-10-17T08:15:00.000Z",
+  "summary_ko": "AdSense 사이트 소유권 확인용 게시자 메타 태그를 배포한다. 광고 스크립트는 실행하지 않는다."
 }
