@@ -12,11 +12,17 @@ import './globals.css';
 
 export const revalidate = 3600;
 
+const adsenseAccount = process.env.RULELINK_ADSENSE_ACCOUNT?.trim();
+if (adsenseAccount && !/^ca-pub-\d{16}$/u.test(adsenseAccount)) {
+  throw new Error('RULELINK_ADSENSE_ACCOUNT 형식이 올바르지 않습니다.');
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {default: site.name, template: `%s | ${site.name}`},
   description: site.description,
   manifest: '/manifest.webmanifest',
+  ...(adsenseAccount ? {other: {'google-adsense-account': adsenseAccount}} : {}),
   robots: {index: site.indexing, follow: site.indexing},
   alternates: {
     canonical: '/',
