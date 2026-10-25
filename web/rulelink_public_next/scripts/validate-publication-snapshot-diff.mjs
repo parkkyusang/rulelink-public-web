@@ -15,7 +15,7 @@ let diffText = fixtureDiff;
 if (diffText === undefined) {
   const result = spawnSync(
     'git',
-    ['diff', '--name-status', '--find-renames', `${baseRef}...HEAD`, '--', 'artifacts/publication/snapshots'],
+    ['diff', '--name-status', '--find-renames', `${baseRef}...HEAD`, '--', ':(top)artifacts/publication/snapshots'],
     {encoding: 'utf8'},
   );
   if (result.status !== 0) {
