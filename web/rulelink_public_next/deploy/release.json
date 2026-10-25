@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20261025-033",
+  "release_id": "production-20261025-034",
   "snapshot_id": "kr-knowledge-core-20261025-025",
-  "requested_at": "2026-10-25T08:55:34.000Z",
-  "summary_ko": "보증금 상황별 확인·행동계획·근거 문언·컨시어지 연결과 실제 근거 점검 출판본 025를 운영 공개한다. 자연어 검색 회귀를 함께 수정하며 광고 실행 정책은 바꾸지 않는다."
+  "requested_at": "2026-10-25T09:56:39.000Z",
+  "summary_ko": "최신 main과 출판본 025를 유지하며 Google AdSense 판매자 정보 ads.txt를 운영 공개한다. 광고 스크립트와 소유권 메타데이터 및 콘텐츠는 변경하지 않는다."
 }
