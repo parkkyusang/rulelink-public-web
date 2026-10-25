@@ -48,8 +48,9 @@ try {
     const sources = guide.locator('details').filter({has: page.locator('blockquote')});
     assert.ok(await sources.count() > 0, '보증금 안내에 실제 문언이 하나 이상 있어야 합니다.');
     assert.equal(await guide.locator('details[open]').count(), 0);
-    await sources.first().locator('summary').click();
-    assert.ok((await sources.first().locator('blockquote').innerText()).includes('임차권등기'));
+    const registrationSource = sources.filter({has: page.locator('blockquote').filter({hasText: '임차권등기'})}).first();
+    await registrationSource.locator('summary').click();
+    assert.ok((await registrationSource.locator('blockquote').innerText()).includes('임차권등기'));
     await guide.getByRole('button', {name: '가져갈 요약 미리보기'}).click();
     assert.match(await guide.getByLabel('복사할 내용').inputValue(), /확인하지 못함/);
     await guide.getByRole('button', {name: '이 내용을 복사', exact: true}).click();

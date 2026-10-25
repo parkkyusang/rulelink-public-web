@@ -2,7 +2,7 @@
   "schema": "rulelink_publication_production_queue_v1",
   "audited_on": "2026-07-26",
   "current_publication": {
-    "snapshot_id": "kr-knowledge-core-20260726-024",
+    "snapshot_id": "kr-knowledge-core-20261025-025",
     "topic_hubs": 28,
     "content_entries": 284,
     "rule_cards": 281,
@@ -1918,6 +1918,39 @@
           }
         ]
       }
+    }
+  ],
+  "maintenance_publications": [
+    {
+      "schema": "rulelink_queue_maintenance_publication_v1",
+      "from_snapshot_id": "kr-knowledge-core-20260726-024",
+      "to_snapshot_id": "kr-knowledge-core-20261025-025",
+      "previous_bundle_sha256": "06e1fdf74c69b25feab9bda57163bc01c42af709ab84f5196fb5a359a4664886",
+      "current_bundle_sha256": "3bca5f5da1bfa9cb5aff457694d09b9613a36e449b306f0baf32dfa3a05552a6",
+      "source_check_ref": "artifacts/publication/coverage/source-check-20261025.json",
+      "source_check_sha256": "d945c7d3b7c0c1844a8590c9a02ab68b74e1492780600ef7adaa70e064ac1190",
+      "topics": [
+        {
+          "file": "artifacts/publication/topics/legal-concept-comparisons.json",
+          "sha256": "0493747fd27eeb35d62e68ae883a83b0aadda906cd580c432597e521eb973e45"
+        },
+        {
+          "file": "artifacts/publication/topics/family-inheritance.json",
+          "sha256": "f5213c3986850aa7901533b884ad66d24cbea962859f34393d43bcf0055c8209"
+        },
+        {
+          "file": "artifacts/publication/topics/money-guarantee.json",
+          "sha256": "beacb4fd6120637db892521030aa92ca82142325748e4ed9bff5e97a6b9512ca"
+        },
+        {
+          "file": "artifacts/publication/topics/consumer-online-contracts.json",
+          "sha256": "428c8e5b1b4191530d95fed6c27808d3ae45b19c7856d8d90d012a49a0b3ead4"
+        },
+        {
+          "file": "artifacts/publication/topics/remedy-path-comparisons.json",
+          "sha256": "b2c7630325ad3df57a0a7493f1e18b7922314e0916beeb133668720926a1a2f2"
+        }
+      ]
     }
   ]
 }

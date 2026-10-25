@@ -34,6 +34,24 @@ export function sha256Canonical(value) {
   return sha256(canonicalJson(value));
 }
 
+// 과거판이라는 이름 추측이 아니라 승인 assertion의 정확한 판본 결박만 사용한다.
+export function historicalOnlySourceCoordinateIds(bundle) {
+  const scopesByVersion = new Map();
+  for (const assertion of array(bundle?.assertions)) {
+    for (const coordinate of array(assertion.source_coordinates)) {
+      if (!coordinate.source_id || !coordinate.source_snapshot_id) continue;
+      const key = JSON.stringify([coordinate.source_id, coordinate.source_snapshot_id]);
+      const scopes = scopesByVersion.get(key) ?? [];
+      scopes.push(coordinate.version_scope);
+      scopesByVersion.set(key, scopes);
+    }
+  }
+  return new Set(array(bundle?.knowledge?.sources).filter(source => {
+    const scopes = scopesByVersion.get(JSON.stringify([source.source_id, source.source_snapshot_id]));
+    return scopes?.length > 0 && scopes.every(scope => scope === 'historical');
+  }).map(source => source.coordinate_id));
+}
+
 export function buildMaintenanceIndex({
   bundle,
   generatedAt = bundle?.built_at,
@@ -50,6 +68,7 @@ export function buildMaintenanceIndex({
     array(sourceTextLibrary?.bindings).map(binding => [binding.coordinate_id, binding]),
   );
   const changedCoordinates = changedSourceCoordinates(previousBundle, bundle);
+  const historicalCoordinates = historicalOnlySourceCoordinateIds(bundle);
   const sourceReceipts = sources.map(source => {
     const checkedAt = parseDate(source.last_verified_at, `${source.coordinate_id}.last_verified_at`);
     const textBinding = textBindingByCoordinate.get(source.coordinate_id);
@@ -96,8 +115,9 @@ export function buildMaintenanceIndex({
         continue;
       }
       sourceReviewReceiptIds.push(receipt.receipt_id);
-      nextChecks.push(receipt.next_check_at);
-      if (receipt.status !== 'current') {
+      const historicalOnly = historicalCoordinates.has(coordinateId);
+      if (!historicalOnly) nextChecks.push(receipt.next_check_at);
+      if (receipt.status !== 'current' && !(historicalOnly && receipt.status === 'review_due')) {
         invalidatedBy.push(`source_${receipt.status}:${coordinateId}`);
       }
       if (changedCoordinates.has(coordinateId)) {

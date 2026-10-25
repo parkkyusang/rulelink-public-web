@@ -4,129 +4,129 @@
   "sources": [
     {
       "coordinate_id": "coord.industrial-accident.act-0005",
-      "source_id": "industrial_accident_compensation_insurance_act_ko_0005",
+      "source_id": "law_001760_ko_0005",
       "law_name_ko": "산업재해보상보험법",
       "article_no": "제5조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C5%EC%A1%B0",
-      "source_snapshot_id": "snapshot:9fd58a63b8024215d097233c714e8654",
-      "last_verified_at": "2026-07-22T13:00:00+00:00"
+      "source_snapshot_id": "snapshot:4be3fa69cbfca7dd33a4eda11d449eba2ef3139c6aa829a7b14bfed228d34213",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.industrial-accident.act-0006",
-      "source_id": "industrial_accident_compensation_insurance_act_ko_0006",
+      "source_id": "law_001760_ko_0006",
       "law_name_ko": "산업재해보상보험법",
       "article_no": "제6조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C6%EC%A1%B0",
-      "source_snapshot_id": "snapshot:f99b8b7b3150ee745988c2d4cbd7f3cc",
-      "last_verified_at": "2026-07-22T13:00:00+00:00"
+      "source_snapshot_id": "snapshot:f99b8b7b3150ee745988c2d4cbd7f3cc2c8b3f99c0aa7369a1ea023dec86c8b7",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.industrial-accident.act-0036",
-      "source_id": "industrial_accident_compensation_insurance_act_ko_0036",
+      "source_id": "law_001760_ko_0036",
       "law_name_ko": "산업재해보상보험법",
       "article_no": "제36조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C36%EC%A1%B0",
-      "source_snapshot_id": "snapshot:26d40f2dd6d3b3d75a8681d90528abb5",
-      "last_verified_at": "2026-07-22T13:00:00+00:00"
+      "source_snapshot_id": "snapshot:c41b412f028de6f7577330980db5da79cf52cdf131e3d998bc6665f33d7760db",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.industrial-accident.act-0037",
-      "source_id": "industrial_accident_compensation_insurance_act_ko_0037",
+      "source_id": "law_001760_ko_0037",
       "law_name_ko": "산업재해보상보험법",
       "article_no": "제37조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C37%EC%A1%B0",
-      "source_snapshot_id": "snapshot:3c17edff2f521946e5037b0075a80067",
-      "last_verified_at": "2026-07-22T13:00:00+00:00"
+      "source_snapshot_id": "snapshot:b0c62a7ce0dd029d9b6aabc874fb4ceb20c41bf638ab7ce4ee414d92e0768a2c",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.industrial-accident.act-0040",
-      "source_id": "industrial_accident_compensation_insurance_act_ko_0040",
+      "source_id": "law_001760_ko_0040",
       "law_name_ko": "산업재해보상보험법",
       "article_no": "제40조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C40%EC%A1%B0",
-      "source_snapshot_id": "snapshot:27fcb917f3a457c120fd9cb4ac0ffc19",
-      "last_verified_at": "2026-07-22T13:00:00+00:00"
+      "source_snapshot_id": "snapshot:c1a7cbaa773603bd2b62aab6d0ba1564d8fed876860d98c255d171cc9029369b",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.industrial-accident.act-0052",
-      "source_id": "industrial_accident_compensation_insurance_act_ko_0052",
+      "source_id": "law_001760_ko_0052",
       "law_name_ko": "산업재해보상보험법",
       "article_no": "제52조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C52%EC%A1%B0",
-      "source_snapshot_id": "snapshot:84b3d54399ee5678aef65aed3c977b87",
-      "last_verified_at": "2026-07-22T13:00:00+00:00"
+      "source_snapshot_id": "snapshot:84b3d54399ee5678aef65aed3c977b8766d931ba40d7a1e9a0edb50c0af3b980",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.industrial-accident.act-0057",
-      "source_id": "industrial_accident_compensation_insurance_act_ko_0057",
+      "source_id": "law_001760_ko_0057",
       "law_name_ko": "산업재해보상보험법",
       "article_no": "제57조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C57%EC%A1%B0",
-      "source_snapshot_id": "snapshot:4eedafc672cd3cc440f0a33ed023f152",
-      "last_verified_at": "2026-07-22T13:00:00+00:00"
+      "source_snapshot_id": "snapshot:38cbad6ffc3394961bf803e70c774df1d062cbbe8da24896252bc8c9edd48cd7",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.industrial-accident.act-0062",
-      "source_id": "industrial_accident_compensation_insurance_act_ko_0062",
+      "source_id": "law_001760_ko_0062",
       "law_name_ko": "산업재해보상보험법",
       "article_no": "제62조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C62%EC%A1%B0",
-      "source_snapshot_id": "snapshot:bdfc129e5fa2e2f38012db7e7aaa4119",
-      "last_verified_at": "2026-07-22T13:00:00+00:00"
+      "source_snapshot_id": "snapshot:74a91b86effab024dfd08f786d7d9d99c3b9dea6092ff443367186edb36dc2ea",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.industrial-accident.act-0071",
-      "source_id": "industrial_accident_compensation_insurance_act_ko_0071",
+      "source_id": "law_001760_ko_0071",
       "law_name_ko": "산업재해보상보험법",
       "article_no": "제71조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C71%EC%A1%B0",
-      "source_snapshot_id": "snapshot:f847fe29e000b2cd297b109ab88b25ae",
-      "last_verified_at": "2026-07-22T13:00:00+00:00"
+      "source_snapshot_id": "snapshot:2f9e1f6893f73dc25d34a47a251c420e7364726b12ad9b3ee4fec57d257bfca2",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.industrial-accident.act-0112",
-      "source_id": "industrial_accident_compensation_insurance_act_ko_0112",
+      "source_id": "law_001760_ko_0112",
       "law_name_ko": "산업재해보상보험법",
       "article_no": "제112조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C112%EC%A1%B0",
-      "source_snapshot_id": "snapshot:8de7b72ba6bd5c5449bc4acb48168a6f",
-      "last_verified_at": "2026-07-22T13:00:00+00:00"
+      "source_snapshot_id": "snapshot:112009618e611f0230a220e3a6f0cff038c878d410e52a314126690e1f15170b",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.industrial-accident.act-0116",
-      "source_id": "industrial_accident_compensation_insurance_act_ko_0116",
+      "source_id": "law_001760_ko_0116",
       "law_name_ko": "산업재해보상보험법",
       "article_no": "제116조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C116%EC%A1%B0",
-      "source_snapshot_id": "snapshot:37008f9c8dd9b9b6d054afbe12e1f3ce",
-      "last_verified_at": "2026-07-22T13:00:00+00:00"
+      "source_snapshot_id": "snapshot:39d1419e4adab72ea0a33da954b02d8eaaca8faea624b104cbfcadd6b00e5b4b",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.industrial-accident.act-0123",
-      "source_id": "industrial_accident_compensation_insurance_act_ko_0123",
+      "source_id": "law_001760_ko_0123",
       "law_name_ko": "산업재해보상보험법",
       "article_no": "제123조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C123%EC%A1%B0",
-      "source_snapshot_id": "snapshot:33951c0efd472136b764855a49d11951",
-      "last_verified_at": "2026-07-22T13:00:00+00:00"
+      "source_snapshot_id": "snapshot:6127e0d52f5de89a757e3c4e8533cd851c197dd09e0e2981d1325c927a897ffc",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.industrial-accident.act-0123-2",
-      "source_id": "industrial_accident_compensation_insurance_act_ko_0123_02",
+      "source_id": "law_001760_ko_0123_02",
       "law_name_ko": "산업재해보상보험법",
       "article_no": "제123조의2",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C123%EC%A1%B0%EC%9D%982",
-      "source_snapshot_id": "snapshot:bec15a7c4759eaaa3e7952857d855d78",
-      "last_verified_at": "2026-07-22T13:00:00+00:00"
+      "source_snapshot_id": "snapshot:bec15a7c4759eaaa3e7952857d855d789f34294a9a0a1bf71eb7126e20cea3b3",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.industrial-accident.act-0124",
-      "source_id": "industrial_accident_compensation_insurance_act_ko_0124",
+      "source_id": "law_001760_ko_0124",
       "law_name_ko": "산업재해보상보험법",
       "article_no": "제124조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C124%EC%A1%B0",
-      "source_snapshot_id": "snapshot:fb91d3c1da7afaad9a358760299f50cc",
-      "last_verified_at": "2026-07-22T13:00:00+00:00"
+      "source_snapshot_id": "snapshot:7fc0f02037bd536396a71ed19cd29e8a3b2f6f2d63119137910356fd47638856",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     }
   ],
   "topic_hubs": [
@@ -444,8 +444,8 @@
       "content_id": "content.industrial-accident-employer-refusal",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T13:00:00+00:00",
-      "expires_at": "2026-10-22T13:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "industrial-accident-employer-refusal",
       "title_ko": "회사가 산재 신청을 거부하면 신청할 수 없나요?",
       "one_line_answer_ko": "회사 확인이나 동의가 없다는 이유만으로 산재청구가 막히는 것은 아니며, 근로자성·적용사업·업무관련성을 객관적 자료로 입증해야 합니다.",
@@ -514,8 +514,8 @@
       "content_id": "content.industrial-accident-recognition",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T13:00:00+00:00",
-      "expires_at": "2026-10-22T13:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "industrial-accident-recognition",
       "title_ko": "어떤 사고와 질병이 업무상 재해가 되나요?",
       "one_line_answer_ko": "업무상 사고·질병·출퇴근 재해 유형에 해당하고 업무와 재해 사이 상당인과관계가 있어야 하며, 발생 장소 하나만으로 결정하지 않습니다.",
@@ -583,8 +583,8 @@
       "content_id": "content.industrial-accident-commute-detour",
       "content_type": "fact_branch",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T13:00:00+00:00",
-      "expires_at": "2026-10-22T13:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "industrial-accident-commute-detour",
       "title_ko": "출퇴근길에 개인 용무를 보면 산재가 안 되나요?",
       "one_line_answer_ko": "경로 일탈·중단 중과 그 뒤 이동은 원칙적으로 제외되지만, 일상생활에 필요한 법정 사유라면 출퇴근 재해로 인정될 여지가 있습니다.",
@@ -650,8 +650,8 @@
       "content_id": "content.industrial-accident-benefit-map",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T13:00:00+00:00",
-      "expires_at": "2026-10-22T13:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "industrial-accident-benefit-map",
       "title_ko": "산재 승인을 받으면 어떤 급여를 받을 수 있나요?",
       "one_line_answer_ko": "치료·취업불능·장해·간병·사망·장기요양·직업복귀 상태에 따라 여덟 가지 기본 급여 중 해당 항목을 각각 검토합니다.",
@@ -720,8 +720,8 @@
       "content_id": "content.industrial-accident-medical-benefit",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T13:00:00+00:00",
-      "expires_at": "2026-10-22T13:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "industrial-accident-medical-benefit",
       "title_ko": "산재 치료비는 며칠 치료해야 받을 수 있나요?",
       "one_line_answer_ko": "업무상 부상·질병이 3일 이내 요양으로 치유될 수 있으면 요양급여가 지급되지 않으므로 통상 4일 이상의 요양 필요 여부를 확인합니다.",
@@ -787,8 +787,8 @@
       "content_id": "content.industrial-accident-temporary-disability",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T13:00:00+00:00",
-      "expires_at": "2026-10-22T13:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "industrial-accident-temporary-disability",
       "title_ko": "산재 치료로 쉬면 임금의 70퍼센트를 받나요?",
       "one_line_answer_ko": "요양 때문에 실제로 취업하지 못한 기간이 3일을 초과하면 원칙적으로 해당 날마다 평균임금의 70퍼센트에 상당하는 휴업급여를 검토합니다.",
@@ -854,8 +854,8 @@
       "content_id": "content.industrial-accident-disability-benefit",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T13:00:00+00:00",
-      "expires_at": "2026-10-22T13:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "industrial-accident-disability-benefit",
       "title_ko": "산재 치료가 끝난 뒤 후유장해가 남으면 어떻게 하나요?",
       "one_line_answer_ko": "업무상 부상·질병이 치유된 뒤 장해가 남으면 상태를 객관화해 장해등급에 따른 장해보상연금 또는 일시금을 청구합니다.",
@@ -921,8 +921,8 @@
       "content_id": "content.industrial-accident-survivor-funeral",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T13:00:00+00:00",
-      "expires_at": "2026-10-22T13:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "industrial-accident-survivor-funeral",
       "title_ko": "업무상 사망이면 유족급여와 장례비는 누가 받나요?",
       "one_line_answer_ko": "유족급여는 법정 수급자격을 갖춘 유족에게, 장례비는 원칙적으로 실제 장례를 지낸 유족에게 지급하므로 두 수령인을 나누어 확인합니다.",
@@ -989,8 +989,8 @@
       "content_id": "content.industrial-accident-special-coverage",
       "content_type": "fact_branch",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T13:00:00+00:00",
-      "expires_at": "2026-10-22T13:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "industrial-accident-special-coverage",
       "title_ko": "현장실습생·학생연구자·사업주도 산재보험이 되나요?",
       "one_line_answer_ko": "법정 현장실습생과 학생연구자는 특례로 적용될 수 있고, 중소기업 사업주 등은 요건을 갖춰 신청·승인을 받은 경우 적용될 수 있습니다.",
@@ -1061,8 +1061,8 @@
       "content_id": "content.industrial-accident-limitation-period",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T13:00:00+00:00",
-      "expires_at": "2026-10-22T13:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "industrial-accident-limitation-period",
       "title_ko": "오래된 산재도 지금 보험급여를 청구할 수 있나요?",
       "one_line_answer_ko": "보험급여 청구권은 원칙적으로 3년, 장해·유족·장례비와 법정 진폐연금은 5년이므로 급여별 발생시점과 과거 청구 여부를 따로 계산합니다.",

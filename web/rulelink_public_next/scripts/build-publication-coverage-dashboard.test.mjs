@@ -8,11 +8,13 @@ import {
 } from './publication-coverage-core.mjs';
 
 test('coverage dashboard는 콘텐츠 수가 아니라 검증 단위와 격차를 계산한다', async () => {
-  const validation = validateCoverageDocuments(await loadCoverageDocuments());
+  const documents = await loadCoverageDocuments();
+  const validation = validateCoverageDocuments(documents);
   const dashboard = buildCoverageDashboard(validation);
 
   assert.equal(dashboard.schema, 'rulelink_publication_coverage_dashboard_v1');
-  assert.equal(dashboard.snapshot_id, 'kr-knowledge-core-20260726-024');
+  assert.equal(dashboard.snapshot_id, documents.manifest.base_snapshot_id);
+  assert.equal(dashboard.snapshot_id, documents.bundle.snapshot_id);
   assert.equal(
     dashboard.base_bundle_sha256,
     validation.base_bundle_sha256,

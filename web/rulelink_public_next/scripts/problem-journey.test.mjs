@@ -36,7 +36,9 @@ test('같은 조문명이라도 다른 원문 기록을 합치지 않고 검증�
     const binding = library.bindings.find(item => item.coordinate_id === source.id);
     assert.ok(binding);
     assert.equal(source.text, library.texts.find(item => item.text_id === binding.text_id).official_text_ko);
-    assert.ok(source.readingTitle);
+    if (source.readingTitle) {
+      assert.ok(move.readings.some(reading => reading.title === source.readingTitle));
+    }
   }
   assert.equal(move.questions.length, 3, '참고 읽기의 별도 질문을 기존 사실 질문에 몰래 합치지 않습니다.');
 });

@@ -4,6 +4,7 @@ import test from 'node:test';
 
 import {
   buildMaintenanceIndex,
+  historicalOnlySourceCoordinateIds,
   buildSourceCheckQueue,
   sha256,
   sha256Canonical,
@@ -11,6 +12,52 @@ import {
   validateSourceCheckQueue,
   validateSourceTextLibrary,
 } from './publication-derived-core.mjs';
+
+test('정확히 결박된 과거판은 날짜와 영수증을 보존하되 현행 장기점검에서 제외한다', () => {
+  const bundle = fixtureBundle();
+  const old = bundle.knowledge.sources[0];
+  old.last_verified_at = '2025-01-01T00:00:00.000Z';
+  bundle.assertions = [{source_coordinates: [{source_id: old.source_id, source_snapshot_id: old.source_snapshot_id, version_scope: 'historical'}]}];
+  bundle.knowledge.content_entries[0].source_coordinate_ids = ['coord.two'];
+  const index = buildMaintenanceIndex({bundle});
+  const view = index.content_views[0];
+  const receipt = index.source_receipts[0];
+  assert.deepEqual([...historicalOnlySourceCoordinateIds(bundle)], ['coord.one']);
+  assert.equal(receipt.checked_at, old.last_verified_at);
+  assert.equal(receipt.status, 'review_due');
+  assert.equal(view.status, 'current');
+  assert.deepEqual(view.source_coordinate_ids, ['coord.one', 'coord.two']);
+  assert.ok(view.source_review_receipt_ids.includes(receipt.receipt_id));
+  assert.equal(view.next_check_at, index.source_receipts[1].next_check_at);
+});
+
+test('현재·과거 혼용, 판본 불일치와 이름 추측은 과거판 제외를 허용하지 않는다', () => {
+  for (const mode of ['mixed', 'wrong_snapshot', 'wrong_source', 'name_only']) {
+    const bundle = fixtureBundle();
+    const old = bundle.knowledge.sources[0];
+    old.last_verified_at = '2025-01-01T00:00:00.000Z';
+    const historical = {source_id: old.source_id, source_snapshot_id: old.source_snapshot_id, version_scope: 'historical'};
+    if (mode === 'wrong_snapshot') historical.source_snapshot_id += '.other';
+    if (mode === 'wrong_source') historical.source_id += '.other';
+    bundle.assertions = mode === 'name_only' ? [] : [{source_coordinates: [historical]}];
+    if (mode === 'mixed') bundle.assertions.push({source_coordinates: [{...historical, version_scope: 'current_as_of_review'}]});
+    assert.equal(historicalOnlySourceCoordinateIds(bundle).size, 0, mode);
+    assert.equal(buildMaintenanceIndex({bundle}).content_views[0].status, 'review_due', mode);
+  }
+});
+
+test('과거판도 근거 누락과 판본 변경은 차단·무효화한다', () => {
+  const before = fixtureBundle();
+  const source = before.knowledge.sources[0];
+  before.assertions = [{source_coordinates: [{source_id: source.source_id, source_snapshot_id: source.source_snapshot_id, version_scope: 'historical'}]}];
+  const missing = structuredClone(before);
+  missing.knowledge.sources.shift();
+  assert.equal(buildMaintenanceIndex({bundle: missing}).content_views[0].status, 'blocked');
+  const changed = structuredClone(before);
+  changed.knowledge.sources[0].source_snapshot_id = 'snapshot:other';
+  changed.assertions[0].source_coordinates[0].source_snapshot_id = 'snapshot:other';
+  assert.equal(buildMaintenanceIndex({bundle: changed, previousBundle: before}).content_views[0].status, 'invalidated');
+});
 
 test('같은 근거를 쓰는 여러 콘텐츠는 하나의 검토 영수증을 공유한다', () => {
   const bundle = fixtureBundle();

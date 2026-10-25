@@ -23,6 +23,7 @@ import {
 import {
   OWNER_ROLE_CONTRACTS,
   PRODUCTION_WORK_CONTRACTS,
+  registeredCoverageProductionContracts,
   buildPublicationStatusFromBundle,
   appendPrerequisiteGateReceipts,
   appendReleaseCheckReceipts,
@@ -46,6 +47,25 @@ import {
 } from './validate-publication-production-queue.mjs';
 
 const repoRoot = path.resolve(process.cwd(), '..', '..');
+
+test('등록 작업은 원 Git 계획을 유지하고 현재 계획 재생성이 과거 계약을 바꾸지 않는다', async () => {
+  const plan = JSON.parse(await readFile(path.join(repoRoot, 'artifacts/publication/coverage/coverage-expansion-plan.json'), 'utf8'));
+  const items = JSON.parse(await readFile(path.join(repoRoot, 'artifacts/publication/production-queue.json'), 'utf8')).items.filter(x=>x.candidate_import?.schema==='rulelink_existing_topic_candidate_import_v2');
+  const current = structuredClone(plan);
+  current.generated_from.snapshot_id = '새로운-계획';
+  current.generated_from.base_bundle_sha256 = 'f'.repeat(64);
+  const load = async sha => JSON.parse((await execFileAsync('git', ['show', `${sha}:artifacts/publication/coverage/coverage-expansion-plan.json`], {cwd: repoRoot})).stdout);
+  const contracts = await registeredCoverageProductionContracts(current, items, load);
+  for (const item of items) {
+    const original = await load(item.candidate_import.required_pr_base_sha);
+    assert.equal(contracts[item.work_id].planning_snapshot_id, original.generated_from.snapshot_id);
+    assert.equal(contracts[item.work_id].planning_bundle_sha256, original.generated_from.base_bundle_sha256);
+  }
+  const forged = structuredClone(items);
+  forged[0].topic_file = 'artifacts/publication/topics/forged.json';
+  await assert.rejects(registeredCoverageProductionContracts(current, forged, load), /정체성 불일치/);
+  await assert.rejects(registeredCoverageProductionContracts(current, items, async()=>{throw new Error('Git 조회 실패');}), /Git 조회 실패/);
+});
 const queuePath = path.join(repoRoot, 'artifacts', 'publication', 'production-queue.json');
 const registryPath = path.join(repoRoot, 'artifacts', 'publication', 'production-queue-registry.json');
 const bundlePath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
@@ -1517,9 +1537,9 @@ test('기존 정본 백필 #166은 직접 병합이 아닌 publication migration
   assert.deepEqual(item.integrate_requires, ['current_bundle', 'new_immutable_snapshot', 'migrate_publication']);
   assert.equal(item.head_sha, '237bff8a1a8c58ad3961f215236bc3f3df0d3197');
   if (['integrated', 'superseded'].includes(item.status)) {
-    assert.equal(item.integrated_snapshot_id, bundle.snapshot_id);
+    assert.equal(item.integrated_snapshot_id, publicationEvidence.maintenancePublication?.record.from_snapshot_id ?? bundle.snapshot_id);
     assert.equal(item.absorbed_head_sha, item.head_sha);
-    assert.equal(item.topic_receipt, publicationEvidence.topicReceipts.get(item.topic_file));
+    assert.equal(item.topic_receipt, publicationEvidence.historicalTopicReceipts?.get(item.pr_number) ?? publicationEvidence.topicReceipts.get(item.topic_file));
   }
 
   const invalid = clone(queue);
@@ -1529,6 +1549,17 @@ test('기존 정본 백필 #166은 직접 병합이 아닌 publication migration
   invalidItem.direct_merge = true;
   refreshSummary(invalid);
   assert.ok(validateProductionQueue(invalid).some(error => error.includes('direct_merge=false')));
+});
+
+test('유지보수 출판은 과거 승인을 덮어쓰거나 자기신고 지도만으로 현재 승격할 수 없다', () => {
+  if (!publicationEvidence.maintenancePublication) return;
+  const missing = {...publicationEvidence, maintenancePublication: null};
+  assert.ok(validateProductionQueue(queue, {publishedBundle: bundle, ...missing}).some(error=>error.includes('integrated_snapshot_id가 current bundle과 다릅니다')));
+  const forged = {...publicationEvidence, maintenancePublication: {...publicationEvidence.maintenancePublication, proof: {...publicationEvidence.maintenancePublication.proof}}};
+  assert.ok(validateProductionQueue(queue, {publishedBundle: bundle, ...forged}).some(error=>error.includes('topic_receipt가 현재 주제 원본과 다릅니다')));
+  const rewritten = clone(queue);
+  rewritten.items.find(x=>x.pr_number===166).topic_receipt = publicationEvidence.topicReceipts.get(rewritten.items.find(x=>x.pr_number===166).topic_file);
+  assert.ok(validateProductionQueue(rewritten, {publishedBundle: bundle, ...publicationEvidence}).length > 0);
 });
 
 test('#169와 #171도 기존 정본 직접 병합 없이 publication migration lifecycle을 사용한다', () => {
@@ -1557,9 +1588,9 @@ test('#169와 #171도 기존 정본 직접 병합 없이 publication migration l
     assert.equal(item.test_file, fixture.testFile);
     assert.deepEqual(item.integrate_requires, ['current_bundle', 'new_immutable_snapshot', 'migrate_publication']);
     if (['integrated', 'superseded'].includes(item.status)) {
-      assert.equal(item.integrated_snapshot_id, bundle.snapshot_id);
+      assert.equal(item.integrated_snapshot_id, publicationEvidence.maintenancePublication?.record.from_snapshot_id ?? bundle.snapshot_id);
       assert.equal(item.absorbed_head_sha, item.head_sha);
-      assert.equal(item.topic_receipt, publicationEvidence.topicReceipts.get(item.topic_file));
+      assert.equal(item.topic_receipt, publicationEvidence.historicalTopicReceipts?.get(item.pr_number) ?? publicationEvidence.topicReceipts.get(item.topic_file));
     }
   }
   assert.deepEqual(queue.items.find(entry => entry.pr_number === 169).platform_prerequisite_prs, [168]);

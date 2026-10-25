@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
+import {readReviewedTopicFile as readFile} from './source-check-topic-review-file.mjs';
 import path from 'node:path';
 import test from 'node:test';
 
@@ -148,7 +148,7 @@ test('괴롭힘·성희롱의 서로 다른 요건과 조사·보호·구제 분
   assert.match(rules.get('rule.workplace-harassment.retaliation-confidentiality').norm.legal_effect_ko, /불리한 처우.*비밀을 누설/);
   assert.match(rules.get('rule.workplace-harassment.sexual-elements').norm.conditions_ko, /성적 언동.*굴욕감·혐오감.*고용상 불이익/);
   assert.match(rules.get('rule.workplace-harassment.customer-sexual').norm.legal_effect_ko, /근무장소 변경.*유급휴가.*불이익/);
-  assert.match(rules.get('rule.workplace-harassment.labor-commission').norm.legal_effect_ko, /6개월 안에 노동위원회/);
+  assert.match(rules.get('rule.workplace-harassment.labor-commission').norm.legal_effect_ko, /6개월 이내에 노동위원회.*제3호.*불리한 처우.*제2호.*보호조치 미이행.*일괄 적용해서는 안 됩니다/su);
   assert.match(rules.get('rule.workplace-harassment.mental-illness-industrial-accident').norm.legal_effect_ko, /업무상 질병.*산재보험급여/);
 
   assert.match(entries.get('content.workplace-harassment-vs-sexual-harassment').one_line_answer_ko, /서로 다른 법정 요건.*함께 적용/);
