@@ -5,18 +5,18 @@ import {chromium} from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 const port = Number(process.env.RULELINK_JOURNEY_TEST_PORT ?? 18948);
-const origin = `http://127.0.0.1:${port}`;
-const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'start', '-p', String(port), '-H', '127.0.0.1'], {
+const origin = process.env.RULELINK_JOURNEY_TEST_ORIGIN ?? `http://127.0.0.1:${port}`;
+const server = process.env.RULELINK_JOURNEY_TEST_ORIGIN ? null : spawn(process.execPath, ['node_modules/next/dist/bin/next', 'start', '-p', String(port), '-H', '127.0.0.1'], {
   env: {...process.env, RULELINK_PUBLIC_BUILD_CHECK: 'true'}, stdio: ['ignore', 'pipe', 'pipe'],
 });
 let logs = '';
-server.stdout.on('data', chunk => {logs += chunk;});
-server.stderr.on('data', chunk => {logs += chunk;});
+server?.stdout.on('data', chunk => {logs += chunk;});
+server?.stderr.on('data', chunk => {logs += chunk;});
 let browser;
 try {
   for (let attempt = 0; ; attempt++) {
     try {if ((await fetch(origin)).ok) break;} catch {}
-    if (attempt > 180 || server.exitCode !== null) throw new Error(`서버 시작 실패: ${logs}`);
+    if (attempt > 180 || (server && server.exitCode !== null)) throw new Error(`서버 시작 실패: ${logs}`);
     await new Promise(resolve => setTimeout(resolve, 500));
   }
   browser = await chromium.launch({headless: true});
@@ -86,6 +86,12 @@ try {
       await page.locator('#journey-plan').evaluate(element => element.scrollIntoView({block: 'start'}));
       await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
       await page.screenshot({path: '.next-build-check/deposit-journey-plan-mobile.png'});
+      await page.goto(`${origin}/ko/search`);
+      await page.getByRole('searchbox').fill('중고거래 사기당했는데 돈 돌려받고 싶어요');
+      await page.locator('[data-site-search][data-search-index-state="ready"]').waitFor();
+      await page.locator('[data-search-result-id]').first().waitFor({state: 'visible'});
+      assert.ok(await page.locator('[data-search-result-kind="knowledge"]').count() > 0);
+      console.log('자연어 금전 회수 질의: 실제 브라우저 검색 결과 확인');
     }
     await context.close();
     console.log(`${width}px: 사실분기·조건행동·변경/초기화·문언·요약/복사/저장·개인정보·접근성 통과`);
@@ -104,5 +110,5 @@ try {
   console.log('자바스크립트 없는 전체 안내·검색 상세 진입 통과');
 } finally {
   await browser?.close();
-  server.kill();
+  server?.kill();
 }
