@@ -8,8 +8,8 @@
       "law_name_ko": "민법",
       "article_no": "제750조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C750%EC%A1%B0",
-      "source_snapshot_id": "snapshot:cdf125767ab6640e07d557f6c73a0c53",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:cdf125767ab6640e07d557f6c73a0c53c1c6c4eebde9220474bd51756983bac8",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.shared-mobility-accident.civil-act-ko-0758",
@@ -17,35 +17,35 @@
       "law_name_ko": "민법",
       "article_no": "제758조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C758%EC%A1%B0",
-      "source_snapshot_id": "snapshot:3e889ba204742d5b6bead0009d0e244b",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:5f4e387ef44714a179c15e0c5985eeb27b42473efb2d074fe4cadf45365fda95",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.shared-mobility-accident.product-liability-ko-0002",
-      "source_id": "product_liability_ko_0002",
+      "source_id": "law_002039_ko_0002",
       "law_name_ko": "제조물 책임법",
       "article_no": "제2조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%9C%EC%A1%B0%EB%AC%BC%20%EC%B1%85%EC%9E%84%EB%B2%95/%EC%A0%9C2%EC%A1%B0",
-      "source_snapshot_id": "snapshot:8aedc5f982e767408c46b90846bada3d",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:5e851e1e38c843ea54eb04db243635d1a8180fb22ee43047cd79b4a5a77f47af",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.shared-mobility-accident.product-liability-ko-0003",
-      "source_id": "product_liability_ko_0003",
+      "source_id": "law_002039_ko_0003",
       "law_name_ko": "제조물 책임법",
       "article_no": "제3조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%9C%EC%A1%B0%EB%AC%BC%20%EC%B1%85%EC%9E%84%EB%B2%95/%EC%A0%9C3%EC%A1%B0",
-      "source_snapshot_id": "snapshot:c9328080420221db190370ca4d6919b9",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:99e8f2685ef15a6736e6f9b4689638d42a8698237a234827fca7442e87a02cf4",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.shared-mobility-accident.state-compensation-ko-0005",
-      "source_id": "state_compensation_ko_0005",
+      "source_id": "law_001242_ko_0005",
       "law_name_ko": "국가배상법",
       "article_no": "제5조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EA%B0%80%EB%B0%B0%EC%83%81%EB%B2%95/%EC%A0%9C5%EC%A1%B0",
-      "source_snapshot_id": "snapshot:dd8beea7c8064153d99a34920a85b37b",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:10c02fc0cec5f646f5b937c6df082e603f08089190b726aa8184d3f5ee6357c7",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.shared-mobility-accident.civil-act-ko-0396",
@@ -53,8 +53,8 @@
       "law_name_ko": "민법",
       "article_no": "제396조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C396%EC%A1%B0",
-      "source_snapshot_id": "snapshot:2da4b95e3fae264231acf180e2dcbcd9",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:2da4b95e3fae264231acf180e2dcbcd9d35bf087e0fb2686044e70fdfbb6c633",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.shared-mobility-accident.civil-act-ko-0763",
@@ -62,26 +62,26 @@
       "law_name_ko": "민법",
       "article_no": "제763조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C763%EC%A1%B0",
-      "source_snapshot_id": "snapshot:78d8affa7151fde717dfadd18a03f3e4",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:78d8affa7151fde717dfadd18a03f3e41a51c0d3cf02d1dba7dc6c05b695d90e",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.shared-mobility-accident.road-traffic-ko-0013-02",
-      "source_id": "road_traffic_ko_0013_02",
+      "source_id": "law_001638_ko_0013_02",
       "law_name_ko": "도로교통법",
       "article_no": "제13조의2",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%8F%84%EB%A1%9C%EA%B5%90%ED%86%B5%EB%B2%95/%EC%A0%9C13%EC%A1%B0%EC%9D%982",
-      "source_snapshot_id": "snapshot:eb1289858a6a33fb1996cfb194b9f941",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:3d0763a609c24469424b0a5d102c467ab5a3afd6e144352d2f696731a1003693",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.shared-mobility-accident.road-traffic-ko-0050",
-      "source_id": "road_traffic_ko_0050",
+      "source_id": "law_001638_ko_0050",
       "law_name_ko": "도로교통법",
       "article_no": "제50조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%8F%84%EB%A1%9C%EA%B5%90%ED%86%B5%EB%B2%95/%EC%A0%9C50%EC%A1%B0",
-      "source_snapshot_id": "snapshot:1b0d90fdd087ad0c1b5d44e760c02a77",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:a9192e6ae6ac8ab657b45a4a59e323dc5c3bbe36438959771dffa60666b57c41",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     }
   ],
   "topic_hubs": [
@@ -265,8 +265,8 @@
       "content_id": "content.shared-mobility-accident-cause-map",
       "content_type": "recurring_issue_generalization",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "shared-mobility-accident-cause-map",
       "title_ko": "공유자전거 사고가 나면 누구 책임부터 따져야 하나",
       "one_line_answer_ko": "사업자 이름부터 정하는 것이 아니라 기기 결함, 공공 도로 하자, 민간 시설 하자, 다른 사람의 과실, 이용자 과실을 먼저 분리해야 책임주체와 필요한 증거가 보입니다.",
@@ -350,8 +350,8 @@
       "content_id": "content.shared-mobility-device-defect",
       "content_type": "fact_branch",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "shared-mobility-device-defect",
       "title_ko": "브레이크나 바퀴 이상으로 넘어진 경우 무엇을 입증해야 하나",
       "one_line_answer_ko": "사고 직전 기기 이상, 그 이상이 사고를 일으킨 과정, 신체ㆍ다른 재산 손해를 연결해야 하며 제조물 결함과 운영자의 점검ㆍ정비 과실을 구분해야 합니다.",
@@ -464,8 +464,8 @@
       "content_id": "content.product-liability-damage-scope",
       "content_type": "misconception_correction",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "product-liability-damage-scope",
       "title_ko": "기기가 고장 났다는 사실만으로 제조물 책임이 생기는 것은 아닙니다",
       "one_line_answer_ko": "제조물 책임법은 결함으로 생명ㆍ신체 또는 다른 재산에 발생한 손해를 대상으로 하며, 해당 제조물 자체에만 생긴 손해는 제3조의 손해에서 제외합니다.",
@@ -534,8 +534,8 @@
       "content_id": "content.shared-mobility-public-road-defect",
       "content_type": "fact_branch",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "shared-mobility-public-road-defect",
       "title_ko": "포트홀이나 도로 단차 때문에 사고가 났다면",
       "one_line_answer_ko": "도로가 공공 영조물인지, 통상 갖춰야 할 안전성을 잃은 설치ㆍ관리 하자가 있었는지, 그 하자가 사고를 일으켰는지를 확인해야 합니다.",
@@ -645,8 +645,8 @@
       "content_id": "content.shared-mobility-private-facility-defect",
       "content_type": "fact_branch",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "shared-mobility-private-facility-defect",
       "title_ko": "상가ㆍ주차장ㆍ거치시설의 하자로 사고가 났다면",
       "one_line_answer_ko": "민간 공작물의 설치ㆍ보존 하자가 원인이라면 점유자의 책임을 먼저 검토하고, 점유자가 필요한 주의를 다한 경우 소유자의 책임이 문제될 수 있습니다.",
@@ -749,8 +749,8 @@
       "content_id": "content.shared-mobility-other-road-user-fault",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "shared-mobility-other-road-user-fault",
       "title_ko": "차량ㆍ보행자ㆍ다른 이용자의 행동이 사고에 영향을 준 경우",
       "one_line_answer_ko": "상대방의 구체적인 주의의무 위반과 사고 사이의 인과관계를 확인해야 하며, 기기나 도로 하자와 함께 공동 원인이 되었을 가능성도 검토해야 합니다.",
@@ -820,8 +820,8 @@
       "content_id": "content.shared-mobility-user-fault-and-compensation",
       "content_type": "misconception_correction",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "shared-mobility-user-fault-and-compensation",
       "title_ko": "이용자에게도 과실이 있으면 손해배상을 전혀 못 받나",
       "one_line_answer_ko": "이용자 과실은 상대방 책임을 자동으로 없애는 것이 아니라 손해 발생ㆍ확대에 기여한 범위에서 책임과 손해액에 반영될 수 있습니다.",
@@ -894,8 +894,8 @@
       "content_id": "content.shared-mobility-operator-liability-not-automatic",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "shared-mobility-operator-liability-not-automatic",
       "title_ko": "공유서비스 사업자에게 항상 사고 책임이 있는 것은 아닙니다",
       "one_line_answer_ko": "운영사업자의 책임을 묻기 위해서는 안전한 기기 제공ㆍ점검ㆍ정비ㆍ고장 대응과 관련된 구체적 의무 위반과 사고 사이의 인과관계를 확인해야 합니다.",
@@ -967,8 +967,8 @@
       "content_id": "content.shared-mobility-accident-evidence-checklist",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "shared-mobility-accident-evidence-checklist",
       "title_ko": "공유자전거 사고 직후 반드시 남길 자료",
       "one_line_answer_ko": "기기 식별정보, 사고 장소와 노면, 앱 이용기록, 상대방 정보, 영상, 진료기록을 원인별로 확보해야 기기ㆍ시설ㆍ사람의 책임을 나눌 수 있습니다.",
@@ -1047,8 +1047,8 @@
       "content_id": "content.shared-mobility-visible-defect-before-ride",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "shared-mobility-visible-defect-before-ride",
       "title_ko": "타기 전 눈에 보이는 이상을 발견했다면",
       "one_line_answer_ko": "교통안전에 위험할 수 있는 구조 이상이 보이면 운행하지 말고 앱 신고와 사진으로 상태를 남겨야 하며, 알고도 운행한 사정은 사고 책임 판단에서 이용자 과실로 다뤄질 수 있습니다.",

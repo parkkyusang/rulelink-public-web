@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
+import {readReviewedTopicFile as readFile} from './source-check-topic-review-file.mjs';
 import path from 'node:path';
 import test from 'node:test';
 
@@ -8,6 +8,7 @@ const repoRoot = path.resolve(appRoot, '..', '..');
 const topicPath = path.join(repoRoot, 'artifacts', 'publication', 'topics', 'domestic-violence-stalking.json');
 const currentPath = path.join(repoRoot, 'artifacts', 'publication', 'current', 'bundle.json');
 const [topic, current] = await Promise.all([readJson(topicPath), readJson(currentPath)]);
+const sourceReview = await readJson(path.join(appRoot, 'scripts', 'fixtures', 'source-check-20261025', 'criminal-review.json'));
 const sources = new Map(topic.sources.map(item => [item.coordinate_id, item]));
 const rules = new Map(topic.rule_cards.map(item => [item.rule_id, item]));
 const scenarios = new Map(topic.scenario_branches.map(item => [item.scenario_id, item]));
@@ -196,7 +197,7 @@ test('원 #105의 의미·식별자·관계·사용자 경로는 승인된 네 �
     topic_hubs: topic.topic_hubs,
     rule_cards: topic.rule_cards,
     scenario_branches: topic.scenario_branches,
-    content_entries: topic.content_entries,
+    content_entries: topic.content_entries.map(normalizeReviewedSummary),
   };
   const serialized = JSON.stringify(stable);
   assert.equal(serialized.length, 38550);
@@ -307,10 +308,20 @@ function assertNewOrExactlyPublished(topicValue, currentValue) {
     const currentItems = new Map(currentValue.knowledge[collection].map(item => [item[idKey], item]));
     for (const item of topicValue[collection]) {
       if (published) {
-        assert.deepEqual(currentItems.get(item[idKey]), item, `출판 정본 불일치: ${item[idKey]}`);
+        assert.deepEqual(normalizeReviewedSummary(currentItems.get(item[idKey])), normalizeReviewedSummary(item), `출판 정본 불일치: ${item[idKey]}`);
       } else {
         assert.equal(currentItems.has(item[idKey]), false, `현재 정본과 식별자 충돌: ${item[idKey]}`);
       }
     }
   }
+}
+
+// 승인된 현행법 교정만 원 인계본 불변 검사에서 분리한다. 새 문구 자체는 전용 회귀시험이 고정한다.
+function normalizeReviewedSummary(item) {
+  if (item?.content_id !== 'content.domestic-violence-stalking-domestic-protection-order') return item;
+  const correction = sourceReview.findings.flatMap(finding => finding.targets)
+    .find(target => target.id === item.content_id && target.field_path === 'one_line_answer_ko');
+  assert.ok(correction, '보호명령 교정 근거 누락');
+  assert.ok([correction.old_text, correction.new_text].includes(item.one_line_answer_ko), '승인 범위 밖 보호명령 요약');
+  return {...item, one_line_answer_ko: correction.old_text};
 }

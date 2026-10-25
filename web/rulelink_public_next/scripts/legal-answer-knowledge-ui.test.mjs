@@ -13,6 +13,7 @@ import test from 'node:test';
 import {createElement} from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import ts from 'typescript';
+import {problemJourneyForEntry} from '../src/lib/problem-journey-entry.ts';
 
 import {
   loadPublicLegalAnswerCatalog,
@@ -495,6 +496,7 @@ async function compileKnowledgePage({catalog, fixture}) {
     },
   };
   const libraryMocks = {
+    '@/lib/problem-journey-entry': {problemJourneyForEntry},
     '@/lib/change-lifecycle': {changeLifecycleLabel: value => value},
     '@/lib/content-labels': {knowledgeContentTypeLabel: value => value},
     '@/lib/legal-date': {formatKoreanLegalDate: value => value},

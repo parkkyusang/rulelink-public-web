@@ -207,6 +207,10 @@ type SemanticFacetDefinition = {
  */
 const SEMANTIC_FACET_DEFINITIONS: readonly SemanticFacetDefinition[] = [
   {
+    id: '@subject:money',
+    terms: ['돈', '금전', '대금', '거래대금', '피해금', '피해자산', '송금', '환급금'],
+  },
+  {
     id: '@domain:online-commerce',
     terms: ['온라인 쇼핑', '온라인 구매', '인터넷 쇼핑', '통신판매', '전자상거래'],
   },
@@ -964,17 +968,27 @@ function semanticFacetsFromText(values: readonly string[]): string[] {
   return SEMANTIC_FACET_DEFINITIONS
     .filter(definition => definition.terms.some(term => {
       const normalizedTerm = normalizeSiteSearchText(term);
-      return normalizedValues.some(value => value.includes(normalizedTerm));
+      return normalizedValues.some(value => (
+        normalizedTerm.length === 1
+          ? value.split(' ').some(word => (
+            word === normalizedTerm
+            || stripKoreanParticle(word) === normalizedTerm
+          ))
+          : value.includes(normalizedTerm)
+      ));
     }))
     .map(definition => definition.id);
 }
 
 function semanticFacetVariantsForToken(token: string): string[] {
   const normalizedToken = normalizeSiteSearchText(token);
-  if (normalizedToken.length < 2) return [];
+  if (!normalizedToken) return [];
   return SEMANTIC_FACET_DEFINITIONS
     .filter(definition => definition.terms.some(term => {
       const normalizedTerm = normalizeSiteSearchText(term);
+      // 돈처럼 한 글자인 독립 명사도 정확한 어휘일 때만 의미축으로 연결한다.
+      // 부분문자 일치는 허용하지 않아 다른 단어를 금전 질의로 오인하지 않는다.
+      if (normalizedToken.length === 1) return normalizedTerm === normalizedToken;
       if (definition.id.startsWith('@role:')) {
         return normalizedTerm === normalizedToken
           || normalizedToken.startsWith(normalizedTerm);

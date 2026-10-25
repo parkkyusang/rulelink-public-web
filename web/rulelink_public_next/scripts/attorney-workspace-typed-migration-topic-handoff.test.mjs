@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {readFile} from 'node:fs/promises';
+import {readReviewedTopicFile as readFile} from './source-check-topic-review-file.mjs';
 import path from 'node:path';
 import test from 'node:test';
 import {fileURLToPath} from 'node:url';

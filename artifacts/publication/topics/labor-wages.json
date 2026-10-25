@@ -4,12 +4,12 @@
   "sources": [
     {
       "coordinate_id": "coord.labor-wages.labor-standards-ko-0002",
-      "source_id": "labor_standards_ko_0002",
+      "source_id": "law_001872_ko_0002",
       "law_name_ko": "근로기준법",
       "article_no": "제2조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C2%EC%A1%B0",
-      "source_snapshot_id": "snapshot:a71a83bf13303c525bd1e3b4a929817a",
-      "last_verified_at": "2026-07-21T08:15:00+00:00"
+      "source_snapshot_id": "snapshot:692c0415f9a2da8ae060e2694e74e4eb018e0c85d135672069579d11797aba0f",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.labor-wages.src-supreme-2006da60793",
@@ -20,43 +20,43 @@
       "decision_date": "2007-01-25",
       "official_url": "https://www.law.go.kr/LSW/precInfoP.do?evtNo=2006%EB%8B%A460793",
       "source_snapshot_id": "snapshot:a86d3079a89fe7fa163f70a54abd9b23",
-      "last_verified_at": "2026-07-21T08:15:00+00:00"
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.labor-wages.labor-standards-ko-0036",
-      "source_id": "labor_standards_ko_0036",
+      "source_id": "law_001872_ko_0036",
       "law_name_ko": "근로기준법",
       "article_no": "제36조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C36%EC%A1%B0",
-      "source_snapshot_id": "snapshot:1a407952c492676358a540b100de3c04",
-      "last_verified_at": "2026-07-21T08:15:00+00:00"
+      "source_snapshot_id": "snapshot:1a407952c492676358a540b100de3c0448a95a3e693d009917110ffb78ef2d7e",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.labor-wages.retirement-benefit-ko-0008",
-      "source_id": "retirement_benefit_ko_0008",
+      "source_id": "law_009883_ko_0008",
       "law_name_ko": "근로자퇴직급여 보장법",
       "article_no": "제8조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EC%9E%90%ED%87%B4%EC%A7%81%EA%B8%89%EC%97%AC%20%EB%B3%B4%EC%9E%A5%EB%B2%95/%EC%A0%9C8%EC%A1%B0",
-      "source_snapshot_id": "snapshot:778d57ede7f6e774d5d4a9206391d2b4",
-      "last_verified_at": "2026-07-21T08:15:00+00:00"
+      "source_snapshot_id": "snapshot:4d15124ccb832d764abc8acf0981d4aaec915e16f406258be33dd27f67ddab19",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.labor-wages.retirement-benefit-ko-0009",
-      "source_id": "retirement_benefit_ko_0009",
+      "source_id": "law_009883_ko_0009",
       "law_name_ko": "근로자퇴직급여 보장법",
       "article_no": "제9조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EC%9E%90%ED%87%B4%EC%A7%81%EA%B8%89%EC%97%AC%20%EB%B3%B4%EC%9E%A5%EB%B2%95/%EC%A0%9C9%EC%A1%B0",
-      "source_snapshot_id": "snapshot:bf9fc59ae5f5fdabbdbcadd2b3cbe8ff",
-      "last_verified_at": "2026-07-21T08:15:00+00:00"
+      "source_snapshot_id": "snapshot:1eb5c9c60cfd1bffd5c387dd131b98f9d71788ef8a0fb21d1ba80ebd82cb735b",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.labor-wages.labor-standards-ko-0027",
-      "source_id": "labor_standards_ko_0027",
+      "source_id": "law_001872_ko_0027",
       "law_name_ko": "근로기준법",
       "article_no": "제27조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C27%EC%A1%B0",
-      "source_snapshot_id": "snapshot:29e68bc810d31e8a9a2e824bb85c98bd",
-      "last_verified_at": "2026-07-21T08:15:00+00:00"
+      "source_snapshot_id": "snapshot:1fc0110df76b9405c733b2f66fda33a8aeec09e814ee8af6392d9abfb957dd3c",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.labor-wages.src-supreme-2015du48136",
@@ -67,16 +67,16 @@
       "decision_date": "2015-11-27",
       "official_url": "https://www.law.go.kr/LSW/precInfoP.do?precSeq=179619",
       "source_snapshot_id": "snapshot:912aebd73d43afdb41203fbfa529b844",
-      "last_verified_at": "2026-07-21T08:15:00+00:00"
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.labor-wages.labor-standards-ko-0028",
-      "source_id": "labor_standards_ko_0028",
+      "source_id": "law_001872_ko_0028",
       "law_name_ko": "근로기준법",
       "article_no": "제28조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C28%EC%A1%B0",
-      "source_snapshot_id": "snapshot:4431004a0b3a6b58613eff695aa86d4a",
-      "last_verified_at": "2026-07-21T08:15:00+00:00"
+      "source_snapshot_id": "snapshot:e3491ec8fab3e49d17c23f5d386805b7c8d5b231ae96dc8402b1f6078b90969e",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     }
   ],
   "topic_hubs": [
@@ -288,8 +288,8 @@
       "content_id": "content.freelancer-contract-worker-status",
       "content_type": "fact_branch",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "slug": "freelancer-contract-worker-status",
       "title_ko": "프리랜서 계약서를 썼어도 근로자일 수 있나",
       "one_line_answer_ko": "계약 명칭만으로 결정되지 않으며 실제 업무 지시·감독, 시간과 장소의 구속, 보수의 성격, 전속성과 계속성 등을 함께 본다.",
@@ -400,8 +400,8 @@
       "content_id": "content.worker-status-evidence-checklist",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "slug": "worker-status-evidence-checklist",
       "title_ko": "근로자성 판단에 필요한 자료 체크리스트",
       "one_line_answer_ko": "계약서뿐 아니라 업무지시, 출퇴근 통제, 보수 산정, 장비 부담, 대체 가능성, 전속성을 보여주는 실제 자료를 모아야 한다.",
@@ -492,8 +492,8 @@
       "content_id": "content.business-registration-does-not-decide-worker-status",
       "content_type": "misconception_correction",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "slug": "business-registration-does-not-decide-worker-status",
       "title_ko": "사업자등록이나 3.3% 원천징수면 근로자가 아닌가",
       "one_line_answer_ko": "사업자등록이나 세금 처리 방식은 판단자료 중 하나일 뿐, 실제 사용종속관계를 대신해 결론을 정하지 않는다.",
@@ -576,8 +576,8 @@
       "content_id": "content.final-wages-after-retirement-14-days",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "final-wages-after-retirement-14-days",
       "title_ko": "퇴직한 뒤 임금은 언제까지 받아야 하나",
       "one_line_answer_ko": "원칙적으로 퇴직일부터 14일 이내이며, 특별한 사정이 있고 당사자가 지급기일 연장에 합의한 경우는 달라질 수 있다.",
@@ -669,8 +669,8 @@
       "content_id": "content.verbal-delay-agreement-after-retirement",
       "content_type": "fact_branch",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "verbal-delay-agreement-after-retirement",
       "title_ko": "회사가 14일 뒤에 주겠다고 말하면 지급기일이 자동 연장되나",
       "one_line_answer_ko": "회사의 일방 통보만으로 자동 연장되는 것은 아니며 특별한 사정과 당사자 사이의 합의 여부를 확인해야 한다.",
@@ -782,8 +782,8 @@
       "content_id": "content.retirement-pay-basic-formula",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "retirement-pay-basic-formula",
       "title_ko": "퇴직금 계산의 기본 출발점",
       "one_line_answer_ko": "기본 출발점은 계속근로 1년에 대해 30일분 이상의 평균임금이며, 적용대상과 계속근로기간·평균임금 산정자료를 먼저 확정해야 한다.",
@@ -871,8 +871,8 @@
       "content_id": "content.retirement-pay-payment-deadline",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "retirement-pay-payment-deadline",
       "title_ko": "퇴직금도 퇴직 후 14일 안에 지급해야 하나",
       "one_line_answer_ko": "퇴직급여도 원칙적으로 퇴직일부터 14일 이내 지급 대상이며 특별한 사정이 있는 경우 당사자 합의로 기일을 연장할 수 있다.",
@@ -983,8 +983,8 @@
       "content_id": "content.verbal-dismissal-written-notice",
       "content_type": "misconception_correction",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "verbal-dismissal-written-notice",
       "title_ko": "전화나 말로 해고 통보하면 효력이 있나",
       "one_line_answer_ko": "해고사유와 해고시기를 서면으로 통지해야 해고의 효력이 있으므로 말이나 전화 통보만 있었다면 서면통지 여부를 우선 확인해야 한다.",
@@ -1073,8 +1073,8 @@
       "content_id": "content.specific-reason-in-dismissal-notice",
       "content_type": "precedent_doctrine",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "slug": "specific-reason-in-dismissal-notice",
       "title_ko": "해고통지서에는 이유를 얼마나 구체적으로 써야 하나",
       "one_line_answer_ko": "근로자가 해고의 구체적 사유를 알 수 있어 대응할 수 있을 정도로 기재되어야 하며 추상적 표현만으로 충분한지는 실제 통지 내용과 경위를 본다.",
@@ -1164,8 +1164,8 @@
       "content_id": "content.unfair-dismissal-remedy-three-months",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "unfair-dismissal-remedy-three-months",
       "title_ko": "부당해고 구제신청은 언제까지 해야 하나",
       "one_line_answer_ko": "부당해고 등이 있었던 날부터 3개월 이내에 구제신청해야 하므로 해고일과 기간 만료일을 먼저 확정해야 한다.",

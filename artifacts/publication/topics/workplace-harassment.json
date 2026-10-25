@@ -4,111 +4,111 @@
   "sources": [
     {
       "coordinate_id": "coord.workplace-harassment.labor-0076-2",
-      "source_id": "labor_standards_act_ko_0076_02",
+      "source_id": "law_001872_ko_0076_02",
       "law_name_ko": "근로기준법",
       "article_no": "제76조의2",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C76%EC%A1%B0%EC%9D%982",
-      "source_snapshot_id": "snapshot:3e204759ac760b446fde343e8ae17c17",
-      "last_verified_at": "2026-07-22T14:10:00+00:00"
+      "source_snapshot_id": "snapshot:3e204759ac760b446fde343e8ae17c17eafbc26e1cf39dbbcaa38664cec5c421",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.workplace-harassment.labor-0076-3",
-      "source_id": "labor_standards_act_ko_0076_03",
+      "source_id": "law_001872_ko_0076_03",
       "law_name_ko": "근로기준법",
       "article_no": "제76조의3",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C76%EC%A1%B0%EC%9D%983",
-      "source_snapshot_id": "snapshot:f207c432a00d4f67c0cdb0ce1a7eefd5",
-      "last_verified_at": "2026-07-22T14:10:00+00:00"
+      "source_snapshot_id": "snapshot:b1557fe062968e129eb51364c1ad053682a47b4fa75fb16f400fd982519282a9",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.workplace-harassment.labor-0109",
-      "source_id": "labor_standards_act_ko_0109",
+      "source_id": "law_001872_ko_0109",
       "law_name_ko": "근로기준법",
       "article_no": "제109조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C109%EC%A1%B0",
-      "source_snapshot_id": "snapshot:b4b9f59bb50637d9f17e66f6481f858f",
-      "last_verified_at": "2026-07-22T14:10:00+00:00"
+      "source_snapshot_id": "snapshot:c4849f2acc0556f6c0519409aa2ca59f69002c81aea35bb16cae6f9357c81bd8",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.workplace-harassment.labor-0116",
-      "source_id": "labor_standards_act_ko_0116",
+      "source_id": "law_001872_ko_0116",
       "law_name_ko": "근로기준법",
       "article_no": "제116조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95/%EC%A0%9C116%EC%A1%B0",
-      "source_snapshot_id": "snapshot:49d0c816451ea310d95594469cd0d6fb",
-      "last_verified_at": "2026-07-22T14:10:00+00:00"
+      "source_snapshot_id": "snapshot:4b134b27e19ddc8252e21bb817aac41e592e296aac1fb4ebfa9c7e0154728151",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.workplace-harassment.equal-0002",
-      "source_id": "equal_employment_opportunity_work_family_balance_assistance_act_ko_0002",
+      "source_id": "law_000130_ko_0002",
       "law_name_ko": "남녀고용평등과 일ㆍ가정 양립 지원에 관한 법률",
       "article_no": "제2조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%82%A8%EB%85%80%EA%B3%A0%EC%9A%A9%ED%8F%89%EB%93%B1%EA%B3%BC%20%EC%9D%BC%E3%86%8D%EA%B0%80%EC%A0%95%20%EC%96%91%EB%A6%BD%20%EC%A7%80%EC%9B%90%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C2%EC%A1%B0",
-      "source_snapshot_id": "snapshot:bb8e73e9a7fd7c6ccdb1d910575266ec",
-      "last_verified_at": "2026-07-22T14:10:00+00:00"
+      "source_snapshot_id": "snapshot:f98dca16e57546bc7abed951ab845d2b1b8aaa7fb3854e0c61185f0399022f3d",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.workplace-harassment.equal-0012",
-      "source_id": "equal_employment_opportunity_work_family_balance_assistance_act_ko_0012",
+      "source_id": "law_000130_ko_0012",
       "law_name_ko": "남녀고용평등과 일ㆍ가정 양립 지원에 관한 법률",
       "article_no": "제12조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%82%A8%EB%85%80%EA%B3%A0%EC%9A%A9%ED%8F%89%EB%93%B1%EA%B3%BC%20%EC%9D%BC%E3%86%8D%EA%B0%80%EC%A0%95%20%EC%96%91%EB%A6%BD%20%EC%A7%80%EC%9B%90%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C12%EC%A1%B0",
-      "source_snapshot_id": "snapshot:cb0786784ff86afe5fa5c4fca9315f5f",
-      "last_verified_at": "2026-07-22T14:10:00+00:00"
+      "source_snapshot_id": "snapshot:cb0786784ff86afe5fa5c4fca9315f5f4746c8b0656265695ab04627e2ada606",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.workplace-harassment.equal-0014",
-      "source_id": "equal_employment_opportunity_work_family_balance_assistance_act_ko_0014",
+      "source_id": "law_000130_ko_0014",
       "law_name_ko": "남녀고용평등과 일ㆍ가정 양립 지원에 관한 법률",
       "article_no": "제14조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%82%A8%EB%85%80%EA%B3%A0%EC%9A%A9%ED%8F%89%EB%93%B1%EA%B3%BC%20%EC%9D%BC%E3%86%8D%EA%B0%80%EC%A0%95%20%EC%96%91%EB%A6%BD%20%EC%A7%80%EC%9B%90%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C14%EC%A1%B0",
-      "source_snapshot_id": "snapshot:4579f3f3f69df935a4d13ac7b16b88a6",
-      "last_verified_at": "2026-07-22T14:10:00+00:00"
+      "source_snapshot_id": "snapshot:f1a61b73a88ae743285ef7697ce1339bd506044dcd1b0540af2d71f50ede2a24",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.workplace-harassment.equal-0014-2",
-      "source_id": "equal_employment_opportunity_work_family_balance_assistance_act_ko_0014_02",
+      "source_id": "law_000130_ko_0014_02",
       "law_name_ko": "남녀고용평등과 일ㆍ가정 양립 지원에 관한 법률",
       "article_no": "제14조의2",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%82%A8%EB%85%80%EA%B3%A0%EC%9A%A9%ED%8F%89%EB%93%B1%EA%B3%BC%20%EC%9D%BC%E3%86%8D%EA%B0%80%EC%A0%95%20%EC%96%91%EB%A6%BD%20%EC%A7%80%EC%9B%90%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C14%EC%A1%B0%EC%9D%982",
-      "source_snapshot_id": "snapshot:85a239d8ab9bccd6deedb8708c3e7024",
-      "last_verified_at": "2026-07-22T14:10:00+00:00"
+      "source_snapshot_id": "snapshot:b66e394e6bfb0d62269da5890fbe622b3d2e1ea3232a581c1a5ea3bbb87b492b",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.workplace-harassment.equal-0026",
-      "source_id": "equal_employment_opportunity_work_family_balance_assistance_act_ko_0026",
+      "source_id": "law_000130_ko_0026",
       "law_name_ko": "남녀고용평등과 일ㆍ가정 양립 지원에 관한 법률",
       "article_no": "제26조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%82%A8%EB%85%80%EA%B3%A0%EC%9A%A9%ED%8F%89%EB%93%B1%EA%B3%BC%20%EC%9D%BC%E3%86%8D%EA%B0%80%EC%A0%95%20%EC%96%91%EB%A6%BD%20%EC%A7%80%EC%9B%90%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C26%EC%A1%B0",
-      "source_snapshot_id": "snapshot:2592c43d52ab34db0453e522209dce84",
-      "last_verified_at": "2026-07-22T14:10:00+00:00"
+      "source_snapshot_id": "snapshot:e39bf9280ce46f85557b5c99824bbabcf95d07c0bef358f54c632b12e8d90a22",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.workplace-harassment.equal-0037",
-      "source_id": "equal_employment_opportunity_work_family_balance_assistance_act_ko_0037",
+      "source_id": "law_000130_ko_0037",
       "law_name_ko": "남녀고용평등과 일ㆍ가정 양립 지원에 관한 법률",
       "article_no": "제37조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%82%A8%EB%85%80%EA%B3%A0%EC%9A%A9%ED%8F%89%EB%93%B1%EA%B3%BC%20%EC%9D%BC%E3%86%8D%EA%B0%80%EC%A0%95%20%EC%96%91%EB%A6%BD%20%EC%A7%80%EC%9B%90%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C37%EC%A1%B0",
-      "source_snapshot_id": "snapshot:cdbc0ffc9fd17dd3f1632d0f1e19eb43",
-      "last_verified_at": "2026-07-22T14:10:00+00:00"
+      "source_snapshot_id": "snapshot:9f06c7d3a48f24910c967edcc05420f1d3175c90ba8040760f1081932dbc74d0",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.workplace-harassment.equal-0039",
-      "source_id": "equal_employment_opportunity_work_family_balance_assistance_act_ko_0039",
+      "source_id": "law_000130_ko_0039",
       "law_name_ko": "남녀고용평등과 일ㆍ가정 양립 지원에 관한 법률",
       "article_no": "제39조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%82%A8%EB%85%80%EA%B3%A0%EC%9A%A9%ED%8F%89%EB%93%B1%EA%B3%BC%20%EC%9D%BC%E3%86%8D%EA%B0%80%EC%A0%95%20%EC%96%91%EB%A6%BD%20%EC%A7%80%EC%9B%90%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C39%EC%A1%B0",
-      "source_snapshot_id": "snapshot:073dcd97dd63f5d1998316b11f1a31fe",
-      "last_verified_at": "2026-07-22T14:10:00+00:00"
+      "source_snapshot_id": "snapshot:04437cdb9d02fff0013f610d8cb7d1e42f0f8555e607c12fe6bdd90cebe709f3",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.workplace-harassment.iaci-0037",
-      "source_id": "industrial_accident_compensation_insurance_act_ko_0037",
+      "source_id": "law_001760_ko_0037",
       "law_name_ko": "산업재해보상보험법",
       "article_no": "제37조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95/%EC%A0%9C37%EC%A1%B0",
-      "source_snapshot_id": "snapshot:3c17edff2f521946e5037b0075a80067",
-      "last_verified_at": "2026-07-22T14:10:00+00:00"
+      "source_snapshot_id": "snapshot:b0c62a7ce0dd029d9b6aabc874fb4ceb20c41bf638ab7ce4ee414d92e0768a2c",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     }
   ],
   "topic_hubs": [
@@ -252,7 +252,7 @@
       "norm": {
         "actor_ko": "성희롱 관련 차별적 처우 등을 받은 근로자와 사업주",
         "conditions_ko": "확인 뒤 피해자 요청 보호조치 미이행, 고객 성희롱 보호조치 미이행 또는 신고·피해 주장에 대한 불리한 처우가 있는 경우",
-        "legal_effect_ko": "근로자는 해당 처우를 받은 날 또는 계속행위 종료일부터 6개월 안에 노동위원회에 시정을 신청할 수 있습니다."
+        "legal_effect_ko": "해당 처우를 받은 날부터 6개월 이내에 노동위원회에 시정을 신청해야 합니다. 법 제26조제1항제3호의 불리한 처우가 계속되는 경우에는 종료일이 기준이지만, 같은 항 제2호의 보호조치 미이행에 그 기준을 일괄 적용해서는 안 됩니다."
       },
       "source_coordinate_ids": [
         "coord.workplace-harassment.equal-0014",
@@ -389,10 +389,10 @@
     },
     {
       "scenario_id": "scenario.workplace-harassment.labor-commission",
-      "question_ko": "성희롱 보호조치 미이행이나 보복이 발생한 날부터 6개월이 지나지 않았는가?",
-      "decision_fact_ko": "처우 발생일·종료일, 조치 요청과 미이행, 불리한 처우의 구체적 내용",
+      "question_ko": "처우 유형에 맞는 법정 기산일부터 6개월이 지나지 않았나요?",
+      "decision_fact_ko": "제26조제1항제2호의 보호조치 미이행 발생일과 같은 항 제3호의 불리한 처우 발생일, 불리한 처우가 계속된 경우의 종료일",
       "when_true_ko": "시정신청 대상 행위를 특정하고 증거와 요구하는 시정내용을 갖춰 노동위원회 절차를 검토합니다.",
-      "when_false_ko": "기간 계산과 계속행위 종료일을 다시 확인하고 다른 행정·민사·형사 경로를 구분합니다.",
+      "when_false_ko": "처우 유형별 기산일을 즉시 다시 확인합니다. 보호조치 미이행에도 종료일 기준이 적용된다고 단정하지 말고 다른 행정·민사·형사 경로의 기한도 구분합니다.",
       "rule_ids": [
         "rule.workplace-harassment.labor-commission"
       ],
@@ -420,8 +420,8 @@
       "content_id": "content.workplace-harassment-vs-sexual-harassment",
       "content_type": "similar_case_comparison",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T14:10:00+00:00",
-      "expires_at": "2026-10-22T14:10:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "workplace-harassment-vs-sexual-harassment",
       "title_ko": "직장 내 괴롭힘과 성희롱은 같은 제도인가요?",
       "one_line_answer_ko": "서로 다른 법정 요건과 구제절차를 가진 제도이지만 한 행위가 우위 남용과 성적 언동 요건을 모두 충족하면 함께 적용될 수 있습니다.",
@@ -489,8 +489,8 @@
       "content_id": "content.workplace-harassment-elements",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T14:10:00+00:00",
-      "expires_at": "2026-10-22T14:10:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "workplace-harassment-elements",
       "title_ko": "상사의 부당한 지시는 모두 직장 내 괴롭힘인가요?",
       "one_line_answer_ko": "부당하거나 불쾌하다는 이유만으로 정하지 않고 우위 이용, 업무상 적정범위 초과, 고통 또는 근무환경 악화를 구체적으로 판단합니다.",
@@ -558,8 +558,8 @@
       "content_id": "content.workplace-harassment-report-investigation",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T14:10:00+00:00",
-      "expires_at": "2026-10-22T14:10:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "workplace-harassment-report-investigation",
       "title_ko": "직장 내 괴롭힘은 피해자만 신고할 수 있나요?",
       "one_line_answer_ko": "누구든지 발생 사실을 알게 되면 사용자에게 신고할 수 있고, 사용자는 신고를 받거나 사실을 인지하면 지체 없이 객관적으로 조사해야 합니다.",
@@ -626,8 +626,8 @@
       "content_id": "content.workplace-harassment-protection-measures",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T14:10:00+00:00",
-      "expires_at": "2026-10-22T14:10:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "workplace-harassment-protection-measures",
       "title_ko": "괴롭힘 신고 뒤 피해자만 다른 부서로 보내도 되나요?",
       "one_line_answer_ko": "조사 중 보호조치는 피해자의 의사에 반해서는 안 되며, 괴롭힘 확인 뒤에는 피해자 요청 조치와 행위자에 대한 필요한 조치를 구분해 이행해야 합니다.",
@@ -694,8 +694,8 @@
       "content_id": "content.workplace-harassment-retaliation-confidentiality",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T14:10:00+00:00",
-      "expires_at": "2026-10-22T14:10:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "workplace-harassment-retaliation-confidentiality",
       "title_ko": "괴롭힘 신고 뒤 인사불이익이나 소문이 생기면 어떻게 하나요?",
       "one_line_answer_ko": "신고자·피해자에 대한 불리한 처우와 조사 비밀 누설은 별도 위반이 될 수 있으므로 신고 전후 조건과 정보 유포 경로를 즉시 보존합니다.",
@@ -765,8 +765,8 @@
       "content_id": "content.workplace-sexual-harassment-elements",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T14:10:00+00:00",
-      "expires_at": "2026-10-22T14:10:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "workplace-sexual-harassment-elements",
       "title_ko": "회식이나 사내 메신저의 성적 언동도 직장 내 성희롱인가요?",
       "one_line_answer_ko": "사업장 밖·근무시간 외라는 이유만으로 배제하지 않고 직장 내 지위 이용 또는 업무관련성과 성적 굴욕감·혐오감이나 고용상 불이익을 판단합니다.",
@@ -835,8 +835,8 @@
       "content_id": "content.workplace-sexual-harassment-employer-response",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T14:10:00+00:00",
-      "expires_at": "2026-10-22T14:10:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "workplace-sexual-harassment-employer-response",
       "title_ko": "성희롱 신고를 받은 회사는 무엇을 해야 하나요?",
       "one_line_answer_ko": "회사는 지체 없이 피해자가 수치심을 다시 느끼지 않도록 조사하고, 의사에 반하지 않는 보호조치와 확인 뒤 피해자·행위자 조치 및 비밀유지를 이행해야 합니다.",
@@ -906,8 +906,8 @@
       "content_id": "content.customer-sexual-harassment-protection",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T14:10:00+00:00",
-      "expires_at": "2026-10-22T14:10:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "customer-sexual-harassment-protection",
       "title_ko": "고객에게 성희롱을 당해도 회사가 보호해야 하나요?",
       "one_line_answer_ko": "업무와 밀접한 고객 등의 성적 언동으로 고충 해소를 요청하면 회사는 적절한 보호조치를 해야 하고 피해 주장·요구 거절을 이유로 불이익을 줄 수 없습니다.",
@@ -975,8 +975,8 @@
       "content_id": "content.sexual-harassment-labor-commission-remedy",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T14:10:00+00:00",
-      "expires_at": "2026-10-22T14:10:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "sexual-harassment-labor-commission-remedy",
       "title_ko": "성희롱 신고 뒤 노동위원회 시정신청도 가능한가요?",
       "one_line_answer_ko": "성희롱 확인 뒤 보호조치 미이행, 고객 성희롱 보호조치 미이행, 신고·피해 주장에 대한 불리한 처우는 원칙적으로 6개월 안에 시정신청을 검토합니다.",
@@ -984,12 +984,12 @@
       "key_points_ko": [
         "모든 성희롱 쟁점이 노동위원회 시정신청 대상인 것은 아닙니다.",
         "법이 열거한 보호조치 미이행·불리한 처우를 특정합니다.",
-        "발생일 또는 계속행위 종료일부터 6개월을 관리합니다."
+        "처우를 받은 날부터 6개월을 관리하되, 계속되는 불리한 처우와 보호조치 미이행의 기산점을 구분합니다."
       ],
       "action_steps_ko": [
         "회사 조사결과와 피해자 요청 조치를 확보합니다.",
         "미이행 또는 불리한 처우를 사건별로 적습니다.",
-        "각 처우 발생일과 계속 여부를 표시합니다.",
+        "보호조치 미이행과 불리한 처우를 나누어 발생일을 기록하고, 계속되는 불리한 처우라면 종료일도 표시합니다.",
         "신청으로 요구할 시정내용을 구체화합니다.",
         "노동청·민사·형사 등 다른 경로와 목적을 구분합니다."
       ],
@@ -1000,11 +1000,11 @@
         "고객 성희롱 고충 요청",
         "불리한 처우",
         "처우 발생일",
-        "계속행위 종료일",
+        "불리한 처우가 계속되는 경우의 종료일",
         "6개월 경과",
         "요구 시정내용"
       ],
-      "caution_ko": "단순한 성희롱 사실확인 자체와 법 제26조가 열거한 차별적 처우 등의 시정신청 대상을 혼동하지 말아야 하며, 다른 구제기간도 따로 확인합니다.",
+      "caution_ko": "단순한 성희롱 사실확인과 법 제26조의 시정신청 대상을 혼동하지 마세요. 보호조치 미이행이 계속된다는 이유만으로 종료일까지 기한이 미뤄진다고 가정해서는 안 되며, 다른 구제기간도 따로 확인합니다.",
       "search_intents_ko": [
         "성희롱 노동위원회 시정신청",
         "성희롱 신고 보복 6개월",
@@ -1021,7 +1021,7 @@
         {
           "heading_ko": "6개월의 시작점을 관리합니다",
           "paragraphs_ko": [
-            "원칙적으로 해당 처우를 받은 날부터 6개월이고 계속되는 행위는 종료일부터 계산합니다.",
+            "해당 처우를 받은 날부터 6개월을 기준으로 합니다. 법 제26조제1항제3호의 불리한 처우가 계속되는 경우에는 그 종료일부터 계산합니다. 제2호의 피해자 보호조치 미이행에도 종료일 기준이 자동 적용된다고 가정하지 말고, 미이행이 있었던 시점부터 기한을 관리해야 합니다.",
             "내부절차가 진행 중이라는 이유로 외부 구제기간이 당연히 멈춘다고 가정하지 말고 날짜를 별도로 관리합니다."
           ]
         }
@@ -1046,8 +1046,8 @@
       "content_id": "content.harassment-mental-illness-industrial-accident",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-22T14:10:00+00:00",
-      "expires_at": "2026-10-22T14:10:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "harassment-mental-illness-industrial-accident",
       "title_ko": "괴롭힘으로 우울증·불안장애가 생기면 산재가 되나요?",
       "one_line_answer_ko": "직장 내 괴롭힘이나 고객 폭언 등의 업무상 정신적 스트레스와 진단된 질병 사이 상당인과관계가 인정되면 업무상 질병이 될 수 있습니다.",

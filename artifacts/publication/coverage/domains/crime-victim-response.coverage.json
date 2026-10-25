@@ -36,7 +36,7 @@
         {
           "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
           "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
-          "last_verified_at": "2026-07-24T00:00:00+00:00"
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
         }
       ],
       "required_authority_binding_ids": [
@@ -80,7 +80,7 @@
         {
           "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
           "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
-          "last_verified_at": "2026-07-24T00:00:00+00:00"
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
         }
       ],
       "required_authority_binding_ids": [
@@ -125,12 +125,12 @@
         {
           "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
           "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
-          "last_verified_at": "2026-07-24T00:00:00+00:00"
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
         },
         {
           "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0032",
           "source_snapshot_id": "c7d70e140addfb2e580cb419da25eec6",
-          "last_verified_at": "2026-07-24T00:00:00+00:00"
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
         }
       ],
       "required_authority_binding_ids": [
@@ -175,7 +175,7 @@
         {
           "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
           "source_snapshot_id": "bb35446950761affb71d6c804d4dd5f8",
-          "last_verified_at": "2026-07-24T00:00:00+00:00"
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
         }
       ],
       "required_authority_binding_ids": [
@@ -219,7 +219,7 @@
         {
           "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
           "source_snapshot_id": "bb35446950761affb71d6c804d4dd5f8",
-          "last_verified_at": "2026-07-24T00:00:00+00:00"
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
         }
       ],
       "required_authority_binding_ids": [
@@ -265,12 +265,12 @@
         {
           "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0031",
           "source_snapshot_id": "9af4e46708641c88dc39ec6af514632c",
-          "last_verified_at": "2026-07-24T00:00:00+00:00"
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
         },
         {
           "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0034",
           "source_snapshot_id": "c8776a4473237b3cf5c8ea85c7dc7076",
-          "last_verified_at": "2026-07-24T00:00:00+00:00"
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
         }
       ],
       "required_authority_binding_ids": [

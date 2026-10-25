@@ -38,15 +38,15 @@
       ],
       "source_coordinates": [
         {
-          "source_id": "ecommerce_consumer_ko_0020_04",
+          "source_id": "law_009318_ko_0020_04",
           "law_key": "ecommerce_consumer",
           "article_no": "제20조의4",
-          "source_snapshot_id": "snapshot:8a1aec26352f849b6e4223da51818c58",
+          "source_snapshot_id": "snapshot:f6036383c24dd074859d7beaf94188b09c5bcfe87f6be830b70ff0c5f5ff6169",
           "version_scope": "current_as_of_review",
           "effective_from": "2026-07-21",
           "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98%20%EB%93%B1%EC%97%90%EC%84%9C%EC%9D%98%20%EC%86%8C%EB%B9%84%EC%9E%90%EB%B3%B4%ED%98%B8%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C20%EC%A1%B0%EC%9D%984",
-          "source_hash": "sha256:8a1aec26352f849b6e4223da51818c58ba9def0beae4594d297b6aea6931d307",
-          "last_verified_at": "2026-07-21T07:55:00+00:00",
+          "source_hash": "sha256:f6036383c24dd074859d7beaf94188b09c5bcfe87f6be830b70ff0c5f5ff6169",
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00",
           "validation_status": "verified"
         },
         {
@@ -100,12 +100,12 @@
           "source_id": "civil_act_ko_1004_02",
           "law_key": "civil_act",
           "article_no": "제1004조의2",
-          "source_snapshot_id": "snapshot:249347b5699e0b74b2c7cdfc22df547c",
+          "source_snapshot_id": "snapshot:93dbc1069b024da9d308c39077ad427fca87487acb8380170870bd60ba64f7c2",
           "version_scope": "current_as_of_review",
           "effective_from": "2026-03-17",
           "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1004%EC%A1%B0%EC%9D%982",
-          "source_hash": "sha256:249347b5699e0b74b2c7cdfc22df547cf190c8c781e1a00e468aff9611e7f12f",
-          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "source_hash": "sha256:93dbc1069b024da9d308c39077ad427fca87487acb8380170870bd60ba64f7c2",
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00",
           "validation_status": "verified"
         },
         {
@@ -158,36 +158,36 @@
           "source_id": "civil_act_ko_1001",
           "law_key": "civil_act",
           "article_no": "제1001조",
-          "source_snapshot_id": "snapshot:0ddea81999ec616d43249627e09c6c67",
+          "source_snapshot_id": "snapshot:96d70d32429c6791b1474b1a5d0217d3a37f19dfff457b130b1648dd4d053db0",
           "version_scope": "current_as_of_review",
           "effective_from": "2026-03-17",
           "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1001%EC%A1%B0",
-          "source_hash": "sha256:0ddea81999ec616d43249627e09c6c67acc21c76011b26f849cff6009ea4faa0",
-          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "source_hash": "sha256:96d70d32429c6791b1474b1a5d0217d3a37f19dfff457b130b1648dd4d053db0",
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00",
           "validation_status": "verified"
         },
         {
           "source_id": "civil_act_ko_1004_02",
           "law_key": "civil_act",
           "article_no": "제1004조의2",
-          "source_snapshot_id": "snapshot:249347b5699e0b74b2c7cdfc22df547c",
+          "source_snapshot_id": "snapshot:93dbc1069b024da9d308c39077ad427fca87487acb8380170870bd60ba64f7c2",
           "version_scope": "current_as_of_review",
           "effective_from": "2026-03-17",
           "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1004%EC%A1%B0%EC%9D%982",
-          "source_hash": "sha256:249347b5699e0b74b2c7cdfc22df547cf190c8c781e1a00e468aff9611e7f12f",
-          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "source_hash": "sha256:93dbc1069b024da9d308c39077ad427fca87487acb8380170870bd60ba64f7c2",
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00",
           "validation_status": "verified"
         },
         {
           "source_id": "civil_act_ko_1010",
           "law_key": "civil_act",
           "article_no": "제1010조",
-          "source_snapshot_id": "snapshot:b6cb761969185ba1d4b0c4843a7409f0",
+          "source_snapshot_id": "snapshot:00618d3d8800189b3498b6899acb924f51d3aef4eaf7bd347995bb1102e42760",
           "version_scope": "current_as_of_review",
           "effective_from": "2026-03-17",
           "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1010%EC%A1%B0",
-          "source_hash": "sha256:b6cb761969185ba1d4b0c4843a7409f0fe091c0207e7e12bf9a003a854cf61df",
-          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "source_hash": "sha256:00618d3d8800189b3498b6899acb924f51d3aef4eaf7bd347995bb1102e42760",
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00",
           "validation_status": "verified"
         }
       ]
@@ -229,27 +229,27 @@
       ],
       "source_coordinates": [
         {
-          "source_id": "civil_execution_ko_0246_02",
+          "source_id": "law_009290_ko_0246_02",
           "law_key": "civil_execution",
           "article_no": "제246조의2",
-          "source_snapshot_id": "snapshot:ff58c1d8755856865de21fba650211cd",
+          "source_snapshot_id": "snapshot:56b9625535036afc01078e439a715393a3a826a8f7c644aa6fae0f4235477cdf",
           "version_scope": "current_as_of_review",
           "effective_from": "2026-02-01",
           "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C246%EC%A1%B0%EC%9D%982",
-          "source_hash": "sha256:ff58c1d8755856865de21fba650211cd96f247d1f61a9951a565ef54a9be260b",
-          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "source_hash": "sha256:56b9625535036afc01078e439a715393a3a826a8f7c644aa6fae0f4235477cdf",
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00",
           "validation_status": "verified"
         },
         {
-          "source_id": "civil_execution_ko_0246",
+          "source_id": "law_009290_ko_0246",
           "law_key": "civil_execution",
           "article_no": "제246조",
-          "source_snapshot_id": "snapshot:7775f68b6cbbbb45116ca18713f47330",
+          "source_snapshot_id": "snapshot:9e513839dcf94b8afcebdc918a09cc0bc036eb7c1cdc2198523487b7eacb4806",
           "version_scope": "current_as_of_review",
           "effective_from": "2026-02-01",
           "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C246%EC%A1%B0",
-          "source_hash": "sha256:7775f68b6cbbbb45116ca18713f47330445ec05f88ba657f0326696c3c290aaa",
-          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "source_hash": "sha256:9e513839dcf94b8afcebdc918a09cc0bc036eb7c1cdc2198523487b7eacb4806",
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00",
           "validation_status": "verified"
         }
       ]
@@ -299,15 +299,15 @@
           "validation_status": "verified"
         },
         {
-          "source_id": "interest_limit_ko_0002",
+          "source_id": "law_010404_ko_0002",
           "law_key": "interest_limit",
           "article_no": "제2조",
-          "source_snapshot_id": "snapshot:d0100e8dc52367aa4a59040729a635cd",
+          "source_snapshot_id": "snapshot:51eb7e7be4b98ee84eb4d8dafff522d79324e3dae1344d65f5ed5efb7000b75a",
           "version_scope": "current_as_of_review",
           "effective_from": "2021-07-07",
           "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%B4%EC%9E%90%EC%A0%9C%ED%95%9C%EB%B2%95/%EC%A0%9C2%EC%A1%B0",
-          "source_hash": "sha256:d0100e8dc52367aa4a59040729a635cdaa19fcc877f9ccac31972299131451bf",
-          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "source_hash": "sha256:51eb7e7be4b98ee84eb4d8dafff522d79324e3dae1344d65f5ed5efb7000b75a",
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00",
           "validation_status": "verified"
         }
       ]
@@ -347,15 +347,15 @@
       ],
       "source_coordinates": [
         {
-          "source_id": "criminal_procedure_ko_0294_04",
+          "source_id": "law_001671_ko_0294_04",
           "law_key": "criminal_procedure",
           "article_no": "제294조의4",
-          "source_snapshot_id": "snapshot:f28fe4d7ab23fd627d30a225f322de2d",
+          "source_snapshot_id": "snapshot:d4788ca8692cb9b5b273fc55121a0beb115082f2f5f20302a42f9e6d144a8491",
           "version_scope": "current_as_of_review",
           "effective_from": "2025-09-19",
           "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C294%EC%A1%B0%EC%9D%984",
-          "source_hash": "sha256:f28fe4d7ab23fd627d30a225f322de2de76f5973f71d2f5140a3b6fa83e81477",
-          "last_verified_at": "2026-07-21T08:30:00+00:00",
+          "source_hash": "sha256:d4788ca8692cb9b5b273fc55121a0beb115082f2f5f20302a42f9e6d144a8491",
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00",
           "validation_status": "verified"
         },
         {
@@ -387,14 +387,14 @@
       "article_no": "제20조의4",
       "promulgation_date": "2026-01-20",
       "effective_date": "2026-07-21",
-      "reviewed_at": "2026-07-21T13:35:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "affected_audiences": [
         "중고거래·개인 간 거래 플랫폼 이용자",
         "개인 판매자를 중개하는 온라인 플랫폼 운영자"
       ],
       "changed_points": [
-        "개인 판매자의 성명·전화번호 등 법정 신원정보를 확인하는 절차가 신설됐습니다.",
+        "개인 판매자의 전화번호 등 시행령이 정한 신원정보를 확인하는 절차가 신설됐습니다.",
         "분쟁이 발생하면 법정 요청 주체에게 확인한 신원정보와 거래내역을 제공해 해결에 협조해야 합니다.",
         "일반 통신판매업자와 개인 판매자의 법적 지위를 구분해야 합니다."
       ],
@@ -462,7 +462,7 @@
             "2026-07-21 이후 현행 규정 적용"
           ],
           "conditions": [
-            "개인 판매자의 성명·전화번호 등 법정 신원정보를 확인하는 절차가 신설됐습니다.",
+            "개인 판매자의 전화번호 등 시행령이 정한 신원정보를 확인하는 절차가 신설됐습니다.",
             "분쟁이 발생하면 법정 요청 주체에게 확인한 신원정보와 거래내역을 제공해 해결에 협조해야 합니다.",
             "일반 통신판매업자와 개인 판매자의 법적 지위를 구분해야 합니다."
           ],
@@ -529,8 +529,8 @@
       "article_no": "제1004조의2",
       "promulgation_date": "2026-03-17",
       "effective_date": "2026-03-17",
-      "reviewed_at": "2026-07-21T13:35:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "affected_audiences": [
         "부양의무를 중대하게 위반한 상속인이 있는 유족",
         "상속권 상실심판 청구를 검토하는 공동상속인"
@@ -538,7 +538,7 @@
       "changed_points": [
         "상속권 상실선고 제도 자체는 2026년 1월 1일부터 시행됐습니다.",
         "2026년 3월 17일부터 대상이 직계존속에 한정되지 않고 모든 상속인이 될 사람으로 확대됐습니다.",
-        "부양의무 위반은 미성년자에 대한 의무로 한정되지 않으며 범죄행위의 피해 범위도 직계혈족으로 넓어졌습니다."
+        "부양의무 위반은 미성년자에 대한 의무로 한정되지 않습니다. 공정증서 유언에 따른 제1항은 피상속인·그 배우자·직계혈족에 대한 범죄행위 등을 다루지만, 유언이 없는 제3항 청구는 피상속인에 대한 범죄행위 등을 사유로 합니다."
       ],
       "action_checklist": [
         "피상속인의 사망일과 상속개시일을 확정합니다.",
@@ -606,7 +606,7 @@
           "conditions": [
             "상속인이 될 사람 일반으로 대상이 확대됐습니다.",
             "부양의무 위반은 미성년자 부양의무로 한정되지 않습니다.",
-            "중대한 범죄행위의 피해 범위가 피상속인의 직계혈족으로 확대됐습니다."
+            "공정증서 유언에 따른 제1항의 범죄행위 등은 피상속인·그 배우자·직계혈족을 대상으로 하며, 유언이 없는 제3항 청구의 범죄행위 등은 피상속인을 대상으로 합니다."
           ],
           "exception": [
             "구체적 경과규정이 별도로 적용되는 사건"
@@ -671,8 +671,8 @@
       "article_no": "제1001조",
       "promulgation_date": "",
       "effective_date": "2026-03-17",
-      "reviewed_at": "2026-07-21T13:35:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "affected_audiences": [
         "상속권 상실선고 대상자의 직계비속과 배우자",
         "상속순위를 다시 계산해야 하는 공동상속인"
@@ -816,8 +816,8 @@
       "article_no": "제246조의2",
       "promulgation_date": "2025-01-31",
       "effective_date": "2026-02-01",
-      "reviewed_at": "2026-07-21T13:35:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "affected_audiences": [
         "예금 압류로 생계가 곤란해질 우려가 있는 채무자",
         "급여·예금 압류 범위를 확인하는 채권자와 제3채무자"
@@ -959,8 +959,8 @@
       "article_no": "제2조",
       "promulgation_date": "2021-04-06",
       "effective_date": "2021-07-07",
-      "reviewed_at": "2026-07-21T13:50:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "affected_audiences": [
         "지인·가족 등 개인 간 금전대차의 채권자와 채무자",
         "2021년 전후로 계약을 갱신한 당사자"
@@ -990,30 +990,64 @@
           "source_snapshot_ids": [
             "snapshot:0bda91fb0a7a72f90a5814354657f781"
           ],
-          "actor": ["금전대차의 채권자와 채무자"],
-          "object": ["계약상 최고이자율"],
-          "trigger": ["2021-07-07 전 계약 체결 또는 갱신"],
-          "conditions": ["당시 시행 중인 연 24퍼센트 상한 적용"],
+          "actor": [
+            "금전대차의 채권자와 채무자"
+          ],
+          "object": [
+            "계약상 최고이자율"
+          ],
+          "trigger": [
+            "2021-07-07 전 계약 체결 또는 갱신"
+          ],
+          "conditions": [
+            "당시 시행 중인 연 24퍼센트 상한 적용"
+          ],
           "exception": [],
-          "operation": ["계약·갱신일 기준 상한 대조"],
-          "legal_effect": ["연 24퍼센트 초과 부분은 당시 상한 규율에 따라 판단"],
-          "temporal_rule": ["2021-07-06까지"],
-          "transition_rule": ["종전 계약이 갱신됐는지 확인"]
+          "operation": [
+            "계약·갱신일 기준 상한 대조"
+          ],
+          "legal_effect": [
+            "연 24퍼센트 초과 부분은 당시 상한 규율에 따라 판단"
+          ],
+          "temporal_rule": [
+            "2021-07-06까지"
+          ],
+          "transition_rule": [
+            "종전 계약이 갱신됐는지 확인"
+          ]
         },
         "new_frame": {
           "source_snapshot_ids": [
             "snapshot:0bda91fb0a7a72f90a5814354657f781",
             "snapshot:d0100e8dc52367aa4a59040729a635cd"
           ],
-          "actor": ["금전대차의 채권자와 채무자"],
-          "object": ["계약상 최고이자율"],
-          "trigger": ["2021-07-07 이후 계약 체결 또는 갱신"],
-          "conditions": ["명목과 무관하게 실질상 이자를 합산"],
-          "exception": ["대차원금 10만원 미만 등 법정 예외"],
-          "operation": ["실제 원금과 이자성 비용을 기준으로 부담률 계산"],
-          "legal_effect": ["계약상 최고이자율 연 20퍼센트 적용"],
-          "temporal_rule": ["2021-07-07부터"],
-          "transition_rule": ["시행 후 최초 체결·갱신분부터 적용"]
+          "actor": [
+            "금전대차의 채권자와 채무자"
+          ],
+          "object": [
+            "계약상 최고이자율"
+          ],
+          "trigger": [
+            "2021-07-07 이후 계약 체결 또는 갱신"
+          ],
+          "conditions": [
+            "명목과 무관하게 실질상 이자를 합산"
+          ],
+          "exception": [
+            "대차원금 10만원 미만 등 법정 예외"
+          ],
+          "operation": [
+            "실제 원금과 이자성 비용을 기준으로 부담률 계산"
+          ],
+          "legal_effect": [
+            "계약상 최고이자율 연 20퍼센트 적용"
+          ],
+          "temporal_rule": [
+            "2021-07-07부터"
+          ],
+          "transition_rule": [
+            "시행 후 최초 체결·갱신분부터 적용"
+          ]
         },
         "legal_effect_delta_ko": "최고이자율이 연 24퍼센트에서 연 20퍼센트로 낮아졌습니다.",
         "life_situation_impacts": [
@@ -1056,8 +1090,8 @@
       "article_no": "제294조의4",
       "promulgation_date": "2025-03-18",
       "effective_date": "2025-09-19",
-      "reviewed_at": "2026-07-21T13:45:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "affected_audiences": [
         "진행 중인 형사재판 기록이 필요한 범죄피해자와 유족",
         "민사상 권리구제 또는 피해자 진술을 준비하는 대리인"
@@ -1077,33 +1111,75 @@
       "transition_note_ko": "개정 규정은 2025년 9월 19일 이후 제294조의4 제1항에 따라 신청하는 경우부터 적용됩니다.",
       "norm_delta": {
         "change_type": "legal_effect_change",
-        "changed_slots": ["conditions", "exception", "operation", "legal_effect", "transition_rule"],
+        "changed_slots": [
+          "conditions",
+          "exception",
+          "operation",
+          "legal_effect",
+          "transition_rule"
+        ],
         "old_frame": {
-          "source_snapshot_ids": ["snapshot:dc35ad444d8922b17c1542d79c4dd2e7"],
-          "actor": ["소송계속 중인 사건의 피해자 등"],
-          "object": ["소송기록 열람·등사"],
-          "trigger": ["피해자 등의 신청"],
-          "conditions": ["권리구제 필요성 또는 그 밖의 정당한 사유와 상당성"],
+          "source_snapshot_ids": [
+            "snapshot:dc35ad444d8922b17c1542d79c4dd2e7"
+          ],
+          "actor": [
+            "소송계속 중인 사건의 피해자 등"
+          ],
+          "object": [
+            "소송기록 열람·등사"
+          ],
+          "trigger": [
+            "피해자 등의 신청"
+          ],
+          "conditions": [
+            "권리구제 필요성 또는 그 밖의 정당한 사유와 상당성"
+          ],
           "exception": [],
-          "operation": ["재판장이 범죄 성질·심리 상황 등을 고려"],
-          "legal_effect": ["재판장이 허가할 수 있음"],
-          "temporal_rule": ["2025-09-18까지"],
-          "transition_rule": ["종전 신청에는 종전 규율 적용"]
+          "operation": [
+            "재판장이 범죄 성질·심리 상황 등을 고려"
+          ],
+          "legal_effect": [
+            "재판장이 허가할 수 있음"
+          ],
+          "temporal_rule": [
+            "2025-09-18까지"
+          ],
+          "transition_rule": [
+            "종전 신청에는 종전 규율 적용"
+          ]
         },
         "new_frame": {
           "source_snapshot_ids": [
             "snapshot:f28fe4d7ab23fd627d30a225f322de2d",
             "snapshot:dc35ad444d8922b17c1542d79c4dd2e7"
           ],
-          "actor": ["소송계속 중인 사건의 피해자 등"],
-          "object": ["소송기록 열람·등사"],
-          "trigger": ["피해자 등의 신청"],
-          "conditions": ["권리구제 또는 피해자 진술권 보장에 필요"],
-          "exception": ["법정 제한사유 또는 심리 상황상 상당한 이유"],
-          "operation": ["불허·조건부 허가 시 이유 통지"],
-          "legal_effect": ["필요성이 인정되면 원칙적으로 허가"],
-          "temporal_rule": ["2025-09-19부터"],
-          "transition_rule": ["시행 이후 신청분부터 적용"]
+          "actor": [
+            "소송계속 중인 사건의 피해자 등"
+          ],
+          "object": [
+            "소송기록 열람·등사"
+          ],
+          "trigger": [
+            "피해자 등의 신청"
+          ],
+          "conditions": [
+            "권리구제 또는 피해자 진술권 보장에 필요"
+          ],
+          "exception": [
+            "법정 제한사유 또는 심리 상황상 상당한 이유"
+          ],
+          "operation": [
+            "불허·조건부 허가 시 이유 통지"
+          ],
+          "legal_effect": [
+            "필요성이 인정되면 원칙적으로 허가"
+          ],
+          "temporal_rule": [
+            "2025-09-19부터"
+          ],
+          "transition_rule": [
+            "시행 이후 신청분부터 적용"
+          ]
         },
         "legal_effect_delta_ko": "재량적 허가 중심에서 필요성이 인정되면 원칙적으로 허가하는 구조로 강화됐습니다.",
         "life_situation_impacts": [
@@ -1120,8 +1196,12 @@
         "assertion.kr.change.victim-trial-record-access-2025.old",
         "assertion.kr.change.victim-trial-record-access-2025.current"
       ],
-      "source_event_ids": ["event:victim-trial-record-access-2025"],
-      "old_snapshot_ids": ["snapshot:dc35ad444d8922b17c1542d79c4dd2e7"],
+      "source_event_ids": [
+        "event:victim-trial-record-access-2025"
+      ],
+      "old_snapshot_ids": [
+        "snapshot:dc35ad444d8922b17c1542d79c4dd2e7"
+      ],
       "new_snapshot_ids": [
         "snapshot:f28fe4d7ab23fd627d30a225f322de2d",
         "snapshot:dc35ad444d8922b17c1542d79c4dd2e7"

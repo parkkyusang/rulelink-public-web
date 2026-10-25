@@ -1,0 +1,147 @@
+{
+  "schema": "rulelink_change_brief_legal_review_v1",
+  "reviewed_at": "2026-10-25T00:00:00+09:00",
+  "db_collection_cutoff": "2026-10-20T07:15:41+00:00",
+  "input": "web/rulelink_public_next/content/bundle.json change_briefs",
+  "input_hash_algorithm": "sha256(JSON.stringify(change_brief)); 객체의 기존 키 순서 유지, 메타데이터 이관 전 입력 전체",
+  "reviewed_fields": ["title_ko", "summary_ko", "changed_points", "action_checklist", "transition_note_ko", "norm_delta"],
+  "historical_original_reverified": false,
+  "historical_metadata_update_allowed": false,
+  "scope_and_limits": [
+    "현재 활성 SQLite의 조문 전문과 공식 전체법령 XML에 수록된 해당 개정 부칙을 실제 읽어 대조했습니다.",
+    "기존 assertion의 과거판 좌표와 요약은 읽었으나 과거판 본문 원문을 별도로 재수집·대조하지 않았습니다. 기존 출판 스냅샷은 과거 법령 원문 그 자체가 아닙니다.",
+    "현재효력 재검토 pass는 현재 법리·행동과 현행 XML의 시행·적용례 대조 통과를 뜻합니다. 과거 old_frame 원문을 새로 검증했다는 의미가 아닙니다.",
+    "historical version_scope 및 개정이유 문서 좌표의 last_verified_at은 갱신하지 않아야 합니다. new_frame에도 역사자료가 함께 연결되어 있어 new_snapshot_ids 전체를 현재조문으로 일괄 치환해서는 안 됩니다.",
+    "2026년 10월 20일 수집 이후 변경은 이번 DB 대조만으로 보증하지 않습니다. 법령 전체 시행일 변경만으로 개별 조문 변경을 단정하지 않았습니다."
+  ],
+  "entries": [
+    {
+      "change_brief_id": "kr.change.administrative-appeals-state-representative-documents",
+      "original_reviewed_at": "2026-07-20T06:30:00+00:00",
+      "original_expires_at": "2026-10-20T00:00:00+00:00",
+      "input_sha256": "0b685715ca7bccd1c60944f25e4645df565207a1de506a1d32968cc33accac8e",
+      "current_review_status": "pass",
+      "historical_review_status": "not_reverified",
+      "basis": ["law_005621_ko_0016_02", "law_001363_ko_0038", "행정심판법 시행령 부칙 제36418호(2026.6.16)"],
+      "judgment_ko": "제16조의2제2항의 심리기일 전 신청, 제3·5호 직접 소명서류 제출, 제1·2·4·6호 공동이용 확인 및 미동의 시 제출 구분이 모두 일치합니다. 부칙은 즉시 시행이며 제16조의2의 처리 중 신청에 관한 별도 적용례는 없어 기존 verification_needed 한계를 유지합니다.",
+      "corrections": []
+    },
+    {
+      "change_brief_id": "kr.change.platform-c2c-seller-verification-2026",
+      "original_reviewed_at": "2026-07-21T13:35:00+00:00",
+      "original_expires_at": "2026-10-21T00:00:00+00:00",
+      "input_sha256": "762146f3f4c2edda02dddfdf70214529dd06cb54de98f6d7faf5515836d30870",
+      "current_review_status": "pass_after_correction",
+      "corrected_input_sha256": "cdd2ac69e1664ec8aaeb0962b3be860806982243d7c6c3b60943b1083d363173",
+      "historical_review_status": "not_reverified",
+      "basis": ["law_009318_ko_0020_04", "law_009338_ko_0025_03", "전자상거래법 부칙 제21312호(2026.1.20)"],
+      "judgment_ko": "2026.7.21 시행, 중개업자 의무, 분쟁조정기구·법원·동의한 소비자에 대한 제공, 사업자 구분은 유지 가능합니다. 다만 성명을 일반 필수확인 정보로 열거한 문장은 시행령의 실제 목록과 다릅니다. 현행 시행령은 전화번호, 조건부 전자우편, 보유한 인증·신용도·본인확인정보를 규정합니다.",
+      "corrections": [
+        {"field_paths": ["changed_points.0", "norm_delta.new_frame.conditions.0"], "old_text": "개인 판매자의 성명·전화번호 등 법정 신원정보를 확인하는 절차가 신설됐습니다.", "new_text": "개인 판매자의 전화번호 등 시행령이 정한 신원정보를 확인하는 절차가 신설됐습니다.", "reason_ko": "성명 일반 확인의무를 추정하지 않고 법 제20조의4 및 시행령 제25조의3의 위임목록과 일치시킵니다."}
+      ]
+    },
+    {
+      "change_brief_id": "kr.change.inheritance-right-loss-system-2026",
+      "original_reviewed_at": "2026-07-21T13:35:00+00:00",
+      "original_expires_at": "2026-10-21T00:00:00+00:00",
+      "input_sha256": "96f24d689c3af73db5eb4d81f8e8e0fd5898b6abc6e4c0f4de4b7bacaa86ca80",
+      "current_review_status": "pass_after_correction",
+      "corrected_input_sha256": "fdbdbee8a67e110062459253b95d5abba0c5bb4cd0e7834bc300ece8241043d6",
+      "historical_review_status": "not_reverified",
+      "basis": ["civil_act_ko_1004_02", "민법 부칙 제21454호(2026.3.17) 제1·2·4조"],
+      "judgment_ko": "모든 상속인이 될 사람으로의 대상 확대와 일반 부양의무, 2024.4.25 이후 상속개시 사건 적용 및 6개월 특례 안내는 현행과 맞습니다. 다만 범죄 피해범위 확대를 절차 구별 없이 안내하면 제3항 공동상속인 청구에도 배우자·직계혈족 피해만으로 청구할 수 있다고 오독될 수 있습니다. 제1항 공정증서 유언과 제3항 청구는 피해범위가 다릅니다.",
+      "corrections": [
+        {"field_paths": ["changed_points.2"], "old_text": "부양의무 위반은 미성년자에 대한 의무로 한정되지 않으며 범죄행위의 피해 범위도 직계혈족으로 넓어졌습니다.", "new_text": "부양의무 위반은 미성년자에 대한 의무로 한정되지 않습니다. 공정증서 유언에 따른 제1항은 피상속인·그 배우자·직계혈족에 대한 범죄행위 등을 다루지만, 유언이 없는 제3항 청구는 피상속인에 대한 범죄행위 등을 사유로 합니다.", "reason_ko": "제1004조의2제1항제2호와 제3항제2호의 대상 차이를 보존합니다."},
+        {"field_paths": ["norm_delta.new_frame.conditions.2"], "old_text": "중대한 범죄행위의 피해 범위가 피상속인의 직계혈족으로 확대됐습니다.", "new_text": "공정증서 유언에 따른 제1항의 범죄행위 등은 피상속인·그 배우자·직계혈족을 대상으로 하며, 유언이 없는 제3항 청구의 범죄행위 등은 피상속인을 대상으로 합니다.", "reason_ko": "절차별 요건을 같은 범위로 합치지 않습니다."}
+      ]
+    },
+    {
+      "change_brief_id": "kr.change.inheritance-representation-link-2026",
+      "original_reviewed_at": "2026-07-21T13:35:00+00:00",
+      "original_expires_at": "2026-10-21T00:00:00+00:00",
+      "input_sha256": "a84e2ef1b5a54b87bda8d4410db9810933524b415a55ab109f7de63c27e7fa6b",
+      "current_review_status": "pass",
+      "historical_review_status": "not_reverified",
+      "basis": ["civil_act_ko_1001", "civil_act_ko_1003", "civil_act_ko_1010", "민법 부칙 제21454호 제2조"],
+      "judgment_ko": "제1001조와 제1010조에 제1004조의2가 연결된 설명 및 직계비속의 대습 여부를 확인하는 행동은 유지 가능합니다. 배우자를 가족관계도에 표시하라는 행동은 배우자도 당연히 대습한다는 결론이 아니므로 유지합니다. 현행 제1003조제2항의 배우자 연결은 상속개시 전 사망한 사람의 배우자에 한정되므로 이를 상실선고 대상자의 배우자 일반으로 확대해서는 안 됩니다.",
+      "corrections": []
+    },
+    {
+      "change_brief_id": "kr.change.livelihood-account-2026",
+      "original_reviewed_at": "2026-07-21T13:35:00+00:00",
+      "original_expires_at": "2026-10-21T00:00:00+00:00",
+      "input_sha256": "e10951e0e7d09dbe410646987b4f38a6b5955744a7e08257662d61232b273e77",
+      "current_review_status": "pass",
+      "historical_review_status": "not_reverified",
+      "basis": ["law_009290_ko_0246", "law_009290_ko_0246_02", "law_010014_ko_0007", "law_010014_ko_0008", "민사집행법 부칙 제20733호(2025.1.31)"],
+      "judgment_ko": "자연인 1인 1계좌, 예치액 및 월 입금액 제한, 금융기관 조회·동의, 압류금지 효과는 일치합니다. 본문은 금액을 고정하지 않고 시행령 확인을 요구하므로 현행 250만원 및 일반예금 보호액과의 공제 관계에도 모순되지 않습니다. '별도' 제도는 독립한 추가 250만원 보장이라는 뜻이 아니며 현재도 그 합산 보장을 단정하지 않습니다.",
+      "corrections": []
+    },
+    {
+      "change_brief_id": "kr.change.private-loan-interest-cap-2021",
+      "original_reviewed_at": "2026-07-21T13:50:00+00:00",
+      "original_expires_at": "2026-10-21T00:00:00+00:00",
+      "input_sha256": "8fca2fe1a3f68c9c90c1ce0c9619c717c4de498c3c97656fc50e270a0ad5559c",
+      "current_review_status": "pass",
+      "historical_review_status": "not_reverified",
+      "basis": ["law_010404_ko_0002", "law_010404_ko_0003", "law_010404_ko_0004", "law_010468_ko_0000", "최고이자율 규정 부칙 제31593호(2021.4.6)"],
+      "judgment_ko": "현행 20%, 시행 후 체결·갱신 적용, 원금 10만원 미만 예외, 간주이자와 선이자, 초과분 원본 충당·원본 소멸 후 반환이 일치합니다. 종전 24% 자체의 과거 원문은 이번에 다시 검증하지 않았습니다.",
+      "corrections": []
+    },
+    {
+      "change_brief_id": "kr.change.victim-trial-record-access-2025",
+      "original_reviewed_at": "2026-07-21T13:45:00+00:00",
+      "original_expires_at": "2026-10-21T00:00:00+00:00",
+      "input_sha256": "1ecf30c8609a4cb407e6c18a89b4cbeb419c9ba9b2764908713e11cfe0a29102",
+      "current_review_status": "pass",
+      "historical_review_status": "not_reverified",
+      "basis": ["law_001671_ko_0294_04", "law_001671_ko_0059_02", "형사소송법 부칙 제20796호(2025.3.18) 제1·2조"],
+      "judgment_ko": "권리구제 또는 진술권 보장 필요성, 원칙적 허가와 제59조의2제2항제2~6호·심리상황 예외, 불허·조건부 허가 이유통지, 사용상 주의 및 시행 이후 신청분 적용이 현행과 일치합니다. 종전 재량 문언은 과거판 재검증 대상에서 제외합니다.",
+      "corrections": []
+    },
+    {
+      "change_brief_id": "kr.change.minor-heir-special-limited-acceptance-2022",
+      "original_reviewed_at": "2026-07-21T14:20:00+00:00",
+      "original_expires_at": "2026-10-21T00:00:00+00:00",
+      "input_sha256": "ec86094a7c22fcfce0fb389c46d682c09d4478dcf96f836839313995dad4c4f7",
+      "current_review_status": "pass",
+      "historical_review_status": "not_reverified",
+      "basis": ["civil_act_ko_1019", "민법 부칙 제19069호(2022.12.13) 제1·2조"],
+      "judgment_ko": "성년 전 단순승인, 성년 후 채무초과 인식일부터 3개월, 시행 당시 미성년자 및 시행 후 인식한 일정 성년자의 부칙상 특례가 일치합니다. 단순히 성년이 된 날부터 3개월로 안내하지 않는 점도 적절합니다.",
+      "corrections": []
+    },
+    {
+      "change_brief_id": "kr.change.wage-statement-delivery-2021",
+      "original_reviewed_at": "2026-07-21T14:20:00+00:00",
+      "original_expires_at": "2026-10-21T00:00:00+00:00",
+      "input_sha256": "624a0919f89e6ebb5b8f1583a52e8724ed919951153fd20489b746245885751e",
+      "current_review_status": "pass",
+      "historical_review_status": "not_reverified",
+      "basis": ["law_001872_ko_0048", "law_003058_ko_0027_02", "근로기준법 부칙 제18176호(2021.5.18)"],
+      "judgment_ko": "임금 지급마다 서면·전자문서 교부, 구성항목·계산방법·공제 내역과 시행령 기재사항, 6개월 경과 시행 및 해당 의무 별도 소급조항 부재를 확인했습니다. 과거 제48조 원문은 재확인하지 않았습니다.",
+      "corrections": []
+    },
+    {
+      "change_brief_id": "kr.change.landlord-information-presentation-2023",
+      "original_reviewed_at": "2026-07-21T14:20:00+00:00",
+      "original_expires_at": "2026-10-21T00:00:00+00:00",
+      "input_sha256": "66a2ba4d49845728de4ed84bfc7d96b8fe6304bcf7993fbf3bf9827613403e41",
+      "current_review_status": "pass",
+      "historical_review_status": "not_reverified",
+      "basis": ["housing_lease_ko_0003_07", "주택임대차보호법 부칙 제19356호(2023.4.18) 제1·3조"],
+      "judgment_ko": "확정일자·차임·보증금 및 양 세목 납세증명서 제시, 각 열람에 사전 동의하여 갈음, 공포일 시행·시행 후 체결계약 적용이 일치합니다. 계약 전 자료 보관 행동도 유지 가능합니다.",
+      "corrections": []
+    },
+    {
+      "change_brief_id": "kr.change.victim-prosecutor-record-access-2026",
+      "original_reviewed_at": "2026-07-21T14:20:00+00:00",
+      "original_expires_at": "2026-10-21T00:00:00+00:00",
+      "input_sha256": "94b9521929248ca5a5f9c631cebf477f5b07709c6f97331776b0f0953da53c50",
+      "current_review_status": "pass",
+      "historical_review_status": "not_reverified",
+      "basis": ["law_001671_ko_0294_05", "law_001671_ko_0266_03", "law_001671_ko_0059_02", "형사소송법 부칙 제21232호(2025.12.23) 제1·2조"],
+      "judgment_ko": "소송계속 중 신청권자, 검사가 증거 신청할 제266조의3제1항제1호 자료, 필요 시 원칙 허가와 예외·이유통지·사용제한이 일치합니다. 부칙 제2조제2항은 시행 이후 신청분 적용을 명시하므로 기존의 시행일 안내와 모순되지 않습니다.",
+      "corrections": []
+    }
+  ]
+}

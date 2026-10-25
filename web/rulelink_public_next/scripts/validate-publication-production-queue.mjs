@@ -30,6 +30,7 @@ import {
   validateTopicCandidateV3QueueContract,
 } from './topic-candidate-v3-contract.mjs';
 import {site} from '../src/lib/site.ts';
+import {loadMaintenancePublication, hasMaintenancePublicationProof} from './queue-maintenance-publication.mjs';
 
 const scriptPath = fileURLToPath(import.meta.url);
 const appRoot = path.resolve(path.dirname(scriptPath), '..');
@@ -632,8 +633,28 @@ export function buildExistingTopicCoverageProductionContracts(plan) {
   return Object.fromEntries(entries);
 }
 
-const existingTopicCoverageContracts =
-  buildExistingTopicCoverageProductionContracts(coverageExpansionPlan);
+export async function registeredCoverageProductionContracts(plan, items, readPlanAtCommit) {
+  const contracts = buildExistingTopicCoverageProductionContracts(plan);
+  const plans = new Map();
+  for (const item of items) {
+    const candidate = item.candidate_import;
+    if (candidate?.schema !== 'rulelink_existing_topic_candidate_import_v2') continue;
+    const base = candidate.required_pr_base_sha;
+    if (!/^[a-f0-9]{40}$/u.test(base ?? '')) throw new Error('등록 작업의 원 계획 Git SHA가 필요합니다.');
+    if (!plans.has(base)) plans.set(base, buildExistingTopicCoverageProductionContracts(await readPlanAtCommit(base)));
+    const original = plans.get(base)[item.work_id];
+    if (!original || original.topic_id !== item.topic_id || original.topic_file !== item.topic_file) throw new Error(`등록 당시 작업계획 정체성 불일치: ${item.work_id}`);
+    contracts[item.work_id] = original;
+  }
+  return contracts;
+}
+
+// 진행 중인 등록 작업은 현재 계획 재생성으로 승인 계약을 다시 쓰지 않는다.
+const existingTopicCoverageContracts = await registeredCoverageProductionContracts(
+  coverageExpansionPlan,
+  JSON.parse(await readFile(defaultQueuePath, 'utf8')).items,
+  async sha => JSON.parse((await execFileAsync('git', ['show', `${sha}:artifacts/publication/coverage/coverage-expansion-plan.json`], {cwd: repoRoot, maxBuffer: 16 * 1024 * 1024})).stdout),
+);
 
 export const PRODUCTION_WORK_CONTRACTS = {
   ...STATIC_PRODUCTION_WORK_CONTRACTS,
@@ -3083,6 +3104,14 @@ export async function loadQueuePublicationEvidence(queue, bundle, io = {}) {
   if (!nonEmpty(snapshotId)) throw new Error('current bundle의 snapshot_id가 필요합니다.');
   const snapshotPath = path.join(repoRoot, 'artifacts', 'publication', 'snapshots', snapshotId, 'bundle.json');
   const publishedSnapshot = JSON.parse(await read(snapshotPath, 'utf8'));
+  const maintenancePublication = await loadMaintenancePublication(queue, bundle, {...io, readFile: read});
+  const historicalTopicReceipts = new Map();
+  if (maintenancePublication) {
+    for (const item of queue.items.filter(x=>x.change_mode==='existing_topic_revision' && existingTopicPublishedStatuses.has(x.status))) {
+      const oldTopic = await runGitCommand(['show', `${item.migration_commit_sha}:${item.topic_file}`], io);
+      historicalTopicReceipts.set(item.pr_number, topicReceipt(JSON.parse(oldTopic.stdout)));
+    }
+  }
   const topicReceipts = new Map();
   const workTopicMeasurements = new Map();
   const existingRevisionTopicFiles = queue.items
@@ -3214,6 +3243,8 @@ export async function loadQueuePublicationEvidence(queue, bundle, io = {}) {
   return {
     [queuePublicationEvidenceBrand]: true,
     publishedSnapshot,
+    maintenancePublication,
+    historicalTopicReceipts,
     topicReceipts,
     workTopicMeasurements,
     migrationCommits,
@@ -3329,6 +3360,8 @@ export function validateProductionQueue(
     publishedBundle = null,
     publishedSnapshot = null,
     topicReceipts = null,
+    maintenancePublication = null,
+    historicalTopicReceipts = null,
     workTopicMeasurements = null,
     migrationCommits = null,
     itemRegistry = null,
@@ -4255,13 +4288,17 @@ export function validateProductionQueue(
       if (item.status === 'migration_required' && !publishedHubIds.has(item.topic_id)) errors.push(`#${item.pr_number}의 기존 개정 대상 주제가 current bundle에 없습니다: ${item.topic_id}`);
       if (item.change_mode === 'existing_topic_revision' && existingTopicPublishedStatuses.has(item.status)) {
         if (!publishedHubIds.has(item.topic_id)) errors.push(`#${item.pr_number}의 완료된 기존 주제가 current bundle에 없습니다: ${item.topic_id}`);
-        if (item.integrated_snapshot_id !== publishedBundle.snapshot_id) {
+        const maintained = maintenancePublication?.record?.from_snapshot_id === item.integrated_snapshot_id
+          && maintenancePublication.record.to_snapshot_id === publishedBundle.snapshot_id
+          && historicalTopicReceipts?.get(item.pr_number) === item.topic_receipt
+          && hasMaintenancePublicationProof(maintenancePublication.proof, item.topic_file, topicReceipts?.get(item.topic_file));
+        if (item.integrated_snapshot_id !== publishedBundle.snapshot_id && !maintained) {
           errors.push(`#${item.pr_number}.integrated_snapshot_id가 current bundle과 다릅니다.`);
         }
         if (!publishedSnapshot) errors.push(`#${item.pr_number}의 immutable snapshot 증거가 필요합니다.`);
         if (!(topicReceipts instanceof Map)) {
           errors.push(`#${item.pr_number}의 topic receipt 검증 입력이 필요합니다.`);
-        } else if (topicReceipts.get(item.topic_file) !== item.topic_receipt) {
+        } else if (topicReceipts.get(item.topic_file) !== item.topic_receipt && !maintained) {
           errors.push(`#${item.pr_number}.topic_receipt가 현재 주제 원본과 다릅니다.`);
         }
       }

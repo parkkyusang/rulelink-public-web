@@ -4,66 +4,66 @@
   "sources": [
     {
       "coordinate_id": "coord.domestic-violence-stalking.domestic-0002",
-      "source_id": "domestic_violence_special_ko_0002",
+      "source_id": "law_001132_ko_0002",
       "law_name_ko": "가정폭력범죄의 처벌 등에 관한 특례법",
       "article_no": "제2조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B0%80%EC%A0%95%ED%8F%AD%EB%A0%A5%EB%B2%94%EC%A3%84%EC%9D%98%20%EC%B2%98%EB%B2%8C%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C2%EC%A1%B0",
-      "source_snapshot_id": "snapshot:e5f14e7e9cc3c79af7e1a02062f84c8c",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:072ef48442313f69bca605ab181764d3d04229ffe2b8b2580d90e40906b66035",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.domestic-0005",
-      "source_id": "domestic_violence_special_ko_0005",
+      "source_id": "law_001132_ko_0005",
       "law_name_ko": "가정폭력범죄의 처벌 등에 관한 특례법",
       "article_no": "제5조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B0%80%EC%A0%95%ED%8F%AD%EB%A0%A5%EB%B2%94%EC%A3%84%EC%9D%98%20%EC%B2%98%EB%B2%8C%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C5%EC%A1%B0",
-      "source_snapshot_id": "snapshot:a8fc1ffa00b31dc80bfa7c0262576d4c",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:869e8513705a036f99e913cd6e0e1062df91fc32b07f5a0970772de01151d86d",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.domestic-0008-2",
-      "source_id": "domestic_violence_special_ko_0008_02",
+      "source_id": "law_001132_ko_0008_02",
       "law_name_ko": "가정폭력범죄의 처벌 등에 관한 특례법",
       "article_no": "제8조의2",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B0%80%EC%A0%95%ED%8F%AD%EB%A0%A5%EB%B2%94%EC%A3%84%EC%9D%98%20%EC%B2%98%EB%B2%8C%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C8%EC%A1%B0%EC%9D%982",
-      "source_snapshot_id": "snapshot:855adaf0cca1087e3be695efe1ecc229",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:855adaf0cca1087e3be695efe1ecc2297255071a47f0290d66d58079c08ef723",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.domestic-0008-3",
-      "source_id": "domestic_violence_special_ko_0008_03",
+      "source_id": "law_001132_ko_0008_03",
       "law_name_ko": "가정폭력범죄의 처벌 등에 관한 특례법",
       "article_no": "제8조의3",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B0%80%EC%A0%95%ED%8F%AD%EB%A0%A5%EB%B2%94%EC%A3%84%EC%9D%98%20%EC%B2%98%EB%B2%8C%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C8%EC%A1%B0%EC%9D%983",
-      "source_snapshot_id": "snapshot:9d1f24fdf01c7eb9c08939612d93e709",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:9d1f24fdf01c7eb9c08939612d93e7099fcc575c11a48aa25b88e8571c200b4e",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.domestic-0029",
-      "source_id": "domestic_violence_special_ko_0029",
+      "source_id": "law_001132_ko_0029",
       "law_name_ko": "가정폭력범죄의 처벌 등에 관한 특례법",
       "article_no": "제29조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B0%80%EC%A0%95%ED%8F%AD%EB%A0%A5%EB%B2%94%EC%A3%84%EC%9D%98%20%EC%B2%98%EB%B2%8C%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C29%EC%A1%B0",
-      "source_snapshot_id": "snapshot:70fc8483530432714fb76b4fc75c4e7c",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:ddcbbe87c6df9a6c73661119aab210f1704b67192949d513ec5acd5d1186f08e",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.domestic-0055-2",
-      "source_id": "domestic_violence_special_ko_0055_02",
+      "source_id": "law_001132_ko_0055_02",
       "law_name_ko": "가정폭력범죄의 처벌 등에 관한 특례법",
       "article_no": "제55조의2",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B0%80%EC%A0%95%ED%8F%AD%EB%A0%A5%EB%B2%94%EC%A3%84%EC%9D%98%20%EC%B2%98%EB%B2%8C%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C55%EC%A1%B0%EC%9D%982",
-      "source_snapshot_id": "snapshot:f662ba000e3c81c4606309e05863cd99",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:df8b4f9201c1ca8848cb07efd0e5981fad81c6e65e463e467febc899bc72b158",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.domestic-0055-3",
-      "source_id": "domestic_violence_special_ko_0055_03",
+      "source_id": "law_001132_ko_0055_03",
       "law_name_ko": "가정폭력범죄의 처벌 등에 관한 특례법",
       "article_no": "제55조의3",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B0%80%EC%A0%95%ED%8F%AD%EB%A0%A5%EB%B2%94%EC%A3%84%EC%9D%98%20%EC%B2%98%EB%B2%8C%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C55%EC%A1%B0%EC%9D%983",
-      "source_snapshot_id": "snapshot:4ce3c75a47852ba9ca958463e49def28",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:045c23c82c343b2b5d9a9ddf223246b4290bd9b59d4623ef022128dcc12727b5",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.support-0001-2",
@@ -71,8 +71,8 @@
       "law_name_ko": "가정폭력방지 및 피해자보호 등에 관한 법률",
       "article_no": "제1조의2",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B0%80%EC%A0%95%ED%8F%AD%EB%A0%A5%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EC%9E%90%EB%B3%B4%ED%98%B8%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C1%EC%A1%B0%EC%9D%982",
-      "source_snapshot_id": "snapshot:c3993b432c9df44859afd340975f63a7",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:ffc388c632485d01f5639b0411bf3c544a207a6ae038c9693f714dd9e3606945",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.support-0004-6",
@@ -80,8 +80,8 @@
       "law_name_ko": "가정폭력방지 및 피해자보호 등에 관한 법률",
       "article_no": "제4조의6",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B0%80%EC%A0%95%ED%8F%AD%EB%A0%A5%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EC%9E%90%EB%B3%B4%ED%98%B8%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C4%EC%A1%B0%EC%9D%986",
-      "source_snapshot_id": "snapshot:b5c1491ce493830086405f5217fe8808",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:e3829a9fe6763588f146e8e64798987e06e7eb263417be27d977a2471c6daee7",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.support-0006",
@@ -89,8 +89,8 @@
       "law_name_ko": "가정폭력방지 및 피해자보호 등에 관한 법률",
       "article_no": "제6조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B0%80%EC%A0%95%ED%8F%AD%EB%A0%A5%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EC%9E%90%EB%B3%B4%ED%98%B8%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C6%EC%A1%B0",
-      "source_snapshot_id": "snapshot:d8350aa7a4702247a5af05df3977a3d4",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:4b28cd7357acd56883ad77b2a9489dd0814a7d599e312de4f7ef3b6195d44869",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.support-0007-2",
@@ -98,8 +98,8 @@
       "law_name_ko": "가정폭력방지 및 피해자보호 등에 관한 법률",
       "article_no": "제7조의2",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B0%80%EC%A0%95%ED%8F%AD%EB%A0%A5%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EC%9E%90%EB%B3%B4%ED%98%B8%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C7%EC%A1%B0%EC%9D%982",
-      "source_snapshot_id": "snapshot:a2126f8e7d21f06ab6a52597c0b2b689",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:2513d83fcdd7a563ac2a0bb3e010e17c38099217715a6259a792764264dbb7cf",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.support-0018",
@@ -107,71 +107,71 @@
       "law_name_ko": "가정폭력방지 및 피해자보호 등에 관한 법률",
       "article_no": "제18조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B0%80%EC%A0%95%ED%8F%AD%EB%A0%A5%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EC%9E%90%EB%B3%B4%ED%98%B8%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C18%EC%A1%B0",
-      "source_snapshot_id": "snapshot:efbd6c6e4d7929c2ea4df92fe9fa2f49",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:369405233d59c509721fae8006ed50988d15b1d1ebb1b5156045e853f97694d3",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.stalking-0002",
-      "source_id": "stalking_punishment_ko_0002",
+      "source_id": "law_014070_ko_0002",
       "law_name_ko": "스토킹범죄의 처벌 등에 관한 법률",
       "article_no": "제2조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%8A%A4%ED%86%A0%ED%82%B9%EB%B2%94%EC%A3%84%EC%9D%98%20%EC%B2%98%EB%B2%8C%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C2%EC%A1%B0",
-      "source_snapshot_id": "snapshot:a6075f1c32ef928beddfc28b7c0940b0",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:b697413472a1dc7e4296ff9322350ae6ccdd8f98ec40fefac1c5479da0697625",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.stalking-0003",
-      "source_id": "stalking_punishment_ko_0003",
+      "source_id": "law_014070_ko_0003",
       "law_name_ko": "스토킹범죄의 처벌 등에 관한 법률",
       "article_no": "제3조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%8A%A4%ED%86%A0%ED%82%B9%EB%B2%94%EC%A3%84%EC%9D%98%20%EC%B2%98%EB%B2%8C%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C3%EC%A1%B0",
-      "source_snapshot_id": "snapshot:0d29a78f35f575a2fd6af383624c3326",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:763f3a3626842e0de0597d709f8b9c6cc3b4b623f9c26d447f987bbcadd1e234",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.stalking-0004",
-      "source_id": "stalking_punishment_ko_0004",
+      "source_id": "law_014070_ko_0004",
       "law_name_ko": "스토킹범죄의 처벌 등에 관한 법률",
       "article_no": "제4조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%8A%A4%ED%86%A0%ED%82%B9%EB%B2%94%EC%A3%84%EC%9D%98%20%EC%B2%98%EB%B2%8C%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C4%EC%A1%B0",
-      "source_snapshot_id": "snapshot:72c0ef832d6aa2c24c94390257866e83",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:83eaefd77e20e16b5445e718a3fc6fd44487ecce391a353debb66d40fbbeee54",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.stalking-0005",
-      "source_id": "stalking_punishment_ko_0005",
+      "source_id": "law_014070_ko_0005",
       "law_name_ko": "스토킹범죄의 처벌 등에 관한 법률",
       "article_no": "제5조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%8A%A4%ED%86%A0%ED%82%B9%EB%B2%94%EC%A3%84%EC%9D%98%20%EC%B2%98%EB%B2%8C%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C5%EC%A1%B0",
-      "source_snapshot_id": "snapshot:a26b2631712df36cf288f277b70fe448",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:a26b2631712df36cf288f277b70fe44820f97c3db1de43cdacf3169a47512a98",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.stalking-0008",
-      "source_id": "stalking_punishment_ko_0008",
+      "source_id": "law_014070_ko_0008",
       "law_name_ko": "스토킹범죄의 처벌 등에 관한 법률",
       "article_no": "제8조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%8A%A4%ED%86%A0%ED%82%B9%EB%B2%94%EC%A3%84%EC%9D%98%20%EC%B2%98%EB%B2%8C%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C8%EC%A1%B0",
-      "source_snapshot_id": "snapshot:14fd99fa6abec573ac77b787bab75f8c",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:ab6efe827bf6f03fc5a9b9d6c64e0110890217adc5a60e66b2821acf7b6843c0",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.stalking-0009",
-      "source_id": "stalking_punishment_ko_0009",
+      "source_id": "law_014070_ko_0009",
       "law_name_ko": "스토킹범죄의 처벌 등에 관한 법률",
       "article_no": "제9조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%8A%A4%ED%86%A0%ED%82%B9%EB%B2%94%EC%A3%84%EC%9D%98%20%EC%B2%98%EB%B2%8C%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C9%EC%A1%B0",
-      "source_snapshot_id": "snapshot:6cdb537618ea99e3aef35225e727f1e6",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:6b5661bac4e1932e26aef6ec9f8db7cb5bfa541de0f5f37a8a5fb2f0bf8dd44a",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.stalking-0017-4",
-      "source_id": "stalking_punishment_ko_0017_04",
+      "source_id": "law_014070_ko_0017_04",
       "law_name_ko": "스토킹범죄의 처벌 등에 관한 법률",
       "article_no": "제17조의4",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%8A%A4%ED%86%A0%ED%82%B9%EB%B2%94%EC%A3%84%EC%9D%98%20%EC%B2%98%EB%B2%8C%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C17%EC%A1%B0%EC%9D%984",
-      "source_snapshot_id": "snapshot:355c2e2b87e0f389160868b0a51d3191",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:e44232eb10140936ef61f22046d9787645b8132a842f282f63512088979e8c9b",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.stalking-support-0006",
@@ -179,8 +179,8 @@
       "law_name_ko": "스토킹방지 및 피해자보호 등에 관한 법률",
       "article_no": "제6조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%8A%A4%ED%86%A0%ED%82%B9%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EC%9E%90%EB%B3%B4%ED%98%B8%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C6%EC%A1%B0",
-      "source_snapshot_id": "snapshot:a0ca7f1818f6015cbf60e0e84491d608",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:6b32affe9d573a39099de3502e06a2880a91cf211278b27609c1062cd5dd0799",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.stalking-support-0009",
@@ -188,8 +188,8 @@
       "law_name_ko": "스토킹방지 및 피해자보호 등에 관한 법률",
       "article_no": "제9조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%8A%A4%ED%86%A0%ED%82%B9%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EC%9E%90%EB%B3%B4%ED%98%B8%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C9%EC%A1%B0",
-      "source_snapshot_id": "snapshot:5ac4fc1b379fb1ee8653f3df308b339d",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:6f54b3b9100e9469b3049b05ab2e18bb270807945ab4bccef819701be715b8a8",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.domestic-violence-stalking.stalking-support-0013",
@@ -197,8 +197,8 @@
       "law_name_ko": "스토킹방지 및 피해자보호 등에 관한 법률",
       "article_no": "제13조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%8A%A4%ED%86%A0%ED%82%B9%EB%B0%A9%EC%A7%80%20%EB%B0%8F%20%ED%94%BC%ED%95%B4%EC%9E%90%EB%B3%B4%ED%98%B8%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C13%EC%A1%B0",
-      "source_snapshot_id": "snapshot:3a865a7cbeeab104b841ae7ed427d89d",
-      "last_verified_at": "2026-07-23T03:00:00+00:00"
+      "source_snapshot_id": "snapshot:faf914cfd128cae56210518e48541166f6636d2b423848cf43491ff345f91933",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     }
   ],
   "topic_hubs": [
@@ -514,8 +514,8 @@
       "content_id": "content.domestic-violence-stalking-domestic-scope",
       "content_type": "misconception_correction",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T03:00:00+00:00",
-      "expires_at": "2026-10-23T03:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "domestic-violence-stalking-domestic-scope",
       "title_ko": "전 배우자나 동거 친족의 폭력도 가정폭력인가요?",
       "one_line_answer_ko": "가정폭력 관계는 현재 부부만이 아니라 사실혼·전 배우자, 현재 또는 과거 직계존비속, 동거 친족 등까지 포함될 수 있어 관계와 행위유형을 함께 확인해야 합니다.",
@@ -585,8 +585,8 @@
       "content_id": "content.domestic-violence-stalking-domestic-emergency",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T03:00:00+00:00",
-      "expires_at": "2026-10-23T03:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "domestic-violence-stalking-domestic-emergency",
       "title_ko": "가정폭력이 진행 중일 때 경찰에 무엇을 요청할 수 있나요?",
       "one_line_answer_ko": "경찰은 즉시 출동해 폭력을 제지하고 행위자와 피해자를 분리하며, 필요한 수사·치료·상담소·보호시설 인도와 후속 보호명령 절차를 안내해야 합니다.",
@@ -657,8 +657,8 @@
       "content_id": "content.domestic-violence-stalking-domestic-emergency-temporary",
       "content_type": "misconception_correction",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T03:00:00+00:00",
-      "expires_at": "2026-10-23T03:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "domestic-violence-stalking-domestic-emergency-temporary",
       "title_ko": "경찰 긴급임시조치와 법원 임시조치는 어떻게 다른가요?",
       "one_line_answer_ko": "경찰 긴급임시조치는 법원 결정을 기다릴 수 없는 재발위험에 우선 적용되고, 48시간 안에 검사 청구를 거쳐 법원 임시조치로 연결되어야 합니다.",
@@ -745,11 +745,11 @@
       "content_id": "content.domestic-violence-stalking-domestic-protection-order",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T03:00:00+00:00",
-      "expires_at": "2026-10-23T03:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "domestic-violence-stalking-domestic-protection-order",
       "title_ko": "피해자가 법원에 직접 보호명령을 청구할 수 있나요?",
-      "one_line_answer_ko": "피해자·법정대리인 또는 검사는 법원에 퇴거, 100미터·통신 접근금지, 친권·면접교섭 제한과 신변안전조치를 청구할 수 있습니다.",
+      "one_line_answer_ko": "피해자·법정대리인 또는 검사는 법원에 퇴거·접근금지·친권·면접교섭 제한 등 보호명령을 청구할 수 있고, 피해자·법정대리인은 신변안전조치도 청구할 수 있습니다.",
       "audience_situation_ko": "수사기관 조치와 별도로 중장기 접근금지나 자녀 관련 제한이 필요한 경우",
       "key_points_ko": [
         "여러 보호명령을 함께 청구할 수 있습니다.",
@@ -818,8 +818,8 @@
       "content_id": "content.domestic-violence-stalking-domestic-support",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T03:00:00+00:00",
-      "expires_at": "2026-10-23T03:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "domestic-violence-stalking-domestic-support",
       "title_ko": "집을 급히 나온 가정폭력 피해자는 어떤 지원을 받을 수 있나요?",
       "one_line_answer_ko": "긴급전화·상담소에서 구조·임시보호·보호시설·의료·법률지원 연계를 받을 수 있고, 단기·장기·외국인·장애인 보호시설과 치료비 지원 절차가 마련되어 있습니다.",
@@ -893,8 +893,8 @@
       "content_id": "content.domestic-violence-stalking-stalking-scope",
       "content_type": "fact_branch",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T03:00:00+00:00",
-      "expires_at": "2026-10-23T03:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "domestic-violence-stalking-stalking-scope",
       "title_ko": "한 번의 연락도 스토킹범죄가 되나요?",
       "one_line_answer_ko": "원치 않는 접근·연락·감시·정보유포·사칭 등이 불안감이나 공포심을 일으키면 스토킹행위가 될 수 있고, 그 행위가 지속적·반복적이면 스토킹범죄가 됩니다.",
@@ -965,8 +965,8 @@
       "content_id": "content.domestic-violence-stalking-stalking-emergency",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T03:00:00+00:00",
-      "expires_at": "2026-10-23T03:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "domestic-violence-stalking-stalking-emergency",
       "title_ko": "스토킹 신고 즉시 접근금지를 받을 수 있나요?",
       "one_line_answer_ko": "재발 우려와 긴급성이 있으면 경찰이 요청 또는 직권으로 상대방·주거 등 100미터 접근금지와 전화·메시지 등 통신 접근금지를 할 수 있습니다.",
@@ -1039,8 +1039,8 @@
       "content_id": "content.domestic-violence-stalking-stalking-provisional",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T03:00:00+00:00",
-      "expires_at": "2026-10-23T03:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "domestic-violence-stalking-stalking-provisional",
       "title_ko": "스토킹 법원 잠정조치는 어떻게 요청하나요?",
       "one_line_answer_ko": "피해자·법정대리인은 검사나 경찰에게 청구·신청을 요청하고 의견을 낼 수 있으며, 법원은 접근·통신금지, 위치추적 전자장치, 유치 등을 함께 결정할 수 있습니다.",
@@ -1126,8 +1126,8 @@
       "content_id": "content.domestic-violence-stalking-stalking-support",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T03:00:00+00:00",
-      "expires_at": "2026-10-23T03:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "domestic-violence-stalking-stalking-support",
       "title_ko": "스토킹 피해자는 임시거소와 변호사 지원을 받을 수 있나요?",
       "one_line_answer_ko": "지원시설에서 상담·임시거소·숙식·의료·법률구조·수사재판 지원을 받을 수 있고, 형사절차 피해자 변호사 또는 요건에 따른 국선변호사를 통해 법률조력을 받을 수 있습니다.",
@@ -1200,8 +1200,8 @@
       "content_id": "content.domestic-violence-stalking-stalking-workplace",
       "content_type": "recurring_issue_generalization",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-23T03:00:00+00:00",
-      "expires_at": "2026-10-23T03:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "domestic-violence-stalking-stalking-workplace",
       "title_ko": "스토킹 신고 때문에 회사가 해고하거나 불리하게 전보할 수 있나요?",
       "one_line_answer_ko": "회사는 피해·신고를 이유로 해고·징계·불리한 전보·평가차별 등을 해서는 안 되며, 피해자 요청이 있으면 연락처·근무장소 변경이나 배치전환 같은 안전조치를 할 수 있습니다.",

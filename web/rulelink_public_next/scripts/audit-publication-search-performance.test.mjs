@@ -98,7 +98,7 @@ function fixtureBundle() {
   };
 }
 
-test('운영 024의 상세·허브·법령변화 범위를 snapshot-bound로 감사하고 입력이 없으면 추정값을 만들지 않는다', () => {
+test('현재 출판본의 상세·허브·법령변화 범위를 판본에 결박하고 입력이 없으면 추정값을 만들지 않는다', () => {
   const first = auditPublicationSearchPerformance(currentBundle);
   const second = auditPublicationSearchPerformance(currentBundle);
   assert.deepEqual(first, second);
@@ -108,7 +108,7 @@ test('운영 024의 상세·허브·법령변화 범위를 snapshot-bound로 감
     change: 11,
     total: 323,
   });
-  assert.equal(first.source.snapshot_id, 'kr-knowledge-core-20260726-024');
+  assert.equal(first.source.snapshot_id, currentBundle.snapshot_id);
   assert.equal(first.data_availability.search_console, 'not_provided');
   assert.equal(first.data_availability.search_volume, 'not_available_and_not_estimated');
   assert.equal(first.data_availability.advertising_rpm, 'not_available_and_not_estimated');
@@ -119,8 +119,8 @@ test('운영 024의 상세·허브·법령변화 범위를 snapshot-bound로 감
   assert.deepEqual(first.summary.action_counts, {
     'noindex-review': 0,
     merge: 0,
-    improve: 2,
-    keep: 321,
+    improve: 0,
+    keep: 323,
   });
   assert.equal(first.summary.orphan_outbound, 0);
   assert.equal(first.summary.orphan_inbound, 0);
@@ -136,11 +136,10 @@ test('운영 024의 상세·허브·법령변화 범위를 snapshot-bound로 감
       .filter(page => page.recommendation === 'improve')
       .map(page => page.id)
       .sort(),
-    [
-      'content.2026-livelihood-account-protection',
-      'content.fraudulent-transfer-before-enforcement',
-    ],
+    [],
   );
+  assert.equal(first.summary.title_or_slug_search_intent_boilerplate, 24,
+    '근거 최신성 개선을 기존 검색의도 품질부채까지 해결한 것으로 계산하지 않습니다.');
   assert.ok(first.pages.filter(page => page.recommendation === 'improve').every(
     page => page.exact_reasons.every(reason => (
       reason.code === 'audience_situation_missing'

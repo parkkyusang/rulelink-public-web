@@ -1,0 +1,168 @@
+{
+  "schema": "rulelink_source_check_labor_review_v1",
+  "reviewed_at": "2026-10-25",
+  "source_refresh_run_id": "20261020_standard_live_01",
+  "review_mode": "active_db_read_only_content_comparison",
+  "reviewed_laws": [
+    {
+      "name": "근로기준법",
+      "articles": ["제2조", "제11조", "제23조", "제24조", "제25조", "제26조", "제27조", "제28조", "제30조", "제36조", "제49조", "제76조의2", "제76조의3", "제109조", "제116조"],
+      "result": "공개 안내의 근로자성·적용범위·해고·금품청산·괴롭힘 핵심 요건과 기간은 유지 가능. 현행 제109조의 벌칙 인용군은 변경되었지만 해당 공개 글에 삭제된 임금 조항의 벌칙이나 종전 숫자를 단정하는 문장은 없어 그 이유로 본문을 바꾸지는 않는다.",
+      "decisive_checks": ["상시 5명 이상과 4명 이하 일부 적용", "업무상 요양·산전산후 휴업 및 이후 30일", "경영상 해고의 50일 전 통보·협의", "해고예고 30일 또는 30일분 통상임금과 정당성은 별개", "서면에 해고사유·시기 통지", "부당해고일 기준 3개월", "퇴직 금품 14일과 특별한 사정·당사자 합의", "임금채권 3년", "괴롭힘 조사·피해자 의사·행위자 조치·불이익 금지·비밀유지"]
+    },
+    {
+      "name": "근로자퇴직급여 보장법",
+      "articles": ["제4조", "제8조", "제9조"],
+      "result": "1년·주 15시간 적용기준, 계속근로 1년당 30일분 평균임금, 퇴직금 14일, 지급기일 연장과 계정 이전 원칙을 유지할 수 있다. 현행 제9조제2항은 개인형퇴직연금 계정 외에 제23조의8제1항 계정을 병기한다. 공개 글은 이미 '계정 등'으로 표현하며 법정 예외도 남겨 두어 개인형퇴직연금 계정만 절대적으로 가능하다고 단정하지 않는다.",
+      "decisive_checks": ["계속근로기간 1년 미만 또는 4주 평균 주 소정근로시간 15시간 미만 제외", "1년당 30일분 이상의 평균임금", "지급사유 발생일부터 14일 및 특별한 사정·합의", "55세 이후 등 법정 예외", "계정 미지정 시 근로자 명의 계정 이전"]
+    },
+    {
+      "name": "고용보험법",
+      "articles": ["제40조", "제42조", "제43조", "제48조", "제58조"],
+      "result": "공개 안내가 원칙적 일반 근로자 기준으로 한정한 이직 전 18개월·피보험 단위기간 180일, 의사·능력·미취업·제한사유·재취업 노력, 지체 없는 신고·인정신청, 이직일 다음 날부터 12개월, 수급기간 연장 안내는 현행 문언과 일치한다. 일용근로자·기준기간 연장 등 예외를 일반 기준과 혼동하여 새 단정 문구를 추가하지 않는다.",
+      "decisive_checks": ["제40조제1항 각 요건을 모두 충족", "제40조제2항 원칙 18개월과 예외", "제42조 실업신고에는 구직신청·수급자격 인정신청 포함", "제48조 12개월은 소정급여일수 한도와 함께 적용", "정당한 사유 없는 자기 사정 이직 등 제한"]
+    },
+    {
+      "name": "남녀고용평등과 일ㆍ가정 양립 지원에 관한 법률",
+      "articles": ["제2조", "제12조", "제14조", "제14조의2", "제26조", "제37조", "제39조"],
+      "result": "직장 내 성희롱 정의, 조사 중 보호와 확인 뒤 조치, 고객 성희롱 고충 요청과 보호, 불리한 처우 금지·비밀유지 설명은 유지 가능. 제26조의 계속행위 종료일 기산을 보호조치 미이행까지 일반화한 1개 안내군은 교정 필요.",
+      "decisive_checks": ["제26조제1항 단서는 계속행위 종료일 기산을 제1호 및 제3호에 한정", "현재 성희롱 안내에서 제2호 보호조치 미이행과 제3호 불리한 처우를 분리해야 함", "제37조·제39조의 최근 추가 항목은 현 공개 성희롱 안내가 설명하는 기존 보호·조사 의무를 폐지하지 않음"]
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "labor.equal26.deadline-scope",
+      "severity": "P1",
+      "classification": "existing_scope_overstatement_found_during_actual_review",
+      "path": "artifacts/publication/topics/workplace-harassment.json",
+      "basis": {
+        "law": "남녀고용평등과 일ㆍ가정 양립 지원에 관한 법률",
+        "article": "제26조제1항 단서 및 제2호·제3호",
+        "coordinate_id": "coord.workplace-harassment.equal-0026",
+        "exact_text": "다만, 차별적 처우등을 받은 날(제1호 및 제3호에 따른 차별적 처우등이 계속되는 경우에는 그 종료일)부터 6개월이 지난 때에는 그러하지 아니하다.",
+        "reason": "종료일 기산은 모든 계속 상황에 대한 일반규칙이 아니다. 특히 제2호 보호조치 미이행을 제3호 신고자·피해자 불이익과 구분하지 않으면 신청기간을 늦춰 이해할 위험이 있다."
+      },
+      "changes": [
+        {
+          "collection": "rule_cards",
+          "id": "rule.workplace-harassment.labor-commission",
+          "field": "norm.legal_effect_ko",
+          "old": "근로자는 해당 처우를 받은 날 또는 계속행위 종료일부터 6개월 안에 노동위원회에 시정을 신청할 수 있습니다.",
+          "new": "해당 처우를 받은 날부터 6개월 이내에 노동위원회에 시정을 신청해야 합니다. 법 제26조제1항제3호의 불리한 처우가 계속되는 경우에는 종료일이 기준이지만, 같은 항 제2호의 보호조치 미이행에 그 기준을 일괄 적용해서는 안 됩니다."
+        },
+        {
+          "collection": "content_entries",
+          "id": "content.sexual-harassment-labor-commission-remedy",
+          "field": "key_points_ko[2]",
+          "old": "발생일 또는 계속행위 종료일부터 6개월을 관리합니다.",
+          "new": "처우를 받은 날부터 6개월을 관리하되, 계속되는 불리한 처우와 보호조치 미이행의 기산점을 구분합니다."
+        },
+        {
+          "collection": "content_entries",
+          "id": "content.sexual-harassment-labor-commission-remedy",
+          "field": "action_steps_ko[2]",
+          "old": "각 처우 발생일과 계속 여부를 표시합니다.",
+          "new": "보호조치 미이행과 불리한 처우를 나누어 발생일을 기록하고, 계속되는 불리한 처우라면 종료일도 표시합니다."
+        },
+        {
+          "collection": "content_entries",
+          "id": "content.sexual-harassment-labor-commission-remedy",
+          "field": "facts_to_check_ko[6]",
+          "old": "계속행위 종료일",
+          "new": "불리한 처우가 계속되는 경우의 종료일"
+        },
+        {
+          "collection": "content_entries",
+          "id": "content.sexual-harassment-labor-commission-remedy",
+          "field": "body_sections[1].paragraphs_ko[0]",
+          "old": "원칙적으로 해당 처우를 받은 날부터 6개월이고 계속되는 행위는 종료일부터 계산합니다.",
+          "new": "해당 처우를 받은 날부터 6개월을 기준으로 합니다. 법 제26조제1항제3호의 불리한 처우가 계속되는 경우에는 그 종료일부터 계산합니다. 제2호의 피해자 보호조치 미이행에도 종료일 기준이 자동 적용된다고 가정하지 말고, 미이행이 있었던 시점부터 기한을 관리해야 합니다."
+        },
+        {
+          "collection": "content_entries",
+          "id": "content.sexual-harassment-labor-commission-remedy",
+          "field": "caution_ko",
+          "old": "단순한 성희롱 사실확인 자체와 법 제26조가 열거한 차별적 처우 등의 시정신청 대상을 혼동하지 말아야 하며, 다른 구제기간도 따로 확인합니다.",
+          "new": "단순한 성희롱 사실확인과 법 제26조의 시정신청 대상을 혼동하지 마세요. 보호조치 미이행이 계속된다는 이유만으로 종료일까지 기한이 미뤄진다고 가정해서는 안 되며, 다른 구제기간도 따로 확인합니다."
+        },
+        {
+          "collection": "scenario_branches",
+          "id": "scenario.workplace-harassment.labor-commission",
+          "field": "question_ko",
+          "old": "성희롱 보호조치 미이행이나 보복이 발생한 날부터 6개월이 지나지 않았는가?",
+          "new": "처우 유형에 맞는 법정 기산일부터 6개월이 지나지 않았나요?"
+        },
+        {
+          "collection": "scenario_branches",
+          "id": "scenario.workplace-harassment.labor-commission",
+          "field": "decision_fact_ko",
+          "old": "처우 발생일·종료일, 조치 요청과 미이행, 불리한 처우의 구체적 내용",
+          "new": "제26조제1항제2호의 보호조치 미이행 발생일과 같은 항 제3호의 불리한 처우 발생일, 불리한 처우가 계속된 경우의 종료일"
+        },
+        {
+          "collection": "scenario_branches",
+          "id": "scenario.workplace-harassment.labor-commission",
+          "field": "when_false_ko",
+          "old": "기간 계산과 계속행위 종료일을 다시 확인하고 다른 행정·민사·형사 경로를 구분합니다.",
+          "new": "처우 유형별 기산일을 즉시 다시 확인합니다. 보호조치 미이행에도 종료일 기준이 적용된다고 단정하지 말고 다른 행정·민사·형사 경로의 기한도 구분합니다."
+        }
+      ],
+      "source_and_scenario_consistency": "콘텐츠·법리·사실분기에 이미 coord.workplace-harassment.equal-0026이 연결되어 있으므로 새 근거 ID를 만들 필요는 없다. 기존 동일 좌표의 실제 현행 문언·원문 해시는 루트가 갱신하고, 세 표현층에는 위 구분을 모두 반영해야 한다.",
+      "regression_cases": [
+        "제2호 보호조치 미이행이 장기간 계속된다고 주장해도 종료일 기산이 자동 허용된다고 표시하지 않을 것",
+        "제3호 불리한 처우가 계속되는 경우에는 종료일 기산 가능성을 삭제하지 않을 것",
+        "일회적 불리한 처우는 그 처우를 받은 날 기준일 것",
+        "회사 내부조사 진행이 외부 신청기간을 자동 중단한다고 표시하지 않을 것"
+      ]
+    }
+  ],
+  "retained_rules": [
+    {
+      "ids": ["rule.labor-wages.rule-worker-status", "rule.labor-wages.rule-money-14days", "rule.labor-wages.rule-retirement-14days", "rule.labor-wages.rule-retirement-base", "rule.labor-wages.rule-written-dismissal", "rule.labor-wages.rule-concrete-dismissal-reason", "rule.labor-wages.rule-remedy-3months", "rule.legal-concept-comparisons.comparison-11", "rule.legal-concept-comparisons.comparison-12"],
+      "summary": "실질 근로자성, 금품·퇴직금 14일, 1년당 30일 평균임금, 서면통지와 구제신청 3개월의 구별은 현재 조문 및 인용판례와 정합적이다."
+    },
+    {
+      "ids": ["rule.employment-exit.workplace-scope", "rule.employment-exit.just-cause", "rule.employment-exit.dismissal-notice-pay", "rule.employment-exit.managerial-dismissal", "rule.employment-exit.protected-period", "rule.employment-exit.monetary-remedy", "rule.employment-exit.managerial-reemployment", "rule.employment-exit.retirement-eligibility", "rule.employment-exit.irp-transfer", "rule.employment-exit.unemployment-eligibility", "rule.employment-exit.departure-restriction", "rule.employment-exit.report-recognition-period"],
+      "summary": "적용범위·정당성·예고·경영상 해고·보호기간·금전보상·3년 우선재고용·퇴직급여 문턱·계정이전·구직급여 요건과 기간을 현재 문언과 대조했다. 연결된 employment-exit 콘텐츠의 요약·행동·본문·주의사항에도 이번 4법 갱신에 따른 직접 모순을 발견하지 않았다."
+    },
+    {
+      "ids": ["rule.workplace-harassment.distinction", "rule.workplace-harassment.elements", "rule.workplace-harassment.report-investigation", "rule.workplace-harassment.protection-action", "rule.workplace-harassment.retaliation-confidentiality", "rule.workplace-harassment.sexual-elements", "rule.workplace-harassment.sexual-employer-response", "rule.workplace-harassment.customer-sexual"],
+      "summary": "괴롭힘·성희롱 요건 구분, 누구나 신고, 객관적 조사, 조사 중 보호와 확인 뒤 조치, 고객 성희롱, 보복금지·비밀유지의 기본 설명과 해당 콘텐츠·사실분기는 유지 가능하다."
+    },
+    {
+      "ids": ["rule.deadline-timing.03", "rule.workplace-harassment.mental-illness-industrial-accident"],
+      "summary": "이번 담당 법령 부분인 근로기준법 제28조의 3개월·제49조의 임금채권 3년 및 제76조의2의 괴롭힘 요소는 대조했다. 산업재해보상보험법상 질병 상당인과관계 자체의 최신성은 이 보고서 단독 승인 범위가 아니다."
+    }
+  ],
+  "precedent_checks": [
+    {
+      "case_no": "2006다60793",
+      "decision_date": "2007-01-25",
+      "official_url": "https://www.law.go.kr/LSW/precInfoP.do?precSeq=84925",
+      "read_sections": ["판시사항 [2]", "판결요지 [2]", "판결이유 1. 원고의 상고이유 제1점"],
+      "result": "계약의 형식이 아니라 실질적 종속관계를 기준으로 업무 내용·지휘감독·시간장소·대체성·장비·보수·계속성·전속성 등을 종합한다는 공개 핵심과 일치한다. 같은 사건의 산재 제3자·보험자 직접청구권 부분을 근로자성 결론으로 혼입하지 않았다.",
+      "affected_ids": ["rule.labor-wages.rule-worker-status", "content.freelancer-contract-worker-status", "content.worker-status-evidence-checklist", "content.business-registration-does-not-decide-worker-status"]
+    },
+    {
+      "case_no": "2015두48136",
+      "decision_date": "2015-11-27",
+      "official_url": "https://www.law.go.kr/LSW/precInfoP.do?precSeq=179619",
+      "read_sections": ["판시사항", "판결요지", "판결이유 1.가 및 1.나"],
+      "result": "근로자가 구체적 사유를 알 수 있어야 하고, 시용기간 만료 본채용 거부에도 구체적·실질적 사유를 서면 통지해야 한다는 공개 핵심과 일치한다. 서면 구체성과 실체적 정당성을 분리한 설명도 유지 가능하다.",
+      "affected_ids": ["rule.labor-wages.rule-concrete-dismissal-reason", "content.specific-reason-in-dismissal-notice"]
+    }
+  ],
+  "scope": {
+    "inputs": ["artifacts/publication/current/bundle.json", "artifacts/publication/derived/source-text-library.json", "data/db/law_sources.sqlite", "data/db/precedent_sources.sqlite"],
+    "content_groups_read": ["labor-wages", "employment-exit", "workplace-harassment"],
+    "method": "해당 조문 원문을 읽고 공개 법리의 요건·효과, 관련 콘텐츠의 요약·행동·본문·주의사항, 사실분기를 대조했다. 두 지정 판례는 WHERE case_no 정확 일치로 판시사항·요지·이유를 읽었다. 해시 불일치를 곧 법률변경으로 판정하지 않았다.",
+    "writes": "이 보고서 파일만 신규 작성. topic·current·snapshot·queue·환경·원격 저장소 수정 없음."
+  },
+  "limitations": [
+    "10월 20일 공식 갱신 완료 활성 원장의 문언을 기준으로 하며 10월 21일부터 25일 사이 새 공포·시행목록까지 별도로 재수집했다는 보고서가 아니다.",
+    "이 검토는 공개 일반정보의 기존 주장 유지·교정 점검이며 개인 사건의 사실인정·법률의견서가 아니다.",
+    "해당 근거의 데이터베이스 해시·원문 판 결박과 새 출판본 통합 검증은 루트 담당이며 이 보고서 자체가 이를 대체하지 않는다.",
+    "고용보험의 일용근로자·예술인·노무제공자 전체 특례, 퇴직연금 모든 유형의 지급절차, 현 공개 안내가 다루지 않는 휴가·차별 규정 전체를 별도 완전 검증했다고 주장하지 않는다.",
+    "2006다60793과 2015두48136의 저장된 핵심 법리 일치를 확인했으며 이후 전 판례망의 변경·폐기 여부를 독립 전수 검색했다는 뜻은 아니다."
+  ]
+}

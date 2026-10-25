@@ -9,8 +9,8 @@
       "law_name_ko": "민법",
       "article_no": "제997조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C997%EC%A1%B0",
-      "source_snapshot_id": "snapshot:83ddd44efbd2426681361d4e65484683",
-      "last_verified_at": "2026-07-23T00:00:00+00:00"
+      "source_snapshot_id": "snapshot:ca6c2f85902a0f945eadbc5e01ce48aff1927bbb05563e1daa42ca0f40893d63",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.concepts.inheritance.civil-act-ko-1005",
@@ -18,8 +18,8 @@
       "law_name_ko": "민법",
       "article_no": "제1005조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1005%EC%A1%B0",
-      "source_snapshot_id": "snapshot:65acc1ebd49682acb96d642441b89a95",
-      "last_verified_at": "2026-07-21T14:00:00+00:00"
+      "source_snapshot_id": "snapshot:55978bd72c406ab7a3d89e8f939dc1fffebca5605514275cb46a712cc20ca08d",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.concepts.inheritance.civil-act-ko-1006",
@@ -27,8 +27,8 @@
       "law_name_ko": "민법",
       "article_no": "제1006조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C1006%EC%A1%B0",
-      "source_snapshot_id": "snapshot:69efee1e29973ca7f416f0cb654fc6eb",
-      "last_verified_at": "2026-07-23T00:00:00+00:00"
+      "source_snapshot_id": "snapshot:2204be75dd716729b99667e0fb6977f83a0a3057fc6e878221b27c831da57435",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.concepts.inheritance.precedent-2003da30517",
@@ -39,7 +39,7 @@
       "decision_date": "2003-09-26",
       "official_url": "https://www.law.go.kr/LSW/precInfoP.do?precSeq=194447",
       "source_snapshot_id": "snapshot:49bf117b990b0a9e2576f7d2209c6d52",
-      "last_verified_at": "2026-07-21T14:00:00+00:00"
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.concepts.inheritance.precedent-2004seu74",
@@ -50,7 +50,7 @@
       "decision_date": "2006-02-13",
       "official_url": "https://www.law.go.kr/LSW/precInfoP.do?precSeq=84315",
       "source_snapshot_id": "snapshot:fe8a73beddf423ba7ea538718a2e76b3",
-      "last_verified_at": "2026-07-21T14:00:00+00:00"
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     }
   ],
   "concept_cards": [
@@ -189,8 +189,8 @@
         "content.inheritance-assets-and-debts-checklist",
         "content.2026-loss-of-inheritance-right-and-representation"
       ],
-      "reviewed_at": "2026-07-23T00:00:00+00:00",
-      "expires_at": "2026-10-23T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "editorial_status": "approved"
     },
     {
@@ -301,8 +301,8 @@
       "related_content_ids": [
         "content.legal-heir-order-and-spouse"
       ],
-      "reviewed_at": "2026-07-23T00:00:00+00:00",
-      "expires_at": "2026-10-23T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "editorial_status": "approved"
     },
     {
@@ -406,8 +406,8 @@
         "content.spouse-when-all-children-renounce",
         "content.inheritance-renunciation-procedure"
       ],
-      "reviewed_at": "2026-07-23T00:00:00+00:00",
-      "expires_at": "2026-10-23T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "editorial_status": "approved"
     },
     {
@@ -501,8 +501,8 @@
         "content.limited-acceptance-effect",
         "content.estate-disposal-before-renunciation"
       ],
-      "reviewed_at": "2026-07-23T00:00:00+00:00",
-      "expires_at": "2026-10-23T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "editorial_status": "approved"
     },
     {
@@ -603,8 +603,8 @@
         "content.special-limited-acceptance-late-debt",
         "content.limited-acceptance-effect"
       ],
-      "reviewed_at": "2026-07-21T14:00:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "editorial_status": "approved"
     },
     {
@@ -724,8 +724,8 @@
         "content.special-limited-acceptance-late-debt",
         "content.limited-acceptance-creditor-notice"
       ],
-      "reviewed_at": "2026-07-21T14:00:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "editorial_status": "approved"
     }
   ]

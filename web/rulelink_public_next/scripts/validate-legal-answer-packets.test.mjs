@@ -43,6 +43,7 @@ import {
 } from './legal-answer-test-fixture.mjs';
 import {
   appendPrerequisiteGateReceipts,
+  deriveCurrentPublication,
   topicReceipt,
   verifyProductionQueueExternalEvidence,
 } from './validate-publication-production-queue.mjs';
@@ -368,7 +369,8 @@ test('activation 선언 뒤에는 packet ID·count·hash·receipt·trust·queue 
         paths.productionQueueBundlePath = currentBundlePath;
         paths.productionQueueReadFile = undefined;
       },
-      expected: /queue_bundle_mismatch/u,
+      // 실제 운영 출판본을 섞으면 대기열 판본 검사가 더 먼저 차단할 수도 있다.
+      expected: /queue_bundle_mismatch|production_queue_invalid/u,
     },
     {
       label: 'signed-receipt',
@@ -906,7 +908,21 @@ async function withActivationFixture(callback) {
   try {
     const fixture = validFixture();
     const packetKnowledge = fixture.bundle.knowledge;
-    fixture.bundle = structuredClone(currentBundle);
+    // 활성화 합성 시험은 실제 유지보수 출판의 해시 증거를 재사용하지 않는다.
+    const queue = JSON.parse(await readFile(DEFAULT_PRODUCTION_QUEUE_PATH, 'utf8'));
+    const completed = queue.items.filter(item=>item.change_mode==='existing_topic_revision' && item.integrated_snapshot_id);
+    const originalSnapshots = [...new Set(completed.map(item=>item.integrated_snapshot_id))];
+    assert.equal(originalSnapshots.length, 1, '합성 활성화 시험의 원 승인 출판본을 하나로 고정해야 합니다.');
+    fixture.bundle = JSON.parse(await readFile(path.join(repositoryRoot,'artifacts/publication/snapshots',originalSnapshots[0],'bundle.json'),'utf8'));
+    delete queue.maintenance_publications;
+    const originalTopics = new Map();
+    for (const item of completed) {
+      const result = spawnSync('git',['show',`${item.migration_commit_sha}:${item.topic_file}`],{cwd:repositoryRoot,encoding:'utf8'});
+      assert.equal(result.status,0,result.stderr);
+      const topic = JSON.parse(result.stdout);
+      assert.equal(topicReceipt(topic),item.topic_receipt);
+      originalTopics.set(path.normalize(path.join(repositoryRoot,item.topic_file)),canonicalBytes(topic));
+    }
     replaceRowsByIdentity(
       fixture.bundle.knowledge.sources,
       packetKnowledge.sources,
@@ -988,9 +1004,7 @@ async function withActivationFixture(callback) {
       ],
     };
     const trustPolicyRaw = canonicalBytes(trustPolicy);
-    const queue = JSON.parse(
-      await readFile(DEFAULT_PRODUCTION_QUEUE_PATH, 'utf8'),
-    );
+    queue.current_publication = {...queue.current_publication,...deriveCurrentPublication(fixture.bundle)};
     let registry = JSON.parse(
       await readFile(DEFAULT_PRODUCTION_REGISTRY_PATH, 'utf8'),
     );
@@ -1047,6 +1061,10 @@ async function withActivationFixture(callback) {
     ]);
     paths.productionQueueReadFile = async (filename, ...args) => {
       const normalized = path.normalize(String(filename));
+      if (originalTopics.has(normalized)) {
+        const raw = originalTopics.get(normalized);
+        return args[0] === 'utf8' ? raw.toString('utf8') : raw;
+      }
       if (
         normalized.endsWith(
           path.normalize(

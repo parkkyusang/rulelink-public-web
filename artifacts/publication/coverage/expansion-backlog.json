@@ -1,9 +1,9 @@
 {
   "schema": "rulelink_publication_expansion_backlog_v1",
   "schema_sha256": "6f29f9b5d87f6bfc56bc24e0c0d6358b0dd09cdec5044836cc53e6963e01ffb3",
-  "snapshot_id": "kr-knowledge-core-20260726-024",
-  "base_bundle_sha256": "5ede84d53415dee9452f4bbdaf8318cc823925769396404f03416e934445ea32",
-  "coverage_manifest_sha256": "875b2b19f8083baa6030253151beda56a1caaf9793c3b721e1ce4672be6f3050",
+  "snapshot_id": "kr-knowledge-core-20261025-025",
+  "base_bundle_sha256": "6f62c78391c3aa622f08dcbf769471d8835edc0f6e1e8ff517384ab8d45b9173",
+  "coverage_manifest_sha256": "6db5f10ab83fc5ffbeb353fd54d03725f7de4894f5aaa368118914077dda446f",
   "content_count": 284,
   "hub_count": 28,
   "summary": {
@@ -17,7 +17,7 @@
   "entries": [
     {
       "content_id": "content.2026-livelihood-account-protection",
-      "content_revision_sha256": "67ef178826b623731536deda21da1450416bfeaa10e3c51a9fc6a4b5c6c0e43e",
+      "content_revision_sha256": "f6b67dc2333e14397fefc62c5dfead69544820ccc12688380828973250f6bacb",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -32,7 +32,7 @@
     },
     {
       "content_id": "content.2026-loss-of-inheritance-right-and-representation",
-      "content_revision_sha256": "ab50de11b99e9c470805415d87b5172066dd4ee0b6a06232a8b97e535b049c66",
+      "content_revision_sha256": "e5c1dbb02afd37fcb1b84870b5873acbe140cb5919701e6756098ee83d7606ad",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -46,7 +46,7 @@
     },
     {
       "content_id": "content.accident-damages-responsibility-map",
-      "content_revision_sha256": "aeaaa88c09c2735a5a71f320c19e19b76c0936df8523961d7cefeadd17efd105",
+      "content_revision_sha256": "4d786824fcd825d9f807b26779192c58b1d14cc5ac89b7b739f3c3c666028842",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -60,7 +60,7 @@
     },
     {
       "content_id": "content.accident-evidence-and-tort-limitation",
-      "content_revision_sha256": "23effa9d71e94a811c3925cab863c71744f02cbe59d2424e0746e1f342154e71",
+      "content_revision_sha256": "f02f0988e2b73196eec408ab767086cc8af0ef827625e863db83eaf62a6eec39",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -75,7 +75,7 @@
     },
     {
       "content_id": "content.admin-appeal.application-preparation",
-      "content_revision_sha256": "2bf11b45e2e2734aa567d1c4e9ee9b429d13902a2b6de329e26df72e4a9d05d4",
+      "content_revision_sha256": "a36435f6e7c01bf6f0a7387460bff34d4ba600962507ae4d4034a63aa21f0230",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -89,7 +89,7 @@
     },
     {
       "content_id": "content.admin-appeal.data-sharing-consent",
-      "content_revision_sha256": "4ed17781f78cf6522ef329743dbafeea1fe486351f0f9eccc3b7fe7ab8b26dcc",
+      "content_revision_sha256": "cdbab729e3f0155a0a480ce0677b097a9a9b219c5648a3ce7e931f8bd0ef64e0",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -103,7 +103,7 @@
     },
     {
       "content_id": "content.admin-appeal.documents-law-change",
-      "content_revision_sha256": "61f39a2f1762efbdf879192ca7865c857490a06570ed41cf5e342a06d5eb0d4d",
+      "content_revision_sha256": "5be1f79aacd59d36ea70864327068cd9468e23a04ce04b3e65a55f9ae7a7227a",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -117,7 +117,7 @@
     },
     {
       "content_id": "content.admin-appeal.eligibility-document-branch",
-      "content_revision_sha256": "4b21feb07620b1517e683b6ed7240883cea0c7ef02cbc94e37dce894ac6837d4",
+      "content_revision_sha256": "e6cebb4a57d7990b673e7380f51227b666d26394e5f7ee8bd902374cc7bf5b6e",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -131,7 +131,7 @@
     },
     {
       "content_id": "content.admin-appeal.not-all-documents-waived",
-      "content_revision_sha256": "994469260f835ef1f4a5ba6d22dea7b81a90e99b34605ef3a7c073d7fff8469b",
+      "content_revision_sha256": "4ef770205138f28b39e4642707ee0b1a812422a3295415f464bab0022ba18145",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -145,7 +145,7 @@
     },
     {
       "content_id": "content.admin-appeal.qualification-vs-proof",
-      "content_revision_sha256": "5df6bf6c5df9f3542b1f7d77de10a2a2233f553f429ca17f030b644da025be58",
+      "content_revision_sha256": "993bf42e276e9c6711860ea298f2671442c2674bb26ca1e95b6f1df946a0e3ef",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -159,7 +159,7 @@
     },
     {
       "content_id": "content.administrative-appeal-suspension-vs-court-suspension",
-      "content_revision_sha256": "5c244b9b41fe15c079073f74a529c23e0aa79d8f4f536f95d23f9c465a22267a",
+      "content_revision_sha256": "b6414c29fa43b8cce2babdcd7a5bfd705c2cb6cebdfae727df8cc63b045c75a1",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -173,7 +173,7 @@
     },
     {
       "content_id": "content.administrative-appeal-vs-revocation-lawsuit",
-      "content_revision_sha256": "55fa174b366aadfbaf5ed7a501b0062cbf04fbf4c589c7a24f013b30c5531a25",
+      "content_revision_sha256": "1a5f6580cb96b9a60506c2df8c40b0bed720345eaddf9471e9e57890daa56e2a",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -187,7 +187,7 @@
     },
     {
       "content_id": "content.administrative-appeal-vs-revocation-suit-deadline",
-      "content_revision_sha256": "d35b9ee5c74d3467aeaa83136c12b19e6ba806b41b262e2cbff6aabd93e0e564",
+      "content_revision_sha256": "84cc7981f3af9d6aa867d10432ff4dafd1a3c2e8d95c4c49833853618d39b8e7",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -201,7 +201,7 @@
     },
     {
       "content_id": "content.asset-transfer-harming-property-division",
-      "content_revision_sha256": "ab2ab498b93931014698b5b0a5f5300ec74120560b6218fde2ceec7743249018",
+      "content_revision_sha256": "fe3c3dba5dd61f64369ffbfbbd800bd71236b4aa60c147f32d6b3c933b05f687",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -215,7 +215,7 @@
     },
     {
       "content_id": "content.attorney-advertising-and-selection",
-      "content_revision_sha256": "18e76dd0db8f228a0840fc5848e1a9e48f53dc68d720531ed5fd97fa39c60b05",
+      "content_revision_sha256": "2d74ab8550b926601f0966229fddc4a99abe58b9529a90066aead2f133193533",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -229,7 +229,7 @@
     },
     {
       "content_id": "content.auto-accident-insurance-comprehensive-insurance-criminal",
-      "content_revision_sha256": "a42c436e342ddd84188f0b07d66171a2f4d9d3e11b1ffc6493dbb87ded7d3cac",
+      "content_revision_sha256": "29bef27181408754244f1543312e8fed6ff0c020600f14d0db2c08ec56123397",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -243,7 +243,7 @@
     },
     {
       "content_id": "content.auto-accident-insurance-direct-insurance-claim",
-      "content_revision_sha256": "c89e2f99d6cd6395b0ac3a4562979694861b946450a6660258daab77cdf913fc",
+      "content_revision_sha256": "f429d256a5803cb16fdff7bae61e2350635699f976443582537bb4b655061d25",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -257,7 +257,7 @@
     },
     {
       "content_id": "content.auto-accident-insurance-evidence-and-treatment",
-      "content_revision_sha256": "ea5df79db988ed85b21b301d4cf220bb295be89c97480864dc6375c5eebe8f4d",
+      "content_revision_sha256": "c6f289559542e1158538fdf0ed18d502ef92f616c12716af6448b596e9443beb",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -271,7 +271,7 @@
     },
     {
       "content_id": "content.auto-accident-insurance-immediate-response",
-      "content_revision_sha256": "3bc4957e646abe6e415e90e78c1332a6d5998786484febbef880b8693c752368",
+      "content_revision_sha256": "638d350c75664cc70d78a1de30b7800d10ca3556b4c5d8495ee2b5985fe2a331",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -285,7 +285,7 @@
     },
     {
       "content_id": "content.auto-accident-insurance-operator-liability",
-      "content_revision_sha256": "2a61779cdf2ae8ac4463f5b94917f96f29e14c3b8b041bc47d38ae74be15a266",
+      "content_revision_sha256": "da06e583756507eb621f3b96731544e790cc2c074d932c25ab8df0ab39a7f09d",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -299,7 +299,7 @@
     },
     {
       "content_id": "content.auto-accident-insurance-police-report",
-      "content_revision_sha256": "5494bc0a6b4a587cafd513a29643e74b3fbee81da06cef9622cae42f2415de38",
+      "content_revision_sha256": "5578f8a6011a0c0449e447d485f9366ea2084410fd4c75df4c2e42f2447ab3cd",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -313,7 +313,7 @@
     },
     {
       "content_id": "content.auto-accident-insurance-provisional-payment",
-      "content_revision_sha256": "117b414be74e15dc6845e0ebb7717bc622dca785011b3d94d9f1c166b8af3f13",
+      "content_revision_sha256": "d7c3eb2ed871f1fc40ae2f8b388d1ba39450f1193d6be6a334a9dc7c510738cb",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -327,7 +327,7 @@
     },
     {
       "content_id": "content.auto-accident-insurance-settlement-criminal-effect",
-      "content_revision_sha256": "f6acb06f15f83e70805ff9aa12d3eb3b93a2df7999640d169c3de8830cd14229",
+      "content_revision_sha256": "94c37421318e687e4cb2a2a19e28efbb43ce935d02af8ca2516b0ed5dc1f4027",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -341,7 +341,7 @@
     },
     {
       "content_id": "content.auto-accident-insurance-three-year-limit",
-      "content_revision_sha256": "cc436024d6fa62ce827506ca41588f57ed4303da4324bc948bf47acc80cd9257",
+      "content_revision_sha256": "bfc0591320f266c7e1e7eb59da8bb568247f345d7abf1dc9bfeb12c7d3fdcf96",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -355,7 +355,7 @@
     },
     {
       "content_id": "content.auto-accident-insurance-uninsured-hit-and-run",
-      "content_revision_sha256": "fc171b909b12c4f8783732f0faecc674e3b360868f1f1ee8efe560bf996feff3",
+      "content_revision_sha256": "1ec7b91a7a0a1473d50cf82f66d46bbef0260ff5df4d60732551cb34493de6a6",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -369,7 +369,7 @@
     },
     {
       "content_id": "content.bank-account-seizure-and-collection-order",
-      "content_revision_sha256": "56242057b78023903427f3c9fa3a0c3ed8881e395c099667ec35c94e857b5779",
+      "content_revision_sha256": "475041a84e5485efb86395cc62fd5385bcf37bb2ef1be229cdd7e31d60a3aded",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -384,7 +384,7 @@
     },
     {
       "content_id": "content.bank-transfer-loan-or-gift",
-      "content_revision_sha256": "fcdfb1bcd106136681826e1efe707d840f896baa8c7bbcaaac16655315438835",
+      "content_revision_sha256": "4f929fd97de9b67083fc16bbcc0e76f905f73da5b7108a8ccdc497c740039be8",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -398,7 +398,7 @@
     },
     {
       "content_id": "content.broker-confirmation-explanation-checklist",
-      "content_revision_sha256": "296e210425c939f81835aa5873010934db5e6e1e936865794ca4f10dc3501809",
+      "content_revision_sha256": "0169e0650f90b07285a80f489417cfa003a719247ad3151cf5212bb15dbae356",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -412,7 +412,7 @@
     },
     {
       "content_id": "content.business-registration-does-not-decide-worker-status",
-      "content_revision_sha256": "a511ff153edaabc9a351ca0cc625c975d7bd84a85ce3f90b14f65ecdcf6ea635",
+      "content_revision_sha256": "4c431488c602fa03219ca83d6b8739f643f0d4f6b06ad80da91f9d5d43c412d1",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -426,7 +426,7 @@
     },
     {
       "content_id": "content.cancel-lease-registration-after-refund",
-      "content_revision_sha256": "a27dad46c1d9d0c9be4745b858f9ed3c24efcc5efbb835aacd901dfd3a89745b",
+      "content_revision_sha256": "e589d8c193f22cf700d9521c6e652ae10948cd62f7b165955f6bf4e9d42f23ba",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -441,7 +441,7 @@
     },
     {
       "content_id": "content.certified-demand-vs-judicial-claim",
-      "content_revision_sha256": "0261491cc3a5aa6510407da040158cc1500d2056e5abee215878f3e1e41fdc95",
+      "content_revision_sha256": "3fae5a4edf4899b1e03fa9b90aeda2d288b0f1dcd0a348137f205863cde5a4e1",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -455,7 +455,7 @@
     },
     {
       "content_id": "content.child-support-record-is-not-private-memo",
-      "content_revision_sha256": "8579ff1fff5e592b295fa5efca5b465b05e27c85375de81b225c207717ff3a32",
+      "content_revision_sha256": "b7505921def136c4648eec43f8910045cfbbc48034727652c80f0e9c9521d087",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -469,7 +469,7 @@
     },
     {
       "content_id": "content.civil-appeal-vs-supreme-appeal",
-      "content_revision_sha256": "2a2d63bcf044ec89b5622f2e6e889e500b895046a042b72ffac12ef94f3f1e11",
+      "content_revision_sha256": "728cf72430b4cd26578c57816e8652d202a36d02a2e0d8e658e39b754166caaf",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -483,7 +483,7 @@
     },
     {
       "content_id": "content.civil-damages-after-crime",
-      "content_revision_sha256": "5b0ad950aef3118570dc29875fef2b3d0f23d9caeaf63b54641f7f2ed57bca03",
+      "content_revision_sha256": "e140fb4237007810d42716cb66314293aaa87eb47645d84f65c1777077633eb7",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -498,7 +498,7 @@
     },
     {
       "content_id": "content.civil-mediation-vs-civil-lawsuit",
-      "content_revision_sha256": "b532e6de7071bdaef04aea4ae023dc55f4fa5bd2a72ad848696d8622d928ef51",
+      "content_revision_sha256": "bf2bb44aa93a395c54d947a6e4b03b445ce178c08674ede3dee501fd01518d07",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -512,7 +512,7 @@
     },
     {
       "content_id": "content.civil-small-claims-answer-default",
-      "content_revision_sha256": "aa728fe9e91740c9a21d09b4d0281a5b5454a754bea890562f246f66ad86ea89",
+      "content_revision_sha256": "5102bcee6808cb869961977753e809d4d6ce828e8a30b2077e35ea5e4a7e6432",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -526,7 +526,7 @@
     },
     {
       "content_id": "content.civil-small-claims-complaint-content",
-      "content_revision_sha256": "7c65b0009997b8bffde752d4194700273fc66c973b3520e2077cc49d3feeb67b",
+      "content_revision_sha256": "c2e1b76f37d630322f1e5d5372376117e3af8726309b06071deb78068d9c56f9",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -540,7 +540,7 @@
     },
     {
       "content_id": "content.civil-small-claims-costs-appeal",
-      "content_revision_sha256": "c96e7a40cf8f8de7fb0de6105cbf61e2deed060787f1284a06b1d1b571ab6535",
+      "content_revision_sha256": "f7f74e8a9b7016a634de6da393cfcb2482e72ee6713b7f46113dd0d229a569a9",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -554,7 +554,7 @@
     },
     {
       "content_id": "content.civil-small-claims-evidence-hearing",
-      "content_revision_sha256": "8f02dd4e7f5cd1589a77e81c4802b776e0bd1ead60b5210e2068d61edff45775",
+      "content_revision_sha256": "439a85b22f3214aceaff9e85b536625bc5630650050d9968645c6a253cfbe534",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -568,7 +568,7 @@
     },
     {
       "content_id": "content.civil-small-claims-family-representation",
-      "content_revision_sha256": "2e112d37a74b912dd85c7de1f656d6e82749135ee0b2be9a94a4d2f7822f5dc0",
+      "content_revision_sha256": "02bf7a76b73351f41a0f1d83dce43b818c947a69450a29546d0f82a41ff0f7bb",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -582,7 +582,7 @@
     },
     {
       "content_id": "content.civil-small-claims-filing-method",
-      "content_revision_sha256": "c9e1b905cb64f6923dd2a91a32d5ebad4994d5f7e60b6fc00b309be5aa71b189",
+      "content_revision_sha256": "d9cb35ad6176b73d735e4e9ef42196c2a8cd2054b4669dc5c288b87794bb8972",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -596,7 +596,7 @@
     },
     {
       "content_id": "content.civil-small-claims-judgment-enforcement",
-      "content_revision_sha256": "95b152f5a8e35ea1338e455c4b9892b670ac5a3b60cb8439d1443b2a81299fb5",
+      "content_revision_sha256": "7531eecde4a0f804aa8cf00055262c8804e030557cfe06a572649d77097907ae",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -610,7 +610,7 @@
     },
     {
       "content_id": "content.civil-small-claims-jurisdiction",
-      "content_revision_sha256": "d36291e08d4203eaa643f519f841c49fec05e6cfad61588a74ff9fc6231296be",
+      "content_revision_sha256": "48fa2086a75a4cc49818bd81edb832f211affa5ee150703c8ec675ab0f89161c",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -624,7 +624,7 @@
     },
     {
       "content_id": "content.civil-small-claims-performance-recommendation",
-      "content_revision_sha256": "9ce6119431abf5d56463aea6ea90670775ff0cb16cea7742a32f97b54471e1a0",
+      "content_revision_sha256": "7221d57b43584a0a6fb5f3f16252c0659163a4ab33d0c9fa3c613fd7e63d6fc0",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -638,7 +638,7 @@
     },
     {
       "content_id": "content.civil-small-claims-small-claim-scope",
-      "content_revision_sha256": "e93d688bc24f2f6c7f7f2fe3d4b24fc1deacbb4a2c446c2ced0a8cb0cd3032ef",
+      "content_revision_sha256": "2291bacbddd9af816ca736446eaeaee63c402c5ee67b519749938933b16a1f8b",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -652,7 +652,7 @@
     },
     {
       "content_id": "content.commercial-lease-act-scope",
-      "content_revision_sha256": "596ef2a69664537c9a2ce78946a186475ee30f07b9daf887d5e1bd1d6086216c",
+      "content_revision_sha256": "2f215a77ac2a8f0f35285f2177d99b2bdca1e1c7025050eef5c920fd2b81f9e9",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -666,7 +666,7 @@
     },
     {
       "content_id": "content.commercial-lease-closure-termination",
-      "content_revision_sha256": "a79ffcc70047aab434897442a4cc7afef242a0d2254b0048f751bb219529ad70",
+      "content_revision_sha256": "99c15397c2746d086d7845ff8e97caff9edb0c4b89859768749fdf817a681f2b",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -680,7 +680,7 @@
     },
     {
       "content_id": "content.commercial-lease-dispute-conciliation",
-      "content_revision_sha256": "5371c47d215d2853fc6187561ba0e03f8d0e33d5a45a443de59cc39f58439be1",
+      "content_revision_sha256": "619ddbda3a6737dda7169bee57d56dfb3f7dc7550d52f34c2ed739bd8f817ee1",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -694,7 +694,7 @@
     },
     {
       "content_id": "content.commercial-lease-key-money-recovery",
-      "content_revision_sha256": "03c7ea28e9a1e1ea35053dc6e96e70382f5c07c4f757f595e49b97ade5a28229",
+      "content_revision_sha256": "f5c31bc00a0d5f4cc425984d4847b81ca15ff9a96791e36453047ac2490402dc",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -708,7 +708,7 @@
     },
     {
       "content_id": "content.commercial-lease-management-fee-breakdown",
-      "content_revision_sha256": "acecbd3437c4b84acdb32eab2a463a14ca9593866f006e79c3ff1bfcf32203cf",
+      "content_revision_sha256": "eb98b44e786d2405d42165d034240f15d58ca6b6fb10e32297156f9fa6423ec6",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -722,7 +722,7 @@
     },
     {
       "content_id": "content.commercial-lease-move-before-deposit-refund",
-      "content_revision_sha256": "b68095f5ae84f2ce659413f2f55c88bd70fb4e2ae58a5fd7ebe71a201d592ef7",
+      "content_revision_sha256": "15458932857ca17114ab3f05b6cc13ee73d6306cc97d33e93873e7517f0ebd24",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -736,7 +736,7 @@
     },
     {
       "content_id": "content.commercial-lease-opposability-and-registration",
-      "content_revision_sha256": "aa4c27e6041518ae467c8040b7c8155e95f6011fa8aedf48c7f38c5c6651c42f",
+      "content_revision_sha256": "587dac4dc844233137ff2973e75b78613072941e7289a930965928b80f8c5284",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -750,7 +750,7 @@
     },
     {
       "content_id": "content.commercial-lease-priority-repayment",
-      "content_revision_sha256": "f58c1f68dc3c572c82fb40c01c56b33aaccd6df9a9175dad7f157ecd7998c5c4",
+      "content_revision_sha256": "83d5428a01da77407b3ba3c2d66f9267b3442c72c2426a77fbbe58f3cfd195fa",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -764,7 +764,7 @@
     },
     {
       "content_id": "content.commercial-lease-renewal-right",
-      "content_revision_sha256": "4092245f63b79453fddaf00cc25048d4fc20d5f4813ae43bc1b04f99e9cca254",
+      "content_revision_sha256": "01cc6440af7dd0b7abe9153a9afc3c7f2cae7fa3513dc085d3d17f6ed14d6db6",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -778,7 +778,7 @@
     },
     {
       "content_id": "content.commercial-lease-rent-arrears",
-      "content_revision_sha256": "38db806c12890d71bd998b1a20154a806b1675905b6d70ef0bbfdaf09228433b",
+      "content_revision_sha256": "43bd67be857f9aaffc92ffe1210645a1410307dee69e7abead9a2544da1320fd",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -792,7 +792,7 @@
     },
     {
       "content_id": "content.commercial-lease-rent-increase-and-conversion",
-      "content_revision_sha256": "f3738d95efcab2b9d5a260d3c5cc399a54d01f465e7806405da9bbb6028b5d4c",
+      "content_revision_sha256": "cf73f571fdd53602fe8b79786930651dae074b369dcd480df15a51c237307cc7",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -806,7 +806,7 @@
     },
     {
       "content_id": "content.compensation-order-application-deadline",
-      "content_revision_sha256": "17253e3ecb93225a21e855bb6d4f818a8897c5d76a5ccc88ef2ea18ea104010d",
+      "content_revision_sha256": "7bd240fd8f9fbcae1fab444eaccb8e40133d823a4cb8b787375b1ae7ec516bec",
       "coverage_state": "coverage_declared",
       "coverage_unit_ids": [
         "coverage.kr.crime-victim.compensation-order.copies.v1",
@@ -825,7 +825,7 @@
     },
     {
       "content_id": "content.compensation-order-eligible-damages",
-      "content_revision_sha256": "64fbdc4a99141537a3e6e76359d71e1cbe37df99789dd905d01c72090f2ac80e",
+      "content_revision_sha256": "a47923fffdd03e9d1040b0854ca24cbd372e672f587a5fafe9f0620d42d5e37f",
       "coverage_state": "coverage_declared",
       "coverage_unit_ids": [
         "coverage.kr.crime-victim.compensation-order.agreed-amount.v1",
@@ -845,7 +845,7 @@
     },
     {
       "content_id": "content.compensation-order-vs-crime-victim-relief-deadline",
-      "content_revision_sha256": "747da63e28f63082e883f542b79ad01bbc09463f6aff571c67ece54bab6e5da2",
+      "content_revision_sha256": "ff55e2fbac46b9afdc52132c4ed2863a5e0d23dc7f5ad2125e5a11f8e65d6ff1",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -859,7 +859,7 @@
     },
     {
       "content_id": "content.consensual-divorce-cooling-period",
-      "content_revision_sha256": "b1a021ec8479c38a72e4f4d4a285bdca2a687d800bd78849560168e4254e769c",
+      "content_revision_sha256": "e21a24e7884c628cfac973bfe184867077e2af6e07b2c36ca3c71a01ab0b19ad",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -873,7 +873,7 @@
     },
     {
       "content_id": "content.consensual-divorce-needs-court-confirmation-and-report",
-      "content_revision_sha256": "e37a8574a5f37c191492b1022a506fef04c7b05b9ed4d0814e210c64cc7e671d",
+      "content_revision_sha256": "6ccb8922ebd2fba2b6885a0a79011f12967686e0b41f61edd7a77c385f7029f2",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -887,7 +887,7 @@
     },
     {
       "content_id": "content.content-certified-demand-needs-followup",
-      "content_revision_sha256": "b2ea12a3e79fa411f4331cbd3f476fb5b8272b51a5f2ee97e47da8cd485b6964",
+      "content_revision_sha256": "d8bced1b7c48af7285a72b7ab7e3225eb521967fdba1d3b95938327bfca21f4d",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -902,7 +902,7 @@
     },
     {
       "content_id": "content.content-certified-letter-prescription",
-      "content_revision_sha256": "044dd3a3c4f5a3a63f32e392df87acec2d865b86a79070f30e74d2f4d4974765",
+      "content_revision_sha256": "f24d38a3c4c3eae6938935d910e7cef1cbdc65984a2baed28bb8cd6c9c08985b",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -916,7 +916,7 @@
     },
     {
       "content_id": "content.continuing-guarantee-maximum-amount",
-      "content_revision_sha256": "58968bb784c0b4f325f4ef941fc239fc47b15b0bcb0c278cc1f036cd0687849f",
+      "content_revision_sha256": "2247c956c55f5d4c4188f265ab2bff67d101cc810e583e9996d39d57f567051c",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -930,7 +930,7 @@
     },
     {
       "content_id": "content.contract-rescission-vs-cancellation",
-      "content_revision_sha256": "e39073012ad593ea444981b53801d36fd77ac7c34ffab085dc3056bc73c9449a",
+      "content_revision_sha256": "17a015bcf79643cfec1df2c24c95ec79bd3b3bd2f2181e811f85cb86277faae2",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -944,7 +944,7 @@
     },
     {
       "content_id": "content.contractual-interest-vs-default-damages",
-      "content_revision_sha256": "6cf7129ac52031f1983100e7156dd2abec5cfacbab442232a18b062626db8de3",
+      "content_revision_sha256": "f76100d77dee90edfcfdcd8ba16e6ffff68bc76cbaf1db7e086edef09f5a6cae",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -958,7 +958,7 @@
     },
     {
       "content_id": "content.crime-evidence-preservation-first-steps",
-      "content_revision_sha256": "59d88c76923afdd4c7fc917f0a0b8a401e314952faf275e02aa6f11625e8874d",
+      "content_revision_sha256": "dac5bcb41aa9e297f03757d210b1ff504eff6f2ab5c50639f6396fc7791e9990",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -973,7 +973,7 @@
     },
     {
       "content_id": "content.crime-victim-relief-fund-eligibility-deadline",
-      "content_revision_sha256": "4e4ddf44d89e024e55996ef865caa180d85704923f959a384ff8edc4b6ef4106",
+      "content_revision_sha256": "e0a7673f79e80ed4b9fd4cbe64b6d57637fed6e8ded84bb0057c6f28f3c80810",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -989,7 +989,7 @@
     },
     {
       "content_id": "content.crime-victim-relief-fund-vs-civil-damages",
-      "content_revision_sha256": "d9f81efc7cb5d3d7e747b4da8345ee2699a70d08a79d489171c0e002bbf082bd",
+      "content_revision_sha256": "a83c2ea0dbbb04e079ee5325ce89c694aef6abb1474584ff42155167e832f447",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1003,7 +1003,7 @@
     },
     {
       "content_id": "content.crime-victim-urgent-safety-and-support",
-      "content_revision_sha256": "08dae454e19873c2416a790e4549830979e8860f620587c3cde02011b83eea16",
+      "content_revision_sha256": "dc3b0037b822a92cfc5e4c5c6a003e83392ec41836b43860ce4bf572565ee46a",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1018,7 +1018,7 @@
     },
     {
       "content_id": "content.criminal-compensation-order-vs-civil-damages",
-      "content_revision_sha256": "2454a088571b1a7955130036870aa2c27813e9db88108a28f47adf21987bffc7",
+      "content_revision_sha256": "fd4e857c52c80022ef40bb0492cc870f36217f6c3148eef052ea6d96401fec2a",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1032,7 +1032,7 @@
     },
     {
       "content_id": "content.criminal-settlement-vs-complaint-withdrawal",
-      "content_revision_sha256": "c335e8cdcba50dc1fb7d8a32956cb5d25ae8110b637d9059a9074aebbb7ccd0f",
+      "content_revision_sha256": "3786bd3ec18591bb856e9eb5ef61aa87b7ee39379e3f24b2deb326caa64cd4d9",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1046,7 +1046,7 @@
     },
     {
       "content_id": "content.customer-sexual-harassment-protection",
-      "content_revision_sha256": "36a75ace62ee4714eabb1d42d4ed15262f5368e18e04b892196184dad925bd45",
+      "content_revision_sha256": "51deb6cfdd0e9997376d84f61d652f53591431aeadad5378314f63314e910d7a",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1060,7 +1060,7 @@
     },
     {
       "content_id": "content.debt-limitation-is-not-always-ten-years",
-      "content_revision_sha256": "0a2fb468bbee725abd21c23dad50357ae398941347707a17632152f193245258",
+      "content_revision_sha256": "d2b675bc76f688403648b265f5b42f496c930b8b9722fabec3228b1b08220d88",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1075,7 +1075,7 @@
     },
     {
       "content_id": "content.digital-content-cancellation-exception",
-      "content_revision_sha256": "ef6b4debec66bd4df62f5d7945e9dbff0a73926788a5874eadde78bd5f7fa603",
+      "content_revision_sha256": "40fa5f2ccfa38d92beae974eb486ad1529bfee38fb56c724efe200a8add2b187",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1089,7 +1089,7 @@
     },
     {
       "content_id": "content.direct-attorney-contract-checklist",
-      "content_revision_sha256": "237ccebcc420ecd81b6ff5d381a165e52f85ba70b7f9c1d7735c66db0946f96b",
+      "content_revision_sha256": "9f8b4296e865a285361215911f3316142e5ae1b15f79c74c2e03ec55515085a4",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1103,7 +1103,7 @@
     },
     {
       "content_id": "content.disclaimer-does-not-change-function",
-      "content_revision_sha256": "e971e66d3e2499f42c02cb0b52badb40acec4139a35b6d935f26e4ab1bab1359",
+      "content_revision_sha256": "1d02e167efe60deebfe6014b19cd97b3cab46389a793a2603bdeaacedf6fb7c2",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1117,7 +1117,7 @@
     },
     {
       "content_id": "content.dismissal-notice-vs-unfair-dismissal-remedy",
-      "content_revision_sha256": "a187203e0e6588ac4c40c1b1cc6372f43f526c3e32b3361afaccf0757272cb0f",
+      "content_revision_sha256": "c2595a2b483c7fd651dd64f31ccd5e5addd1bd32c660a0b7bcdf08a04f107664",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1131,7 +1131,7 @@
     },
     {
       "content_id": "content.divorce-agreement-vs-effective-divorce",
-      "content_revision_sha256": "9a15258a027eec04d9d8a2e3c662f6d167e5dc44433fda8eaf65b752732e60a0",
+      "content_revision_sha256": "d1625085c9fb269b5a67ee223c950d01778cdcad625345d19a4c563c8bd6e40f",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1145,7 +1145,7 @@
     },
     {
       "content_id": "content.divorce-child-custody-support-parental-authority-agreement",
-      "content_revision_sha256": "a562665f20f2c1d0d5a179aad92b80b979cbbc71247913956461273b2838325a",
+      "content_revision_sha256": "72929ee6a4f0ecab211448bcf30f0a218cff94636527db0dae0a74faf3875c78",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1159,7 +1159,7 @@
     },
     {
       "content_id": "content.divorce-consolation-money-vs-property-division",
-      "content_revision_sha256": "fb0e69520966af0b1de89c9967226d9de64b1c2c3ed0028c85d18320fd74f893",
+      "content_revision_sha256": "8dd9877f2962c25eec4b5c5a1b67e077328f9d39b3bb69b9026ae35421ccfa26",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1173,7 +1173,7 @@
     },
     {
       "content_id": "content.divorce-cooling-period-shortening-for-violence",
-      "content_revision_sha256": "58d8780fc2cc9929846ae38350c4b6906a7632fe7e2524691e97cf33fdf8d321",
+      "content_revision_sha256": "a78766c562cea92a460ffa90cd648bc230d1adb1ea3b5ec7af96723078a70fc2",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1187,7 +1187,7 @@
     },
     {
       "content_id": "content.divorce-property-division-two-year-period",
-      "content_revision_sha256": "a693e8d9475005fdd095d175c9e937075eb51a04c129bec791b71f3410842466",
+      "content_revision_sha256": "a4c29ddb272a7850c3266eefc88d9af9b4f0f4a791d7c070c42d2ca8353cca59",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1201,7 +1201,7 @@
     },
     {
       "content_id": "content.documents-that-allow-compulsory-enforcement",
-      "content_revision_sha256": "09520eccabaa6e650c151dd88bee7d50541647451c117cd39d4f198a7119ba40",
+      "content_revision_sha256": "ab2d58d5e8c64b8f666a7b9ed0605bbf9cfe7ff88ab81a5c83d118b621ed7596",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1216,7 +1216,7 @@
     },
     {
       "content_id": "content.dog-bite-and-animal-keeper-liability",
-      "content_revision_sha256": "23362c33059d7248bc4a41d993d02c0f53f46afdf52a0242a0f0f8a5d856f20c",
+      "content_revision_sha256": "3d0b65fb582db3766003afaf6df6052ab7309cc07fd3114e253cfb19d94684be",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1230,7 +1230,7 @@
     },
     {
       "content_id": "content.domestic-violence-stalking-domestic-emergency",
-      "content_revision_sha256": "f05d3be63ac6e6d763d25734f3be10cb5560aadacecea4472765b674e653b05b",
+      "content_revision_sha256": "98792a4cefd4fe806783d321d1781ae0c6ac865d5f80aa3c4edadf4ee4eb6343",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1244,7 +1244,7 @@
     },
     {
       "content_id": "content.domestic-violence-stalking-domestic-emergency-temporary",
-      "content_revision_sha256": "25d0ddabdf1506d4a5938771a2a7258c60aabf95e2b87bad45229f439d43e862",
+      "content_revision_sha256": "89c2254f4300208afad9e7fc1d72a825797dfb14a46c3ba0e6b61f4a05b90c99",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1258,7 +1258,7 @@
     },
     {
       "content_id": "content.domestic-violence-stalking-domestic-protection-order",
-      "content_revision_sha256": "99055a0c9db9f241ba84b8399e8938fcd014cb785b53bd563f99c67221c9e380",
+      "content_revision_sha256": "e481c82b02720f0fb6e1f51b513d192e6f509d98b795df5451e0520368e00382",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1272,7 +1272,7 @@
     },
     {
       "content_id": "content.domestic-violence-stalking-domestic-scope",
-      "content_revision_sha256": "955d32ae319067520c92fb89d81a70403d731c885c737364506cf51759fe670d",
+      "content_revision_sha256": "9246d6026c9b680fbddc9f757d9b6925618a90672b043baa458a52615d9f6689",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1286,7 +1286,7 @@
     },
     {
       "content_id": "content.domestic-violence-stalking-domestic-support",
-      "content_revision_sha256": "58256b92087b8338068d09dd4a51a23a3e141b6c279d6bc3670bc718850e46e7",
+      "content_revision_sha256": "2b0bf905ca44f35b3e093521b090f13818630ec4b9f220f74135734ecd8a2673",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1300,7 +1300,7 @@
     },
     {
       "content_id": "content.domestic-violence-stalking-stalking-emergency",
-      "content_revision_sha256": "18fe50b353fc800d3fe66250b9915ffcfc20d3b7ccb40148584c1c94c6482250",
+      "content_revision_sha256": "3cf36665c71d94d84ca661688089e72c8ec066a21cd5b59d4eed0df3d1febea5",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1314,7 +1314,7 @@
     },
     {
       "content_id": "content.domestic-violence-stalking-stalking-provisional",
-      "content_revision_sha256": "432e53dfb2c8623532482b5dc99c476eb39dc7ec551a852ef13c6bf133a02172",
+      "content_revision_sha256": "c3f7a1e071de8e3f81756514c6849075fbb2169ea72750b9a282dfa31af586b7",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1328,7 +1328,7 @@
     },
     {
       "content_id": "content.domestic-violence-stalking-stalking-scope",
-      "content_revision_sha256": "7fc82c52a7e770fbaa60476f9fcfb08556787a6ba1f2bd33b309a847e4c216fc",
+      "content_revision_sha256": "df95c194f3a0136f9870d7e291ab4a217e310c0c3b34002bcb04e529b6510cbf",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1342,7 +1342,7 @@
     },
     {
       "content_id": "content.domestic-violence-stalking-stalking-support",
-      "content_revision_sha256": "326c8b8e51f51efc1333b88e0f2791f0d1d5a53ac9b0ad19215ca65a329065ef",
+      "content_revision_sha256": "afef53d090aa3c3c0780b8ea3d23ce0472c6166d7f5c449f0ae1eaeb2b4a0e85",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1356,7 +1356,7 @@
     },
     {
       "content_id": "content.domestic-violence-stalking-stalking-workplace",
-      "content_revision_sha256": "4666863e070528ebba28ae44cb48409419dd8cb402eb3a87d4e2fb99d4481af8",
+      "content_revision_sha256": "68bab2dfb92d7fba6c881f04b8693af33727875e0f5bf97013e099d5be766440",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1370,7 +1370,7 @@
     },
     {
       "content_id": "content.earnest-money-cancellation-vs-default-rescission",
-      "content_revision_sha256": "c2c5b1c2e5d5c6bc9ef37a339772365b970db3485e8d9626f1c4efc9c0413904",
+      "content_revision_sha256": "34d3ad3013ad7720820197ea5359d94790568b3090a1cb5d3bf92829ac940700",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1384,7 +1384,7 @@
     },
     {
       "content_id": "content.earnest-money-rescission-cutoff",
-      "content_revision_sha256": "55a903b643df6799e8f2ace92d09371dbfa70fe5a925b3d6665a4426163bc73c",
+      "content_revision_sha256": "540eedd75e8c9fb92ba10aa5bba84387dc58873bb45b87a65bf636e92703987a",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1398,7 +1398,7 @@
     },
     {
       "content_id": "content.emotional-distress-and-consolation-money",
-      "content_revision_sha256": "6ce79d0d2eea37038f5e5502261d6cd569c947b739962d5aee504b7e690f120a",
+      "content_revision_sha256": "5f9b0f1cfc9981ac6841fe92e578fc9fd9c71705e572260384aac534c6232e4c",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1412,7 +1412,7 @@
     },
     {
       "content_id": "content.employee-caused-accident-employer-liability",
-      "content_revision_sha256": "706fad5190317716d594d998050d12aa5908cd01d08df740d9b765b5dbf33eca",
+      "content_revision_sha256": "fbe32cdc570c7148fa7f1e642cab4327b4d76c462d07a39748fdd355f5fcfc71",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1426,7 +1426,7 @@
     },
     {
       "content_id": "content.employment-exit-managerial-dismissal",
-      "content_revision_sha256": "78259fa8ad324a0347afc7472dce3bd327d72f867d5a36fa4c3a841dfb19a97e",
+      "content_revision_sha256": "93f51da83663e47a8c9f6d579173b584b04a04c31f37aea64e8ebb0267e03d02",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1440,7 +1440,7 @@
     },
     {
       "content_id": "content.employment-exit-managerial-reemployment",
-      "content_revision_sha256": "9e327110d2898a5efce838a2575dd6beabce44ceb86d58b68d0589f79b8efc82",
+      "content_revision_sha256": "5ba8a2989bf2b2733cc76433a2b24a5ebeda987d0ec5134f6f66a6f7694436b3",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1454,7 +1454,7 @@
     },
     {
       "content_id": "content.employment-exit-monetary-remedy",
-      "content_revision_sha256": "45bec039e58940d5c506ad800c9a5b8f779744b89f9f385595d77ab2df9dfd98",
+      "content_revision_sha256": "8144ffa58bdedffe163a570b7d0d514866c79bc0d1e2bc0784596626895f63d3",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1468,7 +1468,7 @@
     },
     {
       "content_id": "content.employment-exit-notice-pay-not-validity",
-      "content_revision_sha256": "411a55b7c28c7baa041c7b4d8a61a65f2f8caf27f772308d62d484abbbbce22b",
+      "content_revision_sha256": "38662bdcc53168ec472a9eebb65b64133e304fd42a8ed8233675fff10c23d58f",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1482,7 +1482,7 @@
     },
     {
       "content_id": "content.employment-exit-protected-period-dismissal",
-      "content_revision_sha256": "e645156214b37865fcbbdeb33253b3ce44df16b10da01ec043a52eff0216e2c7",
+      "content_revision_sha256": "e70e51233a50e123d407a524e56b0a426ac91b869ebb7fec14960cf0558f6db1",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1496,7 +1496,7 @@
     },
     {
       "content_id": "content.employment-exit-retirement-benefit-eligibility",
-      "content_revision_sha256": "6e13168b95a1ba40cdc0264eb992ea52a0a66488438715cbc5829b025416f5be",
+      "content_revision_sha256": "7c88b1673f864b4535d10ccb4d9dacc87dd5dd0e2939bfc83079ececce215f69",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1510,7 +1510,7 @@
     },
     {
       "content_id": "content.employment-exit-retirement-irp-transfer",
-      "content_revision_sha256": "828d3eebddb8c1abe2243500b3920cb0ef129f5e0ad1335a4cb0c9399f226510",
+      "content_revision_sha256": "d2162d864a2db5ce2ab03f6791f4cbf3dbb3d4a1c45afec9fd2a1967b9a8ea3a",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1524,7 +1524,7 @@
     },
     {
       "content_id": "content.employment-exit-under-five-workplace",
-      "content_revision_sha256": "ec0c994c0b201be0772e5633886de5a3538bb252c980376322e2d2144b017703",
+      "content_revision_sha256": "b3253246b2ee574699d73b68eecbe3f4b5d64fec8492e4385fca69f8f036833c",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1538,7 +1538,7 @@
     },
     {
       "content_id": "content.employment-exit-unemployment-benefit-eligibility",
-      "content_revision_sha256": "3cd9d14ffe5f818fa21cdae7b15dd8cf49a17ccb4d7c938d2b4573c41df45e3b",
+      "content_revision_sha256": "808e741987968624b3200bc4ca5c89a4eeb11644a7fadbe922751634ffd5e147",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1552,7 +1552,7 @@
     },
     {
       "content_id": "content.employment-exit-unemployment-report-period",
-      "content_revision_sha256": "dbcc3478baeb33eaaadf59cdc6b70f4c0431324b00f9993df4ccc5cf06724edd",
+      "content_revision_sha256": "9aeb75aa88f31589c20d04bc19803f32809a9c131ad083dd7cee839682fee453",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1566,7 +1566,7 @@
     },
     {
       "content_id": "content.estate-disposal-before-renunciation",
-      "content_revision_sha256": "ccdfbac0232f988ea532c8ea56b9349294ed57733044e0f688ebb27a776ff088",
+      "content_revision_sha256": "99c0de125e3efc3b3f939d5d1877104430f06c291b7d26a646084081a86cda9a",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1580,7 +1580,7 @@
     },
     {
       "content_id": "content.final-wages-after-retirement-14-days",
-      "content_revision_sha256": "7120062e1de06c9f1859d23e43b8cbe327454a16b41dc4dc07355b3619ccf715",
+      "content_revision_sha256": "7ce473b1f35c14e8e6287f3dd0cf949a59483f12fc4f0f6364ec6ab13f08d503",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1594,7 +1594,7 @@
     },
     {
       "content_id": "content.fraudulent-transfer-before-enforcement",
-      "content_revision_sha256": "35cd4cae3491a6937c0af6a29b649395c6952e904af603e10f1a5ade531e332c",
+      "content_revision_sha256": "d5afad154d23ed1c1e28b9bd492a444a605b662628f45523d443417a035240ac",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1609,7 +1609,7 @@
     },
     {
       "content_id": "content.free-service-and-ad-revenue",
-      "content_revision_sha256": "feac23b9e72d5e291331f0bba854cb8c979442d318f3ff583e369ee2b98b437a",
+      "content_revision_sha256": "1f5c08dc1792b260e2d22b7d5c628f6d6c9611b35097747c4704a222a7a75a86",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1623,7 +1623,7 @@
     },
     {
       "content_id": "content.free-trial-to-paid-subscription",
-      "content_revision_sha256": "1b4ecfc8d3ecc3e5bfa1b5cde67936ccfa7c7cc411820213c3e3a4c6fafa682d",
+      "content_revision_sha256": "56a4489104be441e21ef20aa6dfa385f41e8b1a064447766b5e0d09f56682a0b",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1637,7 +1637,7 @@
     },
     {
       "content_id": "content.freelancer-contract-worker-status",
-      "content_revision_sha256": "8da60edaa8602f9fbdb1c95e0e6b65e4ea6bd890597c68bf0d975ebc79148259",
+      "content_revision_sha256": "86f58fdbd30d8ba201a609ae4604c07929f1443bd0f758b7a1194321f68ee978",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1651,7 +1651,7 @@
     },
     {
       "content_id": "content.goods-different-from-advertisement-deadline",
-      "content_revision_sha256": "df4e8f4f2593f858b64e0baf5825aaf994724a0e339bc405518fd0f606f40f36",
+      "content_revision_sha256": "3bc46386cdedd409ed1ecf53b9e0df5a86063f031943749b5d95c305aca8d55e",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1665,7 +1665,7 @@
     },
     {
       "content_id": "content.guarantee-by-message-validity",
-      "content_revision_sha256": "ec73f335a5b233a351b538198f3e7c2df574eac626a053ccd74b3903c6cfe2bd",
+      "content_revision_sha256": "d5286a5dc0da93f913ce0590c9400d25dfd3794a21294e5ee388bfcff025d56b",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1679,7 +1679,7 @@
     },
     {
       "content_id": "content.harassment-mental-illness-industrial-accident",
-      "content_revision_sha256": "e082004d4bddb1d5c1e60174a980f8da155f16d19c2fc4cc2e89c093f9236d6b",
+      "content_revision_sha256": "f58a2747d4f82219d2508bbf6c397548569ea30e1539914ab8fb436576ac85f8",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1693,7 +1693,7 @@
     },
     {
       "content_id": "content.hidden-defect-after-purchase",
-      "content_revision_sha256": "1b1b46db6cbe5935a2f4b4c961d02dd92cb918df6e3f10fee6a1b366267e9037",
+      "content_revision_sha256": "e6429517a8dee7f107f34bca5491d9667c1dc82e83b0a210de2185bc0e0f9cde",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1707,7 +1707,7 @@
     },
     {
       "content_id": "content.housing-lease-living-actual-residence",
-      "content_revision_sha256": "f8d4bd325b125546a4d2204e17123ff74e8f00a489f9ea94c996c294c9ae14e5",
+      "content_revision_sha256": "c0ea58d018e98d03e3187164d8f4058023833856a22a59c7562bbfdc4ae60de7",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1721,7 +1721,7 @@
     },
     {
       "content_id": "content.housing-lease-living-increase-limit",
-      "content_revision_sha256": "b0dca1fb48ceb42096b12cbbe958987b89e3dadf58cb0dc12b8e047b56886e5f",
+      "content_revision_sha256": "3eb0f2057e4708382098f652eb41b388a1f80195200eaf3af86c939fb699a44e",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1735,7 +1735,7 @@
     },
     {
       "content_id": "content.housing-lease-living-lease-report",
-      "content_revision_sha256": "8b91e0fe9446b0a0bc1ffc29a693d3892b3125fc13f62ae838abace389531fb1",
+      "content_revision_sha256": "be9d4df5752f6fc1666bc6239a6c369fa5adb1c35a629129c5c233b4110408ac",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1749,7 +1749,7 @@
     },
     {
       "content_id": "content.housing-lease-living-minimum-term",
-      "content_revision_sha256": "d4f4aa3f97f61334de150f5832a0488e9b12d4d102b67023e7c8ae20ebdcc61b",
+      "content_revision_sha256": "5a8bfb57fe8482890bbd67158cca808e1d0cdcd9f37987a41d5b5ae445666938",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1763,7 +1763,7 @@
     },
     {
       "content_id": "content.housing-lease-living-renewal-request",
-      "content_revision_sha256": "6a227d7f8edf0482e70619431b5b4333ddb8cfe6d9c0788aa16163e35e266367",
+      "content_revision_sha256": "c62a91ecaed3c7f6b6c48aa010eb9ad6073f4c3e85b0cbf41999f4edf99d9ec5",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1777,7 +1777,7 @@
     },
     {
       "content_id": "content.housing-lease-living-rent-arrears",
-      "content_revision_sha256": "933cf271de0eadd633659f40e34bfebad164f1c02fac5ff1e7d0b1ec2e7c5003",
+      "content_revision_sha256": "bda79a1182ffa8ed9bb4f92a4cdf2238284569383a68d0cf2dcb7d4c37675802",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1791,7 +1791,7 @@
     },
     {
       "content_id": "content.housing-lease-living-repair-duty",
-      "content_revision_sha256": "33a094ec095aa7ea86d892a357dab714eb10b9bf37bc6d44ee74e0fc6e368dd6",
+      "content_revision_sha256": "5ce17d6ac592d656310c8302ed6069a0f9dce7dda134bc2b6ef6447e9c909fe4",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1805,7 +1805,7 @@
     },
     {
       "content_id": "content.housing-lease-living-repair-reimbursement",
-      "content_revision_sha256": "98ce33484f6d4670a418a6288d4c2747e94f6e8ad8320b737f73468e0cdd62f5",
+      "content_revision_sha256": "c168c59f902bb1119df0ce2f0bb352424d4e59607c1bcedcb5018b825b97c766",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1819,7 +1819,7 @@
     },
     {
       "content_id": "content.housing-lease-living-sublease",
-      "content_revision_sha256": "127b9323388748f3c1f710fe7b1c4c0d67798f2d469a7d3380ead8d2c336a9c3",
+      "content_revision_sha256": "5de0200c9503f5c097694db5aedc61a625f6d8cc680b287baab0774ee242c005",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1833,7 +1833,7 @@
     },
     {
       "content_id": "content.housing-lease-living-tacit-renewal",
-      "content_revision_sha256": "c46e92e5f2e769bc18cf2c306332774acba1d2d2891cb81d52c0f9ff07d6b6de",
+      "content_revision_sha256": "3b8f41ca1caf4f9cde5bd2c28bf0590f745d84d89e6568196c3ec812ea9b6aec",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1847,7 +1847,7 @@
     },
     {
       "content_id": "content.housing-lease-opposability-basics",
-      "content_revision_sha256": "a66929869b958846d8c0ccf88c6d3556e1d80c53c2138a9a20be2f2091fa4e22",
+      "content_revision_sha256": "0491f850a98e15bd98d5f71af76ac1e47d802ca97f73e2934ea6b973a2b8dcda",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1861,7 +1861,7 @@
     },
     {
       "content_id": "content.housing-lease-priority-repayment-basics",
-      "content_revision_sha256": "b90c5ebf80f2ab48449d20a486b9e3d8df4c35ce482d49241331d9dbce4a58ed",
+      "content_revision_sha256": "7dbeb6f1e7c9d1b1392349030f91d9ebd05f8cfa02d9f7b68b59f5f3e8dfebe8",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1875,7 +1875,7 @@
     },
     {
       "content_id": "content.how-to-file-criminal-complaint",
-      "content_revision_sha256": "8ae33fcc4ca34e292c64d3bb76e926e2e55d3ff22b36e60db500a73eb14fb4c1",
+      "content_revision_sha256": "b29dfc9d10db0214f9cc887e58e479288f16a60347c70374b0a551f0d68242c5",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1890,7 +1890,7 @@
     },
     {
       "content_id": "content.industrial-accident-benefit-map",
-      "content_revision_sha256": "b84063b87a1a7df0567b43ae579a750a2161781c52b7b455eee598394a7c10de",
+      "content_revision_sha256": "e885244d81e3f08a02b7af396d0c389ea8b2b4d4492444cb3b5818836d5c8db2",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1904,7 +1904,7 @@
     },
     {
       "content_id": "content.industrial-accident-benefits-vs-civil-damages",
-      "content_revision_sha256": "71b80dfc7c83718cdfff1ffb0977aa61549a6daeafadf53a8fe6abb059c50feb",
+      "content_revision_sha256": "6af76ca861635e8b106017758de867e93fea88cdc83d4da8c031a5eb39f6df6d",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1918,7 +1918,7 @@
     },
     {
       "content_id": "content.industrial-accident-commute-detour",
-      "content_revision_sha256": "73fe33cfe2c2327c13af554232e4b4957ac100b97802df487f62421546138106",
+      "content_revision_sha256": "d6aa9131ce124ef89f6cd731aeca4ed3be361aa4bff84c3d5a7fb8ee84f581ef",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1932,7 +1932,7 @@
     },
     {
       "content_id": "content.industrial-accident-disability-benefit",
-      "content_revision_sha256": "19a66461317c88d7bdbf858b6313c19f1b3302efa179d2de697ffdeaca032b79",
+      "content_revision_sha256": "46944cd4308807bddf9e8dbc43069c76d00db4c85def4288097b7b253186165c",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1946,7 +1946,7 @@
     },
     {
       "content_id": "content.industrial-accident-employer-refusal",
-      "content_revision_sha256": "2e9a1cf286213f3a83fb04f445d812de69182abfdc4b82ec6793e4ee4687924d",
+      "content_revision_sha256": "13cd08c23a3b877453cce693157fcfdb87a16985d644c53455f3f6c96ad86dfa",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1960,7 +1960,7 @@
     },
     {
       "content_id": "content.industrial-accident-limitation-period",
-      "content_revision_sha256": "6930109184c2e4a19f9a2a1596bfd0737d672d4365683e8f43224846c8d41846",
+      "content_revision_sha256": "caeca2667d63ed917004dceef23b22677a9eda77445235e88f3fdf668d5dd9b3",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1974,7 +1974,7 @@
     },
     {
       "content_id": "content.industrial-accident-medical-benefit",
-      "content_revision_sha256": "dc4c003d7013e34809ab29174a27e6ce96ef46e9de158aaa0542745f432a6a98",
+      "content_revision_sha256": "a6ea72e942d66d3c5c03c33fc4286f41113df9190173fe64cac3d88c6951d93e",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -1988,7 +1988,7 @@
     },
     {
       "content_id": "content.industrial-accident-recognition",
-      "content_revision_sha256": "d4ea68cdb18bea97bab1477cb6ba84b558d1e66233e648dc82d739a6061bd3a1",
+      "content_revision_sha256": "f5a1e9b1df012f68aff291b23dc7bd0f0a2c4d0c0b75917f765d9a582c4e576b",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2002,7 +2002,7 @@
     },
     {
       "content_id": "content.industrial-accident-review-vs-rereview-deadline",
-      "content_revision_sha256": "e7abed375239f9c957f06742af9d2c5c65dd912a82e15a0c2c104bafc33ff1c5",
+      "content_revision_sha256": "8035aadc1220999c3a2b14678b2c0b299159e30825a2b65827b6329b28c34022",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2016,7 +2016,7 @@
     },
     {
       "content_id": "content.industrial-accident-special-coverage",
-      "content_revision_sha256": "dbba14f27b1957d40bd111b90a4783ad8be28fb2cd25d0ba3dddde3bd0629037",
+      "content_revision_sha256": "1c2c99ece21bd645e66f508e0df8c91dfc2e97854ce6d519748d58e29370802b",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2030,7 +2030,7 @@
     },
     {
       "content_id": "content.industrial-accident-survivor-funeral",
-      "content_revision_sha256": "79d255ca4fd1ba08e637a2a48208e6a4983a558f4ab5937099bbf218875144c7",
+      "content_revision_sha256": "fa151dbaf7fec2842504d61045298fc0185b2e2963c7396ccb0f4d4e872fbfcd",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2044,7 +2044,7 @@
     },
     {
       "content_id": "content.industrial-accident-temporary-disability",
-      "content_revision_sha256": "535a553281710d2986e2ed5adfe491edcbd0be3f94ab261270d8bf344d43795a",
+      "content_revision_sha256": "90675769de317df90665447928a2e47d9d50ceda9572d5a232c7f2fa5eea0281",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2058,7 +2058,7 @@
     },
     {
       "content_id": "content.inheritance-assets-and-debts-checklist",
-      "content_revision_sha256": "20ab4d2a6cf9381273c1b32114e9ebab10e94718164e2b2ac74ef60cd9fadea7",
+      "content_revision_sha256": "f8f10e96af45caf75079413ea2fb664075897998b22c5906f71e805ad56455a6",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2072,7 +2072,7 @@
     },
     {
       "content_id": "content.inheritance-choice-vs-recovery-claim-deadline",
-      "content_revision_sha256": "3f1ef4ec50906eb539558acc1f0eacdb256276b6736b8f5e51444dea710c66ba",
+      "content_revision_sha256": "63b78f1ef231c4caaf61710f5754fe1a191b126ac59d6e82477bdd9ff71f745b",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2086,7 +2086,7 @@
     },
     {
       "content_id": "content.inheritance-renunciation-procedure",
-      "content_revision_sha256": "61e536fce368f3235f011fb2168dde6c64300bc62661ddb60029d3039924d80e",
+      "content_revision_sha256": "529b34524d7afea1d6c672b3a8f37470782b764d4fc6cdbd1f9a9b682c1ec9aa",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2100,7 +2100,7 @@
     },
     {
       "content_id": "content.inheritance-renunciation-vs-limited-acceptance",
-      "content_revision_sha256": "a1d18c32d3e245f807b25fccb790bc694711c8ef1e9463aad92ab27ec6f0f981",
+      "content_revision_sha256": "154204160bb0393519bfc04ee04dec9fe3acb779b8ecb9ae9a2f98f5fce0ec00",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2114,7 +2114,7 @@
     },
     {
       "content_id": "content.interim-payment-and-concurrent-closing",
-      "content_revision_sha256": "0cfd1d20c0f562936cd62c9ab3b5bda920ecc27e5f50a56741af011bf93d43f3",
+      "content_revision_sha256": "f68379f6824df8b6a1a3f2d2cecf72f6bea060b19ace6c46bf4aaaceed7ee60d",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2128,7 +2128,7 @@
     },
     {
       "content_id": "content.judgment-debt-limitation-ten-years",
-      "content_revision_sha256": "4768487161d7b61cad5db00c5bb3b6683b62ec7e4484ae13c8a9fa0661fa3235",
+      "content_revision_sha256": "0a56039077744f6049303530b58ee5e5efd8fad451449b7b8adef699828d1069",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2143,7 +2143,7 @@
     },
     {
       "content_id": "content.labor-commission-rereview-vs-lawsuit-deadline",
-      "content_revision_sha256": "a82bbf5e7ff48e464868dddba9650c35f973db6d33f9899acae1eccb7940014f",
+      "content_revision_sha256": "f9939682acbb90562f8212c61065ee7ebac3bf51000a071fd1ba583393401fb4",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2157,7 +2157,7 @@
     },
     {
       "content_id": "content.lease-registration-and-distribution-demand",
-      "content_revision_sha256": "6ae545c1d43890353b3254e0f2b6f6405ccd69822ab8091f5acad4c2fbb49337",
+      "content_revision_sha256": "d78eba29589128f2d9a9d19982df964be79b70d3bc643a324d6ba86aec59e606",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2171,7 +2171,7 @@
     },
     {
       "content_id": "content.lease-registration-application-is-not-completion",
-      "content_revision_sha256": "d696da9711d26f506536285ea7a8de193edff27f5f2d03e2e6c47aaff4e8dbf0",
+      "content_revision_sha256": "f7cedc20410a87df28aceba606768f7062c48081291599f4988fc201e46c25f3",
       "coverage_state": "coverage_declared",
       "coverage_unit_ids": [
         "coverage.kr.housing-lease.deposit-return-before-move.v1"
@@ -2190,7 +2190,7 @@
     },
     {
       "content_id": "content.lease-registration-application-vs-completion",
-      "content_revision_sha256": "a56c3baf9c9abacb42c8eb16cc77e57aff727dbd825de0de5e0d3ec9d35e758a",
+      "content_revision_sha256": "72d6d61683050bc5b7692025a5d9382f12c0ed0009f871076d1057604bb3d48c",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2204,7 +2204,7 @@
     },
     {
       "content_id": "content.lease-registration-order-requirements",
-      "content_revision_sha256": "7fa52eb0f8abf2eb185c2a535f362bf34be76d9820aa94fc2fa69729d1abf2ac",
+      "content_revision_sha256": "0d2a5d7ae2c3f0a14c91551343ea6ea85e107e3db658fed21a70e0ab2e7bf6c1",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2218,7 +2218,7 @@
     },
     {
       "content_id": "content.lease-registration-vs-opposability-priority",
-      "content_revision_sha256": "aa448720a0d2e3682944cb8c9e4d03bd45ba1a3c2f01b57dcd4aaece082e4fe4",
+      "content_revision_sha256": "0f85db1d89379c0cac1b3fcc8e376c1432119e1f9d781aa51757749c7bcccf69",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2232,7 +2232,7 @@
     },
     {
       "content_id": "content.legal-heir-order-and-spouse",
-      "content_revision_sha256": "0dd9823e41eccbce94f17754562748a39bb2b76ba3cf080be31e14daa620f37c",
+      "content_revision_sha256": "6250fe99bd048c5e115760ee018a27e5ee039d742f0afbc42ff8da9c6fce4c57",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2246,7 +2246,7 @@
     },
     {
       "content_id": "content.legal-information-vs-individual-advice",
-      "content_revision_sha256": "ea43421d5d4f3f0de7667c28b92df1c5b09c5c2f094e6f42afce44fe2f19af5e",
+      "content_revision_sha256": "82b6de7f5a834eea7f8e6e3d6b0b439d24de871ce2b110fa31a7e2482e029e55",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2260,7 +2260,7 @@
     },
     {
       "content_id": "content.limited-acceptance-creditor-notice",
-      "content_revision_sha256": "91a7ddcce9736427d0520c5c64a798e1a7d85bdeab31b5793246d7c64e1c35a5",
+      "content_revision_sha256": "c0da663dc880a1f2d96113e7287798ffd5a35bd7b0ad551e56c80e8685b7167e",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2274,7 +2274,7 @@
     },
     {
       "content_id": "content.limited-acceptance-effect",
-      "content_revision_sha256": "7e741d5c77fd35d1905aea126bdf5f02c46ad2c49495bab3204e06d6e982636a",
+      "content_revision_sha256": "232eb74afdaecb356c97e55bd1fb34d939a28b8019f9364c8c1b31b32663492c",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2288,7 +2288,7 @@
     },
     {
       "content_id": "content.loan-and-guarantee-evidence-checklist",
-      "content_revision_sha256": "c8840dab655a5d6b1eac2fbe7018bfe4363462954c4d2699c0e76260a4c7478c",
+      "content_revision_sha256": "f1045db0e10e2235632ac9ce997ba3254d9301d7a842d1ae0a7554bf2189e650",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2302,7 +2302,7 @@
     },
     {
       "content_id": "content.loan-obligation-vs-guarantee-obligation",
-      "content_revision_sha256": "5a3e291efb1584d2473bd2ecbb9902aa52f7875c9fc080673ea869f60c8a9022",
+      "content_revision_sha256": "912b8725dd893b33498b64f6c269a6be9d2bff32522f0dbe7fc6ea21d8072b12",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2316,7 +2316,7 @@
     },
     {
       "content_id": "content.loan-proof-vs-enforceable-title",
-      "content_revision_sha256": "4975175c6d75a8d24437150b51296a9b1565f8b984a16489a7f75f142a1f7c9e",
+      "content_revision_sha256": "f766e12c43056fc2c50640d27dd830925c9b6cf9732bc9fca27d0d39333dc929",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2330,7 +2330,7 @@
     },
     {
       "content_id": "content.loan-without-repayment-date",
-      "content_revision_sha256": "d83b9672e837027c6895cb0db3f2df43991c4a84af65b56bc52fff70f5554fcb",
+      "content_revision_sha256": "2f1ae7bca17690ffc1f8ce43918cb570e8a11fa204c8dc1943e52fa27739c16c",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2344,7 +2344,7 @@
     },
     {
       "content_id": "content.loan-without-written-note",
-      "content_revision_sha256": "5332ba50e2bbe82dc6764e238433a38f4e4a538f26a9159c08b74e467a4882d9",
+      "content_revision_sha256": "2506c74b113ec899dac084c8fd5672372b0c4db33194848ad1c71096c052df1a",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2358,7 +2358,7 @@
     },
     {
       "content_id": "content.mistake-fraud-in-real-estate-contract",
-      "content_revision_sha256": "faf625422f7a0ae65c32587405d1991c3d2439cfaa4af743547b0ea64af1e79a",
+      "content_revision_sha256": "d58557d396216a59b7382711478cfcdb21dd843e007594e8dd5bda0e95b6d5e3",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2372,7 +2372,7 @@
     },
     {
       "content_id": "content.move-before-deposit-refund",
-      "content_revision_sha256": "0675bbb169adfb51fbb07eeb56bd82f74b5d40918d22a7e752a6d120ff07147b",
+      "content_revision_sha256": "f875eb3f663a9cd60fb7a2330ae9c0ecba12d2d1635756bee808cdaf41daac13",
       "coverage_state": "coverage_declared",
       "coverage_unit_ids": [
         "coverage.kr.housing-lease.deposit-return-before-move.v1"
@@ -2391,7 +2391,7 @@
     },
     {
       "content_id": "content.multiple-people-caused-one-damage",
-      "content_revision_sha256": "04728ccb54101ea2cf6cbc9624d90c26f281c883aac87839617e3cd1ebb1b43b",
+      "content_revision_sha256": "d14dc930cc4fa27a2fd2ea275d219e58c3348525df1a567dc4c86d028d912675",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2405,7 +2405,7 @@
     },
     {
       "content_id": "content.negligence-and-causation-in-accidents",
-      "content_revision_sha256": "665bd585a789361aef67ad3c35c6a87f96feea94fb7c8790457972ecbd23d6b8",
+      "content_revision_sha256": "cf16f79137b2228505e8870e3c351f3dad3cdfe8f233a027378d4a46bd96aa06",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2419,7 +2419,7 @@
     },
     {
       "content_id": "content.neighbor-leak-noise-cause-location-liability",
-      "content_revision_sha256": "4148d9c3035a807ef5aca6835525df5540cdf11e204407b42325fdb4f70a3600",
+      "content_revision_sha256": "df7f034767d1532982c1af8f66000588863ae42c0e896272ea985add67525d8b",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2433,7 +2433,7 @@
     },
     {
       "content_id": "content.neighbor-leak-noise-exclusive-common-area",
-      "content_revision_sha256": "c29f30e06724ca39cb2975deb40db8b03b2b6ffa9435a14d3f65eec780294ffe",
+      "content_revision_sha256": "a411501c18a0eceec57a04795f488986341229a7aa25597abfa9e9e7c35d7839",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2447,7 +2447,7 @@
     },
     {
       "content_id": "content.neighbor-leak-noise-floor-noise-management-route",
-      "content_revision_sha256": "1cdd1eefa4f1a23d6afec6cef8085074d4d93db94b1acbfaf63a6df142c988fc",
+      "content_revision_sha256": "7cb102ea41ce6e812bfc4897fb3078a6df78b17de0ec9c2e64f42c03fd6b3aad",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2461,7 +2461,7 @@
     },
     {
       "content_id": "content.neighbor-leak-noise-floor-noise-mediation",
-      "content_revision_sha256": "6dfd0dbb6f5146b5243a54873882411a35b90ec5157846116ef043b1a57fd6cd",
+      "content_revision_sha256": "92b4014c2f2db616497a8cbfa55a3c6748be38877c5736c5afef786a7899d828",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2475,7 +2475,7 @@
     },
     {
       "content_id": "content.neighbor-leak-noise-injunction-vs-damages",
-      "content_revision_sha256": "bd9c2d939875441c3fc92f60b1567422affe3dcfef10e1c5195077502d28a2f3",
+      "content_revision_sha256": "b6783748aedfd6f5b4da40a57d08a25eddedf6f6ce53e9ee7da2b343399af6e5",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2489,7 +2489,7 @@
     },
     {
       "content_id": "content.neighbor-leak-noise-inspection-access",
-      "content_revision_sha256": "7348c935f960a0d4782ff73e04c1adc4d5b07ec8a627c15956e2abcb68445ac7",
+      "content_revision_sha256": "c248060c9d74599ff3a25e2d8a472b5df22743638f8bc7b78413db7f693aa886",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2503,7 +2503,7 @@
     },
     {
       "content_id": "content.neighbor-leak-noise-inspection-refusal-evidence-preservation",
-      "content_revision_sha256": "ecde7a04ceaabe025e29901810b62cd29c84e52e69779db70673294b726b9111",
+      "content_revision_sha256": "90c99e90ba897d656088b53597d5b25368313456e0371620f86700689cde27f6",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2517,7 +2517,7 @@
     },
     {
       "content_id": "content.neighbor-leak-noise-leak-origin-evidence",
-      "content_revision_sha256": "2d5d4debb3bf999ffdee65077d085ed2afa5fe39d89b0aeba6d1983d4c272a03",
+      "content_revision_sha256": "2fbfb700102b80dc3997e8b6dfe74d45ea253b3188ebf29ede27a67f57f52d7e",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2531,7 +2531,7 @@
     },
     {
       "content_id": "content.neighbor-leak-noise-neighbor-interference-limit",
-      "content_revision_sha256": "3cf8465d79c1fc0b068d785844707ab7c294abf02f5b7818c1432aafc251e616",
+      "content_revision_sha256": "7fdee7a9c0d8ed45b04acab31fe0f2881713f947833a239b7e72a83276705574",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2545,7 +2545,7 @@
     },
     {
       "content_id": "content.neighbor-leak-noise-occupant-owner-liability",
-      "content_revision_sha256": "ebf660efbe3691bc841bae3c3158416a6c468f2c7c1e5dff3b0900741d5e7b13",
+      "content_revision_sha256": "fa90519f208ca4f321743cccf4024bf360027f89ecf3349834add42221615fff",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2559,7 +2559,7 @@
     },
     {
       "content_id": "content.noncustodial-parent-child-visitation",
-      "content_revision_sha256": "0c7caaff77c4d54fe89b0ba0ecf5d960faae967f0715e0600169816e6523e33d",
+      "content_revision_sha256": "43e64e6a94d9fb3f455fed453630754038bfd8c7cbdde847288c258b56fe955e",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2573,7 +2573,7 @@
     },
     {
       "content_id": "content.notice-of-prosecution-or-nonprosecution",
-      "content_revision_sha256": "2d0478f5c1a7942dab6c51a6444f0f383e0506ecc73661766ecd02c25b204690",
+      "content_revision_sha256": "085ae0adba6dd932a40a20b995b1ce8ba1d2e9d4d8d1ab755b5cb880f5efe6c1",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2588,7 +2588,7 @@
     },
     {
       "content_id": "content.online-contract-evidence-checklist",
-      "content_revision_sha256": "2fd2e534091206266b58e4bd9490a2dbe58fb7259bc7ecec0123c691c06400d4",
+      "content_revision_sha256": "bb778550cc6459e50fd238c865dd5eb72180e8e2a7329c5af69871b39f9a076d",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2602,7 +2602,7 @@
     },
     {
       "content_id": "content.online-purchase-cancellation-seven-days",
-      "content_revision_sha256": "d3c1f1b0ba2d43618afb75eb5ced4bd591c43722a98e3f6657f0cf759c0b8847",
+      "content_revision_sha256": "2b44a12ae30221d00bd665339c3e81a80925ffb3edbe72316dcae1c22f0a44c1",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2616,7 +2616,7 @@
     },
     {
       "content_id": "content.online-withdrawal-seven-days-vs-defect-deadline",
-      "content_revision_sha256": "2629e2c5496aed1fead429150e953ded09840ee6cd33d5364884367a010a2a4c",
+      "content_revision_sha256": "0007352c83cf67cfec27b7734b8fe8c89abaab4aaaa043841c8d06ff365f82bc",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2630,7 +2630,7 @@
     },
     {
       "content_id": "content.online-withdrawal-vs-contract-rescission",
-      "content_revision_sha256": "d400d67c7bf220fdba7a8d6745a51b7ece4511ac65057667eccaa371264adce0",
+      "content_revision_sha256": "b3c0ea16d2acaec09116ed9344233e3df7161b0ce0dee7cba6484911f6b3aafc",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2644,7 +2644,7 @@
     },
     {
       "content_id": "content.opened-package-return-right",
-      "content_revision_sha256": "b851ed6df43f9dc3987bd7a646e858119f5af3bd1228f74dd42e5485d783fcdb",
+      "content_revision_sha256": "1ff888e8d5d6979d96ec00ef853aab6a0fd4ace9cdfa8501a1b070f3a99ea5a6",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2658,7 +2658,7 @@
     },
     {
       "content_id": "content.ownership-changes-only-after-registration",
-      "content_revision_sha256": "ac28b8323321879b7389507f07ea6a281c8429d8ef4496fd459b691afb1f3aba",
+      "content_revision_sha256": "1a747029c24e46307421bfa4707a2f8147c8662fa8a924dc3f1720686fea4562",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2672,7 +2672,7 @@
     },
     {
       "content_id": "content.paid-but-goods-not-supplied",
-      "content_revision_sha256": "251299e39bb93bd11e602c60184b445093a5112a2a58e1856ba887c63ddc784c",
+      "content_revision_sha256": "6a5324ef58525f0ddbd1de7b80903d60705366de1540ff02f4eeacd7eaf0defa",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2686,7 +2686,7 @@
     },
     {
       "content_id": "content.parental-authority-vs-custody",
-      "content_revision_sha256": "dba1afc89c43ec3731bc477b452b9769386e29787844944603c2f12168f91fdb",
+      "content_revision_sha256": "954c4cbc09964520c733fd395758bd48b1ca0303726461efebd76822f056bb6b",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2700,7 +2700,7 @@
     },
     {
       "content_id": "content.partial-repayment-allocation",
-      "content_revision_sha256": "0a1917817c2ed90b22d84b870b2f7e9cc0740da0bf00ea6bece7419149a0207a",
+      "content_revision_sha256": "83557b7411d1d03ee8cfe19a1496a089d11856c486d268677875420d1ad2d9c3",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2714,7 +2714,7 @@
     },
     {
       "content_id": "content.payment-order-objection-two-weeks",
-      "content_revision_sha256": "324b7c0a288c4d8d27a5fe27b2aa11f1c784e6c8ce5a79d3910a43f7ddae6130",
+      "content_revision_sha256": "4f0c86cc2605fab4fdf05a7a1cae72ad19c13eb301ab4104341c91c21f05d163",
       "coverage_state": "coverage_declared",
       "coverage_unit_ids": [
         "coverage.kr.debt-enforcement.payment-order-objection.v1"
@@ -2734,7 +2734,7 @@
     },
     {
       "content_id": "content.payment-order-objection-vs-civil-appeal-deadline",
-      "content_revision_sha256": "dfc0a608d722a940940aecb8b7a3e4e9d4783edf83e5f9045459c5fe5636bd76",
+      "content_revision_sha256": "b30612786061bbad19c245ddcc10139cc5f5b69ebb3224215df419d8ebabd581",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2748,7 +2748,7 @@
     },
     {
       "content_id": "content.payment-order-vs-civil-lawsuit",
-      "content_revision_sha256": "632ecfd799fe56004b42e7dbf774e8f7e6393b22bf74f7b5f9b1bce1561f24f9",
+      "content_revision_sha256": "a02e9a76896e4c38738ee02401ab8683ac91f78a2785e042fe68021b6c03d950",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2762,7 +2762,7 @@
     },
     {
       "content_id": "content.payment-order-vs-civil-mediation",
-      "content_revision_sha256": "417a8f2c7e7bfc17b87ca14a87b0ace86d435d1178f4648fb3e606ac74bc3caf",
+      "content_revision_sha256": "8eba2d6dd515ba6d429953dbdfbfa9c060d796b98d925cf6b2eb31ea5e7bd28c",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2776,7 +2776,7 @@
     },
     {
       "content_id": "content.platform-seller-information-2026-change",
-      "content_revision_sha256": "17fd68cb9eae3f96d0417da73cef3b7bd67a9fc226d296d63b24cbed030165a8",
+      "content_revision_sha256": "c4ac785e94c023366f3874b9d49720896380a801b92a42c89ce58723e0c49f76",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2790,7 +2790,7 @@
     },
     {
       "content_id": "content.private-loan-interest-limit",
-      "content_revision_sha256": "282e837b5b1eb5e744c6074b1ade1ade350713180fd8bf3440d97a2316e96a92",
+      "content_revision_sha256": "59ca8c0fcf2af1c3daee4ec0575073709f3296a578fdf6f50e8766e4842ff45a",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2805,7 +2805,7 @@
     },
     {
       "content_id": "content.product-liability-damage-scope",
-      "content_revision_sha256": "8c290c345b7872f4b94782a13c17efb575c114c6476ff4b4152df375f4a4a642",
+      "content_revision_sha256": "8fe9a135fa6b6dfad32be72d983f511a80273ceffb5452d4e7f0ad427cdeb96e",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2819,7 +2819,7 @@
     },
     {
       "content_id": "content.property-disclosure-when-assets-unknown",
-      "content_revision_sha256": "bd894b3d32b7a046bf18f8bac20049aebb0605b4161c3ea2bbdcc1ae2df84d78",
+      "content_revision_sha256": "87e005675caa303448c57d41d7810ae7a90d39674becf282288162d3a2c404be",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2834,7 +2834,7 @@
     },
     {
       "content_id": "content.property-division-vs-consolation-deadline",
-      "content_revision_sha256": "66737434a744f51929bdbbbb956bf2a9582e1b328cf51c588c965d1ce2cc8dbc",
+      "content_revision_sha256": "5936d8a0eb902d80ff8f842bc3d7cec9f454b3b08545c6967346d1570b7bfb93",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2848,7 +2848,7 @@
     },
     {
       "content_id": "content.property-division-vs-consolation-money",
-      "content_revision_sha256": "87e70a12929439cfb455b9e4671bcc13658f8adf8536173a54b009e4af84695d",
+      "content_revision_sha256": "8df2833bd4cc1c7951c50a7209cf37b420f72ebc923069ba306bd410046021c3",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2862,7 +2862,7 @@
     },
     {
       "content_id": "content.provisional-attachment-before-judgment",
-      "content_revision_sha256": "adf84d796aa334cc59a70b82bdf2dd121a3504ed884dfb89009c948e04a1977a",
+      "content_revision_sha256": "d75721f7265511f889f74f61be97e8a54b84bf055fa4b7c2a4f32c5a674a8d00",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2877,7 +2877,7 @@
     },
     {
       "content_id": "content.provisional-attachment-vs-claim-seizure",
-      "content_revision_sha256": "2cf36771c79b7003f178ca9908bc10f8f8ce838c44782b87b5126e29a6591785",
+      "content_revision_sha256": "9815b310b91c7cd5a3b3553d16034c0fbf0e7c63a0bd85b7d2f7640bf94bf4b5",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2891,7 +2891,7 @@
     },
     {
       "content_id": "content.provisional-attachment-vs-property-disclosure",
-      "content_revision_sha256": "e7ee5c615b48b11832f49f13e8fa50674482385679d19d877ef537f76376b557",
+      "content_revision_sha256": "ea0a7a41e2768d303d64496c157c3f977255ebf2c6b4d4378ed2d679738fe23c",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2905,7 +2905,7 @@
     },
     {
       "content_id": "content.real-estate-reservation-deposit-meaning",
-      "content_revision_sha256": "2625bbfb1c75b0d8429947abee5bef0c76d59409f7480d4d5fb566eea3ac53f5",
+      "content_revision_sha256": "73156f46b382e8b40cabbf778c6cef8106aad4dd25c9d87fcc758c9ab50014fc",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2919,7 +2919,7 @@
     },
     {
       "content_id": "content.real-estate-sale-contract-before-signing",
-      "content_revision_sha256": "2a70b796e5658551acdaca3041adacfe668350f5734d36e0d93eda4e32507bfa",
+      "content_revision_sha256": "06ba3ca5331c1e0c8afa0b8c7e9db8093a343b53fb4944145f8b15f550ab8c28",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2933,7 +2933,7 @@
     },
     {
       "content_id": "content.real-estate-transaction-reporting-30-days",
-      "content_revision_sha256": "3ffea0c323576faa2bb62f4c76137437e0c7c97ed67066505c4995751dd1ad91",
+      "content_revision_sha256": "2748be527861265254ee7305f26e6e7770053275bc20ebfeff3047e900eba4ca",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2947,7 +2947,7 @@
     },
     {
       "content_id": "content.referral-fees-and-revenue-sharing",
-      "content_revision_sha256": "b80284a2ab8d661d052eef9da8f5b081e513cb53dbc201a5c21e069f06b12bba",
+      "content_revision_sha256": "9a646c919e40aed9e78d8b6eb2a86e991a50662fc45cec487fc1e19838fff75c",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2961,7 +2961,7 @@
     },
     {
       "content_id": "content.refund-within-three-business-days",
-      "content_revision_sha256": "56d8ddb97eade18b6a5c033551dd3e3d733579ee85ab4beca5495dbbab009216",
+      "content_revision_sha256": "d1d907a7415ca34cdb46e2927b44ef97d60fa30e7f29f04d638c1dfe8ed31590",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2975,7 +2975,7 @@
     },
     {
       "content_id": "content.renting-home-with-lease-registration",
-      "content_revision_sha256": "e0d5714415b04f0c2a139a3b072f39582baaf9890472b35f7e946e42fee764a1",
+      "content_revision_sha256": "2b34a9a4e566a35cd09f81e6c60ceb776e8e2ab3248eac2239c2b21f7d43498d",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -2990,7 +2990,7 @@
     },
     {
       "content_id": "content.report-complaint-accusation-difference",
-      "content_revision_sha256": "79ec92b14f06a29e666291192b36798028601704c5b33c58ada3477a021fcac3",
+      "content_revision_sha256": "cfbf84bda60d8c01a7f8c91483f6e8dee87c5733a94660d6b5228a4f84f871d3",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3005,7 +3005,7 @@
     },
     {
       "content_id": "content.report-vs-complaint-vs-accusation",
-      "content_revision_sha256": "0e339fab094454541b1ed6f747b76ad7f5d1b879a2322b9c8e953b279ebe6b8d",
+      "content_revision_sha256": "4d7c5a923990160f9eb58c68c2e36940876dacd07ae169dee6b0c203ecbc876b",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3019,7 +3019,7 @@
     },
     {
       "content_id": "content.rescission-restitution-and-damages",
-      "content_revision_sha256": "631fae47db79346f5293ae1191ff6253a0a5e3199f7121e7201f98bcdb71abb7",
+      "content_revision_sha256": "65d885ff93b80351ca1769b9f01b1f40d10b27a5255f30e302692e146fe2b506",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3033,7 +3033,7 @@
     },
     {
       "content_id": "content.reservation-deposit-vs-earnest-money",
-      "content_revision_sha256": "cfdc8c8cdf798ef239075ec999c8dd3806518b521fbdeb90aa35a49a6e2b995c",
+      "content_revision_sha256": "a6ab3fc69d762e24007eed49f4aa06bc595f7409c41aeaf5854ce27f999c873d",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3047,7 +3047,7 @@
     },
     {
       "content_id": "content.retirement-pay-basic-formula",
-      "content_revision_sha256": "1387347ef4be3da53c39e3fdf18f21fae73f083d6f27271b1db337a39237ac41",
+      "content_revision_sha256": "ec80a2e7a57ae6f8b971714635a630fbd5258ffb1207f02bae36702103d7849d",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3062,7 +3062,7 @@
     },
     {
       "content_id": "content.retirement-pay-payment-deadline",
-      "content_revision_sha256": "5db61ef0ddbbf8ab1f1b839df5e3deef52fe4ccd131e3e0e609232695cd2adca",
+      "content_revision_sha256": "eacc603c647eaa03d90234fb837e576f17e1ee369bc781986901f94e1053b732",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3076,7 +3076,7 @@
     },
     {
       "content_id": "content.revocation-lawsuit-vs-state-compensation",
-      "content_revision_sha256": "c80a0238647d4bc1975056080b393a8516efcbe69ab9cf22df7b75344a2a411d",
+      "content_revision_sha256": "07048f24b9863b9293a06d5e267dc99ff451f188c118f4575a96deb1f6801f11",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3090,7 +3090,7 @@
     },
     {
       "content_id": "content.rights-after-lease-registration",
-      "content_revision_sha256": "610cddffa97870972af615ca738f3561b03c714307953d5d9a8bf158a480debf",
+      "content_revision_sha256": "c1f8e468bf8010e0ee35b262dcf6cf52f6e1cf6ab3e848ee9c28e55eb74871bb",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3104,7 +3104,7 @@
     },
     {
       "content_id": "content.school-violence-appeal-lawsuit",
-      "content_revision_sha256": "57375bb2d5d2221356f116c9a4f1b312d22a8ea44cca697614d594cb2bede0b0",
+      "content_revision_sha256": "d633bc48afe96b72ab92733d48192ade70e929f61fc98dfa75c6fa2cee542669",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3118,7 +3118,7 @@
     },
     {
       "content_id": "content.school-violence-confidentiality-records",
-      "content_revision_sha256": "da605c2d3fceaa0136267e0d82e2b2f91bb59d03bc17d7f48ddfb950199cd0bd",
+      "content_revision_sha256": "e07b3e2e5d543fa0acbdfd7abf700e5851a7630a9b1228e0627f942cd9ed2e03",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3132,7 +3132,7 @@
     },
     {
       "content_id": "content.school-violence-cyber-deletion",
-      "content_revision_sha256": "cf0586de4cb2d43fcf5d7c1fb0aa4a40ab856dbc98ea2aab525116d3dff514be",
+      "content_revision_sha256": "2381ab7599ae4593d0642b15c80133119080e4b79113db230d4f4d641cf20a08",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3146,7 +3146,7 @@
     },
     {
       "content_id": "content.school-violence-investigation-committee",
-      "content_revision_sha256": "9b29927dde992b7bc1f900ba7d077c74d16c278e1579aad2ee970c87c6e741f2",
+      "content_revision_sha256": "cc2bd67e8a161b10dc427068d734f81313d3ef3a1adea6537e0fa935564491ef",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3160,7 +3160,7 @@
     },
     {
       "content_id": "content.school-violence-offender-measures",
-      "content_revision_sha256": "456672fd0554e9c436d9d271e7fef06093426275ab02f15b55bc3bec52b9c7cc",
+      "content_revision_sha256": "a9871ce9c684112cef1a7f92e746b1b4d60a44320fffc62106a62950b5074f43",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3174,7 +3174,7 @@
     },
     {
       "content_id": "content.school-violence-report",
-      "content_revision_sha256": "e31dbab8a69aff85b8c462109e7dd243ae6450e891666707318965ec581287e6",
+      "content_revision_sha256": "c36a6d2860dbc9ac3121d9b2b922df108cc1871437262a1cc23a468415cec284",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3188,7 +3188,7 @@
     },
     {
       "content_id": "content.school-violence-school-resolution",
-      "content_revision_sha256": "dd9baefb24286efc367999dc6e8ae12049b7479093d5a904a5b143b45abf0cdc",
+      "content_revision_sha256": "34eb51d2bd363fa82bf968b00e5e9e5413caae980bd72b7286ef3bb950b19e45",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3202,7 +3202,7 @@
     },
     {
       "content_id": "content.school-violence-scope",
-      "content_revision_sha256": "57a86eec8020591e5841c1e8917eb4099710687a5c03ac5a6a58e93e08192e59",
+      "content_revision_sha256": "9a411eb8f6547887dce3456f8c9309a37901a31b4aabe38afca7e10d507d368b",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3216,7 +3216,7 @@
     },
     {
       "content_id": "content.school-violence-stay-separation",
-      "content_revision_sha256": "9f3ef82e29242aed05b167421b32cd84563aca479d9d1ae0c6515a30e8cdfdd4",
+      "content_revision_sha256": "3649b6926257c1817cf34a0ad5ba7afce54a2509b4306d56ad61e84061019628",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3230,7 +3230,7 @@
     },
     {
       "content_id": "content.school-violence-victim-protection",
-      "content_revision_sha256": "1e2807124c87375bd8b85991d34b8603f20d385f848a71a9cef85c1ecd4f84f9",
+      "content_revision_sha256": "be1e944bdb062d986077b457f856aff13400b8f0463fe7c4425fa5b8f3a2ea27",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3244,7 +3244,7 @@
     },
     {
       "content_id": "content.scope-of-guarantee-debt",
-      "content_revision_sha256": "a1116e6a3ba94dae00c6ead10d82b67c13c27df5a76edf7ef4d14e24ed36cdc4",
+      "content_revision_sha256": "a3dc3cbb0c3c7e8730d562762b7b7ab23be693445d314887681e2eb268307adf",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3258,7 +3258,7 @@
     },
     {
       "content_id": "content.seller-does-not-own-property",
-      "content_revision_sha256": "ed2a654840f14e7b1932f4a6c3bf383e2d18e1f8ee0035e349278472e1996660",
+      "content_revision_sha256": "dc1c636f4f11b7071d24a4691009490a9c939fe1660908e207fd3a7d03ee6b52",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3272,7 +3272,7 @@
     },
     {
       "content_id": "content.seller-misses-title-transfer-date",
-      "content_revision_sha256": "970118063bf306d227f20c75f959876e67ee11f8a028f0647860703bc06847f7",
+      "content_revision_sha256": "5892cac72e6a7bb111d6bae969ed2721205cae785015482a5090878d5d68471d",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3286,7 +3286,7 @@
     },
     {
       "content_id": "content.settlement-and-punishment-intent",
-      "content_revision_sha256": "4c0dcdd7c1aa28808cd6bd1dd20d9bf950922d23beea78b3fc187706cf94640e",
+      "content_revision_sha256": "023791e9fb31f4707b65f245d2401fdc3f7c5347e970d2223e2c4b49cc225854",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3301,7 +3301,7 @@
     },
     {
       "content_id": "content.sexual-harassment-labor-commission-remedy",
-      "content_revision_sha256": "2d8b063b61cf3d34549f9823af45cc2f1f1379cf0966959f45d85c40cc31ecb3",
+      "content_revision_sha256": "5cbd261878e5d0100bded367b974b0bcb22765eaaf50ebf3b4c848ed4102c7a9",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3315,7 +3315,7 @@
     },
     {
       "content_id": "content.shared-mobility-accident-cause-map",
-      "content_revision_sha256": "daeb1433ce2d4644263cacc1f2b07cde38f4fef19072b3cc4e375dd0d777ec5e",
+      "content_revision_sha256": "dbcc66c9703a516fa44931463622bbfdedf096796c9f7764c9ce58069ff0e500",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3329,7 +3329,7 @@
     },
     {
       "content_id": "content.shared-mobility-accident-evidence-checklist",
-      "content_revision_sha256": "b78385bb68145a756b5dd1dec554a3baa7d5e739ccc9fddbc326634cedfa3bf3",
+      "content_revision_sha256": "111e11a9fb53fb08ae2a1662f4515d9e99f1f56de2bedd6a2baab22be1c75d46",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3343,7 +3343,7 @@
     },
     {
       "content_id": "content.shared-mobility-device-defect",
-      "content_revision_sha256": "b3c9686820f0b3760161bba6e3e2f49f334f9e997ea11add0caaee56da5b0e8b",
+      "content_revision_sha256": "cb11c175abb70eb24a34ff600c303dbea6fb5255aec59c79fa55daa536ffa478",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3357,7 +3357,7 @@
     },
     {
       "content_id": "content.shared-mobility-operator-liability-not-automatic",
-      "content_revision_sha256": "2b03a5fdef9c06d05cd0d722a806a25e27cb2a9b52c30f0addff49c81668b0a1",
+      "content_revision_sha256": "60215222975d7625b2deb5fd1f76d92553fd799f230cb9f1e623f3b520b387cf",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3371,7 +3371,7 @@
     },
     {
       "content_id": "content.shared-mobility-other-road-user-fault",
-      "content_revision_sha256": "130411ffa1f1bc615f7ff3f36b9eb23439a0cef7db16ace17ed25e98150780ed",
+      "content_revision_sha256": "1a6eb7f6f530ec207aa0b41cf2e42c7c792de3df6a5e76f97f618bd2f11d142d",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3385,7 +3385,7 @@
     },
     {
       "content_id": "content.shared-mobility-private-facility-defect",
-      "content_revision_sha256": "c23edb5e7703b84cc993675dcdfa1dcdd795cc871534fbcf058fe3266d1e7fdc",
+      "content_revision_sha256": "77a9656fbc91351a4258fa8047122aeb7a9d0a1bb42933325f89eb1248d7596a",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3399,7 +3399,7 @@
     },
     {
       "content_id": "content.shared-mobility-public-road-defect",
-      "content_revision_sha256": "65147e9bf0463f5cf37cd0581840c1e4b37d6b184846bfe111091017b92153ac",
+      "content_revision_sha256": "61a13356ed309571ded9bc22470b03bbf101b53951c4b62e4af7a23602c9e3a4",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3413,7 +3413,7 @@
     },
     {
       "content_id": "content.shared-mobility-user-fault-and-compensation",
-      "content_revision_sha256": "17f698fc1f9162b5d6eff5d89aad281f78e90a0a7e24bee5a4b414922869c4f9",
+      "content_revision_sha256": "d442d266fac9a745ccd0fe8ebe5e38404ae6c70d5e9541857222ff5d27e1872a",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3427,7 +3427,7 @@
     },
     {
       "content_id": "content.shared-mobility-visible-defect-before-ride",
-      "content_revision_sha256": "979490deed60afdb434cd04015998644eda80b6458cf6aa3fbc0af110fdeb8b4",
+      "content_revision_sha256": "afb73211cd704e5a53c15bc6cb4e64e0863939b4682ca60444ded0d5a21c9939",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3441,7 +3441,7 @@
     },
     {
       "content_id": "content.six-grounds-for-judicial-divorce",
-      "content_revision_sha256": "a30acd68d932a8889948bb0dc8cf6486da5764da95c64088e72a3076391cf148",
+      "content_revision_sha256": "0573d55073a23f811f19bdb0aa3911b5d16a0344614981e9901e1cfaef169361",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3455,7 +3455,7 @@
     },
     {
       "content_id": "content.slip-fall-and-unsafe-facility-liability",
-      "content_revision_sha256": "8620af6309b3ec4e39bb5e5f6d8dcc784ddddec45e3046b1b585b862953c8549",
+      "content_revision_sha256": "b32c6d8db156c6eb8886255c42b72544bf6978507735f5e14fa2fc28e97c141e",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3469,7 +3469,7 @@
     },
     {
       "content_id": "content.small-claims-trial-vs-general-civil-lawsuit",
-      "content_revision_sha256": "9717026574d92698bc0b323e2435501a41dd95a602f90172bf6743e81aaee073",
+      "content_revision_sha256": "a1faa8f771fdaac0fa88af40879036a0f67ff1f450ec1654728c479f8affc607",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3483,7 +3483,7 @@
     },
     {
       "content_id": "content.special-limited-acceptance-late-debt",
-      "content_revision_sha256": "8bb20df779c1ebdbe3e19ab2a04c284cc5a5a8650dfd1f3589968161e30fa671",
+      "content_revision_sha256": "a410bd7a7617a4b2fab548affe9b4fedbf2ef282135aabe7fe56ea8db392039d",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3497,7 +3497,7 @@
     },
     {
       "content_id": "content.specific-reason-in-dismissal-notice",
-      "content_revision_sha256": "8896a21fff83d6a9c9248a0b4826cea998f12ac58b427aeffce777dc8bcbbbfd",
+      "content_revision_sha256": "fc7a8e6c22fa2528bd696b484840a2e744f99561f4de08d5a3ebcedcaef21e4c",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3511,7 +3511,7 @@
     },
     {
       "content_id": "content.spouse-when-all-children-renounce",
-      "content_revision_sha256": "2e54e2c6ac6ab4c1160c6da8d2e2195d3245b90958fd686a887a60fa1f5db33d",
+      "content_revision_sha256": "f58d809d8e296d2d85d58decb293b5e0b47c1107466e6b88068856ef2a7e2a16",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3525,7 +3525,7 @@
     },
     {
       "content_id": "content.summary-order-formal-trial-vs-criminal-appeal-deadline",
-      "content_revision_sha256": "e10e096799ace460a45a9abcc8666c18771bf7db9d802ffc963a47d6a620e162",
+      "content_revision_sha256": "b97fde2d4addd70d79d1ea0b848a7f225543d237607b73262d922833879151d3",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3539,7 +3539,7 @@
     },
     {
       "content_id": "content.summary-order-vs-formal-trial",
-      "content_revision_sha256": "1f8b951d40722f54de3d459d8ea5614de14aa0b74dea0fb4766b66e4a61c0079",
+      "content_revision_sha256": "58a3865974880a136915dcf833abf8b3bc38183511c170aa6c650c746ac6e699",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3553,7 +3553,7 @@
     },
     {
       "content_id": "content.three-month-inheritance-decision-period",
-      "content_revision_sha256": "1458e5d9274023feeff06a77085c522551c0afdd1c79c4405da4bf4f41b043de",
+      "content_revision_sha256": "750cb6d113dab8ac825c6045adcbccbe908f1a058f0b6a0a2d379c3ef1231479",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3567,7 +3567,7 @@
     },
     {
       "content_id": "content.unfair-dismissal-remedy-three-months",
-      "content_revision_sha256": "8c13531a2f7ae6c9ea274cf7b749ef8ecfa07c44b54731ecda96696e6b242f7a",
+      "content_revision_sha256": "df43594b62c6f384027f4faf1e7f388ae54a77d6af93abef0860f7d3ba9d0a1f",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3581,7 +3581,7 @@
     },
     {
       "content_id": "content.unfair-dismissal-vs-wage-claim-deadline",
-      "content_revision_sha256": "2784a82cf6dc1378dcbb1ef91fff1085be38d1d72c355d06c62b5977985fd9a1",
+      "content_revision_sha256": "001165c90516fd891a89ec2cc412dcfd853b023729e7c4ec32cc5096dc07ed43",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3595,7 +3595,7 @@
     },
     {
       "content_id": "content.unjust-enrichment-vs-tort-damages",
-      "content_revision_sha256": "44b6c6088ce7a882f445500f7edd0c675ce104f6fbdb7378fb53a34342159394",
+      "content_revision_sha256": "df1590581779e33e8e52a9c08783fde46a9ed19f93ddf6469aa27482c83c6984",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3609,7 +3609,7 @@
     },
     {
       "content_id": "content.verbal-delay-agreement-after-retirement",
-      "content_revision_sha256": "5aac37a8af02d45ed5cc3e927249afbdb545140e04337f24496d3579715c2959",
+      "content_revision_sha256": "7d08a9491788b13789e4e5a8cf5c64e4476ff164e5520e2a0892101a088a7b65",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3623,7 +3623,7 @@
     },
     {
       "content_id": "content.verbal-dismissal-written-notice",
-      "content_revision_sha256": "d0f41eb5c9b5611c586d34cf34f1eaaf331fbc0a3ef7ec7e86c1d8d39867310a",
+      "content_revision_sha256": "cf3b80843b8d55087d75ed4d4ba6e2e5154047557db76e64ca1c3fec5119ea5b",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3637,7 +3637,7 @@
     },
     {
       "content_id": "content.victim-access-to-trial-records",
-      "content_revision_sha256": "2967a894486f01c83d5ff6a2b081027fd9ccc74a460d0c615caa81977a32436d",
+      "content_revision_sha256": "e3c687cd043f7337f3205412b5bb727afe43f361cce44fbb104ce6a07a738f1b",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3652,7 +3652,7 @@
     },
     {
       "content_id": "content.victim-case-information-notifications",
-      "content_revision_sha256": "9ee5b062ad81f313fe308d37b5b2270595376c3d1ba886b7949d334f8acb8197",
+      "content_revision_sha256": "1937848d98b55357f5a36ac1c05840acae38344d8c236d93cc040b589b17d8b8",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3667,7 +3667,7 @@
     },
     {
       "content_id": "content.victim-fault-does-not-erase-all-compensation",
-      "content_revision_sha256": "c9505414f3122edb79647d1121de44ba2a409b0f5db5c5c8230aff7964603f0b",
+      "content_revision_sha256": "0a9c27576034498f2b2c48eeae6f61d8b6fd8355d50d4473238f2e277fd004ca",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3681,7 +3681,7 @@
     },
     {
       "content_id": "content.victim-statement-in-criminal-trial",
-      "content_revision_sha256": "f16ce39a98abbe8693c1a7881a6ed9d9e5c7838e6876649efdbca9964d9c40bb",
+      "content_revision_sha256": "15193a11d8967b18c39baff1942bb4ca2ce086665aad9148d6c100aec05c457b",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3696,7 +3696,7 @@
     },
     {
       "content_id": "content.voice-phishing-refund-account-holder-objection",
-      "content_revision_sha256": "d488a62c137826883262a47de8b1b360476716261f8d87b1dce566121681111f",
+      "content_revision_sha256": "189856aad043cf07e03a5f98bea5dcf7d2d04d0d4a9e277eed5f1a9bc008195d",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3710,7 +3710,7 @@
     },
     {
       "content_id": "content.voice-phishing-refund-cash-delivery-withdrawal",
-      "content_revision_sha256": "a538e14f9fcae0b80d43b22fb8e1bce1b98c08d45c1bc0cc908fb44e73d02fb2",
+      "content_revision_sha256": "bc97da031a3ddca5cd3094013e08dbbb34d481c50628b7533d9b34a79f370772",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3724,7 +3724,7 @@
     },
     {
       "content_id": "content.voice-phishing-refund-claim-extinction-timeline",
-      "content_revision_sha256": "178f57018689a797f56e9ebaba3236cfe56bf1baf15e50245083a015ca686afc",
+      "content_revision_sha256": "7f0f4f8534424d0c7719420bb952d0d0319e9299d9ff0db4050388eb74f4c972",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3738,7 +3738,7 @@
     },
     {
       "content_id": "content.voice-phishing-refund-covered-scam",
-      "content_revision_sha256": "9c069ed4c62d43fe390818d63b3c01ab30df3be575df30afb24aada6c17a6832",
+      "content_revision_sha256": "6b5877e50f1695b1b32bfcea4d9d4c7fa18b47c2dfb5ce02480710961ad978d8",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3752,7 +3752,7 @@
     },
     {
       "content_id": "content.voice-phishing-refund-immediate-application",
-      "content_revision_sha256": "095dca0794d1c9a67cc6715e4ba478f9eb7e645fd89583d8e0fa17c42a005309",
+      "content_revision_sha256": "f511d7a5030f9583e31b18d861ff0ae1be118a78d2db0de272da716738027b35",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3766,7 +3766,7 @@
     },
     {
       "content_id": "content.voice-phishing-refund-late-application",
-      "content_revision_sha256": "6e2e96156b2c2d8c8ae98a4932f25da56693f11fa5ceabb45bd481c834078e1e",
+      "content_revision_sha256": "fd57db10ed895b5e77ee4c9d741308bfe22e6d65a77c078bc863255493dfe9c4",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3780,7 +3780,7 @@
     },
     {
       "content_id": "content.voice-phishing-refund-low-balance-request",
-      "content_revision_sha256": "02ab36cade9fbea3a46eabc630cc8f26e9f00942ae9b170701bed33087e760de",
+      "content_revision_sha256": "f8a5d51d661dfa2a2e19afe7479b7d79563d9be59179a0a503a7eab2c2962626",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3794,7 +3794,7 @@
     },
     {
       "content_id": "content.voice-phishing-refund-refund-amount",
-      "content_revision_sha256": "cf6fb5a9dff1a45760fff6518c456d11a8d5364a4fbe8f045ee06bd6c65832cd",
+      "content_revision_sha256": "3cc434757b477ed06fb3a0e3f74d86956f6fa84364d4f7bf27b8bea40337f293",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3808,7 +3808,7 @@
     },
     {
       "content_id": "content.voice-phishing-refund-refund-and-civil-claim",
-      "content_revision_sha256": "ab91e0846405b1a1912c9d29565cbd305c51ddf51da6e9f9cc892e87a85d38e1",
+      "content_revision_sha256": "58af246075291b3fa144c3c3443d55da5d2167072d895121686ac03ea61ca7f5",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3822,7 +3822,7 @@
     },
     {
       "content_id": "content.voice-phishing-refund-transferred-again",
-      "content_revision_sha256": "32851bde997560d3e3c19c6751cfaf753e6b26f8760da2d2ff73aa5d066c4f6c",
+      "content_revision_sha256": "1dfee6f169107e8d951d778ff1f484f1e3323122d536faace4c59175af3a498f",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3836,7 +3836,7 @@
     },
     {
       "content_id": "content.wage-and-protected-claim-seizure",
-      "content_revision_sha256": "5e01792b15dfeecb06d1220112c31f924037e14c9d54e1dedd7c038a9458ef16",
+      "content_revision_sha256": "57616fedc7a16632c628bfb0840cfd803f2618f9fa0bc5e6672ea61068e5e9b0",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3851,7 +3851,7 @@
     },
     {
       "content_id": "content.what-accident-damages-can-be-claimed",
-      "content_revision_sha256": "2fe5259bcf1e99def4a91f31ad109e6e31e6ab52233e07e272b7ceaf06a73538",
+      "content_revision_sha256": "06e3f3ed43c3197c1dee2d41d72dfc41eca9e0625744327e4977fc09e7ce4867",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3865,7 +3865,7 @@
     },
     {
       "content_id": "content.when-default-interest-starts",
-      "content_revision_sha256": "96994a47b77ffd520dc4beb32814850b9192f006ebccadc7ba8a5913e54b6dbd",
+      "content_revision_sha256": "32dfaed70637862807527db17966ea874d13b4c91f743247d09505ee433b09d9",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3880,7 +3880,7 @@
     },
     {
       "content_id": "content.when-payment-order-fits",
-      "content_revision_sha256": "f4b3104c98655caa3992917dd2b1503ef81bee6a79642af6ee7dc1058991bad2",
+      "content_revision_sha256": "5bcdc89d10942610cea4843ae9598bf47ba1369e2e329f52bc0f44830a3bf3a0",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3895,7 +3895,7 @@
     },
     {
       "content_id": "content.who-pays-return-shipping",
-      "content_revision_sha256": "959ec5fee4ebfcb5b286165e16e63718e0e39da6a78f7a923d78739ecde39208",
+      "content_revision_sha256": "d9dfe38a79a72931ff2d46449b669c2e99a9a41143f3fbb69208053343dbdbe2",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3909,7 +3909,7 @@
     },
     {
       "content_id": "content.why-attorney-workspace-is-gated",
-      "content_revision_sha256": "c70bac1be15d93b8d5581a69b0bac440a6e4d180e166f4d7f1e36fcd43c1c108",
+      "content_revision_sha256": "dcc20adc3d091c0473b357764da6a177d1dfec036aa4bea3516649295bf8ffea",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3923,7 +3923,7 @@
     },
     {
       "content_id": "content.worker-status-evidence-checklist",
-      "content_revision_sha256": "32bf29b994b8cba1c2db5672546d9e79bde5edf7125088c264c0004d479c0e7a",
+      "content_revision_sha256": "7f82582bc3ed492aa5fbee11acd8c848c1f715362d13ace076b282d894f5bd55",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3937,7 +3937,7 @@
     },
     {
       "content_id": "content.worker-status-vs-contract-label",
-      "content_revision_sha256": "928cd68e2954e79a508ffe22a5a3148212915cc5857cf975f9e9d4d399fac7e1",
+      "content_revision_sha256": "050fd927a12cd5ffd8568637231de2487ae534af05292c3ad64b1805a52913bf",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3951,7 +3951,7 @@
     },
     {
       "content_id": "content.workplace-harassment-elements",
-      "content_revision_sha256": "67fd52fa453a2e9ed896c3f8ff0de7761986ab502d522ce62211cc2728562540",
+      "content_revision_sha256": "fe3623a0e2584b760c953c0561a950f6ef5a2d966a6ace7361302405890054c4",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3965,7 +3965,7 @@
     },
     {
       "content_id": "content.workplace-harassment-protection-measures",
-      "content_revision_sha256": "ed370345e52f2e7a53dfb922de5517e91a6daf5c2c76dc38a91a13b57b4fa105",
+      "content_revision_sha256": "e502617e65e222e7ddc9e316371d11d49ce0c4933cdcbead47979847e1cc80a5",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3979,7 +3979,7 @@
     },
     {
       "content_id": "content.workplace-harassment-report-investigation",
-      "content_revision_sha256": "be9b92221d3657a225bf3092b2b09c5ef4ad274a2487302d69348ffe2f23c8c9",
+      "content_revision_sha256": "3de7afdd9a353c8c91d1d4bc4985c61edc52331c5c95c3aee988cb37828bd961",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -3993,7 +3993,7 @@
     },
     {
       "content_id": "content.workplace-harassment-retaliation-confidentiality",
-      "content_revision_sha256": "ff6fe7afd4d91f043d2d9d20756b1413a2bf5bd19fff60e72d59f3edad229012",
+      "content_revision_sha256": "6cf7c19375bb738098343d21e1e4c13e27bd83f0aad79389f6e8d92b034c15d6",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -4007,7 +4007,7 @@
     },
     {
       "content_id": "content.workplace-harassment-vs-sexual-harassment",
-      "content_revision_sha256": "0f7d93e86576978e5523a05f2e1813779106633a65aac985202d9e8dfb78a7a3",
+      "content_revision_sha256": "6101d69fead61c20f48ab17642c079cb512ee9aa59d6b4e1401f4d80b72f4da7",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -4021,7 +4021,7 @@
     },
     {
       "content_id": "content.workplace-sexual-harassment-elements",
-      "content_revision_sha256": "360574f1f169a65ca58062d3790525dce4fc7ae0aae9499ff62fa8e4bd873120",
+      "content_revision_sha256": "0edfa779e288119099a23c6442c2142fe786cc83b4898f137dd8cb97baf18e04",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [
@@ -4035,7 +4035,7 @@
     },
     {
       "content_id": "content.workplace-sexual-harassment-employer-response",
-      "content_revision_sha256": "4bdef0d9b0286e4dbda7d7a159f05a5ef39c2fac568b0547a633d831a5306ee0",
+      "content_revision_sha256": "991e80b61e27f529a0289bfc287eed28d42f00cbd2476ddedc3795b4d8b11f32",
       "coverage_state": "unmapped",
       "coverage_unit_ids": [],
       "gap_codes": [

@@ -20,11 +20,12 @@ import {
   canonicalSha256,
 } from './publication-coverage-core.mjs';
 
-test('024 전체 콘텐츠와 허브를 누락 없이 결정론적 확장 백로그로 만든다', async () => {
+test('현재 출판본 전체 콘텐츠와 허브를 누락 없이 결정론적 확장 백로그로 만든다', async () => {
   const backlog = await buildPublicationExpansionBacklog();
 
   assert.equal(backlog.schema, 'rulelink_publication_expansion_backlog_v1');
-  assert.equal(backlog.snapshot_id, 'kr-knowledge-core-20260726-024');
+  const bundle = JSON.parse(await readFile(DEFAULT_PUBLICATION_BUNDLE_PATH, 'utf8'));
+  assert.equal(backlog.snapshot_id, bundle.snapshot_id);
   assert.equal(backlog.content_count, 284);
   assert.equal(backlog.hub_count, 28);
   assert.deepEqual(backlog.summary, {

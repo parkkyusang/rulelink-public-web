@@ -8,8 +8,8 @@
       "law_name_ko": "민법",
       "article_no": "제387조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C387%EC%A1%B0",
-      "source_snapshot_id": "snapshot:d80709ed6e97b64a85f8b7f1a15974a6",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:9a930623531c74c5becdc343f042931d197934e67241774523c46307123499f2",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.debt-enforcement.civil-act-ko-0397",
@@ -17,8 +17,8 @@
       "law_name_ko": "민법",
       "article_no": "제397조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C397%EC%A1%B0",
-      "source_snapshot_id": "snapshot:6ae7c2501461599954704f957ccc21a3",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:223ea251f1326dd41d3edecfbd9d83d9fe98f00840bc01bb4902847b862446d0",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.debt-enforcement.civil-act-ko-0162",
@@ -26,8 +26,8 @@
       "law_name_ko": "민법",
       "article_no": "제162조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C162%EC%A1%B0",
-      "source_snapshot_id": "snapshot:418c2e598c597f4704c99c80c066d223",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:b2bc0405fc2a3ab85fa85df111d7e986acb3d0b62d2e4ffc8e7d0a0c06a5b82f",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.debt-enforcement.civil-act-ko-0174",
@@ -35,8 +35,8 @@
       "law_name_ko": "민법",
       "article_no": "제174조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C174%EC%A1%B0",
-      "source_snapshot_id": "snapshot:b584e1a9b10c4fc4c355fcb7122a5dec",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:118310dcf6076c4e98ed4a792541fb838a946e12eed22a69c1758b833bd56e8b",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.debt-enforcement.civil-act-ko-0165",
@@ -44,8 +44,8 @@
       "law_name_ko": "민법",
       "article_no": "제165조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C165%EC%A1%B0",
-      "source_snapshot_id": "snapshot:62f1592128f81bb886e102e6a95e41ba",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:9b3fe7ae3468be9b3cadbddc1184f0f3aec68847341137003ddfbcb93e626ed2",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.debt-enforcement.civil-procedure-ko-0462",
@@ -53,8 +53,8 @@
       "law_name_ko": "민사소송법",
       "article_no": "제462조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C462%EC%A1%B0",
-      "source_snapshot_id": "snapshot:f6f2e92ffcfb8efeafa44cb414ad7b47",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:1831761e12e7d1f8c1d370b0cc1c3afec52883fd592f0c7bbeffaac3269ccacc",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.debt-enforcement.civil-procedure-ko-0470",
@@ -62,8 +62,8 @@
       "law_name_ko": "민사소송법",
       "article_no": "제470조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C470%EC%A1%B0",
-      "source_snapshot_id": "snapshot:5eb1874d3a13d2373c84f05a11428539",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:f1302afc598dd5f1f10223f419a5754e384f2b7c35b091113a446d52ede4e037",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.debt-enforcement.civil-procedure-ko-0474",
@@ -71,71 +71,71 @@
       "law_name_ko": "민사소송법",
       "article_no": "제474조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C474%EC%A1%B0",
-      "source_snapshot_id": "snapshot:e16ef04db903a2d2efd339de72260b6e",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:3e4fd2f6c9ccd13c0127a1a58ca320040edd73dfd96b145823ce03960a7a853a",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.debt-enforcement.civil-execution-ko-0056",
-      "source_id": "civil_execution_ko_0056",
+      "source_id": "law_009290_ko_0056",
       "law_name_ko": "민사집행법",
       "article_no": "제56조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C56%EC%A1%B0",
-      "source_snapshot_id": "snapshot:64bd12233d06b8c3fae9a500cdbec525",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:0b9cee8f4dc6a543b250dedf14a3445b224394a9e47605fb7dc89cac968495e0",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.debt-enforcement.civil-execution-ko-0276",
-      "source_id": "civil_execution_ko_0276",
+      "source_id": "law_009290_ko_0276",
       "law_name_ko": "민사집행법",
       "article_no": "제276조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C276%EC%A1%B0",
-      "source_snapshot_id": "snapshot:911473f6c813b2789d625d5a55c70524",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:1120de4e7a6faf62e19ac81c339d71da5231360e5c5fa61d8ec7958282ae6901",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.debt-enforcement.civil-execution-ko-0223",
-      "source_id": "civil_execution_ko_0223",
+      "source_id": "law_009290_ko_0223",
       "law_name_ko": "민사집행법",
       "article_no": "제223조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C223%EC%A1%B0",
-      "source_snapshot_id": "snapshot:14a7526a5c66caa6429fb9658bc32e55",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:661422e62332e29ef575538f165f24c00ca8e663c5b0c533f930960e23364c0c",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.debt-enforcement.civil-execution-ko-0229",
-      "source_id": "civil_execution_ko_0229",
+      "source_id": "law_009290_ko_0229",
       "law_name_ko": "민사집행법",
       "article_no": "제229조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C229%EC%A1%B0",
-      "source_snapshot_id": "snapshot:b9a41a1899c6fe01d7962b306b18db49",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:a3119fa3023c58bb645e1c74b7ef0d62fc6482423f70c6891bb3f2012860920c",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.debt-enforcement.civil-execution-ko-0246",
-      "source_id": "civil_execution_ko_0246",
+      "source_id": "law_009290_ko_0246",
       "law_name_ko": "민사집행법",
       "article_no": "제246조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C246%EC%A1%B0",
-      "source_snapshot_id": "snapshot:7775f68b6cbbbb45116ca18713f47330",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:9e513839dcf94b8afcebdc918a09cc0bc036eb7c1cdc2198523487b7eacb4806",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.debt-enforcement.civil-execution-ko-0246-02",
-      "source_id": "civil_execution_ko_0246_02",
+      "source_id": "law_009290_ko_0246_02",
       "law_name_ko": "민사집행법",
       "article_no": "제246조의2",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C246%EC%A1%B0%EC%9D%982",
-      "source_snapshot_id": "snapshot:ff58c1d8755856865de21fba650211cd",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:56b9625535036afc01078e439a715393a3a826a8f7c644aa6fae0f4235477cdf",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.debt-enforcement.civil-execution-ko-0061",
-      "source_id": "civil_execution_ko_0061",
+      "source_id": "law_009290_ko_0061",
       "law_name_ko": "민사집행법",
       "article_no": "제61조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EC%82%AC%EC%A7%91%ED%96%89%EB%B2%95/%EC%A0%9C61%EC%A1%B0",
-      "source_snapshot_id": "snapshot:8aaf603259be48bf27627f70a1bf947a",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:0fca6c9f4c68ef220d655c95db1cf8938e4f3ac5416b6069fa9db3d45431769b",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.debt-enforcement.civil-act-ko-0406",
@@ -143,8 +143,8 @@
       "law_name_ko": "민법",
       "article_no": "제406조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C406%EC%A1%B0",
-      "source_snapshot_id": "snapshot:7331d63f7a9dc3877d1c0ffaf42c0461",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:0ead64e45fc91adfe60dba6f95d8186ea9ff3d236982c799de2876d14e3f0d2c",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     }
   ],
   "topic_hubs": [
@@ -512,8 +512,8 @@
       "content_id": "content.when-default-interest-starts",
       "content_type": "explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "when-default-interest-starts",
       "title_ko": "돈을 늦게 갚았을 때 지연책임은 언제부터 시작될까요?",
       "one_line_answer_ko": "확정 변제기가 있으면 그 도래 때부터, 기한이 없으면 이행청구가 도달한 때부터 원칙적으로 지체책임을 계산합니다.",
@@ -581,8 +581,8 @@
       "content_id": "content.debt-limitation-is-not-always-ten-years",
       "content_type": "misconception_correction",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "debt-limitation-is-not-always-ten-years",
       "title_ko": "채권 소멸시효가 모두 10년인 것은 아닙니다",
       "one_line_answer_ko": "민법상 일반 채권은 원칙적으로 10년이지만 채권 종류별 단기시효와 특별법을 먼저 확인해야 합니다.",
@@ -649,8 +649,8 @@
       "content_id": "content.content-certified-demand-needs-followup",
       "content_type": "deadline",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "content-certified-demand-needs-followup",
       "title_ko": "내용증명만 보내면 소멸시효가 계속 중단되는 것은 아닙니다",
       "one_line_answer_ko": "최고가 도달했더라도 6개월 안에 재판상 청구나 압류·가압류 등 법정 후속조치를 해야 합니다.",
@@ -717,8 +717,8 @@
       "content_id": "content.judgment-debt-limitation-ten-years",
       "content_type": "deadline",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "judgment-debt-limitation-ten-years",
       "title_ko": "판결을 받았어도 집행을 무기한 미룰 수는 없습니다",
       "one_line_answer_ko": "판결 등으로 확정된 채권은 원칙적으로 10년의 소멸시효가 적용되므로 확정일과 집행·변제 이력을 관리해야 합니다.",
@@ -786,8 +786,8 @@
       "content_id": "content.when-payment-order-fits",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "when-payment-order-fits",
       "title_ko": "지급명령은 금전청구와 송달 가능성을 먼저 봅니다",
       "one_line_answer_ko": "일정한 금전 등의 지급청구이고 채무자에게 국내 통상송달이 가능할 때 지급명령을 검토할 수 있습니다.",
@@ -854,8 +854,8 @@
       "content_id": "content.payment-order-objection-two-weeks",
       "content_type": "deadline",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "payment-order-objection-two-weeks",
       "title_ko": "지급명령을 받았다면 송달일부터 2주를 놓치면 안 됩니다",
       "one_line_answer_ko": "채무자는 송달일부터 2주 안에 적법하게 이의해야 하며, 이의가 없으면 지급명령은 확정판결과 같은 효력이 생길 수 있습니다.",
@@ -923,8 +923,8 @@
       "content_id": "content.documents-that-allow-compulsory-enforcement",
       "content_type": "comparison",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "documents-that-allow-compulsory-enforcement",
       "title_ko": "차용증과 집행권원은 다릅니다",
       "one_line_answer_ko": "강제집행은 확정 지급명령·판결·집행승낙 공정증서 등 법이 정한 집행권원에 기초해야 합니다.",
@@ -991,8 +991,8 @@
       "content_id": "content.provisional-attachment-before-judgment",
       "content_type": "emergency_response",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "provisional-attachment-before-judgment",
       "title_ko": "재산을 빼돌릴 위험이 크면 본안 전 가압류를 검토합니다",
       "one_line_answer_ko": "금전채권의 장래 강제집행을 보전할 필요가 있으면 본안 확정 전 가압류를 신청할 수 있습니다.",
@@ -1059,8 +1059,8 @@
       "content_id": "content.bank-account-seizure-and-collection-order",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "bank-account-seizure-and-collection-order",
       "title_ko": "통장압류는 은행에 대한 예금채권을 특정해 진행합니다",
       "one_line_answer_ko": "집행권원을 갖춘 뒤 채무자의 은행에 대한 예금채권을 특정해 채권압류와 추심명령 등을 신청합니다.",
@@ -1168,8 +1168,8 @@
       "content_id": "content.wage-and-protected-claim-seizure",
       "content_type": "explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "wage-and-protected-claim-seizure",
       "title_ko": "급여와 생계성 채권은 전부 압류할 수 없습니다",
       "one_line_answer_ko": "급여채권의 일정 부분과 법이 정한 생계·보장성 채권은 압류가 제한되므로 보호 범위와 법원 조정 가능성을 확인해야 합니다.",
@@ -1236,8 +1236,8 @@
       "content_id": "content.2026-livelihood-account-protection",
       "content_type": "law_change",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "2026-livelihood-account-protection",
       "title_ko": "2026년부터 한 사람당 하나의 생계비계좌를 만들 수 있습니다",
       "one_line_answer_ko": "2026년 2월 1일부터 법정 한도 안의 생계비만 예치하는 전용 계좌를 한 사람당 하나 개설해 압류금지 보호를 받을 수 있습니다.",
@@ -1305,8 +1305,8 @@
       "content_id": "content.property-disclosure-when-assets-unknown",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "property-disclosure-when-assets-unknown",
       "title_ko": "집행권원은 있는데 재산을 모르면 재산명시를 검토합니다",
       "one_line_answer_ko": "금전 집행권원으로 강제집행을 개시할 수 있다면 원칙적으로 법원에 채무자의 재산명시를 신청할 수 있습니다.",
@@ -1413,8 +1413,8 @@
       "content_id": "content.fraudulent-transfer-before-enforcement",
       "content_type": "emergency_response",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "fraudulent-transfer-before-enforcement",
       "title_ko": "채무자가 재산을 빼돌렸다면 채권자취소권 요건과 기간을 봅니다",
       "one_line_answer_ko": "채권자를 해함을 알고 한 재산행위라면 법정 요건 아래 취소와 원상회복을 청구할 수 있지만 단순 명의이전만으로 자동 취소되지는 않습니다.",

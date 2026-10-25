@@ -40,15 +40,15 @@
       ],
       "source_coordinates": [
         {
-          "source_id": "administrative_appeals_enforcement_decree_ko_0016_02",
+          "source_id": "law_005621_ko_0016_02",
           "law_key": "administrative_appeals_enforcement_decree",
           "article_no": "제16조의2",
-          "source_snapshot_id": "snapshot:f46e52f238cfcb804b595d3f2a1447ec",
+          "source_snapshot_id": "snapshot:a6a01fd2edf8a1b83aaf71b882badec936cbef79031552d322c91747450b8707",
           "version_scope": "current_as_of_review",
           "effective_from": "2026-06-16",
           "official_url": "https://www.law.go.kr/LSW/lawView.do?lawId=005621",
-          "source_hash": "sha256:0a15fd774b3e712c593f0d59f738f4037c11a4fea8e83bd85b621d9585c6c824",
-          "last_verified_at": "2026-07-20T06:30:00+00:00",
+          "source_hash": "sha256:a6a01fd2edf8a1b83aaf71b882badec936cbef79031552d322c91747450b8707",
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00",
           "validation_status": "verified"
         }
       ]
@@ -65,15 +65,15 @@
       ],
       "source_coordinates": [
         {
-          "source_id": "administrative_appeals_enforcement_decree_ko_0016_02",
+          "source_id": "law_005621_ko_0016_02",
           "law_key": "administrative_appeals_enforcement_decree",
           "article_no": "제16조의2",
-          "source_snapshot_id": "snapshot:f46e52f238cfcb804b595d3f2a1447ec",
+          "source_snapshot_id": "snapshot:a6a01fd2edf8a1b83aaf71b882badec936cbef79031552d322c91747450b8707",
           "version_scope": "current_as_of_review",
           "effective_from": "2026-06-16",
           "official_url": "https://www.law.go.kr/LSW/lawView.do?lawId=005621",
-          "source_hash": "sha256:0a15fd774b3e712c593f0d59f738f4037c11a4fea8e83bd85b621d9585c6c824",
-          "last_verified_at": "2026-07-20T06:30:00+00:00",
+          "source_hash": "sha256:a6a01fd2edf8a1b83aaf71b882badec936cbef79031552d322c91747450b8707",
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00",
           "validation_status": "verified"
         }
       ]
@@ -95,8 +95,8 @@
       "article_no": "제16조의2",
       "promulgation_date": "",
       "effective_date": "2026-06-16",
-      "reviewed_at": "2026-07-20T06:30:00+00:00",
-      "expires_at": "2026-10-20T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "affected_audiences": [
         "행정심판에서 국선대리인 선임을 신청하려는 청구인",
         "국선대리인 신청서류를 준비하는 지원기관 담당자"
