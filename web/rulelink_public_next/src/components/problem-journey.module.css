@@ -1,0 +1,36 @@
+.root {margin: 2rem 0 3rem; padding: clamp(1rem, 4vw, 2.5rem); border: 1px solid #aab9b0; border-radius: 20px; background: #fff; color: #152c24; scroll-margin-top: 6rem; word-break: keep-all;}
+.root h2 {font-size: clamp(1.65rem, 3vw, 2.35rem); line-height: 1.4;}
+.root h3 {font-size: 1.35rem; line-height: 1.5;}
+.root p, .root li {line-height: 1.8; overflow-wrap: anywhere;}
+.root a {color: #07563c; text-decoration: underline; text-underline-offset: 4px;}
+.root button, .root input {font: inherit; accent-color: #07563c;}
+.root button {padding: .7rem 1rem; min-height: 44px; border: 1px solid #577a69; border-radius: 8px; background: #f3f8f5; color: #123f2f; cursor: pointer;}
+.root :is(a, button, input, summary, textarea):focus-visible {outline: 3px solid #14785a; outline-offset: 4px;}
+.root input {width: 1.2rem; height: 1.2rem; flex-shrink: 0;}
+.root fieldset {min-width: 0;}
+.privacy {font-size: .9rem; color: #465d52;}
+.routes {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; padding: 1rem 0; border: 0;}
+.routes legend, .question legend {font-weight: 700; line-height: 1.6;}
+.routes label {display: flex; align-items: center; gap: .7rem; padding: 1rem; border: 1px solid #9aada2; border-radius: 10px; cursor: pointer;}
+.routes label:has(input:checked) {background: #e7f3ed; border-color: #07563c;}
+.section {border-top: 1px solid #ccd7d0; padding-top: 1.5rem; margin-top: 1.5rem; scroll-margin-top: 6rem;}
+.question {padding: 1rem; border: 1px solid #ccd7d0; border-radius: 10px; margin: 1.5rem 0;}
+.options {display: flex; flex-wrap: wrap; gap: .5rem;}
+.options label {display: flex; gap: .5rem; align-items: center; min-height: 44px; padding: .5rem .8rem; border: 1px solid #aab9b0; border-radius: 8px; cursor: pointer;}
+.outcome {background: #f0f6f2; padding: 1rem; margin-top: 1rem; line-height: 1.8;}
+.actions {padding-left: 1.5rem;}
+.actions li {padding: 1rem 0; border-bottom: 1px solid #d6dfd8;}
+.actions label {display: flex; align-items: flex-start; gap: .7rem;}
+.actions input {margin-top: .3rem;}
+.actions a {display: inline-block; margin-top: .5rem; font-size: .9rem;}
+.warning {background: #fff8e9; padding: .8rem 1rem; line-height: 1.8;}
+.root summary {cursor: pointer; padding: 1rem 0; font-weight: 700; line-height: 1.6;}
+.source {border-bottom: 1px solid #ccd7d0;}
+.source small {display: block; font-weight: 400; color: #465d52;}
+.source blockquote {margin: 1rem 0; border-left: 3px solid #14785a; padding: 1rem; background: #f3f7f4; white-space: pre-wrap; line-height: 1.9; overflow-wrap: anywhere;}
+.source svg {width: 1rem; height: 1rem; display: inline;}
+.preview {margin-top: 1rem;}
+.preview textarea {display: block; box-sizing: border-box; width: 100%; min-height: 24rem; margin: .5rem 0 1rem; padding: 1rem; font: inherit; line-height: 1.7; border: 1px solid #8b9f93; border-radius: 8px;}
+.buttons {display: flex; gap: .7rem; flex-wrap: wrap;}
+@media (max-width: 600px) {.routes {grid-template-columns: 1fr;} .root {border-radius: 12px;} .options label {padding: .5rem;}}
+@media print {.routes, .options, .buttons, .root button, .privacy {display: none;} .root {border: 0; padding: 0;} .preview textarea {height: auto; min-height: 30rem;} .source {break-inside: avoid;}}

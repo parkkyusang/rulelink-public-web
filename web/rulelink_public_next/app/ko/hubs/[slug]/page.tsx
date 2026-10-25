@@ -2,6 +2,8 @@ import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
 import {KnowledgeHubJourney} from '@/components/knowledge-hub-journey';
+import {ProblemJourney} from '@/components/problem-journey';
+import {loadProblemJourney} from '@/lib/problem-journey-loader';
 import {knowledgeRelationTypeLabelKo} from '@/lib/knowledge-relations';
 import {connectedKnowledgeHubs, decisionPathsForKnowledgeHub, entriesForKnowledgeHub, findKnowledgeHub, listKnowledgeHubs} from '@/lib/publication';
 import {site} from '@/lib/site';
@@ -43,6 +45,7 @@ export default async function KnowledgeHubPage({params}: Props) {
     connectedKnowledgeHubs(hub),
   ]);
   if (!entries.length) notFound();
+  const problemJourney = await loadProblemJourney(hub.hub_id, entries);
   const canonicalUrl = `${site.url}/ko/hubs/${hub.slug}`;
   return (
     <main className="topicPage">
@@ -74,7 +77,8 @@ export default async function KnowledgeHubPage({params}: Props) {
         <p>{hub.description_ko}</p>
         <span className="audienceBadge">연결된 지식 {entries.length}개</span>
       </header>
-      {decisionPaths.length ? (
+      {problemJourney ? <ProblemJourney journey={problemJourney} /> : null}
+      {!problemJourney && decisionPaths.length ? (
         <section aria-labelledby="hub-decision-heading" className="hubDecisionSection">
           <div className="hubDecisionIntro">
             <div>
