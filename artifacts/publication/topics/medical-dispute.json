@@ -1,0 +1,1144 @@
+{
+  "schema": "rulelink_public_knowledge_topic_v1",
+  "topic_id": "hub.medical-dispute",
+  "sources": [
+    {
+      "coordinate_id": "coord.medical-dispute.medical-0021",
+      "source_id": "medical_act_ko_0021",
+      "law_name_ko": "의료법",
+      "article_no": "제21조",
+      "title_ko": "기록 열람 등",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%98%EB%A3%8C%EB%B2%95",
+      "source_snapshot_id": "snapshot:bc3ccdfad4f00e1653ca79d0a5cc4e93",
+      "last_verified_at": "2026-07-22T05:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.medical-dispute.medical-0022",
+      "source_id": "medical_act_ko_0022",
+      "law_name_ko": "의료법",
+      "article_no": "제22조",
+      "title_ko": "진료기록부 등",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%98%EB%A3%8C%EB%B2%95",
+      "source_snapshot_id": "snapshot:5bba2aeb82a75e2345be5753eb6d7616",
+      "last_verified_at": "2026-07-22T05:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.medical-dispute.medical-0024-02",
+      "source_id": "medical_act_ko_0024_02",
+      "law_name_ko": "의료법",
+      "article_no": "제24조의2",
+      "title_ko": "의료행위에 관한 설명",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%98%EB%A3%8C%EB%B2%95",
+      "source_snapshot_id": "snapshot:841d1c5881914f0c6a7afe9e3fcad49f",
+      "last_verified_at": "2026-07-22T05:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.medical-dispute.dispute-0027",
+      "source_id": "medical_dispute_ko_0027",
+      "law_name_ko": "의료사고 피해구제 및 의료분쟁 조정 등에 관한 법률",
+      "article_no": "제27조",
+      "title_ko": "조정의 신청",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%98%EB%A3%8C%EC%82%AC%EA%B3%A0%ED%94%BC%ED%95%B4%EA%B5%AC%EC%A0%9C%EB%B0%8F%EC%9D%98%EB%A3%8C%EB%B6%84%EC%9F%81%EC%A1%B0%EC%A0%95%EB%93%B1%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0",
+      "source_snapshot_id": "snapshot:0492713e1fb420d4c573d28d25d44490",
+      "last_verified_at": "2026-07-22T05:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.medical-dispute.dispute-0028",
+      "source_id": "medical_dispute_ko_0028",
+      "law_name_ko": "의료사고 피해구제 및 의료분쟁 조정 등에 관한 법률",
+      "article_no": "제28조",
+      "title_ko": "의료사고의 조사",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%98%EB%A3%8C%EC%82%AC%EA%B3%A0%ED%94%BC%ED%95%B4%EA%B5%AC%EC%A0%9C%EB%B0%8F%EC%9D%98%EB%A3%8C%EB%B6%84%EC%9F%81%EC%A1%B0%EC%A0%95%EB%93%B1%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0",
+      "source_snapshot_id": "snapshot:0cdad8f39537ee883cbc9bab90a28945",
+      "last_verified_at": "2026-07-22T05:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.medical-dispute.dispute-0029",
+      "source_id": "medical_dispute_ko_0029",
+      "law_name_ko": "의료사고 피해구제 및 의료분쟁 조정 등에 관한 법률",
+      "article_no": "제29조",
+      "title_ko": "감정서",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%98%EB%A3%8C%EC%82%AC%EA%B3%A0%ED%94%BC%ED%95%B4%EA%B5%AC%EC%A0%9C%EB%B0%8F%EC%9D%98%EB%A3%8C%EB%B6%84%EC%9F%81%EC%A1%B0%EC%A0%95%EB%93%B1%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0",
+      "source_snapshot_id": "snapshot:227aa05f9cdac541d4faf9ed8c8533f6",
+      "last_verified_at": "2026-07-22T05:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.medical-dispute.dispute-0032",
+      "source_id": "medical_dispute_ko_0032",
+      "law_name_ko": "의료사고 피해구제 및 의료분쟁 조정 등에 관한 법률",
+      "article_no": "제32조",
+      "title_ko": "조정절차의 비공개",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%98%EB%A3%8C%EC%82%AC%EA%B3%A0%ED%94%BC%ED%95%B4%EA%B5%AC%EC%A0%9C%EB%B0%8F%EC%9D%98%EB%A3%8C%EB%B6%84%EC%9F%81%EC%A1%B0%EC%A0%95%EB%93%B1%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0",
+      "source_snapshot_id": "snapshot:b69c7091cba8a5a1b44da88839ccfee0",
+      "last_verified_at": "2026-07-22T05:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.medical-dispute.dispute-0033",
+      "source_id": "medical_dispute_ko_0033",
+      "law_name_ko": "의료사고 피해구제 및 의료분쟁 조정 등에 관한 법률",
+      "article_no": "제33조",
+      "title_ko": "조정결정",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%98%EB%A3%8C%EC%82%AC%EA%B3%A0%ED%94%BC%ED%95%B4%EA%B5%AC%EC%A0%9C%EB%B0%8F%EC%9D%98%EB%A3%8C%EB%B6%84%EC%9F%81%EC%A1%B0%EC%A0%95%EB%93%B1%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0",
+      "source_snapshot_id": "snapshot:a9de4152168695079debf9a5b578fb71",
+      "last_verified_at": "2026-07-22T05:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.medical-dispute.dispute-0036",
+      "source_id": "medical_dispute_ko_0036",
+      "law_name_ko": "의료사고 피해구제 및 의료분쟁 조정 등에 관한 법률",
+      "article_no": "제36조",
+      "title_ko": "조정결과의 통지",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%98%EB%A3%8C%EC%82%AC%EA%B3%A0%ED%94%BC%ED%95%B4%EA%B5%AC%EC%A0%9C%EB%B0%8F%EC%9D%98%EB%A3%8C%EB%B6%84%EC%9F%81%EC%A1%B0%EC%A0%95%EB%93%B1%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0",
+      "source_snapshot_id": "snapshot:687d7537958c135aac67cb3a39def3dd",
+      "last_verified_at": "2026-07-22T05:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.medical-dispute.dispute-0038",
+      "source_id": "medical_dispute_ko_0038",
+      "law_name_ko": "의료사고 피해구제 및 의료분쟁 조정 등에 관한 법률",
+      "article_no": "제38조",
+      "title_ko": "감정서 등의 열람·복사",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%98%EB%A3%8C%EC%82%AC%EA%B3%A0%ED%94%BC%ED%95%B4%EA%B5%AC%EC%A0%9C%EB%B0%8F%EC%9D%98%EB%A3%8C%EB%B6%84%EC%9F%81%EC%A1%B0%EC%A0%95%EB%93%B1%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0",
+      "source_snapshot_id": "snapshot:6abca08da6e59f12b42ac7484bed2b63",
+      "last_verified_at": "2026-07-22T05:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.medical-dispute.dispute-0040",
+      "source_id": "medical_dispute_ko_0040",
+      "law_name_ko": "의료사고 피해구제 및 의료분쟁 조정 등에 관한 법률",
+      "article_no": "제40조",
+      "title_ko": "소송과의 관계",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%98%EB%A3%8C%EC%82%AC%EA%B3%A0%ED%94%BC%ED%95%B4%EA%B5%AC%EC%A0%9C%EB%B0%8F%EC%9D%98%EB%A3%8C%EB%B6%84%EC%9F%81%EC%A1%B0%EC%A0%95%EB%93%B1%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0",
+      "source_snapshot_id": "snapshot:0f60626fd7b62cae58200c2b745ef746",
+      "last_verified_at": "2026-07-22T05:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.medical-dispute.dispute-0042",
+      "source_id": "medical_dispute_ko_0042",
+      "law_name_ko": "의료사고 피해구제 및 의료분쟁 조정 등에 관한 법률",
+      "article_no": "제42조",
+      "title_ko": "시효의 중단",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%98%EB%A3%8C%EC%82%AC%EA%B3%A0%ED%94%BC%ED%95%B4%EA%B5%AC%EC%A0%9C%EB%B0%8F%EC%9D%98%EB%A3%8C%EB%B6%84%EC%9F%81%EC%A1%B0%EC%A0%95%EB%93%B1%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0",
+      "source_snapshot_id": "snapshot:eb75654b0ccaee5b7bd2f9601b15e49b",
+      "last_verified_at": "2026-07-22T05:30:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.medical-dispute.dispute-0050",
+      "source_id": "medical_dispute_ko_0050",
+      "law_name_ko": "의료사고 피해구제 및 의료분쟁 조정 등에 관한 법률",
+      "article_no": "제50조",
+      "title_ko": "조정비용 등",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%98%EB%A3%8C%EC%82%AC%EA%B3%A0%ED%94%BC%ED%95%B4%EA%B5%AC%EC%A0%9C%EB%B0%8F%EC%9D%98%EB%A3%8C%EB%B6%84%EC%9F%81%EC%A1%B0%EC%A0%95%EB%93%B1%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0",
+      "source_snapshot_id": "snapshot:9a6d4a6c9974ee96f14ecc682f9255cc",
+      "last_verified_at": "2026-07-22T05:30:00+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.medical-dispute",
+      "slug": "medical-dispute",
+      "title_ko": "의료사고·의료분쟁 대응",
+      "description_ko": "예상하지 못한 치료 결과가 발생했을 때 진료기록과 설명·동의 자료를 확보하고 의료분쟁 조정의 개시·감정·결정·소송 전환까지 판단하는 순서를 연결합니다.",
+      "content_ids": [
+        "content.medical-dispute-first-response",
+        "content.medical-dispute-record-copy",
+        "content.medical-dispute-family-record-access",
+        "content.medical-dispute-explanation-consent",
+        "content.medical-dispute-mediation-application",
+        "content.medical-dispute-ordinary-vs-automatic",
+        "content.medical-dispute-appraisal-process",
+        "content.medical-dispute-report-and-decision",
+        "content.medical-dispute-mediation-vs-lawsuit",
+        "content.medical-dispute-cost-and-submission-checklist"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.medical-dispute.record-access",
+      "title_ko": "환자는 본인 진료기록의 열람·사본을 요구할 수 있음",
+      "proposition_ko": "환자는 본인에 관한 진료기록의 전부 또는 일부를 열람하거나 사본 발급 등으로 확인해 달라고 요구할 수 있습니다.",
+      "norm": {
+        "actor_ko": "본인의 진료 경과와 의료행위 내용을 확인하려는 환자",
+        "conditions_ko": "환자가 본인 기록의 범위와 진료기간을 특정해 의료기관에 요청하는 경우",
+        "legal_effect_ko": "의료기관은 정당한 사유가 없으면 요청을 거부해서는 안 되며 추가기재·수정 전후 기록도 확인 대상에 포함됩니다."
+      },
+      "source_coordinate_ids": [
+        "coord.medical-dispute.medical-0021"
+      ]
+    },
+    {
+      "rule_id": "rule.medical-dispute.representative-access",
+      "title_ko": "가족·대리인의 기록 요청은 동의와 증명서류가 필요",
+      "proposition_ko": "환자가 아닌 사람의 진료기록 열람은 원칙적으로 제한되고, 법정 가족·대리인 등이 동의서·친족관계·대리권 등 법정 요건을 갖춘 경우에 허용됩니다.",
+      "norm": {
+        "actor_ko": "환자의 가족, 법정대리인 또는 환자가 지정한 대리인",
+        "conditions_ko": "환자가 직접 요청하기 어렵거나 사망·의식불명 등으로 동의를 받을 수 없는 경우",
+        "legal_effect_ko": "요청인의 지위와 환자 상태에 맞는 증명서류를 갖춰야 하며 가족이라는 이유만으로 모든 기록을 바로 받을 수 있는 것은 아닙니다."
+      },
+      "source_coordinate_ids": [
+        "coord.medical-dispute.medical-0021"
+      ]
+    },
+    {
+      "rule_id": "rule.medical-dispute.record-integrity",
+      "title_ko": "진료기록은 상세히 작성·보존하고 거짓 작성이나 고의 수정 금지",
+      "proposition_ko": "의료인은 주요 증상·진단·치료 내용과 의견을 상세히 기록·서명하고, 기록을 거짓으로 작성하거나 고의로 사실과 다르게 추가기재·수정해서는 안 됩니다.",
+      "norm": {
+        "actor_ko": "환자를 진료한 의료인과 진료기록을 보존하는 의료기관",
+        "conditions_ko": "진료 경과·처치·검사·투약 기록의 누락이나 사후 수정 여부가 문제되는 경우",
+        "legal_effect_ko": "원본과 추가기재·수정 이력을 함께 확보해 시간순으로 대조할 수 있고 의료기관은 법정 방식으로 기록을 보존해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.medical-dispute.medical-0022"
+      ]
+    },
+    {
+      "rule_id": "rule.medical-dispute.explanation-consent",
+      "title_ko": "중대한 수술·수혈·전신마취는 설명 후 서면동의가 원칙",
+      "proposition_ko": "생명·신체에 중대한 위해 우려가 있는 수술·수혈·전신마취는 진단명, 필요성·방법, 참여 의사, 전형적 후유증·부작용, 준수사항을 설명하고 서면동의를 받아야 합니다.",
+      "norm": {
+        "actor_ko": "수술·수혈·전신마취를 받을 환자와 이를 시행하는 의사·치과의사·한의사",
+        "conditions_ko": "응급 예외가 아닌 상태에서 중대한 의료행위를 시행하려는 경우",
+        "legal_effect_ko": "환자는 동의서 사본을 요구할 수 있고 주요 시술방법이나 주된 의사가 바뀌면 변경 사유와 내용을 서면으로 고지받아야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.medical-dispute.medical-0024-02"
+      ]
+    },
+    {
+      "rule_id": "rule.medical-dispute.mediation-application",
+      "title_ko": "의료분쟁 당사자는 조정중재원에 조정을 신청 가능",
+      "proposition_ko": "의료분쟁 당사자나 대리인은 한국의료분쟁조정중재원에 조정을 신청할 수 있으며 원인행위 종료일부터 10년, 손해와 가해자를 안 날부터 3년 안에 신청해야 합니다.",
+      "norm": {
+        "actor_ko": "의료사고 피해를 주장하는 환자·가족 또는 의료기관",
+        "conditions_ko": "같은 분쟁에 이미 소송이나 다른 법정 조정이 계속 중이지 않고 신청기간 안인 경우",
+        "legal_effect_ko": "접수되면 상대방에게 신청서가 송달되고 일반사건은 상대방의 참여 의사, 중대사건은 자동개시 요건에 따라 절차 개시 여부가 정해집니다."
+      },
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0027"
+      ]
+    },
+    {
+      "rule_id": "rule.medical-dispute.ordinary-commencement",
+      "title_ko": "일반 사건은 상대방이 14일 안에 참여 의사를 밝혀야 개시",
+      "proposition_ko": "일반 의료분쟁 조정은 피신청인이 신청서를 받은 날부터 14일 안에 조정에 응하겠다는 의사를 통지해야 절차가 개시됩니다.",
+      "norm": {
+        "actor_ko": "일반 의료분쟁의 신청인과 피신청 의료기관",
+        "conditions_ko": "사망·1개월 이상 의식불명·법정 중증장애에 해당하지 않는 사건인 경우",
+        "legal_effect_ko": "피신청인이 14일 안에 참여 의사를 밝히지 않으면 원장은 조정신청을 각하합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0027"
+      ]
+    },
+    {
+      "rule_id": "rule.medical-dispute.automatic-commencement",
+      "title_ko": "사망 등 중대 의료사고는 상대방 동의 없이 조정절차 자동개시",
+      "proposition_ko": "의료사고로 사망하거나 1개월 이상 의식불명, 법정 중증장애에 해당하면 피신청인의 참여 동의가 없어도 조정절차를 지체 없이 개시합니다.",
+      "norm": {
+        "actor_ko": "중대 의료사고 피해자·유족과 피신청 의료기관",
+        "conditions_ko": "법정 자동개시 사유가 있고 신청 각하·이의 사유에 해당하지 않는 경우",
+        "legal_effect_ko": "신청서가 송달된 날을 개시일로 보며 피신청인은 법정 사유가 있으면 송달일부터 14일 안에 이의신청할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0027"
+      ]
+    },
+    {
+      "rule_id": "rule.medical-dispute.investigation-appraisal",
+      "title_ko": "감정부는 자료·진술·현장조사로 과실과 인과관계를 감정",
+      "proposition_ko": "감정부는 당사자와 의료기관에 자료·물건 제출과 설명을 요구하고 필요한 경우 현장 조사·열람·복사를 할 수 있습니다.",
+      "norm": {
+        "actor_ko": "조정절차의 신청인·피신청인·의료기관과 감정부",
+        "conditions_ko": "의료행위 선택 이유, 당시 환자 상태, 과실·인과관계와 후유장애를 판단할 자료가 필요한 경우",
+        "legal_effect_ko": "감정서에는 사실조사 결과, 과실·인과관계, 후유장애 정도 등이 기재되고 원칙적으로 개시일부터 60일 안에 작성되며 한 차례 30일까지 연장될 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0028",
+        "coord.medical-dispute.dispute-0029"
+      ]
+    },
+    {
+      "rule_id": "rule.medical-dispute.procedure-privacy-access",
+      "title_ko": "조정은 비공개지만 당사자는 감정서 등을 열람·복사 가능",
+      "proposition_ko": "조정절차는 원칙적으로 공개하지 않지만 신청인과 피신청인은 감정서·조정결정서·조정조서와 본인이 제출한 자료의 열람·복사를 신청할 수 있습니다.",
+      "norm": {
+        "actor_ko": "의료분쟁 조정의 신청인 또는 피신청인",
+        "conditions_ko": "감정 결과와 조정안의 근거를 확인하거나 후속 대응 자료가 필요한 경우",
+        "legal_effect_ko": "사건 당사자는 법정 범위의 문서를 확보해 조정결정 검토와 소송 등 후속 절차에 활용할 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0032",
+        "coord.medical-dispute.dispute-0038"
+      ]
+    },
+    {
+      "rule_id": "rule.medical-dispute.decision-and-effect",
+      "title_ko": "조정결정은 원칙 90일, 송달 후 15일 내 의사표시",
+      "proposition_ko": "조정부는 원칙적으로 개시일부터 90일 안에 결정하고 한 차례 30일까지 연장할 수 있으며, 당사자는 결정서를 받은 날부터 15일 안에 동의 여부를 알려야 합니다.",
+      "norm": {
+        "actor_ko": "조정결정서를 송달받은 신청인과 피신청인",
+        "conditions_ko": "감정과 조정심리를 거쳐 조정결정이 내려진 경우",
+        "legal_effect_ko": "15일 안에 의사표시가 없으면 동의한 것으로 보고, 쌍방이 동의하거나 동의한 것으로 보면 조정이 성립해 재판상 화해와 같은 효력이 생깁니다."
+      },
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0033",
+        "coord.medical-dispute.dispute-0036"
+      ]
+    },
+    {
+      "rule_id": "rule.medical-dispute.lawsuit-and-limitation",
+      "title_ko": "조정 없이 소송 가능, 조정신청은 시효중단 효과",
+      "proposition_ko": "의료분쟁 소송은 조정을 거치지 않고도 제기할 수 있고 조정신청에는 시효중단 효과가 있습니다.",
+      "norm": {
+        "actor_ko": "조정과 민사소송 중 구제경로를 선택하는 의료분쟁 당사자",
+        "conditions_ko": "청구 시효가 임박했거나 조정 불성립·취하·각하 뒤 소송을 검토하는 경우",
+        "legal_effect_ko": "조정신청이 취하·각하되면 1개월 안에 소를 제기하지 않을 경우 시효중단 효과를 유지하지 못할 수 있으므로 날짜를 별도로 관리해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0040",
+        "coord.medical-dispute.dispute-0042"
+      ]
+    },
+    {
+      "rule_id": "rule.medical-dispute.fees",
+      "title_ko": "조정·중재 신청에는 법정 수수료가 부과될 수 있음",
+      "proposition_ko": "조정중재원은 조정·중재 신청인에게 수수료를 납부하게 할 수 있고 외부 의뢰 감정에는 별도 비용을 징수할 수 있습니다.",
+      "norm": {
+        "actor_ko": "의료분쟁 조정 또는 중재를 신청하려는 사람",
+        "conditions_ko": "신청 전 예상 비용과 면제·환급 여부를 확인하는 경우",
+        "legal_effect_ko": "신청인은 사건 유형과 청구액에 따른 수수료·감정비용의 금액과 납부방법을 현재 안내 기준으로 확인해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0050"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.medical-dispute.records",
+      "question_ko": "진료기록·검사결과·영상·동의서 사본을 확보했나요?",
+      "decision_fact_ko": "요청한 기록 종류, 진료기간, 발급일, 누락·수정 이력",
+      "when_true_ko": "원본 순서를 유지해 증상·설명·처치·결과의 시간표를 만듭니다.",
+      "when_false_ko": "우선 본인 기록 열람·사본 발급을 서면으로 요청합니다.",
+      "rule_ids": [
+        "rule.medical-dispute.record-access",
+        "rule.medical-dispute.record-integrity"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.medical-0021",
+        "coord.medical-dispute.medical-0022"
+      ]
+    },
+    {
+      "scenario_id": "scenario.medical-dispute.representative",
+      "question_ko": "환자 본인이 요청할 수 있나요?",
+      "decision_fact_ko": "환자의 의사능력·생존 여부, 요청인 관계, 동의서·위임장·관계증명",
+      "when_true_ko": "본인 요청이면 대상 기록과 기간을 특정합니다.",
+      "when_false_ko": "가족·대리인 요청에 필요한 법정 서류와 예외를 확인합니다.",
+      "rule_ids": [
+        "rule.medical-dispute.record-access",
+        "rule.medical-dispute.representative-access"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.medical-0021"
+      ]
+    },
+    {
+      "scenario_id": "scenario.medical-dispute.consent",
+      "question_ko": "수술·수혈·전신마취 전에 법정 설명과 서면동의가 있었나요?",
+      "decision_fact_ko": "진단명, 방법, 참여 의사, 부작용, 동의 시점, 변경 고지",
+      "when_true_ko": "동의서와 실제 시행 내용·참여 의사를 대조합니다.",
+      "when_false_ko": "응급 예외인지, 설명·동의 누락이 있었는지 기록으로 확인합니다.",
+      "rule_ids": [
+        "rule.medical-dispute.explanation-consent"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.medical-0024-02"
+      ]
+    },
+    {
+      "scenario_id": "scenario.medical-dispute.filing-period",
+      "question_ko": "원인행위 종료일부터 10년, 손해·가해자를 안 날부터 3년 안인가요?",
+      "decision_fact_ko": "의료행위 종료일, 손해 발생·인지일, 의료기관 특정일",
+      "when_true_ko": "조정신청 가능기간과 민사상 시효를 함께 검토합니다.",
+      "when_false_ko": "기간 도과 위험이 있으면 조정 외 소송 등 구제수단을 즉시 확인합니다.",
+      "rule_ids": [
+        "rule.medical-dispute.mediation-application",
+        "rule.medical-dispute.lawsuit-and-limitation"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0027",
+        "coord.medical-dispute.dispute-0042"
+      ]
+    },
+    {
+      "scenario_id": "scenario.medical-dispute.commencement",
+      "question_ko": "사망·1개월 이상 의식불명·법정 중증장애 사건인가요?",
+      "decision_fact_ko": "사망 여부, 의식불명 기간, 장애 정도와 진단자료",
+      "when_true_ko": "자동개시 요건과 피신청인의 이의 가능성을 봅니다.",
+      "when_false_ko": "일반 절차에서 피신청인의 14일 내 참여 통지를 확인합니다.",
+      "rule_ids": [
+        "rule.medical-dispute.ordinary-commencement",
+        "rule.medical-dispute.automatic-commencement"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0027"
+      ]
+    },
+    {
+      "scenario_id": "scenario.medical-dispute.appraisal",
+      "question_ko": "과실·인과관계 판단에 필요한 자료를 빠짐없이 제출했나요?",
+      "decision_fact_ko": "진료기록, 영상, 검사치, 설명자료, 전후 병력, 후유장애 자료",
+      "when_true_ko": "감정부 조사와 감정서 쟁점을 항목별로 정리합니다.",
+      "when_false_ko": "누락자료와 쟁점 불명확으로 감정이 지연·불충분해질 수 있습니다.",
+      "rule_ids": [
+        "rule.medical-dispute.investigation-appraisal"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0028",
+        "coord.medical-dispute.dispute-0029"
+      ]
+    },
+    {
+      "scenario_id": "scenario.medical-dispute.report-access",
+      "question_ko": "감정서와 조정결정서를 받아 검토했나요?",
+      "decision_fact_ko": "열람·복사 신청일, 수령 문서, 과실·인과관계·소수의견",
+      "when_true_ko": "결정 수락 여부와 후속 대응을 문서 근거로 판단합니다.",
+      "when_false_ko": "조정 비공개와 당사자 문서열람권을 구분해 신청합니다.",
+      "rule_ids": [
+        "rule.medical-dispute.procedure-privacy-access"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0032",
+        "coord.medical-dispute.dispute-0038"
+      ]
+    },
+    {
+      "scenario_id": "scenario.medical-dispute.decision-response",
+      "question_ko": "조정결정서를 받은 지 15일이 지나지 않았나요?",
+      "decision_fact_ko": "송달일, 동의·거부 통지일, 결정 내용",
+      "when_true_ko": "15일 안에 동의 여부를 명시적으로 통지합니다.",
+      "when_false_ko": "무응답은 동의로 간주될 수 있으므로 즉시 송달일을 확인합니다.",
+      "rule_ids": [
+        "rule.medical-dispute.decision-and-effect"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0033",
+        "coord.medical-dispute.dispute-0036"
+      ]
+    },
+    {
+      "scenario_id": "scenario.medical-dispute.lawsuit",
+      "question_ko": "이미 같은 분쟁 소송이 제기됐거나 조정이 취하·각하됐나요?",
+      "decision_fact_ko": "소 제기일, 조정 신청·취하·각하일, 시효 만료 예상일",
+      "when_true_ko": "조정과 소송의 중복·시효 효과를 날짜순으로 관리합니다.",
+      "when_false_ko": "구제경로 선택 전에 청구기간과 증거보전부터 확인합니다.",
+      "rule_ids": [
+        "rule.medical-dispute.mediation-application",
+        "rule.medical-dispute.lawsuit-and-limitation"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0027",
+        "coord.medical-dispute.dispute-0040",
+        "coord.medical-dispute.dispute-0042"
+      ]
+    },
+    {
+      "scenario_id": "scenario.medical-dispute.cost",
+      "question_ko": "신청 수수료와 감정비용을 현재 기준으로 확인했나요?",
+      "decision_fact_ko": "청구액, 사건 유형, 수수료, 감정비, 면제·환급 조건",
+      "when_true_ko": "비용과 예상 절차를 반영해 신청 범위를 정합니다.",
+      "when_false_ko": "법률에 근거가 있어도 실제 금액은 최신 안내를 별도로 확인해야 합니다.",
+      "rule_ids": [
+        "rule.medical-dispute.fees"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0050"
+      ]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.medical-dispute-first-response",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:30:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "medical-dispute-first-response",
+      "title_ko": "의료사고가 의심되면 무엇부터 확보해야 하나요?",
+      "one_line_answer_ko": "진료기록·검사결과·영상·동의서·비용자료를 먼저 확보하고 증상·설명·처치·결과를 시간순으로 정리해야 합니다.",
+      "audience_situation_ko": "치료 뒤 예상하지 못한 악화·장애·사망이 발생해 의료사고 가능성을 확인하려는 환자·가족",
+      "key_points_ko": [
+        "기억보다 원기록을 먼저 확보합니다.",
+        "기록의 누락·추가기재·수정 이력을 함께 봅니다.",
+        "현재 치료와 증거 확보를 분리하지 않습니다."
+      ],
+      "action_steps_ko": [
+        "진료과·날짜별 기록 목록을 만듭니다.",
+        "진료기록·간호기록·검사·영상·동의서 사본을 요청합니다.",
+        "영수증·처방전·후속 진료자료를 보존합니다.",
+        "사건 경과와 의료진 설명을 날짜순으로 적습니다."
+      ],
+      "facts_to_check_ko": [
+        "최초 증상",
+        "각 의료행위 시각",
+        "검사결과",
+        "설명·동의",
+        "악화 시점",
+        "후속 치료",
+        "현재 상태"
+      ],
+      "caution_ko": "기록 확보만으로 의료과실이나 인과관계가 자동 인정되는 것은 아닙니다.",
+      "search_intents_ko": [
+        "의료사고가 의심되면 무엇부터 확보해야 하나요?",
+        "의료분쟁 first-response",
+        "치료 뒤 예상하지 못한 악화·장애·사망이 발생해 의료사고 가능성을 확인하려는 환자·가족"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "증거 묶음의 출발점",
+          "paragraphs_ko": [
+            "의료분쟁은 치료 전 상태, 선택한 의료행위, 설명, 시행 과정과 결과가 연결돼야 판단할 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "현재 치료를 우선합니다",
+          "paragraphs_ko": [
+            "응급·후속 치료가 필요한 경우 증거 확보 때문에 치료를 미루지 말고 보호자나 대리인을 통해 병행합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.medical-dispute.record-access",
+        "rule.medical-dispute.record-integrity"
+      ],
+      "scenario_ids": [
+        "scenario.medical-dispute.records"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.medical-0021",
+        "coord.medical-dispute.medical-0022"
+      ],
+      "hub_ids": [
+        "hub.medical-dispute"
+      ],
+      "related_content_ids": [
+        "content.medical-dispute-record-copy",
+        "content.medical-dispute-mediation-application"
+      ]
+    },
+    {
+      "content_id": "content.medical-dispute-record-copy",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:30:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "medical-dispute-record-copy",
+      "title_ko": "병원에 내 진료기록 사본을 요구할 수 있나요?",
+      "one_line_answer_ko": "환자는 본인의 진료기록 전부 또는 일부의 열람·사본 발급을 요구할 수 있고 병원은 정당한 사유 없이 거부할 수 없습니다.",
+      "audience_situation_ko": "진료경과를 확인하거나 다른 병원·전문가에게 검토받기 위해 자료가 필요한 환자",
+      "key_points_ko": [
+        "대상 기간과 기록 종류를 특정합니다.",
+        "추가기재·수정 전 원본도 포함해 요청합니다.",
+        "발급 목록과 실제 수령분을 대조합니다."
+      ],
+      "action_steps_ko": [
+        "진료기간을 확정합니다.",
+        "의무기록·간호기록·검사·영상·동의서를 구분해 신청합니다.",
+        "신청서와 수수료 영수증을 보존합니다.",
+        "누락 항목은 다시 서면 요청합니다."
+      ],
+      "facts_to_check_ko": [
+        "환자 본인 여부",
+        "진료기간",
+        "요청 기록 목록",
+        "발급일",
+        "누락 항목",
+        "수정 이력"
+      ],
+      "caution_ko": "영상자료·검사 원자료와 진료기록 사본은 병원별 신청창구와 매체가 다를 수 있습니다.",
+      "search_intents_ko": [
+        "병원에 내 진료기록 사본을 요구할 수 있나요?",
+        "의료분쟁 record-copy",
+        "진료경과를 확인하거나 다른 병원·전문가에게 검토받기 위해 자료가 필요한 환자"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "본인의 열람권",
+          "paragraphs_ko": [
+            "의료법은 환자가 본인 기록의 전부 또는 일부를 확인할 수 있도록 하고 정당한 이유 없는 거절을 제한합니다."
+          ]
+        },
+        {
+          "heading_ko": "목록으로 확인합니다",
+          "paragraphs_ko": [
+            "받은 문서의 페이지 수와 검사·영상 목록을 기록해 이후 감정자료의 누락을 줄입니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.medical-dispute.record-access",
+        "rule.medical-dispute.record-integrity"
+      ],
+      "scenario_ids": [
+        "scenario.medical-dispute.records"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.medical-0021",
+        "coord.medical-dispute.medical-0022"
+      ],
+      "hub_ids": [
+        "hub.medical-dispute"
+      ],
+      "related_content_ids": [
+        "content.medical-dispute-first-response",
+        "content.medical-dispute-family-record-access"
+      ]
+    },
+    {
+      "content_id": "content.medical-dispute-family-record-access",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:30:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "medical-dispute-family-record-access",
+      "title_ko": "환자가 의식이 없거나 사망하면 가족이 진료기록을 받을 수 있나요?",
+      "one_line_answer_ko": "가능할 수 있지만 요청인의 관계, 환자 동의 가능 여부와 사망·의식불명 상태에 맞는 동의서·가족관계·대리권 등 법정 서류가 필요합니다.",
+      "audience_situation_ko": "환자가 직접 신청할 수 없어 가족 또는 대리인이 진료기록을 확보하려는 경우",
+      "key_points_ko": [
+        "가족이라는 사실만으로 충분하지 않습니다.",
+        "환자의 상태와 요청인 순위를 확인합니다.",
+        "병원이 요구하는 법정 증명서류를 준비합니다."
+      ],
+      "action_steps_ko": [
+        "환자의 생존·의식·의사결정 상태를 확인합니다.",
+        "요청인의 가족·대리 관계를 증명합니다.",
+        "동의서·위임장 제출 가능 여부를 봅니다.",
+        "거부 시 부족한 서류와 법적 근거를 서면으로 요청합니다."
+      ],
+      "facts_to_check_ko": [
+        "환자 상태",
+        "요청인 관계",
+        "동의 가능 여부",
+        "가족관계증명",
+        "위임장·대리권",
+        "요청 기록 범위"
+      ],
+      "caution_ko": "배우자·직계가족·형제자매의 허용 범위와 우선관계는 구체적 상황에 따라 다릅니다.",
+      "search_intents_ko": [
+        "환자가 의식이 없거나 사망하면 가족이 진료기록을 받을 수 있나요?",
+        "의료분쟁 family-record-access",
+        "환자가 직접 신청할 수 없어 가족 또는 대리인이 진료기록을 확보하려는 경우"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "본인 외 열람은 예외 구조",
+          "paragraphs_ko": [
+            "진료정보 보호가 원칙이므로 가족·대리인은 의료법이 정한 사유와 서류를 갖춰야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "상태별 서류",
+          "paragraphs_ko": [
+            "사망, 의식불명, 미성년, 법정대리 상황을 구분해 준비해야 불필요한 재방문을 줄일 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.medical-dispute.representative-access"
+      ],
+      "scenario_ids": [
+        "scenario.medical-dispute.representative"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.medical-0021"
+      ],
+      "hub_ids": [
+        "hub.medical-dispute"
+      ],
+      "related_content_ids": [
+        "content.medical-dispute-record-copy",
+        "content.medical-dispute-first-response"
+      ]
+    },
+    {
+      "content_id": "content.medical-dispute-explanation-consent",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:30:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "medical-dispute-explanation-consent",
+      "title_ko": "수술 전 설명과 동의서에는 무엇이 들어가야 하나요?",
+      "one_line_answer_ko": "중대한 수술·수혈·전신마취에서는 진단명, 필요성·방법, 참여 의사, 전형적 후유증·부작용, 준수사항을 설명하고 서면동의를 받는 것이 원칙입니다.",
+      "audience_situation_ko": "수술 결과가 예상과 달라 사전 설명과 실제 시행 내용을 확인하려는 환자·가족",
+      "key_points_ko": [
+        "동의서 서명만이 아니라 설명 항목을 봅니다.",
+        "주된 의사와 시행방법의 변경을 확인합니다.",
+        "동의서 사본을 요구할 수 있습니다."
+      ],
+      "action_steps_ko": [
+        "동의서와 설명자료 사본을 받습니다.",
+        "설명자·주된 시술자 성명을 확인합니다.",
+        "예정·실제 방법과 참여 의사를 대조합니다.",
+        "변경 고지와 응급 예외 자료를 확인합니다."
+      ],
+      "facts_to_check_ko": [
+        "진단명",
+        "시술 필요성·방법",
+        "설명의사",
+        "주된 시술자",
+        "부작용·후유증",
+        "환자 준수사항",
+        "동의 시점"
+      ],
+      "caution_ko": "설명의무 위반 여부와 의료행위 자체의 과실 여부는 서로 다른 판단축입니다.",
+      "search_intents_ko": [
+        "수술 전 설명과 동의서에는 무엇이 들어가야 하나요?",
+        "의료분쟁 explanation-consent",
+        "수술 결과가 예상과 달라 사전 설명과 실제 시행 내용을 확인하려는 환자·가족"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법정 설명항목",
+          "paragraphs_ko": [
+            "의료법은 중대한 수술 등에 대해 설명·서면동의와 변경 고지를 규정합니다."
+          ]
+        },
+        {
+          "heading_ko": "실제 시행과 대조",
+          "paragraphs_ko": [
+            "예정된 방법·의사와 실제 기록을 비교해야 동의 범위를 벗어난 변경이 있었는지 확인할 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.medical-dispute.explanation-consent"
+      ],
+      "scenario_ids": [
+        "scenario.medical-dispute.consent"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.medical-0024-02"
+      ],
+      "hub_ids": [
+        "hub.medical-dispute"
+      ],
+      "related_content_ids": [
+        "content.medical-dispute-first-response",
+        "content.medical-dispute-mediation-application"
+      ]
+    },
+    {
+      "content_id": "content.medical-dispute-mediation-application",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:30:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "medical-dispute-mediation-application",
+      "title_ko": "의료분쟁 조정은 언제, 어떻게 신청하나요?",
+      "one_line_answer_ko": "당사자나 대리인은 조정중재원에 신청할 수 있으며 원인행위 종료일부터 10년, 손해와 가해자를 안 날부터 3년의 신청기간을 모두 확인해야 합니다.",
+      "audience_situation_ko": "소송 전 의료감정과 조정을 통해 분쟁 해결을 시도하려는 환자·유족",
+      "key_points_ko": [
+        "같은 분쟁의 소송·다른 조정 계속 여부를 봅니다.",
+        "두 신청기간을 각각 계산합니다.",
+        "피신청 의료기관을 정확히 특정합니다."
+      ],
+      "action_steps_ko": [
+        "의료행위와 손해의 시간표를 만듭니다.",
+        "신청 상대 의료기관·의료인을 확인합니다.",
+        "청구취지·금액·근거자료를 정리합니다.",
+        "수수료와 제출방법을 최신 안내로 확인합니다."
+      ],
+      "facts_to_check_ko": [
+        "원인행위 종료일",
+        "손해 인지일",
+        "가해자 인지일",
+        "피신청인",
+        "기존 소송·조정",
+        "청구금액"
+      ],
+      "caution_ko": "조정 신청 가능기간과 민사 손해배상청구권의 시효 판단을 같은 것으로 단정하면 안 됩니다.",
+      "search_intents_ko": [
+        "의료분쟁 조정은 언제, 어떻게 신청하나요?",
+        "의료분쟁 mediation-application",
+        "소송 전 의료감정과 조정을 통해 분쟁 해결을 시도하려는 환자·유족"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "신청 전 중복절차 확인",
+          "paragraphs_ko": [
+            "이미 같은 사건 소송이나 소비자분쟁조정이 계속 중이면 조정신청이 각하될 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "기간은 두 축",
+          "paragraphs_ko": [
+            "원인행위 종료일부터의 장기기간과 손해·가해자 인지일부터의 기간을 모두 충족해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.medical-dispute.mediation-application",
+        "rule.medical-dispute.fees"
+      ],
+      "scenario_ids": [
+        "scenario.medical-dispute.filing-period",
+        "scenario.medical-dispute.cost"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0027",
+        "coord.medical-dispute.dispute-0050"
+      ],
+      "hub_ids": [
+        "hub.medical-dispute"
+      ],
+      "related_content_ids": [
+        "content.medical-dispute-ordinary-vs-automatic",
+        "content.medical-dispute-mediation-vs-lawsuit"
+      ]
+    },
+    {
+      "content_id": "content.medical-dispute-ordinary-vs-automatic",
+      "content_type": "comparison_guide",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:30:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "medical-dispute-ordinary-vs-automatic",
+      "title_ko": "병원이 조정에 동의하지 않으면 의료분쟁 조정이 바로 끝나나요?",
+      "one_line_answer_ko": "일반 사건은 병원이 14일 안에 참여 의사를 밝혀야 하지만 사망·1개월 이상 의식불명·법정 중증장애 사건은 동의 없이 자동개시될 수 있습니다.",
+      "audience_situation_ko": "의료기관이 조정에 응하지 않을 가능성과 자동개시 여부를 확인하려는 피해자·유족",
+      "key_points_ko": [
+        "일반개시와 자동개시를 구분합니다.",
+        "자동개시의 중대결과 요건을 의료자료로 확인합니다.",
+        "이의신청 사유와 14일 기한을 봅니다."
+      ],
+      "action_steps_ko": [
+        "신청서 송달일을 확인합니다.",
+        "환자 결과가 자동개시 요건인지 자료를 붙입니다.",
+        "일반 사건은 참여 통지 여부를 확인합니다.",
+        "각하·이의 결정과 후속 소송 기한을 기록합니다."
+      ],
+      "facts_to_check_ko": [
+        "사망 여부",
+        "의식불명 기간",
+        "장애 정도",
+        "신청서 송달일",
+        "참여 통지",
+        "이의신청"
+      ],
+      "caution_ko": "중대한 피해라는 일상적 표현과 법정 자동개시 요건은 일치하지 않을 수 있습니다.",
+      "search_intents_ko": [
+        "병원이 조정에 동의하지 않으면 의료분쟁 조정이 바로 끝나나요?",
+        "의료분쟁 ordinary-vs-automatic",
+        "의료기관이 조정에 응하지 않을 가능성과 자동개시 여부를 확인하려는 피해자·유족"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "일반 사건",
+          "paragraphs_ko": [
+            "피신청인이 송달일부터 14일 안에 참여 의사를 밝히지 않으면 일반 조정은 개시되지 않고 각하됩니다."
+          ]
+        },
+        {
+          "heading_ko": "자동개시 사건",
+          "paragraphs_ko": [
+            "법정 중대결과가 있으면 동의 없이 개시되지만 허위신청 등 각하·이의 사유는 별도로 존재합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.medical-dispute.ordinary-commencement",
+        "rule.medical-dispute.automatic-commencement"
+      ],
+      "scenario_ids": [
+        "scenario.medical-dispute.commencement"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0027"
+      ],
+      "hub_ids": [
+        "hub.medical-dispute"
+      ],
+      "related_content_ids": [
+        "content.medical-dispute-mediation-application",
+        "content.medical-dispute-appraisal-process"
+      ]
+    },
+    {
+      "content_id": "content.medical-dispute-appraisal-process",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:30:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "medical-dispute-appraisal-process",
+      "title_ko": "의료분쟁 감정은 무엇을 조사하고 얼마나 걸리나요?",
+      "one_line_answer_ko": "감정부는 진료자료·당사자 진술·의료기관 설명과 필요시 현장조사를 바탕으로 과실·인과관계·후유장애를 검토하며 감정서는 원칙 60일, 한 차례 30일까지 연장될 수 있습니다.",
+      "audience_situation_ko": "의료전문가 감정의 절차·자료·판단항목과 예상기간을 알고 싶은 조정 당사자",
+      "key_points_ko": [
+        "기록만이 아니라 당시 선택 이유도 조사합니다.",
+        "과실·인과관계·후유장애를 구분합니다.",
+        "누락자료와 상반된 사실을 명시합니다."
+      ],
+      "action_steps_ko": [
+        "쟁점별 제출자료 목록을 만듭니다.",
+        "전후 진료기록과 기왕증 자료를 함께 냅니다.",
+        "의료기관 설명과 다른 사실을 특정합니다.",
+        "감정서 수령 뒤 사실오류·누락을 점검합니다."
+      ],
+      "facts_to_check_ko": [
+        "당시 환자 상태",
+        "선택한 의료행위 이유",
+        "검사·영상",
+        "기왕증",
+        "악화·장애",
+        "자료 제출일"
+      ],
+      "caution_ko": "감정서는 조정의 핵심 자료이지만 법원의 판단을 자동으로 구속하는 판결문은 아닙니다.",
+      "search_intents_ko": [
+        "의료분쟁 감정은 무엇을 조사하고 얼마나 걸리나요?",
+        "의료분쟁 appraisal-process",
+        "의료전문가 감정의 절차·자료·판단항목과 예상기간을 알고 싶은 조정 당사자"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "감정부 조사권",
+          "paragraphs_ko": [
+            "감정부는 자료제출·진술·설명을 요구하고 필요한 경우 의료기관 현장조사를 할 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "감정서 항목과 기간",
+          "paragraphs_ko": [
+            "사실조사 결과와 과실·인과관계·후유장애를 구분해 읽고 연장 통지 여부도 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.medical-dispute.investigation-appraisal"
+      ],
+      "scenario_ids": [
+        "scenario.medical-dispute.appraisal"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0028",
+        "coord.medical-dispute.dispute-0029"
+      ],
+      "hub_ids": [
+        "hub.medical-dispute"
+      ],
+      "related_content_ids": [
+        "content.medical-dispute-report-and-decision",
+        "content.medical-dispute-first-response"
+      ]
+    },
+    {
+      "content_id": "content.medical-dispute-report-and-decision",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:30:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "medical-dispute-report-and-decision",
+      "title_ko": "의료분쟁 감정서와 조정결정서를 받아볼 수 있나요?",
+      "one_line_answer_ko": "조정은 비공개지만 사건 당사자는 감정서·조정결정서·조정조서와 자신이 제출한 자료의 열람·복사를 신청할 수 있습니다.",
+      "audience_situation_ko": "감정 결과와 조정안의 근거를 검토해 수락·거부 또는 후속 소송을 결정하려는 당사자",
+      "key_points_ko": [
+        "비공개와 당사자 열람권은 다릅니다.",
+        "감정서의 사실·과실·인과관계를 구분해 봅니다.",
+        "결정서 송달일과 15일 기한을 기록합니다."
+      ],
+      "action_steps_ko": [
+        "감정서·결정서 열람복사를 신청합니다.",
+        "제출자료 목록과 반환 자료를 대조합니다.",
+        "결정 금액·조건·이행기한을 검토합니다.",
+        "15일 안에 동의·거부 의사를 통지합니다."
+      ],
+      "facts_to_check_ko": [
+        "감정서 수령일",
+        "결정서 송달일",
+        "과실·인과관계 판단",
+        "조정금액",
+        "이행조건",
+        "의사표시일"
+      ],
+      "caution_ko": "조정결정에 아무 답을 하지 않으면 동의한 것으로 간주될 수 있습니다.",
+      "search_intents_ko": [
+        "의료분쟁 감정서와 조정결정서를 받아볼 수 있나요?",
+        "의료분쟁 report-and-decision",
+        "감정 결과와 조정안의 근거를 검토해 수락·거부 또는 후속 소송을 결정하려는 당사자"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "문서 확보",
+          "paragraphs_ko": [
+            "비공개 절차라도 당사자는 법정 문서를 확보해 결정의 근거를 검토할 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "성립 효과",
+          "paragraphs_ko": [
+            "쌍방 동의 또는 간주동의로 성립한 조정은 재판상 화해와 같은 효력이 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.medical-dispute.procedure-privacy-access",
+        "rule.medical-dispute.decision-and-effect"
+      ],
+      "scenario_ids": [
+        "scenario.medical-dispute.report-access",
+        "scenario.medical-dispute.decision-response"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0032",
+        "coord.medical-dispute.dispute-0033",
+        "coord.medical-dispute.dispute-0036",
+        "coord.medical-dispute.dispute-0038"
+      ],
+      "hub_ids": [
+        "hub.medical-dispute"
+      ],
+      "related_content_ids": [
+        "content.medical-dispute-appraisal-process",
+        "content.medical-dispute-mediation-vs-lawsuit"
+      ]
+    },
+    {
+      "content_id": "content.medical-dispute-mediation-vs-lawsuit",
+      "content_type": "comparison_guide",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:30:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "medical-dispute-mediation-vs-lawsuit",
+      "title_ko": "의료분쟁 조정을 거쳐야만 소송할 수 있나요?",
+      "one_line_answer_ko": "조정 없이 바로 소송할 수 있으며 조정신청에는 시효중단 효과가 있지만 취하·각하되면 1개월 안의 후속 소 제기 여부를 관리해야 합니다.",
+      "audience_situation_ko": "조정과 민사소송의 순서·기간·증거 활용을 비교하려는 의료분쟁 당사자",
+      "key_points_ko": [
+        "조정전치가 아닙니다.",
+        "조정 신청·취하·각하·소 제기 날짜를 관리합니다.",
+        "조정 성립 전후의 효력을 구분합니다."
+      ],
+      "action_steps_ko": [
+        "청구권별 시효 만료 예상일을 적습니다.",
+        "조정과 소송의 비용·기간·감정 필요성을 비교합니다.",
+        "각하·취하 통지를 받으면 즉시 날짜를 확인합니다.",
+        "조정 성립 시 이행조건과 재판상 화해 효력을 검토합니다."
+      ],
+      "facts_to_check_ko": [
+        "조정 신청일",
+        "취하·각하일",
+        "소 제기일",
+        "시효 만료일",
+        "감정자료",
+        "조정 성립 여부"
+      ],
+      "caution_ko": "조정신청이 모든 청구와 모든 상대방에 대해 시효를 무기한 멈추게 한다고 보면 안 됩니다.",
+      "search_intents_ko": [
+        "의료분쟁 조정을 거쳐야만 소송할 수 있나요?",
+        "의료분쟁 mediation-vs-lawsuit",
+        "조정과 민사소송의 순서·기간·증거 활용을 비교하려는 의료분쟁 당사자"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "경로 선택",
+          "paragraphs_ko": [
+            "법은 의료분쟁 소송에 조정전치를 요구하지 않으므로 사건의 긴급성·증거·시효를 기준으로 선택합니다."
+          ]
+        },
+        {
+          "heading_ko": "각하·취하 뒤 1개월",
+          "paragraphs_ko": [
+            "조정이 취하·각하되면 시효중단 효과를 유지하기 위한 후속 소 제기 기간을 놓치지 않아야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.medical-dispute.lawsuit-and-limitation"
+      ],
+      "scenario_ids": [
+        "scenario.medical-dispute.lawsuit"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0040",
+        "coord.medical-dispute.dispute-0042"
+      ],
+      "hub_ids": [
+        "hub.medical-dispute"
+      ],
+      "related_content_ids": [
+        "content.medical-dispute-mediation-application",
+        "content.medical-dispute-report-and-decision"
+      ]
+    },
+    {
+      "content_id": "content.medical-dispute-cost-and-submission-checklist",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-22T05:30:00+00:00",
+      "expires_at": "2026-10-22T00:00:00+00:00",
+      "slug": "medical-dispute-cost-and-submission-checklist",
+      "title_ko": "의료분쟁 조정 신청서에는 무엇을 붙이고 비용은 어떻게 확인하나요?",
+      "one_line_answer_ko": "사건경과·청구내용·진료기록·검사영상·비용·후유장애 자료를 쟁점별로 붙이고 수수료와 감정비용은 신청 당시 조정중재원 기준을 확인해야 합니다.",
+      "audience_situation_ko": "의료분쟁 조정 신청 직전 서류 누락과 예상비용을 점검하려는 환자·가족",
+      "key_points_ko": [
+        "피신청인을 정확히 특정합니다.",
+        "사실·주장·증거를 구분합니다.",
+        "법률은 비용 부과 근거를 두며 실제 금액은 최신 기준을 봅니다."
+      ],
+      "action_steps_ko": [
+        "신청취지와 청구금액을 적습니다.",
+        "사건 경과표와 증거목록을 붙입니다.",
+        "진료비·향후치료비·소득자료를 정리합니다.",
+        "수수료·감정비·면제·환급 기준을 확인합니다."
+      ],
+      "facts_to_check_ko": [
+        "신청인·피신청인",
+        "의료행위 일시",
+        "손해 내용",
+        "청구금액",
+        "증거목록",
+        "수수료",
+        "감정비"
+      ],
+      "caution_ko": "서류가 많다는 것보다 각 쟁점과 자료가 어떻게 연결되는지가 중요합니다.",
+      "search_intents_ko": [
+        "의료분쟁 조정 신청서에는 무엇을 붙이고 비용은 어떻게 확인하나요?",
+        "의료분쟁 cost-and-submission-checklist",
+        "의료분쟁 조정 신청 직전 서류 누락과 예상비용을 점검하려는 환자·가족"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "제출 구조",
+          "paragraphs_ko": [
+            "진료 전 상태, 의료행위, 설명·동의, 이상결과, 후속치료와 손해를 시간순으로 연결합니다."
+          ]
+        },
+        {
+          "heading_ko": "비용 확인",
+          "paragraphs_ko": [
+            "수수료·감정비는 법률의 부과 근거와 별도로 신청 시점의 구체적 금액·납부방법을 확인합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.medical-dispute.mediation-application",
+        "rule.medical-dispute.fees"
+      ],
+      "scenario_ids": [
+        "scenario.medical-dispute.cost"
+      ],
+      "source_coordinate_ids": [
+        "coord.medical-dispute.dispute-0027",
+        "coord.medical-dispute.dispute-0050"
+      ],
+      "hub_ids": [
+        "hub.medical-dispute"
+      ],
+      "related_content_ids": [
+        "content.medical-dispute-first-response",
+        "content.medical-dispute-mediation-application"
+      ]
+    }
+  ]
+}
