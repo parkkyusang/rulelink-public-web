@@ -119,8 +119,8 @@ test('현재 출판본의 상세·허브·법령변화 범위를 판본에 결�
   assert.deepEqual(first.summary.action_counts, {
     'noindex-review': 0,
     merge: 0,
-    improve: 2,
-    keep: 321,
+    improve: 0,
+    keep: 323,
   });
   assert.equal(first.summary.orphan_outbound, 0);
   assert.equal(first.summary.orphan_inbound, 0);
@@ -136,11 +136,10 @@ test('현재 출판본의 상세·허브·법령변화 범위를 판본에 결�
       .filter(page => page.recommendation === 'improve')
       .map(page => page.id)
       .sort(),
-    [
-      'content.2026-livelihood-account-protection',
-      'content.fraudulent-transfer-before-enforcement',
-    ],
+    [],
   );
+  assert.equal(first.summary.title_or_slug_search_intent_boilerplate, 24,
+    '근거 최신성 개선을 기존 검색의도 품질부채까지 해결한 것으로 계산하지 않습니다.');
   assert.ok(first.pages.filter(page => page.recommendation === 'improve').every(
     page => page.exact_reasons.every(reason => (
       reason.code === 'audience_situation_missing'
