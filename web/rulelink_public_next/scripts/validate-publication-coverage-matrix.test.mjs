@@ -49,7 +49,7 @@ function writeFixture(repository, filename, value) {
   writeFileSync(absolute, value);
 }
 
-test('024 coverage matrix는 8개 답변 단위의 L1·L2·시간 결박을 정직하게 보고한다', async () => {
+test('현재 coverage matrix는 8개 답변 단위의 L1·L2·시간 결박을 정직하게 보고한다', async () => {
   const documents = await loadCoverageDocuments();
   const result = validateCoverageDocuments(documents);
 
@@ -59,7 +59,8 @@ test('024 coverage matrix는 8개 답변 단위의 L1·L2·시간 결박을 정�
     result.base_bundle_sha256,
     documents.manifest.base_bundle_sha256,
   );
-  assert.equal(result.snapshot_id, 'kr-knowledge-core-20260726-024');
+  assert.equal(result.snapshot_id, documents.manifest.base_snapshot_id);
+  assert.equal(result.snapshot_id, documents.bundle.snapshot_id);
   assert.equal(result.units.length, 8);
   assert.equal(
     result.observations.filter(

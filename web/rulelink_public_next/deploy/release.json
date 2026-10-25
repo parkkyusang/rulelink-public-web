@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20261017-032",
-  "snapshot_id": "kr-knowledge-core-20260726-024",
-  "requested_at": "2026-10-17T08:15:00.000Z",
-  "summary_ko": "AdSense 사이트 소유권 확인용 게시자 메타 태그를 배포한다. 광고 스크립트는 실행하지 않는다."
+  "release_id": "production-20261025-033",
+  "snapshot_id": "kr-knowledge-core-20261025-025",
+  "requested_at": "2026-10-25T08:55:34.000Z",
+  "summary_ko": "보증금 상황별 확인·행동계획·근거 문언·컨시어지 연결과 실제 근거 점검 출판본 025를 운영 공개한다. 자연어 검색 회귀를 함께 수정하며 광고 실행 정책은 바꾸지 않는다."
 }

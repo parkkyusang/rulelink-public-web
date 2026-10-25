@@ -1,5 +1,7 @@
 import {DatabaseSync} from 'node:sqlite';
 import {readFile, writeFile, mkdir} from 'node:fs/promises';
+import {createReadStream} from 'node:fs';
+import {createHash} from 'node:crypto';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
@@ -37,9 +39,9 @@ if (!databasePath) {
   fail('법령 DB 경로가 필요합니다. --law-db <law_sources.sqlite>를 지정하세요.');
 }
 
-const [bundleBytes, databaseBytes] = await Promise.all([
+const [bundleBytes, databaseHash] = await Promise.all([
   readFile(bundlePath),
-  readFile(databasePath),
+  hashFile(databasePath),
 ]);
 const bundle = JSON.parse(bundleBytes.toString('utf8'));
 const database = new DatabaseSync(databasePath, {readOnly: true});
@@ -71,7 +73,7 @@ const fallbackStatement = database.prepare(`
     law.law_name_ko
   FROM statute_articles article
   JOIN statute_laws law ON law.law_key = article.law_key
-  WHERE law.law_name_ko = ? AND article.article_no = ?
+  WHERE law.law_name_ko = ? AND article.article_no_normalized = ?
   ORDER BY article.id
 `);
 
@@ -84,7 +86,10 @@ for (const source of bundle.knowledge?.sources ?? []) {
   let matchMethod = 'source_id';
   let verifiedMatches = matches.filter(article => articleMatchesSourceVersion(article, source));
   if (verifiedMatches.length !== 1) {
-    matches = fallbackStatement.all(source.law_name_ko, source.article_no);
+    const parts = String(source.article_no).match(/\d+/gu) ?? [];
+    const articleKey = (parts[0] ?? '').padStart(4, '0')
+      + (parts[1] ? '_' + parts[1].padStart(2, '0') : '');
+    matches = fallbackStatement.all(source.law_name_ko, articleKey);
     verifiedMatches = matches.filter(article => articleMatchesSourceVersion(article, source));
     matchMethod = 'law_name_and_article';
   }
@@ -103,12 +108,16 @@ for (const source of bundle.knowledge?.sources ?? []) {
   const computedHash = `sha256:${sha256(article.article_text)}`;
   if (
     article.law_name_ko !== source.law_name_ko
-    || article.article_no !== source.article_no
+    || normalizeArticle(article.article_no) !== normalizeArticle(source.article_no)
   ) {
     unresolved.push({
       coordinate_id: source.coordinate_id,
       reason: 'ledger_locator_mismatch',
     });
+    continue;
+  }
+  if (/<\/?[a-z][^>]*>|\ufffd/iu.test(article.article_text)) {
+    unresolved.push({coordinate_id: source.coordinate_id, reason: 'official_text_requires_cleanup'});
     continue;
   }
   const textId = `text.${computedHash.slice('sha256:'.length)}`;
@@ -117,7 +126,7 @@ for (const source of bundle.knowledge?.sources ?? []) {
     source_id: article.id,
     source_hash: computedHash,
     law_name_ko: article.law_name_ko,
-    article_no: article.article_no,
+    article_no: source.article_no,
     article_title_ko: article.article_title ?? '',
     official_text_ko: article.article_text,
     effective_date: normalizeLawDate(article.effective_date),
@@ -141,7 +150,7 @@ const library = {
   publication_bundle_sha256: sha256Canonical(bundle),
   source_ledger: {
     kind: 'active_sqlite_export',
-    database_sha256: sha256(databaseBytes),
+    database_sha256: databaseHash,
     exported_at: new Date(generatedAt).toISOString(),
   },
   coverage: {
@@ -219,6 +228,16 @@ function articleMatchesSourceVersion(article, source) {
     .replace(/^snapshot:/u, '');
   return /^[a-f0-9]{32,64}$/u.test(publicDigest)
     && computedHash.slice('sha256:'.length).startsWith(publicDigest);
+}
+
+function normalizeArticle(value) {
+  return String(value).match(/\d+/gu)?.map(part => String(Number(part))).join('_') ?? '';
+}
+
+async function hashFile(filePath) {
+  const hash = createHash('sha256');
+  for await (const chunk of createReadStream(filePath)) hash.update(chunk);
+  return hash.digest('hex');
 }
 
 function fail(message) {

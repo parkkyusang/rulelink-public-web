@@ -22,6 +22,7 @@ import {changeLifecycleLabel} from '@/lib/change-lifecycle';
 import {knowledgeContentTypeLabel} from '@/lib/content-labels';
 import {formatKoreanLegalDate} from '@/lib/legal-date';
 import {buildKnowledgeLaunchJourney} from '@/lib/knowledge-launch-journey';
+import {problemJourneyForEntry} from '@/lib/problem-journey-entry';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
 import {loadPublicLegalAnswerForContent} from '@/lib/public-legal-answer-loader';
 import {
@@ -98,6 +99,7 @@ export default async function KnowledgePage({params}: Props) {
     trustConfig,
   );
   const canonicalUrl = `${site.url}/ko/knowledge/${entry.slug}`;
+  const problemJourneyLink = problemJourneyForEntry(entry, hubs);
   const officialSources = sources.flatMap(source => {
     const url = browserOfficialSourceUrl(source) ?? source.official_url;
     return url ? [{name: sourceLabel(source), url}] : [];
@@ -177,6 +179,15 @@ export default async function KnowledgePage({params}: Props) {
           </nav>
         ) : null}
       </header>
+
+      {problemJourneyLink ? (
+        <section className="knowledgeSection" aria-label="상황별 행동계획">
+          <p className="eyebrow">내 상황에 맞춰 보기</p>
+          <h2>읽은 내용을 내 확인 목록과 행동계획으로 정리하세요.</h2>
+          <p>확인한 사실과 모르는 사실을 구분하고, 연결된 근거 문언을 읽은 뒤 검토용 요약을 가져갈 수 있습니다.</p>
+          <a href={problemJourneyLink}>상황을 고르고 다음 행동 정리하기 →</a>
+        </section>
+      ) : null}
 
       {authorityReadingUnits.length ? (
         <KnowledgeReadingDepthNav

@@ -4,48 +4,48 @@
   "sources": [
     {
       "coordinate_id": "coord.legal-service-boundaries.attorney-act-3",
-      "source_id": "attorney_at_law_act_ko_0003",
+      "source_id": "law_001708_ko_0003",
       "law_name_ko": "변호사법",
       "article_no": "제3조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B3%80%ED%98%B8%EC%82%AC%EB%B2%95/%EC%A0%9C3%EC%A1%B0",
-      "source_snapshot_id": "snapshot:attorney-act-current-20260721",
-      "last_verified_at": "2026-07-21T15:00:00+09:00"
+      "source_snapshot_id": "snapshot:e290d8fcaa0f91173a671aca580fd6c693f9f430625ec849401f63687aed81a0",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.legal-service-boundaries.attorney-act-23",
-      "source_id": "attorney_at_law_act_ko_0023",
+      "source_id": "law_001708_ko_0023",
       "law_name_ko": "변호사법",
       "article_no": "제23조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B3%80%ED%98%B8%EC%82%AC%EB%B2%95/%EC%A0%9C23%EC%A1%B0",
-      "source_snapshot_id": "snapshot:attorney-act-current-20260721",
-      "last_verified_at": "2026-07-21T15:00:00+09:00"
+      "source_snapshot_id": "snapshot:288e761b3e1f28683e898fd55b1caa7771ebf9f114dd86cc659d88b79e10e510",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.legal-service-boundaries.attorney-act-34",
-      "source_id": "attorney_at_law_act_ko_0034",
+      "source_id": "law_001708_ko_0034",
       "law_name_ko": "변호사법",
       "article_no": "제34조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B3%80%ED%98%B8%EC%82%AC%EB%B2%95/%EC%A0%9C34%EC%A1%B0",
-      "source_snapshot_id": "snapshot:attorney-act-current-20260721",
-      "last_verified_at": "2026-07-21T15:00:00+09:00"
+      "source_snapshot_id": "snapshot:7850625d8635bb5e3cef67d02bd682cceebda55537914a94cbd02f48f51bb369",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.legal-service-boundaries.attorney-act-109",
-      "source_id": "attorney_at_law_act_ko_0109",
+      "source_id": "law_001708_ko_0109",
       "law_name_ko": "변호사법",
       "article_no": "제109조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B3%80%ED%98%B8%EC%82%AC%EB%B2%95/%EC%A0%9C109%EC%A1%B0",
-      "source_snapshot_id": "snapshot:attorney-act-current-20260721",
-      "last_verified_at": "2026-07-21T15:00:00+09:00"
+      "source_snapshot_id": "snapshot:82bf78db9a1be995591f3e2e0540fcd0222b6d015f54443e25fef57c46831faf",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.legal-service-boundaries.attorney-act-112",
-      "source_id": "attorney_at_law_act_ko_0112",
+      "source_id": "law_001708_ko_0112",
       "law_name_ko": "변호사법",
       "article_no": "제112조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B3%80%ED%98%B8%EC%82%AC%EB%B2%95/%EC%A0%9C112%EC%A1%B0",
-      "source_snapshot_id": "snapshot:attorney-act-current-20260721",
-      "last_verified_at": "2026-07-21T15:00:00+09:00"
+      "source_snapshot_id": "snapshot:f29cd67ec14972beb85ce9de71dc6679b3cddc223b328c2fb5105d15c1d71df0",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.legal-service-boundaries.supreme-96do2340",
@@ -56,7 +56,7 @@
       "decision_date": "1998-08-21",
       "official_url": "https://www.law.go.kr/LSW/precInfoP.do?precSeq=116973",
       "source_snapshot_id": "snapshot:supreme-96do2340-opinion-reviewed-20260721",
-      "last_verified_at": "2026-07-21T15:00:00+09:00"
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.legal-service-boundaries.supreme-2004do6676",
@@ -67,7 +67,7 @@
       "decision_date": "2005-05-27",
       "official_url": "https://www.law.go.kr/LSW/precInfoP.do?precSeq=83888",
       "source_snapshot_id": "snapshot:supreme-2004do6676-opinion-reviewed-20260721",
-      "last_verified_at": "2026-07-21T15:00:00+09:00"
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.legal-service-boundaries.supreme-2024da239364",
@@ -78,7 +78,7 @@
       "decision_date": "2024-09-12",
       "official_url": "https://www.law.go.kr/LSW/precInfoP.do?precSeq=241585",
       "source_snapshot_id": "snapshot:supreme-2024da239364-opinion-reviewed-20260721",
-      "last_verified_at": "2026-07-21T15:00:00+09:00"
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.legal-service-boundaries.supreme-95do3120",
@@ -89,7 +89,7 @@
       "decision_date": "1996-05-10",
       "official_url": "https://www.law.go.kr/LSW/precInfoP.do?precSeq=113681",
       "source_snapshot_id": "snapshot:supreme-95do3120-opinion-reviewed-20260721",
-      "last_verified_at": "2026-07-21T15:00:00+09:00"
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.legal-service-boundaries.supreme-2004do3994",
@@ -100,7 +100,7 @@
       "decision_date": "2004-10-28",
       "official_url": "https://www.law.go.kr/LSW/precInfoP.do?precSeq=191921",
       "source_snapshot_id": "snapshot:supreme-2004do3994-opinion-reviewed-20260721",
-      "last_verified_at": "2026-07-21T15:00:00+09:00"
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     }
   ],
   "topic_hubs": [
@@ -296,8 +296,8 @@
       "content_id": "content.why-attorney-workspace-is-gated",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T15:00:00+09:00",
-      "expires_at": "2026-10-21T00:00:00+09:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "slug": "why-attorney-workspace-is-gated",
       "title_ko": "사건별 검토 도구는 왜 변호사 확인 뒤 열리나",
       "one_line_answer_ko": "공개 법률정보와 달리 이용자의 구체적 사실에 결론·전략을 붙이는 도구는 변호사의 독립적 판단과 책임 아래 사용하도록 분리해야 한다.",
@@ -371,8 +371,8 @@
       "content_id": "content.legal-information-vs-individual-advice",
       "content_type": "misconception_correction",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T15:00:00+09:00",
-      "expires_at": "2026-10-21T00:00:00+09:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "slug": "legal-information-vs-individual-advice",
       "title_ko": "법률정보와 개별 법률상담은 어디서 갈리나",
       "one_line_answer_ko": "법률용어·조문·판례와 일반적인 기준을 설명하는 데서 그치지 않고 이용자의 구체적 사실에 법적 결론과 행동지시를 붙이면 법률상담에 가까워진다.",
@@ -443,8 +443,8 @@
       "content_id": "content.free-service-and-ad-revenue",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T15:00:00+09:00",
-      "expires_at": "2026-10-21T00:00:00+09:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "slug": "free-service-and-ad-revenue",
       "title_ko": "무료 법률 AI면 변호사법 문제가 없어지나",
       "one_line_answer_ko": "직접 이용료가 없어도 광고수익이나 다른 서비스 매출이 사건별 법률답변과 결합될 수 있고, 법률사무 취급 표시 등 별도 문제도 남을 수 있다.",
@@ -505,7 +505,7 @@
         {
           "heading_ko": "공개 정보관은 사건입력을 받지 않는 구조로 고정합니다",
           "paragraphs_ko": [
-            "RuleLink 공개 글의 체크 상태는 현재 기기에만 저장되고 사건요청 초안으로 복사되거나 외부 작업공간으로 전송되지 않습니다.",
+            "일반 확인 목록의 표시 상태는 기기에만 저장됩니다. 상황별 확인 메모는 사용자가 미리 확인한 뒤 직접 복사·저장할 수 있으며, 선택이나 사건정보를 외부 작업공간으로 자동 전송하지 않습니다.",
             "개별 사건 분석은 자격이 확인된 변호사 도구나 변호사와의 직접 계약 영역으로 분리합니다."
           ]
         }
@@ -515,8 +515,8 @@
       "content_id": "content.direct-attorney-contract-checklist",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T15:00:00+09:00",
-      "expires_at": "2026-10-21T00:00:00+09:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "slug": "direct-attorney-contract-checklist",
       "title_ko": "개별 법률상담 전 무엇을 확인해야 하나",
       "one_line_answer_ko": "상담계약 당사자, 보수 수령자, 답변 명의와 책임자, 이해충돌·비밀유지·기록보관 주체가 실제 변호사 또는 법무법인인지 확인한다.",
@@ -591,8 +591,8 @@
       "content_id": "content.referral-fees-and-revenue-sharing",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T15:00:00+09:00",
-      "expires_at": "2026-10-21T00:00:00+09:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "slug": "referral-fees-and-revenue-sharing",
       "title_ko": "변호사 연결 수수료는 어떻게 구분하나",
       "one_line_answer_ko": "정액 광고·기술료와 달리 사건 소개, 상담 성사, 수임료 또는 성공 여부에 연동한 대가는 변호사법상 소개·알선이나 이익분배 문제가 커질 수 있다.",
@@ -665,8 +665,8 @@
       "content_id": "content.disclaimer-does-not-change-function",
       "content_type": "misconception_correction",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T15:00:00+09:00",
-      "expires_at": "2026-10-21T00:00:00+09:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "slug": "disclaimer-does-not-change-function",
       "title_ko": "면책문구가 있으면 법률상담이 아니게 되나",
       "one_line_answer_ko": "면책문구는 이용자 오인을 줄이는 보조수단이지만 사건을 분석해 결론·전략·서면 방향을 제공하는 실제 기능과 계약·보수·책임 구조를 바꾸지는 못한다.",
@@ -737,8 +737,8 @@
       "content_id": "content.attorney-advertising-and-selection",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T15:00:00+09:00",
-      "expires_at": "2026-10-21T00:00:00+09:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "slug": "attorney-advertising-and-selection",
       "title_ko": "온라인에서 변호사 정보를 볼 때 무엇을 확인하나",
       "one_line_answer_ko": "객관적인 경력·업무분야·비용 정보를 보고 이용자가 직접 선택하는 구조인지, 사건 내용을 평가한 추천과 성과연동 대가가 결합된 구조인지 구분한다.",

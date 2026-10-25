@@ -36,13 +36,13 @@
       "source_version_requirements": [
         {
           "coordinate_id": "coord.debt-enforcement.civil-procedure-ko-0470",
-          "source_snapshot_id": "snapshot:5eb1874d3a13d2373c84f05a11428539",
-          "last_verified_at": "2026-07-21T08:30:00+00:00"
+          "source_snapshot_id": "snapshot:f1302afc598dd5f1f10223f419a5754e384f2b7c35b091113a446d52ede4e037",
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
         },
         {
           "coordinate_id": "coord.debt-enforcement.civil-procedure-ko-0474",
-          "source_snapshot_id": "snapshot:e16ef04db903a2d2efd339de72260b6e",
-          "last_verified_at": "2026-07-21T08:30:00+00:00"
+          "source_snapshot_id": "snapshot:3e4fd2f6c9ccd13c0127a1a58ca320040edd73dfd96b145823ce03960a7a853a",
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
         }
       ],
       "required_authority_binding_ids": [],

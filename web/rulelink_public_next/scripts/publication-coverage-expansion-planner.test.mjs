@@ -903,7 +903,12 @@ test('GSC는 선택 수요신호로만 결합되고 법률·구조 점수를 바
 test('법령변화 snapshot은 source→Rule·Scenario·Content 영향으로 역추적한다', async () => {
   const plan = await buildPublicationCoverageExpansionPlan();
 
-  assert.equal(plan.maintenance_queue.length, 23);
+  const bundle = JSON.parse(await readFile(DEFAULT_PUBLICATION_BUNDLE_PATH, 'utf8'));
+  const assertions = new Map(bundle.assertions.map(assertion => [assertion.assertion_id, assertion]));
+  const expectedPairs = bundle.change_briefs.flatMap(brief => [...new Set(
+    brief.assertion_ids.flatMap(id => assertions.get(id).source_coordinates.map(source => source.source_id)),
+  )].map(sourceId => `${brief.change_brief_id}|${sourceId}`)).sort();
+  assert.deepEqual(plan.maintenance_queue.map(item => `${item.change_brief_id}|${item.source_id}`).sort(), expectedPairs);
   assert.equal(
     new Set(plan.maintenance_queue.map((item) => item.maintenance_id)).size,
     plan.maintenance_queue.length,

@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { readdir, readFile } from "node:fs/promises";
+import {readdir} from 'node:fs/promises';
+import {readReviewedTopicFile as readFile} from './source-check-topic-review-file.mjs';
 import test from "node:test";
 
 const topicsDir = new URL("../../../artifacts/publication/topics/", import.meta.url);

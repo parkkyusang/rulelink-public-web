@@ -4,30 +4,30 @@
   "sources": [
     {
       "coordinate_id": "coord.crime-victim-response.crime-victim-protection-ko-0007",
-      "source_id": "crime_victim_protection_ko_0007",
+      "source_id": "law_010109_ko_0007",
       "law_name_ko": "범죄피해자 보호법",
       "article_no": "제7조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B2%94%EC%A3%84%ED%94%BC%ED%95%B4%EC%9E%90%20%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C7%EC%A1%B0",
-      "source_snapshot_id": "snapshot:b03bbbb46023411dcabd011600d2b989",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:7249260ee71c7150d192789b6160135a589a86cab17d9e3582b4500f34331f92",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.crime-victim-protection-ko-0009",
-      "source_id": "crime_victim_protection_ko_0009",
+      "source_id": "law_010109_ko_0009",
       "law_name_ko": "범죄피해자 보호법",
       "article_no": "제9조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B2%94%EC%A3%84%ED%94%BC%ED%95%B4%EC%9E%90%20%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C9%EC%A1%B0",
-      "source_snapshot_id": "snapshot:d1a7b5f19f3db8c1e2a0ab5cd4f0983b",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:4f20092e11271c15a0d4de94b78bfd8cd65b7395a203893426ed102e9f77e47a",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0237",
-      "source_id": "criminal_procedure_ko_0237",
+      "source_id": "law_001671_ko_0237",
       "law_name_ko": "형사소송법",
       "article_no": "제237조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C237%EC%A1%B0",
-      "source_snapshot_id": "snapshot:4952a3fd44077413b423c3ae49ce8215",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:71f169a0b99d25d5463f3b500367239309feee79c3f33d6be1f3a10d07666be7",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.civil-act-ko-0750",
@@ -35,107 +35,107 @@
       "law_name_ko": "민법",
       "article_no": "제750조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C750%EC%A1%B0",
-      "source_snapshot_id": "snapshot:d3b345393950043064f8313fb28edc30",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:cdf125767ab6640e07d557f6c73a0c53c1c6c4eebde9220474bd51756983bac8",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0223",
-      "source_id": "criminal_procedure_ko_0223",
+      "source_id": "law_001671_ko_0223",
       "law_name_ko": "형사소송법",
       "article_no": "제223조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C223%EC%A1%B0",
-      "source_snapshot_id": "snapshot:737e6553a3a377b4367bb9412012948f",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:d7d6c3083c4aa378fb704aece1241853fc3fc07619eca53597958ff1aa98db30",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0234",
-      "source_id": "criminal_procedure_ko_0234",
+      "source_id": "law_001671_ko_0234",
       "law_name_ko": "형사소송법",
       "article_no": "제234조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C234%EC%A1%B0",
-      "source_snapshot_id": "snapshot:9f234a9ff1113ddf55f48da09506db89",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:ee2cd4132b57ea92815b62dec8dfa5f89dc47079e324234ca878ad463f0d50f9",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0238",
-      "source_id": "criminal_procedure_ko_0238",
+      "source_id": "law_001671_ko_0238",
       "law_name_ko": "형사소송법",
       "article_no": "제238조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C238%EC%A1%B0",
-      "source_snapshot_id": "snapshot:0682175b9a85e42cad3bc2f846a8c1b1",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:3f88749a5decd0888d7dd05478b469a8084569d50c7bb6213f41056258b5301d",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0258",
-      "source_id": "criminal_procedure_ko_0258",
+      "source_id": "law_001671_ko_0258",
       "law_name_ko": "형사소송법",
       "article_no": "제258조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C258%EC%A1%B0",
-      "source_snapshot_id": "snapshot:b42fb817b113b1324d4a63b49cf2461b",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:15db601ebeb39fcf6225d7d1572a61468e262b592e6295b32a6de398431e8394",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0259",
-      "source_id": "criminal_procedure_ko_0259",
+      "source_id": "law_001671_ko_0259",
       "law_name_ko": "형사소송법",
       "article_no": "제259조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C259%EC%A1%B0",
-      "source_snapshot_id": "snapshot:58bc9698d6ac4e3789a58ab725a6bb66",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:e0c458073cfbb89f83c2afe823d55cd25824917e6bd3eab8bfcd8648d16ec9ce",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0259-02",
-      "source_id": "criminal_procedure_ko_0259_02",
+      "source_id": "law_001671_ko_0259_02",
       "law_name_ko": "형사소송법",
       "article_no": "제259조의2",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C259%EC%A1%B0%EC%9D%982",
-      "source_snapshot_id": "snapshot:e0837c3b59a1916184eb4a770ff85f4d",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:2dcb30d47af3d72d5d94c41ef71f7f5421244453d6e51164eabbbfcec18a8540",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.crime-victim-protection-ko-0008",
-      "source_id": "crime_victim_protection_ko_0008",
+      "source_id": "law_010109_ko_0008",
       "law_name_ko": "범죄피해자 보호법",
       "article_no": "제8조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B2%94%EC%A3%84%ED%94%BC%ED%95%B4%EC%9E%90%20%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C8%EC%A1%B0",
-      "source_snapshot_id": "snapshot:1555698f62cc6af6453f217d2efd4192",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:31cc2f83df9479ce6c4f42b2528c73fd8f341a95ce87836263bdb0fa06b59a90",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0294-02",
-      "source_id": "criminal_procedure_ko_0294_02",
+      "source_id": "law_001671_ko_0294_02",
       "law_name_ko": "형사소송법",
       "article_no": "제294조의2",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C294%EC%A1%B0%EC%9D%982",
-      "source_snapshot_id": "snapshot:ff6bfc6ea51065f6be7f23fcc9de3515",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:baa5d4561f08eb18bc220de9d6d4db155f21288952e1e06471e6c1c110c02566",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0294-04",
-      "source_id": "criminal_procedure_ko_0294_04",
+      "source_id": "law_001671_ko_0294_04",
       "law_name_ko": "형사소송법",
       "article_no": "제294조의4",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C294%EC%A1%B0%EC%9D%984",
-      "source_snapshot_id": "snapshot:f28fe4d7ab23fd627d30a225f322de2d",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:d4788ca8692cb9b5b273fc55121a0beb115082f2f5f20302a42f9e6d144a8491",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0232",
-      "source_id": "criminal_procedure_ko_0232",
+      "source_id": "law_001671_ko_0232",
       "law_name_ko": "형사소송법",
       "article_no": "제232조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C232%EC%A1%B0",
-      "source_snapshot_id": "snapshot:025fd33a52a5d2117f2a3ab89ae8aae5",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:5cca0d9019c0474e709d1bd49b1d135067d1b0c710ba0123e14b205f38bdf34d",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.criminal-procedure-ko-0327",
-      "source_id": "criminal_procedure_ko_0327",
+      "source_id": "law_001671_ko_0327",
       "law_name_ko": "형사소송법",
       "article_no": "제327조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EC%82%AC%EC%86%8C%EC%86%A1%EB%B2%95/%EC%A0%9C327%EC%A1%B0",
-      "source_snapshot_id": "snapshot:a3c7fffbd5b3568fcbe72e1895421d21",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:13a6c616a912cdaea046a97334407a54f4f76a4461900edc540a3df8b3f45cf2",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0025",
@@ -148,7 +148,7 @@
       "source_snapshot_id": "0bb9601be3c38ed3a08e0509406cdb12",
       "source_version_key": "sha256:73dbf4890bd58c0d7c31309cb82edc4477f03d3c0c67389ab60fc082bec31f1e",
       "official_url_http_status": 200,
-      "last_verified_at": "2026-07-24T00:00:00+00:00"
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0026",
@@ -161,7 +161,7 @@
       "source_snapshot_id": "bb35446950761affb71d6c804d4dd5f8",
       "source_version_key": "sha256:71db765102e3dc36c200b1193471ee9e24953832465712c14a87437c32398c19",
       "official_url_http_status": 200,
-      "last_verified_at": "2026-07-24T00:00:00+00:00"
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0031",
@@ -174,7 +174,7 @@
       "source_snapshot_id": "9af4e46708641c88dc39ec6af514632c",
       "source_version_key": "sha256:962b756d582d502320315a5279a7bc2e4cb691339e38f52f04e62df537d5cdfe",
       "official_url_http_status": 200,
-      "last_verified_at": "2026-07-24T00:00:00+00:00"
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0032",
@@ -187,7 +187,7 @@
       "source_snapshot_id": "c7d70e140addfb2e580cb419da25eec6",
       "source_version_key": "sha256:b5827a9f6978452137104457762399b9ef44ab1097d5bed51a9c948e897dacd9",
       "official_url_http_status": 200,
-      "last_verified_at": "2026-07-24T00:00:00+00:00"
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.litigation-promotion-special-ko-0034",
@@ -200,7 +200,7 @@
       "source_snapshot_id": "c8776a4473237b3cf5c8ea85c7dc7076",
       "source_version_key": "sha256:37a259a2f30f0b86dbed16b017b6548e92dc0556d69173da52e45dc928e17992",
       "official_url_http_status": 200,
-      "last_verified_at": "2026-07-24T00:00:00+00:00"
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.civil-act-ko-0751",
@@ -208,8 +208,8 @@
       "law_name_ko": "민법",
       "article_no": "제751조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C751%EC%A1%B0",
-      "source_snapshot_id": "snapshot:40bd12e55f4009a43daa84ffec3b8a3b",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:880765dec179c63df119d219c9badee354da8c69e7ebf5fa9061b7830716fc35",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.civil-act-ko-0766",
@@ -217,26 +217,26 @@
       "law_name_ko": "민법",
       "article_no": "제766조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%AF%BC%EB%B2%95/%EC%A0%9C766%EC%A1%B0",
-      "source_snapshot_id": "snapshot:1d99de5a0cb30e368505e0b9d6d48279",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:f488c3e8ddd8ee09584d7f0205131909997004a359dd557c7d0e6df1f6df5a35",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.crime-victim-protection-ko-0016",
-      "source_id": "crime_victim_protection_ko_0016",
+      "source_id": "law_010109_ko_0016",
       "law_name_ko": "범죄피해자 보호법",
       "article_no": "제16조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B2%94%EC%A3%84%ED%94%BC%ED%95%B4%EC%9E%90%20%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C16%EC%A1%B0",
-      "source_snapshot_id": "snapshot:73680bd4a1b386678a9bf080de3ff1d7",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:5bb587b5347dee6d4a99a1e9b08ba77c32fd5e1050175f5fdb8a0711a5aebc33",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     },
     {
       "coordinate_id": "coord.crime-victim-response.crime-victim-protection-ko-0025",
-      "source_id": "crime_victim_protection_ko_0025",
+      "source_id": "law_010109_ko_0025",
       "law_name_ko": "범죄피해자 보호법",
       "article_no": "제25조",
       "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B2%94%EC%A3%84%ED%94%BC%ED%95%B4%EC%9E%90%20%EB%B3%B4%ED%98%B8%EB%B2%95/%EC%A0%9C25%EC%A1%B0",
-      "source_snapshot_id": "snapshot:d8b29dcdb00df57aea8c3bf8ff4c0b32",
-      "last_verified_at": "2026-07-21T08:30:00+00:00"
+      "source_snapshot_id": "snapshot:423456cf58f3b33153ec5d3bad8dbbe2765af0a214b251460cb89ea93c3a1145",
+      "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
     }
   ],
   "topic_hubs": [
@@ -309,11 +309,11 @@
     {
       "rule_id": "rule.crime-victim-response.crime-victim-04",
       "title_ko": "고소장은 어디에 어떤 방식으로 제출하나요",
-      "proposition_ko": "고소·고발은 서면 또는 구술로 검사나 사법경찰관에게 해야 하며, 구술이면 조서를 작성하므로 범죄사실과 처벌 의사를 명확히 하고 접수 증거를 받아야 합니다.",
+      "proposition_ko": "고소·고발은 서면 또는 구술로 사법경찰관에게 하며, 구술로 접수하면 담당자가 작성한 서류에 범죄사실과 처벌 의사가 정확히 반영됐는지 확인하고 접수 증거를 보관합니다.",
       "norm": {
         "actor_ko": "고소·고발을 접수하려는 사람과 수사기관",
         "conditions_ko": "온라인 민원만 넣어도 정식 고소가 되는지 궁금합니다.",
-        "legal_effect_ko": "고소·고발은 서면 또는 구술로 검사나 사법경찰관에게 해야 하며, 구술이면 조서를 작성하므로 범죄사실과 처벌 의사를 명확히 하고 접수 증거를 받아야 합니다."
+        "legal_effect_ko": "고소·고발은 서면 또는 구술로 사법경찰관에게 하며, 구술로 접수하면 담당자가 작성한 서류에 범죄사실과 처벌 의사가 정확히 반영됐는지 확인하고 접수 증거를 보관합니다."
       },
       "source_coordinate_ids": [
         "coord.crime-victim-response.criminal-procedure-ko-0237",
@@ -533,7 +533,7 @@
       "scenario_id": "scenario.crime-victim-response.crime-victim-04",
       "question_ko": "온라인 민원만 넣어도 정식 고소가 되는지 궁금합니다.",
       "decision_fact_ko": "접수기관",
-      "when_true_ko": "고소·고발은 서면 또는 구술로 검사나 사법경찰관에게 해야 하며, 구술이면 조서를 작성하므로 범죄사실과 처벌 의사를 명확히 하고 접수 증거를 받아야 합니다.",
+      "when_true_ko": "고소·고발은 서면 또는 구술로 사법경찰관에게 하며, 구술로 접수하면 담당자가 작성한 서류에 범죄사실과 처벌 의사가 정확히 반영됐는지 확인하고 접수 증거를 보관합니다.",
       "when_false_ko": "접수기관·범죄사실 특정·처벌 요구 의사·제출 증거목록를 먼저 확인한 뒤 다음 절차를 정합니다.",
       "rule_ids": [
         "rule.crime-victim-response.crime-victim-04"
@@ -725,8 +725,8 @@
       "content_id": "content.crime-victim-urgent-safety-and-support",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "crime-victim-urgent-safety-and-support",
       "title_ko": "범죄피해 직후 안전이 불안하면 신고 외에 무엇을 요청할 수 있나요?",
       "one_line_answer_ko": "긴급 위험은 112 등 즉시 대응을 우선하고, 수사기관에 신변보호 필요성을 알리며 상담·의료·법률구조·주거지원 등 피해자 지원을 함께 문의합니다.",
@@ -793,8 +793,8 @@
       "content_id": "content.crime-evidence-preservation-first-steps",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "crime-evidence-preservation-first-steps",
       "title_ko": "신고 전에 어떤 증거부터 보존해야 하나요?",
       "one_line_answer_ko": "원본성을 해치지 않게 자료를 보존하고 사건 시간표·피해내역·증거목록을 만든 뒤, 고소·진술과 민사상 손해입증에 함께 사용할 수 있도록 관리합니다.",
@@ -861,8 +861,8 @@
       "content_id": "content.report-complaint-accusation-difference",
       "content_type": "misconception_correction",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "report-complaint-accusation-difference",
       "title_ko": "신고·고소·고발은 모두 같은 절차인가요?",
       "one_line_answer_ko": "피해자의 처벌 요구 의사표시인 고소, 제3자의 고발, 긴급상황 신고·일반 진정은 법적 지위와 후속 권리가 다를 수 있으므로 접수 형태를 확인해야 합니다.",
@@ -930,19 +930,19 @@
       "content_id": "content.how-to-file-criminal-complaint",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "how-to-file-criminal-complaint",
       "title_ko": "고소장은 어디에 어떤 방식으로 제출하나요?",
-      "one_line_answer_ko": "고소·고발은 서면 또는 구술로 검사나 사법경찰관에게 해야 하며, 구술이면 조서를 작성하므로 범죄사실과 처벌 의사를 명확히 하고 접수 증거를 받아야 합니다.",
+      "one_line_answer_ko": "고소·고발은 서면 또는 구술로 사법경찰관에게 하며, 구술로 접수하면 담당자가 작성한 서류에 범죄사실과 처벌 의사가 정확히 반영됐는지 확인하고 접수 증거를 보관합니다.",
       "audience_situation_ko": "",
       "key_points_ko": [
         "서면과 구술 모두 가능하지만 접수기관이 중요합니다.",
-        "구술 고소는 조서 작성 내용을 확인합니다.",
+        "구술 고소는 담당자가 작성한 서류의 내용을 확인합니다.",
         "사실·증거·처벌의사를 구분해 적습니다."
       ],
       "action_steps_ko": [
-        "관할 경찰서나 검찰청의 접수방법을 확인한다.",
+        "관할 경찰서의 고소·고발 접수방법을 확인한다.",
         "당사자·일시·장소·행위를 시간순으로 적는다.",
         "증거목록과 원본 보관 위치를 붙인다.",
         "접수증·사건번호와 제출본을 보관한다."
@@ -963,8 +963,8 @@
         {
           "heading_ko": "법이 정한 상대방에게 의사를 표시한다",
           "paragraphs_ko": [
-            "고소·고발은 검사 또는 사법경찰관에게 서면이나 구술로 해야 합니다.",
-            "구술로 접수하면 조서에 범죄사실과 처벌 의사가 정확히 반영됐는지 확인합니다."
+            "고소·고발은 사법경찰관에게 서면이나 구술로 해야 합니다.",
+            "구술로 접수하면 담당자가 작성한 서류에 범죄사실과 처벌 의사가 정확히 반영됐는지 확인합니다."
           ]
         },
         {
@@ -998,8 +998,8 @@
       "content_id": "content.notice-of-prosecution-or-nonprosecution",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "notice-of-prosecution-or-nonprosecution",
       "title_ko": "고소한 사건의 기소·불기소 결과와 이유는 어떻게 확인하나요?",
       "one_line_answer_ko": "검사는 고소·고발 사건의 처분 취지를 법정 기간 안에 통지하고, 불기소이면 고소인·고발인의 청구에 따라 7일 이내 서면으로 이유를 설명해야 합니다.",
@@ -1066,8 +1066,8 @@
       "content_id": "content.victim-case-information-notifications",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "victim-case-information-notifications",
       "title_ko": "피해자는 공판일·재판결과·피고인 석방을 통지받을 수 있나요?",
       "one_line_answer_ko": "피해자 등은 신청을 통해 공소제기 여부, 공판 일시·장소, 재판결과, 구속·석방 등 정보를 통지받을 수 있으므로 연락처와 통지 신청 상태를 확인해야 합니다.",
@@ -1134,8 +1134,8 @@
       "content_id": "content.victim-statement-in-criminal-trial",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "victim-statement-in-criminal-trial",
       "title_ko": "피해자는 형사재판에서 피해와 처벌 의견을 직접 말할 수 있나요?",
       "one_line_answer_ko": "피해자 등은 신청해 증인신문과 피해 정도·결과·처벌 의견을 진술할 기회를 구할 수 있으나, 이미 충분히 진술했거나 재판 지연 우려가 있는 경우 등 예외가 있습니다.",
@@ -1201,8 +1201,8 @@
       "content_id": "content.victim-access-to-trial-records",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "victim-access-to-trial-records",
       "title_ko": "피해자는 진행 중인 형사재판 기록을 열람·등사할 수 있나요?",
       "one_line_answer_ko": "소송계속 중인 사건의 피해자 등은 재판장에게 기록 열람·등사를 신청할 수 있고 권리구제·진술권 보장 필요성이 인정되면 원칙적으로 허가 대상이지만 제한 사유와 사용조건이 붙을 수 있습니다.",
@@ -1268,8 +1268,8 @@
       "content_id": "content.settlement-and-punishment-intent",
       "content_type": "misconception_correction",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "settlement-and-punishment-intent",
       "title_ko": "형사합의를 하면 사건이 자동으로 끝나나요?",
       "one_line_answer_ko": "친고죄의 고소취소나 반의사불벌죄의 처벌의사 철회는 제1심 판결 전이라는 제한과 공소기각 효과가 있지만, 다른 범죄는 합의만으로 공소가 자동 종료되지 않습니다.",
@@ -1336,8 +1336,8 @@
       "content_id": "content.compensation-order-eligible-damages",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "slug": "compensation-order-eligible-damages",
       "title_ko": "형사재판에서 배상명령으로 어떤 손해를 받을 수 있나요?",
       "one_line_answer_ko": "법이 정한 대상 범죄의 유죄판결 절차에서는 직접적인 물적 피해, 치료비 손해와 위자료 또는 합의된 손해배상액에 대해 배상명령을 신청할 수 있습니다.",
@@ -1460,8 +1460,8 @@
       "content_id": "content.compensation-order-application-deadline",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-01-18T20:09:48.352Z",
       "slug": "compensation-order-application-deadline",
       "title_ko": "배상명령은 언제, 어느 법원에 어떻게 신청하나요?",
       "one_line_answer_ko": "피해자는 제1심 또는 제2심 공판의 변론 종결 전까지 사건이 계속된 법원에 신청서와 피고인 수만큼의 부본, 필요한 증거서류를 제출할 수 있습니다.",
@@ -1579,8 +1579,8 @@
       "content_id": "content.civil-damages-after-crime",
       "content_type": "doctrine_explainer",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "civil-damages-after-crime",
       "title_ko": "형사사건과 별도로 민사 손해배상을 청구할 수 있나요?",
       "one_line_answer_ko": "고의·과실의 위법행위로 생긴 재산상·정신상 손해는 민사청구 대상이 될 수 있고, 손해와 가해자를 안 날부터 3년 및 불법행위일부터 10년의 시효를 함께 관리해야 합니다.",
@@ -1602,7 +1602,7 @@
         "손해항목·금액",
         "기존 합의·배상명령"
       ],
-      "caution_ko": "2020년 10월 20일 이후 성년 대상 성적 침해 등 일부 피해에는 민법 제766조제3항의 별도 장기시효가 적용될 수 있습니다.",
+      "caution_ko": "미성년자가 성폭력·성추행·성희롱 등 성적 침해를 당한 경우 그 손해배상청구권의 소멸시효는 성년이 될 때까지 진행되지 않습니다(민법 제766조제3항). 사건 발생 시점에 따른 부칙 적용도 함께 확인해야 합니다.",
       "search_intents_ko": [
         "형사사건과 별도로 민사 손해배상을 청구할 수 있나요?",
         "형사처벌과 피해금 회복이 같은 절차인지 궁금합니다.",
@@ -1648,8 +1648,8 @@
       "content_id": "content.crime-victim-relief-fund-eligibility-deadline",
       "content_type": "procedure_evidence",
       "editorial_status": "approved",
-      "reviewed_at": "2026-07-21T08:30:00+00:00",
-      "expires_at": "2026-10-21T00:00:00+00:00",
+      "reviewed_at": "2026-10-25T08:29:11.861Z",
+      "expires_at": "2027-04-18T20:09:48.352Z",
       "slug": "crime-victim-relief-fund-eligibility-deadline",
       "title_ko": "가해자에게 배상받지 못하면 범죄피해 구조금을 신청할 수 있나요?",
       "one_line_answer_ko": "구조대상 범죄피해로 전부 또는 일부 배상받지 못한 경우 등에는 구조금을 검토할 수 있고, 안 날부터 3년·발생일부터 10년 안에 관할 지구심의회에 신청해야 합니다.",

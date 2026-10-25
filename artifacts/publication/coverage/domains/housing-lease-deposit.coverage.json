@@ -44,8 +44,8 @@
       "source_version_requirements": [
         {
           "coordinate_id": "coord.housing-lease-deposit.housing-lease-ko-0003-03",
-          "source_snapshot_id": "snapshot:1c35b925f8d04acba8a9a1b0c9796e07",
-          "last_verified_at": "2026-07-21T08:00:00+00:00"
+          "source_snapshot_id": "snapshot:71e05a757f99463d3bd4c5ccd70e984976530544302d971e49c381bc53fb20f3",
+          "last_verified_at": "2026-10-20T20:09:48.352980+00:00"
         }
       ],
       "required_authority_binding_ids": [],
