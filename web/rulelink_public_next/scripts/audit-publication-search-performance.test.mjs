@@ -98,7 +98,7 @@ function fixtureBundle() {
   };
 }
 
-test('운영 024의 상세·허브·법령변화 범위를 snapshot-bound로 감사하고 입력이 없으면 추정값을 만들지 않는다', () => {
+test('현재 출판본의 상세·허브·법령변화 범위를 판본에 결박하고 입력이 없으면 추정값을 만들지 않는다', () => {
   const first = auditPublicationSearchPerformance(currentBundle);
   const second = auditPublicationSearchPerformance(currentBundle);
   assert.deepEqual(first, second);
@@ -108,7 +108,7 @@ test('운영 024의 상세·허브·법령변화 범위를 snapshot-bound로 감
     change: 11,
     total: 323,
   });
-  assert.equal(first.source.snapshot_id, 'kr-knowledge-core-20260726-024');
+  assert.equal(first.source.snapshot_id, currentBundle.snapshot_id);
   assert.equal(first.data_availability.search_console, 'not_provided');
   assert.equal(first.data_availability.search_volume, 'not_available_and_not_estimated');
   assert.equal(first.data_availability.advertising_rpm, 'not_available_and_not_estimated');
