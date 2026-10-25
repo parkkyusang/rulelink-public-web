@@ -1,0 +1,1106 @@
+{
+  "schema": "rulelink_public_knowledge_topic_v1",
+  "topic_id": "hub.traffic-criminal-license",
+  "sources": [
+    {
+      "coordinate_id": "coord.traffic-criminal-license.road-0044",
+      "source_id": "road_traffic_ko_0044",
+      "law_name_ko": "도로교통법",
+      "article_no": "제44조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%8F%84%EB%A1%9C%EA%B5%90%ED%86%B5%EB%B2%95/%EC%A0%9C44%EC%A1%B0",
+      "source_snapshot_id": "snapshot:c21a9e922d796ffd7fb617002dcc8196",
+      "last_verified_at": "2026-07-23T05:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.traffic-criminal-license.road-0050-3",
+      "source_id": "road_traffic_ko_0050_03",
+      "law_name_ko": "도로교통법",
+      "article_no": "제50조의3",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%8F%84%EB%A1%9C%EA%B5%90%ED%86%B5%EB%B2%95/%EC%A0%9C50%EC%A1%B0%EC%9D%983",
+      "source_snapshot_id": "snapshot:cd9ded21df5d68ff3e77221e03ee2aa",
+      "last_verified_at": "2026-07-23T05:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.traffic-criminal-license.road-0054",
+      "source_id": "road_traffic_ko_0054",
+      "law_name_ko": "도로교통법",
+      "article_no": "제54조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%8F%84%EB%A1%9C%EA%B5%90%ED%86%B5%EB%B2%95/%EC%A0%9C54%EC%A1%B0",
+      "source_snapshot_id": "snapshot:5951578fbe50d0d3b541b014dd721d7",
+      "last_verified_at": "2026-07-23T05:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.traffic-criminal-license.road-0080-2",
+      "source_id": "road_traffic_ko_0080_02",
+      "law_name_ko": "도로교통법",
+      "article_no": "제80조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%8F%84%EB%A1%9C%EA%B5%90%ED%86%B5%EB%B2%95/%EC%A0%9C80%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:eaf57ac6a141c3fd0cc2882869f3fd5",
+      "last_verified_at": "2026-07-23T05:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.traffic-criminal-license.road-0082",
+      "source_id": "road_traffic_ko_0082",
+      "law_name_ko": "도로교통법",
+      "article_no": "제82조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%8F%84%EB%A1%9C%EA%B5%90%ED%86%B5%EB%B2%95/%EC%A0%9C82%EC%A1%B0",
+      "source_snapshot_id": "snapshot:7b4e96511af8d16b67bb07cfcbd80b",
+      "last_verified_at": "2026-07-23T05:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.traffic-criminal-license.road-0093",
+      "source_id": "road_traffic_ko_0093",
+      "law_name_ko": "도로교통법",
+      "article_no": "제93조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%8F%84%EB%A1%9C%EA%B5%90%ED%86%B5%EB%B2%95/%EC%A0%9C93%EC%A1%B0",
+      "source_snapshot_id": "snapshot:897f44dffdc5c127397924ce8659e2a",
+      "last_verified_at": "2026-07-23T05:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.traffic-criminal-license.road-0094",
+      "source_id": "road_traffic_ko_0094",
+      "law_name_ko": "도로교통법",
+      "article_no": "제94조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%8F%84%EB%A1%9C%EA%B5%90%ED%86%B5%EB%B2%95/%EC%A0%9C94%EC%A1%B0",
+      "source_snapshot_id": "snapshot:ad74e0e0b2c57ada48a4ea309ebc9d",
+      "last_verified_at": "2026-07-23T05:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.traffic-criminal-license.road-0148",
+      "source_id": "road_traffic_ko_0148",
+      "law_name_ko": "도로교통법",
+      "article_no": "제148조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%8F%84%EB%A1%9C%EA%B5%90%ED%86%B5%EB%B2%95/%EC%A0%9C148%EC%A1%B0",
+      "source_snapshot_id": "snapshot:a0be7ec2581b41b60f9d0b7f929e0c",
+      "last_verified_at": "2026-07-23T05:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.traffic-criminal-license.road-0148-2",
+      "source_id": "road_traffic_ko_0148_02",
+      "law_name_ko": "도로교통법",
+      "article_no": "제148조의2",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%8F%84%EB%A1%9C%EA%B5%90%ED%86%B5%EB%B2%95/%EC%A0%9C148%EC%A1%B0%EC%9D%982",
+      "source_snapshot_id": "snapshot:b62534cea39c6921deea8f768bea017",
+      "last_verified_at": "2026-07-23T05:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.traffic-criminal-license.traffic-special-0003",
+      "source_id": "traffic_accident_special_ko_0003",
+      "law_name_ko": "교통사고처리 특례법",
+      "article_no": "제3조",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%90%ED%86%B5%EC%82%AC%EA%B3%A0%EC%B2%98%EB%A6%AC%20%ED%8A%B9%EB%A1%80%EB%B2%95/%EC%A0%9C3%EC%A1%B0",
+      "source_snapshot_id": "snapshot:1851b667d470fbf9b9074eef5c87eaeb",
+      "last_verified_at": "2026-07-23T05:00:00+00:00"
+    },
+    {
+      "coordinate_id": "coord.traffic-criminal-license.specific-0005-3",
+      "source_id": "aggravated_specific_crimes_ko_0005_03",
+      "law_name_ko": "특정범죄 가중처벌 등에 관한 법률",
+      "article_no": "제5조의3",
+      "official_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%8A%B9%EC%A0%95%EB%B2%94%EC%A3%84%20%EA%B0%80%EC%A4%91%EC%B2%98%EB%B2%8C%20%EB%93%B1%EC%97%90%20%EA%B4%80%ED%95%9C%20%EB%B2%95%EB%A5%A0/%EC%A0%9C5%EC%A1%B0%EC%9D%983",
+      "source_snapshot_id": "snapshot:0405f419bfdc2dfbb4b425df98506470",
+      "last_verified_at": "2026-07-23T05:00:00+00:00"
+    }
+  ],
+  "topic_hubs": [
+    {
+      "hub_id": "hub.traffic-criminal-license",
+      "slug": "traffic-criminal-license",
+      "title_ko": "음주운전·도주·면허처분",
+      "description_ko": "음주 기준과 측정·채혈, 측정거부·방해, 처벌구간, 사고 후 도주, 면허 취소·정지와 불복, 결격기간, 방지장치 조건부면허를 형사·행정 절차로 나누어 찾습니다.",
+      "content_ids": [
+        "content.traffic-criminal-license-drunk-threshold",
+        "content.traffic-criminal-license-breath-blood-test",
+        "content.traffic-criminal-license-refusal-obstruction",
+        "content.traffic-criminal-license-penalty-repeat",
+        "content.traffic-criminal-license-hit-and-run",
+        "content.traffic-criminal-license-license-criminal-separation",
+        "content.traffic-criminal-license-license-objection",
+        "content.traffic-criminal-license-disqualification-reacquisition",
+        "content.traffic-criminal-license-ignition-interlock",
+        "content.traffic-criminal-license-interlock-compliance"
+      ]
+    }
+  ],
+  "rule_cards": [
+    {
+      "rule_id": "rule.traffic-criminal-license.drunk-threshold",
+      "title_ko": "술을 조금 마셔도 음주운전이 되는 기준",
+      "proposition_ko": "도로교통법상 음주운전 금지 기준은 혈중알코올농도 0.03퍼센트 이상이며, 사고가 없거나 짧은 거리를 운전했다는 사정만으로 적용이 배제되지 않습니다.",
+      "norm": {
+        "actor_ko": "술을 마신 뒤 자동차 등을 운전한 사람",
+        "conditions_ko": "운전 당시 혈중알코올농도와 실제 운전행위가 확인되는 경우",
+        "legal_effect_ko": "0.03퍼센트 이상이면 음주운전 금지 규정과 형사처벌·면허처분 규정이 각각 문제됩니다."
+      },
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0044",
+        "coord.traffic-criminal-license.road-0148-2"
+      ]
+    },
+    {
+      "rule_id": "rule.traffic-criminal-license.breath-blood-test",
+      "title_ko": "호흡측정 결과에 불복하면 채혈을 요구할 수 있는가",
+      "proposition_ko": "호흡측정 결과에 불복하는 운전자는 동의를 전제로 혈액 채취 등의 방법으로 다시 측정할 수 있으므로 불복·요청·동의·채혈 시각을 즉시 기록해야 합니다.",
+      "norm": {
+        "actor_ko": "호흡측정을 받은 운전자와 경찰공무원",
+        "conditions_ko": "호흡측정 결과에 불복해 혈액 채취 등 재측정을 요청하는 경우",
+        "legal_effect_ko": "운전자 동의를 받아 혈액 채취 등으로 다시 측정할 수 있고 요청과 시각은 기록으로 남길 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0044"
+      ]
+    },
+    {
+      "rule_id": "rule.traffic-criminal-license.refusal-obstruction",
+      "title_ko": "음주측정 거부와 사후 음주·측정방해의 차이",
+      "proposition_ko": "술에 취했다고 인정할 상당한 이유가 있는 운전자는 적법한 호흡측정 요구에 응해야 하며 측정을 어렵게 하려고 운전 후 추가로 술을 마시거나 혈중농도에 영향을 줄 물품을 사용하는 행위도 금지됩니다.",
+      "norm": {
+        "actor_ko": "음주운전 의심을 받아 측정 요구를 받은 사람",
+        "conditions_ko": "측정 요구의 경위와 불응, 운전 후 추가 음주·물품 사용 목적이 문제되는 경우",
+        "legal_effect_ko": "측정 불응과 측정방해는 형사처벌·면허처분 사유가 될 수 있어 진술거부권과 같게 취급할 수 없습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0044",
+        "coord.traffic-criminal-license.road-0093",
+        "coord.traffic-criminal-license.road-0148-2"
+      ]
+    },
+    {
+      "rule_id": "rule.traffic-criminal-license.penalty-repeat",
+      "title_ko": "음주수치와 재범에 따라 처벌구간이 달라지는 구조",
+      "proposition_ko": "도로교통법은 혈중알코올농도 구간, 측정거부·방해 여부와 종전 음주 관련 형 확정 후 10년 내 재위반 여부에 따라 처벌범위를 달리 정합니다.",
+      "norm": {
+        "actor_ko": "음주운전·측정거부·측정방해 혐의를 받는 운전자",
+        "conditions_ko": "현재 수치·행위유형과 종전 전력의 확정일·새 위반일이 확인되는 경우",
+        "legal_effect_ko": "0.03·0.08·0.2퍼센트 구간과 10년 내 재위반 구간을 구분하고 면허처분·사고범죄는 별도로 판단합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0148-2"
+      ]
+    },
+    {
+      "rule_id": "rule.traffic-criminal-license.hit-and-run",
+      "title_ko": "사고 현장을 떠나면 모두 도주차량죄가 되는가",
+      "proposition_ko": "사람을 다치게 한 사고운전자가 필요한 구호조치를 하지 않고 도주하면 도주차량 가중처벌이 문제되며 단순 현장이탈만으로 모든 경우가 같은 죄가 되는 것은 아닙니다.",
+      "norm": {
+        "actor_ko": "교통사고 운전자와 사상 피해자",
+        "conditions_ko": "인적 사고, 필요한 구호조치 미이행과 도주 경위가 확인되는 경우",
+        "legal_effect_ko": "사고 후 조치 위반과 도주차량 가중처벌을 구분하고 피해자를 옮겨 유기한 경우에는 더 무거운 구간을 검토합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0054",
+        "coord.traffic-criminal-license.road-0148",
+        "coord.traffic-criminal-license.traffic-special-0003",
+        "coord.traffic-criminal-license.specific-0005-3"
+      ]
+    },
+    {
+      "rule_id": "rule.traffic-criminal-license.license-criminal-separation",
+      "title_ko": "벌금이나 형사합의와 면허취소·정지는 같은 절차인가",
+      "proposition_ko": "형사처벌과 운전면허 취소·정지는 근거와 절차가 다른 제재이므로 벌금 납부·합의·보험처리만으로 면허처분이 자동 소멸하지 않습니다.",
+      "norm": {
+        "actor_ko": "형사절차와 면허처분이 함께 문제된 운전자",
+        "conditions_ko": "형사사건 결과와 별도로 취소·정지 사유와 처분통지가 존재하는 경우",
+        "legal_effect_ko": "형사대응과 면허처분의 사전통지·의견제출·불복기한을 별도 일정으로 관리해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0093",
+        "coord.traffic-criminal-license.road-0148-2"
+      ]
+    },
+    {
+      "rule_id": "rule.traffic-criminal-license.license-objection",
+      "title_ko": "면허취소·정지 통지를 받으면 언제 어떻게 다투는가",
+      "proposition_ko": "면허 취소·정지처분의 이의신청은 처분을 받은 날부터 60일 이내 가능하고 이의와 관계없이 행정심판을 청구할 수 있으며 이의 결과 통지 뒤에는 90일 기한을 확인해야 합니다.",
+      "norm": {
+        "actor_ko": "면허 취소·정지처분을 받은 사람",
+        "conditions_ko": "처분서 송달일, 이의신청과 결과 통지일이 확인되는 경우",
+        "legal_effect_ko": "60일 이의신청과 행정심판·소송·집행정지 경로를 구분해 각 기한과 효력정지 필요성을 검토합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0093",
+        "coord.traffic-criminal-license.road-0094"
+      ]
+    },
+    {
+      "rule_id": "rule.traffic-criminal-license.disqualification-reacquisition",
+      "title_ko": "면허가 취소되면 결격기간 뒤 바로 운전할 수 있는가",
+      "proposition_ko": "면허취소 뒤에는 사유별 결격기간이 지나야 다시 면허를 받을 수 있고 기간이 끝났더라도 특별교통안전 의무교육을 받지 않으면 재취득할 수 없습니다.",
+      "norm": {
+        "actor_ko": "취소된 면허를 다시 취득하려는 사람",
+        "conditions_ko": "취소사유·위반일·취소일·결격기간과 교육 이수가 확인되는 경우",
+        "legal_effect_ko": "결격기간 종료와 교육 이수 뒤 재취득 절차를 거쳐야 하며 새 면허 전 운전은 무면허 문제가 생깁니다."
+      },
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0082"
+      ]
+    },
+    {
+      "rule_id": "rule.traffic-criminal-license.ignition-interlock",
+      "title_ko": "반복 음주운전자에게 방지장치 조건부면허가 필요한 경우",
+      "proposition_ko": "음주운전·측정거부·측정방해 위반일부터 5년 안에 다시 같은 유형을 위반해 면허가 취소된 사람이 운전하려면 방지장치 부착 조건부면허를 받아야 합니다.",
+      "norm": {
+        "actor_ko": "5년 안에 음주 관련 위반을 반복해 면허가 취소된 사람",
+        "conditions_ko": "두 위반일, 위반유형, 취소와 결격기간이 확인되는 경우",
+        "legal_effect_ko": "결격기간 뒤에도 조건부면허를 받고 등록된 장치 차량만 운전해야 합니다."
+      },
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0080-2",
+        "coord.traffic-criminal-license.road-0082"
+      ]
+    },
+    {
+      "rule_id": "rule.traffic-criminal-license.interlock-compliance",
+      "title_ko": "방지장치 차량은 다른 사람이 대신 시동해도 되는가",
+      "proposition_ko": "조건부면허자는 적법하게 설치·등록된 방지장치 차량만 운전해야 하고 장치 조작·효용 훼손이나 다른 사람의 대리 호흡·부정 시동은 금지됩니다.",
+      "norm": {
+        "actor_ko": "조건부면허자, 장치 차량 소유자와 시동을 돕는 사람",
+        "conditions_ko": "설치·등록·검사와 조작·대리호흡 여부가 문제되는 경우",
+        "legal_effect_ko": "미설치·미등록·기준미달 차량 운전과 장치 훼손·대리호흡은 면허처분·처벌 문제가 될 수 있습니다."
+      },
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0050-3",
+        "coord.traffic-criminal-license.road-0093"
+      ]
+    }
+  ],
+  "scenario_branches": [
+    {
+      "scenario_id": "scenario.traffic-criminal-license.drunk-threshold",
+      "question_ko": "측정수치가 0.03퍼센트 이상이고 실제 운전행위가 있었나요?",
+      "decision_fact_ko": "운전 시작시각, 운전 종료시각, 마지막 음주시각, 호흡측정 수치·시각, 채혈 수치·시각, 운전 장소·거리",
+      "when_true_ko": "수치·측정시각·운전 종료시각을 대조해 성립과 처벌구간을 확인합니다.",
+      "when_false_ko": "수치가 기준 미만이거나 운전행위가 증명되지 않으면 같은 기준으로 단정하지 않습니다.",
+      "rule_ids": [
+        "rule.traffic-criminal-license.drunk-threshold"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0044",
+        "coord.traffic-criminal-license.road-0148-2"
+      ]
+    },
+    {
+      "scenario_id": "scenario.traffic-criminal-license.breath-blood-test",
+      "question_ko": "호흡측정 직후 불복 의사와 채혈 요청·동의를 명확히 남겼나요?",
+      "decision_fact_ko": "호흡측정 시각·수치, 불복 표시시각, 채혈 동의, 채혈 시각, 검체 인계·분석, 운전 종료시각",
+      "when_true_ko": "두 측정의 시각과 검체 인계·분석 자료를 확보합니다.",
+      "when_false_ko": "나중의 일반 건강검사를 법정 재측정과 같다고 단정하기 어렵습니다.",
+      "rule_ids": [
+        "rule.traffic-criminal-license.breath-blood-test"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0044"
+      ]
+    },
+    {
+      "scenario_id": "scenario.traffic-criminal-license.refusal-obstruction",
+      "question_ko": "구체적 측정 요구가 있었고 불응 또는 측정곤란 목적의 사후행위가 있었나요?",
+      "decision_fact_ko": "측정 요구시각·횟수, 취했다고 볼 상당한 이유, 운전자의 답변·행동, 건강상 측정곤란, 추가 음주·물품 사용, 현장 영상·조서",
+      "when_true_ko": "요구 횟수·고지·답변·추가 음주 시각과 목적을 영상·기록으로 확인합니다.",
+      "when_false_ko": "상당한 이유나 구체적 요구가 없거나 건강상 곤란을 알리고 대체절차에 협조했다면 구분해 검토합니다.",
+      "rule_ids": [
+        "rule.traffic-criminal-license.refusal-obstruction"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0044",
+        "coord.traffic-criminal-license.road-0093",
+        "coord.traffic-criminal-license.road-0148-2"
+      ]
+    },
+    {
+      "scenario_id": "scenario.traffic-criminal-license.penalty-repeat",
+      "question_ko": "수치가 어느 구간이고 종전 형 확정 뒤 10년 안의 재위반인가요?",
+      "decision_fact_ko": "현재 혈중알코올농도, 측정거부·방해, 종전 위반 죄명, 종전 형 확정일, 새 위반일, 사고·인적피해",
+      "when_true_ko": "현재 수치·유형과 종전 확정일을 대조해 적용 항을 특정합니다.",
+      "when_false_ko": "10년 범위 밖이면 재위반 가중항을 곧바로 적용하지 않고 기본구간을 확인합니다.",
+      "rule_ids": [
+        "rule.traffic-criminal-license.penalty-repeat"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0148-2"
+      ]
+    },
+    {
+      "scenario_id": "scenario.traffic-criminal-license.hit-and-run",
+      "question_ko": "인적 피해를 인식할 수 있었는데 구호·신원확인 없이 떠났나요?",
+      "decision_fact_ko": "인적 피해·진단, 사고 인식 가능성, 정차·구호, 신고·인적사항, 이탈 목적·거리, 피해자 이동·유기",
+      "when_true_ko": "정차·구호·신고·인적사항 제공과 현장이탈 목적을 시간순으로 확인합니다.",
+      "when_false_ko": "물적 사고이거나 필요한 조치를 마친 뒤 이동했다면 같은 죄로 단정하지 않습니다.",
+      "rule_ids": [
+        "rule.traffic-criminal-license.hit-and-run"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0054",
+        "coord.traffic-criminal-license.road-0148",
+        "coord.traffic-criminal-license.traffic-special-0003",
+        "coord.traffic-criminal-license.specific-0005-3"
+      ]
+    },
+    {
+      "scenario_id": "scenario.traffic-criminal-license.license-criminal-separation",
+      "question_ko": "형사 사건번호와 별도로 면허 사전통지·처분서·효력일을 확인했나요?",
+      "decision_fact_ko": "형사 혐의·처분, 면허처분 사유, 사전통지·의견제출, 처분서 송달일, 효력발생일, 벌점·과거처분",
+      "when_true_ko": "형사결과와 행정처분 사유·벌점·통지일을 분리해 관리합니다.",
+      "when_false_ko": "처분사유가 기준에 해당하지 않거나 사실오인이 있으면 행정절차에서 따로 다툽니다.",
+      "rule_ids": [
+        "rule.traffic-criminal-license.license-criminal-separation"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0093",
+        "coord.traffic-criminal-license.road-0148-2"
+      ]
+    },
+    {
+      "scenario_id": "scenario.traffic-criminal-license.license-objection",
+      "question_ko": "처분받은 날과 이의 결과 통지일을 기준으로 60일·90일을 각각 계산했나요?",
+      "decision_fact_ko": "처분서 송달일, 처분사유·근거, 이의신청일, 결과 통지일, 심판 청구일, 생업상 운전 필요",
+      "when_true_ko": "처분·이의·결과통지·심판 청구일을 한 타임라인에 놓습니다.",
+      "when_false_ko": "이의를 하지 않았거나 결과 전이라도 행정심판 경로가 자동으로 막히지는 않습니다.",
+      "rule_ids": [
+        "rule.traffic-criminal-license.license-objection"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0093",
+        "coord.traffic-criminal-license.road-0094"
+      ]
+    },
+    {
+      "scenario_id": "scenario.traffic-criminal-license.disqualification-reacquisition",
+      "question_ko": "사유별 결격기간이 끝났고 특별교통안전 의무교육까지 이수했나요?",
+      "decision_fact_ko": "위반일, 취소일, 취소사유, 결격기간, 교육 이수일, 시험·발급일",
+      "when_true_ko": "교육 이수증과 재응시 가능일을 확인해 발급절차를 진행합니다.",
+      "when_false_ko": "기간·교육을 충족하기 전 재취득·운전을 진행하지 않습니다.",
+      "rule_ids": [
+        "rule.traffic-criminal-license.disqualification-reacquisition"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0082"
+      ]
+    },
+    {
+      "scenario_id": "scenario.traffic-criminal-license.ignition-interlock",
+      "question_ko": "첫 위반일부터 5년 안에 다시 위반해 면허가 취소됐나요?",
+      "decision_fact_ko": "첫 위반일·유형, 두 번째 위반일·유형, 취소일, 결격기간, 조건부면허 발급일, 등록차량",
+      "when_true_ko": "두 사건과 결격기간을 확인해 조건부면허·장치기간을 산정합니다.",
+      "when_false_ko": "5년·위반유형 요건이 없으면 일반 재취득 요건을 확인합니다.",
+      "rule_ids": [
+        "rule.traffic-criminal-license.ignition-interlock"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0080-2",
+        "coord.traffic-criminal-license.road-0082"
+      ]
+    },
+    {
+      "scenario_id": "scenario.traffic-criminal-license.interlock-compliance",
+      "question_ko": "장치가 설치·등록됐고 대리호흡·조작 없이 면허자가 직접 사용했나요?",
+      "decision_fact_ko": "장치 설치일·기준, 경찰청 등록, 조건부면허자, 시동·운행 로그, 기록 제출·검사, 조작·대리호흡",
+      "when_true_ko": "운행기록 제출·검사와 시동 로그를 보존합니다.",
+      "when_false_ko": "정비·폐차 예외자료를 남기고 정상화 전에는 운전하지 않습니다.",
+      "rule_ids": [
+        "rule.traffic-criminal-license.interlock-compliance"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0050-3",
+        "coord.traffic-criminal-license.road-0093"
+      ]
+    }
+  ],
+  "content_entries": [
+    {
+      "content_id": "content.traffic-criminal-license-drunk-threshold",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T05:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "traffic-criminal-license-drunk-threshold",
+      "title_ko": "술을 조금 마셔도 음주운전이 되는 기준",
+      "one_line_answer_ko": "혈중알코올농도 0.03퍼센트 이상이면 금지 기준에 해당합니다. 사고 유무와 별개로 운전시점의 수치와 운전행위를 확인해야 합니다.",
+      "audience_situation_ko": "술을 조금 마시고 짧게 운전하거나 주차 이동만 했다는 이유로 기준 적용 여부를 묻는 사람",
+      "key_points_ko": [
+        "법정 금지 기준은 0.03퍼센트 이상입니다.",
+        "사고가 없어도 성립할 수 있습니다.",
+        "측정시각과 운전시각의 차이를 확인합니다."
+      ],
+      "action_steps_ko": [
+        "운전 시작·종료시각을 적는다.",
+        "호흡·채혈 수치와 시각을 확보한다.",
+        "마지막 음주 시각과 양을 기록한다.",
+        "블랙박스·주차기록을 보존한다."
+      ],
+      "facts_to_check_ko": [
+        "운전 시작시각",
+        "운전 종료시각",
+        "마지막 음주시각",
+        "호흡측정 수치·시각",
+        "채혈 수치·시각",
+        "운전 장소·거리"
+      ],
+      "caution_ko": "0.03퍼센트는 금지 기준입니다. 구체적 처벌구간과 면허처분은 수치·전력·사고 여부에 따라 별도 판단합니다.",
+      "search_intents_ko": [
+        "술을 조금 마셔도 음주운전이 되는 기준",
+        "측정수치가 0.03퍼센트 이상이고 실제 운전행위가 있었나요?",
+        "술을 조금 마셔도 음주운전이 되는 기준 법적 기준"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "도로교통법상 음주운전 금지 기준은 혈중알코올농도 0.03퍼센트 이상이며, 사고가 없거나 짧은 거리를 운전했다는 사정만으로 적용이 배제되지 않습니다.",
+            "0.03퍼센트 이상이면 음주운전 금지 규정과 형사처벌·면허처분 규정이 각각 문제됩니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "운전 시작시각, 운전 종료시각, 마지막 음주시각, 호흡측정 수치·시각, 채혈 수치·시각, 운전 장소·거리를 시간순 자료와 문서로 확인합니다.",
+            "0.03퍼센트는 금지 기준입니다. 구체적 처벌구간과 면허처분은 수치·전력·사고 여부에 따라 별도 판단합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.traffic-criminal-license.drunk-threshold"
+      ],
+      "scenario_ids": [
+        "scenario.traffic-criminal-license.drunk-threshold"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0044",
+        "coord.traffic-criminal-license.road-0148-2"
+      ],
+      "hub_ids": [
+        "hub.traffic-criminal-license"
+      ],
+      "related_content_ids": [
+        "content.traffic-criminal-license-penalty-repeat",
+        "content.traffic-criminal-license-license-criminal-separation"
+      ]
+    },
+    {
+      "content_id": "content.traffic-criminal-license-breath-blood-test",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T05:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "traffic-criminal-license-breath-blood-test",
+      "title_ko": "호흡측정 결과에 불복하면 채혈을 요구할 수 있는가",
+      "one_line_answer_ko": "호흡측정 결과에 불복하면 운전자 동의를 받아 채혈 등으로 다시 측정할 수 있습니다. 현장에서 즉시 의사를 밝히고 절차 자료를 남겨야 합니다.",
+      "audience_situation_ko": "호흡측정 수치가 예상과 달라 채혈 재측정 절차를 확인하려는 운전자",
+      "key_points_ko": [
+        "채혈에는 운전자 동의가 전제됩니다.",
+        "호흡측정 직후 불복 의사를 남깁니다.",
+        "측정 사이의 시간과 검체기록이 중요합니다."
+      ],
+      "action_steps_ko": [
+        "호흡측정 수치·시각을 확인한다.",
+        "불복과 채혈 요청을 명확히 말한다.",
+        "동의·채혈·검체 인계시각을 기록한다.",
+        "측정·의료기록 보존을 요청한다."
+      ],
+      "facts_to_check_ko": [
+        "호흡측정 시각·수치",
+        "불복 표시시각",
+        "채혈 동의",
+        "채혈 시각",
+        "검체 인계·분석",
+        "운전 종료시각"
+      ],
+      "caution_ko": "채혈을 요청했다는 이유로 적법한 호흡측정 요구를 임의로 거부해도 된다는 뜻은 아닙니다.",
+      "search_intents_ko": [
+        "호흡측정 결과에 불복하면 채혈을 요구할 수 있는가",
+        "호흡측정 직후 불복 의사와 채혈 요청·동의를 명확히 남겼나요?",
+        "호흡측정 결과에 불복하면 채혈을 요구할 수 있는가 법적 기준"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "호흡측정 결과에 불복하는 운전자는 동의를 전제로 혈액 채취 등의 방법으로 다시 측정할 수 있으므로 불복·요청·동의·채혈 시각을 즉시 기록해야 합니다.",
+            "운전자 동의를 받아 혈액 채취 등으로 다시 측정할 수 있고 요청과 시각은 기록으로 남길 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "호흡측정 시각·수치, 불복 표시시각, 채혈 동의, 채혈 시각, 검체 인계·분석, 운전 종료시각를 시간순 자료와 문서로 확인합니다.",
+            "채혈을 요청했다는 이유로 적법한 호흡측정 요구를 임의로 거부해도 된다는 뜻은 아닙니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.traffic-criminal-license.breath-blood-test"
+      ],
+      "scenario_ids": [
+        "scenario.traffic-criminal-license.breath-blood-test"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0044"
+      ],
+      "hub_ids": [
+        "hub.traffic-criminal-license"
+      ],
+      "related_content_ids": [
+        "content.traffic-criminal-license-refusal-obstruction",
+        "content.suspect-rights-statement-record-and-illegal-evidence"
+      ]
+    },
+    {
+      "content_id": "content.traffic-criminal-license-refusal-obstruction",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T05:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "traffic-criminal-license-refusal-obstruction",
+      "title_ko": "음주측정 거부와 사후 음주·측정방해의 차이",
+      "one_line_answer_ko": "측정거부와 운전 후 추가 음주 등 측정방해는 별도 금지행위입니다. 진술거부권이 적법한 음주측정 요구를 거부할 권리와 같지는 않습니다.",
+      "audience_situation_ko": "측정에 응하지 않았거나 운전 뒤 술·약품을 사용해 측정방해 여부가 문제된 사람",
+      "key_points_ko": [
+        "진술거부권과 측정의무는 구별됩니다.",
+        "구체적 요구와 상당한 이유를 확인합니다.",
+        "추가 음주의 목적·시각도 핵심입니다."
+      ],
+      "action_steps_ko": [
+        "요구 내용·횟수·시각을 적는다.",
+        "측정곤란 사유 자료를 확보한다.",
+        "추가 음주·물품 사용 경위를 기록한다.",
+        "영상·녹음·조서를 보존한다."
+      ],
+      "facts_to_check_ko": [
+        "측정 요구시각·횟수",
+        "취했다고 볼 상당한 이유",
+        "운전자의 답변·행동",
+        "건강상 측정곤란",
+        "추가 음주·물품 사용",
+        "현장 영상·조서"
+      ],
+      "caution_ko": "단순 침묵과 호흡측정 불응을 혼동하면 안 됩니다. 측정 요구와 대체측정 협조 경위를 확인해야 합니다.",
+      "search_intents_ko": [
+        "음주측정 거부와 사후 음주·측정방해의 차이",
+        "구체적 측정 요구가 있었고 불응 또는 측정곤란 목적의 사후행위가 있었나요?",
+        "음주측정 거부와 사후 음주·측정방해의 차이 법적 기준"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "술에 취했다고 인정할 상당한 이유가 있는 운전자는 적법한 호흡측정 요구에 응해야 하며 측정을 어렵게 하려고 운전 후 추가로 술을 마시거나 혈중농도에 영향을 줄 물품을 사용하는 행위도 금지됩니다.",
+            "측정 불응과 측정방해는 형사처벌·면허처분 사유가 될 수 있어 진술거부권과 같게 취급할 수 없습니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "측정 요구시각·횟수, 취했다고 볼 상당한 이유, 운전자의 답변·행동, 건강상 측정곤란, 추가 음주·물품 사용, 현장 영상·조서를 시간순 자료와 문서로 확인합니다.",
+            "단순 침묵과 호흡측정 불응을 혼동하면 안 됩니다. 측정 요구와 대체측정 협조 경위를 확인해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.traffic-criminal-license.refusal-obstruction"
+      ],
+      "scenario_ids": [
+        "scenario.traffic-criminal-license.refusal-obstruction"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0044",
+        "coord.traffic-criminal-license.road-0093",
+        "coord.traffic-criminal-license.road-0148-2"
+      ],
+      "hub_ids": [
+        "hub.traffic-criminal-license"
+      ],
+      "related_content_ids": [
+        "content.suspect-rights-right-to-silence",
+        "content.suspect-rights-counsel-during-questioning",
+        "content.traffic-criminal-license-breath-blood-test"
+      ]
+    },
+    {
+      "content_id": "content.traffic-criminal-license-penalty-repeat",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T05:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "traffic-criminal-license-penalty-repeat",
+      "title_ko": "음주수치와 재범에 따라 처벌구간이 달라지는 구조",
+      "one_line_answer_ko": "초범은 0.03·0.08·0.2퍼센트 구간으로, 재위반은 종전 형 확정 후 10년 이내인지와 거부·방해 여부로 구분됩니다.",
+      "audience_situation_ko": "음주수치와 과거 전력 때문에 예상 처벌구조를 확인하려는 운전자·가족",
+      "key_points_ko": [
+        "수치구간은 0.03·0.08·0.2퍼센트입니다.",
+        "재위반은 종전 형 확정 후 10년을 확인합니다.",
+        "형사처벌과 면허처분은 별도입니다."
+      ],
+      "action_steps_ko": [
+        "현재 수치와 유형을 확정한다.",
+        "종전 사건번호·죄명·확정일을 확인한다.",
+        "사고·인적피해를 별도 분류한다.",
+        "적용 항과 면허처분을 각각 검토한다."
+      ],
+      "facts_to_check_ko": [
+        "현재 혈중알코올농도",
+        "측정거부·방해",
+        "종전 위반 죄명",
+        "종전 형 확정일",
+        "새 위반일",
+        "사고·인적피해"
+      ],
+      "caution_ko": "적발 횟수만 세면 안 됩니다. 종전 형 확정과 10년 기간, 이번 행위유형을 정확히 대조해야 합니다.",
+      "search_intents_ko": [
+        "음주수치와 재범에 따라 처벌구간이 달라지는 구조",
+        "수치가 어느 구간이고 종전 형 확정 뒤 10년 안의 재위반인가요?",
+        "음주수치와 재범에 따라 처벌구간이 달라지는 구조 법적 기준"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "도로교통법은 혈중알코올농도 구간, 측정거부·방해 여부와 종전 음주 관련 형 확정 후 10년 내 재위반 여부에 따라 처벌범위를 달리 정합니다.",
+            "0.03·0.08·0.2퍼센트 구간과 10년 내 재위반 구간을 구분하고 면허처분·사고범죄는 별도로 판단합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "현재 혈중알코올농도, 측정거부·방해, 종전 위반 죄명, 종전 형 확정일, 새 위반일, 사고·인적피해를 시간순 자료와 문서로 확인합니다.",
+            "적발 횟수만 세면 안 됩니다. 종전 형 확정과 10년 기간, 이번 행위유형을 정확히 대조해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.traffic-criminal-license.penalty-repeat"
+      ],
+      "scenario_ids": [
+        "scenario.traffic-criminal-license.penalty-repeat"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0148-2"
+      ],
+      "hub_ids": [
+        "hub.traffic-criminal-license"
+      ],
+      "related_content_ids": [
+        "content.traffic-criminal-license-drunk-threshold",
+        "content.traffic-criminal-license-license-criminal-separation",
+        "content.suspect-rights-counsel-during-questioning"
+      ]
+    },
+    {
+      "content_id": "content.traffic-criminal-license-hit-and-run",
+      "content_type": "fact_branch",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T05:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "traffic-criminal-license-hit-and-run",
+      "title_ko": "사고 현장을 떠나면 모두 도주차량죄가 되는가",
+      "one_line_answer_ko": "아닙니다. 인적 사고와 구호조치 미이행, 도주 경위를 종합합니다. 사람을 다치게 하고 필요한 조치 없이 도주하면 가중처벌될 수 있습니다.",
+      "audience_situation_ko": "사고 뒤 현장을 이동했거나 상대 운전자가 떠나 도주차량죄 요건을 확인하려는 사람",
+      "key_points_ko": [
+        "인적 피해와 구호조치가 핵심입니다.",
+        "사고 후 조치 위반과 도주차량죄를 구분합니다.",
+        "피해자 유기는 더 무겁게 다뤄집니다."
+      ],
+      "action_steps_ko": [
+        "112·119 신고와 구호 여부를 확인한다.",
+        "인적사항·사진·블랙박스를 확보한다.",
+        "진단과 사고 인식 정황을 정리한다.",
+        "이탈·복귀·신고 경위를 기록한다."
+      ],
+      "facts_to_check_ko": [
+        "인적 피해·진단",
+        "사고 인식 가능성",
+        "정차·구호",
+        "신고·인적사항",
+        "이탈 목적·거리",
+        "피해자 이동·유기"
+      ],
+      "caution_ko": "현장을 떠난 사실만으로 죄명을 확정하지 않습니다. 보험 접수만으로 구호·신고 의무가 모두 이행되는 것도 아닙니다.",
+      "search_intents_ko": [
+        "사고 현장을 떠나면 모두 도주차량죄가 되는가",
+        "인적 피해를 인식할 수 있었는데 구호·신원확인 없이 떠났나요?",
+        "사고 현장을 떠나면 모두 도주차량죄가 되는가 법적 기준"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "사람을 다치게 한 사고운전자가 필요한 구호조치를 하지 않고 도주하면 도주차량 가중처벌이 문제되며 단순 현장이탈만으로 모든 경우가 같은 죄가 되는 것은 아닙니다.",
+            "사고 후 조치 위반과 도주차량 가중처벌을 구분하고 피해자를 옮겨 유기한 경우에는 더 무거운 구간을 검토합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "인적 피해·진단, 사고 인식 가능성, 정차·구호, 신고·인적사항, 이탈 목적·거리, 피해자 이동·유기를 시간순 자료와 문서로 확인합니다.",
+            "현장을 떠난 사실만으로 죄명을 확정하지 않습니다. 보험 접수만으로 구호·신고 의무가 모두 이행되는 것도 아닙니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.traffic-criminal-license.hit-and-run"
+      ],
+      "scenario_ids": [
+        "scenario.traffic-criminal-license.hit-and-run"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0054",
+        "coord.traffic-criminal-license.road-0148",
+        "coord.traffic-criminal-license.traffic-special-0003",
+        "coord.traffic-criminal-license.specific-0005-3"
+      ],
+      "hub_ids": [
+        "hub.traffic-criminal-license"
+      ],
+      "related_content_ids": [
+        "content.auto-accident-insurance-immediate-response",
+        "content.auto-accident-insurance-police-report",
+        "content.crime-evidence-preservation-first-steps"
+      ]
+    },
+    {
+      "content_id": "content.traffic-criminal-license-license-criminal-separation",
+      "content_type": "misconception_correction",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T05:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "traffic-criminal-license-license-criminal-separation",
+      "title_ko": "벌금이나 형사합의와 면허취소·정지는 같은 절차인가",
+      "one_line_answer_ko": "다른 절차입니다. 벌금·합의·보험처리와 면허 취소·정지는 자동 연동되지 않으므로 각각 확인해야 합니다.",
+      "audience_situation_ko": "형사합의나 벌금 납부가 끝나면 면허도 유지되는지 혼동하는 운전자",
+      "key_points_ko": [
+        "형사처벌과 면허처분은 별도입니다.",
+        "처분 전 의견제출을 확인합니다.",
+        "처분 이유와 불복기간을 따로 관리합니다."
+      ],
+      "action_steps_ko": [
+        "형사 사건번호·진행상태를 적는다.",
+        "면허 사전통지와 처분서를 확보한다.",
+        "처분사유·벌점·효력일을 확인한다.",
+        "형사·행정 기한표를 따로 만든다."
+      ],
+      "facts_to_check_ko": [
+        "형사 혐의·처분",
+        "면허처분 사유",
+        "사전통지·의견제출",
+        "처분서 송달일",
+        "효력발생일",
+        "벌점·과거처분"
+      ],
+      "caution_ko": "형사 무혐의·무죄가 면허처분에 미치는 영향은 두 절차의 사실적·법적 기초가 같은지 개별 확인해야 합니다.",
+      "search_intents_ko": [
+        "벌금이나 형사합의와 면허취소·정지는 같은 절차인가",
+        "형사 사건번호와 별도로 면허 사전통지·처분서·효력일을 확인했나요?",
+        "벌금이나 형사합의와 면허취소·정지는 같은 절차인가 법적 기준"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "형사처벌과 운전면허 취소·정지는 근거와 절차가 다른 제재이므로 벌금 납부·합의·보험처리만으로 면허처분이 자동 소멸하지 않습니다.",
+            "형사대응과 면허처분의 사전통지·의견제출·불복기한을 별도 일정으로 관리해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "형사 혐의·처분, 면허처분 사유, 사전통지·의견제출, 처분서 송달일, 효력발생일, 벌점·과거처분를 시간순 자료와 문서로 확인합니다.",
+            "형사 무혐의·무죄가 면허처분에 미치는 영향은 두 절차의 사실적·법적 기초가 같은지 개별 확인해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.traffic-criminal-license.license-criminal-separation"
+      ],
+      "scenario_ids": [
+        "scenario.traffic-criminal-license.license-criminal-separation"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0093",
+        "coord.traffic-criminal-license.road-0148-2"
+      ],
+      "hub_ids": [
+        "hub.traffic-criminal-license"
+      ],
+      "related_content_ids": [
+        "content.traffic-criminal-license-license-objection",
+        "content.auto-accident-insurance-settlement-criminal-effect",
+        "content.auto-accident-insurance-comprehensive-insurance-criminal"
+      ]
+    },
+    {
+      "content_id": "content.traffic-criminal-license-license-objection",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T05:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "traffic-criminal-license-license-objection",
+      "title_ko": "면허취소·정지 통지를 받으면 언제 어떻게 다투는가",
+      "one_line_answer_ko": "이의신청은 처분을 받은 날부터 60일 이내입니다. 별도로 행정심판을 청구할 수 있고 이의 결과 통지 뒤에는 90일 기한을 놓치지 않아야 합니다.",
+      "audience_situation_ko": "면허처분서를 받고 생업상 운전 필요와 처분사유를 다투려는 사람",
+      "key_points_ko": [
+        "이의신청은 60일 이내입니다.",
+        "이의와 행정심판은 다른 절차입니다.",
+        "불복만으로 효력이 자동 정지되지는 않습니다."
+      ],
+      "action_steps_ko": [
+        "처분서와 송달증거를 확보한다.",
+        "60일 마감일을 계산한다.",
+        "심판·소송 마감일을 별도 확인한다.",
+        "생업·회복곤란 손해 자료로 집행정지를 검토한다."
+      ],
+      "facts_to_check_ko": [
+        "처분서 송달일",
+        "처분사유·근거",
+        "이의신청일",
+        "결과 통지일",
+        "심판 청구일",
+        "생업상 운전 필요"
+      ],
+      "caution_ko": "이의 결과를 기다리다가 행정심판·소송 기한을 놓치지 않도록 각 기산점을 별도로 확인해야 합니다.",
+      "search_intents_ko": [
+        "면허취소·정지 통지를 받으면 언제 어떻게 다투는가",
+        "처분받은 날과 이의 결과 통지일을 기준으로 60일·90일을 각각 계산했나요?",
+        "면허취소·정지 통지를 받으면 언제 어떻게 다투는가 법적 기준"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "면허 취소·정지처분의 이의신청은 처분을 받은 날부터 60일 이내 가능하고 이의와 관계없이 행정심판을 청구할 수 있으며 이의 결과 통지 뒤에는 90일 기한을 확인해야 합니다.",
+            "60일 이의신청과 행정심판·소송·집행정지 경로를 구분해 각 기한과 효력정지 필요성을 검토합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "처분서 송달일, 처분사유·근거, 이의신청일, 결과 통지일, 심판 청구일, 생업상 운전 필요를 시간순 자료와 문서로 확인합니다.",
+            "이의 결과를 기다리다가 행정심판·소송 기한을 놓치지 않도록 각 기산점을 별도로 확인해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.traffic-criminal-license.license-objection"
+      ],
+      "scenario_ids": [
+        "scenario.traffic-criminal-license.license-objection"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0093",
+        "coord.traffic-criminal-license.road-0094"
+      ],
+      "hub_ids": [
+        "hub.traffic-criminal-license"
+      ],
+      "related_content_ids": [
+        "content.administrative-appeal-vs-revocation-lawsuit",
+        "content.administrative-appeal-suspension-vs-court-suspension",
+        "content.traffic-criminal-license-license-criminal-separation"
+      ]
+    },
+    {
+      "content_id": "content.traffic-criminal-license-disqualification-reacquisition",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T05:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "traffic-criminal-license-disqualification-reacquisition",
+      "title_ko": "면허가 취소되면 결격기간 뒤 바로 운전할 수 있는가",
+      "one_line_answer_ko": "아닙니다. 결격기간이 끝나고 의무교육을 이수한 뒤 새 면허를 받아야 하며, 그 전에는 운전할 수 없습니다.",
+      "audience_situation_ko": "면허취소 뒤 재응시 가능일과 교육·시험 절차를 확인하려는 사람",
+      "key_points_ko": [
+        "결격기간은 사유별로 다릅니다.",
+        "기간 종료로 면허가 자동 회복되지 않습니다.",
+        "특별교통안전교육도 필요합니다."
+      ],
+      "action_steps_ko": [
+        "취소사유와 취소일을 확인한다.",
+        "제82조의 결격기간을 특정한다.",
+        "의무교육을 예약·이수한다.",
+        "재발급 전 운전하지 않는다."
+      ],
+      "facts_to_check_ko": [
+        "위반일",
+        "취소일",
+        "취소사유",
+        "결격기간",
+        "교육 이수일",
+        "시험·발급일"
+      ],
+      "caution_ko": "결격기간 시작점과 길이는 사유별로 다르고 무면허·도주·반복 위반에는 더 긴 기간이 적용될 수 있습니다.",
+      "search_intents_ko": [
+        "면허가 취소되면 결격기간 뒤 바로 운전할 수 있는가",
+        "사유별 결격기간이 끝났고 특별교통안전 의무교육까지 이수했나요?",
+        "면허가 취소되면 결격기간 뒤 바로 운전할 수 있는가 법적 기준"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "면허취소 뒤에는 사유별 결격기간이 지나야 다시 면허를 받을 수 있고 기간이 끝났더라도 특별교통안전 의무교육을 받지 않으면 재취득할 수 없습니다.",
+            "결격기간 종료와 교육 이수 뒤 재취득 절차를 거쳐야 하며 새 면허 전 운전은 무면허 문제가 생깁니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "위반일, 취소일, 취소사유, 결격기간, 교육 이수일, 시험·발급일를 시간순 자료와 문서로 확인합니다.",
+            "결격기간 시작점과 길이는 사유별로 다르고 무면허·도주·반복 위반에는 더 긴 기간이 적용될 수 있습니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.traffic-criminal-license.disqualification-reacquisition"
+      ],
+      "scenario_ids": [
+        "scenario.traffic-criminal-license.disqualification-reacquisition"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0082"
+      ],
+      "hub_ids": [
+        "hub.traffic-criminal-license"
+      ],
+      "related_content_ids": [
+        "content.traffic-criminal-license-ignition-interlock",
+        "content.traffic-criminal-license-license-objection"
+      ]
+    },
+    {
+      "content_id": "content.traffic-criminal-license-ignition-interlock",
+      "content_type": "doctrine_explainer",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T05:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "traffic-criminal-license-ignition-interlock",
+      "title_ko": "반복 음주운전자에게 방지장치 조건부면허가 필요한 경우",
+      "one_line_answer_ko": "5년 안에 음주운전·측정거부·측정방해를 다시 위반해 면허가 취소된 경우 방지장치 조건부면허가 필요할 수 있습니다.",
+      "audience_situation_ko": "반복 음주 관련 위반 뒤 방지장치 대상인지 확인하려는 사람",
+      "key_points_ko": [
+        "두 위반일이 5년 안인지 확인합니다.",
+        "결격기간과 장치기간은 구분됩니다.",
+        "일반 차량을 운전하면 안 됩니다."
+      ],
+      "action_steps_ko": [
+        "두 사건의 위반일·유형을 확인한다.",
+        "취소처분서와 결격기간을 대조한다.",
+        "조건부면허·장치등록 절차를 확인한다.",
+        "운전 가능한 등록차량과 기간을 기록한다."
+      ],
+      "facts_to_check_ko": [
+        "첫 위반일·유형",
+        "두 번째 위반일·유형",
+        "취소일",
+        "결격기간",
+        "조건부면허 발급일",
+        "등록차량"
+      ],
+      "caution_ko": "과거 적발만으로 대상이 되는 것은 아닙니다. 5년 안의 법정 위반 반복과 취소처분을 모두 확인해야 합니다.",
+      "search_intents_ko": [
+        "반복 음주운전자에게 방지장치 조건부면허가 필요한 경우",
+        "첫 위반일부터 5년 안에 다시 위반해 면허가 취소됐나요?",
+        "반복 음주운전자에게 방지장치 조건부면허가 필요한 경우 법적 기준"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "음주운전·측정거부·측정방해 위반일부터 5년 안에 다시 같은 유형을 위반해 면허가 취소된 사람이 운전하려면 방지장치 부착 조건부면허를 받아야 합니다.",
+            "결격기간 뒤에도 조건부면허를 받고 등록된 장치 차량만 운전해야 합니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "첫 위반일·유형, 두 번째 위반일·유형, 취소일, 결격기간, 조건부면허 발급일, 등록차량를 시간순 자료와 문서로 확인합니다.",
+            "과거 적발만으로 대상이 되는 것은 아닙니다. 5년 안의 법정 위반 반복과 취소처분을 모두 확인해야 합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.traffic-criminal-license.ignition-interlock"
+      ],
+      "scenario_ids": [
+        "scenario.traffic-criminal-license.ignition-interlock"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0080-2",
+        "coord.traffic-criminal-license.road-0082"
+      ],
+      "hub_ids": [
+        "hub.traffic-criminal-license"
+      ],
+      "related_content_ids": [
+        "content.traffic-criminal-license-interlock-compliance",
+        "content.traffic-criminal-license-disqualification-reacquisition"
+      ]
+    },
+    {
+      "content_id": "content.traffic-criminal-license-interlock-compliance",
+      "content_type": "procedure_evidence",
+      "editorial_status": "approved",
+      "reviewed_at": "2026-07-23T05:00:00+00:00",
+      "expires_at": "2026-10-23T00:00:00+00:00",
+      "slug": "traffic-criminal-license-interlock-compliance",
+      "title_ko": "방지장치 차량은 다른 사람이 대신 시동해도 되는가",
+      "one_line_answer_ko": "안 됩니다. 조건부면허자가 직접 적법한 장치를 사용해야 하며 대리호흡·부정시동·조작과 기준미달 차량 운전은 금지됩니다.",
+      "audience_situation_ko": "방지장치 차량을 관리하거나 가족이 시동을 도와도 되는지 묻는 사람",
+      "key_points_ko": [
+        "설치뿐 아니라 등록이 필요합니다.",
+        "대리호흡·부정시동은 금지됩니다.",
+        "운행기록 제출과 검사를 관리합니다."
+      ],
+      "action_steps_ko": [
+        "설치기준과 등록을 확인한다.",
+        "사용·시동 로그를 보존한다.",
+        "연 2회 이상 기록제출·검사를 예약한다.",
+        "고장·정비 때 공식 기록을 남긴다."
+      ],
+      "facts_to_check_ko": [
+        "장치 설치일·기준",
+        "경찰청 등록",
+        "조건부면허자",
+        "시동·운행 로그",
+        "기록 제출·검사",
+        "조작·대리호흡"
+      ],
+      "caution_ko": "술을 마시지 않은 가족이라도 대신 호흡할 수 없습니다. 오작동은 임의 해체하지 말고 공식 정비절차로 처리합니다.",
+      "search_intents_ko": [
+        "방지장치 차량은 다른 사람이 대신 시동해도 되는가",
+        "장치가 설치·등록됐고 대리호흡·조작 없이 면허자가 직접 사용했나요?",
+        "방지장치 차량은 다른 사람이 대신 시동해도 되는가 법적 기준"
+      ],
+      "body_sections": [
+        {
+          "heading_ko": "법적 기준",
+          "paragraphs_ko": [
+            "조건부면허자는 적법하게 설치·등록된 방지장치 차량만 운전해야 하고 장치 조작·효용 훼손이나 다른 사람의 대리 호흡·부정 시동은 금지됩니다.",
+            "미설치·미등록·기준미달 차량 운전과 장치 훼손·대리호흡은 면허처분·처벌 문제가 될 수 있습니다."
+          ]
+        },
+        {
+          "heading_ko": "지금 확인할 사실",
+          "paragraphs_ko": [
+            "장치 설치일·기준, 경찰청 등록, 조건부면허자, 시동·운행 로그, 기록 제출·검사, 조작·대리호흡를 시간순 자료와 문서로 확인합니다.",
+            "술을 마시지 않은 가족이라도 대신 호흡할 수 없습니다. 오작동은 임의 해체하지 말고 공식 정비절차로 처리합니다."
+          ]
+        }
+      ],
+      "rule_ids": [
+        "rule.traffic-criminal-license.interlock-compliance"
+      ],
+      "scenario_ids": [
+        "scenario.traffic-criminal-license.interlock-compliance"
+      ],
+      "source_coordinate_ids": [
+        "coord.traffic-criminal-license.road-0050-3",
+        "coord.traffic-criminal-license.road-0093"
+      ],
+      "hub_ids": [
+        "hub.traffic-criminal-license"
+      ],
+      "related_content_ids": [
+        "content.traffic-criminal-license-ignition-interlock",
+        "content.traffic-criminal-license-license-criminal-separation"
+      ]
+    }
+  ]
+}
