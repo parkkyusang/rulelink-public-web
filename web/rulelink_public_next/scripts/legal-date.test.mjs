@@ -19,3 +19,13 @@ test('홈은 날짜-only 포맷을 사용하고 Date 자정 변환을 되살리�
   assert.match(home, /formatKoreanLegalDate\(brief\.effective_date\)/u);
   assert.doesNotMatch(home, /T00:00:00\+09:00/u);
 });
+
+test('change pages retain date-only values across server time zones', async () => {
+  const page = await readFile(
+    path.join(appRoot, 'app', 'ko', 'changes', '[slug]', 'page.tsx'),
+    'utf8',
+  );
+  assert.match(page, /formatKoreanLegalDate\(value\)/u);
+  assert.match(page, /timeZone: 'Asia\/Seoul'/u);
+  assert.doesNotMatch(page, /T00:00:00\+09:00/u);
+});
