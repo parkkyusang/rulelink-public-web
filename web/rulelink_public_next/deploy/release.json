@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20261025-034",
+  "release_id": "production-20261030-035",
   "snapshot_id": "kr-knowledge-core-20261025-025",
-  "requested_at": "2026-10-25T09:57:31.000Z",
-  "summary_ko": "RuleLink Google AdSense ads.txt 판매자 레코드를 운영 공개한다. 소유권 메타태그와 광고 스크립트는 변경하지 않는다."
+  "requested_at": "2026-10-30T04:13:15.000Z",
+  "summary_ko": "RuleLink 공개 법령 변경일을 서울 시간대로 일관되게 표시하고, 검색 결과가 없는 유형 필터를 숨긴다."
 }
