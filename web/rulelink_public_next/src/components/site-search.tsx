@@ -50,6 +50,12 @@ export function SiteSearch({
   const [visibleLimit, setVisibleLimit] = useState(() => initialProgressiveResultLimit(
     totalCounts.all,
   ));
+  const availableFilters = useMemo(
+    () => RESULT_FILTERS.filter(candidate => (
+      candidate === 'all' || totalCounts[candidate] > 0
+    )),
+    [totalCounts],
+  );
 
   const ensureFullIndex = useCallback((): Promise<SiteSearchDocument[]> => {
     if (indexPromise.current) return indexPromise.current;
@@ -79,7 +85,7 @@ export function SiteSearch({
 
   useEffect(() => {
     const initial = parseCollectionSearchState({
-      allowedFilters: RESULT_FILTERS,
+      allowedFilters: availableFilters,
       defaultFilter: 'all',
       filterParam: 'type',
       search: window.location.search,
@@ -90,7 +96,7 @@ export function SiteSearch({
     if (initial.query || initial.filter !== 'all') {
       void ensureFullIndex().catch(() => undefined);
     }
-  }, [ensureFullIndex]);
+  }, [availableFilters, ensureFullIndex]);
 
   function updateQuery(value: string) {
     const nextQuery = sanitizeCollectionQuery(value);
@@ -276,6 +282,7 @@ export function SiteSearch({
 }
 
 function FilterButton({active, count, label, onClick}: {active: boolean; count: number; label: string; onClick: () => void}) {
+  if (count === 0) return null;
   return (
     <button aria-pressed={active} className={active ? styles.active : ''} onClick={onClick} type="button">
       {label}<span>{count}</span>

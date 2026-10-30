@@ -12,6 +12,7 @@ import {
   relatedCardsForChangeBrief,
 } from '@/lib/publication';
 import {browserOfficialSourceUrl} from '@/lib/official-source-url';
+import {formatKoreanLegalDate} from '@/lib/legal-date';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
 import type {NormSlot} from '@/types/publication';
@@ -206,6 +207,9 @@ function renderNormValues(values: string[]) {
 }
 
 function formatDate(value: string): string {
-  const date = new Date(value.length === 10 ? `${value}T00:00:00+09:00` : value);
-  return new Intl.DateTimeFormat('ko-KR', {dateStyle: 'long'}).format(date);
+  if (/^\d{4}-\d{2}-\d{2}$/u.test(value)) return formatKoreanLegalDate(value);
+  return new Intl.DateTimeFormat('ko-KR', {
+    dateStyle: 'long',
+    timeZone: 'Asia/Seoul',
+  }).format(new Date(value));
 }
