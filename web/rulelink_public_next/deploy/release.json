@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20261030-035",
+  "release_id": "production-20261031-036",
   "snapshot_id": "kr-knowledge-core-20261025-025",
-  "requested_at": "2026-10-30T04:13:15.000Z",
+  "requested_at": "2026-10-31T03:05:00.000Z",
   "summary_ko": "RuleLink 공개 법령 변경일을 서울 시간대로 일관되게 표시하고, 검색 결과가 없는 유형 필터를 숨긴다."
 }
