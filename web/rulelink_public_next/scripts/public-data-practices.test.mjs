@@ -142,9 +142,9 @@ test('공개 런타임에는 광고·분석·쿠키·비콘 코드가 없고 loc
 test('기본 설정은 privacy 404·footer/sitemap 링크 0의 resolver 상태다', () => {
   assert.equal(resolvePublicPrivacyConfig({}), null);
   assert.deepEqual(validatePublicPrivacyConfiguration({}), []);
-  assert.match(privacyPage, /if \(!config\) notFound\(\)/);
-  assert.match(layout, /privacyConfig \? <a href="\/ko\/privacy">/);
-  assert.match(sitemap, /\.\.\.\(privacyConfig \? \[\{/);
+  assert.match(privacyPage, /if \(!config && !notice\) notFound\(\)/);
+  assert.match(layout, /privacyConfig \|\| privacyNoticeConfig \? <a href="\/ko\/privacy">/);
+  assert.match(sitemap, /\.\.\.\(privacyConfig \|\| privacyNoticeConfig \? \[\{/);
 });
 
 test('완전한 운영 사실만 privacy와 hosting inventory를 연다', () => {

@@ -14,12 +14,14 @@ import {
 } from '@/lib/publication';
 import {site} from '@/lib/site';
 import {resolvePublicPrivacyConfig} from '@/lib/public-data-practices';
+import {resolvePublicPrivacyNoticeConfig} from '@/lib/public-privacy-notice';
 import {resolvePublicTrustConfig} from '@/lib/public-trust';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (!site.indexing) return [];
   const trustConfig = resolvePublicTrustConfig();
   const privacyConfig = resolvePublicPrivacyConfig();
+  const privacyNoticeConfig = resolvePublicPrivacyNoticeConfig();
   const [
     cards,
     topics,
@@ -47,9 +49,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly' as const,
       priority: 0.65,
     }] : []),
-    ...(privacyConfig ? [{
+    ...(privacyConfig || privacyNoticeConfig ? [{
       url: `${site.url}/ko/privacy`,
-      lastModified: new Date(`${privacyConfig.effectiveDate}T00:00:00+09:00`),
+      lastModified: new Date(`${(privacyConfig ?? privacyNoticeConfig)!.effectiveDate}T00:00:00+09:00`),
       changeFrequency: 'monthly' as const,
       priority: 0.6,
     }] : []),
