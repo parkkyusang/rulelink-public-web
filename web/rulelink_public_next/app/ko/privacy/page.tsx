@@ -6,6 +6,10 @@ import {
   type PublicConditionalDisclosure,
   type PublicDataPractice,
 } from '@/lib/public-data-practices';
+import {
+  resolvePublicPrivacyNoticeConfig,
+  type PublicPrivacyNoticeConfig,
+} from '@/lib/public-privacy-notice';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
 import {parsePublicContactHref} from '@/lib/public-trust';
@@ -16,19 +20,21 @@ import styles from './privacy.module.css';
 export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
-  title: '개인정보 처리방침',
-  description: `${site.name} 공개사이트의 데이터 처리 항목과 보존·전송 원칙`,
+  title: '개인정보 안내',
+  description: `${site.name} 공개사이트의 데이터 처리와 문의 안내`,
   alternates: {canonical: '/ko/privacy'},
   openGraph: {
-    title: `${site.name} 개인정보 처리방침`,
-    description: '공개사이트의 실제 데이터 처리 항목과 선택 저장을 설명합니다.',
+    title: `${site.name} 개인정보 안내`,
+    description: '공개사이트의 데이터 처리와 문의 안내를 확인합니다.',
     url: '/ko/privacy',
   },
 };
 
 export default function PublicPrivacyPage() {
   const config = resolvePublicPrivacyConfig();
-  if (!config) notFound();
+  const notice = resolvePublicPrivacyNoticeConfig();
+  if (!config && !notice) notFound();
+  if (!config) return <PrivacyNotice config={notice!} />;
   const pageUrl = `${site.url}/ko/privacy`;
   const organizationId = `${site.url}/#organization`;
   return (
@@ -188,6 +194,103 @@ export default function PublicPrivacyPage() {
             destination={config.trust.contact.destination}
           />
         </p>
+      </section>
+    </main>
+  );
+}
+
+function PrivacyNotice({config}: {config: PublicPrivacyNoticeConfig}) {
+  const pageUrl = `${site.url}/ko/privacy`;
+  const organizationId = `${site.url}/#organization`;
+  return (
+    <main className={styles.page}>
+      <script
+        dangerouslySetInnerHTML={{__html: serializeStructuredData({
+          '@context': 'https://schema.org',
+          '@graph': [
+            {
+              '@type': 'WebPage',
+              '@id': `${pageUrl}#webpage`,
+              url: pageUrl,
+              name: `${site.name} 개인정보 안내`,
+              datePublished: config.effectiveDate,
+              inLanguage: 'ko-KR',
+              about: {'@id': organizationId},
+            },
+            {
+              '@type': 'Organization',
+              '@id': organizationId,
+              name: config.trust.operatorLegalName,
+              url: site.url,
+              contactPoint: contactPointFor(config.trust.contact.href),
+            },
+          ],
+        })}}
+        type="application/ld+json"
+      />
+      <nav aria-label="현재 위치" className="breadcrumb">
+        <a href="/">홈</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">개인정보 안내</span>
+      </nav>
+
+      <header className={styles.hero}>
+        <p className="eyebrow">{site.englishName} Privacy Notice</p>
+        <h1>확인된 이용 방식만 안내합니다.</h1>
+        <p>
+          이 페이지는 RuleLink에서 확인한 데이터 이용 방식과 문의 처리 기준을 알립니다.
+          호스팅 제공자의 보관기간·처리 지역·국외이전 근거처럼 확인되지 않은 사항은 단정하지 않습니다.
+        </p>
+        <dl>
+          <div><dt>안내 기준일</dt><dd><time dateTime={config.effectiveDate}>{config.effectiveDate}</time></dd></div>
+          <div><dt>운영자</dt><dd>{config.trust.operatorLegalName}</dd></div>
+          <div><dt>문의</dt><dd><PublicExternalDestinationLink destination={config.trust.contact.destination} /></dd></div>
+        </dl>
+      </header>
+
+      <section aria-labelledby="site-data-heading" className={styles.inventory}>
+        <div className={styles.sectionHeading}>
+          <p className="eyebrow">Site behavior</p>
+          <h2 id="site-data-heading">사이트 안에서 확인한 데이터 이용</h2>
+        </div>
+        <div className={styles.cards}>
+          <LegalCard title="체크리스트 진행 상태">
+            <p>
+              사용자가 체크한 사실·행동 항목의 내부 식별자와 글 식별자는 현재 브라우저 저장소에만 저장됩니다.
+              서버나 제3자에게 자동 전송하지 않으며, 표의 ‘초기화’를 누르거나 브라우저 저장소를 지우면 삭제됩니다.
+            </p>
+          </LegalCard>
+          <LegalCard title="분석·광고">
+            <p>현재 RuleLink 자체 코드에는 방문 분석 또는 광고 제공을 위한 스크립트가 활성화되어 있지 않습니다.</p>
+          </LegalCard>
+          <LegalCard title="호스팅 요청">
+            <p>
+              이 사이트는 Vercel에서 호스팅됩니다. 사이트 요청의 기술 정보 처리는 Vercel의
+              {' '}<a href="https://vercel.com/legal/privacy-notice" rel="noopener noreferrer" target="_blank">개인정보 고지</a>를 따릅니다.
+              이 안내에서는 Vercel의 구체적인 보관기간, 처리 지역 또는 국외이전의 법적 근거를 확정해 적지 않습니다.
+            </p>
+          </LegalCard>
+          {config.workspace ? (
+            <LegalCard title="별도 작업공간 링크">
+              <p>
+                <PublicExternalDestinationLink destination={config.workspace} />는 사용자가 선택할 때만 열립니다.
+                RuleLink는 체크리스트 진행 상태나 문의 내용을 그 링크로 자동 전송하지 않습니다.
+              </p>
+            </LegalCard>
+          ) : null}
+        </div>
+      </section>
+
+      <section aria-labelledby="inquiry-heading" className={styles.rights}>
+        <div>
+          <p className="eyebrow">Inquiries</p>
+          <h2 id="inquiry-heading">개인정보 문의와 보관 기준</h2>
+        </div>
+        <div>
+          <p>문의자는 이메일로 스스로 보내는 문의 내용과 첨부파일을 제공할 수 있습니다. 운영자 {config.trust.operatorLegalName}은 공개된 이메일로 문의를 직접 처리합니다.</p>
+          <p>{config.inquiryRetention}</p>
+          <p>문의, 열람·정정·삭제 요청은 <PublicExternalDestinationLink destination={config.trust.contact.destination} />로 보내 주세요.</p>
+        </div>
       </section>
     </main>
   );
