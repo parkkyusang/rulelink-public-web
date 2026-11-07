@@ -1,13 +1,59 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
+import {createRequire} from 'node:module';
 import path from 'node:path';
 import test from 'node:test';
 import {fileURLToPath} from 'node:url';
+import {createElement} from 'react';
+import {renderToStaticMarkup} from 'react-dom/server';
+import ts from 'typescript';
 
 import {buildKnowledgeReadingPath} from '../src/lib/knowledge-relations.ts';
 
 const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repoRoot = path.resolve(appRoot, '..', '..');
+
+async function readingPathRenderer() {
+  const source = await readFile(path.join(appRoot, 'src/components/knowledge-reading-path.tsx'), 'utf8');
+  const output = ts.transpileModule(source, {
+    compilerOptions: {esModuleInterop: true, jsx: ts.JsxEmit.ReactJSX, module: ts.ModuleKind.CommonJS},
+    fileName: 'knowledge-reading-path.tsx',
+  }).outputText;
+  const module = {exports: {}};
+  const localRequire = createRequire(import.meta.url);
+  new Function('require', 'module', 'exports', output)(
+    name => name.endsWith('.module.css') ? {__esModule: true, default: new Proxy({}, {get: (_, key) => String(key)})} : localRequire(name),
+    module,
+    module.exports,
+  );
+  return sections => renderToStaticMarkup(createElement(module.exports.KnowledgeReadingPath, {currentTitle: '현재 글', sections}));
+}
+
+test('rendered fallback links omit classification scaffolding while typed reasons remain', async () => {
+  const render = await readingPathRenderer();
+  const source = {...entry('source'), related_edges: [{target_kind: 'content', target_id: 'typed', relation_type: 'procedure', label_ko: '출판된 연결 이유'}]};
+  const targets = [source, entry('typed'), entry('fallback')];
+  const sections = buildKnowledgeReadingPath(source, targets, [], ['source', 'typed', 'fallback']);
+  const html = render(sections);
+  assert.equal((html.match(/왜 연결되나요\?/gu) ?? []).length, 1);
+  assert.match(html, /출판된 연결 이유/u);
+  assert.match(html, /href="\/ko\/knowledge\/typed"/u);
+  assert.match(html, /href="\/ko\/knowledge\/fallback"/u);
+  assert.match(html, /fallback의 핵심 기준을 설명합니다/u);
+  assert.doesNotMatch(html, /아직 분류되지 않았습니다/u);
+  const untyped = sections.filter(section => !section.typed);
+  assert.doesNotMatch(render(untyped), /왜 연결되나요\?/u);
+  assert.match(render(sections.filter(section => section.typed)), /출판된 연결 이유/u);
+  assert.equal(render([]), '');
+});
+
+test('fallback preserves ordering, excludes self and duplicates, and limits links to six', () => {
+  const source = {...entry('source'), related_content_ids: ['two', 'one', 'two', 'missing', 'source']};
+  const targets = ['one', 'two', 'three', 'four', 'five', 'six', 'seven'].map(id => entry(id));
+  const sections = buildKnowledgeReadingPath(source, [source, ...targets], [], targets.map(item => item.content_id));
+  assert.deepEqual(sections[0].items.map(item => item.target_id), ['two', 'one', 'three', 'four', 'five', 'six']);
+  assert.equal(sections[0].typed, false);
+});
 
 function entry(contentId, title = contentId) {
   return {
@@ -94,7 +140,9 @@ test('무타입 기존 연결과 같은 허브 연결은 의미를 추정하지 
   assert.deepEqual(sections.map(section => section.key), ['same_topic']);
   assert.equal(sections[0].typed, false);
   assert.deepEqual(sections[0].items.map(item => item.target_id), ['content.related', 'content.same-hub']);
-  assert.ok(sections[0].items.every(item => item.reason_ko.includes('구체적인 연결 유형은 아직 분류되지 않았습니다')));
+  assert.equal(sections[0].description_ko, '같은 주제의 다른 글을 함께 살펴보세요.');
+  assert.ok(sections[0].items.every(item => item.reason_ko === '현재 글과 같은 주제 묶음에 있는 참고 글입니다.'));
+  assert.doesNotMatch(JSON.stringify(sections), /아직 분류되지 않았습니다/u);
 });
 
 test('0개·1개·다수 연결과 긴 한국어 제목을 손실 없이 처리한다', () => {

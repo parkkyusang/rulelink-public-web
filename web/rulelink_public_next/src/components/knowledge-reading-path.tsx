@@ -16,7 +16,7 @@ export function KnowledgeReadingPath({currentTitle, sections}: Props) {
         <div>
           <p className={styles.eyebrow}>연결 독해</p>
           <h2 id="knowledge-reading-path-title">지금 확인한 기준에서 어디로 이어질까요?</h2>
-          <p className={styles.intro}>연결 의미가 확인된 내용은 이유와 다음 행동을 함께 표시합니다.</p>
+          <p className={styles.intro}>관련 글과 법률개념을 이어서 살펴보세요.</p>
         </div>
         <p aria-label={`현재 읽는 글: ${currentTitle}`} className={styles.current}>
           <span>현재 읽는 글</span>
@@ -57,10 +57,12 @@ export function KnowledgeReadingPath({currentTitle, sections}: Props) {
                       <span className={styles.relation}>{item.relation_label_ko}</span>
                       <strong>{item.title_ko}</strong>
                       <p className={styles.summary}>{item.summary_ko}</p>
-                      <div className={styles.reason}>
-                        <span>왜 연결되나요?</span>
-                        <p>{item.reason_ko}</p>
-                      </div>
+                      {section.typed ? (
+                        <div className={styles.reason}>
+                          <span>왜 연결되나요?</span>
+                          <p>{item.reason_ko}</p>
+                        </div>
+                      ) : null}
                       <span className={styles.action}>{item.action_ko} <span aria-hidden="true">→</span></span>
                     </a>
                   </li>
