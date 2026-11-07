@@ -108,7 +108,7 @@ const READING_PATH_SECTION_META: Record<KnowledgeReadingPathSectionKey, Pick<Kno
   },
   same_topic: {
     label_ko: '같은 주제 더 보기',
-    description_ko: '같은 주제에 묶인 참고 글입니다. 구체적인 연결 의미는 아직 분류되지 않았습니다.',
+    description_ko: '같은 주제의 다른 글을 함께 살펴보세요.',
   },
 };
 
@@ -280,7 +280,7 @@ export function buildKnowledgeReadingPath(
       title_ko: candidate.title_ko,
       summary_ko: candidate.one_line_answer_ko,
       relation_label_ko: '같은 주제',
-      reason_ko: '현재 글과 같은 주제 묶음에 있는 참고 글이며, 구체적인 연결 유형은 아직 분류되지 않았습니다.',
+      reason_ko: '현재 글과 같은 주제 묶음에 있는 참고 글입니다.',
       action_ko: '같은 주제에서 보기',
     }));
   if (fallbackItems.length) {
