@@ -1,6 +1,7 @@
 import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 
+import {changeBriefTransitionDisplay} from '@/lib/change-brief-editorial';
 import {ChangeBriefContext} from '@/components/change-brief-context';
 import {buildChangeBriefStructuredData} from '@/lib/change-brief-structured-data';
 import {sourceVersionScopeLabelKo} from '@/lib/change-brief-projection';
@@ -11,7 +12,7 @@ import {
   listChangeBriefs,
   relatedCardsForChangeBrief,
 } from '@/lib/publication';
-import {browserOfficialSourceUrl} from '@/lib/official-source-url';
+import {changeBriefOfficialSourceUrl} from '@/lib/official-source-url';
 import {formatKoreanLegalDate} from '@/lib/legal-date';
 import {site} from '@/lib/site';
 import {serializeStructuredData} from '@/lib/structured-data';
@@ -126,7 +127,9 @@ export default async function ChangeBriefPage({params}: Props) {
               </div>
               <div className="normVersion newVersion">
                 <strong>{newFrameLabel}</strong>
-                <ul>{renderNormValues(brief.norm_delta.new_frame[slot])}</ul>
+                <ul>{renderNormValues(slot === 'transition_rule'
+                  ? changeBriefTransitionDisplay(brief.slug, brief.norm_delta.new_frame[slot])
+                  : brief.norm_delta.new_frame[slot])}</ul>
               </div>
             </article>
           ))}
@@ -150,21 +153,24 @@ export default async function ChangeBriefPage({params}: Props) {
       <section className="changeSources">
         <p className="eyebrow">공식 근거와 버전</p>
         <h2>구법과 신법을 같은 좌표로 덮어쓰지 않습니다.</h2>
-        <p className="sourceIntro">각 설명은 검토 당시의 불변 법령 스냅샷에 연결됩니다.</p>
+        <p className="sourceIntro">각 근거에 검토한 시행 기준을 표시합니다. 공식 링크에서 해당 버전이 바로 열리지 않으면 국가법령정보센터의 연혁에서 확인하세요.</p>
         <div className="changeAssertionGrid">
           {assertions.map(assertion => (
             <article className="assertion" key={assertion.assertion_id}>
               <p>{assertion.user_facing_text_ko}</p>
-              {assertion.source_coordinates.map(coordinate => (
-                <div className="source" key={`${coordinate.source_snapshot_id}-${coordinate.source_hash}`}>
-                  <span>{sourceVersionScopeLabelKo(coordinate.version_scope)}</span>
-                  <span>{coordinate.article_no}</span>
-                  {coordinate.effective_from ? <span>{formatDate(coordinate.effective_from)} 기준</span> : null}
-                  {coordinate.validation_status === 'verified' && browserOfficialSourceUrl(coordinate, brief.law_name_ko) ? (
-                    <a href={browserOfficialSourceUrl(coordinate, brief.law_name_ko)} rel="noopener noreferrer" target="_blank">공식 원문 (국가법령정보센터, 새 탭) ↗</a>
-                  ) : null}
-                </div>
-              ))}
+              {assertion.source_coordinates.map(coordinate => {
+                const officialUrl = changeBriefOfficialSourceUrl(coordinate, brief.law_name_ko);
+                return (
+                  <div className="source" key={`${coordinate.source_snapshot_id}-${coordinate.source_hash}`}>
+                    <span>{sourceVersionScopeLabelKo(coordinate.version_scope)}</span>
+                    <span>{coordinate.article_no}</span>
+                    {coordinate.effective_from ? <span>{formatDate(coordinate.effective_from)} 기준</span> : null}
+                    {officialUrl ? (
+                      <a href={officialUrl} rel="noopener noreferrer" target="_blank">공식 원문 (국가법령정보센터, 새 탭) ↗</a>
+                    ) : null}
+                  </div>
+                );
+              })}
             </article>
           ))}
         </div>
