@@ -1,7 +1,7 @@
 {
   "schema": "rulelink_public_release_v1",
-  "release_id": "production-20261107-037",
+  "release_id": "production-20261114-038",
   "snapshot_id": "kr-knowledge-core-20261025-025",
-  "requested_at": "2026-11-07T02:05:07.000Z",
-  "summary_ko": "관련 글 안내의 미완성 분류 문구와 반복 설명을 정리하고, 같은 주제의 글과 의미가 확인된 연결을 구분해 표시한다."
+  "requested_at": "2026-11-14T09:50:10.878Z",
+  "summary_ko": "행정심판 국선대리인 글의 개정 전후 공식 원문 링크를 구분하고, 개인 간 거래 플랫폼 글에서 관련 없는 상속 안내를 바로잡는다."
 }
