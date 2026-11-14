@@ -39,3 +39,19 @@ export function browserOfficialSourceUrl(
   }
   return original;
 }
+
+// The reviewed source bundles remain immutable. These public edition links were
+// independently verified against the specific captured versions at law.go.kr.
+const reviewedEditionLinks: ReadonlyMap<string, string> = new Map([
+  ['snapshot:088d4ff81a0e97e58d2f1b0bc746d895', 'https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=278135'],
+  ['snapshot:a6a01fd2edf8a1b83aaf71b882badec936cbef79031552d322c91747450b8707', 'https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286953'],
+]);
+
+export function changeBriefOfficialSourceUrl(
+  source: Pick<SourceCoordinate, 'official_url' | 'article_no' | 'law_name_ko' | 'source_snapshot_id' | 'validation_status'>,
+  fallbackLawNameKo = '',
+): string | undefined {
+  if (source.validation_status !== 'verified') return undefined;
+  const editionLink = source.source_snapshot_id ? reviewedEditionLinks.get(source.source_snapshot_id) : undefined;
+  return editionLink ?? browserOfficialSourceUrl(source, fallbackLawNameKo);
+}
