@@ -51,7 +51,7 @@ export function changeBriefOfficialSourceUrl(
   source: Pick<SourceCoordinate, 'official_url' | 'article_no' | 'law_name_ko' | 'source_snapshot_id' | 'validation_status'>,
   fallbackLawNameKo = '',
 ): string | undefined {
-  return source.validation_status === 'verified'
-    ? reviewedEditionLinks.get(source.source_snapshot_id) ?? browserOfficialSourceUrl(source, fallbackLawNameKo)
-    : undefined;
+  if (source.validation_status !== 'verified') return undefined;
+  const editionLink = source.source_snapshot_id ? reviewedEditionLinks.get(source.source_snapshot_id) : undefined;
+  return editionLink ?? browserOfficialSourceUrl(source, fallbackLawNameKo);
 }

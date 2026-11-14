@@ -159,7 +159,9 @@ export default async function ChangeBriefPage({params}: Props) {
             <article className="assertion" key={assertion.assertion_id}>
               <p>{assertion.user_facing_text_ko}</p>
               {assertion.source_coordinates.map(coordinate => {
-                const officialUrl = changeBriefOfficialSourceUrl(coordinate, brief.law_name_ko);
+                const officialUrl = coordinate.validation_status === 'verified'
+                  ? changeBriefOfficialSourceUrl(coordinate, brief.law_name_ko)
+                  : undefined;
                 return (
                   <div className="source" key={`${coordinate.source_snapshot_id}-${coordinate.source_hash}`}>
                     <span>{sourceVersionScopeLabelKo(coordinate.version_scope)}</span>

@@ -22,6 +22,8 @@ test('known reviewed editions get distinct links and leave original coordinates 
   assert.deepEqual(coords, baseline);
   const unknown = {...coords[0], source_snapshot_id: 'snapshot:unknown'};
   assert.equal(changeBriefOfficialSourceUrl(unknown, law), browserOfficialSourceUrl(unknown, law));
+  const {source_snapshot_id: _omitted, ...missing} = coords[0];
+  assert.equal(changeBriefOfficialSourceUrl(missing, law), browserOfficialSourceUrl(missing, law));
   assert.equal(changeBriefOfficialSourceUrl({...coords[0], validation_status: 'pending'}, law), undefined);
   assert.equal(browserOfficialSourceUrl(coords[0], law), browserOfficialSourceUrl(coords[1], law));
 });
