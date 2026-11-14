@@ -30,6 +30,14 @@ test('023 zero-state 상세 화면의 의미구조가 authority runtime에서도
   await expect(page.locator('#actions')).toHaveCount(1);
   await expect(page.locator('a[href^="/ko/authorities/"]')).toHaveCount(0);
 
+  const untypedLinks = page.locator('[data-reading-section="same_topic"][data-typed="false"] a[href]');
+  await expect(untypedLinks).toHaveCount(6);
+  for (const link of await untypedLinks.all()) {
+    await expect(link).not.toContainText(/왜 연결되나요\?|아직 분류되지 않았습니다/u);
+  }
+  await expect(page.locator('[data-reading-section][data-typed="true"]')
+    .getByText('왜 연결되나요?', {exact: true}).first()).toBeVisible();
+
   const signature = await semanticSignature(page);
   const baseline = JSON.parse(await readFile(baselinePath, 'utf8'));
   if (process.env.RULELINK_UPDATE_AUTHORITY_BASELINE === '1') {
